@@ -606,10 +606,62 @@ export const grade3Data = {
           { type: 'quiz', content: { question: 'Lan có 8 cái kẹo, Minh có số kẹo gấp 4 lần Lan rồi bớt 7 cái. Minh có bao nhiêu cái kẹo?', options: [25, 28, 32, 35], answer: 25, mascotHint: '8 × 4 = 32; 32 - 7 = 25 cái kẹo!' } },
           { type: 'summary', content: { title: 'Quy trình giải:', points: ['Bước 1: Tính phép nhân gấp lên', 'Bước 2: Trừ đi số bớt'], mascotMood: 'proud' } },
         ]),
-        makeLesson('g3-c8-l12', 'Bài 12: Đại lễ Vinh danh Trạng Nguyên Toàn Năng (Lớp 1-3)', 'Sẵn sàng bước tiếp!', [
-          { type: 'story', content: { mascotMood: 'celebrate', text: '🎉 Chúc mừng bé yêu đã hoàn thành toàn bộ 96 bài học Lớp 3 và toàn bộ 252 bài học Toán Vui Lớp 1, 2, 3! Cú Mèo vô cùng tự hào về bé! 🦉🏆🌟' } },
-          { type: 'quiz', content: { question: 'Hôm nay bé cảm thấy môn Toán thế nào?', options: ['Rất vui và thú vị! 😍', 'Dễ hiểu và bổ ích! 🥰', 'Cực kỳ say mê! 🚀'], answer: 'Rất vui và thú vị! 😍', mascotHint: 'Toán học luôn là người bạn tuyệt vời!' } },
-          { type: 'summary', content: { title: 'Trạng Nguyên Toàn Năng!', points: ['Tốt nghiệp xuất sắc Lớp 1, Lớp 2 và Lớp 3!', 'Chinh phục 252 bài học tiêu chuẩn Bộ GD&ĐT!'], mascotMood: 'celebrate' } },
+        makeLesson('g3-c8-l12', 'Bài 12: Đấu trường toán học: Giải bài toán bằng hai phép tính', 'Vận dụng tổng hợp hai bước tính', [
+          { type: 'story', content: { mascotMood: 'celebrate', text: 'Chúc mừng bé đã hoàn thành xuất sắc Chương 8 Giải toán bằng hai bước tính! 📝' } },
+          { type: 'summary', content: { title: 'Hoàn thành Chương 8:', points: ['Bé nắm chắc phương pháp tìm đại lượng trung gian trước khi trả lời câu hỏi!'], mascotMood: 'celebrate' } },
+        ]),
+      ],
+    },
+
+    // ----------------------------------------------------
+    // CHƯƠNG 9: BẢNG SỐ LIỆU & KHẢ NĂNG XẢY RA (10 bài)
+    // ----------------------------------------------------
+    {
+      id: 'g3-c9',
+      name: 'Chương 9: Bảng số liệu & Khả năng xảy ra của sự kiện',
+      description: 'Đọc bảng số liệu, khả năng chắc chắn, có thể, không thể',
+      icon: '🎲',
+      color: '#f59e0b',
+      totalLessons: 10,
+      lessons: [
+        makeLesson('g3-c9-l1', 'Bài 1: Thu thập và phân tích bảng số liệu thống kê', 'Đọc hàng và cột bảng số liệu', [
+          { type: 'story', content: { mascotMood: 'happy', text: 'Quan sát bảng theo dõi nhiệt độ hoặc số sách đọc được trong tuần của lớp! 📊' } },
+          { type: 'quiz', content: { question: 'Bảng số liệu giúp chúng ta điều gì?', options: ['Tra cứu thông tin nhanh chóng', 'Khó so sánh số liệu', 'Vẽ tranh phong cảnh'], answer: 'Tra cứu thông tin nhanh chóng', mascotHint: 'Bảng số liệu giúp nhìn rõ ràng các con số!' } },
+          { type: 'summary', content: { title: 'Bảng thống kê:', points: ['Gồm các hàng và cột chứa thông tin cụ thể'], mascotMood: 'proud' } },
+        ]),
+        makeLesson('g3-c9-l2', 'Bài 2: Làm quen với khả năng: Chắc chắn, Có thể, Không thể', 'Dự đoán xác suất đơn giản', [
+          { type: 'story', content: { mascotMood: 'excited', text: 'Trong hộp chỉ có 5 viên bi đỏ 🔴. Lấy ra 1 viên thì: CHẮC CHẮN là bi đỏ, KHÔNG THỂ là bi xanh! 🎲' } },
+          { type: 'quiz', content: { question: 'Mặt trời mọc ở đằng Đông là sự kiện gì?', options: ['Chắc chắn', 'Có thể', 'Không thể'], answer: 'Chắc chắn', mascotHint: 'Mặt trời luôn luôn mọc ở hướng Đông!' } },
+          { type: 'summary', content: { title: 'Khả năng xảy ra:', points: ['Chắc chắn: 100% xảy ra', 'Có thể: có khả năng', 'Không thể: 0% xảy ra'], mascotMood: 'proud' } },
+        ]),
+      ],
+    },
+
+    // ----------------------------------------------------
+    // CHƯƠNG 10: ÔN TẬP CUỐI NĂM LỚP 3 (10 bài)
+    // ----------------------------------------------------
+    {
+      id: 'g3-c10',
+      name: 'Chương 10: Ôn tập cuối năm Lớp 3',
+      description: 'Tổng hợp toàn diện kiến thức Lớp 3, vững bước bước vào Lớp 4',
+      icon: '🏆',
+      color: '#eab308',
+      totalLessons: 12,
+      lessons: [
+        makeLesson('g3-c10-l1', 'Bài 1: Ôn tập bốn phép tính trong phạm vi 100.000', 'Cộng, trừ, nhân, chia số lớn', [
+          { type: 'story', content: { mascotMood: 'happy', text: 'Cùng Cú Mèo ôn tập phép tính với số có 5 chữ số nào! ⚡' } },
+          { type: 'quiz', content: { question: 'Tính: 25.000 × 2 = ?', options: [40000, 50000, 60000, 55000], answer: 50000, mascotHint: '25 nghìn × 2 = 50 nghìn!' } },
+          { type: 'summary', content: { title: 'Tính toán thành thạo:', points: ['Vững vàng các phép tính trong phạm vi 100.000'], mascotMood: 'proud' } },
+        ]),
+        makeLesson('g3-c10-l2', 'Bài 2: Ôn tập hình học: Chu vi & Diện tích', 'Hình chữ nhật và hình vuông', [
+          { type: 'story', content: { mascotMood: 'excited', text: 'Chu vi = (dài + rộng) × 2. Diện tích = dài × rộng! 📐' } },
+          { type: 'quiz', content: { question: 'Hình vuông có cạnh 7cm. Diện tích là:', options: [28, 49, 14, 21], answer: 49, mascotHint: '7 × 7 = 49 cm²!' } },
+          { type: 'summary', content: { title: 'Công thức hình học:', points: ['Phân biệt chu vi (đo độ dài) và diện tích (cm²)'], mascotMood: 'proud' } },
+        ]),
+        makeLesson('g3-c10-l3', 'Bài 3: Đại Lễ Vinh Danh Trạng Nguyên Toán Học Lớp 3', 'Tốt nghiệp Lớp 3 xuất sắc', [
+          { type: 'story', content: { mascotMood: 'celebrate', text: '🎉 Chúc mừng bé yêu đã hoàn thành toàn bộ 10 chương học Toán Lớp 3! Bé đã là Bậc Thầy Toán Học và sẵn sàng bước vào Lớp 4 để học Phân Số và Lớp Triệu! 🦉🏆🌟' } },
+          { type: 'quiz', content: { question: 'Bé đã sẵn sàng bước vào Lớp 4 chinh phục môn Toán chưa?', options: ['Sẵn sàng 100%! 🚀', 'Rất hào hứng! ✨'], answer: 'Sẵn sàng 100%! 🚀', mascotHint: 'Cùng tự tin bước tiếp nào!' } },
+          { type: 'summary', content: { title: 'Tốt nghiệp Lớp 3:', points: ['Hoàn thành xuất sắc 10 chương học Toán Lớp 3!', 'Nắm chắc kiến thức nền tảng vững chắc!'], mascotMood: 'celebrate' } },
         ]),
       ],
     },

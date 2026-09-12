@@ -1,0 +1,136 @@
+/* ========================================
+   KNOWLEDGE RADAR CHART (5-AXIS SPIDER)
+   ======================================== */
+.radar-chart-card {
+  background: white;
+  border-radius: var(--radius-3xl);
+  padding: var(--space-6) var(--space-8);
+  border: 2px solid #c3fae8;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.radar-header {
+  border-bottom: 1.5px dashed #e9ecef;
+  padding-bottom: var(--space-4);
+}
+
+.radar-title-group h3 {
+  font-size: var(--text-xl);
+  color: #087f5b;
+  font-family: var(--font-heading);
+  margin-bottom: 4px;
+}
+
+.radar-title-group p {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.radar-visual-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: var(--space-8);
+  flex-wrap: wrap;
+}
+
+.radar-svg {
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.04));
+  overflow: visible;
+}
+
+.radar-legend-list {
+  flex: 1;
+  min-width: 260px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.radar-legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 8px 12px;
+  background: #f8f9fa;
+  border-radius: var(--radius-xl);
+  border: 1px solid #e9ecef;
+  transition: transform 0.15s ease;
+}
+
+.radar-legend-item:hover {
+  transform: translateX(4px);
+  background: white;
+  box-shadow: var(--shadow-sm);
+}
+
+.legend-icon {
+  font-size: 1.3rem;
+}
+
+.legend-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.legend-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #495057;
+}
+
+.legend-bar-wrap {
+  width: 100%;
+  height: 6px;
+  background: #dee2e6;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.legend-bar-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width 0.6s ease;
+}
+
+.legend-bar-fill.green {
+  background: #20c997;
+}
+
+.legend-bar-fill.yellow {
+  background: #fcc419;
+}
+
+.legend-bar-fill.gray {
+  background: #adb5bd;
+}
+
+.legend-score {
+  font-weight: 800;
+  font-size: 0.95rem;
+  min-width: 44px;
+  text-align: right;
+}
+
+.legend-score.green {
+  color: #0ca678;
+}
+
+.legend-score.yellow {
+  color: #f59f00;
+}
+
+.legend-score.gray {
+  color: #868e96;
+}
+
+@media (max-width: 768px) {
+  .radar-visual-wrapper {
+    flex-direction: column;
+  }
+}

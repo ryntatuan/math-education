@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MOCKUP GIAO DIỆN TRANG CHỦ: 5 LỚP & 10 CHƯƠNG (PHƯƠNG ÁN A)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --font-heading: 'Baloo 2', cursive, sans-serif;
+      --font-body: 'Nunito', sans-serif;
+      --color-primary: #4facfe;
+      --color-primary-dark: #0084ff;
+      --color-success: #10b981;
+      --color-warning: #f59e0b;
+      --color-danger: #ef4444;
+      --color-purple: #8b5cf6;
+      --bg-page: #f0f7ff;
+      --bg-card: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 22px;
+      --radius-xl: 30px;
+      --shadow-3d: 0 4px 0 #cbd5e1;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-page);
+      color: var(--text-main);
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* --- SIDEBAR (GIỮ NGUYÊN 100%) --- */
+    .sidebar {
+      width: 240px;
+      background: #ffffff;
+      border-right: 2px solid #e2e8f0;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      padding: 20px 16px;
+      z-index: 20;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #f97316;
+      margin-bottom: 24px;
+      padding-left: 8px;
+    }
+
+    .brand-logo span.owl {
+      font-size: 2.2rem;
+      filter: drop-shadow(0 4px 6px rgba(249, 115, 22, 0.2));
+    }
+
+    .nav-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      list-style: none;
+      flex: 1;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 16px;
+      border-radius: var(--radius-md);
+      font-weight: 700;
+      font-size: 1rem;
+      color: #475569;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .nav-item:hover {
+      background: #f1f5f9;
+      color: #0284c7;
+      transform: translateX(3px);
+    }
+
+    .nav-item.active {
+      background: linear-gradient(135deg, #0ea5e9, #0284c7);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);
+    }
+
+    .nav-icon {
+      font-size: 1.3rem;
+    }
+
+    .sidebar-footer {
+      padding-top: 16px;
+      border-top: 1px solid #e2e8f0;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #64748b;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding-left: 8px;
+    }
+
+    /* --- MAIN WRAPPER --- */
+    .app-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* HEADER */
+    .top-header {
+      height: 72px;
+      background: #ffffff;
+      border-bottom: 2px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      flex-shrink: 0;
+    }
+
+    .greeting-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #334155;
+    }
+
+    .greeting-wrap strong {
+      color: #10b981;
+    }
+
+    .user-stats-bar {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .stat-chip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .chip-streak {
+      background: #fff1f2;
+      color: #f43f5e;
+      border: 1px solid #fecdd3;
+    }
+
+    .chip-coins {
+      background: #fef3c7;
+      color: #b45309;
+      border: 1px solid #fde68a;
+    }
+
+    .chip-level {
+      background: #ede9fe;
+      color: #6d28d9;
+      border: 1px solid #ddd6fe;
+    }
+
+    .avatar-bubble {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #fbcfe8, #f472b6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    /* CONTENT SCROLL AREA */
+    .content-viewport {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px 32px 48px;
+    }
+
+    /* 2-COLUMN DASHBOARD GRID */
+    .dashboard-2col {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 28px;
+      align-items: start;
+    }
+
+    /* --- CỘT TRÁI (68%): TRỤC HỌC TẬP CHÍNH --- */
+    .learning-column {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    /* DẢI 5 LỚP HỌC */
+    .grade-selector-card {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      padding: 16px 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+      border: 2px solid #e2e8f0;
+    }
+
+    .grade-selector-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .grade-selector-header h2 {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #1e293b;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .grade-btn-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+
+    .grade-pill-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px 8px;
+      border-radius: var(--radius-md);
+      background: #f8fafc;
+      border: 2px solid #e2e8f0;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+    }
+
+    .grade-pill-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    .grade-pill-btn.active {
+      background: linear-gradient(135deg, #ecfeff, #cffafe);
+      border-color: #06b6d4;
+      box-shadow: 0 4px 0 #0891b2;
+      transform: translateY(-2px);
+    }
+
+    .grade-pill-btn .emoji {
+      font-size: 1.6rem;
+      margin-bottom: 4px;
+    }
+
+    .grade-pill-btn .name {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .grade-pill-btn .age {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #64748b;
+    }
+
+    .grade-pill-btn.active .age {
+      color: #0891b2;
+    }
+
+    .grade-pill-btn .check-badge {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      width: 20px;
+      height: 20px;
+      background: #10b981;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 900;
+      border: 2px solid #ffffff;
+    }
+
+    /* BỘ LỌC HỌC KỲ */
+    .semester-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .semester-tabs {
+      display: flex;
+      gap: 8px;
+      background: #e2e8f0;
+      padding: 4px;
+      border-radius: 999px;
+    }
+
+    .sem-btn {
+      padding: 6px 16px;
+      border-radius: 999px;
+      border: none;
+      font-family: var(--font-body);
+      font-weight: 800;
+      font-size: 0.85rem;
+      color: #64748b;
+      cursor: pointer;
+      background: transparent;
+      transition: all 0.2s;
+    }
+
+    .sem-btn.active {
+      background: #ffffff;
+      color: #0284c7;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .chapters-count-pill {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: #0284c7;
+      background: #e0f2fe;
+      padding: 4px 12px;
+      border-radius: 999px;
+    }
+
+    /* LƯỚI 10 CHƯƠNG HỌC */
+    .chapters-grid-10 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .chapter-card-box {
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      padding: 16px;
+      border: 2px solid #e2e8f0;
+      box-shadow: 0 4px 0 #cbd5e1;
+      display: flex;
+      gap: 14px;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+    }
+
+    .chapter-card-box:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 7px 0 #cbd5e1;
+      border-color: #38bdf8;
+    }
+
+    .chapter-icon-badge {
+      width: 54px;
+      height: 54px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      flex-shrink: 0;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.06);
+    }
+
+    .chapter-info {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .chapter-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 4px;
+    }
+
+    .chapter-title-row h3 {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 800;
+      color: #0f172a;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .chapter-stars {
+      color: #f59e0b;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+    }
+
+    .chapter-desc {
+      font-size: 0.8rem;
+      color: #64748b;
+      margin-bottom: 8px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .chapter-progress-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .progress-track-mini {
+      flex: 1;
+      height: 8px;
+      background: #f1f5f9;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill-mini {
+      height: 100%;
+      background: linear-gradient(90deg, #10b981, #34d399);
+      border-radius: 999px;
+    }
+
+    .btn-action-mini {
+      font-family: var(--font-heading);
+      font-size: 0.8rem;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #38bdf8, #0284c7);
+      color: #ffffff;
+      cursor: pointer;
+      box-shadow: 0 2px 0 #0369a1;
+      white-space: nowrap;
+    }
+
+    .btn-action-mini.done {
+      background: #f1f5f9;
+      color: #10b981;
+      box-shadow: none;
+      border: 1px solid #a7f3d0;
+    }
+
+    /* QUICK PLAY FOOTER */
+    .quick-launch-bar {
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      padding: 14px 20px;
+      border: 2px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .quick-launch-title {
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: #334155;
+    }
+
+    .quick-chips-wrap {
+      display: flex;
+      gap: 10px;
+    }
+
+    .quick-chip-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 0.85rem;
+      border: none;
+      cursor: pointer;
+      color: white;
+      box-shadow: 0 3px 0 rgba(0,0,0,0.15);
+      transition: transform 0.15s;
+    }
+
+    .quick-chip-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-games { background: linear-gradient(135deg, #f43f5e, #fb7185); }
+    .btn-stories { background: linear-gradient(135deg, #a855f7, #c084fc); }
+    .btn-arena { background: linear-gradient(135deg, #f59e0b, #fbbf24); }
+
+    /* --- CỘT PHẢI (32%): STICKY COMPANION GAMIFICATION --- */
+    .companion-column {
+      position: sticky;
+      top: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* WIDGET THÚ CƯNG MINI GỌN GÀNG */
+    .pet-mini-card {
+      background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 60%, #fef3c7 100%);
+      border: 2px solid #fdba74;
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      box-shadow: 0 6px 16px rgba(251, 146, 60, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pet-teaser-inner {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .pet-egg-nest {
+      width: 60px;
+      height: 60px;
+      background: #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      box-shadow: 0 4px 10px rgba(234, 88, 12, 0.2);
+      flex-shrink: 0;
+      animation: floatEgg 2.5s ease-in-out infinite;
+    }
+
+    @keyframes floatEgg {
+      0%, 100% { transform: translateY(0) rotate(-4deg); }
+      50% { transform: translateY(-5px) rotate(4deg); }
+    }
+
+    .pet-teaser-info {
+      flex: 1;
+    }
+
+    .pet-badge-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: #c2410c;
+      background: #ffedd5;
+      padding: 2px 8px;
+      border-radius: 999px;
+      margin-bottom: 4px;
+    }
+
+    .pet-teaser-info h4 {
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #9a3412;
+      margin-bottom: 2px;
+    }
+
+    .pet-teaser-info p {
+      font-size: 0.75rem;
+      color: #7c2d12;
+      line-height: 1.2;
+    }
+
+    .btn-adopt-mini {
+      margin-top: 10px;
+      width: 100%;
+      background: linear-gradient(135deg, #ea580c, #f97316);
+      color: #ffffff;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 0.85rem;
+      cursor: pointer;
+      box-shadow: 0 3px 0 #9a3412;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: transform 0.15s;
+    }
+
+    .btn-adopt-mini:hover {
+      transform: translateY(-2px);
+    }
+
+    /* NHIỆM VỤ MỖI NGÀY CARD */
+    .quests-card {
+      background: #ffffff;
+      border: 2px solid #e2e8f0;
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+    }
+
+    .quests-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .quests-header h3 {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 800;
+      color: #1e293b;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .quest-count-tag {
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: #ea580c;
+      background: #fff7ed;
+      padding: 2px 10px;
+      border-radius: 999px;
+      border: 1px solid #ffedd5;
+    }
+
+    .quests-progress-bar {
+      height: 8px;
+      background: #f1f5f9;
+      border-radius: 999px;
+      margin-bottom: 14px;
+      overflow: hidden;
+    }
+
+    .quests-progress-bar .fill {
+      height: 100%;
+      width: 66%;
+      background: linear-gradient(90deg, #f59e0b, #10b981);
+      border-radius: 999px;
+    }
+
+    .quests-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      list-style: none;
+      margin-bottom: 14px;
+    }
+
+    .quest-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #334155;
+    }
+
+    .quest-item.completed {
+      color: #64748b;
+      text-decoration: line-through;
+    }
+
+    .quest-chk {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      flex-shrink: 0;
+    }
+
+    .quest-chk.done {
+      background: #10b981;
+      color: white;
+    }
+
+    .quest-chk.pending {
+      border: 2px solid #cbd5e1;
+    }
+
+    .quest-reward-tag {
+      margin-left: auto;
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: #d97706;
+      background: #fef3c7;
+      padding: 1px 6px;
+      border-radius: 6px;
+    }
+
+    /* RƯƠNG KHO BÁU */
+    .quest-chest-banner {
+      background: linear-gradient(135deg, #fef9c3, #fef08a);
+      border: 1px dashed #eab308;
+      border-radius: var(--radius-sm);
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    .chest-icon {
+      font-size: 1.8rem;
+      animation: wiggleChest 3s ease-in-out infinite;
+    }
+
+    @keyframes wiggleChest {
+      0%, 80%, 100% { transform: rotate(0); }
+      85% { transform: rotate(-8deg); }
+      90% { transform: rotate(8deg); }
+      95% { transform: rotate(-4deg); }
+    }
+
+    .chest-text h5 {
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: #854d0e;
+    }
+
+    .chest-text p {
+      font-size: 0.75rem;
+      color: #a16207;
+    }
+
+    /* ĐẤU TRƯỜNG MINI WIDGET */
+    .arena-mini-card {
+      background: #ffffff;
+      border: 2px solid #e2e8f0;
+      border-radius: var(--radius-lg);
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .arena-badge {
+      font-size: 1.8rem;
+    }
+
+    .arena-info h4 {
+      font-family: var(--font-heading);
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: #1e293b;
+    }
+
+    .arena-info p {
+      font-size: 0.75rem;
+      color: #0284c7;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. MENU TRÁI (SIDEBAR - GIỮ NGUYÊN 100%) -->
+  <aside class="sidebar">
+    <div class="brand-logo">
+      <span class="owl">🦉</span>
+      <span>Toán Vui</span>
+    </div>
+    <ul class="nav-list">
+      <li class="nav-item active">
+        <span class="nav-icon">🏠</span>
+        <span>Trang chủ</span>
+      </li>
+      <li class="nav-item">
+        <span class="nav-icon">📖</span>
+        <span>Học bài</span>
+      </li>
+      <li class="nav-item">
+        <span class="nav-icon">✏️</span>
+        <span>Luyện tập</span>
+      </li>
+      <li class="nav-item">
+        <span class="nav-icon">🎮</span>
+        <span>Trò chơi</span>
+      </li>
+      <li class="nav-item">
+        <span class="nav-icon">✨</span>
+        <span>Truyện toán</span>
+      </li>
+      <li class="nav-item">
+        <span class="nav-icon">⚔️</span>
+        <span>Đấu trường</span>
+      </li>
+      <li class="nav-item">
+        <span class="nav-icon">🏆</span>
+        <span>Thử thách</span>
+      </li>
+      <li class="nav-item">
+        <span class="nav-icon">🛡️</span>
+        <span>Phụ huynh</span>
+      </li>
+    </ul>
+    <div class="sidebar-footer">
+      <span>🔊</span>
+      <span>Âm thanh: Bật</span>
+    </div>
+  </aside>
+
+  <!-- 2. KHU VỰC CHÍNH -->
+  <div class="app-main">
+    <!-- TOP HEADER -->
+    <header class="top-header">
+      <div class="greeting-wrap">
+        <span>✨ Chào mừng <strong>Bé Học Giỏi</strong> đến với thế giới Toán Vui!</span>
+      </div>
+      <div class="user-stats-bar">
+        <div class="stat-chip chip-streak">🔥 1 ngày</div>
+        <div class="stat-chip chip-coins">🪙 2,379</div>
+        <div class="stat-chip chip-level">⚡ Lv.11</div>
+        <div class="avatar-bubble">🦉</div>
+      </div>
+    </header>
+
+    <!-- CONTENT VIEWPORT -->
+    <div class="content-viewport">
+      <div class="dashboard-2col">
+
+        <!-- CỘT TRÁI (68%): TRỤC HỌC TẬP CHÍNH -->
+        <main class="learning-column">
+          
+          <!-- KHỐI CHỌN LỚP (5 CẤP ĐỘ RÕ RÀNG) -->
+          <div class="grade-selector-card">
+            <div class="grade-selector-header">
+              <h2>📚 Chọn Lớp Của Bé</h2>
+              <span style="font-size: 0.85rem; font-weight: 700; color: #64748b;">Chương trình chuẩn Bộ GD&ĐT</span>
+            </div>
+            <div class="grade-btn-grid">
+              <!-- LỚP 1 (ACTIVE) -->
+              <div class="grade-pill-btn active">
+                <span class="emoji">🌱</span>
+                <span class="name">Lớp 1</span>
+                <span class="age">6-7 tuổi</span>
+                <div class="check-badge">✓</div>
+              </div>
+              <!-- LỚP 2 -->
+              <div class="grade-pill-btn">
+                <span class="emoji">🌿</span>
+                <span class="name">Lớp 2</span>
+                <span class="age">7-8 tuổi</span>
+              </div>
+              <!-- LỚP 3 -->
+              <div class="grade-pill-btn">
+                <span class="emoji">🌳</span>
+                <span class="name">Lớp 3</span>
+                <span class="age">8-9 tuổi</span>
+              </div>
+              <!-- LỚP 4 -->
+              <div class="grade-pill-btn">
+                <span class="emoji">🌲</span>
+                <span class="name">Lớp 4</span>
+                <span class="age">9-10 tuổi</span>
+              </div>
+              <!-- LỚP 5 -->
+              <div class="grade-pill-btn">
+                <span class="emoji">🏔️</span>
+                <span class="name">Lớp 5</span>
+                <span class="age">10-11 tuổi</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- BỘ LỌC HỌC KỲ CHO 10 CHƯƠNG -->
+          <div class="semester-bar">
+            <div class="semester-tabs">
+              <button class="sem-btn active">⭐ Tất cả (10 Chương)</button>
+              <button class="sem-btn">🌸 Học kỳ 1 (Chương 1-5)</button>
+              <button class="sem-btn">☀️ Học kỳ 2 (Chương 6-10)</button>
+            </div>
+            <span class="chapters-count-pill">📖 Đang hiển thị Lớp 1</span>
+          </div>
+
+          <!-- LƯỚI 10 CHƯƠNG HỌC (2 CỘT X 5 HÀNG) -->
+          <div class="chapters-grid-10">
+
+            <!-- CHƯƠNG 1 -->
+            <div class="chapter-card-box">
+              <div class="chapter-icon-badge" style="background: #e0f2fe; color: #0284c7;">🔢</div>
+              <div class="chapter-info">
+                <div class="chapter-title-row">
+                  <h3>Chương 1: Các Số Đến 10</h3>
+                  <span class="chapter-stars">⭐⭐⭐</span>
+                </div>
+                <p class="chapter-desc">Đếm số, so sánh nhiều hơn ít hơn</p>
+                <div class="chapter-progress-row">
+                  <div class="progress-track-mini"><div class="progress-fill-mini" style="width: 100%;"></div></div>
+                  <button class="btn-action-mini done">Ôn lại ↺</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- CHƯƠNG 2 -->
+            <div class="chapter-card-box">
+              <div class="chapter-icon-badge" style="background: #dcfce7; color: #15803d;">➕</div>
+              <div class="chapter-info">
+                <div class="chapter-title-row">
+                  <h3>Chương 2: Phép Cộng Phạm Vi 10</h3>
+                  <span class="chapter-stars">⭐⭐☆</span>
+                </div>
+                <p class="chapter-desc">Khái niệm cộng, thêm vào, tách gộp</p>
+                <div class="chapter-progress-row">
+                  <div class="progress-track-mini"><div class="progress-fill-mini" style="width: 60%;"></div></div>
+                  <button class="btn-action-mini">Học tiếp →</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- CHƯƠNG 3 -->
+            <div class="chapter-card-box">
+              <div class="chapter-icon-badge" style="background: #ffedd5; color: #c2410c;">➖</div>
+              <div class="chapter-info">
+                <div class="chapter-title-row">
+                  <h3>Chương 3: Phép Trừ Phạm Vi 10</h3>
+                  <span class="chapter-stars">⭐☆☆</span>
+                </div>
+                <p class="chapter-desc">Bớt đi, còn lại bao nhiêu đồ vật</p>
+                <div class="chapter-progress-row">
+                  <div class="progress-track-mini"><div class="progress-fill-mini" style="width: 25%;"></div></div>
+                  <button class="btn-action-mini">Học tiếp →</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- CHƯƠNG 4 -->
+            <div class="chapter-card-box">
+              <div class="chapter-icon-badge" style="background: #f3e8ff; color: #7e22ce;">📐</div>
+              <div class="chapter-info">
+                <div class="chapter-title-row">
+                  <h3>Chương 4: Hình Học Cơ Bản</h3>
+                  <span class="chapter-stars">☆☆☆</span>
+                </div>
+                <p class="chapter-desc">Hình vuông, tròn, tam giác, chữ nhật</p>
+                <div class="chapter-progress-row">
+                  <div class="progress-track-mini"><div class="progress-fill-mini" style="width: 0%;"></div></div>
+                  <button class="btn-action-mini">Bắt đầu →</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- CHƯƠNG 5 -->
+            <div class="chapter-card-box">
+              <div class="chapter-icon-badge" style="background: #fef3c7; color: #b45309;">📏</div>
+              <div class="chapter-info">
+                <div class="chapter-title-row">
+                  <h3>Chương 5: Đo Độ Dài (cm)</h3>
+                  <span class="chapter-stars">☆☆☆</span>
+                </div>
+                <p class="chapter-desc">Làm quen với thước kẻ và xăng-ti-mét</p>
+                <div class="chapter-progress-row">
+                  <div class="progress-track-mini"><div class="progress-fill-mini" style="width: 0%;"></div></div>
+                  <button class="btn-action-mini">Bắt đầu →</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- CHƯƠNG 6 -->
+            <div class="chapter-card-box">
+              <div class="chapter-icon-badge" style="background: #e0e7ff; color: #4338ca;">⏱️</div>
+              <div class="chapter-info">
+                <div class="chapter-title-row">
+                  <h3>Chương 6: Thời Gian & Đồng Hồ</h3>
+                  <span class="chapter-stars">☆☆☆</span>
+                </div>
+                <p class="chapter-desc">Xem giờ đúng, các ngày trong tuần</p>
+                <div class="chapter-progress-row">
+                  <div class="progress-track-mini"><div class="progress-fill-mini" style="width: 0%;"></div></div>
+                  <button class="btn-action-mini">Bắt đầu →</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- CHƯƠNG 7 -->
+            <div class="chapter-card-box">
+              <div class="chapter-icon-badge" style="background: #fae8ff; color: #a21caf;">💯</div>
+              <div class="chapter-info">
+                <div class="chapter-title-row">
+                  <h3>Chương 7: Các Số Đến 100</h3>
+                  <span class="chapter-stars">☆☆☆</span>
+                </div>
+                <p class="chapter-desc">Hàng chục, hàng đơn vị, đọc viết số</p>
+                <div class="chapter-progress-row">
+                  <div class="progress-track-mini"><div class="progress-fill-mini" style="width: 0%;"></div></div>
+                  <button class="btn-action-mini">Bắt đầu →</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- CHƯƠNG 8 -->
+            <div class="chapter-card-box">
+              <div class="chapter-icon-badge" style="background: #ccfbf1; color: #0f766e;">🧮</div>
+              <div class="chapter-info">
+                <div class="chapter-title-row">
+                  <h3>Chương 8: Phép Cộng Có Nhớ</h3>
+                  <span class="chapter-stars">☆☆☆</span>
+                </div>
+                <p class="chapter-desc">Cộng qua 10, đặt tính rồi tính</p>
+                <div class="chapter-progress-row">
+                  <div class="progress-track-mini"><div class="progress-fill-mini" style="width: 0%;"></div></div>
+                  <button class="btn-action-mini">Bắt đầu →</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- CHƯƠNG 9 -->
+            <div class="chapter-card-box">
+              <div class="chapter-icon-badge" style="background: #fee2e2; color: #b91c1c;">➖</div>
+              <div class="chapter-info">
+                <div class="chapter-title-row">
+                  <h3>Chương 9: Phép Trừ Có Nhớ</h3>
+                  <span class="chapter-stars">☆☆☆</span>
+                </div>
+                <p class="chapter-desc">Trừ qua 10, giải bài toán có lời văn</p>
+                <div class="chapter-progress-row">
+                  <div class="progress-track-mini"><div class="progress-fill-mini" style="width: 0%;"></div></div>
+                  <button class="btn-action-mini">Bắt đầu →</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- CHƯƠNG 10 -->
+            <div class="chapter-card-box">
+              <div class="chapter-icon-badge" style="background: #fef08a; color: #854d0e;">🏆</div>
+              <div class="chapter-info">
+                <div class="chapter-title-row">
+                  <h3>Chương 10: Ôn Tập Cuối Năm</h3>
+                  <span class="chapter-stars">☆☆☆</span>
+                </div>
+                <p class="chapter-desc">Tổng hợp kiến thức toàn diện Lớp 1</p>
+                <div class="chapter-progress-row">
+                  <div class="progress-track-mini"><div class="progress-fill-mini" style="width: 0%;"></div></div>
+                  <button class="btn-action-mini">Bắt đầu →</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- FOOTER PHÍM TẮT KHÁM PHÁ -->
+          <div class="quick-launch-bar">
+            <span class="quick-launch-title">🚀 Khám phá thêm cùng Toán Vui:</span>
+            <div class="quick-chips-wrap">
+              <button class="quick-chip-btn btn-games">🎮 6 Mini Game</button>
+              <button class="quick-chip-btn btn-stories">📖 Truyện Toán Vui</button>
+              <button class="quick-chip-btn btn-arena">⚔️ Đấu Trường Thăng Hạng</button>
+            </div>
+          </div>
+
+        </main>
+
+        <!-- CỘT PHẢI (32%): STICKY COMPANION GAMIFICATION -->
+        <aside class="companion-column">
+
+          <!-- THÚ CƯNG MINI GỌN GÀNG (CAO CHỈ 115PX) -->
+          <div class="pet-mini-card">
+            <div class="pet-teaser-inner">
+              <div class="pet-egg-nest">🥚</div>
+              <div class="pet-teaser-info">
+                <span class="pet-badge-tag">✨ Ấp Trứng Kỳ Diệu</span>
+                <h4>Thú Cưng Học Toán</h4>
+                <p>Ấp nở Rồng Con 🐲, Corgi 🐶 cùng học toán!</p>
+              </div>
+            </div>
+            <button class="btn-adopt-mini">✨ Nhận Nuôi Ngay</button>
+          </div>
+
+          <!-- NHIỆM VỤ MỖI NGÀY -->
+          <div class="quests-card">
+            <div class="quests-header">
+              <h3>📋 Nhiệm Vụ Hôm Nay</h3>
+              <span class="quest-count-tag">2/3 xong</span>
+            </div>
+            <div class="quests-progress-bar">
+              <div class="fill"></div>
+            </div>
+            <ul class="quests-list">
+              <li class="quest-item completed">
+                <span class="quest-chk done">✓</span>
+                <span>Hoàn thành 2 bài học</span>
+                <span class="quest-reward-tag">+15 Xu</span>
+              </li>
+              <li class="quest-item completed">
+                <span class="quest-chk done">✓</span>
+                <span>Chơi 1 ván mini game</span>
+                <span class="quest-reward-tag">+10 Xu</span>
+              </li>
+              <li class="quest-item">
+                <span class="quest-chk pending"></span>
+                <span>Cho thú cưng ăn 1 bữa</span>
+                <span class="quest-reward-tag">+10 Xu</span>
+              </li>
+            </ul>
+
+            <div class="quest-chest-banner">
+              <span class="chest-icon">🎁</span>
+              <div class="chest-text">
+                <h5>Rương Thưởng Hoàn Thành Ngày</h5>
+                <p>Còn 1 nhiệm vụ nữa để mở khóa nhận +50 Xu!</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- ĐẤU TRƯỜNG MINI -->
+          <div class="arena-mini-card">
+            <span class="arena-badge">🛡️</span>
+            <div class="arena-info">
+              <h4>Đấu Trường Giải Đấu</h4>
+              <p>Hạng Bạc (Top 4/15) • Còn 2 bài để lên Hạng Vàng!</p>
+            </div>
+          </div>
+
+        </aside>
+
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

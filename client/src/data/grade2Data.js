@@ -530,10 +530,86 @@ export const grade2Data = {
           { type: 'quiz', content: { question: 'Một hình vuông được kẻ một đường chéo chia đôi. Ta đếm được bao nhiêu hình tam giác?', options: [1, 2, 3, 4], answer: 2, mascotHint: 'Đường chéo chia hình vuông thành 2 hình tam giác!' } },
           { type: 'summary', content: { title: 'Mẹo đếm hình:', points: ['Đếm hình đơn trước rồi đếm hình ghép'], mascotMood: 'proud' } },
         ]),
-        makeLesson('g2-c7-l12', 'Bài 12: Đại hội Trạng Nguyên Toán Lớp 2', 'Tốt nghiệp Lớp 2 xuất sắc', [
-          { type: 'story', content: { mascotMood: 'celebrate', text: 'Chúc mừng bé đã hoàn thành xuất sắc toàn bộ 84 bài học Toán Lớp 2! Bé đã sẵn sàng lên Lớp 3! 🎉🏆' } },
-          { type: 'quiz', content: { question: 'Tính: 5 × 6 + 45 = ?', options: [65, 75, 80, 85], answer: 75, mascotHint: '5 × 6 = 30; 30 + 45 = 75!' } },
-          { type: 'summary', content: { title: 'Vinh danh Trạng Nguyên Lớp 2!', points: ['Bé nắm vững toàn bộ kiến thức toán lớp 2!', 'Tự tin bước lên lớp 3!'], mascotMood: 'celebrate' } },
+        makeLesson('g2-c7-l12', 'Bài 12: Đấu trường toán học: Đố vui hình tứ giác và đường gấp khúc', 'Vận dụng hình học giải đố', [
+          { type: 'story', content: { mascotMood: 'celebrate', text: 'Chúc mừng bé đã hoàn thành xuất sắc Chương 7 Hình học và Giải toán! 📐' } },
+          { type: 'summary', content: { title: 'Hoàn thành Chương 7:', points: ['Bé nắm vững hình tứ giác, đường gấp khúc và các khối không gian!'], mascotMood: 'celebrate' } },
+        ]),
+      ],
+    },
+
+    // ----------------------------------------------------
+    // CHƯƠNG 8: PHÉP CỘNG TRỪ CÓ NHỚ TRONG PHẠM VI 1000 (10 bài)
+    // ----------------------------------------------------
+    {
+      id: 'g2-c8',
+      name: 'Chương 8: Phép cộng trừ có nhớ trong phạm vi 1000',
+      description: 'Cộng trừ các số có 3 chữ số có nhớ một lần',
+      icon: '🧮',
+      color: '#06b6d4',
+      totalLessons: 10,
+      lessons: [
+        makeLesson('g2-c8-l1', 'Bài 1: Phép cộng có nhớ trong phạm vi 1000', 'Cộng hàng đơn vị có nhớ sang hàng chục', [
+          { type: 'story', content: { mascotMood: 'happy', text: '246 + 135: 6 + 5 = 11 (viết 1 nhớ 1), 4 + 3 = 7 thêm 1 là 8, 2 + 1 = 3. Được 381! 💡' } },
+          { type: 'quiz', content: { question: 'Tính: 328 + 145 = ?', options: [463, 473, 483, 472], answer: 473, mascotHint: '8+5=13 nhớ 1; 2+4=6 thêm 1 là 7; 3+1=4. Được 473!' } },
+          { type: 'summary', content: { title: 'Cộng có nhớ:', points: ['Nhớ 1 sang hàng tiếp theo'], mascotMood: 'proud' } },
+        ]),
+        makeLesson('g2-c8-l2', 'Bài 2: Phép trừ có nhớ trong phạm vi 1000', 'Trừ có mượn hàng chục', [
+          { type: 'story', content: { mascotMood: 'excited', text: '562 - 238: 2 không trừ được 8, mượn 1 chục là 12 - 8 = 4. Hàng chục nhớ trả 1. Được 324! ⚡' } },
+          { type: 'quiz', content: { question: 'Tính: 654 - 237 = ?', options: [417, 427, 407, 437], answer: 417, mascotHint: '14 - 7 = 7; 5 - 3 - 1 = 1; 6 - 2 = 4. Được 417!' } },
+          { type: 'summary', content: { title: 'Trừ có nhớ:', points: ['Mượn 1 ở hàng liền trước và nhớ trả'], mascotMood: 'proud' } },
+        ]),
+      ],
+    },
+
+    // ----------------------------------------------------
+    // CHƯƠNG 9: THU THẬP, PHÂN LOẠI & BIỂU ĐỒ TRANH (10 bài)
+    // ----------------------------------------------------
+    {
+      id: 'g2-c9',
+      name: 'Chương 9: Thu thập, phân loại & Biểu đồ tranh',
+      description: 'Làm quen bảng số liệu, phân loại đối tượng và biểu đồ tranh',
+      icon: '📊',
+      color: '#f59e0b',
+      totalLessons: 10,
+      lessons: [
+        makeLesson('g2-c9-l1', 'Bài 1: Thu thập và kiểm đếm số liệu', 'Ghi chép số lượng đồ vật', [
+          { type: 'story', content: { mascotMood: 'happy', text: 'Đếm số xe ô tô 🚗, số xe máy 🛵 đi qua cổng trường trong 5 phút! 📊' } },
+          { type: 'quiz', content: { question: 'Khi đếm đồ vật, dấu gạch chéo ⧄ thường biểu thị nhóm mấy đồ vật?', options: [3, 4, 5, 10], answer: 5, mascotHint: 'Một bó kiểm đếm gồm 4 gạch đứng và 1 gạch chéo là 5!' } },
+          { type: 'summary', content: { title: 'Kiểm đếm:', points: ['Nhóm 5 giúp đếm nhanh và không bị sót'], mascotMood: 'proud' } },
+        ]),
+        makeLesson('g2-c9-l2', 'Bài 2: Đọc và hiểu biểu đồ tranh', 'Mỗi hình biểu thị số lượng', [
+          { type: 'story', content: { mascotMood: 'excited', text: 'Mỗi ngôi sao ⭐ đại diện cho 2 bông hoa điểm 10! 🌸' } },
+          { type: 'quiz', content: { question: 'Nếu mỗi ⭐ là 2 điểm 10, thì 4 ngôi sao ⭐⭐⭐⭐ là mấy điểm 10?', options: [6, 8, 10, 4], answer: 8, mascotHint: '2 × 4 = 8 điểm 10!' } },
+          { type: 'summary', content: { title: 'Biểu đồ tranh:', points: ['Chú ý quy ước giá trị của mỗi biểu tượng'], mascotMood: 'proud' } },
+        ]),
+      ],
+    },
+
+    // ----------------------------------------------------
+    // CHƯƠNG 10: ÔN TẬP CUỐI NĂM LỚP 2 (10 bài)
+    // ----------------------------------------------------
+    {
+      id: 'g2-c10',
+      name: 'Chương 10: Ôn tập cuối năm Lớp 2',
+      description: 'Tổng hợp toàn diện kiến thức Lớp 2, sẵn sàng bước vào Lớp 3',
+      icon: '🏆',
+      color: '#eab308',
+      totalLessons: 12,
+      lessons: [
+        makeLesson('g2-c10-l1', 'Bài 1: Ôn tập bảng nhân và bảng chia 2, 3, 4, 5', 'Phản xạ bảng cửu chương siêu tốc', [
+          { type: 'story', content: { mascotMood: 'happy', text: 'Cùng thử thách tính nhẩm nhanh bảng nhân 2, 3, 4, 5 nào bé! ⚡' } },
+          { type: 'quiz', content: { question: 'Tính: 5 × 8 = ?', options: [35, 40, 45, 50], answer: 40, mascotHint: 'Năm nhân tám bằng bốn mươi!' } },
+          { type: 'summary', content: { title: 'Bảng nhân chia:', points: ['Thuộc làu bảng cửu chương 2 đến 5'], mascotMood: 'proud' } },
+        ]),
+        makeLesson('g2-c10-l2', 'Bài 2: Ôn tập số và phép tính trong phạm vi 1000', 'Cộng trừ và tìm thành phần chưa biết', [
+          { type: 'story', content: { mascotMood: 'excited', text: 'Tìm x: x + 240 = 600. Lấy 600 - 240 = 360! 💡' } },
+          { type: 'quiz', content: { question: 'Tính: 450 + 350 = ?', options: [700, 800, 850, 900], answer: 800, mascotHint: '450 + 350 = 800!' } },
+          { type: 'summary', content: { title: 'Tính toán thành thạo:', points: ['Cộng trừ số có 3 chữ số tự tin'], mascotMood: 'proud' } },
+        ]),
+        makeLesson('g2-c10-l3', 'Bài 3: Vinh Danh Trạng Nguyên Toán Học Lớp 2', 'Tốt nghiệp Lớp 2 xuất sắc', [
+          { type: 'story', content: { mascotMood: 'celebrate', text: 'Chúc mừng bé đã hoàn thành trọn vẹn 10 chương học Toán Lớp 2! Bé đã nắm chắc bảng cửu chương và sẵn sàng chinh phục Lớp 3! 🎓🎉' } },
+          { type: 'quiz', content: { question: 'Bé đã sẵn sàng bước vào Lớp 3 học thêm bảng nhân 6, 7, 8, 9 chưa?', options: ['Sẵn sàng 100%! 🚀', 'Háo hức khám phá! 🌟'], answer: 'Sẵn sàng 100%! 🚀', mascotHint: 'Tự tin bước tiếp lên Lớp 3 nhé!' } },
+          { type: 'summary', content: { title: 'Tốt nghiệp Lớp 2:', points: ['Hoàn thành xuất sắc toàn bộ chương trình Toán Lớp 2!'], mascotMood: 'celebrate' } },
         ]),
       ],
     },

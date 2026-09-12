@@ -1,11 +1,13 @@
-// Master Curriculum for Primary School Math (MVP: Grade 1, 2, 3)
-// 21 Chapters, with 12 rich interactive lessons per chapter (252 lessons in total)
-import { grade1Data } from './grade1Data'
-import { grade2Data } from './grade2Data'
-import { grade3Data } from './grade3Data'
+// Master Curriculum for Vietnam Primary School Math (Grade 1 to Grade 5)
+// 5 Grades, 10 Chapters each (50 Chapters total)
+import { grade1Data } from './grade1Data.js'
+import { grade2Data } from './grade2Data.js'
+import { grade3Data } from './grade3Data.js'
+import { grade4Data } from './grade4Data.js'
+import { grade5Data } from './grade5Data.js'
 
 const curriculum = {
-  grades: [grade1Data, grade2Data, grade3Data],
+  grades: [grade1Data, grade2Data, grade3Data, grade4Data, grade5Data],
 }
 
 export default curriculum

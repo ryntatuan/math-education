@@ -26,6 +26,7 @@ import useUserStore from '../store/useUserStore'
 import useProgressStore from '../store/useProgressStore'
 import curriculum from '../data/curriculum'
 import soundManager from '../utils/soundManager'
+import KnowledgeRadarChart from '../components/charts/KnowledgeRadarChart'
 import './ParentDashboard.css'
 
 // 5 Core Math Skill Domains aligned with Vietnam Primary Curriculum
@@ -647,6 +648,9 @@ export default function ParentDashboard() {
       {/* TAB 3: DYNAMIC SKILLS EVALUATION */}
       {activeTab === 'skills' && (
         <div className="tab-content-section">
+          {/* Radar Spider Chart Visualization */}
+          <KnowledgeRadarChart skills={skillsEvaluation} />
+
           <div className="skills-overview-card">
             <div className="skills-header-row">
               <div>

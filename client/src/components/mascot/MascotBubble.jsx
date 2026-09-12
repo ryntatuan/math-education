@@ -15,6 +15,7 @@ import {
 } from 'lucide-react'
 import useUserStore from '../../store/useUserStore'
 import soundManager from '../../utils/soundManager'
+import speechHelper from '../../utils/speechHelper'
 import './MascotBubble.css'
 
 const moods = {
@@ -175,8 +176,22 @@ export default function MascotBubble({
 
   // Cheer quote index
   const [quoteIndex, setQuoteIndex] = useState(0)
+  const [isSpeaking, setIsSpeaking] = useState(false)
 
   const moodData = moods[currentMood] || moods[mood] || moods.happy
+
+  const handleSpeak = (speechText) => {
+    if (isSpeaking) {
+      speechHelper.stop()
+      setIsSpeaking(false)
+      return
+    }
+    speechHelper.speak(
+      speechText,
+      () => setIsSpeaking(true),
+      () => setIsSpeaking(false)
+    )
+  }
 
   const handleToggleMascot = () => {
     if (!isInteractive) return
@@ -420,7 +435,21 @@ export default function MascotBubble({
                 </button>
               )}
 
-              <p>{text || 'Nhấn vào tớ để đố vui & nhận 5 xu nhé! ✨'}</p>
+              <div className="mascot-bubble-text-row">
+                <p>{text || 'Nhấn vào tớ để đố vui & nhận 5 xu nhé! ✨'}</p>
+                <button
+                  type="button"
+                  className={`mascot-voice-btn ${isSpeaking ? 'is-speaking' : ''}`}
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    handleSpeak(text || 'Chào bạn! Mình là Cú Mèo Thông Thái. Nhấn vào tớ để đố vui nhận xu nhé!')
+                  }}
+                  title={isSpeaking ? 'Đang đọc... Bấm để dừng' : 'Nghe Cú Mèo đọc'}
+                  aria-label="Nghe Cú Mèo đọc"
+                >
+                  <Volume2 size={16} />
+                </button>
+              </div>
               {isInteractive && <span className="bubble-tap-hint">Bấm vào đây! 👆</span>}
             </motion.div>
           )}

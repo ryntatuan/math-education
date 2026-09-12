@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "buildCommand": "cd client && npm install && npm run build",
+  "outputDirectory": "client/dist",
+  "rewrites": [
+    { "source": "/api/tts", "destination": "/api/tts" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}

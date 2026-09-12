@@ -1,287 +1,337 @@
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { BookOpen, PenTool, Gamepad2, Trophy, Flame, Star } from 'lucide-react'
-import Card from '../components/ui/Card'
-import Button from '../components/ui/Button'
-import Badge from '../components/ui/Badge'
-import ProgressBar from '../components/ui/ProgressBar'
+import {
+  Sparkles,
+  Gamepad2,
+  BookOpen,
+  Award,
+  Trophy,
+  ArrowRight,
+  RotateCcw,
+  Play,
+  CheckCircle2,
+  Flame,
+  Star
+} from 'lucide-react'
 import MascotBubble from '../components/mascot/MascotBubble'
+import PetWidget from '../components/pet/PetWidget'
+import DailyQuestsCard from '../components/quests/DailyQuestsCard'
 import useUserStore from '../store/useUserStore'
 import useProgressStore from '../store/useProgressStore'
+import useLeagueStore, { LEAGUE_TIERS } from '../store/useLeagueStore'
 import curriculum from '../data/curriculum'
+import soundManager from '../utils/soundManager'
 import './HomePage.css'
 
-const gradeEmojis = ['🌱', '🌿', '🌳', '🌲', '🏔️']
-const gradeColors = ['#4facfe', '#51CF66', '#FFE66D', '#FF6B6B', '#a18cd1']
-
-const activities = [
-  {
-    id: 'learn',
-    path: '/learn',
-    icon: BookOpen,
-    label: 'Học',
-    description: 'Bài học tương tác',
-    color: '#4facfe',
-    gradient: 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
-  },
-  {
-    id: 'practice',
-    path: '/practice',
-    icon: PenTool,
-    label: 'Luyện tập',
-    description: 'Bài tập thực hành',
-    color: '#51CF66',
-    gradient: 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
-  },
-  {
-    id: 'games',
-    path: '/games',
-    icon: Gamepad2,
-    label: 'Trò chơi',
-    description: '6 games vui nhộn',
-    color: '#FF6B6B',
-    gradient: 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-  },
-  {
-    id: 'challenges',
-    path: '/challenges',
-    icon: Trophy,
-    label: 'Thử thách',
-    description: 'Thử thách hàng ngày',
-    color: '#FFE66D',
-    gradient: 'linear-gradient(135deg, #FFA94D 0%, #FF6B6B 100%)',
-  },
+// 5 Lớp Học Toàn Diện (Lớp 1 đến Lớp 5)
+const ALL_GRADES = [
+  { id: 1, name: 'Lớp 1', ageRange: '6-7 tuổi', emoji: '🌱', color: '#06b6d4' },
+  { id: 2, name: 'Lớp 2', ageRange: '7-8 tuổi', emoji: '🌿', color: '#10b981' },
+  { id: 3, name: 'Lớp 3', ageRange: '8-9 tuổi', emoji: '🌳', color: '#f59e0b' },
+  { id: 4, name: 'Lớp 4', ageRange: '9-10 tuổi', emoji: '🌲', color: '#ec4899' },
+  { id: 5, name: 'Lớp 5', ageRange: '10-11 tuổi', emoji: '🏔️', color: '#8b5cf6' },
 ]
 
 export default function HomePage() {
   const navigate = useNavigate()
-  const { grade, setGrade, coins, xp, level, totalXpForNextLevel } = useUserStore()
-  const { currentStreak, getChapterProgress } = useProgressStore()
+  const { grade, setGrade } = useUserStore()
+  const { getChapterProgress } = useProgressStore()
+  const { currentTier } = useLeagueStore()
 
-  const gradeData = curriculum.grades.find((g) => g.id === grade) || curriculum.grades[0]
+  const [semesterFilter, setSemesterFilter] = useState('all') // 'all' | 'sem1' | 'sem2'
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1, delayChildren: 0.1 },
-    },
+  const currentGradeInfo = ALL_GRADES.find((g) => g.id === grade) || ALL_GRADES[0]
+  const currentTierInfo = LEAGUE_TIERS.find((t) => t.id === currentTier) || LEAGUE_TIERS[0]
+
+  // Dữ liệu chuẩn xác 10 chương từ curriculum.js cho mỗi lớp
+  const currentGradeData = curriculum.grades.find((g) => g.id === grade) || curriculum.grades[0]
+  const allChaptersForGrade = currentGradeData?.chapters || []
+
+  // Lọc theo Học kỳ (Học kỳ 1: Chương 1 - 5, Học kỳ 2: Chương 6 - 10)
+  const displayedChapters = allChaptersForGrade.filter((_, idx) => {
+    if (semesterFilter === 'sem1') return idx < 5
+    if (semesterFilter === 'sem2') return idx >= 5
+    return true
+  })
+
+  const handleSelectGrade = (newGradeId) => {
+    setGrade(newGradeId)
+    soundManager.playClick()
   }
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    show: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 200 } },
+  const handleChapterClick = (chapter) => {
+    soundManager.playClick()
+    navigate(`/learn/${grade}/${chapter.id}`)
   }
 
   return (
-    <div className="home-page">
-      {/* Hero Section */}
-      <motion.section
-        className="hero-section"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-      >
-        <div className="hero-content">
-          <div className="hero-greeting">
-            <h1>Xin chào! 👋</h1>
-            <p className="hero-subtitle">Hôm nay học gì nào?</p>
-          </div>
+    <div className="home-dashboard-container">
+      <div className="home-dashboard-2col">
+        
+        {/* =========================================================
+            CỘT TRÁI (68%): TRỤC HỌC TẬP CHÍNH (Chọn Lớp & 10 Chương)
+           ========================================================= */}
+        <section className="learning-main-column">
 
-          <div className="hero-stats">
-            {currentStreak > 0 && (
-              <motion.div
-                className="streak-badge"
-                animate={{ scale: [1, 1.1, 1] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-              >
-                <Flame size={18} className="streak-icon" />
-                <span className="number">{currentStreak}</span>
-                <span>ngày</span>
-              </motion.div>
-            )}
+          {/* 1. KHỐI CHỌN LỚP (5 CẤP ĐỘ RÕ RÀNG) */}
+          <div className="home-grade-card">
+            <div className="home-grade-header">
+              <h2>📚 Chọn Lớp Của Bé</h2>
+            </div>
 
-            <div className="xp-display">
-              <div className="xp-info">
-                <Star size={14} />
-                <span className="number">Lv.{level}</span>
-              </div>
-              <ProgressBar
-                value={xp}
-                max={totalXpForNextLevel}
-                variant="gradient"
-                size="sm"
-              />
+            <div className="home-grade-grid">
+              {ALL_GRADES.map((g) => {
+                const isActive = grade === g.id
+                return (
+                  <motion.button
+                    key={g.id}
+                    type="button"
+                    className={`home-grade-btn ${isActive ? 'active' : ''}`}
+                    onClick={() => handleSelectGrade(g.id)}
+                    whileHover={{ scale: 1.04, y: -2 }}
+                    whileTap={{ scale: 0.96 }}
+                  >
+                    <span className="grade-emoji">{g.emoji}</span>
+                    <span className="grade-name">{g.name}</span>
+                    <span className="grade-age">{g.ageRange}</span>
+                    {isActive && (
+                      <motion.div
+                        className="grade-check-badge"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ type: 'spring', stiffness: 500 }}
+                      >
+                        ✓
+                      </motion.div>
+                    )}
+                  </motion.button>
+                )
+              })}
             </div>
           </div>
-        </div>
 
-        {/* Floating decorations */}
-        <div className="hero-decorations">
-          {['✨', '🌟', '📐', '🔢', '➕'].map((emoji, i) => (
-            <motion.span
-              key={i}
-              className={`floating-emoji floating-emoji-${i}`}
-              animate={{
-                y: [0, -15, 0],
-                rotate: [0, 10, -10, 0],
-              }}
-              transition={{
-                duration: 3 + i * 0.5,
-                repeat: Infinity,
-                ease: 'easeInOut',
-                delay: i * 0.3,
-              }}
-            >
-              {emoji}
-            </motion.span>
-          ))}
-        </div>
-      </motion.section>
-
-      {/* Grade Selector */}
-      <motion.section
-        className="grade-section"
-        variants={containerVariants}
-        initial="hidden"
-        animate="show"
-      >
-        <h2 className="section-title">📚 Chọn lớp của bạn</h2>
-        <div className="grade-grid">
-          {curriculum.grades.map((g, index) => (
-            <motion.button
-              key={g.id}
-              className={`grade-card ${grade === g.id ? 'grade-card-active' : ''}`}
-              style={{
-                '--grade-color': gradeColors[index],
-                borderColor: grade === g.id ? gradeColors[index] : 'transparent',
-              }}
-              variants={itemVariants}
-              whileHover={{ scale: 1.05, y: -4 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setGrade(g.id)}
-            >
-              <span className="grade-emoji">{gradeEmojis[index]}</span>
-              <span className="grade-name">{g.name}</span>
-              <span className="grade-age">{g.ageRange}</span>
-              {grade === g.id && (
-                <motion.div
-                  className="grade-check"
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ type: 'spring', stiffness: 500 }}
-                >
-                  ✓
-                </motion.div>
-              )}
-            </motion.button>
-          ))}
-        </div>
-      </motion.section>
-
-      {/* Activities Grid */}
-      <motion.section
-        className="activities-section"
-        variants={containerVariants}
-        initial="hidden"
-        animate="show"
-      >
-        <h2 className="section-title">🎯 Hoạt động</h2>
-        <div className="activities-grid">
-          {activities.map((activity) => (
-            <motion.div
-              key={activity.id}
-              className="activity-card"
-              style={{ '--activity-gradient': activity.gradient }}
-              variants={itemVariants}
-              whileHover={{ scale: 1.03, y: -4 }}
-              whileTap={{ scale: 0.97 }}
-              onClick={() => navigate(activity.path)}
-            >
-              <div className="activity-icon-wrap">
-                <activity.icon size={32} />
-              </div>
-              <h3 className="activity-label">{activity.label}</h3>
-              <p className="activity-desc">{activity.description}</p>
-            </motion.div>
-          ))}
-        </div>
-      </motion.section>
-
-      {/* Current Grade Chapters Preview */}
-      <motion.section
-        className="chapters-preview"
-        variants={containerVariants}
-        initial="hidden"
-        animate="show"
-      >
-        <div className="section-header">
-          <h2 className="section-title">
-            {gradeData.icon} {gradeData.name} — Các chương
-          </h2>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => navigate('/learn')}
-          >
-            Xem tất cả →
-          </Button>
-        </div>
-
-        <div className="chapters-grid">
-          {gradeData.chapters.map((chapter, index) => {
-            const totalLessons = chapter.lessons?.length || chapter.totalLessons || 12
-            const progress = getChapterProgress ? getChapterProgress(chapter.id, totalLessons) : { completed: 0, total: totalLessons, percent: 0 }
-            const isCompleted = progress.percent === 100
-            const hasStarted = progress.completed > 0
-            // Ensure title does not duplicate "Chương X: Chương X:"
-            const displayTitle = chapter.name.startsWith('Chương') ? chapter.name : `Chương ${index + 1}: ${chapter.name}`
-
-            return (
-              <motion.div
-                key={chapter.id}
-                variants={itemVariants}
+          {/* 2. BỘ LỌC HỌC KỲ CHO 10 CHƯƠNG */}
+          <div className="home-semester-bar">
+            <div className="home-semester-tabs">
+              <button
+                type="button"
+                className={`sem-pill-btn ${semesterFilter === 'all' ? 'active' : ''}`}
+                onClick={() => {
+                  setSemesterFilter('all')
+                  soundManager.playClick()
+                }}
               >
-                <Card
-                  hoverable
-                  onClick={() => navigate(`/learn/${grade}/${chapter.id}`)}
-                  className="chapter-preview-card"
+                ⭐ Tất cả ({allChaptersForGrade.length} Chương)
+              </button>
+              <button
+                type="button"
+                className={`sem-pill-btn ${semesterFilter === 'sem1' ? 'active' : ''}`}
+                onClick={() => {
+                  setSemesterFilter('sem1')
+                  soundManager.playClick()
+                }}
+              >
+                🌸 Học kỳ 1 (Chương 1 - 5)
+              </button>
+              <button
+                type="button"
+                className={`sem-pill-btn ${semesterFilter === 'sem2' ? 'active' : ''}`}
+                onClick={() => {
+                  setSemesterFilter('sem2')
+                  soundManager.playClick()
+                }}
+              >
+                ☀️ Học kỳ 2 (Chương 6 - 10)
+              </button>
+            </div>
+
+            <span className="home-current-grade-tag">
+              {currentGradeInfo.emoji} Đang xem: {currentGradeInfo.name}
+            </span>
+          </div>
+
+          {/* 3. LƯỚI 10 CHƯƠNG HỌC (2 CỘT X 5 HÀNG) */}
+          <motion.div
+            key={`${grade}-${semesterFilter}`}
+            className="home-chapters-grid"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.22 }}
+          >
+            {displayedChapters.map((chapter, index) => {
+              const totalLessons = chapter.lessons?.length || chapter.totalLessons || 12
+              const progress = getChapterProgress
+                ? getChapterProgress(chapter.id, totalLessons)
+                : { completed: 0, total: totalLessons, percent: 0 }
+              
+              const isCompleted = progress.percent === 100
+              const hasStarted = progress.completed > 0
+
+              // Dọn dẹp tiêu đề chương gọn đẹp
+              const cleanTitle = chapter.name.startsWith('Chương')
+                ? chapter.name
+                : `Chương ${index + 1}: ${chapter.name}`
+
+              // Số sao dựa trên tiến độ
+              const starCount = isCompleted ? 3 : progress.percent >= 50 ? 2 : hasStarted ? 1 : 0
+
+              return (
+                <motion.div
+                  key={`${grade}-${chapter.id}`}
+                  className="home-chapter-card"
+                  onClick={() => handleChapterClick(chapter)}
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.03, duration: 0.2 }}
+                  whileHover={{ scale: 1.02, y: -3 }}
+                  whileTap={{ scale: 0.98 }}
                 >
-                  <div className="chapter-preview-content">
-                    <div
-                      className="chapter-preview-icon"
-                      style={{ background: chapter.color + '22', color: chapter.color }}
-                    >
-                      <span>{chapter.icon}</span>
-                    </div>
-                    <div className="chapter-preview-info">
-                      <h4>{displayTitle}</h4>
-                      <p>{chapter.description}</p>
-                      <div className="chapter-preview-meta">
-                        <Badge variant="default" size="sm">
-                          📖 {totalLessons} bài học
-                        </Badge>
-                        {hasStarted && (
-                          isCompleted ? (
-                            <Badge variant="success" size="sm">
-                              🏆 Hoàn thành ({progress.total}/{progress.total})
-                            </Badge>
-                          ) : (
-                            <Badge variant="progress" size="sm">
-                              ⭐ Đã học {progress.completed}/{progress.total}
-                            </Badge>
-                          )
-                        )}
+                  <div
+                    className="chapter-card-icon"
+                    style={{
+                      background: `${chapter.color || '#0284c7'}18`,
+                      color: chapter.color || '#0284c7'
+                    }}
+                  >
+                    <span>{chapter.icon || '🔢'}</span>
+                  </div>
+
+                  <div className="chapter-card-info">
+                    <div className="chapter-card-header">
+                      <h3 title={cleanTitle}>{cleanTitle}</h3>
+                      <div className="chapter-stars-wrap">
+                        {starCount === 3 && <span className="stars-gold">⭐⭐⭐</span>}
+                        {starCount === 2 && <span className="stars-gold">⭐⭐☆</span>}
+                        {starCount === 1 && <span className="stars-gold">⭐☆☆</span>}
+                        {starCount === 0 && <span className="stars-gray">☆☆☆</span>}
                       </div>
                     </div>
-                  </div>
-                </Card>
-              </motion.div>
-            )
-          })}
-        </div>
-      </motion.section>
 
-      {/* Mascot */}
+                    <p className="chapter-card-desc">{chapter.description}</p>
+
+                    <div className="chapter-card-footer">
+                      <div className="chapter-progress-box">
+                        <div className="chapter-progress-track">
+                          <div
+                            className="chapter-progress-fill"
+                            style={{ width: `${progress.percent}%` }}
+                          />
+                        </div>
+                        <span className="chapter-progress-text number">
+                          {progress.percent}% ({progress.completed}/{progress.total})
+                        </span>
+                      </div>
+
+                      {isCompleted ? (
+                        <button type="button" className="btn-chapter-pill done">
+                          <RotateCcw size={13} />
+                          <span>Ôn lại</span>
+                        </button>
+                      ) : hasStarted ? (
+                        <button type="button" className="btn-chapter-pill continue">
+                          <span>Học tiếp</span>
+                          <ArrowRight size={13} />
+                        </button>
+                      ) : (
+                        <button type="button" className="btn-chapter-pill start">
+                          <span>Bắt đầu</span>
+                          <Play size={12} />
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                </motion.div>
+              )
+            })}
+          </motion.div>
+
+          {/* 4. PHÍM TẮT KHÁM PHÁ (Bottom Quick Launch Ribbon) */}
+          <div className="home-quick-ribbon">
+            <span className="ribbon-title">🚀 Khám phá thêm cùng Toán Vui:</span>
+            <div className="ribbon-chips">
+              <motion.button
+                type="button"
+                className="ribbon-chip-btn btn-chip-games"
+                onClick={() => {
+                  soundManager.playClick()
+                  navigate('/games')
+                }}
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Gamepad2 size={16} />
+                <span>6 Mini Game</span>
+              </motion.button>
+
+              <motion.button
+                type="button"
+                className="ribbon-chip-btn btn-chip-stories"
+                onClick={() => {
+                  soundManager.playClick()
+                  navigate('/stories')
+                }}
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <BookOpen size={16} />
+                <span>Truyện Toán Vui</span>
+              </motion.button>
+
+              <motion.button
+                type="button"
+                className="ribbon-chip-btn btn-chip-arena"
+                onClick={() => {
+                  soundManager.playClick()
+                  navigate('/leaderboard')
+                }}
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Award size={16} />
+                <span>Đấu Trường Thăng Hạng</span>
+              </motion.button>
+            </div>
+          </div>
+
+        </section>
+
+        {/* =========================================================
+            CỘT PHẢI (32%): STICKY COMPANION GAMIFICATION BAR
+           ========================================================= */}
+        <aside className="companion-sticky-column">
+
+          {/* 1. THÚ CƯNG MINI (Compact Mode) */}
+          <PetWidget compact={true} />
+
+          {/* 2. NHIỆM VỤ MỖI NGÀY CARD */}
+          <DailyQuestsCard />
+
+          {/* 3. ĐẤU TRƯỜNG MINI WIDGET */}
+          <motion.div
+            className="home-arena-mini-card"
+            onClick={() => {
+              soundManager.playClick()
+              navigate('/leaderboard')
+            }}
+            whileHover={{ scale: 1.02, y: -2 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <div className="arena-mini-icon">
+              <span>{currentTierInfo.icon || '🛡️'}</span>
+            </div>
+            <div className="arena-mini-info">
+              <h4>Đấu Trường Giải Đấu</h4>
+              <p>{currentTierInfo.name} • Đang thi đua</p>
+              <span className="arena-link-text">Bấm xem bảng vàng xếp hạng →</span>
+            </div>
+          </motion.div>
+
+        </aside>
+
+      </div>
+
+      {/* Mascot Cú Mèo ở góc dưới màn hình */}
       <MascotBubble
         text="Chào bạn! Hôm nay mình học toán nhé! 🎓"
         mood="happy"

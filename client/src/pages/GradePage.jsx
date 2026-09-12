@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowLeft, Lock, CheckCircle2 } from 'lucide-react'
@@ -16,7 +16,14 @@ export default function GradePage() {
   const navigate = useNavigate()
   const { grade, setGrade } = useUserStore()
   const [selectedGrade, setSelectedGrade] = useState(grade || 1)
-  const gradeData = getGrade(selectedGrade)
+
+  useEffect(() => {
+    if (grade && grade !== selectedGrade) {
+      setSelectedGrade(grade)
+    }
+  }, [grade])
+
+  const gradeData = getGrade(selectedGrade) || curriculum.grades[0]
 
   if (!gradeData) {
     return (
@@ -43,17 +50,17 @@ export default function GradePage() {
           </button>
 
           <div className="grade-nav-tabs">
-            {[1, 2, 3].map((g) => (
+            {curriculum.grades.map((g) => (
               <button
-                key={g}
-                className={`grade-tab-pill ${selectedGrade === g ? 'active' : ''}`}
+                key={g.id}
+                className={`grade-tab-pill ${selectedGrade === g.id ? 'active' : ''}`}
                 onClick={() => {
-                  setSelectedGrade(g)
-                  setGrade(g)
+                  setSelectedGrade(g.id)
+                  setGrade(g.id)
                   soundManager.playClick()
                 }}
               >
-                Lớp {g}
+                {g.name}
               </button>
             ))}
           </div>
@@ -93,8 +100,8 @@ function ChapterCard({ chapter, index, gradeId, onClick }) {
   const { getChapterProgress, completedLessons } = useProgressStore()
   const totalLessonsCount = chapter.lessons?.length || chapter.totalLessons || 0
   const progress = getChapterProgress(chapter.id, totalLessonsCount)
-  const hasLessons = chapter.lessons.length > 0
-  const isLocked = !hasLessons
+  const hasLessons = (chapter.lessons?.length || 0) > 0
+  const isLocked = !hasLessons && !chapter.totalLessons
 
   return (
     <motion.div
@@ -194,7 +201,7 @@ export function ChapterPage() {
           </span>
           <div>
             <h1>{chapter.name}</h1>
-            <p>{chapter.description} • {chapter.lessons.length} bài học</p>
+            <p>{chapter.description} • {chapter.lessons?.length || 0} bài học</p>
           </div>
         </div>
       </div>
@@ -208,7 +215,7 @@ export function ChapterPage() {
           show: { opacity: 1, transition: { staggerChildren: 0.08 } },
         }}
       >
-        {chapter.lessons.length === 0 ? (
+        {(!chapter.lessons || chapter.lessons.length === 0) ? (
           <div className="page-empty">
             <span style={{ fontSize: '4rem' }}>🚧</span>
             <h3>Đang xây dựng nội dung</h3>

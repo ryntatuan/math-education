@@ -12,6 +12,8 @@ import ChallengePage from './pages/ChallengePage'
 import ProfilePage from './pages/ProfilePage'
 import ShopPage from './pages/ShopPage'
 import ParentDashboard from './pages/ParentDashboard'
+import StoriesPage from './pages/StoriesPage'
+import LeaderboardPage from './pages/LeaderboardPage'
 import useUserStore from './store/useUserStore'
 import soundManager from './utils/soundManager'
 import './App.css'
@@ -36,6 +38,8 @@ export default function App() {
             <Route path="/lesson/:lessonId" element={<LessonPage />} />
             <Route path="/practice" element={<PracticePage />} />
             <Route path="/games" element={<GamesPage />} />
+            <Route path="/stories" element={<StoriesPage />} />
+            <Route path="/leaderboard" element={<LeaderboardPage />} />
             <Route path="/challenges" element={<ChallengePage />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/shop" element={<ShopPage />} />

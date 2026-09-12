@@ -322,7 +322,7 @@ export const grade1Data = {
         ]),
         makeLesson('g1-c4-l12', 'Bài 12: Bài toán về giỏ quà yêu thương', 'Giải toán có lời văn phạm vi 20', [
           { type: 'story', content: { mascotMood: 'happy', text: 'Bé xếp vào giỏ 12 quả cam 🍊 và 5 quả táo 🍎 để biếu ông bà. Hỏi trong giỏ có tất cả bao nhiêu quả trái cây? 🧺' } },
-          { type: 'quiz', content: { question: 'Trong giỏ có tất cả số quả là:', options: ['12 - 5 = 7 quả', '12 + 5 = 17 quả', '12 + 5 = 18 quả'], answer: '12 + 5 = 17 quả', mascotHint: 'Có tất cả ta làm phép cộng: 12 + 5 = 17!' } },
+          { type: 'quiz', content: { question: 'Trong giỏ có 12 quả cam và 5 quả táo. Số quả trong giỏ có tất cả là:', options: ['12 - 5 = 7 quả', '12 + 5 = 17 quả', '12 + 5 = 18 quả'], answer: '12 + 5 = 17 quả', mascotHint: 'Có tất cả ta làm phép cộng: 12 + 5 = 17 quả!' } },
           { type: 'summary', content: { title: 'Hoàn thành Chương 4:', points: ['Bé đã giải thành thạo các bài toán phạm vi 20!'], mascotMood: 'celebrate' } },
         ]),
       ],
@@ -471,7 +471,123 @@ export const grade1Data = {
         makeLesson('g1-c6-l12', 'Bài 12: Xếp hình sáng tạo từ các hình phẳng', 'Ghép ô tô, ngôi nhà, thuyền buồm', [
           { type: 'story', content: { mascotMood: 'excited', text: 'Dùng 1 hình chữ nhật và 2 hình tròn làm ô tô 🚗! Dùng 1 hình tam giác và 1 hình vuông làm ngôi nhà 🏠! 🎨' } },
           { type: 'quiz', content: { question: 'Mái nhà thường được ghép từ hình nào?', options: ['Hình tam giác', 'Hình tròn', 'Hình bầu dục'], answer: 'Hình tam giác', mascotHint: 'Hình tam giác nhọn ở đỉnh!' } },
-          { type: 'summary', content: { title: 'Hoàn thành trọn vẹn Lớp 1!', points: ['Bé đã chinh phục toàn bộ 72 bài học Toán Lớp 1 xuất sắc! 🎉🏆'], mascotMood: 'celebrate' } },
+          { type: 'summary', content: { title: 'Hoàn thành Chương 6!', points: ['Bé nắm chắc các hình phẳng và kỹ năng đo lường!'], mascotMood: 'celebrate' } },
+        ]),
+      ],
+    },
+
+    // ----------------------------------------------------
+    // CHƯƠNG 7: PHÉP CỘNG TRỪ KHÔNG NHỚ TRONG PHẠM VI 100 (10 bài)
+    // ----------------------------------------------------
+    {
+      id: 'g1-c7',
+      name: 'Chương 7: Phép cộng trừ không nhớ trong phạm vi 100',
+      description: 'Cộng trừ các số tròn chục và số có hai chữ số không nhớ',
+      icon: '🧮',
+      color: '#06b6d4',
+      totalLessons: 12,
+      lessons: [
+        makeLesson('g1-c7-l1', 'Bài 1: Cộng các số tròn chục', '20 + 30, 40 + 50', [
+          { type: 'story', content: { mascotMood: 'happy', text: '2 chục + 3 chục = 5 chục. Vậy 20 + 30 = 50! 💡' } },
+          { type: 'quiz', content: { question: 'Tính: 30 + 40 = ?', options: [60, 70, 80, 50], answer: 70, mascotHint: '3 chục + 4 chục = 7 chục!' } },
+          { type: 'summary', content: { title: 'Cộng tròn chục:', points: ['Cộng chữ số hàng chục, viết thêm số 0 ở cuối'], mascotMood: 'proud' } },
+        ]),
+        makeLesson('g1-c7-l2', 'Bài 2: Trừ các số tròn chục', '70 - 20, 90 - 40', [
+          { type: 'story', content: { mascotMood: 'happy', text: '7 chục - 2 chục = 5 chục. Vậy 70 - 20 = 50! 🌟' } },
+          { type: 'quiz', content: { question: 'Tính: 80 - 30 = ?', options: [40, 50, 60, 70], answer: 50, mascotHint: '8 chục - 3 chục = 5 chục!' } },
+          { type: 'summary', content: { title: 'Trừ tròn chục:', points: ['Trừ chữ số hàng chục, giữ nguyên số 0'], mascotMood: 'proud' } },
+        ]),
+        makeLesson('g1-c7-l3', 'Bài 3: Phép cộng dạng 25 + 4', 'Cộng số có hai chữ số với số có một chữ số', [
+          { type: 'story', content: { mascotMood: 'excited', text: '25 gồm 2 chục và 5 đơn vị. Lấy 5 + 4 = 9. Được 29! ⚡' } },
+          { type: 'quiz', content: { question: 'Tính: 32 + 5 = ?', options: [36, 37, 38, 39], answer: 37, mascotHint: 'Lấy 2 + 5 = 7, ghép với 3 chục là 37!' } },
+          { type: 'summary', content: { title: 'Cộng đơn vị:', points: ['Cộng hàng đơn vị trước, giữ nguyên hàng chục'], mascotMood: 'proud' } },
+        ]),
+        makeLesson('g1-c7-l4', 'Bài 4: Phép trừ dạng 39 - 5', 'Trừ số có một chữ số', [
+          { type: 'story', content: { mascotMood: 'happy', text: 'Lấy hàng đơn vị 9 - 5 = 4. Ghép với 3 chục thành 34! 🍎' } },
+          { type: 'quiz', content: { question: 'Tính: 48 - 6 = ?', options: [41, 42, 43, 44], answer: 42, mascotHint: '8 - 6 = 2, được 42!' } },
+          { type: 'summary', content: { title: 'Trừ đơn vị:', points: ['Trừ hàng đơn vị, giữ nguyên hàng chục'], mascotMood: 'proud' } },
+        ]),
+      ],
+    },
+
+    // ----------------------------------------------------
+    // CHƯƠNG 8: THỜI GIAN & LỊCH TUẦN LỄ (10 bài)
+    // ----------------------------------------------------
+    {
+      id: 'g1-c8',
+      name: 'Chương 8: Đo thời gian & Lịch tuần lễ',
+      description: 'Đồng hồ giờ đúng, các ngày trong tuần và thời gian biểu',
+      icon: '⏱️',
+      color: '#f59e0b',
+      totalLessons: 10,
+      lessons: [
+        makeLesson('g1-c8-l1', 'Bài 1: Làm quen với mặt đồng hồ', 'Kim ngắn chỉ giờ, kim dài chỉ phút', [
+          { type: 'story', content: { mascotMood: 'happy', text: 'Mặt đồng hồ có các số từ 1 đến 12! ⏰' } },
+          { type: 'quiz', content: { question: 'Kim ngắn trên đồng hồ dùng để chỉ gì?', options: ['Chỉ giờ', 'Chỉ phút', 'Chỉ giây'], answer: 'Chỉ giờ', mascotHint: 'Kim ngắn hơn là kim chỉ giờ!' } },
+          { type: 'summary', content: { title: 'Kim đồng hồ:', points: ['Kim ngắn: giờ, kim dài: phút'], mascotMood: 'proud' } },
+        ]),
+        makeLesson('g1-c8-l2', 'Bài 2: Xem giờ đúng ban ngày và ban đêm', '7 giờ sáng, 8 giờ tối', [
+          { type: 'story', content: { mascotMood: 'happy', text: 'Bé đi ngủ lúc 9 giờ tối, thức dậy lúc 6 giờ sáng! 🌙☀️' } },
+          { type: 'quiz', content: { question: 'Bé ăn cơm trưa lúc mấy giờ?', options: ['11 giờ trưa', '3 giờ sáng', '12 giờ đêm'], answer: '11 giờ trưa', mascotHint: 'Buổi trưa thường ăn cơm lúc 11-12 giờ!' } },
+          { type: 'summary', content: { title: 'Giờ sinh hoạt:', points: ['Phân biệt sáng, trưa, chiều, tối'], mascotMood: 'proud' } },
+        ]),
+        makeLesson('g1-c8-l3', 'Bài 3: Hôm nay, ngày mai, hôm qua', 'Trình tự thời gian hàng ngày', [
+          { type: 'story', content: { mascotMood: 'happy', text: 'Nếu hôm nay là Thứ Ba, thì ngày mai là Thứ Tư, hôm qua là Thứ Hai! 📅' } },
+          { type: 'quiz', content: { question: 'Hôm nay là Thứ Sáu, ngày mai là Thứ mấy?', options: ['Thứ Bảy', 'Thứ Năm', 'Chủ Nhật'], answer: 'Thứ Bảy', mascotHint: 'Sau Thứ Sáu là ngày Thứ Bảy được nghỉ học!' } },
+          { type: 'summary', content: { title: 'Dòng thời gian:', points: ['Hôm qua -> Hôm nay -> Ngày mai'], mascotMood: 'proud' } },
+        ]),
+      ],
+    },
+
+    // ----------------------------------------------------
+    // CHƯƠNG 9: KHỐI KHÔNG GIAN & XẾP HÌNH SÁNG TẠO (10 bài)
+    // ----------------------------------------------------
+    {
+      id: 'g1-c9',
+      name: 'Chương 9: Khối không gian & Xếp hình sáng tạo',
+      description: 'Khối lập phương, khối hộp chữ nhật và ghép hình 3D',
+      icon: '📦',
+      color: '#10b981',
+      totalLessons: 10,
+      lessons: [
+        makeLesson('g1-c9-l1', 'Bài 1: Khối lập phương xung quanh em', 'Khối xúc xắc, hộp quà vuông', [
+          { type: 'story', content: { mascotMood: 'happy', text: 'Khối lập phương có 6 mặt đều là hình vuông xinh xắn! 🎲' } },
+          { type: 'quiz', content: { question: 'Đồ vật nào có dạng khối lập phương?', options: ['Con xúc xắc 🎲', 'Quả bóng tròn ⚽', 'Lon nước ngọt 🥤'], answer: 'Con xúc xắc 🎲', mascotHint: 'Con xúc xắc vuông vức các mặt!' } },
+          { type: 'summary', content: { title: 'Khối lập phương:', points: ['Tất cả các mặt đều là hình vuông bằng nhau'], mascotMood: 'proud' } },
+        ]),
+        makeLesson('g1-c9-l2', 'Bài 2: Khối hộp chữ nhật xung quanh em', 'Hộp sữa, bao diêm, viên gạch', [
+          { type: 'story', content: { mascotMood: 'excited', text: 'Hộp sữa tươi mẹ mua có dạng khối hộp chữ nhật! 🧃' } },
+          { type: 'quiz', content: { question: 'Hộp bánh quy dạng dài là hình khối gì?', options: ['Khối hộp chữ nhật', 'Khối cầu', 'Khối trụ'], answer: 'Khối hộp chữ nhật', mascotHint: 'Có các mặt là hình chữ nhật!' } },
+          { type: 'summary', content: { title: 'Khối hộp chữ nhật:', points: ['Có 6 mặt hình chữ nhật'], mascotMood: 'proud' } },
+        ]),
+      ],
+    },
+
+    // ----------------------------------------------------
+    // CHƯƠNG 10: ÔN TẬP VÀ ĐÁNH GIÁ CUỐI NĂM (10 bài)
+    // ----------------------------------------------------
+    {
+      id: 'g1-c10',
+      name: 'Chương 10: Ôn tập cuối năm Lớp 1',
+      description: 'Tổng hợp toàn diện kiến thức toán học Lớp 1, sẵn sàng lên Lớp 2',
+      icon: '🏆',
+      color: '#eab308',
+      totalLessons: 12,
+      lessons: [
+        makeLesson('g1-c10-l1', 'Bài 1: Ôn tập các số trong phạm vi 100', 'Đọc, viết, so sánh số có 2 chữ số', [
+          { type: 'story', content: { mascotMood: 'happy', text: 'Bé đã học từ số 0 đến 100 thật xuất sắc! 🌟' } },
+          { type: 'quiz', content: { question: 'Số liền sau của 99 là số nào?', options: [98, 100, 90, 101], answer: 100, mascotHint: '99 thêm 1 là 100!' } },
+          { type: 'summary', content: { title: 'Thành tựu số học:', points: ['Nắm vững 100 số tự nhiên đầu tiên'], mascotMood: 'proud' } },
+        ]),
+        makeLesson('g1-c10-l2', 'Bài 2: Ôn tập phép cộng, phép trừ trong phạm vi 100', 'Tính nhẩm nhanh và đặt tính', [
+          { type: 'story', content: { mascotMood: 'excited', text: 'Cùng Cú Mèo thử tài tính nhẩm nhanh nào! 🚀' } },
+          { type: 'quiz', content: { question: 'Tính nhẩm: 45 + 23 = ?', options: [67, 68, 69, 58], answer: 68, mascotHint: '40+20=60, 5+3=8. Được 68!' } },
+          { type: 'summary', content: { title: 'Kỹ năng tính toán:', points: ['Cộng trừ thuần thục không nhớ phạm vi 100'], mascotMood: 'proud' } },
+        ]),
+        makeLesson('g1-c10-l3', 'Bài 3: Lễ Vinh Danh Hoàn Thành Xuất Sắc Lớp 1!', 'Sẵn sàng chinh phục Lớp 2', [
+          { type: 'story', content: { mascotMood: 'celebrate', text: 'Hoan hô bé! Bé đã hoàn thành trọn vẹn chương trình Toán Lớp 1! Cú Mèo trao tặng bé Huân chương Trạng Nguyên Toán Học! 🏅🎉' } },
+          { type: 'quiz', content: { question: 'Bé đã sẵn sàng bước lên Lớp 2 học thêm bảng cửu chương chưa?', options: ['Sẵn sàng 100%! 🚀', 'Rất háo hức! ✨'], answer: 'Sẵn sàng 100%! 🚀', mascotHint: 'Cùng tự tin bước tiếp nào!' } },
+          { type: 'summary', content: { title: 'Tốt nghiệp Lớp 1:', points: ['Xuất sắc hoàn thành 10 chương học Toán Lớp 1!'], mascotMood: 'celebrate' } },
         ]),
       ],
     },

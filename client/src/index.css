@@ -301,12 +301,11 @@ ul, ol {
 
 .page-wrapper {
   flex: 1;
-  padding: var(--space-6);
+  padding: 24px clamp(20px, 2vw, 40px) 48px;
   padding-top: 92px; /* Space for 72px top header + 20px breathing room */
-  padding-bottom: 40px;
   margin-left: 260px; /* Offset for 260px Left Sidebar on Desktop */
   width: calc(100% - 260px);
-  max-width: 1440px;
+  min-height: 100vh;
   box-sizing: border-box;
 }
 

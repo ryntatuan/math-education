@@ -95,6 +95,21 @@
   transform: translateY(-1px);
 }
 
+.btn-warning {
+  background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%);
+  color: white;
+  box-shadow: 0 4px 0 #c2410c, var(--shadow-sm);
+}
+.btn-warning:hover {
+  background: linear-gradient(135deg, #fbbf24 0%, #f97316 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 5px 0 #c2410c, var(--shadow-md);
+}
+.btn-warning:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #c2410c;
+}
+
 .btn-ghost {
   background: transparent;
   color: var(--color-text);

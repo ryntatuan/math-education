@@ -171,7 +171,7 @@ export function generateQuestion(grade = 1, topicId = null) {
     const correctSign = a > b ? '>' : a < b ? '<' : '='
     return {
       question: `Điền dấu thích hợp: ${a} ... ${b}`,
-      options: ['<', '>', '=', '≠'],
+      options: ['<', '>', '='],
       answer: correctSign,
       hint: 'Số nào lớn hơn thì miệng dấu ngoặc quay về số đó nhé!',
       explanation: `${a} ${correctSign} ${b}`,
@@ -340,9 +340,27 @@ export function generateQuestion(grade = 1, topicId = null) {
     const ten = randInt(0, 9)
     const unit = randInt(0, 9)
     const num = hundred * 100 + ten * 10 + unit
+    const optSet = new Set([num])
+    const candidates = [
+      hundred * 100 + unit * 10 + ten,
+      ten * 100 + hundred * 10 + unit,
+      num + 10,
+      num - 10,
+      hundred * 10 + unit,
+      (hundred + 1) * 100 + ten * 10 + unit,
+      num + 100,
+    ]
+    for (const c of candidates) {
+      if (c > 0 && c !== num && optSet.size < 4) optSet.add(c)
+    }
+    let fallback = Math.max(100, num - 3)
+    while (optSet.size < 4) {
+      if (fallback !== num) optSet.add(fallback)
+      fallback += 2
+    }
     return {
       question: `Số gồm ${hundred} trăm, ${ten} chục và ${unit} đơn vị là số nào?`,
-      options: generateOptions(num, 15),
+      options: shuffle(Array.from(optSet)),
       answer: num,
       hint: `Hàng trăm viết trước, rồi đến hàng chục, cuối cùng là hàng đơn vị!`,
       explanation: `${hundred} trăm + ${ten} chục + ${unit} đơn vị = ${num}`,
@@ -357,9 +375,14 @@ export function generateQuestion(grade = 1, topicId = null) {
       const toCm = Math.random() > 0.5
       const ans = toCm ? m * 100 : m * 10
       const unit = toCm ? 'cm' : 'dm'
+      const optSet = new Set([ans])
+      const candidates = toCm ? [m * 10, m, (m + 1) * 100, (m - 1) * 100, m * 1000] : [m * 100, m, (m + 1) * 10, (m - 1) * 10]
+      for (const c of candidates) {
+        if (c > 0 && c !== ans && optSet.size < 4) optSet.add(c)
+      }
       return {
         question: `Điền số thích hợp: ${m} m = ... ${unit}?`,
-        options: generateOptions(ans, toCm ? 100 : 10),
+        options: shuffle(Array.from(optSet)),
         answer: ans,
         hint: toCm ? '1m = 100cm' : '1m = 10dm',
         explanation: `${m} m = ${ans} ${unit}`,
@@ -368,9 +391,14 @@ export function generateQuestion(grade = 1, topicId = null) {
       // Đổi đơn vị đề-xi-mét sang xăng-ti-mét
       const dm = randInt(2, 9)
       const ans = dm * 10
+      const optSet = new Set([ans])
+      const candidates = [dm * 100, dm, (dm + 1) * 10, (dm - 1) * 10, dm * 1000]
+      for (const c of candidates) {
+        if (c > 0 && c !== ans && optSet.size < 4) optSet.add(c)
+      }
       return {
         question: `Điền số thích hợp: ${dm} dm = ... cm?`,
-        options: generateOptions(ans, 10),
+        options: shuffle(Array.from(optSet)),
         answer: ans,
         hint: '1dm = 10cm',
         explanation: `${dm} dm = ${ans} cm`,
@@ -521,9 +549,17 @@ export function generateQuestion(grade = 1, topicId = null) {
     const priceA = randInt(2, 6) * 1000
     const priceB = randInt(1, 4) * 1000
     const total = priceA + priceB
+    const optSet = new Set([total])
+    const deltas = [-2000, -1000, 1000, 2000, 3000, -3000]
+    for (const d of deltas) {
+      const val = total + d
+      if (val > 0 && val !== total && optSet.size < 4) {
+        optSet.add(val)
+      }
+    }
     return {
       question: `Bạn Nam mua 1 cây bút chì giá ${priceA.toLocaleString('vi-VN')} đồng và 1 cục tẩy giá ${priceB.toLocaleString('vi-VN')} đồng. Nam phải trả bao nhiêu tiền?`,
-      options: generateOptions(total, 2000),
+      options: shuffle(Array.from(optSet)),
       answer: total,
       hint: 'Cộng giá tiền hai món đồ lại với nhau!',
       explanation: `${priceA.toLocaleString('vi-VN')} + ${priceB.toLocaleString('vi-VN')} = ${total.toLocaleString('vi-VN')} đồng`,

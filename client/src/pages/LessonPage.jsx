@@ -1,14 +1,16 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowLeft, ArrowRight, CheckCircle2, XCircle } from 'lucide-react'
+import { ArrowLeft, ArrowRight, CheckCircle2, XCircle, Edit3, Volume2, Sparkles, Award } from 'lucide-react'
 import Button from '../components/ui/Button'
 import ProgressBar, { StarsDisplay } from '../components/ui/ProgressBar'
 import MascotBubble from '../components/mascot/MascotBubble'
+import ScratchpadModal from '../components/scratchpad/ScratchpadModal'
 import useUserStore from '../store/useUserStore'
 import useProgressStore from '../store/useProgressStore'
 import curriculum from '../data/curriculum'
 import soundManager from '../utils/soundManager'
+import speechHelper from '../utils/speechHelper'
 import confetti from 'canvas-confetti'
 import './LessonPage.css'
 
@@ -27,7 +29,7 @@ export default function LessonPage() {
   const navigate = useNavigate()
   const { lessonId } = useParams()
   const { addCoins, addXp } = useUserStore()
-  const { completeLesson } = useProgressStore()
+  const { completeLesson, recordMistake, progressQuest } = useProgressStore()
 
   const found = findLesson(lessonId)
   const [currentSlide, setCurrentSlide] = useState(0)
@@ -35,6 +37,7 @@ export default function LessonPage() {
   const [showResult, setShowResult] = useState(false)
   const [selectedAnswer, setSelectedAnswer] = useState(null)
   const [answerFeedback, setAnswerFeedback] = useState(null) // 'correct' | 'wrong' | null
+  const [showScratchpad, setShowScratchpad] = useState(false)
 
   if (!found) {
     return (
@@ -58,7 +61,15 @@ export default function LessonPage() {
   const totalQuizzes = quizSlides.length
   const correctAnswers = Object.values(quizAnswers).filter((a) => a.correct).length
 
+  // Clean up speech on unmount
+  useEffect(() => {
+    return () => {
+      speechHelper.stop()
+    }
+  }, [])
+
   const handleNext = () => {
+    speechHelper.stop()
     if (isLastSlide) {
       // Finish lesson
       const stars = totalQuizzes === 0 ? 3 :
@@ -66,6 +77,8 @@ export default function LessonPage() {
         correctAnswers >= totalQuizzes * 0.6 ? 2 : 1
 
       completeLesson(lessonId, stars)
+      progressQuest('lesson_1', 1)
+      progressQuest('stars_1', stars)
       addCoins(20)
       addXp(50)
       soundManager.playFanfare()
@@ -80,6 +93,7 @@ export default function LessonPage() {
   }
 
   const handlePrev = () => {
+    speechHelper.stop()
     if (currentSlide > 0) {
       soundManager.playClick()
       setCurrentSlide((prev) => prev - 1)
@@ -103,8 +117,18 @@ export default function LessonPage() {
     if (isCorrect) {
       soundManager.playCorrect()
       addCoins(10)
+      progressQuest('quiz_1', 1)
     } else {
       soundManager.playWrong()
+      recordMistake({
+        lessonId,
+        question: slide.content.question,
+        options: slide.content.options,
+        answer: slide.content.answer,
+        explanation: slide.content.mascotHint || `Đáp án đúng là: ${slide.content.answer}`,
+        grade: found?.grade?.id || 1,
+        chapterTitle: found?.chapter?.name || 'Bài học',
+      })
     }
   }
 
@@ -260,6 +284,22 @@ export default function LessonPage() {
           {!isLastSlide && <ArrowRight size={18} />}
         </Button>
       </div>
+
+      {/* Floating Scratchpad Button for calculations */}
+      <button
+        className="floating-scratchpad-btn"
+        onClick={() => setShowScratchpad(true)}
+        title="Mở bảng nháp ô ly để tính toán"
+      >
+        <Edit3 size={18} />
+        <span>Vở Nháp 4 Ô Ly</span>
+      </button>
+
+      {/* Scratchpad Modal */}
+      <ScratchpadModal
+        isOpen={showScratchpad}
+        onClose={() => setShowScratchpad(false)}
+      />
     </div>
   )
 }
@@ -267,22 +307,86 @@ export default function LessonPage() {
 // ---- Slide Components ----
 
 function StorySlide({ content }) {
+  const [speaking, setSpeaking] = useState(false)
+  const moodEmoji = content.mascotMood === 'excited' ? '🤩' : content.mascotMood === 'proud' ? '😎' : content.mascotMood === 'thinking' ? '🤔' : '😊'
+
+  const handleSpeak = () => {
+    if (speaking) {
+      speechHelper.stop()
+      setSpeaking(false)
+    } else {
+      speechHelper.speak(
+        content.text,
+        () => setSpeaking(true),
+        () => setSpeaking(false)
+      )
+    }
+  }
+
   return (
-    <div className="slide-story">
-      <MascotBubble
-        text={content.text}
-        mood={content.mascotMood || 'happy'}
-        position="inline"
-        size="lg"
-      />
+    <div className="slide-story-card">
+      <div className="story-card-top-tag">
+        <Sparkles size={18} />
+        <span>Bài Học Khám Phá</span>
+      </div>
+
+      <motion.div
+        className="story-mascot-hero"
+        animate={{ y: [0, -10, 0], rotate: [-2, 2, -2] }}
+        transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+      >
+        <span className="story-owl-emoji">🦉</span>
+        <span className="story-mood-badge">{moodEmoji}</span>
+      </motion.div>
+
+      <div className="story-dialog-bubble">
+        <p className="story-dialog-text">{content.text}</p>
+      </div>
+
+      <motion.button
+        type="button"
+        className={`lesson-voice-action-btn ${speaking ? 'is-playing' : ''}`}
+        onClick={handleSpeak}
+        whileHover={{ scale: 1.04, y: -2 }}
+        whileTap={{ scale: 0.96 }}
+      >
+        <Volume2 size={24} />
+        <span>{speaking ? 'Đang đọc... Bấm để dừng' : 'Nghe cô Cú Mèo đọc bài 🔊'}</span>
+      </motion.button>
     </div>
   )
 }
 
 function VisualSlide({ content }) {
+  const [speaking, setSpeaking] = useState(false)
+
+  const handleSpeak = () => {
+    if (speaking) {
+      speechHelper.stop()
+      setSpeaking(false)
+    } else {
+      speechHelper.speak(
+        content.text,
+        () => setSpeaking(true),
+        () => setSpeaking(false)
+      )
+    }
+  }
+
   return (
-    <div className="slide-visual">
-      <p className="slide-visual-text">{content.text}</p>
+    <div className="slide-visual-card">
+      <div className="visual-header-banner">
+        <h2 className="slide-visual-text">{content.text}</h2>
+        <button
+          type="button"
+          className={`lesson-mini-voice-btn ${speaking ? 'is-playing' : ''}`}
+          onClick={handleSpeak}
+          title="Nghe đọc nội dung"
+        >
+          <Volume2 size={20} />
+          <span>Nghe đọc</span>
+        </button>
+      </div>
 
       {content.items && (
         <div className="visual-items">
@@ -312,7 +416,7 @@ function VisualSlide({ content }) {
           className="visual-number"
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
-          transition={{ delay: 0.5, type: 'spring', stiffness: 200 }}
+          transition={{ delay: 0.4, type: 'spring', stiffness: 200 }}
         >
           <span className="number">{content.number}</span>
         </motion.div>
@@ -350,8 +454,36 @@ function VisualSlide({ content }) {
 }
 
 function QuizSlide({ content, selectedAnswer, feedback, onAnswer }) {
+  const [speaking, setSpeaking] = useState(false)
+
+  const handleSpeak = () => {
+    if (speaking) {
+      speechHelper.stop()
+      setSpeaking(false)
+    } else {
+      speechHelper.speak(
+        content.question,
+        () => setSpeaking(true),
+        () => setSpeaking(false)
+      )
+    }
+  }
+
   return (
-    <div className="slide-quiz">
+    <div className="slide-quiz-card">
+      <div className="quiz-header-banner">
+        <span className="quiz-badge">❓ Câu Hỏi Thử Thách</span>
+        <button
+          type="button"
+          className={`lesson-mini-voice-btn ${speaking ? 'is-playing' : ''}`}
+          onClick={handleSpeak}
+          title="Nghe đọc câu hỏi"
+        >
+          <Volume2 size={19} />
+          <span>Nghe câu hỏi</span>
+        </button>
+      </div>
+
       <h2 className="quiz-question">{content.question}</h2>
 
       {content.items && (
@@ -391,14 +523,14 @@ function QuizSlide({ content, selectedAnswer, feedback, onAnswer }) {
               className={optionClass}
               onClick={() => onAnswer(option)}
               disabled={feedback !== null}
-              whileHover={!feedback ? { scale: 1.05 } : {}}
-              whileTap={!feedback ? { scale: 0.95 } : {}}
+              whileHover={!feedback ? { scale: 1.03, y: -2 } : {}}
+              whileTap={!feedback ? { scale: 0.97 } : {}}
             >
-              <span className="number quiz-option-text">
-                {typeof option === 'number' ? option : option}
+              <span className="quiz-option-text">
+                {option}
               </span>
-              {feedback && isCorrect && <CheckCircle2 size={20} className="quiz-icon-correct" />}
-              {feedback && isSelected && !isCorrect && <XCircle size={20} className="quiz-icon-wrong" />}
+              {feedback && isCorrect && <CheckCircle2 size={24} className="quiz-icon-correct" />}
+              {feedback && isSelected && !isCorrect && <XCircle size={24} className="quiz-icon-wrong" />}
             </motion.button>
           )
         })}
@@ -409,12 +541,12 @@ function QuizSlide({ content, selectedAnswer, feedback, onAnswer }) {
         {feedback && (
           <motion.div
             className={`quiz-feedback quiz-feedback-${feedback}`}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
           >
             {feedback === 'correct' ? (
-              <>🎉 Chính xác! Giỏi lắm!</>
+              <>🎉 Chính xác! Bé làm giỏi lắm!</>
             ) : (
               <>😊 Đáp án đúng là: <strong className="number">{content.answer}</strong>. {content.mascotHint}</>
             )}
@@ -426,9 +558,31 @@ function QuizSlide({ content, selectedAnswer, feedback, onAnswer }) {
 }
 
 function SummarySlide({ content }) {
+  const [speaking, setSpeaking] = useState(false)
+
+  const handleSpeak = () => {
+    if (speaking) {
+      speechHelper.stop()
+      setSpeaking(false)
+    } else {
+      const fullText = `${content.title}. ${content.points ? content.points.join('. ') : ''}`
+      speechHelper.speak(
+        fullText,
+        () => setSpeaking(true),
+        () => setSpeaking(false)
+      )
+    }
+  }
+
   return (
-    <div className="slide-summary">
-      <h2>{content.title}</h2>
+    <div className="slide-summary-card">
+      <div className="summary-celebrate-badge">
+        <Award size={20} />
+        <span>Tổng Kết Bài Học</span>
+      </div>
+
+      <h2 className="summary-title">{content.title}</h2>
+
       <div className="summary-points">
         {content.points.map((point, i) => (
           <motion.div
@@ -438,16 +592,24 @@ function SummarySlide({ content }) {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: i * 0.15 }}
           >
-            {point}
+            <span className="point-bullet">⭐</span>
+            <span className="point-text">{point}</span>
           </motion.div>
         ))}
       </div>
-      <MascotBubble
-        text="Hãy nhớ những điều này nhé!"
-        mood={content.mascotMood || 'proud'}
-        position="inline"
-        size="md"
-      />
+
+      <div className="summary-action-box">
+        <motion.button
+          type="button"
+          className={`lesson-voice-action-btn ${speaking ? 'is-playing' : ''}`}
+          onClick={handleSpeak}
+          whileHover={{ scale: 1.04, y: -2 }}
+          whileTap={{ scale: 0.96 }}
+        >
+          <Volume2 size={22} />
+          <span>{speaking ? 'Đang đọc... Bấm để dừng' : 'Nghe tổng kết bài học 🔊'}</span>
+        </motion.button>
+      </div>
     </div>
   )
 }

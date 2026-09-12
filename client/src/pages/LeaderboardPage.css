@@ -1,0 +1,416 @@
+/* ========================================
+   LEADERBOARD & DUOLINGO LEAGUES
+   ======================================== */
+
+.leaderboard-page {
+  max-width: 840px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* Status Alert */
+.league-status-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  border-radius: 16px;
+  font-size: 0.95rem;
+}
+
+.league-status-banner.promoted {
+  background: #dcfce7;
+  border: 1.5px solid #86efac;
+  color: #166534;
+}
+
+.league-status-banner.relegated {
+  background: #fee2e2;
+  border: 1.5px solid #fca5a5;
+  color: #991b1b;
+}
+
+.league-status-banner.stayed {
+  background: #f1f5f9;
+  border: 1.5px solid #cbd5e1;
+  color: #334155;
+}
+
+.dismiss-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: inherit;
+  opacity: 0.7;
+}
+
+.dismiss-btn:hover { opacity: 1; }
+
+/* League Hero Card */
+.league-hero-card {
+  background: white;
+  border-radius: 28px;
+  padding: 28px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.05);
+  border: 2px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.tier-info-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.tier-badge-main {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.tier-icon {
+  font-size: 3rem;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.12));
+}
+
+.tier-subtitle {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tier-name {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #1e293b;
+  margin: 0;
+  font-family: inherit;
+}
+
+.timer-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  color: #475569;
+}
+
+/* League Roadmap */
+.tiers-roadmap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  padding: 10px 0;
+}
+
+.tiers-roadmap::before {
+  content: '';
+  position: absolute;
+  top: 30px;
+  left: 20px;
+  right: 20px;
+  height: 4px;
+  background: #e2e8f0;
+  z-index: 1;
+}
+
+.tier-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  z-index: 2;
+  opacity: 0.5;
+  transition: all 0.25s ease;
+}
+
+.tier-step.is-unlocked {
+  opacity: 0.85;
+}
+
+.tier-step.is-current {
+  opacity: 1;
+  transform: scale(1.12);
+}
+
+.step-circle {
+  width: 44px;
+  height: 44px;
+  background: white;
+  border: 3px solid #cbd5e1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.tier-step.is-current .step-circle {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+  background: #eef2ff;
+}
+
+.step-label {
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #475569;
+}
+
+/* ========================================
+   TOP 3 PODIUM
+   ======================================== */
+
+.podium-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 16px;
+  padding: 20px 0;
+}
+
+.podium-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 140px;
+  position: relative;
+}
+
+.crown-badge {
+  font-size: 1.8rem;
+  position: absolute;
+  top: -24px;
+  animation: float-crown 2s infinite ease-in-out;
+}
+
+@keyframes float-crown {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.podium-player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.podium-avatar {
+  font-size: 2.8rem;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+.golden-glow {
+  filter: drop-shadow(0 0 12px rgba(234, 179, 8, 0.5));
+}
+
+.podium-name {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #1e293b;
+  text-align: center;
+}
+
+.podium-xp {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #6366f1;
+}
+
+.podium-pedestal {
+  width: 100%;
+  border-radius: 16px 16px 4px 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.pedestal-1 {
+  height: 120px;
+  background: linear-gradient(180deg, #fde047 0%, #ca8a04 100%);
+}
+
+.pedestal-2 {
+  height: 90px;
+  background: linear-gradient(180deg, #cbd5e1 0%, #64748b 100%);
+}
+
+.pedestal-3 {
+  height: 70px;
+  background: linear-gradient(180deg, #fdba74 0%, #c2410c 100%);
+}
+
+.pedestal-rank {
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* ========================================
+   FULL STANDINGS LIST
+   ======================================== */
+
+.standings-box {
+  background: white;
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  border: 2px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.standings-legend {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #64748b;
+  padding-bottom: 12px;
+  border-bottom: 1.5px solid #f1f5f9;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.standings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.standing-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 18px;
+  border-radius: 16px;
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-left: 6px solid #94a3b8;
+  transition: all 0.2s ease;
+}
+
+.standing-row.zone-promotion {
+  border-left-color: #22c55e;
+  background: #f0fdf4;
+}
+
+.standing-row.zone-relegation {
+  border-left-color: #ef4444;
+  background: #fef2f2;
+}
+
+.standing-row.is-user-row {
+  border: 2px solid #6366f1;
+  border-left: 6px solid #4f46e5;
+  background: #eef2ff;
+  box-shadow: 0 6px 18px rgba(79, 70, 229, 0.15);
+  transform: scale(1.01);
+}
+
+.rank-badge-wrap {
+  width: 32px;
+  text-align: center;
+}
+
+.rank-number {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #64748b;
+}
+
+.player-avatar-wrap {
+  font-size: 1.8rem;
+}
+
+.player-info-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.player-name {
+  font-size: 0.98rem;
+  font-weight: 800;
+  color: #1e293b;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.you-tag {
+  background: #4f46e5;
+  color: white;
+  font-size: 0.72rem;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.zone-subtag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.player-xp-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.xp-value {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #1e293b;
+}
+
+.standing-row.is-user-row .xp-value {
+  color: #4f46e5;
+}
+
+.xp-unit {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #64748b;
+}
+
+@media (max-width: 640px) {
+  .podium-column {
+    width: 100px;
+  }
+  .podium-avatar {
+    font-size: 2.2rem;
+  }
+  .tier-step .step-label {
+    display: none;
+  }
+}

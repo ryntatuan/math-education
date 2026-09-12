@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Home, BookOpen, PenTool, Gamepad2, Trophy, ShieldCheck, Volume2, VolumeX } from 'lucide-react'
+import { Home, BookOpen, PenTool, Gamepad2, Trophy, ShieldCheck, Volume2, VolumeX, Sparkles, Award } from 'lucide-react'
 import soundManager from '../../utils/soundManager'
 import useUserStore from '../../store/useUserStore'
 import './Sidebar.css'
@@ -10,6 +10,8 @@ const navItems = [
   { to: '/learn', label: 'Học bài', icon: BookOpen, variant: 'learn' },
   { to: '/practice', label: 'Luyện tập', icon: PenTool, variant: 'practice' },
   { to: '/games', label: 'Trò chơi', icon: Gamepad2, variant: 'games' },
+  { to: '/stories', label: 'Truyện toán', icon: Sparkles, variant: 'stories' },
+  { to: '/leaderboard', label: 'Đấu trường', icon: Award, variant: 'leaderboard' },
   { to: '/challenges', label: 'Thử thách', icon: Trophy, variant: 'challenges' },
   { to: '/parent', label: 'Phụ huynh', icon: ShieldCheck, variant: 'parent' },
 ]

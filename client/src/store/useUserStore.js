@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
+import useLeagueStore from './useLeagueStore'
 
 const useUserStore = create(
   persist(
@@ -58,6 +59,13 @@ const useUserStore = create(
           level: newLevel,
           totalXpForNextLevel: newTotalXp,
         })
+
+        // Also contribute to weekly league leaderboard
+        try {
+          useLeagueStore.getState().addLeagueXp(amount)
+        } catch (e) {
+          // Ignore
+        }
 
         return newLevel > state.level // returns true if leveled up
       },
