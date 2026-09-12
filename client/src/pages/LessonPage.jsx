@@ -1,11 +1,10 @@
 import { useState, useCallback, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowLeft, ArrowRight, CheckCircle2, XCircle, Edit3, Volume2, Sparkles, Award } from 'lucide-react'
+import { ArrowLeft, ArrowRight, CheckCircle2, XCircle, Volume2, Sparkles, Award } from 'lucide-react'
 import Button from '../components/ui/Button'
 import ProgressBar, { StarsDisplay } from '../components/ui/ProgressBar'
 import MascotBubble from '../components/mascot/MascotBubble'
-import ScratchpadModal from '../components/scratchpad/ScratchpadModal'
 import useUserStore from '../store/useUserStore'
 import useProgressStore from '../store/useProgressStore'
 import curriculum from '../data/curriculum'
@@ -37,7 +36,6 @@ export default function LessonPage() {
   const [showResult, setShowResult] = useState(false)
   const [selectedAnswer, setSelectedAnswer] = useState(null)
   const [answerFeedback, setAnswerFeedback] = useState(null) // 'correct' | 'wrong' | null
-  const [showScratchpad, setShowScratchpad] = useState(false)
 
   if (!found) {
     return (
@@ -284,22 +282,6 @@ export default function LessonPage() {
           {!isLastSlide && <ArrowRight size={18} />}
         </Button>
       </div>
-
-      {/* Floating Scratchpad Button for calculations */}
-      <button
-        className="floating-scratchpad-btn"
-        onClick={() => setShowScratchpad(true)}
-        title="Mở bảng nháp ô ly để tính toán"
-      >
-        <Edit3 size={18} />
-        <span>Vở Nháp 4 Ô Ly</span>
-      </button>
-
-      {/* Scratchpad Modal */}
-      <ScratchpadModal
-        isOpen={showScratchpad}
-        onClose={() => setShowScratchpad(false)}
-      />
     </div>
   )
 }

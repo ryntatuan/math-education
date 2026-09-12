@@ -8,7 +8,6 @@ import {
   Award,
   CheckCircle2,
   XCircle,
-  Edit3,
   BookMarked,
   Sparkles,
   ShieldCheck,
@@ -19,7 +18,6 @@ import Button from '../components/ui/Button'
 import Card from '../components/ui/Card'
 import ProgressBar from '../components/ui/ProgressBar'
 import MascotBubble from '../components/mascot/MascotBubble'
-import ScratchpadModal from '../components/scratchpad/ScratchpadModal'
 import useUserStore from '../store/useUserStore'
 import useProgressStore from '../store/useProgressStore'
 import { TOPICS, generateQuestion } from '../utils/exerciseGenerator'
@@ -99,7 +97,6 @@ export default function PracticePage() {
 
   // Navigation tab: 'practice' | 'mistakes'
   const [mainTab, setMainTab] = useState('practice')
-  const [showScratchpad, setShowScratchpad] = useState(false)
 
   // Practice state
   const [selectedGrade, setSelectedGrade] = useState(userGrade || 1)
@@ -423,18 +420,6 @@ export default function PracticePage() {
             )}
           </AnimatePresence>
         </div>
-
-        {/* Floating Scratchpad Button */}
-        <button
-          className="floating-scratchpad-btn"
-          onClick={() => setShowScratchpad(true)}
-          title="Mở bảng nháp ô ly"
-        >
-          <Edit3 size={18} />
-          <span>Vở Nháp 4 Ô Ly</span>
-        </button>
-
-        <ScratchpadModal isOpen={showScratchpad} onClose={() => setShowScratchpad(false)} />
       </div>
     )
   }
@@ -769,18 +754,6 @@ export default function PracticePage() {
           )}
         </div>
       )}
-
-      {/* Floating Scratchpad Button for all tabs */}
-      <button
-        className="floating-scratchpad-btn"
-        onClick={() => setShowScratchpad(true)}
-        title="Mở bảng nháp ô ly để tính toán"
-      >
-        <Edit3 size={18} />
-        <span>Vở Nháp 4 Ô Ly</span>
-      </button>
-
-      <ScratchpadModal isOpen={showScratchpad} onClose={() => setShowScratchpad(false)} />
     </div>
   )
 }
