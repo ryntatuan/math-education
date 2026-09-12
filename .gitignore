@@ -36,3 +36,7 @@ Thumbs.db
 # Agent & temporary tools
 .codegraph/
 .gemini/
+
+# Documentation
+README.md
+client/README.md
