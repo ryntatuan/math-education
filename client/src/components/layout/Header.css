@@ -1,0 +1,132 @@
+/* ========================================================
+   TOP HEADER BAR
+   Positioned alongside the Left Sidebar on Desktop
+   ======================================================== */
+.header {
+  position: fixed;
+  top: 0;
+  left: 260px; /* Offset by the 260px left sidebar */
+  right: 0;
+  z-index: 90;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 2px solid rgba(78, 205, 196, 0.14);
+  height: 72px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.02);
+  transition: left var(--transition-base);
+}
+
+.header-inner {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+/* Greeting on Desktop */
+.header-greeting-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Quicksand', var(--font-heading), sans-serif;
+  font-size: 1.15rem;
+  color: #4A5568;
+}
+
+.header-greeting-sparkle {
+  font-size: 1.4rem;
+  animation: float 2.5s ease-in-out infinite;
+}
+
+.header-greeting-text strong {
+  color: #10B981;
+  font-weight: 800;
+}
+
+/* Mobile Brand Logo (Visible only on mobile when sidebar is hidden) */
+.header-mobile-brand {
+  display: flex;
+  align-items: center;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.header-logo-icon {
+  font-size: 2.2rem;
+  animation: wiggle 2.5s ease-in-out infinite;
+}
+
+.header-logo-text {
+  font-family: var(--font-heading);
+  font-size: 1.7rem;
+  font-weight: 800;
+  background: var(--gradient-candy);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.5px;
+}
+
+/* User Stats & Avatar */
+.header-stats {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-shrink: 0;
+}
+
+.header-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--gradient-dream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  border: 2px solid var(--color-primary-light);
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+  text-decoration: none;
+}
+
+.header-avatar:hover {
+  transform: scale(1.08);
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(79, 172, 254, 0.3);
+}
+
+/* ========================================================
+   RESPONSIVE ADJUSTMENTS
+   ======================================================== */
+@media (max-width: 1024px) {
+  .header-greeting-wrap {
+    font-size: 1.05rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    left: 0; /* Full width on mobile */
+    height: 64px;
+  }
+
+  .header-inner {
+    padding: 0 var(--space-4);
+  }
+
+  .header-stats {
+    gap: var(--space-2);
+  }
+}

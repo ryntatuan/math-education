@@ -1,0 +1,208 @@
+/* ========================================
+   GRADE PAGE
+   ======================================== */
+.grade-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.grade-page-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+
+.grade-header-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.grade-header-content h1 {
+  font-size: var(--text-3xl);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.grade-page-desc {
+  color: var(--color-text-secondary);
+  font-size: var(--text-base);
+}
+
+/* Chapters List */
+.chapters-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.chapter-card-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  padding: var(--space-5);
+}
+
+.chapter-number {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-number);
+  font-weight: 700;
+  font-size: var(--text-xl);
+  flex-shrink: 0;
+}
+
+.chapter-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.chapter-title-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.chapter-title-row h3 {
+  font-size: var(--text-lg);
+}
+
+.chapter-complete-icon {
+  color: var(--color-success);
+}
+
+.chapter-desc {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.chapter-meta {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.chapter-locked {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ========================================
+   CHAPTER DETAIL PAGE
+   ======================================== */
+.chapter-detail-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.chapter-detail-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-4);
+  width: 100%;
+}
+
+.chapter-detail-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.chapter-detail-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.chapter-detail-title h1 {
+  font-size: var(--text-2xl);
+  margin-bottom: 2px;
+}
+
+.chapter-detail-title p {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+/* Lessons List */
+.lessons-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.lesson-card-inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-5);
+}
+
+.lesson-number {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-number);
+  font-weight: 700;
+  font-size: var(--text-base);
+  flex-shrink: 0;
+}
+
+.lesson-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.lesson-info h4 {
+  font-size: var(--text-base);
+  margin-bottom: 2px;
+}
+
+.lesson-info p {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-1);
+}
+
+.lesson-action {
+  flex-shrink: 0;
+}
+
+.lesson-completed {
+  border-color: var(--color-success-light);
+}
+
+/* Empty state */
+.page-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  padding: var(--space-16);
+  text-align: center;
+  color: var(--color-text-secondary);
+}
+
+.page-empty h2, .page-empty h3 {
+  color: var(--color-text);
+}

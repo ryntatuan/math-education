@@ -1,0 +1,112 @@
+/* ========================================
+   SHOP PAGE
+   ======================================== */
+.shop-page {
+  max-width: 860px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.shop-hero {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.shop-coin-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: white;
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-md);
+  border: 2px solid #ffd43b;
+}
+
+.coin-glow {
+  color: #f08c00;
+}
+
+.shop-coin-amount {
+  font-size: var(--text-2xl);
+  font-weight: 800;
+  color: #f08c00;
+}
+
+.shop-hero h1 {
+  font-size: var(--text-3xl);
+  color: var(--color-text-primary);
+}
+
+.shop-hero p {
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+}
+
+.shop-notification {
+  background: #343a40;
+  color: white;
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-full);
+  text-align: center;
+  font-weight: 700;
+  font-size: var(--text-sm);
+  align-self: center;
+  box-shadow: var(--shadow-lg);
+}
+
+.shop-items-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--space-6);
+}
+
+.shop-card {
+  background: white;
+  border-radius: var(--radius-3xl);
+  padding: var(--space-6);
+  border: 2px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-3);
+  transition: all var(--transition-normal);
+}
+
+.shop-card.equipped {
+  border-color: #51cf66;
+  background: #f4fce3;
+}
+
+.shop-card.owned {
+  border-color: var(--color-primary);
+}
+
+.shop-item-emoji {
+  font-size: 4rem;
+  padding: var(--space-3) 0;
+}
+
+.shop-item-info h3 {
+  font-size: var(--text-lg);
+  color: var(--color-text-primary);
+}
+
+.shop-price-tag {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: #f08c00;
+}
+
+.shop-buy-btn {
+  width: 100%;
+  margin-top: auto;
+}

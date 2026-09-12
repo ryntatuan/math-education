@@ -1,0 +1,76 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+
+.badge-sm {
+  padding: 2px var(--space-2);
+  font-size: var(--text-xs);
+}
+
+.badge-md {
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--text-sm);
+}
+
+.badge-lg {
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-base);
+}
+
+.badge-default {
+  background: #F1F3F5;
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+}
+
+.badge-primary {
+  background: var(--color-primary);
+  color: white;
+}
+
+.badge-accent {
+  background: var(--color-accent);
+  color: white;
+}
+
+.badge-success {
+  background: #E6F7F0;
+  color: #047857;
+  border: 1px solid rgba(4, 120, 87, 0.25);
+}
+
+.badge-progress {
+  background: #EFF6FF;
+  color: #1D4ED8;
+  border: 1px solid rgba(29, 78, 216, 0.25);
+}
+
+.badge-warning {
+  background: #FFF9DB;
+  color: #D9480F;
+  border: 1px solid rgba(217, 72, 15, 0.25);
+}
+
+.badge-coin {
+  background: linear-gradient(135deg, #FFD700, #FFA500);
+  color: white;
+  font-family: var(--font-number);
+}
+
+.badge-xp {
+  background: var(--gradient-sky);
+  color: white;
+  font-family: var(--font-number);
+}
+
+.badge-icon {
+  display: flex;
+  align-items: center;
+  font-size: 0.9em;
+}

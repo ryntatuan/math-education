@@ -1,0 +1,68 @@
+.progress-wrapper {
+  width: 100%;
+}
+
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.progress-track {
+  width: 100%;
+  background: var(--color-bg);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-sm { height: 8px; }
+.progress-md { height: 14px; }
+.progress-lg { height: 20px; }
+
+.progress-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  position: relative;
+  min-width: 4px;
+}
+
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: var(--radius-full) var(--radius-full) 0 0;
+}
+
+.progress-fill-primary { background: var(--color-primary); }
+.progress-fill-accent { background: var(--color-accent); }
+.progress-fill-success { background: var(--color-success); }
+.progress-fill-warning { background: var(--color-warning); }
+.progress-fill-gradient { background: var(--gradient-ocean); }
+.progress-fill-rainbow { background: linear-gradient(90deg, #FF6B6B, #FFE66D, #51CF66, #4ECDC4, #667eea); }
+
+/* Stars */
+.stars-display {
+  display: flex;
+  gap: var(--space-1);
+}
+
+.stars-sm .star { font-size: 1rem; }
+.stars-md .star { font-size: 1.5rem; }
+.stars-lg .star { font-size: 2rem; }
+
+.star-empty {
+  filter: grayscale(1);
+  opacity: 0.3;
+}
+
+.star-filled {
+  filter: none;
+}

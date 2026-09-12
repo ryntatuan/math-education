@@ -1,0 +1,307 @@
+/* ========================================
+   CHALLENGE PAGE
+   ======================================== */
+.challenge-page {
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.challenge-hero {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.challenge-hero h1 {
+  font-size: var(--text-3xl);
+  color: var(--color-text-primary);
+}
+
+.challenge-hero p {
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+}
+
+.streak-ribbon {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  background: white;
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-md);
+  border: 2px solid #ffd43b;
+  margin-bottom: var(--space-2);
+}
+
+.flame-icon-active {
+  color: #ff6b6b;
+  animation: pulse 1s infinite alternate;
+}
+
+.streak-text-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.streak-count {
+  font-size: var(--text-xl);
+  font-weight: 800;
+  color: #f08c00;
+}
+
+.streak-sub {
+  font-size: var(--text-xs);
+  color: var(--color-text-secondary);
+  font-weight: 600;
+}
+
+/* Tasks Grid */
+.challenge-tasks-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.task-item-card {
+  background: white;
+  border-radius: var(--radius-2xl);
+  padding: var(--space-5) var(--space-6);
+  box-shadow: var(--shadow-sm);
+  border: 2px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  cursor: pointer;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.task-item-card:hover:not(.completed) {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-md);
+}
+
+.task-item-card.completed {
+  background: #f8f9fa;
+  opacity: 0.85;
+}
+
+.task-level-dot {
+  font-size: 1.6rem;
+}
+
+.check-done {
+  color: #51cf66;
+}
+
+.task-info {
+  flex: 1;
+}
+
+.task-info h3 {
+  font-size: var(--text-lg);
+  color: var(--color-text-primary);
+  margin-bottom: 2px;
+}
+
+.task-difficulty-pill {
+  font-size: var(--text-xs);
+  background: #e9ecef;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.task-reward-box {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  font-family: var(--font-number);
+  font-weight: 700;
+  color: #f08c00;
+}
+
+.done-label {
+  color: #2b8a3e;
+  font-weight: 700;
+  font-size: var(--text-sm);
+}
+
+/* Chest Card */
+.chest-reward-card {
+  background: white;
+  border-radius: var(--radius-3xl);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-lg);
+  border: 2px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.chest-reward-card.unlocked {
+  background: linear-gradient(135deg, #fff9db, #fff3bf);
+  border-color: #ffd43b;
+}
+
+.chest-visual .chest-icon {
+  font-size: 4.5rem;
+}
+
+.chest-details {
+  flex: 1;
+}
+
+.chest-details h2 {
+  font-size: var(--text-xl);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-1);
+}
+
+.chest-details p {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.claimed-badge {
+  color: #2b8a3e;
+  font-weight: 700;
+  background: #d3f9d8;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+}
+
+.locked-badge {
+  color: var(--color-text-light);
+  font-size: var(--text-sm);
+  background: #e9ecef;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+}
+
+/* Modal for active task */
+.task-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(4px);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+}
+
+.task-modal-content {
+  background: white;
+  border-radius: var(--radius-3xl);
+  padding: var(--space-8);
+  max-width: 540px;
+  width: 100%;
+  box-shadow: var(--shadow-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.task-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.reward-tag {
+  background: #fff3bf;
+  color: #f08c00;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: var(--text-sm);
+}
+
+.task-question-body h2 {
+  font-size: var(--text-2xl);
+  text-align: center;
+}
+
+.task-visual-box {
+  font-size: 2.2rem;
+  letter-spacing: 6px;
+  text-align: center;
+  margin-top: var(--space-4);
+}
+
+.task-options-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+}
+
+.task-opt-btn {
+  padding: var(--space-4);
+  font-size: var(--text-xl);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  background: #f8f9fa;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.task-opt-btn:hover:not(:disabled) {
+  border-color: var(--color-primary);
+  background: white;
+}
+
+.task-opt-btn.correct {
+  background: #d3f9d8 !important;
+  border-color: #51cf66 !important;
+  color: #2b8a3e;
+}
+
+.task-opt-btn.wrong {
+  background: #ffe3e3 !important;
+  border-color: #ff6b6b !important;
+  color: #c92a2a;
+}
+
+.task-feedback-banner {
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-xl);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.task-feedback-banner.wrong {
+  background: #fff5f5;
+  color: #e03131;
+  border: 1.5px solid #ffc9c9;
+}
+
+.task-feedback-banner.correct {
+  background: #ebfbee;
+  color: #2b8a3e;
+  border: 1.5px solid #b2f2bb;
+}
+
+.task-modal-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
