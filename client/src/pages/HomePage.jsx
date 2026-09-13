@@ -26,11 +26,11 @@ import './HomePage.css'
 
 // 5 Lớp Học Toàn Diện (Lớp 1 đến Lớp 5)
 const ALL_GRADES = [
-  { id: 1, name: 'Lớp 1', ageRange: '6-7 tuổi', shortAge: '6-7t', emoji: '🌱', color: '#06b6d4' },
-  { id: 2, name: 'Lớp 2', ageRange: '7-8 tuổi', shortAge: '7-8t', emoji: '🌿', color: '#10b981' },
-  { id: 3, name: 'Lớp 3', ageRange: '8-9 tuổi', shortAge: '8-9t', emoji: '🌸', color: '#f59e0b' },
-  { id: 4, name: 'Lớp 4', ageRange: '9-10 tuổi', shortAge: '9-10t', emoji: '🌲', color: '#ec4899' },
-  { id: 5, name: 'Lớp 5', ageRange: '10-11 tuổi', shortAge: '10-11t', emoji: '🌳', color: '#8b5cf6' },
+  { id: 1, name: 'Lớp 1', emoji: '🌱', color: '#06b6d4' },
+  { id: 2, name: 'Lớp 2', emoji: '🌿', color: '#10b981' },
+  { id: 3, name: 'Lớp 3', emoji: '🌸', color: '#f59e0b' },
+  { id: 4, name: 'Lớp 4', emoji: '🌲', color: '#ec4899' },
+  { id: 5, name: 'Lớp 5', emoji: '🌳', color: '#8b5cf6' }
 ]
 
 export default function HomePage() {
@@ -68,7 +68,7 @@ export default function HomePage() {
   return (
     <div className="home-dashboard-container">
       <div className="home-dashboard-2col">
-        
+
         {/* =========================================================
             CỘT TRÁI (68%): TRỤC HỌC TẬP CHÍNH (Chọn Lớp & 10 Chương)
            ========================================================= */}
@@ -94,10 +94,6 @@ export default function HomePage() {
                   >
                     <span className="grade-emoji">{g.emoji}</span>
                     <span className="grade-name">{g.name}</span>
-                    <span className="grade-age">
-                      <span className="hide-mobile">{g.ageRange}</span>
-                      <span className="hide-desktop hide-tablet">{g.shortAge || g.ageRange}</span>
-                    </span>
                     {isActive && (
                       <motion.div
                         className="grade-check-badge"
@@ -170,7 +166,7 @@ export default function HomePage() {
               const progress = getChapterProgress
                 ? getChapterProgress(chapter.id, totalLessons)
                 : { completed: 0, total: totalLessons, percent: 0 }
-              
+
               const isCompleted = progress.percent === 100
               const hasStarted = progress.completed > 0
 
@@ -205,13 +201,12 @@ export default function HomePage() {
                     <div className="chapter-card-header">
                       <h3 title={cleanTitle}>{cleanTitle}</h3>
                       <div
-                        className={`chapter-stars-badge ${
-                          progress.earnedStars > 0
-                            ? progress.earnedStars === progress.maxStars
-                              ? 'perfect'
-                              : 'active'
-                            : 'empty'
-                        }`}
+                        className={`chapter-stars-badge ${progress.earnedStars > 0
+                          ? progress.earnedStars === progress.maxStars
+                            ? 'perfect'
+                            : 'active'
+                          : 'empty'
+                          }`}
                         title={`Đã tích lũy ${progress.earnedStars}/${progress.maxStars} sao`}
                       >
                         <span className="star-icon">⭐</span>
@@ -287,7 +282,7 @@ export default function HomePage() {
                 whileTap={{ scale: 0.95 }}
               >
                 <BookOpen size={16} />
-                <span>Truyện Toán Vui</span>
+                <span>Truyện Toán</span>
               </motion.button>
 
               <motion.button
@@ -301,7 +296,7 @@ export default function HomePage() {
                 whileTap={{ scale: 0.95 }}
               >
                 <Award size={16} />
-                <span>Đấu Trường Thăng Hạng</span>
+                <span>Đấu Trường</span>
               </motion.button>
             </div>
           </div>

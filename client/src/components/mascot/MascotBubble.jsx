@@ -337,7 +337,8 @@ export default function MascotBubble({
                         <div className="quiz-feedback correct">
                           <span>🎉 Tuyệt vời! Bé nhận ngay <strong>+5 xu 🪙</strong>!</span>
                           <button className="next-quiz-btn" onClick={handleNextQuiz}>
-                            Câu tiếp theo →
+                            <span>Câu tiếp theo</span>
+                            <ArrowRight size={18} />
                           </button>
                         </div>
                       )}
@@ -348,7 +349,8 @@ export default function MascotBubble({
                             💪 Chưa đúng rồi! Đáp án đúng là <strong>{quiz.correct}</strong>.
                           </span>
                           <button className="next-quiz-btn" onClick={handleNextQuiz}>
-                            Thử câu khác 🔄
+                            <span>Thử câu khác</span>
+                            <RefreshCw size={16} />
                           </button>
                         </div>
                       )}
