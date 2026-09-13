@@ -154,7 +154,7 @@ export default function PetWidget({ compact = false }) {
                   <Button variant="primary" size="lg" onClick={handleConfirmAdopt}>
                     <Check size={18} /> Nhận Nuôi Bạn Này
                   </Button>
-                  <Button variant="ghost" size="md" onClick={() => setShowAdoptModal(false)}>
+                  <Button variant="outline" size="lg" onClick={() => setShowAdoptModal(false)}>
                     Để sau
                   </Button>
                 </div>

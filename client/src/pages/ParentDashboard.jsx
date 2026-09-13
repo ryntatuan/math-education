@@ -419,7 +419,7 @@ export default function ParentDashboard() {
                     )}
                     <div className="modal-actions">
                       <Button
-                        variant="ghost"
+                        variant="outline"
                         size="md"
                         type="button"
                         onClick={() => setShowForgotPinModal(false)}
@@ -471,7 +471,7 @@ export default function ParentDashboard() {
           </p>
         </div>
         <Button
-          variant="ghost"
+          variant="outline"
           size="sm"
           onClick={() => {
             setIsUnlocked(false)
@@ -830,7 +830,7 @@ export default function ParentDashboard() {
               mà không sợ bị mất dữ liệu.
             </p>
             <div className="backup-action-row">
-              <Button variant="ghost" size="md" onClick={handleGenerateBackup}>
+              <Button variant="outline" size="md" onClick={handleGenerateBackup}>
                 <Download size={18} /> Tạo Mã Sao Lưu
               </Button>
               {backupCode && (

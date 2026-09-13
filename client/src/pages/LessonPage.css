@@ -568,14 +568,53 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 0;
-  border-top: 1.5px solid rgba(0, 0, 0, 0.08);
+  gap: 16px;
+  padding: 16px 0;
+  border-top: 2px solid rgba(0, 0, 0, 0.06);
   position: sticky;
   bottom: 0;
   background: var(--color-bg, #f8fafc);
   z-index: 30;
-  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.03);
 }
+
+.lesson-nav-btn {
+  min-width: 140px;
+  font-size: 1.08rem;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-sizing: border-box;
+}
+
+.lesson-nav-btn-prev {
+  background: #ffffff;
+  color: #475569;
+  border: 2px solid #cbd5e1;
+  box-shadow: 0 4px 0 #cbd5e1;
+}
+
+.lesson-nav-btn-prev:hover:not(:disabled) {
+  background: #f8fafc;
+  border-color: #94a3b8;
+  color: #1e293b;
+  box-shadow: 0 4px 0 #94a3b8;
+}
+
+.lesson-nav-btn-prev:disabled {
+  opacity: 0.35 !important;
+  background: #f1f5f9 !important;
+  border-color: #e2e8f0 !important;
+  color: #94a3b8 !important;
+  box-shadow: none !important;
+}
+
+.lesson-nav-btn-next {
+  min-width: 150px;
+}
+
 
 /* ========================================
    RESULT SCREEN
@@ -880,12 +919,15 @@
 
   /* Navigation Bar pinned at bottom */
   .lesson-nav {
-    padding: 8px 0;
+    padding: 12px 0;
+    gap: 12px;
   }
 
-  .lesson-nav button {
-    padding: 10px 18px;
-    font-size: 0.95rem;
+  .lesson-nav-btn {
+    min-width: 120px;
+    min-height: 48px;
+    padding: 10px 16px;
+    font-size: 0.98rem;
   }
 
   /* Lesson Result Screen Mobile */

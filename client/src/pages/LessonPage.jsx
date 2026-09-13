@@ -198,19 +198,25 @@ export default function LessonPage() {
           </div>
 
           <div className="result-actions">
-            <Button variant="primary" size="lg" onClick={() => navigate(-1)}>
+            <Button variant="primary" size="lg" onClick={() => navigate(-1)} className="result-action-btn">
               Tiếp tục học →
             </Button>
-            <Button variant="ghost" size="md" onClick={() => {
-              setCurrentSlide(0)
-              setQuizAnswers({})
-              setShowResult(false)
-              setSelectedAnswer(null)
-              setAnswerFeedback(null)
-            }}>
+            <Button
+              variant="outline"
+              size="lg"
+              onClick={() => {
+                setCurrentSlide(0)
+                setQuizAnswers({})
+                setShowResult(false)
+                setSelectedAnswer(null)
+                setAnswerFeedback(null)
+              }}
+              className="result-action-btn"
+            >
               Học lại bài này
             </Button>
           </div>
+
         </div>
       </motion.div>
     )
@@ -286,12 +292,13 @@ export default function LessonPage() {
       {/* Navigation */}
       <div className="lesson-nav">
         <Button
-          variant="ghost"
-          size="md"
+          variant="outline"
+          size="lg"
           onClick={handlePrev}
           disabled={currentSlide === 0}
+          className="lesson-nav-btn lesson-nav-btn-prev"
         >
-          <ArrowLeft size={18} /> Trước
+          <ArrowLeft size={20} /> Trước
         </Button>
 
         <Button
@@ -300,14 +307,16 @@ export default function LessonPage() {
           onClick={handleNext}
           disabled={!canGoNext}
           glow={canGoNext && isQuizSlide}
+          className="lesson-nav-btn lesson-nav-btn-next"
         >
-          {isLastSlide ? '🎉 Hoàn thành' : 'Tiếp tục'}
-          {!isLastSlide && <ArrowRight size={18} />}
+          {isLastSlide ? '🎉 Hoàn thành bài' : 'Tiếp tục'}
+          {!isLastSlide && <ArrowRight size={20} />}
         </Button>
       </div>
     </div>
   )
 }
+
 
 // ---- Slide Components ----
 

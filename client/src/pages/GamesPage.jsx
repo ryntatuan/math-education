@@ -545,7 +545,7 @@ function MathRaceGame({ onBack, grade, addCoins, addXp }) {
             <Button variant="primary" size="lg" onClick={restart}>
               <RotateCcw size={18} /> Đua lại trận mới
             </Button>
-            <Button variant="ghost" size="md" onClick={onBack}>
+            <Button variant="outline" size="lg" onClick={onBack}>
               Quay lại danh sách game
             </Button>
           </div>
@@ -699,8 +699,8 @@ function NumberPopGame({ onBack, grade, addCoins, addXp }) {
             >
               <RotateCcw size={18} /> Chơi ván mới
             </Button>
-            <Button variant="ghost" size="md" onClick={onBack}>
-              Quay lại
+            <Button variant="outline" size="lg" onClick={onBack}>
+              Quay lại danh sách game
             </Button>
           </div>
         </div>
@@ -847,7 +847,7 @@ function MemoryMatchGame({ onBack, grade, addCoins, addXp }) {
             <Button variant="primary" size="lg" onClick={initDeck}>
               <RotateCcw size={18} /> Chơi ván khác
             </Button>
-            <Button variant="ghost" size="md" onClick={onBack}>
+            <Button variant="outline" size="lg" onClick={onBack}>
               Quay lại danh sách game
             </Button>
           </div>

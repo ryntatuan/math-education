@@ -461,8 +461,8 @@ export default function PracticePage() {
             <RotateCcw size={20} /> Luyện tập tiếp
           </Button>
           <Button
-            variant="ghost"
-            size="md"
+            variant="outline"
+            size="lg"
             onClick={() => {
               setSessionActive(false)
               setIsFinished(false)

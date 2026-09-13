@@ -141,8 +141,8 @@ export default function StoriesPage() {
                 <RotateCcw size={18} /> Đọc lại câu chuyện
               </Button>
               <Button
-                variant="ghost"
-                size="md"
+                variant="outline"
+                size="lg"
                 onClick={() => {
                   setActiveStory(null)
                   soundManager.playClick()
@@ -277,10 +277,10 @@ export default function StoriesPage() {
 
             {/* Bottom Actions */}
             <div className="scene-footer-actions">
-              {sceneIndex > 0 && (
+              {sceneIndex > 0 ? (
                 <Button
-                  variant="ghost"
-                  size="md"
+                  variant="outline"
+                  size="lg"
                   onClick={() => {
                     speechHelper.stop()
                     setIsSpeaking(false)
@@ -291,6 +291,8 @@ export default function StoriesPage() {
                 >
                   <ArrowLeft size={18} /> Trang trước
                 </Button>
+              ) : (
+                <div />
               )}
 
               <Button
