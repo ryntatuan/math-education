@@ -58,9 +58,17 @@
 }
 
 .badge-coin {
-  background: linear-gradient(135deg, #FFD700, #FFA500);
+  background: linear-gradient(135deg, #FFB703, #FB8500);
   color: white;
   font-family: var(--font-number);
+  box-shadow: 0 2px 8px rgba(251, 133, 0, 0.28);
+}
+
+.badge-streak {
+  background: linear-gradient(135deg, #FF6B6B, #FA5252);
+  color: white;
+  font-family: var(--font-number);
+  box-shadow: 0 2px 8px rgba(250, 82, 82, 0.28);
 }
 
 .badge-xp {

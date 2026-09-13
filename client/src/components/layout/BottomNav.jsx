@@ -15,7 +15,7 @@ export default function BottomNav() {
   const location = useLocation()
 
   return (
-    <nav className="bottom-nav hide-desktop hide-tablet">
+    <nav className="bottom-nav">
       {navItems.map(({ to, icon: Icon, label }) => {
         const isActive = location.pathname === to ||
           (to !== '/' && location.pathname.startsWith(to))

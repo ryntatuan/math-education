@@ -228,8 +228,8 @@
   border-color: rgba(78, 205, 196, 0.3);
 }
 
-/* Responsive Hide for Mobile (Mobile uses BottomNav) */
-@media (max-width: 768px) {
+/* Responsive Hide for Mobile & Tablet (Mobile & Tablet use BottomNav) */
+@media (max-width: 1024px) {
   .sidebar {
     display: none !important;
   }

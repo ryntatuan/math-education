@@ -424,7 +424,7 @@ ul, ol {
 /* ========================================
    RESPONSIVE
    ======================================== */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   :root {
     --text-4xl: 2.25rem;
     --text-3xl: 1.875rem;
@@ -432,11 +432,13 @@ ul, ol {
   }
 
   .page-wrapper {
-    margin-left: 0; /* Full width on mobile */
+    margin-left: 0; /* Full width on mobile & tablet */
     width: 100%;
-    padding: var(--space-4);
+    max-width: 100vw;
+    box-sizing: border-box;
+    padding: 16px 14px;
     padding-top: 76px;
-    padding-bottom: 80px; /* Space for bottom nav */
+    padding-bottom: 84px; /* Space for bottom nav */
   }
 
   .page-wrapper.page-wrapper-lesson {
@@ -448,15 +450,14 @@ ul, ol {
   .hide-mobile { display: none !important; }
 }
 
-@media (min-width: 769px) and (max-width: 1023px) {
+@media (max-width: 480px) {
   .page-wrapper {
-    padding: var(--space-5);
-    padding-top: 86px;
+    padding: 12px 10px;
+    padding-top: 72px;
+    padding-bottom: 84px;
   }
-
-  .hide-tablet { display: none !important; }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1025px) {
   .hide-desktop { display: none !important; }
 }

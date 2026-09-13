@@ -47,9 +47,9 @@
   font-weight: 800;
 }
 
-/* Mobile Brand Logo (Visible only on mobile when sidebar is hidden) */
+/* Mobile Brand Logo (Visible only on mobile & tablet when sidebar is hidden) */
 .header-mobile-brand {
-  display: flex;
+  display: none;
   align-items: center;
 }
 
@@ -109,59 +109,105 @@
    RESPONSIVE ADJUSTMENTS
    ======================================================== */
 @media (max-width: 1024px) {
-  .header-greeting-wrap {
-    font-size: 1.05rem;
-  }
-}
-
-@media (max-width: 768px) {
   .header {
-    left: 0; /* Full width on mobile */
-    height: 58px;
+    left: 0; /* Full width on mobile & tablet */
+    right: 0;
+    width: 100%;
+    max-width: 100vw;
+    box-sizing: border-box;
+    height: 60px;
+    overflow: hidden;
+  }
+
+  .header-greeting-wrap {
+    display: none !important;
   }
 
   .header-inner {
+    width: 100%;
+    max-width: 100vw;
     padding: 0 12px;
-    gap: 8px;
+    gap: 10px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .header-mobile-brand {
+    display: flex !important;
+    align-items: center;
+    flex-shrink: 0;
   }
 
   .header-logo {
+    display: inline-flex;
+    align-items: center;
     gap: 6px;
   }
 
   .header-logo-icon {
-    font-size: 1.65rem;
+    font-size: 1.75rem;
+    line-height: 1;
   }
 
   .header-logo-text {
-    font-size: 1.25rem;
+    font-size: 1.28rem;
     letter-spacing: -0.3px;
+    line-height: 1;
   }
 
   .header-stats {
-    gap: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
   }
 
   .header-stats .badge {
-    padding: 3px 8px;
-    font-size: 0.8rem;
+    height: 34px;
+    padding: 0 10px;
+    font-size: 0.92rem;
+    font-weight: 800;
+    border-radius: 999px;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  }
+
+  .header-stats .badge .badge-icon {
+    font-size: 1.05rem;
+  }
+
+  .header-level-badge {
+    display: none !important; /* Hide level on mobile to keep streak, coins, and logo perfectly spaced */
   }
 
   .header-avatar {
     width: 36px;
     height: 36px;
-    font-size: 1.15rem;
+    font-size: 1.2rem;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    flex-shrink: 0;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 380px) {
+  .header {
+    height: 56px;
+  }
+
   .header-inner {
     padding: 0 8px;
     gap: 6px;
   }
 
   .header-logo-icon {
-    font-size: 1.5rem;
+    font-size: 1.55rem;
   }
 
   .header-logo-text {
@@ -169,21 +215,23 @@
   }
 
   .header-stats {
-    gap: 4px;
+    gap: 6px;
   }
 
   .header-stats .badge {
-    padding: 2px 6px;
-    font-size: 0.75rem;
+    height: 32px;
+    padding: 0 8px;
+    font-size: 0.85rem;
+    gap: 4px;
   }
 
-  .header-level-badge {
-    display: none !important; /* Hide level badge on narrow mobile to keep logo unclipped */
+  .header-stats .badge .badge-icon {
+    font-size: 0.95rem;
   }
 
   .header-avatar {
     width: 32px;
     height: 32px;
-    font-size: 1rem;
+    font-size: 1.05rem;
   }
 }

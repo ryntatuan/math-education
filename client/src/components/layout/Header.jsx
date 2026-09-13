@@ -12,8 +12,8 @@ export default function Header() {
   return (
     <header className="header">
       <div className="header-inner">
-        {/* Mobile Logo (Visible only on mobile when sidebar is hidden) */}
-        <div className="header-mobile-brand hide-desktop hide-tablet">
+        {/* Mobile Logo (Visible only on mobile & tablet when sidebar is hidden) */}
+        <div className="header-mobile-brand">
           <Link
             to="/"
             className="header-logo"

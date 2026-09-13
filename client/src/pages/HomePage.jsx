@@ -26,11 +26,11 @@ import './HomePage.css'
 
 // 5 Lớp Học Toàn Diện (Lớp 1 đến Lớp 5)
 const ALL_GRADES = [
-  { id: 1, name: 'Lớp 1', ageRange: '6-7 tuổi', emoji: '🌱', color: '#06b6d4' },
-  { id: 2, name: 'Lớp 2', ageRange: '7-8 tuổi', emoji: '🌿', color: '#10b981' },
-  { id: 3, name: 'Lớp 3', ageRange: '8-9 tuổi', emoji: '🌳', color: '#f59e0b' },
-  { id: 4, name: 'Lớp 4', ageRange: '9-10 tuổi', emoji: '🌲', color: '#ec4899' },
-  { id: 5, name: 'Lớp 5', ageRange: '10-11 tuổi', emoji: '🏔️', color: '#8b5cf6' },
+  { id: 1, name: 'Lớp 1', ageRange: '6-7 tuổi', shortAge: '6-7t', emoji: '🌱', color: '#06b6d4' },
+  { id: 2, name: 'Lớp 2', ageRange: '7-8 tuổi', shortAge: '7-8t', emoji: '🌿', color: '#10b981' },
+  { id: 3, name: 'Lớp 3', ageRange: '8-9 tuổi', shortAge: '8-9t', emoji: '🌳', color: '#f59e0b' },
+  { id: 4, name: 'Lớp 4', ageRange: '9-10 tuổi', shortAge: '9-10t', emoji: '🌲', color: '#ec4899' },
+  { id: 5, name: 'Lớp 5', ageRange: '10-11 tuổi', shortAge: '10-11t', emoji: '🏔️', color: '#8b5cf6' },
 ]
 
 export default function HomePage() {
@@ -94,7 +94,10 @@ export default function HomePage() {
                   >
                     <span className="grade-emoji">{g.emoji}</span>
                     <span className="grade-name">{g.name}</span>
-                    <span className="grade-age">{g.ageRange}</span>
+                    <span className="grade-age">
+                      <span className="hide-mobile">{g.ageRange}</span>
+                      <span className="hide-desktop hide-tablet">{g.shortAge || g.ageRange}</span>
+                    </span>
                     {isActive && (
                       <motion.div
                         className="grade-check-badge"
@@ -122,7 +125,8 @@ export default function HomePage() {
                   soundManager.playClick()
                 }}
               >
-                ⭐ Tất cả ({allChaptersForGrade.length} Chương)
+                <span className="hide-mobile">⭐ Tất cả ({allChaptersForGrade.length} Chương)</span>
+                <span className="hide-desktop hide-tablet">⭐ Tất cả ({allChaptersForGrade.length})</span>
               </button>
               <button
                 type="button"
@@ -132,7 +136,8 @@ export default function HomePage() {
                   soundManager.playClick()
                 }}
               >
-                🌸 Học kỳ 1 (Chương 1 - 5)
+                <span className="hide-mobile">🌸 Học kỳ 1 (Chương 1 - 5)</span>
+                <span className="hide-desktop hide-tablet">🌸 HK 1 (1 - 5)</span>
               </button>
               <button
                 type="button"
@@ -142,7 +147,8 @@ export default function HomePage() {
                   soundManager.playClick()
                 }}
               >
-                ☀️ Học kỳ 2 (Chương 6 - 10)
+                <span className="hide-mobile">☀️ Học kỳ 2 (Chương 6 - 10)</span>
+                <span className="hide-desktop hide-tablet">☀️ HK 2 (6 - 10)</span>
               </button>
             </div>
 

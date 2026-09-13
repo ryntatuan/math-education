@@ -4,6 +4,7 @@
 
 .home-dashboard-container {
   width: 100%;
+  max-width: 100%;
   position: relative;
   box-sizing: border-box;
 }
@@ -14,6 +15,8 @@
   gap: clamp(20px, 1.8vw, 32px);
   align-items: start;
   width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 @media (min-width: 2000px) {
@@ -32,6 +35,8 @@
   gap: clamp(16px, 1.5vw, 24px);
   min-width: 0;
   width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 /* 1. KHỐI CHỌN LỚP (5 CẤP ĐỘ) */
@@ -41,6 +46,9 @@
   padding: 16px 20px;
   border: 2px solid #e2e8f0;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .home-grade-header {
@@ -72,6 +80,7 @@
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: clamp(8px, 1.1vw, 16px);
   width: 100%;
+  box-sizing: border-box;
 }
 
 .home-grade-btn {
@@ -88,6 +97,7 @@
   transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
   font-family: var(--font-body, inherit);
   min-width: 0;
+  box-sizing: border-box;
 }
 
 .home-grade-btn:hover {
@@ -153,6 +163,9 @@
   justify-content: space-between;
   gap: 12px;
   flex-wrap: wrap;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .home-semester-tabs {
@@ -162,6 +175,15 @@
   background: #e2e8f0;
   padding: 4px;
   border-radius: 999px;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.home-semester-tabs::-webkit-scrollbar {
+  display: none;
 }
 
 .sem-pill-btn {
@@ -174,6 +196,8 @@
   color: #64748b;
   background: transparent;
   cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
   transition: all 0.2s ease;
 }
 
@@ -524,13 +548,10 @@
 /* ========================================
    RESPONSIVE LAYOUT
    ======================================== */
-/* ========================================
-   RESPONSIVE LAYOUT
-   ======================================== */
 @media (max-width: 1240px) {
   .home-dashboard-2col {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 20px;
   }
 
   .companion-sticky-column {
@@ -538,6 +559,8 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 16px;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .home-arena-mini-card {
@@ -546,53 +569,261 @@
 }
 
 @media (max-width: 768px) {
+  .home-dashboard-2col {
+    gap: 16px;
+  }
+
+  /* Khối Chọn Lớp Mobile */
+  .home-grade-card {
+    padding: 12px 10px;
+    border-radius: var(--radius-xl, 20px);
+  }
+
+  .home-grade-header {
+    margin-bottom: 10px;
+  }
+
+  .home-grade-header h2 {
+    font-size: 1.05rem;
+  }
+
   .home-grade-grid {
     grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 6px;
+    gap: 4px;
+    width: 100%;
+    overflow: visible;
   }
 
   .home-grade-btn {
-    padding: 8px 4px;
+    padding: 8px 2px;
+    border-radius: 12px;
+    min-width: 0;
   }
 
   .home-grade-btn .grade-emoji {
-    font-size: 1.3rem;
+    font-size: 1.25rem;
+    margin-bottom: 2px;
   }
 
   .home-grade-btn .grade-name {
-    font-size: 0.8rem;
+    font-size: 0.76rem;
   }
 
   .home-grade-btn .grade-age {
-    font-size: 0.65rem;
+    font-size: 0.62rem;
   }
 
+  .grade-check-badge {
+    top: -4px;
+    right: -4px;
+    width: 18px;
+    height: 18px;
+    font-size: 0.65rem;
+    border-width: 1.5px;
+  }
+
+  /* Bộ lọc học kỳ Mobile */
+  .home-semester-bar {
+    gap: 8px;
+  }
+
+  .home-semester-tabs {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 3px;
+    gap: 4px;
+  }
+
+  .sem-pill-btn {
+    padding: 5px 10px;
+    font-size: 0.78rem;
+  }
+
+  .home-current-grade-tag {
+    font-size: 0.78rem;
+    padding: 4px 10px;
+  }
+
+  /* Danh Sách Chương Mobile */
   .home-chapters-grid {
     grid-template-columns: 1fr;
-    gap: 12px;
+    gap: 10px;
+    width: 100%;
   }
 
+  .home-chapter-card {
+    padding: 12px;
+    gap: 10px;
+    border-radius: var(--radius-lg, 16px);
+    min-height: 88px;
+    width: 100%;
+    box-sizing: border-box;
+    min-width: 0;
+  }
+
+  .chapter-card-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    font-size: 1.6rem;
+  }
+
+  .chapter-card-info {
+    flex: 1;
+    min-width: 0;
+    gap: 3px;
+  }
+
+  .chapter-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    width: 100%;
+    min-width: 0;
+    margin-bottom: 0;
+  }
+
+  .chapter-card-header h3 {
+    font-size: 0.94rem;
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .chapter-stars-badge {
+    flex-shrink: 0;
+    padding: 2px 7px;
+    font-size: 0.75rem;
+    gap: 2px;
+  }
+
+  .chapter-card-desc {
+    font-size: 0.76rem;
+    margin: 0 0 4px 0;
+    line-height: 1.25;
+  }
+
+  .chapter-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .chapter-progress-box {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .chapter-progress-track {
+    height: 6px;
+  }
+
+  .btn-chapter-pill {
+    flex-shrink: 0;
+    padding: 4px 10px;
+    font-size: 0.75rem;
+  }
+
+  /* Cột phụ Gamification Mobile */
   .companion-sticky-column {
     grid-template-columns: 1fr;
     gap: 14px;
+    width: 100%;
+    box-sizing: border-box;
   }
 
+  /* Phím tắt khám phá Mobile */
   .home-quick-ribbon {
     flex-direction: column;
     align-items: stretch;
-    gap: 12px;
+    gap: 10px;
+    padding: 12px 14px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .ribbon-title {
+    font-size: 0.88rem;
   }
 
   .ribbon-chips {
     width: 100%;
-    justify-content: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .ribbon-chip-btn {
+    flex: 1;
+    min-width: 120px;
+    justify-content: center;
+    padding: 7px 10px;
+    font-size: 0.78rem;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 380px) {
+  .home-grade-card {
+    padding: 10px 6px;
+  }
+
   .home-grade-grid {
-    grid-template-columns: repeat(5, minmax(52px, 1fr));
-    overflow-x: auto;
-    padding-bottom: 4px;
+    gap: 3px;
+  }
+
+  .home-grade-btn {
+    padding: 6px 1px;
+    border-radius: 10px;
+  }
+
+  .home-grade-btn .grade-emoji {
+    font-size: 1.15rem;
+  }
+
+  .home-grade-btn .grade-name {
+    font-size: 0.72rem;
+  }
+
+  .home-grade-btn .grade-age {
+    font-size: 0.58rem;
+  }
+
+  .grade-check-badge {
+    width: 15px;
+    height: 15px;
+    font-size: 0.58rem;
+    top: -3px;
+    right: -3px;
+  }
+
+  .home-chapter-card {
+    padding: 10px 8px;
+    gap: 8px;
+  }
+
+  .chapter-card-icon {
+    width: 38px;
+    height: 38px;
+    font-size: 1.4rem;
+  }
+
+  .chapter-card-header h3 {
+    font-size: 0.88rem;
+  }
+
+  .chapter-stars-badge {
+    padding: 1px 5px;
+    font-size: 0.7rem;
+  }
+
+  .btn-chapter-pill {
+    padding: 3px 8px;
+    font-size: 0.7rem;
   }
 }

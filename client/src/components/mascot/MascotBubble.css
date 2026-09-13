@@ -452,26 +452,93 @@
 }
 
 @media (max-width: 768px) {
-  .mascot-bottom-right,
+  .mascot-bottom-right {
+    bottom: calc(76px + env(safe-area-inset-bottom, 0px));
+    right: 8px;
+    max-width: calc(100vw - 16px);
+    pointer-events: none;
+  }
+
+  .mascot-bottom-right > * {
+    pointer-events: auto;
+  }
+
   .mascot-bottom-left {
-    bottom: 80px;
-    right: var(--space-3);
+    bottom: calc(76px + env(safe-area-inset-bottom, 0px));
+    left: 8px;
+    max-width: calc(100vw - 16px);
   }
 
   .mascot-assistant-panel {
-    width: 290px;
-    right: -10px;
+    width: min(320px, calc(100vw - 20px));
+    right: 0;
+    bottom: 58px;
   }
 
   .mascot-bubble {
-    max-width: 200px;
-    font-size: 11px;
+    max-width: min(195px, 55vw);
+    padding: 8px 10px;
+    padding-right: 24px;
+    font-size: 0.74rem;
+    border-radius: 16px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  }
+
+  .bubble-tap-hint {
+    font-size: 9px;
+  }
+
+  .mascot-bubble-close {
+    top: 4px;
+    right: 4px;
+    width: 18px;
+    height: 18px;
+    font-size: 10px;
+  }
+
+  .mascot-character {
+    width: 48px !important;
+    height: 48px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .mascot-md .mascot-character,
+  .mascot-sm .mascot-character,
+  .mascot-lg .mascot-character {
+    font-size: 2.2rem;
+  }
+
+  .mascot-voice-btn {
+    width: 24px;
+    height: 24px;
+  }
+
+  .mascot-voice-btn svg {
+    width: 13px;
+    height: 13px;
+  }
+}
+
+@media (max-width: 380px) {
+  .mascot-bottom-right {
+    right: 6px;
+    max-width: calc(100vw - 12px);
+  }
+
+  .mascot-bubble {
+    max-width: min(170px, 52vw);
+    padding: 6px 8px;
+    padding-right: 20px;
+    font-size: 0.7rem;
+  }
+
+  .mascot-character {
+    width: 42px !important;
+    height: 42px !important;
   }
 
   .mascot-md .mascot-character {
-    font-size: 2.6rem;
-    width: 56px;
-    height: 56px;
+    font-size: 1.95rem;
   }
 }
 
