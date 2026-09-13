@@ -17,8 +17,10 @@ console.log('\n' + '='.repeat(55))
 console.log('🤖 QUY TRÌNH BUILD TOÀN DIỆN (WEB + ANDROID APK)')
 console.log('='.repeat(55))
 
-// 1. Luôn build bản Web với Vite trước (Vite sẽ tự copy public/downloads/ToanVui.apk sang dist)
-console.log('\n🚀 [1/4] Đang build giao diện web (Vite production bundle)...')
+// 1. Kiểm tra an toàn tĩnh (oxlint) & Build bản Web với Vite
+console.log('\n🔍 [1/4] Kiểm tra phân tích tĩnh mã nguồn (oxlint)...')
+execSync('npx oxlint --quiet', { cwd: clientDir, stdio: 'inherit' })
+console.log('🚀 Đang build giao diện web (Vite production bundle)...')
 execSync('npx vite build', { cwd: clientDir, stdio: 'inherit' })
 
 // Kiểm tra môi trường Vercel hoặc Cloud không có Android SDK

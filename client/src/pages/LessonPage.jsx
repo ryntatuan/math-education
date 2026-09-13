@@ -1,7 +1,7 @@
-import { useState, useCallback, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowLeft, ArrowRight, CheckCircle2, XCircle, Volume2, Sparkles, Award, Lightbulb, BookOpen, MessageCircle, LogIn } from 'lucide-react'
+import { ArrowLeft, ArrowRight, CheckCircle2, XCircle, Volume2, Sparkles, Award, Lightbulb, MessageCircle, LogIn } from 'lucide-react'
 import Button from '../components/ui/Button'
 import ProgressBar, { StarsDisplay } from '../components/ui/ProgressBar'
 import useUserStore from '../store/useUserStore'
@@ -40,22 +40,13 @@ export default function LessonPage() {
   const [selectedAnswer, setSelectedAnswer] = useState(null)
   const [answerFeedback, setAnswerFeedback] = useState(null) // 'correct' | 'wrong' | null
 
-  if (!found) {
-    return (
-      <div className="page-empty">
-        <span style={{ fontSize: '4rem' }}>😕</span>
-        <h2>Không tìm thấy bài học</h2>
-        <Button onClick={() => navigate('/')}>Về trang chủ</Button>
-      </div>
-    )
-  }
-
-  const { lesson, chapter } = found
-  const slides = lesson.slides
+  const lesson = found?.lesson
+  const _chapter = found?.chapter
+  const slides = lesson?.slides || []
   const slide = slides[currentSlide]
   const totalSlides = slides.length
   const isLastSlide = currentSlide === totalSlides - 1
-  const isQuizSlide = slide.type === 'quiz'
+  const isQuizSlide = slide?.type === 'quiz'
 
   // Count quiz slides and correct answers
   const quizSlides = slides.filter((s) => s.type === 'quiz')
@@ -139,6 +130,16 @@ export default function LessonPage() {
       speechHelper.stop()
     }
   }, [currentSlide, autoSpeakLesson, soundEnabled, showResult, slides])
+
+  if (!found) {
+    return (
+      <div className="page-empty">
+        <span style={{ fontSize: '4rem' }}>😕</span>
+        <h2>Không tìm thấy bài học</h2>
+        <Button onClick={() => navigate('/')}>Về trang chủ</Button>
+      </div>
+    )
+  }
 
   const handleNext = () => {
     speechHelper.stop()

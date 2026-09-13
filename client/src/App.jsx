@@ -22,6 +22,7 @@ import { setupAutoSync } from './services/syncService'
 import soundManager from './utils/soundManager'
 import useMobileLifecycle from './hooks/useMobileLifecycle'
 import ScrollToTop from './components/common/ScrollToTop'
+import ErrorBoundary from './components/common/ErrorBoundary'
 import './App.css'
 
 function AppLayout() {
@@ -34,20 +35,22 @@ function AppLayout() {
       <Sidebar />
       {!isLessonRoute && <Header />}
       <main className={`page-wrapper ${isLessonRoute ? 'page-wrapper-lesson' : ''}`}>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/learn" element={<GradePage />} />
-          <Route path="/learn/:gradeId/:chapterId" element={<ChapterPage />} />
-          <Route path="/lesson/:lessonId" element={<LessonPage />} />
-          <Route path="/practice" element={<PracticePage />} />
-          <Route path="/games" element={<GamesPage />} />
-          <Route path="/stories" element={<StoriesPage />} />
-          <Route path="/leaderboard" element={<LeaderboardPage />} />
-          <Route path="/challenges" element={<ChallengePage />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/shop" element={<ShopPage />} />
-          <Route path="/parent" element={<ParentDashboard />} />
-        </Routes>
+        <ErrorBoundary key={location.pathname}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/learn" element={<GradePage />} />
+            <Route path="/learn/:gradeId/:chapterId" element={<ChapterPage />} />
+            <Route path="/lesson/:lessonId" element={<LessonPage />} />
+            <Route path="/practice" element={<PracticePage />} />
+            <Route path="/games" element={<GamesPage />} />
+            <Route path="/stories" element={<StoriesPage />} />
+            <Route path="/leaderboard" element={<LeaderboardPage />} />
+            <Route path="/challenges" element={<ChallengePage />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/shop" element={<ShopPage />} />
+            <Route path="/parent" element={<ParentDashboard />} />
+          </Routes>
+        </ErrorBoundary>
       </main>
       {!isLessonRoute && <BottomNav />}
       <AuthModal />
@@ -69,10 +72,11 @@ export default function App() {
   }, [])
 
   return (
-
     <BrowserRouter>
       <ScrollToTop />
-      <AppLayout />
+      <ErrorBoundary>
+        <AppLayout />
+      </ErrorBoundary>
     </BrowserRouter>
   )
 }

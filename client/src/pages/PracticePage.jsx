@@ -1,23 +1,16 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   ArrowLeft,
   RotateCcw,
-  Lightbulb,
   Flame,
-  Award,
   CheckCircle2,
   XCircle,
-  BookMarked,
-  Sparkles,
   ShieldCheck,
-  RefreshCw,
   Volume2,
 } from 'lucide-react'
 import Button from '../components/ui/Button'
-import Card from '../components/ui/Card'
 import ProgressBar from '../components/ui/ProgressBar'
-import MascotBubble from '../components/mascot/MascotBubble'
 import useUserStore from '../store/useUserStore'
 import useProgressStore from '../store/useProgressStore'
 import useAuthStore from '../store/useAuthStore'
@@ -126,7 +119,6 @@ export default function PracticePage() {
   const [selectedAnswer, setSelectedAnswer] = useState(null)
   const [isAnswered, setIsAnswered] = useState(false)
   const [isCorrect, setIsCorrect] = useState(false)
-  const [showHint, setShowHint] = useState(false)
   const [streak, setStreak] = useState(0)
   const [correctCount, setCorrectCount] = useState(0)
   const [totalCoinsEarned, setTotalCoinsEarned] = useState(0)
@@ -161,7 +153,6 @@ export default function PracticePage() {
     setStreak(0)
     setTotalCoinsEarned(0)
     setIsFinished(false)
-    setShowHint(false)
     setSelectedAnswer(null)
     setIsAnswered(false)
 
@@ -223,7 +214,6 @@ export default function PracticePage() {
       setQuestionIndex((prev) => prev + 1)
       setSelectedAnswer(null)
       setIsAnswered(false)
-      setShowHint(false)
       const nextQ = generateQuestion(selectedGrade, selectedTopic)
       setCurrentQuestion(nextQ)
     }
