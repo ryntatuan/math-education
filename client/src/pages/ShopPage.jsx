@@ -4,7 +4,7 @@ import { ShoppingBag, Sparkles, Check, Coins } from 'lucide-react'
 import Button from '../components/ui/Button'
 import useUserStore from '../store/useUserStore'
 import soundManager from '../utils/soundManager'
-import confetti from 'canvas-confetti'
+import fireConfetti from '../utils/confettiHelper'
 import './ShopPage.css'
 
 const SHOP_AVATARS = [
@@ -38,7 +38,7 @@ export default function ShopPage() {
         unlockAvatar(item.emoji)
         setAvatar(item.emoji)
         soundManager.playFanfare()
-        confetti({ particleCount: 70, spread: 60 })
+        fireConfetti({ particleCount: 70, spread: 60 })
         setPurchaseMsg(`🎉 Chúc mừng! Bạn đã mở khóa ${item.name}!`)
         setTimeout(() => setPurchaseMsg(null), 3000)
       } else {

@@ -20,7 +20,7 @@ import useUserStore from '../store/useUserStore'
 import useProgressStore from '../store/useProgressStore'
 import soundManager from '../utils/soundManager'
 import speechHelper from '../utils/speechHelper'
-import confetti from 'canvas-confetti'
+import fireConfetti from '../utils/confettiHelper'
 import './StoriesPage.css'
 
 export default function StoriesPage() {
@@ -57,7 +57,7 @@ export default function StoriesPage() {
 
     if (correct) {
       soundManager.playCorrect()
-      confetti({ particleCount: 50, spread: 60, origin: { y: 0.6 } })
+      fireConfetti({ particleCount: 50, spread: 60, origin: { y: 0.6 } })
     } else {
       soundManager.playWrong()
     }
@@ -77,7 +77,7 @@ export default function StoriesPage() {
       updateStreak()
       progressQuest('lesson_1', 1)
       soundManager.playFanfare()
-      confetti({ particleCount: 120, spread: 90, origin: { y: 0.6 } })
+      fireConfetti({ particleCount: 120, spread: 90, origin: { y: 0.6 } })
     } else {
       setSceneIndex((prev) => prev + 1)
       setSelectedAnswer(null)

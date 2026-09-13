@@ -10,7 +10,7 @@ import curriculum from '../data/curriculum'
 import soundManager from '../utils/soundManager'
 import speechHelper from '../utils/speechHelper'
 import syncService from '../services/syncService'
-import confetti from 'canvas-confetti'
+import fireConfetti from '../utils/confettiHelper'
 import './LessonPage.css'
 
 
@@ -67,6 +67,16 @@ export default function LessonPage() {
     }
   }, [])
 
+  // Fire celebratory confetti when completing lesson and showing result
+  useEffect(() => {
+    if (showResult) {
+      const timer = setTimeout(() => {
+        fireConfetti({ particleCount: 90, spread: 75, origin: { y: 0.55 } })
+      }, 150)
+      return () => clearTimeout(timer)
+    }
+  }, [showResult])
+
   // Auto-speak slide content if autoSpeakLesson is enabled
   useEffect(() => {
     speechHelper.stop()
@@ -113,7 +123,6 @@ export default function LessonPage() {
       addXp(50)
       syncService.scheduleCloudSync()
       soundManager.playFanfare()
-      confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 } })
       setShowResult(true)
 
     } else {

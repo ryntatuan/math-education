@@ -6,7 +6,7 @@ import ProgressBar from '../ui/ProgressBar'
 import useProgressStore from '../../store/useProgressStore'
 import useUserStore from '../../store/useUserStore'
 import soundManager from '../../utils/soundManager'
-import confetti from 'canvas-confetti'
+import fireConfetti from '../../utils/confettiHelper'
 import './DailyQuestsCard.css'
 
 export default function DailyQuestsCard() {
@@ -34,7 +34,7 @@ export default function DailyQuestsCard() {
     addCoins(50)
     addXp(60)
     soundManager.playFanfare()
-    confetti({ particleCount: 90, spread: 80, origin: { y: 0.6 } })
+    fireConfetti({ particleCount: 90, spread: 80, origin: { y: 0.6 } })
   }
 
   return (

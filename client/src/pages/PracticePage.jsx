@@ -23,7 +23,7 @@ import useProgressStore from '../store/useProgressStore'
 import { TOPICS, generateQuestion } from '../utils/exerciseGenerator'
 import soundManager from '../utils/soundManager'
 import speechHelper from '../utils/speechHelper'
-import confetti from 'canvas-confetti'
+import fireConfetti from '../utils/confettiHelper'
 import './PracticePage.css'
 
 // Parse and format question visually, extracting emojis, SVG shapes, and equations
@@ -191,7 +191,7 @@ export default function PracticePage() {
     if (questionIndex + 1 >= TOTAL_QUESTIONS) {
       setIsFinished(true)
       soundManager.playFanfare()
-      confetti({ particleCount: 100, spread: 80, origin: { y: 0.6 } })
+      fireConfetti({ particleCount: 100, spread: 80, origin: { y: 0.6 } })
       addExerciseResult(`grade${selectedGrade}_practice`, {
         score: correctCount,
         total: TOTAL_QUESTIONS,
@@ -225,7 +225,7 @@ export default function PracticePage() {
       addCoins(15)
       addXp(30)
       progressQuest('quiz_1', 1)
-      confetti({ particleCount: 60, spread: 70, origin: { y: 0.6 } })
+      fireConfetti({ particleCount: 60, spread: 70, origin: { y: 0.6 } })
     } else {
       soundManager.playWrong()
     }
@@ -236,7 +236,7 @@ export default function PracticePage() {
     if (mistakeIndex + 1 >= dueMistakes.length) {
       setReviewFinished(true)
       soundManager.playFanfare()
-      confetti({ particleCount: 90, spread: 80, origin: { y: 0.6 } })
+      fireConfetti({ particleCount: 90, spread: 80, origin: { y: 0.6 } })
     } else {
       setMistakeIndex((prev) => prev + 1)
       setMistakeSelected(null)

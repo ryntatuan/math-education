@@ -28,13 +28,6 @@ export default function BottomNav() {
           >
             <div className="bottom-nav-icon-wrap">
               <Icon size={22} />
-              {isActive && (
-                <motion.div
-                  className="bottom-nav-indicator"
-                  layoutId="bottom-nav-indicator"
-                  transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                />
-              )}
             </div>
             <span className="bottom-nav-label">{label}</span>
           </Link>

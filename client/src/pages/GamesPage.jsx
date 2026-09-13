@@ -8,7 +8,7 @@ import useUserStore from '../store/useUserStore'
 import useProgressStore from '../store/useProgressStore'
 import { generateQuestion, generateCalculation } from '../utils/exerciseGenerator'
 import soundManager from '../utils/soundManager'
-import confetti from 'canvas-confetti'
+import fireConfetti from '../utils/confettiHelper'
 import './GamesPage.css'
 
 // Game Definitions
@@ -387,7 +387,7 @@ function MathRaceGame({ onBack, grade, addCoins, addXp, recordRaceWin, recordGam
 
       if (r === 1) {
         soundManager.playFanfare()
-        confetti({ particleCount: 120, spread: 90 })
+        fireConfetti({ particleCount: 120, spread: 90 })
         if (typeof recordRaceWin === 'function') {
           recordRaceWin()
         } else if (typeof recordGamePlayed === 'function') {
@@ -395,7 +395,7 @@ function MathRaceGame({ onBack, grade, addCoins, addXp, recordRaceWin, recordGam
         }
       } else if (r <= 3) {
         soundManager.playCoin()
-        confetti({ particleCount: 60, spread: 60 })
+        fireConfetti({ particleCount: 60, spread: 60 })
         if (typeof recordGamePlayed === 'function') {
           recordGamePlayed()
         }
@@ -683,7 +683,7 @@ function NumberPopGame({ onBack, grade, addCoins, addXp, recordGamePlayed }) {
         }
         if (score > 0) {
           soundManager.playFanfare()
-          confetti({ particleCount: 80, spread: 70 })
+          fireConfetti({ particleCount: 80, spread: 70 })
           addCoins(score * 2)
           addXp(score * 5)
         } else {
@@ -900,7 +900,7 @@ function MemoryMatchGame({ onBack, grade, addCoins, addXp, recordGamePlayed }) {
             }
           }
           soundManager.playFanfare()
-          confetti({ particleCount: 90, spread: 70 })
+          fireConfetti({ particleCount: 90, spread: 70 })
           addCoins(35)
           addXp(50)
         }
@@ -1055,7 +1055,7 @@ function MathBalanceGame({ onBack, grade = 1, addCoins, addXp, recordGamePlayed 
       setSelectedWeight(weight)
       setIsBalanced(true)
       soundManager.playCoin()
-      confetti({ particleCount: 30, spread: 50 })
+      fireConfetti({ particleCount: 30, spread: 50 })
       setScore((s) => s + 10)
       addCoins(2)
       addXp(6)
@@ -1064,7 +1064,7 @@ function MathBalanceGame({ onBack, grade = 1, addCoins, addXp, recordGamePlayed 
         if (round >= TOTAL_ROUNDS) {
           setGameWon(true)
           soundManager.playFanfare()
-          confetti({ particleCount: 90, spread: 80 })
+          fireConfetti({ particleCount: 90, spread: 80 })
           addCoins(15)
           addXp(40)
           if (!gameRecordedRef.current) {
@@ -1262,7 +1262,7 @@ function SpaceDefenseGame({ onBack, grade = 1, addCoins, addXp, recordGamePlayed
         }
         if (score > 0) {
           soundManager.playFanfare()
-          confetti({ particleCount: 80, spread: 70 })
+          fireConfetti({ particleCount: 80, spread: 70 })
           addCoins(Math.max(5, Math.floor(score / 4)))
           addXp(Math.max(10, Math.floor(score / 2)))
         } else {
@@ -1486,7 +1486,7 @@ function MathFishingGame({ onBack, grade = 1, addCoins, addXp, recordGamePlayed 
     if (fish.isCorrect) {
       setHookSuccess(true)
       soundManager.playCoin()
-      confetti({ particleCount: 35, spread: 60 })
+      fireConfetti({ particleCount: 35, spread: 60 })
       setScore((s) => s + 15)
       setFishBucket((b) => [...b, fish.emoji])
       const nextCaught = caughtCount + 1
@@ -1498,7 +1498,7 @@ function MathFishingGame({ onBack, grade = 1, addCoins, addXp, recordGamePlayed 
         if (nextCaught >= TARGET_FISH) {
           setGameWon(true)
           soundManager.playFanfare()
-          confetti({ particleCount: 90, spread: 80 })
+          fireConfetti({ particleCount: 90, spread: 80 })
           addCoins(20)
           addXp(50)
           if (!gameRecordedRef.current) {

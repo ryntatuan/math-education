@@ -16,7 +16,8 @@
 
 @media (max-width: 768px) {
   .mascot-bottom-right {
-    bottom: 85px; /* Above mobile bottom nav */
+    bottom: calc(78px + var(--sab, 0px)); /* Above mobile bottom nav */
+    right: 14px;
   }
 }
 

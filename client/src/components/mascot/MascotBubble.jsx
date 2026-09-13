@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import {
@@ -9,13 +9,11 @@ import {
   ArrowRight,
   X,
   BookOpen,
-  Volume2,
   RefreshCw,
   Coins,
 } from 'lucide-react'
 import useUserStore from '../../store/useUserStore'
 import soundManager from '../../utils/soundManager'
-import speechHelper from '../../utils/speechHelper'
 import './MascotBubble.css'
 
 const moods = {
@@ -162,7 +160,6 @@ export default function MascotBubble({
   const { grade, coins, addCoins } = useUserStore()
 
   const [isOpen, setIsOpen] = useState(false)
-  const [isBubbleDismissed, setIsBubbleDismissed] = useState(false)
   const [activeTab, setActiveTab] = useState('quiz') // 'quiz' | 'tips' | 'cheer'
   const [currentMood, setCurrentMood] = useState(mood)
 
@@ -176,22 +173,8 @@ export default function MascotBubble({
 
   // Cheer quote index
   const [quoteIndex, setQuoteIndex] = useState(0)
-  const [isSpeaking, setIsSpeaking] = useState(false)
 
   const moodData = moods[currentMood] || moods[mood] || moods.happy
-
-  const handleSpeak = (speechText) => {
-    if (isSpeaking) {
-      speechHelper.stop()
-      setIsSpeaking(false)
-      return
-    }
-    speechHelper.speak(
-      speechText,
-      () => setIsSpeaking(true),
-      () => setIsSpeaking(false)
-    )
-  }
 
   const handleToggleMascot = () => {
     if (!isInteractive) return
@@ -407,52 +390,6 @@ export default function MascotBubble({
               </motion.div>
             )}
           </AnimatePresence>
-
-          {/* SPEECH BUBBLE WHEN CLOSED */}
-          {!isOpen && (text || isInteractive) && (!isInteractive || !isBubbleDismissed) && (
-            <motion.div
-              className="mascot-bubble"
-              initial={{ opacity: 0, x: -10, scale: 0.95 }}
-              animate={{ opacity: 1, x: 0, scale: 1 }}
-              exit={{ opacity: 0, x: 10, scale: 0.85 }}
-              transition={{ duration: 0.2 }}
-              onClick={isInteractive ? handleToggleMascot : undefined}
-              style={{ cursor: isInteractive ? 'pointer' : 'default' }}
-            >
-              {isInteractive && (
-                <button
-                  className="mascot-bubble-close"
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    setIsBubbleDismissed(true)
-                    soundManager.playClick()
-                    if (onClose) onClose()
-                  }}
-                  title="Đóng lời nhắn"
-                  aria-label="Đóng lời nhắn"
-                >
-                  ✕
-                </button>
-              )}
-
-              <div className="mascot-bubble-text-row">
-                <p>{text || 'Nhấn vào tớ để đố vui & nhận 5 xu nhé! ✨'}</p>
-                <button
-                  type="button"
-                  className={`mascot-voice-btn ${isSpeaking ? 'is-speaking' : ''}`}
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    handleSpeak(text || 'Chào bạn! Mình là Cú Mèo Thông Thái. Nhấn vào tớ để đố vui nhận xu nhé!')
-                  }}
-                  title={isSpeaking ? 'Đang đọc... Bấm để dừng' : 'Nghe Cú Mèo đọc'}
-                  aria-label="Nghe Cú Mèo đọc"
-                >
-                  <Volume2 size={16} />
-                </button>
-              </div>
-              {isInteractive && <span className="bubble-tap-hint">Bấm vào đây! 👆</span>}
-            </motion.div>
-          )}
 
           {/* MASCOT AVATAR CHARACTER */}
           <motion.div

@@ -8,7 +8,7 @@ import useProgressStore from '../store/useProgressStore'
 import useAuthStore from '../store/useAuthStore'
 import { generateQuestion } from '../utils/exerciseGenerator'
 import soundManager from '../utils/soundManager'
-import confetti from 'canvas-confetti'
+import fireConfetti from '../utils/confettiHelper'
 import './ChallengePage.css'
 
 export default function ChallengePage() {
@@ -87,7 +87,7 @@ export default function ChallengePage() {
     if (isCorrect) {
       soundManager.playCorrect()
       setFeedback('correct')
-      confetti({ particleCount: 60, spread: 60, origin: { y: 0.6 } })
+      fireConfetti({ particleCount: 60, spread: 60, origin: { y: 0.6 } })
     } else {
       soundManager.playWrong()
       setFeedback('wrong')
@@ -129,7 +129,7 @@ export default function ChallengePage() {
     addCoins(bonus)
     addXp(50)
     soundManager.playFanfare()
-    confetti({ particleCount: 100, spread: 80, origin: { y: 0.5 } })
+    fireConfetti({ particleCount: 100, spread: 80, origin: { y: 0.5 } })
   }
 
   const allCompleted = tasksCompleted.every(Boolean)

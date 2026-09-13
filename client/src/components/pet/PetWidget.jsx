@@ -6,7 +6,7 @@ import ProgressBar from '../ui/ProgressBar'
 import usePetStore, { PET_TYPES, FOOD_TYPES } from '../../store/usePetStore'
 import useProgressStore from '../../store/useProgressStore'
 import soundManager from '../../utils/soundManager'
-import confetti from 'canvas-confetti'
+import fireConfetti from '../../utils/confettiHelper'
 import './PetWidget.css'
 
 export default function PetWidget({ compact = false }) {
@@ -40,7 +40,7 @@ export default function PetWidget({ compact = false }) {
     const success = feedPet(foodId)
     if (success) {
       soundManager.playCoin()
-      confetti({ particleCount: 35, spread: 50 })
+      fireConfetti({ particleCount: 35, spread: 50 })
       progressQuest('quest_pet', 1)
     } else {
       soundManager.playWrong()
@@ -51,7 +51,7 @@ export default function PetWidget({ compact = false }) {
     adoptPet(selectedPetType, customName.trim() || undefined)
     setShowAdoptModal(false)
     soundManager.playFanfare()
-    confetti({ particleCount: 80, spread: 70 })
+    fireConfetti({ particleCount: 80, spread: 70 })
   }
 
   // Not adopted yet: Teaser card
