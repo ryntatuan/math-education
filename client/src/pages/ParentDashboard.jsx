@@ -100,10 +100,26 @@ export default function ParentDashboard() {
         title="Khu Vực Dành Riêng Cho Phụ Huynh Đăng Ký"
         subtitle="Đăng nhập tài khoản để xem báo cáo học tập chi tiết, theo dõi biểu đồ kỹ năng và cài đặt mã PIN bảo vệ cho bé."
         benefits={[
-          'Xem báo cáo năng lực và biểu đồ radar 5 kỹ năng chuẩn Bộ GD&ĐT',
-          'Theo dõi thời gian học, chuỗi chuyên cần (streak) và lịch sử làm bài',
-          'Thiết lập mã PIN phụ huynh quản trị an toàn',
-          'Xuất báo cáo kết quả học tập để đồng hành cùng con',
+          {
+            icon: '📊',
+            title: 'Báo Cáo Năng Lực Chuẩn Bộ GD&ĐT',
+            desc: 'Biểu đồ radar phân tích chi tiết 5 nhóm kỹ năng tư duy và tính toán của con.',
+          },
+          {
+            icon: '⏱️',
+            title: 'Theo Dõi Chuyên Cần & Chuỗi Học',
+            desc: 'Nắm bắt thời gian học, chuỗi ngày streak và tỷ lệ làm bài chính xác của bé.',
+          },
+          {
+            icon: '🔒',
+            title: 'Mã PIN Bảo Vệ An Toàn',
+            desc: 'Cài đặt mã khóa quản trị riêng tư, ngăn trẻ bấm nhầm vào khu vực cài đặt.',
+          },
+          {
+            icon: '📱',
+            title: 'Đồng Bộ Tiến Độ Đa Thiết Bị',
+            desc: 'Theo dõi con học tập mọi lúc, mọi nơi trên máy tính bảng hoặc điện thoại.',
+          },
         ]}
       />
     )

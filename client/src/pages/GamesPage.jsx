@@ -85,10 +85,26 @@ export default function GamesPage() {
         title="Trò Chơi Toán Học Dành Riêng Cho Thành Viên"
         subtitle="Đăng nhập tài khoản để mở khóa toàn bộ 6 Mini Game rèn luyện phản xạ tính nhẩm siêu tốc, tích lũy xu và tranh tài trên bảng xếp hạng!"
         benefits={[
-          'Trải nghiệm trọn vẹn 6 tựa mini game toán học cực vui',
-          'Đua xe toán học, Bắn bóng, Cán cân thần kỳ & Bắn thiên thạch',
-          'Thưởng Xu và Điểm kinh nghiệm sau mỗi vòng thắng',
-          'Lưu kỷ lục điểm số và tranh tài cùng bạn bè',
+          {
+            icon: '🏎️',
+            title: 'Trọn Bộ 6 Mini Game Toán Học',
+            desc: 'Đua xe toán học, Bắn bóng bay, Lật thẻ trí nhớ, Cán cân thần kỳ và Bắn thiên thạch.',
+          },
+          {
+            icon: '⚡',
+            title: 'Rèn Luyện Phản Xạ Tính Nhẩm',
+            desc: 'Các màn chơi tốc độ giúp bé tính nhẩm siêu nhanh và hào hứng say mê học toán.',
+          },
+          {
+            icon: '🪙',
+            title: 'Thưởng Xu & Kinh Nghiệm Khủng',
+            desc: 'Nhận xu vàng và điểm XP sau mỗi ván thắng để đổi quà và thăng cấp vương miện.',
+          },
+          {
+            icon: '🏆',
+            title: 'Lưu Kỷ Lục & Tranh Tài Bạn Bè',
+            desc: 'Bảo lưu kỷ lục điểm số cao nhất và tranh tài xếp hạng cùng các bạn học sinh.',
+          },
         ]}
       />
     )

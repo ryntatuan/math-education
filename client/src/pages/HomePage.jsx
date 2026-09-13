@@ -372,7 +372,7 @@ export default function HomePage() {
                 <div className="download-card-meta">
                   <h4>{isIOS() ? 'Cài App Cho iPhone / iPad' : 'Cài App Toán Vui'}</h4>
                   <span className="download-tag-android">
-                    {isIOS() ? 'iOS / iPadOS (PWA)' : 'Dành cho Android (.apk)'}
+                    {'Hoàn toàn miễn phí'}
                   </span>
                 </div>
               </div>

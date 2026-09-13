@@ -33,10 +33,26 @@ export default function ShopPage() {
         title="Cửa Hàng Dành Riêng Cho Thành Viên"
         subtitle="Đăng nhập tài khoản để tích lũy xu vàng qua mỗi bài học và đổi các nhân vật hoạt hình ngộ nghĩnh!"
         benefits={[
-          'Tích lũy xu vàng thưởng khi hoàn thành bài học và nhiệm vụ',
-          'Mở khóa bộ sưu tập hơn 10 hình đại diện ngộ nghĩnh độc quyền',
-          'Tùy biến phong cách riêng cho trang hồ sơ cá nhân',
-          'Lưu giữ vĩnh viễn các nhân vật đã mua trên đám mây',
+          {
+            icon: '🪙',
+            title: 'Tích Lũy Xu Vàng Thưởng',
+            desc: 'Thu thập xu vàng mỗi khi bé hoàn thành bài học, thử thách và nhiệm vụ hàng ngày.',
+          },
+          {
+            icon: '🎭',
+            title: 'Mở Khóa Bộ Sưu Tập Avatar',
+            desc: 'Hơn 10 hình đại diện độc quyền cực kỳ ngộ nghĩnh và đáng yêu để bé tha hồ chọn lựa.',
+          },
+          {
+            icon: '🎨',
+            title: 'Tùy Biến Phong Cách Cá Nhân',
+            desc: 'Tạo dấu ấn cá nhân nổi bật trên bảng xếp hạng và trang hồ sơ học tập.',
+          },
+          {
+            icon: '☁️',
+            title: 'Lưu Trữ Vĩnh Viễn Trên Mây',
+            desc: 'Dữ liệu vật phẩm và avatar sở hữu được sao lưu trọn đời, không lo mất khi đổi máy.',
+          },
         ]}
       />
     )

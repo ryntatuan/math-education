@@ -21,6 +21,7 @@ import useAuthStore from './store/useAuthStore'
 import { setupAutoSync } from './services/syncService'
 import soundManager from './utils/soundManager'
 import useMobileLifecycle from './hooks/useMobileLifecycle'
+import ScrollToTop from './components/common/ScrollToTop'
 import './App.css'
 
 function AppLayout() {
@@ -70,6 +71,7 @@ export default function App() {
   return (
 
     <BrowserRouter>
+      <ScrollToTop />
       <AppLayout />
     </BrowserRouter>
   )

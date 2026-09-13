@@ -105,21 +105,28 @@ export default function GuestFeatureLock({
 
       {/* Grid 4 Benefits */}
       <div className="feature-benefits-grid">
-        {benefits.map((b, idx) => (
-          <motion.div
-            key={idx}
-            className="feature-benefit-card"
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 * (idx + 1) }}
-          >
-            <span className="feature-benefit-icon">{b.icon}</span>
-            <div className="feature-benefit-info">
-              <h3>{b.title}</h3>
-              <p>{b.desc}</p>
-            </div>
-          </motion.div>
-        ))}
+        {benefits.map((b, idx) => {
+          const isObj = typeof b === 'object' && b !== null
+          const bIcon = isObj ? b.icon : '✨'
+          const bTitle = isObj ? b.title : b
+          const bDesc = isObj ? b.desc : null
+
+          return (
+            <motion.div
+              key={idx}
+              className="feature-benefit-card"
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 * (idx + 1) }}
+            >
+              <span className="feature-benefit-icon">{bIcon}</span>
+              <div className="feature-benefit-info">
+                <h3>{bTitle}</h3>
+                {bDesc && <p>{bDesc}</p>}
+              </div>
+            </motion.div>
+          )
+        })}
       </div>
     </div>
   )

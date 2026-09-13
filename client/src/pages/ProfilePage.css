@@ -843,9 +843,10 @@
 }
 
 @media (max-width: 640px) {
-  .guest-limitations-grid {
-    grid-template-columns: 1fr;
-    gap: 10px;
+  .profile-guest-notice-card {
+    padding: 18px 14px;
+    border-radius: 22px;
+    gap: 16px;
   }
 
   .guest-notice-banner {
@@ -853,11 +854,55 @@
     align-items: center;
     text-align: center;
     gap: 12px;
+    padding-bottom: 14px;
+  }
+
+  .guest-notice-content h3 {
+    font-size: 1.18rem;
+  }
+
+  .guest-notice-content p {
+    font-size: 0.88rem;
+  }
+
+  .guest-limitations-box {
+    padding: 12px 14px;
+    border-radius: 16px;
+  }
+
+  .guest-limitations-box h4 {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+  }
+
+  .guest-limitations-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .limit-item {
+    font-size: 0.84rem;
+    line-height: 1.35;
   }
 
   .btn-guest-login-primary {
     width: 100%;
-    font-size: 1rem;
-    padding: 12px 20px;
+    font-size: 0.95rem;
+    padding: 12px 18px;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.35;
+    box-sizing: border-box;
+  }
+
+  .btn-guest-login-primary span {
+    white-space: normal;
+  }
+
+  .btn-guest-continue-learn {
+    width: 100%;
+    justify-content: center;
+    font-size: 0.88rem;
+    box-sizing: border-box;
   }
 }

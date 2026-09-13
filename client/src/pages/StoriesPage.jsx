@@ -46,10 +46,26 @@ export default function StoriesPage() {
         title="Truyện Toán Tương Tác Dành Riêng Cho Thành Viên"
         subtitle="Đăng nhập tài khoản để cùng bé bước vào những chuyến phiêu lưu toán học kỳ thú, đọc truyện tương tác có giọng đọc AI và giải đố nhận quà!"
         benefits={[
-          'Kho truyện toán học sinh động, cốt truyện lôi cuốn với đồ họa sắc nét',
-          'Tích hợp giọng đọc trợ lý thông minh giúp bé luyện nghe và đọc dễ dàng',
-          'Câu đố tương tác lồng ghép khéo léo trong từng tình huống truyện',
-          'Tích lũy kinh nghiệm, mở khóa huy hiệu thám hiểm tri thức',
+          {
+            icon: '📚',
+            title: 'Kho Truyện Tranh Toán Kỳ Thú',
+            desc: 'Cốt truyện phiêu lưu lôi cuốn, hình ảnh minh họa sinh động đầy sắc màu.',
+          },
+          {
+            icon: '🎙️',
+            title: 'Giọng Đọc Trợ Lý AI Truyền Cảm',
+            desc: 'Tự động phát âm từng đoạn truyện giúp bé luyện nghe và theo dõi mạch truyện dễ dàng.',
+          },
+          {
+            icon: '🧩',
+            title: 'Câu Đố Tương Tác Giữa Giờ',
+            desc: 'Vừa đọc vừa giải đố thông minh để giải cứu các nhân vật bạn đồng hành.',
+          },
+          {
+            icon: '🏅',
+            title: 'Huy Hiệu Thám Hiểm Tri Thức',
+            desc: 'Tích lũy kinh nghiệm, mở khóa các bộ sưu tập huy hiệu thám hiểm độc quyền.',
+          },
         ]}
       />
     )
