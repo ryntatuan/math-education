@@ -36,7 +36,8 @@ export default function Header() {
         <div className="header-stats">
           {currentStreak > 0 && (
             <Badge variant="streak" size="md" icon="🔥" title="Chuỗi ngày học liên tục">
-              {currentStreak} ngày
+              <span className="hide-mobile">{currentStreak} ngày</span>
+              <span className="hide-desktop hide-tablet">{currentStreak}</span>
             </Badge>
           )}
 
@@ -46,7 +47,7 @@ export default function Header() {
             </Badge>
           </Link>
 
-          <Badge variant="xp" size="md" icon="⚡" title="Cấp độ hiện tại">
+          <Badge variant="xp" size="md" icon="⚡" title="Cấp độ hiện tại" className="header-level-badge">
             Lv.{level}
           </Badge>
 

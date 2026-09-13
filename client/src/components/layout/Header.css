@@ -117,14 +117,73 @@
 @media (max-width: 768px) {
   .header {
     left: 0; /* Full width on mobile */
-    height: 64px;
+    height: 58px;
   }
 
   .header-inner {
-    padding: 0 var(--space-4);
+    padding: 0 12px;
+    gap: 8px;
+  }
+
+  .header-logo {
+    gap: 6px;
+  }
+
+  .header-logo-icon {
+    font-size: 1.65rem;
+  }
+
+  .header-logo-text {
+    font-size: 1.25rem;
+    letter-spacing: -0.3px;
   }
 
   .header-stats {
-    gap: var(--space-2);
+    gap: 6px;
+  }
+
+  .header-stats .badge {
+    padding: 3px 8px;
+    font-size: 0.8rem;
+  }
+
+  .header-avatar {
+    width: 36px;
+    height: 36px;
+    font-size: 1.15rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-inner {
+    padding: 0 8px;
+    gap: 6px;
+  }
+
+  .header-logo-icon {
+    font-size: 1.5rem;
+  }
+
+  .header-logo-text {
+    font-size: 1.15rem;
+  }
+
+  .header-stats {
+    gap: 4px;
+  }
+
+  .header-stats .badge {
+    padding: 2px 6px;
+    font-size: 0.75rem;
+  }
+
+  .header-level-badge {
+    display: none !important; /* Hide level badge on narrow mobile to keep logo unclipped */
+  }
+
+  .header-avatar {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
   }
 }

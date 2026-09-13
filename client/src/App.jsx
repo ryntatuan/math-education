@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import Sidebar from './components/layout/Sidebar'
 import Header from './components/layout/Header'
 import BottomNav from './components/layout/BottomNav'
@@ -18,6 +18,35 @@ import useUserStore from './store/useUserStore'
 import soundManager from './utils/soundManager'
 import './App.css'
 
+function AppLayout() {
+  const location = useLocation()
+  const isLessonRoute = location.pathname.startsWith('/lesson/')
+
+  return (
+    <div className={`app-container ${isLessonRoute ? 'in-lesson-mode' : ''}`}>
+      <Sidebar />
+      {!isLessonRoute && <Header />}
+      <main className={`page-wrapper ${isLessonRoute ? 'page-wrapper-lesson' : ''}`}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/learn" element={<GradePage />} />
+          <Route path="/learn/:gradeId/:chapterId" element={<ChapterPage />} />
+          <Route path="/lesson/:lessonId" element={<LessonPage />} />
+          <Route path="/practice" element={<PracticePage />} />
+          <Route path="/games" element={<GamesPage />} />
+          <Route path="/stories" element={<StoriesPage />} />
+          <Route path="/leaderboard" element={<LeaderboardPage />} />
+          <Route path="/challenges" element={<ChallengePage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/shop" element={<ShopPage />} />
+          <Route path="/parent" element={<ParentDashboard />} />
+        </Routes>
+      </main>
+      {!isLessonRoute && <BottomNav />}
+    </div>
+  )
+}
+
 export default function App() {
   const soundEnabled = useUserStore((state) => state.soundEnabled)
 
@@ -27,27 +56,7 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      <div className="app-container">
-        <Sidebar />
-        <Header />
-        <main className="page-wrapper">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/learn" element={<GradePage />} />
-            <Route path="/learn/:gradeId/:chapterId" element={<ChapterPage />} />
-            <Route path="/lesson/:lessonId" element={<LessonPage />} />
-            <Route path="/practice" element={<PracticePage />} />
-            <Route path="/games" element={<GamesPage />} />
-            <Route path="/stories" element={<StoriesPage />} />
-            <Route path="/leaderboard" element={<LeaderboardPage />} />
-            <Route path="/challenges" element={<ChallengePage />} />
-            <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/shop" element={<ShopPage />} />
-            <Route path="/parent" element={<ParentDashboard />} />
-          </Routes>
-        </main>
-        <BottomNav />
-      </div>
+      <AppLayout />
     </BrowserRouter>
   )
 }

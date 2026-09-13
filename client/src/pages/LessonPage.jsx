@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowLeft, ArrowRight, CheckCircle2, XCircle, Volume2, Sparkles, Award } from 'lucide-react'
 import Button from '../components/ui/Button'
 import ProgressBar, { StarsDisplay } from '../components/ui/ProgressBar'
-import MascotBubble from '../components/mascot/MascotBubble'
 import useUserStore from '../store/useUserStore'
 import useProgressStore from '../store/useProgressStore'
 import curriculum from '../data/curriculum'
@@ -27,7 +26,7 @@ function findLesson(lessonId) {
 export default function LessonPage() {
   const navigate = useNavigate()
   const { lessonId } = useParams()
-  const { addCoins, addXp } = useUserStore()
+  const { coins, addCoins, addXp } = useUserStore()
   const { completeLesson, recordMistake, progressQuest } = useProgressStore()
 
   const found = findLesson(lessonId)
@@ -156,20 +155,41 @@ export default function LessonPage() {
 
           <h1>{stars === 3 ? 'Xuất sắc!' : stars === 2 ? 'Giỏi lắm!' : 'Tốt lắm!'}</h1>
 
+          <div className="result-mascot-greeting">
+            <span className="result-mascot-owl">🦉</span>
+            <p className="result-mascot-message">
+              {stars === 3
+                ? 'Tuyệt vời! Bé đã hoàn thành bài học xuất sắc và nhận trọn vẹn phần thưởng!'
+                : stars === 2
+                ? 'Bé làm rất tốt! Hãy tiếp tục phát huy ở các bài học tiếp theo nhé!'
+                : 'Cố gắng tuyệt vời! Bé đã hoàn thành bài học và nhận thêm điểm thưởng!'}
+            </p>
+          </div>
+
           <StarsDisplay stars={stars} maxStars={3} size="lg" />
 
-          <div className="result-stats">
-            <div className="result-stat">
-              <span className="result-stat-value number">{correctAnswers}/{totalQuizzes}</span>
-              <span className="result-stat-label">Câu đúng</span>
+          {/* Integrated Rewards Box */}
+          <div className="result-rewards-card">
+            <div className="result-reward-item">
+              <span className="reward-icon">🪙</span>
+              <div className="reward-info">
+                <span className="reward-val number">+20</span>
+                <span className="reward-label">Xu vàng</span>
+              </div>
             </div>
-            <div className="result-stat">
-              <span className="result-stat-value number">+20</span>
-              <span className="result-stat-label">🪙 Xu</span>
+            <div className="result-reward-item">
+              <span className="reward-icon">⚡</span>
+              <div className="reward-info">
+                <span className="reward-val number">+50</span>
+                <span className="reward-label">Điểm XP</span>
+              </div>
             </div>
-            <div className="result-stat">
-              <span className="result-stat-value number">+50</span>
-              <span className="result-stat-label">⚡ XP</span>
+            <div className="result-reward-item">
+              <span className="reward-icon">⭐</span>
+              <div className="reward-info">
+                <span className="reward-val number">+{stars}</span>
+                <span className="reward-label">Sao tích lũy</span>
+              </div>
             </div>
           </div>
 
@@ -184,16 +204,10 @@ export default function LessonPage() {
               setSelectedAnswer(null)
               setAnswerFeedback(null)
             }}>
-              Học lại
+              Học lại bài này
             </Button>
           </div>
         </div>
-
-        <MascotBubble
-          text={stars === 3 ? 'Tuyệt vời! Bạn giỏi quá! 🌟' : 'Cố gắng thêm nhé! 💪'}
-          mood={stars === 3 ? 'celebrate' : 'encourage'}
-          position="bottom-right"
-        />
       </motion.div>
     )
   }
@@ -222,9 +236,14 @@ export default function LessonPage() {
             size="sm"
           />
         </div>
-        <span className="lesson-slide-count number">
-          {currentSlide + 1}/{totalSlides}
-        </span>
+        <div className="lesson-header-right">
+          <span className="lesson-coins-pill number" title="Số xu hiện tại">
+            🪙 {coins}
+          </span>
+          <span className="lesson-slide-count number">
+            {currentSlide + 1}/{totalSlides}
+          </span>
+        </div>
       </div>
 
       {/* Slide Content */}
@@ -375,7 +394,7 @@ function VisualSlide({ content }) {
           {content.items.map((item, i) => (
             <div key={i} className="visual-item-group">
               {item.label && <span className="visual-label">{item.label}</span>}
-              <div className="visual-emojis">
+              <div className={`visual-emojis ${item.count <= 5 ? 'single-row-emojis' : 'ten-frame-emojis'}`}>
                 {Array.from({ length: item.count }).map((_, j) => (
                   <motion.span
                     key={j}
@@ -471,7 +490,7 @@ function QuizSlide({ content, selectedAnswer, feedback, onAnswer }) {
       {content.items && (
         <div className="visual-items quiz-visual">
           {content.items.map((item, i) => (
-            <div key={i} className="visual-emojis">
+            <div key={i} className={`visual-emojis ${item.count <= 5 ? 'single-row-emojis' : 'ten-frame-emojis'}`}>
               {Array.from({ length: item.count }).map((_, j) => (
                 <motion.span
                   key={j}

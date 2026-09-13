@@ -309,6 +309,11 @@ ul, ol {
   box-sizing: border-box;
 }
 
+.page-wrapper.page-wrapper-lesson {
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
 /* ========================================
    GLOBAL BACK NAVIGATION & TABS
    ======================================== */
@@ -432,6 +437,12 @@ ul, ol {
     padding: var(--space-4);
     padding-top: 76px;
     padding-bottom: 80px; /* Space for bottom nav */
+  }
+
+  .page-wrapper.page-wrapper-lesson {
+    padding: 8px 10px 12px;
+    padding-top: 10px; /* Global Header is hidden in lesson, lesson-header is right at top! */
+    padding-bottom: 12px; /* BottomNav is hidden in lesson, no need for 80px space! */
   }
 
   .hide-mobile { display: none !important; }

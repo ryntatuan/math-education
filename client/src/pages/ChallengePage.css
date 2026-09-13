@@ -305,3 +305,68 @@
   gap: var(--space-3);
   margin-top: var(--space-2);
 }
+
+/* Responsive Mobile Rules for Challenges */
+@media (max-width: 640px) {
+  .challenge-page {
+    padding: var(--space-2) 0;
+    gap: var(--space-4);
+  }
+
+  .challenge-hero h1 {
+    font-size: 1.5rem;
+  }
+
+  .challenge-hero p {
+    font-size: 0.9rem;
+  }
+
+  .task-item-card {
+    padding: 14px 16px;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .task-info h3 {
+    font-size: 1rem;
+  }
+
+  .task-reward-box {
+    margin-left: auto;
+    gap: 8px;
+    font-size: 0.9rem;
+  }
+
+  /* Chest Reward Card Mobile: Vertical Stack & Full-width Button */
+  .chest-reward-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 24px 16px;
+    gap: 14px;
+  }
+
+  .chest-visual .chest-icon {
+    font-size: 3.5rem;
+  }
+
+  .chest-details h2 {
+    font-size: 1.25rem;
+    margin-bottom: 6px;
+  }
+
+  .chest-details p {
+    font-size: 0.92rem;
+    line-height: 1.45;
+  }
+
+  .chest-action {
+    width: 100%;
+  }
+
+  .chest-action button {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 20px;
+    font-size: 1.05rem;
+  }
+}
