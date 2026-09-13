@@ -1,0 +1,346 @@
+/* ===================================================
+   GUEST CHALLENGE LOCK SCREEN STYLES
+   =================================================== */
+
+.guest-challenge-lock-container {
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding-bottom: 30px;
+}
+
+/* Hero Card */
+.guest-lock-hero {
+  background: linear-gradient(135deg, #ffffff 0%, #f8faff 50%, #eff6ff 100%);
+  border-radius: 32px;
+  padding: 40px 32px;
+  text-align: center;
+  border: 2px solid #c7d2fe;
+  box-shadow: 0 16px 40px rgba(79, 70, 229, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.guest-lock-hero::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  left: -60px;
+  width: 160px;
+  height: 160px;
+  background: radial-gradient(circle, rgba(234, 179, 8, 0.25) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.lock-floating-badge {
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.trophy-pulse-icon {
+  width: 90px;
+  height: 90px;
+  background: linear-gradient(135deg, #fef08a 0%, #fde047 50%, #eab308 100%);
+  border-radius: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 25px rgba(234, 179, 8, 0.35);
+  position: relative;
+  animation: pulse-badge 2s infinite ease-in-out;
+}
+
+@keyframes pulse-badge {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); box-shadow: 0 14px 30px rgba(234, 179, 8, 0.45); }
+}
+
+.trophy-svg {
+  color: #854d0e;
+}
+
+.sparkle-star {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  font-size: 1.5rem;
+  animation: spin-sparkle 3s infinite linear;
+}
+
+@keyframes spin-sparkle {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.2); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+/* Tier Tags */
+.league-tiers-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.tier-tag {
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+}
+
+.tier-tag.bronze { background: #ffedd5; color: #9a3412; border-color: #fed7aa; }
+.tier-tag.silver { background: #f1f5f9; color: #475569; border-color: #cbd5e1; }
+.tier-tag.gold { background: #fef9c3; color: #854d0e; border-color: #fef08a; }
+.tier-tag.diamond { background: #cffafe; color: #0e7490; border-color: #a5f3fc; }
+.tier-tag.master { background: #f3e8ff; color: #6b21a8; border-color: #e9d5ff; }
+
+.guest-lock-title {
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: #1e1b4b;
+  margin: 0 0 12px;
+  line-height: 1.3;
+}
+
+.guest-lock-subtitle {
+  font-size: 1rem;
+  color: #475569;
+  max-width: 580px;
+  margin: 0 0 24px;
+  line-height: 1.55;
+}
+
+.guest-lock-action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.guest-cta-login-btn {
+  padding: 14px 32px !important;
+  font-size: 1.15rem !important;
+  font-weight: 800 !important;
+  border-radius: 999px !important;
+  box-shadow: 0 10px 25px rgba(79, 70, 229, 0.3) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.guest-cta-login-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(79, 70, 229, 0.4) !important;
+}
+
+.guest-login-note {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #059669;
+}
+
+/* Benefits Grid */
+.guest-benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.benefit-card {
+  background: white;
+  border-radius: 20px;
+  padding: 20px;
+  border: 1.5px solid #e2e8f0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.benefit-card:hover {
+  transform: translateY(-2px);
+  border-color: #818cf8;
+}
+
+.benefit-icon {
+  font-size: 2rem;
+  background: #f8fafc;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 1px solid #e2e8f0;
+}
+
+.benefit-info h3 {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #1e293b;
+  margin: 0 0 4px;
+}
+
+.benefit-info p {
+  font-size: 0.86rem;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.45;
+}
+
+/* Blurred Teaser Preview */
+.guest-teaser-wrapper {
+  position: relative;
+  background: white;
+  border-radius: 24px;
+  border: 2px dashed #cbd5e1;
+  padding: 24px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+}
+
+.teaser-blurred-content {
+  filter: blur(8px) opacity(0.45);
+  pointer-events: none;
+  user-select: none;
+  width: 100%;
+}
+
+.teaser-podium {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 20px;
+  padding-top: 10px;
+}
+
+.teaser-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100px;
+  gap: 2px;
+  position: relative;
+}
+
+.teaser-col .crown {
+  font-size: 1.5rem;
+}
+
+.teaser-avatar {
+  font-size: 2.2rem;
+}
+
+.teaser-col strong {
+  font-size: 0.9rem;
+}
+
+.teaser-col span {
+  font-size: 0.78rem;
+}
+
+.teaser-col .pedestal {
+  width: 100%;
+  color: white;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px 10px 0 0;
+  margin-top: 6px;
+}
+
+.pedestal.p-1 { height: 75px; background: #eab308; font-size: 1.4rem; }
+.pedestal.p-2 { height: 55px; background: #94a3b8; font-size: 1.2rem; }
+.pedestal.p-3 { height: 40px; background: #ea580c; font-size: 1.1rem; }
+
+.teaser-overlay-lock {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(3px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-align: center;
+  padding: 20px;
+  z-index: 2;
+}
+
+.overlay-lock-icon {
+  width: 52px;
+  height: 52px;
+  background: #eef2ff;
+  color: #4f46e5;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #c7d2fe;
+}
+
+.teaser-overlay-lock h3 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #1e1b4b;
+  margin: 0;
+}
+
+.teaser-overlay-lock p {
+  font-size: 0.88rem;
+  color: #475569;
+  max-width: 420px;
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .guest-lock-hero {
+    padding: 28px 16px;
+    border-radius: 24px;
+  }
+
+  .guest-lock-title {
+    font-size: 1.45rem;
+  }
+
+  .guest-lock-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+  }
+
+  .guest-benefits-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .benefit-card {
+    padding: 16px;
+  }
+
+  .guest-cta-login-btn {
+    width: 100%;
+    justify-content: center;
+    font-size: 1rem !important;
+    padding: 12px 20px !important;
+  }
+}

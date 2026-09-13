@@ -15,12 +15,13 @@ import Button from '../components/ui/Button'
 import useLeagueStore, { LEAGUE_TIERS } from '../store/useLeagueStore'
 import useUserStore from '../store/useUserStore'
 import useAuthStore from '../store/useAuthStore'
+import GuestChallengeLock from '../components/auth/GuestChallengeLock'
 import soundManager from '../utils/soundManager'
 import './LeaderboardPage.css'
 
 export default function LeaderboardPage() {
   const { nickname, avatar } = useUserStore()
-  const { activeChild } = useAuthStore()
+  const { activeChild, isGuest } = useAuthStore()
   const {
     currentTier,
     weekEndDate,
@@ -68,6 +69,18 @@ export default function LeaderboardPage() {
     currentTierIdx < LEAGUE_TIERS.length - 1 ? LEAGUE_TIERS[currentTierIdx + 1] : null
 
   const top3 = standings.slice(0, 3)
+
+  // Khách chưa đăng nhập: Yêu cầu đăng nhập để xem và thi đua bảng xếp hạng
+  if (isGuest) {
+    return (
+      <div className="leaderboard-page">
+        <GuestChallengeLock
+          title="Đăng Nhập Để Tranh Tài Trên Bảng Xếp Hạng!"
+          subtitle="Bảng Đấu Trường tuần với 5 giải đấu Đồng, Bạc, Vàng, Kim Cương, Cao Thủ chỉ dành riêng cho các thành viên. Hãy đăng nhập tài khoản để cùng thi đua với các bạn nhé!"
+        />
+      </div>
+    )
+  }
 
   return (
     <div className="leaderboard-page">

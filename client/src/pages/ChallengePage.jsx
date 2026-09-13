@@ -25,6 +25,7 @@ import useLeagueStore, { LEAGUE_TIERS } from '../store/useLeagueStore'
 import { generateQuestion } from '../utils/exerciseGenerator'
 import soundManager from '../utils/soundManager'
 import fireConfetti from '../utils/confettiHelper'
+import GuestChallengeLock from '../components/auth/GuestChallengeLock'
 import './ChallengePage.css'
 
 export default function ChallengePage() {
@@ -34,7 +35,7 @@ export default function ChallengePage() {
     isDailyChallengeCompleted,
     completeDailyChallenge,
   } = useProgressStore()
-  const { activeChild } = useAuthStore()
+  const { activeChild, isGuest } = useAuthStore()
   const {
     currentTier,
     weekEndDate,
@@ -198,6 +199,18 @@ export default function ChallengePage() {
   }
 
   const allCompleted = tasksCompleted.every(Boolean)
+
+  // Nếu là tài khoản Khách (chưa đăng nhập): Yêu cầu đăng nhập để tham gia Đấu trường & Thử thách
+  if (isGuest) {
+    return (
+      <div className="challenge-page">
+        <GuestChallengeLock
+          title="Đăng Nhập Để Tham Gia Đấu Trường & Thử Thách!"
+          subtitle="Bảng xếp hạng thi đua tuần và 3 thử thách hằng ngày là tính năng đặc quyền dành riêng cho học sinh đã đăng nhập. Hãy đăng nhập để tranh tài cùng các bạn học nhé!"
+        />
+      </div>
+    )
+  }
 
   return (
     <div className="challenge-page">
