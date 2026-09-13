@@ -5,14 +5,15 @@ import {
   Sparkles,
   Gamepad2,
   BookOpen,
-  Award,
   Trophy,
   ArrowRight,
   RotateCcw,
   Play,
   CheckCircle2,
   Flame,
-  Star
+  Star,
+  Download,
+  Smartphone
 } from 'lucide-react'
 import MascotBubble from '../components/mascot/MascotBubble'
 import PetWidget from '../components/pet/PetWidget'
@@ -20,6 +21,7 @@ import DailyQuestsCard from '../components/quests/DailyQuestsCard'
 import useUserStore from '../store/useUserStore'
 import useProgressStore from '../store/useProgressStore'
 import useLeagueStore, { LEAGUE_TIERS } from '../store/useLeagueStore'
+import useDownloadModalStore from '../store/useDownloadModalStore'
 import curriculum from '../data/curriculum'
 import soundManager from '../utils/soundManager'
 import './HomePage.css'
@@ -40,6 +42,7 @@ export default function HomePage() {
   const { currentTier } = useLeagueStore()
 
   const [semesterFilter, setSemesterFilter] = useState('all') // 'all' | 'sem1' | 'sem2'
+  const { openDownloadModal } = useDownloadModalStore()
 
   const currentGradeInfo = ALL_GRADES.find((g) => g.id === grade) || ALL_GRADES[0]
   const currentTierInfo = LEAGUE_TIERS.find((t) => t.id === currentTier) || LEAGUE_TIERS[0]
@@ -304,13 +307,13 @@ export default function HomePage() {
                 className="ribbon-chip-btn btn-chip-arena"
                 onClick={() => {
                   soundManager.playClick()
-                  navigate('/leaderboard')
+                  navigate('/challenges')
                 }}
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Award size={16} />
-                <span>Đấu Trường</span>
+                <Trophy size={16} />
+                <span>Thử Thách</span>
               </motion.button>
             </div>
           </div>
@@ -333,7 +336,7 @@ export default function HomePage() {
             className="home-arena-mini-card"
             onClick={() => {
               soundManager.playClick()
-              navigate('/leaderboard')
+              navigate('/challenges')
             }}
             whileHover={{ scale: 1.02, y: -2 }}
             whileTap={{ scale: 0.98 }}
@@ -346,6 +349,32 @@ export default function HomePage() {
               <p>{currentTierInfo.name} • Đang thi đua</p>
               <span className="arena-link-text">Bấm xem bảng vàng xếp hạng →</span>
             </div>
+          </motion.div>
+
+          {/* 4. TẢI APP MOBILE ANDROID CARD */}
+          <motion.div
+            className="home-download-app-card"
+            onClick={() => {
+              soundManager.playClick()
+              openDownloadModal()
+            }}
+            whileHover={{ scale: 1.02, y: -2 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <div className="download-card-header">
+              <div className="download-card-robot-icon">🤖</div>
+              <div className="download-card-meta">
+                <h4>Cài App Toán Vui</h4>
+                <span className="download-tag-android">Dành cho Android (.apk)</span>
+              </div>
+            </div>
+            <p className="download-card-desc">
+              Học toán mượt mà, cảm ứng tiện lợi trên điện thoại & máy tính bảng
+            </p>
+            <button type="button" className="btn-download-card-cta">
+              <Download size={16} />
+              <span>Tải App Ngay (5.4 MB)</span>
+            </button>
           </motion.div>
 
         </aside>

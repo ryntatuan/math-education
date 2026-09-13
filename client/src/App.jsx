@@ -4,6 +4,7 @@ import Sidebar from './components/layout/Sidebar'
 import Header from './components/layout/Header'
 import BottomNav from './components/layout/BottomNav'
 import AuthModal from './components/auth/AuthModal'
+import DownloadAppModal from './components/modals/DownloadAppModal'
 import HomePage from './pages/HomePage'
 import GradePage, { ChapterPage } from './pages/GradePage'
 import LessonPage from './pages/LessonPage'
@@ -49,6 +50,7 @@ function AppLayout() {
       </main>
       {!isLessonRoute && <BottomNav />}
       <AuthModal />
+      <DownloadAppModal />
     </div>
   )
 }

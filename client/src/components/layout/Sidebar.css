@@ -105,7 +105,6 @@
 .sidebar-item-practice .sidebar-item-icon-wrap { color: #3B82F6; }
 .sidebar-item-games .sidebar-item-icon-wrap { color: #8B5CF6; }
 .sidebar-item-stories .sidebar-item-icon-wrap { color: #EC4899; }
-.sidebar-item-leaderboard .sidebar-item-icon-wrap { color: #EAB308; }
 .sidebar-item-challenges .sidebar-item-icon-wrap { color: #F59E0B; }
 .sidebar-item-parent .sidebar-item-icon-wrap { color: #0D9488; }
 
@@ -133,10 +132,6 @@
 .sidebar-item-stories:hover:not(.sidebar-item-active) {
   background: rgba(236, 72, 153, 0.1);
   color: #DB2777;
-}
-.sidebar-item-leaderboard:hover:not(.sidebar-item-active) {
-  background: rgba(234, 179, 8, 0.1);
-  color: #CA8A04;
 }
 .sidebar-item-challenges:hover:not(.sidebar-item-active) {
   background: rgba(245, 158, 11, 0.1);
@@ -181,11 +176,6 @@
 .sidebar-item-stories.sidebar-item-active {
   background: linear-gradient(135deg, #F472B6 0%, #DB2777 100%);
   box-shadow: 0 6px 18px rgba(219, 39, 119, 0.35);
-}
-
-.sidebar-item-leaderboard.sidebar-item-active {
-  background: linear-gradient(135deg, #FBBF24 0%, #D97706 100%);
-  box-shadow: 0 6px 18px rgba(217, 119, 6, 0.35);
 }
 
 .sidebar-item-challenges.sidebar-item-active {
