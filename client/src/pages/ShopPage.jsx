@@ -3,6 +3,8 @@ import { motion } from 'framer-motion'
 import { ShoppingBag, Sparkles, Check, Coins } from 'lucide-react'
 import Button from '../components/ui/Button'
 import useUserStore from '../store/useUserStore'
+import useAuthStore from '../store/useAuthStore'
+import GuestFeatureLock from '../components/auth/GuestFeatureLock'
 import soundManager from '../utils/soundManager'
 import fireConfetti from '../utils/confettiHelper'
 import './ShopPage.css'
@@ -19,8 +21,26 @@ const SHOP_AVATARS = [
 ]
 
 export default function ShopPage() {
+  const { isGuest } = useAuthStore()
   const { coins, avatar, unlockedAvatars = ['👦', '👧'], setAvatar, spendCoins, unlockAvatar } = useUserStore()
   const [purchaseMsg, setPurchaseMsg] = useState(null)
+
+  if (isGuest) {
+    return (
+      <GuestFeatureLock
+        icon="🛍️"
+        badgeText="CỬA HÀNG PHẦN THƯỞNG"
+        title="Cửa Hàng Dành Riêng Cho Thành Viên"
+        subtitle="Đăng nhập tài khoản để tích lũy xu vàng qua mỗi bài học và đổi các nhân vật hoạt hình ngộ nghĩnh!"
+        benefits={[
+          'Tích lũy xu vàng thưởng khi hoàn thành bài học và nhiệm vụ',
+          'Mở khóa bộ sưu tập hơn 10 hình đại diện ngộ nghĩnh độc quyền',
+          'Tùy biến phong cách riêng cho trang hồ sơ cá nhân',
+          'Lưu giữ vĩnh viễn các nhân vật đã mua trên đám mây',
+        ]}
+      />
+    )
+  }
 
   const ownedList = unlockedAvatars || ['👦', '👧', avatar]
 

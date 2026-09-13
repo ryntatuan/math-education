@@ -30,28 +30,36 @@ export default function Header() {
         <div className="header-greeting-wrap hide-mobile">
           <span className="header-greeting-sparkle">✨</span>
           <span className="header-greeting-text">
-            Chào mừng <strong>{nickname || 'Bé Yêu'}</strong> đến với thế giới Toán Vui!
+            {isGuest ? (
+              <>Chào mừng bạn đến với thế giới <strong>Toán Vui Vẻ</strong>!</>
+            ) : (
+              <>Chào mừng <strong>{nickname || 'Bé Yêu'}</strong> đến với thế giới Toán Vui!</>
+            )}
           </span>
         </div>
 
         {/* User Stats & Avatar */}
         <div className="header-stats">
-          {currentStreak > 0 && (
-            <Badge variant="streak" size="md" icon="🔥" title="Chuỗi ngày học liên tục">
-              <span className="hide-mobile">{currentStreak} ngày</span>
-              <span className="hide-desktop hide-tablet">{currentStreak}</span>
-            </Badge>
+          {!isGuest && (
+            <>
+              {currentStreak > 0 && (
+                <Badge variant="streak" size="md" icon="🔥" title="Chuỗi ngày học liên tục">
+                  <span className="hide-mobile">{currentStreak} ngày</span>
+                  <span className="hide-desktop hide-tablet">{currentStreak}</span>
+                </Badge>
+              )}
+
+              <Link to="/shop" style={{ textDecoration: 'none' }} title="Cửa hàng phần thưởng">
+                <Badge variant="coin" size="md" icon="🪙">
+                  {coins}
+                </Badge>
+              </Link>
+
+              <Badge variant="xp" size="md" icon="⚡" title="Cấp độ hiện tại" className="header-level-badge">
+                Lv.{level}
+              </Badge>
+            </>
           )}
-
-          <Link to="/shop" style={{ textDecoration: 'none' }} title="Cửa hàng phần thưởng">
-            <Badge variant="coin" size="md" icon="🪙">
-              {coins}
-            </Badge>
-          </Link>
-
-          <Badge variant="xp" size="md" icon="⚡" title="Cấp độ hiện tại" className="header-level-badge">
-            Lv.{level}
-          </Badge>
 
           {/* Auth or Profile Link */}
           {isGuest && (
@@ -71,15 +79,15 @@ export default function Header() {
           {/* Unified Profile Pill */}
           <Link
             to="/profile"
-            className="header-profile-pill"
-            title={`Hồ sơ của ${nickname || 'Bé'}`}
+            className={`header-profile-pill ${isGuest ? 'header-profile-guest' : ''}`}
+            title={isGuest ? 'Chế độ Khách (Bấm để xem)' : `Hồ sơ của ${nickname || 'Bé'}`}
             onClick={() => soundManager.playClick()}
           >
             <span className="header-avatar-circle">
-              {avatar || '👦'}
+              {isGuest ? '👤' : avatar || '👦'}
             </span>
             <span className="header-profile-name hide-mobile">
-              {nickname || 'Bé Yêu'}
+              {isGuest ? 'Khách' : nickname || 'Bé Yêu'}
             </span>
           </Link>
         </div>

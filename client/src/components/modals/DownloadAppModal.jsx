@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, Smartphone, Download, Check, Copy, ShieldCheck, HelpCircle, ArrowDownToLine } from 'lucide-react'
+import { Capacitor } from '@capacitor/core'
 import soundManager from '../../utils/soundManager'
 import useDownloadModalStore from '../../store/useDownloadModalStore'
 import './DownloadAppModal.css'
@@ -12,7 +13,7 @@ export default function DownloadAppModal() {
   const [apkMeta, setApkMeta] = useState(null)
 
   useEffect(() => {
-    if (!isOpen) return
+    if (!isOpen || Capacitor.isNativePlatform()) return
     fetch('/downloads/version.json')
       .then(res => res.ok ? res.json() : null)
       .then(data => {
@@ -21,7 +22,7 @@ export default function DownloadAppModal() {
       .catch(() => {})
   }, [isOpen])
 
-  if (!isOpen) return null
+  if (!isOpen || Capacitor.isNativePlatform()) return null
 
   const handleClose = () => {
     soundManager.playClick()

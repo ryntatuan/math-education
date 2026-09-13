@@ -18,12 +18,15 @@ import ProgressBar from '../components/ui/ProgressBar'
 import MATH_STORIES from '../data/storyData'
 import useUserStore from '../store/useUserStore'
 import useProgressStore from '../store/useProgressStore'
+import useAuthStore from '../store/useAuthStore'
+import GuestFeatureLock from '../components/auth/GuestFeatureLock'
 import soundManager from '../utils/soundManager'
 import speechHelper from '../utils/speechHelper'
 import fireConfetti from '../utils/confettiHelper'
 import './StoriesPage.css'
 
 export default function StoriesPage() {
+  const { isGuest } = useAuthStore()
   const { addCoins, addXp } = useUserStore()
   const { updateStreak, progressQuest } = useProgressStore()
 
@@ -34,6 +37,23 @@ export default function StoriesPage() {
   const [isCorrect, setIsCorrect] = useState(false)
   const [isFinished, setIsFinished] = useState(false)
   const [isSpeaking, setIsSpeaking] = useState(false)
+
+  if (isGuest) {
+    return (
+      <GuestFeatureLock
+        icon="📖"
+        badgeText="TRUYỆN TOÁN TƯƠNG TÁC"
+        title="Truyện Toán Tương Tác Dành Riêng Cho Thành Viên"
+        subtitle="Đăng nhập tài khoản để cùng bé bước vào những chuyến phiêu lưu toán học kỳ thú, đọc truyện tương tác có giọng đọc AI và giải đố nhận quà!"
+        benefits={[
+          'Kho truyện toán học sinh động, cốt truyện lôi cuốn với đồ họa sắc nét',
+          'Tích hợp giọng đọc trợ lý thông minh giúp bé luyện nghe và đọc dễ dàng',
+          'Câu đố tương tác lồng ghép khéo léo trong từng tình huống truyện',
+          'Tích lũy kinh nghiệm, mở khóa huy hiệu thám hiểm tri thức',
+        ]}
+      />
+    )
+  }
 
   // Start reading story
   const handleSelectStory = (story) => {

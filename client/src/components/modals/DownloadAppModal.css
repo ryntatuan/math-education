@@ -4,22 +4,21 @@
 
 .download-modal-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   background: rgba(15, 23, 42, 0.72);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 16px;
   box-sizing: border-box;
   z-index: 999999;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .download-modal-card {
@@ -27,15 +26,17 @@
   border-radius: 28px;
   max-width: 600px;
   width: 100%;
-  padding: 26px 24px;
+  padding: 24px 22px;
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  margin: auto; /* Standard for flex centering with safe overflow scroll */
-  max-height: calc(100vh - 40px);
+  gap: 14px;
+  margin: auto;
+  max-height: calc(100dvh - 32px);
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
   box-sizing: border-box;
 }
 
@@ -386,26 +387,150 @@
 }
 
 @media (max-width: 560px) {
-  .download-modal-card {
-    padding: 22px 16px;
-    border-radius: 22px;
-  }
-
-  .install-steps-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .install-step-card {
-    flex-direction: row;
+  .download-modal-overlay {
     align-items: flex-start;
+    padding: 12px 10px calc(24px + env(safe-area-inset-bottom, 20px)) 10px;
+  }
+
+  .download-modal-card {
+    padding: 18px 14px;
+    border-radius: 22px;
     gap: 10px;
+    max-height: calc(100dvh - 24px);
+  }
+
+  .download-modal-close {
+    top: 12px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+  }
+
+  .download-app-badge-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 16px;
+  }
+
+  .app-owl-icon {
+    font-size: 1.8rem;
+  }
+
+  .android-robot-badge {
+    font-size: 0.95rem;
+    bottom: -3px;
+    right: -4px;
+  }
+
+  .download-modal-header h2 {
+    font-size: 1.15rem;
+    padding: 0 24px;
+  }
+
+  .download-modal-subtitle {
+    font-size: 0.78rem;
+    line-height: 1.35;
+  }
+
+  .download-cta-box {
+    padding: 10px 12px;
+    gap: 8px;
+    border-radius: 14px;
+  }
+
+  .meta-row {
+    gap: 6px;
+  }
+
+  .meta-badge-version,
+  .meta-badge-tag {
+    font-size: 0.7rem;
+    padding: 2px 7px;
+  }
+
+  .meta-badge-size {
+    font-size: 0.72rem;
+  }
+
+  .meta-badge-date {
+    font-size: 0.68rem;
   }
 
   .download-apk-action-btn {
     padding: 10px 14px;
+    border-radius: 12px;
+    gap: 8px;
+  }
+
+  .btn-dl-icon {
+    width: 20px;
+    height: 20px;
   }
 
   .btn-dl-title {
-    font-size: 0.98rem;
+    font-size: 0.94rem;
+  }
+
+  .btn-dl-sub {
+    font-size: 0.72rem;
+  }
+
+  .download-share-row {
+    padding-top: 4px;
+  }
+
+  .share-label {
+    font-size: 0.74rem;
+  }
+
+  .btn-copy-link {
+    padding: 4px 10px;
+    font-size: 0.74rem;
+  }
+
+  .install-steps-title {
+    font-size: 0.84rem;
+  }
+
+  .install-steps-grid {
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
+
+  .install-step-card {
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 10px;
+    border-radius: 10px;
+  }
+
+  .step-num {
+    width: 20px;
+    height: 20px;
+    font-size: 0.7rem;
+  }
+
+  .step-content {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .step-content strong {
+    font-size: 0.78rem;
+  }
+
+  .step-content p {
+    font-size: 0.72rem;
+    line-height: 1.25;
+  }
+
+  .download-safety-badge {
+    padding: 6px 10px;
+    font-size: 0.7rem;
+    line-height: 1.3;
+    border-radius: 10px;
   }
 }

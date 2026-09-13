@@ -666,3 +666,198 @@
     font-size: 0.68rem;
   }
 }
+
+/* ========================================
+   GUEST MODE PROFILE STYLES
+   ======================================== */
+.guest-header-card {
+  border: 2px dashed rgba(255, 179, 71, 0.45);
+  background: linear-gradient(135deg, #ffffff 0%, #fffdf8 100%);
+}
+
+.guest-avatar-circle {
+  background: linear-gradient(135deg, #ffeaa7 0%, #ffd166 100%);
+  cursor: default;
+}
+
+.badge-guest-pill {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #d97706;
+  background: rgba(245, 158, 11, 0.14);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.guest-header-hint {
+  font-size: 0.88rem;
+  color: var(--color-text-secondary);
+  margin-top: 6px;
+  line-height: 1.4;
+}
+
+.profile-guest-notice-card {
+  background: white;
+  border-radius: var(--radius-3xl);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-lg);
+  border: 2px solid rgba(108, 92, 231, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.guest-notice-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-5);
+  padding-bottom: var(--space-6);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.guest-notice-icon-box {
+  width: 58px;
+  height: 58px;
+  border-radius: var(--radius-2xl);
+  background: linear-gradient(135deg, #fff3b0 0%, #ffd166 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  flex-shrink: 0;
+  box-shadow: 0 8px 16px rgba(255, 209, 102, 0.35);
+}
+
+.guest-notice-content h3 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--color-text);
+  margin-bottom: 6px;
+}
+
+.guest-notice-content p {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  line-height: 1.55;
+  margin: 0;
+}
+
+.guest-limitations-box {
+  background: #f8fafc;
+  border-radius: var(--radius-2xl);
+  padding: var(--space-5) var(--space-6);
+  border: 1px solid #e2e8f0;
+}
+
+.guest-limitations-box h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #475569;
+  margin-bottom: var(--space-4);
+}
+
+.guest-limitations-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+}
+
+.limit-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: #334155;
+  line-height: 1.45;
+}
+
+.limit-bullet {
+  font-size: 1rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.guest-cta-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding-top: var(--space-2);
+}
+
+.btn-guest-login-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #4285F4 0%, #34A853 50%, #FBBC05 100%);
+  background-size: 200% 200%;
+  color: white;
+  border: none;
+  border-radius: var(--radius-full);
+  padding: 14px 32px;
+  font-size: 1.08rem;
+  font-weight: 800;
+  box-shadow: 0 10px 24px rgba(66, 133, 244, 0.35);
+  cursor: pointer;
+  transition: all var(--transition-bounce);
+}
+
+.btn-guest-login-primary:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 14px 30px rgba(66, 133, 244, 0.45);
+}
+
+.guest-cta-subtext {
+  font-size: 0.85rem;
+  color: #64748b;
+  margin: 0;
+}
+
+.guest-cta-secondary {
+  margin-top: 6px;
+}
+
+.btn-guest-continue-learn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--color-primary);
+  border: 1.5px solid var(--color-primary);
+  border-radius: var(--radius-full);
+  padding: 10px 22px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-guest-continue-learn:hover {
+  background: rgba(78, 205, 196, 0.1);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 640px) {
+  .guest-limitations-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .guest-notice-banner {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .btn-guest-login-primary {
+    width: 100%;
+    font-size: 1rem;
+    padding: 12px 20px;
+  }
+}

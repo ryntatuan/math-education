@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
+import useAuthStore from './useAuthStore'
 
 const getDatePlusDays = (days = 1) => {
   const d = new Date()
@@ -50,6 +51,9 @@ const useProgressStore = create(
       },
 
       recordGamePlayed: () => {
+        try {
+          if (useAuthStore.getState().isGuest) return
+        } catch {}
         set((state) => ({ totalGamesPlayed: (state.totalGamesPlayed || 0) + 1 }))
         get().updateStreak()
         get().progressQuest('quest_game', 1)
@@ -84,6 +88,9 @@ const useProgressStore = create(
 
       // Flexible Streak: Called on any lesson OR any game played
       updateStreak: () => {
+        try {
+          if (useAuthStore.getState().isGuest) return
+        } catch {}
         const today = new Date().toISOString().split('T')[0]
         const { lastActiveDate, currentStreak, longestStreak } = get()
 

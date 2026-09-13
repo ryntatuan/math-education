@@ -24,6 +24,8 @@ import Card from '../components/ui/Card'
 import ProgressBar from '../components/ui/ProgressBar'
 import useUserStore from '../store/useUserStore'
 import useProgressStore from '../store/useProgressStore'
+import useAuthStore from '../store/useAuthStore'
+import GuestFeatureLock from '../components/auth/GuestFeatureLock'
 import curriculum from '../data/curriculum'
 import soundManager from '../utils/soundManager'
 import KnowledgeRadarChart from '../components/charts/KnowledgeRadarChart'
@@ -74,6 +76,7 @@ const SKILL_DOMAINS = [
 ]
 
 export default function ParentDashboard() {
+  const { isGuest } = useAuthStore()
   const {
     nickname,
     grade,
@@ -88,6 +91,23 @@ export default function ParentDashboard() {
   } = useUserStore()
 
   const { completedLessons, currentStreak, exerciseResults } = useProgressStore()
+
+  if (isGuest) {
+    return (
+      <GuestFeatureLock
+        icon="🛡️"
+        badgeText="BẢO MẬT PHỤ HUYNH"
+        title="Khu Vực Dành Riêng Cho Phụ Huynh Đăng Ký"
+        subtitle="Đăng nhập tài khoản để xem báo cáo học tập chi tiết, theo dõi biểu đồ kỹ năng và cài đặt mã PIN bảo vệ cho bé."
+        benefits={[
+          'Xem báo cáo năng lực và biểu đồ radar 5 kỹ năng chuẩn Bộ GD&ĐT',
+          'Theo dõi thời gian học, chuỗi chuyên cần (streak) và lịch sử làm bài',
+          'Thiết lập mã PIN phụ huynh quản trị an toàn',
+          'Xuất báo cáo kết quả học tập để đồng hành cùng con',
+        ]}
+      />
+    )
+  }
 
   // PIN security check
   const defaultPin = parentPin || '1234'

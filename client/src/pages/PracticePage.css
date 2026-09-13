@@ -853,3 +853,24 @@
   color: #475569;
 }
 
+.practice-guest-hint {
+  width: 100%;
+  background: linear-gradient(135deg, #fffdfa 0%, #fff7ed 100%);
+  border: 1.5px dashed rgba(245, 158, 11, 0.45);
+  border-radius: 14px;
+  padding: 10px 16px;
+  text-align: center;
+  font-size: 0.88rem;
+  color: #d97706;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease;
+  margin-top: 6px;
+}
+
+.practice-guest-hint:hover {
+  transform: translateY(-2px);
+  background: #ffedd5;
+}
+
+

@@ -20,6 +20,7 @@ import ProgressBar from '../components/ui/ProgressBar'
 import MascotBubble from '../components/mascot/MascotBubble'
 import useUserStore from '../store/useUserStore'
 import useProgressStore from '../store/useProgressStore'
+import useAuthStore from '../store/useAuthStore'
 import { TOPICS, generateQuestion } from '../utils/exerciseGenerator'
 import soundManager from '../utils/soundManager'
 import speechHelper from '../utils/speechHelper'
@@ -102,6 +103,7 @@ function parsePracticeQuestion(q) {
 }
 
 export default function PracticePage() {
+  const { isGuest, setAuthModalOpen } = useAuthStore()
   const { grade: userGrade, addCoins, addXp } = useUserStore()
   const {
     addExerciseResult,
@@ -292,13 +294,15 @@ export default function PracticePage() {
             />
           </div>
 
-          <div className="practice-streak-badge">
-            <Flame
-              size={22}
-              className={streak >= 3 ? 'flame-hot animated' : 'flame-normal'}
-            />
-            <span className="number">{streak}</span>
-          </div>
+          {!isGuest && (
+            <div className="practice-streak-badge">
+              <Flame
+                size={22}
+                className={streak >= 3 ? 'flame-hot animated' : 'flame-normal'}
+              />
+              <span className="number">{streak}</span>
+            </div>
+          )}
         </div>
 
         {/* Question & Interaction Area: 2-Column Responsive Layout (Aligned with GamesPage) */}
@@ -469,11 +473,30 @@ export default function PracticePage() {
             <span className="stat-num number">{accuracy}%</span>
             <span className="stat-desc">Độ chính xác</span>
           </div>
-          <div className="stat-box">
-            <span className="stat-num number">+{totalCoinsEarned}</span>
-            <span className="stat-desc">🪙 Xu vàng</span>
-          </div>
+          {!isGuest ? (
+            <div className="stat-box">
+              <span className="stat-num number">+{totalCoinsEarned}</span>
+              <span className="stat-desc">🪙 Xu vàng</span>
+            </div>
+          ) : (
+            <div className="stat-box">
+              <span className="stat-num">Khách</span>
+              <span className="stat-desc">Chế độ trải nghiệm</span>
+            </div>
+          )}
         </div>
+
+        {isGuest && (
+          <div
+            className="practice-guest-hint"
+            onClick={() => {
+              soundManager.playClick()
+              setAuthModalOpen(true)
+            }}
+          >
+            <span>💡 Đăng nhập tài khoản để tích lũy Xu vàng và Chuỗi ngày học!</span>
+          </div>
+        )}
 
         <div className="result-actions">
           <Button variant="primary" size="lg" onClick={() => startSession(selectedTopic)}>

@@ -1,15 +1,17 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Heart, Sparkles, Award, Utensils, Plus, Check } from 'lucide-react'
+import { Heart, Sparkles, Award, Utensils, Plus, Check, X, LogIn } from 'lucide-react'
 import Button from '../ui/Button'
 import ProgressBar from '../ui/ProgressBar'
 import usePetStore, { PET_TYPES, FOOD_TYPES } from '../../store/usePetStore'
 import useProgressStore from '../../store/useProgressStore'
+import useAuthStore from '../../store/useAuthStore'
 import soundManager from '../../utils/soundManager'
 import fireConfetti from '../../utils/confettiHelper'
 import './PetWidget.css'
 
 export default function PetWidget({ compact = false }) {
+  const { isGuest, setAuthModalOpen } = useAuthStore()
   const {
     hasPet,
     petType,
@@ -30,6 +32,7 @@ export default function PetWidget({ compact = false }) {
   const { progressQuest } = useProgressStore()
 
   const [showAdoptModal, setShowAdoptModal] = useState(false)
+  const [showGuestPetModal, setShowGuestPetModal] = useState(false)
   const [selectedPetType, setSelectedPetType] = useState('corgi')
   const [customName, setCustomName] = useState('')
   const [showFoodMenu, setShowFoodMenu] = useState(false)
@@ -54,8 +57,8 @@ export default function PetWidget({ compact = false }) {
     fireConfetti({ particleCount: 80, spread: 70 })
   }
 
-  // Not adopted yet: Teaser card
-  if (!hasPet) {
+  // Not adopted yet or guest account: Teaser / Locked card
+  if (!hasPet || isGuest) {
     return (
       <div className={`pet-widget-card adopt-teaser ${compact ? 'compact-teaser' : ''}`}>
         {/* Animated background stars */}
@@ -83,7 +86,7 @@ export default function PetWidget({ compact = false }) {
 
             <div className={`teaser-info ${compact ? 'compact' : ''}`}>
               <div className="teaser-badge">
-                <Sparkles size={compact ? 12 : 14} /> {compact ? 'Ấp Trứng Kỳ Diệu' : 'Trứng Kỳ Diệu Đang Chờ Bé!'}
+                <Sparkles size={compact ? 12 : 14} /> {isGuest ? '🐾 Thú Cưng Học Toán' : (compact ? 'Ấp Trứng Kỳ Diệu' : 'Trứng Kỳ Diệu Đang Chờ Bé!')}
               </div>
               <h3>Thú Cưng Học Toán</h3>
               <p>
@@ -99,7 +102,14 @@ export default function PetWidget({ compact = false }) {
             <motion.button
               type="button"
               className={`btn-adopt-special ${compact ? 'compact' : ''}`}
-              onClick={() => setShowAdoptModal(true)}
+              onClick={() => {
+                soundManager.playClick()
+                if (isGuest) {
+                  setShowGuestPetModal(true)
+                } else {
+                  setShowAdoptModal(true)
+                }
+              }}
               whileHover={{ scale: 1.04, y: -2 }}
               whileTap={{ scale: 0.96 }}
             >
@@ -155,6 +165,71 @@ export default function PetWidget({ compact = false }) {
                     <Check size={18} /> Nhận Nuôi Bạn Này
                   </Button>
                   <Button variant="outline" size="lg" onClick={() => setShowAdoptModal(false)}>
+                    Để sau
+                  </Button>
+                </div>
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>
+
+        {/* Guest Pet Locked / Intro Modal */}
+        <AnimatePresence>
+          {showGuestPetModal && (
+            <div className="pet-adopt-overlay" onClick={() => setShowGuestPetModal(false)}>
+              <motion.div
+                className="pet-adopt-modal guest-pet-modal"
+                onClick={(e) => e.stopPropagation()}
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+              >
+                <button
+                  className="guest-pet-close-btn"
+                  onClick={() => setShowGuestPetModal(false)}
+                >
+                  <X size={20} />
+                </button>
+
+                <div className="guest-pet-badge-icon">
+                  <span className="guest-pet-egg">🥚</span>
+                  <span className="guest-pet-lock-badge">🔒</span>
+                </div>
+
+                <h2>🐾 Thú Cưng Học Toán Dành Cho Thành Viên</h2>
+                <p className="guest-pet-desc">
+                  Để nuôi và chăm sóc thú cưng lớn khôn, bé cần tích lũy <strong>Xu Vàng</strong> qua mỗi bài học để mua thức ăn (Táo 🍎, Bánh mì 🥖, Thịt nướng 🍖...).
+                </p>
+
+                <div className="guest-pet-perks-box">
+                  <h4>Quyền lợi khi đăng ký tài khoản:</h4>
+                  <ul>
+                    <li>🥚 <strong>Ấp nở 4 thú cưng độc quyền:</strong> Corgi 🐶, Mèo Con 🐱, Cú Mèo 🦉, Rồng Con 🐲</li>
+                    <li>🪙 <strong>Tích lũy Xu Vàng</strong> để mua đồ ăn, giúp thú cưng tiến hóa lên cấp Vương Miện 👑</li>
+                    <li>💖 <strong>Tương tác vui nhộn:</strong> Vuốt ve, cho ăn và lắng nghe thú cưng cổ vũ bé học tập</li>
+                    <li>☁️ <strong>Bảo lưu vĩnh viễn</strong> dữ liệu thú cưng trên đám mây, không lo mất khi đổi máy</li>
+                  </ul>
+                </div>
+
+                <div className="guest-pet-actions">
+                  <Button
+                    variant="primary"
+                    size="lg"
+                    className="btn-guest-pet-login"
+                    onClick={() => {
+                      soundManager.playClick()
+                      setShowGuestPetModal(false)
+                      setAuthModalOpen(true)
+                    }}
+                  >
+                    <LogIn size={20} />
+                    <span>Đăng nhập Google để nhận thú cưng</span>
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="md"
+                    onClick={() => setShowGuestPetModal(false)}
+                  >
                     Để sau
                   </Button>
                 </div>

@@ -22,6 +22,7 @@ import useUserStore from '../store/useUserStore'
 import useProgressStore from '../store/useProgressStore'
 import useLeagueStore, { LEAGUE_TIERS } from '../store/useLeagueStore'
 import useDownloadModalStore from '../store/useDownloadModalStore'
+import { Capacitor } from '@capacitor/core'
 import curriculum from '../data/curriculum'
 import soundManager from '../utils/soundManager'
 import './HomePage.css'
@@ -43,6 +44,7 @@ export default function HomePage() {
 
   const [semesterFilter, setSemesterFilter] = useState('all') // 'all' | 'sem1' | 'sem2'
   const { openDownloadModal } = useDownloadModalStore()
+  const isNative = Capacitor.isNativePlatform()
 
   const currentGradeInfo = ALL_GRADES.find((g) => g.id === grade) || ALL_GRADES[0]
   const currentTierInfo = LEAGUE_TIERS.find((t) => t.id === currentTier) || LEAGUE_TIERS[0]
@@ -351,31 +353,33 @@ export default function HomePage() {
             </div>
           </motion.div>
 
-          {/* 4. TẢI APP MOBILE ANDROID CARD */}
-          <motion.div
-            className="home-download-app-card"
-            onClick={() => {
-              soundManager.playClick()
-              openDownloadModal()
-            }}
-            whileHover={{ scale: 1.02, y: -2 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <div className="download-card-header">
-              <div className="download-card-robot-icon">🤖</div>
-              <div className="download-card-meta">
-                <h4>Cài App Toán Vui</h4>
-                <span className="download-tag-android">Dành cho Android (.apk)</span>
+          {/* 4. TẢI APP MOBILE ANDROID CARD (Chỉ hiện trên trình duyệt web, tự ẩn trên mobile app) */}
+          {!isNative && (
+            <motion.div
+              className="home-download-app-card"
+              onClick={() => {
+                soundManager.playClick()
+                openDownloadModal()
+              }}
+              whileHover={{ scale: 1.02, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <div className="download-card-header">
+                <div className="download-card-robot-icon">🤖</div>
+                <div className="download-card-meta">
+                  <h4>Cài App Toán Vui</h4>
+                  <span className="download-tag-android">Dành cho Android (.apk)</span>
+                </div>
               </div>
-            </div>
-            <p className="download-card-desc">
-              Học toán mượt mà, cảm ứng tiện lợi trên điện thoại & máy tính bảng
-            </p>
-            <button type="button" className="btn-download-card-cta">
-              <Download size={16} />
-              <span>Tải App Ngay (5.4 MB)</span>
-            </button>
-          </motion.div>
+              <p className="download-card-desc">
+                Học toán mượt mà, cảm ứng tiện lợi trên điện thoại & máy tính bảng
+              </p>
+              <button type="button" className="btn-download-card-cta">
+                <Download size={16} />
+                <span>Tải App Ngay (5.4 MB)</span>
+              </button>
+            </motion.div>
+          )}
 
         </aside>
 

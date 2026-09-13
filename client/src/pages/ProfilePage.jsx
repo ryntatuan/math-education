@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { Award, Star, Flame, Trophy, Coins, User, Sparkles, Check, Edit2, ShoppingBag, LogIn, LogOut } from 'lucide-react'
+import { Award, Star, Flame, Trophy, Coins, User, Sparkles, Check, Edit2, ShoppingBag, LogIn, LogOut, ArrowRight, BookOpen } from 'lucide-react'
 import Button from '../components/ui/Button'
 import Card from '../components/ui/Card'
 import ProgressBar from '../components/ui/ProgressBar'
@@ -92,6 +92,107 @@ export default function ProfilePage() {
   }
 
   const ownedAvatars = Array.from(new Set([...(unlockedAvatars || ['👦', '👧']), avatar]))
+
+  if (isGuest) {
+    return (
+      <div className="profile-page guest-mode-page">
+        {/* Guest Header Card */}
+        <div className="profile-header-card guest-header-card">
+          <div className="profile-avatar-section">
+            <div className="profile-avatar-circle guest-avatar-circle">
+              <span className="avatar-emoji">👤</span>
+            </div>
+          </div>
+
+          <div className="profile-info-section">
+            <div className="name-row">
+              <h2>Bạn Nhỏ</h2>
+              <span className="badge-guest-pill">⚡ Khách Trải Nghiệm</span>
+            </div>
+            <div className="profile-grade-tag">
+              <span>Học sinh Lớp {grade}</span>
+            </div>
+            <p className="guest-header-hint">
+              Bạn đang học thử ở Chế độ Khách. Dữ liệu học tập chưa được lưu vĩnh viễn.
+            </p>
+          </div>
+        </div>
+
+        {/* Guest Notice & Limitations Card */}
+        <motion.div
+          className="profile-guest-notice-card"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <div className="guest-notice-banner">
+            <div className="guest-notice-icon-box">🌟</div>
+            <div className="guest-notice-content">
+              <h3>Bé Đang Trải Nghiệm Chế Độ Khách</h3>
+              <p>
+                Bé có thể tự do học và làm bài tập môn Toán Lớp {grade} hoàn toàn miễn phí.
+                Để lưu giữ thành tích và mở khóa toàn bộ sân chơi trí tuệ, ba mẹ hãy đăng nhập tài khoản nhé!
+              </p>
+            </div>
+          </div>
+
+          <div className="guest-limitations-box">
+            <h4>Các giới hạn ở Chế độ Khách:</h4>
+            <div className="guest-limitations-grid">
+              <div className="limit-item">
+                <span className="limit-bullet">❌</span>
+                <span>Không lưu trữ và hiển thị <strong>Xu Vàng, Cấp độ (Level)</strong> và <strong>Chuỗi ngày học (Streak)</strong></span>
+              </div>
+              <div className="limit-item">
+                <span className="limit-bullet">❌</span>
+                <span>Không có <strong>Bộ sưu tập huy hiệu</strong> thành tích và cửa hàng đổi nhân vật hoạt hình</span>
+              </div>
+              <div className="limit-item">
+                <span className="limit-bullet">❌</span>
+                <span>Không thể truy cập <strong>6 Mini Game rèn phản xạ</strong> và <strong>Truyện Toán tương tác</strong></span>
+              </div>
+              <div className="limit-item">
+                <span className="limit-bullet">❌</span>
+                <span>Không hiển thị <strong>Báo cáo năng lực Phụ huynh</strong> và đồng bộ đa thiết bị</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="guest-cta-block">
+            <button
+              type="button"
+              className="btn-guest-login-primary"
+              onClick={() => {
+                soundManager.playClick()
+                setAuthModalOpen(true)
+              }}
+            >
+              <LogIn size={20} />
+              <span>Đăng nhập bằng Google ngay</span>
+            </button>
+            <p className="guest-cta-subtext">
+              ✨ Nhanh chóng trong 5 giây, bảo lưu toàn bộ tiến độ của bé
+            </p>
+
+            <div className="guest-cta-secondary">
+              <button
+                type="button"
+                className="btn-guest-continue-learn"
+                onClick={() => {
+                  soundManager.playClick()
+                  navigate('/learn')
+                }}
+              >
+                <BookOpen size={18} />
+                <span>Tiếp tục học bài miễn phí</span>
+                <ArrowRight size={16} />
+              </button>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    )
+  }
 
   return (
     <div className="profile-page">

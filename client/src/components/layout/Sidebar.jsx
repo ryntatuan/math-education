@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { Home, BookOpen, PenTool, Gamepad2, Trophy, ShieldCheck, Volume2, VolumeX, Sparkles, Headphones } from 'lucide-react'
 import soundManager from '../../utils/soundManager'
 import useUserStore from '../../store/useUserStore'
+import useAuthStore from '../../store/useAuthStore'
 import './Sidebar.css'
 
 const navItems = [
@@ -18,6 +19,12 @@ const navItems = [
 export default function Sidebar() {
   const location = useLocation()
   const { soundEnabled, toggleSound, autoSpeakLesson, toggleAutoSpeak } = useUserStore()
+  const { isGuest } = useAuthStore()
+
+  const displayedNavItems = navItems.filter((item) => {
+    if (isGuest && item.to === '/parent') return false
+    return true
+  })
 
   return (
     <aside className="sidebar hide-mobile">
@@ -35,7 +42,7 @@ export default function Sidebar() {
 
       {/* Main Navigation Items */}
       <nav className="sidebar-nav">
-        {navItems.map(({ to, label, icon: Icon, variant }) => {
+        {displayedNavItems.map(({ to, label, icon: Icon, variant }) => {
           const isActive =
             location.pathname === to || (to !== '/' && location.pathname.startsWith(to))
 

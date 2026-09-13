@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import useLeagueStore from './useLeagueStore'
+import useAuthStore from './useAuthStore'
 
 const useUserStore = create(
   persist(
@@ -33,8 +34,17 @@ const useUserStore = create(
           ),
         })),
 
-      addCoins: (amount) => set((state) => ({ coins: state.coins + amount })),
+      addCoins: (amount) => {
+        try {
+          if (useAuthStore.getState().isGuest) return
+        } catch {}
+        set((state) => ({ coins: state.coins + amount }))
+      },
+
       spendCoins: (amount) => {
+        try {
+          if (useAuthStore.getState().isGuest) return false
+        } catch {}
         const { coins } = get()
         if (coins >= amount) {
           set({ coins: coins - amount })
@@ -44,6 +54,9 @@ const useUserStore = create(
       },
 
       addXp: (amount) => {
+        try {
+          if (useAuthStore.getState().isGuest) return false
+        } catch {}
         const state = get()
         let newXp = state.xp + amount
         let newLevel = state.level

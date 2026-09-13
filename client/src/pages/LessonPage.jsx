@@ -1,11 +1,12 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowLeft, ArrowRight, CheckCircle2, XCircle, Volume2, Sparkles, Award, Lightbulb, BookOpen, MessageCircle } from 'lucide-react'
+import { ArrowLeft, ArrowRight, CheckCircle2, XCircle, Volume2, Sparkles, Award, Lightbulb, BookOpen, MessageCircle, LogIn } from 'lucide-react'
 import Button from '../components/ui/Button'
 import ProgressBar, { StarsDisplay } from '../components/ui/ProgressBar'
 import useUserStore from '../store/useUserStore'
 import useProgressStore from '../store/useProgressStore'
+import useAuthStore from '../store/useAuthStore'
 import curriculum from '../data/curriculum'
 import soundManager from '../utils/soundManager'
 import speechHelper from '../utils/speechHelper'
@@ -28,6 +29,7 @@ function findLesson(lessonId) {
 export default function LessonPage() {
   const navigate = useNavigate()
   const { lessonId } = useParams()
+  const { isGuest, setAuthModalOpen } = useAuthStore()
   const { coins, addCoins, addXp, autoSpeakLesson, soundEnabled } = useUserStore()
   const { completeLesson, recordMistake, progressQuest } = useProgressStore()
 
@@ -248,30 +250,49 @@ export default function LessonPage() {
 
           <StarsDisplay stars={stars} maxStars={3} size="lg" />
 
-          {/* Integrated Rewards Box */}
-          <div className="result-rewards-card">
-            <div className="result-reward-item">
-              <span className="reward-icon">🪙</span>
-              <div className="reward-info">
-                <span className="reward-val number">+20</span>
-                <span className="reward-label">Xu vàng</span>
+          {/* Conditional Rewards Box / Guest Notice */}
+          {isGuest ? (
+            <div className="guest-lesson-result-card">
+              <div className="guest-result-badge-row">
+                <span className="guest-result-pill">⚡ Chế độ Khách</span>
+              </div>
+              <p className="guest-result-text">
+                💡 Đăng nhập tài khoản để tích lũy <strong>Xu Vàng</strong>, thăng cấp <strong>Level</strong> và mở khóa toàn bộ thành tích nhé!
+              </p>
+              <button
+                type="button"
+                className="btn-guest-result-login"
+                onClick={() => setAuthModalOpen(true)}
+              >
+                <LogIn size={18} />
+                <span>Đăng nhập để nhận thưởng</span>
+              </button>
+            </div>
+          ) : (
+            <div className="result-rewards-card">
+              <div className="result-reward-item">
+                <span className="reward-icon">🪙</span>
+                <div className="reward-info">
+                  <span className="reward-val number">+20</span>
+                  <span className="reward-label">Xu vàng</span>
+                </div>
+              </div>
+              <div className="result-reward-item">
+                <span className="reward-icon">⚡</span>
+                <div className="reward-info">
+                  <span className="reward-val number">+50</span>
+                  <span className="reward-label">Điểm XP</span>
+                </div>
+              </div>
+              <div className="result-reward-item">
+                <span className="reward-icon">⭐</span>
+                <div className="reward-info">
+                  <span className="reward-val number">+{stars}</span>
+                  <span className="reward-label">Sao tích lũy</span>
+                </div>
               </div>
             </div>
-            <div className="result-reward-item">
-              <span className="reward-icon">⚡</span>
-              <div className="reward-info">
-                <span className="reward-val number">+50</span>
-                <span className="reward-label">Điểm XP</span>
-              </div>
-            </div>
-            <div className="result-reward-item">
-              <span className="reward-icon">⭐</span>
-              <div className="reward-info">
-                <span className="reward-val number">+{stars}</span>
-                <span className="reward-label">Sao tích lũy</span>
-              </div>
-            </div>
-          </div>
+          )}
 
           <div className="result-actions">
             <Button variant="primary" size="lg" onClick={() => navigate(-1)} className="result-action-btn">

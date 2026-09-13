@@ -6,6 +6,8 @@ import Card from '../components/ui/Card'
 import ProgressBar from '../components/ui/ProgressBar'
 import useUserStore from '../store/useUserStore'
 import useProgressStore from '../store/useProgressStore'
+import useAuthStore from '../store/useAuthStore'
+import GuestFeatureLock from '../components/auth/GuestFeatureLock'
 import { generateQuestion, generateCalculation } from '../utils/exerciseGenerator'
 import soundManager from '../utils/soundManager'
 import fireConfetti from '../utils/confettiHelper'
@@ -70,9 +72,27 @@ const GAME_LIST = [
 ]
 
 export default function GamesPage() {
+  const { isGuest } = useAuthStore()
   const { grade, addCoins, addXp } = useUserStore()
   const { recordGamePlayed, recordRaceWin } = useProgressStore()
   const [activeGame, setActiveGame] = useState(null)
+
+  if (isGuest) {
+    return (
+      <GuestFeatureLock
+        icon="🎮"
+        badgeText="TRÒ CHƠI TOÁN HỌC"
+        title="Trò Chơi Toán Học Dành Riêng Cho Thành Viên"
+        subtitle="Đăng nhập tài khoản để mở khóa toàn bộ 6 Mini Game rèn luyện phản xạ tính nhẩm siêu tốc, tích lũy xu và tranh tài trên bảng xếp hạng!"
+        benefits={[
+          'Trải nghiệm trọn vẹn 6 tựa mini game toán học cực vui',
+          'Đua xe toán học, Bắn bóng, Cán cân thần kỳ & Bắn thiên thạch',
+          'Thưởng Xu và Điểm kinh nghiệm sau mỗi vòng thắng',
+          'Lưu kỷ lục điểm số và tranh tài cùng bạn bè',
+        ]}
+      />
+    )
+  }
 
   return (
     <div className="games-container">
