@@ -294,23 +294,24 @@ export default function LessonPage() {
         <Button
           variant="outline"
           size="lg"
+          icon={<ArrowLeft size={20} strokeWidth={2.5} />}
           onClick={handlePrev}
           disabled={currentSlide === 0}
           className="lesson-nav-btn lesson-nav-btn-prev"
         >
-          <ArrowLeft size={20} /> Trước
+          Trước
         </Button>
 
         <Button
           variant={isLastSlide ? 'success' : 'primary'}
           size="lg"
+          iconRight={!isLastSlide ? <ArrowRight size={20} strokeWidth={2.5} /> : undefined}
           onClick={handleNext}
           disabled={!canGoNext}
           glow={canGoNext && isQuizSlide}
           className="lesson-nav-btn lesson-nav-btn-next"
         >
           {isLastSlide ? '🎉 Hoàn thành bài' : 'Tiếp tục'}
-          {!isLastSlide && <ArrowRight size={20} />}
         </Button>
       </div>
     </div>

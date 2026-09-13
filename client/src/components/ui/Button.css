@@ -2,10 +2,10 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-2);
+  gap: 8px;
   font-family: 'Quicksand', var(--font-heading, sans-serif);
   font-weight: 800;
-  border: none;
+  border: 2px solid transparent;
   border-radius: 999px;
   cursor: pointer;
   transition: all 0.15s ease;
@@ -14,7 +14,7 @@
   text-decoration: none;
   white-space: nowrap;
   box-sizing: border-box;
-  line-height: 1.2;
+  line-height: 1;
 }
 
 /* Sizes with explicit min-height to guarantee vertical symmetry */
@@ -197,11 +197,29 @@
   to { transform: rotate(360deg); }
 }
 
-/* Icon */
+/* Icon and Text Flex Alignment */
 .btn-icon,
 .btn-icon-right {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  font-size: 1.2em;
+  justify-content: center;
+  line-height: 0;
+  flex-shrink: 0;
+}
+
+.btn-icon svg,
+.btn-icon-right svg,
+.btn-text svg,
+.btn svg {
+  display: block;
+  flex-shrink: 0;
+}
+
+.btn-text {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  line-height: 1;
 }
 

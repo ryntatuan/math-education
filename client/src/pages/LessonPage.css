@@ -579,8 +579,9 @@
 }
 
 .lesson-nav-btn {
-  min-width: 140px;
-  font-size: 1.08rem;
+  min-width: 150px;
+  height: 52px;
+  font-size: 1.05rem;
   font-weight: 800;
   display: inline-flex;
   align-items: center;
@@ -613,6 +614,7 @@
 
 .lesson-nav-btn-next {
   min-width: 150px;
+  height: 52px;
 }
 
 

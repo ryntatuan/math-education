@@ -281,6 +281,7 @@ export default function StoriesPage() {
                 <Button
                   variant="outline"
                   size="lg"
+                  icon={<ArrowLeft size={20} strokeWidth={2.5} />}
                   onClick={() => {
                     speechHelper.stop()
                     setIsSpeaking(false)
@@ -289,7 +290,7 @@ export default function StoriesPage() {
                     setIsAnswered(false)
                   }}
                 >
-                  <ArrowLeft size={18} /> Trang trước
+                  Trang trước
                 </Button>
               ) : (
                 <div />
@@ -298,12 +299,12 @@ export default function StoriesPage() {
               <Button
                 variant={canProceed ? 'primary' : 'disabled'}
                 size="lg"
+                iconRight={sceneIndex + 1 < scenes.length ? <ArrowRight size={20} strokeWidth={2.5} /> : undefined}
                 onClick={handleNextScene}
                 disabled={!canProceed}
                 glow={canProceed}
               >
-                <span>{sceneIndex + 1 === scenes.length ? '🎉 Kết Thúc Truyện' : 'Tiếp theo'}</span>
-                <ArrowRight size={18} />
+                {sceneIndex + 1 === scenes.length ? '🎉 Kết Thúc Truyện' : 'Tiếp theo'}
               </Button>
             </div>
           </motion.div>
