@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "cd client && npm run dev",
     "dev:client": "cd client && npm run dev",
-    "build": "cd client && npm run build",
+    "build": "node scripts/build-apk.mjs",
+    "build:web": "cd client && npm run build:web",
     "mobile:sync": "cd client && npm run mobile:sync",
     "mobile:android": "cd client && npm run mobile:android",
     "install:all": "npm install && cd client && npm install && cd ../server && npm install"

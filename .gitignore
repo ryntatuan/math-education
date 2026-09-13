@@ -6,6 +6,9 @@ node_modules/
 dist/
 dist-ssr/
 */dist/
+*.apk
+client/public/downloads/*.apk
+client/public/*.apk
 
 # Logs
 logs

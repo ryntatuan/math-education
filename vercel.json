@@ -4,6 +4,8 @@
   "outputDirectory": "client/dist",
   "rewrites": [
     { "source": "/api/tts", "destination": "/api/tts" },
+    { "source": "/downloads/ToanVui.apk", "destination": "https://github.com/ryntatuan/math-education/releases/latest/download/ToanVui.apk" },
+    { "source": "/ToanVui.apk", "destination": "https://github.com/ryntatuan/math-education/releases/latest/download/ToanVui.apk" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }

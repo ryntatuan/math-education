@@ -167,6 +167,15 @@
   font-weight: 700;
 }
 
+.meta-badge-date {
+  font-size: 0.72rem;
+  color: #64748b;
+  background: rgba(148, 163, 184, 0.15);
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
 .download-apk-action-btn {
   display: flex;
   align-items: center;
@@ -178,14 +187,18 @@
   border-radius: 14px;
   padding: 12px 20px;
   box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35);
-  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-  cursor: pointer;
-  border: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .download-apk-action-btn:hover {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 10px 26px rgba(16, 185, 129, 0.45);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.45);
+}
+
+.download-apk-action-btn:active {
+  transform: translateY(0);
 }
 
 .btn-dl-icon {
@@ -208,6 +221,35 @@
   font-size: 0.78rem;
   opacity: 0.92;
   font-weight: 500;
+}
+
+.download-mirror-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: #64748b;
+  margin-top: -2px;
+}
+
+.mirror-label {
+  font-weight: 500;
+}
+
+.mirror-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: #0284c7;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.mirror-link:hover {
+  color: #0369a1;
+  text-decoration: underline;
 }
 
 .download-share-row {

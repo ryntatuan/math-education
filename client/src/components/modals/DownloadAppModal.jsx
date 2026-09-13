@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Smartphone, Download, Check, Copy, ShieldCheck, HelpCircle, ArrowDownToLine } from 'lucide-react'
+import { X, Smartphone, Download, Check, Copy, ShieldCheck, HelpCircle, ArrowDownToLine, ExternalLink } from 'lucide-react'
 import soundManager from '../../utils/soundManager'
 import useDownloadModalStore from '../../store/useDownloadModalStore'
 import './DownloadAppModal.css'
@@ -9,6 +9,17 @@ import './DownloadAppModal.css'
 export default function DownloadAppModal() {
   const { isOpen, closeDownloadModal } = useDownloadModalStore()
   const [copied, setCopied] = useState(false)
+  const [apkMeta, setApkMeta] = useState(null)
+
+  useEffect(() => {
+    if (!isOpen) return
+    fetch('/downloads/version.json')
+      .then(res => res.ok ? res.json() : null)
+      .then(data => {
+        if (data) setApkMeta(data)
+      })
+      .catch(() => {})
+  }, [isOpen])
 
   if (!isOpen) return null
 
@@ -69,7 +80,12 @@ export default function DownloadAppModal() {
               <div className="meta-row">
                 <span className="meta-badge-version">Bản 1.0.0 (APK)</span>
                 <span className="meta-badge-tag">Android 7.0+</span>
-                <span className="meta-badge-size">Dung lượng: 5.4 MB</span>
+                <span className="meta-badge-size">
+                  {apkMeta?.fileSizeMB ? `Dung lượng: ${apkMeta.fileSizeMB}` : 'Dung lượng: ~15 MB'}
+                </span>
+                {apkMeta?.buildDateFormatted && (
+                  <span className="meta-badge-date">Cập nhật: {apkMeta.buildDateFormatted}</span>
+                )}
               </div>
             </div>
 
@@ -82,9 +98,25 @@ export default function DownloadAppModal() {
               <ArrowDownToLine size={24} className="btn-dl-icon" />
               <div className="btn-dl-text">
                 <span className="btn-dl-title">Tải File Cài Đặt (.APK)</span>
-                <span className="btn-dl-sub">Nhấn để tải trực tiếp về máy • Miễn phí 100%</span>
+                <span className="btn-dl-sub">Tải trực tiếp tốc độ cao • Miễn phí 100%</span>
               </div>
             </a>
+
+            {/* Mirror & Direct Links */}
+            <div className="download-mirror-row">
+              <span className="mirror-label">Link tải dự phòng (Cloud):</span>
+              <a
+                href="https://github.com/ryntatuan/math-education/releases/latest/download/ToanVui.apk"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mirror-link"
+                onClick={() => soundManager.playClick()}
+                title="Tải trực tiếp bản APK mới nhất được build tự động từ GitHub Releases"
+              >
+                <span>GitHub Releases</span>
+                <ExternalLink size={13} />
+              </a>
+            </div>
 
             {/* Copy Link to send to phone via Zalo/Messenger */}
             <div className="download-share-row">
