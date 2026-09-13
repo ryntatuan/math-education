@@ -1,7 +1,8 @@
 import { create } from 'zustand'
 import { supabase, isSupabaseConfigured } from '../services/supabaseClient'
-import syncService from '../services/syncService'
+import syncService, { setActiveChildIdGetter } from '../services/syncService'
 import soundManager from '../utils/soundManager'
+
 
 export const useAuthStore = create((set, get) => ({
   user: null,
@@ -184,4 +185,11 @@ export const useAuthStore = create((set, get) => ({
   },
 }))
 
+setActiveChildIdGetter(() => {
+  const state = useAuthStore.getState()
+  return !state.isGuest ? state.activeChild?.id : null
+})
+
+
 export default useAuthStore
+

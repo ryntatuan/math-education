@@ -18,6 +18,7 @@ import StoriesPage from './pages/StoriesPage'
 import LeaderboardPage from './pages/LeaderboardPage'
 import useUserStore from './store/useUserStore'
 import useAuthStore from './store/useAuthStore'
+import { setupAutoSync } from './services/syncService'
 import soundManager from './utils/soundManager'
 import './App.css'
 
@@ -60,10 +61,12 @@ export default function App() {
   }, [soundEnabled])
 
   useEffect(() => {
+    setupAutoSync()
     useAuthStore.getState().initAuth()
   }, [])
 
   return (
+
     <BrowserRouter>
       <AppLayout />
     </BrowserRouter>

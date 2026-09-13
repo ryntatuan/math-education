@@ -9,8 +9,10 @@ import useProgressStore from '../store/useProgressStore'
 import curriculum from '../data/curriculum'
 import soundManager from '../utils/soundManager'
 import speechHelper from '../utils/speechHelper'
+import syncService from '../services/syncService'
 import confetti from 'canvas-confetti'
 import './LessonPage.css'
+
 
 // Find lesson across all grades/chapters
 function findLesson(lessonId) {
@@ -78,9 +80,11 @@ export default function LessonPage() {
       progressQuest('stars_1', stars)
       addCoins(20)
       addXp(50)
+      syncService.scheduleCloudSync()
       soundManager.playFanfare()
       confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 } })
       setShowResult(true)
+
     } else {
       soundManager.playClick()
       setCurrentSlide((prev) => prev + 1)
