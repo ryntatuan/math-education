@@ -69,16 +69,33 @@ function parsePracticeQuestion(q) {
     }
   }
 
-  // 4. Word problem / Geometry / Riddle
-  const isGeometry =
-    q.question &&
-    (q.question.toLowerCase().includes('hình') ||
-      q.question.toLowerCase().includes('cạnh') ||
-      q.question.toLowerCase().includes('đo') ||
-      q.question.toLowerCase().includes('chu vi'))
+  // 4. Word problem / Geometry / Riddle badges
+  const textLow = (q.question || '').toLowerCase()
+  let badge = '💡 Bài toán tư duy'
+  if (
+    textLow.includes('hình') ||
+    textLow.includes('cạnh') ||
+    textLow.includes('đo') ||
+    textLow.includes('chu vi') ||
+    textLow.includes('diện tích') ||
+    textLow.includes('thể tích') ||
+    textLow.includes('bán kính') ||
+    textLow.includes('đường kính')
+  ) {
+    badge = '🔷 Câu hỏi hình học'
+  } else if (textLow.includes('vận tốc') || textLow.includes('quãng đường') || textLow.includes('gặp nhau') || textLow.includes('đuổi kịp')) {
+    badge = '🏎️ Bài toán chuyển động'
+  } else if (textLow.includes('phân số') || textLow.includes('hỗn số')) {
+    badge = '🍰 Bài toán phân số'
+  } else if (textLow.includes('phần trăm') || textLow.includes('%')) {
+    badge = '🏷️ Tỉ số phần trăm'
+  } else if (textLow.includes('đổi:') || textLow.includes('tấn') || textLow.includes('tạ') || textLow.includes('yến') || textLow.includes('ha') || textLow.includes('thế kỉ')) {
+    badge = '📏 Đại lượng & Đo lường'
+  }
+
   return {
     type: 'text_riddle',
-    badge: isGeometry ? '🔷 Câu hỏi hình học' : '💡 Bài toán tư duy',
+    badge,
     title: 'Câu hỏi:',
     content: q.question,
   }
@@ -122,12 +139,7 @@ export default function PracticePage() {
 
   const TOTAL_QUESTIONS = 10
 
-  const topicsList =
-    selectedGrade === 1
-      ? TOPICS.GRADE_1
-      : selectedGrade === 2
-      ? TOPICS.GRADE_2
-      : TOPICS.GRADE_3
+  const topicsList = TOPICS[`GRADE_${selectedGrade}`] || TOPICS.GRADE_1
 
   const dueMistakes = getDueMistakes ? getDueMistakes() : []
   const masteredCount = (mistakesQueue || []).filter((m) => m.mastered).length
@@ -523,7 +535,7 @@ export default function PracticePage() {
             </div>
 
             <div className="grade-selector-tabs">
-              {[1, 2, 3].map((g) => (
+              {[1, 2, 3, 4, 5].map((g) => (
                 <button
                   key={g}
                   className={`grade-tab-btn ${selectedGrade === g ? 'active' : ''}`}

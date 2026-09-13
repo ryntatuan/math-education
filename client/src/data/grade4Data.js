@@ -1,5 +1,5 @@
-// Data for Grade 4 (Lớp 4) - 10 Chapters
-// Aligned with Vietnam Primary Math Curriculum
+// Data for Grade 4 (Lớp 4) - Chuẩn SGK Bộ GD&ĐT
+// Chuẩn hóa sư phạm 100%: Khám phá -> Khái niệm (Visual-First, Thân thiện lứa tuổi) -> Thử thách -> Ghi nhớ
 
 function makeLesson(id, title, desc, slides = []) {
   return {
@@ -7,154 +7,2573 @@ function makeLesson(id, title, desc, slides = []) {
     title,
     type: 'learn',
     description: desc,
-    slides: slides.length > 0 ? slides : [
-      { type: 'story', content: { mascotMood: 'happy', text: `Chào bé! Hôm nay chúng mình sẽ cùng học ${title} nhé! 🌟` } },
-      { type: 'summary', content: { title, points: [desc], mascotMood: 'proud' } },
-    ],
+    slides,
   }
 }
 
 export const grade4Data = {
-  id: 4,
-  name: 'Lớp 4',
-  description: 'Lớp triệu, bốn phép tính số tự nhiên, phân số, hình học & đo lường',
-  icon: '🌲',
-  color: '#ec4899',
-  ageRange: '9-10 tuổi',
-  chapters: [
+  "id": 4,
+  "name": "Lớp 4",
+  "description": "Số tự nhiên đến lớp triệu, bốn phép tính, phân số, hình bình hành, hình thoi, toán Tổng - Tỉ, Hiệu - Tỉ",
+  "icon": "🌲",
+  "color": "#ec4899",
+  "ageRange": "9-10 tuổi",
+  "chapters": [
     {
-      id: 'g4-c1',
-      name: 'Chương 1: Số tự nhiên & Lớp triệu',
-      description: 'Đọc, viết các số có nhiều chữ số, hàng và lớp',
-      icon: '🔢',
-      color: '#ec4899',
-      totalLessons: 12,
-      lessons: [
-        makeLesson('g4-c1-l1', 'Bài 1: Làm quen với số có sáu chữ số', 'Hàng trăm nghìn và cấu tạo số'),
-        makeLesson('g4-c1-l2', 'Bài 2: Hàng và Lớp: Lớp đơn vị, lớp nghìn, lớp triệu', 'Nhận biết các lớp số'),
-        makeLesson('g4-c1-l3', 'Bài 3: So sánh các số có nhiều chữ số', 'Quy tắc so sánh số tự nhiên'),
-        makeLesson('g4-c1-l4', 'Bài 4: Làm tròn số đến hàng trăm nghìn, hàng triệu', 'Ứng dụng làm tròn thực tế'),
-      ],
+      "id": "g4-c1",
+      "name": "Chương 1: Số tự nhiên & Bảng đơn vị đo khối lượng",
+      "description": "Đọc, viết, so sánh số có nhiều chữ số đến lớp triệu; bảng khối lượng yến, tạ, tấn; giây, thế kỉ, trung bình cộng, biểu đồ cột",
+      "icon": "🔢",
+      "color": "#3b82f6",
+      "totalLessons": 12,
+      "lessons": [
+        {
+          "id": "g4-c1-l1",
+          "title": "Bài 1: Ôn tập các số đến 100 000",
+          "type": "learn",
+          "description": "Đọc, viết các số trong phạm vi 100 000, cấu tạo thập phân của số",
+          "slides": [
+            {
+              "type": "story",
+              "content": {
+                "mascotMood": "excited",
+                "text": "Chào mừng các bạn đến với Toán lớp 4! Robot và Cú Mèo rất vui được đồng hành cùng các bạn. Hôm nay chúng mình cùng ôn lại các số đến 100 000 nhé! 🦉🤖"
+              }
+            },
+            {
+              "type": "visual",
+              "content": {
+                "text": "Số 68 352 gồm: 6 chục nghìn, 8 nghìn, 3 trăm, 5 chục và 2 đơn vị. Viết thành tổng: 68 352 = 60 000 + 8 000 + 300 + 50 + 2"
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Số 'Tám mươi lăm nghìn ba trăm linh hai' được viết là:",
+                "options": [
+                  "85 302",
+                  "85 320",
+                  "85 032",
+                  "80 532"
+                ],
+                "answer": "85 302",
+                "mascotHint": "Chữ số hàng chục là 0 (linh hai), đơn vị là 2!"
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Số liền trước của số 100 000 là số nào?",
+                "options": [
+                  "99 999",
+                  "99 990",
+                  "90 000",
+                  "100 001"
+                ],
+                "answer": "99 999",
+                "mascotHint": "Muốn tìm số liền trước, ta lấy số đó trừ đi 1: 100 000 - 1 = 99 999"
+              }
+            },
+            {
+              "type": "summary",
+              "content": {
+                "title": "Ghi nhớ bài học:",
+                "points": [
+                  "Đọc số từ trái sang phải, tách theo từng lớp 3 chữ số.",
+                  "Số liền trước = Số đã cho - 1; Số liền sau = Số đã cho + 1."
+                ],
+                "mascotMood": "proud"
+              }
+            }
+          ]
+        },
+        {
+          "id": "g4-c1-l2",
+          "title": "Bài 2: Biểu thức có chứa một chữ",
+          "type": "learn",
+          "description": "Làm quen với biểu thức dạng a + b, 5 + a; tính giá trị của biểu thức khi biết giá trị của chữ",
+          "slides": [
+            {
+              "type": "story",
+              "content": {
+                "mascotMood": "happy",
+                "text": "Hôm nay chúng mình làm quen với một người bạn mới rất thú vị: Biểu thức có chứa chữ! Ví dụ: 3 + a, nếu a = 2 thì giá trị là 3 + 2 = 5! 💡"
+              }
+            },
+            {
+              "type": "visual",
+              "content": {
+                "text": "Nếu a = 6 thì giá trị của biểu thức 15 + a là: 15 + 6 = 21. Mỗi lần thay chữ a bằng số, ta tính được một giá trị của biểu thức 15 + a."
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Tính giá trị của biểu thức 25 - b với b = 7:",
+                "options": [
+                  18,
+                  17,
+                  32,
+                  19
+                ],
+                "answer": 18,
+                "mascotHint": "Thay b = 7 vào: 25 - 7 = 18!"
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Tính giá trị của biểu thức 120 : x với x = 4:",
+                "options": [
+                  30,
+                  40,
+                  35,
+                  480
+                ],
+                "answer": 30,
+                "mascotHint": "Thay x = 4 vào: 120 : 4 = 30!"
+              }
+            },
+            {
+              "type": "summary",
+              "content": {
+                "title": "Quy tắc cần nhớ:",
+                "points": [
+                  "Biểu thức có chứa một chữ gồm các số, dấu phép tính và một chữ cái.",
+                  "Thay chữ bằng số rồi thực hiện phép tính để tìm giá trị biểu thức."
+                ],
+                "mascotMood": "proud"
+              }
+            }
+          ]
+        },
+        {
+          "id": "g4-c1-l3",
+          "title": "Bài 3: Các số có sáu chữ số & Hàng trăm nghìn",
+          "type": "learn",
+          "description": "Hàng trăm nghìn, cấu tạo số có sáu chữ số",
+          "slides": [
+            {
+              "type": "story",
+              "content": {
+                "mascotMood": "happy",
+                "text": "10 chục nghìn gọi là 1 trăm nghìn (viết là 100 000). Số có 6 chữ số có hàng cao nhất là hàng trăm nghìn! 🚀"
+              }
+            },
+            {
+              "type": "visual",
+              "content": {
+                "text": "Số 432 516: - Chữ số 4 ở hàng trăm nghìn, có giá trị 400 000. - Chữ số 3 ở hàng chục nghìn, 2 ở hàng nghìn. - Chữ số 5 ở hàng trăm, 1 ở hàng chục, 6 ở hàng đơn vị."
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Trong số 742 815, chữ số 7 thuộc hàng nào?",
+                "options": [
+                  "Hàng trăm nghìn",
+                  "Hàng chục nghìn",
+                  "Hàng triệu",
+                  "Hàng trăm"
+                ],
+                "answer": "Hàng trăm nghìn",
+                "mascotHint": "Đếm từ phải qua trái: đơn vị, chục, trăm, nghìn, chục nghìn, trăm nghìn!"
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Số gồm 5 trăm nghìn, 7 chục và 3 đơn vị viết là:",
+                "options": [
+                  "500 073",
+                  "507 003",
+                  "570 003",
+                  "500 730"
+                ],
+                "answer": "500 073",
+                "mascotHint": "Hàng chục nghìn, nghìn, trăm đều bằng 0, viết là 500 073!"
+              }
+            },
+            {
+              "type": "summary",
+              "content": {
+                "title": "Ghi nhớ:",
+                "points": [
+                  "10 chục nghìn = 1 trăm nghìn (100 000).",
+                  "Số nhỏ nhất có 6 chữ số là 100 000, số lớn nhất là 999 999."
+                ],
+                "mascotMood": "proud"
+              }
+            }
+          ]
+        },
+        {
+          "id": "g4-c1-l4",
+          "title": "Bài 4: Hàng và Lớp",
+          "type": "learn",
+          "description": "Lớp đơn vị (đơn vị, chục, trăm) và Lớp nghìn (nghìn, chục nghìn, trăm nghìn)",
+          "slides": [
+            {
+              "type": "story",
+              "content": {
+                "mascotMood": "excited",
+                "text": "Để đọc và viết số lớn thật dễ dàng, các nhà toán học chia các hàng thành từng LỚP, mỗi lớp gồm 3 hàng liên tiếp! 🏢"
+              }
+            },
+            {
+              "type": "visual",
+              "content": {
+                "text": "Bảng phân chia Hàng và Lớp: - LỚP NGHÌN: Hàng trăm nghìn, Hàng chục nghìn, Hàng nghìn - LỚP ĐƠN VỊ: Hàng trăm, Hàng chục, Hàng đơn vị"
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Số 325 418 có các chữ số thuộc lớp nghìn là:",
+                "options": [
+                  "3, 2, 5",
+                  "4, 1, 8",
+                  "3, 2, 4",
+                  "2, 5, 4"
+                ],
+                "answer": "3, 2, 5",
+                "mascotHint": "Lớp nghìn gồm 3 chữ số đầu tiên bên trái: 3 trăm nghìn, 2 chục nghìn, 5 nghìn!"
+              }
+            },
+            {
+              "type": "summary",
+              "content": {
+                "title": "Ghi nhớ:",
+                "points": [
+                  "Lớp đơn vị: hàng đơn vị, hàng chục, hàng trăm.",
+                  "Lớp nghìn: hàng nghìn, hàng chục nghìn, hàng trăm nghìn."
+                ],
+                "mascotMood": "proud"
+              }
+            }
+          ]
+        },
+        {
+          "id": "g4-c1-l5",
+          "title": "Bài 5: So sánh các số có nhiều chữ số",
+          "type": "learn",
+          "description": "Quy tắc so sánh số có số chữ số khác nhau và cùng số chữ số",
+          "slides": [
+            {
+              "type": "story",
+              "content": {
+                "mascotMood": "happy",
+                "text": "Khi so sánh hai số tự nhiên, số nào có nhiều chữ số hơn thì số đó lớn hơn! Nếu cùng số chữ số thì so sánh từng cặp từ trái sang phải! ⚖️"
+              }
+            },
+            {
+              "type": "visual",
+              "content": {
+                "text": "Ví dụ 1: 100 000 > 99 999 (vì 6 chữ số > 5 chữ số) Ví dụ 2: 753 210 > 751 980 (hàng trăm nghìn và chục nghìn bằng nhau, hàng nghìn có 3 > 1)."
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Điền dấu thích hợp: 98 765 ... 102 345",
+                "options": [
+                  "<",
+                  ">",
+                  "="
+                ],
+                "answer": "<",
+                "mascotHint": "98 765 có 5 chữ số, 102 345 có 6 chữ số, nên 98 765 < 102 345."
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Số nào lớn nhất trong các số: 456 789; 456 879; 456 987; 456 897?",
+                "options": [
+                  "456 987",
+                  "456 879",
+                  "456 897",
+                  "456 789"
+                ],
+                "answer": "456 987",
+                "mascotHint": "So sánh hàng trăm: 9 > 8 > 7, nên 456 987 lớn nhất!"
+              }
+            },
+            {
+              "type": "summary",
+              "content": {
+                "title": "Quy tắc so sánh:",
+                "points": [
+                  "Số có nhiều chữ số hơn, nên Lớn hơn.",
+                  "Nếu bằng số chữ số, nên So sánh từ hàng cao nhất (trái sang phải)."
+                ],
+                "mascotMood": "celebrate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "g4-c1-l6",
+          "title": "Bài 6: Triệu và Lớp triệu",
+          "type": "learn",
+          "description": "Làm quen với 1 triệu, 10 triệu, 100 triệu và Lớp triệu",
+          "slides": [
+            {
+              "type": "story",
+              "content": {
+                "mascotMood": "excited",
+                "text": "10 trăm nghìn gọi là 1 triệu (viết là 1 000 000 - gồm 1 chữ số 1 và 6 chữ số 0)! Lớp triệu gồm hàng triệu, chục triệu, trăm triệu! 🌟"
+              }
+            },
+            {
+              "type": "visual",
+              "content": {
+                "text": "Cấu tạo Lớp triệu: - Hàng triệu: 1 000 000 - Hàng chục triệu: 10 000 000 - Hàng trăm triệu: 100 000 000 Số 345 000 000 đọc là: Ba trăm bốn mươi lăm triệu."
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Số một triệu có bao nhiêu chữ số 0?",
+                "options": [
+                  6,
+                  5,
+                  7,
+                  8
+                ],
+                "answer": 6,
+                "mascotHint": "1 000 000 có 6 chữ số 0 đứng sau chữ số 1!"
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Trong số 52 489 120, lớp triệu gồm các chữ số:",
+                "options": [
+                  "5, 2",
+                  "4, 8, 9",
+                  "1, 2, 0",
+                  "5, 2, 4"
+                ],
+                "answer": "5, 2",
+                "mascotHint": "5 thuộc hàng chục triệu, 2 thuộc hàng triệu, nên Lớp triệu gồm 5 và 2!"
+              }
+            },
+            {
+              "type": "summary",
+              "content": {
+                "title": "Ghi nhớ:",
+                "points": [
+                  "Lớp triệu gồm 3 hàng: hàng triệu, hàng chục triệu, hàng trăm triệu.",
+                  "1 tỉ = 10 trăm triệu = 1 000 000 000 (9 chữ số 0)."
+                ],
+                "mascotMood": "proud"
+              }
+            }
+          ]
+        },
+        {
+          "id": "g4-c1-l7",
+          "title": "Bài 7: Dãy số tự nhiên và Hệ thập phân",
+          "type": "learn",
+          "description": "Đặc điểm của dãy số tự nhiên: 0, 1, 2, 3... và quy tắc ghi số trong hệ thập phân",
+          "slides": [
+            {
+              "type": "story",
+              "content": {
+                "mascotMood": "thinking",
+                "text": "Dãy số tự nhiên bắt đầu từ số 0: 0, 1, 2, 3, 4, 5... Dãy số này kéo dài mãi mãi và không có số tự nhiên lớn nhất! ♾️"
+              }
+            },
+            {
+              "type": "visual",
+              "content": {
+                "text": "- Số tự nhiên bé nhất là số 0. - Không có số tự nhiên lớn nhất. - Hai số tự nhiên liên tiếp hơn kém nhau 1 đơn vị. - Dùng 10 chữ số (0 đến 9) để viết mọi số tự nhiên trong hệ thập phân."
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Số tự nhiên bé nhất là số nào?",
+                "options": [
+                  0,
+                  1,
+                  -1,
+                  10
+                ],
+                "answer": 0,
+                "mascotHint": "Số 0 là số tự nhiên bé nhất!"
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Ba số tự nhiên liên tiếp tăng dần là:",
+                "options": [
+                  "99, 100, 101",
+                  "98, 100, 102",
+                  "100, 99, 98",
+                  "1, 3, 5"
+                ],
+                "answer": "99, 100, 101",
+                "mascotHint": "Hai số liên tiếp cách nhau đúng 1 đơn vị: 99, 100, 101!"
+              }
+            },
+            {
+              "type": "summary",
+              "content": {
+                "title": "Ghi nhớ:",
+                "points": [
+                  "Số 0 là số tự nhiên nhỏ nhất.",
+                  "Dãy số tự nhiên là vô tận, cứ thêm 1 vào một số ta được số liền sau."
+                ],
+                "mascotMood": "proud"
+              }
+            }
+          ]
+        },
+        {
+          "id": "g4-c1-l8",
+          "title": "Bài 8: Viết số tự nhiên trong hệ thập phân",
+          "type": "learn",
+          "description": "Giá trị của mỗi chữ số phụ thuộc vào vị trí (hàng) của nó trong số đó",
+          "slides": [
+            {
+              "type": "story",
+              "content": {
+                "mascotMood": "happy",
+                "text": "Cùng là chữ số 5 nhưng trong số 52 nó có giá trị là 50 (5 chục), còn trong số 500 nó có giá trị là 5 trăm! Đó là nét kỳ diệu của hệ thập phân! ✨"
+              }
+            },
+            {
+              "type": "visual",
+              "content": {
+                "text": "Phân tích giá trị theo hàng: Số 7 245 = 7 000 + 200 + 40 + 5 - Chữ số 7 có giá trị: 7 000 - Chữ số 2 có giá trị: 200 - Chữ số 4 có giá trị: 40 - Chữ số 5 có giá trị: 5"
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Trong số 854 120, chữ số 5 có giá trị là bao nhiêu?",
+                "options": [
+                  "50 000",
+                  "5 000",
+                  "500 000",
+                  "500"
+                ],
+                "answer": "50 000",
+                "mascotHint": "Chữ số 5 ở hàng chục nghìn nên có giá trị là 5 chục nghìn = 50 000!"
+              }
+            },
+            {
+              "type": "summary",
+              "content": {
+                "title": "Ghi nhớ:",
+                "points": [
+                  "Cứ 10 đơn vị ở một hàng hợp thành 1 đơn vị ở hàng trên liền kề.",
+                  "Giá trị chữ số = Chữ số × Giá trị của hàng."
+                ],
+                "mascotMood": "proud"
+              }
+            }
+          ]
+        },
+        {
+          "id": "g4-c1-l9",
+          "title": "Bài 9: Bảng đơn vị đo khối lượng: Yến, tạ, tấn",
+          "type": "learn",
+          "description": "Làm quen với yến, tạ, tấn và mối quan hệ giữa các đơn vị đo khối lượng",
+          "slides": [
+            {
+              "type": "story",
+              "content": {
+                "mascotMood": "excited",
+                "text": "Để đo khối lượng những con voi, xe tải chở hàng lớn, người ta dùng các đơn vị: yến, tạ, tấn! 🐘🚚"
+              }
+            },
+            {
+              "type": "visual",
+              "content": {
+                "text": "Mối quan hệ đo khối lượng: 1 yến = 10 kg 1 tạ = 10 yến = 100 kg 1 tấn = 10 tạ = 1 000 kg Bảng đơn vị: Tấn > Tạ > Yến > kg > hg > dag > g (mỗi đơn vị gấp 10 lần đơn vị liền sau)."
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "5 tấn bằng bao nhiêu ki-lô-gam?",
+                "options": [
+                  "5 000 kg",
+                  "500 kg",
+                  "50 kg",
+                  "50 000 kg"
+                ],
+                "answer": "5 000 kg",
+                "mascotHint": "1 tấn = 1 000 kg nên 5 tấn = 5 × 1 000 = 5 000 kg!"
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Đổi: 3 tạ 5 yến = ... yến",
+                "options": [
+                  35,
+                  305,
+                  350,
+                  30
+                ],
+                "answer": 35,
+                "mascotHint": "3 tạ = 30 yến. 30 + 5 = 35 yến!"
+              }
+            },
+            {
+              "type": "summary",
+              "content": {
+                "title": "Ghi nhớ bảng đo khối lượng:",
+                "points": [
+                  "1 tấn = 10 tạ = 1 000 kg.",
+                  "1 tạ = 10 yến = 100 kg.",
+                  "1 yến = 10 kg."
+                ],
+                "mascotMood": "celebrate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "g4-c1-l10",
+          "title": "Bài 10: Giây và Thế kỉ",
+          "type": "learn",
+          "description": "Làm quen với đơn vị giây (1 phút = 60 giây) và thế kỉ (1 thế kỉ = 100 năm)",
+          "slides": [
+            {
+              "type": "story",
+              "content": {
+                "mascotMood": "happy",
+                "text": "Tích tắc tích tắc! Kim giây đồng hồ quay một vòng là được 1 phút (60 giây). Còn 100 năm trôi qua là trọn vẹn 1 thế kỉ! ⏳🕰️"
+              }
+            },
+            {
+              "type": "visual",
+              "content": {
+                "text": "Quy đổi thời gian: - 1 giờ = 60 phút - 1 phút = 60 giây - 1 thế kỉ = 100 năm Từ năm 1 đến năm 100 là thế kỉ I (thứ nhất). Từ năm 101 đến năm 200 là thế kỉ II (thứ hai). Năm 2024 thuộc thế kỉ XXI (thứ hai mươi mốt)."
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "2 phút 15 giây bằng bao nhiêu giây?",
+                "options": [
+                  135,
+                  125,
+                  75,
+                  145
+                ],
+                "answer": 135,
+                "mascotHint": "2 phút = 120 giây. 120 + 15 = 135 giây!"
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Năm 1945 thuộc thế kỉ nào?",
+                "options": [
+                  "Thế kỉ XX",
+                  "Thế kỉ XIX",
+                  "Thế kỉ XXI",
+                  "Thế kỉ XVIII"
+                ],
+                "answer": "Thế kỉ XX",
+                "mascotHint": "Từ năm 1901 đến năm 2000 là thế kỉ 20 (XX)!"
+              }
+            },
+            {
+              "type": "summary",
+              "content": {
+                "title": "Ghi nhớ:",
+                "points": [
+                  "1 phút = 60 giây.",
+                  "1 thế kỉ = 100 năm."
+                ],
+                "mascotMood": "proud"
+              }
+            }
+          ]
+        },
+        {
+          "id": "g4-c1-l11",
+          "title": "Bài 11: Tìm số trung bình cộng",
+          "type": "learn",
+          "description": "Quy tắc tìm số trung bình cộng của nhiều số: Tính tổng rồi chia cho số các số hạng",
+          "slides": [
+            {
+              "type": "story",
+              "content": {
+                "mascotMood": "excited",
+                "text": "Muốn chia đều bánh kẹo hay tìm số điểm trung bình, ta dùng bài toán Tìm số trung bình cộng! Rất dễ nhớ: Lấy tổng chia cho số số hạng! 🍰⚖️"
+              }
+            },
+            {
+              "type": "visual",
+              "content": {
+                "text": "Quy tắc: Số trung bình cộng = (Tổng các số hạng) : (Số các số hạng) Ví dụ: Tìm số TBC của 12, 14 và 16: Tổng = 12 + 14 + 16 = 42 Số số hạng = 3 Trung bình cộng = 42 : 3 = 14"
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Tìm số trung bình cộng của 20 và 40:",
+                "options": [
+                  30,
+                  25,
+                  35,
+                  60
+                ],
+                "answer": 30,
+                "mascotHint": "Tổng = 20 + 40 = 60. TBC = 60 : 2 = 30!"
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Ba bạn có số vở lần lượt là 10, 15, 20 quyển. Trung bình mỗi bạn có bao nhiêu quyển vở?",
+                "options": [
+                  15,
+                  16,
+                  14,
+                  45
+                ],
+                "answer": 15,
+                "mascotHint": "(10 + 15 + 20) : 3 = 45 : 3 = 15 quyển!"
+              }
+            },
+            {
+              "type": "summary",
+              "content": {
+                "title": "Công thức vàng:",
+                "points": [
+                  "Trung bình cộng = Tổng : Số lượng số hạng.",
+                  "Tổng các số = Trung bình cộng × Số lượng số hạng."
+                ],
+                "mascotMood": "celebrate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "g4-c1-l12",
+          "title": "Bài 12: Biểu đồ (Biểu đồ cột)",
+          "type": "learn",
+          "description": "Đọc, xử lý thông tin số liệu trên biểu đồ cột đơn giản",
+          "slides": [
+            {
+              "type": "story",
+              "content": {
+                "mascotMood": "happy",
+                "text": "Biểu đồ cột giúp chúng mình quan sát và so sánh số lượng giữa các nhóm một cách nhanh chóng và trực quan nhất! 📊"
+              }
+            },
+            {
+              "type": "visual",
+              "content": {
+                "text": "Đặc điểm biểu đồ cột: - Cột nằm ngang ghi tên các đối tượng (ví dụ: Lớp 4A, 4B, 4C). - Cột thẳng đứng ghi số lượng (ví dụ: số cây trồng được). - Cột càng cao thì số lượng càng nhiều."
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Nếu cột lớp 4A cao tới mức 35 cây, lớp 4B tới mức 40 cây, thì cả hai lớp trồng được bao nhiêu cây?",
+                "options": [
+                  75,
+                  70,
+                  80,
+                  65
+                ],
+                "answer": 75,
+                "mascotHint": "Tổng số cây = 35 + 40 = 75 cây!"
+              }
+            },
+            {
+              "type": "summary",
+              "content": {
+                "title": "Kỹ năng đọc biểu đồ:",
+                "points": [
+                  "Quan sát tên hàng ngang và giá trị cột dọc.",
+                  "Dóng từ đỉnh cột sang trục số để đọc chính xác số liệu."
+                ],
+                "mascotMood": "proud"
+              }
+            }
+          ]
+        }
+      ]
     },
     {
-      id: 'g4-c2',
-      name: 'Chương 2: Phép cộng & trừ số tự nhiên',
-      description: 'Đặt tính rồi tính cộng, trừ các số có nhiều chữ số',
-      icon: '➕',
-      color: '#3b82f6',
-      totalLessons: 12,
-      lessons: [
-        makeLesson('g4-c2-l1', 'Bài 1: Phép cộng các số có nhiều chữ số', 'Cộng có nhớ và không nhớ'),
-        makeLesson('g4-c2-l2', 'Bài 2: Phép trừ các số có nhiều chữ số', 'Trừ có nhớ liên tiếp'),
-        makeLesson('g4-c2-l3', 'Bài 3: Tính chất giao hoán và kết hợp của phép cộng', 'Vận dụng tính nhanh'),
-      ],
+      "id": "g4-c2",
+      "name": "Chương 2: Bốn phép tính số tự nhiên & Hình học",
+      "description": "Cộng, trừ số nhiều chữ số; tính chất phép tính; toán Tổng - Hiệu; góc nhọn, tù, bẹt; vuông góc, song song; nhân chia số nhiều chữ số",
+      "icon": "🧮",
+      "color": "#10b981",
+      "totalLessons": 13,
+      "lessons": [
+        {
+          "id": "g4-c2-l1",
+          "title": "Bài 13: Phép cộng và Phép trừ số tự nhiên",
+          "type": "learn",
+          "description": "Đặt tính rồi tính cộng, trừ các số có nhiều chữ số (có nhớ)",
+          "slides": [
+            {
+              "type": "story",
+              "content": {
+                "mascotMood": "happy",
+                "text": "Quy tắc đặt tính: Các chữ số ở cùng một hàng phải đặt thẳng cột với nhau, cộng hoặc trừ lần lượt từ phải sang trái! ➕➖"
+              }
+            },
+            {
+              "type": "visual",
+              "content": {
+                "text": "Ví dụ cộng: 483 526 + 254 138 = 737 664 Ví dụ trừ: 865 240 - 328 175 = 537 065 Chú ý: Nhớ cộng thêm số nhớ vào hàng tiếp theo bên trái!"
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Tính: 35 480 + 24 150 = ?",
+                "options": [
+                  "59 630",
+                  "59 530",
+                  "58 630",
+                  "60 630"
+                ],
+                "answer": "59 630",
+                "mascotHint": "0+0=0, 8+5=13 viết 3 nhớ 1, 4+1+1=6, 5+4=9, 3+2=5, nên là 59 630."
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Tính: 70 000 - 15 000 = ?",
+                "options": [
+                  "55 000",
+                  "65 000",
+                  "45 000",
+                  "50 000"
+                ],
+                "answer": "55 000",
+                "mascotHint": "70 nghìn - 15 nghìn = 55 nghìn (55 000)!"
+              }
+            },
+            {
+              "type": "summary",
+              "content": {
+                "title": "Ghi nhớ:",
+                "points": [
+                  "Đặt tính thẳng cột theo hàng.",
+                  "Cộng/trừ từ phải sang trái.",
+                  "Nhớ đúng hàng khi có nhớ."
+                ],
+                "mascotMood": "proud"
+              }
+            }
+          ]
+        },
+        {
+          "id": "g4-c2-l2",
+          "title": "Bài 14: Biểu thức có chứa hai chữ, ba chữ",
+          "type": "learn",
+          "description": "Biểu thức dạng a + b, a - b + c; tính giá trị biểu thức với các số cụ thể",
+          "slides": [
+            {
+              "type": "story",
+              "content": {
+                "mascotMood": "excited",
+                "text": "Nếu có hai chữ ta có biểu thức a + b. Nếu có ba chữ ta có a + b + c! Thay từng chữ bằng số tương ứng rồi tính nhé! 🔤"
+              }
+            },
+            {
+              "type": "visual",
+              "content": {
+                "text": "Nếu a = 10, b = 5, c = 2 thì giá trị biểu thức a + b × c là: 10 + 5 × 2 = 10 + 10 = 20 (nhớ thực hiện nhân chia trước, cộng trừ sau!)."
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Với m = 40 và n = 15, tính giá trị của m - n:",
+                "options": [
+                  25,
+                  55,
+                  35,
+                  20
+                ],
+                "answer": 25,
+                "mascotHint": "40 - 15 = 25!"
+              }
+            },
+            {
+              "type": "summary",
+              "content": {
+                "title": "Ghi nhớ:",
+                "points": [
+                  "Thay số vào đúng vị trí từng chữ cái.",
+                  "Thực hiện phép tính theo đúng thứ tự ưu tiên."
+                ],
+                "mascotMood": "proud"
+              }
+            }
+          ]
+        },
+        {
+          "id": "g4-c2-l3",
+          "title": "Bài 15: Tính chất giao hoán và kết hợp của phép cộng",
+          "type": "learn",
+          "description": "a + b = b + a và (a + b) + c = a + (b + c); vận dụng tính nhanh, tính thuận tiện",
+          "slides": [
+            {
+              "type": "story",
+              "content": {
+                "mascotMood": "happy",
+                "text": "Khi đổi chỗ các số hạng trong một tổng thì tổng không thay đổi: a + b = b + a! Ta có thể nhóm các số tạo thành số tròn chục, tròn trăm để tính siêu nhanh! ⚡"
+              }
+            },
+            {
+              "type": "visual",
+              "content": {
+                "text": "Tính thuận tiện: 127 + 389 + 73 = (127 + 73) + 389 = 200 + 389 = 589"
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Tính nhanh: 165 + 298 + 35",
+                "options": [
+                  498,
+                  500,
+                  488,
+                  510
+                ],
+                "answer": 498,
+                "mascotHint": "Nhóm (165 + 35) + 298 = 200 + 298 = 498!"
+              }
+            },
+            {
+              "type": "summary",
+              "content": {
+                "title": "Tính chất vàng của phép cộng:",
+                "points": [
+                  "Giao hoán: a + b = b + a",
+                  "Kết hợp: (a + b) + c = a + (b + c)"
+                ],
+                "mascotMood": "celebrate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "g4-c2-l4",
+          "title": "Bài 16: Tìm hai số khi biết Tổng và Hiệu của hai số đó",
+          "type": "learn",
+          "description": "Bài toán kinh điển: Số lớn = (Tổng + Hiệu) : 2; Số bé = (Tổng - Hiệu) : 2",
+          "slides": [
+            {
+              "type": "story",
+              "content": {
+                "mascotMood": "excited",
+                "text": "Đây là một trong những dạng toán quan trọng nhất của lớp 4! Cùng Robot học thuộc hai công thức kỳ diệu nhé! 🏆"
+              }
+            },
+            {
+              "type": "visual",
+              "content": {
+                "text": "Công thức: - Số lớn = (Tổng + Hiệu) : 2 - Số bé = (Tổng - Hiệu) : 2 (Hoặc: Số bé = Số lớn - Hiệu; Số lớn = Tổng - Số bé)"
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Tổng hai số là 50, hiệu hai số là 10. Tìm số lớn:",
+                "options": [
+                  30,
+                  20,
+                  25,
+                  35
+                ],
+                "answer": 30,
+                "mascotHint": "Số lớn = (50 + 10) : 2 = 60 : 2 = 30!"
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Hai bạn có tổng cộng 36 viên bi, An nhiều hơn Bình 6 viên. Hỏi Bình có bao nhiêu viên bi?",
+                "options": [
+                  15,
+                  21,
+                  18,
+                  12
+                ],
+                "answer": 15,
+                "mascotHint": "Bình có ít hơn nên Bình là số bé = (36 - 6) : 2 = 30 : 2 = 15 viên!"
+              }
+            },
+            {
+              "type": "summary",
+              "content": {
+                "title": "Ghi nhớ công thức:",
+                "points": [
+                  "Số lớn = (Tổng + Hiệu) : 2",
+                  "Số bé = (Tổng - Hiệu) : 2"
+                ],
+                "mascotMood": "celebrate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "g4-c2-l5",
+          "title": "Bài 17: Góc nhọn, góc tù, góc bẹt",
+          "type": "learn",
+          "description": "Nhận biết và so sánh góc vuông, góc nhọn, góc tù, góc bẹt bằng ê-ke",
+          "slides": [
+            {
+              "type": "story",
+              "content": {
+                "mascotMood": "happy",
+                "text": "Dùng ê-ke để làm chuẩn: Góc vuông bằng góc ê-ke (90°). Góc nhọn bé hơn góc vuông. Góc tù lớn hơn góc vuông. Góc bẹt bằng 2 góc vuông! 📐"
+              }
+            },
+            {
+              "type": "visual",
+              "content": {
+                "text": "- Góc nhọn: Đỉnh O, hai cạnh OA và OB, bé hơn góc vuông. - Góc tù: Lớn hơn góc vuông. - Góc bẹt: Bằng hai góc vuông (hai cạnh thẳng hàng)."
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Góc nào bé hơn góc vuông?",
+                "options": [
+                  "Góc nhọn",
+                  "Góc tù",
+                  "Góc bẹt",
+                  "Góc vuông"
+                ],
+                "answer": "Góc nhọn",
+                "mascotHint": "Góc nhọn luôn bé hơn góc vuông!"
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Góc bẹt bằng mấy góc vuông?",
+                "options": [
+                  2,
+                  1,
+                  3,
+                  4
+                ],
+                "answer": 2,
+                "mascotHint": "Góc bẹt có số đo bằng 2 góc vuông (180°)!"
+              }
+            },
+            {
+              "type": "summary",
+              "content": {
+                "title": "So sánh các loại góc:",
+                "points": [
+                  "Góc nhọn < Góc vuông < Góc tù < Góc bẹt."
+                ],
+                "mascotMood": "proud"
+              }
+            }
+          ]
+        },
+        {
+          "id": "g4-c2-l6",
+          "title": "Bài 18: Hai đường thẳng vuông góc & Song song",
+          "type": "learn",
+          "description": "Nhận biết và vẽ hai đường thẳng vuông góc, hai đường thẳng song song",
+          "slides": [
+            {
+              "type": "story",
+              "content": {
+                "mascotMood": "happy",
+                "text": "Hai đường thẳng cắt nhau tạo thành 4 góc vuông gọi là hai đường thẳng vuông góc! Hai đường thẳng không bao giờ cắt nhau gọi là hai đường thẳng song song (như hai thanh đường ray tàu hoả)! 🛤️"
+              }
+            },
+            {
+              "type": "visual",
+              "content": {
+                "text": "- Vuông góc: Cắt nhau tạo góc 90° (ký hiệu ⊥). - Song song: Cách đều nhau và không bao giờ cắt nhau dù kéo dài mãi."
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Trong hình chữ nhật ABCD, hai cạnh AB và CD như thế nào với nhau?",
+                "options": [
+                  "Song song với nhau",
+                  "Vuông góc với nhau",
+                  "Cắt nhau",
+                  "Trùng nhau"
+                ],
+                "answer": "Song song với nhau",
+                "mascotHint": "Hai cạnh đối diện của hình chữ nhật luôn song song và bằng nhau!"
+              }
+            },
+            {
+              "type": "summary",
+              "content": {
+                "title": "Ghi nhớ:",
+                "points": [
+                  "Hai đường thẳng vuông góc cắt nhau tạo thành 4 góc vuông.",
+                  "Hai đường thẳng song song không bao giờ có điểm chung."
+                ],
+                "mascotMood": "proud"
+              }
+            }
+          ]
+        },
+        {
+          "id": "g4-c2-l7",
+          "title": "Bài 19: Nhân với số có một chữ số & Tính chất phép nhân",
+          "type": "learn",
+          "description": "Đặt tính nhân; tính chất giao hoán (a × b = b × a) và kết hợp ((a × b) × c = a × (b × c))",
+          "slides": [
+            {
+              "type": "story",
+              "content": {
+                "mascotMood": "excited",
+                "text": "Nhân lần lượt từ phải sang trái! Tính chất giao hoán và kết hợp giúp ta tính nhanh: ví dụ 25 × 7 × 4 = (25 × 4) × 7 = 100 × 7 = 700! 💡"
+              }
+            },
+            {
+              "type": "visual",
+              "content": {
+                "text": "Đặt tính: 142 315 × 3 = 426 945 Tính nhanh: (a × b) × c = a × (b × c)"
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Tính nhanh: 5 × 39 × 2 = ?",
+                "options": [
+                  390,
+                  380,
+                  400,
+                  395
+                ],
+                "answer": 390,
+                "mascotHint": "(5 × 2) × 39 = 10 × 39 = 390!"
+              }
+            },
+            {
+              "type": "summary",
+              "content": {
+                "title": "Ghi nhớ:",
+                "points": [
+                  "a × b = b × a",
+                  "(a × b) × c = a × (b × c)",
+                  "Các cặp số tròn trăm: 2 × 5 = 10, 4 × 25 = 100, 8 × 125 = 1000."
+                ],
+                "mascotMood": "celebrate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "g4-c2-l8",
+          "title": "Bài 20: Nhân với 10, 100, 1000... & Chia cho 10, 100, 1000...",
+          "type": "learn",
+          "description": "Quy tắc thêm hoặc bớt các chữ số 0 ở tận cùng của số",
+          "slides": [
+            {
+              "type": "story",
+              "content": {
+                "mascotMood": "happy",
+                "text": "Muốn nhân một số với 10, 100, 1000... ta chỉ việc viết thêm một, hai, ba... chữ số 0 vào bên phải số đó! Khi chia thì bớt đi! 🚀"
+              }
+            },
+            {
+              "type": "visual",
+              "content": {
+                "text": "- 35 × 10 = 350 - 35 × 100 = 3 500 - 4 800 : 100 = 48 - 70 000 : 1 000 = 70"
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Tính: 420 × 100 = ?",
+                "options": [
+                  "42 000",
+                  "4 200",
+                  "420 000",
+                  "42"
+                ],
+                "answer": "42 000",
+                "mascotHint": "Viết thêm hai chữ số 0 vào sau 420 được 42 000!"
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Tính: 65 000 : 100 = ?",
+                "options": [
+                  650,
+                  65,
+                  6500,
+                  65000
+                ],
+                "answer": 650,
+                "mascotHint": "Bớt đi 2 chữ số 0 ở tận cùng: 65 000 : 100 = 650!"
+              }
+            },
+            {
+              "type": "summary",
+              "content": {
+                "title": "Quy tắc nhẩm:",
+                "points": [
+                  "Nhân với 10, 100, 1000: thêm 1, 2, 3 chữ số 0.",
+                  "Chia cho 10, 100, 1000: bớt 1, 2, 3 chữ số 0."
+                ],
+                "mascotMood": "proud"
+              }
+            }
+          ]
+        },
+        {
+          "id": "g4-c2-l9",
+          "title": "Bài 21: Đề-xi-mét vuông (dm²) & Mét vuông (m²)",
+          "type": "learn",
+          "description": "Làm quen đơn vị đo diện tích dm² và m²; mối quan hệ: 1 m² = 100 dm² = 10 000 cm²",
+          "slides": [
+            {
+              "type": "story",
+              "content": {
+                "mascotMood": "happy",
+                "text": "Đề-xi-mét vuông (dm²) là diện tích của hình vuông có cạnh dài 1 dm. Mét vuông (m²) là diện tích hình vuông có cạnh dài 1 m! 🟩"
+              }
+            },
+            {
+              "type": "visual",
+              "content": {
+                "text": "Mối quan hệ diện tích: 1 m² = 100 dm² 1 dm² = 100 cm² 1 m² = 10 000 cm² Mỗi đơn vị diện tích gấp 100 lần đơn vị bé hơn liền kề!"
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "4 m² bằng bao nhiêu đề-xi-mét vuông?",
+                "options": [
+                  400,
+                  40,
+                  4000,
+                  40000
+                ],
+                "answer": 400,
+                "mascotHint": "1 m² = 100 dm² nên 4 m² = 400 dm²!"
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Đổi: 2 m² 50 dm² = ... dm²",
+                "options": [
+                  250,
+                  205,
+                  2500,
+                  2050
+                ],
+                "answer": 250,
+                "mascotHint": "2 m² = 200 dm². 200 + 50 = 250 dm²!"
+              }
+            },
+            {
+              "type": "summary",
+              "content": {
+                "title": "Ghi nhớ bảng đo diện tích:",
+                "points": [
+                  "1 m² = 100 dm²",
+                  "1 dm² = 100 cm²",
+                  "Hai đơn vị đo diện tích liền kề hơn kém nhau 100 lần."
+                ],
+                "mascotMood": "celebrate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "g4-c2-l10",
+          "title": "Bài 22: Nhân một số với một tổng, một hiệu",
+          "type": "learn",
+          "description": "a × (b + c) = a × b + a × c và a × (b - c) = a × b - a × c",
+          "slides": [
+            {
+              "type": "story",
+              "content": {
+                "mascotMood": "excited",
+                "text": "Muốn nhân một số với một tổng, ta có thể nhân số đó với từng số hạng của tổng, rồi cộng các kết quả lại với nhau! 🎯"
+              }
+            },
+            {
+              "type": "visual",
+              "content": {
+                "text": "Công thức: - a × (b + c) = a × b + a × c - a × (b - c) = a × b - a × c Ví dụ tính nhanh: 35 × 11 = 35 × (10 + 1) = 350 + 35 = 385"
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Tính thuận tiện: 24 × 7 + 24 × 3 = ?",
+                "options": [
+                  240,
+                  200,
+                  260,
+                  280
+                ],
+                "answer": 240,
+                "mascotHint": "24 × (7 + 3) = 24 × 10 = 240!"
+              }
+            },
+            {
+              "type": "summary",
+              "content": {
+                "title": "Ghi nhớ công thức phân phối:",
+                "points": [
+                  "a × (b + c) = a × b + a × c",
+                  "a × (b - c) = a × b - a × c"
+                ],
+                "mascotMood": "proud"
+              }
+            }
+          ]
+        },
+        {
+          "id": "g4-c2-l11",
+          "title": "Bài 23: Nhân với số có hai, ba chữ số. Nhân nhẩm với 11",
+          "type": "learn",
+          "description": "Quy tắc đặt tích riêng thứ nhất, tích riêng thứ hai; mẹo nhân nhẩm số có 2 chữ số với 11",
+          "slides": [
+            {
+              "type": "story",
+              "content": {
+                "mascotMood": "happy",
+                "text": "Chú ý khi nhân với số có hai chữ số: Tích riêng thứ hai phải viết lùi sang bên trái một cột so với tích riêng thứ nhất! 📝"
+              }
+            },
+            {
+              "type": "visual",
+              "content": {
+                "text": "Mẹo nhân nhẩm với 11: Ví dụ: 35 × 11, nên Cộng hai chữ số: 3 + 5 = 8. Chèn 8 vào giữa 3 và 5 được 385! Ví dụ có nhớ: 48 × 11, nên là 4 + 8 = 12. Chèn 2 vào giữa, nhớ 1 sang 4 thành 5, nên là 528!"
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Nhân nhẩm: 45 × 11 = ?",
+                "options": [
+                  495,
+                  455,
+                  505,
+                  485
+                ],
+                "answer": 495,
+                "mascotHint": "4 + 5 = 9, chèn vào giữa 4 và 5 được 495!"
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Nhân nhẩm: 67 × 11 = ?",
+                "options": [
+                  737,
+                  637,
+                  727,
+                  747
+                ],
+                "answer": 737,
+                "mascotHint": "6 + 7 = 13, viết 3 ở giữa, nhớ 1 sang 6 được 7, nên là 737!"
+              }
+            },
+            {
+              "type": "summary",
+              "content": {
+                "title": "Ghi nhớ:",
+                "points": [
+                  "Tích riêng thứ hai lùi 1 cột sang trái.",
+                  "Khi nhân với 11: cộng 2 chữ số rồi chèn vào giữa."
+                ],
+                "mascotMood": "celebrate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "g4-c2-l12",
+          "title": "Bài 24: Chia cho số có một chữ số",
+          "type": "learn",
+          "description": "Thực hiện phép chia hết và chia có dư, kiểm tra số dư luôn bé hơn số chia",
+          "slides": [
+            {
+              "type": "story",
+              "content": {
+                "mascotMood": "happy",
+                "text": "Quy tắc vàng của phép chia: Số dư luôn luôn phải bé hơn số chia! Đặt tính và chia lần lượt từ trái sang phải! ➗"
+              }
+            },
+            {
+              "type": "visual",
+              "content": {
+                "text": "Thực hiện phép tính: 128 472 : 6 = 21 412 (dư 0) 157 : 5 = 31 (dư 2, vì 2 < 5 nên phép chia đúng)."
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Tính: 48 240 : 4 = ?",
+                "options": [
+                  "12 060",
+                  "12 600",
+                  "1 260",
+                  "12 064"
+                ],
+                "answer": "12 060",
+                "mascotHint": "4:4=1, 8:4=2, 2:4=0 viết 0, 24:4=6, 0:4=0, nên là 12 060!"
+              }
+            },
+            {
+              "type": "summary",
+              "content": {
+                "title": "Ghi nhớ:",
+                "points": [
+                  "Chia từ trái sang phải.",
+                  "Nếu chữ số bị chia nhỏ hơn số chia thì viết 0 vào thương.",
+                  "Số dư < Số chia."
+                ],
+                "mascotMood": "proud"
+              }
+            }
+          ]
+        },
+        {
+          "id": "g4-c2-l13",
+          "title": "Bài 25: Chia cho số có hai, ba chữ số. Thương có chữ số 0",
+          "type": "learn",
+          "description": "Cách ước lượng thương khi chia cho số có hai, ba chữ số",
+          "slides": [
+            {
+              "type": "story",
+              "content": {
+                "mascotMood": "thinking",
+                "text": "Bí quyết ước lượng thương: Làm tròn số bị chia và số chia về số tròn chục rồi nhẩm chia! 🎯"
+              }
+            },
+            {
+              "type": "visual",
+              "content": {
+                "text": "Ví dụ: 84 : 21, nên Làm tròn 80 : 20 = 4. Thử: 21 × 4 = 84 (vừa đúng thương là 4). Nếu ở một lượt chia mà số bị chia bé hơn số chia thì ta phải viết chữ số 0 vào thương!"
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Tính: 96 : 32 = ?",
+                "options": [
+                  3,
+                  2,
+                  4,
+                  5
+                ],
+                "answer": 3,
+                "mascotHint": "Ước lượng 90 : 30 = 3. Thử 32 × 3 = 96 (vừa đúng)!"
+              }
+            },
+            {
+              "type": "summary",
+              "content": {
+                "title": "Ghi nhớ:",
+                "points": [
+                  "Ước lượng thương bằng cách làm tròn số tròn chục.",
+                  "Đừng quên viết chữ số 0 vào thương khi lượt chia không đủ."
+                ],
+                "mascotMood": "proud"
+              }
+            }
+          ]
+        }
+      ]
     },
     {
-      id: 'g4-c3',
-      name: 'Chương 3: Phép nhân & chia số tự nhiên',
-      description: 'Nhân với số có một, hai chữ số; chia cho số có một, hai chữ số',
-      icon: '✖️',
-      color: '#10b981',
-      totalLessons: 12,
-      lessons: [
-        makeLesson('g4-c3-l1', 'Bài 1: Nhân với số có một chữ số', 'Quy tắc đặt tính nhân'),
-        makeLesson('g4-c3-l2', 'Bài 2: Nhân với số có hai chữ số', 'Tích riêng thứ nhất và thứ hai'),
-        makeLesson('g4-c3-l3', 'Bài 3: Chia cho số có một chữ số', 'Chia hết và chia có dư'),
-        makeLesson('g4-c3-l4', 'Bài 4: Chia cho số có hai chữ số', 'Ước lượng thương chuẩn xác'),
-      ],
+      "id": "g4-c3",
+      "name": "Chương 3: Dấu hiệu chia hết & Hình bình hành",
+      "description": "Dấu hiệu chia hết cho 2, 5, 9, 3; đơn vị km²; hình bình hành và tính diện tích",
+      "icon": "📐",
+      "color": "#f59e0b",
+      "totalLessons": 4,
+      "lessons": [
+        {
+          "id": "g4-c3-l1",
+          "title": "Bài 26: Dấu hiệu chia hết cho 2 và cho 5",
+          "type": "learn",
+          "description": "Các số có tận cùng là 0, 2, 4, 6, 8 chia hết cho 2; tận cùng 0, 5 chia hết cho 5",
+          "slides": [
+            {
+              "type": "story",
+              "content": {
+                "mascotMood": "excited",
+                "text": "Chỉ cần nhìn chữ số tận cùng là biết ngay số đó có chia hết cho 2 hay cho 5 không đấy! 🔍"
+              }
+            },
+            {
+              "type": "visual",
+              "content": {
+                "text": "- Chia hết cho 2: Chữ số tận cùng là 0, 2, 4, 6, 8 (số chẵn). - Chia hết cho 5: Chữ số tận cùng là 0 hoặc 5. - Số có chữ số tận cùng là 0 thì chia hết cho CẢ 2 VÀ 5!"
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Số nào sau đây chia hết cho cả 2 và 5?",
+                "options": [
+                  450,
+                  325,
+                  482,
+                  105
+                ],
+                "answer": 450,
+                "mascotHint": "Số chia hết cho cả 2 và 5 phải có chữ số tận cùng là 0, nên là 450!"
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Trong các số: 35, 78, 90, 114, 215, có bao nhiêu số chia hết cho 2?",
+                "options": [
+                  3,
+                  2,
+                  4,
+                  1
+                ],
+                "answer": 3,
+                "mascotHint": "Có 3 số chẵn là 78, 90, 114!"
+              }
+            },
+            {
+              "type": "summary",
+              "content": {
+                "title": "Ghi nhớ:",
+                "points": [
+                  "Tận cùng 0, 2, 4, 6, 8 chia hết cho 2.",
+                  "Tận cùng 0, 5 chia hết cho 5.",
+                  "Tận cùng 0 chia hết cho cả 2 và 5."
+                ],
+                "mascotMood": "celebrate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "g4-c3-l2",
+          "title": "Bài 27: Dấu hiệu chia hết cho 9 và cho 3",
+          "type": "learn",
+          "description": "Tính tổng các chữ số: Tổng chia hết cho 9 thì chia hết cho 9; tổng chia hết cho 3 thì chia hết cho 3",
+          "slides": [
+            {
+              "type": "story",
+              "content": {
+                "mascotMood": "happy",
+                "text": "Khác với chia hết cho 2 và 5, dấu hiệu chia hết cho 3 và 9 phải dựa vào TỔNG CÁC CHỮ SỐ! 🧮"
+              }
+            },
+            {
+              "type": "visual",
+              "content": {
+                "text": "- Số có tổng các chữ số chia hết cho 9 thì chia hết cho 9. - Số có tổng các chữ số chia hết cho 3 thì chia hết cho 3. - Chú ý: Số chia hết cho 9 thì chắc chắn chia hết cho 3!"
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Số 252 có chia hết cho 9 không?",
+                "options": [
+                  "Có, vì 2 + 5 + 2 = 9 chia hết cho 9",
+                  "Không, vì số tận cùng là 2",
+                  "Chỉ chia hết cho 2"
+                ],
+                "answer": "Có, vì 2 + 5 + 2 = 9 chia hết cho 9",
+                "mascotHint": "Tổng các chữ số = 2 + 5 + 2 = 9, 9 : 9 = 1 nên 252 chia hết cho 9!"
+              }
+            },
+            {
+              "type": "summary",
+              "content": {
+                "title": "Ghi nhớ:",
+                "points": [
+                  "Chia hết cho 9: Tổng chữ số chia hết cho 9.",
+                  "Chia hết cho 3: Tổng chữ số chia hết cho 3."
+                ],
+                "mascotMood": "proud"
+              }
+            }
+          ]
+        },
+        {
+          "id": "g4-c3-l3",
+          "title": "Bài 28: Ki-lô-mét vuông (km²)",
+          "type": "learn",
+          "description": "Đơn vị đo diện tích lớn (thành phố, khu rừng, quốc gia): 1 km² = 1 000 000 m²",
+          "slides": [
+            {
+              "type": "story",
+              "content": {
+                "mascotMood": "excited",
+                "text": "Để đo diện tích một khu rừng hay một tỉnh/thành phố, người ta dùng Ki-lô-mét vuông (km²)! 🌲🗺️"
+              }
+            },
+            {
+              "type": "visual",
+              "content": {
+                "text": "Quy đổi: - Ki-lô-mét vuông là diện tích của hình vuông có cạnh dài 1 km. - 1 km² = 1 000 000 m² (gồm chữ số 1 và 6 chữ số 0)."
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "5 km² bằng bao nhiêu mét vuông?",
+                "options": [
+                  "5 000 000 m²",
+                  "500 000 m²",
+                  "50 000 m²",
+                  "5 000 m²"
+                ],
+                "answer": "5 000 000 m²",
+                "mascotHint": "1 km² = 1 000 000 m² nên 5 km² = 5 000 000 m²!"
+              }
+            },
+            {
+              "type": "summary",
+              "content": {
+                "title": "Ghi nhớ:",
+                "points": [
+                  "1 km² = 1 000 000 m².",
+                  "Dùng đo các diện tích vùng đất rộng lớn."
+                ],
+                "mascotMood": "proud"
+              }
+            }
+          ]
+        },
+        {
+          "id": "g4-c3-l4",
+          "title": "Bài 29: Hình bình hành & Diện tích hình bình hành",
+          "type": "learn",
+          "description": "Hình có hai cặp cạnh đối diện song song và bằng nhau; Diện tích S = a × h",
+          "slides": [
+            {
+              "type": "story",
+              "content": {
+                "mascotMood": "happy",
+                "text": "Hình bình hành có hai cặp cạnh đối diện song song và bằng nhau! Diện tích hình bình hành bằng độ dài đáy nhân với chiều cao (cùng đơn vị đo)! 🔶"
+              }
+            },
+            {
+              "type": "visual",
+              "content": {
+                "text": "Công thức: Diện tích S = a × h Trong đó: a là độ dài đáy, h là chiều cao (cùng đơn vị đo)."
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Một hình bình hành có độ dài đáy là 12 cm và chiều cao là 5 cm. Diện tích của hình bình hành là:",
+                "options": [
+                  "60 cm²",
+                  "34 cm²",
+                  "30 cm²",
+                  "17 cm²"
+                ],
+                "answer": "60 cm²",
+                "mascotHint": "S = a × h = 12 × 5 = 60 cm²!"
+              }
+            },
+            {
+              "type": "summary",
+              "content": {
+                "title": "Công thức cần nhớ:",
+                "points": [
+                  "Hình bình hành có 2 cặp cạnh đối song song và bằng nhau.",
+                  "Diện tích = Đáy × Chiều cao (S = a × h)."
+                ],
+                "mascotMood": "celebrate"
+              }
+            }
+          ]
+        }
+      ]
     },
     {
-      id: 'g4-c4',
-      name: 'Chương 4: Làm quen với Phân số',
-      description: 'Khái niệm phân số, phân số bằng nhau, rút gọn & quy đồng',
-      icon: '🍰',
-      color: '#f59e0b',
-      totalLessons: 12,
-      lessons: [
-        makeLesson('g4-c4-l1', 'Bài 1: Khái niệm phân số, tử số và mẫu số', 'Ý nghĩa của phân số'),
-        makeLesson('g4-c4-l2', 'Bài 2: Phân số và phép chia số tự nhiên', 'Thương là một phân số'),
-        makeLesson('g4-c4-l3', 'Bài 3: Phân số bằng nhau', 'Tính chất cơ bản của phân số'),
-        makeLesson('g4-c4-l4', 'Bài 4: Rút gọn phân số về tối giản', 'Cách tìm ước chung lớn nhất'),
-        makeLesson('g4-c4-l5', 'Bài 5: Quy đồng mẫu số các phân số', 'Đưa về cùng mẫu số chung'),
-      ],
+      "id": "g4-c4",
+      "name": "Chương 4: Phân số, Bốn phép tính phân số & Hình thoi",
+      "description": "Khái niệm phân số, rút gọn, quy đồng; cộng, trừ, nhân, chia phân số; tìm phân số của một số; hình thoi và diện tích hình thoi",
+      "icon": "🍰",
+      "color": "#8b5cf6",
+      "totalLessons": 7,
+      "lessons": [
+        {
+          "id": "g4-c4-l1",
+          "title": "Bài 30: Khái niệm phân số & Phép chia số tự nhiên",
+          "type": "learn",
+          "description": "Tử số viết trên gạch ngang, mẫu số tự nhiên khác 0 viết dưới; thương phép chia a : b viết là a/b",
+          "slides": [
+            {
+              "type": "story",
+              "content": {
+                "mascotMood": "happy",
+                "text": "Chia cái bánh thành 4 phần bằng nhau, lấy 3 phần, ta được 3/4 cái bánh! 3 là tử số, 4 là mẫu số! Mẫu số luôn phải khác 0 nhé! 🎂"
+              }
+            },
+            {
+              "type": "visual",
+              "content": {
+                "text": "Cấu tạo phân số a/b: - Tử số a: là số tự nhiên viết trên gạch ngang (chỉ số phần lấy đi). - Mẫu số b: là số tự nhiên khác 0 viết dưới gạch ngang (chỉ số phần bằng nhau được chia ra). Thương của phép chia a : b (b khác 0) có thể viết thành phân số a/b."
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Thương của phép chia 5 : 8 viết dưới dạng phân số là:",
+                "options": [
+                  "5/8",
+                  "8/5",
+                  "5/3",
+                  "8/3"
+                ],
+                "answer": "5/8",
+                "mascotHint": "Số bị chia viết ở tử số, số chia viết ở mẫu số, nên là 5/8!"
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Phân số nào có tử số bé hơn mẫu số thì:",
+                "options": [
+                  "Bé hơn 1",
+                  "Lớn hơn 1",
+                  "Bằng 1",
+                  "Bằng 0"
+                ],
+                "answer": "Bé hơn 1",
+                "mascotHint": "Tử số < Mẫu số, nên Phân số < 1. Tử số = Mẫu số, nên Phân số = 1. Tử số > Mẫu số, nên Phân số > 1!"
+              }
+            },
+            {
+              "type": "summary",
+              "content": {
+                "title": "Ghi nhớ:",
+                "points": [
+                  "Phân số gồm tử số và mẫu số (khác 0).",
+                  "Mọi phép chia số tự nhiên a : b đều viết được thành phân số a/b."
+                ],
+                "mascotMood": "proud"
+              }
+            }
+          ]
+        },
+        {
+          "id": "g4-c4-l2",
+          "title": "Bài 31: Phân số bằng nhau, Rút gọn & Quy đồng mẫu số",
+          "type": "learn",
+          "description": "Nhân/chia cả tử và mẫu với cùng 1 số tự nhiên khác 0; đưa về phân số tối giản và quy đồng mẫu số",
+          "slides": [
+            {
+              "type": "story",
+              "content": {
+                "mascotMood": "excited",
+                "text": "Tính chất cơ bản: Nếu nhân hoặc chia cả tử và mẫu của một phân số với cùng một số tự nhiên khác 0, ta được một phân số bằng phân số đã cho! 🔄"
+              }
+            },
+            {
+              "type": "concept",
+              "content": {
+                "badge": "Khái Niệm Phân Số Bằng Nhau",
+                "title": "Tính chất cơ bản của phân số",
+                "explanation": "Nếu nhân hoặc chia cả tử số và mẫu số của một phân số với cùng một số tự nhiên khác 0 thì được một phân số bằng phân số đã cho.",
+                "rule": "1/2 cái bánh pizza cũng chính bằng 2/4 chiếc bánh pizza đó!",
+                "points": [
+                  "Rút gọn phân số: Chia cả tử và mẫu cho ước chung lớn hơn 1 (ví dụ: 6/8 = (6:2)/(8:2) = 3/4).",
+                  "Quy đồng mẫu số: Nhân tử và mẫu với thừa số phụ để đưa về cùng một mẫu số chung."
+                ]
+              }
+            },
+            {
+              "type": "dialogue",
+              "content": {
+                "badge": "Giao Lưu Lớp Học",
+                "title": "Tranh luận chia bánh: 1/2 và 2/4",
+                "dialogueList": [
+                  {
+                    "character": "mai",
+                    "name": "Bạn Mai 👧",
+                    "text": "Tớ có 1/2 cái bánh pizza, bạn Nam có 2/4 cái bánh cùng loại. Nam bảo Nam có nhiều bánh hơn tớ vì 2/4 có số 2 và 4 to hơn!"
+                  },
+                  {
+                    "character": "robot",
+                    "name": "Bạn Rô-bốt 🤖",
+                    "text": "Đúng rồi! Số 2 lớn hơn 1, số 4 lớn hơn 2 nên 2/4 cái bánh chắc chắn nhiều hơn 1/2 cái bánh chứ!"
+                  }
+                ],
+                "question": "Bạn Rô-bốt nói đúng hay sai?",
+                "options": [
+                  "Đúng rồi 👍",
+                  "Sai rồi 👎"
+                ],
+                "correctAnswer": "Sai rồi 👎",
+                "explanation": "Bạn Rô-bốt nhầm rồi! Khi một chiếc bánh chia 2 phần lấy 1 phần (1/2), thì diện tích bánh đúng bằng khi chia 4 phần lấy 2 phần (2/4). Vì vậy 1/2 = 2/4, hai bạn có phần bánh bằng nhau!"
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Rút gọn phân số 15/25 về tối giản ta được:",
+                "options": [
+                  "3/5",
+                  "5/3",
+                  "1/5",
+                  "3/10"
+                ],
+                "answer": "3/5",
+                "mascotHint": "Cùng chia cả tử và mẫu cho 5: 15:5 = 3; 25:5 = 5, nên là 3/5!"
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Quy đồng mẫu số hai phân số 2/3 và 3/4 với mẫu số chung 12 được:",
+                "options": [
+                  "8/12 và 9/12",
+                  "6/12 và 9/12",
+                  "8/12 và 6/12",
+                  "5/12 và 7/12"
+                ],
+                "answer": "8/12 và 9/12",
+                "mascotHint": "2/3 = (2×4)/(3×4) = 8/12; 3/4 = (3×3)/(4×3) = 9/12!"
+              }
+            },
+            {
+              "type": "summary",
+              "content": {
+                "title": "Ghi nhớ:",
+                "points": [
+                  "Nhân hoặc chia cả tử và mẫu cho cùng số khác 0 được phân số bằng nó.",
+                  "Phân số tối giản không thể rút gọn được nữa."
+                ],
+                "mascotMood": "celebrate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "g4-c4-l3",
+          "title": "Bài 32: So sánh phân số",
+          "type": "learn",
+          "description": "So sánh hai phân số cùng mẫu số và khác mẫu số (quy đồng mẫu số để so sánh)",
+          "slides": [
+            {
+              "type": "story",
+              "content": {
+                "mascotMood": "happy",
+                "text": "Cùng mẫu số: Phân số nào có tử số lớn hơn thì lớn hơn! Khác mẫu số: Ta chỉ cần quy đồng mẫu số rồi so sánh tử số! ⚖️"
+              }
+            },
+            {
+              "type": "visual",
+              "content": {
+                "text": "- Cùng mẫu: 5/7 > 3/7 (vì 5 > 3) - Khác mẫu: So sánh 2/3 và 3/4, nên Quy đồng: 2/3 = 8/12; 3/4 = 9/12. Vì 8/12 < 9/12 nên 2/3 < 3/4."
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Điền dấu thích hợp: 4/9 ... 7/9",
+                "options": [
+                  "<",
+                  ">",
+                  "="
+                ],
+                "answer": "<",
+                "mascotHint": "Cùng mẫu số 9, vì tử số 4 < 7 nên 4/9 < 7/9!"
+              }
+            },
+            {
+              "type": "summary",
+              "content": {
+                "title": "Quy tắc so sánh phân số:",
+                "points": [
+                  "Cùng mẫu số: So sánh tử số.",
+                  "Khác mẫu số: Quy đồng mẫu số rồi so sánh."
+                ],
+                "mascotMood": "proud"
+              }
+            }
+          ]
+        },
+        {
+          "id": "g4-c4-l4",
+          "title": "Bài 33: Phép cộng và Phép trừ phân số",
+          "type": "learn",
+          "description": "Cộng trừ phân số cùng mẫu (cộng trừ tử, giữ nguyên mẫu); cộng trừ phân số khác mẫu (quy đồng trước)",
+          "slides": [
+            {
+              "type": "story",
+              "content": {
+                "mascotMood": "happy",
+                "text": "Quy tắc cộng trừ phân số cùng mẫu: Cộng hoặc trừ các tử số với nhau và giữ nguyên mẫu số! Nếu khác mẫu: Quy đồng rồi tính nhé! ➕➖"
+              }
+            },
+            {
+              "type": "visual",
+              "content": {
+                "text": "Cùng mẫu: 2/5 + 1/5 = (2+1)/5 = 3/5 Khác mẫu: 1/2 + 1/3 = 3/6 + 2/6 = 5/6 Phép trừ: 5/7 - 2/7 = (5-2)/7 = 3/7"
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Tính: 3/8 + 2/8 = ?",
+                "options": [
+                  "5/8",
+                  "5/16",
+                  "1/8",
+                  "6/8"
+                ],
+                "answer": "5/8",
+                "mascotHint": "Cộng tử số: 3 + 2 = 5, giữ nguyên mẫu 8, nên là 5/8!"
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Tính: 1/2 - 1/4 = ?",
+                "options": [
+                  "1/4",
+                  "0",
+                  "1/2",
+                  "2/4"
+                ],
+                "answer": "1/4",
+                "mascotHint": "1/2 = 2/4. 2/4 - 1/4 = 1/4!"
+              }
+            },
+            {
+              "type": "summary",
+              "content": {
+                "title": "Ghi nhớ:",
+                "points": [
+                  "Cùng mẫu: Cộng/trừ tử, giữ nguyên mẫu.",
+                  "Khác mẫu: Quy đồng mẫu số trước khi cộng/trừ."
+                ],
+                "mascotMood": "celebrate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "g4-c4-l5",
+          "title": "Bài 34: Phép nhân phân số & Tìm phân số của một số",
+          "type": "learn",
+          "description": "Tử nhân tử, mẫu nhân mẫu; Muốn tìm phân số của một số ta lấy số đó nhân với phân số",
+          "slides": [
+            {
+              "type": "story",
+              "content": {
+                "mascotMood": "excited",
+                "text": "Phép nhân phân số cực kỳ đơn giản: Lấy tử số nhân với tử số, mẫu số nhân với mẫu số! Để tìm 2/3 của 12 ta lấy 12 × 2/3 = 8! ✖️"
+              }
+            },
+            {
+              "type": "visual",
+              "content": {
+                "text": "Công thức nhân: (a/b) × (c/d) = (a × c) / (b × d) Ví dụ: 2/3 × 4/5 = (2×4) / (3×5) = 8/15 Tìm 3/4 của 20: 20 × 3/4 = (20×3)/4 = 60/4 = 15."
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Tính: 3/5 × 2/7 = ?",
+                "options": [
+                  "6/35",
+                  "5/12",
+                  "6/12",
+                  "5/35"
+                ],
+                "answer": "6/35",
+                "mascotHint": "Tử = 3 × 2 = 6; Mẫu = 5 × 7 = 35, nên là 6/35!"
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Tìm 2/5 của 30 quả cam:",
+                "options": [
+                  12,
+                  15,
+                  10,
+                  18
+                ],
+                "answer": 12,
+                "mascotHint": "30 × 2/5 = (30 × 2) : 5 = 60 : 5 = 12 quả cam!"
+              }
+            },
+            {
+              "type": "summary",
+              "content": {
+                "title": "Công thức ghi nhớ:",
+                "points": [
+                  "Nhân phân số: Tử nhân tử, mẫu nhân mẫu.",
+                  "Tìm phân số của một số: Lấy số đó nhân với phân số."
+                ],
+                "mascotMood": "proud"
+              }
+            }
+          ]
+        },
+        {
+          "id": "g4-c4-l6",
+          "title": "Bài 35: Phép chia phân số",
+          "type": "learn",
+          "description": "Lấy phân số thứ nhất nhân với phân số thứ hai đảo ngược",
+          "slides": [
+            {
+              "type": "story",
+              "content": {
+                "mascotMood": "happy",
+                "text": "Phân số đảo ngược của 3/5 là 5/3 (đổi chỗ tử và mẫu)! Muốn chia hai phân số: Lấy phân số thứ nhất nhân với phân số thứ hai đảo ngược! ➗"
+              }
+            },
+            {
+              "type": "visual",
+              "content": {
+                "text": "Công thức chia: (a/b) : (c/d) = (a/b) × (d/c) = (a × d) / (b × c) Ví dụ: 1/2 : 1/4 = 1/2 × 4/1 = 4/2 = 2"
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Tính: 2/3 : 5/7 = ?",
+                "options": [
+                  "14/15",
+                  "10/21",
+                  "15/14",
+                  "7/10"
+                ],
+                "answer": "14/15",
+                "mascotHint": "2/3 × 7/5 = (2×7) / (3×5) = 14/15!"
+              }
+            },
+            {
+              "type": "summary",
+              "content": {
+                "title": "Ghi nhớ:",
+                "points": [
+                  "Chia phân số = Nhân với phân số đảo ngược.",
+                  "(a/b) : (c/d) = (a × d) / (b × c)."
+                ],
+                "mascotMood": "celebrate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "g4-c4-l7",
+          "title": "Bài 36: Hình thoi & Diện tích hình thoi",
+          "type": "learn",
+          "description": "Hình thoi có 4 cạnh bằng nhau, 2 đường chéo vuông góc; Diện tích S = (m × n) : 2",
+          "slides": [
+            {
+              "type": "story",
+              "content": {
+                "mascotMood": "excited",
+                "text": "Hình thoi có 4 cạnh bằng nhau! Hai đường chéo vuông góc với nhau và cắt nhau tại trung điểm của mỗi đường! 🔷"
+              }
+            },
+            {
+              "type": "visual",
+              "content": {
+                "text": "Công thức diện tích hình thoi: S = (m × n) : 2 Trong đó: m và n là độ dài của hai đường chéo (cùng đơn vị đo)."
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Một hình thoi có độ dài hai đường chéo là 8 cm và 6 cm. Diện tích hình thoi đó là:",
+                "options": [
+                  "24 cm²",
+                  "48 cm²",
+                  "14 cm²",
+                  "28 cm²"
+                ],
+                "answer": "24 cm²",
+                "mascotHint": "S = (8 × 6) : 2 = 48 : 2 = 24 cm²!"
+              }
+            },
+            {
+              "type": "summary",
+              "content": {
+                "title": "Ghi nhớ hình thoi:",
+                "points": [
+                  "Hình thoi có 4 cạnh bằng nhau.",
+                  "Diện tích bằng tích độ dài hai đường chéo chia cho 2: S = (m × n) : 2."
+                ],
+                "mascotMood": "proud"
+              }
+            }
+          ]
+        }
+      ]
     },
     {
-      id: 'g4-c5',
-      name: 'Chương 5: Phép cộng & trừ phân số',
-      description: 'Cộng trừ phân số cùng mẫu và khác mẫu số',
-      icon: '➕',
-      color: '#8b5cf6',
-      totalLessons: 12,
-      lessons: [
-        makeLesson('g4-c5-l1', 'Bài 1: Phép cộng hai phân số cùng mẫu', 'Cộng tử số, giữ nguyên mẫu'),
-        makeLesson('g4-c5-l2', 'Bài 2: Phép cộng hai phân số khác mẫu', 'Quy đồng trước khi cộng'),
-        makeLesson('g4-c5-l3', 'Bài 3: Phép trừ hai phân số cùng mẫu', 'Trừ tử số, giữ nguyên mẫu'),
-        makeLesson('g4-c5-l4', 'Bài 4: Phép trừ hai phân số khác mẫu', 'Quy đồng trước khi trừ'),
-      ],
+      "id": "g4-c5",
+      "name": "Chương 5: Tỉ số, Toán Tổng - Tỉ, Hiệu - Tỉ & Bản đồ",
+      "description": "Khái niệm tỉ số; bài toán Tìm hai số khi biết Tổng và Tỉ số, Hiệu và Tỉ số; tỉ lệ bản đồ và ứng dụng",
+      "icon": "📊",
+      "color": "#ec4899",
+      "totalLessons": 4,
+      "lessons": [
+        {
+          "id": "g4-c5-l1",
+          "title": "Bài 37: Giới thiệu tỉ số",
+          "type": "learn",
+          "description": "Tỉ số của a và b là a : b hay a/b (b khác 0)",
+          "slides": [
+            {
+              "type": "story",
+              "content": {
+                "mascotMood": "happy",
+                "text": "Có 3 quả cam và 5 quả táo. Tỉ số của số cam và số táo là 3 : 5 hay 3/5! Tỉ số cho biết số này bằng mấy phần của số kia! 🍊🍎"
+              }
+            },
+            {
+              "type": "visual",
+              "content": {
+                "text": "Định nghĩa: Tỉ số của a và b (b khác 0) là a : b hay a/b. Ví dụ: Lớp có 15 bạn nam và 18 bạn nữ. Tỉ số số nam và số nữ là 15/18 = 5/6."
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Đoạn thẳng AB dài 4 m, đoạn thẳng CD dài 7 m. Tỉ số độ dài AB và CD là:",
+                "options": [
+                  "4/7",
+                  "7/4",
+                  "4/11",
+                  "7/11"
+                ],
+                "answer": "4/7",
+                "mascotHint": "AB : CD = 4 : 7 = 4/7!"
+              }
+            },
+            {
+              "type": "summary",
+              "content": {
+                "title": "Ghi nhớ:",
+                "points": [
+                  "Tỉ số của a và b là a : b hay a/b.",
+                  "Viết đúng thứ tự: số nào nhắc trước viết ở tử số."
+                ],
+                "mascotMood": "proud"
+              }
+            }
+          ]
+        },
+        {
+          "id": "g4-c5-l2",
+          "title": "Bài 38: Tìm hai số khi biết Tổng và Tỉ số của hai số đó",
+          "type": "learn",
+          "description": "Phương pháp 4 bước: Vẽ sơ đồ, tìm tổng số phần bằng nhau, tìm giá trị 1 phần, rồi tìm hai số",
+          "slides": [
+            {
+              "type": "story",
+              "content": {
+                "mascotMood": "excited",
+                "text": "Bí quyết giải toán Tổng - Tỉ: Bước 1: Vẽ sơ đồ đoạn thẳng Bước 2: Tìm tổng số phần bằng nhau Bước 3: Tìm số bé = Tổng : Tổng số phần × Số phần số bé Bước 4: Tìm số lớn = Tổng - Số bé! 🎯"
+              }
+            },
+            {
+              "type": "visual",
+              "content": {
+                "text": "Ví dụ: Tổng hai số là 35, tỉ số là 2/3. - Tổng số phần: 2 + 3 = 5 phần - Giá trị 1 phần: 35 : 5 = 7 - Số bé: 7 × 2 = 14 - Số lớn: 7 × 3 = 21 (hoặc 35 - 14 = 21)"
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Tổng hai số là 40, tỉ số là 1/3. Số bé là bao nhiêu?",
+                "options": [
+                  10,
+                  30,
+                  20,
+                  15
+                ],
+                "answer": 10,
+                "mascotHint": "Tổng số phần: 1 + 3 = 4 phần. Số bé = 40 : 4 × 1 = 10!"
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Mẹ và con có tổng số tuổi là 36 tuổi, tuổi con bằng 1/5 tuổi mẹ. Hỏi mẹ bao nhiêu tuổi?",
+                "options": [
+                  30,
+                  25,
+                  32,
+                  28
+                ],
+                "answer": 30,
+                "mascotHint": "Tổng số phần: 1 + 5 = 6 phần. Tuổi con = 36 : 6 = 6 tuổi. Tuổi mẹ = 36 - 6 = 30 tuổi!"
+              }
+            },
+            {
+              "type": "summary",
+              "content": {
+                "title": "4 Bước giải toán Tổng - Tỉ:",
+                "points": [
+                  "1. Vẽ sơ đồ đoạn thẳng.",
+                  "2. Tổng số phần bằng nhau.",
+                  "3. Số bé = Tổng : Số phần × Số phần bé.",
+                  "4. Số lớn = Tổng - Số bé."
+                ],
+                "mascotMood": "celebrate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "g4-c5-l3",
+          "title": "Bài 39: Tìm hai số khi biết Hiệu và Tỉ số của hai số đó",
+          "type": "learn",
+          "description": "Phương pháp 4 bước với Hiệu số phần bằng nhau: Số bé = Hiệu : Hiệu số phần × Số phần số bé",
+          "slides": [
+            {
+              "type": "story",
+              "content": {
+                "mascotMood": "excited",
+                "text": "Tương tự như Tổng - Tỉ, với bài toán Hiệu - Tỉ ta tìm HIỆU SỐ PHẦN BẰNG NHAU: Lấy số phần của số lớn trừ đi số phần của số bé! 💡"
+              }
+            },
+            {
+              "type": "visual",
+              "content": {
+                "text": "Ví dụ: Hiệu hai số là 24, tỉ số là 1/4. - Hiệu số phần: 4 - 1 = 3 phần - Giá trị 1 phần: 24 : 3 = 8 - Số bé: 8 × 1 = 8 - Số lớn: 8 + 24 = 32 (hoặc 8 × 4 = 32)"
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Hiệu hai số là 15, tỉ số là 2/5. Số bé là:",
+                "options": [
+                  10,
+                  25,
+                  15,
+                  20
+                ],
+                "answer": 10,
+                "mascotHint": "Hiệu số phần: 5 - 2 = 3 phần. Giá trị 1 phần = 15 : 3 = 5. Số bé = 5 × 2 = 10!"
+              }
+            },
+            {
+              "type": "summary",
+              "content": {
+                "title": "Công thức giải toán Hiệu - Tỉ:",
+                "points": [
+                  "Hiệu số phần bằng nhau = Phần lớn - Phần bé.",
+                  "Số bé = (Hiệu : Hiệu số phần) × Số phần bé.",
+                  "Số lớn = Số bé + Hiệu."
+                ],
+                "mascotMood": "celebrate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "g4-c5-l4",
+          "title": "Bài 40: Tỉ lệ bản đồ và Ứng dụng",
+          "type": "learn",
+          "description": "Ý nghĩa tỉ lệ 1 : 1000, 1 : 100 000; Tính độ dài thực tế và độ dài thu nhỏ",
+          "slides": [
+            {
+              "type": "story",
+              "content": {
+                "mascotMood": "happy",
+                "text": "Tỉ lệ 1 : 1000 trên bản đồ nghĩa là 1 cm trên bản đồ tương ứng với 1000 cm (10 m) ngoài thực tế! 🗺️🔍"
+              }
+            },
+            {
+              "type": "visual",
+              "content": {
+                "text": "- Độ dài thật = Độ dài trên bản đồ × Mẫu số tỉ lệ - Độ dài trên bản đồ = Độ dài thật : Mẫu số tỉ lệ (cùng đơn vị đo)"
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Trên bản đồ tỉ lệ 1 : 10 000, quãng đường từ A đến B đo được 3 cm. Độ dài thật của quãng đường AB là:",
+                "options": [
+                  "300 m",
+                  "30 000 m",
+                  "30 m",
+                  "3 000 m"
+                ],
+                "answer": "300 m",
+                "mascotHint": "Độ dài thật = 3 × 10 000 = 30 000 cm = 300 m!"
+              }
+            },
+            {
+              "type": "summary",
+              "content": {
+                "title": "Ghi nhớ:",
+                "points": [
+                  "Tỉ lệ bản đồ = Độ dài trên bản đồ / Độ dài thật.",
+                  "Đổi về cùng đơn vị đo trước khi tính."
+                ],
+                "mascotMood": "proud"
+              }
+            }
+          ]
+        }
+      ]
     },
     {
-      id: 'g4-c6',
-      name: 'Chương 6: Phép nhân & chia phân số',
-      description: 'Nhân chia hai phân số, tìm phân số của một số',
-      icon: '➗',
-      color: '#06b6d4',
-      totalLessons: 12,
-      lessons: [
-        makeLesson('g4-c6-l1', 'Bài 1: Phép nhân hai phân số', 'Tử nhân tử, mẫu nhân mẫu'),
-        makeLesson('g4-c6-l2', 'Bài 2: Tìm phân số của một số', 'Nhân số đó với phân số'),
-        makeLesson('g4-c6-l3', 'Bài 3: Phép chia phân số: Phân số đảo ngược', 'Nhân với phân số đảo ngược'),
-      ],
-    },
-    {
-      id: 'g4-c7',
-      name: 'Chương 7: Hình học: Góc & Hai đường thẳng',
-      description: 'Góc nhọn, tù, bẹt; hai đường thẳng vuông góc, song song',
-      icon: '📐',
-      color: '#6366f1',
-      totalLessons: 10,
-      lessons: [
-        makeLesson('g4-c7-l1', 'Bài 1: Góc nhọn, góc tù, góc bẹt', 'Nhận biết độ lớn các loại góc'),
-        makeLesson('g4-c7-l2', 'Bài 2: Hai đường thẳng vuông góc', 'Dùng ê-ke kiểm tra góc vuông'),
-        makeLesson('g4-c7-l3', 'Bài 3: Hai đường thẳng song song', 'Không bao giờ cắt nhau'),
-      ],
-    },
-    {
-      id: 'g4-c8',
-      name: 'Chương 8: Hình bình hành & Hình thoi',
-      description: 'Đặc điểm và công thức tính diện tích hình bình hành, hình thoi',
-      icon: '🔷',
-      color: '#14b8a6',
-      totalLessons: 10,
-      lessons: [
-        makeLesson('g4-c8-l1', 'Bài 1: Hình bình hành và diện tích', 'S = đáy × chiều cao'),
-        makeLesson('g4-c8-l2', 'Bài 2: Hình thoi và diện tích', 'S = (m × n) : 2'),
-      ],
-    },
-    {
-      id: 'g4-c9',
-      name: 'Chương 9: Đại lượng & Số liệu thống kê',
-      description: 'Yến, tạ, tấn; giây, thế kỷ; dãy số liệu và biểu đồ cột',
-      icon: '📊',
-      color: '#f97316',
-      totalLessons: 10,
-      lessons: [
-        makeLesson('g4-c9-l1', 'Bài 1: Đơn vị đo khối lượng: Yến, tạ, tấn', 'Bảng đơn vị đo khối lượng'),
-        makeLesson('g4-c9-l2', 'Bài 2: Giây và Thế kỷ', '1 thế kỷ = 100 năm'),
-        makeLesson('g4-c9-l3', 'Bài 3: Đọc và phân tích biểu đồ cột', 'Khai thác dữ liệu thống kê'),
-      ],
-    },
-    {
-      id: 'g4-c10',
-      name: 'Chương 10: Ôn tập cuối năm Lớp 4',
-      description: 'Tổng hợp toàn bộ kiến thức toán học Lớp 4',
-      icon: '🏆',
-      color: '#eab308',
-      totalLessons: 12,
-      lessons: [
-        makeLesson('g4-c10-l1', 'Bài 1: Ôn tập số tự nhiên và bốn phép tính', 'Luyện tập tổng hợp'),
-        makeLesson('g4-c10-l2', 'Bài 2: Ôn tập phân số và phép tính phân số', 'Giải toán có lời văn'),
-        makeLesson('g4-c10-l3', 'Bài 3: Đấu trường toán học Trạng Nguyên Lớp 4', 'Sẵn sàng bước vào Lớp 5!'),
-      ],
-    },
-  ],
-}
+      "id": "g4-c6",
+      "name": "Chương 6: Ôn tập cuối năm",
+      "description": "Hệ thống hóa toàn bộ kiến thức Toán lớp 4: Số tự nhiên, 4 phép tính, phân số, hình học, các bài toán có lời văn điển hình",
+      "icon": "🏆",
+      "color": "#6366f1",
+      "totalLessons": 6,
+      "lessons": [
+        {
+          "id": "g4-c6-l1",
+          "title": "Bài 41: Ôn tập về số tự nhiên & Phép tính số tự nhiên",
+          "type": "learn",
+          "description": "Ôn tập đọc viết số đến lớp triệu, tính nhanh và tính giá trị biểu thức",
+          "slides": [
+            {
+              "type": "story",
+              "content": {
+                "mascotMood": "proud",
+                "text": "Chúc mừng các bạn đã bước vào chặng cuối cùng của lớp 4! Hãy cùng Cú Mèo ôn lại kiến thức số tự nhiên nhé! 🦉✨"
+              }
+            },
+            {
+              "type": "concept",
+              "content": {
+                "badge": "Kiến Thức Trọng Tâm",
+                "title": "Ôn tập về số tự nhiên & Phép tính số tự nhiên",
+                "explanation": "Ôn tập đọc viết số đến lớp triệu, tính nhanh và tính giá trị biểu thức",
+                "points": [
+                  "Nắm chắc lý thuyết, công thức và quy tắc toán học tương ứng.",
+                  "Phân tích kỹ đề bài và thực hiện từng bước tính toán cẩn thận."
+                ],
+                "rule": "Ghi nhớ công thức cốt lõi và kiểm tra lại kết quả sau khi hoàn thành."
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Tính nhanh: 125 × 38 × 8 = ?",
+                "options": [
+                  "38 000",
+                  "3 800",
+                  "380 000",
+                  "30 000"
+                ],
+                "answer": "38 000",
+                "mascotHint": "(125 × 8) × 38 = 1000 × 38 = 38 000!"
+              }
+            },
+            {
+              "type": "summary",
+              "content": {
+                "title": "Ôn tập số tự nhiên:",
+                "points": [
+                  "Nắm chắc hàng và lớp.",
+                  "Áp dụng giao hoán và kết hợp để tính nhanh."
+                ],
+                "mascotMood": "celebrate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "g4-c6-l2",
+          "title": "Bài 42: Ôn tập về đại lượng & Bảng khối lượng, thời gian",
+          "type": "learn",
+          "description": "Chuyển đổi yến, tạ, tấn; dm², m², km²; giây, phút, giờ, thế kỉ",
+          "slides": [
+            {
+              "type": "story",
+              "content": {
+                "mascotMood": "happy",
+                "text": "Thử thách trí nhớ với bảng đo khối lượng, diện tích và thế kỉ nào! ⏱️⚖️"
+              }
+            },
+            {
+              "type": "concept",
+              "content": {
+                "badge": "Kiến Thức Trọng Tâm",
+                "title": "Ôn tập về đại lượng & Bảng khối lượng, thời gian",
+                "explanation": "Chuyển đổi yến, tạ, tấn; dm², m², km²; giây, phút, giờ, thế kỉ",
+                "points": [
+                  "Nắm chắc lý thuyết, công thức và quy tắc toán học tương ứng.",
+                  "Phân tích kỹ đề bài và thực hiện từng bước tính toán cẩn thận."
+                ],
+                "rule": "Ghi nhớ công thức cốt lõi và kiểm tra lại kết quả sau khi hoàn thành."
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Đổi: 2 tấn 5 tạ = ... kg",
+                "options": [
+                  "2 500 kg",
+                  "250 kg",
+                  "20 500 kg",
+                  "2 050 kg"
+                ],
+                "answer": "2 500 kg",
+                "mascotHint": "2 tấn = 2 000 kg; 5 tạ = 500 kg, nên là 2 500 kg!"
+              }
+            },
+            {
+              "type": "summary",
+              "content": {
+                "title": "Ôn tập đại lượng:",
+                "points": [
+                  "1 tấn = 1 000 kg; 1 tạ = 100 kg; 1 yến = 10 kg.",
+                  "1 m² = 100 dm²; 1 km² = 1 000 000 m²."
+                ],
+                "mascotMood": "proud"
+              }
+            }
+          ]
+        },
+        {
+          "id": "g4-c6-l3",
+          "title": "Bài 43: Ôn tập về phân số & Các phép tính phân số",
+          "type": "learn",
+          "description": "Rút gọn, quy đồng, cộng trừ nhân chia phân số",
+          "slides": [
+            {
+              "type": "story",
+              "content": {
+                "mascotMood": "excited",
+                "text": "Phân số là trọng tâm số một của học kì 2! Cùng làm bài kiểm tra phân số nhé! 🍰"
+              }
+            },
+            {
+              "type": "concept",
+              "content": {
+                "badge": "Kiến Thức Trọng Tâm",
+                "title": "Ôn tập về phân số & Các phép tính phân số",
+                "explanation": "Rút gọn, quy đồng, cộng trừ nhân chia phân số",
+                "points": [
+                  "Nắm chắc lý thuyết, công thức và quy tắc toán học tương ứng.",
+                  "Phân tích kỹ đề bài và thực hiện từng bước tính toán cẩn thận."
+                ],
+                "rule": "Ghi nhớ công thức cốt lõi và kiểm tra lại kết quả sau khi hoàn thành."
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Tính: 3/4 + 1/2 = ?",
+                "options": [
+                  "5/4",
+                  "4/6",
+                  "1",
+                  "3/8"
+                ],
+                "answer": "5/4",
+                "mascotHint": "3/4 + 2/4 = 5/4!"
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Tính: 2/5 × 10 = ?",
+                "options": [
+                  4,
+                  5,
+                  20,
+                  2
+                ],
+                "answer": 4,
+                "mascotHint": "(2 × 10) : 5 = 20 : 5 = 4!"
+              }
+            },
+            {
+              "type": "summary",
+              "content": {
+                "title": "Ôn tập phân số:",
+                "points": [
+                  "Nhớ rút gọn kết quả về phân số tối giản."
+                ],
+                "mascotMood": "celebrate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "g4-c6-l4",
+          "title": "Bài 44: Ôn tập về hình học",
+          "type": "learn",
+          "description": "Chu vi và diện tích hình vuông, hình chữ nhật, hình bình hành, hình thoi",
+          "slides": [
+            {
+              "type": "story",
+              "content": {
+                "mascotMood": "happy",
+                "text": "Tổng kết 4 công thức diện tích quan trọng nhất lớp 4! 📐"
+              }
+            },
+            {
+              "type": "visual",
+              "content": {
+                "text": "- Hình chữ nhật: S = a × b - Hình vuông: S = a × a - Hình bình hành: S = a × h - Hình thoi: S = (m × n) : 2"
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Một thửa ruộng hình bình hành có đáy 20 m và chiều cao 15 m. Diện tích thửa ruộng là:",
+                "options": [
+                  "300 m²",
+                  "150 m²",
+                  "70 m²",
+                  "350 m²"
+                ],
+                "answer": "300 m²",
+                "mascotHint": "S = a × h = 20 × 15 = 300 m²!"
+              }
+            },
+            {
+              "type": "summary",
+              "content": {
+                "title": "Ghi nhớ công thức hình học:",
+                "points": [
+                  "Hình bình hành: S = đáy × cao.",
+                  "Hình thoi: S = tích 2 đường chéo : 2."
+                ],
+                "mascotMood": "proud"
+              }
+            }
+          ]
+        },
+        {
+          "id": "g4-c6-l5",
+          "title": "Bài 45: Ôn tập giải toán có lời văn",
+          "type": "learn",
+          "description": "Tổng - Hiệu, Tổng - Tỉ, Hiệu - Tỉ, Tìm số trung bình cộng",
+          "slides": [
+            {
+              "type": "story",
+              "content": {
+                "mascotMood": "excited",
+                "text": "Phân biệt 3 bài toán kinh điển: Tổng-Hiệu dùng cộng/trừ chia 2; Tổng-Tỉ dùng tổng số phần; Hiệu-Tỉ dùng hiệu số phần! 💡"
+              }
+            },
+            {
+              "type": "concept",
+              "content": {
+                "badge": "Kiến Thức Trọng Tâm",
+                "title": "Ôn tập giải toán có lời văn",
+                "explanation": "Tổng - Hiệu, Tổng - Tỉ, Hiệu - Tỉ, Tìm số trung bình cộng",
+                "points": [
+                  "Nắm chắc lý thuyết, công thức và quy tắc toán học tương ứng.",
+                  "Phân tích kỹ đề bài và thực hiện từng bước tính toán cẩn thận."
+                ],
+                "rule": "Ghi nhớ công thức cốt lõi và kiểm tra lại kết quả sau khi hoàn thành."
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Hai thùng chứa 60 lít dầu, thùng thứ nhất gấp đôi thùng thứ hai. Hỏi thùng thứ hai chứa bao nhiêu lít?",
+                "options": [
+                  20,
+                  40,
+                  30,
+                  15
+                ],
+                "answer": 20,
+                "mascotHint": "Tổng-Tỉ: Tỉ số là 2/1. Tổng số phần = 3. Thùng 2 = 60 : 3 × 1 = 20 lít!"
+              }
+            },
+            {
+              "type": "summary",
+              "content": {
+                "title": "Ghi nhớ phương pháp giải:",
+                "points": [
+                  "Đọc kỹ đề bài xác định đúng dạng toán.",
+                  "Luôn kiểm tra lại kết quả."
+                ],
+                "mascotMood": "celebrate"
+              }
+            }
+          ]
+        },
+        {
+          "id": "g4-c6-l6",
+          "title": "Bài 46: Thử thách Trạng Nguyên Toán Lớp 4",
+          "type": "learn",
+          "description": "Bài kiểm tra tổng hợp cuối năm vinh danh Trạng Nguyên",
+          "slides": [
+            {
+              "type": "story",
+              "content": {
+                "mascotMood": "celebrate",
+                "text": "Chào mừng bạn đến với thử thách Trạng Nguyên Toán 4! Hãy phát huy hết khả năng để giành huy chương Vàng nhé! 🏅🎓"
+              }
+            },
+            {
+              "type": "concept",
+              "content": {
+                "badge": "Kiến Thức Trọng Tâm",
+                "title": "Thử thách Trạng Nguyên Toán Lớp 4",
+                "explanation": "Bài kiểm tra tổng hợp cuối năm vinh danh Trạng Nguyên",
+                "points": [
+                  "Nắm chắc lý thuyết, công thức và quy tắc toán học tương ứng.",
+                  "Phân tích kỹ đề bài và thực hiện từng bước tính toán cẩn thận."
+                ],
+                "rule": "Ghi nhớ công thức cốt lõi và kiểm tra lại kết quả sau khi hoàn thành."
+              }
+            },
+            {
+              "type": "quiz",
+              "content": {
+                "question": "Một mảnh đất hình thoi có đường chéo thứ nhất là 14 m, đường chéo thứ hai bằng 1/2 đường chéo thứ nhất. Diện tích mảnh đất là:",
+                "options": [
+                  "49 m²",
+                  "98 m²",
+                  "28 m²",
+                  "21 m²"
+                ],
+                "answer": "49 m²",
+                "mascotHint": "Đường chéo 2 = 14 : 2 = 7 m. Diện tích = (14 × 7) : 2 = 49 m²!"
+              }
+            },
+            {
+              "type": "summary",
+              "content": {
+                "title": "Chúc mừng bạn đã hoàn thành xuất sắc Toán Lớp 4!",
+                "points": [
+                  "Bạn đã nắm vững toàn bộ kiến thức cốt lõi của Toán 4!",
+                  "Sẵn sàng tự tin bước vào Toán Lớp 5! 🚀"
+                ],
+                "mascotMood": "celebrate"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+};

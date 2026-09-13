@@ -48,10 +48,11 @@ export default function HomePage() {
   const currentGradeData = curriculum.grades.find((g) => g.id === grade) || curriculum.grades[0]
   const allChaptersForGrade = currentGradeData?.chapters || []
 
-  // Lọc theo Học kỳ (Học kỳ 1: Chương 1 - 5, Học kỳ 2: Chương 6 - 10)
+  // Lọc theo Học kỳ (linh hoạt theo số chương của từng lớp)
+  const halfPoint = Math.ceil(allChaptersForGrade.length / 2)
   const displayedChapters = allChaptersForGrade.filter((_, idx) => {
-    if (semesterFilter === 'sem1') return idx < 5
-    if (semesterFilter === 'sem2') return idx >= 5
+    if (semesterFilter === 'sem1') return idx < halfPoint
+    if (semesterFilter === 'sem2') return idx >= halfPoint
     return true
   })
 
@@ -170,11 +171,11 @@ export default function HomePage() {
               const isCompleted = progress.percent === 100
               const hasStarted = progress.completed > 0
 
-              // Dọn dẹp tiêu đề chương gọn đẹp
-              const cleanTitle = chapter.name.startsWith('Chương')
-                ? chapter.name
-                : `Chương ${index + 1}: ${chapter.name}`
-
+              // Tách số chương và tên chương để hiển thị tối ưu trên mobile & desktop
+              const match = chapter.name.match(/^(Chương\s+\d+)[:\s-]*(.+)$/i)
+              const chapterTag = match ? match[1] : `Chương ${index + 1}`
+              const chapterTitle = match ? match[2] : chapter.name
+              const fullTitle = `${chapterTag}: ${chapterTitle}`
 
               return (
                 <motion.div
@@ -199,7 +200,16 @@ export default function HomePage() {
 
                   <div className="chapter-card-info">
                     <div className="chapter-card-header">
-                      <h3 title={cleanTitle}>{cleanTitle}</h3>
+                      <span
+                        className="chapter-tag-badge"
+                        style={{
+                          color: chapter.color || '#0284c7',
+                          backgroundColor: `${chapter.color || '#0284c7'}15`,
+                          borderColor: `${chapter.color || '#0284c7'}30`,
+                        }}
+                      >
+                        {chapterTag}
+                      </span>
                       <div
                         className={`chapter-stars-badge ${progress.earnedStars > 0
                           ? progress.earnedStars === progress.maxStars
@@ -215,7 +225,11 @@ export default function HomePage() {
                       </div>
                     </div>
 
-                    <p className="chapter-card-desc">{chapter.description}</p>
+                    <h3 className="chapter-card-title" title={fullTitle}>
+                      {chapterTitle}
+                    </h3>
+
+                    <p className="chapter-card-desc" title={chapter.description}>{chapter.description}</p>
 
                     <div className="chapter-card-footer">
                       <div className="chapter-progress-box">

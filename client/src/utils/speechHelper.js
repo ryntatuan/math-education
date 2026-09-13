@@ -196,6 +196,9 @@ class SpeechEngine {
     // 11. Em-dash or en-dash: " — " -> ", "
     t = t.replace(/\s*[—–]\s*/g, ', ')
 
+    // 12. Arrows in text: "->" or "→" -> ", tức là " (natural pause and explanation)
+    t = t.replace(/\s*(?:->|→|-->)\s*/g, ', tức là ')
+
     // Clean up extra whitespaces
     t = t.replace(/\s+/g, ' ').trim()
 
@@ -278,7 +281,7 @@ class SpeechEngine {
       const audio = document.createElement('audio')
       audio.referrerPolicy = 'no-referrer'
       audio.src = proxyUrl
-      audio.playbackRate = 1.0
+      audio.playbackRate = 1.05
       this.currentAudio = audio
 
       audio.onended = () => {
@@ -362,8 +365,8 @@ class SpeechEngine {
     utterance.voice = this.vietnameseVoice
     utterance.lang = this.vietnameseVoice.lang || 'vi-VN'
 
-    // Natural, clear female pacing at standard 1.0x
-    utterance.rate = 1.0
+    // Natural, clear female pacing at 1.05x
+    utterance.rate = 1.05
     utterance.pitch = 1.05
 
     utterance.onstart = () => {
