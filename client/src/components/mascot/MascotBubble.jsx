@@ -12,20 +12,23 @@ import {
   RefreshCw,
   Coins,
 } from 'lucide-react'
+import MascotIcon from '../common/MascotIcon'
+import CoinIcon from '../common/CoinIcon'
 import useUserStore from '../../store/useUserStore'
+import useAuthStore from '../../store/useAuthStore'
 import soundManager from '../../utils/soundManager'
 import './MascotBubble.css'
 
 const moods = {
-  happy: { emoji: '🦉', expression: '😊' },
-  excited: { emoji: '🦉', expression: '🤩' },
-  proud: { emoji: '🦉', expression: '😎' },
-  curious: { emoji: '🦉', expression: '🤔' },
-  encourage: { emoji: '🦉', expression: '💪' },
-  celebrate: { emoji: '🦉', expression: '🎉' },
-  sad: { emoji: '🦉', expression: '😢' },
-  thinking: { emoji: '🦉', expression: '🧐' },
-  hint: { emoji: '🦉', expression: '💡' },
+  happy: { expression: '😊' },
+  excited: { expression: '🤩' },
+  proud: { expression: '😎' },
+  curious: { expression: '🤔' },
+  encourage: { expression: '💪' },
+  celebrate: { expression: '🎉' },
+  sad: { expression: '😢' },
+  thinking: { expression: '🧐' },
+  hint: { expression: '💡' },
 }
 
 // Math tips database
@@ -158,6 +161,7 @@ export default function MascotBubble({
   const isInteractive = interactive !== undefined ? interactive : position !== 'inline'
   const navigate = useNavigate()
   const { grade, coins, addCoins } = useUserStore()
+  const { isGuest } = useAuthStore()
 
   const [isOpen, setIsOpen] = useState(false)
   const [activeTab, setActiveTab] = useState('quiz') // 'quiz' | 'tips' | 'cheer'
@@ -181,7 +185,8 @@ export default function MascotBubble({
     const nextState = !isOpen
     setIsOpen(nextState)
     if (nextState) {
-      soundManager.playCoin()
+      if (!isGuest) soundManager.playCoin()
+      else soundManager.playClick()
       setCurrentMood('excited')
       // Refresh quiz on open
       setQuiz(generateMiniQuiz(grade || 1))
@@ -201,8 +206,10 @@ export default function MascotBubble({
       setQuizStatus('correct')
       setCurrentMood('celebrate')
       soundManager.playCorrect()
-      setTimeout(() => soundManager.playCoin(), 350)
-      addCoins(5)
+      if (!isGuest) {
+        setTimeout(() => soundManager.playCoin(), 350)
+        addCoins(5)
+      }
     } else {
       setQuizStatus('wrong')
       setCurrentMood('encourage')
@@ -253,12 +260,16 @@ export default function MascotBubble({
                 {/* Panel Header */}
                 <div className="mascot-panel-header">
                   <div className="mascot-panel-title">
-                    <span className="mascot-avatar-small">🦉</span>
+                    <span className="mascot-avatar-small">
+                      <MascotIcon size={28} />
+                    </span>
                     <div>
                       <h4>Cú Mèo Thông Thái</h4>
-                      <span className="mascot-coins-badge">
-                        <Coins size={12} /> {coins} xu
-                      </span>
+                      {!isGuest && (
+                        <span className="mascot-coins-badge">
+                          <CoinIcon size={14} /> {coins} xu
+                        </span>
+                      )}
                     </div>
                   </div>
                   <button
@@ -279,7 +290,7 @@ export default function MascotBubble({
                       soundManager.playClick()
                     }}
                   >
-                    🎲 Đố Vui (+5 xu)
+                    🎲 Đố Vui{!isGuest ? ' (+5 xu)' : ''}
                   </button>
                   <button
                     className={`nav-item ${activeTab === 'tips' ? 'active' : ''}`}
@@ -335,7 +346,16 @@ export default function MascotBubble({
                       {/* Result feedback */}
                       {quizStatus === 'correct' && (
                         <div className="quiz-feedback correct">
-                          <span>🎉 Tuyệt vời! Bé nhận ngay <strong>+5 xu 🪙</strong>!</span>
+                          <span>
+                            {isGuest ? (
+                              '🎉 Tuyệt vời! Bé đã trả lời rất chính xác!'
+                            ) : (
+                              <>
+                                🎉 Tuyệt vời! Bé nhận ngay <strong>+5 xu</strong>{' '}
+                                <CoinIcon size={16} />!
+                              </>
+                            )}
+                          </span>
                           <button className="next-quiz-btn" onClick={handleNextQuiz}>
                             <span>Câu tiếp theo</span>
                             <ArrowRight size={18} />
@@ -411,7 +431,9 @@ export default function MascotBubble({
             }}
             title={isInteractive ? 'Nhấn để trò chuyện với Cú Mèo!' : ''}
           >
-            <span className="mascot-owl">{moodData.emoji}</span>
+            <span className="mascot-owl">
+              <MascotIcon size={size === 'lg' ? 64 : size === 'sm' ? 38 : 54} />
+            </span>
             <span className="mascot-expression">{moodData.expression}</span>
             {isInteractive && !isOpen && (
               <span className="mascot-glow-indicator" />

@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, Cloud, Smartphone, Users, Sparkles, LogIn } from 'lucide-react'
+import MascotIcon from '../common/MascotIcon'
 import useAuthStore from '../../store/useAuthStore'
 import soundManager from '../../utils/soundManager'
 import './AuthModal.css'
@@ -37,7 +38,10 @@ export default function AuthModal() {
 
           {/* Header */}
           <div className="auth-modal-header">
-            <div className="auth-mascot-badge">🦉✨</div>
+            <div className="auth-mascot-badge">
+              <MascotIcon size={32} />
+              <span>✨</span>
+            </div>
             <h2>Đăng Nhập Tài Khoản</h2>
             <p className="auth-modal-subtitle">
               Lưu trữ đám mây an toàn & đồng bộ tiến độ học tập cho bé

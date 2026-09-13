@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import { Lock, ArrowRight, ArrowLeft, Sparkles, ShieldCheck, CheckCircle2 } from 'lucide-react'
 import Button from '../ui/Button'
+import CoinIcon from '../common/CoinIcon'
 import useAuthStore from '../../store/useAuthStore'
 import soundManager from '../../utils/soundManager'
 import './GuestFeatureLock.css'
@@ -119,7 +120,9 @@ export default function GuestFeatureLock({
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 * (idx + 1) }}
             >
-              <span className="feature-benefit-icon">{bIcon}</span>
+              <span className="feature-benefit-icon">
+                {bIcon === '🪙' ? <CoinIcon size={26} /> : bIcon}
+              </span>
               <div className="feature-benefit-info">
                 <h3>{bTitle}</h3>
                 {bDesc && <p>{bDesc}</p>}

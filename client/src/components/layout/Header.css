@@ -262,6 +262,35 @@
     box-shadow: none;
   }
 
+  .header-profile-pill.header-profile-guest {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #f0fdf4;
+    color: #15803d;
+    border: 1.5px solid #86efac;
+    padding: 2px 10px 2px 2px;
+    border-radius: 999px;
+    font-size: 0.84rem;
+    font-weight: 800;
+    box-shadow: 0 2px 6px rgba(34, 197, 94, 0.12);
+  }
+
+  .header-profile-pill.header-profile-guest .header-avatar-circle {
+    width: 28px;
+    height: 28px;
+    font-size: 0.95rem;
+    box-shadow: none;
+    border: none;
+  }
+
+  .header-profile-pill.header-profile-guest .header-profile-name {
+    display: inline-block !important;
+    font-size: 0.84rem;
+    font-weight: 800;
+    color: #15803d;
+  }
+
   .header-avatar-circle {
     width: 36px;
     height: 36px;
@@ -276,9 +305,21 @@
 
   .header-login-btn {
     height: 34px;
-    padding: 0 10px;
-    font-size: 0.85rem;
-    gap: 4px;
+    padding: 0 12px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    gap: 5px;
+    border-radius: 999px;
+  }
+
+  .header-login-btn .header-login-icon {
+    font-size: 0.95rem;
+  }
+
+  .header-login-btn .header-login-label {
+    display: inline-block;
+    font-weight: 700;
+    white-space: nowrap;
   }
 }
 
@@ -302,7 +343,7 @@
   }
 
   .header-stats {
-    gap: 6px;
+    gap: 5px;
   }
 
   .header-stats .badge {
@@ -317,15 +358,36 @@
   }
 
   .header-avatar-circle {
-    width: 32px;
-    height: 32px;
+    width: 30px;
+    height: 30px;
     font-size: 1.05rem;
   }
 
+  .header-profile-pill.header-profile-guest {
+    padding: 2px 8px 2px 2px;
+    font-size: 0.76rem;
+    gap: 4px;
+  }
+
+  .header-profile-pill.header-profile-guest .header-avatar-circle {
+    width: 24px;
+    height: 24px;
+    font-size: 0.85rem;
+  }
+
+  .header-profile-pill.header-profile-guest .header-profile-name {
+    font-size: 0.76rem;
+  }
+
   .header-login-btn {
-    height: 32px;
+    height: 30px;
     padding: 0 8px;
-    font-size: 0.8rem;
+    font-size: 0.76rem;
+    gap: 4px;
+  }
+
+  .header-login-btn .header-login-icon {
+    font-size: 0.85rem;
   }
 }
 

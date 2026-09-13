@@ -22,6 +22,7 @@ import {
 import Button from '../components/ui/Button'
 import Card from '../components/ui/Card'
 import ProgressBar from '../components/ui/ProgressBar'
+import MascotIcon from '../components/common/MascotIcon'
 import useUserStore from '../store/useUserStore'
 import useProgressStore from '../store/useProgressStore'
 import useAuthStore from '../store/useAuthStore'
@@ -593,7 +594,10 @@ export default function ParentDashboard() {
           </div>
 
           <div className="parent-feedback-card">
-            <h3>🦉 Nhận xét của Cú Mèo Thông Thái:</h3>
+            <h3 style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+              <MascotIcon size={24} />
+              <span>Nhận xét của Cú Mèo Thông Thái:</span>
+            </h3>
             <p>{mascotAdvice}</p>
           </div>
 

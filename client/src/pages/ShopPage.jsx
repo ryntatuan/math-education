@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { ShoppingBag, Sparkles, Check, Coins } from 'lucide-react'
 import Button from '../components/ui/Button'
+import CoinIcon from '../components/common/CoinIcon'
 import useUserStore from '../store/useUserStore'
 import useAuthStore from '../store/useAuthStore'
 import GuestFeatureLock from '../components/auth/GuestFeatureLock'
@@ -122,7 +123,13 @@ export default function ShopPage() {
               <div className="shop-item-info">
                 <h3>{item.name}</h3>
                 <span className="shop-price-tag number">
-                  {isOwned ? (isEquipped ? 'Đang dùng' : 'Đã sở hữu') : `🪙 ${item.price} Xu`}
+                  {isOwned ? (
+                    isEquipped ? 'Đang dùng' : 'Đã sở hữu'
+                  ) : (
+                    <>
+                      <CoinIcon size={14} /> {item.price} Xu
+                    </>
+                  )}
                 </span>
               </div>
 

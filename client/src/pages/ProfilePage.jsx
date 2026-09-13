@@ -5,6 +5,7 @@ import { Award, Star, Flame, Trophy, Coins, User, Sparkles, Check, Edit2, Shoppi
 import Button from '../components/ui/Button'
 import Card from '../components/ui/Card'
 import ProgressBar from '../components/ui/ProgressBar'
+import CoinIcon from '../components/common/CoinIcon'
 import useUserStore from '../store/useUserStore'
 import useProgressStore from '../store/useProgressStore'
 import useAuthStore from '../store/useAuthStore'
@@ -355,7 +356,9 @@ export default function ProfilePage() {
       {/* Stats Summary Grid */}
       <div className="profile-stats-grid">
         <div className="p-stat-card">
-          <div className="p-stat-icon icon-coins">🪙</div>
+          <div className="p-stat-icon icon-coins">
+            <CoinIcon size={28} />
+          </div>
           <div className="p-stat-data">
             <span className="p-stat-num number">{coins}</span>
             <span className="p-stat-name">Xu Vàng</span>

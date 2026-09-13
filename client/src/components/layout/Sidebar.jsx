@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Home, BookOpen, PenTool, Gamepad2, Trophy, ShieldCheck, Volume2, VolumeX, Sparkles, Headphones } from 'lucide-react'
+import MascotIcon from '../common/MascotIcon'
 import soundManager from '../../utils/soundManager'
 import useUserStore from '../../store/useUserStore'
 import useAuthStore from '../../store/useAuthStore'
@@ -35,7 +36,9 @@ export default function Sidebar() {
           className="sidebar-logo"
           onClick={() => soundManager.playClick()}
         >
-          <span className="sidebar-logo-icon">🦉</span>
+          <span className="sidebar-logo-icon">
+            <MascotIcon size={34} />
+          </span>
           <span className="sidebar-logo-text">Toán Vui</span>
         </Link>
       </div>

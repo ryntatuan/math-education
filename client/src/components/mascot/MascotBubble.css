@@ -54,7 +54,9 @@
 }
 
 .mascot-owl {
-  font-size: inherit;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
 }
 
@@ -189,7 +191,9 @@
 }
 
 .mascot-avatar-small {
-  font-size: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .mascot-panel-title h4 {

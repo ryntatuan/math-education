@@ -1,3 +1,4 @@
+import CoinIcon from '../common/CoinIcon'
 import './Badge.css'
 
 export default function Badge({
@@ -14,9 +15,15 @@ export default function Badge({
     className,
   ].filter(Boolean).join(' ')
 
+  const coinSize = size === 'sm' ? 14 : size === 'lg' ? 22 : 18
+  const resolvedIcon =
+    (variant === 'coin' && (!icon || icon === '🪙')) || icon === '🪙'
+      ? <CoinIcon size={coinSize} />
+      : icon
+
   return (
     <span className={classes}>
-      {icon && <span className="badge-icon">{icon}</span>}
+      {resolvedIcon && <span className="badge-icon">{resolvedIcon}</span>}
       {children}
     </span>
   )

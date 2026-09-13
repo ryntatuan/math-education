@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import Badge from '../ui/Badge'
+import MascotIcon from '../common/MascotIcon'
 import useUserStore from '../../store/useUserStore'
 import useProgressStore from '../../store/useProgressStore'
 import useAuthStore from '../../store/useAuthStore'
@@ -21,7 +22,9 @@ export default function Header() {
             className="header-logo"
             onClick={() => soundManager.playClick()}
           >
-            <span className="header-logo-icon">🦉</span>
+            <span className="header-logo-icon">
+              <MascotIcon size={32} />
+            </span>
             <span className="header-logo-text">Toán Vui</span>
           </Link>
         </div>
@@ -72,7 +75,7 @@ export default function Header() {
               title="Đăng nhập tài khoản để sao lưu đám mây"
             >
               <span className="header-login-icon">🔑</span>
-              <span className="hide-mobile">Đăng nhập</span>
+              <span className="header-login-label">Đăng nhập</span>
             </button>
           )}
 
@@ -86,7 +89,7 @@ export default function Header() {
             <span className="header-avatar-circle">
               {isGuest ? '👤' : avatar || '👦'}
             </span>
-            <span className="header-profile-name hide-mobile">
+            <span className={`header-profile-name ${!isGuest ? 'hide-mobile' : 'show-guest-mobile'}`}>
               {isGuest ? 'Khách' : nickname || 'Bé Yêu'}
             </span>
           </Link>

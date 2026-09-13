@@ -11,6 +11,7 @@ import {
 } from 'lucide-react'
 import Button from '../components/ui/Button'
 import ProgressBar from '../components/ui/ProgressBar'
+import CoinIcon from '../components/common/CoinIcon'
 import useUserStore from '../store/useUserStore'
 import useProgressStore from '../store/useProgressStore'
 import useAuthStore from '../store/useAuthStore'
@@ -466,7 +467,9 @@ export default function PracticePage() {
           {!isGuest ? (
             <div className="stat-box">
               <span className="stat-num number">+{totalCoinsEarned}</span>
-              <span className="stat-desc">🪙 Xu vàng</span>
+              <span className="stat-desc">
+                <CoinIcon size={14} /> Xu vàng
+              </span>
             </div>
           ) : (
             <div className="stat-box">
@@ -770,7 +773,11 @@ export default function PracticePage() {
                     >
                       <div className="feedback-msg">
                         <strong>
-                          {mistakeIsCorrect ? '🎉 Giỏi quá! Bé đã nhớ bài rồi (+15 xu 🪙)!' : '💡 Nhớ kỹ lời giải này nhé:'}
+                          {mistakeIsCorrect
+                            ? (isGuest
+                                ? '🎉 Giỏi quá! Bé đã nhớ bài rồi!'
+                                : '🎉 Giỏi quá! Bé đã nhớ bài rồi (+15 xu)!')
+                            : '💡 Nhớ kỹ lời giải này nhé:'}
                         </strong>
                         <p>{currentMistake.explanation}</p>
                       </div>

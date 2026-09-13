@@ -4,6 +4,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowLeft, ArrowRight, CheckCircle2, XCircle, Volume2, Sparkles, Award, Lightbulb, MessageCircle, LogIn } from 'lucide-react'
 import Button from '../components/ui/Button'
 import ProgressBar, { StarsDisplay } from '../components/ui/ProgressBar'
+import MascotIcon from '../components/common/MascotIcon'
+import CoinIcon from '../components/common/CoinIcon'
 import useUserStore from '../store/useUserStore'
 import useProgressStore from '../store/useProgressStore'
 import useAuthStore from '../store/useAuthStore'
@@ -239,7 +241,9 @@ export default function LessonPage() {
           <h1>{stars === 3 ? 'Xuất sắc!' : stars === 2 ? 'Giỏi lắm!' : 'Tốt lắm!'}</h1>
 
           <div className="result-mascot-greeting">
-            <span className="result-mascot-owl">🦉</span>
+            <span className="result-mascot-owl">
+              <MascotIcon size={36} />
+            </span>
             <p className="result-mascot-message">
               {stars === 3
                 ? 'Tuyệt vời! Bé đã hoàn thành bài học xuất sắc và nhận trọn vẹn phần thưởng!'
@@ -272,7 +276,9 @@ export default function LessonPage() {
           ) : (
             <div className="result-rewards-card">
               <div className="result-reward-item">
-                <span className="reward-icon">🪙</span>
+                <span className="reward-icon">
+                  <CoinIcon size={24} />
+                </span>
                 <div className="reward-info">
                   <span className="reward-val number">+20</span>
                   <span className="reward-label">Xu vàng</span>
@@ -345,9 +351,11 @@ export default function LessonPage() {
           />
         </div>
         <div className="lesson-header-right">
-          <span className="lesson-coins-pill number" title="Số xu hiện tại">
-            🪙 {coins}
-          </span>
+          {!isGuest && (
+            <span className="lesson-coins-pill number" title="Số xu hiện tại">
+              <CoinIcon size={14} /> {coins}
+            </span>
+          )}
           <span className="lesson-slide-count number">
             {currentSlide + 1}/{totalSlides}
           </span>
@@ -475,7 +483,9 @@ function StorySlide({ content }) {
         animate={{ y: [0, -10, 0], rotate: [-2, 2, -2] }}
         transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
       >
-        <span className="story-owl-emoji">🦉</span>
+        <span className="story-owl-emoji">
+          <MascotIcon size={52} />
+        </span>
         <span className="story-mood-badge">{moodEmoji}</span>
       </motion.div>
 
@@ -1222,7 +1232,9 @@ function ConceptSlide({ content }) {
       {/* 5. FRIENDLY WORKED EXAMPLE (Warm speech bubble with mascot) */}
       {content.example && (
         <div className="concept-example-box">
-          <span className="concept-example-mascot">🦉</span>
+          <span className="concept-example-mascot">
+            <MascotIcon size={32} />
+          </span>
           <div className="concept-example-body">
             <span className="concept-example-tag">Ví dụ cùng bé:</span>
             <p className="concept-example-text">

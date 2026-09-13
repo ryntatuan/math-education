@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { RotateCcw, Home, AlertTriangle } from 'lucide-react'
 import Button from '../ui/Button'
+import MascotIcon from './MascotIcon'
 import './ErrorBoundary.css'
 
 export default class ErrorBoundary extends Component {
@@ -43,7 +44,9 @@ export default class ErrorBoundary extends Component {
         <div className="error-boundary-container">
           <div className="error-boundary-card">
             <div className="error-mascot-badge">
-              <span className="error-mascot-emoji">🦉</span>
+              <span className="error-mascot-emoji">
+                <MascotIcon size={38} />
+              </span>
               <span className="error-bubble">Ối chà!</span>
             </div>
 
