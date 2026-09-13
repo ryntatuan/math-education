@@ -7,8 +7,8 @@ dist/
 dist-ssr/
 */dist/
 *.apk
-client/public/downloads/*.apk
-client/public/*.apk
+!client/public/downloads/ToanVui.apk
+!client/public/ToanVui.apk
 
 # Logs
 logs

@@ -17,40 +17,14 @@ console.log('\n' + '='.repeat(55))
 console.log('🤖 QUY TRÌNH BUILD TOÀN DIỆN (WEB + ANDROID APK)')
 console.log('='.repeat(55))
 
-// 0. Dọn dẹp sạch mọi file APK cũ trong assets/public để tránh bị Capacitor copy lặp lồng nhau
-const cleanOldApks = () => {
-  const dirs = [
-    path.resolve(clientDir, 'public'),
-    path.resolve(clientDir, 'public/downloads'),
-    path.resolve(clientDir, 'dist'),
-    path.resolve(clientDir, 'dist/downloads'),
-    path.resolve(androidDir, 'app/src/main/assets/public'),
-    path.resolve(androidDir, 'app/src/main/assets/public/downloads')
-  ]
-  for (const d of dirs) {
-    if (fs.existsSync(d)) {
-      try {
-        const files = fs.readdirSync(d)
-        for (const f of files) {
-          if (f.endsWith('.apk')) {
-            fs.unlinkSync(path.join(d, f))
-          }
-        }
-      } catch {}
-    }
-  }
-}
-cleanOldApks()
-
-// 1. Luôn build bản Web với Vite trước
+// 1. Luôn build bản Web với Vite trước (Vite sẽ tự copy public/downloads/ToanVui.apk sang dist)
 console.log('\n🚀 [1/4] Đang build giao diện web (Vite production bundle)...')
 execSync('npx vite build', { cwd: clientDir, stdio: 'inherit' })
 
 // Kiểm tra môi trường Vercel hoặc Cloud không có Android SDK
 const isVercel = Boolean(process.env.VERCEL || process.env.NOW_BUILDER)
 if (isVercel) {
-  console.log('\n☁️ Phát hiện môi trường Vercel: Đã build xong Web dist.')
-  console.log('📦 Sẽ chuyển hướng tải APK qua GitHub Releases (đã cấu hình trong vercel.json).')
+  console.log('\n☁️ Phát hiện môi trường Vercel: Đã build xong Web dist kèm file APK tĩnh.')
   console.log('='.repeat(55) + '\n')
   process.exit(0)
 }
@@ -58,6 +32,23 @@ if (isVercel) {
 try {
   console.log('\n🔄 [2/4] Đang đồng bộ tài nguyên vào Android (Capacitor Sync)...')
   execSync('npx cap sync android', { cwd: clientDir, stdio: 'inherit' })
+
+  // QUAN TRỌNG: Xóa sạch file .apk trong thư mục assets của Android để không bị đóng gói đệ quy!
+  const stripApksFromDir = (dirPath) => {
+    if (!fs.existsSync(dirPath)) return
+    const entries = fs.readdirSync(dirPath, { withFileTypes: true })
+    for (const entry of entries) {
+      const fullPath = path.join(dirPath, entry.name)
+      if (entry.isDirectory()) {
+        stripApksFromDir(fullPath)
+      } else if (entry.isFile() && entry.name.endsWith('.apk')) {
+        fs.unlinkSync(fullPath)
+      }
+    }
+  }
+
+  stripApksFromDir(path.resolve(androidDir, 'app/src/main/assets/public'))
+  console.log('🧹 Đã loại bỏ file APK trung gian khỏi assets Android để giữ dung lượng siêu gọn.')
 
   console.log('\n📦 [3/4] Đang biên dịch file Android APK (Gradle assembleDebug)...')
   const isWindows = process.platform === 'win32'
@@ -73,11 +64,14 @@ try {
     fs.mkdirSync(targetDownloadsDir, { recursive: true })
   }
 
-  // Copy sang public/downloads và dist/downloads
+  // Copy sang public/downloads, public gốc và dist/downloads
   fs.copyFileSync(builtApkPath, targetApk)
+  fs.copyFileSync(builtApkPath, path.resolve(clientDir, 'public/ToanVui.apk'))
+
   const distDownloadsDir = path.resolve(clientDir, 'dist/downloads')
   if (fs.existsSync(distDownloadsDir)) {
     fs.copyFileSync(builtApkPath, path.resolve(distDownloadsDir, 'ToanVui.apk'))
+    fs.copyFileSync(builtApkPath, path.resolve(clientDir, 'dist/ToanVui.apk'))
   }
 
   const stats = fs.statSync(targetApk)
@@ -99,10 +93,9 @@ try {
   console.log('\n' + '='.repeat(55))
   console.log('🎉 BUILD HOÀN TẤT THÀNH CÔNG CẢ WEB & APK!')
   console.log(`📁 File APK: client/public/downloads/ToanVui.apk`)
-  console.log(`📊 Dung lượng APK chuẩn: ${sizeMB} MB (gọn nhẹ, không bị phình to)`)
+  console.log(`📊 Dung lượng APK chuẩn: ${sizeMB} MB (gọn nhẹ)`)
   console.log(`⏱️ Thời gian build: ${now.toLocaleString('vi-VN')}`)
-  console.log(`✨ File APK đã được thêm vào .gitignore để Git luôn nhẹ & push cực nhanh!`)
-  console.log(`👉 Bạn chỉ cần: git commit & git push origin main là xong!`)
+  console.log(`👉 Bạn chỉ cần: git commit & git push origin main là Vercel có ngay file download!`)
   console.log('='.repeat(55) + '\n')
 } catch (error) {
   console.warn('\n⚠️ Cảnh báo trong quá trình build APK:', error.message)

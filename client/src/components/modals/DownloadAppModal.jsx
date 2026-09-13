@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, Smartphone, Download, Check, Copy, ShieldCheck, HelpCircle, ArrowDownToLine, ExternalLink } from 'lucide-react'
+import { X, Smartphone, Download, Check, Copy, ShieldCheck, HelpCircle, ArrowDownToLine } from 'lucide-react'
 import soundManager from '../../utils/soundManager'
 import useDownloadModalStore from '../../store/useDownloadModalStore'
 import './DownloadAppModal.css'
@@ -101,22 +101,6 @@ export default function DownloadAppModal() {
                 <span className="btn-dl-sub">Tải trực tiếp tốc độ cao • Miễn phí 100%</span>
               </div>
             </a>
-
-            {/* Mirror & Direct Links */}
-            <div className="download-mirror-row">
-              <span className="mirror-label">Link tải dự phòng (Cloud):</span>
-              <a
-                href="https://github.com/ryntatuan/math-education/releases/latest/download/ToanVui.apk"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mirror-link"
-                onClick={() => soundManager.playClick()}
-                title="Tải trực tiếp bản APK mới nhất được build tự động từ GitHub Releases"
-              >
-                <span>GitHub Releases</span>
-                <ExternalLink size={13} />
-              </a>
-            </div>
 
             {/* Copy Link to send to phone via Zalo/Messenger */}
             <div className="download-share-row">
