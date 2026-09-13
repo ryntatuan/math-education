@@ -40,6 +40,33 @@ const GAME_LIST = [
     icon: '🃏',
     difficulty: 'Trí nhớ',
   },
+  {
+    id: 'math_balance',
+    title: '⚖️ Cán Cân Thần Kỳ',
+    subtitle: 'Math Balance',
+    description: 'Chọn quả cân thích hợp đặt lên đĩa cân để cán cân thăng bằng hoàn hảo!',
+    color: '#F59F00',
+    icon: '⚖️',
+    difficulty: 'Tư duy logic',
+  },
+  {
+    id: 'space_defense',
+    title: '🚀 Bắn Thiên Thạch Vũ Trụ',
+    subtitle: 'Space Defense',
+    description: 'Điều khiển pháo laser bắn tan các mảnh thiên thạch mang phép tính trước khi chạm lá chắn!',
+    color: '#7950F2',
+    icon: '🚀',
+    difficulty: 'Phản xạ nhanh',
+  },
+  {
+    id: 'math_fishing',
+    title: '🎣 Hồ Câu Cá Thông Thái',
+    subtitle: 'Math Fishing',
+    description: 'Thả cần câu xuống làn nước trong xanh và câu chú cá mang đúng đáp án của phép tính!',
+    color: '#20C997',
+    icon: '🎣',
+    difficulty: 'Khéo léo & Vui nhộn',
+  },
 ]
 
 export default function GamesPage() {
@@ -98,7 +125,7 @@ export default function GamesPage() {
           addXp={addXp}
           recordGamePlayed={recordGamePlayed}
         />
-      ) : (
+      ) : activeGame === 'memory_match' ? (
         <MemoryMatchGame
           onBack={() => setActiveGame(null)}
           grade={grade}
@@ -106,7 +133,31 @@ export default function GamesPage() {
           addXp={addXp}
           recordGamePlayed={recordGamePlayed}
         />
-      )}
+      ) : activeGame === 'math_balance' ? (
+        <MathBalanceGame
+          onBack={() => setActiveGame(null)}
+          grade={grade}
+          addCoins={addCoins}
+          addXp={addXp}
+          recordGamePlayed={recordGamePlayed}
+        />
+      ) : activeGame === 'space_defense' ? (
+        <SpaceDefenseGame
+          onBack={() => setActiveGame(null)}
+          grade={grade}
+          addCoins={addCoins}
+          addXp={addXp}
+          recordGamePlayed={recordGamePlayed}
+        />
+      ) : activeGame === 'math_fishing' ? (
+        <MathFishingGame
+          onBack={() => setActiveGame(null)}
+          grade={grade}
+          addCoins={addCoins}
+          addXp={addXp}
+          recordGamePlayed={recordGamePlayed}
+        />
+      ) : null}
     </div>
   )
 }
@@ -406,14 +457,16 @@ function MathRaceGame({ onBack, grade, addCoins, addXp, recordRaceWin, recordGam
 
   return (
     <div className="mini-game-wrapper">
-      <div className="game-top-bar">
-        <button className="btn-back" onClick={onBack}>
-          <ArrowLeft size={18} />
-          <span>Rời trò chơi</span>
-        </button>
-        <span className="game-title-text">🏎️ Cuộc Đua Toán Học</span>
-        <span className="score-pill">Điểm: {score}</span>
-      </div>
+      {!gameOver && (
+        <div className="game-top-bar">
+          <button className="btn-back" onClick={onBack}>
+            <ArrowLeft size={18} />
+            <span>Rời trò chơi</span>
+          </button>
+          <span className="game-title-text">🏎️ Cuộc Đua Toán Học</span>
+          <span className="score-pill">Điểm: {score}</span>
+        </div>
+      )}
 
       {/* Racetrack */}
       <div className="race-track-board">
@@ -672,19 +725,21 @@ function NumberPopGame({ onBack, grade, addCoins, addXp, recordGamePlayed }) {
 
   return (
     <div className="mini-game-wrapper">
-      <div className="game-top-bar">
-        <button className="btn-back" onClick={handleBack}>
-          <ArrowLeft size={18} />
-          <span>Rời trò chơi</span>
-        </button>
-        <span className="game-title-text">🎯 Bắn Bóng Số Bay</span>
-        <div className="game-stats-group">
-          <span className="timer-pill">
-            <Clock size={16} /> {timeLeft}s
-          </span>
-          <span className="score-pill">Điểm: {score}</span>
+      {!gameOver && (
+        <div className="game-top-bar">
+          <button className="btn-back" onClick={handleBack}>
+            <ArrowLeft size={18} />
+            <span>Rời trò chơi</span>
+          </button>
+          <span className="game-title-text">🎯 Bắn Bóng Số Bay</span>
+          <div className="game-stats-group">
+            <span className="timer-pill">
+              <Clock size={16} /> {timeLeft}s
+            </span>
+            <span className="score-pill">Điểm: {score}</span>
+          </div>
         </div>
-      </div>
+      )}
 
       {!gameOver ? (
         <div className="number-pop-stage">
@@ -871,14 +926,16 @@ function MemoryMatchGame({ onBack, grade, addCoins, addXp, recordGamePlayed }) {
 
   return (
     <div className="mini-game-wrapper">
-      <div className="game-top-bar">
-        <button className="btn-back" onClick={handleBack}>
-          <ArrowLeft size={18} />
-          <span>Rời trò chơi</span>
-        </button>
-        <span className="game-title-text">🃏 Lật Thẻ Trí Nhớ</span>
-        <span className="score-pill">Số lượt lật: {turns}</span>
-      </div>
+      {!gameWon && (
+        <div className="game-top-bar">
+          <button className="btn-back" onClick={handleBack}>
+            <ArrowLeft size={18} />
+            <span>Rời trò chơi</span>
+          </button>
+          <span className="game-title-text">🃏 Lật Thẻ Trí Nhớ</span>
+          <span className="score-pill">Số lượt lật: {turns}</span>
+        </div>
+      )}
 
       {!gameWon ? (
         <div className="memory-board">
@@ -912,6 +969,663 @@ function MemoryMatchGame({ onBack, grade, addCoins, addXp, recordGamePlayed }) {
           <p>Bé đã ghép đúng toàn bộ 4 cặp thẻ bài chỉ trong {turns} lượt lật!</p>
           <div className="gameover-btns">
             <Button variant="primary" size="lg" onClick={initDeck}>
+              <RotateCcw size={18} /> Chơi ván khác
+            </Button>
+            <Button variant="outline" size="lg" onClick={handleBack}>
+              Quay lại danh sách game
+            </Button>
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
+// ========================================================
+// ⚖️ GAME 4: MATH BALANCE (CÁN CÂN THẦN KỲ)
+// ========================================================
+function MathBalanceGame({ onBack, grade = 1, addCoins, addXp, recordGamePlayed }) {
+  const [round, setRound] = useState(1)
+  const [puzzle, setPuzzle] = useState(null)
+  const [selectedWeight, setSelectedWeight] = useState(null)
+  const [isBalanced, setIsBalanced] = useState(false)
+  const [score, setScore] = useState(0)
+  const [gameWon, setGameWon] = useState(false)
+  const [wrongOption, setWrongOption] = useState(null)
+
+  const TOTAL_ROUNDS = 8
+  const gameRecordedRef = useRef(false)
+
+  const generatePuzzle = useCallback(() => {
+    let target, leftExpr, rightExisting, missing
+    if (grade === 1) {
+      target = Math.floor(Math.random() * 9) + 6 // 6 to 14
+      const splitA = Math.floor(Math.random() * (target - 2)) + 1
+      const splitB = target - splitA
+      leftExpr = Math.random() > 0.5 ? `${splitA} + ${splitB}` : `${target} kg`
+      rightExisting = Math.floor(Math.random() * (target - 2)) + 1
+      missing = target - rightExisting
+    } else if (grade === 2) {
+      target = Math.floor(Math.random() * 30) + 16 // 16 to 45
+      const splitA = Math.floor(Math.random() * (target - 8)) + 4
+      const splitB = target - splitA
+      leftExpr = Math.random() > 0.5 ? `${splitA} + ${splitB}` : `${target} kg`
+      rightExisting = Math.floor(Math.random() * (target - 6)) + 3
+      missing = target - rightExisting
+    } else {
+      const isMul = Math.random() > 0.4
+      if (isMul) {
+        const a = Math.floor(Math.random() * 6) + 4
+        const b = Math.floor(Math.random() * 6) + 3
+        target = a * b
+        leftExpr = `${a} × ${b}`
+      } else {
+        target = Math.floor(Math.random() * 50) + 35
+        const a = Math.floor(Math.random() * (target - 15)) + 10
+        leftExpr = `${a} + ${target - a}`
+      }
+      rightExisting = Math.floor(Math.random() * (target - 8)) + 5
+      missing = target - rightExisting
+    }
+
+    const optSet = new Set([missing])
+    while (optSet.size < 4) {
+      const delta = (Math.random() > 0.5 ? 1 : -1) * (Math.floor(Math.random() * 5) + 1)
+      const cand = missing + delta
+      if (cand > 0 && cand !== missing) {
+        optSet.add(cand)
+      }
+    }
+    const options = Array.from(optSet).sort(() => Math.random() - 0.5)
+
+    setPuzzle({ target, leftExpr, rightExisting, missing, options })
+    setSelectedWeight(null)
+    setIsBalanced(false)
+    setWrongOption(null)
+  }, [grade])
+
+  useEffect(() => {
+    generatePuzzle()
+  }, [generatePuzzle])
+
+  const handleSelectOption = (weight) => {
+    if (isBalanced || !puzzle) return
+
+    if (weight === puzzle.missing) {
+      setSelectedWeight(weight)
+      setIsBalanced(true)
+      soundManager.playCoin()
+      confetti({ particleCount: 30, spread: 50 })
+      setScore((s) => s + 10)
+      addCoins(2)
+      addXp(6)
+
+      setTimeout(() => {
+        if (round >= TOTAL_ROUNDS) {
+          setGameWon(true)
+          soundManager.playFanfare()
+          confetti({ particleCount: 90, spread: 80 })
+          addCoins(15)
+          addXp(40)
+          if (!gameRecordedRef.current) {
+            gameRecordedRef.current = true
+            if (typeof recordGamePlayed === 'function') {
+              recordGamePlayed()
+            }
+          }
+        } else {
+          setRound((r) => r + 1)
+          generatePuzzle()
+        }
+      }, 1200)
+    } else {
+      soundManager.playWrong()
+      setWrongOption(weight)
+      setTimeout(() => setWrongOption(null), 800)
+    }
+  }
+
+  const handleBack = () => {
+    if (score > 0 && !gameRecordedRef.current) {
+      gameRecordedRef.current = true
+      if (typeof recordGamePlayed === 'function') {
+        recordGamePlayed()
+      }
+    }
+    onBack()
+  }
+
+  const handleRestart = () => {
+    setRound(1)
+    setScore(0)
+    setGameWon(false)
+    generatePuzzle()
+  }
+
+  return (
+    <div className="mini-game-wrapper">
+      {!gameWon && (
+        <div className="game-top-bar">
+          <button className="btn-back" onClick={handleBack}>
+            <ArrowLeft size={18} />
+            <span>Rời trò chơi</span>
+          </button>
+          <span className="game-title-text">⚖️ Cán Cân Thần Kỳ</span>
+          <div className="game-stats-pills">
+            <span className="score-pill">Vòng: {round}/{TOTAL_ROUNDS}</span>
+            <span className="score-pill highlight">Điểm: {score}</span>
+          </div>
+        </div>
+      )}
+
+      {!gameWon ? (
+        <div className="balance-board">
+          <p className="balance-hint">
+            ⚖️ Chọn quả cân thích hợp đặt vào đĩa bên phải để cán cân thăng bằng nhé!
+          </p>
+
+          <div className="balance-scale-stage">
+            <div className="balance-stand">
+              <div className="balance-pivot" />
+              <div
+                className="balance-beam"
+                style={{
+                  transform: `rotate(${isBalanced ? 0 : -8}deg)`,
+                }}
+              >
+                {/* Left Pan */}
+                <div
+                  className="balance-pan-hanger left"
+                  style={{
+                    transform: `rotate(${isBalanced ? 0 : 8}deg)`,
+                  }}
+                >
+                  <div className="pan-chain" />
+                  <div className="pan-plate">
+                    <div className="pan-weight-stone left-stone">
+                      <span className="weight-stone-icon">🏋️</span>
+                      <span className="weight-stone-val">{puzzle?.leftExpr}</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right Pan */}
+                <div
+                  className="balance-pan-hanger right"
+                  style={{
+                    transform: `rotate(${isBalanced ? 0 : 8}deg)`,
+                  }}
+                >
+                  <div className="pan-chain" />
+                  <div className="pan-plate">
+                    <div className="pan-weights-group">
+                      <div className="pan-weight-stone">
+                        <span className="weight-stone-icon">⚖️</span>
+                        <span className="weight-stone-val">{puzzle?.rightExisting} kg</span>
+                      </div>
+                      <span className="pan-plus-sign">+</span>
+                      <div className={`pan-weight-stone target-slot ${isBalanced ? 'filled' : 'empty'}`}>
+                        {isBalanced ? (
+                          <span className="weight-stone-val">{selectedWeight} kg</span>
+                        ) : (
+                          <span className="weight-stone-question">?</span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="balance-base" />
+            </div>
+          </div>
+
+          {/* Options Grid */}
+          <div className="balance-options-grid">
+            {puzzle?.options.map((opt) => (
+              <motion.button
+                key={opt}
+                type="button"
+                className={`balance-option-btn ${wrongOption === opt ? 'wrong' : ''} ${
+                  isBalanced && selectedWeight === opt ? 'correct' : ''
+                }`}
+                whileHover={{ scale: 1.06, y: -2 }}
+                whileTap={{ scale: 0.94 }}
+                onClick={() => handleSelectOption(opt)}
+                disabled={isBalanced}
+              >
+                <span className="btn-weight-icon">🪨</span>
+                <span className="btn-weight-number">{opt} kg</span>
+              </motion.button>
+            ))}
+          </div>
+        </div>
+      ) : (
+        <div className="race-gameover-card">
+          <span className="gameover-trophy">🏆</span>
+          <h2>Thần Kì Thăng Bằng!</h2>
+          <p>Bé đã xuất sắc cân bằng toàn bộ {TOTAL_ROUNDS} đĩa cân thần kỳ và ghi được {score} điểm!</p>
+          <div className="gameover-btns">
+            <Button variant="primary" size="lg" onClick={handleRestart}>
+              <RotateCcw size={18} /> Chơi ván khác
+            </Button>
+            <Button variant="outline" size="lg" onClick={handleBack}>
+              Quay lại danh sách game
+            </Button>
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
+// ========================================================
+// 🚀 GAME 5: SPACE DEFENSE (BẮN THIÊN THẠCH VŨ TRỤ)
+// ========================================================
+function SpaceDefenseGame({ onBack, grade = 1, addCoins, addXp, recordGamePlayed }) {
+  const [score, setScore] = useState(0)
+  const [combo, setCombo] = useState(1)
+  const [maxCombo, setMaxCombo] = useState(1)
+  const [shieldHp, setShieldHp] = useState(3)
+  const [timeLeft, setTimeLeft] = useState(45)
+  const [currentQ, setCurrentQ] = useState(null)
+  const [laserActive, setLaserActive] = useState(false)
+  const [isExploding, setIsExploding] = useState(false)
+  const [destroyedCount, setDestroyedCount] = useState(0)
+  const [gameOver, setGameOver] = useState(false)
+  const [wrongOption, setWrongOption] = useState(null)
+
+  const gameRecordedRef = useRef(false)
+  const gameOverTriggeredRef = useRef(false)
+
+  const loadNewAsteroid = useCallback(() => {
+    const q = generateCalculation(grade)
+    setCurrentQ(q)
+    setLaserActive(false)
+    setIsExploding(false)
+    setWrongOption(null)
+  }, [grade])
+
+  useEffect(() => {
+    loadNewAsteroid()
+  }, [loadNewAsteroid])
+
+  useEffect(() => {
+    if (timeLeft <= 0 || shieldHp <= 0) {
+      if (!gameOverTriggeredRef.current) {
+        gameOverTriggeredRef.current = true
+        setGameOver(true)
+        if (!gameRecordedRef.current) {
+          gameRecordedRef.current = true
+          if (typeof recordGamePlayed === 'function') {
+            recordGamePlayed()
+          }
+        }
+        if (score > 0) {
+          soundManager.playFanfare()
+          confetti({ particleCount: 80, spread: 70 })
+          addCoins(Math.max(5, Math.floor(score / 4)))
+          addXp(Math.max(10, Math.floor(score / 2)))
+        } else {
+          soundManager.playWrong()
+        }
+      }
+      return
+    }
+
+    const timer = setInterval(() => {
+      setTimeLeft((t) => t - 1)
+    }, 1000)
+
+    return () => clearInterval(timer)
+  }, [timeLeft, shieldHp, score, addCoins, addXp, recordGamePlayed])
+
+  const handleShoot = (ans) => {
+    if (gameOver || !currentQ || isExploding) return
+
+    if (ans === currentQ.answer) {
+      setLaserActive(true)
+      soundManager.playCorrect()
+      setTimeout(() => {
+        setIsExploding(true)
+        setScore((s) => s + 10 * combo)
+        setCombo((c) => {
+          const next = c + 1
+          setMaxCombo((m) => Math.max(m, next))
+          return next
+        })
+        setDestroyedCount((d) => d + 1)
+        addCoins(1)
+        addXp(3)
+        setTimeout(() => {
+          loadNewAsteroid()
+        }, 500)
+      }, 150)
+    } else {
+      soundManager.playWrong()
+      setCombo(1)
+      setWrongOption(ans)
+      setShieldHp((hp) => Math.max(0, hp - 1))
+      setTimeout(() => setWrongOption(null), 800)
+    }
+  }
+
+  const handleBack = () => {
+    if (score > 0 && !gameRecordedRef.current) {
+      gameRecordedRef.current = true
+      if (typeof recordGamePlayed === 'function') {
+        recordGamePlayed()
+      }
+    }
+    onBack()
+  }
+
+  const handleRestart = () => {
+    setScore(0)
+    setCombo(1)
+    setMaxCombo(1)
+    setShieldHp(3)
+    setTimeLeft(45)
+    setDestroyedCount(0)
+    setGameOver(false)
+    gameOverTriggeredRef.current = false
+    loadNewAsteroid()
+  }
+
+  return (
+    <div className="mini-game-wrapper space-theme-wrapper">
+      {!gameOver && (
+        <div className="game-top-bar space-top-bar">
+          <button className="btn-back" onClick={handleBack}>
+            <ArrowLeft size={18} />
+            <span>Rời trò chơi</span>
+          </button>
+          <span className="game-title-text">🚀 Bắn Thiên Thạch Vũ Trụ</span>
+          <div className="game-stats-pills">
+            <span className="score-pill">⏱️ {timeLeft}s</span>
+            <span className="score-pill combo-pill">🔥 x{combo}</span>
+            <span className="score-pill highlight">Điểm: {score}</span>
+          </div>
+        </div>
+      )}
+
+      {!gameOver ? (
+        <div className="space-board">
+          <div className="space-arena">
+            <div className="space-stars-layer" />
+
+            {/* Shield Status */}
+            <div className="space-shield-header">
+              <span className="shield-label">Lá chắn trạm vũ trụ:</span>
+              <div className="shield-hearts">
+                {Array.from({ length: 3 }).map((_, idx) => (
+                  <span key={idx} className={`shield-heart ${idx < shieldHp ? 'alive' : 'dead'}`}>
+                    {idx < shieldHp ? '❤️' : '🖤'}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Asteroid */}
+            {currentQ && (
+              <motion.div
+                key={currentQ.question}
+                className={`space-asteroid ${isExploding ? 'exploding' : ''}`}
+                initial={{ scale: 0.6, y: -20, opacity: 0 }}
+                animate={{ scale: 1, y: 0, opacity: 1 }}
+                transition={{ duration: 0.3 }}
+              >
+                {isExploding ? (
+                  <div className="asteroid-explosion">💥✨</div>
+                ) : (
+                  <div className="asteroid-body">
+                    <span className="asteroid-emoji">☄️</span>
+                    <span className="asteroid-equation number">{currentQ.equation} = ?</span>
+                  </div>
+                )}
+              </motion.div>
+            )}
+
+            {/* Laser Beam Animation */}
+            {laserActive && <div className="space-laser-beam" />}
+
+            {/* Spaceship */}
+            <div className="space-ship-container">
+              <div className="space-turret">⚡</div>
+              <div className="space-ship-body">🛸</div>
+            </div>
+          </div>
+
+          {/* Laser Control Panel */}
+          <div className="space-control-panel">
+            <p className="space-control-hint">Bấm mã số laser để bắn hạ thiên thạch:</p>
+            <div className="space-weapons-grid">
+              {currentQ?.options.map((opt) => (
+                <motion.button
+                  key={opt}
+                  type="button"
+                  className={`space-weapon-btn ${wrongOption === opt ? 'wrong' : ''}`}
+                  whileHover={{ scale: 1.06, y: -2 }}
+                  whileTap={{ scale: 0.94 }}
+                  onClick={() => handleShoot(opt)}
+                  disabled={isExploding}
+                >
+                  <span className="weapon-laser-icon">⚡</span>
+                  <span className="weapon-val number">{opt}</span>
+                </motion.button>
+              ))}
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div className="race-gameover-card">
+          <span className="gameover-trophy">🚀</span>
+          <h2>Hoàn Thành Nhiệm Vụ Vũ Trụ!</h2>
+          <p>
+            Bé đã bắn tan {destroyedCount} mảnh thiên thạch, đạt Combo cao nhất x{maxCombo} và ghi được {score} điểm!
+          </p>
+          <div className="gameover-btns">
+            <Button variant="primary" size="lg" onClick={handleRestart}>
+              <RotateCcw size={18} /> Chơi ván khác
+            </Button>
+            <Button variant="outline" size="lg" onClick={handleBack}>
+              Quay lại danh sách game
+            </Button>
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
+
+// ========================================================
+// 🎣 GAME 6: MATH FISHING (HỒ CÂU CÁ THÔNG THÁI)
+// ========================================================
+function MathFishingGame({ onBack, grade = 1, addCoins, addXp, recordGamePlayed }) {
+  const [caughtCount, setCaughtCount] = useState(0)
+  const [score, setScore] = useState(0)
+  const [currentQ, setCurrentQ] = useState(null)
+  const [fishes, setFishes] = useState([])
+  const [hookingFishId, setHookingFishId] = useState(null)
+  const [hookSuccess, setHookSuccess] = useState(false)
+  const [gameWon, setGameWon] = useState(false)
+  const [fishBucket, setFishBucket] = useState([])
+  const [missedFishId, setMissedFishId] = useState(null)
+
+  const TARGET_FISH = 6
+  const gameRecordedRef = useRef(false)
+  const FISH_EMOJIS = ['🐠', '🐟', '🐡', '🐙']
+
+  const loadNewQuestion = useCallback(() => {
+    const q = generateCalculation(grade)
+    setCurrentQ(q)
+    // Create 4 swimming fishes with distinct depths & speeds
+    const newFishes = q.options.map((val, idx) => ({
+      id: `${val}-${Date.now()}-${idx}`,
+      val,
+      emoji: FISH_EMOJIS[idx % FISH_EMOJIS.length],
+      isCorrect: val === q.answer,
+      yPercent: 12 + idx * 22,
+      duration: 10 + (idx % 3) * 3,
+      direction: idx % 2 === 0 ? 1 : -1,
+    }))
+    setFishes(newFishes)
+    setHookingFishId(null)
+    setHookSuccess(false)
+    setMissedFishId(null)
+  }, [grade])
+
+  useEffect(() => {
+    loadNewQuestion()
+  }, [loadNewQuestion])
+
+  const handleCatchFish = (fish) => {
+    if (hookingFishId || gameWon) return
+
+    setHookingFishId(fish.id)
+
+    if (fish.isCorrect) {
+      setHookSuccess(true)
+      soundManager.playCoin()
+      confetti({ particleCount: 35, spread: 60 })
+      setScore((s) => s + 15)
+      setFishBucket((b) => [...b, fish.emoji])
+      const nextCaught = caughtCount + 1
+      setCaughtCount(nextCaught)
+      addCoins(3)
+      addXp(8)
+
+      setTimeout(() => {
+        if (nextCaught >= TARGET_FISH) {
+          setGameWon(true)
+          soundManager.playFanfare()
+          confetti({ particleCount: 90, spread: 80 })
+          addCoins(20)
+          addXp(50)
+          if (!gameRecordedRef.current) {
+            gameRecordedRef.current = true
+            if (typeof recordGamePlayed === 'function') {
+              recordGamePlayed()
+            }
+          }
+        } else {
+          loadNewQuestion()
+        }
+      }, 1000)
+    } else {
+      soundManager.playWrong()
+      setMissedFishId(fish.id)
+      setTimeout(() => {
+        setHookingFishId(null)
+        setMissedFishId(null)
+      }, 800)
+    }
+  }
+
+  const handleBack = () => {
+    if (caughtCount > 0 && !gameRecordedRef.current) {
+      gameRecordedRef.current = true
+      if (typeof recordGamePlayed === 'function') {
+        recordGamePlayed()
+      }
+    }
+    onBack()
+  }
+
+  const handleRestart = () => {
+    setCaughtCount(0)
+    setScore(0)
+    setFishBucket([])
+    setGameWon(false)
+    loadNewQuestion()
+  }
+
+  return (
+    <div className="mini-game-wrapper pond-theme-wrapper">
+      {!gameWon && (
+        <div className="game-top-bar pond-top-bar">
+          <button className="btn-back" onClick={handleBack}>
+            <ArrowLeft size={18} />
+            <span>Rời trò chơi</span>
+          </button>
+          <span className="game-title-text">🎣 Hồ Câu Cá Thông Thái</span>
+          <div className="game-stats-pills">
+            <span className="score-pill">🪣 {caughtCount}/{TARGET_FISH} cá</span>
+            <span className="score-pill highlight">Điểm: {score}</span>
+          </div>
+        </div>
+      )}
+
+      {!gameWon ? (
+        <div className="pond-board">
+          <div className="pond-question-banner">
+            <span className="pond-rod-icon">🎣</span>
+            <span className="pond-question-text">
+              Bé hãy câu chú cá mang số: <strong className="number">{currentQ?.equation} = ?</strong>
+            </span>
+          </div>
+
+          <div className="pond-water-stage">
+            <div className="pond-bubbles-bg" />
+
+            {/* Swimming Fishes */}
+            {fishes.map((fish) => {
+              const isHooked = hookingFishId === fish.id
+              const isMissed = missedFishId === fish.id
+              return (
+                <div
+                  key={fish.id}
+                  className={`pond-fish-track ${fish.direction === 1 ? 'ltr' : 'rtl'}`}
+                  style={{
+                    top: `${fish.yPercent}%`,
+                    animationDuration: `${fish.duration}s`,
+                  }}
+                >
+                  <motion.div
+                    className={`pond-fish-item ${isHooked ? (hookSuccess ? 'caught' : '') : ''} ${
+                      isMissed ? 'missed' : ''
+                    }`}
+                    whileHover={{ scale: 1.12 }}
+                    whileTap={{ scale: 0.9 }}
+                    onClick={() => handleCatchFish(fish)}
+                  >
+                    <span className="fish-emoji">{fish.emoji}</span>
+                    <span className="fish-badge number">{fish.val}</span>
+                  </motion.div>
+                </div>
+              )
+            })}
+
+            {/* Seaweed Decor */}
+            <div className="pond-seaweed-row">
+              <span>🌿</span>
+              <span>🪸</span>
+              <span>🫧</span>
+              <span>🌿</span>
+              <span>🪸</span>
+              <span>🫧</span>
+              <span>🌿</span>
+            </div>
+          </div>
+
+          {/* Fish Bucket Bar */}
+          <div className="pond-bucket-bar">
+            <span className="bucket-title">🪣 Giỏ cá của bé:</span>
+            <div className="bucket-slots">
+              {Array.from({ length: TARGET_FISH }).map((_, idx) => (
+                <span key={idx} className={`bucket-slot ${idx < fishBucket.length ? 'filled' : 'empty'}`}>
+                  {idx < fishBucket.length ? fishBucket[idx] : '⚪'}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div className="race-gameover-card">
+          <span className="gameover-trophy">🎣</span>
+          <h2>Vua Câu Cá Thông Thái!</h2>
+          <p>Bé đã câu đầy giỏ {TARGET_FISH} chú cá thông thái và đạt được {score} điểm xuất sắc!</p>
+          <div className="gameover-btns">
+            <Button variant="primary" size="lg" onClick={handleRestart}>
               <RotateCcw size={18} /> Chơi ván khác
             </Button>
             <Button variant="outline" size="lg" onClick={handleBack}>

@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { Capacitor } from '@capacitor/core'
 import { supabase, isSupabaseConfigured } from '../services/supabaseClient'
 import syncService, { setActiveChildIdGetter } from '../services/syncService'
 import useUserStore from './useUserStore'
@@ -88,10 +89,14 @@ export const useAuthStore = create((set, get) => ({
 
     try {
       soundManager.playClick()
+      const redirectTo = Capacitor.isNativePlatform()
+        ? 'toanvui://auth/callback'
+        : window.location.origin
+
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: window.location.origin,
+          redirectTo,
           queryParams: {
             access_type: 'offline',
             prompt: 'consent',

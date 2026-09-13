@@ -178,7 +178,8 @@
     width: 100%;
     max-width: 100vw;
     box-sizing: border-box;
-    height: 60px;
+    height: calc(60px + var(--sat));
+    padding-top: var(--sat);
     overflow: hidden;
   }
 

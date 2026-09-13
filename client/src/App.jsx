@@ -19,9 +19,11 @@ import useUserStore from './store/useUserStore'
 import useAuthStore from './store/useAuthStore'
 import { setupAutoSync } from './services/syncService'
 import soundManager from './utils/soundManager'
+import useMobileLifecycle from './hooks/useMobileLifecycle'
 import './App.css'
 
 function AppLayout() {
+  useMobileLifecycle()
   const location = useLocation()
   const isLessonRoute = location.pathname.startsWith('/lesson/')
 

@@ -1,3 +1,5 @@
+import hapticsManager from './hapticsManager'
+
 // Web Audio API based Sound Engine for immediate, zero-latency, zero-external-asset sound effects
 class SoundEngine {
   constructor() {
@@ -48,6 +50,7 @@ class SoundEngine {
   }
 
   playCorrect() {
+    hapticsManager.success()
     if (!this.soundEnabled) return
     // Joyful major arpeggio
     this.playTone(523.25, 'triangle', 0.12, 0, 0.2)      // C5
@@ -57,6 +60,7 @@ class SoundEngine {
   }
 
   playWrong() {
+    hapticsManager.error()
     if (!this.soundEnabled) return
     // Gentle boop
     this.playTone(280, 'sine', 0.15, 0, 0.18)
@@ -64,11 +68,13 @@ class SoundEngine {
   }
 
   playClick() {
+    hapticsManager.light()
     if (!this.soundEnabled) return
     this.playTone(800, 'sine', 0.04, 0, 0.08)
   }
 
   playCoin() {
+    hapticsManager.medium()
     if (!this.soundEnabled) return
     // Sparkly chime
     this.playTone(987.77, 'sine', 0.08, 0, 0.2)    // B5
@@ -76,6 +82,7 @@ class SoundEngine {
   }
 
   playLevelUp() {
+    hapticsManager.success()
     if (!this.soundEnabled) return
     const notes = [440, 554.37, 659.25, 880, 1108.73]
     notes.forEach((freq, idx) => {
@@ -84,6 +91,7 @@ class SoundEngine {
   }
 
   playFanfare() {
+    hapticsManager.success()
     if (!this.soundEnabled) return
     const notes = [
       { f: 523.25, d: 0.12, t: 0 },
