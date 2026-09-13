@@ -173,8 +173,6 @@ export default function HomePage() {
                 ? chapter.name
                 : `Chương ${index + 1}: ${chapter.name}`
 
-              // Số sao dựa trên tiến độ
-              const starCount = isCompleted ? 3 : progress.percent >= 50 ? 2 : hasStarted ? 1 : 0
 
               return (
                 <motion.div
@@ -200,11 +198,19 @@ export default function HomePage() {
                   <div className="chapter-card-info">
                     <div className="chapter-card-header">
                       <h3 title={cleanTitle}>{cleanTitle}</h3>
-                      <div className="chapter-stars-wrap">
-                        {starCount === 3 && <span className="stars-gold">⭐⭐⭐</span>}
-                        {starCount === 2 && <span className="stars-gold">⭐⭐☆</span>}
-                        {starCount === 1 && <span className="stars-gold">⭐☆☆</span>}
-                        {starCount === 0 && <span className="stars-gray">☆☆☆</span>}
+                      <div
+                        className={`chapter-stars-badge ${
+                          progress.earnedStars > 0
+                            ? progress.earnedStars === progress.maxStars
+                              ? 'perfect'
+                              : 'active'
+                            : 'empty'
+                        }`}
+                        title={`Đã tích lũy ${progress.earnedStars}/${progress.maxStars} sao`}
+                      >
+                        <span className="star-icon">⭐</span>
+                        <span className="star-count">{progress.earnedStars}</span>
+                        <span className="star-max">/{progress.maxStars}</span>
                       </div>
                     </div>
 

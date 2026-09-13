@@ -232,10 +232,28 @@ const useProgressStore = create(
       },
 
       getChapterProgress: (chapterId, totalLessons) => {
-        const completed = Object.keys(get().completedLessons)
-          .filter((id) => id.startsWith(chapterId))
-          .length
-        return { completed, total: totalLessons, percent: Math.round((completed / totalLessons) * 100) }
+        const completedLessons = get().completedLessons || {}
+        let completed = 0
+        let earnedStars = 0
+
+        Object.entries(completedLessons).forEach(([id, data]) => {
+          if (id === chapterId || id.startsWith(`${chapterId}-`)) {
+            completed++
+            earnedStars += (data?.stars || 0)
+          }
+        })
+
+        const total = totalLessons || 0
+        const maxStars = total * 3
+        const percent = total > 0 ? Math.round((completed / total) * 100) : 0
+
+        return {
+          completed,
+          total,
+          percent,
+          earnedStars,
+          maxStars,
+        }
       },
 
       completeDailyChallenge: () => {

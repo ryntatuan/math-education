@@ -46,7 +46,7 @@ export const grade2Data = {
           { type: 'summary', content: { title: 'Cộng không nhớ:', points: ['43 + 25 = 68'], mascotMood: 'proud' } },
         ]),
         makeLesson('g2-c1-l4', 'Bài 4: Phép trừ không nhớ dạng 57 - 23', 'Trừ thẳng hàng dọc', [
-          { type: 'story', content: { mascotMood: 'happy', text: '57 - 23: 7 - 3 = 4, 5 - 2 = 3. Kết quả là 34! 🍎' } },
+          { type: 'story', content: { mascotMood: 'happy', text: '57 - 23: 7 - 3 = 4, 5 - 2 = 3. Kết quả là 34! 💡' } },
           { type: 'quiz', content: { question: 'Tính: 78 - 36 = ?', options: [41, 42, 43, 52], answer: 42, mascotHint: '8 - 6 = 2; 7 - 3 = 4.' } },
           { type: 'summary', content: { title: 'Trừ không nhớ:', points: ['78 - 36 = 42'], mascotMood: 'proud' } },
         ]),
@@ -135,7 +135,7 @@ export const grade2Data = {
           { type: 'summary', content: { title: 'Trừ có nhớ:', points: ['Mượn 1 chục ở hàng chục và nhớ trả khi trừ.'], mascotMood: 'proud' } },
         ]),
         makeLesson('g2-c2-l7', 'Bài 7: Phép trừ dạng 12 - 7 và 62 - 27', 'Mượn 1 chục với chữ số 2', [
-          { type: 'story', content: { mascotMood: 'happy', text: '62 - 27: 12 - 7 = 5. 6 bớt 1 còn 5, 5 - 2 = 3. Được 35! 🍬' } },
+          { type: 'story', content: { mascotMood: 'happy', text: '62 - 27: 12 - 7 = 5. 6 bớt 1 còn 5, 5 - 2 = 3. Được 35! 💡' } },
           { type: 'quiz', content: { question: 'Tính: 52 - 28 = ?', options: [24, 25, 34, 35], answer: 24, mascotHint: '12 - 8 = 4; 5 bớt 1 còn 4, 4 - 2 = 2.' } },
           { type: 'summary', content: { title: 'Trừ có nhớ:', points: ['52 - 28 = 24'], mascotMood: 'proud' } },
         ]),

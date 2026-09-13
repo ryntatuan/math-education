@@ -33,36 +33,46 @@ export const grade1Data = {
         makeLesson('g1-c1-l1', 'Bài 1: Làm quen với số 1, 2, 3', 'Học đếm và nhận biết các số 1, 2, 3', [
           { type: 'story', content: { mascotMood: 'happy', text: 'Chào bé! Hôm nay Cú Mèo sẽ dạy bé đếm số 1, 2, 3 nhé! 🦉✨' } },
           { type: 'visual', content: { text: 'Số 1: Có 1 quả táo đỏ 🍎', items: [{ emoji: '🍎', count: 1 }], number: 1 } },
-          { type: 'visual', content: { text: 'Số 2: Có 2 quả cam mọng nước 🍊🍊', items: [{ emoji: '🍊', count: 2 }], number: 2 } },
-          { type: 'visual', content: { text: 'Số 3: Có 3 ngôi sao lấp lánh ⭐⭐⭐', items: [{ emoji: '⭐', count: 3 }], number: 3 } },
+          { type: 'visual', content: { text: 'Số 2: Có 2 quả cam mọng nước 🍊', items: [{ emoji: '🍊', count: 2 }], number: 2 } },
+          { type: 'visual', content: { text: 'Số 3: Có 3 ngôi sao lấp lánh ⭐', items: [{ emoji: '⭐', count: 3 }], number: 3 } },
           { type: 'quiz', content: { question: 'Có bao nhiêu quả dâu tây? 🍓🍓🍓', options: [1, 2, 3, 4], answer: 3, mascotHint: 'Đếm từng quả: 1, 2, 3 quả dâu!' } },
           { type: 'summary', content: { title: 'Bé đã thuộc số 1, 2, 3!', points: ['1: một', '2: hai', '3: ba'], mascotMood: 'proud' } },
         ]),
         makeLesson('g1-c1-l2', 'Bài 2: Các số 4, 5, 6', 'Tiếp tục đếm với số 4, 5, 6', [
           { type: 'story', content: { mascotMood: 'excited', text: 'Tuyệt vời! Bây giờ cùng khám phá số 4, 5, 6 nha! 🚀' } },
-          { type: 'visual', content: { text: 'Số 4: Có 4 chú chim vui hót 🐦🐦🐦🐦', items: [{ emoji: '🐦', count: 4 }], number: 4 } },
-          { type: 'visual', content: { text: 'Số 5: Bàn tay có 5 ngón xinh 🖐️', items: [{ emoji: '⭐', count: 5 }], number: 5 } },
-          { type: 'visual', content: { text: 'Số 6: Có 6 chú cá bơi 🐟🐟🐟🐟🐟🐟', items: [{ emoji: '🐟', count: 6 }], number: 6 } },
+          { type: 'visual', content: { text: 'Số 4: Có 4 chú chim vui hót 🐦', items: [{ emoji: '🐦', count: 4 }], number: 4 } },
+          { type: 'visual', content: { text: 'Số 5: Có 5 quả dâu tây ngọt lành 🍓', items: [{ emoji: '🍓', count: 5 }], number: 5 } },
+          { type: 'visual', content: { text: 'Số 6: Có 6 chú cá bơi 🐟', items: [{ emoji: '🐟', count: 6 }], number: 6 } },
           { type: 'quiz', content: { question: 'Có bao nhiêu con bướm? 🦋🦋🦋🦋', options: [3, 4, 5, 6], answer: 4, mascotHint: 'Đếm 1, 2, 3, 4!' } },
           { type: 'summary', content: { title: 'Bé đã nhớ 4, 5, 6!', points: ['4: bốn', '5: năm', '6: sáu'], mascotMood: 'proud' } },
         ]),
         makeLesson('g1-c1-l3', 'Bài 3: Các số 7, 8, 9', 'Đếm tiếp các nhóm số lớn hơn', [
           { type: 'story', content: { mascotMood: 'happy', text: 'Cùng Cú Mèo đếm tiếp số 7, 8, 9 nào! 🌟' } },
-          { type: 'visual', content: { text: 'Số 7: Bảy sắc cầu vồng rực rỡ 🌈', items: [{ emoji: '🎈', count: 7 }], number: 7 } },
-          { type: 'visual', content: { text: 'Số 8: Chú bạch tuộc có 8 xúc tu 🐙', items: [{ emoji: '🌸', count: 8 }], number: 8 } },
-          { type: 'visual', content: { text: 'Số 9: Chín quả bóng bay 🎈🎈🎈🎈🎈🎈🎈🎈🎈', items: [{ emoji: '🎈', count: 9 }], number: 9 } },
+          { type: 'visual', content: { text: 'Số 7: Có 7 chú bướm bay lượn 🦋', items: [{ emoji: '🦋', count: 7 }], number: 7 } },
+          { type: 'visual', content: { text: 'Số 8: Có 8 chú thỏ trắng đáng yêu 🐇', items: [{ emoji: '🐇', count: 8 }], number: 8 } },
+          { type: 'visual', content: { text: 'Số 9: Có 9 quả bóng bay rực rỡ 🎈', items: [{ emoji: '🎈', count: 9 }], number: 9 } },
           { type: 'quiz', content: { question: 'Đâu là số 8?', options: [6, 7, 8, 9], answer: 8, mascotHint: 'Số 8 trông giống người tuyết tròn vo!' } },
           { type: 'summary', content: { title: 'Ghi nhớ số 7, 8, 9:', points: ['7: bảy', '8: tám', '9: chín'], mascotMood: 'proud' } },
         ]),
         makeLesson('g1-c1-l4', 'Bài 4: Số 0 và Số 10', 'Số 0 không có gì và số 10 tròn trịa', [
-          { type: 'story', content: { mascotMood: 'happy', text: 'Số 0 nghĩa là không có vật nào cả. Số 10 là mười ngón tay của bé! 🖐️🖐️' } },
-          { type: 'visual', content: { text: 'Đĩa trống trơn có 0 quả táo. Hai bàn tay có 10 ngón tay!', items: [{ emoji: '🍎', count: 10 }], number: 10 } },
+          { type: 'story', content: { mascotMood: 'happy', text: 'Số 0 nghĩa là không có vật nào cả. Số 10 gồm 1 chục và 0 đơn vị tròn trịa! 🍎' } },
+          { type: 'visual', content: { text: 'Số 0: Đĩa trống trơn không có quả táo nào 🍎', items: [], number: 0 } },
+          { type: 'visual', content: { text: 'Số 10: Có 10 quả táo đỏ thơm ngon 🍎', items: [{ emoji: '🍎', count: 10 }], number: 10 } },
           { type: 'quiz', content: { question: 'Số liền sau số 9 là số mấy?', options: [8, 9, 10, 11], answer: 10, mascotHint: '9 rồi đến 10!' } },
           { type: 'summary', content: { title: 'Số 0 và số 10:', points: ['0: không có gì', '10: mười đơn vị'], mascotMood: 'proud' } },
         ]),
         makeLesson('g1-c1-l5', 'Bài 5: Nhiều hơn, ít hơn, bằng nhau', 'So sánh hai nhóm đồ vật', [
           { type: 'story', content: { mascotMood: 'happy', text: 'Nhóm nào có số lượng lớn hơn thì gọi là nhiều hơn! 🍎🍊' } },
-          { type: 'visual', content: { text: '5 quả táo 🍎🍎🍎🍎🍎 nhiều hơn 3 quả cam 🍊🍊🍊' } },
+          {
+            type: 'visual',
+            content: {
+              text: 'So sánh: 5 quả táo nhiều hơn 3 quả cam 🍎🍊',
+              items: [
+                { label: '5 quả táo', emoji: '🍎', count: 5 },
+                { label: '3 quả cam', emoji: '🍊', count: 3 }
+              ]
+            }
+          },
           { type: 'quiz', content: { question: '4 chú mèo và 4 chú cá thì số lượng thế nào?', options: ['Nhiều hơn', 'Ít hơn', 'Bằng nhau'], answer: 'Bằng nhau', mascotHint: '4 bằng 4 nhé bé!' } },
           { type: 'summary', content: { title: 'So sánh:', points: ['Nhiều hơn: số lượng lớn hơn', 'Bằng nhau: số lượng như nhau'], mascotMood: 'proud' } },
         ]),
@@ -271,7 +281,7 @@ export const grade1Data = {
           { type: 'summary', content: { title: 'Quy tắc:', points: ['10 + a = 1a'], mascotMood: 'proud' } },
         ]),
         makeLesson('g1-c4-l2', 'Bài 2: Phép cộng dạng 14 + 3 (Cộng không nhớ)', 'Cộng hàng đơn vị với nhau', [
-          { type: 'story', content: { mascotMood: 'happy', text: '14 + 3: Lấy 4 + 3 = 7, ghép với 1 chục ta có 17! 🍎' } },
+          { type: 'story', content: { mascotMood: 'happy', text: '14 + 3: Lấy 4 + 3 = 7, ghép với 1 chục ta có 17! 💡' } },
           { type: 'quiz', content: { question: 'Tính: 12 + 5 = ?', options: [16, 17, 18, 19], answer: 17, mascotHint: '2 + 5 = 7, thêm 1 chục là 17!' } },
           { type: 'summary', content: { title: 'Cộng không nhớ:', points: ['Cộng các số đơn vị rồi thêm 10 vào'], mascotMood: 'proud' } },
         ]),
@@ -291,7 +301,7 @@ export const grade1Data = {
           { type: 'summary', content: { title: 'Ghi nhớ bảng cộng:', points: ['7 + 4 = 11', '7 + 5 = 12', '6 + 5 = 11'], mascotMood: 'proud' } },
         ]),
         makeLesson('g1-c4-l6', 'Bài 6: Phép trừ dạng 17 - 4 (Trừ không nhớ)', 'Trừ hàng đơn vị cho hàng đơn vị', [
-          { type: 'story', content: { mascotMood: 'happy', text: '17 - 4: Lấy 7 - 4 = 3, giữ nguyên 1 chục là 13! 🍬' } },
+          { type: 'story', content: { mascotMood: 'happy', text: '17 - 4: Lấy 7 - 4 = 3, giữ nguyên 1 chục là 13! 💡' } },
           { type: 'quiz', content: { question: 'Tính: 19 - 6 = ?', options: [12, 13, 14, 15], answer: 13, mascotHint: '9 - 6 = 3, giữ 1 chục là 13!' } },
           { type: 'summary', content: { title: 'Trừ không nhớ:', points: ['17 - 4 = 13', '19 - 6 = 13'], mascotMood: 'proud' } },
         ]),
@@ -360,7 +370,7 @@ export const grade1Data = {
           { type: 'summary', content: { title: 'Đọc số đúng:', points: ['21: hai mươi mốt', '24: hai mươi tư'], mascotMood: 'proud' } },
         ]),
         makeLesson('g1-c5-l5', 'Bài 5: Đếm các số từ 41 đến 70', 'Mở rộng dãy số đến 70', [
-          { type: 'story', content: { mascotMood: 'happy', text: 'Số 45 đọc là Bốn mươi lăm. Số 60 đọc là Sáu mươi! 🎈' } },
+          { type: 'story', content: { mascotMood: 'happy', text: 'Số 45 đọc là Bốn mươi lăm. Số 60 đọc là Sáu mươi! 🌟' } },
           { type: 'quiz', content: { question: 'Số gồm 5 chục và 5 đơn vị viết là:', options: [50, 55, 505, 15], answer: 55, mascotHint: 'Năm mươi lăm là 55.' } },
           { type: 'summary', content: { title: 'Các số 41-70:', points: ['Nắm chắc hàng chục và hàng đơn vị'], mascotMood: 'proud' } },
         ]),
@@ -503,7 +513,7 @@ export const grade1Data = {
           { type: 'summary', content: { title: 'Cộng đơn vị:', points: ['Cộng hàng đơn vị trước, giữ nguyên hàng chục'], mascotMood: 'proud' } },
         ]),
         makeLesson('g1-c7-l4', 'Bài 4: Phép trừ dạng 39 - 5', 'Trừ số có một chữ số', [
-          { type: 'story', content: { mascotMood: 'happy', text: 'Lấy hàng đơn vị 9 - 5 = 4. Ghép với 3 chục thành 34! 🍎' } },
+          { type: 'story', content: { mascotMood: 'happy', text: 'Lấy hàng đơn vị 9 - 5 = 4. Ghép với 3 chục thành 34! 💡' } },
           { type: 'quiz', content: { question: 'Tính: 48 - 6 = ?', options: [41, 42, 43, 44], answer: 42, mascotHint: '8 - 6 = 2, được 42!' } },
           { type: 'summary', content: { title: 'Trừ đơn vị:', points: ['Trừ hàng đơn vị, giữ nguyên hàng chục'], mascotMood: 'proud' } },
         ]),
@@ -551,7 +561,7 @@ export const grade1Data = {
       totalLessons: 10,
       lessons: [
         makeLesson('g1-c9-l1', 'Bài 1: Khối lập phương xung quanh em', 'Khối xúc xắc, hộp quà vuông', [
-          { type: 'story', content: { mascotMood: 'happy', text: 'Khối lập phương có 6 mặt đều là hình vuông xinh xắn! 🎲' } },
+          { type: 'story', content: { mascotMood: 'happy', text: 'Con xúc xắc 🎲 có dạng khối lập phương: cả 6 mặt đều là hình vuông xinh xắn!' } },
           { type: 'quiz', content: { question: 'Đồ vật nào có dạng khối lập phương?', options: ['Con xúc xắc 🎲', 'Quả bóng tròn ⚽', 'Lon nước ngọt 🥤'], answer: 'Con xúc xắc 🎲', mascotHint: 'Con xúc xắc vuông vức các mặt!' } },
           { type: 'summary', content: { title: 'Khối lập phương:', points: ['Tất cả các mặt đều là hình vuông bằng nhau'], mascotMood: 'proud' } },
         ]),

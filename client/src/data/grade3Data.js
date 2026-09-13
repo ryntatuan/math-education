@@ -130,7 +130,7 @@ export const grade3Data = {
           { type: 'summary', content: { title: 'Bảng nhân 7:', points: ['7 × 7 = 49', '7 × 8 = 56', '7 × 9 = 63'], mascotMood: 'proud' } },
         ]),
         makeLesson('g3-c2-l6', 'Bài 6: Bảng nhân 8 (Phần 1: từ 8×1 đến 8×5)', 'Bạch tuộc 8 xúc tu', [
-          { type: 'story', content: { mascotMood: 'happy', text: '8 × 1 = 8, 8 × 2 = 16, 8 × 3 = 24, 8 × 4 = 32, 8 × 5 = 40! 🐙' } },
+          { type: 'story', content: { mascotMood: 'happy', text: 'Mỗi chú bạch tuộc có 8 xúc tu 🐙: 8 × 1 = 8, 8 × 2 = 16, 8 × 3 = 24, 8 × 4 = 32, 8 × 5 = 40! 🌊' } },
           { type: 'quiz', content: { question: 'Tính: 8 × 4 = ?', options: [28, 30, 32, 36], answer: 32, mascotHint: 'Tám lần bốn ba mươi hai!' } },
           { type: 'summary', content: { title: 'Bảng nhân 8:', points: ['8, 16, 24, 32, 40'], mascotMood: 'proud' } },
         ]),
@@ -194,7 +194,7 @@ export const grade3Data = {
           { type: 'summary', content: { title: 'Bảng chia 7:', points: ['42 : 7 = 6', '56 : 7 = 8'], mascotMood: 'proud' } },
         ]),
         makeLesson('g3-c3-l4', 'Bài 4: Bảng chia 8', 'Phép chia cho 8', [
-          { type: 'story', content: { mascotMood: 'excited', text: '32 : 8 = 4, 48 : 8 = 6, 64 : 8 = 8, 72 : 8 = 9! 🐙' } },
+          { type: 'story', content: { mascotMood: 'excited', text: 'Học thuộc bảng chia 8 siêu tốc cùng Cú Mèo: 32 : 8 = 4, 48 : 8 = 6, 64 : 8 = 8, 72 : 8 = 9! ⚡' } },
           { type: 'quiz', content: { question: 'Tính: 72 : 8 = ?', options: [7, 8, 9, 10], answer: 9, mascotHint: '8 × 9 = 72!' } },
           { type: 'summary', content: { title: 'Bảng chia 8:', points: ['64 : 8 = 8', '72 : 8 = 9'], mascotMood: 'proud' } },
         ]),
@@ -550,13 +550,31 @@ export const grade3Data = {
       lessons: [
         makeLesson('g3-c8-l1', 'Bài 1: Làm quen với bài toán giải bằng hai phép tính', 'Tìm thành phần trung gian trước', [
           { type: 'story', content: { mascotMood: 'happy', text: 'Hàng trên có 5 bông hoa. Hàng dưới nhiều hơn hàng trên 3 bông hoa. Hỏi cả hai hàng có bao nhiêu bông hoa? 🌸' } },
-          { type: 'visual', content: { text: 'Bước 1: Tìm hàng dưới: 5 + 3 = 8 bông hoa.\nBước 2: Tìm cả hai hàng: 5 + 8 = 13 bông hoa!' } },
+          {
+            type: 'visual',
+            content: {
+              text: 'Bước 1: Tìm hàng dưới: 5 + 3 = 8 bông hoa 🌸\nBước 2: Cả hai hàng: 5 + 8 = 13 bông hoa!',
+              items: [
+                { label: 'Hàng trên', emoji: '🌸', count: 5 },
+                { label: 'Hàng dưới', emoji: '🌸', count: 8 }
+              ]
+            }
+          },
           { type: 'quiz', content: { question: 'Thùng 1 có 8 lít nước, thùng 2 có nhiều hơn thùng 1 là 4 lít. Cả hai thùng có mấy lít nước?', options: [16, 20, 24, 12], answer: 20, mascotHint: 'Thùng 2: 8+4=12 lít. Cả hai: 8+12=20 lít!' } },
           { type: 'summary', content: { title: 'Hai bước tính:', points: ['Bước 1: Tìm phần chưa biết', 'Bước 2: Trả lời câu hỏi chính'], mascotMood: 'proud' } },
         ]),
         makeLesson('g3-c8-l2', 'Bài 2: Bài toán gấp lên nhiều lần kết hợp cộng', 'Tìm tổng sau khi gấp', [
           { type: 'story', content: { mascotMood: 'happy', text: 'An có 6 viên bi, Bình có số bi gấp 3 lần An. Cả hai bạn có bao nhiêu viên bi? 🔮' } },
-          { type: 'visual', content: { text: 'Bước 1: Bi của Bình: 6 × 3 = 18 viên.\nBước 2: Cả hai bạn: 6 + 18 = 24 viên bi!' } },
+          {
+            type: 'visual',
+            content: {
+              text: 'Bước 1: Bi của Bình: 6 × 3 = 18 viên bi 🔮\nBước 2: Cả hai bạn: 6 + 18 = 24 viên bi!',
+              items: [
+                { label: 'Bi của An', emoji: '🔮', count: 6 },
+                { label: 'Bi của Bình', emoji: '🔮', count: 18 }
+              ]
+            }
+          },
           { type: 'quiz', content: { question: 'Mẹ hái 5 quả táo, chị hái gấp 4 lần mẹ. Cả hai người hái được bao nhiêu quả?', options: [20, 25, 30, 35], answer: 25, mascotHint: 'Chị: 5 × 4 = 20 quả. Cả hai: 5 + 20 = 25 quả!' } },
           { type: 'summary', content: { title: 'Gấp rồi cộng:', points: ['Tính đại lượng gấp trước rồi mới cộng tổng.'], mascotMood: 'proud' } },
         ]),
@@ -567,7 +585,15 @@ export const grade3Data = {
         ]),
         makeLesson('g3-c8-l4', 'Bài 4: Bài toán rút về đơn vị (Dạng 1)', 'Tìm giá trị của 1 phần trước', [
           { type: 'story', content: { mascotMood: 'excited', text: 'Mua 3 chiếc bút hết 15.000 đồng. Hỏi mua 5 chiếc bút như thế hết bao nhiêu tiền? ✏️' } },
-          { type: 'visual', content: { text: 'Bước 1 (Rút về đơn vị): Giá 1 chiếc bút là: 15.000 : 3 = 5.000 đồng.\nBước 2: Mua 5 chiếc bút: 5.000 × 5 = 25.000 đồng!' } },
+          {
+            type: 'visual',
+            content: {
+              text: 'Bước 1: Giá 1 chiếc bút: 15.000 : 3 = 5.000 đồng\nBước 2: Mua 5 chiếc bút: 5.000 × 5 = 25.000 đồng! ✏️',
+              items: [
+                { label: '5 chiếc bút chì', emoji: '✏️', count: 5 }
+              ]
+            }
+          },
           { type: 'quiz', content: { question: '4 can nước chứa 20 lít nước. Hỏi 6 can như thế chứa bao nhiêu lít?', options: [25, 30, 35, 40], answer: 30, mascotHint: '1 can: 20 : 4 = 5 lít. 6 can: 5 × 6 = 30 lít!' } },
           { type: 'summary', content: { title: 'Rút về đơn vị:', points: ['Bước 1: Tìm 1 phần (phép chia)', 'Bước 2: Nhân lên số phần cần tìm'], mascotMood: 'proud' } },
         ]),
@@ -630,7 +656,7 @@ export const grade3Data = {
           { type: 'summary', content: { title: 'Bảng thống kê:', points: ['Gồm các hàng và cột chứa thông tin cụ thể'], mascotMood: 'proud' } },
         ]),
         makeLesson('g3-c9-l2', 'Bài 2: Làm quen với khả năng: Chắc chắn, Có thể, Không thể', 'Dự đoán xác suất đơn giản', [
-          { type: 'story', content: { mascotMood: 'excited', text: 'Trong hộp chỉ có 5 viên bi đỏ 🔴. Lấy ra 1 viên thì: CHẮC CHẮN là bi đỏ, KHÔNG THỂ là bi xanh! 🎲' } },
+          { type: 'story', content: { mascotMood: 'excited', text: 'Trong hộp chỉ có 5 viên bi đỏ 🔴. Lấy ra 1 viên thì: CHẮC CHẮN là bi đỏ, KHÔNG THỂ là bi xanh! 🔴' } },
           { type: 'quiz', content: { question: 'Mặt trời mọc ở đằng Đông là sự kiện gì?', options: ['Chắc chắn', 'Có thể', 'Không thể'], answer: 'Chắc chắn', mascotHint: 'Mặt trời luôn luôn mọc ở hướng Đông!' } },
           { type: 'summary', content: { title: 'Khả năng xảy ra:', points: ['Chắc chắn: 100% xảy ra', 'Có thể: có khả năng', 'Không thể: 0% xảy ra'], mascotMood: 'proud' } },
         ]),

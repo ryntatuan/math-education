@@ -80,6 +80,14 @@
   position: relative;
 }
 
+.story-header-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+}
+
 .story-card-top-tag {
   display: inline-flex;
   align-items: center;
@@ -142,35 +150,6 @@
   color: #1e293b;
   line-height: 1.6;
   margin: 0;
-}
-
-.lesson-voice-action-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
-  color: white;
-  border: none;
-  border-radius: 999px;
-  padding: clamp(12px, 1.5vw, 16px) clamp(24px, 3vw, 36px);
-  font-family: var(--font-heading, inherit);
-  font-size: clamp(1.02rem, 1.25vw, 1.25rem);
-  font-weight: 800;
-  cursor: pointer;
-  box-shadow: 0 6px 18px rgba(2, 132, 199, 0.35), 0 3px 0 #075985;
-  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.lesson-voice-action-btn:hover {
-  background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
-  box-shadow: 0 8px 24px rgba(2, 132, 199, 0.45), 0 4px 0 #075985;
-}
-
-.lesson-voice-action-btn.is-playing {
-  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-  box-shadow: 0 6px 18px rgba(245, 158, 11, 0.35), 0 3px 0 #b45309;
-  animation: pulseSlow 1.8s infinite;
 }
 
 /* ========================================
@@ -478,6 +457,14 @@
   gap: clamp(16px, 2.5vw, 26px);
 }
 
+.summary-header-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+}
+
 .summary-celebrate-badge {
   display: inline-flex;
   align-items: center;
@@ -527,10 +514,6 @@
   font-size: clamp(1.05rem, 1.3vw, 1.25rem);
   font-weight: 700;
   color: #334155;
-}
-
-.summary-action-box {
-  margin-top: 8px;
 }
 
 /* ========================================
@@ -623,8 +606,9 @@
   }
 
   .visual-header-banner {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 10px;
   }
 
   .lesson-header {

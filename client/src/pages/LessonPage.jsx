@@ -307,9 +307,20 @@ function StorySlide({ content }) {
 
   return (
     <div className="slide-story-card">
-      <div className="story-card-top-tag">
-        <Sparkles size={18} />
-        <span>Bài Học Khám Phá</span>
+      <div className="story-header-banner">
+        <div className="story-card-top-tag">
+          <Sparkles size={18} />
+          <span>Bài Học Khám Phá</span>
+        </div>
+        <button
+          type="button"
+          className={`lesson-mini-voice-btn ${speaking ? 'is-playing' : ''}`}
+          onClick={handleSpeak}
+          title="Nghe đọc nội dung"
+        >
+          <Volume2 size={19} />
+          <span>Nghe đọc</span>
+        </button>
       </div>
 
       <motion.div
@@ -324,17 +335,6 @@ function StorySlide({ content }) {
       <div className="story-dialog-bubble">
         <p className="story-dialog-text">{content.text}</p>
       </div>
-
-      <motion.button
-        type="button"
-        className={`lesson-voice-action-btn ${speaking ? 'is-playing' : ''}`}
-        onClick={handleSpeak}
-        whileHover={{ scale: 1.04, y: -2 }}
-        whileTap={{ scale: 0.96 }}
-      >
-        <Volume2 size={24} />
-        <span>{speaking ? 'Đang đọc... Bấm để dừng' : 'Nghe cô Cú Mèo đọc bài 🔊'}</span>
-      </motion.button>
     </div>
   )
 }
@@ -462,7 +462,7 @@ function QuizSlide({ content, selectedAnswer, feedback, onAnswer }) {
           title="Nghe đọc câu hỏi"
         >
           <Volume2 size={19} />
-          <span>Nghe câu hỏi</span>
+          <span>Nghe đọc</span>
         </button>
       </div>
 
@@ -558,9 +558,20 @@ function SummarySlide({ content }) {
 
   return (
     <div className="slide-summary-card">
-      <div className="summary-celebrate-badge">
-        <Award size={20} />
-        <span>Tổng Kết Bài Học</span>
+      <div className="summary-header-banner">
+        <div className="summary-celebrate-badge">
+          <Award size={18} />
+          <span>Tổng Kết Bài Học</span>
+        </div>
+        <button
+          type="button"
+          className={`lesson-mini-voice-btn ${speaking ? 'is-playing' : ''}`}
+          onClick={handleSpeak}
+          title="Nghe đọc tổng kết"
+        >
+          <Volume2 size={19} />
+          <span>Nghe đọc</span>
+        </button>
       </div>
 
       <h2 className="summary-title">{content.title}</h2>
@@ -578,19 +589,6 @@ function SummarySlide({ content }) {
             <span className="point-text">{point}</span>
           </motion.div>
         ))}
-      </div>
-
-      <div className="summary-action-box">
-        <motion.button
-          type="button"
-          className={`lesson-voice-action-btn ${speaking ? 'is-playing' : ''}`}
-          onClick={handleSpeak}
-          whileHover={{ scale: 1.04, y: -2 }}
-          whileTap={{ scale: 0.96 }}
-        >
-          <Volume2 size={22} />
-          <span>{speaking ? 'Đang đọc... Bấm để dừng' : 'Nghe tổng kết bài học 🔊'}</span>
-        </motion.button>
       </div>
     </div>
   )

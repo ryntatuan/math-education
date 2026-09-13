@@ -138,7 +138,12 @@ function ChapterCard({ chapter, index, gradeId, onClick }) {
               </Badge>
               {progress.completed > 0 && (
                 <Badge variant={progress.percent === 100 ? 'success' : 'progress'} size="sm">
-                  {progress.percent === 100 ? `🏆 Hoàn thành (${progress.total}/${progress.total})` : `⭐ Đã học ${progress.completed}/${progress.total}`}
+                  {progress.percent === 100 ? `🏆 Hoàn thành (${progress.total}/${progress.total})` : `📖 Đã học ${progress.completed}/${progress.total}`}
+                </Badge>
+              )}
+              {progress.maxStars > 0 && (
+                <Badge variant={progress.earnedStars > 0 ? 'warning' : 'default'} size="sm">
+                  ⭐ {progress.earnedStars}/{progress.maxStars} sao
                 </Badge>
               )}
               {isLocked && (
@@ -167,7 +172,7 @@ function ChapterCard({ chapter, index, gradeId, onClick }) {
 export function ChapterPage() {
   const navigate = useNavigate()
   const { gradeId, chapterId } = useParams()
-  const { getLessonStars, isLessonCompleted } = useProgressStore()
+  const { getLessonStars, isLessonCompleted, getChapterProgress } = useProgressStore()
 
   const chapter = getChapter(parseInt(gradeId), chapterId)
 
@@ -179,6 +184,9 @@ export function ChapterPage() {
       </div>
     )
   }
+
+  const totalLessonsCount = chapter.lessons?.length || chapter.totalLessons || 0
+  const progress = getChapterProgress(chapter.id, totalLessonsCount)
 
   return (
     <div className="chapter-detail-page">
@@ -201,7 +209,7 @@ export function ChapterPage() {
           </span>
           <div>
             <h1>{chapter.name}</h1>
-            <p>{chapter.description} • {chapter.lessons?.length || 0} bài học</p>
+            <p>{chapter.description} • {totalLessonsCount} bài học • ⭐ {progress.earnedStars}/{progress.maxStars} sao tích lũy</p>
           </div>
         </div>
       </div>
