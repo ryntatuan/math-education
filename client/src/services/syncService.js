@@ -266,6 +266,9 @@ export const syncService = {
           hasPet: false,
         })
       }
+
+      // 4. Đồng bộ danh sách bảng xếp hạng Đấu Trường từ đám mây (người thật + bot)
+      await useLeagueStore.getState().fetchCloudLeaderboard()
     } catch (e) {
       console.error('Lỗi nạp dữ liệu bé từ đám mây:', e)
     }
@@ -308,6 +311,20 @@ export const syncService = {
             exercise_results: progressState.exerciseResults,
             math_race_wins: progressState.mathRaceWins,
             totalGamesPlayed: progressState.totalGamesPlayed,
+            updated_at: new Date().toISOString(),
+          }),
+
+        // Đồng bộ điểm giải đấu tuần của bé vào bảng leaderboard
+        supabase
+          .from('leaderboard')
+          .upsert({
+            id: childId,
+            name: userState.nickname || 'Bé Yêu',
+            avatar: userState.avatar || '👦',
+            grade: userState.grade || 1,
+            weekly_xp: useLeagueStore.getState().userWeeklyXp || 0,
+            is_bot: false,
+            tier: useLeagueStore.getState().currentTier || 'bronze',
             updated_at: new Date().toISOString(),
           }),
       ])
@@ -375,6 +392,13 @@ export function setupAutoSync() {
       state.mathRaceWins !== prevState.mathRaceWins ||
       state.totalGamesPlayed !== prevState.totalGamesPlayed
     ) {
+      syncService.scheduleCloudSync()
+    }
+  })
+
+  // Khi có điểm giải đấu tuần thay đổi -> Tự động lưu lên Cloud
+  useLeagueStore.subscribe((state, prevState) => {
+    if (state.userWeeklyXp !== prevState.userWeeklyXp) {
       syncService.scheduleCloudSync()
     }
   })

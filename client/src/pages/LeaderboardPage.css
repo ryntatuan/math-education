@@ -375,6 +375,16 @@
   border-radius: 999px;
 }
 
+.real-user-tag {
+  background: #0284c7;
+  color: white;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 999px;
+  letter-spacing: 0.2px;
+}
+
 .zone-subtag {
   font-size: 0.75rem;
   font-weight: 600;

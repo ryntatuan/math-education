@@ -1,13 +1,570 @@
 /* ========================================
-   CHALLENGE PAGE
+   CHALLENGE PAGE & DUAL-TAB SYSTEM
    ======================================== */
 .challenge-page {
-  max-width: 800px;
+  max-width: 840px;
   margin: 0 auto;
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: var(--space-8);
+  gap: 20px;
+}
+
+/* Tab Switcher Header */
+.challenge-tabs-bar {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  background: #f1f5f9;
+  padding: 6px;
+  border-radius: 20px;
+  border: 2px solid #e2e8f0;
+}
+
+.challenge-tab-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border: none;
+  background: transparent;
+  color: #64748b;
+  font-size: 0.95rem;
+  font-weight: 800;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: inherit;
+}
+
+.challenge-tab-btn:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.6);
+  color: #1e293b;
+}
+
+.challenge-tab-btn.active {
+  background: white;
+  color: #4f46e5;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.12);
+  border: 1.5px solid #c7d2fe;
+}
+
+.tab-tag-done {
+  font-size: 0.8rem;
+}
+
+/* Status Alert */
+.league-status-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  border-radius: 16px;
+  font-size: 0.95rem;
+}
+
+.league-status-banner.promoted {
+  background: #dcfce7;
+  border: 1.5px solid #86efac;
+  color: #166534;
+}
+
+.league-status-banner.relegated {
+  background: #fee2e2;
+  border: 1.5px solid #fca5a5;
+  color: #991b1b;
+}
+
+.league-status-banner.stayed {
+  background: #f1f5f9;
+  border: 1.5px solid #cbd5e1;
+  color: #334155;
+}
+
+.dismiss-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: inherit;
+  opacity: 0.7;
+}
+
+.dismiss-btn:hover { opacity: 1; }
+
+/* ========================================
+   TAB 1: ARENA (LEADERBOARD)
+   ======================================== */
+.arena-tab-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* League Hero Card */
+.league-hero-card {
+  background: white;
+  border-radius: 28px;
+  padding: 24px 28px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.05);
+  border: 2px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.tier-info-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.tier-badge-main {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.tier-icon {
+  font-size: 3rem;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.12));
+}
+
+.tier-subtitle {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tier-name {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #1e293b;
+  margin: 0;
+  font-family: inherit;
+}
+
+.tier-action-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.timer-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  color: #475569;
+}
+
+.refresh-cloud-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #eff6ff;
+  border: 1.5px solid #bfdbfe;
+  color: #1d4ed8;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.refresh-cloud-btn:hover:not(:disabled) {
+  background: #dbeafe;
+}
+
+.refresh-cloud-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.refresh-cloud-btn .spinning {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* League Roadmap */
+.tiers-roadmap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  padding: 8px 0;
+}
+
+.tiers-roadmap::before {
+  content: '';
+  position: absolute;
+  top: 28px;
+  left: 20px;
+  right: 20px;
+  height: 4px;
+  background: #e2e8f0;
+  z-index: 1;
+}
+
+.tier-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  z-index: 2;
+  opacity: 0.5;
+  transition: all 0.25s ease;
+}
+
+.tier-step.is-unlocked {
+  opacity: 0.85;
+}
+
+.tier-step.is-current {
+  opacity: 1;
+  transform: scale(1.12);
+}
+
+.step-circle {
+  width: 42px;
+  height: 42px;
+  background: white;
+  border: 3px solid #cbd5e1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.tier-step.is-current .step-circle {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+  background: #eef2ff;
+}
+
+.step-label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #475569;
+}
+
+/* Top 3 Podium */
+.podium-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 16px;
+  padding: 16px 0;
+}
+
+.podium-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 130px;
+  position: relative;
+}
+
+.crown-badge {
+  font-size: 1.8rem;
+  position: absolute;
+  top: -24px;
+  animation: float-crown 2s infinite ease-in-out;
+}
+
+@keyframes float-crown {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.podium-player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 10px;
+}
+
+.podium-avatar {
+  font-size: 2.6rem;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+.golden-glow {
+  filter: drop-shadow(0 0 12px rgba(234, 179, 8, 0.5));
+}
+
+.podium-name {
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #1e293b;
+  text-align: center;
+}
+
+.podium-xp {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #4f46e5;
+}
+
+.podium-pedestal {
+  width: 100%;
+  border-radius: 16px 16px 4px 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.pedestal-1 {
+  height: 115px;
+  background: linear-gradient(180deg, #fde047 0%, #ca8a04 100%);
+}
+
+.pedestal-2 {
+  height: 85px;
+  background: linear-gradient(180deg, #cbd5e1 0%, #64748b 100%);
+}
+
+.pedestal-3 {
+  height: 65px;
+  background: linear-gradient(180deg, #fdba74 0%, #c2410c 100%);
+}
+
+.pedestal-rank {
+  font-size: 1.7rem;
+  font-weight: 900;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Full Standings List */
+.standings-box {
+  background: white;
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  border: 2px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.standings-legend {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #64748b;
+  padding-bottom: 12px;
+  border-bottom: 1.5px solid #f1f5f9;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.standings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.standing-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 18px;
+  border-radius: 16px;
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-left: 6px solid #94a3b8;
+  transition: all 0.2s ease;
+}
+
+.standing-row.zone-promotion {
+  border-left-color: #22c55e;
+  background: #f0fdf4;
+}
+
+.standing-row.zone-relegation {
+  border-left-color: #ef4444;
+  background: #fef2f2;
+}
+
+.standing-row.is-user-row {
+  border: 2px solid #6366f1;
+  border-left: 6px solid #4f46e5;
+  background: #eef2ff;
+  box-shadow: 0 6px 18px rgba(79, 70, 229, 0.15);
+  transform: scale(1.01);
+}
+
+.rank-badge-wrap {
+  width: 32px;
+  text-align: center;
+}
+
+.rank-number {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #64748b;
+}
+
+.player-avatar-wrap {
+  font-size: 1.8rem;
+}
+
+.player-info-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.player-name {
+  font-size: 0.98rem;
+  font-weight: 800;
+  color: #1e293b;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.you-tag {
+  background: #4f46e5;
+  color: white;
+  font-size: 0.72rem;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.real-user-tag {
+  background: #0284c7;
+  color: white;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 999px;
+  letter-spacing: 0.2px;
+}
+
+.bot-tag {
+  background: #64748b;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 999px;
+  opacity: 0.9;
+}
+
+.bot-tag.bot-hardworking {
+  background: #ea580c;
+  color: white;
+  font-weight: 700;
+  box-shadow: 0 2px 6px rgba(234, 88, 12, 0.25);
+}
+
+.bot-tag.bot-lazy {
+  background: #94a3b8;
+  color: #1e293b;
+  font-weight: 600;
+}
+
+.zone-subtag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.player-xp-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.xp-value {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #1e293b;
+}
+
+.standing-row.is-user-row .xp-value {
+  color: #4f46e5;
+}
+
+.xp-unit {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #64748b;
+}
+
+/* Out of top 10 alert */
+.out-of-top-banner {
+  margin-top: 8px;
+  background: #fffbeb;
+  border: 1.5px dashed #f59e0b;
+  border-radius: 16px;
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: center;
+}
+
+.out-rank-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  color: #92400e;
+}
+
+.out-rank-info strong {
+  font-size: 1.1rem;
+  color: #b45309;
+}
+
+.out-rank-hint {
+  font-size: 0.85rem;
+  color: #78350f;
+  font-weight: 600;
+}
+
+/* ========================================
+   TAB 2: DAILY QUESTS
+   ======================================== */
+.daily-tab-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
 }
 
 .challenge-hero {
@@ -148,12 +705,17 @@
 }
 
 .chest-reward-card.unlocked {
-  background: linear-gradient(135deg, #fff9db, #fff3bf);
   border-color: #ffd43b;
+  background: linear-gradient(135deg, #fff9db 0%, #ffffff 100%);
+}
+
+.chest-reward-card.locked {
+  opacity: 0.8;
+  background: #f8f9fa;
 }
 
 .chest-visual .chest-icon {
-  font-size: 4.5rem;
+  font-size: 4rem;
 }
 
 .chest-details {
@@ -167,135 +729,128 @@
 }
 
 .chest-details p {
-  font-size: var(--text-sm);
   color: var(--color-text-secondary);
+  font-size: var(--text-sm);
 }
 
 .claimed-badge {
+  background: #d3f9d8;
   color: #2b8a3e;
   font-weight: 700;
-  background: #d3f9d8;
   padding: var(--space-2) var(--space-4);
   border-radius: var(--radius-full);
 }
 
 .locked-badge {
-  color: var(--color-text-light);
-  font-size: var(--text-sm);
   background: #e9ecef;
+  color: #868e96;
+  font-weight: 600;
   padding: var(--space-2) var(--space-4);
   border-radius: var(--radius-full);
 }
 
-/* Modal for active task */
+/* Task Modal Overlay */
 .task-modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(4px);
-  z-index: 200;
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1000;
   padding: var(--space-4);
 }
 
 .task-modal-content {
   background: white;
   border-radius: var(--radius-3xl);
-  padding: var(--space-8);
-  max-width: 540px;
+  padding: var(--space-6);
   width: 100%;
+  max-width: 500px;
   box-shadow: var(--shadow-xl);
   display: flex;
   flex-direction: column;
-  gap: var(--space-6);
+  gap: var(--space-4);
 }
 
 .task-modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 2px solid var(--color-border);
+  padding-bottom: var(--space-3);
 }
 
 .reward-tag {
-  background: #fff3bf;
+  font-weight: 800;
   color: #f08c00;
-  font-weight: 700;
-  padding: 4px 10px;
+  background: #fff3bf;
+  padding: 4px 12px;
   border-radius: var(--radius-full);
-  font-size: var(--text-sm);
+}
+
+.task-question-body {
+  text-align: center;
+  margin: var(--space-2) 0;
 }
 
 .task-question-body h2 {
   font-size: var(--text-2xl);
-  text-align: center;
-}
-
-.task-visual-box {
-  font-size: 2.2rem;
-  letter-spacing: 6px;
-  text-align: center;
-  margin-top: var(--space-4);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-3);
 }
 
 .task-options-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-4);
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
 }
 
 .task-opt-btn {
-  padding: var(--space-4);
-  font-size: var(--text-xl);
-  font-family: var(--font-heading);
-  font-weight: 700;
   background: #f8f9fa;
   border: 2px solid var(--color-border);
+  padding: var(--space-4);
   border-radius: var(--radius-xl);
+  font-size: var(--text-xl);
+  font-weight: 800;
   cursor: pointer;
-  transition: all var(--transition-fast);
+  transition: all 0.15s ease;
+  font-family: var(--font-number);
 }
 
 .task-opt-btn:hover:not(:disabled) {
-  border-color: var(--color-primary);
-  background: white;
+  background: #e7f5ff;
+  border-color: #339af0;
 }
 
 .task-opt-btn.correct {
   background: #d3f9d8 !important;
-  border-color: #51cf66 !important;
+  border-color: #40c057 !important;
   color: #2b8a3e;
 }
 
 .task-opt-btn.wrong {
   background: #ffe3e3 !important;
-  border-color: #ff6b6b !important;
-  color: #c92a2a;
+  border-color: #fa5252 !important;
+  color: #e03131;
 }
 
 .task-feedback-banner {
-  padding: var(--space-3) var(--space-4);
-  border-radius: var(--radius-xl);
-  font-size: var(--text-sm);
-  font-weight: 700;
+  padding: var(--space-3);
+  border-radius: var(--radius-lg);
   text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-
-.task-feedback-banner.wrong {
-  background: #fff5f5;
-  color: #e03131;
-  border: 1.5px solid #ffc9c9;
+  font-weight: 700;
 }
 
 .task-feedback-banner.correct {
-  background: #ebfbee;
+  background: #d3f9d8;
   color: #2b8a3e;
-  border: 1.5px solid #b2f2bb;
+}
+
+.task-feedback-banner.wrong {
+  background: #ffe3e3;
+  color: #e03131;
 }
 
 .task-modal-footer {
@@ -306,11 +861,80 @@
   margin-top: var(--space-2);
 }
 
-/* Responsive Mobile Rules for Challenges */
+/* ========================================
+   RESPONSIVE MOBILE RULES
+   ======================================== */
 @media (max-width: 640px) {
   .challenge-page {
     padding: var(--space-2) 0;
-    gap: var(--space-4);
+    gap: 16px;
+  }
+
+  .challenge-tabs-bar {
+    border-radius: 16px;
+  }
+
+  .challenge-tab-btn {
+    padding: 10px 8px;
+    font-size: 0.86rem;
+    gap: 6px;
+  }
+
+  .league-hero-card {
+    padding: 18px 16px;
+    border-radius: 20px;
+    gap: 16px;
+  }
+
+  .tier-name {
+    font-size: 1.4rem;
+  }
+
+  .tier-icon {
+    font-size: 2.4rem;
+  }
+
+  .tier-action-group {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .podium-column {
+    width: 95px;
+  }
+
+  .podium-avatar {
+    font-size: 2rem;
+  }
+
+  .podium-pedestal {
+    border-radius: 12px 12px 4px 4px;
+  }
+
+  .pedestal-1 { height: 95px; }
+  .pedestal-2 { height: 75px; }
+  .pedestal-3 { height: 55px; }
+
+  .tier-step .step-label {
+    display: none;
+  }
+
+  .standings-box {
+    padding: 16px 12px;
+    border-radius: 20px;
+  }
+
+  .standing-row {
+    padding: 10px 12px;
+    gap: 10px;
+  }
+
+  .player-name {
+    font-size: 0.9rem;
+  }
+
+  .player-avatar-wrap {
+    font-size: 1.5rem;
   }
 
   .challenge-hero h1 {
@@ -337,7 +961,6 @@
     font-size: 0.9rem;
   }
 
-  /* Chest Reward Card Mobile: Vertical Stack & Full-width Button */
   .chest-reward-card {
     flex-direction: column;
     text-align: center;

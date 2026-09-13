@@ -14,16 +14,20 @@ import {
 import Button from '../components/ui/Button'
 import useLeagueStore, { LEAGUE_TIERS } from '../store/useLeagueStore'
 import useUserStore from '../store/useUserStore'
+import useAuthStore from '../store/useAuthStore'
 import soundManager from '../utils/soundManager'
 import './LeaderboardPage.css'
 
 export default function LeaderboardPage() {
   const { nickname, avatar } = useUserStore()
+  const { activeChild } = useAuthStore()
   const {
     currentTier,
     weekEndDate,
     checkWeekReset,
     getStandings,
+    fetchCloudLeaderboard,
+    isLoadingCloud,
     lastPromotionStatus,
     dismissStatus,
   } = useLeagueStore()
@@ -32,6 +36,7 @@ export default function LeaderboardPage() {
 
   useEffect(() => {
     checkWeekReset(nickname, avatar)
+    fetchCloudLeaderboard()
 
     const updateTimer = () => {
       const end = new Date(weekEndDate).getTime()
@@ -53,9 +58,9 @@ export default function LeaderboardPage() {
     updateTimer()
     const interval = setInterval(updateTimer, 60000)
     return () => clearInterval(interval)
-  }, [weekEndDate, checkWeekReset, nickname, avatar])
+  }, [weekEndDate, checkWeekReset, nickname, avatar, fetchCloudLeaderboard])
 
-  const standings = getStandings(nickname, avatar)
+  const standings = getStandings(nickname, avatar, activeChild?.id)
   const currentTierData =
     LEAGUE_TIERS.find((t) => t.id === currentTier) || LEAGUE_TIERS[0]
   const currentTierIdx = LEAGUE_TIERS.findIndex((t) => t.id === currentTier)
@@ -206,7 +211,11 @@ export default function LeaderboardPage() {
                 <div className="player-info-wrap">
                   <span className="player-name">
                     {player.name}
-                    {player.isUser && <span className="you-tag">Bạn</span>}
+                    {player.isUser ? (
+                      <span className="you-tag">Bạn</span>
+                    ) : !player.isBot ? (
+                      <span className="real-user-tag">✨ Bạn học</span>
+                    ) : null}
                   </span>
                   <span className="zone-subtag">
                     {isPromotion ? 'Vùng Thăng Hạng 🟢' : isRelegation ? 'Vùng Nguy Hiểm 🔴' : 'Vùng An Toàn ⚪'}
