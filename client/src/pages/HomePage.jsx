@@ -23,6 +23,7 @@ import useProgressStore from '../store/useProgressStore'
 import useLeagueStore, { LEAGUE_TIERS } from '../store/useLeagueStore'
 import useDownloadModalStore from '../store/useDownloadModalStore'
 import { Capacitor } from '@capacitor/core'
+import { detectDeviceOS, isIOS } from '../utils/deviceHelper'
 import curriculum from '../data/curriculum'
 import soundManager from '../utils/soundManager'
 import './HomePage.css'
@@ -353,7 +354,7 @@ export default function HomePage() {
             </div>
           </motion.div>
 
-          {/* 4. TẢI APP MOBILE ANDROID CARD (Chỉ hiện trên trình duyệt web, tự ẩn trên mobile app) */}
+          {/* 4. TẢI APP MOBILE CARD (Chỉ hiện trên trình duyệt web, tự ẩn trên mobile app) */}
           {!isNative && (
             <motion.div
               className="home-download-app-card"
@@ -365,18 +366,24 @@ export default function HomePage() {
               whileTap={{ scale: 0.98 }}
             >
               <div className="download-card-header">
-                <div className="download-card-robot-icon">🤖</div>
+                <div className="download-card-robot-icon">
+                  {isIOS() ? '🍎' : '🤖'}
+                </div>
                 <div className="download-card-meta">
-                  <h4>Cài App Toán Vui</h4>
-                  <span className="download-tag-android">Dành cho Android (.apk)</span>
+                  <h4>{isIOS() ? 'Cài App Cho iPhone / iPad' : 'Cài App Toán Vui'}</h4>
+                  <span className="download-tag-android">
+                    {isIOS() ? 'iOS / iPadOS (PWA)' : 'Dành cho Android (.apk)'}
+                  </span>
                 </div>
               </div>
               <p className="download-card-desc">
-                Học toán mượt mà, cảm ứng tiện lợi trên điện thoại & máy tính bảng
+                {isIOS()
+                  ? 'Cài về Màn hình chính để học toàn màn hình mượt mà không cần cài đặt phức tạp'
+                  : 'Học toán mượt mà, cảm ứng tiện lợi trên điện thoại & máy tính bảng'}
               </p>
               <button type="button" className="btn-download-card-cta">
                 <Download size={16} />
-                <span>Tải App Ngay (5.4 MB)</span>
+                <span>{isIOS() ? 'Xem Cách Cài Đặt (5 giây)' : 'Tải App Ngay (5.4 MB)'}</span>
               </button>
             </motion.div>
           )}
