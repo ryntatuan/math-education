@@ -68,11 +68,12 @@
 ## 🚀 Hướng Dẫn Biên Dịch & Chạy Thử Ứng Dụng
 
 ### Cách 1: Tự động Build file `app-debug.apk` trên GitHub Actions (Khuyên dùng - Không cần cài đặt máy)
-Trong thư mục dự án đã tạo sẵn file workflow `.github/workflows/build-mobile.yml`:
-1. Đẩy code lên GitHub (`git push origin main`).
-2. Vào tab **Actions** trên GitHub repository.
-3. Chọn workflow **Build Mobile App (Android APK)** -> Bấm **Run workflow**.
-4. Sau ~3 phút, tải file `ToanVui-Debug-APK.zip` (bên trong có `app-debug.apk`) tại mục **Artifacts** và cài đặt trực tiếp lên điện thoại Android!
+Trong thư mục dự án đã tạo sẵn mẫu workflow tại `docs/build-mobile.yml`:
+1. Trên giao diện web GitHub của repository: Bấm **Add file** -> **Create new file**.
+2. Đặt đường dẫn tên file là `.github/workflows/build-mobile.yml`.
+3. Copy toàn bộ nội dung từ file `docs/build-mobile.yml` dán vào và bấm **Commit changes**.
+4. Vào tab **Actions** trên GitHub repository -> Chọn workflow **Build Mobile App (Android APK)** -> Bấm **Run workflow**.
+5. Sau ~3 phút, tải file `ToanVui-Debug-APK.zip` (bên trong có file cài đặt `app-debug.apk`) tại mục **Artifacts** và cài đặt trực tiếp lên điện thoại Android!
 
 ### Cách 2: Mở & chạy bằng Android Studio trên máy cá nhân
 *(Cần cài đặt Android Studio & Android SDK)*
@@ -101,7 +102,7 @@ npm run mobile:sync
 
 ## 📝 Nhật Ký Các Tệp Đã Tạo & Cập Nhật
 
-1. `.github/workflows/build-mobile.yml` (Quy trình tự động đóng gói APK trên GitHub Actions)
+1. `docs/build-mobile.yml` (Quy trình tự động đóng gói APK trên GitHub Actions)
 2. `client/capacitor.config.json` (Cấu hình ứng dụng Toán Vui)
 3. `client/src/hooks/useMobileLifecycle.js` (Quản lý nút back, thanh trạng thái, kết nối mạng, deep link)
 4. `client/src/utils/hapticsManager.js` (Rung xúc giác bản địa)
