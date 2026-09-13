@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { Award, Star, Flame, Trophy, Coins, User, Sparkles, Check, Edit2, ShoppingBag } from 'lucide-react'
+import { Award, Star, Flame, Trophy, Coins, User, Sparkles, Check, Edit2, ShoppingBag, LogIn, LogOut, UserPlus } from 'lucide-react'
 import Button from '../components/ui/Button'
 import Card from '../components/ui/Card'
 import ProgressBar from '../components/ui/ProgressBar'
 import useUserStore from '../store/useUserStore'
 import useProgressStore from '../store/useProgressStore'
+import useAuthStore from '../store/useAuthStore'
 import soundManager from '../utils/soundManager'
 import './ProfilePage.css'
 
@@ -38,6 +39,16 @@ export default function ProfilePage() {
   } = useUserStore()
 
   const { completedLessons, currentStreak, mathRaceWins = 0 } = useProgressStore()
+  const {
+    user,
+    isGuest,
+    children,
+    activeChild,
+    setAuthModalOpen,
+    setSwitcherModalOpen,
+    switchChild,
+    signOut,
+  } = useAuthStore()
 
   const [isEditingName, setIsEditingName] = useState(false)
   const [tempName, setTempName] = useState(nickname)
@@ -173,6 +184,102 @@ export default function ProfilePage() {
         </div>
       </div>
 
+      {/* Account & Cloud Sync / Multi-Child Section */}
+      <div className="profile-account-card">
+        <div className="account-card-header">
+          <div className="account-card-title-group">
+            <span className="account-icon">👨‍👩‍👧‍👦</span>
+            <div>
+              <h3>{isGuest ? 'Tài Khoản Phụ Huynh & Đám Mây' : 'Gia Đình & Đám Mây'}</h3>
+              <p className="account-card-desc">
+                {isGuest
+                  ? 'Đăng nhập Google để sao lưu vĩnh viễn và tạo hồ sơ cho nhiều bé trong gia đình'
+                  : `Tài khoản: ${user?.email || 'Phụ huynh'}`}
+              </p>
+            </div>
+          </div>
+
+          <div className="account-status-badge">
+            {isGuest ? (
+              <span className="badge-guest">⚡ Chế độ Khách</span>
+            ) : (
+              <span className="badge-synced">
+                <Check size={14} /> Đã đồng bộ đám mây
+              </span>
+            )}
+          </div>
+        </div>
+
+        {isGuest ? (
+          <div className="account-guest-actions">
+            <button
+              className="btn-google-login-profile"
+              onClick={() => {
+                soundManager.playClick()
+                setAuthModalOpen(true)
+              }}
+            >
+              <LogIn size={18} />
+              <span>Đăng nhập bằng Google để lưu tiến độ</span>
+            </button>
+          </div>
+        ) : (
+          <div className="family-management-section">
+            <div className="family-subhead-row">
+              <h4>Hồ sơ các bé trong gia đình ({children.length})</h4>
+              <button
+                className="btn-add-child-link"
+                onClick={() => {
+                  soundManager.playClick()
+                  setSwitcherModalOpen(true)
+                }}
+              >
+                <UserPlus size={16} /> + Thêm bé mới
+              </button>
+            </div>
+
+            <div className="family-children-row">
+              {children.map((child) => {
+                const isActive = child.id === activeChild?.id
+                return (
+                  <div
+                    key={child.id}
+                    className={`family-child-pill ${isActive ? 'active' : ''}`}
+                    onClick={() => {
+                      if (!isActive) switchChild(child.id)
+                    }}
+                  >
+                    <span className="pill-avatar">{child.avatar || '👦'}</span>
+                    <div className="pill-info">
+                      <span className="pill-name">{child.nickname}</span>
+                      <span className="pill-grade">Lớp {child.grade}</span>
+                    </div>
+                    {isActive ? (
+                      <span className="pill-active-tag">Đang học</span>
+                    ) : (
+                      <button className="pill-switch-btn">Chọn học</button>
+                    )}
+                  </div>
+                )
+              })}
+            </div>
+
+            <div className="account-bottom-actions">
+              <button
+                className="btn-logout"
+                onClick={() => {
+                  if (window.confirm('Bạn có chắc muốn đăng xuất khỏi tài khoản phụ huynh?')) {
+                    signOut()
+                  }
+                }}
+              >
+                <LogOut size={16} /> Đăng xuất tài khoản
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
+
       {/* Stats Summary Grid */}
       <div className="profile-stats-grid">
         <div className="p-stat-card">
@@ -242,3 +349,4 @@ export default function ProfilePage() {
     </div>
   )
 }
+

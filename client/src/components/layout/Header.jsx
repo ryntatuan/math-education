@@ -1,13 +1,16 @@
 import { Link } from 'react-router-dom'
+import { Users, ChevronDown } from 'lucide-react'
 import Badge from '../ui/Badge'
 import useUserStore from '../../store/useUserStore'
 import useProgressStore from '../../store/useProgressStore'
+import useAuthStore from '../../store/useAuthStore'
 import soundManager from '../../utils/soundManager'
 import './Header.css'
 
 export default function Header() {
   const { nickname, coins, level, avatar } = useUserStore()
   const { currentStreak } = useProgressStore()
+  const { isGuest, setAuthModalOpen, setSwitcherModalOpen } = useAuthStore()
 
   return (
     <header className="header">
@@ -51,6 +54,34 @@ export default function Header() {
             Lv.{level}
           </Badge>
 
+          {/* Auth or Child Switcher */}
+          {isGuest ? (
+            <button
+              className="header-login-btn"
+              onClick={() => {
+                soundManager.playClick()
+                setAuthModalOpen(true)
+              }}
+              title="Đăng nhập tài khoản để sao lưu đám mây"
+            >
+              <span className="header-login-icon">🔑</span>
+              <span className="hide-mobile">Đăng nhập</span>
+            </button>
+          ) : (
+            <button
+              className="header-switch-btn"
+              onClick={() => {
+                soundManager.playClick()
+                setSwitcherModalOpen(true)
+              }}
+              title="Đổi bé học"
+            >
+              <Users size={16} />
+              <span className="hide-mobile">{nickname}</span>
+              <ChevronDown size={14} className="hide-mobile" />
+            </button>
+          )}
+
           <Link
             to="/profile"
             className="header-avatar"
@@ -64,3 +95,4 @@ export default function Header() {
     </header>
   )
 }
+

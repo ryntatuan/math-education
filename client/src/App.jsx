@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import Sidebar from './components/layout/Sidebar'
 import Header from './components/layout/Header'
 import BottomNav from './components/layout/BottomNav'
+import AuthModal from './components/auth/AuthModal'
+import ProfileSwitcherModal from './components/auth/ProfileSwitcherModal'
 import HomePage from './pages/HomePage'
 import GradePage, { ChapterPage } from './pages/GradePage'
 import LessonPage from './pages/LessonPage'
@@ -15,6 +17,7 @@ import ParentDashboard from './pages/ParentDashboard'
 import StoriesPage from './pages/StoriesPage'
 import LeaderboardPage from './pages/LeaderboardPage'
 import useUserStore from './store/useUserStore'
+import useAuthStore from './store/useAuthStore'
 import soundManager from './utils/soundManager'
 import './App.css'
 
@@ -43,6 +46,8 @@ function AppLayout() {
         </Routes>
       </main>
       {!isLessonRoute && <BottomNav />}
+      <AuthModal />
+      <ProfileSwitcherModal />
     </div>
   )
 }
@@ -54,9 +59,14 @@ export default function App() {
     soundManager.setSoundEnabled(soundEnabled)
   }, [soundEnabled])
 
+  useEffect(() => {
+    useAuthStore.getState().initAuth()
+  }, [])
+
   return (
     <BrowserRouter>
       <AppLayout />
     </BrowserRouter>
   )
 }
+

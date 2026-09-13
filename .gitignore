@@ -36,7 +36,9 @@ Thumbs.db
 # Agent & temporary tools
 .codegraph/
 .gemini/
+supabase/.temp/
+
 
 # Documentation
-README.md
-client/README.md
+# (README.md is tracked)
+

@@ -105,6 +105,58 @@
   box-shadow: 0 4px 12px rgba(79, 172, 254, 0.3);
 }
 
+/* Auth & Profile Switcher Buttons */
+.header-login-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  font-family: 'Quicksand', var(--font-heading), sans-serif;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(37, 99, 235, 0.3);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.header-login-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 12px rgba(37, 99, 235, 0.4);
+}
+
+.header-login-icon {
+  font-size: 1rem;
+}
+
+.header-switch-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #f0fdf4;
+  color: #15803d;
+  border: 1.5px solid #86efac;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  font-family: 'Quicksand', var(--font-heading), sans-serif;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.header-switch-btn:hover {
+  background: #dcfce7;
+  border-color: #4ade80;
+  transform: translateY(-1px);
+}
+
+
 /* ========================================================
    RESPONSIVE ADJUSTMENTS
    ======================================================== */
@@ -194,7 +246,22 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
     flex-shrink: 0;
   }
+
+  .header-login-btn {
+    height: 34px;
+    padding: 0 10px;
+    font-size: 0.85rem;
+    gap: 4px;
+  }
+
+  .header-switch-btn {
+    height: 34px;
+    padding: 0 8px;
+    font-size: 0.82rem;
+    gap: 4px;
+  }
 }
+
 
 @media (max-width: 380px) {
   .header {
@@ -234,4 +301,17 @@
     height: 32px;
     font-size: 1.05rem;
   }
+
+  .header-login-btn {
+    height: 32px;
+    padding: 0 8px;
+    font-size: 0.8rem;
+  }
+
+  .header-switch-btn {
+    height: 32px;
+    padding: 0 6px;
+    font-size: 0.78rem;
+  }
 }
+
