@@ -139,6 +139,13 @@ export default function PracticePage() {
 
   const TOTAL_QUESTIONS = 10
 
+  // Auto-scroll to top on question change
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+    if (document.documentElement) document.documentElement.scrollTop = 0
+    if (document.body) document.body.scrollTop = 0
+  }, [questionIndex, mistakeIndex])
+
   const topicsList = TOPICS[`GRADE_${selectedGrade}`] || TOPICS.GRADE_1
 
   const dueMistakes = getDueMistakes ? getDueMistakes() : []

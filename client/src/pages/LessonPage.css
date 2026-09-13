@@ -76,7 +76,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: clamp(12px, 2vw, 28px) 0;
+  padding: clamp(8px, 1.5vw, 16px) 0 16px 0;
   width: 100%;
 }
 
@@ -758,16 +758,17 @@
   }
 
   .lesson-slide {
-    padding: 4px 0;
+    padding: 4px 0 12px 0;
   }
 
   /* Compact slide cards for small screens */
   .slide-story-card,
   .slide-visual-card,
+  .slide-concept-card,
   .slide-quiz-card,
   .slide-summary-card {
-    padding: 16px 14px;
-    gap: 12px;
+    padding: 14px 12px;
+    gap: 10px;
     border-radius: 20px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
   }
@@ -1711,5 +1712,215 @@
   gap: 16px;
   margin: 8px 0;
 }
+
+/* ========================================================
+   COUNTING ITEMS TRAY (Structured & Single-Row Anti-Wrap)
+   ======================================================== */
+.counting-items-tray-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: 8px 0 16px 0;
+}
+
+.counting-items-tray {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(14px, 3vw, 24px);
+  padding: clamp(12px, 2.5vw, 18px) clamp(16px, 4vw, 32px);
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border: 2.5px dashed #cbd5e1;
+  border-radius: 22px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+}
+
+.counting-items-tray.single-row {
+  flex-wrap: nowrap; /* CRITICAL: Never split strawberries or objects into random lines! */
+}
+
+.counting-items-tray.ten-frame-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+
+.counting-item-emoji {
+  font-size: clamp(2.4rem, 5vw, 3.4rem);
+  line-height: 1;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+  user-select: none;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.counting-item-emoji:hover {
+  transform: scale(1.15) translateY(-3px);
+}
+
+/* ========================================================
+   AUTO-SCROLL & CLEARANCE FOR STICKY BOTTOM NAV
+   ======================================================== */
+.dialogue-feedback-card,
+.dialogue-interaction-box,
+.quiz-feedback {
+  scroll-margin-bottom: 24px;
+}
+
+/* ========================================================
+   RESPONSIVE MOBILE VIEWPORT OPTIMIZATIONS (< 640px)
+   ======================================================== */
+@media (max-width: 640px) {
+  .lesson-slide {
+    padding-bottom: 12px !important;
+  }
+
+  .dialogue-scene-card {
+    padding: 14px 12px;
+    gap: 12px;
+    border-radius: 20px;
+  }
+
+  .dialogue-focus-graphic .clock-svg {
+    width: 125px !important;
+    height: 125px !important;
+  }
+
+  .dialogue-focus-graphic .clock-graphic-container {
+    gap: 4px;
+    margin: 0;
+  }
+
+  .dialogue-bubbles-stream {
+    gap: 10px;
+  }
+
+  .dialogue-avatar-wrap {
+    width: 52px;
+  }
+
+  .dialogue-avatar {
+    width: 44px;
+    height: 44px;
+    font-size: 1.7rem;
+  }
+
+  .dialogue-char-name {
+    font-size: 0.72rem;
+  }
+
+  .dialogue-bubble {
+    padding: 10px 14px;
+    max-width: 80%;
+  }
+
+  .dialogue-text {
+    font-size: 0.95rem;
+    line-height: 1.45;
+  }
+
+  .dialogue-interaction-box {
+    padding: 12px;
+    gap: 10px;
+    border-radius: 16px;
+    margin-top: 6px;
+  }
+
+  .dialogue-question-title {
+    font-size: 1rem;
+  }
+
+  .dialogue-opt-btn {
+    padding: 9px 20px;
+    font-size: 0.92rem;
+  }
+
+  .dialogue-feedback-card {
+    padding: 10px 12px;
+    border-radius: 14px;
+  }
+
+  .dialogue-feedback-card .feedback-header {
+    font-size: 0.95rem;
+  }
+
+  .dialogue-feedback-card .feedback-body {
+    font-size: 0.88rem;
+    line-height: 1.45;
+  }
+
+  .counting-items-tray {
+    gap: 12px;
+    padding: 10px 14px;
+  }
+
+  .counting-item-emoji {
+    font-size: 2.3rem;
+  }
+
+  /* Concept Slide Mobile Optimizations (Image 1 fix) */
+  .concept-title {
+    font-size: 1.15rem;
+    margin-bottom: 2px;
+  }
+
+  .concept-explanation {
+    font-size: 0.95rem;
+    line-height: 1.45;
+  }
+
+  .clock-graphic-container {
+    gap: 6px;
+    margin: 2px 0;
+  }
+
+  .clock-graphic-container .clock-svg {
+    width: 135px !important;
+    height: 135px !important;
+  }
+
+  .clock-labels-pill-row {
+    gap: 6px;
+  }
+
+  .clock-label-pill {
+    padding: 4px 12px;
+    font-size: 0.82rem;
+    gap: 4px;
+  }
+
+  .clock-time-badge {
+    padding: 5px 16px;
+    font-size: 0.95rem;
+  }
+
+  .concept-rule-box {
+    padding: 8px 16px;
+    gap: 8px;
+    max-width: 96%;
+    margin: 2px 0;
+  }
+
+  .concept-rule-icon {
+    font-size: 1.1rem;
+  }
+
+  .concept-rule-body {
+    font-size: 0.92rem;
+    line-height: 1.35;
+  }
+
+  .concept-step-card {
+    padding: 10px 12px;
+    border-radius: 14px;
+  }
+
+  .concept-example-box {
+    padding: 10px 12px;
+    gap: 10px;
+    border-radius: 14px;
+  }
+}
+
 
 

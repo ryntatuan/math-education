@@ -82,7 +82,13 @@ export const grade1Data = {
             {
               "type": "quiz",
               "content": {
-                "question": "Bé hãy đếm xem có bao nhiêu quả dâu tây? 🍓🍓🍓",
+                "question": "Bé hãy đếm xem có bao nhiêu quả dâu tây?",
+                "items": [
+                  {
+                    "emoji": "🍓",
+                    "count": 3
+                  }
+                ],
                 "options": [
                   1,
                   2,
@@ -162,7 +168,13 @@ export const grade1Data = {
             {
               "type": "quiz",
               "content": {
-                "question": "Có bao nhiêu chú bướm đang bay? 🦋🦋🦋🦋",
+                "question": "Có bao nhiêu chú bướm đang bay?",
+                "items": [
+                  {
+                    "emoji": "🦋",
+                    "count": 4
+                  }
+                ],
                 "options": [
                   3,
                   4,

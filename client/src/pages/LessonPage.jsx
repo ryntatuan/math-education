@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback, useEffect, useRef } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowLeft, ArrowRight, CheckCircle2, XCircle, Volume2, Sparkles, Award, Lightbulb, BookOpen, MessageCircle } from 'lucide-react'
@@ -66,6 +66,27 @@ export default function LessonPage() {
       speechHelper.stop()
     }
   }, [])
+
+  // Auto-scroll to top whenever slide changes (prevents starting midway down next slide)
+  useEffect(() => {
+    const scrollToTop = () => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+      if (document.documentElement) document.documentElement.scrollTop = 0
+      if (document.body) document.body.scrollTop = 0
+      const pageWrapper = document.querySelector('.page-wrapper')
+      if (pageWrapper) pageWrapper.scrollTop = 0
+      const lessonPage = document.querySelector('.lesson-page')
+      if (lessonPage) lessonPage.scrollTop = 0
+    }
+
+    scrollToTop()
+    const raf = requestAnimationFrame(scrollToTop)
+    const timer = setTimeout(scrollToTop, 60)
+    return () => {
+      cancelAnimationFrame(raf)
+      clearTimeout(timer)
+    }
+  }, [currentSlide])
 
   // Fire celebratory confetti when completing lesson and showing result
   useEffect(() => {
@@ -139,6 +160,9 @@ export default function LessonPage() {
       setCurrentSlide((prev) => prev + 1)
       setSelectedAnswer(null)
       setAnswerFeedback(null)
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+      if (document.documentElement) document.documentElement.scrollTop = 0
+      if (document.body) document.body.scrollTop = 0
     }
   }
 
@@ -149,6 +173,9 @@ export default function LessonPage() {
       setCurrentSlide((prev) => prev - 1)
       setSelectedAnswer(null)
       setAnswerFeedback(null)
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' })
+      if (document.documentElement) document.documentElement.scrollTop = 0
+      if (document.body) document.body.scrollTop = 0
     }
   }
 
@@ -880,6 +907,16 @@ function DialogueScene({ content, onAnswerRecorded, isFullSlide = false }) {
   const [selectedOption, setSelectedOption] = useState(null)
   const [feedbackState, setFeedbackState] = useState(null)
   const [speaking, setSpeaking] = useState(false)
+  const feedbackRef = useRef(null)
+
+  // Auto-scroll feedback into view when revealed (above sticky bottom nav)
+  useEffect(() => {
+    if (feedbackState && feedbackRef.current) {
+      setTimeout(() => {
+        feedbackRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' })
+      }, 120)
+    }
+  }, [feedbackState])
 
   const characters = {
     nam: { name: 'Bạn Nam', avatar: '👦' },
@@ -1011,6 +1048,7 @@ function DialogueScene({ content, onAnswerRecorded, isFullSlide = false }) {
 
           {feedbackState && (
             <motion.div
+              ref={feedbackRef}
               className={`dialogue-feedback-card ${feedbackState === 'correct' ? 'is-correct' : 'is-wrong'}`}
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -1196,6 +1234,32 @@ function ConceptSlide({ content }) {
 
 function QuizSlide({ content, selectedAnswer, feedback, onAnswer }) {
   const [speaking, setSpeaking] = useState(false)
+  const feedbackRef = useRef(null)
+
+  // Auto-scroll feedback into view when revealed (above sticky bottom nav)
+  useEffect(() => {
+    if (feedback && feedbackRef.current) {
+      setTimeout(() => {
+        feedbackRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' })
+      }, 120)
+    }
+  }, [feedback])
+
+  // Intelligently parse trailing counting emojis from question if content.items is not provided
+  let displayQuestion = content.question || ''
+  let countingItems = content.items
+
+  if (!countingItems && displayQuestion) {
+    // Check if question ends with multiple emojis (e.g. "🍓🍓🍓" or "🦋🦋🦋🦋")
+    const match = displayQuestion.match(/^(.*?)[\s]*((?:[\p{Extended_Pictographic}\uFE0F]\s*){2,})$/u)
+    if (match) {
+      displayQuestion = match[1].trim()
+      const emojis = match[2].match(/[\p{Extended_Pictographic}\uFE0F]/gu) || []
+      if (emojis.length > 0) {
+        countingItems = [{ emoji: emojis[0], count: emojis.length }]
+      }
+    }
+  }
 
   const handleSpeak = () => {
     if (speaking) {
@@ -1203,7 +1267,7 @@ function QuizSlide({ content, selectedAnswer, feedback, onAnswer }) {
       setSpeaking(false)
     } else {
       speechHelper.speak(
-        content.question,
+        displayQuestion,
         () => setSpeaking(true),
         () => setSpeaking(false)
       )
@@ -1225,19 +1289,22 @@ function QuizSlide({ content, selectedAnswer, feedback, onAnswer }) {
         </button>
       </div>
 
-      <h2 className="quiz-question">{content.question}</h2>
+      <h2 className="quiz-question">{displayQuestion}</h2>
 
-      {content.items && (
-        <div className="visual-items quiz-visual">
-          {content.items.map((item, i) => (
-            <div key={i} className={`visual-emojis ${item.count <= 5 ? 'single-row-emojis' : 'ten-frame-emojis'}`}>
+      {countingItems && (
+        <div className="counting-items-tray-wrap">
+          {countingItems.map((item, i) => (
+            <div
+              key={i}
+              className={`counting-items-tray ${item.count <= 5 ? 'single-row' : 'ten-frame-grid'}`}
+            >
               {Array.from({ length: item.count }).map((_, j) => (
                 <motion.span
                   key={j}
-                  className="visual-emoji"
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ delay: j * 0.08, type: 'spring' }}
+                  className="counting-item-emoji"
+                  initial={{ scale: 0, y: 10 }}
+                  animate={{ scale: 1, y: 0 }}
+                  transition={{ delay: j * 0.08, type: 'spring', stiffness: 260 }}
                 >
                   {item.emoji}
                 </motion.span>
@@ -1277,10 +1344,11 @@ function QuizSlide({ content, selectedAnswer, feedback, onAnswer }) {
         })}
       </div>
 
-      {/* Feedback message */}
+      {/* Feedback message with auto-scroll ref */}
       <AnimatePresence>
         {feedback && (
           <motion.div
+            ref={feedbackRef}
             className={`quiz-feedback quiz-feedback-${feedback}`}
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}

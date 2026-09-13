@@ -5137,7 +5137,13 @@ export const grade2Data = {
             {
               "type": "quiz",
               "content": {
-                "question": "Nếu mỗi ⭐ là 2 điểm 10, thì 4 ngôi sao ⭐⭐⭐⭐ là mấy điểm 10?",
+                "question": "Nếu mỗi ⭐ là 2 điểm 10, thì 4 ngôi sao là mấy điểm 10?",
+                "items": [
+                  {
+                    "emoji": "⭐",
+                    "count": 4
+                  }
+                ],
                 "options": [
                   6,
                   8,
