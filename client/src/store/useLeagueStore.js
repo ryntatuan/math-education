@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
+import useProgressStore from './useProgressStore'
 
 export const LEAGUE_TIERS = [
   { id: 'bronze', name: 'Giải Đồng', icon: '🥉', color: '#cd7f32', minXp: 0 },
@@ -62,12 +63,21 @@ const useLeagueStore = create(
     (set, get) => ({
       currentTier: 'bronze',
       weekEndDate: getEndOfWeekSunday(),
-      userWeeklyXp: 85,
+      userWeeklyXp: 0,
       rivals: generateRivalsForTier('bronze'),
       lastPromotionStatus: null, // 'promoted' | 'relegated' | 'stayed' | null
 
+      resetLeague: () =>
+        set({
+          currentTier: 'bronze',
+          weekEndDate: getEndOfWeekSunday(),
+          userWeeklyXp: 0,
+          rivals: generateRivalsForTier('bronze'),
+          lastPromotionStatus: null,
+        }),
+
       // Check weekly expiration and handle promotion/relegation
-      checkWeekReset: () => {
+      checkWeekReset: (customName, customAvatar) => {
         const now = new Date()
         const end = new Date(get().weekEndDate)
 
@@ -75,10 +85,25 @@ const useLeagueStore = create(
           const { currentTier, userWeeklyXp, rivals } = get()
           const currentTierIdx = LEAGUE_TIERS.findIndex((t) => t.id === currentTier)
 
+          let userName = customName
+          let userAvatar = customAvatar
+          if (!userName) {
+            try {
+              const raw = localStorage.getItem('toan-vui-user')
+              if (raw) {
+                const parsed = JSON.parse(raw)
+                userName = parsed?.state?.nickname || parsed?.nickname
+                userAvatar = parsed?.state?.avatar || parsed?.avatar
+              }
+            } catch (e) {
+              // Ignore
+            }
+          }
+
           // Calculate final rank
           const allPlayers = [
             ...rivals,
-            { id: 'user', name: 'Bé (Bạn)', avatar: '⭐', weeklyXp: userWeeklyXp, isUser: true },
+            { id: 'user', name: userName || 'Bé Yêu', avatar: userAvatar || '🦉', weeklyXp: userWeeklyXp, isUser: true },
           ].sort((a, b) => b.weeklyXp - a.weeklyXp)
 
           const userRank = allPlayers.findIndex((p) => p.isUser) + 1
@@ -117,6 +142,10 @@ const useLeagueStore = create(
             return r
           })
 
+          try {
+            useProgressStore.getState().setLeagueXp?.(newXp)
+          } catch (e) {}
+
           return {
             userWeeklyXp: newXp,
             rivals: updatedRivals,
@@ -125,12 +154,27 @@ const useLeagueStore = create(
       },
 
       // Get full leaderboard standings with child's rank
-      getStandings: () => {
+      getStandings: (customName, customAvatar) => {
         const { userWeeklyXp, rivals } = get()
+        let userName = customName
+        let userAvatar = customAvatar
+        if (!userName) {
+          try {
+            const raw = localStorage.getItem('toan-vui-user')
+            if (raw) {
+              const parsed = JSON.parse(raw)
+              userName = parsed?.state?.nickname || parsed?.nickname
+              userAvatar = parsed?.state?.avatar || parsed?.avatar
+            }
+          } catch (e) {
+            // Ignore
+          }
+        }
+
         const userObj = {
           id: 'user',
-          name: 'Bé (Bạn)',
-          avatar: '🦉',
+          name: userName || 'Bé Yêu',
+          avatar: userAvatar || '🦉',
           weeklyXp: userWeeklyXp,
           isUser: true,
         }

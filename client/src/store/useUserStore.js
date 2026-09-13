@@ -6,7 +6,7 @@ const useUserStore = create(
   persist(
     (set, get) => ({
       // Profile
-      nickname: 'Bé Học Giỏi',
+      nickname: 'Bé Yêu',
       grade: 1,
       avatar: '👦',
       unlockedAvatars: ['👦', '👧'],
@@ -73,9 +73,29 @@ const useUserStore = create(
       toggleSound: () => set((state) => ({ soundEnabled: !state.soundEnabled })),
       toggleMusic: () => set((state) => ({ musicEnabled: !state.musicEnabled })),
       setParentPin: (pin) => set({ parentPin: pin }),
+
+      resetUser: () =>
+        set({
+          nickname: 'Bé Yêu',
+          grade: 1,
+          avatar: '👦',
+          unlockedAvatars: ['👦', '👧'],
+          frame: null,
+          level: 1,
+          coins: 0,
+          xp: 0,
+          totalXpForNextLevel: 100,
+        }),
     }),
     {
       name: 'toan-vui-user',
+      migrate: (persistedState) => {
+        if (persistedState && persistedState.nickname === 'Bé Học Giỏi') {
+          persistedState.nickname = 'Bé Yêu'
+        }
+        return persistedState
+      },
+      version: 1,
     }
   )
 )

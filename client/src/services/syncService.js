@@ -2,6 +2,7 @@ import { supabase, isSupabaseConfigured } from './supabaseClient'
 import useUserStore from '../store/useUserStore'
 import useProgressStore from '../store/useProgressStore'
 import usePetStore from '../store/usePetStore'
+import useLeagueStore from '../store/useLeagueStore'
 
 // Helper đọc an toàn từ localStorage
 function getLocalStoreData(key) {
@@ -40,7 +41,6 @@ export const syncService = {
     }, 500)
   },
 
-
   /**
    * Tự động di chuyển dữ liệu từ localStorage (Guest mode) lên Supabase khi đăng nhập lần đầu
    */
@@ -48,7 +48,14 @@ export const syncService = {
     if (!isSupabaseConfigured() || !supabase || !parentUser) return null
 
     try {
-      // 1. Kiểm tra xem phụ huynh đã có hồ sơ bé nào chưa
+      // Bóc tách tên hiển thị mặc định từ tài khoản Google
+      const googleDisplayName =
+        parentUser.user_metadata?.full_name ||
+        parentUser.user_metadata?.name ||
+        parentUser.user_metadata?.given_name ||
+        (parentUser.email ? parentUser.email.split('@')[0] : '')
+
+      // 1. Kiểm tra xem tài khoản đã có hồ sơ bé học chưa (Mỗi account chỉ có 1 bé duy nhất)
       const { data: existingChildren, error: fetchErr } = await supabase
         .from('child_profiles')
         .select('*')
@@ -59,11 +66,11 @@ export const syncService = {
         console.error('Lỗi kiểm tra hồ sơ bé trên Supabase:', fetchErr)
       }
 
-      // Nếu đã có hồ sơ bé trên đám mây: Nạp và hợp nhất thông minh với dữ liệu hiện tại
+      // Nếu đã có hồ sơ bé trên đám mây: Nạp dữ liệu bé duy nhất của tài khoản
       if (existingChildren && existingChildren.length > 0) {
-        const activeChild = existingChildren.find((c) => c.is_active) || existingChildren[0]
+        const activeChild = existingChildren[0]
         await this.loadChildDataToLocalStores(activeChild.id)
-        return { children: existingChildren, activeChild }
+        return { activeChild }
       }
 
       // 2. Nếu CHƯA có hồ sơ: Di chuyển toàn bộ tiến độ local của bé lên Cloud
@@ -71,15 +78,28 @@ export const syncService = {
       const localProgressData = getLocalStoreData('toan-vui-progress') || {}
       const localPetData = getLocalStoreData('toan-vui-pet') || {}
 
-      const nickname = localUserData.nickname || 'Bé Yêu'
+      // Nếu là tên mặc định guest ('Bé Yêu' / 'Bé Học Giỏi'), ưu tiên lấy tên Google;
+      // nếu người dùng đã tự đặt tên riêng từ trước thì giữ nguyên tên đó
+      const isDefaultGuestName =
+        !localUserData.nickname ||
+        localUserData.nickname === 'Bé Yêu' ||
+        localUserData.nickname === 'Bé Học Giỏi'
+
+      const nickname = isDefaultGuestName
+        ? (googleDisplayName || 'Bé Yêu')
+        : localUserData.nickname
+
       const grade = localUserData.grade || 1
       const avatar = localUserData.avatar || '👦'
+      const unlocked_avatars = localUserData.unlockedAvatars?.length
+        ? localUserData.unlockedAvatars
+        : ['👦', '👧']
       const level = localUserData.level || 1
       const xp = localUserData.xp || 0
       const coins = localUserData.coins || 0
       const totalXp = localUserData.totalXpForNextLevel || 100
 
-      // Tạo hồ sơ bé đầu tiên
+      // Tạo hồ sơ bé duy nhất của tài khoản
       const { data: newChild, error: createChildErr } = await supabase
         .from('child_profiles')
         .insert({
@@ -87,6 +107,7 @@ export const syncService = {
           nickname,
           grade,
           avatar,
+          unlocked_avatars,
           level,
           xp,
           total_xp_for_next_level: totalXp,
@@ -101,6 +122,18 @@ export const syncService = {
         return null
       }
 
+      // Cập nhật ngay useUserStore với nickname và thông tin đã chuẩn hóa
+      useUserStore.setState({
+        nickname,
+        grade,
+        avatar,
+        unlockedAvatars: unlocked_avatars,
+        level,
+        xp,
+        totalXpForNextLevel: totalXp,
+        coins,
+      })
+
       // Đồng bộ tiến độ bài học & chuỗi ngày học
       await supabase.from('child_progress').upsert({
         child_id: newChild.id,
@@ -110,7 +143,7 @@ export const syncService = {
         completed_lessons: localProgressData.completedLessons || {},
         exercise_results: localProgressData.exerciseResults || {},
         math_race_wins: localProgressData.mathRaceWins || 0,
-        total_games_played: localProgressData.totalGamesPlayed || 0,
+        totalGamesPlayed: localProgressData.totalGamesPlayed || 0,
       })
 
       // Đồng bộ thú cưng
@@ -131,7 +164,6 @@ export const syncService = {
 
       console.log('✅ Đã di chuyển thành công dữ liệu học tập lên Supabase Database!')
       return {
-        children: [newChild],
         activeChild: newChild,
       }
     } catch (err) {
@@ -141,16 +173,12 @@ export const syncService = {
   },
 
   /**
-   * Tải toàn bộ dữ liệu của 1 bé từ Supabase và HỢP NHẤT THÔNG MINH với local store
-   * Đảm bảo KHÔNG BAO GIỜ bị mất sao, xu hay bài học vừa làm xong
+   * Tải toàn bộ dữ liệu của 1 bé từ Supabase vào local stores
    */
   async loadChildDataToLocalStores(childId) {
     if (!isSupabaseConfigured() || !supabase || !childId) return
 
     try {
-      const localUserState = useUserStore.getState()
-      const localProgressState = useProgressStore.getState()
-
       // 1. Tải hồ sơ bé từ Cloud
       const { data: childProfile, error: profileErr } = await supabase
         .from('child_profiles')
@@ -173,63 +201,45 @@ export const syncService = {
         console.warn('Lỗi đọc child_progress từ Supabase:', progressErr)
       }
 
-      // Hợp nhất dữ liệu thông minh: Lấy giá trị cao nhất / đầy đủ nhất
-      const cloudCoins = Number(childProfile?.coins) || 0
-      const localCoins = Number(localUserState.coins) || 0
-      const finalCoins = Math.max(cloudCoins, localCoins)
+      const unlocked = (childProfile?.unlocked_avatars && childProfile.unlocked_avatars.length > 0)
+        ? childProfile.unlocked_avatars
+        : ['👦', '👧']
 
-      const cloudLevel = Number(childProfile?.level) || 1
-      const localLevel = Number(localUserState.level) || 1
-      const finalLevel = Math.max(cloudLevel, localLevel)
-
-      const cloudXp = Number(childProfile?.xp) || 0
-      const localXp = Number(localUserState.xp) || 0
-      const finalXp = Math.max(cloudXp, localXp)
-
-      // Hợp nhất danh sách bài học đã hoàn thành (giữ nguyên số sao cao nhất của từng bài)
-      const cloudLessons = progress?.completed_lessons || {}
-      const localLessons = localProgressState.completedLessons || {}
-      const mergedLessons = { ...localLessons }
-
-      for (const [lessonId, cData] of Object.entries(cloudLessons)) {
-        if (!mergedLessons[lessonId]) {
-          mergedLessons[lessonId] = cData
-        } else {
-          mergedLessons[lessonId] = {
-            ...mergedLessons[lessonId],
-            stars: Math.max(mergedLessons[lessonId]?.stars || 0, cData?.stars || 0),
-          }
-        }
-      }
-
-      const cloudStreak = Number(progress?.current_streak) || 0
-      const localStreak = Number(localProgressState.currentStreak) || 0
-      const finalStreak = Math.max(cloudStreak, localStreak)
-
-      const finalLastActiveDate = progress?.last_active_date || localProgressState.lastActiveDate
-
-      // Cập nhật lại vào Zustand Stores
+      // Cập nhật lại vào Zustand Stores với dữ liệu chuẩn từ đám mây của bé này
       useUserStore.setState({
-        nickname: childProfile?.nickname || localUserState.nickname,
-        grade: childProfile?.grade || localUserState.grade,
-        avatar: childProfile?.avatar || localUserState.avatar,
-        level: finalLevel,
-        xp: finalXp,
-        totalXpForNextLevel: childProfile?.total_xp_for_next_level || localUserState.totalXpForNextLevel || 100,
-        coins: finalCoins,
+        nickname: childProfile?.nickname || 'Bé Yêu',
+        grade: childProfile?.grade || 1,
+        avatar: childProfile?.avatar || '👦',
+        unlockedAvatars: unlocked,
+        level: Number(childProfile?.level) || 1,
+        xp: Number(childProfile?.xp) || 0,
+        totalXpForNextLevel: Number(childProfile?.total_xp_for_next_level) || 100,
+        coins: Number(childProfile?.coins) || 0,
+      })
+
+      // Đồng bộ trạng thái thử thách hàng ngày từ exercise_results.__daily_challenge
+      const exerciseResults = progress?.exercise_results || {}
+      const dailyChallengeMeta = exerciseResults?.__daily_challenge
+      const today = new Date().toISOString().split('T')[0]
+      const isDailyDoneToday = dailyChallengeMeta?.date === today && !!dailyChallengeMeta?.completed
+
+      // Đồng bộ điểm giải đấu tuần từ exercise_results.__league
+      const leagueMeta = exerciseResults?.__league
+      const cloudLeagueXp = typeof leagueMeta?.userWeeklyXp === 'number' ? leagueMeta.userWeeklyXp : 0
+      useLeagueStore.setState({
+        userWeeklyXp: cloudLeagueXp,
       })
 
       useProgressStore.setState({
-        completedLessons: mergedLessons,
-        exerciseResults: {
-          ...(localProgressState.exerciseResults || {}),
-          ...(progress?.exercise_results || {}),
-        },
-        currentStreak: finalStreak,
-        longestStreak: Math.max(Number(progress?.longest_streak) || 0, Number(localProgressState.longestStreak) || 0, finalStreak),
-        lastActiveDate: finalLastActiveDate,
-        mathRaceWins: Math.max(Number(progress?.math_race_wins) || 0, Number(localProgressState.mathRaceWins) || 0),
-        totalGamesPlayed: Math.max(Number(progress?.total_games_played) || 0, Number(localProgressState.totalGamesPlayed) || 0),
+        completedLessons: progress?.completed_lessons || {},
+        exerciseResults,
+        currentStreak: Number(progress?.current_streak) || 0,
+        longestStreak: Number(progress?.longest_streak) || 0,
+        lastActiveDate: progress?.last_active_date || null,
+        dailyChallengeCompleted: isDailyDoneToday,
+        dailyChallengeDate: isDailyDoneToday ? today : null,
+        mathRaceWins: Number(progress?.math_race_wins) || 0,
+        totalGamesPlayed: Number(progress?.total_games_played) || 0,
       })
 
       // 3. Tải thú cưng
@@ -251,17 +261,10 @@ export const syncService = {
           stage: pet.stage,
           inventory: pet.inventory || {},
         })
-      }
-
-      // Nếu dữ liệu local trước đó có thông tin mới hơn cloud (ví dụ bé vừa được cộng xu, hoàn thành bài)
-      // -> Đẩy ngay tiến độ vừa hợp nhất lên Supabase để đám mây luôn là bản cập nhật mới nhất!
-      if (
-        localCoins > cloudCoins ||
-        localXp > cloudXp ||
-        Object.keys(localLessons).length > Object.keys(cloudLessons).length ||
-        localStreak > cloudStreak
-      ) {
-        await this.saveCurrentProgressToCloud(childId)
+      } else {
+        usePetStore.setState({
+          hasPet: false,
+        })
       }
     } catch (e) {
       console.error('Lỗi nạp dữ liệu bé từ đám mây:', e)
@@ -285,6 +288,7 @@ export const syncService = {
             nickname: userState.nickname,
             grade: userState.grade,
             avatar: userState.avatar,
+            unlocked_avatars: userState.unlockedAvatars || ['👦', '👧'],
             level: userState.level,
             xp: userState.xp,
             total_xp_for_next_level: userState.totalXpForNextLevel,
@@ -303,7 +307,7 @@ export const syncService = {
             completed_lessons: progressState.completedLessons,
             exercise_results: progressState.exerciseResults,
             math_race_wins: progressState.mathRaceWins,
-            total_games_played: progressState.totalGamesPlayed,
+            totalGamesPlayed: progressState.totalGamesPlayed,
             updated_at: new Date().toISOString(),
           }),
       ])
@@ -355,7 +359,8 @@ export function setupAutoSync() {
       state.level !== prevState.level ||
       state.avatar !== prevState.avatar ||
       state.grade !== prevState.grade ||
-      state.nickname !== prevState.nickname
+      state.nickname !== prevState.nickname ||
+      state.unlockedAvatars !== prevState.unlockedAvatars
     ) {
       syncService.scheduleCloudSync()
     }

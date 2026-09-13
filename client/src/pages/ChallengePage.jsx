@@ -1,10 +1,11 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Trophy, Flame, Gift, CheckCircle2, ArrowRight, Star, Sparkles, RotateCcw } from 'lucide-react'
 import Button from '../components/ui/Button'
 import Card from '../components/ui/Card'
 import useUserStore from '../store/useUserStore'
 import useProgressStore from '../store/useProgressStore'
+import useAuthStore from '../store/useAuthStore'
 import { generateQuestion } from '../utils/exerciseGenerator'
 import soundManager from '../utils/soundManager'
 import confetti from 'canvas-confetti'
@@ -17,6 +18,7 @@ export default function ChallengePage() {
     isDailyChallengeCompleted,
     completeDailyChallenge,
   } = useProgressStore()
+  const { activeChild } = useAuthStore()
 
   const alreadyDone = isDailyChallengeCompleted()
 
@@ -32,6 +34,22 @@ export default function ChallengePage() {
   const [feedback, setFeedback] = useState(null)
   const [chestOpened, setChestOpened] = useState(alreadyDone)
   const [chestReward, setChestReward] = useState(0)
+
+  // Đồng bộ trạng thái khi tài khoản thay đổi hoặc khi hoàn thành nhiệm vụ
+  useEffect(() => {
+    const done = isDailyChallengeCompleted()
+    setTasksCompleted([done, done, done])
+    setChestOpened(done)
+  }, [alreadyDone, activeChild?.id])
+
+  // Cập nhật câu hỏi mới theo đúng khối lớp
+  useEffect(() => {
+    setQuestions([
+      generateQuestion(grade),
+      generateQuestion(grade),
+      generateQuestion(grade),
+    ])
+  }, [grade])
 
   const taskLevels = [
     { title: 'Thử thách 1: Khởi động', difficulty: 'Dễ', icon: '🟢', reward: '10 Xu' },
@@ -69,19 +87,7 @@ export default function ChallengePage() {
     if (isCorrect) {
       soundManager.playCorrect()
       setFeedback('correct')
-      setTimeout(() => {
-        const nextTasks = [...tasksCompleted]
-        nextTasks[activeTaskIndex] = true
-        setTasksCompleted(nextTasks)
-        addCoins(activeTaskIndex === 0 ? 10 : activeTaskIndex === 1 ? 15 : 25)
-        addXp(30)
-        setActiveTaskIndex(null)
-
-        // If all 3 finished
-        if (nextTasks.every(Boolean)) {
-          completeDailyChallenge()
-        }
-      }, 1000)
+      confetti({ particleCount: 60, spread: 60, origin: { y: 0.6 } })
     } else {
       soundManager.playWrong()
       setFeedback('wrong')
@@ -95,6 +101,23 @@ export default function ChallengePage() {
         setSelectedAnswer(null)
         setFeedback(null)
       }, 1500)
+    }
+  }
+
+  const handleCompleteTask = () => {
+    soundManager.playFanfare()
+    const nextTasks = [...tasksCompleted]
+    nextTasks[activeTaskIndex] = true
+    setTasksCompleted(nextTasks)
+    addCoins(activeTaskIndex === 0 ? 10 : activeTaskIndex === 1 ? 15 : 25)
+    addXp(30)
+    setActiveTaskIndex(null)
+    setFeedback(null)
+    setSelectedAnswer(null)
+
+    // If all 3 finished
+    if (nextTasks.every(Boolean)) {
+      completeDailyChallenge()
     }
   }
 
@@ -196,22 +219,40 @@ export default function ChallengePage() {
               </div>
 
               <div className="task-modal-footer">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={handleRefreshQuestion}
-                  disabled={feedback === 'correct'}
-                >
-                  <RotateCcw size={14} /> Đổi câu khác
-                </Button>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="task-close-btn"
-                  onClick={() => setActiveTaskIndex(null)}
-                >
-                  Tạm dừng
-                </Button>
+                {feedback !== 'correct' ? (
+                  <>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={handleRefreshQuestion}
+                      disabled={feedback !== null}
+                    >
+                      <RotateCcw size={14} /> Đổi câu khác
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="task-close-btn"
+                      onClick={() => {
+                        setActiveTaskIndex(null)
+                        setFeedback(null)
+                        setSelectedAnswer(null)
+                      }}
+                    >
+                      Tạm dừng
+                    </Button>
+                  </>
+                ) : (
+                  <Button
+                    variant="primary"
+                    size="md"
+                    className="task-complete-btn"
+                    onClick={handleCompleteTask}
+                    style={{ width: '100%', justifyContent: 'center' }}
+                  >
+                    <CheckCircle2 size={18} /> Hoàn thành
+                  </Button>
+                )}
               </div>
             </motion.div>
           </motion.div>

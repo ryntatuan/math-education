@@ -1,21 +1,21 @@
 import { create } from 'zustand'
 import { supabase, isSupabaseConfigured } from '../services/supabaseClient'
 import syncService, { setActiveChildIdGetter } from '../services/syncService'
+import useUserStore from './useUserStore'
+import useProgressStore from './useProgressStore'
+import useLeagueStore from './useLeagueStore'
+import usePetStore from './usePetStore'
 import soundManager from '../utils/soundManager'
-
 
 export const useAuthStore = create((set, get) => ({
   user: null,
   session: null,
   isGuest: true,
-  children: [],
   activeChild: null,
   loading: true,
   isAuthModalOpen: false,
-  isSwitcherModalOpen: false,
 
   setAuthModalOpen: (open) => set({ isAuthModalOpen: open }),
-  setSwitcherModalOpen: (open) => set({ isSwitcherModalOpen: open }),
 
   /**
    * Khởi tạo lắng nghe phiên đăng nhập Supabase Auth
@@ -35,14 +35,11 @@ export const useAuthStore = create((set, get) => ({
       if (session?.user) {
         set({ user: session.user, session, isGuest: false })
         const result = await syncService.autoMigrateGuestDataToCloud(session.user)
-        if (result) {
-          set({
-            children: result.children || [],
-            activeChild: result.activeChild || null,
-          })
+        if (result?.activeChild) {
+          set({ activeChild: result.activeChild })
         }
       } else {
-        set({ isGuest: true, user: null, session: null })
+        set({ isGuest: true, user: null, session: null, activeChild: null })
       }
 
       // 2. Lắng nghe thay đổi trạng thái đăng nhập
@@ -50,21 +47,27 @@ export const useAuthStore = create((set, get) => ({
         if (event === 'SIGNED_IN' && session?.user) {
           set({ user: session.user, session, isGuest: false, loading: false })
           const result = await syncService.autoMigrateGuestDataToCloud(session.user)
-          if (result) {
-            set({
-              children: result.children || [],
-              activeChild: result.activeChild || null,
-            })
+          if (result?.activeChild) {
+            set({ activeChild: result.activeChild })
           }
         } else if (event === 'SIGNED_OUT') {
           set({
             user: null,
             session: null,
             isGuest: true,
-            children: [],
             activeChild: null,
             loading: false,
           })
+          // Đặt lại các store về trạng thái ban đầu cho khách
+          try {
+            useUserStore.getState().resetUser?.()
+            useProgressStore.getState().resetProgress?.()
+            useLeagueStore.getState().resetLeague?.()
+            usePetStore.getState().resetPet?.()
+            localStorage.removeItem('math_edu_active_child_id')
+          } catch (e) {
+            console.error('Lỗi dọn dẹp state khi đăng xuất:', e)
+          }
         }
       })
     } catch (e) {
@@ -103,7 +106,7 @@ export const useAuthStore = create((set, get) => ({
   },
 
   /**
-   * Đăng xuất
+   * Đăng xuất & dọn dẹp toàn bộ dữ liệu tạm thời
    */
   signOut: async () => {
     if (!supabase) return
@@ -114,73 +117,40 @@ export const useAuthStore = create((set, get) => ({
         user: null,
         session: null,
         isGuest: true,
-        children: [],
         activeChild: null,
       })
+      useUserStore.getState().resetUser?.()
+      useProgressStore.getState().resetProgress?.()
+      useLeagueStore.getState().resetLeague?.()
+      usePetStore.getState().resetPet?.()
+      try {
+        localStorage.removeItem('math_edu_active_child_id')
+      } catch (e) {}
     } catch (e) {
       console.error('Lỗi đăng xuất:', e)
     }
   },
 
   /**
-   * Chuyển đổi bé đang học
+   * Cập nhật thông tin bé học của tài khoản (tên, avatar, khối lớp...)
+   * Đồng bộ ngay lập tức vào activeChild và Supabase
    */
-  switchChild: async (childId) => {
-    const { children, user } = get()
-    const target = children.find((c) => c.id === childId)
-    if (!target) return
+  updateActiveChild: async (updates) => {
+    const { activeChild, user } = get()
+    if (!activeChild) return
 
-    soundManager.playFanfare()
-    set({ activeChild: target, isSwitcherModalOpen: false })
+    const updatedChild = { ...activeChild, ...updates }
+    set({ activeChild: updatedChild })
 
-    // Đánh dấu active trên Supabase
     if (supabase && user) {
-      await supabase.from('child_profiles').update({ is_active: false }).eq('parent_id', user.id)
-      await supabase.from('child_profiles').update({ is_active: true }).eq('id', childId)
-    }
-
-    // Tải dữ liệu bé được chọn vào các store
-    await syncService.loadChildDataToLocalStores(childId)
-  },
-
-  /**
-   * Thêm hồ sơ bé mới cho gia đình
-   */
-  addChildProfile: async ({ nickname, grade, avatar }) => {
-    const { user, children } = get()
-    if (!supabase || !user) return false
-
-    try {
-      soundManager.playClick()
-      const { data: newChild, error } = await supabase
-        .from('child_profiles')
-        .insert({
-          parent_id: user.id,
-          nickname: nickname || 'Bé Yêu',
-          grade: Number(grade) || 1,
-          avatar: avatar || '👦',
-          level: 1,
-          xp: 0,
-          total_xp_for_next_level: 100,
-          coins: 0,
-          is_active: false,
-        })
-        .select()
-        .single()
-
-      if (error || !newChild) throw error
-
-      // Khởi tạo tiến độ & thú cưng trống cho bé mới
-      await supabase.from('child_progress').insert({ child_id: newChild.id })
-      await supabase.from('child_pets').insert({ child_id: newChild.id })
-
-      const updated = [...children, newChild]
-      set({ children: updated })
-
-      return newChild
-    } catch (err) {
-      console.error('Lỗi thêm bé mới:', err)
-      return null
+      try {
+        await supabase
+          .from('child_profiles')
+          .update(updates)
+          .eq('id', activeChild.id)
+      } catch (err) {
+        console.error('Lỗi cập nhật child_profile trên Supabase:', err)
+      }
     }
   },
 }))
@@ -190,6 +160,4 @@ setActiveChildIdGetter(() => {
   return !state.isGuest ? state.activeChild?.id : null
 })
 
-
 export default useAuthStore
-

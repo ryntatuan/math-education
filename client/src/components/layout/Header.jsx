@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import { Users, ChevronDown } from 'lucide-react'
 import Badge from '../ui/Badge'
 import useUserStore from '../../store/useUserStore'
 import useProgressStore from '../../store/useProgressStore'
@@ -10,7 +9,7 @@ import './Header.css'
 export default function Header() {
   const { nickname, coins, level, avatar } = useUserStore()
   const { currentStreak } = useProgressStore()
-  const { isGuest, setAuthModalOpen, setSwitcherModalOpen } = useAuthStore()
+  const { isGuest, setAuthModalOpen } = useAuthStore()
 
   return (
     <header className="header">
@@ -31,7 +30,7 @@ export default function Header() {
         <div className="header-greeting-wrap hide-mobile">
           <span className="header-greeting-sparkle">✨</span>
           <span className="header-greeting-text">
-            Chào mừng <strong>{nickname || 'Bé yêu'}</strong> đến với thế giới Toán Vui!
+            Chào mừng <strong>{nickname || 'Bé Yêu'}</strong> đến với thế giới Toán Vui!
           </span>
         </div>
 
@@ -54,7 +53,7 @@ export default function Header() {
             Lv.{level}
           </Badge>
 
-          {/* Auth or Child Switcher */}
+          {/* Auth or Profile Link */}
           {isGuest ? (
             <button
               className="header-login-btn"
@@ -68,18 +67,14 @@ export default function Header() {
               <span className="hide-mobile">Đăng nhập</span>
             </button>
           ) : (
-            <button
-              className="header-switch-btn"
-              onClick={() => {
-                soundManager.playClick()
-                setSwitcherModalOpen(true)
-              }}
-              title="Đổi bé học"
+            <Link
+              to="/profile"
+              className="header-account-btn"
+              title={`Hồ sơ của ${nickname}`}
+              onClick={() => soundManager.playClick()}
             >
-              <Users size={16} />
               <span className="hide-mobile">{nickname}</span>
-              <ChevronDown size={14} className="hide-mobile" />
-            </button>
+            </Link>
           )}
 
           <Link

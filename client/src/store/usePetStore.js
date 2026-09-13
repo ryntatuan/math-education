@@ -133,6 +133,26 @@ const usePetStore = create(
         get().addFood(foodId, 1)
         return foodId
       },
+
+      resetPet: () =>
+        set({
+          hasPet: false,
+          petType: 'corgi',
+          petName: 'Bạn Cún Nhỏ',
+          hunger: 80,
+          happiness: 90,
+          level: 1,
+          exp: 0,
+          expForNextLevel: 100,
+          stage: 'baby',
+          lastFedTime: Date.now(),
+          inventory: {
+            apple: 3,
+            croissant: 2,
+            candy: 2,
+          },
+          petSpeech: 'Chào bạn nhỏ! Cùng học toán thật vui nhé! ✨',
+        }),
     }),
     {
       name: 'toan-vui-pet',

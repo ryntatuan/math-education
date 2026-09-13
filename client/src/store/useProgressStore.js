@@ -256,18 +256,51 @@ const useProgressStore = create(
         }
       },
 
+      setLeagueXp: (xp) =>
+        set((state) => ({
+          exerciseResults: {
+            ...(state.exerciseResults || {}),
+            __league: { userWeeklyXp: xp },
+          },
+        })),
+
+      resetProgress: () =>
+        set({
+          completedLessons: {},
+          exerciseResults: {},
+          currentStreak: 0,
+          lastActiveDate: null,
+          longestStreak: 0,
+          dailyChallengeCompleted: false,
+          dailyChallengeDate: null,
+          dailyQuestsDate: null,
+          dailyQuests: DEFAULT_DAILY_QUESTS.map((q) => ({ ...q, current: 0, done: false })),
+          dailyQuestsClaimed: false,
+          mathRaceWins: 0,
+          totalGamesPlayed: 0,
+          mistakesQueue: [],
+        }),
+
       completeDailyChallenge: () => {
         const today = new Date().toISOString().split('T')[0]
-        set({
+        set((state) => ({
           dailyChallengeCompleted: true,
           dailyChallengeDate: today,
-        })
+          exerciseResults: {
+            ...(state.exerciseResults || {}),
+            __daily_challenge: { date: today, completed: true },
+          },
+        }))
       },
 
       isDailyChallengeCompleted: () => {
         const today = new Date().toISOString().split('T')[0]
-        const { dailyChallengeDate, dailyChallengeCompleted } = get()
-        return dailyChallengeDate === today && dailyChallengeCompleted
+        const { dailyChallengeDate, dailyChallengeCompleted, exerciseResults } = get()
+        const meta = exerciseResults?.__daily_challenge
+        if (meta && meta.date === today && meta.completed) {
+          return true
+        }
+        return dailyChallengeDate === today && !!dailyChallengeCompleted
       },
     }),
     {

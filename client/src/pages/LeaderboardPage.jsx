@@ -13,10 +13,12 @@ import {
 } from 'lucide-react'
 import Button from '../components/ui/Button'
 import useLeagueStore, { LEAGUE_TIERS } from '../store/useLeagueStore'
+import useUserStore from '../store/useUserStore'
 import soundManager from '../utils/soundManager'
 import './LeaderboardPage.css'
 
 export default function LeaderboardPage() {
+  const { nickname, avatar } = useUserStore()
   const {
     currentTier,
     weekEndDate,
@@ -29,7 +31,7 @@ export default function LeaderboardPage() {
   const [timeLeft, setTimeLeft] = useState('')
 
   useEffect(() => {
-    checkWeekReset()
+    checkWeekReset(nickname, avatar)
 
     const updateTimer = () => {
       const end = new Date(weekEndDate).getTime()
@@ -51,9 +53,9 @@ export default function LeaderboardPage() {
     updateTimer()
     const interval = setInterval(updateTimer, 60000)
     return () => clearInterval(interval)
-  }, [weekEndDate, checkWeekReset])
+  }, [weekEndDate, checkWeekReset, nickname, avatar])
 
-  const standings = getStandings()
+  const standings = getStandings(nickname, avatar)
   const currentTierData =
     LEAGUE_TIERS.find((t) => t.id === currentTier) || LEAGUE_TIERS[0]
   const currentTierIdx = LEAGUE_TIERS.findIndex((t) => t.id === currentTier)

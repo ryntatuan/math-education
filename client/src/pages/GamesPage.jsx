@@ -44,6 +44,7 @@ const GAME_LIST = [
 
 export default function GamesPage() {
   const { grade, addCoins, addXp } = useUserStore()
+  const { recordGamePlayed, recordRaceWin } = useProgressStore()
   const [activeGame, setActiveGame] = useState(null)
 
   return (
@@ -81,11 +82,30 @@ export default function GamesPage() {
           </div>
         </div>
       ) : activeGame === 'math_race' ? (
-        <MathRaceGame onBack={() => setActiveGame(null)} grade={grade} addCoins={addCoins} addXp={addXp} />
+        <MathRaceGame
+          onBack={() => setActiveGame(null)}
+          grade={grade}
+          addCoins={addCoins}
+          addXp={addXp}
+          recordRaceWin={recordRaceWin}
+          recordGamePlayed={recordGamePlayed}
+        />
       ) : activeGame === 'number_pop' ? (
-        <NumberPopGame onBack={() => setActiveGame(null)} grade={grade} addCoins={addCoins} addXp={addXp} />
+        <NumberPopGame
+          onBack={() => setActiveGame(null)}
+          grade={grade}
+          addCoins={addCoins}
+          addXp={addXp}
+          recordGamePlayed={recordGamePlayed}
+        />
       ) : (
-        <MemoryMatchGame onBack={() => setActiveGame(null)} grade={grade} addCoins={addCoins} addXp={addXp} />
+        <MemoryMatchGame
+          onBack={() => setActiveGame(null)}
+          grade={grade}
+          addCoins={addCoins}
+          addXp={addXp}
+          recordGamePlayed={recordGamePlayed}
+        />
       )}
     </div>
   )
@@ -268,7 +288,8 @@ function parseRaceQuestion(q) {
 // ========================================================
 // 🏎️ GAME 1: MATH RACE
 // ========================================================
-function MathRaceGame({ onBack, grade, addCoins, addXp }) {
+function MathRaceGame({ onBack, grade, addCoins, addXp, recordRaceWin, recordGamePlayed }) {
+  const { nickname } = useUserStore()
   const [playerPos, setPlayerPos] = useState(0) // 0 to 100%
   const [bot1Pos, setBot1Pos] = useState(0) // Rabbit
   const [bot2Pos, setBot2Pos] = useState(0) // Turtle
@@ -280,7 +301,6 @@ function MathRaceGame({ onBack, grade, addCoins, addXp }) {
   const [score, setScore] = useState(0)
   const rewardClaimedRef = useRef(false)
 
-  const recordRaceWin = useProgressStore((state) => state.recordRaceWin)
   const FINISH_LINE = 100
 
   // Init question
@@ -319,12 +339,20 @@ function MathRaceGame({ onBack, grade, addCoins, addXp }) {
         confetti({ particleCount: 120, spread: 90 })
         if (typeof recordRaceWin === 'function') {
           recordRaceWin()
+        } else if (typeof recordGamePlayed === 'function') {
+          recordGamePlayed()
         }
       } else if (r <= 3) {
         soundManager.playCoin()
         confetti({ particleCount: 60, spread: 60 })
+        if (typeof recordGamePlayed === 'function') {
+          recordGamePlayed()
+        }
       } else {
         soundManager.playWrong()
+        if (typeof recordGamePlayed === 'function') {
+          recordGamePlayed()
+        }
       }
       const reward = r === 1 ? 50 : r === 2 ? 30 : r === 3 ? 20 : 10
       addCoins(reward)
@@ -335,10 +363,13 @@ function MathRaceGame({ onBack, grade, addCoins, addXp }) {
       setGameOver(true)
       setRank(4)
       soundManager.playWrong()
+      if (typeof recordGamePlayed === 'function') {
+        recordGamePlayed()
+      }
       addCoins(10)
       addXp(20)
     }
-  }, [playerPos, bot1Pos, bot2Pos, bot3Pos, gameOver, addCoins, addXp, recordRaceWin])
+  }, [playerPos, bot1Pos, bot2Pos, bot3Pos, gameOver, addCoins, addXp, recordRaceWin, recordGamePlayed])
 
   const handleAnswer = useCallback((option) => {
     if (feedback || gameOver) return
@@ -388,7 +419,7 @@ function MathRaceGame({ onBack, grade, addCoins, addXp }) {
       <div className="race-track-board">
         {/* Player */}
         <div className="lane player-lane">
-          <span className="lane-label">Bé (Bạn)</span>
+          <span className="lane-label">{nickname || 'Bé Yêu'}</span>
           <div className="track-bar">
             <motion.div
               className="racer racer-player"
@@ -558,13 +589,14 @@ function MathRaceGame({ onBack, grade, addCoins, addXp }) {
 // ========================================================
 // 🎯 GAME 2: NUMBER POP (BẮN BÓNG SỐ)
 // ========================================================
-function NumberPopGame({ onBack, grade, addCoins, addXp }) {
+function NumberPopGame({ onBack, grade, addCoins, addXp, recordGamePlayed }) {
   const [score, setScore] = useState(0)
   const [timeLeft, setTimeLeft] = useState(45)
   const [currentQ, setCurrentQ] = useState(null)
   const [gameOver, setGameOver] = useState(false)
   const [balloons, setBalloons] = useState([])
   const gameOverTriggeredRef = useRef(false)
+  const gameRecordedRef = useRef(false)
 
   const BALLOON_COLORS = ['#ff6b6b', '#4facfe', '#51cf66', '#fcc419', '#cc5de8']
 
@@ -590,6 +622,12 @@ function NumberPopGame({ onBack, grade, addCoins, addXp }) {
       if (!gameOverTriggeredRef.current) {
         gameOverTriggeredRef.current = true
         setGameOver(true)
+        if (!gameRecordedRef.current) {
+          gameRecordedRef.current = true
+          if (typeof recordGamePlayed === 'function') {
+            recordGamePlayed()
+          }
+        }
         if (score > 0) {
           soundManager.playFanfare()
           confetti({ particleCount: 80, spread: 70 })
@@ -607,7 +645,7 @@ function NumberPopGame({ onBack, grade, addCoins, addXp }) {
     }, 1000)
 
     return () => clearInterval(timer)
-  }, [timeLeft, score, addCoins, addXp])
+  }, [timeLeft, score, addCoins, addXp, recordGamePlayed])
 
   const handlePop = useCallback((balloon) => {
     if (gameOver) return
@@ -622,10 +660,20 @@ function NumberPopGame({ onBack, grade, addCoins, addXp }) {
     }
   }, [gameOver, loadNewQuestion])
 
+  const handleBack = () => {
+    if (score > 0 && !gameRecordedRef.current) {
+      gameRecordedRef.current = true
+      if (typeof recordGamePlayed === 'function') {
+        recordGamePlayed()
+      }
+    }
+    onBack()
+  }
+
   return (
     <div className="mini-game-wrapper">
       <div className="game-top-bar">
-        <button className="btn-back" onClick={onBack}>
+        <button className="btn-back" onClick={handleBack}>
           <ArrowLeft size={18} />
           <span>Rời trò chơi</span>
         </button>
@@ -690,6 +738,7 @@ function NumberPopGame({ onBack, grade, addCoins, addXp }) {
               size="lg"
               onClick={() => {
                 gameOverTriggeredRef.current = false
+                gameRecordedRef.current = false
                 setTimeLeft(45)
                 setScore(0)
                 setGameOver(false)
@@ -699,7 +748,7 @@ function NumberPopGame({ onBack, grade, addCoins, addXp }) {
             >
               <RotateCcw size={18} /> Chơi ván mới
             </Button>
-            <Button variant="outline" size="lg" onClick={onBack}>
+            <Button variant="outline" size="lg" onClick={handleBack}>
               Quay lại danh sách game
             </Button>
           </div>
@@ -712,14 +761,16 @@ function NumberPopGame({ onBack, grade, addCoins, addXp }) {
 // ========================================================
 // 🃏 GAME 3: MEMORY MATCH (LẬT THẺ TRÍ NHỚ)
 // ========================================================
-function MemoryMatchGame({ onBack, grade, addCoins, addXp }) {
+function MemoryMatchGame({ onBack, grade, addCoins, addXp, recordGamePlayed }) {
   const [cards, setCards] = useState([])
   const [flipped, setFlipped] = useState([])
   const [matched, setMatched] = useState([])
   const [turns, setTurns] = useState(0)
   const [gameWon, setGameWon] = useState(false)
+  const gameRecordedRef = useRef(false)
 
   const initDeck = useCallback(() => {
+    gameRecordedRef.current = false
     // Generate 4 unique math pairs
     const pairs = []
     const usedAnswers = new Set()
@@ -787,6 +838,12 @@ function MemoryMatchGame({ onBack, grade, addCoins, addXp }) {
         if (newMatched.length === 4) {
           // Finished all pairs
           setGameWon(true)
+          if (!gameRecordedRef.current) {
+            gameRecordedRef.current = true
+            if (typeof recordGamePlayed === 'function') {
+              recordGamePlayed()
+            }
+          }
           soundManager.playFanfare()
           confetti({ particleCount: 90, spread: 70 })
           addCoins(35)
@@ -800,12 +857,22 @@ function MemoryMatchGame({ onBack, grade, addCoins, addXp }) {
         }, 1000)
       }
     }
-  }, [flipped, matched, cards, addCoins, addXp])
+  }, [flipped, matched, cards, addCoins, addXp, recordGamePlayed])
+
+  const handleBack = () => {
+    if (matched.length >= 2 && !gameRecordedRef.current) {
+      gameRecordedRef.current = true
+      if (typeof recordGamePlayed === 'function') {
+        recordGamePlayed()
+      }
+    }
+    onBack()
+  }
 
   return (
     <div className="mini-game-wrapper">
       <div className="game-top-bar">
-        <button className="btn-back" onClick={onBack}>
+        <button className="btn-back" onClick={handleBack}>
           <ArrowLeft size={18} />
           <span>Rời trò chơi</span>
         </button>
@@ -847,7 +914,7 @@ function MemoryMatchGame({ onBack, grade, addCoins, addXp }) {
             <Button variant="primary" size="lg" onClick={initDeck}>
               <RotateCcw size={18} /> Chơi ván khác
             </Button>
-            <Button variant="outline" size="lg" onClick={onBack}>
+            <Button variant="outline" size="lg" onClick={handleBack}>
               Quay lại danh sách game
             </Button>
           </div>
