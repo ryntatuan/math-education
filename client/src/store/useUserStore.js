@@ -19,6 +19,7 @@ const useUserStore = create(
       // Settings
       soundEnabled: true,
       musicEnabled: true,
+      autoSpeakLesson: false,
       parentPin: null,
 
       // Actions
@@ -72,6 +73,8 @@ const useUserStore = create(
 
       toggleSound: () => set((state) => ({ soundEnabled: !state.soundEnabled })),
       toggleMusic: () => set((state) => ({ musicEnabled: !state.musicEnabled })),
+      toggleAutoSpeak: () => set((state) => ({ autoSpeakLesson: !state.autoSpeakLesson })),
+      setAutoSpeakLesson: (enabled) => set({ autoSpeakLesson: !!enabled }),
       setParentPin: (pin) => set({ parentPin: pin }),
 
       resetUser: () =>
@@ -85,6 +88,7 @@ const useUserStore = create(
           coins: 0,
           xp: 0,
           totalXpForNextLevel: 100,
+          autoSpeakLesson: false,
         }),
     }),
     {

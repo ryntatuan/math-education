@@ -200,23 +200,29 @@
 
 /* Sidebar Footer (Sound Control & Helper) */
 .sidebar-footer {
-  padding-top: 16px;
+  padding-top: 14px;
   border-top: 1.5px solid rgba(0, 0, 0, 0.06);
+}
+
+.sidebar-audio-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .sidebar-sound-btn {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 10px;
-  padding: 12px 16px;
+  padding: 10px 14px;
   border-radius: var(--radius-full);
-  background: rgba(0, 0, 0, 0.04);
+  background: rgba(0, 0, 0, 0.03);
   border: 1.5px solid rgba(0, 0, 0, 0.06);
   color: #636E72;
   font-family: var(--font-heading);
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -226,6 +232,29 @@
   background: rgba(78, 205, 196, 0.12);
   color: #0CA678;
   border-color: rgba(78, 205, 196, 0.3);
+}
+
+.sidebar-sound-btn.active {
+  color: #0CA678;
+  background: rgba(12, 166, 120, 0.08);
+  border-color: rgba(12, 166, 120, 0.25);
+}
+
+.sidebar-sound-btn.muted {
+  color: #868E96;
+  opacity: 0.85;
+}
+
+.sidebar-autospeak-btn.active {
+  color: #7950F2;
+  background: rgba(121, 80, 242, 0.08);
+  border-color: rgba(121, 80, 242, 0.25);
+}
+
+.sidebar-autospeak-btn:hover {
+  background: rgba(121, 80, 242, 0.12);
+  color: #7950F2;
+  border-color: rgba(121, 80, 242, 0.35);
 }
 
 /* Responsive Hide for Mobile & Tablet (Mobile & Tablet use BottomNav) */

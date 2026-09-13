@@ -85,27 +85,61 @@
   flex-shrink: 0;
 }
 
-.header-avatar {
-  width: 44px;
-  height: 44px;
+.header-profile-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #f0fdf4;
+  color: #15803d;
+  border: 1.5px solid #86efac;
+  padding: 3px 14px 3px 4px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  font-family: 'Quicksand', var(--font-heading), sans-serif;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(34, 197, 94, 0.12);
+  flex-shrink: 0;
+}
+
+.header-profile-pill:hover {
+  background: #dcfce7;
+  border-color: #4ade80;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(34, 197, 94, 0.2);
+}
+
+.header-avatar-circle {
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   background: var(--gradient-dream);
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.4rem;
-  border: 2px solid var(--color-primary-light);
-  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
-  text-decoration: none;
+  font-size: 1.3rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+  transition: transform var(--transition-fast);
 }
 
-.header-avatar:hover {
+.header-profile-pill:hover .header-avatar-circle {
   transform: scale(1.08);
-  border-color: var(--color-primary);
-  box-shadow: 0 4px 12px rgba(79, 172, 254, 0.3);
 }
 
-/* Auth & Profile Switcher Buttons */
+.header-profile-name {
+  font-weight: 700;
+  color: #15803d;
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Auth Buttons */
 .header-login-btn {
   display: inline-flex;
   align-items: center;
@@ -131,32 +165,6 @@
 
 .header-login-icon {
   font-size: 1rem;
-}
-
-.header-switch-btn,
-.header-account-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  background: #f0fdf4;
-  color: #15803d;
-  border: 1.5px solid #86efac;
-  padding: 6px 14px;
-  border-radius: 999px;
-  font-weight: 700;
-  font-size: 0.88rem;
-  font-family: 'Quicksand', var(--font-heading), sans-serif;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  white-space: nowrap;
-  text-decoration: none;
-}
-
-.header-switch-btn:hover,
-.header-account-btn:hover {
-  background: #dcfce7;
-  border-color: #4ade80;
-  transform: translateY(-1px);
 }
 
 
@@ -240,27 +248,36 @@
     display: none !important; /* Hide level on mobile to keep streak, coins, and logo perfectly spaced */
   }
 
-  .header-avatar {
+  .header-profile-pill {
+    padding: 0;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    gap: 0;
+  }
+
+  .header-profile-pill:hover {
+    background: transparent;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .header-avatar-circle {
     width: 36px;
     height: 36px;
     font-size: 1.2rem;
-    border-radius: 50%;
     border: 2px solid white;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
-    flex-shrink: 0;
+  }
+
+  .header-profile-pill:hover .header-avatar-circle {
+    transform: scale(1.05);
   }
 
   .header-login-btn {
     height: 34px;
     padding: 0 10px;
     font-size: 0.85rem;
-    gap: 4px;
-  }
-
-  .header-switch-btn {
-    height: 34px;
-    padding: 0 8px;
-    font-size: 0.82rem;
     gap: 4px;
   }
 }
@@ -299,7 +316,7 @@
     font-size: 0.95rem;
   }
 
-  .header-avatar {
+  .header-avatar-circle {
     width: 32px;
     height: 32px;
     font-size: 1.05rem;
@@ -309,12 +326,6 @@
     height: 32px;
     padding: 0 8px;
     font-size: 0.8rem;
-  }
-
-  .header-switch-btn {
-    height: 32px;
-    padding: 0 6px;
-    font-size: 0.78rem;
   }
 }
 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Home, BookOpen, PenTool, Gamepad2, Trophy, ShieldCheck, Volume2, VolumeX, Sparkles, Award } from 'lucide-react'
+import { Home, BookOpen, PenTool, Gamepad2, Trophy, ShieldCheck, Volume2, VolumeX, Sparkles, Award, Headphones } from 'lucide-react'
 import soundManager from '../../utils/soundManager'
 import useUserStore from '../../store/useUserStore'
 import './Sidebar.css'
@@ -18,7 +18,7 @@ const navItems = [
 
 export default function Sidebar() {
   const location = useLocation()
-  const { soundEnabled, toggleSound } = useUserStore()
+  const { soundEnabled, toggleSound, autoSpeakLesson, toggleAutoSpeak } = useUserStore()
 
   return (
     <aside className="sidebar hide-mobile">
@@ -58,17 +58,33 @@ export default function Sidebar() {
 
       {/* Sidebar Footer Controls */}
       <div className="sidebar-footer">
-        <button
-          className="sidebar-sound-btn"
-          onClick={() => {
-            toggleSound()
-            soundManager.playClick()
-          }}
-          title={soundEnabled ? 'Tắt âm thanh' : 'Bật âm thanh'}
-        >
-          {soundEnabled ? <Volume2 size={20} /> : <VolumeX size={20} />}
-          <span>{soundEnabled ? 'Âm thanh: Bật' : 'Âm thanh: Tắt'}</span>
-        </button>
+        <div className="sidebar-audio-controls">
+          <button
+            type="button"
+            className={`sidebar-sound-btn ${soundEnabled ? 'active' : 'muted'}`}
+            onClick={() => {
+              toggleSound()
+              soundManager.playClick()
+            }}
+            title={soundEnabled ? 'Tắt âm thanh hiệu ứng' : 'Bật âm thanh hiệu ứng'}
+          >
+            {soundEnabled ? <Volume2 size={18} /> : <VolumeX size={18} />}
+            <span>{soundEnabled ? 'Âm thanh: Bật' : 'Âm thanh: Tắt'}</span>
+          </button>
+
+          <button
+            type="button"
+            className={`sidebar-sound-btn sidebar-autospeak-btn ${autoSpeakLesson ? 'active' : ''}`}
+            onClick={() => {
+              toggleAutoSpeak()
+              soundManager.playClick()
+            }}
+            title={autoSpeakLesson ? 'Tắt tự động đọc khi vào bài học' : 'Bật tự động đọc khi vào bài học'}
+          >
+            <Headphones size={18} />
+            <span>{autoSpeakLesson ? 'Tự đọc bài: Bật' : 'Tự đọc bài: Tắt'}</span>
+          </button>
+        </div>
       </div>
     </aside>
   )

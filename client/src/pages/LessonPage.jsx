@@ -28,7 +28,7 @@ function findLesson(lessonId) {
 export default function LessonPage() {
   const navigate = useNavigate()
   const { lessonId } = useParams()
-  const { coins, addCoins, addXp } = useUserStore()
+  const { coins, addCoins, addXp, autoSpeakLesson, soundEnabled } = useUserStore()
   const { completeLesson, recordMistake, progressQuest } = useProgressStore()
 
   const found = findLesson(lessonId)
@@ -66,6 +66,37 @@ export default function LessonPage() {
       speechHelper.stop()
     }
   }, [])
+
+  // Auto-speak slide content if autoSpeakLesson is enabled
+  useEffect(() => {
+    speechHelper.stop()
+    if (!autoSpeakLesson || !soundEnabled || showResult) return
+
+    const timer = setTimeout(() => {
+      const s = slides[currentSlide]
+      if (!s) return
+
+      let textToRead = ''
+      if (s.type === 'quiz') {
+        textToRead = s.content?.question || ''
+      } else if (s.type === 'story' || s.type === 'visual') {
+        textToRead = s.content?.text || ''
+      } else if (s.type === 'concept') {
+        textToRead = `${s.content?.title || ''}. ${s.content?.rule || ''}`
+      } else if (s.type === 'summary') {
+        textToRead = `${s.content?.title || ''}. ${s.content?.points ? s.content.points.join('. ') : ''}`
+      }
+
+      if (textToRead) {
+        speechHelper.speak(textToRead)
+      }
+    }, 350)
+
+    return () => {
+      clearTimeout(timer)
+      speechHelper.stop()
+    }
+  }, [currentSlide, autoSpeakLesson, soundEnabled, showResult, slides])
 
   const handleNext = () => {
     speechHelper.stop()

@@ -54,7 +54,7 @@ export default function Header() {
           </Badge>
 
           {/* Auth or Profile Link */}
-          {isGuest ? (
+          {isGuest && (
             <button
               className="header-login-btn"
               onClick={() => {
@@ -66,24 +66,21 @@ export default function Header() {
               <span className="header-login-icon">🔑</span>
               <span className="hide-mobile">Đăng nhập</span>
             </button>
-          ) : (
-            <Link
-              to="/profile"
-              className="header-account-btn"
-              title={`Hồ sơ của ${nickname}`}
-              onClick={() => soundManager.playClick()}
-            >
-              <span className="hide-mobile">{nickname}</span>
-            </Link>
           )}
 
+          {/* Unified Profile Pill */}
           <Link
             to="/profile"
-            className="header-avatar"
-            title={`Hồ sơ của ${nickname}`}
+            className="header-profile-pill"
+            title={`Hồ sơ của ${nickname || 'Bé'}`}
             onClick={() => soundManager.playClick()}
           >
-            <span>{avatar || '👦'}</span>
+            <span className="header-avatar-circle">
+              {avatar || '👦'}
+            </span>
+            <span className="header-profile-name hide-mobile">
+              {nickname || 'Bé Yêu'}
+            </span>
           </Link>
         </div>
       </div>

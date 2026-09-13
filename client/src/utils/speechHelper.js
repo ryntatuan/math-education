@@ -278,6 +278,7 @@ class SpeechEngine {
       const audio = document.createElement('audio')
       audio.referrerPolicy = 'no-referrer'
       audio.src = proxyUrl
+      audio.playbackRate = 1.0
       this.currentAudio = audio
 
       audio.onended = () => {
@@ -361,8 +362,8 @@ class SpeechEngine {
     utterance.voice = this.vietnameseVoice
     utterance.lang = this.vietnameseVoice.lang || 'vi-VN'
 
-    // Gentle, warm, teacher-like pacing for elementary students
-    utterance.rate = 0.92
+    // Natural, clear female pacing at standard 1.0x
+    utterance.rate = 1.0
     utterance.pitch = 1.05
 
     utterance.onstart = () => {
