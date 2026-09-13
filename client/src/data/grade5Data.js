@@ -18,7 +18,7 @@ export const grade5Data = {
   id: 5,
   name: 'Lớp 5',
   description: 'Số thập phân, tỉ số %, hình không gian, toán chuyển động & ôn thi chuyển cấp',
-  icon: '🏔️',
+  icon: '🌳',
   color: '#8b5cf6',
   ageRange: '10-11 tuổi',
   chapters: [

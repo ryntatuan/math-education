@@ -15,7 +15,7 @@ export const grade3Data = {
   id: 3,
   name: 'Lớp 3',
   description: 'Số đến 100.000, bảng nhân chia 6-9, phân số, chu vi & diện tích',
-  icon: '🌳',
+  icon: '🌸',
   color: '#FFE66D',
   ageRange: '8-9 tuổi',
   chapters: [

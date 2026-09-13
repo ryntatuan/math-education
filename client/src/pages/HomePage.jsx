@@ -28,9 +28,9 @@ import './HomePage.css'
 const ALL_GRADES = [
   { id: 1, name: 'Lớp 1', ageRange: '6-7 tuổi', shortAge: '6-7t', emoji: '🌱', color: '#06b6d4' },
   { id: 2, name: 'Lớp 2', ageRange: '7-8 tuổi', shortAge: '7-8t', emoji: '🌿', color: '#10b981' },
-  { id: 3, name: 'Lớp 3', ageRange: '8-9 tuổi', shortAge: '8-9t', emoji: '🌳', color: '#f59e0b' },
+  { id: 3, name: 'Lớp 3', ageRange: '8-9 tuổi', shortAge: '8-9t', emoji: '🌸', color: '#f59e0b' },
   { id: 4, name: 'Lớp 4', ageRange: '9-10 tuổi', shortAge: '9-10t', emoji: '🌲', color: '#ec4899' },
-  { id: 5, name: 'Lớp 5', ageRange: '10-11 tuổi', shortAge: '10-11t', emoji: '🏔️', color: '#8b5cf6' },
+  { id: 5, name: 'Lớp 5', ageRange: '10-11 tuổi', shortAge: '10-11t', emoji: '🌳', color: '#8b5cf6' },
 ]
 
 export default function HomePage() {
