@@ -421,9 +421,9 @@ export default function ProfilePage() {
         </div>
       </div>
 
-      {/* App Version Info Footer */}
+      {/* App Version & Credentials Info Footer */}
       <div className="profile-version-footer">
-        <span>Toán Vui v{APP_VERSION}</span>
+        <span>Toán Vui v{APP_VERSION} • Crafted with ❤️ by Rynta</span>
       </div>
     </div>
   )

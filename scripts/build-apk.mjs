@@ -2,7 +2,7 @@ import { execSync } from 'node:child_process'
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { getAppVersion } from './bump-version.mjs'
+import { getAppVersion, bumpPatchVersion } from './bump-version.mjs'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -15,8 +15,13 @@ const targetDownloadsDir = path.resolve(clientDir, 'public/downloads')
 const targetApk = path.resolve(targetDownloadsDir, 'ToanVui.apk')
 const versionFile = path.resolve(targetDownloadsDir, 'version.json')
 
+// Tự động tăng số cuối phiên bản (patch version) mỗi lần build, trừ khi có cờ --no-bump
+const shouldBump = !process.argv.includes('--no-bump')
+const targetVer = process.argv.find(arg => /^\d+\.\d+\.\d+$/.test(arg))
+const currentVersion = shouldBump ? bumpPatchVersion(targetVer) : getAppVersion()
+
 console.log('\n' + '='.repeat(55))
-console.log('🤖 QUY TRÌNH BUILD TOÀN DIỆN (WEB + ANDROID APK)')
+console.log(`🤖 QUY TRÌNH BUILD TOÀN DIỆN (WEB + ANDROID APK v${currentVersion})`)
 console.log('='.repeat(55))
 
 // 1. Kiểm tra an toàn tĩnh (oxlint) & Build bản Web với Vite

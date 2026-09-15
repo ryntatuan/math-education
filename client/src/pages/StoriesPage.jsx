@@ -37,6 +37,7 @@ export default function StoriesPage() {
   const [isCorrect, setIsCorrect] = useState(false)
   const [isFinished, setIsFinished] = useState(false)
   const [isSpeaking, setIsSpeaking] = useState(false)
+  const [filterGrade, setFilterGrade] = useState('all')
 
   if (isGuest) {
     return (
@@ -349,6 +350,13 @@ export default function StoriesPage() {
     )
   }
 
+  const filteredStories = MATH_STORIES.filter((s) => {
+    if (filterGrade === 'all') return true
+    if (s.gradeLevel === Number(filterGrade)) return true
+    if (s.ageRange && s.ageRange.includes(`Lớp ${filterGrade}`)) return true
+    return false
+  })
+
   // Storybook Catalog Screen
   return (
     <div className="stories-catalog-page">
@@ -356,14 +364,37 @@ export default function StoriesPage() {
         <div className="stories-title-wrap">
           <h1>📖 Xứ Sở Truyện Tranh Toán Học</h1>
           <p>
-            Khám phá các chuyến phiêu lưu kỳ thú, giải đố tương tác và nhận vô vàn xu vàng cùng các bạn thú đáng yêu!
+            Khám phá 8 chuyến phiêu lưu kỳ thú từ Lớp 1 đến Lớp 5, giải đố tương tác và nhận vô vàn xu vàng cùng các bạn thú đáng yêu!
           </p>
+        </div>
+
+        {/* Grade Filter Tabs */}
+        <div className="story-grade-filter-tabs">
+          {[
+            { id: 'all', label: 'Tất cả' },
+            { id: 1, label: 'Lớp 1' },
+            { id: 2, label: 'Lớp 2' },
+            { id: 3, label: 'Lớp 3' },
+            { id: 4, label: 'Lớp 4' },
+            { id: 5, label: 'Lớp 5' },
+          ].map((tab) => (
+            <button
+              key={tab.id}
+              className={`story-grade-tab-btn ${filterGrade === tab.id ? 'active' : ''}`}
+              onClick={() => {
+                soundManager.playClick()
+                setFilterGrade(tab.id)
+              }}
+            >
+              {tab.label}
+            </button>
+          ))}
         </div>
       </div>
 
       {/* Stories Grid */}
       <div className="stories-grid">
-        {MATH_STORIES.map((story) => (
+        {filteredStories.map((story) => (
           <motion.div
             key={story.id}
             className="story-card"

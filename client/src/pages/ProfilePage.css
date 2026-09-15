@@ -937,8 +937,8 @@
 
 .profile-version-footer {
   text-align: center;
-  margin-top: calc(-1 * var(--space-4));
-  padding: 4 0 var(--space-2);
+  margin-top: 0;
+  padding: 18px 0 8px;
   font-size: 0.75rem;
   font-weight: 600;
   color: #94a3b8;
