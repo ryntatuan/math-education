@@ -16,6 +16,7 @@ import ShopPage from './pages/ShopPage'
 import ParentDashboard from './pages/ParentDashboard'
 import StoriesPage from './pages/StoriesPage'
 import LeaderboardPage from './pages/LeaderboardPage'
+import AuthCallbackPage from './pages/AuthCallbackPage'
 import useUserStore from './store/useUserStore'
 import useAuthStore from './store/useAuthStore'
 import { setupAutoSync } from './services/syncService'
@@ -49,6 +50,7 @@ function AppLayout() {
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/shop" element={<ShopPage />} />
             <Route path="/parent" element={<ParentDashboard />} />
+            <Route path="/auth/callback" element={<AuthCallbackPage />} />
           </Routes>
         </ErrorBoundary>
       </main>

@@ -4,10 +4,11 @@
 .practice-page {
   display: flex;
   flex-direction: column;
-  gap: var(--space-8);
+  gap: var(--space-6);
   max-width: 1000px;
   margin: 0 auto;
   width: 100%;
+  padding-bottom: var(--space-8);
 }
 
 .practice-intro {
@@ -15,102 +16,189 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: var(--space-4);
-}
-
-.practice-intro h1 {
-  font-size: var(--text-3xl);
-  color: var(--color-text-primary);
+  gap: var(--space-3);
   margin-bottom: var(--space-2);
 }
 
+.practice-intro h1 {
+  font-size: var(--text-2xl);
+  font-weight: 800;
+  color: var(--color-text-primary);
+  margin-bottom: 2px;
+}
+
 .practice-intro p {
-  font-size: var(--text-lg);
+  font-size: 0.95rem;
   color: var(--color-text-secondary);
-  max-width: 600px;
+  max-width: 540px;
+  line-height: 1.5;
+  margin: 0;
 }
 
 .grade-selector-tabs {
   display: flex;
   background: white;
-  padding: 6px;
+  padding: 5px;
   border-radius: var(--radius-full);
-  box-shadow: var(--shadow-sm);
-  gap: var(--space-2);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  gap: 6px;
   margin-top: var(--space-2);
-  border: 1px solid var(--color-border);
+  border: 1.5px solid #e2e8f0;
+  max-width: 480px;
+  width: 100%;
 }
 
 .grade-tab-btn {
-  padding: var(--space-2) var(--space-6);
+  flex: 1;
+  padding: 8px 14px;
   border-radius: var(--radius-full);
   font-family: var(--font-heading);
-  font-size: var(--text-base);
+  font-size: 0.95rem;
   font-weight: 700;
   border: none;
   background: transparent;
   color: var(--color-text-secondary);
   cursor: pointer;
   transition: all var(--transition-fast);
+  white-space: nowrap;
+  text-align: center;
+}
+
+.grade-tab-btn:hover {
+  color: #1e293b;
+  background: #f8fafc;
 }
 
 .grade-tab-btn.active {
-  background: var(--gradient-ocean);
+  background: linear-gradient(135deg, #4ecdc4 0%, #22b8cf 100%);
   color: white;
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 4px 12px rgba(78, 205, 196, 0.35);
 }
 
-/* Topics Grid */
+/* Topics Grid & Horizontal Sleek Cards */
 .topics-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .topics-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
 }
 
 .topic-card {
   background: white;
-  border-radius: var(--radius-2xl);
-  padding: var(--space-6);
-  border: 2px solid rgba(78, 205, 196, 0.15);
-  box-shadow: var(--shadow-md);
+  border-radius: 20px;
+  padding: 14px 18px;
+  border: 1.5px solid rgba(78, 205, 196, 0.18);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--space-4);
+  flex-direction: row;
+  align-items: center;
+  gap: 14px;
   cursor: pointer;
-  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.topic-card:hover {
+  border-color: #4ecdc4;
+  box-shadow: 0 6px 20px rgba(78, 205, 196, 0.16);
+  transform: translateY(-2px);
 }
 
 .topic-icon-wrap {
-  font-size: 2.5rem;
-  background: var(--color-bg);
-  width: 64px;
-  height: 64px;
-  border-radius: var(--radius-xl);
+  font-size: 1.75rem;
+  background: linear-gradient(135deg, #f0fdfa 0%, #e6fcf5 100%);
+  width: 52px;
+  height: 52px;
+  min-width: 52px;
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--color-border);
+  border: 1.5px solid rgba(78, 205, 196, 0.25);
+  box-shadow: 0 2px 6px rgba(78, 205, 196, 0.1);
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.topic-card:hover .topic-icon-wrap {
+  transform: scale(1.06);
+}
+
+.topic-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .topic-content h3 {
-  font-size: var(--text-lg);
-  color: var(--color-text-primary);
-  margin-bottom: var(--space-2);
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+  line-height: 1.35;
+  font-family: 'Quicksand', var(--font-heading), sans-serif;
+}
+
+.topic-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .topic-badge {
-  font-size: var(--text-xs);
-  color: var(--color-text-light);
-  background: #f1f3f5;
-  padding: 4px 10px;
-  border-radius: var(--radius-full);
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.75rem;
+  color: #0284c7;
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  padding: 2px 8px;
+  border-radius: 999px;
   font-weight: 600;
 }
 
-.topic-start-btn {
-  width: 100%;
-  margin-top: auto;
+.topic-start-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: linear-gradient(135deg, #4ecdc4 0%, #20c997 100%);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  font-family: 'Quicksand', var(--font-heading), sans-serif;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  box-shadow: 0 3px 8px rgba(78, 205, 196, 0.3);
+  transition: all 0.2s ease;
+}
+
+.topic-card:hover .topic-start-pill {
+  transform: translateX(2px);
+  box-shadow: 0 4px 12px rgba(78, 205, 196, 0.45);
+}
+
+.start-arrow {
+  font-size: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.topic-card:hover .start-arrow {
+  transform: translateX(2px);
 }
 
 /* ========================================
@@ -570,14 +658,15 @@
 .practice-main-tabs {
   display: flex;
   justify-content: center;
-  gap: 12px;
+  gap: 8px;
   background: white;
-  padding: 8px;
+  padding: 6px;
   border-radius: 999px;
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
   border: 1.5px solid #e2e8f0;
-  max-width: 500px;
+  max-width: 480px;
   margin: 0 auto;
+  width: 100%;
 }
 
 .main-tab-btn {
@@ -585,31 +674,36 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 10px 20px;
+  gap: 6px;
+  padding: 9px 16px;
   border-radius: 999px;
   border: none;
   background: transparent;
-  font-family: inherit;
-  font-size: 0.95rem;
+  font-family: 'Quicksand', var(--font-heading), sans-serif;
+  font-size: 0.92rem;
   font-weight: 700;
   color: #64748b;
   cursor: pointer;
   transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.main-tab-btn:hover {
+  color: #1e293b;
 }
 
 .main-tab-btn.active {
-  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  background: linear-gradient(135deg, #4ecdc4 0%, #20c997 100%);
   color: white;
-  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3);
+  box-shadow: 0 4px 14px rgba(78, 205, 196, 0.35);
 }
 
 .due-badge {
   background: #ef4444;
   color: white;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 800;
-  padding: 2px 7px;
+  padding: 2px 6px;
   border-radius: 999px;
   margin-left: 4px;
 }
@@ -859,7 +953,10 @@
   border: 1.5px dashed rgba(245, 158, 11, 0.45);
   border-radius: 14px;
   padding: 10px 16px;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   font-size: 0.88rem;
   color: #d97706;
   font-weight: 700;
@@ -872,5 +969,112 @@
   transform: translateY(-2px);
   background: #ffedd5;
 }
+
+/* ========================================
+   MOBILE RESPONSIVENESS (<= 768px & <= 480px)
+   ======================================== */
+@media (max-width: 768px) {
+  .practice-page {
+    gap: var(--space-5);
+  }
+
+  .practice-intro-text h1 {
+    font-size: 1.45rem;
+  }
+
+  .practice-intro-text p {
+    font-size: 0.92rem;
+  }
+
+  .topic-card {
+    padding: 12px 14px;
+    gap: 12px;
+  }
+
+  .topic-icon-wrap {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    font-size: 1.6rem;
+    border-radius: 14px;
+  }
+
+  .topic-content h3 {
+    font-size: 0.95rem;
+  }
+
+  .topic-start-pill {
+    padding: 7px 14px;
+    font-size: 0.84rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .practice-page {
+    gap: var(--space-4);
+  }
+
+  .practice-main-tabs {
+    padding: 4px;
+    gap: 4px;
+  }
+
+  .main-tab-btn {
+    padding: 8px 10px;
+    font-size: 0.82rem;
+    gap: 4px;
+  }
+
+  .practice-intro-text h1 {
+    font-size: 1.3rem;
+  }
+
+  .practice-intro-text p {
+    font-size: 0.85rem;
+  }
+
+  .grade-selector-tabs {
+    padding: 4px;
+    gap: 4px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .grade-tab-btn {
+    padding: 6px 10px;
+    font-size: 0.82rem;
+  }
+
+  .topic-card {
+    padding: 10px 12px;
+    gap: 10px;
+    border-radius: 16px;
+  }
+
+  .topic-icon-wrap {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    font-size: 1.4rem;
+    border-radius: 12px;
+  }
+
+  .topic-content h3 {
+    font-size: 0.9rem;
+    line-height: 1.3;
+  }
+
+  .topic-badge {
+    font-size: 0.7rem;
+    padding: 2px 6px;
+  }
+
+  .topic-start-pill {
+    padding: 6px 11px;
+    font-size: 0.78rem;
+    gap: 2px;
+  }
+}
+
 
 

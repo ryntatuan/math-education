@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import Badge from '../ui/Badge'
 import MascotIcon from '../common/MascotIcon'
+import GoogleIcon from '../common/GoogleIcon'
 import useUserStore from '../../store/useUserStore'
 import useProgressStore from '../../store/useProgressStore'
 import useAuthStore from '../../store/useAuthStore'
@@ -72,9 +73,9 @@ export default function Header() {
                 soundManager.playClick()
                 setAuthModalOpen(true)
               }}
-              title="Đăng nhập tài khoản để sao lưu đám mây"
+              title="Đăng nhập tài khoản Google"
             >
-              <span className="header-login-icon">🔑</span>
+              <GoogleIcon size={16} />
               <span className="header-login-label">Đăng nhập</span>
             </button>
           )}

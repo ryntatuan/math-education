@@ -12,6 +12,7 @@ import {
 import Button from '../components/ui/Button'
 import ProgressBar from '../components/ui/ProgressBar'
 import CoinIcon from '../components/common/CoinIcon'
+import GoogleIcon from '../components/common/GoogleIcon'
 import useUserStore from '../store/useUserStore'
 import useProgressStore from '../store/useProgressStore'
 import useAuthStore from '../store/useAuthStore'
@@ -487,7 +488,8 @@ export default function PracticePage() {
               setAuthModalOpen(true)
             }}
           >
-            <span>💡 Đăng nhập tài khoản để tích lũy Xu vàng và Chuỗi ngày học!</span>
+            <GoogleIcon size={18} />
+            <span>Đăng nhập Google để tích lũy Xu vàng và Chuỗi ngày học!</span>
           </div>
         )}
 
@@ -578,18 +580,21 @@ export default function PracticePage() {
               <motion.div
                 key={t.id}
                 className="topic-card"
-                whileHover={{ y: -6, boxShadow: 'var(--shadow-xl)' }}
+                whileHover={{ y: -3, boxShadow: '0 6px 20px rgba(78, 205, 196, 0.16)' }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => startSession(t.id)}
               >
                 <div className="topic-icon-wrap">{t.icon}</div>
                 <div className="topic-content">
                   <h3>{t.name}</h3>
-                  <span className="topic-badge">10 câu hỏi tương tác</span>
+                  <div className="topic-meta">
+                    <span className="topic-badge">10 câu tương tác</span>
+                  </div>
                 </div>
-                <Button variant="primary" size="sm" className="topic-start-btn">
-                  Bắt đầu →
-                </Button>
+                <button type="button" className="topic-start-pill">
+                  <span>Luyện tập</span>
+                  <span className="start-arrow">→</span>
+                </button>
               </motion.div>
             ))}
           </div>

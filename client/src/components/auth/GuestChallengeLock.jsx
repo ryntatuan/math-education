@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Trophy, Flame, Gift, Lock, ArrowRight, Sparkles, Star, Users, Award, ShieldCheck } from 'lucide-react'
 import Button from '../ui/Button'
+import GoogleIcon from '../common/GoogleIcon'
 import useAuthStore from '../../store/useAuthStore'
 import soundManager from '../../utils/soundManager'
 import './GuestChallengeLock.css'
@@ -82,8 +83,8 @@ export default function GuestChallengeLock({ title, subtitle }) {
             className="guest-cta-login-btn"
             onClick={handleLoginClick}
           >
-            <Sparkles size={20} />
-            <span>Đăng Nhập Để Thi Đua Ngay</span>
+            <GoogleIcon size={22} />
+            <span>Đăng Nhập Bằng Google Để Thi Đua</span>
             <ArrowRight size={18} />
           </Button>
 
@@ -120,8 +121,9 @@ export default function GuestChallengeLock({ title, subtitle }) {
           </div>
           <h3>Đấu Trường Thi Đua Đang Diễn Ra</h3>
           <p>Hàng ngàn bạn học đang tranh tài tuần này. Đăng nhập để ghi tên mình lên bảng vàng!</p>
-          <Button variant="outline" size="sm" onClick={handleLoginClick}>
-            Mở Khóa Bảng Đấu
+          <Button variant="outline" size="sm" onClick={handleLoginClick} style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+            <GoogleIcon size={18} />
+            <span>Mở Khóa Bảng Đấu</span>
           </Button>
         </div>
 

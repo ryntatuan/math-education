@@ -6,6 +6,7 @@ import Button from '../components/ui/Button'
 import Card from '../components/ui/Card'
 import ProgressBar from '../components/ui/ProgressBar'
 import CoinIcon from '../components/common/CoinIcon'
+import GoogleIcon from '../components/common/GoogleIcon'
 import useUserStore from '../store/useUserStore'
 import useProgressStore from '../store/useProgressStore'
 import useAuthStore from '../store/useAuthStore'
@@ -168,7 +169,7 @@ export default function ProfilePage() {
                 setAuthModalOpen(true)
               }}
             >
-              <LogIn size={20} />
+              <GoogleIcon size={20} />
               <span>Đăng nhập bằng Google ngay</span>
             </button>
             <p className="guest-cta-subtext">
@@ -333,7 +334,7 @@ export default function ProfilePage() {
                 setAuthModalOpen(true)
               }}
             >
-              <LogIn size={18} />
+              <GoogleIcon size={18} />
               <span>Đăng nhập bằng Google để lưu tiến độ</span>
             </button>
           </div>

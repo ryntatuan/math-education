@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowLeft, ArrowRight, CheckCircle2, XCircle, Volume2, Sparkles, Award, Lightbulb, MessageCircle, LogIn } from 'lucide-react'
 import Button from '../components/ui/Button'
+import GoogleIcon from '../components/common/GoogleIcon'
 import ProgressBar, { StarsDisplay } from '../components/ui/ProgressBar'
 import MascotIcon from '../components/common/MascotIcon'
 import CoinIcon from '../components/common/CoinIcon'
@@ -269,8 +270,8 @@ export default function LessonPage() {
                 className="btn-guest-result-login"
                 onClick={() => setAuthModalOpen(true)}
               >
-                <LogIn size={18} />
-                <span>Đăng nhập để nhận thưởng</span>
+                <GoogleIcon size={18} />
+                <span>Đăng nhập Google để nhận thưởng</span>
               </button>
             </div>
           ) : (

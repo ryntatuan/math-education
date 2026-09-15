@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { CheckCircle2, Circle, Gift, Sparkles, Flame, ArrowRight, Lock, LogIn } from 'lucide-react'
 import Button from '../ui/Button'
+import GoogleIcon from '../common/GoogleIcon'
 import ProgressBar from '../ui/ProgressBar'
 import useProgressStore from '../../store/useProgressStore'
 import useUserStore from '../../store/useUserStore'
@@ -73,8 +74,8 @@ export default function DailyQuestsCard() {
               setAuthModalOpen(true)
             }}
           >
-            <LogIn size={15} />
-            <span>Đăng nhập để kích hoạt</span>
+            <GoogleIcon size={16} />
+            <span>Đăng nhập Google để kích hoạt</span>
           </Button>
         </div>
       </div>

@@ -143,28 +143,26 @@
 .header-login-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-  color: white;
-  border: none;
-  padding: 6px 14px;
+  gap: 7px;
+  background: white;
+  color: #374151;
+  border: 1.5px solid #e5e7eb;
+  padding: 5px 13px;
   border-radius: 999px;
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-family: 'Quicksand', var(--font-heading), sans-serif;
   cursor: pointer;
-  box-shadow: 0 3px 8px rgba(37, 99, 235, 0.3);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
   transition: all 0.2s ease;
   white-space: nowrap;
 }
 
 .header-login-btn:hover {
+  background: #f9fafb;
+  border-color: #d1d5db;
   transform: translateY(-1px);
-  box-shadow: 0 5px 12px rgba(37, 99, 235, 0.4);
-}
-
-.header-login-icon {
-  font-size: 1rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
 /* ========================================================

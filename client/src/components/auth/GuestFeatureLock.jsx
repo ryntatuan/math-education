@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { Lock, ArrowRight, ArrowLeft, Sparkles, ShieldCheck, CheckCircle2 } from 'lucide-react'
 import Button from '../ui/Button'
 import CoinIcon from '../common/CoinIcon'
+import GoogleIcon from '../common/GoogleIcon'
 import useAuthStore from '../../store/useAuthStore'
 import soundManager from '../../utils/soundManager'
 import './GuestFeatureLock.css'
@@ -83,7 +84,7 @@ export default function GuestFeatureLock({
             className="feature-cta-login-btn"
             onClick={handleLoginClick}
           >
-            <Sparkles size={18} />
+            <GoogleIcon size={20} />
             <span>{ctaText}</span>
             <ArrowRight size={18} />
           </Button>

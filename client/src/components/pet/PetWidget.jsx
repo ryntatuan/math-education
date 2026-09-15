@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Heart, Sparkles, Award, Utensils, Plus, Check, X, LogIn } from 'lucide-react'
 import Button from '../ui/Button'
+import GoogleIcon from '../common/GoogleIcon'
 import ProgressBar from '../ui/ProgressBar'
 import usePetStore, { PET_TYPES, FOOD_TYPES } from '../../store/usePetStore'
 import useProgressStore from '../../store/useProgressStore'
@@ -222,7 +223,7 @@ export default function PetWidget({ compact = false }) {
                       setAuthModalOpen(true)
                     }}
                   >
-                    <LogIn size={20} />
+                    <GoogleIcon size={20} />
                     <span>Đăng nhập Google để nhận thú cưng</span>
                   </Button>
                   <Button

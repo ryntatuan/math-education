@@ -1,0 +1,138 @@
+.auth-callback-container {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.auth-callback-card {
+  background: #ffffff;
+  border-radius: 28px;
+  box-shadow: 0 20px 45px rgba(78, 205, 196, 0.18), 0 8px 16px rgba(0, 0, 0, 0.05);
+  border: 3px solid #e0f2f1;
+  padding: 2.5rem 2rem;
+  max-width: 480px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.callback-mascot-wrapper {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f0fdfa;
+  border-radius: 50%;
+  margin-bottom: 1.25rem;
+  border: 3px solid #4ecdc4;
+}
+
+.callback-badge {
+  position: absolute;
+  bottom: -4px;
+  right: -4px;
+  background: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-callback-card h2 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #1e293b;
+  margin: 0 0 0.75rem 0;
+}
+
+.callback-desc {
+  font-size: 1rem;
+  color: #64748b;
+  line-height: 1.5;
+  margin: 0 0 1.75rem 0;
+}
+
+.callback-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  width: 100%;
+}
+
+.open-app-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background: linear-gradient(135deg, #4ecdc4 0%, #2bbbad 100%);
+  color: #ffffff;
+  border: none;
+  padding: 1rem 1.5rem;
+  border-radius: 16px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(78, 205, 196, 0.35);
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.open-app-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(78, 205, 196, 0.45);
+}
+
+.open-app-btn:active {
+  transform: scale(0.98);
+}
+
+.continue-web-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: #f8fafc;
+  color: #64748b;
+  border: 2px solid #e2e8f0;
+  padding: 0.8rem 1.25rem;
+  border-radius: 14px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.continue-web-btn:hover {
+  background: #f1f5f9;
+  color: #334155;
+}
+
+.callback-hint {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  margin-top: 1.5rem;
+  line-height: 1.4;
+}
+
+.callback-spinner {
+  margin: 1rem 0;
+  animation: spinSlow 3s linear infinite;
+}
+
+@keyframes spinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

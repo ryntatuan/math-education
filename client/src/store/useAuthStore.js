@@ -1,5 +1,7 @@
 import { create } from 'zustand'
 import { Capacitor } from '@capacitor/core'
+import { Browser } from '@capacitor/browser'
+import { SocialLogin } from '@capgo/capacitor-social-login'
 import { supabase, isSupabaseConfigured } from '../services/supabaseClient'
 import syncService, { setActiveChildIdGetter } from '../services/syncService'
 import useUserStore from './useUserStore'
@@ -7,6 +9,23 @@ import useProgressStore from './useProgressStore'
 import useLeagueStore from './useLeagueStore'
 import usePetStore from './usePetStore'
 import soundManager from '../utils/soundManager'
+const GOOGLE_WEB_CLIENT_ID = '974832122244-8pkn02h3puctsl4fcpc60ig28k421a4u.apps.googleusercontent.com'
+
+let isSocialLoginInitialized = false
+const initSocialLogin = async () => {
+  if (isSocialLoginInitialized) return
+  try {
+    await SocialLogin.initialize({
+      google: {
+        webClientId: GOOGLE_WEB_CLIENT_ID,
+        mode: 'online',
+      },
+    })
+    isSocialLoginInitialized = true
+  } catch (e) {
+    console.warn('SocialLogin init warning:', e)
+  }
+}
 
 export const useAuthStore = create((set, get) => ({
   user: null,
@@ -79,7 +98,7 @@ export const useAuthStore = create((set, get) => ({
   },
 
   /**
-   * Đăng nhập một chạm bằng Google
+   * Đăng nhập một chạm bằng Google (Native trên Mobile, OAuth trên Web)
    */
   signInWithGoogle: async () => {
     if (!isSupabaseConfigured() || !supabase) {
@@ -89,24 +108,100 @@ export const useAuthStore = create((set, get) => ({
 
     try {
       soundManager.playClick()
-      const redirectTo = Capacitor.isNativePlatform()
-        ? 'toanvui://auth/callback'
-        : window.location.origin
+      set({ loading: true })
 
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider: 'google',
-        options: {
-          redirectTo,
-          queryParams: {
-            access_type: 'offline',
-            prompt: 'consent',
+      if (Capacitor.isNativePlatform()) {
+        await initSocialLogin()
+
+        try {
+          // 1. Kích hoạt Native Google Sign-In (hiện Bottom Sheet chọn tài khoản của hệ điều hành)
+          const res = await SocialLogin.login({
+            provider: 'google',
+            options: {
+              scopes: ['email', 'profile'],
+            },
+          })
+
+          const idToken = res?.result?.idToken || res?.idToken
+
+          if (idToken) {
+            // 2. Trao đổi idToken trực tiếp với Supabase mà không cần mở bất kỳ trình duyệt nào
+            const { data, error } = await supabase.auth.signInWithIdToken({
+              provider: 'google',
+              token: idToken,
+            })
+
+            if (error) throw error
+
+            if (data?.session) {
+              set({
+                user: data.session.user,
+                session: data.session,
+                isGuest: false,
+                isAuthModalOpen: false,
+                loading: false,
+              })
+              if (data.session.user) {
+                const result = await syncService.autoMigrateGuestDataToCloud(data.session.user)
+                if (result?.activeChild) {
+                  set({ activeChild: result.activeChild })
+                }
+              }
+            }
+            return
+          } else {
+            throw new Error('Không nhận được Google ID Token từ hệ thống')
+          }
+        } catch (nativeErr) {
+          console.warn('Lỗi đăng nhập Native, chuyển sang dự phòng Custom Tab:', nativeErr)
+
+          // Nếu người dùng chủ động bấm hủy / dismiss màn hình chọn tài khoản
+          const errMsg = nativeErr?.message || String(nativeErr)
+          if (
+            errMsg.includes('cancelled') ||
+            errMsg.includes('canceled') ||
+            errMsg.includes('16:') ||
+            errMsg.includes('12501')
+          ) {
+            set({ loading: false })
+            return
+          }
+
+          // Dự phòng sang In-App Browser Custom Tab nếu thiết bị chưa cấu hình SHA-1
+          const { data, error } = await supabase.auth.signInWithOAuth({
+            provider: 'google',
+            options: {
+              redirectTo: 'toanvui://auth/callback',
+              skipBrowserRedirect: true,
+              queryParams: {
+                access_type: 'offline',
+                prompt: 'consent',
+              },
+            },
+          })
+          if (error) throw error
+          if (data?.url) {
+            await Browser.open({ url: data.url, windowName: '_self' })
+          }
+        }
+      } else {
+        const redirectTo = `${window.location.origin}/auth/callback`
+        const { error } = await supabase.auth.signInWithOAuth({
+          provider: 'google',
+          options: {
+            redirectTo,
+            queryParams: {
+              access_type: 'offline',
+              prompt: 'consent',
+            },
           },
-        },
-      })
-      if (error) throw error
+        })
+        if (error) throw error
+      }
     } catch (err) {
       console.error('Lỗi đăng nhập Google:', err.message)
       alert(`Đăng nhập không thành công: ${err.message}`)
+      set({ loading: false })
     }
   },
 

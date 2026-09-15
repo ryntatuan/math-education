@@ -17,7 +17,7 @@ import './GamesPage.css'
 const GAME_LIST = [
   {
     id: 'math_race',
-    title: '🏎️ Cuộc Đua Toán Học',
+    title: 'Cuộc Đua Toán Học',
     subtitle: 'Math Race',
     description: 'Trả lời đúng các phép tính để xe của bé tăng tốc vượt qua Thỏ, Rùa và Mèo cán đích đầu tiên!',
     color: '#FF6B6B',
@@ -26,7 +26,7 @@ const GAME_LIST = [
   },
   {
     id: 'number_pop',
-    title: '🎯 Bắn Bóng Số Bay',
+    title: 'Bắn Bóng Số Bay',
     subtitle: 'Number Pop',
     description: 'Các quả bóng bay mang số đang bay lên! Hãy chọn nhanh quả bóng có đáp án chính xác!',
     color: '#4facfe',
@@ -35,7 +35,7 @@ const GAME_LIST = [
   },
   {
     id: 'memory_match',
-    title: '🃏 Lật Thẻ Trí Nhớ',
+    title: 'Lật Thẻ Trí Nhớ',
     subtitle: 'Memory Match',
     description: 'Lật mở các thẻ bài bí mật để ghép đôi phép tính với kết quả tương ứng!',
     color: '#51CF66',
@@ -44,7 +44,7 @@ const GAME_LIST = [
   },
   {
     id: 'math_balance',
-    title: '⚖️ Cán Cân Thần Kỳ',
+    title: 'Cán Cân Thần Kỳ',
     subtitle: 'Math Balance',
     description: 'Chọn quả cân thích hợp đặt lên đĩa cân để cán cân thăng bằng hoàn hảo!',
     color: '#F59F00',
@@ -53,7 +53,7 @@ const GAME_LIST = [
   },
   {
     id: 'space_defense',
-    title: '🚀 Bắn Thiên Thạch Vũ Trụ',
+    title: 'Bắn Thiên Thạch Vũ Trụ',
     subtitle: 'Space Defense',
     description: 'Điều khiển pháo laser bắn tan các mảnh thiên thạch mang phép tính trước khi chạm lá chắn!',
     color: '#7950F2',
@@ -62,7 +62,7 @@ const GAME_LIST = [
   },
   {
     id: 'math_fishing',
-    title: '🎣 Hồ Câu Cá Thông Thái',
+    title: 'Hồ Câu Cá Thông Thái',
     subtitle: 'Math Fishing',
     description: 'Thả cần câu xuống làn nước trong xanh và câu chú cá mang đúng đáp án của phép tính!',
     color: '#20C997',
