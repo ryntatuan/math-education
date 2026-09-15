@@ -27,7 +27,8 @@ export default function BottomNav() {
       {navItems.map(({ to, icon: Icon, label }) => {
         const isActive =
           location.pathname === to ||
-          (to !== '/' && location.pathname.startsWith(to))
+          (to !== '/' && location.pathname.startsWith(to)) ||
+          (to === '/games' && location.pathname.startsWith('/stories'))
 
         return (
           <Link

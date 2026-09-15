@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowLeft, Play, RotateCcw, Trophy, Zap, Clock, Star, Flame } from 'lucide-react'
 import Button from '../components/ui/Button'
@@ -11,6 +12,7 @@ import GuestFeatureLock from '../components/auth/GuestFeatureLock'
 import { generateQuestion, generateCalculation } from '../utils/exerciseGenerator'
 import soundManager from '../utils/soundManager'
 import fireConfetti from '../utils/confettiHelper'
+import StoriesPage from './StoriesPage'
 import './GamesPage.css'
 
 // Game Definitions
@@ -77,13 +79,25 @@ export default function GamesPage() {
   const { recordGamePlayed, recordRaceWin } = useProgressStore()
   const [activeGame, setActiveGame] = useState(null)
 
+  const [searchParams, setSearchParams] = useSearchParams()
+  const tabFromUrl = searchParams.get('tab')
+  const [mainTab, setMainTab] = useState(tabFromUrl === 'stories' ? 'stories' : 'games')
+
+  useEffect(() => {
+    if (tabFromUrl === 'stories' && mainTab !== 'stories') {
+      setMainTab('stories')
+    } else if (tabFromUrl === 'games' && mainTab !== 'games') {
+      setMainTab('games')
+    }
+  }, [tabFromUrl])
+
   if (isGuest) {
     return (
       <GuestFeatureLock
         icon="🎮"
-        badgeText="TRÒ CHƠI TOÁN HỌC"
-        title="Trò Chơi Toán Học Dành Riêng Cho Thành Viên"
-        subtitle="Đăng nhập tài khoản để mở khóa toàn bộ 6 Mini Game rèn luyện phản xạ tính nhẩm siêu tốc, tích lũy xu và tranh tài trên bảng xếp hạng!"
+        badgeText="TRÒ CHƠI & TRUYỆN TOÁN"
+        title="Sân Chơi Toán Học Dành Riêng Cho Thành Viên"
+        subtitle="Đăng nhập tài khoản để mở khóa toàn bộ 6 Mini Game rèn phản xạ tính nhẩm siêu tốc và 8 Truyện Tranh Toán Tương Tác kỳ thú!"
         benefits={[
           {
             icon: '🏎️',
@@ -91,9 +105,9 @@ export default function GamesPage() {
             desc: 'Đua xe toán học, Bắn bóng bay, Lật thẻ trí nhớ, Cán cân thần kỳ và Bắn thiên thạch.',
           },
           {
-            icon: '⚡',
-            title: 'Rèn Luyện Phản Xạ Tính Nhẩm',
-            desc: 'Các màn chơi tốc độ giúp bé tính nhẩm siêu nhanh và hào hứng say mê học toán.',
+            icon: '📖',
+            title: 'Kho 8 Truyện Tranh Toán Tương Tác',
+            desc: 'Cùng các bạn muông thú bước vào những chuyến phiêu lưu kỳ thú và giải đố nhận quà.',
           },
           {
             icon: '🪙',
@@ -112,38 +126,73 @@ export default function GamesPage() {
 
   return (
     <div className="games-container">
-      {!activeGame ? (
-        <div className="game-select-screen">
-          <div className="games-hero">
-            <h1>🎮 Khu Vui Chơi & Trò Chơi Toán Học</h1>
-            <p>Vừa chơi vui nhộn vừa rèn luyện phản xạ tính nhẩm siêu tốc cùng các bạn thú cưng!</p>
-          </div>
+      {/* Top Navigation Tabs: 6 Mini Games | 8 Math Stories */}
+      {!activeGame && (
+        <div className="games-main-nav-tabs">
+          <button
+            type="button"
+            className={`games-tab-btn ${mainTab === 'games' ? 'active' : ''}`}
+            onClick={() => {
+              soundManager.playClick()
+              setMainTab('games')
+              setSearchParams({})
+            }}
+          >
+            <span className="tab-icon">🎮</span>
+            <span>Trò Chơi Mini</span>
+          </button>
 
-          <div className="game-cards-grid">
-            {GAME_LIST.map((game) => (
-              <motion.div
-                key={game.id}
-                className="game-card"
-                whileHover={{ y: -8, boxShadow: 'var(--shadow-xl)' }}
-                whileTap={{ scale: 0.98 }}
-                onClick={() => {
-                  setActiveGame(game.id)
-                  soundManager.playClick()
-                }}
-              >
-                <div className="game-card-icon">{game.icon}</div>
-                <div className="game-card-info">
-                  <h2>{game.title}</h2>
-                  <span className="game-badge">{game.difficulty}</span>
-                  <p>{game.description}</p>
-                </div>
-                <Button variant="primary" size="md" className="game-play-btn">
-                  Chơi ngay <Play size={18} fill="white" />
-                </Button>
-              </motion.div>
-            ))}
-          </div>
+          <button
+            type="button"
+            className={`games-tab-btn ${mainTab === 'stories' ? 'active' : ''}`}
+            onClick={() => {
+              soundManager.playClick()
+              setMainTab('stories')
+              setSearchParams({ tab: 'stories' })
+            }}
+          >
+            <span className="tab-icon">📖</span>
+            <span>Truyện Tranh Toán</span>
+          </button>
         </div>
+      )}
+
+      {!activeGame ? (
+        mainTab === 'stories' ? (
+          <StoriesPage />
+        ) : (
+          <div className="game-select-screen">
+            <div className="games-hero">
+              <h1>🎮 Khu Vui Chơi & Trò Chơi Toán Học</h1>
+              <p>Vừa chơi vui nhộn vừa rèn luyện phản xạ tính nhẩm siêu tốc cùng các bạn thú cưng!</p>
+            </div>
+
+            <div className="game-cards-grid">
+              {GAME_LIST.map((game) => (
+                <motion.div
+                  key={game.id}
+                  className="game-card"
+                  whileHover={{ y: -8, boxShadow: 'var(--shadow-xl)' }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => {
+                    setActiveGame(game.id)
+                    soundManager.playClick()
+                  }}
+                >
+                  <div className="game-card-icon">{game.icon}</div>
+                  <div className="game-card-info">
+                    <h2>{game.title}</h2>
+                    <span className="game-badge">{game.difficulty}</span>
+                    <p>{game.description}</p>
+                  </div>
+                  <Button variant="primary" size="md" className="game-play-btn">
+                    Chơi ngay <Play size={18} fill="white" />
+                  </Button>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        )
       ) : activeGame === 'math_race' ? (
         <MathRaceGame
           onBack={() => setActiveGame(null)}
@@ -601,13 +650,12 @@ function MathRaceGame({ onBack, grade, addCoins, addXp, recordRaceWin, recordGam
                 {question.options.map((opt, i) => (
                   <button
                     key={`${question.question || 'race'}-${i}`}
-                    className={`race-opt-btn opt-pos-${i} ${
-                      feedback === 'correct' && opt === question.answer
+                    className={`race-opt-btn opt-pos-${i} ${feedback === 'correct' && opt === question.answer
                         ? 'correct'
                         : feedback === 'wrong' && opt === question.answer
-                        ? 'correct'
-                        : ''
-                    }`}
+                          ? 'correct'
+                          : ''
+                      }`}
                     onClick={() => handleAnswer(opt)}
                   >
                     <span className="opt-letter-badge">{['A', 'B', 'C', 'D'][i]}</span>
@@ -632,30 +680,30 @@ function MathRaceGame({ onBack, grade, addCoins, addXp, recordRaceWin, recordGam
             {rank === 1
               ? '🥇 HUY CHƯƠNG VÀNG - HẠNG 1'
               : rank === 2
-              ? '🥈 HUY CHƯƠNG BẠC - HẠNG 2'
-              : rank === 3
-              ? '🥉 HUY CHƯƠNG ĐỒNG - HẠNG 3'
-              : '🎖️ HUY HIỆU NỖ LỰC - HẠNG 4'}
+                ? '🥈 HUY CHƯƠNG BẠC - HẠNG 2'
+                : rank === 3
+                  ? '🥉 HUY CHƯƠNG ĐỒNG - HẠNG 3'
+                  : '🎖️ HUY HIỆU NỖ LỰC - HẠNG 4'}
           </div>
 
           <h2>
             {rank === 1
               ? '🏆 Vô Địch Cuộc Đua!'
               : rank === 2
-              ? '🥈 Á Quân Cuộc Đua!'
-              : rank === 3
-              ? '🥉 Quý Quân Cuộc Đua!'
-              : '🎖️ Về Đích Hạng 4!'}
+                ? '🥈 Á Quân Cuộc Đua!'
+                : rank === 3
+                  ? '🥉 Quý Quân Cuộc Đua!'
+                  : '🎖️ Về Đích Hạng 4!'}
           </h2>
 
           <p>
             {rank === 1
               ? `Xuất sắc! Bé đã cán đích đầu tiên và giải đúng ${score} câu hỏi!`
               : rank === 2
-              ? `Tuyệt vời! Bé đã chạy đua rất cừ và giải đúng ${score} câu hỏi!`
-              : rank === 3
-              ? `Rất tốt! Bé đã nỗ lực hoàn thành chặng đua và giải đúng ${score} câu hỏi!`
-              : `Bé đã rất kiên trì hoàn thành chặng đua và giải đúng ${score} câu hỏi! Cố lên nhé!`}
+                ? `Tuyệt vời! Bé đã chạy đua rất cừ và giải đúng ${score} câu hỏi!`
+                : rank === 3
+                  ? `Rất tốt! Bé đã nỗ lực hoàn thành chặng đua và giải đúng ${score} câu hỏi!`
+                  : `Bé đã rất kiên trì hoàn thành chặng đua và giải đúng ${score} câu hỏi! Cố lên nhé!`}
           </p>
 
           <div className="rank-rewards-box">
@@ -984,9 +1032,8 @@ function MemoryMatchGame({ onBack, grade, addCoins, addXp, recordGamePlayed }) {
               return (
                 <motion.div
                   key={card.id}
-                  className={`memory-card ${isCardFlipped ? 'flipped' : ''} ${
-                    matched.includes(card.pairId) ? 'matched' : ''
-                  }`}
+                  className={`memory-card ${isCardFlipped ? 'flipped' : ''} ${matched.includes(card.pairId) ? 'matched' : ''
+                    }`}
                   whileHover={{ scale: 1.04 }}
                   whileTap={{ scale: 0.96 }}
                   onClick={() => handleCardClick(card)}
@@ -1223,9 +1270,8 @@ function MathBalanceGame({ onBack, grade = 1, addCoins, addXp, recordGamePlayed 
               <motion.button
                 key={opt}
                 type="button"
-                className={`balance-option-btn ${wrongOption === opt ? 'wrong' : ''} ${
-                  isBalanced && selectedWeight === opt ? 'correct' : ''
-                }`}
+                className={`balance-option-btn ${wrongOption === opt ? 'wrong' : ''} ${isBalanced && selectedWeight === opt ? 'correct' : ''
+                  }`}
                 whileHover={{ scale: 1.06, y: -2 }}
                 whileTap={{ scale: 0.94 }}
                 onClick={() => handleSelectOption(opt)}
@@ -1619,9 +1665,8 @@ function MathFishingGame({ onBack, grade = 1, addCoins, addXp, recordGamePlayed 
                   }}
                 >
                   <motion.div
-                    className={`pond-fish-item ${isHooked ? (hookSuccess ? 'caught' : '') : ''} ${
-                      isMissed ? 'missed' : ''
-                    }`}
+                    className={`pond-fish-item ${isHooked ? (hookSuccess ? 'caught' : '') : ''} ${isMissed ? 'missed' : ''
+                      }`}
                     whileHover={{ scale: 1.12 }}
                     whileTap={{ scale: 0.9 }}
                     onClick={() => handleCatchFish(fish)}
