@@ -112,11 +112,8 @@ export default function ProfilePage() {
               <h2>Bạn Nhỏ</h2>
               <span className="badge-guest-pill">⚡ Khách Trải Nghiệm</span>
             </div>
-            <div className="profile-badge-row">
-              <div className="profile-grade-tag">
-                <span>Học sinh Lớp {grade}</span>
-              </div>
-              <span className="profile-app-version-pill">v{APP_VERSION}</span>
+            <div className="profile-grade-tag">
+              <span>Học sinh Lớp {grade}</span>
             </div>
             <p className="guest-header-hint">
               Bạn đang học thử ở Chế độ Khách. Dữ liệu học tập chưa được lưu vĩnh viễn.
@@ -281,11 +278,8 @@ export default function ProfilePage() {
             )}
           </div>
 
-          <div className="profile-badge-row">
-            <div className="profile-grade-tag">
-              <span>Học sinh Lớp {grade}</span>
-            </div>
-            <span className="profile-app-version-pill">v{APP_VERSION}</span>
+          <div className="profile-grade-tag">
+            <span>Học sinh Lớp {grade}</span>
           </div>
 
           {/* Level Progress */}
