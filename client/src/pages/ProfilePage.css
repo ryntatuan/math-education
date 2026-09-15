@@ -93,7 +93,8 @@
   justify-content: center;
 }
 
-.avatar-choice:hover, .avatar-choice.active {
+.avatar-choice:hover,
+.avatar-choice.active {
   background: var(--color-bg);
   border-color: var(--color-primary);
   transform: scale(1.15);
@@ -937,7 +938,7 @@
 .profile-version-footer {
   text-align: center;
   margin-top: calc(-1 * var(--space-4));
-  padding: 0 0 var(--space-2);
+  padding: 4 0 var(--space-2);
   font-size: 0.75rem;
   font-weight: 600;
   color: #94a3b8;
