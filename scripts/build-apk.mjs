@@ -2,6 +2,7 @@ import { execSync } from 'node:child_process'
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { getAppVersion } from './bump-version.mjs'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -83,10 +84,10 @@ try {
   const stats = fs.statSync(targetApk)
   const sizeMB = (stats.size / (1024 * 1024)).toFixed(2)
   const now = new Date()
-
+  const currentVersion = getAppVersion()
   const meta = {
     appName: 'Toán Vui',
-    version: '1.0.0',
+    version: currentVersion,
     buildDate: now.toISOString(),
     buildDateFormatted: now.toLocaleString('vi-VN'),
     fileSizeBytes: stats.size,

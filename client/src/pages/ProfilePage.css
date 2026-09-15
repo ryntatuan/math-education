@@ -906,3 +906,12 @@
     box-sizing: border-box;
   }
 }
+
+.profile-version-footer {
+  text-align: center;
+  padding: 24px 0 10px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #94a3b8;
+  letter-spacing: 0.5px;
+}

@@ -1,12 +1,13 @@
 {
   "name": "toan-vui",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "Toán Vui — Web App Học Toán Cho Trẻ Em Lớp 1-5",
   "scripts": {
     "dev": "cd client && npm run dev",
     "dev:client": "cd client && npm run dev",
     "build": "node scripts/build-apk.mjs",
+    "version:bump": "node scripts/bump-version.mjs",
     "build:web": "cd client && npm run build:web",
     "mobile:sync": "cd client && npm run mobile:sync",
     "mobile:android": "cd client && npm run mobile:android",

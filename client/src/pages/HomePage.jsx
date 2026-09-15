@@ -24,6 +24,7 @@ import useLeagueStore, { LEAGUE_TIERS } from '../store/useLeagueStore'
 import useDownloadModalStore from '../store/useDownloadModalStore'
 import { Capacitor } from '@capacitor/core'
 import { detectDeviceOS, isIOS } from '../utils/deviceHelper'
+import { APP_VERSION } from '../config/appVersion'
 import curriculum from '../data/curriculum'
 import soundManager from '../utils/soundManager'
 import './HomePage.css'
@@ -361,7 +362,7 @@ export default function HomePage() {
                   {isIOS() ? '🍎' : '🤖'}
                 </div>
                 <div className="download-card-meta">
-                  <h4>{isIOS() ? 'Cài App Cho iPhone / iPad' : 'Cài App Toán Vui'}</h4>
+                  <h4>{isIOS() ? 'Cài App Cho iPhone / iPad' : `Cài App Toán Vui (v${APP_VERSION})`}</h4>
                   <span className="download-tag-android">
                     {'Hoàn toàn miễn phí'}
                   </span>
@@ -374,7 +375,7 @@ export default function HomePage() {
               </p>
               <button type="button" className="btn-download-card-cta">
                 <Download size={16} />
-                <span>{isIOS() ? 'Xem Cách Cài Đặt (5 giây)' : 'Tải App Ngay (5.4 MB)'}</span>
+                <span>{isIOS() ? 'Xem Cách Cài Đặt (5 giây)' : `Tải App v${APP_VERSION}`}</span>
               </button>
             </motion.div>
           )}

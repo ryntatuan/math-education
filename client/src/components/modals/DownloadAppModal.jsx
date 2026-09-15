@@ -18,6 +18,7 @@ import { Capacitor } from '@capacitor/core'
 import soundManager from '../../utils/soundManager'
 import useDownloadModalStore from '../../store/useDownloadModalStore'
 import { detectDeviceOS, isIOS } from '../../utils/deviceHelper'
+import { APP_VERSION } from '../../config/appVersion'
 import './DownloadAppModal.css'
 
 export default function DownloadAppModal() {
@@ -132,10 +133,10 @@ export default function DownloadAppModal() {
               <div className="download-cta-box">
                 <div className="cta-app-meta">
                   <div className="meta-row">
-                    <span className="meta-badge-version">Bản 1.0.0 (APK)</span>
+                    <span className="meta-badge-version">Bản v{apkMeta?.version || APP_VERSION} (.APK)</span>
                     <span className="meta-badge-tag">Android 7.0+</span>
                     <span className="meta-badge-size">
-                      {apkMeta?.fileSizeMB ? `Dung lượng: ${apkMeta.fileSizeMB}` : 'Dung lượng: ~5.4 MB'}
+                      {apkMeta?.fileSizeMB ? `Dung lượng: ${apkMeta.fileSizeMB}` : 'Dung lượng: ~8.5 MB'}
                     </span>
                     {apkMeta?.buildDateFormatted && (
                       <span className="meta-badge-date">Cập nhật: {apkMeta.buildDateFormatted}</span>

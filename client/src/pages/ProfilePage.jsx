@@ -11,6 +11,7 @@ import useUserStore from '../store/useUserStore'
 import useProgressStore from '../store/useProgressStore'
 import useAuthStore from '../store/useAuthStore'
 import soundManager from '../utils/soundManager'
+import { APP_VERSION } from '../config/appVersion'
 import './ProfilePage.css'
 
 const BADGES_DATA = [
@@ -421,6 +422,11 @@ export default function ProfilePage() {
             )
           })}
         </div>
+      </div>
+
+      {/* App Version Info Footer */}
+      <div className="profile-version-footer">
+        <span>Toán Vui v{APP_VERSION}</span>
       </div>
     </div>
   )
