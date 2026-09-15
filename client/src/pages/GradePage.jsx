@@ -57,7 +57,6 @@ export default function GradePage() {
                 onClick={() => {
                   setSelectedGrade(g.id)
                   setGrade(g.id)
-                  soundManager.playClick()
                 }}
               >
                 {g.name}

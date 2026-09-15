@@ -172,9 +172,11 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  background: #e2e8f0;
-  padding: 4px;
+  background: white;
+  padding: 5px;
   border-radius: 999px;
+  border: 1.5px solid #e2e8f0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
   max-width: 100%;
   box-sizing: border-box;
   overflow-x: auto;
@@ -187,28 +189,29 @@
 }
 
 .sem-pill-btn {
-  padding: 6px 14px;
+  padding: 7px 16px;
   border-radius: 999px;
   border: none;
-  font-family: var(--font-body, inherit);
-  font-weight: 800;
-  font-size: 0.84rem;
+  font-family: var(--font-heading, inherit);
+  font-weight: 700;
+  font-size: 0.9rem;
   color: #64748b;
   background: transparent;
   cursor: pointer;
   white-space: nowrap;
   flex-shrink: 0;
-  transition: all 0.2s ease;
+  transition: all var(--transition-fast);
 }
 
 .sem-pill-btn:hover {
-  color: #0f172a;
+  color: #1e293b;
+  background: #f8fafc;
 }
 
 .sem-pill-btn.active {
-  background: #ffffff;
-  color: #0284c7;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #4ecdc4 0%, #22b8cf 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(78, 205, 196, 0.35);
 }
 
 .home-current-grade-tag {

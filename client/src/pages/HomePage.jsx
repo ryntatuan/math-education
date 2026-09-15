@@ -123,10 +123,7 @@ export default function HomePage() {
               <button
                 type="button"
                 className={`sem-pill-btn ${semesterFilter === 'all' ? 'active' : ''}`}
-                onClick={() => {
-                  setSemesterFilter('all')
-                  soundManager.playClick()
-                }}
+                onClick={() => setSemesterFilter('all')}
               >
                 <span className="hide-mobile">⭐ Tất cả ({allChaptersForGrade.length} Chương)</span>
                 <span className="hide-desktop hide-tablet">⭐ Tất cả ({allChaptersForGrade.length})</span>
@@ -134,10 +131,7 @@ export default function HomePage() {
               <button
                 type="button"
                 className={`sem-pill-btn ${semesterFilter === 'sem1' ? 'active' : ''}`}
-                onClick={() => {
-                  setSemesterFilter('sem1')
-                  soundManager.playClick()
-                }}
+                onClick={() => setSemesterFilter('sem1')}
               >
                 <span className="hide-mobile">🌸 Học kỳ 1 (Chương 1 - 5)</span>
                 <span className="hide-desktop hide-tablet">🌸 HK 1 (1 - 5)</span>
@@ -145,10 +139,7 @@ export default function HomePage() {
               <button
                 type="button"
                 className={`sem-pill-btn ${semesterFilter === 'sem2' ? 'active' : ''}`}
-                onClick={() => {
-                  setSemesterFilter('sem2')
-                  soundManager.playClick()
-                }}
+                onClick={() => setSemesterFilter('sem2')}
               >
                 <span className="hide-mobile">☀️ Học kỳ 2 (Chương 6 - 10)</span>
                 <span className="hide-desktop hide-tablet">☀️ HK 2 (6 - 10)</span>

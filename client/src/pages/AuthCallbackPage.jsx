@@ -1,47 +1,32 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { Smartphone, CheckCircle2, ArrowRight, Sparkles, Globe } from 'lucide-react'
+import { CheckCircle2, ArrowRight, Sparkles } from 'lucide-react'
 import MascotIcon from '../components/common/MascotIcon'
 import { supabase } from '../services/supabaseClient'
-import { isAndroid, isIOS } from '../utils/deviceHelper'
 import soundManager from '../utils/soundManager'
 import './AuthCallbackPage.css'
 
 export default function AuthCallbackPage() {
   const navigate = useNavigate()
-  const [isMobileDevice, setIsMobileDevice] = useState(false)
-  const [appUrl, setAppUrl] = useState('')
   const [status, setStatus] = useState('processing') // 'processing' | 'ready' | 'error'
 
   useEffect(() => {
-    const isMobile = isAndroid() || isIOS() || /android|iphone|ipad|ipod/i.test(navigator.userAgent)
-    setIsMobileDevice(isMobile)
-
     const rawSearch = window.location.search || ''
     const rawHash = window.location.hash || ''
-    const deepLink = `toanvui://auth/callback${rawSearch}${rawHash}`
-    setAppUrl(deepLink)
-
-    // Nếu là thiết bị di động, tự động thử mở ứng dụng ngay lập tức
-    if (isMobile) {
-      try {
-        window.location.href = deepLink
-      } catch (err) {
-        console.warn('Auto deep link redirect failed:', err)
-      }
-    }
+    const searchParams = new URLSearchParams(rawSearch)
+    const fromApp = searchParams.get('from') === 'app'
 
     // Xử lý nạp phiên đăng nhập cho Supabase
     const processSession = async () => {
       try {
         if (!supabase) {
           setStatus('ready')
+          setTimeout(() => navigate('/', { replace: true }), 800)
           return
         }
 
         // 1. Kiểm tra mã PKCE code
-        const searchParams = new URLSearchParams(rawSearch)
         const code = searchParams.get('code')
         if (code) {
           const { error } = await supabase.auth.exchangeCodeForSession(code)
@@ -63,11 +48,19 @@ export default function AuthCallbackPage() {
 
         setStatus('ready')
 
-        // Nếu là máy tính để bàn (desktop), tự động quay về trang chủ sau 1.2s
-        if (!isMobile) {
+        // Nếu từ app mobile gọi ra web auth thì chuyển tiếp về app
+        if (fromApp) {
+          const deepLink = `toanvui://auth/callback${rawSearch}${rawHash}`
+          try {
+            window.location.href = deepLink
+          } catch (err) {
+            console.warn('Deep link redirect failed:', err)
+          }
+        } else {
+          // Luôn giữ người dùng ở lại Web mượt mà
           const timer = setTimeout(() => {
             navigate('/', { replace: true })
-          }, 1200)
+          }, 1000)
           return () => clearTimeout(timer)
         }
       } catch (err) {
@@ -78,13 +71,6 @@ export default function AuthCallbackPage() {
 
     processSession()
   }, [navigate])
-
-  const handleOpenApp = () => {
-    soundManager.playClick()
-    if (appUrl) {
-      window.location.href = appUrl
-    }
-  }
 
   const handleContinueWeb = () => {
     soundManager.playClick()
@@ -108,43 +94,22 @@ export default function AuthCallbackPage() {
 
         <h2>Đăng Nhập Thành Công!</h2>
 
-        {isMobileDevice ? (
-          <>
-            <p className="callback-desc">
-              Hệ thống đang mở ứng dụng <strong>Toán Vui</strong> trên điện thoại của bạn...
-            </p>
+        <p className="callback-desc">
+          {status === 'error'
+            ? 'Đã có lỗi xảy ra trong quá trình xác thực. Bạn có thể nhấn bên dưới để về trang chủ.'
+            : 'Chào mừng bạn đến với Toán Vui! Đang chuyển hướng về trang học tập...'}
+        </p>
 
-            <div className="callback-actions">
-              <button className="open-app-btn" onClick={handleOpenApp}>
-                <Smartphone size={20} />
-                <span>Mở Ứng Dụng Toán Vui</span>
-                <ArrowRight size={18} />
-              </button>
-
-              <button className="continue-web-btn" onClick={handleContinueWeb}>
-                <Globe size={18} />
-                <span>Hoặc tiếp tục học trên Trình duyệt Web</span>
-              </button>
-            </div>
-
-            <p className="callback-hint">
-              💡 Nếu app không tự mở, hãy nhấn nút <strong>Mở Ứng Dụng Toán Vui</strong> ở trên.
-            </p>
-          </>
-        ) : (
-          <>
-            <p className="callback-desc">
-              Chào mừng bạn đến với Toán Vui! Đang chuyển hướng về trang học tập...
-            </p>
-            <div className="callback-spinner">
-              <Sparkles className="spin-icon" size={24} color="#FF9F1C" />
-            </div>
-            <button className="continue-web-btn" onClick={handleContinueWeb} style={{ marginTop: '1rem' }}>
-              <span>Vào học ngay</span>
-              <ArrowRight size={18} />
-            </button>
-          </>
+        {status !== 'error' && (
+          <div className="callback-spinner">
+            <Sparkles className="spin-icon" size={24} color="#FF9F1C" />
+          </div>
         )}
+
+        <button className="continue-web-btn" onClick={handleContinueWeb} style={{ marginTop: '1rem' }}>
+          <span>Vào học ngay</span>
+          <ArrowRight size={18} />
+        </button>
       </motion.div>
     </div>
   )
