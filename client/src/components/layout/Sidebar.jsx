@@ -34,7 +34,6 @@ export default function Sidebar() {
         <Link
           to="/"
           className="sidebar-logo"
-          onClick={() => soundManager.playClick()}
         >
           <span className="sidebar-logo-icon">
             <MascotIcon size={34} />
@@ -54,7 +53,6 @@ export default function Sidebar() {
               key={to}
               to={to}
               className={`sidebar-nav-item sidebar-item-${variant} ${isActive ? 'sidebar-item-active' : ''}`}
-              onClick={() => soundManager.playClick()}
             >
               <div className="sidebar-item-icon-wrap">
                 <Icon size={24} strokeWidth={2.4} />

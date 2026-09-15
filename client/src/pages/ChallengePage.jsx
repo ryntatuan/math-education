@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
-  Trophy,
   Flame,
   Gift,
   CheckCircle2,
@@ -241,23 +240,15 @@ export default function ChallengePage() {
       <div className="challenge-tabs-bar">
         <button
           className={`challenge-tab-btn ${activeTab === 'arena' ? 'active' : ''}`}
-          onClick={() => {
-            setActiveTab('arena')
-            soundManager.playClick()
-          }}
+          onClick={() => setActiveTab('arena')}
         >
-          <Trophy size={20} />
           <span>🏆 Đấu Trường Thi Đua</span>
         </button>
 
         <button
           className={`challenge-tab-btn ${activeTab === 'daily' ? 'active' : ''}`}
-          onClick={() => {
-            setActiveTab('daily')
-            soundManager.playClick()
-          }}
+          onClick={() => setActiveTab('daily')}
         >
-          <Flame size={20} />
           <span>🎯 Nhiệm Vụ Hằng Ngày</span>
           {allCompleted && <span className="tab-tag-done">✅</span>}
         </button>
@@ -282,7 +273,7 @@ export default function ChallengePage() {
               <div className="tier-action-group">
                 <div className="timer-pill">
                   <Clock size={16} />
-                  <span>Còn lại: <strong className="number">{timeLeft}</strong></span>
+                  <span>Còn lại: <strong>{timeLeft}</strong></span>
                 </div>
 
                 <button

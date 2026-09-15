@@ -166,6 +166,7 @@ export default function PracticePage() {
 
   const handleAnswer = (option) => {
     if (isAnswered) return
+    if (document.activeElement?.blur) document.activeElement.blur()
 
     setSelectedAnswer(option)
     setIsAnswered(true)
@@ -193,14 +194,16 @@ export default function PracticePage() {
         answer: currentQuestion.answer,
         hint: currentQuestion.hint,
         explanation: currentQuestion.hint || `Đáp án đúng là: ${currentQuestion.answer}`,
-        visualDisplay: currentQuestion.visualDisplay || currentQuestion.shapeVisual || currentQuestion.visual || null,
         grade: selectedGrade,
         topic: selectedTopic,
+        visualDisplay: currentQuestion.visualDisplay,
+        type: currentQuestion.type,
       })
     }
   }
 
   const nextQuestion = () => {
+    if (document.activeElement?.blur) document.activeElement.blur()
     soundManager.playClick()
     if (questionIndex + 1 >= TOTAL_QUESTIONS) {
       setIsFinished(true)
@@ -224,6 +227,7 @@ export default function PracticePage() {
   // Mistake review handlers
   const handleMistakeAnswer = (option, currentItem) => {
     if (mistakeAnswered) return
+    if (document.activeElement?.blur) document.activeElement.blur()
 
     setMistakeSelected(option)
     setMistakeAnswered(true)
@@ -377,7 +381,7 @@ export default function PracticePage() {
 
                     return (
                       <motion.button
-                        key={idx}
+                        key={`opt-${questionIndex}-${idx}`}
                         className={optClass}
                         onClick={() => handleAnswer(option)}
                         disabled={isAnswered}
@@ -520,10 +524,7 @@ export default function PracticePage() {
       <div className="practice-main-tabs">
         <button
           className={`main-tab-btn ${mainTab === 'practice' ? 'active' : ''}`}
-          onClick={() => {
-            setMainTab('practice')
-            soundManager.playClick()
-          }}
+          onClick={() => setMainTab('practice')}
         >
           <span className="tab-icon">✏️</span>
           <span>Luyện Tập Chủ Đề</span>
@@ -537,7 +538,6 @@ export default function PracticePage() {
             setMistakeSelected(null)
             setMistakeAnswered(false)
             setReviewFinished(false)
-            soundManager.playClick()
           }}
         >
           <span className="tab-icon">🔄</span>
@@ -564,10 +564,7 @@ export default function PracticePage() {
                 <button
                   key={g}
                   className={`grade-tab-btn ${selectedGrade === g ? 'active' : ''}`}
-                  onClick={() => {
-                    setSelectedGrade(g)
-                    soundManager.playClick()
-                  }}
+                  onClick={() => setSelectedGrade(g)}
                 >
                   Lớp {g}
                 </button>
@@ -744,7 +741,7 @@ export default function PracticePage() {
 
                             return (
                               <motion.button
-                                key={idx}
+                                key={`mopt-${mistakeIndex}-${idx}`}
                                 className={optCls}
                                 onClick={() => handleMistakeAnswer(opt, currentMistake)}
                                 disabled={mistakeAnswered}

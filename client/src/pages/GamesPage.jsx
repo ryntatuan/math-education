@@ -460,6 +460,7 @@ function MathRaceGame({ onBack, grade, addCoins, addXp, recordRaceWin, recordGam
 
   const handleAnswer = useCallback((option) => {
     if (feedback || gameOver) return
+    if (document.activeElement?.blur) document.activeElement.blur()
 
     const isCorrect = option === question?.answer
     if (isCorrect) {
@@ -473,6 +474,7 @@ function MathRaceGame({ onBack, grade, addCoins, addXp, recordRaceWin, recordGam
     }
 
     setTimeout(() => {
+      if (document.activeElement?.blur) document.activeElement.blur()
       setFeedback(null)
       setQuestion(generateQuestion(grade))
     }, 600)
@@ -598,7 +600,7 @@ function MathRaceGame({ onBack, grade, addCoins, addXp, recordRaceWin, recordGam
               <div className="race-answers-column">
                 {question.options.map((opt, i) => (
                   <button
-                    key={i}
+                    key={`${question.question || 'race'}-${i}`}
                     className={`race-opt-btn opt-pos-${i} ${
                       feedback === 'correct' && opt === question.answer
                         ? 'correct'

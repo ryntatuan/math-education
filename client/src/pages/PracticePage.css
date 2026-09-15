@@ -478,12 +478,19 @@
   position: relative;
 }
 
-.practice-opt-btn:hover:not(:disabled) {
-  border-color: #4facfe;
-  border-bottom-color: #0072ff;
-  background: #f0f7ff;
-  transform: translateY(-3px);
-  box-shadow: 0 6px 14px rgba(0, 114, 255, 0.15);
+.practice-opt-btn:focus,
+.practice-opt-btn:focus-visible {
+  outline: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .practice-opt-btn:hover:not(:disabled) {
+    border-color: #4facfe;
+    border-bottom-color: #0072ff;
+    background: #f0f7ff;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 14px rgba(0, 114, 255, 0.15);
+  }
 }
 
 .practice-opt-btn:active:not(:disabled) {
@@ -886,10 +893,17 @@
   transition: all 0.2s ease;
 }
 
-.mistake-opt-btn:hover:not(:disabled) {
-  border-color: #6366f1;
-  background: #f5f3ff;
-  transform: translateY(-2px);
+.mistake-opt-btn:focus,
+.mistake-opt-btn:focus-visible {
+  outline: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .mistake-opt-btn:hover:not(:disabled) {
+    border-color: #6366f1;
+    background: #f5f3ff;
+    transform: translateY(-2px);
+  }
 }
 
 .mistake-opt-btn.is-correct {

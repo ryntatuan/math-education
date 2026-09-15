@@ -109,6 +109,13 @@
   border-radius: 999px;
   font-size: 0.88rem;
   color: #475569;
+  font-family: var(--font-body, 'Quicksand', sans-serif);
+}
+
+.timer-pill strong {
+  font-family: var(--font-body, 'Quicksand', sans-serif);
+  font-weight: 700;
+  color: #1e293b;
 }
 
 /* League Roadmap */

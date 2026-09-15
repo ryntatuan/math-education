@@ -1,6 +1,5 @@
 import { Link, useLocation } from 'react-router-dom'
 import { Home, BookOpen, PenTool, Gamepad2, Trophy, User } from 'lucide-react'
-import soundManager from '../../utils/soundManager'
 import './BottomNav.css'
 
 const navItems = [
@@ -16,7 +15,6 @@ export default function BottomNav() {
   const location = useLocation()
 
   const handleItemClick = (to) => {
-    soundManager.playClick()
     if (location.pathname === to) {
       window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
       document.documentElement.scrollTop = 0

@@ -5,7 +5,6 @@ import GoogleIcon from '../common/GoogleIcon'
 import useUserStore from '../../store/useUserStore'
 import useProgressStore from '../../store/useProgressStore'
 import useAuthStore from '../../store/useAuthStore'
-import soundManager from '../../utils/soundManager'
 import './Header.css'
 
 export default function Header() {
@@ -21,7 +20,6 @@ export default function Header() {
           <Link
             to="/"
             className="header-logo"
-            onClick={() => soundManager.playClick()}
           >
             <span className="header-logo-icon">
               <MascotIcon size={32} />
@@ -69,10 +67,7 @@ export default function Header() {
           {isGuest && (
             <button
               className="header-login-btn"
-              onClick={() => {
-                soundManager.playClick()
-                setAuthModalOpen(true)
-              }}
+              onClick={() => setAuthModalOpen(true)}
               title="Đăng nhập tài khoản Google"
             >
               <GoogleIcon size={16} />
@@ -85,7 +80,6 @@ export default function Header() {
             to="/profile"
             className={`header-profile-pill ${isGuest ? 'header-profile-guest' : ''}`}
             title={isGuest ? 'Chế độ Khách (Bấm để xem)' : `Hồ sơ của ${nickname || 'Bé'}`}
-            onClick={() => soundManager.playClick()}
           >
             <span className="header-avatar-circle">
               {isGuest ? '👤' : avatar || '👦'}

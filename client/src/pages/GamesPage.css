@@ -388,11 +388,18 @@
   position: relative;
 }
 
-.race-opt-btn:hover {
-  border-color: #4facfe;
-  border-bottom-color: #0072ff;
-  background: #f0f7ff;
-  transform: translateY(-2px);
+.race-opt-btn:focus,
+.race-opt-btn:focus-visible {
+  outline: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .race-opt-btn:hover {
+    border-color: #4facfe;
+    border-bottom-color: #0072ff;
+    background: #f0f7ff;
+    transform: translateY(-2px);
+  }
 }
 
 .race-opt-btn:active {

@@ -120,7 +120,7 @@ export default function LeaderboardPage() {
 
           <div className="timer-pill">
             <Clock size={16} />
-            <span>Còn lại: <strong className="number">{timeLeft}</strong></span>
+            <span>Còn lại: <strong>{timeLeft}</strong></span>
           </div>
         </div>
 
