@@ -10,8 +10,9 @@
 .grade-page-header {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: stretch;
   gap: var(--space-4);
+  width: 100%;
 }
 
 .grade-header-content {

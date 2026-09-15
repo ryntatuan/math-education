@@ -9,7 +9,8 @@ const __dirname = path.dirname(__filename)
 const rootDir = path.resolve(__dirname, '..')
 const clientDir = path.resolve(rootDir, 'client')
 const androidDir = path.resolve(clientDir, 'android')
-const builtApkPath = path.resolve(androidDir, 'app/build/outputs/apk/debug/app-debug.apk')
+const builtApkPath = path.resolve(androidDir, 'app/build/outputs/apk/release/app-release.apk')
+const fallbackDebugApkPath = path.resolve(androidDir, 'app/build/outputs/apk/debug/app-debug.apk')
 const targetDownloadsDir = path.resolve(clientDir, 'public/downloads')
 const targetApk = path.resolve(targetDownloadsDir, 'ToanVui.apk')
 const versionFile = path.resolve(targetDownloadsDir, 'version.json')
@@ -57,13 +58,14 @@ try {
   stripApksFromDir(path.resolve(androidDir, 'app/src/main/assets/public'))
   console.log('🧹 Đã loại bỏ file APK trung gian khỏi assets Android để giữ dung lượng siêu gọn.')
 
-  console.log('\n📦 [3/4] Đang biên dịch file Android APK (Gradle assembleDebug)...')
+  console.log('\n📦 [3/4] Đang biên dịch file Android APK chính thức (Gradle assembleRelease)...')
   const isWindows = process.platform === 'win32'
-  const gradlewCmd = isWindows ? 'cmd.exe /c "gradlew.bat assembleDebug"' : './gradlew assembleDebug'
+  const gradlewCmd = isWindows ? 'cmd.exe /c "gradlew.bat assembleRelease"' : './gradlew assembleRelease'
   execSync(gradlewCmd, { cwd: androidDir, stdio: 'inherit' })
 
   console.log('\n🚚 [4/4] Đang cập nhật file APK vào thư mục downloads...')
-  if (!fs.existsSync(builtApkPath)) {
+  const finalApkPath = fs.existsSync(builtApkPath) ? builtApkPath : fallbackDebugApkPath
+  if (!fs.existsSync(finalApkPath)) {
     throw new Error(`Không tìm thấy file APK sau khi build: ${builtApkPath}`)
   }
 
@@ -72,13 +74,13 @@ try {
   }
 
   // Copy sang public/downloads, public gốc và dist/downloads
-  fs.copyFileSync(builtApkPath, targetApk)
-  fs.copyFileSync(builtApkPath, path.resolve(clientDir, 'public/ToanVui.apk'))
+  fs.copyFileSync(finalApkPath, targetApk)
+  fs.copyFileSync(finalApkPath, path.resolve(clientDir, 'public/ToanVui.apk'))
 
   const distDownloadsDir = path.resolve(clientDir, 'dist/downloads')
   if (fs.existsSync(distDownloadsDir)) {
-    fs.copyFileSync(builtApkPath, path.resolve(distDownloadsDir, 'ToanVui.apk'))
-    fs.copyFileSync(builtApkPath, path.resolve(clientDir, 'dist/ToanVui.apk'))
+    fs.copyFileSync(finalApkPath, path.resolve(distDownloadsDir, 'ToanVui.apk'))
+    fs.copyFileSync(finalApkPath, path.resolve(clientDir, 'dist/ToanVui.apk'))
   }
 
   const stats = fs.statSync(targetApk)

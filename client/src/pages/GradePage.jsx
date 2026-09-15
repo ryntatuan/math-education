@@ -48,21 +48,21 @@ export default function GradePage() {
             <ArrowLeft size={18} />
             <span>Trang chủ</span>
           </button>
+        </div>
 
-          <div className="grade-nav-tabs">
-            {curriculum.grades.map((g) => (
-              <button
-                key={g.id}
-                className={`grade-tab-pill ${selectedGrade === g.id ? 'active' : ''}`}
-                onClick={() => {
-                  setSelectedGrade(g.id)
-                  setGrade(g.id)
-                }}
-              >
-                {g.name}
-              </button>
-            ))}
-          </div>
+        <div className="grade-nav-tabs">
+          {curriculum.grades.map((g) => (
+            <button
+              key={g.id}
+              className={`grade-tab-pill ${selectedGrade === g.id ? 'active' : ''}`}
+              onClick={() => {
+                setSelectedGrade(g.id)
+                setGrade(g.id)
+              }}
+            >
+              {g.name}
+            </button>
+          ))}
         </div>
 
         <div className="grade-header-content">

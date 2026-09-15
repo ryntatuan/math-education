@@ -404,16 +404,19 @@ ul, ol {
   border-radius: var(--radius-full);
   border: 1.5px solid #e2e8f0;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  width: 100%;
+  max-width: 100%;
 }
 
 .grade-tab-pill {
+  flex: 1;
   border: none;
   background: transparent;
-  padding: 7px 14px;
+  padding: 8px 14px;
   border-radius: var(--radius-full);
   font-family: var(--font-heading);
   font-weight: 700;
-  font-size: 0.92rem;
+  font-size: 0.95rem;
   color: var(--color-text-secondary);
   cursor: pointer;
   transition: all var(--transition-fast);
@@ -430,6 +433,13 @@ ul, ol {
   background: linear-gradient(135deg, #4ecdc4 0%, #22b8cf 100%);
   color: white;
   box-shadow: 0 4px 12px rgba(78, 205, 196, 0.35);
+}
+
+@media (max-width: 640px) {
+  .grade-tab-pill {
+    padding: 7px 4px;
+    font-size: 0.85rem;
+  }
 }
 
 /* ========================================

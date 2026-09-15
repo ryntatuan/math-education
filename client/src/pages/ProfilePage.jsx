@@ -112,8 +112,11 @@ export default function ProfilePage() {
               <h2>Bạn Nhỏ</h2>
               <span className="badge-guest-pill">⚡ Khách Trải Nghiệm</span>
             </div>
-            <div className="profile-grade-tag">
-              <span>Học sinh Lớp {grade}</span>
+            <div className="profile-badge-row">
+              <div className="profile-grade-tag">
+                <span>Học sinh Lớp {grade}</span>
+              </div>
+              <span className="profile-app-version-pill">v{APP_VERSION}</span>
             </div>
             <p className="guest-header-hint">
               Bạn đang học thử ở Chế độ Khách. Dữ liệu học tập chưa được lưu vĩnh viễn.
@@ -278,8 +281,11 @@ export default function ProfilePage() {
             )}
           </div>
 
-          <div className="profile-grade-tag">
-            <span>Học sinh Lớp {grade}</span>
+          <div className="profile-badge-row">
+            <div className="profile-grade-tag">
+              <span>Học sinh Lớp {grade}</span>
+            </div>
+            <span className="profile-app-version-pill">v{APP_VERSION}</span>
           </div>
 
           {/* Level Progress */}
@@ -302,57 +308,54 @@ export default function ProfilePage() {
 
       {/* Account & Cloud Sync Section */}
       <div className="profile-account-card">
-        <div className="account-card-header">
-          <div className="account-card-title-group">
-            <span className="account-icon">☁️</span>
-            <div>
-              <h3>Tài Khoản & Đám Mây</h3>
-              <p className="account-card-desc">
+        <div className="account-card-main-row">
+          <div className="account-user-info-group">
+            <div className="account-icon-badge">☁️</div>
+            <div className="account-details">
+              <div className="account-header-line">
+                <h3>Tài Khoản & Đám Mây</h3>
+                {!isGuest ? (
+                  <span className="badge-synced-pill">
+                    <Check size={12} /> Đã đồng bộ
+                  </span>
+                ) : (
+                  <span className="badge-guest-pill-inline">⚡ Khách</span>
+                )}
+              </div>
+              <p className="account-email-text">
                 {isGuest
-                  ? 'Đăng nhập Google để sao lưu vĩnh viễn tiến độ học tập của bé'
-                  : `Tài khoản liên kết: ${user?.email || 'Đã đăng nhập'}`}
+                  ? 'Đăng nhập Google để sao lưu vĩnh viễn tiến độ học'
+                  : (user?.email || 'Tài khoản Google')}
               </p>
             </div>
           </div>
 
-          <div className="account-status-badge">
-            {isGuest ? (
-              <span className="badge-guest">⚡ Chế độ Khách</span>
-            ) : (
-              <span className="badge-synced">
-                <Check size={14} /> Đã đồng bộ đám mây
-              </span>
-            )}
-          </div>
-        </div>
-
-        {isGuest ? (
-          <div className="account-guest-actions">
+          {!isGuest ? (
             <button
-              className="btn-google-login-profile"
-              onClick={() => {
-                soundManager.playClick()
-                setAuthModalOpen(true)
-              }}
-            >
-              <GoogleIcon size={18} />
-              <span>Đăng nhập bằng Google để lưu tiến độ</span>
-            </button>
-          </div>
-        ) : (
-          <div className="account-bottom-actions">
-            <button
-              className="btn-logout"
+              className="btn-account-logout"
+              title="Đăng xuất khỏi thiết bị này"
               onClick={() => {
                 if (window.confirm('Bạn có chắc muốn đăng xuất khỏi tài khoản này?')) {
                   signOut()
                 }
               }}
             >
-              <LogOut size={16} /> Đăng xuất tài khoản
+              <LogOut size={14} />
+              <span>Đăng xuất</span>
             </button>
-          </div>
-        )}
+          ) : (
+            <button
+              className="btn-account-login"
+              onClick={() => {
+                soundManager.playClick()
+                setAuthModalOpen(true)
+              }}
+            >
+              <GoogleIcon size={16} />
+              <span>Đăng nhập</span>
+            </button>
+          )}
+        </div>
       </div>
 
       {/* Stats Summary Grid */}
