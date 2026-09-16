@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { ArrowLeft, Lock, CheckCircle2 } from 'lucide-react'
+import { ArrowLeft, Lock, CheckCircle2, Play, RotateCcw, ArrowRight } from 'lucide-react'
 import Card from '../components/ui/Card'
 import Button from '../components/ui/Button'
 import Badge from '../components/ui/Badge'
@@ -10,6 +10,7 @@ import useUserStore from '../store/useUserStore'
 import useProgressStore from '../store/useProgressStore'
 import curriculum, { getGrade, getChapter } from '../data/curriculum'
 import soundManager from '../utils/soundManager'
+import RightSidebar from '../components/layout/RightSidebar'
 import './GradePage.css'
 
 export default function GradePage() {
@@ -35,45 +36,33 @@ export default function GradePage() {
   }
 
   return (
-    <div className="grade-page">
-      <div className="grade-page-header">
-        <div className="page-nav-row">
-          <button
-            className="btn-back"
-            onClick={() => {
-              soundManager.playClick()
-              navigate('/')
-            }}
-          >
-            <ArrowLeft size={18} />
-            <span>Trang chủ</span>
-          </button>
-        </div>
+    <div className="page-2col-layout">
+      <div className="learning-main-column">
+        <div className="practice-intro" style={{ marginBottom: '24px', backgroundColor: 'white', border: '1px solid #f1f5f9', padding: '24px', borderRadius: '20px', boxShadow: '0 4px 20px rgba(0, 0, 0, 0.03)' }}>
+          <div className="practice-intro-text">
+            <h1>{gradeData.icon} {gradeData.name}</h1>
+            <p className="grade-page-desc">{gradeData.description}</p>
+          </div>
 
-        <div className="grade-nav-tabs">
-          {curriculum.grades.map((g) => (
-            <button
-              key={g.id}
-              className={`grade-tab-pill ${selectedGrade === g.id ? 'active' : ''}`}
-              onClick={() => {
-                setSelectedGrade(g.id)
-                setGrade(g.id)
-              }}
-            >
-              {g.name}
-            </button>
-          ))}
+          <div className="grade-selector-tabs">
+            {curriculum.grades.map((g) => (
+              <button
+                key={g.id}
+                className={`grade-tab-btn ${selectedGrade === g.id ? 'active' : ''}`}
+                onClick={() => {
+                  setSelectedGrade(g.id)
+                  setGrade(g.id)
+                }}
+              >
+                {g.name}
+              </button>
+            ))}
+          </div>
         </div>
-
-        <div className="grade-header-content">
-          <h1>{gradeData.icon} {gradeData.name}</h1>
-          <p className="grade-page-desc">{gradeData.description}</p>
-        </div>
-      </div>
 
       <motion.div
         key={selectedGrade}
-        className="chapters-list"
+        className="home-chapters-grid"
         initial="hidden"
         animate="show"
         variants={{
@@ -91,6 +80,8 @@ export default function GradePage() {
           />
         ))}
       </motion.div>
+      </div>
+        <RightSidebar hideOnMobile={true} />
     </div>
   )
 }
@@ -102,67 +93,108 @@ function ChapterCard({ chapter, index, gradeId, onClick }) {
   const hasLessons = (chapter.lessons?.length || 0) > 0
   const isLocked = !hasLessons && !chapter.totalLessons
 
+  const match = chapter.name.match(/^(?:Chương|Chủ\s*đề)\s+\d+[:\s-]*(.+)$/i)
+  const chapterTag = `Chương ${index + 1}`
+  const chapterTitle = match ? match[1] : chapter.name
+  const fullTitle = `${chapterTag}: ${chapterTitle}`
+
+  const isCompleted = progress.percent === 100
+  const hasStarted = progress.completed > 0
+
   return (
     <motion.div
       variants={{
-        hidden: { opacity: 0, x: -30 },
-        show: { opacity: 1, x: 0 },
+        hidden: { opacity: 0, y: 12 },
+        show: { opacity: 1, y: 0 },
       }}
+      className={`home-chapter-card ${isLocked ? 'chapter-locked' : ''}`}
+      onClick={isLocked ? undefined : onClick}
+      whileHover={!isLocked ? { scale: 1.02, y: -3 } : {}}
+      whileTap={!isLocked ? { scale: 0.98 } : {}}
     >
-      <Card
-        hoverable={!isLocked}
-        onClick={isLocked ? undefined : onClick}
-        className={`chapter-card ${isLocked ? 'chapter-locked' : ''}`}
+      <div
+        className="chapter-card-icon"
+        style={{
+          background: `${chapter.color || '#0284c7'}18`,
+          color: chapter.color || '#0284c7'
+        }}
       >
-        <div className="chapter-card-inner">
-          <div
-            className="chapter-number"
-            style={{ background: chapter.color + '22', color: chapter.color }}
+        <span>{chapter.icon || '🔢'}</span>
+      </div>
+
+      <div className="chapter-card-info">
+        <div className="chapter-card-header">
+          <span
+            className="chapter-tag-badge"
+            style={{
+              color: chapter.color || '#0284c7',
+              backgroundColor: `${chapter.color || '#0284c7'}15`,
+              borderColor: `${chapter.color || '#0284c7'}30`,
+            }}
           >
-            {isLocked ? <Lock size={20} /> : index + 1}
-          </div>
-
-          <div className="chapter-info">
-            <div className="chapter-title-row">
-              <h3>{chapter.name}</h3>
-              {progress.percent === 100 && (
-                <CheckCircle2 size={20} className="chapter-complete-icon" />
-              )}
+            {chapterTag}
+          </span>
+          {!isLocked && (
+            <div
+              className={`chapter-stars-badge ${progress.earnedStars > 0
+                ? progress.earnedStars === progress.maxStars
+                  ? 'perfect'
+                  : 'active'
+                : 'empty'
+                }`}
+              title={`Đã tích lũy ${progress.earnedStars}/${progress.maxStars} sao`}
+            >
+              <span className="star-icon">⭐</span>
+              <span className="star-count">{progress.earnedStars}</span>
+              <span className="star-max">/{progress.maxStars}</span>
             </div>
-            <p className="chapter-desc">{chapter.description}</p>
-
-            <div className="chapter-meta">
-              <Badge variant="default" size="sm" icon={chapter.icon}>
-                {totalLessonsCount} bài học
-              </Badge>
-              {progress.completed > 0 && (
-                <Badge variant={progress.percent === 100 ? 'success' : 'progress'} size="sm">
-                  {progress.percent === 100 ? `🏆 Hoàn thành (${progress.total}/${progress.total})` : `📖 Đã học ${progress.completed}/${progress.total}`}
-                </Badge>
-              )}
-              {progress.maxStars > 0 && (
-                <Badge variant={progress.earnedStars > 0 ? 'warning' : 'default'} size="sm">
-                  ⭐ {progress.earnedStars}/{progress.maxStars} sao
-                </Badge>
-              )}
-              {isLocked && (
-                <Badge variant="default" size="sm">
-                  🔒 Sắp ra mắt
-                </Badge>
-              )}
-            </div>
-
-            {progress.completed > 0 && (
-              <ProgressBar
-                value={progress.completed}
-                max={progress.total}
-                variant="success"
-                size="sm"
-              />
-            )}
-          </div>
+          )}
         </div>
-      </Card>
+
+        <h3 className="chapter-card-title" title={fullTitle}>
+          {chapterTitle}
+        </h3>
+
+        <p className="chapter-card-desc" title={chapter.description}>{chapter.description}</p>
+
+        <div className="chapter-card-footer">
+          {!isLocked && (
+            <div className="chapter-progress-box">
+              <div className="chapter-progress-track">
+                <div
+                  className="chapter-progress-fill"
+                  style={{ width: `${progress.percent}%` }}
+                />
+              </div>
+              <span className="chapter-progress-text number">
+                {progress.percent}% ({progress.completed}/{progress.total})
+              </span>
+            </div>
+          )}
+
+          {isLocked ? (
+            <button type="button" className="btn-chapter-pill start" disabled style={{ opacity: 0.5, cursor: 'not-allowed' }}>
+              <Lock size={12} />
+              <span>Sắp ra mắt</span>
+            </button>
+          ) : isCompleted ? (
+            <button type="button" className="btn-chapter-pill done">
+              <RotateCcw size={13} />
+              <span>Ôn lại</span>
+            </button>
+          ) : hasStarted ? (
+            <button type="button" className="btn-chapter-pill continue">
+              <span>Học tiếp</span>
+              <ArrowRight size={13} />
+            </button>
+          ) : (
+            <button type="button" className="btn-chapter-pill start">
+              <span>Bắt đầu</span>
+              <Play size={12} />
+            </button>
+          )}
+        </div>
+      </div>
     </motion.div>
   )
 }

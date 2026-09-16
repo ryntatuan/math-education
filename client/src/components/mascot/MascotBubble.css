@@ -84,10 +84,10 @@
   border: 2px solid white;
   border-radius: var(--radius-full);
   box-shadow: 0 0 10px #43e97b;
-  animation: pulse-glow 1.5s infinite;
+  animation: mascot-pulse-glow 1.5s infinite;
 }
 
-@keyframes pulse-glow {
+@keyframes mascot-pulse-glow {
   0%, 100% {
     transform: scale(1);
     opacity: 0.9;

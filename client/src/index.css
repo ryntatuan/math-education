@@ -482,3 +482,75 @@ ul, ol {
 @media (min-width: 1025px) {
   .hide-desktop { display: none !important; }
 }
+
+/* --- Global Grade Tabs --- */
+.grade-selector-tabs {
+  display: flex;
+  background: white;
+  padding: 5px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  gap: 6px;
+  margin-top: var(--space-2);
+  border: 1.5px solid #e2e8f0;
+  max-width: 480px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.grade-tab-btn {
+  flex: 1;
+  padding: 8px 14px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  border: none;
+  background: transparent;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+  text-align: center;
+}
+
+.grade-tab-btn:hover {
+  color: #1e293b;
+  background: #f8fafc;
+}
+
+.grade-tab-btn.active {
+  background: linear-gradient(135deg, #4ecdc4 0%, #22b8cf 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(78, 205, 196, 0.35);
+}
+
+
+/* --- Global 2-Column Layout --- */
+.page-2col-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(340px, 22vw, 420px);
+  gap: clamp(20px, 1.8vw, 32px);
+  align-items: start;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+@media (min-width: 2000px) {
+  .page-2col-layout {
+    grid-template-columns: minmax(0, 1fr) clamp(400px, 20vw, 480px);
+    gap: 36px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .page-2col-layout {
+    grid-template-columns: 1fr;
+  }
+  .companion-sticky-column.hide-on-mobile {
+    display: none;
+  }
+}
+

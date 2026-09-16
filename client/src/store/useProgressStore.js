@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import useAuthStore from './useAuthStore'
+import useUserStore from './useUserStore'
 
 const getDatePlusDays = (days = 1) => {
   const d = new Date()
@@ -130,18 +131,37 @@ const useProgressStore = create(
       progressQuest: (questId, amount = 1) => {
         get().initOrResetDailyQuests()
         const state = get()
+        let coinsToGive = 0
+        let xpToGive = 0
+
         const quests = (state.dailyQuests || DEFAULT_DAILY_QUESTS).map((q) => {
-          if (q.id === questId) {
+          if (q.id === questId && !q.done) {
             const nextCur = Math.min(q.target, q.current + amount)
+            const isDoneNow = nextCur >= q.target
+            if (isDoneNow) {
+              coinsToGive += q.reward
+              xpToGive += q.reward * 2
+            }
             return {
               ...q,
               current: nextCur,
-              done: nextCur >= q.target,
+              done: isDoneNow,
             }
           }
           return q
         })
         set({ dailyQuests: quests })
+
+        if (coinsToGive > 0 || xpToGive > 0) {
+          try {
+            if (!useAuthStore.getState().isGuest) {
+              useUserStore.getState().addCoins(coinsToGive)
+              useUserStore.getState().addXp(xpToGive)
+            }
+          } catch (e) {
+            console.error('Failed to give quest rewards:', e)
+          }
+        }
       },
 
       claimDailyQuestsBonus: () => {

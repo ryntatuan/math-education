@@ -12,7 +12,6 @@ const navItems = [
   { to: '/learn', label: 'Học bài', icon: BookOpen, variant: 'learn' },
   { to: '/practice', label: 'Luyện tập', icon: PenTool, variant: 'practice' },
   { to: '/games', label: 'Trò chơi', icon: Gamepad2, variant: 'games' },
-  { to: '/stories', label: 'Truyện toán', icon: Sparkles, variant: 'stories' },
   { to: '/challenges', label: 'Thử thách', icon: Trophy, variant: 'challenges' },
   { to: '/parent', label: 'Phụ huynh', icon: ShieldCheck, variant: 'parent' },
 ]

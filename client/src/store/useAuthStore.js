@@ -186,7 +186,7 @@ export const useAuthStore = create((set, get) => ({
         }
       } else {
         const redirectTo = `${window.location.origin}/auth/callback`
-        const { error } = await supabase.auth.signInWithOAuth({
+        const { data, error } = await supabase.auth.signInWithOAuth({
           provider: 'google',
           options: {
             redirectTo,
@@ -197,6 +197,11 @@ export const useAuthStore = create((set, get) => ({
           },
         })
         if (error) throw error
+        
+        // Force redirect if Supabase does not automatically redirect
+        if (data?.url) {
+          window.location.href = data.url
+        }
       }
     } catch (err) {
       console.error('Lỗi đăng nhập Google:', err.message)

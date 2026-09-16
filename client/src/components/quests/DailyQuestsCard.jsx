@@ -149,7 +149,7 @@ export default function DailyQuestsCard() {
             </div>
 
             {!isGuest ? (
-              <span className="quest-reward-pill number">+{quest.reward} Xu</span>
+              <span className="quest-reward-pill number">+{quest.reward} Xu & +{quest.reward * 2} XP</span>
             ) : (
               <span className="quest-reward-pill guest-reward-tag">Luyện tập</span>
             )}
@@ -163,7 +163,7 @@ export default function DailyQuestsCard() {
           {dailyQuestsClaimed ? '🎁' : allDone ? '✨🎁' : '🔒'}
         </div>
         <div className="bonus-text">
-          <strong>{isGuest ? 'Rương Thưởng Mỗi Ngày' : 'Rương Thưởng Hoàn Thành Ngày (+50 Xu)'}</strong>
+          <strong>{isGuest ? 'Rương Thưởng Mỗi Ngày' : 'Rương Thưởng Hoàn Thành Ngày (+50 Xu & 60 XP)'}</strong>
           <span>{allDone ? (dailyQuestsClaimed ? 'Đã nhận thưởng hôm nay!' : (isGuest ? 'Hoàn thành xuất sắc nhiệm vụ hôm nay!' : 'Tuyệt vời! Bấm nhận thưởng nào!')) : 'Hoàn thành đủ 3 nhiệm vụ để mở rương!'}</span>
         </div>
 

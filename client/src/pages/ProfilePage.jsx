@@ -423,7 +423,7 @@ export default function ProfilePage() {
 
       {/* App Version & Credentials Info Footer */}
       <div className="profile-version-footer">
-        <span>Toán Vui v{APP_VERSION} • Crafted with ❤️ by Rynta</span>
+        <span>Toán Vui v{APP_VERSION} • Made by Rynta</span>
       </div>
     </div>
   )

@@ -73,7 +73,7 @@
 }
 
 .bottom-nav-label {
-  font-size: 0.67rem;
+  font-size: 0.78rem;
   font-weight: 700;
   font-family: var(--font-body);
   white-space: nowrap;
@@ -90,7 +90,7 @@
 
 @media (max-width: 370px) {
   .bottom-nav-label {
-    font-size: 0.61rem;
+    font-size: 0.72rem;
     letter-spacing: -0.4px;
   }
 

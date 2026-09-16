@@ -2,9 +2,9 @@
    CHALLENGE PAGE & DUAL-TAB SYSTEM
    ======================================== */
 .challenge-page {
-  max-width: 840px;
-  margin: 0 auto;
+  max-width: 100%;
   width: 100%;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 20px;

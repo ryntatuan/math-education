@@ -13,6 +13,7 @@ import { generateQuestion, generateCalculation } from '../utils/exerciseGenerato
 import soundManager from '../utils/soundManager'
 import fireConfetti from '../utils/confettiHelper'
 import StoriesPage from './StoriesPage'
+import RightSidebar from '../components/layout/RightSidebar'
 import './GamesPage.css'
 
 // Game Definitions
@@ -126,42 +127,40 @@ export default function GamesPage() {
 
   return (
     <div className="games-container">
-      {/* Top Navigation Tabs: 6 Mini Games | 8 Math Stories */}
-      {!activeGame && (
-        <div className="games-main-nav-tabs">
-          <button
-            type="button"
-            className={`games-tab-btn ${mainTab === 'games' ? 'active' : ''}`}
-            onClick={() => {
-              soundManager.playClick()
-              setMainTab('games')
-              setSearchParams({})
-            }}
-          >
-            <span className="tab-icon">🎮</span>
-            <span>Trò Chơi Mini</span>
-          </button>
-
-          <button
-            type="button"
-            className={`games-tab-btn ${mainTab === 'stories' ? 'active' : ''}`}
-            onClick={() => {
-              soundManager.playClick()
-              setMainTab('stories')
-              setSearchParams({ tab: 'stories' })
-            }}
-          >
-            <span className="tab-icon">📖</span>
-            <span>Truyện Tranh Toán</span>
-          </button>
-        </div>
-      )}
-
       {!activeGame ? (
-        mainTab === 'stories' ? (
-          <StoriesPage />
-        ) : (
-          <div className="game-select-screen">
+        <div className="page-2col-layout">
+          <div className="learning-main-column">
+            <div className="games-main-nav-tabs">
+              <button
+                type="button"
+                className={`games-tab-btn ${mainTab === 'games' ? 'active' : ''}`}
+                onClick={() => {
+                  soundManager.playClick()
+                  setMainTab('games')
+                  setSearchParams({})
+                }}
+              >
+                <span className="tab-icon">🎮</span>
+                <span>Trò Chơi Mini</span>
+              </button>
+              <button
+                type="button"
+                className={`games-tab-btn ${mainTab === 'stories' ? 'active' : ''}`}
+                onClick={() => {
+                  soundManager.playClick()
+                  setMainTab('stories')
+                  setSearchParams({ tab: 'stories' })
+                }}
+              >
+                <span className="tab-icon">📖</span>
+                <span>Truyện Tranh Toán</span>
+              </button>
+            </div>
+
+            {mainTab === 'stories' ? (
+              <StoriesPage />
+            ) : (
+              <div className="game-select-screen">
             <div className="games-hero">
               <h1>🎮 Khu Vui Chơi & Trò Chơi Toán Học</h1>
               <p>Vừa chơi vui nhộn vừa rèn luyện phản xạ tính nhẩm siêu tốc cùng các bạn thú cưng!</p>
@@ -192,7 +191,10 @@ export default function GamesPage() {
               ))}
             </div>
           </div>
-        )
+            )}
+          </div>
+          <RightSidebar hideOnMobile={true} />
+        </div>
       ) : activeGame === 'math_race' ? (
         <MathRaceGame
           onBack={() => setActiveGame(null)}
@@ -1051,7 +1053,11 @@ function MemoryMatchGame({ onBack, grade, addCoins, addXp, recordGamePlayed }) {
         <div className="race-gameover-card">
           <span className="gameover-trophy">🏆</span>
           <h2>Trí Nhớ Siêu Phàm!</h2>
-          <p>Bé đã ghép đúng toàn bộ 4 cặp thẻ bài chỉ trong {turns} lượt lật!</p>
+          <p>
+            Bé đã ghép đúng toàn bộ 4 cặp thẻ bài chỉ trong {turns} lượt lật! Nhận được{' '}
+            <strong style={{ color: '#F59F00' }}>+35 Xu</strong> và{' '}
+            <strong style={{ color: '#4DABF7' }}>+50 XP</strong>!
+          </p>
           <div className="gameover-btns">
             <Button variant="primary" size="lg" onClick={initDeck}>
               <RotateCcw size={18} /> Chơi ván khác
@@ -1287,7 +1293,11 @@ function MathBalanceGame({ onBack, grade = 1, addCoins, addXp, recordGamePlayed 
         <div className="race-gameover-card">
           <span className="gameover-trophy">🏆</span>
           <h2>Thần Kì Thăng Bằng!</h2>
-          <p>Bé đã xuất sắc cân bằng toàn bộ {TOTAL_ROUNDS} đĩa cân thần kỳ và ghi được {score} điểm!</p>
+          <p>
+            Bé đã xuất sắc cân bằng toàn bộ {TOTAL_ROUNDS} đĩa cân thần kỳ và ghi được {score} điểm! Nhận được{' '}
+            <strong style={{ color: '#F59F00' }}>+15 Xu</strong> và{' '}
+            <strong style={{ color: '#4DABF7' }}>+40 XP</strong>!
+          </p>
           <div className="gameover-btns">
             <Button variant="primary" size="lg" onClick={handleRestart}>
               <RotateCcw size={18} /> Chơi ván khác
@@ -1505,7 +1515,9 @@ function SpaceDefenseGame({ onBack, grade = 1, addCoins, addXp, recordGamePlayed
           <span className="gameover-trophy">🚀</span>
           <h2>Hoàn Thành Nhiệm Vụ Vũ Trụ!</h2>
           <p>
-            Bé đã bắn tan {destroyedCount} mảnh thiên thạch, đạt Combo cao nhất x{maxCombo} và ghi được {score} điểm!
+            Bé đã bắn tan {destroyedCount} mảnh thiên thạch, đạt Combo cao nhất x{maxCombo} và ghi được {score} điểm! Nhận được{' '}
+            <strong style={{ color: '#F59F00' }}>+{Math.max(5, Math.floor(score / 4))} Xu</strong> và{' '}
+            <strong style={{ color: '#4DABF7' }}>+{Math.max(10, Math.floor(score / 2))} XP</strong>!
           </p>
           <div className="gameover-btns">
             <Button variant="primary" size="lg" onClick={handleRestart}>
@@ -1706,7 +1718,11 @@ function MathFishingGame({ onBack, grade = 1, addCoins, addXp, recordGamePlayed 
         <div className="race-gameover-card">
           <span className="gameover-trophy">🎣</span>
           <h2>Vua Câu Cá Thông Thái!</h2>
-          <p>Bé đã câu đầy giỏ {TARGET_FISH} chú cá thông thái và đạt được {score} điểm xuất sắc!</p>
+          <p>
+            Bé đã câu đầy giỏ {TARGET_FISH} chú cá thông thái và đạt được {score} điểm xuất sắc! Nhận được{' '}
+            <strong style={{ color: '#F59F00' }}>+20 Xu</strong> và{' '}
+            <strong style={{ color: '#4DABF7' }}>+50 XP</strong>!
+          </p>
           <div className="gameover-btns">
             <Button variant="primary" size="lg" onClick={handleRestart}>
               <RotateCcw size={18} /> Chơi ván khác

@@ -2,8 +2,8 @@
    GAMES PAGE & MINI-GAMES
    ======================================== */
 .games-container {
+  max-width: 100%;
   width: 100%;
-  max-width: 1000px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -65,20 +65,27 @@
 }
 
 .games-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  margin-top: var(--space-4);
-  margin-bottom: var(--space-8);
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
 }
 
 .games-hero h1 {
-  font-size: var(--text-3xl);
+  font-size: var(--text-2xl);
+  font-weight: 800;
   color: var(--color-text-primary);
-  margin-bottom: var(--space-2);
+  margin-bottom: 2px;
 }
 
 .games-hero p {
-  font-size: var(--text-lg);
+  font-size: 0.95rem;
   color: var(--color-text-secondary);
+  max-width: 540px;
+  line-height: 1.5;
+  margin: 0;
 }
 
 .game-cards-grid {

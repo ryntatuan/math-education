@@ -7,6 +7,7 @@ import AuthModal from './components/auth/AuthModal'
 import DownloadAppModal from './components/modals/DownloadAppModal'
 import HomePage from './pages/HomePage'
 import GradePage, { ChapterPage } from './pages/GradePage'
+import MascotBubble from './components/mascot/MascotBubble'
 import LessonPage from './pages/LessonPage'
 import PracticePage from './pages/PracticePage'
 import GamesPage from './pages/GamesPage'
@@ -57,6 +58,13 @@ function AppLayout() {
       {!isLessonRoute && <BottomNav />}
       <AuthModal />
       <DownloadAppModal />
+      {!isLessonRoute && (
+        <MascotBubble
+          text="Chào bạn! Hôm nay mình học toán nhé! 🎓"
+          mood="happy"
+          position="bottom-right"
+        />
+      )}
     </div>
   )
 }

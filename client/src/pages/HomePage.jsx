@@ -24,6 +24,7 @@ import useLeagueStore, { LEAGUE_TIERS } from '../store/useLeagueStore'
 import useDownloadModalStore from '../store/useDownloadModalStore'
 import { Capacitor } from '@capacitor/core'
 import { detectDeviceOS, isIOS } from '../utils/deviceHelper'
+import RightSidebar from '../components/layout/RightSidebar'
 import { APP_VERSION } from '../config/appVersion'
 import curriculum from '../data/curriculum'
 import soundManager from '../utils/soundManager'
@@ -57,9 +58,9 @@ export default function HomePage() {
 
   // Lọc theo Học kỳ (linh hoạt theo số chương của từng lớp)
   const halfPoint = Math.ceil(allChaptersForGrade.length / 2)
-  const displayedChapters = allChaptersForGrade.filter((_, idx) => {
-    if (semesterFilter === 'sem1') return idx < halfPoint
-    if (semesterFilter === 'sem2') return idx >= halfPoint
+  const displayedChaptersWithIndex = allChaptersForGrade.map((chapter, idx) => ({ chapter, originalIndex: idx })).filter((item) => {
+    if (semesterFilter === 'sem1') return item.originalIndex < halfPoint
+    if (semesterFilter === 'sem2') return item.originalIndex >= halfPoint
     return true
   })
 
@@ -75,7 +76,7 @@ export default function HomePage() {
 
   return (
     <div className="home-dashboard-container">
-      <div className="home-dashboard-2col">
+      <div className="page-2col-layout">
 
         {/* =========================================================
             CỘT TRÁI (68%): TRỤC HỌC TẬP CHÍNH (Chọn Lớp & 10 Chương)
@@ -134,16 +135,16 @@ export default function HomePage() {
                 className={`sem-pill-btn ${semesterFilter === 'sem1' ? 'active' : ''}`}
                 onClick={() => setSemesterFilter('sem1')}
               >
-                <span className="hide-mobile">🌸 Học kỳ 1 (Chương 1 - 5)</span>
-                <span className="hide-desktop hide-tablet">🌸 HK 1 (1 - 5)</span>
+                <span className="hide-mobile">🌸 Học kỳ 1 (Chương 1 - {halfPoint})</span>
+                <span className="hide-desktop hide-tablet">🌸 HK 1 (1 - {halfPoint})</span>
               </button>
               <button
                 type="button"
                 className={`sem-pill-btn ${semesterFilter === 'sem2' ? 'active' : ''}`}
                 onClick={() => setSemesterFilter('sem2')}
               >
-                <span className="hide-mobile">☀️ Học kỳ 2 (Chương 6 - 10)</span>
-                <span className="hide-desktop hide-tablet">☀️ HK 2 (6 - 10)</span>
+                <span className="hide-mobile">☀️ Học kỳ 2 (Chương {halfPoint + 1} - {allChaptersForGrade.length})</span>
+                <span className="hide-desktop hide-tablet">☀️ HK 2 ({halfPoint + 1} - {allChaptersForGrade.length})</span>
               </button>
             </div>
 
@@ -160,7 +161,7 @@ export default function HomePage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.22 }}
           >
-            {displayedChapters.map((chapter, index) => {
+            {displayedChaptersWithIndex.map(({ chapter, originalIndex }, mapIndex) => {
               const totalLessons = chapter.lessons?.length || chapter.totalLessons || 12
               const progress = getChapterProgress
                 ? getChapterProgress(chapter.id, totalLessons)
@@ -170,9 +171,9 @@ export default function HomePage() {
               const hasStarted = progress.completed > 0
 
               // Tách số chương và tên chương để hiển thị tối ưu trên mobile & desktop
-              const match = chapter.name.match(/^(Chương\s+\d+)[:\s-]*(.+)$/i)
-              const chapterTag = match ? match[1] : `Chương ${index + 1}`
-              const chapterTitle = match ? match[2] : chapter.name
+              const match = chapter.name.match(/^(?:Chương|Chủ\s*đề)\s+\d+[:\s-]*(.+)$/i)
+              const chapterTag = `Chương ${originalIndex + 1}`
+              const chapterTitle = match ? match[1] : chapter.name
               const fullTitle = `${chapterTag}: ${chapterTitle}`
 
               return (
@@ -182,7 +183,7 @@ export default function HomePage() {
                   onClick={() => handleChapterClick(chapter)}
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.03, duration: 0.2 }}
+                  transition={{ delay: mapIndex * 0.03, duration: 0.2 }}
                   whileHover={{ scale: 1.02, y: -3 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -318,78 +319,11 @@ export default function HomePage() {
         {/* =========================================================
             CỘT PHẢI (32%): STICKY COMPANION GAMIFICATION BAR
            ========================================================= */}
-        <aside className="companion-sticky-column">
-
-          {/* 1. THÚ CƯNG MINI (Compact Mode) */}
-          <PetWidget compact={true} />
-
-          {/* 2. NHIỆM VỤ MỖI NGÀY CARD */}
-          <DailyQuestsCard />
-
-          {/* 3. ĐẤU TRƯỜNG MINI WIDGET */}
-          <motion.div
-            className="home-arena-mini-card"
-            onClick={() => {
-              soundManager.playClick()
-              navigate('/challenges')
-            }}
-            whileHover={{ scale: 1.02, y: -2 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <div className="arena-mini-icon">
-              <span>{currentTierInfo.icon || '🛡️'}</span>
-            </div>
-            <div className="arena-mini-info">
-              <h4>Đấu Trường Giải Đấu</h4>
-              <p>{currentTierInfo.name} • Đang thi đua</p>
-              <span className="arena-link-text">Bấm xem bảng vàng xếp hạng →</span>
-            </div>
-          </motion.div>
-
-          {/* 4. TẢI APP MOBILE CARD (Chỉ hiện trên trình duyệt web, tự ẩn trên mobile app) */}
-          {!isNative && (
-            <motion.div
-              className="home-download-app-card"
-              onClick={() => {
-                soundManager.playClick()
-                openDownloadModal()
-              }}
-              whileHover={{ scale: 1.02, y: -2 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <div className="download-card-header">
-                <div className="download-card-robot-icon">
-                  {isIOS() ? '🍎' : '🤖'}
-                </div>
-                <div className="download-card-meta">
-                  <h4>{isIOS() ? 'Cài App Cho iPhone / iPad' : `Cài App Toán Vui (v${APP_VERSION})`}</h4>
-                  <span className="download-tag-android">
-                    {'Hoàn toàn miễn phí'}
-                  </span>
-                </div>
-              </div>
-              <p className="download-card-desc">
-                {isIOS()
-                  ? 'Cài về Màn hình chính để học toàn màn hình mượt mà không cần cài đặt phức tạp'
-                  : 'Học toán mượt mà, cảm ứng tiện lợi trên điện thoại & máy tính bảng'}
-              </p>
-              <button type="button" className="btn-download-card-cta">
-                <Download size={16} />
-                <span>{isIOS() ? 'Xem Cách Cài Đặt (5 giây)' : `Tải App v${APP_VERSION}`}</span>
-              </button>
-            </motion.div>
-          )}
-
-        </aside>
+        <RightSidebar />
 
       </div>
 
-      {/* Mascot Cú Mèo ở góc dưới màn hình */}
-      <MascotBubble
-        text="Chào bạn! Hôm nay mình học toán nhé! 🎓"
-        mood="happy"
-        position="bottom-right"
-      />
+
     </div>
   )
 }

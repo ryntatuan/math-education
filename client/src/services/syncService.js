@@ -143,7 +143,7 @@ export const syncService = {
         completed_lessons: localProgressData.completedLessons || {},
         exercise_results: localProgressData.exerciseResults || {},
         math_race_wins: localProgressData.mathRaceWins || 0,
-        totalGamesPlayed: localProgressData.totalGamesPlayed || 0,
+        total_games_played: localProgressData.totalGamesPlayed || 0,
       })
 
       // Đồng bộ thú cưng
@@ -310,7 +310,7 @@ export const syncService = {
             completed_lessons: progressState.completedLessons,
             exercise_results: progressState.exerciseResults,
             math_race_wins: progressState.mathRaceWins,
-            totalGamesPlayed: progressState.totalGamesPlayed,
+            total_games_played: progressState.totalGamesPlayed,
             updated_at: new Date().toISOString(),
           }),
 

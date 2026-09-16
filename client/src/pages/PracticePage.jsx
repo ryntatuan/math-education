@@ -20,6 +20,8 @@ import { TOPICS, generateQuestion } from '../utils/exerciseGenerator'
 import soundManager from '../utils/soundManager'
 import speechHelper from '../utils/speechHelper'
 import fireConfetti from '../utils/confettiHelper'
+import RightSidebar from '../components/layout/RightSidebar'
+import './HomePage.css'
 import './PracticePage.css'
 
 // Parse and format question visually, extracting emojis, SVG shapes, and equations
@@ -124,6 +126,7 @@ export default function PracticePage() {
   const [streak, setStreak] = useState(0)
   const [correctCount, setCorrectCount] = useState(0)
   const [totalCoinsEarned, setTotalCoinsEarned] = useState(0)
+  const [totalXpEarned, setTotalXpEarned] = useState(0)
   const [isFinished, setIsFinished] = useState(false)
 
   // Mistakes review state
@@ -154,6 +157,7 @@ export default function PracticePage() {
     setCorrectCount(0)
     setStreak(0)
     setTotalCoinsEarned(0)
+    setTotalXpEarned(0)
     setIsFinished(false)
     setSelectedAnswer(null)
     setIsAnswered(false)
@@ -182,6 +186,7 @@ export default function PracticePage() {
       const bonus = newStreak >= 3 ? 15 : 10
       setTotalCoinsEarned((prev) => prev + bonus)
       addCoins(bonus)
+      setTotalXpEarned((prev) => prev + 20)
       addXp(20)
       progressQuest('quiz_1', 1)
     } else {
@@ -348,7 +353,7 @@ export default function PracticePage() {
                                   className="practice-emoji-item"
                                   initial={{ scale: 0 }}
                                   animate={{ scale: 1 }}
-                                  transition={{ delay: idx * 0.03, type: 'spring' }}
+                                  transition={{ type: 'spring', stiffness: 400, damping: 25 }}
                                 >
                                   {item}
                                 </motion.span>
@@ -470,12 +475,18 @@ export default function PracticePage() {
             <span className="stat-desc">Độ chính xác</span>
           </div>
           {!isGuest ? (
-            <div className="stat-box">
-              <span className="stat-num number">+{totalCoinsEarned}</span>
-              <span className="stat-desc">
-                <CoinIcon size={14} /> Xu vàng
-              </span>
-            </div>
+            <>
+              <div className="stat-box">
+                <span className="stat-num number">+{totalCoinsEarned}</span>
+                <span className="stat-desc">
+                  <CoinIcon size={14} /> Xu vàng
+                </span>
+              </div>
+              <div className="stat-box">
+                <span className="stat-num number">+{totalXpEarned}</span>
+                <span className="stat-desc">XP Kinh nghiệm</span>
+              </div>
+            </>
           ) : (
             <div className="stat-box">
               <span className="stat-num">Khách</span>
@@ -519,7 +530,9 @@ export default function PracticePage() {
 
   // 3. Main Screen (with Tab Switching between Practice and Spaced Repetition Notebook)
   return (
-    <div className="practice-page">
+    <div className="page-2col-layout">
+      <div className="learning-main-column">
+        <div className="practice-page">
       {/* Top Main Navigation Tabs */}
       <div className="practice-main-tabs">
         <button
@@ -576,22 +589,58 @@ export default function PracticePage() {
             {topicsList.map((t) => (
               <motion.div
                 key={t.id}
-                className="topic-card"
-                whileHover={{ y: -3, boxShadow: '0 6px 20px rgba(78, 205, 196, 0.16)' }}
+                className="home-chapter-card"
+                whileHover={{ borderColor: '#4ecdc4', boxShadow: '0 6px 0 #4ecdc4, 0 8px 20px rgba(78, 205, 196, 0.15)', y: -3 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => startSession(t.id)}
+                style={{ minHeight: '130px' }}
               >
-                <div className="topic-icon-wrap">{t.icon}</div>
-                <div className="topic-content">
-                  <h3>{t.name}</h3>
-                  <div className="topic-meta">
-                    <span className="topic-badge">10 câu tương tác</span>
+                <div
+                  className="chapter-card-icon"
+                  style={{
+                    background: '#f0fdfa',
+                    color: '#0d9488'
+                  }}
+                >
+                  <span>{t.icon}</span>
+                </div>
+
+                <div className="chapter-card-info">
+                  <div className="chapter-card-header">
+                    {t.chapter && (
+                      <span
+                        className="chapter-tag-badge"
+                        style={{
+                          color: '#a21caf',
+                          backgroundColor: '#fdf4ff',
+                          borderColor: '#f5d0fe',
+                        }}
+                      >
+                        {t.chapter}
+                      </span>
+                    )}
+                    <span
+                      className="chapter-tag-badge"
+                      style={{
+                        color: '#0284c7',
+                        backgroundColor: '#f0f9ff',
+                        borderColor: '#bae6fd'
+                      }}
+                    >
+                      10 câu tương tác
+                    </span>
+                  </div>
+
+                  <h3 className="chapter-card-title">{t.name}</h3>
+                  <p className="chapter-card-desc">Chinh phục 10 câu hỏi tương tác để rèn luyện phản xạ và nhận xu vàng.</p>
+
+                  <div className="chapter-card-footer" style={{ marginTop: 'auto', paddingTop: '8px' }}>
+                    <button type="button" className="topic-start-pill" style={{ width: '100%', justifyContent: 'center' }}>
+                      <span>Vào Luyện Tập</span>
+                      <span className="start-arrow">→</span>
+                    </button>
                   </div>
                 </div>
-                <button type="button" className="topic-start-pill">
-                  <span>Luyện tập</span>
-                  <span className="start-arrow">→</span>
-                </button>
               </motion.div>
             ))}
           </div>
@@ -795,6 +844,10 @@ export default function PracticePage() {
           )}
         </div>
       )}
+        </div>
+      </div>
+      {/* CỘT PHẢI: WIDGET THÚ CƯNG & NHIỆM VỤ */}
+      <RightSidebar hideOnMobile={true} />
     </div>
   )
 }
