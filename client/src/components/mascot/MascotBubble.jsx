@@ -204,7 +204,6 @@ export default function MascotBubble({
       setCurrentMood('celebrate')
       soundManager.playCorrect()
       if (!isGuest) {
-        setTimeout(() => soundManager.playCoin(), 350)
         addCoins(5)
       }
     } else {
@@ -219,25 +218,21 @@ export default function MascotBubble({
     setQuizStatus('idle')
     setSelectedOption(null)
     setCurrentMood('thinking')
-    soundManager.playClick()
   }
 
   const handleNextTip = () => {
     setTipIndex((prev) => (prev + 1) % MATH_TIPS.length)
     setCurrentMood('hint')
-    soundManager.playClick()
   }
 
   const handleNextQuote = () => {
     setQuoteIndex((prev) => (prev + 1) % MOTIVATIONAL_QUOTES.length)
     setCurrentMood('happy')
-    soundManager.playClick()
   }
 
   const handleGoToLearn = () => {
     setIsOpen(false)
     navigate('/learn')
-    soundManager.playClick()
   }
 
   return (
