@@ -6,6 +6,19 @@ class SoundEngine {
     this.ctx = null
     this.soundEnabled = true
     this.bgmEnabled = true
+    this.activeOscillators = []
+  }
+
+  stopAll() {
+    this.activeOscillators.forEach(osc => {
+      try {
+        osc.stop()
+        osc.disconnect()
+      } catch (e) {
+        // ignore
+      }
+    })
+    this.activeOscillators = []
   }
 
   init() {
@@ -44,12 +57,14 @@ class SoundEngine {
 
       osc.start(this.ctx.currentTime + startTime)
       osc.stop(this.ctx.currentTime + startTime + duration)
+      this.activeOscillators.push(osc)
     } catch (e) {
       console.warn('Audio playTone error', e)
     }
   }
 
   playCorrect() {
+    this.stopAll()
     hapticsManager.success()
     if (!this.soundEnabled) return
     // Joyful major arpeggio
@@ -60,6 +75,7 @@ class SoundEngine {
   }
 
   playWrong() {
+    this.stopAll()
     hapticsManager.error()
     if (!this.soundEnabled) return
     // Gentle boop
@@ -68,12 +84,14 @@ class SoundEngine {
   }
 
   playClick() {
+    this.stopAll()
     hapticsManager.light()
     if (!this.soundEnabled) return
     this.playTone(800, 'sine', 0.04, 0, 0.08)
   }
 
   playCoin() {
+    this.stopAll()
     hapticsManager.medium()
     if (!this.soundEnabled) return
     // Sparkly chime
@@ -82,6 +100,7 @@ class SoundEngine {
   }
 
   playLevelUp() {
+    this.stopAll()
     hapticsManager.success()
     if (!this.soundEnabled) return
     const notes = [440, 554.37, 659.25, 880, 1108.73]
@@ -91,6 +110,7 @@ class SoundEngine {
   }
 
   playFanfare() {
+    this.stopAll()
     hapticsManager.success()
     if (!this.soundEnabled) return
     const notes = [

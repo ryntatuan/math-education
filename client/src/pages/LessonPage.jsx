@@ -162,7 +162,6 @@ export default function LessonPage() {
       setShowResult(true)
 
     } else {
-      soundManager.playClick()
       setCurrentSlide((prev) => prev + 1)
       setSelectedAnswer(null)
       setAnswerFeedback(null)
@@ -175,7 +174,6 @@ export default function LessonPage() {
   const handlePrev = () => {
     speechHelper.stop()
     if (currentSlide > 0) {
-      soundManager.playClick()
       setCurrentSlide((prev) => prev - 1)
       setSelectedAnswer(null)
       setAnswerFeedback(null)

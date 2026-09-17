@@ -185,15 +185,12 @@ export default function MascotBubble({
     const nextState = !isOpen
     setIsOpen(nextState)
     if (nextState) {
-      if (!isGuest) soundManager.playCoin()
-      else soundManager.playClick()
       setCurrentMood('excited')
       // Refresh quiz on open
       setQuiz(generateMiniQuiz(grade || 1))
       setQuizStatus('idle')
       setSelectedOption(null)
     } else {
-      soundManager.playClick()
       setCurrentMood(mood)
     }
   }

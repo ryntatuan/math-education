@@ -13,7 +13,7 @@ import { Capacitor } from '@capacitor/core'
 export default function RightSidebar({ hideArenaSummary = false, hideOnMobile = false }) {
   const navigate = useNavigate()
   const { currentTier } = useLeagueStore()
-  const { openModal: openDownloadModal } = useDownloadModalStore()
+  const { openDownloadModal } = useDownloadModalStore()
   
   const currentTierInfo = LEAGUE_TIERS.find(t => t.id === currentTier) || LEAGUE_TIERS[0]
   const isNative = Capacitor.isNativePlatform()

@@ -165,7 +165,6 @@ export default function PracticePage() {
     const q = generateQuestion(selectedGrade, topicId)
     setCurrentQuestion(q)
     setSessionActive(true)
-    soundManager.playClick()
   }
 
   const handleAnswer = (option) => {
@@ -209,7 +208,6 @@ export default function PracticePage() {
 
   const nextQuestion = () => {
     if (document.activeElement?.blur) document.activeElement.blur()
-    soundManager.playClick()
     if (questionIndex + 1 >= TOTAL_QUESTIONS) {
       setIsFinished(true)
       soundManager.playFanfare()
@@ -254,7 +252,6 @@ export default function PracticePage() {
   }
 
   const handleNextMistake = () => {
-    soundManager.playClick()
     if (mistakeIndex + 1 >= dueMistakes.length) {
       setReviewFinished(true)
       soundManager.playFanfare()
@@ -685,7 +682,6 @@ export default function PracticePage() {
                 size="md"
                 onClick={() => {
                   setMainTab('practice')
-                  soundManager.playClick()
                 }}
               >
                 Luyện tập chủ đề mới →
