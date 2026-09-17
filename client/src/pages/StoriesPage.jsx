@@ -85,6 +85,7 @@ export default function StoriesPage() {
 
   // Handle question answer
   const handleAnswer = (option, currentScene) => {
+    if (document.activeElement?.blur) document.activeElement.blur()
     if (isAnswered) return
     setSelectedAnswer(option)
     setIsAnswered(true)
@@ -102,6 +103,7 @@ export default function StoriesPage() {
 
   // Next scene
   const handleNextScene = () => {
+    if (document.activeElement?.blur) document.activeElement.blur()
     soundManager.playClick()
     speechHelper.stop()
     setIsSpeaking(false)

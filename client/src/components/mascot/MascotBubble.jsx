@@ -196,6 +196,7 @@ export default function MascotBubble({
   }
 
   const handleAnswerQuiz = (option) => {
+    if (document.activeElement?.blur) document.activeElement.blur()
     if (quizStatus !== 'idle') return
     setSelectedOption(option)
 
@@ -214,6 +215,7 @@ export default function MascotBubble({
   }
 
   const handleNextQuiz = () => {
+    if (document.activeElement?.blur) document.activeElement.blur()
     setQuiz(generateMiniQuiz(grade || 1))
     setQuizStatus('idle')
     setSelectedOption(null)

@@ -145,6 +145,7 @@ export default function LessonPage() {
   }
 
   const handleNext = () => {
+    if (document.activeElement?.blur) document.activeElement.blur()
     speechHelper.stop()
     if (isLastSlide) {
       // Finish lesson
@@ -172,6 +173,7 @@ export default function LessonPage() {
   }
 
   const handlePrev = () => {
+    if (document.activeElement?.blur) document.activeElement.blur()
     speechHelper.stop()
     if (currentSlide > 0) {
       setCurrentSlide((prev) => prev - 1)
@@ -184,6 +186,7 @@ export default function LessonPage() {
   }
 
   const handleQuizAnswer = (answer) => {
+    if (document.activeElement?.blur) document.activeElement.blur()
     if (answerFeedback) return // Already answered
 
     setSelectedAnswer(answer)
