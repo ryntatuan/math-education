@@ -16,6 +16,31 @@ import StoriesPage from './StoriesPage'
 import RightSidebar from '../components/layout/RightSidebar'
 import './GamesPage.css'
 
+const GameOverStars = ({ stars }) => {
+  return (
+    <div className="gameover-stars-container">
+      {[1, 2, 3].map((star) => (
+        <motion.div
+          key={star}
+          className={`gameover-star-wrapper ${star <= stars ? 'active' : 'inactive'}`}
+          initial={{ scale: 0, opacity: 0, rotate: -45 }}
+          animate={{ scale: 1, opacity: 1, rotate: 0 }}
+          transition={{
+            delay: star * 0.15,
+            type: 'spring',
+            stiffness: 260,
+            damping: 20
+          }}
+        >
+          <svg viewBox="0 0 24 24" fill={star <= stars ? "#FFD700" : "#E0E0E0"} stroke={star <= stars ? "#D4AF37" : "#BDBDBD"} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="gameover-star-svg">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+          </svg>
+        </motion.div>
+      ))}
+    </div>
+  )
+}
+
 // Game Definitions
 const GAME_LIST = [
   {
@@ -24,6 +49,7 @@ const GAME_LIST = [
     subtitle: 'Math Race',
     description: 'Trả lời đúng các phép tính để xe của bé tăng tốc vượt qua Thỏ, Rùa và Mèo cán đích đầu tiên!',
     color: '#FF6B6B',
+    bgGradient: 'linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)',
     icon: '🏎️',
     difficulty: 'Dễ - Vừa',
   },
@@ -33,6 +59,7 @@ const GAME_LIST = [
     subtitle: 'Number Pop',
     description: 'Các quả bóng bay mang số đang bay lên! Hãy chọn nhanh quả bóng có đáp án chính xác!',
     color: '#4facfe',
+    bgGradient: 'linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%)',
     icon: '🎈',
     difficulty: 'Nhanh tay',
   },
@@ -42,6 +69,7 @@ const GAME_LIST = [
     subtitle: 'Memory Match',
     description: 'Lật mở các thẻ bài bí mật để ghép đôi phép tính với kết quả tương ứng!',
     color: '#51CF66',
+    bgGradient: 'linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%)',
     icon: '🃏',
     difficulty: 'Trí nhớ',
   },
@@ -51,6 +79,7 @@ const GAME_LIST = [
     subtitle: 'Math Balance',
     description: 'Chọn quả cân thích hợp đặt lên đĩa cân để cán cân thăng bằng hoàn hảo!',
     color: '#F59F00',
+    bgGradient: 'linear-gradient(135deg, #f6d365 0%, #fda085 100%)',
     icon: '⚖️',
     difficulty: 'Tư duy logic',
   },
@@ -58,19 +87,21 @@ const GAME_LIST = [
     id: 'space_defense',
     title: 'Bắn Thiên Thạch Vũ Trụ',
     subtitle: 'Space Defense',
-    description: 'Điều khiển pháo laser bắn tan các mảnh thiên thạch mang phép tính trước khi chạm lá chắn!',
-    color: '#7950F2',
+    description: 'Điều khiển tàu không gian bắn phá các khối thiên thạch chứa phép tính sai!',
+    color: '#845EF7',
+    bgGradient: 'linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)',
     icon: '🚀',
-    difficulty: 'Phản xạ nhanh',
+    difficulty: 'Phản xạ',
   },
   {
     id: 'math_fishing',
-    title: 'Hồ Câu Cá Thông Thái',
+    title: 'Câu Cá Toán Học',
     subtitle: 'Math Fishing',
-    description: 'Thả cần câu xuống làn nước trong xanh và câu chú cá mang đúng đáp án của phép tính!',
+    description: 'Bác gấu đang đi câu cá, hãy giúp bác câu được những chú cá mang kết quả đúng!',
     color: '#20C997',
+    bgGradient: 'linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%)',
     icon: '🎣',
-    difficulty: 'Khéo léo & Vui nhộn',
+    difficulty: 'Bình tĩnh',
   },
 ]
 
@@ -171,22 +202,24 @@ export default function GamesPage() {
                 <motion.div
                   key={game.id}
                   className="game-card"
-                  whileHover={{ y: -8, boxShadow: 'var(--shadow-xl)' }}
+                  whileHover={{ y: -8, boxShadow: '0 20px 40px rgba(0,0,0,0.08)' }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => {
                     setActiveGame(game.id)
                     soundManager.playClick()
                   }}
                 >
-                  <div className="game-card-icon">{game.icon}</div>
-                  <div className="game-card-info">
-                    <h2>{game.title}</h2>
-                    <span className="game-badge">{game.difficulty}</span>
-                    <p>{game.description}</p>
+                  <div className="game-cover-banner" style={{ background: game.bgGradient }}>
+                    <div className="game-hero-emoji">{game.icon}</div>
+                    <span className="game-grade-tag">{game.difficulty}</span>
                   </div>
-                  <Button variant="primary" size="md" className="game-play-btn">
-                    Chơi ngay <Play size={18} fill="white" />
-                  </Button>
+                  <div className="game-body">
+                    <h2>{game.title}</h2>
+                    <p>{game.description}</p>
+                    <Button variant="primary" size="md" className="game-play-btn">
+                      Chơi ngay <Play size={18} fill="white" />
+                    </Button>
+                  </div>
                 </motion.div>
               ))}
             </div>
@@ -492,9 +525,9 @@ function MathRaceGame({ onBack, grade, addCoins, addXp, recordRaceWin, recordGam
           recordGamePlayed()
         }
       }
-      const reward = r === 1 ? 50 : r === 2 ? 30 : r === 3 ? 20 : 10
-      addCoins(reward)
-      addXp(r === 1 ? 60 : r === 2 ? 40 : r === 3 ? 30 : 20)
+      const rewardCoins = r === 1 ? 120 : r === 2 ? 70 : r === 3 ? 30 : 10
+      addCoins(rewardCoins)
+      addXp(r === 1 ? 200 : r === 2 ? 120 : r === 3 ? 50 : 20)
     } else if (bot1Pos >= FINISH_LINE && bot2Pos >= FINISH_LINE && bot3Pos >= FINISH_LINE) {
       // All bots finished
       rewardClaimedRef.current = true
@@ -674,6 +707,7 @@ function MathRaceGame({ onBack, grade, addCoins, addXp, recordRaceWin, recordGam
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
         >
+          <GameOverStars stars={rank === 1 ? 3 : rank === 2 ? 2 : rank === 3 ? 1 : 0} />
           <div className="gameover-medal-container">
             <RaceMedal rank={rank} />
           </div>
@@ -709,8 +743,8 @@ function MathRaceGame({ onBack, grade, addCoins, addXp, recordRaceWin, recordGam
           </p>
 
           <div className="rank-rewards-box">
-            <span className="reward-item">🪙 +{rank === 1 ? 50 : rank === 2 ? 30 : rank === 3 ? 20 : 10} Xu</span>
-            <span className="reward-item">⭐ +{rank === 1 ? 60 : rank === 2 ? 40 : rank === 3 ? 30 : 20} XP</span>
+            <span className="reward-item">🪙 +{rank === 1 ? 120 : rank === 2 ? 70 : rank === 3 ? 30 : 10} Xu</span>
+            <span className="reward-item">⭐ +{rank === 1 ? 200 : rank === 2 ? 120 : rank === 3 ? 50 : 20} XP</span>
           </div>
 
           <div className="gameover-btns">
@@ -772,8 +806,15 @@ function NumberPopGame({ onBack, grade, addCoins, addXp, recordGamePlayed }) {
         if (score > 0) {
           soundManager.playFanfare()
           fireConfetti({ particleCount: 80, spread: 70 })
-          addCoins(score * 2)
-          addXp(score * 5)
+          const getRewards = (s) => {
+            if (s >= 150) return { rCoins: 120, rXp: 200 }
+            if (s >= 100) return { rCoins: 70, rXp: 120 }
+            if (s >= 50) return { rCoins: 30, rXp: 50 }
+            return { rCoins: 10, rXp: 20 }
+          }
+          const { rCoins, rXp } = getRewards(score)
+          addCoins(rCoins)
+          addXp(rXp)
         } else {
           soundManager.playWrong()
         }
@@ -862,13 +903,18 @@ function NumberPopGame({ onBack, grade, addCoins, addXp, recordGamePlayed }) {
         </div>
       ) : (
         <div className="race-gameover-card">
+          <GameOverStars stars={score >= 150 ? 3 : score >= 100 ? 2 : score >= 50 ? 1 : 0} />
           <span className="gameover-trophy">{score > 0 ? '🎈' : '💪'}</span>
           <h2>{score > 0 ? 'Hết giờ rồi!' : 'Hết thời gian!'}</h2>
           {score > 0 ? (
             <p>
               Bé đã ghi được số điểm xuất sắc: <strong>{score} điểm</strong>! Nhận được{' '}
-              <strong style={{ color: '#F59F00' }}>+{score * 2} Xu</strong> và{' '}
-              <strong style={{ color: '#4DABF7' }}>+{score * 5} XP</strong>!
+              <strong style={{ color: '#F59F00' }}>
+                +{score >= 150 ? 120 : score >= 100 ? 70 : score >= 50 ? 30 : 10} Xu
+              </strong> và{' '}
+              <strong style={{ color: '#4DABF7' }}>
+                +{score >= 150 ? 200 : score >= 100 ? 120 : score >= 50 ? 50 : 20} XP
+              </strong>!
             </p>
           ) : (
             <p>
@@ -989,8 +1035,19 @@ function MemoryMatchGame({ onBack, grade, addCoins, addXp, recordGamePlayed }) {
           }
           soundManager.playFanfare()
           fireConfetti({ particleCount: 90, spread: 70 })
-          addCoins(35)
-          addXp(50)
+          let rewardCoins = 30
+          let rewardXp = 50
+          // Minimum turns is 4. Calculate milestone based on turns.
+          const finalTurns = turns + 1 // including this current turn
+          if (finalTurns <= 6) {
+            rewardCoins = 120
+            rewardXp = 200
+          } else if (finalTurns <= 10) {
+            rewardCoins = 70
+            rewardXp = 120
+          }
+          addCoins(rewardCoins)
+          addXp(rewardXp)
         }
       } else {
         // Not matched
@@ -1051,12 +1108,13 @@ function MemoryMatchGame({ onBack, grade, addCoins, addXp, recordGamePlayed }) {
         </div>
       ) : (
         <div className="race-gameover-card">
+          <GameOverStars stars={turns <= 6 ? 3 : turns <= 10 ? 2 : 1} />
           <span className="gameover-trophy">🏆</span>
           <h2>Trí Nhớ Siêu Phàm!</h2>
           <p>
             Bé đã ghép đúng toàn bộ 4 cặp thẻ bài chỉ trong {turns} lượt lật! Nhận được{' '}
-            <strong style={{ color: '#F59F00' }}>+35 Xu</strong> và{' '}
-            <strong style={{ color: '#4DABF7' }}>+50 XP</strong>!
+            <strong style={{ color: '#F59F00' }}>+{turns <= 6 ? 120 : turns <= 10 ? 70 : 30} Xu</strong> và{' '}
+            <strong style={{ color: '#4DABF7' }}>+{turns <= 6 ? 200 : turns <= 10 ? 120 : 50} XP</strong>!
           </p>
           <div className="gameover-btns">
             <Button variant="primary" size="lg" onClick={initDeck}>
@@ -1148,16 +1206,14 @@ function MathBalanceGame({ onBack, grade = 1, addCoins, addXp, recordGamePlayed 
       soundManager.playCoin()
       fireConfetti({ particleCount: 30, spread: 50 })
       setScore((s) => s + 10)
-      addCoins(2)
-      addXp(6)
 
       setTimeout(() => {
         if (round >= TOTAL_ROUNDS) {
           setGameWon(true)
           soundManager.playFanfare()
           fireConfetti({ particleCount: 90, spread: 80 })
-          addCoins(15)
-          addXp(40)
+          addCoins(120)
+          addXp(200)
           if (!gameRecordedRef.current) {
             gameRecordedRef.current = true
             if (typeof recordGamePlayed === 'function') {
@@ -1291,12 +1347,13 @@ function MathBalanceGame({ onBack, grade = 1, addCoins, addXp, recordGamePlayed 
         </div>
       ) : (
         <div className="race-gameover-card">
+          <GameOverStars stars={3} />
           <span className="gameover-trophy">🏆</span>
           <h2>Thần Kì Thăng Bằng!</h2>
           <p>
             Bé đã xuất sắc cân bằng toàn bộ {TOTAL_ROUNDS} đĩa cân thần kỳ và ghi được {score} điểm! Nhận được{' '}
-            <strong style={{ color: '#F59F00' }}>+15 Xu</strong> và{' '}
-            <strong style={{ color: '#4DABF7' }}>+40 XP</strong>!
+            <strong style={{ color: '#F59F00' }}>+120 Xu</strong> và{' '}
+            <strong style={{ color: '#4DABF7' }}>+200 XP</strong>!
           </p>
           <div className="gameover-btns">
             <Button variant="primary" size="lg" onClick={handleRestart}>
@@ -1357,8 +1414,20 @@ function SpaceDefenseGame({ onBack, grade = 1, addCoins, addXp, recordGamePlayed
         if (score > 0) {
           soundManager.playFanfare()
           fireConfetti({ particleCount: 80, spread: 70 })
-          addCoins(Math.max(5, Math.floor(score / 4)))
-          addXp(Math.max(10, Math.floor(score / 2)))
+          let rewardCoins = 10
+          let rewardXp = 20
+          if (destroyedCount >= 15) {
+            rewardCoins = 120
+            rewardXp = 200
+          } else if (destroyedCount >= 10) {
+            rewardCoins = 70
+            rewardXp = 120
+          } else if (destroyedCount >= 5) {
+            rewardCoins = 30
+            rewardXp = 50
+          }
+          addCoins(rewardCoins)
+          addXp(rewardXp)
         } else {
           soundManager.playWrong()
         }
@@ -1388,8 +1457,6 @@ function SpaceDefenseGame({ onBack, grade = 1, addCoins, addXp, recordGamePlayed
           return next
         })
         setDestroyedCount((d) => d + 1)
-        addCoins(1)
-        addXp(3)
         setTimeout(() => {
           loadNewAsteroid()
         }, 500)
@@ -1512,12 +1579,17 @@ function SpaceDefenseGame({ onBack, grade = 1, addCoins, addXp, recordGamePlayed
         </div>
       ) : (
         <div className="race-gameover-card">
+          <GameOverStars stars={destroyedCount >= 15 ? 3 : destroyedCount >= 10 ? 2 : destroyedCount >= 5 ? 1 : 0} />
           <span className="gameover-trophy">🚀</span>
           <h2>Hoàn Thành Nhiệm Vụ Vũ Trụ!</h2>
           <p>
             Bé đã bắn tan {destroyedCount} mảnh thiên thạch, đạt Combo cao nhất x{maxCombo} và ghi được {score} điểm! Nhận được{' '}
-            <strong style={{ color: '#F59F00' }}>+{Math.max(5, Math.floor(score / 4))} Xu</strong> và{' '}
-            <strong style={{ color: '#4DABF7' }}>+{Math.max(10, Math.floor(score / 2))} XP</strong>!
+            <strong style={{ color: '#F59F00' }}>
+              +{destroyedCount >= 15 ? 120 : destroyedCount >= 10 ? 70 : destroyedCount >= 5 ? 30 : 10} Xu
+            </strong> và{' '}
+            <strong style={{ color: '#4DABF7' }}>
+              +{destroyedCount >= 15 ? 200 : destroyedCount >= 10 ? 120 : destroyedCount >= 5 ? 50 : 20} XP
+            </strong>!
           </p>
           <div className="gameover-btns">
             <Button variant="primary" size="lg" onClick={handleRestart}>
@@ -1587,16 +1659,14 @@ function MathFishingGame({ onBack, grade = 1, addCoins, addXp, recordGamePlayed 
       setFishBucket((b) => [...b, fish.emoji])
       const nextCaught = caughtCount + 1
       setCaughtCount(nextCaught)
-      addCoins(3)
-      addXp(8)
 
       setTimeout(() => {
         if (nextCaught >= TARGET_FISH) {
           setGameWon(true)
           soundManager.playFanfare()
           fireConfetti({ particleCount: 90, spread: 80 })
-          addCoins(20)
-          addXp(50)
+          addCoins(120)
+          addXp(200)
           if (!gameRecordedRef.current) {
             gameRecordedRef.current = true
             if (typeof recordGamePlayed === 'function') {
@@ -1716,12 +1786,13 @@ function MathFishingGame({ onBack, grade = 1, addCoins, addXp, recordGamePlayed 
         </div>
       ) : (
         <div className="race-gameover-card">
+          <GameOverStars stars={3} />
           <span className="gameover-trophy">🎣</span>
           <h2>Vua Câu Cá Thông Thái!</h2>
           <p>
             Bé đã câu đầy giỏ {TARGET_FISH} chú cá thông thái và đạt được {score} điểm xuất sắc! Nhận được{' '}
-            <strong style={{ color: '#F59F00' }}>+20 Xu</strong> và{' '}
-            <strong style={{ color: '#4DABF7' }}>+50 XP</strong>!
+            <strong style={{ color: '#F59F00' }}>+120 Xu</strong> và{' '}
+            <strong style={{ color: '#4DABF7' }}>+200 XP</strong>!
           </p>
           <div className="gameover-btns">
             <Button variant="primary" size="lg" onClick={handleRestart}>

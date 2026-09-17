@@ -68,7 +68,36 @@ export const syncService = {
 
       // Nếu đã có hồ sơ bé trên đám mây: Nạp dữ liệu bé duy nhất của tài khoản
       if (existingChildren && existingChildren.length > 0) {
-        const activeChild = existingChildren[0]
+        let activeChild = existingChildren[0]
+
+        // Nếu hồ sơ bé vẫn đang mang tên mặc định 'Bé Yêu' nhưng tài khoản Google có tên hiển thị,
+        // tự động cập nhật tên bé theo tên Google để tránh bị kẹt tên mặc định
+        if (
+          (!activeChild.nickname || activeChild.nickname === 'Bé Yêu') &&
+          googleDisplayName
+        ) {
+          try {
+            const { data: updatedChild, error: updateErr } = await supabase
+              .from('child_profiles')
+              .update({ nickname: googleDisplayName })
+              .eq('id', activeChild.id)
+              .select()
+              .single()
+
+            if (!updateErr && updatedChild) {
+              activeChild = updatedChild
+              try {
+                await supabase
+                  .from('leaderboard')
+                  .update({ name: googleDisplayName })
+                  .eq('id', activeChild.id)
+              } catch (lbErr) {}
+            }
+          } catch (e) {
+            console.warn('Không thể auto-update tên Google vào hồ sơ bé:', e)
+          }
+        }
+
         await this.loadChildDataToLocalStores(activeChild.id)
         return { activeChild }
       }

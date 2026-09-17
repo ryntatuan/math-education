@@ -253,6 +253,21 @@ export const useAuthStore = create((set, get) => ({
           .from('child_profiles')
           .update(updates)
           .eq('id', activeChild.id)
+
+        // Nếu cập nhật tên hoặc avatar, đồng bộ ngay lập tức vào bảng leaderboard
+        if (updates.nickname || updates.avatar) {
+          const lbUpdates = {}
+          if (updates.nickname) lbUpdates.name = updates.nickname
+          if (updates.avatar) lbUpdates.avatar = updates.avatar
+          lbUpdates.updated_at = new Date().toISOString()
+
+          await supabase
+            .from('leaderboard')
+            .update(lbUpdates)
+            .eq('id', activeChild.id)
+
+          useLeagueStore.getState().fetchCloudLeaderboard?.()
+        }
       } catch (err) {
         console.error('Lỗi cập nhật child_profile trên Supabase:', err)
       }

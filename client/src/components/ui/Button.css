@@ -52,10 +52,12 @@
   color: white;
   box-shadow: 0 4px 0 var(--color-primary-dark, #36b5ac), var(--shadow-sm);
 }
-.btn-primary:hover {
-  background: var(--color-primary-light, #66d9d1);
-  box-shadow: 0 4px 0 var(--color-primary-dark, #36b5ac), var(--shadow-md);
-  transform: translateY(-1px);
+@media (hover: hover) and (pointer: fine) {
+  .btn-primary:hover {
+    background: var(--color-primary-light, #66d9d1);
+    box-shadow: 0 4px 0 var(--color-primary-dark, #36b5ac), var(--shadow-md);
+    transform: translateY(-1px);
+  }
 }
 .btn-primary:active {
   transform: translateY(2px);
@@ -100,10 +102,12 @@
   color: white;
   box-shadow: 0 4px 0 #16a34a, var(--shadow-sm);
 }
-.btn-success:hover {
-  background: #4ade80;
-  transform: translateY(-1px);
-  box-shadow: 0 5px 0 #16a34a, var(--shadow-md);
+@media (hover: hover) and (pointer: fine) {
+  .btn-success:hover {
+    background: #4ade80;
+    transform: translateY(-1px);
+    box-shadow: 0 5px 0 #16a34a, var(--shadow-md);
+  }
 }
 .btn-success:active {
   transform: translateY(2px);
@@ -131,12 +135,14 @@
   border: 2px solid #cbd5e1;
   box-shadow: 0 3px 0 #cbd5e1;
 }
-.btn-outline:hover {
-  background: #f8fafc;
-  border-color: #94a3b8;
-  color: #1e293b;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 0 #94a3b8;
+@media (hover: hover) and (pointer: fine) {
+  .btn-outline:hover {
+    background: #f8fafc;
+    border-color: #94a3b8;
+    color: #1e293b;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 0 #94a3b8;
+  }
 }
 .btn-outline:active {
   transform: translateY(2px);

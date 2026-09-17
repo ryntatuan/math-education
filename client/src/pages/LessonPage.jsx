@@ -34,7 +34,7 @@ export default function LessonPage() {
   const { lessonId } = useParams()
   const { isGuest, setAuthModalOpen } = useAuthStore()
   const { coins, addCoins, addXp, autoSpeakLesson, soundEnabled } = useUserStore()
-  const { completeLesson, recordMistake, progressQuest } = useProgressStore()
+  const { completeLesson, recordMistake, progressQuest, completedLessons } = useProgressStore()
 
   const found = findLesson(lessonId)
   const [currentSlide, setCurrentSlide] = useState(0)
@@ -156,8 +156,9 @@ export default function LessonPage() {
       completeLesson(lessonId, stars)
       progressQuest('lesson_1', 1)
       progressQuest('stars_1', stars)
-      addCoins(20)
-      addXp(50)
+      
+      addCoins(finalCoins)
+      addXp(finalXp)
       syncService.scheduleCloudSync()
       soundManager.playFanfare()
       setShowResult(true)
@@ -219,6 +220,10 @@ export default function LessonPage() {
   const canGoNext = !isQuizSlide || answerFeedback !== null
 
   // Result Screen
+  const isRelearning = completedLessons[lessonId] !== undefined
+  const finalCoins = isRelearning ? 5 : 20
+  const finalXp = isRelearning ? 10 : 50
+
   if (showResult) {
     const stars = totalQuizzes === 0 ? 3 :
       correctAnswers === totalQuizzes ? 3 :
@@ -282,14 +287,14 @@ export default function LessonPage() {
                   <CoinIcon size={24} />
                 </span>
                 <div className="reward-info">
-                  <span className="reward-val number">+20</span>
+                  <span className="reward-val number">+{finalCoins}</span>
                   <span className="reward-label">Xu vàng</span>
                 </div>
               </div>
               <div className="result-reward-item">
                 <span className="reward-icon">⚡</span>
                 <div className="reward-info">
-                  <span className="reward-val number">+50</span>
+                  <span className="reward-val number">+{finalXp}</span>
                   <span className="reward-label">Điểm XP</span>
                 </div>
               </div>
@@ -432,7 +437,7 @@ export default function LessonPage() {
           iconRight={!isLastSlide ? <ArrowRight size={20} strokeWidth={2.5} /> : undefined}
           onClick={handleNext}
           disabled={!canGoNext}
-          glow={canGoNext && isQuizSlide}
+          glow={canGoNext}
           className="lesson-nav-btn lesson-nav-btn-next"
         >
           {isLastSlide ? '🎉 Hoàn thành bài' : 'Tiếp tục'}

@@ -206,9 +206,15 @@ BEGIN
   )
   ON CONFLICT (id) DO NOTHING;
 
-  -- 2. Tự động tạo hồ sơ bé đầu tiên
+  -- 2. Tự động tạo hồ sơ bé đầu tiên (ưu tiên lấy tên tài khoản đăng nhập)
   INSERT INTO public.child_profiles (parent_id, nickname, grade, avatar, is_active)
-  VALUES (NEW.id, 'Bé Yêu', 1, '👦', TRUE)
+  VALUES (
+    NEW.id,
+    COALESCE(NEW.raw_user_meta_data->>'full_name', NEW.raw_user_meta_data->>'name', 'Bé Yêu'),
+    1,
+    '👦',
+    TRUE
+  )
   RETURNING id INTO new_child_id;
 
   -- 3. Tạo sẵn tiến độ bài học cho bé
