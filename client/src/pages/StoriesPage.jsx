@@ -114,7 +114,7 @@ export default function StoriesPage() {
       addCoins(activeStory.rewardCoins)
       addXp(activeStory.rewardXp)
       updateStreak()
-      progressQuest('lesson_1', 1)
+      progressQuest('quest_lesson', 1)
       soundManager.playFanfare()
       fireConfetti({ particleCount: 120, spread: 90, origin: { y: 0.6 } })
     } else {

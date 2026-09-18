@@ -234,7 +234,7 @@ export default function MascotBubble({
 
   const handleGoToLearn = () => {
     setIsOpen(false)
-    navigate('/learn')
+    navigate('/')
   }
 
   return (

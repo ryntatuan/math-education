@@ -945,3 +945,128 @@
   letter-spacing: 0.3px;
   opacity: 0.7;
 }
+
+/* ========================================
+   PROFILE APK DOWNLOAD BANNER (MOBILE WEB)
+   ======================================== */
+.profile-apk-download-card {
+  background: linear-gradient(135deg, #065f46 0%, #059669 50%, #10b981 100%);
+  border-radius: var(--radius-2xl, 24px);
+  padding: 20px 24px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  box-shadow: 0 10px 25px rgba(5, 150, 105, 0.25);
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  margin-bottom: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.apk-card-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+  min-width: 240px;
+}
+
+.apk-card-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ecfdf5;
+  flex-shrink: 0;
+}
+
+.apk-card-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.apk-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.apk-title-row h3 {
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin: 0;
+  color: white;
+  font-family: 'Quicksand', var(--font-heading), sans-serif;
+}
+
+.apk-badge {
+  background: rgba(255, 255, 255, 0.25);
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #f0fdf4;
+}
+
+.apk-card-text p {
+  margin: 0;
+  font-size: 0.88rem;
+  color: #d1fae5;
+  line-height: 1.35;
+}
+
+.btn-download-apk-direct {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #fbbf24;
+  color: #78350f;
+  font-weight: 800;
+  font-size: 0.95rem;
+  padding: 12px 20px;
+  border-radius: 999px;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(251, 191, 36, 0.4);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.btn-download-apk-direct:hover {
+  transform: translateY(-2px);
+  background: #f59e0b;
+  box-shadow: 0 6px 18px rgba(245, 158, 11, 0.5);
+  color: #451a03;
+}
+
+.btn-download-apk-direct:active {
+  transform: scale(0.97);
+}
+
+@media (max-width: 640px) {
+  .profile-apk-download-card {
+    padding: 16px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+
+  .apk-card-content {
+    min-width: unset;
+  }
+
+  .btn-download-apk-direct {
+    width: 100%;
+    padding: 12px;
+    font-size: 0.92rem;
+  }
+}

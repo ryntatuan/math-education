@@ -1,6 +1,8 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import useProgressStore from './useProgressStore'
+import useUserStore from './useUserStore'
+import useAuthStore from './useAuthStore'
 import { supabase, isSupabaseConfigured } from '../services/supabaseClient'
 
 export const LEAGUE_TIERS = [
@@ -405,23 +407,8 @@ const useLeagueStore = create(
 
         // Tự động đẩy điểm số tuần này lên bảng leaderboard của Supabase
         try {
-          const raw = localStorage.getItem('toan-vui-user')
-          let nickname = 'Bé Yêu'
-          let avatar = '👦'
-          let grade = 1
-          if (raw) {
-            const parsed = JSON.parse(raw)
-            nickname = parsed?.state?.nickname || parsed?.nickname || 'Bé Yêu'
-            avatar = parsed?.state?.avatar || parsed?.avatar || '👦'
-            grade = parsed?.state?.grade || parsed?.grade || 1
-          }
-
-          let childId = null
-          const rawAuth = localStorage.getItem('toan-vui-auth')
-          if (rawAuth) {
-            const parsedAuth = JSON.parse(rawAuth)
-            childId = parsedAuth?.state?.activeChild?.id
-          }
+          const { nickname, avatar, grade } = useUserStore.getState()
+          const childId = useAuthStore.getState().activeChild?.id
 
           if (isSupabaseConfigured() && supabase && childId) {
             supabase
@@ -464,26 +451,13 @@ const useLeagueStore = create(
         let userAvatar = customAvatar
         if (!userName) {
           try {
-            const raw = localStorage.getItem('toan-vui-user')
-            if (raw) {
-              const parsed = JSON.parse(raw)
-              userName = parsed?.state?.nickname || parsed?.nickname
-              userAvatar = parsed?.state?.avatar || parsed?.avatar
-            }
+            const userState = useUserStore.getState()
+            userName = userState.nickname
+            userAvatar = userState.avatar
           } catch (e) {}
         }
 
-        let effectiveUserId = currentChildId
-        if (!effectiveUserId) {
-          try {
-            const rawAuth = localStorage.getItem('toan-vui-auth')
-            if (rawAuth) {
-              const parsedAuth = JSON.parse(rawAuth)
-              effectiveUserId = parsedAuth?.state?.activeChild?.id
-            }
-          } catch (e) {}
-        }
-        if (!effectiveUserId) effectiveUserId = 'current_user'
+        let effectiveUserId = currentChildId || useAuthStore.getState().activeChild?.id || 'current_user'
 
         // 1. Tập hợp người chơi thuộc đúng Tier này:
         let pool = []

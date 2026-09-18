@@ -18,7 +18,7 @@ export default function DailyQuestsCard() {
     dailyQuests,
     dailyQuestsClaimed,
     initOrResetDailyQuests,
-    claimDailyQuestsBonus,
+    claimDailyQuestsReward,
   } = useProgressStore()
 
   const { addCoins, addXp } = useUserStore()
@@ -88,9 +88,7 @@ export default function DailyQuestsCard() {
 
   const handleClaimChest = () => {
     if (dailyQuestsClaimed || !allDone) return
-    claimDailyQuestsBonus()
-    addCoins(50)
-    addXp(60)
+    claimDailyQuestsReward(addCoins, addXp)
     soundManager.playFanfare()
     fireConfetti({ particleCount: 90, spread: 80, origin: { y: 0.6 } })
   }

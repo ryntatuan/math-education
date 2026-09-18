@@ -187,7 +187,6 @@ export default function PracticePage() {
       addCoins(bonus)
       setTotalXpEarned((prev) => prev + 20)
       addXp(20)
-      progressQuest('quiz_1', 1)
     } else {
       soundManager.playWrong()
       setStreak(0)
@@ -217,7 +216,7 @@ export default function PracticePage() {
         total: TOTAL_QUESTIONS,
         topic: selectedTopic,
       })
-      progressQuest('game_1', 1)
+      progressQuest('quest_game', 1)
     } else {
       setQuestionIndex((prev) => prev + 1)
       setSelectedAnswer(null)
@@ -244,7 +243,6 @@ export default function PracticePage() {
       soundManager.playCorrect()
       addCoins(15)
       addXp(30)
-      progressQuest('quiz_1', 1)
       fireConfetti({ particleCount: 60, spread: 70, origin: { y: 0.6 } })
     } else {
       soundManager.playWrong()

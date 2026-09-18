@@ -10,10 +10,10 @@ import CoinIcon from '../components/common/CoinIcon'
 import useUserStore from '../store/useUserStore'
 import useProgressStore from '../store/useProgressStore'
 import useAuthStore from '../store/useAuthStore'
+import usePetStore from '../store/usePetStore'
 import curriculum from '../data/curriculum'
 import soundManager from '../utils/soundManager'
 import speechHelper from '../utils/speechHelper'
-import syncService from '../services/syncService'
 import fireConfetti from '../utils/confettiHelper'
 import './LessonPage.css'
 
@@ -154,12 +154,14 @@ export default function LessonPage() {
         correctAnswers >= totalQuizzes * 0.6 ? 2 : 1
 
       completeLesson(lessonId, stars)
-      progressQuest('lesson_1', 1)
-      progressQuest('stars_1', stars)
+      progressQuest('quest_lesson', 1)
       
+      try {
+        usePetStore.getState().rewardFoodForStudy()
+      } catch (e) {}
+
       addCoins(finalCoins)
       addXp(finalXp)
-      syncService.scheduleCloudSync()
       soundManager.playFanfare()
       setShowResult(true)
 
@@ -202,7 +204,6 @@ export default function LessonPage() {
     if (isCorrect) {
       soundManager.playCorrect()
       addCoins(10)
-      progressQuest('quiz_1', 1)
     } else {
       soundManager.playWrong()
       recordMistake({
@@ -396,8 +397,8 @@ export default function LessonPage() {
               content={slide.content}
               onAnswerRecorded={(isCorrect) => {
                 if (isCorrect) {
+                  soundManager.playCorrect()
                   addCoins(10)
-                  progressQuest('quiz_1', 1)
                 }
               }}
             />

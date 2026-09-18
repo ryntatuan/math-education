@@ -211,7 +211,7 @@ export function ChapterPage() {
     return (
       <div className="page-empty">
         <h2>Không tìm thấy chương</h2>
-        <Button onClick={() => navigate('/learn')}>Quay lại</Button>
+        <Button onClick={() => navigate('/')}>Quay lại</Button>
       </div>
     )
   }
@@ -227,11 +227,11 @@ export function ChapterPage() {
             className="btn-back"
             onClick={() => {
               soundManager.playClick()
-              navigate('/learn')
+              navigate('/')
             }}
           >
             <ArrowLeft size={18} />
-            <span>Quay lại Học bài</span>
+            <span>Quay lại Trang chủ</span>
           </button>
         </div>
         <div className="chapter-detail-title">

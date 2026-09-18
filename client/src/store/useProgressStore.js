@@ -164,8 +164,11 @@ const useProgressStore = create(
         }
       },
 
-      claimDailyQuestsBonus: () => {
+      claimDailyQuestsReward: (addCoins, addXp) => {
+        if (get().dailyQuestsClaimed) return
         set({ dailyQuestsClaimed: true })
+        if (addCoins) addCoins(50)
+        if (addXp) addXp(60)
       },
 
       // Mistakes / Spaced Repetition Actions

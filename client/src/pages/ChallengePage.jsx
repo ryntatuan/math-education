@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   Flame,
@@ -17,6 +18,7 @@ import {
 } from 'lucide-react'
 import Button from '../components/ui/Button'
 import Card from '../components/ui/Card'
+import ProgressBar from '../components/ui/ProgressBar'
 import useUserStore from '../store/useUserStore'
 import useProgressStore from '../store/useProgressStore'
 import useAuthStore from '../store/useAuthStore'
@@ -29,11 +31,15 @@ import RightSidebar from '../components/layout/RightSidebar'
 import './ChallengePage.css'
 
 export default function ChallengePage() {
+  const navigate = useNavigate()
   const { grade, addCoins, addXp, nickname, avatar } = useUserStore()
   const {
     currentStreak,
     isDailyChallengeCompleted,
     completeDailyChallenge,
+    dailyQuests,
+    dailyQuestsClaimed,
+    claimDailyQuestsReward,
   } = useProgressStore()
   const { activeChild, isGuest } = useAuthStore()
   const {
@@ -108,6 +114,19 @@ export default function ChallengePage() {
       generateQuestion(grade),
     ])
   }, [grade])
+
+  // Khởi tạo & reset nhiệm vụ mỗi ngày đã được xử lý ở DailyQuestsCard
+
+  const completedQuestCount = (dailyQuests || []).filter((q) => q.done).length
+  const totalQuestCount = (dailyQuests || []).length || 3
+  const allQuestsDone = completedQuestCount === totalQuestCount && totalQuestCount > 0
+
+  const handleClaimQuestChest = () => {
+    if (dailyQuestsClaimed || !allQuestsDone) return
+    claimDailyQuestsReward(addCoins, addXp)
+    soundManager.playFanfare()
+    fireConfetti({ particleCount: 100, spread: 80, origin: { y: 0.5 } })
+  }
 
   // Dữ liệu bảng xếp hạng giải đấu tuần
   const standings = getStandings(nickname, avatar, activeChild?.id)
@@ -248,17 +267,34 @@ export default function ChallengePage() {
       <div className="challenge-tabs-bar">
         <button
           className={`challenge-tab-btn ${activeTab === 'arena' ? 'active' : ''}`}
-          onClick={() => setActiveTab('arena')}
+          onClick={() => {
+            soundManager.playClick()
+            setActiveTab('arena')
+          }}
         >
-          <span>🏆 Đấu Trường Thi Đua</span>
+          <span>🏆 Đấu Trường</span>
         </button>
 
         <button
           className={`challenge-tab-btn ${activeTab === 'daily' ? 'active' : ''}`}
-          onClick={() => setActiveTab('daily')}
+          onClick={() => {
+            soundManager.playClick()
+            setActiveTab('daily')
+          }}
         >
-          <span>🎯 Nhiệm Vụ Hằng Ngày</span>
+          <span>🎯 Thử thách</span>
           {allCompleted && <span className="tab-tag-done">✅</span>}
+        </button>
+
+        <button
+          className={`challenge-tab-btn ${activeTab === 'quests' ? 'active' : ''}`}
+          onClick={() => {
+            soundManager.playClick()
+            setActiveTab('quests')
+          }}
+        >
+          <span>📋 Nhiệm vụ</span>
+          {allQuestsDone && <span className="tab-tag-done">✅</span>}
         </button>
       </div>
 
@@ -634,6 +670,164 @@ export default function ChallengePage() {
                   <Sparkles size={20} /> Mở Quà Ngay
                 </Button>
               ) : chestOpened ? (
+                <span className="claimed-badge">🎉 Đã nhận quà</span>
+              ) : (
+                <span className="locked-badge">Chưa mở khóa</span>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* =========================================================
+          TAB 3: NHIỆM VỤ RÈN LUYỆN MỖI NGÀY
+          ========================================================= */}
+      {activeTab === 'quests' && (
+        <div className="daily-tab-content quests-tab-content">
+          {/* Hero Header tương đồng với Tab Thử Thách & Đấu Trường */}
+          <div className="challenge-hero quests-hero">
+            <div className="streak-ribbon">
+              <Flame size={32} className="flame-icon-active" />
+              <div className="streak-text-box">
+                <span className="streak-count number">{currentStreak} Ngày</span>
+                <span className="streak-sub">Chuỗi học tập liên tiếp 🔥</span>
+              </div>
+            </div>
+
+            <h1>📋 Nhiệm Vụ Rèn Luyện Mỗi Ngày</h1>
+            <p>Hoàn thành các nhiệm vụ hôm nay để tích lũy xu vàng, điểm XP và mở khóa Rương Thưởng Ngày!</p>
+          </div>
+
+          {/* Thanh tổng quan tiến độ hôm nay */}
+          <div className="quests-summary-banner">
+            <div className="quests-summary-info">
+              <div className="summary-text-wrap">
+                <span className="summary-title">Tiến Độ Nhiệm Vụ Hôm Nay</span>
+                <p className="summary-sub">Học bài, chơi game hoặc chăm thú để thăng hạng siêu tốc!</p>
+              </div>
+              <div className="summary-count-badge">
+                <span className="number"><strong>{completedQuestCount}</strong> / {totalQuestCount}</span>
+                <span className="summary-count-label">đã xong</span>
+              </div>
+            </div>
+
+            <div className="quests-summary-bar">
+              <ProgressBar
+                value={completedQuestCount}
+                max={totalQuestCount}
+                variant="warning"
+                size="md"
+              />
+            </div>
+
+            <div className="quests-summary-footer">
+              <div className="summary-reward-preview">
+                <span>🎁 Phần thưởng cơ bản:</span>
+                <strong className="reward-coins number">+{totalQuestCount * 10 + 5} Xu</strong>
+                <span>&</span>
+                <strong className="reward-xp number">+{(totalQuestCount * 10 + 5) * 2} XP</strong>
+              </div>
+              <span className="summary-reset-hint">🕒 Tự động làm mới vào 00:00 mỗi ngày</span>
+            </div>
+          </div>
+
+          {/* Danh sách các nhiệm vụ rèn luyện (Full Cards Grid) */}
+          <div className="challenge-tasks-grid">
+            {(dailyQuests || []).map((quest) => {
+              const questActions = {
+                quest_lesson: { actionLabel: 'Học bài ngay', path: '/', icon: '📚', desc: 'Hoàn thành các bài học toán lý thú theo chương trình của bé' },
+                quest_game: { actionLabel: 'Vào chơi ngay', path: '/games', icon: '🏎️', desc: 'Chơi 1 ván mini game bất kỳ để rèn luyện phản xạ tính nhẩm' },
+                quest_pet: { actionLabel: 'Chăm thú ngay', path: '/games?tab=pet', icon: '🐾', desc: 'Cho bạn thú cưng của bé ăn một bữa ngon miệng để tăng độ vui' },
+              }
+              const action = questActions[quest.id] || { actionLabel: 'Thực hiện ngay', path: '/', icon: '✨', desc: 'Rèn luyện thói quen học tập mỗi ngày' }
+
+              return (
+                <div
+                  key={quest.id}
+                  className={`task-item-card quest-item-full ${quest.done ? 'task-done' : ''}`}
+                >
+                  <div className="task-level-badge quest-icon-badge">
+                    <span className="level-num">{quest.icon || action.icon}</span>
+                  </div>
+
+                  <div className="task-info">
+                    <div className="task-info-top">
+                      <h3>{quest.title}</h3>
+                      <span className="quest-progress-tag number">
+                        {quest.current} / {quest.target}
+                      </span>
+                    </div>
+                    <p className="quest-desc">{action.desc}</p>
+                    <div className="quest-mini-progress">
+                      <ProgressBar
+                        value={quest.current}
+                        max={quest.target}
+                        variant={quest.done ? 'success' : 'primary'}
+                        size="xs"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="task-reward-box">
+                    <span className="reward-badge number">
+                      +{quest.reward} Xu & +{quest.reward * 2} XP
+                    </span>
+                  </div>
+
+                  <div className="task-action-box">
+                    {quest.done ? (
+                      <div className="task-completed-pill">
+                        <CheckCircle2 size={18} />
+                        <span>Đã xong</span>
+                      </div>
+                    ) : (
+                      <Button
+                        variant="primary"
+                        size="md"
+                        className="btn-quest-action"
+                        onClick={() => {
+                          soundManager.playClick()
+                          navigate(action.path)
+                        }}
+                      >
+                        {action.actionLabel}
+                      </Button>
+                    )}
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+
+          {/* Rương Quà Tặng Ngày Đặc Biệt (Tương đồng với Tab Thử thách) */}
+          <div className="chest-reward-card quests-chest-card">
+            <div className="chest-visual">
+              <motion.span
+                className="chest-icon"
+                animate={allQuestsDone && !dailyQuestsClaimed ? { scale: [1, 1.15, 1], rotate: [-3, 3, -3] } : {}}
+                transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+              >
+                {dailyQuestsClaimed ? '🎁' : allQuestsDone ? '✨🎁' : '🔒'}
+              </motion.span>
+            </div>
+
+            <div className="chest-details">
+              <h2>{dailyQuestsClaimed ? 'Hộp Quà Đã Nhận Hôm Nay!' : 'Rương Thưởng Hoàn Thành Ngày (+50 Xu & 60 XP)'}</h2>
+              <p>
+                {dailyQuestsClaimed
+                  ? 'Bé đã nhận thành công +50 Xu vàng & +60 XP hôm nay! Hãy quay lại vào ngày mai nhé!'
+                  : allQuestsDone
+                  ? 'Tuyệt vời! Cả 3 nhiệm vụ ngày đã hoàn tất. Hãy mở rương nhận quà nào!'
+                  : 'Hoàn thành đủ cả 3 nhiệm vụ hôm nay để mở khóa rương phần thưởng đặc biệt!'}
+              </p>
+            </div>
+
+            <div className="chest-action">
+              {allQuestsDone && !dailyQuestsClaimed ? (
+                <Button variant="warning" size="lg" onClick={handleClaimQuestChest}>
+                  <Sparkles size={20} /> Mở Quà Ngay
+                </Button>
+              ) : dailyQuestsClaimed ? (
                 <span className="claimed-badge">🎉 Đã nhận quà</span>
               ) : (
                 <span className="locked-badge">Chưa mở khóa</span>

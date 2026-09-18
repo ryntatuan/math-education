@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useLocation, Navigate } from 'react-router-dom'
 import Sidebar from './components/layout/Sidebar'
 import Header from './components/layout/Header'
 import BottomNav from './components/layout/BottomNav'
@@ -40,12 +40,12 @@ function AppLayout() {
         <ErrorBoundary key={location.pathname}>
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/learn" element={<GradePage />} />
+            <Route path="/learn" element={<Navigate to="/" replace />} />
             <Route path="/learn/:gradeId/:chapterId" element={<ChapterPage />} />
             <Route path="/lesson/:lessonId" element={<LessonPage />} />
             <Route path="/practice" element={<PracticePage />} />
             <Route path="/games" element={<GamesPage />} />
-            <Route path="/stories" element={<StoriesPage />} />
+            <Route path="/stories" element={<Navigate to="/games?tab=stories" replace />} />
             <Route path="/leaderboard" element={<LeaderboardPage />} />
             <Route path="/challenges" element={<ChallengePage />} />
             <Route path="/profile" element={<ProfilePage />} />

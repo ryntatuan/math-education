@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Home, BookOpen, PenTool, Gamepad2, Trophy, ShieldCheck, Volume2, VolumeX, Sparkles, Headphones } from 'lucide-react'
+import { Home, PenTool, Gamepad2, Trophy, ShieldCheck, Volume2, VolumeX, Sparkles, Headphones } from 'lucide-react'
 import MascotIcon from '../common/MascotIcon'
 import soundManager from '../../utils/soundManager'
 import useUserStore from '../../store/useUserStore'
@@ -9,7 +9,6 @@ import './Sidebar.css'
 
 const navItems = [
   { to: '/', label: 'Trang chủ', icon: Home, variant: 'home' },
-  { to: '/learn', label: 'Học bài', icon: BookOpen, variant: 'learn' },
   { to: '/practice', label: 'Luyện tập', icon: PenTool, variant: 'practice' },
   { to: '/games', label: 'Trò chơi', icon: Gamepad2, variant: 'games' },
   { to: '/challenges', label: 'Thử thách', icon: Trophy, variant: 'challenges' },

@@ -13,6 +13,7 @@ import { generateQuestion, generateCalculation } from '../utils/exerciseGenerato
 import soundManager from '../utils/soundManager'
 import fireConfetti from '../utils/confettiHelper'
 import StoriesPage from './StoriesPage'
+import PetWidget from '../components/pet/PetWidget'
 import RightSidebar from '../components/layout/RightSidebar'
 import './GamesPage.css'
 
@@ -113,46 +114,55 @@ export default function GamesPage() {
 
   const [searchParams, setSearchParams] = useSearchParams()
   const tabFromUrl = searchParams.get('tab')
-  const [mainTab, setMainTab] = useState(tabFromUrl === 'stories' ? 'stories' : 'games')
+  const [mainTab, setMainTab] = useState(
+    tabFromUrl === 'stories' ? 'stories' : tabFromUrl === 'pet' ? 'pet' : 'games'
+  )
 
   useEffect(() => {
     if (tabFromUrl === 'stories' && mainTab !== 'stories') {
       setMainTab('stories')
-    } else if (tabFromUrl === 'games' && mainTab !== 'games') {
+    } else if (tabFromUrl === 'pet' && mainTab !== 'pet') {
+      setMainTab('pet')
+    } else if ((!tabFromUrl || tabFromUrl === 'games') && mainTab !== 'games' && tabFromUrl !== 'stories' && tabFromUrl !== 'pet') {
       setMainTab('games')
     }
   }, [tabFromUrl])
 
   if (isGuest) {
     return (
-      <GuestFeatureLock
-        icon="🎮"
-        badgeText="TRÒ CHƠI & TRUYỆN TOÁN"
-        title="Sân Chơi Toán Học Dành Riêng Cho Thành Viên"
-        subtitle="Đăng nhập tài khoản để mở khóa toàn bộ 6 Mini Game rèn phản xạ tính nhẩm siêu tốc và 8 Truyện Tranh Toán Tương Tác kỳ thú!"
-        benefits={[
-          {
-            icon: '🏎️',
-            title: 'Trọn Bộ 6 Mini Game Toán Học',
-            desc: 'Đua xe toán học, Bắn bóng bay, Lật thẻ trí nhớ, Cán cân thần kỳ và Bắn thiên thạch.',
-          },
-          {
-            icon: '📖',
-            title: 'Kho 8 Truyện Tranh Toán Tương Tác',
-            desc: 'Cùng các bạn muông thú bước vào những chuyến phiêu lưu kỳ thú và giải đố nhận quà.',
-          },
-          {
-            icon: '🪙',
-            title: 'Thưởng Xu & Kinh Nghiệm Khủng',
-            desc: 'Nhận xu vàng và điểm XP sau mỗi ván thắng để đổi quà và thăng cấp vương miện.',
-          },
-          {
-            icon: '🏆',
-            title: 'Lưu Kỷ Lục & Tranh Tài Bạn Bè',
-            desc: 'Bảo lưu kỷ lục điểm số cao nhất và tranh tài xếp hạng cùng các bạn học sinh.',
-          },
-        ]}
-      />
+      <div className="page-2col-layout">
+        <div className="learning-main-column">
+          <GuestFeatureLock
+            icon="🎮"
+            badgeText="TRÒ CHƠI & TRUYỆN TOÁN"
+            title="Sân Chơi Toán Học Dành Riêng Cho Thành Viên"
+            subtitle="Đăng nhập tài khoản để mở khóa toàn bộ 6 Mini Game rèn phản xạ tính nhẩm siêu tốc và 8 Truyện Tranh Toán Tương Tác kỳ thú!"
+            benefits={[
+              {
+                icon: '🏎️',
+                title: 'Trọn Bộ 6 Mini Game Toán Học',
+                desc: 'Đua xe toán học, Bắn bóng bay, Lật thẻ trí nhớ, Cán cân thần kỳ và Bắn thiên thạch.',
+              },
+              {
+                icon: '📖',
+                title: 'Kho 8 Truyện Tranh Toán Tương Tác',
+                desc: 'Cùng các bạn muông thú bước vào những chuyến phiêu lưu kỳ thú và giải đố nhận quà.',
+              },
+              {
+                icon: '🪙',
+                title: 'Thưởng Xu & Kinh Nghiệm Khủng',
+                desc: 'Nhận xu vàng và điểm XP sau mỗi ván thắng để đổi quà và thăng cấp vương miện.',
+              },
+              {
+                icon: '🏆',
+                title: 'Lưu Kỷ Lục & Tranh Tài Bạn Bè',
+                desc: 'Bảo lưu kỷ lục điểm số cao nhất và tranh tài xếp hạng cùng các bạn học sinh.',
+              },
+            ]}
+          />
+        </div>
+        <RightSidebar hideOnMobile={true} />
+      </div>
     )
   }
 
@@ -172,7 +182,7 @@ export default function GamesPage() {
                 }}
               >
                 <span className="tab-icon">🎮</span>
-                <span>Trò Chơi Mini</span>
+                <span>Trò Chơi</span>
               </button>
               <button
                 type="button"
@@ -184,12 +194,28 @@ export default function GamesPage() {
                 }}
               >
                 <span className="tab-icon">📖</span>
-                <span>Truyện Tranh Toán</span>
+                <span>Truyện Toán</span>
+              </button>
+              <button
+                type="button"
+                className={`games-tab-btn ${mainTab === 'pet' ? 'active' : ''}`}
+                onClick={() => {
+                  soundManager.playClick()
+                  setMainTab('pet')
+                  setSearchParams({ tab: 'pet' })
+                }}
+              >
+                <span className="tab-icon">🐾</span>
+                <span>Nuôi thú</span>
               </button>
             </div>
 
             {mainTab === 'stories' ? (
               <StoriesPage />
+            ) : mainTab === 'pet' ? (
+              <div className="games-pet-tab-container">
+                <PetWidget compact={false} />
+              </div>
             ) : (
               <div className="game-select-screen">
             <div className="games-hero">

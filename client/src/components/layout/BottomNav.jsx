@@ -1,10 +1,9 @@
 import { Link, useLocation } from 'react-router-dom'
-import { Home, BookOpen, PenTool, Gamepad2, Trophy, User } from 'lucide-react'
+import { Home, PenTool, Gamepad2, Trophy, User } from 'lucide-react'
 import './BottomNav.css'
 
 const navItems = [
   { to: '/', icon: Home, label: 'Trang chủ' },
-  { to: '/learn', icon: BookOpen, label: 'Học' },
   { to: '/practice', icon: PenTool, label: 'Luyện tập' },
   { to: '/games', icon: Gamepad2, label: 'Trò chơi' },
   { to: '/challenges', icon: Trophy, label: 'Thử thách' },
@@ -27,8 +26,7 @@ export default function BottomNav() {
       {navItems.map(({ to, icon: Icon, label }) => {
         const isActive =
           location.pathname === to ||
-          (to !== '/' && location.pathname.startsWith(to)) ||
-          (to === '/games' && location.pathname.startsWith('/stories'))
+          (to !== '/' && location.pathname.startsWith(to))
 
         return (
           <Link

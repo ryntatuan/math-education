@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { Award, Star, Flame, Trophy, Coins, User, Sparkles, Check, Edit2, ShoppingBag, LogIn, LogOut, ArrowRight, BookOpen } from 'lucide-react'
+import { Award, Star, Flame, Trophy, Coins, User, Sparkles, Check, Edit2, ShoppingBag, LogIn, LogOut, ArrowRight, BookOpen, Download, Smartphone } from 'lucide-react'
 import Button from '../components/ui/Button'
 import Card from '../components/ui/Card'
 import ProgressBar from '../components/ui/ProgressBar'
@@ -12,6 +12,8 @@ import useProgressStore from '../store/useProgressStore'
 import useAuthStore from '../store/useAuthStore'
 import soundManager from '../utils/soundManager'
 import { APP_VERSION } from '../config/appVersion'
+import { Capacitor } from '@capacitor/core'
+import { isAndroid } from '../utils/deviceHelper'
 import './ProfilePage.css'
 
 const BADGES_DATA = [
@@ -25,8 +27,44 @@ const BADGES_DATA = [
   { id: 'grade_master', name: '👑 Thần Đồng Toán Học', desc: 'Vượt qua tất cả các bài học một khối lớp', icon: '👑' },
 ]
 
+function ApkDownloadBanner({ isWeb }) {
+  if (!isWeb) return null
+  return (
+    <motion.div
+      className="profile-apk-download-card"
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.3 }}
+    >
+      <div className="apk-card-content">
+        <div className="apk-card-icon">
+          <Smartphone size={28} />
+        </div>
+        <div className="apk-card-text">
+          <div className="apk-title-row">
+            <h3>Cài Đặt App Toán Vui Cho Android</h3>
+            <span className="apk-badge">Bản v{APP_VERSION} (.APK)</span>
+          </div>
+          <p>Trải nghiệm mượt mà hơn, âm thanh sống động và học tập tiện lợi mọi lúc mọi nơi!</p>
+        </div>
+      </div>
+      <a
+        href="/downloads/ToanVui.apk"
+        download="ToanVui.apk"
+        className="btn-download-apk-direct"
+        onClick={() => soundManager.playFanfare()}
+      >
+        <Download size={18} />
+        <span>Tải App Ngay (.APK)</span>
+      </a>
+    </motion.div>
+  )
+}
+
 export default function ProfilePage() {
   const navigate = useNavigate()
+  const isNative = Capacitor.isNativePlatform()
+  const isWeb = !isNative
   const {
     nickname,
     avatar,
@@ -121,6 +159,7 @@ export default function ProfilePage() {
           </div>
         </div>
 
+
         {/* Guest Notice & Limitations Card */}
         <motion.div
           className="profile-guest-notice-card"
@@ -183,7 +222,7 @@ export default function ProfilePage() {
                 className="btn-guest-continue-learn"
                 onClick={() => {
                   soundManager.playClick()
-                  navigate('/learn')
+                  navigate('/')
                 }}
               >
                 <BookOpen size={18} />
@@ -193,6 +232,9 @@ export default function ProfilePage() {
             </div>
           </div>
         </motion.div>
+
+        {/* APK Download Card for Web */}
+        <ApkDownloadBanner isWeb={isWeb} />
       </div>
     )
   }
@@ -299,6 +341,7 @@ export default function ProfilePage() {
           </div>
         </div>
       </div>
+
 
       {/* Account & Cloud Sync Section */}
       <div className="profile-account-card">
@@ -420,6 +463,9 @@ export default function ProfilePage() {
           })}
         </div>
       </div>
+
+      {/* APK Download Card for Web */}
+      <ApkDownloadBanner isWeb={isWeb} />
 
       {/* App Version & Credentials Info Footer */}
       <div className="profile-version-footer">
