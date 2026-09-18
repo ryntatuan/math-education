@@ -147,10 +147,6 @@ export default function HomePage() {
                 <span className="hide-desktop hide-tablet">☀️ HK 2 ({halfPoint + 1} - {allChaptersForGrade.length})</span>
               </button>
             </div>
-
-            <span className="home-current-grade-tag">
-              {currentGradeInfo.emoji} Đang xem: {currentGradeInfo.name}
-            </span>
           </div>
 
           {/* 3. LƯỚI 10 CHƯƠNG HỌC (2 CỘT X 5 HÀNG) */}

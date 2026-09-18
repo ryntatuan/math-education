@@ -60,28 +60,28 @@ export default function GradePage() {
           </div>
         </div>
 
-      <motion.div
-        key={selectedGrade}
-        className="home-chapters-grid"
-        initial="hidden"
-        animate="show"
-        variants={{
-          hidden: { opacity: 0 },
-          show: { opacity: 1, transition: { staggerChildren: 0.08 } },
-        }}
-      >
-        {gradeData.chapters.map((chapter, index) => (
-          <ChapterCard
-            key={chapter.id}
-            chapter={chapter}
-            index={index}
-            gradeId={selectedGrade}
-            onClick={() => navigate(`/learn/${selectedGrade}/${chapter.id}`)}
-          />
-        ))}
-      </motion.div>
+        <motion.div
+          key={selectedGrade}
+          className="home-chapters-grid"
+          initial="hidden"
+          animate="show"
+          variants={{
+            hidden: { opacity: 0 },
+            show: { opacity: 1, transition: { staggerChildren: 0.08 } },
+          }}
+        >
+          {gradeData.chapters.map((chapter, index) => (
+            <ChapterCard
+              key={chapter.id}
+              chapter={chapter}
+              index={index}
+              gradeId={selectedGrade}
+              onClick={() => navigate(`/learn/${selectedGrade}/${chapter.id}`)}
+            />
+          ))}
+        </motion.div>
       </div>
-        <RightSidebar hideOnMobile={true} />
+      <RightSidebar hideOnMobile={true} />
     </div>
   )
 }
@@ -240,7 +240,7 @@ export function ChapterPage() {
           </span>
           <div>
             <h1>{chapter.name}</h1>
-            <p>{chapter.description} • {totalLessonsCount} bài học • ⭐ {progress.earnedStars}/{progress.maxStars} sao tích lũy</p>
+            <p>{chapter.description}</p>
           </div>
         </div>
       </div>

@@ -721,19 +721,29 @@
 
   /* Bộ lọc học kỳ Mobile */
   .home-semester-bar {
+    width: 100%;
     gap: 8px;
   }
 
   .home-semester-tabs {
     width: 100%;
-    justify-content: flex-start;
-    padding: 3px;
-    gap: 4px;
+    display: flex;
+    justify-content: space-between;
+    padding: 4px;
+    gap: 6px;
+    box-sizing: border-box;
   }
 
   .sem-pill-btn {
-    padding: 5px 10px;
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 6px 4px;
     font-size: 0.78rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    white-space: nowrap;
   }
 
   .home-current-grade-tag {
@@ -944,5 +954,11 @@
   .btn-chapter-pill {
     padding: 3px 8px;
     font-size: 0.7rem;
+  }
+
+  .sem-pill-btn {
+    padding: 5px 2px;
+    font-size: 0.7rem;
+    letter-spacing: -0.2px;
   }
 }
