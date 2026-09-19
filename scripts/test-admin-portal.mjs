@@ -527,7 +527,10 @@ if (!ONLY_STATIC) {
         for (const row of r.body) {
           if (!isUint(row.coins)) bad.push(`${row.key}: coins=${row.coins}`);
           if (!isUint(row.xp)) bad.push(`${row.key}: xp=${row.xp}`);
-          if (row.coins_max != null && !(isUint(row.coins_max) && row.coins_max >= row.coins))
+          if (
+            row.coins_max != null &&
+            !(isUint(row.coins_max) && row.coins_max >= row.coins)
+          )
             bad.push(
               `${row.key}: coins_max=${row.coins_max} < coins=${row.coins}`,
             );

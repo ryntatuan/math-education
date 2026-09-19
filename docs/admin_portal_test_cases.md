@@ -27,10 +27,10 @@ node scripts/test-admin-portal.mjs --db   # chỉ kiểm tra database
 
 **Tool tự kiểm tra 23 mục** (mã `S-x` và `D-x` trong output khớp với `TC-x.y` ở dưới):
 
-| Nhóm  | Nội dung                                                                                                                                                                                                | Số mục |
-| ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| Nhóm  | Nội dung                                                                                                                                                                                                                                   | Số mục |
+| ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------ |
 | **S** | Quét source: không còn thưởng gán cứng, không còn dependency array mồ côi, mọi khoá `grantReward` đều tồn tại, seed SQL khớp code **cả khoá lẫn giá trị**, 2 bundle tách biệt, không nhúng `service_role`, không gán cứng số Xu/XP trên UI | 11     |
-| **D** | Gọi REST bằng anon key: seed đủ và đúng giá trị, RLS chặn ghi leaderboard, chặn đọc `profiles`/`child_profiles`/sổ cái, `is_admin()` trả false, audit log bất biến, `reward_configs` đọc công khai được            | 12     |
+| **D** | Gọi REST bằng anon key: seed đủ và đúng giá trị, RLS chặn ghi leaderboard, chặn đọc `profiles`/`child_profiles`/sổ cái, `is_admin()` trả false, audit log bất biến, `reward_configs` đọc công khai được                                    | 12     |
 
 Exit code `0` = tất cả PASS (dùng được trong CI). `1` = có FAIL.
 
@@ -65,11 +65,11 @@ npm --prefix admin  run dev    # 5174
 
 Chạy **đúng thứ tự** trong Supabase → SQL Editor:
 
-| #   | File                                            | Nội dung                                                               |
-| --- | ----------------------------------------------- | ---------------------------------------------------------------------- |
-| 1   | `supabase/migrations/0001_admin_foundation.sql` | role, `is_admin()`, vá RLS leaderboard, audit log, app_config          |
-| 2   | `supabase/migrations/0002_reward_economy.sql`   | reward_configs (giá gốc), sổ cái, hệ số nhân, level curve              |
-| 3   | `supabase/migrations/0003_tune_rewards.sql`     | 🔧 Chốt giá thưởng sau test — hạ thang luyện tập & mini game          |
+| #   | File                                            | Nội dung                                                      |
+| --- | ----------------------------------------------- | ------------------------------------------------------------- |
+| 1   | `supabase/migrations/0001_admin_foundation.sql` | role, `is_admin()`, vá RLS leaderboard, audit log, app_config |
+| 2   | `supabase/migrations/0002_reward_economy.sql`   | reward_configs (giá gốc), sổ cái, hệ số nhân, level curve     |
+| 3   | `supabase/migrations/0003_tune_rewards.sql`     | 🔧 Chốt giá thưởng sau test — hạ thang luyện tập & mini game  |
 
 > **Vì sao có cả 0002 và 0003?** `0002` đã chạy rồi nên **không sửa** (sửa migration
 > đã áp dụng là cách chắc nhất để môi trường này lệch môi trường kia). `0003` chép lại
@@ -911,13 +911,13 @@ Quay lại app chính và **tải lại trang** (xem ghi chú bên dưới).
 > ℹ️ Dùng `33/44` chứ không dùng `20/50`: `20/50` **đã là giá hiện hành**, trùng với
 > mặc định nên không chứng minh được gì. Số lạ giúp thấy rõ app có thật sự đọc config.
 
-| #   | Bước                                      | Mong đợi                                                               |
-| --- | ----------------------------------------- | ---------------------------------------------------------------------- |
-| a   | Trò chơi → **Đua Xe Toán Học** → hạng 1   | Màn hình kết quả ghi **`+33 Xu`** và **`+44 XP`**                      |
-| b   | Xem số Xu trên header                     | Tăng **đúng 33**                                                       |
-| c   | Lặp với **Bắn Bóng Số Bay** đạt ≥150 điểm | Cũng ghi `+33 Xu` / `+44 XP`                                           |
-| d   | 🔴 **Cân Bằng Thần Kỳ** (thắng)           | Cũng ghi `+33 Xu` / `+44 XP` — đây là chỗ từng viết chết `+120 Xu`     |
-| e   | 🔴 **Câu Cá Thông Thái** (thắng)          | Cũng ghi `+33 Xu` / `+44 XP`                                           |
+| #   | Bước                                      | Mong đợi                                                           |
+| --- | ----------------------------------------- | ------------------------------------------------------------------ |
+| a   | Trò chơi → **Đua Xe Toán Học** → hạng 1   | Màn hình kết quả ghi **`+33 Xu`** và **`+44 XP`**                  |
+| b   | Xem số Xu trên header                     | Tăng **đúng 33**                                                   |
+| c   | Lặp với **Bắn Bóng Số Bay** đạt ≥150 điểm | Cũng ghi `+33 Xu` / `+44 XP`                                       |
+| d   | 🔴 **Cân Bằng Thần Kỳ** (thắng)           | Cũng ghi `+33 Xu` / `+44 XP` — đây là chỗ từng viết chết `+120 Xu` |
+| e   | 🔴 **Câu Cá Thông Thái** (thắng)          | Cũng ghi `+33 Xu` / `+44 XP`                                       |
 
 **Kiểm chứng sổ cái** — số ở cột `amount` phải bằng số hiển thị:
 

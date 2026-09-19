@@ -143,12 +143,12 @@ http://localhost:5173/**
 
 ### 6.1. Kiểm tra nhanh sau khi deploy
 
-| Kiểm tra                  | Cách làm                                                              | Mong đợi                                    |
-| ------------------------- | --------------------------------------------------------------------- | ------------------------------------------- |
-| SPA routing không 404     | Mở `https://admin-….vercel.app/currency` (đổi URL tay)                | Vào trang Kinh tế, **không** lỗi 404        |
-| Đăng nhập Google được     | Bấm **Đăng nhập bằng Google**                                          | Vào Dashboard, không bị đá về trang chủ     |
-| Env đã nạp                | DevTools → Console → gõ `__sb`                                         | `undefined` (log `__sb` chỉ có ở chế độ dev) |
-| Kết nối Supabase đúng     | Vào **Người dùng** → bảng hiện đúng số bé                              | Khớp `SELECT COUNT(*) FROM child_profiles;` |
+| Kiểm tra              | Cách làm                                               | Mong đợi                                     |
+| --------------------- | ------------------------------------------------------ | -------------------------------------------- |
+| SPA routing không 404 | Mở `https://admin-….vercel.app/currency` (đổi URL tay) | Vào trang Kinh tế, **không** lỗi 404         |
+| Đăng nhập Google được | Bấm **Đăng nhập bằng Google**                          | Vào Dashboard, không bị đá về trang chủ      |
+| Env đã nạp            | DevTools → Console → gõ `__sb`                         | `undefined` (log `__sb` chỉ có ở chế độ dev) |
+| Kết nối Supabase đúng | Vào **Người dùng** → bảng hiện đúng số bé              | Khớp `SELECT COUNT(*) FROM child_profiles;`  |
 
 ---
 
