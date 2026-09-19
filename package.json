@@ -6,12 +6,16 @@
   "scripts": {
     "dev": "cd client && npm run dev",
     "dev:client": "cd client && npm run dev",
+    "dev:admin": "cd admin && npm run dev",
+    "test:portal": "node scripts/test-admin-portal.mjs",
+    "test:portal:static": "node scripts/test-admin-portal.mjs --static",
     "build": "node scripts/build-apk.mjs",
     "version:bump": "node scripts/bump-version.mjs",
     "build:web": "cd client && npm run build:web",
+    "build:admin": "cd admin && npm run build",
     "mobile:sync": "cd client && npm run mobile:sync",
     "mobile:android": "cd client && npm run mobile:android",
-    "install:all": "npm install && cd client && npm install && cd ../server && npm install"
+    "install:all": "npm install && cd client && npm install && cd ../admin && npm install"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"

@@ -1,21 +1,33 @@
-import { useState, useEffect, useRef, useCallback } from 'react'
-import { useSearchParams } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowLeft, Play, RotateCcw, Trophy, Zap, Clock, Star, Flame } from 'lucide-react'
-import Button from '../components/ui/Button'
-import Card from '../components/ui/Card'
-import ProgressBar from '../components/ui/ProgressBar'
-import useUserStore from '../store/useUserStore'
-import useProgressStore from '../store/useProgressStore'
-import useAuthStore from '../store/useAuthStore'
-import GuestFeatureLock from '../components/auth/GuestFeatureLock'
-import { generateQuestion, generateCalculation } from '../utils/exerciseGenerator'
-import soundManager from '../utils/soundManager'
-import fireConfetti from '../utils/confettiHelper'
-import StoriesPage from './StoriesPage'
-import PetWidget from '../components/pet/PetWidget'
-import RightSidebar from '../components/layout/RightSidebar'
-import './GamesPage.css'
+import { useState, useEffect, useRef, useCallback } from "react";
+import { useSearchParams } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  ArrowLeft,
+  Play,
+  RotateCcw,
+  Trophy,
+  Zap,
+  Clock,
+  Star,
+  Flame,
+} from "lucide-react";
+import Button from "../components/ui/Button";
+import Card from "../components/ui/Card";
+import ProgressBar from "../components/ui/ProgressBar";
+import useUserStore from "../store/useUserStore";
+import useProgressStore from "../store/useProgressStore";
+import useAuthStore from "../store/useAuthStore";
+import GuestFeatureLock from "../components/auth/GuestFeatureLock";
+import {
+  generateQuestion,
+  generateCalculation,
+} from "../utils/exerciseGenerator";
+import soundManager from "../utils/soundManager";
+import fireConfetti from "../utils/confettiHelper";
+import StoriesPage from "./StoriesPage";
+import PetWidget from "../components/pet/PetWidget";
+import RightSidebar from "../components/layout/RightSidebar";
+import "./GamesPage.css";
 
 const GameOverStars = ({ stars }) => {
   return (
@@ -23,110 +35,133 @@ const GameOverStars = ({ stars }) => {
       {[1, 2, 3].map((star) => (
         <motion.div
           key={star}
-          className={`gameover-star-wrapper ${star <= stars ? 'active' : 'inactive'}`}
+          className={`gameover-star-wrapper ${star <= stars ? "active" : "inactive"}`}
           initial={{ scale: 0, opacity: 0, rotate: -45 }}
           animate={{ scale: 1, opacity: 1, rotate: 0 }}
           transition={{
             delay: star * 0.15,
-            type: 'spring',
+            type: "spring",
             stiffness: 260,
-            damping: 20
+            damping: 20,
           }}
         >
-          <svg viewBox="0 0 24 24" fill={star <= stars ? "#FFD700" : "#E0E0E0"} stroke={star <= stars ? "#D4AF37" : "#BDBDBD"} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="gameover-star-svg">
+          <svg
+            viewBox="0 0 24 24"
+            fill={star <= stars ? "#FFD700" : "#E0E0E0"}
+            stroke={star <= stars ? "#D4AF37" : "#BDBDBD"}
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="gameover-star-svg"
+          >
             <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
           </svg>
         </motion.div>
       ))}
     </div>
-  )
-}
+  );
+};
 
 // Game Definitions
 const GAME_LIST = [
   {
-    id: 'math_race',
-    title: 'Cuộc Đua Toán Học',
-    subtitle: 'Math Race',
-    description: 'Trả lời đúng các phép tính để xe của bé tăng tốc vượt qua Thỏ, Rùa và Mèo cán đích đầu tiên!',
-    color: '#FF6B6B',
-    bgGradient: 'linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)',
-    icon: '🏎️',
-    difficulty: 'Dễ - Vừa',
+    id: "math_race",
+    title: "Cuộc Đua Toán Học",
+    subtitle: "Math Race",
+    description:
+      "Trả lời đúng các phép tính để xe của bé tăng tốc vượt qua Thỏ, Rùa và Mèo cán đích đầu tiên!",
+    color: "#FF6B6B",
+    bgGradient: "linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)",
+    icon: "🏎️",
+    difficulty: "Dễ - Vừa",
   },
   {
-    id: 'number_pop',
-    title: 'Bắn Bóng Số Bay',
-    subtitle: 'Number Pop',
-    description: 'Các quả bóng bay mang số đang bay lên! Hãy chọn nhanh quả bóng có đáp án chính xác!',
-    color: '#4facfe',
-    bgGradient: 'linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%)',
-    icon: '🎈',
-    difficulty: 'Nhanh tay',
+    id: "number_pop",
+    title: "Bắn Bóng Số Bay",
+    subtitle: "Number Pop",
+    description:
+      "Các quả bóng bay mang số đang bay lên! Hãy chọn nhanh quả bóng có đáp án chính xác!",
+    color: "#4facfe",
+    bgGradient: "linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%)",
+    icon: "🎈",
+    difficulty: "Nhanh tay",
   },
   {
-    id: 'memory_match',
-    title: 'Lật Thẻ Trí Nhớ',
-    subtitle: 'Memory Match',
-    description: 'Lật mở các thẻ bài bí mật để ghép đôi phép tính với kết quả tương ứng!',
-    color: '#51CF66',
-    bgGradient: 'linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%)',
-    icon: '🃏',
-    difficulty: 'Trí nhớ',
+    id: "memory_match",
+    title: "Lật Thẻ Trí Nhớ",
+    subtitle: "Memory Match",
+    description:
+      "Lật mở các thẻ bài bí mật để ghép đôi phép tính với kết quả tương ứng!",
+    color: "#51CF66",
+    bgGradient: "linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%)",
+    icon: "🃏",
+    difficulty: "Trí nhớ",
   },
   {
-    id: 'math_balance',
-    title: 'Cán Cân Thần Kỳ',
-    subtitle: 'Math Balance',
-    description: 'Chọn quả cân thích hợp đặt lên đĩa cân để cán cân thăng bằng hoàn hảo!',
-    color: '#F59F00',
-    bgGradient: 'linear-gradient(135deg, #f6d365 0%, #fda085 100%)',
-    icon: '⚖️',
-    difficulty: 'Tư duy logic',
+    id: "math_balance",
+    title: "Cán Cân Thần Kỳ",
+    subtitle: "Math Balance",
+    description:
+      "Chọn quả cân thích hợp đặt lên đĩa cân để cán cân thăng bằng hoàn hảo!",
+    color: "#F59F00",
+    bgGradient: "linear-gradient(135deg, #f6d365 0%, #fda085 100%)",
+    icon: "⚖️",
+    difficulty: "Tư duy logic",
   },
   {
-    id: 'space_defense',
-    title: 'Bắn Thiên Thạch Vũ Trụ',
-    subtitle: 'Space Defense',
-    description: 'Điều khiển tàu không gian bắn phá các khối thiên thạch chứa phép tính sai!',
-    color: '#845EF7',
-    bgGradient: 'linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)',
-    icon: '🚀',
-    difficulty: 'Phản xạ',
+    id: "space_defense",
+    title: "Bắn Thiên Thạch Vũ Trụ",
+    subtitle: "Space Defense",
+    description:
+      "Điều khiển tàu không gian bắn phá các khối thiên thạch chứa phép tính sai!",
+    color: "#845EF7",
+    bgGradient: "linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)",
+    icon: "🚀",
+    difficulty: "Phản xạ",
   },
   {
-    id: 'math_fishing',
-    title: 'Câu Cá Toán Học',
-    subtitle: 'Math Fishing',
-    description: 'Bác gấu đang đi câu cá, hãy giúp bác câu được những chú cá mang kết quả đúng!',
-    color: '#20C997',
-    bgGradient: 'linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%)',
-    icon: '🎣',
-    difficulty: 'Bình tĩnh',
+    id: "math_fishing",
+    title: "Câu Cá Toán Học",
+    subtitle: "Math Fishing",
+    description:
+      "Bác gấu đang đi câu cá, hãy giúp bác câu được những chú cá mang kết quả đúng!",
+    color: "#20C997",
+    bgGradient: "linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%)",
+    icon: "🎣",
+    difficulty: "Bình tĩnh",
   },
-]
+];
 
 export default function GamesPage() {
-  const { isGuest } = useAuthStore()
-  const { grade, addCoins, addXp } = useUserStore()
-  const { recordGamePlayed, recordRaceWin } = useProgressStore()
-  const [activeGame, setActiveGame] = useState(null)
+  const { isGuest } = useAuthStore();
+  const { grade, grantReward } = useUserStore();
+  const { recordGamePlayed, recordRaceWin } = useProgressStore();
+  const [activeGame, setActiveGame] = useState(null);
 
-  const [searchParams, setSearchParams] = useSearchParams()
-  const tabFromUrl = searchParams.get('tab')
+  const [searchParams, setSearchParams] = useSearchParams();
+  const tabFromUrl = searchParams.get("tab");
   const [mainTab, setMainTab] = useState(
-    tabFromUrl === 'stories' ? 'stories' : tabFromUrl === 'pet' ? 'pet' : 'games'
-  )
+    tabFromUrl === "stories"
+      ? "stories"
+      : tabFromUrl === "pet"
+        ? "pet"
+        : "games",
+  );
 
   useEffect(() => {
-    if (tabFromUrl === 'stories' && mainTab !== 'stories') {
-      setMainTab('stories')
-    } else if (tabFromUrl === 'pet' && mainTab !== 'pet') {
-      setMainTab('pet')
-    } else if ((!tabFromUrl || tabFromUrl === 'games') && mainTab !== 'games' && tabFromUrl !== 'stories' && tabFromUrl !== 'pet') {
-      setMainTab('games')
+    if (tabFromUrl === "stories" && mainTab !== "stories") {
+      setMainTab("stories");
+    } else if (tabFromUrl === "pet" && mainTab !== "pet") {
+      setMainTab("pet");
+    } else if (
+      (!tabFromUrl || tabFromUrl === "games") &&
+      mainTab !== "games" &&
+      tabFromUrl !== "stories" &&
+      tabFromUrl !== "pet"
+    ) {
+      setMainTab("games");
     }
-  }, [tabFromUrl])
+  }, [tabFromUrl]);
 
   if (isGuest) {
     return (
@@ -139,31 +174,31 @@ export default function GamesPage() {
             subtitle="Đăng nhập tài khoản để mở khóa toàn bộ 6 Mini Game rèn phản xạ tính nhẩm siêu tốc và 8 Truyện Tranh Toán Tương Tác kỳ thú!"
             benefits={[
               {
-                icon: '🏎️',
-                title: 'Trọn Bộ 6 Mini Game Toán Học',
-                desc: 'Đua xe toán học, Bắn bóng bay, Lật thẻ trí nhớ, Cán cân thần kỳ và Bắn thiên thạch.',
+                icon: "🏎️",
+                title: "Trọn Bộ 6 Mini Game Toán Học",
+                desc: "Đua xe toán học, Bắn bóng bay, Lật thẻ trí nhớ, Cán cân thần kỳ và Bắn thiên thạch.",
               },
               {
-                icon: '📖',
-                title: 'Kho 8 Truyện Tranh Toán Tương Tác',
-                desc: 'Cùng các bạn muông thú bước vào những chuyến phiêu lưu kỳ thú và giải đố nhận quà.',
+                icon: "📖",
+                title: "Kho 8 Truyện Tranh Toán Tương Tác",
+                desc: "Cùng các bạn muông thú bước vào những chuyến phiêu lưu kỳ thú và giải đố nhận quà.",
               },
               {
-                icon: '🪙',
-                title: 'Thưởng Xu & Kinh Nghiệm Khủng',
-                desc: 'Nhận xu vàng và điểm XP sau mỗi ván thắng để đổi quà và thăng cấp vương miện.',
+                icon: "🪙",
+                title: "Thưởng Xu & Kinh Nghiệm Khủng",
+                desc: "Nhận xu vàng và điểm XP sau mỗi ván thắng để đổi quà và thăng cấp vương miện.",
               },
               {
-                icon: '🏆',
-                title: 'Lưu Kỷ Lục & Tranh Tài Bạn Bè',
-                desc: 'Bảo lưu kỷ lục điểm số cao nhất và tranh tài xếp hạng cùng các bạn học sinh.',
+                icon: "🏆",
+                title: "Lưu Kỷ Lục & Tranh Tài Bạn Bè",
+                desc: "Bảo lưu kỷ lục điểm số cao nhất và tranh tài xếp hạng cùng các bạn học sinh.",
               },
             ]}
           />
         </div>
         <RightSidebar hideOnMobile={true} />
       </div>
-    )
+    );
   }
 
   return (
@@ -174,11 +209,11 @@ export default function GamesPage() {
             <div className="games-main-nav-tabs">
               <button
                 type="button"
-                className={`games-tab-btn ${mainTab === 'games' ? 'active' : ''}`}
+                className={`games-tab-btn ${mainTab === "games" ? "active" : ""}`}
                 onClick={() => {
-                  soundManager.playClick()
-                  setMainTab('games')
-                  setSearchParams({})
+                  soundManager.playClick();
+                  setMainTab("games");
+                  setSearchParams({});
                 }}
               >
                 <span className="tab-icon">🎮</span>
@@ -186,11 +221,11 @@ export default function GamesPage() {
               </button>
               <button
                 type="button"
-                className={`games-tab-btn ${mainTab === 'stories' ? 'active' : ''}`}
+                className={`games-tab-btn ${mainTab === "stories" ? "active" : ""}`}
                 onClick={() => {
-                  soundManager.playClick()
-                  setMainTab('stories')
-                  setSearchParams({ tab: 'stories' })
+                  soundManager.playClick();
+                  setMainTab("stories");
+                  setSearchParams({ tab: "stories" });
                 }}
               >
                 <span className="tab-icon">📖</span>
@@ -198,11 +233,11 @@ export default function GamesPage() {
               </button>
               <button
                 type="button"
-                className={`games-tab-btn ${mainTab === 'pet' ? 'active' : ''}`}
+                className={`games-tab-btn ${mainTab === "pet" ? "active" : ""}`}
                 onClick={() => {
-                  soundManager.playClick()
-                  setMainTab('pet')
-                  setSearchParams({ tab: 'pet' })
+                  soundManager.playClick();
+                  setMainTab("pet");
+                  setSearchParams({ tab: "pet" });
                 }}
               >
                 <span className="tab-icon">🐾</span>
@@ -210,102 +245,111 @@ export default function GamesPage() {
               </button>
             </div>
 
-            {mainTab === 'stories' ? (
+            {mainTab === "stories" ? (
               <StoriesPage />
-            ) : mainTab === 'pet' ? (
+            ) : mainTab === "pet" ? (
               <div className="games-pet-tab-container">
                 <PetWidget compact={false} />
               </div>
             ) : (
               <div className="game-select-screen">
-            <div className="games-hero">
-              <h1>🎮 Khu Vui Chơi & Trò Chơi Toán Học</h1>
-              <p>Vừa chơi vui nhộn vừa rèn luyện phản xạ tính nhẩm siêu tốc cùng các bạn thú cưng!</p>
-            </div>
+                <div className="games-hero">
+                  <h1>🎮 Khu Vui Chơi & Trò Chơi Toán Học</h1>
+                  <p>
+                    Vừa chơi vui nhộn vừa rèn luyện phản xạ tính nhẩm siêu tốc
+                    cùng các bạn thú cưng!
+                  </p>
+                </div>
 
-            <div className="game-cards-grid">
-              {GAME_LIST.map((game) => (
-                <motion.div
-                  key={game.id}
-                  className="game-card"
-                  whileHover={{ y: -8, boxShadow: '0 20px 40px rgba(0,0,0,0.08)' }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={() => {
-                    setActiveGame(game.id)
-                    soundManager.playClick()
-                  }}
-                >
-                  <div className="game-cover-banner" style={{ background: game.bgGradient }}>
-                    <div className="game-hero-emoji">{game.icon}</div>
-                    <span className="game-grade-tag">{game.difficulty}</span>
-                  </div>
-                  <div className="game-body">
-                    <h2>{game.title}</h2>
-                    <p>{game.description}</p>
-                    <Button variant="primary" size="md" className="game-play-btn">
-                      Chơi ngay <Play size={18} fill="white" />
-                    </Button>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
+                <div className="game-cards-grid">
+                  {GAME_LIST.map((game) => (
+                    <motion.div
+                      key={game.id}
+                      className="game-card"
+                      whileHover={{
+                        y: -8,
+                        boxShadow: "0 20px 40px rgba(0,0,0,0.08)",
+                      }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={() => {
+                        setActiveGame(game.id);
+                        soundManager.playClick();
+                      }}
+                    >
+                      <div
+                        className="game-cover-banner"
+                        style={{ background: game.bgGradient }}
+                      >
+                        <div className="game-hero-emoji">{game.icon}</div>
+                        <span className="game-grade-tag">
+                          {game.difficulty}
+                        </span>
+                      </div>
+                      <div className="game-body">
+                        <h2>{game.title}</h2>
+                        <p>{game.description}</p>
+                        <Button
+                          variant="primary"
+                          size="md"
+                          className="game-play-btn"
+                        >
+                          Chơi ngay <Play size={18} fill="white" />
+                        </Button>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
             )}
           </div>
           <RightSidebar hideOnMobile={true} />
         </div>
-      ) : activeGame === 'math_race' ? (
+      ) : activeGame === "math_race" ? (
         <MathRaceGame
           onBack={() => setActiveGame(null)}
           grade={grade}
-          addCoins={addCoins}
-          addXp={addXp}
+          grantReward={grantReward}
           recordRaceWin={recordRaceWin}
           recordGamePlayed={recordGamePlayed}
         />
-      ) : activeGame === 'number_pop' ? (
+      ) : activeGame === "number_pop" ? (
         <NumberPopGame
           onBack={() => setActiveGame(null)}
           grade={grade}
-          addCoins={addCoins}
-          addXp={addXp}
+          grantReward={grantReward}
           recordGamePlayed={recordGamePlayed}
         />
-      ) : activeGame === 'memory_match' ? (
+      ) : activeGame === "memory_match" ? (
         <MemoryMatchGame
           onBack={() => setActiveGame(null)}
           grade={grade}
-          addCoins={addCoins}
-          addXp={addXp}
+          grantReward={grantReward}
           recordGamePlayed={recordGamePlayed}
         />
-      ) : activeGame === 'math_balance' ? (
+      ) : activeGame === "math_balance" ? (
         <MathBalanceGame
           onBack={() => setActiveGame(null)}
           grade={grade}
-          addCoins={addCoins}
-          addXp={addXp}
+          grantReward={grantReward}
           recordGamePlayed={recordGamePlayed}
         />
-      ) : activeGame === 'space_defense' ? (
+      ) : activeGame === "space_defense" ? (
         <SpaceDefenseGame
           onBack={() => setActiveGame(null)}
           grade={grade}
-          addCoins={addCoins}
-          addXp={addXp}
+          grantReward={grantReward}
           recordGamePlayed={recordGamePlayed}
         />
-      ) : activeGame === 'math_fishing' ? (
+      ) : activeGame === "math_fishing" ? (
         <MathFishingGame
           onBack={() => setActiveGame(null)}
           grade={grade}
-          addCoins={addCoins}
-          addXp={addXp}
+          grantReward={grantReward}
           recordGamePlayed={recordGamePlayed}
         />
       ) : null}
     </div>
-  )
+  );
 }
 
 // ========================================================
@@ -314,7 +358,12 @@ export default function GamesPage() {
 function RaceMedal({ rank }) {
   if (rank === 1) {
     return (
-      <svg width="120" height="125" viewBox="0 0 120 125" className="race-medal-svg">
+      <svg
+        width="120"
+        height="125"
+        viewBox="0 0 120 125"
+        className="race-medal-svg"
+      >
         <defs>
           <linearGradient id="goldRibbon" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stopColor="#E03131" />
@@ -328,7 +377,12 @@ function RaceMedal({ rank }) {
             <stop offset="100%" stopColor="#E67700" />
           </linearGradient>
           <filter id="goldGlow" x="-20%" y="-20%" width="140%" height="140%">
-            <feDropShadow dx="0" dy="4" stdDeviation="4" floodColor="rgba(245, 159, 0, 0.45)" />
+            <feDropShadow
+              dx="0"
+              dy="4"
+              stdDeviation="4"
+              floodColor="rgba(245, 159, 0, 0.45)"
+            />
           </filter>
         </defs>
         <polygon points="36,0 48,0 32,50 20,50" fill="url(#goldRibbon)" />
@@ -336,19 +390,57 @@ function RaceMedal({ rank }) {
         <polygon points="60,0 52,0 48,50 56,50" fill="#FFE066" opacity="0.7" />
         <polygon points="60,0 68,0 72,50 64,50" fill="#FFE066" opacity="0.7" />
         <circle cx="60" cy="70" r="42" fill="#D97706" filter="url(#goldGlow)" />
-        <circle cx="60" cy="70" r="38" fill="url(#goldCoin)" stroke="#FFE066" strokeWidth="2.5" />
-        <circle cx="60" cy="70" r="30" fill="none" stroke="#F59F00" strokeWidth="2" strokeDasharray="3 2" />
-        <path d="M60 48 L62 53 L67 53 L63 56 L65 61 L60 58 L55 61 L57 56 L53 53 L58 53 Z" fill="#D97706" opacity="0.6" />
-        <text x="60" y="84" textAnchor="middle" fontSize="34" fontWeight="900" fontFamily="var(--font-heading)" fill="#7F4F00">1</text>
-        <text x="14" y="52" fontSize="18">✨</text>
-        <text x="94" y="96" fontSize="18">✨</text>
+        <circle
+          cx="60"
+          cy="70"
+          r="38"
+          fill="url(#goldCoin)"
+          stroke="#FFE066"
+          strokeWidth="2.5"
+        />
+        <circle
+          cx="60"
+          cy="70"
+          r="30"
+          fill="none"
+          stroke="#F59F00"
+          strokeWidth="2"
+          strokeDasharray="3 2"
+        />
+        <path
+          d="M60 48 L62 53 L67 53 L63 56 L65 61 L60 58 L55 61 L57 56 L53 53 L58 53 Z"
+          fill="#D97706"
+          opacity="0.6"
+        />
+        <text
+          x="60"
+          y="84"
+          textAnchor="middle"
+          fontSize="34"
+          fontWeight="900"
+          fontFamily="var(--font-heading)"
+          fill="#7F4F00"
+        >
+          1
+        </text>
+        <text x="14" y="52" fontSize="18">
+          ✨
+        </text>
+        <text x="94" y="96" fontSize="18">
+          ✨
+        </text>
       </svg>
-    )
+    );
   }
 
   if (rank === 2) {
     return (
-      <svg width="120" height="125" viewBox="0 0 120 125" className="race-medal-svg">
+      <svg
+        width="120"
+        height="125"
+        viewBox="0 0 120 125"
+        className="race-medal-svg"
+      >
         <defs>
           <linearGradient id="silverRibbon" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stopColor="#1971C2" />
@@ -362,23 +454,66 @@ function RaceMedal({ rank }) {
             <stop offset="100%" stopColor="#868E96" />
           </linearGradient>
           <filter id="silverGlow" x="-20%" y="-20%" width="140%" height="140%">
-            <feDropShadow dx="0" dy="4" stdDeviation="4" floodColor="rgba(100, 116, 139, 0.35)" />
+            <feDropShadow
+              dx="0"
+              dy="4"
+              stdDeviation="4"
+              floodColor="rgba(100, 116, 139, 0.35)"
+            />
           </filter>
         </defs>
         <polygon points="36,0 48,0 32,50 20,50" fill="url(#silverRibbon)" />
         <polygon points="84,0 72,0 88,50 100,50" fill="url(#silverRibbon)" />
-        <circle cx="60" cy="70" r="42" fill="#495057" filter="url(#silverGlow)" />
-        <circle cx="60" cy="70" r="38" fill="url(#silverCoin)" stroke="#FFFFFF" strokeWidth="2.5" />
-        <circle cx="60" cy="70" r="30" fill="none" stroke="#ADB5BD" strokeWidth="2" strokeDasharray="3 2" />
-        <text x="60" y="84" textAnchor="middle" fontSize="34" fontWeight="900" fontFamily="var(--font-heading)" fill="#343A40">2</text>
-        <text x="94" y="96" fontSize="16">⭐</text>
+        <circle
+          cx="60"
+          cy="70"
+          r="42"
+          fill="#495057"
+          filter="url(#silverGlow)"
+        />
+        <circle
+          cx="60"
+          cy="70"
+          r="38"
+          fill="url(#silverCoin)"
+          stroke="#FFFFFF"
+          strokeWidth="2.5"
+        />
+        <circle
+          cx="60"
+          cy="70"
+          r="30"
+          fill="none"
+          stroke="#ADB5BD"
+          strokeWidth="2"
+          strokeDasharray="3 2"
+        />
+        <text
+          x="60"
+          y="84"
+          textAnchor="middle"
+          fontSize="34"
+          fontWeight="900"
+          fontFamily="var(--font-heading)"
+          fill="#343A40"
+        >
+          2
+        </text>
+        <text x="94" y="96" fontSize="16">
+          ⭐
+        </text>
       </svg>
-    )
+    );
   }
 
   if (rank === 3) {
     return (
-      <svg width="120" height="125" viewBox="0 0 120 125" className="race-medal-svg">
+      <svg
+        width="120"
+        height="125"
+        viewBox="0 0 120 125"
+        className="race-medal-svg"
+      >
         <defs>
           <linearGradient id="bronzeRibbon" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stopColor="#2B8A3E" />
@@ -392,23 +527,66 @@ function RaceMedal({ rank }) {
             <stop offset="100%" stopColor="#9A3412" />
           </linearGradient>
           <filter id="bronzeGlow" x="-20%" y="-20%" width="140%" height="140%">
-            <feDropShadow dx="0" dy="4" stdDeviation="4" floodColor="rgba(194, 65, 12, 0.35)" />
+            <feDropShadow
+              dx="0"
+              dy="4"
+              stdDeviation="4"
+              floodColor="rgba(194, 65, 12, 0.35)"
+            />
           </filter>
         </defs>
         <polygon points="36,0 48,0 32,50 20,50" fill="url(#bronzeRibbon)" />
         <polygon points="84,0 72,0 88,50 100,50" fill="url(#bronzeRibbon)" />
-        <circle cx="60" cy="70" r="42" fill="#7C2D12" filter="url(#bronzeGlow)" />
-        <circle cx="60" cy="70" r="38" fill="url(#bronzeCoin)" stroke="#FED7AA" strokeWidth="2.5" />
-        <circle cx="60" cy="70" r="30" fill="none" stroke="#C2410C" strokeWidth="2" strokeDasharray="3 2" />
-        <text x="60" y="84" textAnchor="middle" fontSize="34" fontWeight="900" fontFamily="var(--font-heading)" fill="#431407">3</text>
-        <text x="94" y="96" fontSize="16">🥉</text>
+        <circle
+          cx="60"
+          cy="70"
+          r="42"
+          fill="#7C2D12"
+          filter="url(#bronzeGlow)"
+        />
+        <circle
+          cx="60"
+          cy="70"
+          r="38"
+          fill="url(#bronzeCoin)"
+          stroke="#FED7AA"
+          strokeWidth="2.5"
+        />
+        <circle
+          cx="60"
+          cy="70"
+          r="30"
+          fill="none"
+          stroke="#C2410C"
+          strokeWidth="2"
+          strokeDasharray="3 2"
+        />
+        <text
+          x="60"
+          y="84"
+          textAnchor="middle"
+          fontSize="34"
+          fontWeight="900"
+          fontFamily="var(--font-heading)"
+          fill="#431407"
+        >
+          3
+        </text>
+        <text x="94" y="96" fontSize="16">
+          🥉
+        </text>
       </svg>
-    )
+    );
   }
 
   // Rank 4: Effort / Encouragement Medal
   return (
-    <svg width="120" height="125" viewBox="0 0 120 125" className="race-medal-svg">
+    <svg
+      width="120"
+      height="125"
+      viewBox="0 0 120 125"
+      className="race-medal-svg"
+    >
       <defs>
         <linearGradient id="effortRibbon" x1="0%" y1="0%" x2="100%" y2="0%">
           <stop offset="0%" stopColor="#7048E8" />
@@ -422,186 +600,268 @@ function RaceMedal({ rank }) {
           <stop offset="100%" stopColor="#087F5B" />
         </linearGradient>
         <filter id="effortGlow" x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow dx="0" dy="4" stdDeviation="4" floodColor="rgba(12, 166, 120, 0.35)" />
+          <feDropShadow
+            dx="0"
+            dy="4"
+            stdDeviation="4"
+            floodColor="rgba(12, 166, 120, 0.35)"
+          />
         </filter>
       </defs>
       <polygon points="36,0 48,0 32,50 20,50" fill="url(#effortRibbon)" />
       <polygon points="84,0 72,0 88,50 100,50" fill="url(#effortRibbon)" />
       <circle cx="60" cy="70" r="42" fill="#095C44" filter="url(#effortGlow)" />
-      <circle cx="60" cy="70" r="38" fill="url(#effortCoin)" stroke="#C3FAE8" strokeWidth="2.5" />
-      <circle cx="60" cy="70" r="30" fill="none" stroke="#099268" strokeWidth="2" strokeDasharray="3 2" />
-      <text x="60" y="84" textAnchor="middle" fontSize="34" fontWeight="900" fontFamily="var(--font-heading)" fill="#044332">4</text>
-      <text x="94" y="96" fontSize="16">🎖️</text>
+      <circle
+        cx="60"
+        cy="70"
+        r="38"
+        fill="url(#effortCoin)"
+        stroke="#C3FAE8"
+        strokeWidth="2.5"
+      />
+      <circle
+        cx="60"
+        cy="70"
+        r="30"
+        fill="none"
+        stroke="#099268"
+        strokeWidth="2"
+        strokeDasharray="3 2"
+      />
+      <text
+        x="60"
+        y="84"
+        textAnchor="middle"
+        fontSize="34"
+        fontWeight="900"
+        fontFamily="var(--font-heading)"
+        fill="#044332"
+      >
+        4
+      </text>
+      <text x="94" y="96" fontSize="16">
+        🎖️
+      </text>
     </svg>
-  )
+  );
 }
 
 // Phân loại và định dạng câu hỏi thông minh cho Cuộc Đua Toán Học
 function parseRaceQuestion(q) {
-  if (!q) return { type: 'text_riddle', badge: '💡 Câu hỏi', content: '' }
+  if (!q) return { type: "text_riddle", badge: "💡 Câu hỏi", content: "" };
 
   // 1. Có hình vẽ SVG hoặc biểu tượng đếm đồ vật
   if (q.visualDisplay) {
     return {
-      type: 'visual',
+      type: "visual",
       title: q.question,
       visual: q.visualDisplay,
-    }
+    };
   }
 
   // 2. Câu hỏi phép tính có dấu hai chấm (VD: "Tính nhẩm: 7 + 8 = ?" hoặc "Điền dấu thích hợp: 14 ... 18")
-  if (q.question.includes(':')) {
-    const parts = q.question.split(':')
-    const prompt = parts[0].trim() + ':'
-    const equation = parts.slice(1).join(':').trim()
+  if (q.question.includes(":")) {
+    const parts = q.question.split(":");
+    const prompt = parts[0].trim() + ":";
+    const equation = parts.slice(1).join(":").trim();
     return {
-      type: 'calc',
+      type: "calc",
       title: prompt,
       equation,
-      icon: prompt.toLowerCase().includes('dấu') ? '⚖️' : '🧮',
-    }
+      icon: prompt.toLowerCase().includes("dấu") ? "⚖️" : "🧮",
+    };
   }
 
   // 3. Phép tính nhẩm thuần túy không có dấu hai chấm (VD: "12 + 5 = ?" hoặc "15 - 7 = ?")
-  const isMathExpr = /^[\d\s+\-×x*÷/:=.<>?a-zA-Z]+$/.test(q.question) && /[\d]/.test(q.question) && /[+\-×x*÷/:=.<>]/.test(q.question)
+  const isMathExpr =
+    /^[\d\s+\-×x*÷/:=.<>?a-zA-Z]+$/.test(q.question) &&
+    /[\d]/.test(q.question) &&
+    /[+\-×x*÷/:=.<>]/.test(q.question);
   if (isMathExpr && q.question.length <= 22) {
     return {
-      type: 'calc',
-      title: 'Tính nhẩm:',
+      type: "calc",
+      title: "Tính nhẩm:",
       equation: q.question,
-      icon: '🧮',
-    }
+      icon: "🧮",
+    };
   }
 
   // 4. Câu hỏi đố tư duy / đặc điểm hình học bằng lời (VD: "Hình nào dưới đây có 2 cạnh dài và 2 cạnh ngắn?")
-  const isGeometry = q.question.toLowerCase().includes('hình') || q.question.toLowerCase().includes('cạnh') || q.question.toLowerCase().includes('góc')
+  const isGeometry =
+    q.question.toLowerCase().includes("hình") ||
+    q.question.toLowerCase().includes("cạnh") ||
+    q.question.toLowerCase().includes("góc");
   return {
-    type: 'text_riddle',
-    badge: isGeometry ? '🔷 Câu hỏi hình học' : '💡 Câu hỏi tư duy',
+    type: "text_riddle",
+    badge: isGeometry ? "🔷 Câu hỏi hình học" : "💡 Câu hỏi tư duy",
     content: q.question,
-  }
+  };
+}
+
+/**
+ * Hiển thị số thưởng THẬT vừa được phát.
+ *
+ * KHÔNG gán cứng số Xu/XP ở màn hình kết quả: con số nằm trong `reward_configs`
+ * và Admin có thể đổi bất cứ lúc nào. `grantReward()` trả về đúng số đã cộng,
+ * nên chỉ cần lưu lại rồi hiển thị — hiển thị và số thực nhận luôn khớp nhau.
+ */
+function RewardSpans({ reward }) {
+  if (!reward) return null;
+  return (
+    <>
+      <strong style={{ color: "#F59F00" }}>+{reward.coins} Xu</strong>
+      {" và "}
+      <strong style={{ color: "#4DABF7" }}>+{reward.xp} XP</strong>!
+    </>
+  );
 }
 
 // ========================================================
 // 🏎️ GAME 1: MATH RACE
 // ========================================================
-function MathRaceGame({ onBack, grade, addCoins, addXp, recordRaceWin, recordGamePlayed }) {
-  const { nickname } = useUserStore()
-  const [playerPos, setPlayerPos] = useState(0) // 0 to 100%
-  const [bot1Pos, setBot1Pos] = useState(0) // Rabbit
-  const [bot2Pos, setBot2Pos] = useState(0) // Turtle
-  const [bot3Pos, setBot3Pos] = useState(0) // Cat
-  const [question, setQuestion] = useState(null)
-  const [feedback, setFeedback] = useState(null)
-  const [gameOver, setGameOver] = useState(false)
-  const [rank, setRank] = useState(1)
-  const [score, setScore] = useState(0)
-  const rewardClaimedRef = useRef(false)
+function MathRaceGame({
+  onBack,
+  grade,
+  grantReward,
+  recordRaceWin,
+  recordGamePlayed,
+}) {
+  const { nickname } = useUserStore();
+  const [playerPos, setPlayerPos] = useState(0); // 0 to 100%
+  const [bot1Pos, setBot1Pos] = useState(0); // Rabbit
+  const [bot2Pos, setBot2Pos] = useState(0); // Turtle
+  const [bot3Pos, setBot3Pos] = useState(0); // Cat
+  const [question, setQuestion] = useState(null);
+  const [feedback, setFeedback] = useState(null);
+  const [gameOver, setGameOver] = useState(false);
+  const [rank, setRank] = useState(1);
+  const [score, setScore] = useState(0);
+  const rewardClaimedRef = useRef(false);
+  const [tierReward, setTierReward] = useState(null);
 
-  const FINISH_LINE = 100
+  const FINISH_LINE = 100;
 
   // Init question
   useEffect(() => {
-    setQuestion(generateQuestion(grade))
-  }, [grade])
+    setQuestion(generateQuestion(grade));
+  }, [grade]);
 
   // Bot timer loop
   useEffect(() => {
-    if (gameOver) return
+    if (gameOver) return;
 
     const timer = setInterval(() => {
-      setBot1Pos((p) => Math.min(FINISH_LINE, p + Math.random() * 3.2))
-      setBot2Pos((p) => Math.min(FINISH_LINE, p + Math.random() * 2.5))
-      setBot3Pos((p) => Math.min(FINISH_LINE, p + Math.random() * 2.8))
-    }, 800)
+      setBot1Pos((p) => Math.min(FINISH_LINE, p + Math.random() * 3.2));
+      setBot2Pos((p) => Math.min(FINISH_LINE, p + Math.random() * 2.5));
+      setBot3Pos((p) => Math.min(FINISH_LINE, p + Math.random() * 2.8));
+    }, 800);
 
-    return () => clearInterval(timer)
-  }, [gameOver])
+    return () => clearInterval(timer);
+  }, [gameOver]);
 
   // Check victory / finish
   useEffect(() => {
-    if (gameOver || rewardClaimedRef.current) return
+    if (gameOver || rewardClaimedRef.current) return;
 
     if (playerPos >= FINISH_LINE) {
-      rewardClaimedRef.current = true
-      setGameOver(true)
-      let r = 1
-      if (bot1Pos >= FINISH_LINE) r++
-      if (bot2Pos >= FINISH_LINE) r++
-      if (bot3Pos >= FINISH_LINE) r++
-      setRank(r)
+      rewardClaimedRef.current = true;
+      setGameOver(true);
+      let r = 1;
+      if (bot1Pos >= FINISH_LINE) r++;
+      if (bot2Pos >= FINISH_LINE) r++;
+      if (bot3Pos >= FINISH_LINE) r++;
+      setRank(r);
 
       if (r === 1) {
-        soundManager.playFanfare()
-        fireConfetti({ particleCount: 120, spread: 90 })
-        if (typeof recordRaceWin === 'function') {
-          recordRaceWin()
-        } else if (typeof recordGamePlayed === 'function') {
-          recordGamePlayed()
+        soundManager.playFanfare();
+        fireConfetti({ particleCount: 120, spread: 90 });
+        if (typeof recordRaceWin === "function") {
+          recordRaceWin();
+        } else if (typeof recordGamePlayed === "function") {
+          recordGamePlayed();
         }
       } else if (r <= 3) {
-        soundManager.playCoin()
-        fireConfetti({ particleCount: 60, spread: 60 })
-        if (typeof recordGamePlayed === 'function') {
-          recordGamePlayed()
+        soundManager.playCoin();
+        fireConfetti({ particleCount: 60, spread: 60 });
+        if (typeof recordGamePlayed === "function") {
+          recordGamePlayed();
         }
       } else {
-        soundManager.playWrong()
-        if (typeof recordGamePlayed === 'function') {
-          recordGamePlayed()
+        soundManager.playWrong();
+        if (typeof recordGamePlayed === "function") {
+          recordGamePlayed();
         }
       }
-      const rewardCoins = r === 1 ? 120 : r === 2 ? 70 : r === 3 ? 30 : 10
-      addCoins(rewardCoins)
-      addXp(r === 1 ? 200 : r === 2 ? 120 : r === 3 ? 50 : 20)
-    } else if (bot1Pos >= FINISH_LINE && bot2Pos >= FINISH_LINE && bot3Pos >= FINISH_LINE) {
+      // Hạng về đích -> bậc thưởng. Con số nằm trong reward_configs.
+      // Giữ lại số THẬT đã phát để hiển thị, không gán cứng.
+      setTierReward(
+        grantReward(
+          `game.tier_${r === 1 ? "gold" : r === 2 ? "silver" : r === 3 ? "bronze" : "participation"}`,
+        ),
+      );
+    } else if (
+      bot1Pos >= FINISH_LINE &&
+      bot2Pos >= FINISH_LINE &&
+      bot3Pos >= FINISH_LINE
+    ) {
       // All bots finished
-      rewardClaimedRef.current = true
-      setGameOver(true)
-      setRank(4)
-      soundManager.playWrong()
-      if (typeof recordGamePlayed === 'function') {
-        recordGamePlayed()
+      rewardClaimedRef.current = true;
+      setGameOver(true);
+      setRank(4);
+      soundManager.playWrong();
+      if (typeof recordGamePlayed === "function") {
+        recordGamePlayed();
       }
-      addCoins(10)
-      addXp(20)
+      setTierReward(grantReward("game.tier_participation"));
     }
-  }, [playerPos, bot1Pos, bot2Pos, bot3Pos, gameOver, addCoins, addXp, recordRaceWin, recordGamePlayed])
+  }, [
+    playerPos,
+    bot1Pos,
+    bot2Pos,
+    bot3Pos,
+    gameOver,
+    grantReward,
+    recordRaceWin,
+    recordGamePlayed,
+  ]);
 
-  const handleAnswer = useCallback((option) => {
-    if (feedback || gameOver) return
-    if (document.activeElement?.blur) document.activeElement.blur()
+  const handleAnswer = useCallback(
+    (option) => {
+      if (feedback || gameOver) return;
+      if (document.activeElement?.blur) document.activeElement.blur();
 
-    const isCorrect = option === question?.answer
-    if (isCorrect) {
-      soundManager.playCorrect()
-      setFeedback('correct')
-      setPlayerPos((p) => Math.min(FINISH_LINE, p + 18))
-      setScore((s) => s + 1)
-    } else {
-      soundManager.playWrong()
-      setFeedback('wrong')
-    }
+      const isCorrect = option === question?.answer;
+      if (isCorrect) {
+        soundManager.playCorrect();
+        setFeedback("correct");
+        setPlayerPos((p) => Math.min(FINISH_LINE, p + 18));
+        setScore((s) => s + 1);
+      } else {
+        soundManager.playWrong();
+        setFeedback("wrong");
+      }
 
-    setTimeout(() => {
-      if (document.activeElement?.blur) document.activeElement.blur()
-      setFeedback(null)
-      setQuestion(generateQuestion(grade))
-    }, 600)
-  }, [feedback, gameOver, question, grade])
+      setTimeout(() => {
+        if (document.activeElement?.blur) document.activeElement.blur();
+        setFeedback(null);
+        setQuestion(generateQuestion(grade));
+      }, 600);
+    },
+    [feedback, gameOver, question, grade],
+  );
 
   const restart = useCallback(() => {
-    rewardClaimedRef.current = false
-    setPlayerPos(0)
-    setBot1Pos(0)
-    setBot2Pos(0)
-    setBot3Pos(0)
-    setScore(0)
-    setGameOver(false)
-    setFeedback(null)
-    setQuestion(generateQuestion(grade))
-    soundManager.playClick()
-  }, [grade])
+    rewardClaimedRef.current = false;
+    setPlayerPos(0);
+    setBot1Pos(0);
+    setBot2Pos(0);
+    setBot3Pos(0);
+    setScore(0);
+    setGameOver(false);
+    setFeedback(null);
+    setQuestion(generateQuestion(grade));
+    soundManager.playClick();
+  }, [grade]);
 
   return (
     <div className="mini-game-wrapper">
@@ -620,12 +880,12 @@ function MathRaceGame({ onBack, grade, addCoins, addXp, recordRaceWin, recordGam
       <div className="race-track-board">
         {/* Player */}
         <div className="lane player-lane">
-          <span className="lane-label">{nickname || 'Bé Yêu'}</span>
+          <span className="lane-label">{nickname || "Bé Yêu"}</span>
           <div className="track-bar">
             <motion.div
               className="racer racer-player"
               style={{ left: `calc(${playerPos}% - ${playerPos * 0.45}px)` }}
-              transition={{ type: 'spring', stiffness: 120 }}
+              transition={{ type: "spring", stiffness: 120 }}
             >
               <span className="car-emoji">🏎️</span>
             </motion.div>
@@ -636,7 +896,10 @@ function MathRaceGame({ onBack, grade, addCoins, addXp, recordRaceWin, recordGam
         <div className="lane bot-lane">
           <span className="lane-label">Thỏ Hồng</span>
           <div className="track-bar">
-            <div className="racer" style={{ left: `calc(${bot1Pos}% - ${bot1Pos * 0.45}px)` }}>
+            <div
+              className="racer"
+              style={{ left: `calc(${bot1Pos}% - ${bot1Pos * 0.45}px)` }}
+            >
               🐰
             </div>
           </div>
@@ -646,7 +909,10 @@ function MathRaceGame({ onBack, grade, addCoins, addXp, recordRaceWin, recordGam
         <div className="lane bot-lane">
           <span className="lane-label">Rùa Xanh</span>
           <div className="track-bar">
-            <div className="racer" style={{ left: `calc(${bot2Pos}% - ${bot2Pos * 0.45}px)` }}>
+            <div
+              className="racer"
+              style={{ left: `calc(${bot2Pos}% - ${bot2Pos * 0.45}px)` }}
+            >
               <span className="turtle-emoji">🐢</span>
             </div>
           </div>
@@ -656,7 +922,10 @@ function MathRaceGame({ onBack, grade, addCoins, addXp, recordRaceWin, recordGam
         <div className="lane bot-lane">
           <span className="lane-label">Mèo Vàng</span>
           <div className="track-bar">
-            <div className="racer" style={{ left: `calc(${bot3Pos}% - ${bot3Pos * 0.45}px)` }}>
+            <div
+              className="racer"
+              style={{ left: `calc(${bot3Pos}% - ${bot3Pos * 0.45}px)` }}
+            >
               🐱
             </div>
           </div>
@@ -667,13 +936,14 @@ function MathRaceGame({ onBack, grade, addCoins, addXp, recordRaceWin, recordGam
 
       {/* Question or Game Over */}
       {!gameOver ? (
-        question && (() => {
-          const parsed = parseRaceQuestion(question)
+        question &&
+        (() => {
+          const parsed = parseRaceQuestion(question);
           return (
             <div className="race-interaction-grid">
               {/* Cột Trái: Câu hỏi & Hình minh họa (Chiều cao & vị trí cố định) */}
               <div className="race-question-column">
-                {parsed.type === 'text_riddle' ? (
+                {parsed.type === "text_riddle" ? (
                   <div className="race-text-riddle-card">
                     <span className="riddle-badge">{parsed.badge}</span>
                     <p className="riddle-content">{parsed.content}</p>
@@ -685,20 +955,30 @@ function MathRaceGame({ onBack, grade, addCoins, addXp, recordRaceWin, recordGam
                     </div>
 
                     <div className="race-visual-box">
-                      {parsed.type === 'visual' ? (
-                        typeof parsed.visual === 'string' && parsed.visual.trim().split(/\s+/).length > 1 ? (
+                      {parsed.type === "visual" ? (
+                        typeof parsed.visual === "string" &&
+                        parsed.visual.trim().split(/\s+/).length > 1 ? (
                           <div className="race-emoji-grid">
-                            {parsed.visual.trim().split(/\s+/).map((item, idx) => (
-                              <span key={idx} className="race-emoji-item">{item}</span>
-                            ))}
+                            {parsed.visual
+                              .trim()
+                              .split(/\s+/)
+                              .map((item, idx) => (
+                                <span key={idx} className="race-emoji-item">
+                                  {item}
+                                </span>
+                              ))}
                           </div>
                         ) : (
-                          <div className="race-shape-wrapper">{parsed.visual}</div>
+                          <div className="race-shape-wrapper">
+                            {parsed.visual}
+                          </div>
                         )
                       ) : (
                         <div className="race-calc-card">
                           <span className="race-calc-icon">{parsed.icon}</span>
-                          <span className="race-calc-equation">{parsed.equation}</span>
+                          <span className="race-calc-equation">
+                            {parsed.equation}
+                          </span>
                         </div>
                       )}
                     </div>
@@ -710,22 +990,25 @@ function MathRaceGame({ onBack, grade, addCoins, addXp, recordRaceWin, recordGam
               <div className="race-answers-column">
                 {question.options.map((opt, i) => (
                   <button
-                    key={`${question.question || 'race'}-${i}`}
-                    className={`race-opt-btn opt-pos-${i} ${feedback === 'correct' && opt === question.answer
-                        ? 'correct'
-                        : feedback === 'wrong' && opt === question.answer
-                          ? 'correct'
-                          : ''
-                      }`}
+                    key={`${question.question || "race"}-${i}`}
+                    className={`race-opt-btn opt-pos-${i} ${
+                      feedback === "correct" && opt === question.answer
+                        ? "correct"
+                        : feedback === "wrong" && opt === question.answer
+                          ? "correct"
+                          : ""
+                    }`}
                     onClick={() => handleAnswer(opt)}
                   >
-                    <span className="opt-letter-badge">{['A', 'B', 'C', 'D'][i]}</span>
+                    <span className="opt-letter-badge">
+                      {["A", "B", "C", "D"][i]}
+                    </span>
                     <span className="opt-val-text">{opt}</span>
                   </button>
                 ))}
               </div>
             </div>
-          )
+          );
         })()
       ) : (
         <motion.div
@@ -733,29 +1016,33 @@ function MathRaceGame({ onBack, grade, addCoins, addXp, recordRaceWin, recordGam
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
         >
-          <GameOverStars stars={rank === 1 ? 3 : rank === 2 ? 2 : rank === 3 ? 1 : 0} />
+          <GameOverStars
+            stars={rank === 1 ? 3 : rank === 2 ? 2 : rank === 3 ? 1 : 0}
+          />
           <div className="gameover-medal-container">
             <RaceMedal rank={rank} />
           </div>
 
-          <div className={`race-rank-pill ${rank === 1 ? 'gold' : rank === 2 ? 'silver' : rank === 3 ? 'bronze' : 'effort'}`}>
+          <div
+            className={`race-rank-pill ${rank === 1 ? "gold" : rank === 2 ? "silver" : rank === 3 ? "bronze" : "effort"}`}
+          >
             {rank === 1
-              ? '🥇 HUY CHƯƠNG VÀNG - HẠNG 1'
+              ? "🥇 HUY CHƯƠNG VÀNG - HẠNG 1"
               : rank === 2
-                ? '🥈 HUY CHƯƠNG BẠC - HẠNG 2'
+                ? "🥈 HUY CHƯƠNG BẠC - HẠNG 2"
                 : rank === 3
-                  ? '🥉 HUY CHƯƠNG ĐỒNG - HẠNG 3'
-                  : '🎖️ HUY HIỆU NỖ LỰC - HẠNG 4'}
+                  ? "🥉 HUY CHƯƠNG ĐỒNG - HẠNG 3"
+                  : "🎖️ HUY HIỆU NỖ LỰC - HẠNG 4"}
           </div>
 
           <h2>
             {rank === 1
-              ? '🏆 Vô Địch Cuộc Đua!'
+              ? "🏆 Vô Địch Cuộc Đua!"
               : rank === 2
-                ? '🥈 Á Quân Cuộc Đua!'
+                ? "🥈 Á Quân Cuộc Đua!"
                 : rank === 3
-                  ? '🥉 Quý Quân Cuộc Đua!'
-                  : '🎖️ Về Đích Hạng 4!'}
+                  ? "🥉 Quý Quân Cuộc Đua!"
+                  : "🎖️ Về Đích Hạng 4!"}
           </h2>
 
           <p>
@@ -769,8 +1056,8 @@ function MathRaceGame({ onBack, grade, addCoins, addXp, recordRaceWin, recordGam
           </p>
 
           <div className="rank-rewards-box">
-            <span className="reward-item">🪙 +{rank === 1 ? 120 : rank === 2 ? 70 : rank === 3 ? 30 : 10} Xu</span>
-            <span className="reward-item">⭐ +{rank === 1 ? 200 : rank === 2 ? 120 : rank === 3 ? 50 : 20} XP</span>
+            <span className="reward-item">🪙 +{tierReward?.coins ?? 0} Xu</span>
+            <span className="reward-item">⭐ +{tierReward?.xp ?? 0} XP</span>
           </div>
 
           <div className="gameover-btns">
@@ -784,99 +1071,110 @@ function MathRaceGame({ onBack, grade, addCoins, addXp, recordRaceWin, recordGam
         </motion.div>
       )}
     </div>
-  )
+  );
 }
 
 // ========================================================
 // 🎯 GAME 2: NUMBER POP (BẮN BÓNG SỐ)
 // ========================================================
-function NumberPopGame({ onBack, grade, addCoins, addXp, recordGamePlayed }) {
-  const [score, setScore] = useState(0)
-  const [timeLeft, setTimeLeft] = useState(45)
-  const [currentQ, setCurrentQ] = useState(null)
-  const [gameOver, setGameOver] = useState(false)
-  const [balloons, setBalloons] = useState([])
-  const gameOverTriggeredRef = useRef(false)
-  const gameRecordedRef = useRef(false)
+function NumberPopGame({ onBack, grade, grantReward, recordGamePlayed }) {
+  const [score, setScore] = useState(0);
+  const [timeLeft, setTimeLeft] = useState(45);
+  const [currentQ, setCurrentQ] = useState(null);
+  const [gameOver, setGameOver] = useState(false);
+  const [balloons, setBalloons] = useState([]);
+  const gameOverTriggeredRef = useRef(false);
+  const gameRecordedRef = useRef(false);
+  const [tierReward, setTierReward] = useState(null);
 
-  const BALLOON_COLORS = ['#ff6b6b', '#4facfe', '#51cf66', '#fcc419', '#cc5de8']
+  const BALLOON_COLORS = [
+    "#ff6b6b",
+    "#4facfe",
+    "#51cf66",
+    "#fcc419",
+    "#cc5de8",
+  ];
 
   const loadNewQuestion = useCallback(() => {
-    const q = generateCalculation(grade)
-    setCurrentQ(q)
+    const q = generateCalculation(grade);
+    setCurrentQ(q);
     // Create balloon objects
     const newBalloons = q.options.map((val, idx) => ({
       id: `${val}-${Date.now()}-${idx}`,
       val,
       color: BALLOON_COLORS[idx % BALLOON_COLORS.length],
       isCorrect: val === q.answer,
-    }))
-    setBalloons(newBalloons)
-  }, [grade])
+    }));
+    setBalloons(newBalloons);
+  }, [grade]);
 
   useEffect(() => {
-    loadNewQuestion()
-  }, [loadNewQuestion])
+    loadNewQuestion();
+  }, [loadNewQuestion]);
 
   useEffect(() => {
     if (timeLeft <= 0) {
       if (!gameOverTriggeredRef.current) {
-        gameOverTriggeredRef.current = true
-        setGameOver(true)
+        gameOverTriggeredRef.current = true;
+        setGameOver(true);
         if (!gameRecordedRef.current) {
-          gameRecordedRef.current = true
-          if (typeof recordGamePlayed === 'function') {
-            recordGamePlayed()
+          gameRecordedRef.current = true;
+          if (typeof recordGamePlayed === "function") {
+            recordGamePlayed();
           }
         }
         if (score > 0) {
-          soundManager.playFanfare()
-          fireConfetti({ particleCount: 80, spread: 70 })
-          const getRewards = (s) => {
-            if (s >= 150) return { rCoins: 120, rXp: 200 }
-            if (s >= 100) return { rCoins: 70, rXp: 120 }
-            if (s >= 50) return { rCoins: 30, rXp: 50 }
-            return { rCoins: 10, rXp: 20 }
-          }
-          const { rCoins, rXp } = getRewards(score)
-          addCoins(rCoins)
-          addXp(rXp)
+          soundManager.playFanfare();
+          fireConfetti({ particleCount: 80, spread: 70 });
+          // Ngưỡng điểm -> bậc thưởng. Con số nằm trong reward_configs.
+          const tier =
+            score >= 150
+              ? "gold"
+              : score >= 100
+                ? "silver"
+                : score >= 50
+                  ? "bronze"
+                  : "participation";
+          setTierReward(grantReward(`game.tier_${tier}`));
         } else {
-          soundManager.playWrong()
+          soundManager.playWrong();
         }
       }
-      return
+      return;
     }
 
     const timer = setInterval(() => {
-      setTimeLeft((t) => t - 1)
-    }, 1000)
+      setTimeLeft((t) => t - 1);
+    }, 1000);
 
-    return () => clearInterval(timer)
-  }, [timeLeft, score, addCoins, addXp, recordGamePlayed])
+    return () => clearInterval(timer);
+  }, [timeLeft, score, grantReward, recordGamePlayed]);
 
-  const handlePop = useCallback((balloon) => {
-    if (gameOver) return
+  const handlePop = useCallback(
+    (balloon) => {
+      if (gameOver) return;
 
-    if (balloon.isCorrect) {
-      soundManager.playCoin()
-      setScore((s) => s + 10)
-      loadNewQuestion()
-    } else {
-      soundManager.playWrong()
-      setScore((s) => Math.max(0, s - 5))
-    }
-  }, [gameOver, loadNewQuestion])
+      if (balloon.isCorrect) {
+        soundManager.playCoin();
+        setScore((s) => s + 10);
+        loadNewQuestion();
+      } else {
+        soundManager.playWrong();
+        setScore((s) => Math.max(0, s - 5));
+      }
+    },
+    [gameOver, loadNewQuestion],
+  );
 
   const handleBack = () => {
     if (score > 0 && !gameRecordedRef.current) {
-      gameRecordedRef.current = true
-      if (typeof recordGamePlayed === 'function') {
-        recordGamePlayed()
+      gameRecordedRef.current = true;
+      if (typeof recordGamePlayed === "function") {
+        recordGamePlayed();
       }
     }
-    onBack()
-  }
+    onBack();
+  };
 
   return (
     <div className="mini-game-wrapper">
@@ -903,7 +1201,9 @@ function NumberPopGame({ onBack, grade, addCoins, addXp, recordGamePlayed }) {
               <h3>Bắn bóng có kết quả của:</h3>
               <div className="equation-badge number">{currentQ.question}</div>
               {currentQ.visualDisplay && (
-                <div className="pop-visual-display">{currentQ.visualDisplay}</div>
+                <div className="pop-visual-display">
+                  {currentQ.visualDisplay}
+                </div>
               )}
             </div>
           )}
@@ -929,22 +1229,20 @@ function NumberPopGame({ onBack, grade, addCoins, addXp, recordGamePlayed }) {
         </div>
       ) : (
         <div className="race-gameover-card">
-          <GameOverStars stars={score >= 150 ? 3 : score >= 100 ? 2 : score >= 50 ? 1 : 0} />
-          <span className="gameover-trophy">{score > 0 ? '🎈' : '💪'}</span>
-          <h2>{score > 0 ? 'Hết giờ rồi!' : 'Hết thời gian!'}</h2>
+          <GameOverStars
+            stars={score >= 150 ? 3 : score >= 100 ? 2 : score >= 50 ? 1 : 0}
+          />
+          <span className="gameover-trophy">{score > 0 ? "🎈" : "💪"}</span>
+          <h2>{score > 0 ? "Hết giờ rồi!" : "Hết thời gian!"}</h2>
           {score > 0 ? (
             <p>
-              Bé đã ghi được số điểm xuất sắc: <strong>{score} điểm</strong>! Nhận được{' '}
-              <strong style={{ color: '#F59F00' }}>
-                +{score >= 150 ? 120 : score >= 100 ? 70 : score >= 50 ? 30 : 10} Xu
-              </strong> và{' '}
-              <strong style={{ color: '#4DABF7' }}>
-                +{score >= 150 ? 200 : score >= 100 ? 120 : score >= 50 ? 50 : 20} XP
-              </strong>!
+              Bé đã ghi được số điểm xuất sắc: <strong>{score} điểm</strong>!
+              Nhận được <RewardSpans reward={tierReward} />
             </p>
           ) : (
             <p>
-              Chưa ghi được điểm nào lần này. Cố lên nhé! Lần sau bé hãy bắn thật nhanh các quả bóng mang đáp án đúng nha!
+              Chưa ghi được điểm nào lần này. Cố lên nhé! Lần sau bé hãy bắn
+              thật nhanh các quả bóng mang đáp án đúng nha!
             </p>
           )}
           <div className="gameover-btns">
@@ -952,13 +1250,13 @@ function NumberPopGame({ onBack, grade, addCoins, addXp, recordGamePlayed }) {
               variant="primary"
               size="lg"
               onClick={() => {
-                gameOverTriggeredRef.current = false
-                gameRecordedRef.current = false
-                setTimeLeft(45)
-                setScore(0)
-                setGameOver(false)
-                loadNewQuestion()
-                soundManager.playClick()
+                gameOverTriggeredRef.current = false;
+                gameRecordedRef.current = false;
+                setTimeLeft(45);
+                setScore(0);
+                setGameOver(false);
+                loadNewQuestion();
+                soundManager.playClick();
               }}
             >
               <RotateCcw size={18} /> Chơi ván mới
@@ -970,130 +1268,132 @@ function NumberPopGame({ onBack, grade, addCoins, addXp, recordGamePlayed }) {
         </div>
       )}
     </div>
-  )
+  );
 }
 
 // ========================================================
 // 🃏 GAME 3: MEMORY MATCH (LẬT THẺ TRÍ NHỚ)
 // ========================================================
-function MemoryMatchGame({ onBack, grade, addCoins, addXp, recordGamePlayed }) {
-  const [cards, setCards] = useState([])
-  const [flipped, setFlipped] = useState([])
-  const [matched, setMatched] = useState([])
-  const [turns, setTurns] = useState(0)
-  const [gameWon, setGameWon] = useState(false)
-  const gameRecordedRef = useRef(false)
+function MemoryMatchGame({ onBack, grade, grantReward, recordGamePlayed }) {
+  const [cards, setCards] = useState([]);
+  const [flipped, setFlipped] = useState([]);
+  const [matched, setMatched] = useState([]);
+  const [turns, setTurns] = useState(0);
+  const [gameWon, setGameWon] = useState(false);
+  const gameRecordedRef = useRef(false);
+  const [tierReward, setTierReward] = useState(null);
 
   const initDeck = useCallback(() => {
-    gameRecordedRef.current = false
+    gameRecordedRef.current = false;
     // Generate 4 unique math pairs
-    const pairs = []
-    const usedAnswers = new Set()
-    const usedEquations = new Set()
+    const pairs = [];
+    const usedAnswers = new Set();
+    const usedEquations = new Set();
 
-    let attempts = 0
+    let attempts = 0;
     while (pairs.length < 8 && attempts < 50) {
-      attempts++
-      const q = generateCalculation(grade)
-      const equation = q.equation || q.question.replace('=', '').replace('?', '').trim()
-      const answerStr = String(q.answer)
+      attempts++;
+      const q = generateCalculation(grade);
+      const equation =
+        q.equation || q.question.replace("=", "").replace("?", "").trim();
+      const answerStr = String(q.answer);
 
       if (!usedAnswers.has(answerStr) && !usedEquations.has(equation)) {
-        usedAnswers.add(answerStr)
-        usedEquations.add(equation)
-        const pairId = pairs.length / 2
+        usedAnswers.add(answerStr);
+        usedEquations.add(equation);
+        const pairId = pairs.length / 2;
         pairs.push({
           pairId,
           content: equation,
           isEquation: true,
-        })
+        });
         pairs.push({
           pairId,
           content: answerStr,
           isEquation: false,
-        })
+        });
       }
     }
 
     // Shuffle deck
     const shuffled = pairs
       .map((item, idx) => ({ ...item, id: idx }))
-      .sort(() => Math.random() - 0.5)
+      .sort(() => Math.random() - 0.5);
 
-    setCards(shuffled)
-    setFlipped([])
-    setMatched([])
-    setTurns(0)
-    setGameWon(false)
-  }, [grade])
+    setCards(shuffled);
+    setFlipped([]);
+    setMatched([]);
+    setTurns(0);
+    setGameWon(false);
+  }, [grade]);
 
   useEffect(() => {
-    initDeck()
-  }, [initDeck])
+    initDeck();
+  }, [initDeck]);
 
-  const handleCardClick = useCallback((card) => {
-    if (flipped.length === 2 || flipped.includes(card.id) || matched.includes(card.pairId)) return
+  const handleCardClick = useCallback(
+    (card) => {
+      if (
+        flipped.length === 2 ||
+        flipped.includes(card.id) ||
+        matched.includes(card.pairId)
+      )
+        return;
 
-    soundManager.playClick()
-    const newFlipped = [...flipped, card.id]
-    setFlipped(newFlipped)
+      soundManager.playClick();
+      const newFlipped = [...flipped, card.id];
+      setFlipped(newFlipped);
 
-    if (newFlipped.length === 2) {
-      setTurns((t) => t + 1)
-      const firstCard = cards.find((c) => c.id === newFlipped[0])
-      const secondCard = card
+      if (newFlipped.length === 2) {
+        setTurns((t) => t + 1);
+        const firstCard = cards.find((c) => c.id === newFlipped[0]);
+        const secondCard = card;
 
-      if (firstCard.pairId === secondCard.pairId) {
-        // Matched!
-        soundManager.playCorrect()
-        const newMatched = [...matched, firstCard.pairId]
-        setMatched(newMatched)
-        setFlipped([])
+        if (firstCard.pairId === secondCard.pairId) {
+          // Matched!
+          soundManager.playCorrect();
+          const newMatched = [...matched, firstCard.pairId];
+          setMatched(newMatched);
+          setFlipped([]);
 
-        if (newMatched.length === 4) {
-          // Finished all pairs
-          setGameWon(true)
-          if (!gameRecordedRef.current) {
-            gameRecordedRef.current = true
-            if (typeof recordGamePlayed === 'function') {
-              recordGamePlayed()
+          if (newMatched.length === 4) {
+            // Finished all pairs
+            setGameWon(true);
+            if (!gameRecordedRef.current) {
+              gameRecordedRef.current = true;
+              if (typeof recordGamePlayed === "function") {
+                recordGamePlayed();
+              }
             }
+            soundManager.playFanfare();
+            fireConfetti({ particleCount: 90, spread: 70 });
+            // Ít lượt hơn = giỏi hơn. Sàn là bậc Đồng (game này không có bậc Tham gia).
+            const finalTurns = turns + 1; // including this current turn
+            const tier =
+              finalTurns <= 6 ? "gold" : finalTurns <= 10 ? "silver" : "bronze";
+            setTierReward(grantReward(`game.tier_${tier}`));
           }
-          soundManager.playFanfare()
-          fireConfetti({ particleCount: 90, spread: 70 })
-          let rewardCoins = 30
-          let rewardXp = 50
-          // Minimum turns is 4. Calculate milestone based on turns.
-          const finalTurns = turns + 1 // including this current turn
-          if (finalTurns <= 6) {
-            rewardCoins = 120
-            rewardXp = 200
-          } else if (finalTurns <= 10) {
-            rewardCoins = 70
-            rewardXp = 120
-          }
-          addCoins(rewardCoins)
-          addXp(rewardXp)
+        } else {
+          // Not matched
+          setTimeout(() => {
+            soundManager.playWrong();
+            setFlipped([]);
+          }, 1000);
         }
-      } else {
-        // Not matched
-        setTimeout(() => {
-          soundManager.playWrong()
-          setFlipped([])
-        }, 1000)
       }
-    }
-  }, [flipped, matched, cards, addCoins, addXp, recordGamePlayed])
+    },
+    [flipped, matched, cards, grantReward, recordGamePlayed],
+  );
 
   const handleBack = () => {
     if (matched.length >= 2 && !gameRecordedRef.current) {
-      gameRecordedRef.current = true
-      if (typeof recordGamePlayed === 'function') {
-        recordGamePlayed()
+      gameRecordedRef.current = true;
+      if (typeof recordGamePlayed === "function") {
+        recordGamePlayed();
       }
     }
-    onBack()
-  }
+    onBack();
+  };
 
   return (
     <div className="mini-game-wrapper">
@@ -1110,15 +1410,19 @@ function MemoryMatchGame({ onBack, grade, addCoins, addXp, recordGamePlayed }) {
 
       {!gameWon ? (
         <div className="memory-board">
-          <p className="memory-hint">Lật mở 2 thẻ bài có phép tính và kết quả giống nhau nhé!</p>
+          <p className="memory-hint">
+            Lật mở 2 thẻ bài có phép tính và kết quả giống nhau nhé!
+          </p>
           <div className="memory-grid">
             {cards.map((card) => {
-              const isCardFlipped = flipped.includes(card.id) || matched.includes(card.pairId)
+              const isCardFlipped =
+                flipped.includes(card.id) || matched.includes(card.pairId);
               return (
                 <motion.div
                   key={card.id}
-                  className={`memory-card ${isCardFlipped ? 'flipped' : ''} ${matched.includes(card.pairId) ? 'matched' : ''
-                    }`}
+                  className={`memory-card ${isCardFlipped ? "flipped" : ""} ${
+                    matched.includes(card.pairId) ? "matched" : ""
+                  }`}
                   whileHover={{ scale: 1.04 }}
                   whileTap={{ scale: 0.96 }}
                   onClick={() => handleCardClick(card)}
@@ -1128,7 +1432,7 @@ function MemoryMatchGame({ onBack, grade, addCoins, addXp, recordGamePlayed }) {
                     <div className="card-back number">{card.content}</div>
                   </div>
                 </motion.div>
-              )
+              );
             })}
           </div>
         </div>
@@ -1138,9 +1442,8 @@ function MemoryMatchGame({ onBack, grade, addCoins, addXp, recordGamePlayed }) {
           <span className="gameover-trophy">🏆</span>
           <h2>Trí Nhớ Siêu Phàm!</h2>
           <p>
-            Bé đã ghép đúng toàn bộ 4 cặp thẻ bài chỉ trong {turns} lượt lật! Nhận được{' '}
-            <strong style={{ color: '#F59F00' }}>+{turns <= 6 ? 120 : turns <= 10 ? 70 : 30} Xu</strong> và{' '}
-            <strong style={{ color: '#4DABF7' }}>+{turns <= 6 ? 200 : turns <= 10 ? 120 : 50} XP</strong>!
+            Bé đã ghép đúng toàn bộ 4 cặp thẻ bài chỉ trong {turns} lượt lật!
+            Nhận được <RewardSpans reward={tierReward} />
           </p>
           <div className="gameover-btns">
             <Button variant="primary" size="lg" onClick={initDeck}>
@@ -1153,127 +1456,128 @@ function MemoryMatchGame({ onBack, grade, addCoins, addXp, recordGamePlayed }) {
         </div>
       )}
     </div>
-  )
+  );
 }
 
 // ========================================================
 // ⚖️ GAME 4: MATH BALANCE (CÁN CÂN THẦN KỲ)
 // ========================================================
-function MathBalanceGame({ onBack, grade = 1, addCoins, addXp, recordGamePlayed }) {
-  const [round, setRound] = useState(1)
-  const [puzzle, setPuzzle] = useState(null)
-  const [selectedWeight, setSelectedWeight] = useState(null)
-  const [isBalanced, setIsBalanced] = useState(false)
-  const [score, setScore] = useState(0)
-  const [gameWon, setGameWon] = useState(false)
-  const [wrongOption, setWrongOption] = useState(null)
+function MathBalanceGame({ onBack, grade = 1, grantReward, recordGamePlayed }) {
+  const [round, setRound] = useState(1);
+  const [puzzle, setPuzzle] = useState(null);
+  const [selectedWeight, setSelectedWeight] = useState(null);
+  const [isBalanced, setIsBalanced] = useState(false);
+  const [score, setScore] = useState(0);
+  const [gameWon, setGameWon] = useState(false);
+  const [wrongOption, setWrongOption] = useState(null);
 
-  const TOTAL_ROUNDS = 8
-  const gameRecordedRef = useRef(false)
+  const TOTAL_ROUNDS = 8;
+  const gameRecordedRef = useRef(false);
+  const [tierReward, setTierReward] = useState(null);
 
   const generatePuzzle = useCallback(() => {
-    let target, leftExpr, rightExisting, missing
+    let target, leftExpr, rightExisting, missing;
     if (grade === 1) {
-      target = Math.floor(Math.random() * 9) + 6 // 6 to 14
-      const splitA = Math.floor(Math.random() * (target - 2)) + 1
-      const splitB = target - splitA
-      leftExpr = Math.random() > 0.5 ? `${splitA} + ${splitB}` : `${target} kg`
-      rightExisting = Math.floor(Math.random() * (target - 2)) + 1
-      missing = target - rightExisting
+      target = Math.floor(Math.random() * 9) + 6; // 6 to 14
+      const splitA = Math.floor(Math.random() * (target - 2)) + 1;
+      const splitB = target - splitA;
+      leftExpr = Math.random() > 0.5 ? `${splitA} + ${splitB}` : `${target} kg`;
+      rightExisting = Math.floor(Math.random() * (target - 2)) + 1;
+      missing = target - rightExisting;
     } else if (grade === 2) {
-      target = Math.floor(Math.random() * 30) + 16 // 16 to 45
-      const splitA = Math.floor(Math.random() * (target - 8)) + 4
-      const splitB = target - splitA
-      leftExpr = Math.random() > 0.5 ? `${splitA} + ${splitB}` : `${target} kg`
-      rightExisting = Math.floor(Math.random() * (target - 6)) + 3
-      missing = target - rightExisting
+      target = Math.floor(Math.random() * 30) + 16; // 16 to 45
+      const splitA = Math.floor(Math.random() * (target - 8)) + 4;
+      const splitB = target - splitA;
+      leftExpr = Math.random() > 0.5 ? `${splitA} + ${splitB}` : `${target} kg`;
+      rightExisting = Math.floor(Math.random() * (target - 6)) + 3;
+      missing = target - rightExisting;
     } else {
-      const isMul = Math.random() > 0.4
+      const isMul = Math.random() > 0.4;
       if (isMul) {
-        const a = Math.floor(Math.random() * 6) + 4
-        const b = Math.floor(Math.random() * 6) + 3
-        target = a * b
-        leftExpr = `${a} × ${b}`
+        const a = Math.floor(Math.random() * 6) + 4;
+        const b = Math.floor(Math.random() * 6) + 3;
+        target = a * b;
+        leftExpr = `${a} × ${b}`;
       } else {
-        target = Math.floor(Math.random() * 50) + 35
-        const a = Math.floor(Math.random() * (target - 15)) + 10
-        leftExpr = `${a} + ${target - a}`
+        target = Math.floor(Math.random() * 50) + 35;
+        const a = Math.floor(Math.random() * (target - 15)) + 10;
+        leftExpr = `${a} + ${target - a}`;
       }
-      rightExisting = Math.floor(Math.random() * (target - 8)) + 5
-      missing = target - rightExisting
+      rightExisting = Math.floor(Math.random() * (target - 8)) + 5;
+      missing = target - rightExisting;
     }
 
-    const optSet = new Set([missing])
+    const optSet = new Set([missing]);
     while (optSet.size < 4) {
-      const delta = (Math.random() > 0.5 ? 1 : -1) * (Math.floor(Math.random() * 5) + 1)
-      const cand = missing + delta
+      const delta =
+        (Math.random() > 0.5 ? 1 : -1) * (Math.floor(Math.random() * 5) + 1);
+      const cand = missing + delta;
       if (cand > 0 && cand !== missing) {
-        optSet.add(cand)
+        optSet.add(cand);
       }
     }
-    const options = Array.from(optSet).sort(() => Math.random() - 0.5)
+    const options = Array.from(optSet).sort(() => Math.random() - 0.5);
 
-    setPuzzle({ target, leftExpr, rightExisting, missing, options })
-    setSelectedWeight(null)
-    setIsBalanced(false)
-    setWrongOption(null)
-  }, [grade])
+    setPuzzle({ target, leftExpr, rightExisting, missing, options });
+    setSelectedWeight(null);
+    setIsBalanced(false);
+    setWrongOption(null);
+  }, [grade]);
 
   useEffect(() => {
-    generatePuzzle()
-  }, [generatePuzzle])
+    generatePuzzle();
+  }, [generatePuzzle]);
 
   const handleSelectOption = (weight) => {
-    if (isBalanced || !puzzle) return
+    if (isBalanced || !puzzle) return;
 
     if (weight === puzzle.missing) {
-      setSelectedWeight(weight)
-      setIsBalanced(true)
-      soundManager.playCoin()
-      fireConfetti({ particleCount: 30, spread: 50 })
-      setScore((s) => s + 10)
+      setSelectedWeight(weight);
+      setIsBalanced(true);
+      soundManager.playCoin();
+      fireConfetti({ particleCount: 30, spread: 50 });
+      setScore((s) => s + 10);
 
       setTimeout(() => {
         if (round >= TOTAL_ROUNDS) {
-          setGameWon(true)
-          soundManager.playFanfare()
-          fireConfetti({ particleCount: 90, spread: 80 })
-          addCoins(120)
-          addXp(200)
+          setGameWon(true);
+          soundManager.playFanfare();
+          fireConfetti({ particleCount: 90, spread: 80 });
+          setTierReward(grantReward("game.tier_gold"));
           if (!gameRecordedRef.current) {
-            gameRecordedRef.current = true
-            if (typeof recordGamePlayed === 'function') {
-              recordGamePlayed()
+            gameRecordedRef.current = true;
+            if (typeof recordGamePlayed === "function") {
+              recordGamePlayed();
             }
           }
         } else {
-          setRound((r) => r + 1)
-          generatePuzzle()
+          setRound((r) => r + 1);
+          generatePuzzle();
         }
-      }, 1200)
+      }, 1200);
     } else {
-      soundManager.playWrong()
-      setWrongOption(weight)
-      setTimeout(() => setWrongOption(null), 800)
+      soundManager.playWrong();
+      setWrongOption(weight);
+      setTimeout(() => setWrongOption(null), 800);
     }
-  }
+  };
 
   const handleBack = () => {
     if (score > 0 && !gameRecordedRef.current) {
-      gameRecordedRef.current = true
-      if (typeof recordGamePlayed === 'function') {
-        recordGamePlayed()
+      gameRecordedRef.current = true;
+      if (typeof recordGamePlayed === "function") {
+        recordGamePlayed();
       }
     }
-    onBack()
-  }
+    onBack();
+  };
 
   const handleRestart = () => {
-    setRound(1)
-    setScore(0)
-    setGameWon(false)
-    generatePuzzle()
-  }
+    setRound(1);
+    setScore(0);
+    setGameWon(false);
+    generatePuzzle();
+  };
 
   return (
     <div className="mini-game-wrapper">
@@ -1285,7 +1589,9 @@ function MathBalanceGame({ onBack, grade = 1, addCoins, addXp, recordGamePlayed 
           </button>
           <span className="game-title-text">⚖️ Cán Cân Thần Kỳ</span>
           <div className="game-stats-pills">
-            <span className="score-pill">Vòng: {round}/{TOTAL_ROUNDS}</span>
+            <span className="score-pill">
+              Vòng: {round}/{TOTAL_ROUNDS}
+            </span>
             <span className="score-pill highlight">Điểm: {score}</span>
           </div>
         </div>
@@ -1294,7 +1600,8 @@ function MathBalanceGame({ onBack, grade = 1, addCoins, addXp, recordGamePlayed 
       {!gameWon ? (
         <div className="balance-board">
           <p className="balance-hint">
-            ⚖️ Chọn quả cân thích hợp đặt vào đĩa bên phải để cán cân thăng bằng nhé!
+            ⚖️ Chọn quả cân thích hợp đặt vào đĩa bên phải để cán cân thăng bằng
+            nhé!
           </p>
 
           <div className="balance-scale-stage">
@@ -1317,7 +1624,9 @@ function MathBalanceGame({ onBack, grade = 1, addCoins, addXp, recordGamePlayed 
                   <div className="pan-plate">
                     <div className="pan-weight-stone left-stone">
                       <span className="weight-stone-icon">🏋️</span>
-                      <span className="weight-stone-val">{puzzle?.leftExpr}</span>
+                      <span className="weight-stone-val">
+                        {puzzle?.leftExpr}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -1334,12 +1643,18 @@ function MathBalanceGame({ onBack, grade = 1, addCoins, addXp, recordGamePlayed 
                     <div className="pan-weights-group">
                       <div className="pan-weight-stone">
                         <span className="weight-stone-icon">⚖️</span>
-                        <span className="weight-stone-val">{puzzle?.rightExisting} kg</span>
+                        <span className="weight-stone-val">
+                          {puzzle?.rightExisting} kg
+                        </span>
                       </div>
                       <span className="pan-plus-sign">+</span>
-                      <div className={`pan-weight-stone target-slot ${isBalanced ? 'filled' : 'empty'}`}>
+                      <div
+                        className={`pan-weight-stone target-slot ${isBalanced ? "filled" : "empty"}`}
+                      >
                         {isBalanced ? (
-                          <span className="weight-stone-val">{selectedWeight} kg</span>
+                          <span className="weight-stone-val">
+                            {selectedWeight} kg
+                          </span>
                         ) : (
                           <span className="weight-stone-question">?</span>
                         )}
@@ -1358,8 +1673,9 @@ function MathBalanceGame({ onBack, grade = 1, addCoins, addXp, recordGamePlayed 
               <motion.button
                 key={opt}
                 type="button"
-                className={`balance-option-btn ${wrongOption === opt ? 'wrong' : ''} ${isBalanced && selectedWeight === opt ? 'correct' : ''
-                  }`}
+                className={`balance-option-btn ${wrongOption === opt ? "wrong" : ""} ${
+                  isBalanced && selectedWeight === opt ? "correct" : ""
+                }`}
                 whileHover={{ scale: 1.06, y: -2 }}
                 whileTap={{ scale: 0.94 }}
                 onClick={() => handleSelectOption(opt)}
@@ -1377,9 +1693,8 @@ function MathBalanceGame({ onBack, grade = 1, addCoins, addXp, recordGamePlayed 
           <span className="gameover-trophy">🏆</span>
           <h2>Thần Kì Thăng Bằng!</h2>
           <p>
-            Bé đã xuất sắc cân bằng toàn bộ {TOTAL_ROUNDS} đĩa cân thần kỳ và ghi được {score} điểm! Nhận được{' '}
-            <strong style={{ color: '#F59F00' }}>+120 Xu</strong> và{' '}
-            <strong style={{ color: '#4DABF7' }}>+200 XP</strong>!
+            Bé đã xuất sắc cân bằng toàn bộ {TOTAL_ROUNDS} đĩa cân thần kỳ và
+            ghi được {score} điểm! Nhận được <RewardSpans reward={tierReward} />
           </p>
           <div className="gameover-btns">
             <Button variant="primary" size="lg" onClick={handleRestart}>
@@ -1392,131 +1707,132 @@ function MathBalanceGame({ onBack, grade = 1, addCoins, addXp, recordGamePlayed 
         </div>
       )}
     </div>
-  )
+  );
 }
 
 // ========================================================
 // 🚀 GAME 5: SPACE DEFENSE (BẮN THIÊN THẠCH VŨ TRỤ)
 // ========================================================
-function SpaceDefenseGame({ onBack, grade = 1, addCoins, addXp, recordGamePlayed }) {
-  const [score, setScore] = useState(0)
-  const [combo, setCombo] = useState(1)
-  const [maxCombo, setMaxCombo] = useState(1)
-  const [shieldHp, setShieldHp] = useState(3)
-  const [timeLeft, setTimeLeft] = useState(45)
-  const [currentQ, setCurrentQ] = useState(null)
-  const [laserActive, setLaserActive] = useState(false)
-  const [isExploding, setIsExploding] = useState(false)
-  const [destroyedCount, setDestroyedCount] = useState(0)
-  const [gameOver, setGameOver] = useState(false)
-  const [wrongOption, setWrongOption] = useState(null)
+function SpaceDefenseGame({
+  onBack,
+  grade = 1,
+  grantReward,
+  recordGamePlayed,
+}) {
+  const [score, setScore] = useState(0);
+  const [combo, setCombo] = useState(1);
+  const [maxCombo, setMaxCombo] = useState(1);
+  const [shieldHp, setShieldHp] = useState(3);
+  const [timeLeft, setTimeLeft] = useState(45);
+  const [currentQ, setCurrentQ] = useState(null);
+  const [laserActive, setLaserActive] = useState(false);
+  const [isExploding, setIsExploding] = useState(false);
+  const [destroyedCount, setDestroyedCount] = useState(0);
+  const [gameOver, setGameOver] = useState(false);
+  const [wrongOption, setWrongOption] = useState(null);
 
-  const gameRecordedRef = useRef(false)
-  const gameOverTriggeredRef = useRef(false)
+  const gameRecordedRef = useRef(false);
+  const gameOverTriggeredRef = useRef(false);
+  const [tierReward, setTierReward] = useState(null);
 
   const loadNewAsteroid = useCallback(() => {
-    const q = generateCalculation(grade)
-    setCurrentQ(q)
-    setLaserActive(false)
-    setIsExploding(false)
-    setWrongOption(null)
-  }, [grade])
+    const q = generateCalculation(grade);
+    setCurrentQ(q);
+    setLaserActive(false);
+    setIsExploding(false);
+    setWrongOption(null);
+  }, [grade]);
 
   useEffect(() => {
-    loadNewAsteroid()
-  }, [loadNewAsteroid])
+    loadNewAsteroid();
+  }, [loadNewAsteroid]);
 
   useEffect(() => {
     if (timeLeft <= 0 || shieldHp <= 0) {
       if (!gameOverTriggeredRef.current) {
-        gameOverTriggeredRef.current = true
-        setGameOver(true)
+        gameOverTriggeredRef.current = true;
+        setGameOver(true);
         if (!gameRecordedRef.current) {
-          gameRecordedRef.current = true
-          if (typeof recordGamePlayed === 'function') {
-            recordGamePlayed()
+          gameRecordedRef.current = true;
+          if (typeof recordGamePlayed === "function") {
+            recordGamePlayed();
           }
         }
         if (score > 0) {
-          soundManager.playFanfare()
-          fireConfetti({ particleCount: 80, spread: 70 })
-          let rewardCoins = 10
-          let rewardXp = 20
-          if (destroyedCount >= 15) {
-            rewardCoins = 120
-            rewardXp = 200
-          } else if (destroyedCount >= 10) {
-            rewardCoins = 70
-            rewardXp = 120
-          } else if (destroyedCount >= 5) {
-            rewardCoins = 30
-            rewardXp = 50
-          }
-          addCoins(rewardCoins)
-          addXp(rewardXp)
+          soundManager.playFanfare();
+          fireConfetti({ particleCount: 80, spread: 70 });
+          const tier =
+            destroyedCount >= 15
+              ? "gold"
+              : destroyedCount >= 10
+                ? "silver"
+                : destroyedCount >= 5
+                  ? "bronze"
+                  : "participation";
+          setTierReward(grantReward(`game.tier_${tier}`));
         } else {
-          soundManager.playWrong()
+          soundManager.playWrong();
         }
       }
-      return
+      return;
     }
 
     const timer = setInterval(() => {
-      setTimeLeft((t) => t - 1)
-    }, 1000)
+      setTimeLeft((t) => t - 1);
+    }, 1000);
 
-    return () => clearInterval(timer)
-  }, [timeLeft, shieldHp, score, addCoins, addXp, recordGamePlayed])
+    return () => clearInterval(timer);
+  }, [timeLeft, shieldHp, score, grantReward, recordGamePlayed]);
 
   const handleShoot = (ans) => {
-    if (gameOver || !currentQ || isExploding) return
+    if (gameOver || !currentQ || isExploding) return;
 
     if (ans === currentQ.answer) {
-      setLaserActive(true)
-      soundManager.playCorrect()
+      setLaserActive(true);
+      soundManager.playCorrect();
       setTimeout(() => {
-        setIsExploding(true)
-        setScore((s) => s + 10 * combo)
+        setIsExploding(true);
+        setScore((s) => s + 10 * combo);
         setCombo((c) => {
-          const next = c + 1
-          setMaxCombo((m) => Math.max(m, next))
-          return next
-        })
-        setDestroyedCount((d) => d + 1)
+          const next = c + 1;
+          setMaxCombo((m) => Math.max(m, next));
+          return next;
+        });
+        setDestroyedCount((d) => d + 1);
         setTimeout(() => {
-          loadNewAsteroid()
-        }, 500)
-      }, 150)
+          loadNewAsteroid();
+        }, 500);
+      }, 150);
     } else {
-      soundManager.playWrong()
-      setCombo(1)
-      setWrongOption(ans)
-      setShieldHp((hp) => Math.max(0, hp - 1))
-      setTimeout(() => setWrongOption(null), 800)
+      soundManager.playWrong();
+      setCombo(1);
+      setWrongOption(ans);
+      setShieldHp((hp) => Math.max(0, hp - 1));
+      setTimeout(() => setWrongOption(null), 800);
     }
-  }
+  };
 
   const handleBack = () => {
     if (score > 0 && !gameRecordedRef.current) {
-      gameRecordedRef.current = true
-      if (typeof recordGamePlayed === 'function') {
-        recordGamePlayed()
+      gameRecordedRef.current = true;
+      if (typeof recordGamePlayed === "function") {
+        recordGamePlayed();
       }
     }
-    onBack()
-  }
+    onBack();
+  };
 
   const handleRestart = () => {
-    setScore(0)
-    setCombo(1)
-    setMaxCombo(1)
-    setShieldHp(3)
-    setTimeLeft(45)
-    setDestroyedCount(0)
-    setGameOver(false)
-    gameOverTriggeredRef.current = false
-    loadNewAsteroid()
-  }
+    setScore(0);
+    setCombo(1);
+    setMaxCombo(1);
+    setShieldHp(3);
+    setTimeLeft(45);
+    setDestroyedCount(0);
+    setGameOver(false);
+    gameOverTriggeredRef.current = false;
+    loadNewAsteroid();
+  };
 
   return (
     <div className="mini-game-wrapper space-theme-wrapper">
@@ -1545,8 +1861,11 @@ function SpaceDefenseGame({ onBack, grade = 1, addCoins, addXp, recordGamePlayed
               <span className="shield-label">Lá chắn trạm vũ trụ:</span>
               <div className="shield-hearts">
                 {Array.from({ length: 3 }).map((_, idx) => (
-                  <span key={idx} className={`shield-heart ${idx < shieldHp ? 'alive' : 'dead'}`}>
-                    {idx < shieldHp ? '❤️' : '🖤'}
+                  <span
+                    key={idx}
+                    className={`shield-heart ${idx < shieldHp ? "alive" : "dead"}`}
+                  >
+                    {idx < shieldHp ? "❤️" : "🖤"}
                   </span>
                 ))}
               </div>
@@ -1556,7 +1875,7 @@ function SpaceDefenseGame({ onBack, grade = 1, addCoins, addXp, recordGamePlayed
             {currentQ && (
               <motion.div
                 key={currentQ.question}
-                className={`space-asteroid ${isExploding ? 'exploding' : ''}`}
+                className={`space-asteroid ${isExploding ? "exploding" : ""}`}
                 initial={{ scale: 0.6, y: -20, opacity: 0 }}
                 animate={{ scale: 1, y: 0, opacity: 1 }}
                 transition={{ duration: 0.3 }}
@@ -1566,7 +1885,9 @@ function SpaceDefenseGame({ onBack, grade = 1, addCoins, addXp, recordGamePlayed
                 ) : (
                   <div className="asteroid-body">
                     <span className="asteroid-emoji">☄️</span>
-                    <span className="asteroid-equation number">{currentQ.equation} = ?</span>
+                    <span className="asteroid-equation number">
+                      {currentQ.equation} = ?
+                    </span>
                   </div>
                 )}
               </motion.div>
@@ -1584,13 +1905,15 @@ function SpaceDefenseGame({ onBack, grade = 1, addCoins, addXp, recordGamePlayed
 
           {/* Laser Control Panel */}
           <div className="space-control-panel">
-            <p className="space-control-hint">Bấm mã số laser để bắn hạ thiên thạch:</p>
+            <p className="space-control-hint">
+              Bấm mã số laser để bắn hạ thiên thạch:
+            </p>
             <div className="space-weapons-grid">
               {currentQ?.options.map((opt) => (
                 <motion.button
                   key={opt}
                   type="button"
-                  className={`space-weapon-btn ${wrongOption === opt ? 'wrong' : ''}`}
+                  className={`space-weapon-btn ${wrongOption === opt ? "wrong" : ""}`}
                   whileHover={{ scale: 1.06, y: -2 }}
                   whileTap={{ scale: 0.94 }}
                   onClick={() => handleShoot(opt)}
@@ -1605,17 +1928,23 @@ function SpaceDefenseGame({ onBack, grade = 1, addCoins, addXp, recordGamePlayed
         </div>
       ) : (
         <div className="race-gameover-card">
-          <GameOverStars stars={destroyedCount >= 15 ? 3 : destroyedCount >= 10 ? 2 : destroyedCount >= 5 ? 1 : 0} />
+          <GameOverStars
+            stars={
+              destroyedCount >= 15
+                ? 3
+                : destroyedCount >= 10
+                  ? 2
+                  : destroyedCount >= 5
+                    ? 1
+                    : 0
+            }
+          />
           <span className="gameover-trophy">🚀</span>
           <h2>Hoàn Thành Nhiệm Vụ Vũ Trụ!</h2>
           <p>
-            Bé đã bắn tan {destroyedCount} mảnh thiên thạch, đạt Combo cao nhất x{maxCombo} và ghi được {score} điểm! Nhận được{' '}
-            <strong style={{ color: '#F59F00' }}>
-              +{destroyedCount >= 15 ? 120 : destroyedCount >= 10 ? 70 : destroyedCount >= 5 ? 30 : 10} Xu
-            </strong> và{' '}
-            <strong style={{ color: '#4DABF7' }}>
-              +{destroyedCount >= 15 ? 200 : destroyedCount >= 10 ? 120 : destroyedCount >= 5 ? 50 : 20} XP
-            </strong>!
+            Bé đã bắn tan {destroyedCount} mảnh thiên thạch, đạt Combo cao nhất
+            x{maxCombo} và ghi được {score} điểm! Nhận được{" "}
+            <RewardSpans reward={tierReward} />
           </p>
           <div className="gameover-btns">
             <Button variant="primary" size="lg" onClick={handleRestart}>
@@ -1628,30 +1957,31 @@ function SpaceDefenseGame({ onBack, grade = 1, addCoins, addXp, recordGamePlayed
         </div>
       )}
     </div>
-  )
+  );
 }
 
 // ========================================================
 // 🎣 GAME 6: MATH FISHING (HỒ CÂU CÁ THÔNG THÁI)
 // ========================================================
-function MathFishingGame({ onBack, grade = 1, addCoins, addXp, recordGamePlayed }) {
-  const [caughtCount, setCaughtCount] = useState(0)
-  const [score, setScore] = useState(0)
-  const [currentQ, setCurrentQ] = useState(null)
-  const [fishes, setFishes] = useState([])
-  const [hookingFishId, setHookingFishId] = useState(null)
-  const [hookSuccess, setHookSuccess] = useState(false)
-  const [gameWon, setGameWon] = useState(false)
-  const [fishBucket, setFishBucket] = useState([])
-  const [missedFishId, setMissedFishId] = useState(null)
+function MathFishingGame({ onBack, grade = 1, grantReward, recordGamePlayed }) {
+  const [caughtCount, setCaughtCount] = useState(0);
+  const [score, setScore] = useState(0);
+  const [currentQ, setCurrentQ] = useState(null);
+  const [fishes, setFishes] = useState([]);
+  const [hookingFishId, setHookingFishId] = useState(null);
+  const [hookSuccess, setHookSuccess] = useState(false);
+  const [gameWon, setGameWon] = useState(false);
+  const [fishBucket, setFishBucket] = useState([]);
+  const [missedFishId, setMissedFishId] = useState(null);
 
-  const TARGET_FISH = 6
-  const gameRecordedRef = useRef(false)
-  const FISH_EMOJIS = ['🐠', '🐟', '🐡', '🐙']
+  const TARGET_FISH = 6;
+  const gameRecordedRef = useRef(false);
+  const [tierReward, setTierReward] = useState(null);
+  const FISH_EMOJIS = ["🐠", "🐟", "🐡", "🐙"];
 
   const loadNewQuestion = useCallback(() => {
-    const q = generateCalculation(grade)
-    setCurrentQ(q)
+    const q = generateCalculation(grade);
+    setCurrentQ(q);
     // Create 4 swimming fishes with distinct depths & speeds
     const newFishes = q.options.map((val, idx) => ({
       id: `${val}-${Date.now()}-${idx}`,
@@ -1661,75 +1991,74 @@ function MathFishingGame({ onBack, grade = 1, addCoins, addXp, recordGamePlayed 
       yPercent: 12 + idx * 22,
       duration: 10 + (idx % 3) * 3,
       direction: idx % 2 === 0 ? 1 : -1,
-    }))
-    setFishes(newFishes)
-    setHookingFishId(null)
-    setHookSuccess(false)
-    setMissedFishId(null)
-  }, [grade])
+    }));
+    setFishes(newFishes);
+    setHookingFishId(null);
+    setHookSuccess(false);
+    setMissedFishId(null);
+  }, [grade]);
 
   useEffect(() => {
-    loadNewQuestion()
-  }, [loadNewQuestion])
+    loadNewQuestion();
+  }, [loadNewQuestion]);
 
   const handleCatchFish = (fish) => {
-    if (hookingFishId || gameWon) return
+    if (hookingFishId || gameWon) return;
 
-    setHookingFishId(fish.id)
+    setHookingFishId(fish.id);
 
     if (fish.isCorrect) {
-      setHookSuccess(true)
-      soundManager.playCoin()
-      fireConfetti({ particleCount: 35, spread: 60 })
-      setScore((s) => s + 15)
-      setFishBucket((b) => [...b, fish.emoji])
-      const nextCaught = caughtCount + 1
-      setCaughtCount(nextCaught)
+      setHookSuccess(true);
+      soundManager.playCoin();
+      fireConfetti({ particleCount: 35, spread: 60 });
+      setScore((s) => s + 15);
+      setFishBucket((b) => [...b, fish.emoji]);
+      const nextCaught = caughtCount + 1;
+      setCaughtCount(nextCaught);
 
       setTimeout(() => {
         if (nextCaught >= TARGET_FISH) {
-          setGameWon(true)
-          soundManager.playFanfare()
-          fireConfetti({ particleCount: 90, spread: 80 })
-          addCoins(120)
-          addXp(200)
+          setGameWon(true);
+          soundManager.playFanfare();
+          fireConfetti({ particleCount: 90, spread: 80 });
+          setTierReward(grantReward("game.tier_gold"));
           if (!gameRecordedRef.current) {
-            gameRecordedRef.current = true
-            if (typeof recordGamePlayed === 'function') {
-              recordGamePlayed()
+            gameRecordedRef.current = true;
+            if (typeof recordGamePlayed === "function") {
+              recordGamePlayed();
             }
           }
         } else {
-          loadNewQuestion()
+          loadNewQuestion();
         }
-      }, 1000)
+      }, 1000);
     } else {
-      soundManager.playWrong()
-      setMissedFishId(fish.id)
+      soundManager.playWrong();
+      setMissedFishId(fish.id);
       setTimeout(() => {
-        setHookingFishId(null)
-        setMissedFishId(null)
-      }, 800)
+        setHookingFishId(null);
+        setMissedFishId(null);
+      }, 800);
     }
-  }
+  };
 
   const handleBack = () => {
     if (caughtCount > 0 && !gameRecordedRef.current) {
-      gameRecordedRef.current = true
-      if (typeof recordGamePlayed === 'function') {
-        recordGamePlayed()
+      gameRecordedRef.current = true;
+      if (typeof recordGamePlayed === "function") {
+        recordGamePlayed();
       }
     }
-    onBack()
-  }
+    onBack();
+  };
 
   const handleRestart = () => {
-    setCaughtCount(0)
-    setScore(0)
-    setFishBucket([])
-    setGameWon(false)
-    loadNewQuestion()
-  }
+    setCaughtCount(0);
+    setScore(0);
+    setFishBucket([]);
+    setGameWon(false);
+    loadNewQuestion();
+  };
 
   return (
     <div className="mini-game-wrapper pond-theme-wrapper">
@@ -1741,7 +2070,9 @@ function MathFishingGame({ onBack, grade = 1, addCoins, addXp, recordGamePlayed 
           </button>
           <span className="game-title-text">🎣 Hồ Câu Cá Thông Thái</span>
           <div className="game-stats-pills">
-            <span className="score-pill">🪣 {caughtCount}/{TARGET_FISH} cá</span>
+            <span className="score-pill">
+              🪣 {caughtCount}/{TARGET_FISH} cá
+            </span>
             <span className="score-pill highlight">Điểm: {score}</span>
           </div>
         </div>
@@ -1752,7 +2083,8 @@ function MathFishingGame({ onBack, grade = 1, addCoins, addXp, recordGamePlayed 
           <div className="pond-question-banner">
             <span className="pond-rod-icon">🎣</span>
             <span className="pond-question-text">
-              Bé hãy câu chú cá mang số: <strong className="number">{currentQ?.equation} = ?</strong>
+              Bé hãy câu chú cá mang số:{" "}
+              <strong className="number">{currentQ?.equation} = ?</strong>
             </span>
           </div>
 
@@ -1761,20 +2093,21 @@ function MathFishingGame({ onBack, grade = 1, addCoins, addXp, recordGamePlayed 
 
             {/* Swimming Fishes */}
             {fishes.map((fish) => {
-              const isHooked = hookingFishId === fish.id
-              const isMissed = missedFishId === fish.id
+              const isHooked = hookingFishId === fish.id;
+              const isMissed = missedFishId === fish.id;
               return (
                 <div
                   key={fish.id}
-                  className={`pond-fish-track ${fish.direction === 1 ? 'ltr' : 'rtl'}`}
+                  className={`pond-fish-track ${fish.direction === 1 ? "ltr" : "rtl"}`}
                   style={{
                     top: `${fish.yPercent}%`,
                     animationDuration: `${fish.duration}s`,
                   }}
                 >
                   <motion.div
-                    className={`pond-fish-item ${isHooked ? (hookSuccess ? 'caught' : '') : ''} ${isMissed ? 'missed' : ''
-                      }`}
+                    className={`pond-fish-item ${isHooked ? (hookSuccess ? "caught" : "") : ""} ${
+                      isMissed ? "missed" : ""
+                    }`}
                     whileHover={{ scale: 1.12 }}
                     whileTap={{ scale: 0.9 }}
                     onClick={() => handleCatchFish(fish)}
@@ -1783,7 +2116,7 @@ function MathFishingGame({ onBack, grade = 1, addCoins, addXp, recordGamePlayed 
                     <span className="fish-badge number">{fish.val}</span>
                   </motion.div>
                 </div>
-              )
+              );
             })}
 
             {/* Seaweed Decor */}
@@ -1803,8 +2136,11 @@ function MathFishingGame({ onBack, grade = 1, addCoins, addXp, recordGamePlayed 
             <span className="bucket-title">🪣 Giỏ cá của bé:</span>
             <div className="bucket-slots">
               {Array.from({ length: TARGET_FISH }).map((_, idx) => (
-                <span key={idx} className={`bucket-slot ${idx < fishBucket.length ? 'filled' : 'empty'}`}>
-                  {idx < fishBucket.length ? fishBucket[idx] : '⚪'}
+                <span
+                  key={idx}
+                  className={`bucket-slot ${idx < fishBucket.length ? "filled" : "empty"}`}
+                >
+                  {idx < fishBucket.length ? fishBucket[idx] : "⚪"}
                 </span>
               ))}
             </div>
@@ -1816,9 +2152,8 @@ function MathFishingGame({ onBack, grade = 1, addCoins, addXp, recordGamePlayed 
           <span className="gameover-trophy">🎣</span>
           <h2>Vua Câu Cá Thông Thái!</h2>
           <p>
-            Bé đã câu đầy giỏ {TARGET_FISH} chú cá thông thái và đạt được {score} điểm xuất sắc! Nhận được{' '}
-            <strong style={{ color: '#F59F00' }}>+120 Xu</strong> và{' '}
-            <strong style={{ color: '#4DABF7' }}>+200 XP</strong>!
+            Bé đã câu đầy giỏ {TARGET_FISH} chú cá thông thái và đạt được{" "}
+            {score} điểm xuất sắc! Nhận được <RewardSpans reward={tierReward} />
           </p>
           <div className="gameover-btns">
             <Button variant="primary" size="lg" onClick={handleRestart}>
@@ -1831,5 +2166,5 @@ function MathFishingGame({ onBack, grade = 1, addCoins, addXp, recordGamePlayed 
         </div>
       )}
     </div>
-  )
+  );
 }

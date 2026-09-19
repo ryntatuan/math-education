@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Flame,
   Gift,
@@ -15,24 +15,25 @@ import {
   ArrowDownCircle,
   Users,
   Award,
-} from 'lucide-react'
-import Button from '../components/ui/Button'
-import Card from '../components/ui/Card'
-import ProgressBar from '../components/ui/ProgressBar'
-import useUserStore from '../store/useUserStore'
-import useProgressStore from '../store/useProgressStore'
-import useAuthStore from '../store/useAuthStore'
-import useLeagueStore, { LEAGUE_TIERS } from '../store/useLeagueStore'
-import { generateQuestion } from '../utils/exerciseGenerator'
-import soundManager from '../utils/soundManager'
-import fireConfetti from '../utils/confettiHelper'
-import GuestChallengeLock from '../components/auth/GuestChallengeLock'
-import RightSidebar from '../components/layout/RightSidebar'
-import './ChallengePage.css'
+} from "lucide-react";
+import Button from "../components/ui/Button";
+import Card from "../components/ui/Card";
+import ProgressBar from "../components/ui/ProgressBar";
+import useUserStore from "../store/useUserStore";
+import useProgressStore from "../store/useProgressStore";
+import useAuthStore from "../store/useAuthStore";
+import useLeagueStore, { LEAGUE_TIERS } from "../store/useLeagueStore";
+import { generateQuestion } from "../utils/exerciseGenerator";
+import soundManager from "../utils/soundManager";
+import fireConfetti from "../utils/confettiHelper";
+import GuestChallengeLock from "../components/auth/GuestChallengeLock";
+import RightSidebar from "../components/layout/RightSidebar";
+import { getReward } from "../services/rewardService";
+import "./ChallengePage.css";
 
 export default function ChallengePage() {
-  const navigate = useNavigate()
-  const { grade, addCoins, addXp, nickname, avatar } = useUserStore()
+  const navigate = useNavigate();
+  const { grade, grantReward, nickname, avatar } = useUserStore();
   const {
     currentStreak,
     isDailyChallengeCompleted,
@@ -40,8 +41,8 @@ export default function ChallengePage() {
     dailyQuests,
     dailyQuestsClaimed,
     claimDailyQuestsReward,
-  } = useProgressStore()
-  const { activeChild, isGuest } = useAuthStore()
+  } = useProgressStore();
+  const { activeChild, isGuest } = useAuthStore();
   const {
     currentTier,
     weekEndDate,
@@ -51,60 +52,64 @@ export default function ChallengePage() {
     isLoadingCloud,
     lastPromotionStatus,
     dismissStatus,
-  } = useLeagueStore()
+  } = useLeagueStore();
 
   // Tab: 'arena' (Đấu Trường Thi Đua) hoặc 'daily' (Nhiệm Vụ Hằng Ngày)
-  const [activeTab, setActiveTab] = useState('arena')
-  const [timeLeft, setTimeLeft] = useState('')
+  const [activeTab, setActiveTab] = useState("arena");
+  const [timeLeft, setTimeLeft] = useState("");
 
-  const alreadyDone = isDailyChallengeCompleted()
+  const alreadyDone = isDailyChallengeCompleted();
 
   // Challenge items state (Nhiệm vụ hằng ngày)
-  const [activeTaskIndex, setActiveTaskIndex] = useState(null)
-  const [tasksCompleted, setTasksCompleted] = useState([alreadyDone, alreadyDone, alreadyDone])
+  const [activeTaskIndex, setActiveTaskIndex] = useState(null);
+  const [tasksCompleted, setTasksCompleted] = useState([
+    alreadyDone,
+    alreadyDone,
+    alreadyDone,
+  ]);
   const [questions, setQuestions] = useState([
     generateQuestion(grade),
     generateQuestion(grade),
     generateQuestion(grade),
-  ])
-  const [selectedAnswer, setSelectedAnswer] = useState(null)
-  const [feedback, setFeedback] = useState(null)
-  const [chestOpened, setChestOpened] = useState(alreadyDone)
-  const [chestReward, setChestReward] = useState(0)
+  ]);
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const [feedback, setFeedback] = useState(null);
+  const [chestOpened, setChestOpened] = useState(alreadyDone);
+  const [chestReward, setChestReward] = useState(0);
 
   // Đồng bộ giải đấu tuần & đếm ngược
   useEffect(() => {
-    checkWeekReset(nickname, avatar)
-    fetchCloudLeaderboard()
+    checkWeekReset(nickname, avatar);
+    fetchCloudLeaderboard();
 
     const updateTimer = () => {
-      const end = new Date(weekEndDate).getTime()
-      const now = new Date().getTime()
-      const diff = end - now
+      const end = new Date(weekEndDate).getTime();
+      const now = new Date().getTime();
+      const diff = end - now;
 
       if (diff <= 0) {
-        setTimeLeft('Đang kết toán giải đấu...')
-        return
+        setTimeLeft("Đang kết toán giải đấu...");
+        return;
       }
 
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24))
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24)
-      const minutes = Math.floor((diff / 1000 / 60) % 60)
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / 1000 / 60) % 60);
 
-      setTimeLeft(`${days} ngày ${hours} giờ ${minutes} phút`)
-    }
+      setTimeLeft(`${days} ngày ${hours} giờ ${minutes} phút`);
+    };
 
-    updateTimer()
-    const interval = setInterval(updateTimer, 60000)
-    return () => clearInterval(interval)
-  }, [weekEndDate, checkWeekReset, nickname, avatar, fetchCloudLeaderboard])
+    updateTimer();
+    const interval = setInterval(updateTimer, 60000);
+    return () => clearInterval(interval);
+  }, [weekEndDate, checkWeekReset, nickname, avatar, fetchCloudLeaderboard]);
 
   // Đồng bộ trạng thái khi tài khoản thay đổi hoặc khi hoàn thành nhiệm vụ
   useEffect(() => {
-    const done = isDailyChallengeCompleted()
-    setTasksCompleted([done, done, done])
-    setChestOpened(done)
-  }, [alreadyDone, activeChild?.id])
+    const done = isDailyChallengeCompleted();
+    setTasksCompleted([done, done, done]);
+    setChestOpened(done);
+  }, [alreadyDone, activeChild?.id]);
 
   // Cập nhật câu hỏi mới theo đúng khối lớp
   useEffect(() => {
@@ -112,112 +117,129 @@ export default function ChallengePage() {
       generateQuestion(grade),
       generateQuestion(grade),
       generateQuestion(grade),
-    ])
-  }, [grade])
+    ]);
+  }, [grade]);
 
   // Khởi tạo & reset nhiệm vụ mỗi ngày đã được xử lý ở DailyQuestsCard
 
-  const completedQuestCount = (dailyQuests || []).filter((q) => q.done).length
-  const totalQuestCount = (dailyQuests || []).length || 3
-  const allQuestsDone = completedQuestCount === totalQuestCount && totalQuestCount > 0
+  const completedQuestCount = (dailyQuests || []).filter((q) => q.done).length;
+  const totalQuestCount = (dailyQuests || []).length || 3;
+  const allQuestsDone =
+    completedQuestCount === totalQuestCount && totalQuestCount > 0;
 
   const handleClaimQuestChest = () => {
-    if (dailyQuestsClaimed || !allQuestsDone) return
-    claimDailyQuestsReward(addCoins, addXp)
-    soundManager.playFanfare()
-    fireConfetti({ particleCount: 100, spread: 80, origin: { y: 0.5 } })
-  }
+    if (dailyQuestsClaimed || !allQuestsDone) return;
+    claimDailyQuestsReward();
+    soundManager.playFanfare();
+    fireConfetti({ particleCount: 100, spread: 80, origin: { y: 0.5 } });
+  };
 
   // Dữ liệu bảng xếp hạng giải đấu tuần
-  const standings = getStandings(nickname, avatar, activeChild?.id)
+  const standings = getStandings(nickname, avatar, activeChild?.id);
   const currentTierData =
-    LEAGUE_TIERS.find((t) => t.id === currentTier) || LEAGUE_TIERS[0]
-  const currentTierIdx = LEAGUE_TIERS.findIndex((t) => t.id === currentTier)
+    LEAGUE_TIERS.find((t) => t.id === currentTier) || LEAGUE_TIERS[0];
+  const currentTierIdx = LEAGUE_TIERS.findIndex((t) => t.id === currentTier);
   const nextTierData =
-    currentTierIdx < LEAGUE_TIERS.length - 1 ? LEAGUE_TIERS[currentTierIdx + 1] : null
+    currentTierIdx < LEAGUE_TIERS.length - 1
+      ? LEAGUE_TIERS[currentTierIdx + 1]
+      : null;
 
-  const top3 = standings.slice(0, 3)
+  const top3 = standings.slice(0, 3);
 
   const taskLevels = [
-    { title: 'Thử thách 1: Khởi động', difficulty: 'Dễ', icon: '🟢', reward: '10 Xu' },
-    { title: 'Thử thách 2: Tăng tốc', difficulty: 'Vừa', icon: '🟡', reward: '15 Xu' },
-    { title: 'Thử thách 3: Bứt phá', difficulty: 'Khó', icon: '🔴', reward: '25 Xu' },
-  ]
+    {
+      title: "Thử thách 1: Khởi động",
+      difficulty: "Dễ",
+      icon: "🟢",
+      reward: `${getReward("challenge.task_1").coins} Xu`,
+    },
+    {
+      title: "Thử thách 2: Tăng tốc",
+      difficulty: "Vừa",
+      icon: "🟡",
+      reward: `${getReward("challenge.task_2").coins} Xu`,
+    },
+    {
+      title: "Thử thách 3: Bứt phá",
+      difficulty: "Khó",
+      icon: "🔴",
+      reward: `${getReward("challenge.task_3").coins} Xu`,
+    },
+  ];
 
   const handleSelectTask = (idx) => {
-    if (tasksCompleted[idx]) return
-    setActiveTaskIndex(idx)
-    setSelectedAnswer(null)
-    setFeedback(null)
-    soundManager.playClick()
-  }
+    if (tasksCompleted[idx]) return;
+    setActiveTaskIndex(idx);
+    setSelectedAnswer(null);
+    setFeedback(null);
+    soundManager.playClick();
+  };
 
   const handleRefreshQuestion = () => {
-    if (activeTaskIndex === null) return
+    if (activeTaskIndex === null) return;
     setQuestions((prev) => {
-      const next = [...prev]
-      next[activeTaskIndex] = generateQuestion(grade)
-      return next
-    })
-    setSelectedAnswer(null)
-    setFeedback(null)
-    soundManager.playClick()
-  }
+      const next = [...prev];
+      next[activeTaskIndex] = generateQuestion(grade);
+      return next;
+    });
+    setSelectedAnswer(null);
+    setFeedback(null);
+    soundManager.playClick();
+  };
 
   const handleAnswer = (option) => {
-    if (feedback) return
-    setSelectedAnswer(option)
+    if (feedback) return;
+    setSelectedAnswer(option);
 
-    const q = questions[activeTaskIndex]
-    const isCorrect = option === q.answer
+    const q = questions[activeTaskIndex];
+    const isCorrect = option === q.answer;
 
     if (isCorrect) {
-      soundManager.playCorrect()
-      setFeedback('correct')
-      fireConfetti({ particleCount: 60, spread: 60, origin: { y: 0.6 } })
+      soundManager.playCorrect();
+      setFeedback("correct");
+      fireConfetti({ particleCount: 60, spread: 60, origin: { y: 0.6 } });
     } else {
-      soundManager.playWrong()
-      setFeedback('wrong')
+      soundManager.playWrong();
+      setFeedback("wrong");
       setTimeout(() => {
         setQuestions((prev) => {
-          const next = [...prev]
-          next[activeTaskIndex] = generateQuestion(grade)
-          return next
-        })
-        setSelectedAnswer(null)
-        setFeedback(null)
-      }, 1500)
+          const next = [...prev];
+          next[activeTaskIndex] = generateQuestion(grade);
+          return next;
+        });
+        setSelectedAnswer(null);
+        setFeedback(null);
+      }, 1500);
     }
-  }
+  };
 
   const handleCompleteTask = () => {
-    soundManager.playFanfare()
-    const nextTasks = [...tasksCompleted]
-    nextTasks[activeTaskIndex] = true
-    setTasksCompleted(nextTasks)
-    addCoins(activeTaskIndex === 0 ? 10 : activeTaskIndex === 1 ? 15 : 25)
-    addXp(30)
-    setActiveTaskIndex(null)
-    setFeedback(null)
-    setSelectedAnswer(null)
+    soundManager.playFanfare();
+    const nextTasks = [...tasksCompleted];
+    nextTasks[activeTaskIndex] = true;
+    setTasksCompleted(nextTasks);
+    grantReward(`challenge.task_${activeTaskIndex + 1}`);
+    setActiveTaskIndex(null);
+    setFeedback(null);
+    setSelectedAnswer(null);
 
     if (nextTasks.every(Boolean)) {
-      completeDailyChallenge()
+      completeDailyChallenge();
     }
-  }
+  };
 
   const openMysteryChest = () => {
-    if (chestOpened) return
-    const bonus = Math.floor(Math.random() * 30) + 20
-    setChestReward(bonus)
-    setChestOpened(true)
-    addCoins(bonus)
-    addXp(50)
-    soundManager.playFanfare()
-    fireConfetti({ particleCount: 100, spread: 80, origin: { y: 0.5 } })
-  }
+    if (chestOpened) return;
+    // Khoảng ngẫu nhiên lấy từ cấu hình [coins, coins_max].
+    // grantReward trả về đúng con số đã cấp -> hiển thị khớp với thực nhận.
+    const { coins } = grantReward("challenge.chest");
+    setChestReward(coins);
+    setChestOpened(true);
+    soundManager.playFanfare();
+    fireConfetti({ particleCount: 100, spread: 80, origin: { y: 0.5 } });
+  };
 
-  const allCompleted = tasksCompleted.every(Boolean)
+  const allCompleted = tasksCompleted.every(Boolean);
 
   // Nếu là tài khoản Khách (chưa đăng nhập): Yêu cầu đăng nhập để tham gia Đấu trường & Thử thách
   if (isGuest) {
@@ -233,7 +255,7 @@ export default function ChallengePage() {
         </div>
         <RightSidebar hideArenaSummary={true} hideOnMobile={true} />
       </div>
-    )
+    );
   }
 
   return (
@@ -241,604 +263,741 @@ export default function ChallengePage() {
       <div className="learning-main-column">
         <div className="challenge-page">
           {/* Promotion Status Alert if recent */}
-      <AnimatePresence>
-        {lastPromotionStatus && (
-          <motion.div
-            className={`league-status-banner ${lastPromotionStatus}`}
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-          >
-            <div className="status-text">
-              {lastPromotionStatus === 'promoted' ? (
-                <>🎉 <strong>Chúc mừng!</strong> Bé đã xuất sắc thăng hạng lên <strong>{currentTierData.name}</strong>!</>
-              ) : lastPromotionStatus === 'relegated' ? (
-                <>💪 <strong>Cố lên nào!</strong> Bé đã chuyển sang <strong>{currentTierData.name}</strong>. Hãy bứt phá tuần này nhé!</>
-              ) : (
-                <>🛡️ <strong>Trụ hạng thành công!</strong> Bé tiếp tục thi đấu ở <strong>{currentTierData.name}</strong>.</>
-              )}
-            </div>
-            <button className="dismiss-btn" onClick={dismissStatus}>✕</button>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Tab Switcher Header */}
-      <div className="challenge-tabs-bar">
-        <button
-          className={`challenge-tab-btn ${activeTab === 'arena' ? 'active' : ''}`}
-          onClick={() => {
-            soundManager.playClick()
-            setActiveTab('arena')
-          }}
-        >
-          <span>🏆 Đấu Trường</span>
-        </button>
-
-        <button
-          className={`challenge-tab-btn ${activeTab === 'daily' ? 'active' : ''}`}
-          onClick={() => {
-            soundManager.playClick()
-            setActiveTab('daily')
-          }}
-        >
-          <span>🎯 Thử thách</span>
-          {allCompleted && <span className="tab-tag-done">✅</span>}
-        </button>
-
-        <button
-          className={`challenge-tab-btn ${activeTab === 'quests' ? 'active' : ''}`}
-          onClick={() => {
-            soundManager.playClick()
-            setActiveTab('quests')
-          }}
-        >
-          <span>📋 Nhiệm vụ</span>
-          {allQuestsDone && <span className="tab-tag-done">✅</span>}
-        </button>
-      </div>
-
-      {/* =========================================================
-          TAB 1: ĐẤU TRƯỜNG THI ĐUA (LEADERBOARD)
-          ========================================================= */}
-      {activeTab === 'arena' && (
-        <div className="arena-tab-content">
-          {/* Hero Banner Giải Đấu */}
-          <div className="league-hero-card" style={{ '--tier-color': currentTierData.color }}>
-            <div className="tier-info-header">
-              <div className="tier-badge-main">
-                <span className="tier-icon">{currentTierData.icon}</span>
-                <div>
-                  <span className="tier-subtitle">Bảng Đấu Tuần Này</span>
-                  <h1 className="tier-name">{currentTierData.name}</h1>
+          <AnimatePresence>
+            {lastPromotionStatus && (
+              <motion.div
+                className={`league-status-banner ${lastPromotionStatus}`}
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+              >
+                <div className="status-text">
+                  {lastPromotionStatus === "promoted" ? (
+                    <>
+                      🎉 <strong>Chúc mừng!</strong> Bé đã xuất sắc thăng hạng
+                      lên <strong>{currentTierData.name}</strong>!
+                    </>
+                  ) : lastPromotionStatus === "relegated" ? (
+                    <>
+                      💪 <strong>Cố lên nào!</strong> Bé đã chuyển sang{" "}
+                      <strong>{currentTierData.name}</strong>. Hãy bứt phá tuần
+                      này nhé!
+                    </>
+                  ) : (
+                    <>
+                      🛡️ <strong>Trụ hạng thành công!</strong> Bé tiếp tục thi
+                      đấu ở <strong>{currentTierData.name}</strong>.
+                    </>
+                  )}
                 </div>
-              </div>
-
-              <div className="tier-action-group">
-                <div className="timer-pill">
-                  <Clock size={16} />
-                  <span>Còn lại: <strong>{timeLeft}</strong></span>
-                </div>
-
-                <button
-                  className="refresh-cloud-btn"
-                  onClick={() => {
-                    soundManager.playClick()
-                    fetchCloudLeaderboard()
-                  }}
-                  title="Cập nhật dữ liệu từ đám mây"
-                  disabled={isLoadingCloud}
-                >
-                  <RefreshCw size={16} className={isLoadingCloud ? 'spinning' : ''} />
-                  <span>{isLoadingCloud ? 'Đang tải...' : 'Làm mới'}</span>
+                <button className="dismiss-btn" onClick={dismissStatus}>
+                  ✕
                 </button>
-              </div>
-            </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
-            {/* League Tiers Road Map */}
-            <div className="tiers-roadmap">
-              {LEAGUE_TIERS.map((tier, idx) => {
-                const isCurrent = tier.id === currentTier
-                const isUnlocked = idx <= currentTierIdx
-                return (
-                  <div
-                    key={tier.id}
-                    className={`tier-step ${isCurrent ? 'is-current' : ''} ${isUnlocked ? 'is-unlocked' : ''}`}
-                  >
-                    <div className="step-circle">
-                      <span>{tier.icon}</span>
-                    </div>
-                    <span className="step-label">{tier.name}</span>
-                  </div>
-                )
-              })}
-            </div>
+          {/* Tab Switcher Header */}
+          <div className="challenge-tabs-bar">
+            <button
+              className={`challenge-tab-btn ${activeTab === "arena" ? "active" : ""}`}
+              onClick={() => {
+                soundManager.playClick();
+                setActiveTab("arena");
+              }}
+            >
+              <span>🏆 Đấu Trường</span>
+            </button>
+
+            <button
+              className={`challenge-tab-btn ${activeTab === "daily" ? "active" : ""}`}
+              onClick={() => {
+                soundManager.playClick();
+                setActiveTab("daily");
+              }}
+            >
+              <span>🎯 Thử thách</span>
+              {allCompleted && <span className="tab-tag-done">✅</span>}
+            </button>
+
+            <button
+              className={`challenge-tab-btn ${activeTab === "quests" ? "active" : ""}`}
+              onClick={() => {
+                soundManager.playClick();
+                setActiveTab("quests");
+              }}
+            >
+              <span>📋 Nhiệm vụ</span>
+              {allQuestsDone && <span className="tab-tag-done">✅</span>}
+            </button>
           </div>
 
-          {/* Top 3 Podium */}
-          {top3.length >= 3 && (
-            <div className="podium-container">
-              {/* Rank 2 (Left) */}
-              <div className="podium-column rank-2">
-                <div className="podium-player">
-                  <span className="podium-avatar">{top3[1].avatar}</span>
-                  <strong className="podium-name">{top3[1].name}</strong>
-                  <span className="podium-xp number">{top3[1].weeklyXp} XP</span>
+          {/* =========================================================
+          TAB 1: ĐẤU TRƯỜNG THI ĐUA (LEADERBOARD)
+          ========================================================= */}
+          {activeTab === "arena" && (
+            <div className="arena-tab-content">
+              {/* Hero Banner Giải Đấu */}
+              <div
+                className="league-hero-card"
+                style={{ "--tier-color": currentTierData.color }}
+              >
+                <div className="tier-info-header">
+                  <div className="tier-badge-main">
+                    <span className="tier-icon">{currentTierData.icon}</span>
+                    <div>
+                      <span className="tier-subtitle">Bảng Đấu Tuần Này</span>
+                      <h1 className="tier-name">{currentTierData.name}</h1>
+                    </div>
+                  </div>
+
+                  <div className="tier-action-group">
+                    <div className="timer-pill">
+                      <Clock size={16} />
+                      <span>
+                        Còn lại: <strong>{timeLeft}</strong>
+                      </span>
+                    </div>
+
+                    <button
+                      className="refresh-cloud-btn"
+                      onClick={() => {
+                        soundManager.playClick();
+                        fetchCloudLeaderboard();
+                      }}
+                      title="Cập nhật dữ liệu từ đám mây"
+                      disabled={isLoadingCloud}
+                    >
+                      <RefreshCw
+                        size={16}
+                        className={isLoadingCloud ? "spinning" : ""}
+                      />
+                      <span>{isLoadingCloud ? "Đang tải..." : "Làm mới"}</span>
+                    </button>
+                  </div>
                 </div>
-                <div className="podium-pedestal pedestal-2">
-                  <span className="pedestal-rank number">2</span>
+
+                {/* League Tiers Road Map */}
+                <div className="tiers-roadmap">
+                  {LEAGUE_TIERS.map((tier, idx) => {
+                    const isCurrent = tier.id === currentTier;
+                    const isUnlocked = idx <= currentTierIdx;
+                    return (
+                      <div
+                        key={tier.id}
+                        className={`tier-step ${isCurrent ? "is-current" : ""} ${isUnlocked ? "is-unlocked" : ""}`}
+                      >
+                        <div className="step-circle">
+                          <span>{tier.icon}</span>
+                        </div>
+                        <span className="step-label">{tier.name}</span>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
 
-              {/* Rank 1 (Center) */}
-              <div className="podium-column rank-1">
-                <div className="crown-badge">👑</div>
-                <div className="podium-player">
-                  <span className="podium-avatar golden-glow">{top3[0].avatar}</span>
-                  <strong className="podium-name">{top3[0].name}</strong>
-                  <span className="podium-xp number">{top3[0].weeklyXp} XP</span>
+              {/* Top 3 Podium */}
+              {top3.length >= 3 && (
+                <div className="podium-container">
+                  {/* Rank 2 (Left) */}
+                  <div className="podium-column rank-2">
+                    <div className="podium-player">
+                      <span className="podium-avatar">{top3[1].avatar}</span>
+                      <strong className="podium-name">{top3[1].name}</strong>
+                      <span className="podium-xp number">
+                        {top3[1].weeklyXp} XP
+                      </span>
+                    </div>
+                    <div className="podium-pedestal pedestal-2">
+                      <span className="pedestal-rank number">2</span>
+                    </div>
+                  </div>
+
+                  {/* Rank 1 (Center) */}
+                  <div className="podium-column rank-1">
+                    <div className="crown-badge">👑</div>
+                    <div className="podium-player">
+                      <span className="podium-avatar golden-glow">
+                        {top3[0].avatar}
+                      </span>
+                      <strong className="podium-name">{top3[0].name}</strong>
+                      <span className="podium-xp number">
+                        {top3[0].weeklyXp} XP
+                      </span>
+                    </div>
+                    <div className="podium-pedestal pedestal-1">
+                      <span className="pedestal-rank number">1</span>
+                    </div>
+                  </div>
+
+                  {/* Rank 3 (Right) */}
+                  <div className="podium-column rank-3">
+                    <div className="podium-player">
+                      <span className="podium-avatar">{top3[2].avatar}</span>
+                      <strong className="podium-name">{top3[2].name}</strong>
+                      <span className="podium-xp number">
+                        {top3[2].weeklyXp} XP
+                      </span>
+                    </div>
+                    <div className="podium-pedestal pedestal-3">
+                      <span className="pedestal-rank number">3</span>
+                    </div>
+                  </div>
                 </div>
-                <div className="podium-pedestal pedestal-1">
-                  <span className="pedestal-rank number">1</span>
+              )}
+
+              {/* Full Standings List */}
+              <div className="standings-box">
+                <div className="standings-legend">
+                  <div className="legend-item promo">
+                    <ArrowUpCircle size={16} className="text-emerald" />
+                    <span>
+                      Hạng 1 - 3: Thăng hạng{" "}
+                      {nextTierData ? nextTierData.name : ""} 🟢
+                    </span>
+                  </div>
+                  <div className="legend-item relegate">
+                    <ArrowDownCircle size={16} className="text-rose" />
+                    <span>Hạng 8 - 10: Vùng nguy hiểm 🔴</span>
+                  </div>
                 </div>
+
+                <div className="standings-list">
+                  {standings.map((player) => {
+                    const isPromotion = player.rank <= 3;
+                    const isRelegation = player.rank >= 8;
+
+                    let rowCls = "standing-row";
+                    if (player.isUser) rowCls += " is-user-row";
+                    if (isPromotion) rowCls += " zone-promotion";
+                    if (isRelegation) rowCls += " zone-relegation";
+
+                    return (
+                      <div key={player.id} className={rowCls}>
+                        <div className="rank-badge-wrap">
+                          <span
+                            className={`rank-number number rank-${player.rank}`}
+                          >
+                            {player.rank === 1
+                              ? "🥇"
+                              : player.rank === 2
+                                ? "🥈"
+                                : player.rank === 3
+                                  ? "🥉"
+                                  : player.rank}
+                          </span>
+                        </div>
+
+                        <div className="player-avatar-wrap">
+                          <span className="player-avatar">{player.avatar}</span>
+                        </div>
+
+                        <div className="player-info-wrap">
+                          <span className="player-name">
+                            {player.name}
+                            {player.isUser ? (
+                              <span className="you-tag">Bạn</span>
+                            ) : !player.is_bot ? (
+                              <span className="real-user-tag">✨ Bạn học</span>
+                            ) : player.role === "hardworking" ? (
+                              <span className="bot-tag bot-hardworking">
+                                🔥 Chăm chỉ
+                              </span>
+                            ) : player.role === "lazy" ? (
+                              <span className="bot-tag bot-lazy">
+                                💤 Thong thả
+                              </span>
+                            ) : (
+                              <span className="bot-tag">🤖 Bạn học</span>
+                            )}
+                          </span>
+                          <span className="zone-subtag">
+                            {isPromotion
+                              ? "Vùng Thăng Hạng 🟢"
+                              : isRelegation
+                                ? "Vùng Nguy Hiểm 🔴"
+                                : "Vùng An Toàn ⚪"}
+                          </span>
+                        </div>
+
+                        <div className="player-xp-wrap">
+                          <span className="xp-value number">
+                            {player.weeklyXp}
+                          </span>
+                          <span className="xp-unit">XP</span>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {/* Thông báo nếu bé chưa lọt vào Top 10 */}
+                {standings.userRank > 10 && (
+                  <div className="out-of-top-banner">
+                    <div className="out-rank-info">
+                      <span>📍 Vị trí hiện tại của bé:</span>
+                      <strong>Hạng #{standings.userRank}</strong>
+                    </div>
+                    <span className="out-rank-hint">
+                      Học thêm bài học để bứt phá và thế chỗ các đối thủ trong
+                      Top 10 nhé! 🚀
+                    </span>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* =========================================================
+          TAB 2: NHIỆM VỤ HẰNG NGÀY (DAILY QUESTS)
+          ========================================================= */}
+          {activeTab === "daily" && (
+            <div className="daily-tab-content">
+              {/* Hero Header */}
+              <div className="challenge-hero">
+                <div className="streak-ribbon">
+                  <Flame size={32} className="flame-icon-active" />
+                  <div className="streak-text-box">
+                    <span className="streak-count number">
+                      {currentStreak} Ngày
+                    </span>
+                    <span className="streak-sub">
+                      Chuỗi học tập liên tiếp 🔥
+                    </span>
+                  </div>
+                </div>
+
+                <h1>🎯 Thử Thách Mỗi Ngày</h1>
+                <p>
+                  Hoàn thành 3 thử thách hôm nay để duy trì chuỗi học và mở Hộp
+                  Quà Bí Mật!
+                </p>
               </div>
 
-              {/* Rank 3 (Right) */}
-              <div className="podium-column rank-3">
-                <div className="podium-player">
-                  <span className="podium-avatar">{top3[2].avatar}</span>
-                  <strong className="podium-name">{top3[2].name}</strong>
-                  <span className="podium-xp number">{top3[2].weeklyXp} XP</span>
+              {/* Task Modal / Screen */}
+              <AnimatePresence>
+                {activeTaskIndex !== null && (
+                  <motion.div
+                    className="task-modal-overlay"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                  >
+                    <motion.div
+                      className="task-modal-content"
+                      initial={{ scale: 0.9, y: 20 }}
+                      animate={{ scale: 1, y: 0 }}
+                      exit={{ scale: 0.9, y: 20 }}
+                    >
+                      <div className="task-modal-header">
+                        <h3>{taskLevels[activeTaskIndex].title}</h3>
+                        <span className="reward-tag">
+                          {taskLevels[activeTaskIndex].reward}
+                        </span>
+                      </div>
+
+                      <div className="task-question-body">
+                        <h2>{questions[activeTaskIndex].question}</h2>
+                        {questions[activeTaskIndex].visualDisplay && (
+                          <div className="task-visual-box">
+                            {questions[activeTaskIndex].visualDisplay}
+                          </div>
+                        )}
+                      </div>
+
+                      {feedback === "wrong" && (
+                        <motion.div
+                          className="task-feedback-banner wrong"
+                          initial={{ opacity: 0, y: -4 }}
+                          animate={{ opacity: 1, y: 0 }}
+                        >
+                          <span>
+                            ❌ Chưa đúng rồi! Đang đổi câu hỏi khác cho bé thử
+                            lại nhé...
+                          </span>
+                        </motion.div>
+                      )}
+
+                      {feedback === "correct" && (
+                        <motion.div
+                          className="task-feedback-banner correct"
+                          initial={{ opacity: 0, y: -4 }}
+                          animate={{ opacity: 1, y: 0 }}
+                        >
+                          <span>🎉 Hoan hô! Bé trả lời rất chính xác!</span>
+                        </motion.div>
+                      )}
+
+                      <div className="task-options-grid">
+                        {questions[activeTaskIndex].options.map((opt, i) => (
+                          <button
+                            key={i}
+                            className={`task-opt-btn ${
+                              feedback === "correct" &&
+                              opt === questions[activeTaskIndex].answer
+                                ? "correct"
+                                : feedback === "wrong" && opt === selectedAnswer
+                                  ? "wrong"
+                                  : ""
+                            }`}
+                            onClick={() => handleAnswer(opt)}
+                            disabled={feedback !== null}
+                          >
+                            {opt}
+                          </button>
+                        ))}
+                      </div>
+
+                      <div className="task-modal-footer">
+                        {feedback !== "correct" ? (
+                          <>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={handleRefreshQuestion}
+                              disabled={feedback !== null}
+                            >
+                              <RotateCcw size={14} /> Đổi câu khác
+                            </Button>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="task-close-btn"
+                              onClick={() => {
+                                setActiveTaskIndex(null);
+                                setFeedback(null);
+                                setSelectedAnswer(null);
+                              }}
+                            >
+                              Tạm dừng
+                            </Button>
+                          </>
+                        ) : (
+                          <Button
+                            variant="primary"
+                            size="md"
+                            className="task-complete-btn"
+                            onClick={handleCompleteTask}
+                            style={{ width: "100%", justifyContent: "center" }}
+                          >
+                            <CheckCircle2 size={18} /> Hoàn thành
+                          </Button>
+                        )}
+                      </div>
+                    </motion.div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {/* 3 Tasks Cards */}
+              <div className="challenge-tasks-grid">
+                {taskLevels.map((task, idx) => (
+                  <motion.div
+                    key={idx}
+                    className={`task-item-card ${tasksCompleted[idx] ? "completed" : ""}`}
+                    whileHover={!tasksCompleted[idx] ? { y: -4 } : {}}
+                    onClick={() => handleSelectTask(idx)}
+                  >
+                    <div className="task-status-icon">
+                      {tasksCompleted[idx] ? (
+                        <CheckCircle2 size={32} className="check-done" />
+                      ) : (
+                        <span className="task-level-dot">{task.icon}</span>
+                      )}
+                    </div>
+
+                    <div className="task-info">
+                      <h3>{task.title}</h3>
+                      <span className="task-difficulty-pill">
+                        {task.difficulty}
+                      </span>
+                    </div>
+
+                    <div className="task-reward-box">
+                      <span>{task.reward}</span>
+                      {!tasksCompleted[idx] ? (
+                        <Button variant="primary" size="sm">
+                          Làm ngay <ArrowRight size={14} />
+                        </Button>
+                      ) : (
+                        <span className="done-label">Đã xong ✅</span>
+                      )}
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Mystery Chest Section */}
+              <div
+                className={`chest-reward-card ${allCompleted ? "unlocked" : "locked"}`}
+              >
+                <div className="chest-visual">
+                  <motion.div
+                    className="chest-icon"
+                    animate={
+                      allCompleted && !chestOpened
+                        ? { scale: [1, 1.1, 1], rotate: [0, -5, 5, 0] }
+                        : {}
+                    }
+                    transition={{ repeat: Infinity, duration: 2 }}
+                  >
+                    {chestOpened ? "🎁" : "🔒"}
+                  </motion.div>
                 </div>
-                <div className="podium-pedestal pedestal-3">
-                  <span className="pedestal-rank number">3</span>
+
+                <div className="chest-details">
+                  <h2>
+                    {chestOpened ? "Hộp Quà Đã Mở!" : "Hộp Quà Ngày Bí Mật"}
+                  </h2>
+                  <p>
+                    {chestOpened
+                      ? `Bé đã nhận được +${chestReward} Xu vàng may mắn! Hãy quay lại ngày mai nhé!`
+                      : allCompleted
+                        ? "Tuyệt vời! Cả 3 thử thách đã hoàn thành. Hãy mở quà nào!"
+                        : "Hoàn thành đủ cả 3 bài thử thách hôm nay để mở khóa hộp quà!"}
+                  </p>
+                </div>
+
+                <div className="chest-action">
+                  {allCompleted && !chestOpened ? (
+                    <Button
+                      variant="warning"
+                      size="lg"
+                      onClick={openMysteryChest}
+                    >
+                      <Sparkles size={20} /> Mở Quà Ngay
+                    </Button>
+                  ) : chestOpened ? (
+                    <span className="claimed-badge">🎉 Đã nhận quà</span>
+                  ) : (
+                    <span className="locked-badge">Chưa mở khóa</span>
+                  )}
                 </div>
               </div>
             </div>
           )}
 
-          {/* Full Standings List */}
-          <div className="standings-box">
-            <div className="standings-legend">
-              <div className="legend-item promo">
-                <ArrowUpCircle size={16} className="text-emerald" />
-                <span>Hạng 1 - 3: Thăng hạng {nextTierData ? nextTierData.name : ''} 🟢</span>
-              </div>
-              <div className="legend-item relegate">
-                <ArrowDownCircle size={16} className="text-rose" />
-                <span>Hạng 8 - 10: Vùng nguy hiểm 🔴</span>
-              </div>
-            </div>
-
-            <div className="standings-list">
-              {standings.map((player) => {
-                const isPromotion = player.rank <= 3
-                const isRelegation = player.rank >= 8
-
-                let rowCls = 'standing-row'
-                if (player.isUser) rowCls += ' is-user-row'
-                if (isPromotion) rowCls += ' zone-promotion'
-                if (isRelegation) rowCls += ' zone-relegation'
-
-                return (
-                  <div key={player.id} className={rowCls}>
-                    <div className="rank-badge-wrap">
-                      <span className={`rank-number number rank-${player.rank}`}>
-                        {player.rank === 1 ? '🥇' : player.rank === 2 ? '🥈' : player.rank === 3 ? '🥉' : player.rank}
-                      </span>
-                    </div>
-
-                    <div className="player-avatar-wrap">
-                      <span className="player-avatar">{player.avatar}</span>
-                    </div>
-
-                    <div className="player-info-wrap">
-                      <span className="player-name">
-                        {player.name}
-                        {player.isUser ? (
-                          <span className="you-tag">Bạn</span>
-                        ) : !player.is_bot ? (
-                          <span className="real-user-tag">✨ Bạn học</span>
-                        ) : player.role === 'hardworking' ? (
-                          <span className="bot-tag bot-hardworking">🔥 Chăm chỉ</span>
-                        ) : player.role === 'lazy' ? (
-                          <span className="bot-tag bot-lazy">💤 Thong thả</span>
-                        ) : (
-                          <span className="bot-tag">🤖 Bạn học</span>
-                        )}
-                      </span>
-                      <span className="zone-subtag">
-                        {isPromotion ? 'Vùng Thăng Hạng 🟢' : isRelegation ? 'Vùng Nguy Hiểm 🔴' : 'Vùng An Toàn ⚪'}
-                      </span>
-                    </div>
-
-                    <div className="player-xp-wrap">
-                      <span className="xp-value number">{player.weeklyXp}</span>
-                      <span className="xp-unit">XP</span>
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
-
-            {/* Thông báo nếu bé chưa lọt vào Top 10 */}
-            {standings.userRank > 10 && (
-              <div className="out-of-top-banner">
-                <div className="out-rank-info">
-                  <span>📍 Vị trí hiện tại của bé:</span>
-                  <strong>Hạng #{standings.userRank}</strong>
-                </div>
-                <span className="out-rank-hint">
-                  Học thêm bài học để bứt phá và thế chỗ các đối thủ trong Top 10 nhé! 🚀
-                </span>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
-
-      {/* =========================================================
-          TAB 2: NHIỆM VỤ HẰNG NGÀY (DAILY QUESTS)
-          ========================================================= */}
-      {activeTab === 'daily' && (
-        <div className="daily-tab-content">
-          {/* Hero Header */}
-          <div className="challenge-hero">
-            <div className="streak-ribbon">
-              <Flame size={32} className="flame-icon-active" />
-              <div className="streak-text-box">
-                <span className="streak-count number">{currentStreak} Ngày</span>
-                <span className="streak-sub">Chuỗi học tập liên tiếp 🔥</span>
-              </div>
-            </div>
-
-            <h1>🎯 Thử Thách Mỗi Ngày</h1>
-            <p>Hoàn thành 3 thử thách hôm nay để duy trì chuỗi học và mở Hộp Quà Bí Mật!</p>
-          </div>
-
-          {/* Task Modal / Screen */}
-          <AnimatePresence>
-            {activeTaskIndex !== null && (
-              <motion.div
-                className="task-modal-overlay"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-              >
-                <motion.div
-                  className="task-modal-content"
-                  initial={{ scale: 0.9, y: 20 }}
-                  animate={{ scale: 1, y: 0 }}
-                  exit={{ scale: 0.9, y: 20 }}
-                >
-                  <div className="task-modal-header">
-                    <h3>{taskLevels[activeTaskIndex].title}</h3>
-                    <span className="reward-tag">{taskLevels[activeTaskIndex].reward}</span>
-                  </div>
-
-                  <div className="task-question-body">
-                    <h2>{questions[activeTaskIndex].question}</h2>
-                    {questions[activeTaskIndex].visualDisplay && (
-                      <div className="task-visual-box">
-                        {questions[activeTaskIndex].visualDisplay}
-                      </div>
-                    )}
-                  </div>
-
-                  {feedback === 'wrong' && (
-                    <motion.div
-                      className="task-feedback-banner wrong"
-                      initial={{ opacity: 0, y: -4 }}
-                      animate={{ opacity: 1, y: 0 }}
-                    >
-                      <span>❌ Chưa đúng rồi! Đang đổi câu hỏi khác cho bé thử lại nhé...</span>
-                    </motion.div>
-                  )}
-
-                  {feedback === 'correct' && (
-                    <motion.div
-                      className="task-feedback-banner correct"
-                      initial={{ opacity: 0, y: -4 }}
-                      animate={{ opacity: 1, y: 0 }}
-                    >
-                      <span>🎉 Hoan hô! Bé trả lời rất chính xác!</span>
-                    </motion.div>
-                  )}
-
-                  <div className="task-options-grid">
-                    {questions[activeTaskIndex].options.map((opt, i) => (
-                      <button
-                        key={i}
-                        className={`task-opt-btn ${
-                          feedback === 'correct' && opt === questions[activeTaskIndex].answer
-                            ? 'correct'
-                            : feedback === 'wrong' && opt === selectedAnswer
-                            ? 'wrong'
-                            : ''
-                        }`}
-                        onClick={() => handleAnswer(opt)}
-                        disabled={feedback !== null}
-                      >
-                        {opt}
-                      </button>
-                    ))}
-                  </div>
-
-                  <div className="task-modal-footer">
-                    {feedback !== 'correct' ? (
-                      <>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={handleRefreshQuestion}
-                          disabled={feedback !== null}
-                        >
-                          <RotateCcw size={14} /> Đổi câu khác
-                        </Button>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          className="task-close-btn"
-                          onClick={() => {
-                            setActiveTaskIndex(null)
-                            setFeedback(null)
-                            setSelectedAnswer(null)
-                          }}
-                        >
-                          Tạm dừng
-                        </Button>
-                      </>
-                    ) : (
-                      <Button
-                        variant="primary"
-                        size="md"
-                        className="task-complete-btn"
-                        onClick={handleCompleteTask}
-                        style={{ width: '100%', justifyContent: 'center' }}
-                      >
-                        <CheckCircle2 size={18} /> Hoàn thành
-                      </Button>
-                    )}
-                  </div>
-                </motion.div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-          {/* 3 Tasks Cards */}
-          <div className="challenge-tasks-grid">
-            {taskLevels.map((task, idx) => (
-              <motion.div
-                key={idx}
-                className={`task-item-card ${tasksCompleted[idx] ? 'completed' : ''}`}
-                whileHover={!tasksCompleted[idx] ? { y: -4 } : {}}
-                onClick={() => handleSelectTask(idx)}
-              >
-                <div className="task-status-icon">
-                  {tasksCompleted[idx] ? (
-                    <CheckCircle2 size={32} className="check-done" />
-                  ) : (
-                    <span className="task-level-dot">{task.icon}</span>
-                  )}
-                </div>
-
-                <div className="task-info">
-                  <h3>{task.title}</h3>
-                  <span className="task-difficulty-pill">{task.difficulty}</span>
-                </div>
-
-                <div className="task-reward-box">
-                  <span>{task.reward}</span>
-                  {!tasksCompleted[idx] ? (
-                    <Button variant="primary" size="sm">
-                      Làm ngay <ArrowRight size={14} />
-                    </Button>
-                  ) : (
-                    <span className="done-label">Đã xong ✅</span>
-                  )}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Mystery Chest Section */}
-          <div className={`chest-reward-card ${allCompleted ? 'unlocked' : 'locked'}`}>
-            <div className="chest-visual">
-              <motion.div
-                className="chest-icon"
-                animate={allCompleted && !chestOpened ? { scale: [1, 1.1, 1], rotate: [0, -5, 5, 0] } : {}}
-                transition={{ repeat: Infinity, duration: 2 }}
-              >
-                {chestOpened ? '🎁' : '🔒'}
-              </motion.div>
-            </div>
-
-            <div className="chest-details">
-              <h2>{chestOpened ? 'Hộp Quà Đã Mở!' : 'Hộp Quà Ngày Bí Mật'}</h2>
-              <p>
-                {chestOpened
-                  ? `Bé đã nhận được +${chestReward} Xu vàng may mắn! Hãy quay lại ngày mai nhé!`
-                  : allCompleted
-                  ? 'Tuyệt vời! Cả 3 thử thách đã hoàn thành. Hãy mở quà nào!'
-                  : 'Hoàn thành đủ cả 3 bài thử thách hôm nay để mở khóa hộp quà!'}
-              </p>
-            </div>
-
-            <div className="chest-action">
-              {allCompleted && !chestOpened ? (
-                <Button variant="warning" size="lg" onClick={openMysteryChest}>
-                  <Sparkles size={20} /> Mở Quà Ngay
-                </Button>
-              ) : chestOpened ? (
-                <span className="claimed-badge">🎉 Đã nhận quà</span>
-              ) : (
-                <span className="locked-badge">Chưa mở khóa</span>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* =========================================================
+          {/* =========================================================
           TAB 3: NHIỆM VỤ RÈN LUYỆN MỖI NGÀY
           ========================================================= */}
-      {activeTab === 'quests' && (
-        <div className="daily-tab-content quests-tab-content">
-          {/* Hero Header tương đồng với Tab Thử Thách & Đấu Trường */}
-          <div className="challenge-hero quests-hero">
-            <div className="streak-ribbon">
-              <Flame size={32} className="flame-icon-active" />
-              <div className="streak-text-box">
-                <span className="streak-count number">{currentStreak} Ngày</span>
-                <span className="streak-sub">Chuỗi học tập liên tiếp 🔥</span>
-              </div>
-            </div>
-
-            <h1>📋 Nhiệm Vụ Rèn Luyện Mỗi Ngày</h1>
-            <p>Hoàn thành các nhiệm vụ hôm nay để tích lũy xu vàng, điểm XP và mở khóa Rương Thưởng Ngày!</p>
-          </div>
-
-          {/* Thanh tổng quan tiến độ hôm nay */}
-          <div className="quests-summary-banner">
-            <div className="quests-summary-info">
-              <div className="summary-text-wrap">
-                <span className="summary-title">Tiến Độ Nhiệm Vụ Hôm Nay</span>
-                <p className="summary-sub">Học bài, chơi game hoặc chăm thú để thăng hạng siêu tốc!</p>
-              </div>
-              <div className="summary-count-badge">
-                <span className="number"><strong>{completedQuestCount}</strong> / {totalQuestCount}</span>
-                <span className="summary-count-label">đã xong</span>
-              </div>
-            </div>
-
-            <div className="quests-summary-bar">
-              <ProgressBar
-                value={completedQuestCount}
-                max={totalQuestCount}
-                variant="warning"
-                size="md"
-              />
-            </div>
-
-            <div className="quests-summary-footer">
-              <div className="summary-reward-preview">
-                <span>🎁 Phần thưởng cơ bản:</span>
-                <strong className="reward-coins number">+{totalQuestCount * 10 + 5} Xu</strong>
-                <span>&</span>
-                <strong className="reward-xp number">+{(totalQuestCount * 10 + 5) * 2} XP</strong>
-              </div>
-              <span className="summary-reset-hint">🕒 Tự động làm mới vào 00:00 mỗi ngày</span>
-            </div>
-          </div>
-
-          {/* Danh sách các nhiệm vụ rèn luyện (Full Cards Grid) */}
-          <div className="challenge-tasks-grid">
-            {(dailyQuests || []).map((quest) => {
-              const questActions = {
-                quest_lesson: { actionLabel: 'Học bài ngay', path: '/', icon: '📚', desc: 'Hoàn thành các bài học toán lý thú theo chương trình của bé' },
-                quest_game: { actionLabel: 'Vào chơi ngay', path: '/games', icon: '🏎️', desc: 'Chơi 1 ván mini game bất kỳ để rèn luyện phản xạ tính nhẩm' },
-                quest_pet: { actionLabel: 'Chăm thú ngay', path: '/games?tab=pet', icon: '🐾', desc: 'Cho bạn thú cưng của bé ăn một bữa ngon miệng để tăng độ vui' },
-              }
-              const action = questActions[quest.id] || { actionLabel: 'Thực hiện ngay', path: '/', icon: '✨', desc: 'Rèn luyện thói quen học tập mỗi ngày' }
-
-              return (
-                <div
-                  key={quest.id}
-                  className={`task-item-card quest-item-full ${quest.done ? 'task-done' : ''}`}
-                >
-                  <div className="task-level-badge quest-icon-badge">
-                    <span className="level-num">{quest.icon || action.icon}</span>
-                  </div>
-
-                  <div className="task-info">
-                    <div className="task-info-top">
-                      <h3>{quest.title}</h3>
-                      <span className="quest-progress-tag number">
-                        {quest.current} / {quest.target}
-                      </span>
-                    </div>
-                    <p className="quest-desc">{action.desc}</p>
-                    <div className="quest-mini-progress">
-                      <ProgressBar
-                        value={quest.current}
-                        max={quest.target}
-                        variant={quest.done ? 'success' : 'primary'}
-                        size="xs"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="task-reward-box">
-                    <span className="reward-badge number">
-                      +{quest.reward} Xu & +{quest.reward * 2} XP
+          {activeTab === "quests" && (
+            <div className="daily-tab-content quests-tab-content">
+              {/* Hero Header tương đồng với Tab Thử Thách & Đấu Trường */}
+              <div className="challenge-hero quests-hero">
+                <div className="streak-ribbon">
+                  <Flame size={32} className="flame-icon-active" />
+                  <div className="streak-text-box">
+                    <span className="streak-count number">
+                      {currentStreak} Ngày
+                    </span>
+                    <span className="streak-sub">
+                      Chuỗi học tập liên tiếp 🔥
                     </span>
                   </div>
+                </div>
 
-                  <div className="task-action-box">
-                    {quest.done ? (
-                      <div className="task-completed-pill">
-                        <CheckCircle2 size={18} />
-                        <span>Đã xong</span>
-                      </div>
-                    ) : (
-                      <Button
-                        variant="primary"
-                        size="md"
-                        className="btn-quest-action"
-                        onClick={() => {
-                          soundManager.playClick()
-                          navigate(action.path)
-                        }}
-                      >
-                        {action.actionLabel}
-                      </Button>
-                    )}
+                <h1>📋 Nhiệm Vụ Rèn Luyện Mỗi Ngày</h1>
+                <p>
+                  Hoàn thành các nhiệm vụ hôm nay để tích lũy xu vàng, điểm XP
+                  và mở khóa Rương Thưởng Ngày!
+                </p>
+              </div>
+
+              {/* Thanh tổng quan tiến độ hôm nay */}
+              <div className="quests-summary-banner">
+                <div className="quests-summary-info">
+                  <div className="summary-text-wrap">
+                    <span className="summary-title">
+                      Tiến Độ Nhiệm Vụ Hôm Nay
+                    </span>
+                    <p className="summary-sub">
+                      Học bài, chơi game hoặc chăm thú để thăng hạng siêu tốc!
+                    </p>
+                  </div>
+                  <div className="summary-count-badge">
+                    <span className="number">
+                      <strong>{completedQuestCount}</strong> / {totalQuestCount}
+                    </span>
+                    <span className="summary-count-label">đã xong</span>
                   </div>
                 </div>
-              )
-            })}
-          </div>
 
-          {/* Rương Quà Tặng Ngày Đặc Biệt (Tương đồng với Tab Thử thách) */}
-          <div className="chest-reward-card quests-chest-card">
-            <div className="chest-visual">
-              <motion.span
-                className="chest-icon"
-                animate={allQuestsDone && !dailyQuestsClaimed ? { scale: [1, 1.15, 1], rotate: [-3, 3, -3] } : {}}
-                transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
-              >
-                {dailyQuestsClaimed ? '🎁' : allQuestsDone ? '✨🎁' : '🔒'}
-              </motion.span>
-            </div>
+                <div className="quests-summary-bar">
+                  <ProgressBar
+                    value={completedQuestCount}
+                    max={totalQuestCount}
+                    variant="warning"
+                    size="md"
+                  />
+                </div>
 
-            <div className="chest-details">
-              <h2>{dailyQuestsClaimed ? 'Hộp Quà Đã Nhận Hôm Nay!' : 'Rương Thưởng Hoàn Thành Ngày (+50 Xu & 60 XP)'}</h2>
-              <p>
-                {dailyQuestsClaimed
-                  ? 'Bé đã nhận thành công +50 Xu vàng & +60 XP hôm nay! Hãy quay lại vào ngày mai nhé!'
-                  : allQuestsDone
-                  ? 'Tuyệt vời! Cả 3 nhiệm vụ ngày đã hoàn tất. Hãy mở rương nhận quà nào!'
-                  : 'Hoàn thành đủ cả 3 nhiệm vụ hôm nay để mở khóa rương phần thưởng đặc biệt!'}
-              </p>
-            </div>
+                <div className="quests-summary-footer">
+                  <div className="summary-reward-preview">
+                    <span>🎁 Phần thưởng cơ bản:</span>
+                    <strong className="reward-coins number">
+                      +{totalQuestCount * 10 + 5} Xu
+                    </strong>
+                    <span>&</span>
+                    <strong className="reward-xp number">
+                      +{(totalQuestCount * 10 + 5) * 2} XP
+                    </strong>
+                  </div>
+                  <span className="summary-reset-hint">
+                    🕒 Tự động làm mới vào 00:00 mỗi ngày
+                  </span>
+                </div>
+              </div>
 
-            <div className="chest-action">
-              {allQuestsDone && !dailyQuestsClaimed ? (
-                <Button variant="warning" size="lg" onClick={handleClaimQuestChest}>
-                  <Sparkles size={20} /> Mở Quà Ngay
-                </Button>
-              ) : dailyQuestsClaimed ? (
-                <span className="claimed-badge">🎉 Đã nhận quà</span>
-              ) : (
-                <span className="locked-badge">Chưa mở khóa</span>
-              )}
+              {/* Danh sách các nhiệm vụ rèn luyện (Full Cards Grid) */}
+              <div className="challenge-tasks-grid">
+                {(dailyQuests || []).map((quest) => {
+                  const questActions = {
+                    quest_lesson: {
+                      actionLabel: "Học bài ngay",
+                      path: "/",
+                      icon: "📚",
+                      desc: "Hoàn thành các bài học toán lý thú theo chương trình của bé",
+                    },
+                    quest_game: {
+                      actionLabel: "Vào chơi ngay",
+                      path: "/games",
+                      icon: "🏎️",
+                      desc: "Chơi 1 ván mini game bất kỳ để rèn luyện phản xạ tính nhẩm",
+                    },
+                    quest_pet: {
+                      actionLabel: "Chăm thú ngay",
+                      path: "/games?tab=pet",
+                      icon: "🐾",
+                      desc: "Cho bạn thú cưng của bé ăn một bữa ngon miệng để tăng độ vui",
+                    },
+                  };
+                  const action = questActions[quest.id] || {
+                    actionLabel: "Thực hiện ngay",
+                    path: "/",
+                    icon: "✨",
+                    desc: "Rèn luyện thói quen học tập mỗi ngày",
+                  };
+
+                  return (
+                    <div
+                      key={quest.id}
+                      className={`task-item-card quest-item-full ${quest.done ? "task-done" : ""}`}
+                    >
+                      <div className="task-level-badge quest-icon-badge">
+                        <span className="level-num">
+                          {quest.icon || action.icon}
+                        </span>
+                      </div>
+
+                      <div className="task-info">
+                        <div className="task-info-top">
+                          <h3>{quest.title}</h3>
+                          <span className="quest-progress-tag number">
+                            {quest.current} / {quest.target}
+                          </span>
+                        </div>
+                        <p className="quest-desc">{action.desc}</p>
+                        <div className="quest-mini-progress">
+                          <ProgressBar
+                            value={quest.current}
+                            max={quest.target}
+                            variant={quest.done ? "success" : "primary"}
+                            size="xs"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="task-reward-box">
+                        <span className="reward-badge number">
+                          +{quest.reward} Xu & +{quest.reward * 2} XP
+                        </span>
+                      </div>
+
+                      <div className="task-action-box">
+                        {quest.done ? (
+                          <div className="task-completed-pill">
+                            <CheckCircle2 size={18} />
+                            <span>Đã xong</span>
+                          </div>
+                        ) : (
+                          <Button
+                            variant="primary"
+                            size="md"
+                            className="btn-quest-action"
+                            onClick={() => {
+                              soundManager.playClick();
+                              navigate(action.path);
+                            }}
+                          >
+                            {action.actionLabel}
+                          </Button>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Rương Quà Tặng Ngày Đặc Biệt (Tương đồng với Tab Thử thách) */}
+              <div className="chest-reward-card quests-chest-card">
+                <div className="chest-visual">
+                  <motion.span
+                    className="chest-icon"
+                    animate={
+                      allQuestsDone && !dailyQuestsClaimed
+                        ? { scale: [1, 1.15, 1], rotate: [-3, 3, -3] }
+                        : {}
+                    }
+                    transition={{
+                      duration: 1.5,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                  >
+                    {dailyQuestsClaimed ? "🎁" : allQuestsDone ? "✨🎁" : "🔒"}
+                  </motion.span>
+                </div>
+
+                <div className="chest-details">
+                  <h2>
+                    {dailyQuestsClaimed
+                      ? "Hộp Quà Đã Nhận Hôm Nay!"
+                      : "Rương Thưởng Hoàn Thành Ngày (+50 Xu & 60 XP)"}
+                  </h2>
+                  <p>
+                    {dailyQuestsClaimed
+                      ? "Bé đã nhận thành công +50 Xu vàng & +60 XP hôm nay! Hãy quay lại vào ngày mai nhé!"
+                      : allQuestsDone
+                        ? "Tuyệt vời! Cả 3 nhiệm vụ ngày đã hoàn tất. Hãy mở rương nhận quà nào!"
+                        : "Hoàn thành đủ cả 3 nhiệm vụ hôm nay để mở khóa rương phần thưởng đặc biệt!"}
+                  </p>
+                </div>
+
+                <div className="chest-action">
+                  {allQuestsDone && !dailyQuestsClaimed ? (
+                    <Button
+                      variant="warning"
+                      size="lg"
+                      onClick={handleClaimQuestChest}
+                    >
+                      <Sparkles size={20} /> Mở Quà Ngay
+                    </Button>
+                  ) : dailyQuestsClaimed ? (
+                    <span className="claimed-badge">🎉 Đã nhận quà</span>
+                  ) : (
+                    <span className="locked-badge">Chưa mở khóa</span>
+                  )}
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      )}
+          )}
         </div>
       </div>
-      <RightSidebar hideArenaSummary={activeTab === 'arena'} hideOnMobile={true} />
+      <RightSidebar
+        hideArenaSummary={activeTab === "arena"}
+        hideOnMobile={true}
+      />
     </div>
-  )
+  );
 }

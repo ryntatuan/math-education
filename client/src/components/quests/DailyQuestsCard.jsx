@@ -1,33 +1,39 @@
-import { useEffect } from 'react'
-import { motion } from 'framer-motion'
-import { CheckCircle2, Circle, Gift, Sparkles, Flame, ArrowRight, Lock, LogIn } from 'lucide-react'
-import Button from '../ui/Button'
-import GoogleIcon from '../common/GoogleIcon'
-import ProgressBar from '../ui/ProgressBar'
-import useProgressStore from '../../store/useProgressStore'
-import useUserStore from '../../store/useUserStore'
-import useAuthStore from '../../store/useAuthStore'
-import soundManager from '../../utils/soundManager'
-import fireConfetti from '../../utils/confettiHelper'
-import './DailyQuestsCard.css'
+import { useEffect } from "react";
+import { motion } from "framer-motion";
+import {
+  CheckCircle2,
+  Circle,
+  Gift,
+  Sparkles,
+  Flame,
+  ArrowRight,
+  Lock,
+  LogIn,
+} from "lucide-react";
+import Button from "../ui/Button";
+import GoogleIcon from "../common/GoogleIcon";
+import ProgressBar from "../ui/ProgressBar";
+import useProgressStore from "../../store/useProgressStore";
+import useAuthStore from "../../store/useAuthStore";
+import soundManager from "../../utils/soundManager";
+import fireConfetti from "../../utils/confettiHelper";
+import "./DailyQuestsCard.css";
 
 export default function DailyQuestsCard() {
-  const { isGuest, setAuthModalOpen } = useAuthStore()
+  const { isGuest, setAuthModalOpen } = useAuthStore();
   const {
     currentStreak,
     dailyQuests,
     dailyQuestsClaimed,
     initOrResetDailyQuests,
     claimDailyQuestsReward,
-  } = useProgressStore()
-
-  const { addCoins, addXp } = useUserStore()
+  } = useProgressStore();
 
   useEffect(() => {
     if (!isGuest) {
-      initOrResetDailyQuests()
+      initOrResetDailyQuests();
     }
-  }, [initOrResetDailyQuests, isGuest])
+  }, [initOrResetDailyQuests, isGuest]);
 
   if (isGuest) {
     return (
@@ -49,29 +55,37 @@ export default function DailyQuestsCard() {
         <div className="guest-quests-preview">
           <div className="guest-quest-row-dimmed">
             <span>📖 Hoàn thành 2 bài học</span>
-            <span className="locked-pill"><Lock size={11} /> +15 Xu</span>
+            <span className="locked-pill">
+              <Lock size={11} /> +15 Xu
+            </span>
           </div>
           <div className="guest-quest-row-dimmed">
             <span>🏎️ Chơi 1 ván mini game</span>
-            <span className="locked-pill"><Lock size={11} /> +10 Xu</span>
+            <span className="locked-pill">
+              <Lock size={11} /> +10 Xu
+            </span>
           </div>
           <div className="guest-quest-row-dimmed">
             <span>🐾 Cho thú cưng ăn 1 bữa</span>
-            <span className="locked-pill"><Lock size={11} /> +10 Xu</span>
+            <span className="locked-pill">
+              <Lock size={11} /> +10 Xu
+            </span>
           </div>
         </div>
 
         <div className="guest-quests-cta-box">
           <p>
-            💡 Đăng nhập tài khoản để mở khóa <strong>Nhiệm Vụ Hàng Ngày</strong> và mở Rương Quà Tặng (+50 Xu) mỗi ngày!
+            💡 Đăng nhập tài khoản để mở khóa{" "}
+            <strong>Nhiệm Vụ Hàng Ngày</strong> và mở Rương Quà Tặng (+50 Xu)
+            mỗi ngày!
           </p>
           <Button
             variant="primary"
             size="sm"
             className="btn-unlock-quests"
             onClick={() => {
-              soundManager.playClick()
-              setAuthModalOpen(true)
+              soundManager.playClick();
+              setAuthModalOpen(true);
             }}
           >
             <GoogleIcon size={16} />
@@ -79,19 +93,19 @@ export default function DailyQuestsCard() {
           </Button>
         </div>
       </div>
-    )
+    );
   }
 
-  const completedCount = (dailyQuests || []).filter((q) => q.done).length
-  const totalCount = (dailyQuests || []).length
-  const allDone = completedCount === totalCount && totalCount > 0
+  const completedCount = (dailyQuests || []).filter((q) => q.done).length;
+  const totalCount = (dailyQuests || []).length;
+  const allDone = completedCount === totalCount && totalCount > 0;
 
   const handleClaimChest = () => {
-    if (dailyQuestsClaimed || !allDone) return
-    claimDailyQuestsReward(addCoins, addXp)
-    soundManager.playFanfare()
-    fireConfetti({ particleCount: 90, spread: 80, origin: { y: 0.6 } })
-  }
+    if (dailyQuestsClaimed || !allDone) return;
+    claimDailyQuestsReward();
+    soundManager.playFanfare();
+    fireConfetti({ particleCount: 90, spread: 80, origin: { y: 0.6 } });
+  };
 
   return (
     <div className="daily-quests-card">
@@ -120,15 +134,25 @@ export default function DailyQuestsCard() {
       <div className="quests-progress-strip">
         <div className="quests-progress-labels">
           <span>Tiến độ nhiệm vụ</span>
-          <span className="number">{completedCount} / {totalCount} xong</span>
+          <span className="number">
+            {completedCount} / {totalCount} xong
+          </span>
         </div>
-        <ProgressBar value={completedCount} max={totalCount} variant="warning" size="sm" />
+        <ProgressBar
+          value={completedCount}
+          max={totalCount}
+          variant="warning"
+          size="sm"
+        />
       </div>
 
       {/* Quests List */}
       <div className="quests-list">
         {(dailyQuests || []).map((quest) => (
-          <div key={quest.id} className={`quest-item-row ${quest.done ? 'is-done' : ''}`}>
+          <div
+            key={quest.id}
+            className={`quest-item-row ${quest.done ? "is-done" : ""}`}
+          >
             <div className="quest-status-icon">
               {quest.done ? (
                 <CheckCircle2 size={22} className="check-icon-green" />
@@ -147,22 +171,38 @@ export default function DailyQuestsCard() {
             </div>
 
             {!isGuest ? (
-              <span className="quest-reward-pill number">+{quest.reward} Xu & +{quest.reward * 2} XP</span>
+              <span className="quest-reward-pill number">
+                +{quest.reward} Xu & +{quest.reward * 2} XP
+              </span>
             ) : (
-              <span className="quest-reward-pill guest-reward-tag">Luyện tập</span>
+              <span className="quest-reward-pill guest-reward-tag">
+                Luyện tập
+              </span>
             )}
           </div>
         ))}
       </div>
 
       {/* Big Bonus Chest Footer */}
-      <div className={`quests-bonus-box ${allDone ? 'unlocked' : 'locked'}`}>
+      <div className={`quests-bonus-box ${allDone ? "unlocked" : "locked"}`}>
         <div className="bonus-icon">
-          {dailyQuestsClaimed ? '🎁' : allDone ? '✨🎁' : '🔒'}
+          {dailyQuestsClaimed ? "🎁" : allDone ? "✨🎁" : "🔒"}
         </div>
         <div className="bonus-text">
-          <strong>{isGuest ? 'Rương Thưởng Mỗi Ngày' : 'Rương Thưởng Hoàn Thành Ngày (+50 Xu & 60 XP)'}</strong>
-          <span>{allDone ? (dailyQuestsClaimed ? 'Đã nhận thưởng hôm nay!' : (isGuest ? 'Hoàn thành xuất sắc nhiệm vụ hôm nay!' : 'Tuyệt vời! Bấm nhận thưởng nào!')) : 'Hoàn thành đủ 3 nhiệm vụ để mở rương!'}</span>
+          <strong>
+            {isGuest
+              ? "Rương Thưởng Mỗi Ngày"
+              : "Rương Thưởng Hoàn Thành Ngày (+50 Xu & 60 XP)"}
+          </strong>
+          <span>
+            {allDone
+              ? dailyQuestsClaimed
+                ? "Đã nhận thưởng hôm nay!"
+                : isGuest
+                  ? "Hoàn thành xuất sắc nhiệm vụ hôm nay!"
+                  : "Tuyệt vời! Bấm nhận thưởng nào!"
+              : "Hoàn thành đủ 3 nhiệm vụ để mở rương!"}
+          </span>
         </div>
 
         {allDone && !dailyQuestsClaimed ? (
@@ -174,5 +214,5 @@ export default function DailyQuestsCard() {
         ) : null}
       </div>
     </div>
-  )
+  );
 }

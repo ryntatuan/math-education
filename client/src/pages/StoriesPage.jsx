@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowLeft,
   ArrowRight,
@@ -12,32 +12,33 @@ import {
   RotateCcw,
   Coins,
   Star,
-} from 'lucide-react'
-import Button from '../components/ui/Button'
-import ProgressBar from '../components/ui/ProgressBar'
-import MATH_STORIES from '../data/storyData'
-import useUserStore from '../store/useUserStore'
-import useProgressStore from '../store/useProgressStore'
-import useAuthStore from '../store/useAuthStore'
-import GuestFeatureLock from '../components/auth/GuestFeatureLock'
-import soundManager from '../utils/soundManager'
-import speechHelper from '../utils/speechHelper'
-import fireConfetti from '../utils/confettiHelper'
-import './StoriesPage.css'
+} from "lucide-react";
+import Button from "../components/ui/Button";
+import ProgressBar from "../components/ui/ProgressBar";
+import MATH_STORIES from "../data/storyData";
+import useUserStore from "../store/useUserStore";
+import useProgressStore from "../store/useProgressStore";
+import useAuthStore from "../store/useAuthStore";
+import GuestFeatureLock from "../components/auth/GuestFeatureLock";
+import soundManager from "../utils/soundManager";
+import speechHelper from "../utils/speechHelper";
+import fireConfetti from "../utils/confettiHelper";
+import { getReward } from "../services/rewardService";
+import "./StoriesPage.css";
 
 export default function StoriesPage() {
-  const { isGuest } = useAuthStore()
-  const { addCoins, addXp } = useUserStore()
-  const { updateStreak, progressQuest } = useProgressStore()
+  const { isGuest } = useAuthStore();
+  const { grantReward } = useUserStore();
+  const { updateStreak, progressQuest } = useProgressStore();
 
-  const [activeStory, setActiveStory] = useState(null)
-  const [sceneIndex, setSceneIndex] = useState(0)
-  const [selectedAnswer, setSelectedAnswer] = useState(null)
-  const [isAnswered, setIsAnswered] = useState(false)
-  const [isCorrect, setIsCorrect] = useState(false)
-  const [isFinished, setIsFinished] = useState(false)
-  const [isSpeaking, setIsSpeaking] = useState(false)
-  const [filterGrade, setFilterGrade] = useState('all')
+  const [activeStory, setActiveStory] = useState(null);
+  const [sceneIndex, setSceneIndex] = useState(0);
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const [isAnswered, setIsAnswered] = useState(false);
+  const [isCorrect, setIsCorrect] = useState(false);
+  const [isFinished, setIsFinished] = useState(false);
+  const [isSpeaking, setIsSpeaking] = useState(false);
+  const [filterGrade, setFilterGrade] = useState("all");
 
   if (isGuest) {
     return (
@@ -48,103 +49,102 @@ export default function StoriesPage() {
         subtitle="Đăng nhập tài khoản để cùng bé bước vào những chuyến phiêu lưu toán học kỳ thú, đọc truyện tương tác có giọng đọc AI và giải đố nhận quà!"
         benefits={[
           {
-            icon: '📚',
-            title: 'Kho Truyện Tranh Toán Kỳ Thú',
-            desc: 'Cốt truyện phiêu lưu lôi cuốn, hình ảnh minh họa sinh động đầy sắc màu.',
+            icon: "📚",
+            title: "Kho Truyện Tranh Toán Kỳ Thú",
+            desc: "Cốt truyện phiêu lưu lôi cuốn, hình ảnh minh họa sinh động đầy sắc màu.",
           },
           {
-            icon: '🎙️',
-            title: 'Giọng Đọc Trợ Lý AI Truyền Cảm',
-            desc: 'Tự động phát âm từng đoạn truyện giúp bé luyện nghe và theo dõi mạch truyện dễ dàng.',
+            icon: "🎙️",
+            title: "Giọng Đọc Trợ Lý AI Truyền Cảm",
+            desc: "Tự động phát âm từng đoạn truyện giúp bé luyện nghe và theo dõi mạch truyện dễ dàng.",
           },
           {
-            icon: '🧩',
-            title: 'Câu Đố Tương Tác Giữa Giờ',
-            desc: 'Vừa đọc vừa giải đố thông minh để giải cứu các nhân vật bạn đồng hành.',
+            icon: "🧩",
+            title: "Câu Đố Tương Tác Giữa Giờ",
+            desc: "Vừa đọc vừa giải đố thông minh để giải cứu các nhân vật bạn đồng hành.",
           },
           {
-            icon: '🏅',
-            title: 'Huy Hiệu Thám Hiểm Tri Thức',
-            desc: 'Tích lũy kinh nghiệm, mở khóa các bộ sưu tập huy hiệu thám hiểm độc quyền.',
+            icon: "🏅",
+            title: "Huy Hiệu Thám Hiểm Tri Thức",
+            desc: "Tích lũy kinh nghiệm, mở khóa các bộ sưu tập huy hiệu thám hiểm độc quyền.",
           },
         ]}
       />
-    )
+    );
   }
 
   // Start reading story
   const handleSelectStory = (story) => {
-    setActiveStory(story)
-    setSceneIndex(0)
-    setSelectedAnswer(null)
-    setIsAnswered(false)
-    setIsCorrect(false)
-    setIsFinished(false)
-    soundManager.playClick()
-  }
+    setActiveStory(story);
+    setSceneIndex(0);
+    setSelectedAnswer(null);
+    setIsAnswered(false);
+    setIsCorrect(false);
+    setIsFinished(false);
+    soundManager.playClick();
+  };
 
   // Handle question answer
   const handleAnswer = (option, currentScene) => {
-    if (document.activeElement?.blur) document.activeElement.blur()
-    if (isAnswered) return
-    setSelectedAnswer(option)
-    setIsAnswered(true)
+    if (document.activeElement?.blur) document.activeElement.blur();
+    if (isAnswered) return;
+    setSelectedAnswer(option);
+    setIsAnswered(true);
 
-    const correct = option === currentScene.question.answer
-    setIsCorrect(correct)
+    const correct = option === currentScene.question.answer;
+    setIsCorrect(correct);
 
     if (correct) {
-      soundManager.playCorrect()
-      fireConfetti({ particleCount: 50, spread: 60, origin: { y: 0.6 } })
+      soundManager.playCorrect();
+      fireConfetti({ particleCount: 50, spread: 60, origin: { y: 0.6 } });
     } else {
-      soundManager.playWrong()
+      soundManager.playWrong();
     }
-  }
+  };
 
   // Next scene
   const handleNextScene = () => {
-    if (document.activeElement?.blur) document.activeElement.blur()
-    soundManager.playClick()
-    speechHelper.stop()
-    setIsSpeaking(false)
+    if (document.activeElement?.blur) document.activeElement.blur();
+    soundManager.playClick();
+    speechHelper.stop();
+    setIsSpeaking(false);
 
     if (sceneIndex + 1 >= activeStory.scenes.length) {
       // Completed story
-      setIsFinished(true)
-      addCoins(activeStory.rewardCoins)
-      addXp(activeStory.rewardXp)
-      updateStreak()
-      progressQuest('quest_lesson', 1)
-      soundManager.playFanfare()
-      fireConfetti({ particleCount: 120, spread: 90, origin: { y: 0.6 } })
+      setIsFinished(true);
+      grantReward(`story.${activeStory.id}`);
+      updateStreak();
+      progressQuest("quest_lesson", 1);
+      soundManager.playFanfare();
+      fireConfetti({ particleCount: 120, spread: 90, origin: { y: 0.6 } });
     } else {
-      setSceneIndex((prev) => prev + 1)
-      setSelectedAnswer(null)
-      setIsAnswered(false)
-      setIsCorrect(false)
+      setSceneIndex((prev) => prev + 1);
+      setSelectedAnswer(null);
+      setIsAnswered(false);
+      setIsCorrect(false);
     }
-  }
+  };
 
   // Read dialogue aloud
   const handleSpeakDialogue = (text) => {
     if (isSpeaking) {
-      speechHelper.stop()
-      setIsSpeaking(false)
-      return
+      speechHelper.stop();
+      setIsSpeaking(false);
+      return;
     }
     speechHelper.speak(
       text,
       () => setIsSpeaking(true),
-      () => setIsSpeaking(false)
-    )
-  }
+      () => setIsSpeaking(false),
+    );
+  };
 
   // Active Story Player
   if (activeStory) {
-    const scenes = activeStory.scenes
-    const currentScene = scenes[sceneIndex]
-    const hasQuestion = Boolean(currentScene?.question)
-    const canProceed = !hasQuestion || (isAnswered && isCorrect)
+    const scenes = activeStory.scenes;
+    const currentScene = scenes[sceneIndex];
+    const hasQuestion = Boolean(currentScene?.question);
+    const canProceed = !hasQuestion || (isAnswered && isCorrect);
 
     if (isFinished) {
       return (
@@ -157,17 +157,22 @@ export default function StoriesPage() {
             <span className="story-finish-icon">🏆</span>
             <h1>Chúc Mừng Bé Đã Hoàn Thành!</h1>
             <p className="story-finish-subtitle">
-              Bé đã cùng các bạn muông thú hoàn thành xuất sắc câu chuyện <strong>"{activeStory.title}"</strong>!
+              Bé đã cùng các bạn muông thú hoàn thành xuất sắc câu chuyện{" "}
+              <strong>"{activeStory.title}"</strong>!
             </p>
 
             <div className="story-reward-badge-box">
               <div className="reward-pill">
                 <Coins size={20} className="reward-icon-gold" />
-                <span className="number">+{activeStory.rewardCoins} Xu</span>
+                <span className="number">
+                  +{getReward(`story.${activeStory.id}`).coins} Xu
+                </span>
               </div>
               <div className="reward-pill">
                 <Star size={20} className="reward-icon-blue" />
-                <span className="number">+{activeStory.rewardXp} XP</span>
+                <span className="number">
+                  +{getReward(`story.${activeStory.id}`).xp} XP
+                </span>
               </div>
             </div>
 
@@ -183,8 +188,8 @@ export default function StoriesPage() {
                 variant="outline"
                 size="lg"
                 onClick={() => {
-                  setActiveStory(null)
-                  soundManager.playClick()
+                  setActiveStory(null);
+                  soundManager.playClick();
                 }}
               >
                 ← Chọn truyện khác
@@ -192,7 +197,7 @@ export default function StoriesPage() {
             </div>
           </motion.div>
         </div>
-      )
+      );
     }
 
     return (
@@ -202,9 +207,9 @@ export default function StoriesPage() {
           <button
             className="story-back-btn"
             onClick={() => {
-              speechHelper.stop()
-              setActiveStory(null)
-              soundManager.playClick()
+              speechHelper.stop();
+              setActiveStory(null);
+              soundManager.playClick();
             }}
           >
             <ArrowLeft size={18} />
@@ -240,10 +245,16 @@ export default function StoriesPage() {
               <motion.div
                 className="scene-char-avatar"
                 animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
               >
                 <span className="char-emoji">{currentScene.character}</span>
-                <span className="char-name-tag">{currentScene.characterName}</span>
+                <span className="char-name-tag">
+                  {currentScene.characterName}
+                </span>
               </motion.div>
             </div>
 
@@ -252,12 +263,12 @@ export default function StoriesPage() {
               <p className="scene-dialogue-text">{currentScene.dialogue}</p>
 
               <button
-                className={`scene-speak-btn ${isSpeaking ? 'is-speaking' : ''}`}
+                className={`scene-speak-btn ${isSpeaking ? "is-speaking" : ""}`}
                 onClick={() => handleSpeakDialogue(currentScene.dialogue)}
                 title="Nghe kể chuyện bằng giọng nói"
               >
                 <Volume2 size={20} />
-                <span>{isSpeaking ? 'Đang đọc...' : 'Nghe đọc'}</span>
+                <span>{isSpeaking ? "Đang đọc..." : "Nghe đọc"}</span>
               </button>
             </div>
 
@@ -270,10 +281,11 @@ export default function StoriesPage() {
 
                 <div className="scene-options-grid">
                   {currentScene.question.options.map((option, idx) => {
-                    let optCls = 'scene-opt-btn'
+                    let optCls = "scene-opt-btn";
                     if (isAnswered) {
-                      if (option === currentScene.question.answer) optCls += ' is-correct'
-                      else if (option === selectedAnswer) optCls += ' is-wrong'
+                      if (option === currentScene.question.answer)
+                        optCls += " is-correct";
+                      else if (option === selectedAnswer) optCls += " is-wrong";
                     }
 
                     return (
@@ -284,14 +296,20 @@ export default function StoriesPage() {
                         disabled={isAnswered}
                       >
                         <span className="number">{option}</span>
-                        {isAnswered && option === currentScene.question.answer && (
-                          <CheckCircle2 size={22} className="feedback-badge green" />
-                        )}
-                        {isAnswered && option === selectedAnswer && option !== currentScene.question.answer && (
-                          <XCircle size={22} className="feedback-badge red" />
-                        )}
+                        {isAnswered &&
+                          option === currentScene.question.answer && (
+                            <CheckCircle2
+                              size={22}
+                              className="feedback-badge green"
+                            />
+                          )}
+                        {isAnswered &&
+                          option === selectedAnswer &&
+                          option !== currentScene.question.answer && (
+                            <XCircle size={22} className="feedback-badge red" />
+                          )}
                       </button>
-                    )
+                    );
                   })}
                 </div>
 
@@ -299,14 +317,17 @@ export default function StoriesPage() {
                 <AnimatePresence>
                   {isAnswered && (
                     <motion.div
-                      className={`puzzle-feedback-banner ${isCorrect ? 'correct' : 'wrong'}`}
+                      className={`puzzle-feedback-banner ${isCorrect ? "correct" : "wrong"}`}
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                     >
                       {isCorrect ? (
                         <span>{currentScene.question.successMessage}</span>
                       ) : (
-                        <span>💡 Gợi ý: {currentScene.question.hint} (Hãy bấm lại đáp án đúng nhé!)</span>
+                        <span>
+                          💡 Gợi ý: {currentScene.question.hint} (Hãy bấm lại
+                          đáp án đúng nhé!)
+                        </span>
                       )}
                     </motion.div>
                   )}
@@ -322,11 +343,11 @@ export default function StoriesPage() {
                   size="lg"
                   icon={<ArrowLeft size={20} strokeWidth={2.5} />}
                   onClick={() => {
-                    speechHelper.stop()
-                    setIsSpeaking(false)
-                    setSceneIndex((prev) => prev - 1)
-                    setSelectedAnswer(null)
-                    setIsAnswered(false)
+                    speechHelper.stop();
+                    setIsSpeaking(false);
+                    setSceneIndex((prev) => prev - 1);
+                    setSelectedAnswer(null);
+                    setIsAnswered(false);
                   }}
                 >
                   Trang trước
@@ -336,28 +357,34 @@ export default function StoriesPage() {
               )}
 
               <Button
-                variant={canProceed ? 'primary' : 'disabled'}
+                variant={canProceed ? "primary" : "disabled"}
                 size="lg"
-                iconRight={sceneIndex + 1 < scenes.length ? <ArrowRight size={20} strokeWidth={2.5} /> : undefined}
+                iconRight={
+                  sceneIndex + 1 < scenes.length ? (
+                    <ArrowRight size={20} strokeWidth={2.5} />
+                  ) : undefined
+                }
                 onClick={handleNextScene}
                 disabled={!canProceed}
                 glow={canProceed}
               >
-                {sceneIndex + 1 === scenes.length ? '🎉 Kết Thúc Truyện' : 'Tiếp theo'}
+                {sceneIndex + 1 === scenes.length
+                  ? "🎉 Kết Thúc Truyện"
+                  : "Tiếp theo"}
               </Button>
             </div>
           </motion.div>
         </AnimatePresence>
       </div>
-    )
+    );
   }
 
   const filteredStories = MATH_STORIES.filter((s) => {
-    if (filterGrade === 'all') return true
-    if (s.gradeLevel === Number(filterGrade)) return true
-    if (s.ageRange && s.ageRange.includes(`Lớp ${filterGrade}`)) return true
-    return false
-  })
+    if (filterGrade === "all") return true;
+    if (s.gradeLevel === Number(filterGrade)) return true;
+    if (s.ageRange && s.ageRange.includes(`Lớp ${filterGrade}`)) return true;
+    return false;
+  });
 
   // Storybook Catalog Screen
   return (
@@ -366,26 +393,27 @@ export default function StoriesPage() {
         <div className="stories-title-wrap">
           <h1>📖 Xứ Sở Truyện Tranh Toán Học</h1>
           <p>
-            Khám phá 8 chuyến phiêu lưu kỳ thú từ Lớp 1 đến Lớp 5, giải đố tương tác và nhận vô vàn xu vàng cùng các bạn thú đáng yêu!
+            Khám phá 8 chuyến phiêu lưu kỳ thú từ Lớp 1 đến Lớp 5, giải đố tương
+            tác và nhận vô vàn xu vàng cùng các bạn thú đáng yêu!
           </p>
         </div>
 
         {/* Grade Filter Tabs */}
         <div className="story-grade-filter-tabs">
           {[
-            { id: 'all', label: 'Tất cả' },
-            { id: 1, label: 'Lớp 1' },
-            { id: 2, label: 'Lớp 2' },
-            { id: 3, label: 'Lớp 3' },
-            { id: 4, label: 'Lớp 4' },
-            { id: 5, label: 'Lớp 5' },
+            { id: "all", label: "Tất cả" },
+            { id: 1, label: "Lớp 1" },
+            { id: 2, label: "Lớp 2" },
+            { id: 3, label: "Lớp 3" },
+            { id: 4, label: "Lớp 4" },
+            { id: 5, label: "Lớp 5" },
           ].map((tab) => (
             <button
               key={tab.id}
-              className={`story-grade-tab-btn ${filterGrade === tab.id ? 'active' : ''}`}
+              className={`story-grade-tab-btn ${filterGrade === tab.id ? "active" : ""}`}
               onClick={() => {
-                soundManager.playClick()
-                setFilterGrade(tab.id)
+                soundManager.playClick();
+                setFilterGrade(tab.id);
               }}
             >
               {tab.label}
@@ -400,8 +428,8 @@ export default function StoriesPage() {
           <motion.div
             key={story.id}
             className="story-card"
-            style={{ '--story-cover': story.coverGradient }}
-            whileHover={{ y: -8, boxShadow: '0 20px 40px rgba(0, 0, 0, 0.08)' }}
+            style={{ "--story-cover": story.coverGradient }}
+            whileHover={{ y: -8, boxShadow: "0 20px 40px rgba(0, 0, 0, 0.08)" }}
             whileTap={{ scale: 0.98 }}
             onClick={() => handleSelectStory(story)}
           >
@@ -417,8 +445,12 @@ export default function StoriesPage() {
 
               <div className="story-meta-row">
                 <div className="story-reward-wrap">
-                  <span className="reward-tag number">🪙 +{story.rewardCoins} Xu</span>
-                  <span className="reward-tag number">⭐ +{story.rewardXp} XP</span>
+                  <span className="reward-tag number">
+                    🪙 +{story.rewardCoins} Xu
+                  </span>
+                  <span className="reward-tag number">
+                    ⭐ +{story.rewardXp} XP
+                  </span>
                 </div>
 
                 <Button variant="primary" size="sm">
@@ -430,5 +462,5 @@ export default function StoriesPage() {
         ))}
       </div>
     </div>
-  )
+  );
 }
