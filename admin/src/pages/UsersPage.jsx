@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import { supabase } from "../lib/supabase";
 import { useAdminAuth } from "../auth/AdminAuthProvider";
 import { logAudit } from "../lib/audit";
@@ -348,9 +349,12 @@ export default function UsersPage() {
                       <div className="flex items-center gap-2">
                         <span className="text-lg">{row.avatar}</span>
                         <div>
-                          <div className="font-medium text-slate-800">
+                          <Link
+                            to={`/users/${row.id}`}
+                            className="font-medium text-indigo-700 hover:underline"
+                          >
                             {row.nickname}
-                          </div>
+                          </Link>
                           <div className="text-xs text-slate-400">
                             Lớp {row.grade} · Cấp {row.level} · {lessonCount}{" "}
                             bài

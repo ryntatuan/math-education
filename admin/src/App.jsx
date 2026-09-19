@@ -5,6 +5,7 @@ import Layout from "./components/Layout";
 import DashboardPage from "./pages/DashboardPage";
 import EconomyPage from "./pages/EconomyPage";
 import UsersPage from "./pages/UsersPage";
+import ChildProfilePage from "./pages/ChildProfilePage";
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
             <Route index element={<DashboardPage />} />
             <Route path="economy" element={<EconomyPage />} />
             <Route path="users" element={<UsersPage />} />
+            <Route path="users/:childId" element={<ChildProfilePage />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Route>
         </Routes>

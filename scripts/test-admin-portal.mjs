@@ -20,6 +20,7 @@
 
 import fs from "node:fs";
 import path from "node:path";
+import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -479,6 +480,65 @@ if (!ONLY_DB) {
         `Chuỗi thưởng viết chết trong: ${offenders.join(", ")}`,
       );
       return { detail: "không còn chuỗi thưởng viết chết" };
+    },
+  );
+
+  await test(
+    "S-12",
+    "TC-2.7 — Không có biến chưa khai báo (oxlint `no-undef`)",
+    () => {
+      // VÌ SAO CẦN: `isUuid is not defined` từng lọt ra trình duyệt dù
+      // `vite build` **và** chẩn đoán của editor đều báo sạch. Đây là lỗi lúc
+      // CHẠY, không phải lỗi cú pháp — build không bao giờ bắt được.
+      //
+      // ⚠️ oxlint MẶC ĐỊNH KHÔNG bật `no-undef` (đã đo: exit 0, không in gì).
+      // Phải có `"no-undef": "deny"` trong `.oxlintrc.json` của từng app.
+      // Thiếu file cấu hình thì test này xanh mà chẳng bảo vệ được gì —
+      // nên kiểm tra luôn sự tồn tại của cấu hình.
+      const configs = ["client/.oxlintrc.json", "admin/.oxlintrc.json"];
+      const missing = configs.filter((c) => !exists(c));
+      assert(
+        missing.length === 0,
+        `Thiếu cấu hình oxlint: ${missing.join(", ")} — thiếu nó thì \`no-undef\` không được bật`,
+      );
+
+      // Dùng binary có sẵn trong client/node_modules, không cài thêm gì.
+      const binRel =
+        process.platform === "win32"
+          ? "client/node_modules/.bin/oxlint.cmd"
+          : "client/node_modules/.bin/oxlint";
+      if (!exists(binRel))
+        return {
+          skip: true,
+          detail: `Không thấy ${binRel} — chạy 'npm install' trong client/ rồi thử lại`,
+        };
+
+      const bin = path.join(ROOT, binRel);
+      const offenders = [];
+
+      for (const dir of ["client", "admin"]) {
+        // cwd = thư mục app để oxlint đọc đúng .oxlintrc.json của app đó
+        const r = spawnSync(bin, ["--quiet", "src"], {
+          cwd: path.join(ROOT, dir),
+          encoding: "utf8",
+          shell: process.platform === "win32",
+        });
+        if (r.status !== 0) {
+          const out = `${r.stdout || ""}${r.stderr || ""}`;
+          const errs = out
+            .split(/\r?\n/)
+            .filter((l) => l.includes("error"))
+            .slice(0, 3)
+            .join(" | ");
+          offenders.push(`${dir}: ${errs || `thoát với mã ${r.status}`}`);
+        }
+      }
+
+      assert(
+        offenders.length === 0,
+        `oxlint báo lỗi — ${offenders.join(" ;; ")}`,
+      );
+      return { detail: "client + admin: không có biến chưa khai báo" };
     },
   );
 }

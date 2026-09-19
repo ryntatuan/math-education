@@ -197,8 +197,18 @@ Nguyên tắc: **chia để trị**, App chính không được gián đoạn. M
 2. ✅ Tài khoản user thường không ghi được `leaderboard` của bé khác — test tự động `D-4`
    (HTTP 401). Case session thật: `TC-0.2`.
 3. ✅ Admin Portal chạy ở bundle riêng, build `client/` **không tăng kích thước** — đã xác nhận.
-4. ⏳ **Admin Portal truy cập được qua URL Vercel riêng, chi phí $0** — 🔴 **MỤC DUY NHẤT CÒN LẠI**
-   của GĐ 0. Các bước ở `admin/README.md` mục 5 → 6 → 6.1.
+4. ✅ **Admin Portal truy cập được qua URL Vercel riêng, chi phí $0** — đã deploy tại
+   **https://admin-toanvuive.vercel.app** (project thứ hai, Root Directory `admin`).
+   Đã đăng nhập Google và vào được trang **Kinh tế Xu/XP**.
+
+> 🐞 **Lỗi gặp khi deploy — ghi lại để lần sau khỏi mất thời gian:**
+> Vercel báo `Command "cd client && npm install && npm run build" exited with 1` dù
+> Root Directory đã đặt đúng là `admin`. Nguyên nhân: hai ô **Build Command** và
+> **Output Directory** ở khối _Framework Settings_ vẫn **bật Override** với giá trị cũ
+> của app chính (lấy từ `vercel.json` ở gốc repo lúc import, khi Root Directory còn trống).
+> Vercel đứng trong `admin/` rồi chạy `cd client` → `admin/client` không tồn tại → thoát 1.
+> **Cách sửa:** tắt cả 2 công tắc Override, Save, rồi Redeploy (bỏ build cache).
+> Đổi Root Directory sau khi tạo project **không** tự xoá các override đã khoá.
 
 > ✅ **Đã xác nhận chạy được:** `npm run build` thành công (501 KB JS / 146 KB gzip) · dev server render đúng trang đăng nhập · Tailwind sinh CSS đúng · `admin/.env.local` nằm trong `.gitignore`.
 
@@ -247,22 +257,133 @@ Nguyên tắc: **chia để trị**, App chính không được gián đoạn. M
 
 ### 📍 GIAI ĐOẠN 2: HỖ TRỢ & PHÂN TÍCH CƠ BẢN 🟡
 
-**Mục tiêu:** Cho đội vận hành công cụ xử lý sự cố, và bắt đầu thu thập dữ liệu hành vi.
+**Mục tiêu:** (1) Cho đội vận hành công cụ tra cứu & xem hồ sơ bé. (2) Trả lời được câu hỏi ở **mức từng câu hỏi** — thứ mà dữ liệu hiện tại không trả lời được.
+
+> 📌 **Quyết định 2026-09-20 — 2a đã tinh gọn.** Bốn mục bị cắt khỏi phạm vi:
+>
+> | Mục đã cắt                     | Lý do                                                                                                               |
+> | ------------------------------ | ------------------------------------------------------------------------------------------------------------------- |
+> | Khôi phục streak thủ công      | Sẽ làm **cửa hàng vật phẩm kiểu Duolingo** — người dùng tự mua Streak Freeze bằng Xu, không cần admin can thiệp tay |
+> | Cấp / thu Xu thủ công          | Bỏ khỏi phạm vi                                                                                                     |
+> | Cấp vật phẩm "Đóng băng chuỗi" | Chuyển sang cửa hàng (mục trên)                                                                                     |
+> | Reset PIN phụ huynh từ xa      | **Bất khả thi với thiết kế hiện tại** — xem ghi chú bên dưới                                                        |
+>
+> **⚠️ Ghi chú kỹ thuật, đừng quên:** `parentPin` chỉ nằm trong `useUserStore` (localStorage
+> của **máy bé**) — `client/src/store/useUserStore.js:70,165`. Nó **chưa bao giờ được gửi lên
+> Supabase**, nên admin không thể sửa thứ mình không nhìn thấy. Muốn làm "reset PIN từ xa" về
+> sau thì phải làm bước trước đó: **đồng bộ PIN lên DB** (lý tưởng là băm, đừng lưu plaintext).
+> Đó là việc riêng, không phải "reset".
 
 **2a — Công cụ hỗ trợ**
 
-- [ ] Tra cứu học sinh theo nickname / email phụ huynh / mã bé.
-- [ ] Trang hồ sơ 1 bé: tiến độ, streak, lỗi sai, lịch sử giao dịch.
-- [ ] Khôi phục streak thủ công (có lý do + audit log).
-- [ ] Cấp/thu Xu thủ công (có lý do + audit log).
-- [ ] Cấp vật phẩm "Đóng băng chuỗi" (Streak Freeze).
-- [ ] Reset PIN phụ huynh từ xa. ⚠️ Hiện `parentPin` lưu **plaintext trong localStorage**, mặc định `'1234'` — cần ghi nhận đây là nợ kỹ thuật.
+- [x] **Tra cứu học sinh** theo nickname / email phụ huynh — đã có từ GĐ 1 (`UsersPage`: ô tìm kiếm debounce 350 ms, phân trang 20/trang, tìm theo email phụ huynh bằng truy vấn 2 bước).
+- [x] **Trang hồ sơ 1 bé** — `admin/src/pages/ChildProfilePage.jsx`, route `/users/:childId`. Màn hình **chỉ đọc**. 7 khối: danh tính + trạng thái khoá · tiến độ cấp độ · tiến độ học tập · sổ tay lỗi sai · lịch sử giao dịch Xu · lịch sử XP · thú cưng. Tên bé trong danh sách người dùng thành link sang hồ sơ.
+
+> 🔧 **Phát sinh khi làm 2a — đã xử lý:** bảng `child_mistakes` có từ `schema.sql` (kèm policy
+> cho phụ huynh) nhưng **client chưa bao giờ ghi vào** → luôn rỗng, nên khối "sổ tay lỗi sai"
+> sẽ không có dữ liệu. Phải làm thêm 2 việc:
+>
+> 1. **`0004_mistakes_sync.sql`** — cột `answer` khai báo `INT` nhưng câu hỏi so sánh
+>    (khuôn `g1_compare`) có đáp án là `'>'`, `'<'`, `'='` → ghi vào là lỗi
+>    `invalid input syntax for type integer`. Đổi sang `TEXT`, thêm index
+>    `(child_id, failed_count DESC)` cho truy vấn của hồ sơ.
+> 2. **Client ghi lên cloud** — `syncMistakeToCloud()` trong `useProgressStore.js`, gọi từ
+>    `recordMistake()` và `resolveMistake()`. Lần đầu INSERT rồi lưu lại `dbId` để các lần sau
+>    UPDATE đúng dòng đó (không sinh trùng khi bé sai lại cùng câu). Guest không có `child_id`
+>    → bỏ qua. Lỗi đồng bộ chỉ `console.warn`, không làm hỏng trải nghiệm học — cùng nguyên tắc
+>    với sổ cái Xu/XP.
 
 **2b — Tầng dữ liệu phân tích**
 
-- [ ] `question_attempts` — `child_id, question_id, lesson_id, ms, correct, created_at`.
-- [ ] `app_events` — `child_id, name, payload JSONB, created_at`.
-- [ ] Instrument App Client: ghi attempt khi trả lời câu hỏi.
+> 🤔 **TRƯỚC KHI CODE — tầng này tồn tại để trả lời CÁI GÌ?**
+>
+> **Hiện đã trả lời được một phần.** `child_progress.exercise_results` lưu
+> `{score, total, topic, date}` **theo từng buổi luyện tập**; `completed_lessons` lưu
+> `{stars, completedAt}` **theo từng bài**. Phụ huynh đã có biểu đồ radar kỹ năng
+> (`ParentDashboard.jsx` → `KnowledgeRadarChart`). Nhưng điểm trên radar =
+> **% sao đạt được** (`starsEarned / (số bài × 3)`), **không phải** độ chính xác của câu trả lời.
+>
+> **Ba câu hỏi hiện KHÔNG trả lời được — và chỉ `question_attempts` mới trả lời được:**
+>
+> | #     | Câu hỏi                                                            | Cần dữ liệu gì                        | Biết rồi thì làm gì                                         |
+> | ----- | ------------------------------------------------------------------ | ------------------------------------- | ----------------------------------------------------------- |
+> | **A** | **Câu hỏi nào hỏng?** (đáp án sai, đáp án nhiễu gây nhầm, quá khó) | danh tính câu + đúng/sai + số lần thử | Sửa câu, đổi đáp án nhiễu, xoá câu lỗi                      |
+> | **B** | **Bé sai vì đoán bừa hay vì không hiểu?**                          | `ms` + đúng/sai + số lần thử lại      | Đoán bừa → nhắc bé đọc kỹ; không hiểu → gợi ý ôn lại chủ đề |
+> | **C** | **Chủ đề nào bé yếu thật sự?**                                     | chủ đề + đúng/sai ở **mức từng câu**  | Gợi ý phụ huynh cho bé luyện đúng chỗ                       |
+>
+> **Hai câu hỏi CỐ Ý để ngoài phạm vi 2b** (cân nhắc kỹ trước khi thêm):
+>
+> | #   | Câu hỏi                           | Đánh giá                                                                                  |
+> | --- | --------------------------------- | ----------------------------------------------------------------------------------------- |
+> | D   | Bé bỏ cuộc ở bước nào trong bài?  | Cần `app_events` + sự kiện vào/ra. **Chưa đủ người dùng để số liệu có nghĩa → hoãn.**     |
+> | E   | Bao nhiêu bé quay lại sau 7 ngày? | Chỉ cần `last_active_date` (đã có) + 1 sự kiện `session_start`. **Chưa cần bảng nào cả.** |
+
+**Cần dựng:**
+
+- [ ] `question_attempts` — `child_id, question_ref, lesson_id, topic, ms, correct, attempt_no, created_at`.
+- [ ] Instrument App Client: ghi attempt khi trả lời câu hỏi (bài học, luyện tập, mini game).
+- [ ] ~~`app_events`~~ — 📌 **HOÃN.** Chưa có câu hỏi cụ thể nào cần nó (xem bảng D/E). Dựng bảng trước khi biết dùng vào việc gì chỉ tạo thêm nợ; thêm sau không khó.
+
+> 🔴 **`question_ref` — đã giải quyết (2026-09-20). Có HAI loại câu hỏi, cần HAI cách khác nhau.**
+>
+> Bản plan trước ghi `question_id` như thể mọi câu hỏi đều có danh tính. **Không đúng:**
+>
+> | Loại câu hỏi                      | Nguồn                                                             | Hiện trạng                                                                                                     |
+> | --------------------------------- | ----------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+> | Trong bài học                     | `client/src/data/gradeXData.js`, slide `type: "quiz"`             | Chỉ có `question`, `items`, `options`, `answer`, `mascotHint`. **Không có `id`.** (Lesson thì có: `g1-c1-l1`.) |
+> | Luyện tập · thử thách · mini game | `generateQuestion(grade, topicId)` · `generateCalculation(grade)` | **Sinh mới mỗi lần chạy** — mỗi câu chỉ tồn tại đúng 1 lần                                                     |
+>
+> ⚠️ **Đánh `id` cho từng câu sinh ngẫu nhiên là VÔ NGHĨA:** mỗi ID chỉ có 1 dòng → gộp nhóm
+> ra 0 thông tin → không bao giờ trả lời được câu hỏi A. Với câu sinh theo công thức, **câu cá
+> biệt không thể "hỏng"** — cái hỏng là **khuôn sinh câu** (đáp án nhiễu trùng nhau, sinh ra số
+> âm, quên trộn đáp án…).
+>
+> ✅ **Kết luận — đánh ID theo hai tầng:**
+>
+> | Loại                   | Đơn vị đánh ID                                                              | Vì sao                                                                                                              | Chi phí                                                     |
+> | ---------------------- | --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+> | Sinh ngẫu nhiên        | **khuôn** — chính là `topicId` (`g1_count`, `g1_add_sub_10`, `g1_compare`…) | Hữu hạn, ổn định, **đã có sẵn tên trong code**. Gộp theo khuôn = biết **kỹ năng** nào yếu → đúng thứ mục tiêu C cần | **0 — không phải sửa gì trong file data**                   |
+> | Viết tay trong bài học | **từng câu**                                                                | Một câu cụ thể CÓ THỂ sai đáp án / nhập nhằng → cần chỉ đích danh                                                   | Nhỏ: `lesson_id` + số thứ tự slide, nâng lên ID thật ở GĐ 3 |
+>
+> ➡️ **Bỏ khuyến nghị cũ** ("thêm `id` cho từng câu, sửa 5 file `gradeXData.js`") — **không cần**.
+> Với câu sinh ngẫu nhiên, gộp theo **khuôn** còn **tốt hơn** gộp theo từng câu: nó trả lời trực
+> tiếp "kỹ năng nào yếu", thay vì đưa ra hàng nghìn dòng mỗi dòng một lần xuất hiện.
+>
+> 🔧 **Việc phải làm khi code:** `generateQuestion()` hiện **không cho biết nó đã dùng khuôn nào**
+> (trả về `{question, options, answer, hint, explanation}`, không có `topic`), và nhánh
+> `g1_add_sub_10` còn rẽ tiếp cộng/trừ. Cách sửa gọn — **bọc hàm, không sửa từng `return`**:
+>
+> ```js
+> // đổi hàm hiện tại thành hàm nội bộ, LUÔN nhận topic cụ thể
+> function buildQuestion(grade, topic) {
+>   /* thân hàm cũ, bỏ đoạn tự chọn topic */
+> }
+>
+> export function generateQuestion(grade = 1, topicId = null) {
+>   const list = TOPICS[`GRADE_${grade}`] || TOPICS.GRADE_1;
+>   const topic = topicId || list[randInt(0, list.length - 1)].id;
+>   return { ...buildQuestion(grade, topic), ref: `tmpl:${topic}` };
+> }
+> ```
+>
+> Nhờ vậy **mọi** call site (luyện tập, thử thách) đều có `ref` mà không phải sửa chỗ gọi.
+> Hành vi không đổi → rủi ro thấp.
+>
+> 🟡 **Riêng mini game cần thêm việc:** chúng dùng `generateCalculation(grade)` — hàm này rẽ nhánh
+> theo `grade` và **không dùng `TOPICS`**, nên chưa có tên khuôn. Cần thêm `ref` cho từng nhánh
+> (~4 nhánh × 5 lớp). **Khuyến nghị: làm bài học + luyện tập trước** (giá trị cao nhất, chi phí
+> thấp nhất), mini game làm sau.
+
+> 🟡 **Ba chi tiết nhỏ cần chốt khi code:**
+>
+> - **`ms` phải chặn trần.** Bé có thể bỏ máy đi chơi rồi quay lại → `ms` = 20 phút là rác.
+>   Đặt trần (VD 300 giây), vượt thì ghi `NULL`.
+> - **Guest không có `child_id`.** Chọn: bỏ qua event của guest, hay ghi `child_id = NULL`.
+>   Khuyến nghị **`NULL`** — vẫn giữ được giá trị cho mục tiêu A (câu hỏi nào hỏng), chỉ là
+>   không gắn được với bé nào.
+> - **Dung lượng.** Supabase free 500 MB. Mỗi dòng ~100 byte → 1 bé 50 câu/ngày ≈ 18k dòng/năm;
+>   100 bé ≈ 1,8M dòng/năm (còn xa mới đầy). Nhưng **nên đặt chính sách xoá dữ liệu cũ**
+>   (VD > 180 ngày) ngay từ đầu — thêm sau khó hơn.
 
 **2c — Inbox phản hồi**
 
@@ -270,7 +391,13 @@ Nguyên tắc: **chia để trị**, App chính không được gián đoạn. M
 - [ ] Nút "Báo lỗi câu hỏi" trong App Client.
 - [ ] Màn hình **User Reports** trên Admin (duyệt → sửa nóng nội dung).
 
-**✅ DoD:** Xử lý được 1 ticket thật từ đầu đến cuối mà không cần mở Supabase Dashboard.
+**✅ DoD:** Tra cứu được 1 bé và xem đầy đủ hồ sơ; xử lý được **1 ticket thật từ đầu đến cuối** mà không cần mở Supabase Dashboard.
+
+**Thứ tự đề xuất:** `2a` → `2c` → `2b`
+
+1. **2a** trước — nhỏ, rủi ro thấp, và tạo ra **chỗ để hiển thị** dữ liệu mà 2b sẽ sinh ra.
+2. **2c** tiếp — tự nó đã đạt DoD, đồng thời tạo nguồn dữ liệu thật (báo lỗi câu hỏi).
+3. **2b** cuối — vì còn phải chốt `question_ref` và sửa 5 file dữ liệu.
 
 ---
 
@@ -423,9 +550,10 @@ admin_audit_log     actor_id, action, entity, entity_id,
                     before, after, reason, created_at
 
 ── PHÂN TÍCH (GĐ 2) ────────────────────────────────────────
-question_attempts   child_id, question_id, lesson_id, ms, correct, created_at
-app_events          child_id, name, payload JSONB, created_at
-support_tickets     child_id, type, message, status, created_at
+question_attempts    child_id (NULL nếu guest), question_ref, lesson_id,
+                     topic, ms, correct, attempt_no, created_at
+                     ⏸ app_events — HOÃN, chưa có câu hỏi nào cần nó
+support_tickets      child_id, type, message, status, created_at
 
 ── NỘI DUNG (GĐ 3) ─────────────────────────────────────────
 content_grades      id, name, description, icon, color, order
@@ -467,13 +595,18 @@ notifications       title, body, target_scope, starts_at, ends_at, enabled
 
 ### Nhóm B — Hỗ trợ khách hàng 🟡
 
-| #   | Tính năng                                         | Giai đoạn |
-| --- | ------------------------------------------------- | --------- |
-| B1  | Tra cứu học sinh (nickname / email PH / mã bé)    | 2a        |
-| B2  | Khôi phục streak thủ công + Streak Freeze         | 2a        |
-| B3  | Cấp/thu Xu thủ công **có lý do** (bắt buộc audit) | 2a        |
-| B4  | Reset PIN phụ huynh từ xa                         | 2a        |
-| B5  | Hộp thư báo lỗi câu hỏi                           | 2c        |
+| #   | Tính năng                     | Giai đoạn |
+| --- | ----------------------------- | --------- |
+| B1  | Tra cứu học sinh + hồ sơ 1 bé | 2a        |
+| B5  | Hộp thư báo lỗi câu hỏi       | 2c        |
+
+> ✂️ **Đã cắt khỏi GĐ 2 (quyết định 2026-09-20):**
+>
+> | Cũ  | Tính năng                                 | Xử lý                                                                         |
+> | --- | ----------------------------------------- | ----------------------------------------------------------------------------- |
+> | B2  | Khôi phục streak thủ công + Streak Freeze | → chuyển thành **cửa hàng vật phẩm kiểu Duolingo**, người dùng tự mua bằng Xu |
+> | B3  | Cấp/thu Xu thủ công                       | → bỏ                                                                          |
+> | B4  | Reset PIN phụ huynh từ xa                 | → bỏ — `parentPin` chưa đồng bộ lên DB (`useUserStore.js:70,165`)             |
 
 ### Nhóm C — Đặc thù repo này 🟡
 
@@ -586,29 +719,32 @@ notifications       title, body, target_scope, starts_at, ends_at, enabled
 
 ## 📊 PHẦN 8: BẢNG THEO DÕI TIẾN ĐỘ
 
-| Giai đoạn | Nội dung                  | Ước lượng                     | Phụ thuộc                  | Trạng thái                                           |
-| --------- | ------------------------- | ----------------------------- | -------------------------- | ---------------------------------------------------- |
-| GĐ 0      | Vá nền & bảo mật          | Nhỏ–Vừa                       | —                          | 🟡 Code xong + đã test local — **còn deploy Vercel** |
-| GĐ 1      | Sổ cái & cấu hình kinh tế | **Lớn** (refactor 14 điểm)    | GĐ 0                       | ✅ Code + test sơ bộ + giá đã chốt (0003)            |
-| GĐ 2      | Hỗ trợ & phân tích cơ bản | Vừa                           | GĐ 1                       | ⬜ **Bước tiếp theo**                                |
-| GĐ 3      | CMS (3a → 3d)             | **Rất lớn** — rủi ro cao nhất | 📌 **GĐ 2 phải xong (Q4)** | ⬜ Chưa bắt đầu                                      |
-| GĐ 4      | Nâng cao                  | Vừa                           | GĐ 3                       | ⬜ Chưa bắt đầu                                      |
+| Giai đoạn | Nội dung                  | Ước lượng                     | Phụ thuộc                  | Trạng thái                                       |
+| --------- | ------------------------- | ----------------------------- | -------------------------- | ------------------------------------------------ |
+| GĐ 0      | Vá nền & bảo mật          | Nhỏ–Vừa                       | —                          | ✅ Xong — đã deploy `admin-toanvuive.vercel.app` |
+| GĐ 1      | Sổ cái & cấu hình kinh tế | **Lớn** (refactor 14 điểm)    | GĐ 0                       | ✅ Code + test sơ bộ + giá đã chốt (0003)        |
+| GĐ 2      | Hỗ trợ & phân tích cơ bản | Vừa                           | GĐ 1                       | 🟡 2a code xong, chờ test — 2b/2c chưa làm       |
+| GĐ 3      | CMS (3a → 3d)             | **Rất lớn** — rủi ro cao nhất | 📌 **GĐ 2 phải xong (Q4)** | ⬜ Chưa bắt đầu                                  |
+| GĐ 4      | Nâng cao                  | Vừa                           | GĐ 3                       | ⬜ Chưa bắt đầu                                  |
 
 ---
 
 ## 📝 CHANGELOG
 
-| Phiên bản | Ngày       | Thay đổi                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| --------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1.0       | —          | Bản đầu: 4 giai đoạn, dựa trên tham khảo EdTech                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| 2.0       | 2026-09-19 | Viết lại theo số liệu đo thực tế. Thêm **GĐ 0 (vá nền)**, tách GĐ 2→(2a,2b,2c) và GĐ 3→(3a,3b,3c,3d). Bổ sung 4 lỗ hổng, sổ cái Xu/XP, audit log, kill switch, slide registry, quản lý bot. Thêm DoD + bảng quyết định. Cắt A/B Testing, Media Library, Seasonal Shop khỏi v1.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| 2.1       | 2026-09-19 | **Chốt 6 quyết định.** Thêm mục **6.3 — Hosting Vercel miễn phí** (2 project, Root Directory `admin/`, subdomain free, cảnh báo non-commercial). Giản lược theo Q6: bỏ `assigned_to`, bỏ RBAC khỏi schema. Ghi rõ rủi ro đã chấp nhận của Q2 + biện pháp giảm nhẹ. Đánh dấu 📌 các mục bị ảnh hưởng bởi quyết định. Thêm cột "Phụ thuộc" vào bảng tiến độ (GĐ 3 chặn bởi GĐ 2 theo Q4). Xác nhận Admin **không cần mobile**.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| 2.2       | 2026-09-19 | 🔴 **Đính chính:** bản 2.0/2.1 gắn sai "seed content pack" với guest mode. Thực tế guest **đọc DB được** — hạn chế của guest nằm ở tầng ghi dữ liệu, không ở tầng mạng. Thêm **mục 3.0** (đính chính) và **mục 3.0.1** (giữ nguyên file tĩnh, không xây seed pack). Thêm **mục 3e — Chống lệch nội dung bundle/DB**: chứng minh rủi ro tự giới hạn (xấu nhất = hành vi hiện tại), 3 rủi ro còn lại (E1/E2/E3) + cách xử lý, bảng tóm tắt nguồn nội dung theo tình huống. Bổ sung `content_version`, content manifest, RLS published-only cho `anon`. Cập nhật DoD GĐ 3 (6 điều). Bỏ yêu cầu xây seed pack.                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| 2.3       | 2026-09-19 | 🛠️ **Thực thi Giai đoạn 0.** Tạo `supabase/migrations/0001_admin_foundation.sql` (role/is_banned, `is_admin()` SECURITY DEFINER, **vá lỗ hổng leaderboard**, policy admin, `admin_audit_log`, `app_config`, index `parent_id`). Tạo app `admin/` độc lập (Vite + React 19 + Tailwind v4 + Supabase anon key) gồm auth provider, route guard, login Google, layout, dashboard có 4 phép kiểm tra RLS. Thêm `admin/README.md` (hướng dẫn migration → env → cấp quyền → deploy Vercel → OAuth redirect). Thêm script `dev:admin` / `build:admin` ở repo gốc; sửa `install:all` (trỏ sai `../server`). Đánh dấu hoàn thành 16/19 mục GĐ 0. ⏳ Còn lại: tạo Vercel project, thêm Redirect URL, set role admin.                                                                                                                                                                                                                                                                                                                           |
-| 2.4       | 2026-09-19 | 🛠️ **Thực thi Giai đoạn 1.** Tạo `supabase/migrations/0002_reward_economy.sql` (`reward_configs` 27 khoá, `coin_transactions`, `xp_events`, `level_curve`, `reward_multiplier`). Tạo `client/src/services/rewardService.js` — đọc đồng bộ từ cache, làm mới nền, không tạo vòng import. Thêm `grantReward()` + ghi sổ cái vào `useUserStore`. **Refactor 14 điểm phát thưởng ở 8 file** (không phải 12 như kiểm kê ban đầu). Tách port dev: client 5173, admin 5174. Xây màn hình **Game Economy** (`admin/src/pages/EconomyPage.jsx`) + `admin/src/lib/audit.js`. Bỏ RPC `log_reward` (RLS làm được, ít hơn 1 tầng). Thêm `docs/admin_portal_test_cases.md` — **27 test case** cho GĐ 0 + GĐ 1, có lệnh copy-paste, bảng theo dõi kết quả, khung GĐ 2-4. Verified: `oxlint` sạch · `vite build` client và admin đều pass.                                                                                                                                                                                                          |
-| 2.5       | 2026-09-19 | ✅ **Hoàn tất Giai đoạn 1.** Thêm màn hình **Người dùng** (`admin/src/pages/UsersPage.jsx`) — join `child_profiles` ⨝ `profiles` ⨝ `child_progress`, phân trang 20/trang, tìm theo tên bé hoặc email phụ huynh, khoá/mở khoá tài khoản kèm lý do bắt buộc, cột mức độ hoạt động (suy ra từ `last_active_date`, **không cần bảng mới**), cột **Xu/24h** gắn cờ khi vượt 500. Thêm 5 test case (`TC-1.13` → `TC-1.17`), tổng **32 test case**. GĐ 1 hoàn tất phần code — chờ test.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| 2.6       | 2026-09-19 | 🤖 **Thêm automation test** — `scripts/test-admin-portal.mjs`, chạy bằng `npm run test:portal`. **Không cần thư viện nào** (dùng `fetch` có sẵn của Node 18+). 20 mục tự động: 8 mục quét source (thưởng gán cứng còn sót, dependency array mồ côi, khoá `grantReward` không tồn tại, seed SQL lệch code, 2 bundle lẫn nhau, `service_role` ở frontend) + 12 mục gọi REST bằng anon key (seed đủ/đúng, RLS chặn ghi leaderboard, chặn đọc `profiles`/`child_profiles`/sổ cái, `is_admin()` false, audit log bất biến). Kết quả hiện tại: **20 PASS · 0 FAIL**. Exit code dùng được trong CI. Tool in ra danh sách **23 mục cần test tay** — vì **Google OAuth không thể tự động hoá**.                                                                                                                                                                                                                                                                                                                                              |
-| 2.7       | 2026-09-20 | 🐞 **Vòng sửa lỗi từ test tay.** (1) `TC-R.7` — Sổ Tay Ôn Bài Sai: `dueMistakes` gọi lại mỗi render, mà `resolveMistake()` đổi `nextReviewDate` ngay → mảng co giữa phiên → câu kế bị nhảy và phiên kết thúc sớm. Sửa bằng ảnh chụp `reviewQueue` lúc mở tab. (2) `TC-R.8` — màn hình kết quả **cả 6 mini game** viết chết số `120/70/30/10` Xu và `200/120/50/20` XP; đổi giá trên Admin thì Xu thực nhận đúng nhưng chữ vẫn ghi số cũ. Sửa bằng cách lưu số THẬT mà `grantReward()` trả về. (3) Cache giá thưởng: throttle 60s quá dài → hạ còn 5s. (4) Hoàn tất mục cuối GĐ 1: ghi `ban_reason` vào `child_profiles`. (5) Thêm `S-9`/`S-10` (gán cứng số trên UI, có **canary** tự kiểm chứng bộ dò), `S-11` (giá trị seed SQL khớp code). (6) 🔴 **Sửa `D-2` — bản cũ sai thiết kế:** nó đòi DB sống phải BẰNG `REWARD_DEFAULTS`, tức là test sẽ FAIL ngay khi tính năng đúng. Đổi thành kiểm tra dữ liệu hợp lệ + liệt kê khoá đã chỉnh khác mặc định. Tổng: **23 PASS · 0 FAIL**. Thêm `TC-R.7`, `TC-R.8` → **34 test case**. |
+| Phiên bản | Ngày       | Thay đổi                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| --------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 1.0       | —          | Bản đầu: 4 giai đoạn, dựa trên tham khảo EdTech                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| 2.0       | 2026-09-19 | Viết lại theo số liệu đo thực tế. Thêm **GĐ 0 (vá nền)**, tách GĐ 2→(2a,2b,2c) và GĐ 3→(3a,3b,3c,3d). Bổ sung 4 lỗ hổng, sổ cái Xu/XP, audit log, kill switch, slide registry, quản lý bot. Thêm DoD + bảng quyết định. Cắt A/B Testing, Media Library, Seasonal Shop khỏi v1.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| 2.1       | 2026-09-19 | **Chốt 6 quyết định.** Thêm mục **6.3 — Hosting Vercel miễn phí** (2 project, Root Directory `admin/`, subdomain free, cảnh báo non-commercial). Giản lược theo Q6: bỏ `assigned_to`, bỏ RBAC khỏi schema. Ghi rõ rủi ro đã chấp nhận của Q2 + biện pháp giảm nhẹ. Đánh dấu 📌 các mục bị ảnh hưởng bởi quyết định. Thêm cột "Phụ thuộc" vào bảng tiến độ (GĐ 3 chặn bởi GĐ 2 theo Q4). Xác nhận Admin **không cần mobile**.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| 2.2       | 2026-09-19 | 🔴 **Đính chính:** bản 2.0/2.1 gắn sai "seed content pack" với guest mode. Thực tế guest **đọc DB được** — hạn chế của guest nằm ở tầng ghi dữ liệu, không ở tầng mạng. Thêm **mục 3.0** (đính chính) và **mục 3.0.1** (giữ nguyên file tĩnh, không xây seed pack). Thêm **mục 3e — Chống lệch nội dung bundle/DB**: chứng minh rủi ro tự giới hạn (xấu nhất = hành vi hiện tại), 3 rủi ro còn lại (E1/E2/E3) + cách xử lý, bảng tóm tắt nguồn nội dung theo tình huống. Bổ sung `content_version`, content manifest, RLS published-only cho `anon`. Cập nhật DoD GĐ 3 (6 điều). Bỏ yêu cầu xây seed pack.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| 2.3       | 2026-09-19 | 🛠️ **Thực thi Giai đoạn 0.** Tạo `supabase/migrations/0001_admin_foundation.sql` (role/is_banned, `is_admin()` SECURITY DEFINER, **vá lỗ hổng leaderboard**, policy admin, `admin_audit_log`, `app_config`, index `parent_id`). Tạo app `admin/` độc lập (Vite + React 19 + Tailwind v4 + Supabase anon key) gồm auth provider, route guard, login Google, layout, dashboard có 4 phép kiểm tra RLS. Thêm `admin/README.md` (hướng dẫn migration → env → cấp quyền → deploy Vercel → OAuth redirect). Thêm script `dev:admin` / `build:admin` ở repo gốc; sửa `install:all` (trỏ sai `../server`). Đánh dấu hoàn thành 16/19 mục GĐ 0. ⏳ Còn lại: tạo Vercel project, thêm Redirect URL, set role admin.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| 2.4       | 2026-09-19 | 🛠️ **Thực thi Giai đoạn 1.** Tạo `supabase/migrations/0002_reward_economy.sql` (`reward_configs` 27 khoá, `coin_transactions`, `xp_events`, `level_curve`, `reward_multiplier`). Tạo `client/src/services/rewardService.js` — đọc đồng bộ từ cache, làm mới nền, không tạo vòng import. Thêm `grantReward()` + ghi sổ cái vào `useUserStore`. **Refactor 14 điểm phát thưởng ở 8 file** (không phải 12 như kiểm kê ban đầu). Tách port dev: client 5173, admin 5174. Xây màn hình **Game Economy** (`admin/src/pages/EconomyPage.jsx`) + `admin/src/lib/audit.js`. Bỏ RPC `log_reward` (RLS làm được, ít hơn 1 tầng). Thêm `docs/admin_portal_test_cases.md` — **27 test case** cho GĐ 0 + GĐ 1, có lệnh copy-paste, bảng theo dõi kết quả, khung GĐ 2-4. Verified: `oxlint` sạch · `vite build` client và admin đều pass.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| 2.5       | 2026-09-19 | ✅ **Hoàn tất Giai đoạn 1.** Thêm màn hình **Người dùng** (`admin/src/pages/UsersPage.jsx`) — join `child_profiles` ⨝ `profiles` ⨝ `child_progress`, phân trang 20/trang, tìm theo tên bé hoặc email phụ huynh, khoá/mở khoá tài khoản kèm lý do bắt buộc, cột mức độ hoạt động (suy ra từ `last_active_date`, **không cần bảng mới**), cột **Xu/24h** gắn cờ khi vượt 500. Thêm 5 test case (`TC-1.13` → `TC-1.17`), tổng **32 test case**. GĐ 1 hoàn tất phần code — chờ test.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| 2.6       | 2026-09-19 | 🤖 **Thêm automation test** — `scripts/test-admin-portal.mjs`, chạy bằng `npm run test:portal`. **Không cần thư viện nào** (dùng `fetch` có sẵn của Node 18+). 20 mục tự động: 8 mục quét source (thưởng gán cứng còn sót, dependency array mồ côi, khoá `grantReward` không tồn tại, seed SQL lệch code, 2 bundle lẫn nhau, `service_role` ở frontend) + 12 mục gọi REST bằng anon key (seed đủ/đúng, RLS chặn ghi leaderboard, chặn đọc `profiles`/`child_profiles`/sổ cái, `is_admin()` false, audit log bất biến). Kết quả hiện tại: **20 PASS · 0 FAIL**. Exit code dùng được trong CI. Tool in ra danh sách **23 mục cần test tay** — vì **Google OAuth không thể tự động hoá**.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| 2.7       | 2026-09-20 | 🐞 **Vòng sửa lỗi từ test tay.** (1) `TC-R.7` — Sổ Tay Ôn Bài Sai: `dueMistakes` gọi lại mỗi render, mà `resolveMistake()` đổi `nextReviewDate` ngay → mảng co giữa phiên → câu kế bị nhảy và phiên kết thúc sớm. Sửa bằng ảnh chụp `reviewQueue` lúc mở tab. (2) `TC-R.8` — màn hình kết quả **cả 6 mini game** viết chết số `120/70/30/10` Xu và `200/120/50/20` XP; đổi giá trên Admin thì Xu thực nhận đúng nhưng chữ vẫn ghi số cũ. Sửa bằng cách lưu số THẬT mà `grantReward()` trả về. (3) Cache giá thưởng: throttle 60s quá dài → hạ còn 5s. (4) Hoàn tất mục cuối GĐ 1: ghi `ban_reason` vào `child_profiles`. (5) Thêm `S-9`/`S-10` (gán cứng số trên UI, có **canary** tự kiểm chứng bộ dò), `S-11` (giá trị seed SQL khớp code). (6) 🔴 **Sửa `D-2` — bản cũ sai thiết kế:** nó đòi DB sống phải BẰNG `REWARD_DEFAULTS`, tức là test sẽ FAIL ngay khi tính năng đúng. Đổi thành kiểm tra dữ liệu hợp lệ + liệt kê khoá đã chỉnh khác mặc định. Tổng: **23 PASS · 0 FAIL**. Thêm `TC-R.7`, `TC-R.8` → **34 test case**.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| 2.8       | 2026-09-20 | ✅ **GĐ 0 hoàn tất** — Admin Portal đã deploy tại `https://admin-toanvuive.vercel.app` (project Vercel thứ hai, Root Directory `admin`). Ghi lại lỗi deploy đã gặp ở mục DoD GĐ 0 để lần sau không mất thời gian. ✂️ **Tinh gọn GĐ 2 theo yêu cầu:** cắt khỏi 2a bốn mục (khôi phục streak thủ công, cấp/thu Xu thủ công, cấp Streak Freeze, reset PIN phụ huynh) — Streak Freeze sẽ làm thành **cửa hàng vật phẩm kiểu Duolingo**. Viết rõ **mục tiêu của 2b**: nó tồn tại để trả lời 3 câu hỏi ở mức từng câu hỏi (câu nào hỏng · đoán bừa hay không hiểu · chủ đề nào yếu), và **cố ý loại** 2 câu hỏi khác (drop-off, retention) vì chưa đủ người dùng. `app_events` **hoãn** — chưa có ai cần nó. Đổi `question_id` → `question_ref` kèm ghi chú: **không có `question_id` nào tồn tại** (câu trong bài học không có `id`; câu luyện tập sinh ngẫu nhiên lúc chạy) → ✅ **đã giải quyết ngay sau đó:** câu sinh ngẫu nhiên đánh ID theo **khuôn** (`topicId` đã có sẵn — không phải sửa file data nào), câu viết tay đánh ID theo câu; xem khối `question_ref` ở mục Giai đoạn 2. Đổi thứ tự GĐ 2 thành `2a → 2c → 2b`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| 2.9       | 2026-09-20 | 🛠️ **Thực thi GĐ 2a.** Thêm `admin/src/pages/ChildProfilePage.jsx` (route `/users/:childId`) — màn hình **chỉ đọc** gồm 7 khối: danh tính + trạng thái khoá, tiến độ cấp độ, tiến độ học tập, sổ tay lỗi sai, lịch sử giao dịch Xu, lịch sử XP, thú cưng. Tên bé trong `UsersPage` thành link sang hồ sơ. 🔴 **Phát hiện:** bảng `child_mistakes` có từ `schema.sql` nhưng **client chưa bao giờ ghi** → luôn rỗng; và cột `answer` là `INT` trong khi đáp án so sánh là `'>'`/`'<'`/`'='`. Thêm `0004_mistakes_sync.sql` (sửa `answer` → `TEXT`, + index `child_id, failed_count DESC`) và `syncMistakeToCloud()` trong `useProgressStore` (INSERT lần đầu → lưu `dbId` → UPDATE các lần sau; guest bỏ qua; lỗi chỉ cảnh báo). Thêm 6 test case (`TC-2.1` → `TC-2.6`) → **40 test case**. Verified: build admin 3.02s · build client 8.24s · `23 PASS · 0 FAIL` · 4 truy vấn PostgREST của hồ sơ đã kiểm chứng không lỗi cột/quan hệ.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| 2.10      | 2026-09-20 | 🧪 **Thêm kiểm tra biến chưa khai báo (`no-undef`) cho cả 2 app.** `isUuid is not defined` từng lọt ra trình duyệt dù `vite build` **và** chẩn đoán VS Code đều báo sạch — đây là lỗi **lúc chạy**, build không bao giờ bắt được. Thêm `admin/.oxlintrc.json` (client đã có sẵn từ trước) và test tự động `S-12` chạy `oxlint` trên **cả** `client/src` lẫn `admin/src`, dùng binary có sẵn trong `client/node_modules` nên **không phải cài thêm gì**. 🔴 **Đo được: `oxlint` mặc định KHÔNG bật `no-undef`** (exit 0, không in gì) — phải có `"no-undef": "deny"` trong `.oxlintrc.json`, nên `S-12` kiểm tra luôn sự tồn tại của 2 file cấu hình để tránh test xanh giả. Bộ dò đã kiểm chứng: cố ý thêm biến chưa khai báo → `S-12` FAIL đúng như mong đợi. Thêm `TC-2.7` → **41 test case**. 🔴 **Đã thử cài `oxlint` trực tiếp vào `admin` và THẤT BẠI — đừng thử lại.** Đã kiểm chứng nghiêm túc: tắt hẳn 2 dev server, xoá sạch `admin/node_modules` + `package-lock.json`, cài lại từ đầu — tổng **7 lần thử** (`npm install`, `--include=optional`, `--force`, khai báo thẳng vào `optionalDependencies`, cài trực tiếp gói binding). Tất cả đều thất bại: gói `@oxlint/binding-win32-x64-msvc` **có** trên registry, `os=win32`/`cpu=x64` **khớp máy này**, lockfile **có** ghi entry, nhưng `npm ls` báo `(empty)` và không có file `*oxlint*.node` nào trong `node_modules`. Trong khi đó `client/node_modules/@oxlint/binding-win32-x64-msvc` **có sẵn và chạy tốt** → chốt dùng binary của client (đúng như `S-12` đang làm). Muốn có cổng chặn ở tầng Vercel thì phải giải bài toán npm này trước; **không đáng**, vì `npm run test:portal` đã chặn được. |
 
 ---
 

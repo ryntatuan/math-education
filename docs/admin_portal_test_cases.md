@@ -1,7 +1,7 @@
 # 🧪 Test Cases — Admin Portal & Hệ thống kinh tế
 
-> **Cập nhật:** 2026-09-20 · **Trạng thái:** GĐ 0 ✅ · GĐ 1 ✅ · GĐ 2-4 ⏳ chưa làm
-> **34 test case** · Dùng kèm với `docs/admin_portal_plan.md`.
+> **Cập nhật:** 2026-09-20 · **Trạng thái:** GĐ 0 ✅ · GĐ 1 ✅ · GĐ 2a 🟡 code xong, chờ test · GĐ 2b/2c ⏳
+> **41 test case** · Dùng kèm với `docs/admin_portal_plan.md`.
 
 ---
 
@@ -25,12 +25,12 @@ node scripts/test-admin-portal.mjs --db   # chỉ kiểm tra database
 
 **Không cần cài thư viện nào** — dùng `fetch` có sẵn của Node 18+.
 
-**Tool tự kiểm tra 23 mục** (mã `S-x` và `D-x` trong output khớp với `TC-x.y` ở dưới):
+**Tool tự kiểm tra 24 mục** (mã `S-x` và `D-x` trong output khớp với `TC-x.y` ở dưới):
 
-| Nhóm  | Nội dung                                                                                                                                                                                                                                   | Số mục |
-| ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------ |
-| **S** | Quét source: không còn thưởng gán cứng, không còn dependency array mồ côi, mọi khoá `grantReward` đều tồn tại, seed SQL khớp code **cả khoá lẫn giá trị**, 2 bundle tách biệt, không nhúng `service_role`, không gán cứng số Xu/XP trên UI | 11     |
-| **D** | Gọi REST bằng anon key: seed đủ và đúng giá trị, RLS chặn ghi leaderboard, chặn đọc `profiles`/`child_profiles`/sổ cái, `is_admin()` trả false, audit log bất biến, `reward_configs` đọc công khai được                                    | 12     |
+| Nhóm  | Nội dung                                                                                                                                                                                                                                                                    | Số mục |
+| ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| **S** | Quét source: không còn thưởng gán cứng, không còn dependency array mồ côi, mọi khoá `grantReward` đều tồn tại, seed SQL khớp code **cả khoá lẫn giá trị**, 2 bundle tách biệt, không nhúng `service_role`, không gán cứng số Xu/XP trên UI, **không có biến chưa khai báo** | 12     |
+| **D** | Gọi REST bằng anon key: seed đủ và đúng giá trị, RLS chặn ghi leaderboard, chặn đọc `profiles`/`child_profiles`/sổ cái, `is_admin()` trả false, audit log bất biến, `reward_configs` đọc công khai được                                                                     | 12     |
 
 Exit code `0` = tất cả PASS (dùng được trong CI). `1` = có FAIL.
 
@@ -49,10 +49,11 @@ Exit code `0` = tất cả PASS (dùng được trong CI). `1` = có FAIL.
 
 ### A.1. Port
 
-| URL                     | Ứng dụng           |
-| ----------------------- | ------------------ |
-| `http://localhost:5173` | App chính (cho bé) |
-| `http://localhost:5174` | Admin Portal       |
+| URL                                  | Ứng dụng                      |
+| ------------------------------------ | ----------------------------- |
+| `http://localhost:5173`              | App chính (cho bé)            |
+| `http://localhost:5174`              | Admin Portal                  |
+| `https://admin-toanvuive.vercel.app` | Admin Portal — **production** |
 
 Chạy cả hai:
 
@@ -70,6 +71,7 @@ Chạy **đúng thứ tự** trong Supabase → SQL Editor:
 | 1   | `supabase/migrations/0001_admin_foundation.sql` | role, `is_admin()`, vá RLS leaderboard, audit log, app_config |
 | 2   | `supabase/migrations/0002_reward_economy.sql`   | reward_configs (giá gốc), sổ cái, hệ số nhân, level curve     |
 | 3   | `supabase/migrations/0003_tune_rewards.sql`     | 🔧 Chốt giá thưởng sau test — hạ thang luyện tập & mini game  |
+| 4   | `supabase/migrations/0004_mistakes_sync.sql`    | 🔧 `child_mistakes.answer` INT → TEXT, index cho hồ sơ bé     |
 
 > **Vì sao có cả 0002 và 0003?** `0002` đã chạy rồi nên **không sửa** (sửa migration
 > đã áp dụng là cách chắc nhất để môi trường này lệch môi trường kia). `0003` chép lại
@@ -80,6 +82,12 @@ Chạy **đúng thứ tự** trong Supabase → SQL Editor:
 > mới cài xong là có ngay đúng giá.
 
 > ⚠️ **Tuyệt đối không chạy lại `supabase/schema.sql`** — file đó sẽ mở lại lỗ hổng `leaderboard`.
+
+> 📌 **Vì sao cần `0004`:** bảng `child_mistakes` có từ `schema.sql` nhưng **client chưa bao
+> giờ ghi vào** → luôn rỗng. GĐ 2a mới bắt đầu ghi thật, và khi đó lộ ra: cột `answer` khai
+> báo `INT` nhưng câu hỏi so sánh (khuôn `g1_compare`) có đáp án là `'>'`, `'<'`, `'='`.
+> Chưa chạy `0004` thì những câu đó **đồng bộ thất bại** (chỉ thấy cảnh báo trong Console,
+> không làm sập app — cố ý "bắn rồi quên").
 
 ### A.3. Tài khoản cần có
 
@@ -358,13 +366,29 @@ console.log(error); // Mong đợi: lỗi hoặc 0 dòng bị xoá
 
 ### TC-0.6 — Admin Portal: đăng nhập đúng người
 
-| #   | Thao tác                                        | Mong đợi                                                                 |
-| --- | ----------------------------------------------- | ------------------------------------------------------------------------ |
-| a   | Vào `localhost:5174`, đăng nhập bằng **admin**  | Vào được Dashboard                                                       |
-| b   | Đăng xuất, đăng nhập bằng **User A**            | Bị đá về trang đăng nhập, có dòng chữ **"chưa được cấp quyền quản trị"** |
-| c   | Vào `localhost:5174/economy` khi chưa đăng nhập | Bị chặn, hiện trang đăng nhập                                            |
+**Route thật của Admin Portal** — không có route nào tên `currency`:
+
+| Đường dẫn  | Trang                           |
+| ---------- | ------------------------------- |
+| `/`        | Tổng quan — 4 phép kiểm tra RLS |
+| `/economy` | Kinh tế Xu/XP                   |
+| `/users`   | Người dùng                      |
+| _(khác)_   | Tự chuyển về `/`                |
+
+| #   | Thao tác                                                                         | Mong đợi                                                                 |
+| --- | -------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| a   | Vào `localhost:5174`, đăng nhập bằng **admin**                                   | Vào được Dashboard                                                       |
+| b   | Đăng xuất, đăng nhập bằng **User A**                                             | Bị đá về trang đăng nhập, có dòng chữ **"chưa được cấp quyền quản trị"** |
+| c   | Vào `localhost:5174/economy` khi chưa đăng nhập                                  | Bị chặn, hiện trang đăng nhập                                            |
+| d   | 🔴 **Production:** gõ tay `https://admin-toanvuive.vercel.app/economy` rồi Enter | Vào thẳng **Kinh tế Xu/XP**, không 404, **không** nhảy về Tổng quan      |
+| e   | Production: gõ tay `.../users`                                                   | Vào thẳng **Người dùng**, không 404                                      |
 
 **a — Bổ sung:** Dashboard hiện **4 ô kiểm tra đều ✅ xanh**.
+
+> ⚠️ **Đừng test SPA routing bằng đường dẫn bịa** (kiểu `/currency`, `/abc`). Route `*`
+> tự chuyển về `/` nên trang vẫn hiện → **không phân biệt được** "rewrite chạy đúng" với
+> "bị chuyển hướng". Phải dùng route **có thật** (`/economy`, `/users`) và kiểm tra mình
+> đang ở **đúng trang đó**.
 
 ---
 
@@ -944,19 +968,177 @@ WHERE reason LIKE 'game.tier%' ORDER BY created_at DESC LIMIT 5;
 
 ---
 
+# PHẦN F — GIAI ĐOẠN 2a: Tra cứu & hồ sơ bé
+
+### TC-2.1 — Migration 0004 chạy sạch 🔴
+
+**Bước:** Chạy `0004_mistakes_sync.sql` trong SQL Editor → `Success. No rows returned`.
+
+**Kiểm chứng cột `answer` đã là TEXT:**
+
+```sql
+SELECT data_type FROM information_schema.columns
+WHERE table_name = 'child_mistakes' AND column_name = 'answer';
+-- Mong đợi: text
+```
+
+**Kiểm chứng index:**
+
+```sql
+SELECT indexname FROM pg_indexes WHERE tablename = 'child_mistakes';
+-- Mong đợi: có child_mistakes_child_failed_idx
+```
+
+---
+
+### TC-2.2 — Hồ sơ bé tải đủ các khối 🔴
+
+**Chuẩn bị:** Đăng nhập Admin (`localhost:5174`) bằng tài khoản admin.
+
+**Bước:** Vào **Người dùng** → bấm vào **tên một bé** (chữ màu xanh).
+
+**Mong đợi:** Sang trang `/users/<id>` với đủ các khối:
+
+| Khối                 | Nội dung                                                                                  |
+| -------------------- | ----------------------------------------------------------------------------------------- |
+| Thẻ danh tính        | avatar · tên · Lớp · Cấp · ngày tạo · email phụ huynh · nhãn Hoạt động/Đã khoá · thanh XP |
+| 4 ô số               | Xu hiện có · Cấp độ · Chuỗi hiện tại · Hoạt động lần cuối                                 |
+| Tiến độ học tập      | số bài đã hoàn thành · số sao · ván mini game · chuỗi dài nhất                            |
+| Sổ tay lỗi sai       | tổng câu sai · đang ôn · đã thuộc làu + bảng câu hỏi                                      |
+| Lịch sử giao dịch Xu | 100 dòng gần nhất, có tổng cộng/trừ                                                       |
+| Lịch sử XP           | các thẻ `+N XP`                                                                           |
+| Thú cưng             | tên · cấp · đói · vui                                                                     |
+
+**Không được:** màn hình trắng, hoặc Console có lỗi đỏ.
+
+---
+
+### TC-2.3 — Điều hướng tới hồ sơ
+
+| #   | Thao tác                                     | Mong đợi                       |
+| --- | -------------------------------------------- | ------------------------------ |
+| a   | Bấm **← Danh sách người dùng**               | Về `/users`                    |
+| b   | Gõ tay `localhost:5174/users/<id>` rồi Enter | Vào thẳng hồ sơ, **không 404** |
+| c   | Bấm tên một bé khác trong danh sách          | Sang đúng hồ sơ bé đó          |
+
+---
+
+### TC-2.4 — Đồng bộ câu sai lên `child_mistakes` 🔴
+
+> Đây là test quan trọng nhất của GĐ 2a. Trước đây sổ tay lỗi sai **chỉ nằm trong localStorage** của máy bé, Admin không thấy gì.
+
+**Chuẩn bị:** App chính (`5173`), đăng nhập bằng **User A** (⚠️ không phải guest — guest không có `child_id` nên bị bỏ qua).
+
+**Bước:**
+
+1. Vào **Luyện tập** → cố tình trả lời sai **2 câu**
+2. Chờ ~2 giây (ghi kiểu "bắn rồi quên")
+3. Kiểm chứng:
+
+```sql
+SELECT cp.nickname, cm.question, cm.answer, cm.failed_count, cm.stage, cm.mastered
+FROM public.child_mistakes cm
+JOIN public.child_profiles cp ON cp.id = cm.child_id
+ORDER BY cm.created_at DESC LIMIT 10;
+```
+
+**Mong đợi:** đúng 2 dòng mới · `failed_count = 1` · `stage = 1` · `mastered = false`.
+
+4. 🔴 **Test đáp án so sánh** — làm sai một câu thuộc chủ đề **so sánh** (đáp án `>`, `<`, `=`).
+   Dòng đó phải có `answer` là `>` hoặc `<` hoặc `=`.
+   **Nếu chưa chạy `0004`, dòng này sẽ KHÔNG xuất hiện** và Console có
+   `invalid input syntax for type integer`.
+5. Làm sai **lại** câu vừa sai ở bước 1 → `failed_count` phải thành **2**, và **không sinh dòng thứ 3**
+6. Mở **Sổ Tay Ôn Bài Sai**, trả lời đúng câu đó cho tới khi thuộc → `mastered` chuyển `true`
+
+**Xem trong giao diện:** mở hồ sơ bé → khối **Sổ tay lỗi sai** phải hiện đúng các câu đó.
+
+---
+
+### TC-2.5 — Số liệu trên hồ sơ khớp app của bé
+
+| Ô trên hồ sơ      | Lấy từ                             | Đối chiếu với app   |
+| ----------------- | ---------------------------------- | ------------------- |
+| Xu hiện có        | `child_profiles.coins`             | Số Xu ở header      |
+| Cấp độ            | `child_profiles.level`             | Huy hiệu cấp        |
+| Chuỗi hiện tại    | `child_progress.current_streak`    | Số ngày streak      |
+| Bài đã hoàn thành | `child_progress.completed_lessons` | Số bài đã tick xong |
+
+```sql
+SELECT nickname, coins, level FROM public.child_profiles WHERE id = '<child-uuid>';
+```
+
+> ⚠️ Lệch tạm thời là **bình thường** — client đẩy lên cloud theo nhịp, không tức thời.
+
+---
+
+### TC-2.6 — Bé không tồn tại (đường dẫn sai)
+
+| #   | Nhập vào                                                                | Mong đợi                                                                      |
+| --- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| a   | `localhost:5174/users/00000000-0000-0000-0000-000000000000`             | **"Không tìm thấy hồ sơ bé này."** + link quay lại                            |
+| b   | 🔴 `localhost:5174/users/000adasdc000` (chuỗi rác, **không phải UUID**) | **Cùng thông báo trên** — **KHÔNG** hiện `invalid input syntax for type uuid` |
+| c   | `localhost:5174/users/abc`                                              | Cùng thông báo trên                                                           |
+
+**Cả 3 trường hợp:** không màn hình trắng, không lỗi đỏ trong Console.
+
+> 🐞 **Vì sao có mục (b):** bản test đầu chỉ ghi UUID hợp lệ nên **bỏ sót** trường hợp này.
+> Chuỗi rác bị PostgREST trả **400** `invalid input syntax for type uuid`, và bản đầu của
+> trang hiện thẳng lỗi đó ra hộp đỏ — không sập nhưng vô nghĩa với người dùng.
+> Đã sửa: kiểm tra định dạng UUID **trước khi** gọi API.
+
+---
+
+### TC-2.7 — Không có biến chưa khai báo 🔴 _(tự động)_
+
+**Chạy:** `npm run test:portal:static` → tìm dòng `S-12`. Không cần làm tay.
+
+> Ghi vào đây vì nó ứng với **một lỗi thật đã xảy ra**, không phải giả định.
+
+**Bối cảnh:** `isUuid is not defined` từng lọt ra trình duyệt. `vite build` **và** chẩn đoán
+của VS Code **đều báo sạch** — vì đây là lỗi **lúc chạy**, không phải lỗi cú pháp.
+
+**Cách bắt:** `oxlint` với rule `no-undef`, chạy trên **cả `client/src` và `admin/src`**.
+Dùng binary có sẵn trong `client/node_modules` — **không phải cài thêm gì**.
+
+> ⚠️ **`oxlint` mặc định KHÔNG bật `no-undef`** (đã đo: exit 0, không in gì). Nếu không có
+> `"no-undef": "deny"` trong `.oxlintrc.json` của từng app thì test này **xanh mà chẳng
+> bảo vệ được gì**. Vì vậy `S-12` kiểm tra luôn sự tồn tại của `client/.oxlintrc.json`
+> và `admin/.oxlintrc.json`.
+
+**Kiểm chứng bộ dò:** tạo một file chứa biến chưa khai báo trong `admin/src` → `S-12` phải
+**FAIL**. Đã thử: bắt đúng `'notDefinedAnywhere' is not defined`.
+
+---
+
 # 📅 PHẦN E — Khung cho các giai đoạn sau
 
 _(Chưa làm — điền chi tiết khi bắt đầu từng giai đoạn)_
 
 ### Giai đoạn 2 — Hỗ trợ & phân tích
 
-- [ ] Tra cứu học sinh theo nickname / email phụ huynh
-- [ ] Trang hồ sơ 1 bé: tiến độ, streak, lỗi sai, lịch sử giao dịch
-- [ ] Khôi phục streak thủ công (có lý do + audit log)
-- [ ] Cấp/thu Xu thủ công (có lý do + audit log)
-- [ ] Reset PIN phụ huynh từ xa
+**2a — Công cụ hỗ trợ** → ✅ **đã code xong, test ở [PHẦN F](#-phần-f--giai-đoạn-2a-tra-cứu--hồ-sơ-bé)**
+
+- [x] Tra cứu học sinh theo nickname / email phụ huynh — `TC-2.3`
+- [x] Trang hồ sơ 1 bé: tiến độ, chuỗi ngày, danh sách lỗi sai, lịch sử giao dịch Xu/XP — `TC-2.1` → `TC-2.6`
+
+**2b — Tầng dữ liệu phân tích**
+
 - [ ] `question_attempts` ghi được khi trả lời câu hỏi
+- [ ] 🔴 `ms` không vượt trần (câu bỏ dở giữa chừng phải ghi `NULL`, không ghi số rác)
+- [ ] 🔴 Trả lời được câu hỏi A: **câu hỏi nào có tỉ lệ sai cao bất thường?**
+- [ ] Trả lời được câu hỏi B: phân biệt **đoán bừa** (nhanh + sai) với **không hiểu** (chậm + sai)
+- [ ] Trả lời được câu hỏi C: **chủ đề nào bé yếu thật sự?**
+- [ ] Guest vẫn ghi được attempt với `child_id = NULL`
+- [ ] `app_events` — 📌 **hoãn**, không test giai đoạn này
+
+**2c — Inbox phản hồi**
+
 - [ ] Hộp thư báo lỗi câu hỏi hoạt động đầu-đến-cuối
+
+> ✂️ **Đã cắt khỏi GĐ 2 (2026-09-20):** khôi phục streak thủ công · cấp/thu Xu thủ công ·
+> cấp Streak Freeze · reset PIN phụ huynh từ xa. Lý do: xem `docs/admin_portal_plan.md`
+> mục _Giai đoạn 2_ và _Nhóm B_.
 
 ### Giai đoạn 3 — CMS
 
@@ -1015,6 +1197,13 @@ _(Chưa làm — điền chi tiết khi bắt đầu từng giai đoạn)_
 | TC-R.6  | Thú cưng vẫn nuôi được                      |         |      |         |
 | TC-R.7  | Sổ Tay Ôn Bài Sai: phiên nhiều câu          |         |      |         |
 | TC-R.8  | Số thưởng hiển thị khớp config              |         |      |         |
+| TC-2.1  | Migration 0004 chạy sạch                    |         |      |         |
+| TC-2.2  | Hồ sơ bé tải đủ các khối                    |         |      |         |
+| TC-2.3  | Điều hướng tới hồ sơ                        |         |      |         |
+| TC-2.4  | Đồng bộ câu sai lên `child_mistakes`        |         |      |         |
+| TC-2.5  | Số liệu hồ sơ khớp app của bé               |         |      |         |
+| TC-2.6  | Bé không tồn tại → thông báo gọn            |         |      |         |
+| TC-2.7  | Không có biến chưa khai báo _(tự động)_     |         |      |         |
 
 ---
 
@@ -1032,3 +1221,4 @@ _(Chưa làm — điền chi tiết khi bắt đầu từng giai đoạn)_
 | Vừa trả lời sai mà Sổ đã rỗng                                   | Đúng thiết kế — câu mới hẹn ôn **ngày mai**                              | Chạy mục **A.6** nếu cần test ngay                                                           |
 | `Đã thuộc làu: 0 câu` dù vừa trả lời đúng                       | Đúng thiết kế — cần **3 lần** đúng liên tiếp mới lên bậc 4               | `JSON.parse(localStorage.getItem("toan-vui-progress")).state.mistakesQueue`                  |
 | Mini game vẫn báo thưởng cũ sau khi đổi trên Admin              | App không nhận được sự kiện từ tab khác (khác origin)                    | Tải lại trang app; kiểm tra cache `toan-vui-reward-configs` — xem `TC-R.8`                   |
+| `X is not defined` (`ReferenceError` lúc chạy)                  | Biến chưa khai báo — build **không** bắt được                            | `npm run test:portal:static` → dòng `S-12` — xem `TC-2.7`                                    |

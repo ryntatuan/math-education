@@ -127,7 +127,7 @@ Kết quả: `https://admin-<tên-dự-án>.vercel.app` — không cần mua dom
 Vào **Supabase → Authentication → URL Configuration → Redirect URLs**, thêm:
 
 ```
-https://admin-<tên-dự-án>.vercel.app/**
+https://admin-toanvuive.vercel.app/**
 http://localhost:5174/**
 ```
 
@@ -141,14 +141,30 @@ Thêm cả `5173` nếu bạn muốn đăng nhập Google trên app của bé t�
 http://localhost:5173/**
 ```
 
-### 6.1. Kiểm tra nhanh sau khi deploy
+### 6.1. Các route của Admin Portal
 
-| Kiểm tra              | Cách làm                                               | Mong đợi                                     |
-| --------------------- | ------------------------------------------------------ | -------------------------------------------- |
-| SPA routing không 404 | Mở `https://admin-….vercel.app/currency` (đổi URL tay) | Vào trang Kinh tế, **không** lỗi 404         |
-| Đăng nhập Google được | Bấm **Đăng nhập bằng Google**                          | Vào Dashboard, không bị đá về trang chủ      |
-| Env đã nạp            | DevTools → Console → gõ `__sb`                         | `undefined` (log `__sb` chỉ có ở chế độ dev) |
-| Kết nối Supabase đúng | Vào **Người dùng** → bảng hiện đúng số bé              | Khớp `SELECT COUNT(*) FROM child_profiles;`  |
+| Đường dẫn          | Trang                                             |
+| ------------------ | ------------------------------------------------- |
+| `/`                | Tổng quan — 4 phép kiểm tra RLS chạy tự động      |
+| `/economy`         | Kinh tế Xu/XP — bảng cấu hình phần thưởng         |
+| `/users`           | Người dùng — danh sách bé, khoá/mở khoá tài khoản |
+| _(đường dẫn khác)_ | Tự chuyển hướng về `/`                            |
+
+Không có route nào tên `currency`. Tên đúng là **`economy`**.
+
+### 6.2. Kiểm tra nhanh sau khi deploy
+
+| Kiểm tra              | Cách làm                                                                        | Mong đợi                                                               |
+| --------------------- | ------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| **SPA routing**       | Gõ tay vào thanh địa chỉ `https://admin-toanvuive.vercel.app/economy` rồi Enter | Vào thẳng **Kinh tế Xu/XP**, không 404, **không** bị nhảy về Tổng quan |
+| Đăng nhập Google được | Bấm **Đăng nhập bằng Google**                                                   | Vào **Tổng quan**, không bị đá về trang đăng nhập                      |
+| Env đã nạp            | DevTools → Console → gõ `__sb`                                                  | `undefined` (log `__sb` chỉ có ở chế độ dev)                           |
+| Kết nối Supabase đúng | Vào **Người dùng** → đếm số dòng                                                | Khớp `SELECT COUNT(*) FROM child_profiles;`                            |
+
+> ⚠️ **Đừng test SPA routing bằng một đường dẫn bịa** (kiểu `/currency`, `/abc`).
+> Route `*` sẽ tự chuyển hướng về `/`, nên trang vẫn hiện ra bình thường — bạn **không
+> thể phân biệt** "rewrite chạy đúng" với "bị chuyển hướng". Phải dùng một route **có thật**
+> như `/economy` hoặc `/users`, và kiểm tra rằng mình đang ở **đúng trang đó**.
 
 ---
 

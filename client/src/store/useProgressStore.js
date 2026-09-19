@@ -3,6 +3,7 @@ import { persist } from "zustand/middleware";
 import useAuthStore from "./useAuthStore";
 import useUserStore from "./useUserStore";
 import { getReward } from "../services/rewardService";
+import { supabase, isSupabaseConfigured } from "../services/supabaseClient";
 
 /**
  * Ánh xạ nhiệm vụ -> khoá cấu hình phần thưởng.
@@ -20,6 +21,71 @@ const getDatePlusDays = (days = 1) => {
   d.setDate(d.getDate() + days);
   return d.toISOString().split("T")[0];
 };
+
+/**
+ * Đồng bộ 1 câu sai lên bảng `child_mistakes` (bắn rồi quên).
+ *
+ * VÌ SAO CẦN: Sổ tay lỗi sai trước đây chỉ nằm trong localStorage của máy bé,
+ * nên Admin không thấy được gì. Giai đoạn 2a cần dữ liệu này để hiện trong
+ * hồ sơ bé.
+ *
+ * CÁCH GHI: lần đầu INSERT, sau đó lưu lại `dbId` để những lần sau UPDATE đúng
+ * dòng đó — tránh sinh trùng mỗi khi bé sai lại cùng một câu.
+ *
+ * Giống sổ cái Xu/XP: đồng bộ lỗi KHÔNG được làm hỏng trải nghiệm học.
+ * Guest không có `child_id` -> bỏ qua.
+ */
+function syncMistakeToCloud(mistakeId) {
+  try {
+    if (!isSupabaseConfigured() || !supabase) return;
+    const childId = useAuthStore.getState().activeChild?.id;
+    if (!childId || !mistakeId) return;
+
+    const m = useProgressStore
+      .getState()
+      .mistakesQueue.find((x) => x.id === mistakeId);
+    if (!m) return;
+
+    const row = {
+      child_id: childId,
+      question: m.question,
+      options: m.options,
+      // Cột `answer` là TEXT (xem migration 0004): đáp án so sánh là '>', '<', '='
+      answer: m.answer == null ? "" : String(m.answer),
+      hint: m.hint ?? null,
+      explanation: m.explanation ?? null,
+      visual_display: m.visualDisplay ?? null,
+      grade: m.grade ?? 1,
+      stage: m.stage ?? 1,
+      failed_count: m.failedCount ?? 1,
+      next_review_date: m.nextReviewDate ?? null,
+      mastered: !!m.mastered,
+    };
+
+    const query = m.dbId
+      ? supabase.from("child_mistakes").update(row).eq("id", m.dbId)
+      : supabase.from("child_mistakes").insert(row).select("id").single();
+
+    query.then(
+      ({ data, error }) => {
+        if (error) {
+          console.warn("Không đồng bộ được câu sai:", error.message);
+          return;
+        }
+        const dbId = data?.id;
+        if (!dbId) return;
+        useProgressStore.setState((s) => ({
+          mistakesQueue: s.mistakesQueue.map((x) =>
+            x.id === mistakeId ? { ...x, dbId } : x,
+          ),
+        }));
+      },
+      (err) => console.warn("Lỗi đồng bộ câu sai:", err?.message),
+    );
+  } catch (e) {
+    console.warn("Lỗi đồng bộ câu sai:", e?.message);
+  }
+}
 
 const DEFAULT_DAILY_QUESTS = [
   {
@@ -233,6 +299,8 @@ const useProgressStore = create(
           (m) => m.question === questionObj.question && !m.mastered,
         );
 
+        let targetId;
+
         if (existingIdx >= 0) {
           const updated = [...queue];
           updated[existingIdx] = {
@@ -242,6 +310,7 @@ const useProgressStore = create(
             nextReviewDate: getDatePlusDays(1),
             lastFailedAt: new Date().toISOString(),
           };
+          targetId = updated[existingIdx].id;
           set({ mistakesQueue: updated });
         } else {
           const newMistake = {
@@ -266,8 +335,11 @@ const useProgressStore = create(
             createdAt: new Date().toISOString(),
             mastered: false,
           };
+          targetId = newMistake.id;
           set({ mistakesQueue: [newMistake, ...queue] });
         }
+
+        syncMistakeToCloud(targetId);
       },
 
       resolveMistake: (id, isCorrect) => {
@@ -303,6 +375,7 @@ const useProgressStore = create(
         });
 
         set({ mistakesQueue: updated });
+        syncMistakeToCloud(id);
       },
 
       getDueMistakes: () => {
