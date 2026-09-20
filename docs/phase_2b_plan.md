@@ -1,6 +1,6 @@
 # 📊 GIAI ĐOẠN 2b — Tầng dữ liệu phân tích
 
-> **Trạng thái:** 🟡 **Kế hoạch — chờ duyệt trước khi code**
+> **Trạng thái:** 🟡 **2b-1 ✅ đã test PASS (2026-09-20) · 2b-2 🟡 kế hoạch chi tiết ở mục 5, chờ duyệt**
 > **Ngày:** 2026-09-20 · **Phụ thuộc:** GĐ 2a ✅ (test PASS) · GĐ 2c ✅ (test PASS)
 > Dùng kèm `docs/admin_portal_plan.md` (mục _Giai đoạn 2 → 2b_).
 
@@ -38,7 +38,7 @@ Ba câu hỏi **chỉ `question_attempts` mới trả lời được**:
 
 | Lát      | Nội dung                                                                              | Vì sao tách                                                      |
 | -------- | ------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| **2b-1** | **Thu thập dữ liệu** — bảng + sinh `ref` + gắn vào bài học/luyện tập/ôn tập/thử thách | Tự nó đã trả lời được A/B/C **bằng SQL**. Rủi ro tập trung ở đây |
+| **2b-1** | **Thu thập dữ liệu** — bảng + sinh `ref` + gắn vào bài học/luyện tập/ôn tập/thử thách | Tự nó đã trả lời được A/B/C **bằng SQL**. ✅ **Đã test PASS (2026-09-20).** |
 | **2b-2** | **Nhìn thấy dữ liệu** — `ref` cho mini game + màn hình Admin `/analytics`             | Làm sau khi 2b-1 đã có dữ liệu thật để kiểm chứng                |
 
 > 💡 Có thể **dừng sau 2b-1** nếu bạn muốn xem dữ liệu trước rồi mới quyết định màn hình.
@@ -225,11 +225,102 @@ nằm chung một cột dễ dẫn tới kết luận sai khi gộp nhóm.
 
 ## 5. Lát 2b-2 — Nhìn thấy dữ liệu
 
-- **`generateCalculation()`** — thêm `ref` cho từng nhánh (`calc:g<N>_<phép>`). Hàm này rẽ nhánh
-  theo lớp và **không dùng `TOPICS`**, nên phải đọc kỹ 4 nhánh trước khi sửa.
-- **6 mini game** trong `GamesPage.jsx` — gắn `recordAttempt`.
-- **Màn hình Admin `/analytics`** — 3 khối A / B / C, kèm bộ lọc theo lớp và khoảng ngày.
-  Thêm link menu cạnh 📮 _Báo lỗi câu hỏi_.
+### 5.1. `ref` cho câu sinh trong mini game
+
+`generateCalculation(grade)` có **16 chỗ `return`** trải trên 5 nhánh lớp. Sửa từng chỗ là
+cách chắc chắn để sót — **không làm vậy**.
+
+Mọi nhánh đều trả về trường `equation` (VD `"12 + 7"`, `"8 × 5"`). Nên **suy ra phép tính từ
+chính kết quả**, không cần đụng vào 16 chỗ `return`:
+
+```js
+function buildCalculation(grade) { /* thân hàm cũ, nguyên vẹn */ }
+
+const CALC_OP = { "+": "add", "-": "sub", "×": "mul", ":": "div" };
+
+export function generateCalculation(grade = 1) {
+  const g = Number(grade);
+  const q = buildCalculation(g);
+  const op = Object.keys(CALC_OP).find((s) => q.equation.includes(s)) ?? "other";
+  const topic = `calc_g${g}_${CALC_OP[op] ?? "other"}`;
+  return { ...q, ref: `tmpl:${topic}`, topic };
+}
+```
+
+Nhánh lạ (không khớp ký hiệu nào) rơi về `other` — **không sập**, chỉ thô hơn.
+
+| Lớp   | `ref` sinh ra                                                         |
+| ----- | --------------------------------------------------------------------- |
+| 1     | `calc_g1_add`, `calc_g1_sub`                                          |
+| 2,3,4 | `calc_g2_add`, `calc_g2_sub`, `calc_g2_mul`, `calc_g2_div` (mỗi lớp 4) |
+| 5     | `calc_g5_add`, `calc_g5_sub`                                          |
+
+> 🔴 **Phải kiểm chứng trước khi tin:** chạy kiểm tra rằng **mọi** kết quả của
+> `generateCalculation(1..5)` đều có `ref` bắt đầu bằng `tmpl:calc_g` và `topic` khớp `ref`,
+> và **không** rơi vào `other`. Cùng bài học với `oxlint no-undef`: chưa đo thì chưa tin.
+
+### 5.2. Gắn `recordAttempt` vào 6 mini game
+
+| Game                              | Hàm sinh câu            | `ref`                    | Việc phải làm                       |
+| --------------------------------- | ----------------------- | ------------------------ | ----------------------------------- |
+| Đua Xe Toán Học (`MathRaceGame`)  | `generateQuestion`      | ✅ có từ 2b-1            | gắn `recordAttempt`                 |
+| Bắn Bóng Số Bay (`NumberPopGame`) | `generateCalculation`   | ➕ sau mục 5.1           | gắn `recordAttempt`                 |
+| Lật Thẻ Ghi Nhớ (`MemoryMatchGame`)| `generateCalculation`  | ➕                       | gắn `recordAttempt`                 |
+| Cân Bằng Thần Kỳ (`MathBalanceGame`)| **không sinh câu hỏi** | —                        | **không làm gì**                    |
+| Phòng Thủ Vũ Trụ (`SpaceDefenseGame`)| `generateCalculation`| ➕                       | gắn `recordAttempt`                 |
+| Câu Cá Thông Thái (`MathFishingGame`)| `generateCalculation`| ➕                       | gắn `recordAttempt`                 |
+
+`source = "game"`. Mỗi game cần một mốc thời gian riêng (`useRef`) đặt lại khi câu hỏi đổi —
+cùng cách đã dùng ở `PracticePage` và `ChallengePage`.
+
+> ⚠️ **Gọi `recordAttempt` ngay khi bé trả lời**, không gom tới cuối ván. Một ván có nhiều
+> câu; gom tới cuối thì mất hết dữ liệu từng câu — mà đó mới là thứ có giá trị.
+
+### 5.3. Màn hình Admin `/analytics`
+
+Route `/analytics`, link menu cạnh 📮 _Báo lỗi câu hỏi_. **Chỉ đọc** — không có thao tác ghi
+nên **không cần** `logAudit`.
+
+Ba khối, dùng đúng 3 câu SQL đã kiểm chứng ở `TC-2.23`:
+
+| Khối                     | Trả lời câu                  | Nội dung hiển thị                                                     |
+| ------------------------ | ---------------------------- | --------------------------------------------------------------------- |
+| **A — Câu hỏi hỏng**     | khuôn/câu nào sai bất thường | `ref · lượt · tỉ lệ sai`, sai nhiều nhất lên đầu, **chỉ khi ≥ 20 lượt** |
+| **B — Đoán bừa / không hiểu** | bé sai vì vội hay vì chưa hiểu | `ref · đoán bừa (nhanh+sai) · không hiểu (chậm+sai)`              |
+| **C — Kỹ năng yếu**      | kỹ năng nào yếu thật sự      | `bé · kỹ năng · lượt · tỉ lệ đúng`, yếu nhất lên đầu                  |
+
+**Bộ lọc:** khoảng ngày (mặc định **30 ngày**) và lớp (Tất cả / 1–5).
+
+> 💡 **Khối C hiển thị MỌI bé cùng lúc**, không cần bộ chọn bé — SQL đã gộp theo
+> `bé · kỹ năng`. Với vài ba bé thì đọc trực tiếp được. Đông bé rồi mới thêm lọc.
+
+> ⚠️ **Không để bảng rỗng mà không giải thích.** Chưa đủ dữ liệu thì ghi rõ
+> "cần thêm N lượt nữa mới đáng tin" — cùng bài học với Sổ Tay Ôn Bài Sai: màn hình trống
+> dễ bị hiểu nhầm là hỏng.
+
+Dùng lại `Card` / `Stat` / `Empty` của `ChildProfilePage` và cách tô màu theo tỉ lệ của
+`UsersPage` (xấu = đỏ, trung bình = vàng, tốt = xanh) để ba màn hình trông cùng một hệ.
+
+### 5.4. Test case mới (thêm vào `admin_portal_test_cases.md`, PHẦN H)
+
+| ID      | Nội dung                                                              | Bắt buộc |
+| ------- | --------------------------------------------------------------------- | -------- |
+| TC-2.24 | `generateCalculation` luôn trả `ref = tmpl:calc_g<lớp>_<phép>`         | 🔴       |
+| TC-2.25 | Chơi 1 ván mini game có câu hỏi → mỗi câu một dòng `source = 'game'`   | 🔴       |
+| TC-2.26 | `MathBalanceGame` không sinh câu → không có dòng nào (đúng thiết kế)   |          |
+| TC-2.27 | `/analytics` tải được, cả 3 khối A/B/C đều ra số liệu                  | 🔴       |
+| TC-2.28 | Đổi bộ lọc lớp và khoảng ngày → số liệu đổi theo                       |          |
+| TC-2.29 | Chưa đủ 20 lượt → hiện thông báo rõ ràng, không phải bảng trống câm    | 🔴       |
+
+### 5.5. Cần bạn xác nhận trước khi code
+
+| #   | Nội dung                                                                     |
+| --- | ---------------------------------------------------------------------------- |
+| 1   | Suy `ref` của mini game từ trường `equation` thay vì sửa 16 chỗ `return`      |
+| 2   | `Cân Bằng Thần Kỳ` không có câu hỏi → **không** gắn gì                        |
+| 3   | Khối C hiển thị mọi bé cùng lúc, chưa làm bộ chọn bé                          |
+| 4   | Ngưỡng tin cậy của khối A là **≥ 20 lượt**                                    |
+| 5   | `/analytics` chỉ đọc, **không** ghi audit log                                 |
 
 > ⚠️ **Không gộp 2b-2 vào 2b-1.** Màn hình chỉ đáng làm khi đã có dữ liệu thật để nhìn —
 > làm trước thì vừa code mò vừa không kiểm chứng được.
