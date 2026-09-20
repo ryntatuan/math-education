@@ -636,6 +636,246 @@ if (!ONLY_DB) {
       return { detail: `${generate.length} game đều ghi lượt trả lời` };
     },
   );
+
+  await test(
+    "S-15",
+    "TC-3a.4 — Mọi slide trong file tĩnh đều qua được bộ kiểm tra nội dung",
+    async () => {
+      // VÌ SAO CẦN: nội dung sắp được đưa vào DB và sửa được từ Admin Portal (GĐ 3).
+      // Bộ kiểm tra trong `admin/src/lib/contentSchema.js` là thứ chặn nội dung hỏng.
+      // Nếu chính nội dung HIỆN TẠI không qua nổi nó thì hoặc bộ kiểm tra sai, hoặc
+      // dữ liệu đã hỏng — cả hai đều phải biết TRƯỚC khi migrate, không phải sau.
+      //
+      // Cổng này chạy hoàn toàn tĩnh (không cần mạng) và canh dữ liệu tĩnh khỏi hỏng
+      // lúc sửa tay về sau.
+      const { validateLesson } = await import(
+        new URL("../admin/src/lib/contentSchema.js", import.meta.url)
+      );
+
+      const files = [
+        ["grade1Data.js", "grade1Data"],
+        ["grade2Data.js", "grade2Data"],
+        ["grade3Data.js", "grade3Data"],
+        ["grade4Data.js", "grade4Data"],
+        ["grade5Data.js", "grade5Data"],
+      ];
+
+      let soBai = 0;
+      let soSlide = 0;
+      const loi = [];
+      const gapKieu = new Set();
+
+      for (const [file, key] of files) {
+        const mod = await import(
+          new URL(`../client/src/data/${file}`, import.meta.url)
+        );
+        for (const ch of mod[key].chapters) {
+          for (const lesson of ch.lessons) {
+            soBai++;
+            soSlide += lesson.slides?.length ?? 0;
+            for (const err of validateLesson(lesson))
+              loi.push(`${lesson.id}: ${err}`);
+            for (const s of lesson.slides ?? []) gapKieu.add(s.type);
+          }
+        }
+      }
+
+      // Canary: con số đổi thì hoặc có nội dung mới (tốt — hãy cập nhật), hoặc bộ
+      // đọc đã hỏng. Cả hai đều phải lộ ra, không được im lặng.
+      assert(soBai === 362, `Mong đợi 362 bài, đọc được ${soBai}`);
+      assert(soSlide === 1505, `Mong đợi 1505 slide, đọc được ${soSlide}`);
+      assert(
+        gapKieu.size === 6,
+        `Mong đợi 6 kiểu slide, gặp ${gapKieu.size}: ${[...gapKieu].join(", ")}`,
+      );
+
+      assert(
+        loi.length === 0,
+        `${loi.length} lỗi nội dung — 3 lỗi đầu: ${loi.slice(0, 3).join(" ;; ")}`,
+      );
+
+      return {
+        detail: `${soBai} bài · ${soSlide} slide · ${gapKieu.size} kiểu — hợp lệ hết`,
+      };
+    },
+  );
+
+  await test(
+    "S-16",
+    "TC-3a.8+9 — Bộ kiểm tra nội dung BẮT ĐƯỢC nội dung hỏng",
+    async () => {
+      // 🔴 VÌ SAO PHẢI ĐO CHIỀU NÀY: `S-15` chỉ chứng minh bộ kiểm tra KHÔNG báo oan.
+      // Nó KHÔNG chứng minh bộ kiểm tra bắt được lỗi — một hàm luôn trả về mảng rỗng
+      // cũng qua được `S-15` một cách hoàn hảo. Một bộ dò hỏng mà ai cũng tin là
+      // đang bảo vệ thì tệ hơn không có bộ dò nào.
+      // Nên phải cho nó ăn nội dung hỏng đã biết, và xem nó có kêu đúng chỗ không.
+      const { validateSlide } = await import(
+        new URL("../admin/src/lib/contentSchema.js", import.meta.url)
+      );
+
+      const hopLe = {
+        type: "story",
+        content: { mascotMood: "happy", text: "Chào bé!" },
+      };
+
+      const caHong = [
+        ["kiểu slide lạ", { type: "video", content: {} }, /kiểu slide lạ/],
+        ["thiếu type", { content: {} }, /thiếu .type./],
+        ["thiếu content", { type: "story" }, /content. không phải một object/],
+        [
+          "story thiếu text",
+          { type: "story", content: { mascotMood: "happy" } },
+          /thiếu khoá bắt buộc .text./,
+        ],
+        [
+          "story text sai kiểu",
+          { type: "story", content: { mascotMood: "x", text: 123 } },
+          /text. phải là chuỗi/,
+        ],
+        [
+          "quiz đáp án ngoài options",
+          {
+            type: "quiz",
+            content: {
+              question: "2+2?",
+              options: [3, 4, 5],
+              answer: 7,
+              mascotHint: "h",
+            },
+          },
+          /KHÔNG nằm trong .options./,
+        ],
+        [
+          "quiz options rỗng",
+          {
+            type: "quiz",
+            content: {
+              question: "2+2?",
+              options: [],
+              answer: 4,
+              mascotHint: "h",
+            },
+          },
+          /options. rỗng/,
+        ],
+        // 🔴 Ca quan trọng nhất: `dialogue` từng bị bỏ sót vì kế hoạch mô tả nó là
+        // "có scene" chứ không phải câu hỏi. Nếu ai đó xoá nhánh này khỏi bộ kiểm
+        // tra, đúng ca này sẽ lộ ra.
+        [
+          "dialogue đáp án ngoài options",
+          {
+            type: "dialogue",
+            content: {
+              badge: "b",
+              title: "t",
+              dialogueList: [],
+              question: "q",
+              options: ["a", "b"],
+              correctAnswer: "zzz",
+              explanation: "e",
+            },
+          },
+          /KHÔNG nằm trong .options./,
+        ],
+        [
+          "concept có shape mà thiếu shapeLabel",
+          {
+            type: "concept",
+            content: { badge: "b", title: "t", shape: "square" },
+          },
+          /phải đi cùng nhau/,
+        ],
+        [
+          "visual number sai kiểu",
+          { type: "visual", content: { text: "x", number: "ba" } },
+          /number. phải là số/,
+        ],
+      ];
+
+      const hong = [];
+      for (const [ten, slide, mau] of caHong) {
+        const loi = validateSlide(slide);
+        if (loi.length === 0) hong.push(`${ten} — KHÔNG báo lỗi gì`);
+        else if (!loi.some((l) => mau.test(l)))
+          hong.push(`${ten} — báo lỗi không đúng: ${loi[0]}`);
+      }
+
+      // Chiều ngược lại: slide hợp lệ KHÔNG được bị báo oan.
+      if (validateSlide(hopLe).length > 0) hong.push("slide hợp lệ bị báo oan");
+
+      assert(hong.length === 0, `Bộ dò hỏng: ${hong.join(" | ")}`);
+
+      return {
+        detail: `${caHong.length} ca hỏng đều bị bắt · slide hợp lệ vẫn qua`,
+      };
+    },
+  );
+  await test(
+    "S-17",
+    "TC-3a.2 — 0008 chỉ cho anon đọc bài đã publish, và không hở bảng phiên bản",
+    () => {
+      // 🔴 VÌ SAO KIỂM Ở TẦNG NGUỒN: đây là yêu cầu bảo mật quan trọng nhất của lát 3a.
+      // Kiểm lúc chạy là KHÔNG đủ: khi chưa có bài nháp nào trong DB thì phép thử
+      // "anon không thấy bài nháp" luôn đúng — kể cả khi policy hở hoàn toàn. Một
+      // phép thử luôn đúng thì không bảo vệ được gì.
+      // Nên phải đọc thẳng định nghĩa policy trong file migration.
+      const sql = read("supabase/migrations/0008_content_schema.sql");
+
+      const docBai = sql.match(
+        /CREATE POLICY "content_lessons_public_read"[\s\S]*?;/,
+      );
+      assert(
+        docBai,
+        "Không thấy policy content_lessons_public_read trong 0008",
+      );
+      assert(
+        /status\s*=\s*'published'/.test(docBai[0]),
+        "Policy đọc công khai của content_lessons KHÔNG giới hạn theo status — " +
+          "bài nháp sẽ lộ ra cho mọi người có anon key.",
+      );
+
+      const phienBan = sql.match(
+        /CREATE POLICY "content_lesson_versions_admin_all"[\s\S]*?;/,
+      );
+      assert(
+        phienBan,
+        "Không thấy policy content_lesson_versions_admin_all trong 0008",
+      );
+      assert(
+        /is_admin\(\)/.test(phienBan[0]),
+        "Policy của content_lesson_versions không gọi is_admin()",
+      );
+
+      // Bảng phiên bản phải KHÔNG có policy nào khác — thêm một policy cho `anon`
+      // là mở đường đọc toàn bộ lịch sử nội dung.
+      const soPolicy = (
+        sql.match(/CREATE POLICY "content_lesson_versions/g) || []
+      ).length;
+      assert(
+        soPolicy === 1,
+        `content_lesson_versions có ${soPolicy} policy — mong đợi đúng 1 (chỉ admin)`,
+      );
+
+      // Không được có `USING (true)` cho bất kỳ bảng nội dung nào ngoài lớp/chương.
+      for (const bang of [
+        "content_lessons_public_read",
+        "content_lesson_versions_admin_all",
+      ]) {
+        const block = sql.match(
+          new RegExp(`CREATE POLICY "${bang}"[\\s\\S]*?;`),
+        );
+        assert(
+          block && !/USING\s*\(\s*true\s*\)/.test(block[0]),
+          `Policy ${bang} dùng USING (true) — đúng loại lỗ hổng đã vá ở GĐ 0`,
+        );
+      }
+
+      return {
+        detail:
+          "bài học chỉ lộ bản published · phiên bản chỉ admin · không có USING(true)",
+      };
+    },
+  );
 }
 
 // ═══════════════════════════ DB TESTS ═══════════════════════════
@@ -904,6 +1144,72 @@ if (!ONLY_STATIC) {
         return { detail: "gọi được nhưng RLS trả 0 dòng — không rò rỉ" };
       },
     );
+
+    // ── Nhóm D cho GĐ 3 (lát 3a) — cần migration 0008 đã chạy ──
+    // Chưa chạy thì SKIP kèm lý do rõ ràng, chứ không báo FAIL oan.
+
+    await test(
+      "D-14",
+      "TC-3a.3 — Anon KHÔNG đọc được bảng phiên bản nội dung",
+      async () => {
+        // Phép thử này KHÔNG vô nghĩa khi bảng rỗng: sau khi chạy content-seed,
+        // bảng phiên bản có 362 dòng. RLS hở một chút là anon đọc được ngay.
+        // Cùng nguyên tắc "không có policy cho anon" đã dùng ở `question_attempts`.
+        const r = await rest(
+          "content_lesson_versions?select=lesson_id&limit=5",
+        );
+        if (r.status === 404)
+          return {
+            skip: true,
+            detail:
+              "Chưa chạy 0008_content_schema.sql — bỏ qua nhóm D của GĐ 3",
+          };
+        const so = Array.isArray(r.body) ? r.body.length : 0;
+        assert(
+          so === 0,
+          r.ok
+            ? `🔴 anon ĐỌC ĐƯỢC ${so} dòng của content_lesson_versions`
+            : `HTTP ${r.status} — cần xác nhận là bị chặn quyền, không phải lỗi khác`,
+        );
+        return { detail: "bị RLS chặn — 0 dòng" };
+      },
+    );
+
+    await test(
+      "D-15",
+      "TC-3a.5 — Anon đọc được bài đã publish, KHÔNG đọc được bài nháp",
+      async () => {
+        const pub = await rest("content_lessons?select=id&limit=3");
+        if (pub.status === 404)
+          return {
+            skip: true,
+            detail:
+              "Chưa chạy 0008_content_schema.sql — bỏ qua nhóm D của GĐ 3",
+          };
+        assert(pub.ok, `HTTP ${pub.status} đọc content_lessons`);
+
+        // Lọc thẳng `status=eq.draft`. Nếu policy đọc công khai hở thì truy vấn
+        // này trả về bài nháp; nếu kín thì trả 0 dòng.
+        const nhap = await rest(
+          "content_lessons?select=id&status=eq.draft&limit=5",
+        );
+        const soNhap = Array.isArray(nhap.body) ? nhap.body.length : 0;
+        assert(
+          soNhap === 0,
+          `🔴 anon ĐỌC ĐƯỢC ${soNhap} bài nháp: ${JSON.stringify(nhap.body).slice(0, 200)}`,
+        );
+
+        if (pub.body.length === 0)
+          return {
+            skip: true,
+            detail:
+              "0008 đã chạy nhưng chưa có bài — hãy chạy các file trong supabase/content-seed/",
+          };
+        return {
+          detail: `đọc được bài published · 0 bài nháp lộ ra`,
+        };
+      },
+    );
   }
 }
 
@@ -935,6 +1241,19 @@ if (fail > 0) {
   for (const r of results.filter((x) => x.status === "FAIL")) {
     console.log(`     ${r.id} — ${r.name}`);
     console.log(`        ${r.detail}`);
+  }
+}
+
+// SKIP phải HIỆN RA kèm lý do. Trước đây dòng SKIP bị bỏ qua khỏi báo cáo, nên
+// chỉ thấy mỗi con số ở dòng tổng — không biết bài nào bị bỏ qua, vì sao, và có
+// cần làm gì không. Một test bị bỏ qua mà không ai biết là một lỗ hổng che mất
+// lỗ hổng khác: dòng "2 SKIP" trông y hệt nhau dù là "chưa cần chạy" hay
+// "quên chạy migration".
+if (skip > 0) {
+  console.log("\n  ⏭️  ĐÃ BỎ QUA — và vì sao:");
+  for (const r of results.filter((x) => x.status === "SKIP")) {
+    console.log(`     ${r.id} — ${r.name}`);
+    console.log(`        ${r.detail ?? "(không có lý do — hãy bổ sung)"}`);
   }
 }
 

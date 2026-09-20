@@ -1,7 +1,7 @@
 # 🧪 Test Cases — Admin Portal & Hệ thống kinh tế
 
-> **Cập nhật:** 2026-09-20 · **Trạng thái:** GĐ 0 ✅ · GĐ 1 ✅ · GĐ 2a ✅ đã test PASS · GĐ 2c ✅ đã test PASS · GĐ 2b ✅ đã test PASS (2b-1 + 2b-2) · 📱 Admin Portal responsive ✅
-> **68 test case** · Dùng kèm với `docs/admin_portal_plan.md`.
+> **Cập nhật:** 2026-09-20 · **Trạng thái:** GĐ 0 ✅ · GĐ 1 ✅ · GĐ 2a ✅ đã test PASS · GĐ 2c ✅ đã test PASS · GĐ 2b ✅ đã test PASS (2b-1 + 2b-2) · 📱 Admin Portal responsive ✅ · GĐ 3a 🔧 code xong, chờ test
+> **78 test case** · Dùng kèm với `docs/admin_portal_plan.md`.
 
 ---
 
@@ -2008,6 +2008,253 @@ console.log(
 
 ---
 
+# 📚 PHẦN J — GIAI ĐOẠN 3: CMS — lát 3a (đưa nội dung lên DB)
+
+> 📄 Kế hoạch: [`docs/phase_3a_plan.md`](phase_3a_plan.md)
+>
+> ⚠️ **Lát 3a KHÔNG có giao diện, và KHÔNG đổi hành vi của app.** Cuối 3a, app của bé
+> vẫn đọc file tĩnh như cũ, vì `content_source` vẫn là `"static"`. Bật đọc từ DB là
+> việc của lát 3d — cố ý để sau, khi dữ liệu đã được kiểm.
+
+### Cách chạy phần này
+
+```powershell
+# 1. Chạy 0008_content_schema.sql trong Supabase SQL Editor
+# 2. Sinh file SQL nội dung:
+node scripts/migrate-content.mjs --sql
+# 3. Dán lần lượt các file trong supabase/content-seed/ vào SQL Editor (01 → 99)
+# 4. Đối chiếu — KHÔNG cần key đặc biệt nào:
+node scripts/migrate-content.mjs --verify
+```
+
+> 💡 **Không cần tạo hay dán bất kỳ khoá bí mật nào.** Kế hoạch 3a ban đầu định ghi thẳng
+> vào DB qua REST với một key có quyền ghi. Khi viết code mới thấy đường khác rẻ và an
+> toàn hơn: **sinh file `.sql` rồi dán vào SQL Editor** — chỗ đó vốn chạy bằng quyền cao
+> nhất sẵn rồi, và bạn đã làm việc này 8 lần với các migration. Cách ghi thẳng (`--apply`)
+> vẫn còn, nhưng chỉ cần khi phải chạy đi chạy lại nhiều lần.
+
+---
+
+### TC-3a.1 — Migration 0008 chạy sạch 🔴
+
+**Bước:** Chạy `supabase/migrations/0008_content_schema.sql` → `Success. No rows returned`.
+**Chạy lại lần 2 cũng phải thành công** (idempotent).
+
+```sql
+SELECT tablename FROM pg_tables
+WHERE schemaname = 'public' AND tablename LIKE 'content%' ORDER BY 1;
+-- Mong đợi: content_chapters · content_grades · content_lesson_versions · content_lessons
+
+SELECT key, value FROM public.app_config
+WHERE key IN ('content_source','content_version') ORDER BY key;
+-- Mong đợi: content_source = "static" · content_version = 0
+```
+
+**Chú ý:** bảng `content_chapters` **cố ý KHÔNG có cột `total_lessons`**. File tĩnh có
+trường đó nhưng **5 chương ghi sai** (xem `TC-3a.5`); chép con số sai vào DB là biến nó
+thành "sự thật" trong DB.
+
+---
+
+### TC-3a.2 — 🔴 Bài nháp KHÔNG lộ ra cho khách
+
+> Đây là **yêu cầu bảo mật quan trọng nhất** của lát 3a. Viết `USING (true)` cho
+> `content_lessons` là mở đường cho mọi người có anon key đọc được bài chưa publish —
+> đúng loại lỗ hổng đã phải vá ở GĐ 0 với bảng `leaderboard`.
+
+**Bước 1 — cổng tự động (kiểm ở tầng nguồn):**
+
+```powershell
+npm run test:portal:static        # → dòng S-17
+```
+
+**Bước 2 — thử thật bằng anon key** (Console app chính, **đang là Khách**):
+
+```js
+const r = await window.__sb
+  .from("content_lessons")
+  .select("id,status")
+  .eq("status", "draft");
+console.log({ soBaiNhap: r.data?.length, error: r.error?.message });
+// Mong đợi: 0 bài nháp
+```
+
+> ⚠️ **Vì sao phải có CẢ HAI bước.** Sau khi migrate, mọi bài đều là `published` → chưa có
+> bài nháp nào trong DB → bước 2 trả về 0 dòng **dù policy có hở hoàn toàn**. Một phép thử
+> luôn đúng thì không bảo vệ được gì. Nên bước 1 đọc thẳng định nghĩa policy trong file
+> migration, chỗ mà "bài nháp" luôn tồn tại dưới dạng khả năng.
+>
+> ✅ **Bộ dò đã được đo:** tạm đổi policy thành `USING (true)` → `S-17` **FAIL** và nói rõ
+> `Policy đọc công khai của content_lessons KHÔNG giới hạn theo status`.
+
+---
+
+### TC-3a.3 — 🔴 `anon` KHÔNG đọc được bảng phiên bản
+
+> Khác `TC-3a.2`: phép thử này **không** vô nghĩa khi chưa có bài nháp, vì sau khi chạy
+> `content-seed`, bảng phiên bản có **362 dòng**. RLS hở một chút là đọc được ngay.
+
+```powershell
+npm run test:portal      # → dòng D-14
+```
+
+```js
+const r = await window.__sb
+  .from("content_lesson_versions")
+  .select("lesson_id")
+  .limit(5);
+console.log({ soDong: r.data?.length, error: r.error?.message });
+// Mong đợi: 0 dòng (hoặc lỗi quyền)
+```
+
+---
+
+### TC-3a.4 — Script báo đúng quy mô nội dung 🔴 _(tự động)_
+
+```powershell
+node scripts/migrate-content.mjs          # chạy thử, không ghi gì
+```
+
+**Mong đợi:**
+
+```
+  Đọc từ file tĩnh:
+    5 lớp · 41 chương · 362 bài · 1505 slide
+  ✅ khớp số đã đo (5/41/362/1505)
+  ✅ tất cả slide hợp lệ
+```
+
+> ⚠️ Số **41 chương**, không phải 50. Comment cũ trong `curriculum.js` ghi "50 Chapters
+> total" là **sai** — Lớp 4 chỉ có 6 chương, Lớp 5 chỉ có 5. Đã sửa comment.
+>
+> Cũng có cổng tự động: `npm run test:portal:static` → `S-15` kiểm **cả 1505 slide**, và
+> `S-16` kiểm chiều ngược lại (bộ kiểm tra có bắt được lỗi không).
+
+---
+
+### TC-3a.5 — Số dòng trong DB khớp, và số bài mỗi chương là số THẬT 🔴
+
+**Bước:** chạy hết các file `content-seed/` (01 → 99), rồi:
+
+```powershell
+node scripts/migrate-content.mjs --verify
+```
+
+**Mong đợi:** mọi chỉ số ✅, đặc biệt 5 dòng cuối:
+
+```
+  ✅ Chương g2-c8 (metadata cũ khai sai)          2       2
+  ✅ Chương g2-c9 (metadata cũ khai sai)          2       2
+  ✅ Chương g2-c10 (metadata cũ khai sai)         3       3
+  ✅ Chương g3-c9 (metadata cũ khai sai)          2       2
+  ✅ Chương g3-c10 (metadata cũ khai sai)         3       3
+```
+
+> 🔴 Đây là chỗ dễ sai nhất: file tĩnh khai 5 chương này có 10–12 bài nhưng thật chỉ 2–3.
+> Nếu script chép `totalLessons` vào DB thì bảng vẫn "đủ dòng", màn hình vẫn chạy — nhưng
+> DB mang sẵn một con số sai. Phép thử này kiểm riêng đúng 5 chương đó.
+>
+> 📌 Ghi chú cho tương lai: 5 chương đó **thiếu nội dung thật** (thiết kế 10–12 bài, mới
+> viết 2–3). Không phải lỗi kỹ thuật — CMS ở lát 3c sẽ giúp điền nốt.
+
+---
+
+### TC-3a.6 — So TỪNG BÀI, không chỉ đếm tổng 🔴
+
+Cũng trong `--verify`. Nó so từng bài về `title`, `lesson_type`, `description` **và toàn
+bộ `payload`** (so sánh JSON đã chuẩn hoá).
+
+**Mong đợi:** `Bài bị thiếu = 0` và `Bài có nội dung khác = 0`.
+
+> ⚠️ Đếm tổng khớp **không** bảo đảm nội dung khớp — có thể thừa bài này, thiếu bài kia mà
+> tổng vẫn đủ. Nên phải so từng bài.
+>
+> 🔴 **`jsonb` của PostgreSQL KHÔNG giữ thứ tự khoá của object** — nó lưu dạng chuẩn hoá
+> (sắp theo độ dài khoá rồi theo byte). Nên `JSON.stringify(giá_trị_đọc_về)` **không bao
+> giờ** bằng `JSON.stringify(object gốc)`, **dù nội dung y hệt**. Phép so sánh **phải sắp
+> xếp khoá trước** (đệ quy), và **giữ nguyên thứ tự mảng** — thứ tự slide là một phần
+> nội dung, đổi thứ tự nghĩa là nội dung khác.
+>
+> 🐞 **Đã mắc đúng lỗi này:** lần chạy `--verify` đầu tiên báo **cả 362/362 bài** "có nội
+> dung khác" trong khi đếm số dòng đúng hết. Dữ liệu sạch — **cái thước mới là thứ hỏng**.
+> Cách nhận ra: **dữ liệu hỏng thật thì hỏng lẻ tẻ, không hỏng đều 100%.** Khi mọi thứ
+> đều lệch, nghi phép so sánh trước tiên.
+>
+> 💡 `--verify` giờ in rõ **trường nào lệch** (VD `g1-c1-l1 (payload)`), không chỉ id —
+> lần trước chỉ có danh sách id nên phải viết thêm script mới tìm ra nguyên nhân.
+
+---
+
+### TC-3a.7 — Chạy lại không sinh dòng trùng
+
+**Bước:** dán lại một file `content-seed/` bất kỳ, rồi chạy `--verify` lần nữa.
+
+**Mong đợi:** số dòng **không đổi** (mọi `INSERT` đều có `ON CONFLICT … DO UPDATE`).
+
+> ✅ **Đã chạy thật:** dán lại `02-bai-lop-1.sql` (84 bài) lần thứ hai → `--verify` vẫn báo
+> **362 bài / 1505 slide**, không thành 446. Chạy lại an toàn.
+>
+> ℹ️ Bảng phiên bản cũng không sinh dòng trùng nhờ `ON CONFLICT (lesson_id, version)
+DO NOTHING` — và khoá chính `(lesson_id, version)` là chốt chặn thứ hai: kể cả quên
+> `ON CONFLICT` thì PostgreSQL vẫn từ chối, chỉ khác là báo lỗi thay vì bỏ qua.
+
+---
+
+### TC-3a.8 — Bộ kiểm tra BẮT ĐƯỢC quiz sai đáp án 🔴
+
+### TC-3a.9 — Bộ kiểm tra BẮT ĐƯỢC `dialogue` sai đáp án 🔴
+
+Cả hai nằm trong cổng tự động:
+
+```powershell
+npm run test:portal:static        # → dòng S-16
+```
+
+**Mong đợi:** `10 ca hỏng đều bị bắt · slide hợp lệ vẫn qua`.
+
+> 🔴 **Vì sao phải đo chiều này.** `S-15` chỉ chứng minh bộ kiểm tra **không báo oan**
+> (1505 slide thật đều qua). Một hàm luôn trả về mảng rỗng cũng qua được `S-15` hoàn hảo.
+> `S-16` cho bộ kiểm tra ăn 10 ca hỏng đã biết và bắt nó phải kêu — trong đó có ca
+> **`dialogue` đáp án ngoài `options`**, đúng chỗ mà bản đầu của chính bộ kiểm tra đã bỏ sót.
+
+---
+
+### TC-3a.10 — `content_source` vẫn là `"static"` 🔴
+
+**Bước:** sau khi chạy hết `content-seed/`, kiểm:
+
+```sql
+SELECT key, value FROM public.app_config
+WHERE key IN ('content_source','content_version') ORDER BY key;
+-- Mong đợi: content_source = "static"  ·  content_version = 1
+```
+
+**Và kiểm app của bé bằng mắt:** mở `localhost:5173`, vào một bài học — nội dung phải
+**y như trước**. Không có gì đổi, vì app vẫn đọc file tĩnh.
+
+> 🔴 **Đây là phép thử chứng minh lát 3a an toàn.** Script migrate **cố ý không đụng**
+> `content_source`. Nếu nó tự đổi sang `"remote"` thì lát 3a đã thành lát 3d, và mọi thứ sẽ
+> đổi hành vi cùng lúc với việc dựng dữ liệu — đúng thứ cần tránh.
+
+---
+
+### Ghi chú: hai chỗ kế hoạch 3a ghi sai, đã sửa bằng số đo
+
+Kế hoạch 3a (bản được duyệt) chia khoá bắt buộc theo suy luận. Đo tần suất từng khoá trên
+1505 slide thật thì lộ ra 2 chỗ sai — và nếu viết theo kế hoạch thì **bộ kiểm tra sẽ chặn
+71 slide hợp lệ**:
+
+| Khoá                      | Kế hoạch ghi    | Đo được               |
+| ------------------------- | --------------- | --------------------- |
+| `concept.rule`            | bắt buộc        | **291/296 = 98,3%**   |
+| `concept.explanation`     | (ngầm) bắt buộc | **287/296 = 97,0%**   |
+| `visual.items` + `number` | bắt buộc        | **chỉ 11/82 = 13,4%** |
+
+→ Quy tắc rút ra, đã ghi vào đầu `admin/src/lib/contentSchema.js`: một khoá chỉ được coi là
+**bắt buộc** khi nó có mặt ở **100%** slide của kiểu đó. Thấy nó trong vài ví dụ là chưa đủ.
+
+---
+
 # �📅 PHẦN E — Khung cho các giai đoạn sau
 
 _(Chưa làm — điền chi tiết khi bắt đầu từng giai đoạn)_
@@ -2043,14 +2290,20 @@ _(Chưa làm — điền chi tiết khi bắt đầu từng giai đoạn)_
 
 ### Giai đoạn 3 — CMS
 
-- [ ] Migration 795 KB lên `content_*` — đối chiếu số lượng bài khớp
-- [ ] 🔴 `anon` **không** đọc được bài `status = 'draft'`
-- [ ] 🔴 Tắt `content_source = 'static'` → app chạy lại bằng data cứng
-- [ ] Admin sửa bài → app nhận nội dung mới không cần build
-- [ ] Publish bài lỗi → **revert** được về phiên bản trước
-- [ ] Guest mode vẫn học được
-- [ ] Offline lần đầu (chưa từng mở app) vẫn dùng được file tĩnh
-- [ ] Biết được 1 bé cụ thể đang dùng `content_version` nào
+> 📄 Lát 3a (schema + migrate + bộ kiểm tra): [`docs/phase_3a_plan.md`](phase_3a_plan.md)
+> → 🔧 **đã code xong**, test ở **PHẦN J**
+>
+> 🎯 Chia lát vì đây là giai đoạn **rủi ro cao nhất** của cả kế hoạch. Lát 3a **không có
+> giao diện** và **không đổi hành vi app** — dựng và kiểm dữ liệu trước, bật lên sau.
+
+- [ ] Migration nội dung lên `content_*` — 🔧 lát 3a đã code (đối chiếu bằng `--verify`) — `TC-3a.1` → `TC-3a.7`
+- [ ] 🔴 `anon` **không** đọc được bài `status = 'draft'` — 🔧 `S-17` + `TC-3a.2`, `TC-3a.3`
+- [ ] 🔴 Tắt `content_source = 'static'` → app chạy lại bằng data cứng _(lát 3d)_
+- [ ] Admin sửa bài → app nhận nội dung mới không cần build _(lát 3c + 3d)_
+- [ ] Publish bài lỗi → **revert** được về phiên bản trước _(lát 3c)_
+- [ ] Guest mode vẫn học được _(lát 3d)_
+- [ ] Offline lần đầu (chưa từng mở app) vẫn dùng được file tĩnh _(lát 3d)_
+- [ ] Biết được 1 bé cụ thể đang dùng `content_version` nào _(lát 3d)_
 
 ### Giai đoạn 4 — Nâng cao
 
@@ -2063,76 +2316,86 @@ _(Chưa làm — điền chi tiết khi bắt đầu từng giai đoạn)_
 
 # 📊 BẢNG THEO DÕI KẾT QUẢ
 
-| ID      | Tên test                                    | Kết quả | Ngày       | Ghi chú                    |
-| ------- | ------------------------------------------- | ------- | ---------- | -------------------------- |
-| TC-0.1  | Migration chạy sạch                         |         |            |                            |
-| TC-0.2  | Vá lỗ hổng leaderboard                      |         |            |                            |
-| TC-0.3  | User thường không đọc được hồ sơ người khác |         |            |                            |
-| TC-0.4  | `is_admin()` trả đúng                       |         |            |                            |
-| TC-0.5  | `admin_audit_log` bất biến                  |         |            |                            |
-| TC-0.6  | Admin Portal: đăng nhập đúng người          |         |            |                            |
-| TC-0.7  | Thông báo lỗi phân biệt đúng                |         |            |                            |
-| TC-0.8  | Bundle tách biệt                            |         |            |                            |
-| TC-1.1  | Seed đúng giá trị gốc                       |         |            |                            |
-| TC-1.2  | Phát thưởng khớp cấu hình                   |         |            |                            |
-| TC-1.3  | 🔴 Đổi config → app nhận ngay               |         |            |                            |
-| TC-1.4  | Hệ số nhân X2                               |         |            |                            |
-| TC-1.5  | Công thức lên cấp                           |         |            |                            |
-| TC-1.6  | Tắt một mục phần thưởng                     |         |            |                            |
-| TC-1.7  | Sổ cái ghi đúng và đầy đủ                   |         |            |                            |
-| TC-1.8  | Mua hàng ghi sổ âm                          |         |            |                            |
-| TC-1.9  | Audit log ghi thay đổi config               |         |            |                            |
-| TC-1.10 | Validate form chặn dữ liệu sai              |         |            |                            |
-| TC-1.11 | Offline dùng giá trị mặc định               |         |            |                            |
-| TC-1.12 | Guest mode không nhận thưởng                |         |            |                            |
-| TC-1.13 | Danh sách người dùng tải đúng               |         |            |                            |
-| TC-1.14 | Tìm kiếm theo tên bé / email phụ huynh      |         |            |                            |
-| TC-1.15 | Phân trang                                  |         |            |                            |
-| TC-1.16 | Khoá / Mở khoá tài khoản                    |         |            |                            |
-| TC-1.17 | Cảnh báo Xu bất thường                      |         |            |                            |
-| TC-R.1  | Guest mode vẫn học được                     |         |            |                            |
-| TC-R.2  | Tiến độ guest chuyển lên cloud              |         |            |                            |
-| TC-R.3  | Đồng bộ localStorage ↔ Supabase             |         |            |                            |
-| TC-R.4  | Bảng xếp hạng vẫn chạy                      |         |            |                            |
-| TC-R.5  | 6 mini game vẫn chơi được                   |         |            |                            |
-| TC-R.6  | Thú cưng vẫn nuôi được                      |         |            |                            |
-| TC-R.7  | Sổ Tay Ôn Bài Sai: phiên nhiều câu          |         |            |                            |
-| TC-R.8  | Số thưởng hiển thị khớp config              |         |            |                            |
-| TC-2.1  | Migration 0004 chạy sạch                    | PASS    | 2026-09-20 |                            |
-| TC-2.2  | Hồ sơ bé tải đủ các khối                    | PASS    | 2026-09-20 |                            |
-| TC-2.3  | Điều hướng tới hồ sơ                        | PASS    | 2026-09-20 |                            |
-| TC-2.4  | Đồng bộ câu sai lên `child_mistakes`        | PASS    | 2026-09-20 |                            |
-| TC-2.5  | Số liệu hồ sơ khớp app của bé               | PASS    | 2026-09-20 |                            |
-| TC-2.6  | Bé không tồn tại → thông báo gọn            | PASS    | 2026-09-20 |                            |
-| TC-2.7  | Không có biến chưa khai báo _(tự động)_     | PASS    | 2026-09-20 |                            |
-| TC-2.8  | Migration 0005 chạy sạch                    | PASS    | 2026-09-20 | 5 policy đủ, đúng vai trò  |
-| TC-2.9  | Đã đăng nhập thì báo lỗi gắn với bé         | PASS    | 2026-09-20 |                            |
-| TC-2.10 | Khách vẫn báo được, `child_id` = NULL       | PASS    | 2026-09-20 |                            |
-| TC-2.11 | Quyền ẩn danh bị khoá chặt                  | PASS    | 2026-09-20 | 6/6 phép thử đều bị chặn   |
-| TC-2.12 | Màn hình Báo lỗi câu hỏi trên Admin         | PASS    | 2026-09-20 |                            |
-| TC-2.13 | Đổi trạng thái có ghi audit log             | PASS    | 2026-09-20 |                            |
-| TC-2.14 | Migration 0006 chạy sạch                    | PASS    | 2026-09-20 |                            |
-| TC-2.15 | Trả lời 1 câu → có dòng ghi lại             | PASS    | 2026-09-20 |                            |
-| TC-2.16 | Câu sinh tự động ID theo KHUÔN              | PASS    | 2026-09-20 |                            |
-| TC-2.17 | `source` phân biệt luyện tập / ôn sai       | PASS    | 2026-09-20 |                            |
-| TC-2.18 | Khách KHÔNG ghi gì                          | PASS    | 2026-09-20 |                            |
-| TC-2.19 | `ms` vượt trần ghi NULL                     | PASS    | 2026-09-20 |                            |
-| TC-2.20 | `anon` không đọc / sửa / xoá được           | PASS    | 2026-09-20 |                            |
-| TC-2.21 | Hàm purge không gọi được qua API            | PASS    | 2026-09-20 |                            |
-| TC-2.22 | `purge_old_attempts(10)` bị từ chối         | PASS    | 2026-09-20 |                            |
-| TC-2.23 | 3 câu SQL trả lời được A/B/C                | PASS    | 2026-09-20 |                            |
-| TC-2.24 | `generateCalculation` đánh ID theo khuôn    | PASS    | 2026-09-20 | 1500 lượt, 16 khuôn, 0 lỗi |
-| TC-2.25 | Mini game → mỗi lần trả lời một dòng        | PASS    | 2026-09-20 | `S-14`: 6 game đều ghi     |
-| TC-2.26 | Cân Bằng Thần Kỳ ghi `ref` riêng            | PASS    | 2026-09-20 | `calc_balance_*`           |
-| TC-2.27 | `/analytics` tải được, 3 khối A/B/C có số   | PASS    | 2026-09-20 | 30 lượt, khối B/C có dòng  |
-| TC-2.28 | Bộ lọc lớp + khoảng ngày đổi số liệu        | PASS    | 2026-09-20 |                            |
-| TC-2.29 | Chưa đủ lượt → thông báo rõ ràng            | PASS    | 2026-09-20 | "còn 3 khuôn chưa đủ"      |
-| TC-2.30 | Migration 0007 + khách không gọi được hàm   | PASS    | 2026-09-20 | `D-13`: HTTP 401           |
-| TC-M.1  | Sidebar thành ngăn kéo ở mobile             | PASS    | 2026-09-20 | 3 cách đóng đều đúng       |
-| TC-M.2  | Không cuộn ngang cấp trang ở mọi route      | PASS    | 2026-09-20 | 6 route, 375px             |
-| TC-M.3  | Bảng rộng cuộn trong hộp riêng              | PASS    | 2026-09-20 | bảng 860px trong hộp 341px |
-| TC-M.4  | Desktop không đổi                           | PASS    | 2026-09-20 | 1280px: sidebar tĩnh 256px |
-| TC-M.5  | Menu đủ tương phản để đọc                   | PASS    | 2026-09-20 | 19/19 mục ≥ 4.5:1          |
+| ID       | Tên test                                    | Kết quả | Ngày       | Ghi chú                                  |
+| -------- | ------------------------------------------- | ------- | ---------- | ---------------------------------------- |
+| TC-0.1   | Migration chạy sạch                         |         |            |                                          |
+| TC-0.2   | Vá lỗ hổng leaderboard                      |         |            |                                          |
+| TC-0.3   | User thường không đọc được hồ sơ người khác |         |            |                                          |
+| TC-0.4   | `is_admin()` trả đúng                       |         |            |                                          |
+| TC-0.5   | `admin_audit_log` bất biến                  |         |            |                                          |
+| TC-0.6   | Admin Portal: đăng nhập đúng người          |         |            |                                          |
+| TC-0.7   | Thông báo lỗi phân biệt đúng                |         |            |                                          |
+| TC-0.8   | Bundle tách biệt                            |         |            |                                          |
+| TC-1.1   | Seed đúng giá trị gốc                       |         |            |                                          |
+| TC-1.2   | Phát thưởng khớp cấu hình                   |         |            |                                          |
+| TC-1.3   | 🔴 Đổi config → app nhận ngay               |         |            |                                          |
+| TC-1.4   | Hệ số nhân X2                               |         |            |                                          |
+| TC-1.5   | Công thức lên cấp                           |         |            |                                          |
+| TC-1.6   | Tắt một mục phần thưởng                     |         |            |                                          |
+| TC-1.7   | Sổ cái ghi đúng và đầy đủ                   |         |            |                                          |
+| TC-1.8   | Mua hàng ghi sổ âm                          |         |            |                                          |
+| TC-1.9   | Audit log ghi thay đổi config               |         |            |                                          |
+| TC-1.10  | Validate form chặn dữ liệu sai              |         |            |                                          |
+| TC-1.11  | Offline dùng giá trị mặc định               |         |            |                                          |
+| TC-1.12  | Guest mode không nhận thưởng                |         |            |                                          |
+| TC-1.13  | Danh sách người dùng tải đúng               |         |            |                                          |
+| TC-1.14  | Tìm kiếm theo tên bé / email phụ huynh      |         |            |                                          |
+| TC-1.15  | Phân trang                                  |         |            |                                          |
+| TC-1.16  | Khoá / Mở khoá tài khoản                    |         |            |                                          |
+| TC-1.17  | Cảnh báo Xu bất thường                      |         |            |                                          |
+| TC-R.1   | Guest mode vẫn học được                     |         |            |                                          |
+| TC-R.2   | Tiến độ guest chuyển lên cloud              |         |            |                                          |
+| TC-R.3   | Đồng bộ localStorage ↔ Supabase             |         |            |                                          |
+| TC-R.4   | Bảng xếp hạng vẫn chạy                      |         |            |                                          |
+| TC-R.5   | 6 mini game vẫn chơi được                   |         |            |                                          |
+| TC-R.6   | Thú cưng vẫn nuôi được                      |         |            |                                          |
+| TC-R.7   | Sổ Tay Ôn Bài Sai: phiên nhiều câu          |         |            |                                          |
+| TC-R.8   | Số thưởng hiển thị khớp config              |         |            |                                          |
+| TC-2.1   | Migration 0004 chạy sạch                    | PASS    | 2026-09-20 |                                          |
+| TC-2.2   | Hồ sơ bé tải đủ các khối                    | PASS    | 2026-09-20 |                                          |
+| TC-2.3   | Điều hướng tới hồ sơ                        | PASS    | 2026-09-20 |                                          |
+| TC-2.4   | Đồng bộ câu sai lên `child_mistakes`        | PASS    | 2026-09-20 |                                          |
+| TC-2.5   | Số liệu hồ sơ khớp app của bé               | PASS    | 2026-09-20 |                                          |
+| TC-2.6   | Bé không tồn tại → thông báo gọn            | PASS    | 2026-09-20 |                                          |
+| TC-2.7   | Không có biến chưa khai báo _(tự động)_     | PASS    | 2026-09-20 |                                          |
+| TC-2.8   | Migration 0005 chạy sạch                    | PASS    | 2026-09-20 | 5 policy đủ, đúng vai trò                |
+| TC-2.9   | Đã đăng nhập thì báo lỗi gắn với bé         | PASS    | 2026-09-20 |                                          |
+| TC-2.10  | Khách vẫn báo được, `child_id` = NULL       | PASS    | 2026-09-20 |                                          |
+| TC-2.11  | Quyền ẩn danh bị khoá chặt                  | PASS    | 2026-09-20 | 6/6 phép thử đều bị chặn                 |
+| TC-2.12  | Màn hình Báo lỗi câu hỏi trên Admin         | PASS    | 2026-09-20 |                                          |
+| TC-2.13  | Đổi trạng thái có ghi audit log             | PASS    | 2026-09-20 |                                          |
+| TC-2.14  | Migration 0006 chạy sạch                    | PASS    | 2026-09-20 |                                          |
+| TC-2.15  | Trả lời 1 câu → có dòng ghi lại             | PASS    | 2026-09-20 |                                          |
+| TC-2.16  | Câu sinh tự động ID theo KHUÔN              | PASS    | 2026-09-20 |                                          |
+| TC-2.17  | `source` phân biệt luyện tập / ôn sai       | PASS    | 2026-09-20 |                                          |
+| TC-2.18  | Khách KHÔNG ghi gì                          | PASS    | 2026-09-20 |                                          |
+| TC-2.19  | `ms` vượt trần ghi NULL                     | PASS    | 2026-09-20 |                                          |
+| TC-2.20  | `anon` không đọc / sửa / xoá được           | PASS    | 2026-09-20 |                                          |
+| TC-2.21  | Hàm purge không gọi được qua API            | PASS    | 2026-09-20 |                                          |
+| TC-2.22  | `purge_old_attempts(10)` bị từ chối         | PASS    | 2026-09-20 |                                          |
+| TC-2.23  | 3 câu SQL trả lời được A/B/C                | PASS    | 2026-09-20 |                                          |
+| TC-2.24  | `generateCalculation` đánh ID theo khuôn    | PASS    | 2026-09-20 | 1500 lượt, 16 khuôn, 0 lỗi               |
+| TC-2.25  | Mini game → mỗi lần trả lời một dòng        | PASS    | 2026-09-20 | `S-14`: 6 game đều ghi                   |
+| TC-2.26  | Cân Bằng Thần Kỳ ghi `ref` riêng            | PASS    | 2026-09-20 | `calc_balance_*`                         |
+| TC-2.27  | `/analytics` tải được, 3 khối A/B/C có số   | PASS    | 2026-09-20 | 30 lượt, khối B/C có dòng                |
+| TC-2.28  | Bộ lọc lớp + khoảng ngày đổi số liệu        | PASS    | 2026-09-20 |                                          |
+| TC-2.29  | Chưa đủ lượt → thông báo rõ ràng            | PASS    | 2026-09-20 | "còn 3 khuôn chưa đủ"                    |
+| TC-2.30  | Migration 0007 + khách không gọi được hàm   | PASS    | 2026-09-20 | `D-13`: HTTP 401                         |
+| TC-M.1   | Sidebar thành ngăn kéo ở mobile             | PASS    | 2026-09-20 | 3 cách đóng đều đúng                     |
+| TC-M.2   | Không cuộn ngang cấp trang ở mọi route      | PASS    | 2026-09-20 | 6 route, 375px                           |
+| TC-M.3   | Bảng rộng cuộn trong hộp riêng              | PASS    | 2026-09-20 | bảng 860px trong hộp 341px               |
+| TC-M.4   | Desktop không đổi                           | PASS    | 2026-09-20 | 1280px: sidebar tĩnh 256px               |
+| TC-M.5   | Menu đủ tương phản để đọc                   | PASS    | 2026-09-20 | 19/19 mục ≥ 4.5:1                        |
+| TC-3a.1  | Migration 0008 chạy sạch                    | PASS    | 2026-09-20 | 4 bảng tồn tại                           |
+| TC-3a.2  | 🔴 Bài nháp không lộ ra cho khách           | PASS    | 2026-09-20 | `S-17` + `D-15`                          |
+| TC-3a.3  | 🔴 `anon` không đọc được bảng phiên bản     | PASS    | 2026-09-20 | `D-14`: 0 dòng dù có 362                 |
+| TC-3a.4  | Script báo đúng 5/41/362/1505               | PASS    | 2026-09-20 | `S-15`                                   |
+| TC-3a.5  | DB khớp số dòng + số bài mỗi chương là THẬT | PASS    | 2026-09-20 | `--verify`: khớp hết                     |
+| TC-3a.6  | So từng bài, không chỉ đếm tổng             | PASS    | 2026-09-20 | 0 bài lệch / 362                         |
+| TC-3a.7  | Chạy lại không sinh dòng trùng              | PASS    | 2026-09-20 | Dán lại `02-bai-lop-1.sql` → vẫn 362 bài |
+| TC-3a.8  | Bộ kiểm tra bắt được quiz sai đáp án        | PASS    | 2026-09-20 | `S-16`                                   |
+| TC-3a.9  | Bộ kiểm tra bắt được `dialogue` sai đáp án  | PASS    | 2026-09-20 | `S-16`                                   |
+| TC-3a.10 | `content_source` vẫn là `"static"`          | PASS    | 2026-09-20 | `--verify` tự kiểm                       |
 
 ---
 

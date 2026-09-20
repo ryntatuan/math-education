@@ -433,6 +433,15 @@ Nguyên tắc: **chia để trị**, App chính không được gián đoạn. M
 ### 📍 GIAI ĐOẠN 3: ĐỘNG HÓA NỘI DUNG (CMS) 🟡
 
 > 📌 **Áp dụng Q4:** Chỉ bắt đầu giai đoạn này **sau khi GĐ 2 đã hoàn thành và ổn định**. Đây là giai đoạn rủi ro cao nhất — không làm song song với việc khác.
+>
+> ✅ GĐ 2 đã xong → **đủ điều kiện bắt đầu**.
+>
+> 📄 Kế hoạch chi tiết lát đầu (3a — schema + migrate + bộ kiểm tra):
+> [`docs/phase_3a_plan.md`](phase_3a_plan.md)
+>
+> 🔴 Kế hoạch 3a **đã đo lại dữ liệu thật** và tìm ra 3 chỗ tài liệu này ghi sai: số chương
+> (41 chứ không phải 50), `dialogue` thật ra **cũng là câu hỏi**, và `concept` là **17 tổ
+> hợp khoá** chứ không phải một dạng đơn giản. Xem mục 2 của kế hoạch 3a.
 
 > ⚠️ **Rủi ro thật của giai đoạn này là OFFLINE — không phải guest mode.**
 > Bản 2.0/2.1 ghi sai chỗ này (đã sửa ở mục 3.0). Guest mode **không hề chặn việc đọc nội dung từ DB** — toàn bộ hạn chế của guest nằm ở **tầng ghi dữ liệu người dùng** (`useUserStore`, `useProgressStore`), không nằm ở tầng mạng.
@@ -748,13 +757,13 @@ notifications       title, body, target_scope, starts_at, ends_at, enabled
 
 ## 📊 PHẦN 8: BẢNG THEO DÕI TIẾN ĐỘ
 
-| Giai đoạn | Nội dung                  | Ước lượng                     | Phụ thuộc                  | Trạng thái                                       |
-| --------- | ------------------------- | ----------------------------- | -------------------------- | ------------------------------------------------ |
-| GĐ 0      | Vá nền & bảo mật          | Nhỏ–Vừa                       | —                          | ✅ Xong — đã deploy `admin-toanvuive.vercel.app` |
-| GĐ 1      | Sổ cái & cấu hình kinh tế | **Lớn** (refactor 14 điểm)    | GĐ 0                       | ✅ Code + test sơ bộ + giá đã chốt (0003)        |
-| GĐ 2      | Hỗ trợ & phân tích cơ bản | Vừa                           | GĐ 1                       | 🟡 2a + 2c + 2b-1 test PASS — còn lát 2b-2       |
-| GĐ 3      | CMS (3a → 3d)             | **Rất lớn** — rủi ro cao nhất | 📌 **GĐ 2 phải xong (Q4)** | ⬜ Chưa bắt đầu                                  |
-| GĐ 4      | Nâng cao                  | Vừa                           | GĐ 3                       | ⬜ Chưa bắt đầu                                  |
+| Giai đoạn | Nội dung                  | Ước lượng                     | Phụ thuộc                  | Trạng thái                                                                    |
+| --------- | ------------------------- | ----------------------------- | -------------------------- | ----------------------------------------------------------------------------- |
+| GĐ 0      | Vá nền & bảo mật          | Nhỏ–Vừa                       | —                          | ✅ Xong — đã deploy `admin-toanvuive.vercel.app`                              |
+| GĐ 1      | Sổ cái & cấu hình kinh tế | **Lớn** (refactor 14 điểm)    | GĐ 0                       | ✅ Code + test sơ bộ + giá đã chốt (0003)                                     |
+| GĐ 2      | Hỗ trợ & phân tích cơ bản | Vừa                           | GĐ 1                       | ✅ **Xong** — 2a + 2b + 2c test PASS hết                                      |
+| GĐ 3      | CMS (3a → 3d)             | **Rất lớn** — rủi ro cao nhất | 📌 **GĐ 2 phải xong (Q4)** | 🟡 **3a ✅ xong** — còn 3b (cây giáo trình), 3c (sửa bài), 3d (client đọc DB) |
+| GĐ 4      | Nâng cao                  | Vừa                           | GĐ 3                       | ⬜ Chưa bắt đầu                                                               |
 
 ---
 
