@@ -1,6 +1,6 @@
 # 🧪 Test Cases — Admin Portal & Hệ thống kinh tế
 
-> **Cập nhật:** 2026-09-20 · **Trạng thái:** GĐ 0 ✅ · GĐ 1 ✅ · GĐ 2a ✅ đã test PASS · GĐ 2c ✅ đã test PASS · GĐ 2b � 2b-1 code xong, chờ test
+> **Cập nhật:** 2026-09-20 · **Trạng thái:** GĐ 0 ✅ · GĐ 1 ✅ · GĐ 2a ✅ đã test PASS · GĐ 2c ✅ đã test PASS · GĐ 2b � ✅ 2b-1 đã test PASS, còn 2b-2
 > **57 test case** · Dùng kèm với `docs/admin_portal_plan.md`.
 
 ---
@@ -1580,7 +1580,7 @@ _(Chưa làm — điền chi tiết khi bắt đầu từng giai đoạn)_
 - [x] Trang hồ sơ 1 bé: tiến độ, chuỗi ngày, danh sách lỗi sai, lịch sử giao dịch Xu/XP — `TC-2.1` → `TC-2.6`
 
 **2b — Tầng dữ liệu phân tích** → 📄 kế hoạch: [`docs/phase_2b_plan.md`](phase_2b_plan.md)
-→ 🟡 **lát 2b-1 đã code xong, test ở PHẦN H**
+→ ✅ **lát 2b-1 đã test PASS** — test ở PHẦN H
 
 - [x] `question_attempts` ghi được khi trả lời câu hỏi — `TC-2.15`, `TC-2.17`
 - [x] 🔴 `ms` không vượt trần (câu bỏ dở giữa chừng ghi `NULL`) — `TC-2.19`
@@ -1670,16 +1670,16 @@ _(Chưa làm — điền chi tiết khi bắt đầu từng giai đoạn)_
 | TC-2.11 | Quyền ẩn danh bị khoá chặt                  | PASS    | 2026-09-20 | 6/6 phép thử đều bị chặn  |
 | TC-2.12 | Màn hình Báo lỗi câu hỏi trên Admin         | PASS    | 2026-09-20 |                           |
 | TC-2.13 | Đổi trạng thái có ghi audit log             | PASS    | 2026-09-20 |                           |
-| TC-2.14 | Migration 0006 chạy sạch                    |         |            |                           |
-| TC-2.15 | Trả lời 1 câu → có dòng ghi lại             |         |            |                           |
-| TC-2.16 | Câu sinh tự động ID theo KHUÔN              |         |            |                           |
-| TC-2.17 | `source` phân biệt luyện tập / ôn sai       |         |            |                           |
-| TC-2.18 | Khách KHÔNG ghi gì                          |         |            |                           |
-| TC-2.19 | `ms` vượt trần ghi NULL                     |         |            |                           |
-| TC-2.20 | `anon` không đọc / sửa / xoá được           |         |            |                           |
-| TC-2.21 | Hàm purge không gọi được qua API            |         |            |                           |
-| TC-2.22 | `purge_old_attempts(10)` bị từ chối         |         |            |                           |
-| TC-2.23 | 3 câu SQL trả lời được A/B/C                |         |            |                           |
+| TC-2.14 | Migration 0006 chạy sạch                    | PASS    | 2026-09-20 |                           |
+| TC-2.15 | Trả lời 1 câu → có dòng ghi lại             | PASS    | 2026-09-20 |                           |
+| TC-2.16 | Câu sinh tự động ID theo KHUÔN              | PASS    | 2026-09-20 |                           |
+| TC-2.17 | `source` phân biệt luyện tập / ôn sai       | PASS    | 2026-09-20 |                           |
+| TC-2.18 | Khách KHÔNG ghi gì                          | PASS    | 2026-09-20 |                           |
+| TC-2.19 | `ms` vượt trần ghi NULL                     | PASS    | 2026-09-20 |                           |
+| TC-2.20 | `anon` không đọc / sửa / xoá được           | PASS    | 2026-09-20 |                           |
+| TC-2.21 | Hàm purge không gọi được qua API            | PASS    | 2026-09-20 |                           |
+| TC-2.22 | `purge_old_attempts(10)` bị từ chối         | PASS    | 2026-09-20 |                           |
+| TC-2.23 | 3 câu SQL trả lời được A/B/C                | PASS    | 2026-09-20 |                           |
 
 ---
 
