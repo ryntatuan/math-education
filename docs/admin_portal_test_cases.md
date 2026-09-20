@@ -1,6 +1,6 @@
 # 🧪 Test Cases — Admin Portal & Hệ thống kinh tế
 
-> **Cập nhật:** 2026-09-20 · **Trạng thái:** GĐ 0 ✅ · GĐ 1 ✅ · GĐ 2a 🟡 chờ test · GĐ 2c 🟡 code xong, chờ test · GĐ 2b ⏳
+> **Cập nhật:** 2026-09-20 · **Trạng thái:** GĐ 0 ✅ · GĐ 1 ✅ · GĐ 2c ✅ đã test PASS · GĐ 2a 🟡 chờ test · GĐ 2b ⏳
 > **47 test case** · Dùng kèm với `docs/admin_portal_plan.md`.
 
 ---
@@ -72,7 +72,6 @@ Chạy **đúng thứ tự** trong Supabase → SQL Editor:
 | 2   | `supabase/migrations/0002_reward_economy.sql`   | reward_configs (giá gốc), sổ cái, hệ số nhân, level curve     |
 | 3   | `supabase/migrations/0003_tune_rewards.sql`     | 🔧 Chốt giá thưởng sau test — hạ thang luyện tập & mini game  |
 | 4   | `supabase/migrations/0004_mistakes_sync.sql`    | 🔧 `child_mistakes.answer` INT → TEXT, index cho hồ sơ bé     |
-| 5   | `supabase/migrations/0005_support_tickets.sql`  | 📮 Bảng `support_tickets` + RLS cho phụ huynh / khách / admin |
 | 5   | `supabase/migrations/0005_support_tickets.sql`  | 📮 Bảng `support_tickets` + RLS cho phụ huynh / khách / admin |
 
 > **Vì sao có cả 0002 và 0003?** `0002` đã chạy rồi nên **không sửa** (sửa migration
@@ -1113,7 +1112,7 @@ Dùng binary có sẵn trong `client/node_modules` — **không phải cài thê
 
 ---
 
-# � PHẦN G — GIAI ĐOẠN 2c: Hộp thư báo lỗi câu hỏi
+# 📮 PHẦN G — GIAI ĐOẠN 2c: Hộp thư báo lỗi câu hỏi
 
 > ⚠️ **Phạm vi:** màn hình Admin **không** sửa được nội dung bài học — nội dung còn nằm
 > trong file tĩnh. Sửa nóng là việc của GĐ 3 (CMS). Ticket đã chụp sẵn `lesson_id`,
@@ -1264,7 +1263,7 @@ ORDER BY created_at DESC LIMIT 5;
 
 ---
 
-# �📅 PHẦN E — Khung cho các giai đoạn sau
+# 📅 PHẦN E — Khung cho các giai đoạn sau
 
 _(Chưa làm — điền chi tiết khi bắt đầu từng giai đoạn)_
 
@@ -1287,7 +1286,7 @@ _(Chưa làm — điền chi tiết khi bắt đầu từng giai đoạn)_
 
 **2c — Inbox phản hồi**
 
-- [ ] Hộp thư báo lỗi câu hỏi hoạt động đầu-đến-cuối
+- [x] Hộp thư báo lỗi câu hỏi hoạt động đầu-đến-cuối — `TC-2.8` → `TC-2.13`
 
 > ✂️ **Đã cắt khỏi GĐ 2 (2026-09-20):** khôi phục streak thủ công · cấp/thu Xu thủ công ·
 > cấp Streak Freeze · reset PIN phụ huynh từ xa. Lý do: xem `docs/admin_portal_plan.md`
@@ -1357,12 +1356,12 @@ _(Chưa làm — điền chi tiết khi bắt đầu từng giai đoạn)_
 | TC-2.5  | Số liệu hồ sơ khớp app của bé               |         |      |         |
 | TC-2.6  | Bé không tồn tại → thông báo gọn            |         |      |         |
 | TC-2.7  | Không có biến chưa khai báo _(tự động)_     |         |      |         |
-| TC-2.8  | Migration 0005 chạy sạch                    |         |      |         |
-| TC-2.9  | Đã đăng nhập thì báo lỗi gắn với bé         |         |      |         |
-| TC-2.10 | Khách vẫn báo được, `child_id` = NULL       |         |      |         |
-| TC-2.11 | Quyền ẩn danh bị khoá chặt                  |         |      |         |
-| TC-2.12 | Màn hình Báo lỗi câu hỏi trên Admin         |         |      |         |
-| TC-2.13 | Đổi trạng thái có ghi audit log             |         |      |         |
+| TC-2.8  | Migration 0005 chạy sạch                    | PASS | 2026-09-20 | 5 policy đủ, đúng vai trò   |
+| TC-2.9  | Đã đăng nhập thì báo lỗi gắn với bé         | PASS | 2026-09-20 |                             |
+| TC-2.10 | Khách vẫn báo được, `child_id` = NULL       | PASS | 2026-09-20 |                             |
+| TC-2.11 | Quyền ẩn danh bị khoá chặt                  | PASS | 2026-09-20 | 6/6 phép thử đều bị chặn    |
+| TC-2.12 | Màn hình Báo lỗi câu hỏi trên Admin         | PASS | 2026-09-20 |                             |
+| TC-2.13 | Đổi trạng thái có ghi audit log             | PASS | 2026-09-20 |                             |
 
 ---
 
