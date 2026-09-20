@@ -17,6 +17,7 @@ import Button from "../components/ui/Button";
 import GoogleIcon from "../components/common/GoogleIcon";
 import ProgressBar, { StarsDisplay } from "../components/ui/ProgressBar";
 import ReportQuestionButton from "../components/report/ReportQuestionButton";
+import { recordAttempt } from "../services/attemptService";
 import MascotIcon from "../components/common/MascotIcon";
 import CoinIcon from "../components/common/CoinIcon";
 import useUserStore from "../store/useUserStore";
@@ -51,6 +52,12 @@ export default function LessonPage() {
 
   const found = findLesson(lessonId);
   const [currentSlide, setCurrentSlide] = useState(0);
+  // GĐ 2b — mốc bắt đầu làm câu hỏi của slide hiện tại, dùng để tính `ms`
+  // gửi lên `question_attempts`. Sang slide khác thì tính lại.
+  const slideStartedAt = useRef(Date.now());
+  useEffect(() => {
+    slideStartedAt.current = Date.now();
+  }, [currentSlide]);
   const [quizAnswers, setQuizAnswers] = useState({});
   const [showResult, setShowResult] = useState(false);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
@@ -229,6 +236,19 @@ export default function LessonPage() {
       [currentSlide]: { answer, correct: isCorrect },
     }));
 
+    // GĐ 2b — ghi lại lượt trả lời để biết câu hỏi nào hỏng / kỹ năng nào yếu.
+    // `ref` theo TỪNG CÂU (khác câu sinh tự động — câu viết tay có thể sai đáp án
+    // riêng lẻ, nên phải chỉ đích danh).
+    const questionRef = `lesson:${lessonId}:${currentSlide}`;
+    recordAttempt({
+      ref: questionRef,
+      source: "lesson",
+      lessonId,
+      grade: found?.grade?.id || 1,
+      isCorrect,
+      startedAt: slideStartedAt.current,
+    });
+
     if (isCorrect) {
       soundManager.playCorrect();
       grantReward("lesson.quiz_correct", lessonId);
@@ -236,6 +256,7 @@ export default function LessonPage() {
       soundManager.playWrong();
       recordMistake({
         lessonId,
+        ref: questionRef,
         question: slide.content.question,
         options: slide.content.options,
         answer: slide.content.answer,
@@ -435,6 +456,15 @@ export default function LessonPage() {
             <DialogueSlide
               content={slide.content}
               onAnswerRecorded={(isCorrect) => {
+                // GĐ 2b — hội thoại cũng có câu hỏi, ghi lại như slide quiz
+                recordAttempt({
+                  ref: `lesson:${lessonId}:${currentSlide}`,
+                  source: "lesson",
+                  lessonId,
+                  grade: found?.grade?.id || 1,
+                  isCorrect,
+                  startedAt: slideStartedAt.current,
+                });
                 if (isCorrect) {
                   soundManager.playCorrect();
                   grantReward("lesson.quiz_correct", lessonId);

@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { recordAttempt } from "../services/attemptService";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Flame,
@@ -74,6 +75,13 @@ export default function ChallengePage() {
   ]);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [feedback, setFeedback] = useState(null);
+
+  // GĐ 2b — mốc bắt đầu câu hỏi, dùng để tính `ms`. Trả lời sai thì câu được
+  // sinh lại, nên phải theo dõi cả `questions` chứ không chỉ `activeTaskIndex`.
+  const questionStartedAt = useRef(Date.now());
+  useEffect(() => {
+    questionStartedAt.current = Date.now();
+  }, [activeTaskIndex, questions]);
   const [chestOpened, setChestOpened] = useState(alreadyDone);
   const [chestReward, setChestReward] = useState(0);
 
@@ -193,6 +201,16 @@ export default function ChallengePage() {
 
     const q = questions[activeTaskIndex];
     const isCorrect = option === q.answer;
+
+    // GĐ 2b — ghi lại lượt trả lời
+    recordAttempt({
+      ref: q.ref,
+      source: "challenge",
+      topic: q.topic || null,
+      grade,
+      isCorrect,
+      startedAt: questionStartedAt.current,
+    });
 
     if (isCorrect) {
       soundManager.playCorrect();

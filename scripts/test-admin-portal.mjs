@@ -541,6 +541,42 @@ if (!ONLY_DB) {
       return { detail: "client + admin: không có biến chưa khai báo" };
     },
   );
+
+  await test(
+    "S-13",
+    "TC-2.15 — Chỗ ghi câu sai nào cũng ghi kèm lượt trả lời",
+    () => {
+      // VÌ SAO CẦN: GĐ 2b ghi từng lượt trả lời vào `question_attempts` để biết
+      // câu hỏi nào hỏng / kỹ năng nào yếu. Quên gắn `recordAttempt` thì KHÔNG có
+      // lỗi nào bung ra — chỉ là dữ liệu thiếu âm thầm, rồi ta kết luận "kỹ năng
+      // này ổn" trong khi thực ra chưa từng đo. Đúng loại lỗi build không bắt được.
+      //
+      // Chỗ nào gọi `recordMistake(` (ghi câu sai) thì cũng phải gọi
+      // `recordAttempt(` — cả hai nằm trong cùng nhánh trả lời sai.
+      const callers = CLIENT_SRC.filter((f) => read(f).includes("recordMistake("));
+
+      // Canary: bộ dò PHẢI nhìn thấy 2 trang đã biết là có gọi `recordMistake`.
+      // Nếu glob hỏng thì `callers` rỗng và test sẽ xanh giả.
+      // Chuẩn hoá dấu "\" -> "/" vì `walk()` dùng path.join (khác nhau tuỳ hệ điều hành).
+      const names = callers.map((f) => f.replace(/\\/g, "/"));
+      const must = [
+        "client/src/pages/LessonPage.jsx",
+        "client/src/pages/PracticePage.jsx",
+      ];
+      const missed = must.filter((m) => !names.includes(m));
+      assert(
+        missed.length === 0,
+        `Bộ dò không thấy ${missed.join(", ")} — glob có thể đã hỏng`,
+      );
+
+      const missing = callers.filter((f) => !read(f).includes("recordAttempt("));
+      assert(
+        missing.length === 0,
+        `Gọi recordMistake nhưng thiếu recordAttempt: ${missing.join(", ")}`,
+      );
+      return { detail: `${callers.length} file đều có recordAttempt` };
+    },
+  );
 }
 
 // ═══════════════════════════ DB TESTS ═══════════════════════════

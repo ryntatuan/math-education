@@ -1,7 +1,7 @@
 # 🧪 Test Cases — Admin Portal & Hệ thống kinh tế
 
-> **Cập nhật:** 2026-09-20 · **Trạng thái:** GĐ 0 ✅ · GĐ 1 ✅ · GĐ 2a ✅ đã test PASS · GĐ 2c ✅ đã test PASS · GĐ 2b 🔵 đang lên kế hoạch
-> **47 test case** · Dùng kèm với `docs/admin_portal_plan.md`.
+> **Cập nhật:** 2026-09-20 · **Trạng thái:** GĐ 0 ✅ · GĐ 1 ✅ · GĐ 2a ✅ đã test PASS · GĐ 2c ✅ đã test PASS · GĐ 2b � 2b-1 code xong, chờ test
+> **57 test case** · Dùng kèm với `docs/admin_portal_plan.md`.
 
 ---
 
@@ -25,11 +25,11 @@ node scripts/test-admin-portal.mjs --db   # chỉ kiểm tra database
 
 **Không cần cài thư viện nào** — dùng `fetch` có sẵn của Node 18+.
 
-**Tool tự kiểm tra 24 mục** (mã `S-x` và `D-x` trong output khớp với `TC-x.y` ở dưới):
+**Tool tự kiểm tra 25 mục** (mã `S-x` và `D-x` trong output khớp với `TC-x.y` ở dưới):
 
 | Nhóm  | Nội dung                                                                                                                                                                                                                                                                    | Số mục |
 | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
-| **S** | Quét source: không còn thưởng gán cứng, không còn dependency array mồ côi, mọi khoá `grantReward` đều tồn tại, seed SQL khớp code **cả khoá lẫn giá trị**, 2 bundle tách biệt, không nhúng `service_role`, không gán cứng số Xu/XP trên UI, **không có biến chưa khai báo** | 12     |
+| **S** | Quét source: không còn thưởng gán cứng, không còn dependency array mồ côi, mọi khoá `grantReward` đều tồn tại, seed SQL khớp code **cả khoá lẫn giá trị**, 2 bundle tách biệt, không nhúng `service_role`, không gán cứng số Xu/XP trên UI, **không có biến chưa khai báo**, **chỗ ghi câu sai nào cũng ghi kèm lượt trả lời** | 13     |
 | **D** | Gọi REST bằng anon key: seed đủ và đúng giá trị, RLS chặn ghi leaderboard, chặn đọc `profiles`/`child_profiles`/sổ cái, `is_admin()` trả false, audit log bất biến, `reward_configs` đọc công khai được                                                                     | 12     |
 
 Exit code `0` = tất cả PASS (dùng được trong CI). `1` = có FAIL.
@@ -73,6 +73,7 @@ Chạy **đúng thứ tự** trong Supabase → SQL Editor:
 | 3   | `supabase/migrations/0003_tune_rewards.sql`     | 🔧 Chốt giá thưởng sau test — hạ thang luyện tập & mini game  |
 | 4   | `supabase/migrations/0004_mistakes_sync.sql`    | 🔧 `child_mistakes.answer` INT → TEXT, index cho hồ sơ bé     |
 | 5   | `supabase/migrations/0005_support_tickets.sql`  | 📮 Bảng `support_tickets` + RLS cho phụ huynh / khách / admin |
+| 6   | `supabase/migrations/0006_question_attempts.sql` | 📊 Bảng `question_attempts` + hàm xoá dữ liệu cũ (khách KHÔNG ghi) |
 
 > **Vì sao có cả 0002 và 0003?** `0002` đã chạy rồi nên **không sửa** (sửa migration
 > đã áp dụng là cách chắc nhất để môi trường này lệch môi trường kia). `0003` chép lại
@@ -1263,7 +1264,249 @@ ORDER BY created_at DESC LIMIT 5;
 
 ---
 
-# 📅 PHẦN E — Khung cho các giai đoạn sau
+# � PHẦN H — GIAI ĐOẠN 2b: Tầng dữ liệu phân tích
+
+> ⚠️ **Lát 2b-1 chỉ THU THẬP dữ liệu** — chưa có màn hình xem. Mini game và màn hình
+> Admin `/analytics` là lát 2b-2. Kế hoạch đầy đủ: `docs/phase_2b_plan.md`.
+>
+> 🎯 **Tầng này tồn tại để trả lời 3 câu:**
+> **A** câu hỏi/khuôn nào hỏng · **B** bé đoán bừa hay không hiểu · **C** kỹ năng nào yếu.
+
+### TC-2.14 — Migration 0006 chạy sạch 🔴
+
+**Bước:** Chạy `0006_question_attempts.sql` → `Success. No rows returned`.
+
+```sql
+SELECT policyname, cmd, roles::text FROM pg_policies
+WHERE tablename = 'question_attempts' ORDER BY policyname;
+-- Mong đợi ĐÚNG 3 policy: question_attempts_admin_read,
+-- question_attempts_parent_insert, question_attempts_parent_select
+-- ⛔ KHÔNG được có policy nào cho `anon`
+```
+
+```sql
+SELECT indexname FROM pg_indexes WHERE tablename = 'question_attempts';
+-- Mong đợi: question_attempts_child_idx, question_attempts_ref_idx
+```
+
+---
+
+### TC-2.15 — Trả lời 1 câu trong bài học → có dòng 🔴
+
+> Cũng có cổng chặn tự động: `npm run test:portal:static` → dòng `S-13`, kiểm tra mọi
+> chỗ gọi `recordMistake` đều gọi kèm `recordAttempt`. Đã đo: thêm file cố tình thiếu
+> `recordAttempt` → `S-13` **FAIL** và chỉ đúng tên file.
+
+**Chuẩn bị:** App chính (`5173`), đăng nhập **User A** (⚠️ không phải khách).
+
+**Bước:** Vào một bài học → tới slide câu hỏi → trả lời.
+
+```sql
+SELECT question_ref, source, lesson_id, topic, ms, is_correct, created_at
+FROM public.question_attempts ORDER BY created_at DESC LIMIT 5;
+```
+
+**Mong đợi:** có dòng mới với:
+
+- `source = 'lesson'`
+- `question_ref = 'lesson:<mã bài>:<số slide>'` — VD `lesson:g1-c1-l1:4`
+- `lesson_id` = đúng bài vừa học
+- `ms` = số mili giây thật (VD `4200`), **không** NULL — trừ khi bạn ngồi quá 5 phút
+- `is_correct` khớp với việc bạn vừa trả lời đúng hay sai
+
+> ℹ️ **Slide `dialogue` (hội thoại) cũng ghi** — không chỉ slide `quiz`. Thử cả hai loại.
+
+---
+
+### TC-2.16 — Câu sinh tự động đánh ID theo KHUÔN 🔴
+
+> Đây là điểm cốt lõi của thiết kế. Nếu `ref` đổi theo từng lần sinh thì việc gộp nhóm
+> ra 0 thông tin và **câu hỏi A không bao giờ trả lời được**.
+
+**Bước:** Luyện tập **cùng một chủ đề** 5–6 câu, rồi:
+
+```sql
+SELECT question_ref, topic, COUNT(*) FROM public.question_attempts
+WHERE source = 'practice' GROUP BY question_ref, topic ORDER BY 3 DESC;
+```
+
+**Mong đợi:**
+
+- `question_ref` có dạng **`tmpl:<mã khuôn>`** — VD `tmpl:g1_count`
+- Vài câu khác nhau **dùng chung một `question_ref`** (vì cùng khuôn)
+- `topic` khớp phần sau dấu `:` của `ref`
+
+> ⚠️ Nếu thấy `question_ref` khác nhau ở **mọi** dòng dù cùng chủ đề → thiết kế đã hỏng,
+> báo ngay: phải sửa trước khi làm tiếp 2b-2.
+
+---
+
+### TC-2.17 — `source` phân biệt đúng luyện tập và ôn câu sai
+
+**Bước:**
+
+1. **Luyện tập** trả lời vài câu → `source = 'practice'`
+2. **Ôn câu sai** (làm sai 1 câu trước, rồi dùng mục **A.6** để đưa về tới hạn hôm nay)
+   → trả lời lại → `source = 'review'`
+
+```sql
+SELECT source, COUNT(*) FROM public.question_attempts GROUP BY source ORDER BY source;
+```
+
+**Mong đợi:** thấy đủ `lesson`, `practice`, `review` (và `challenge` nếu đã chơi Thử thách).
+
+> ℹ️ Dòng `review` phải có `question_ref` — nếu NULL thì `ref` không được lưu kèm vào
+> sổ câu sai. Xem `useProgressStore.recordMistake`.
+
+---
+
+### TC-2.18 — Khách KHÔNG ghi gì 🔴
+
+> Vì sao khác `support_tickets`: bảng này ghi rất nhiều (~50 dòng/bé/ngày). Mở quyền ghi
+> ẩn danh là mở đường spam làm hỏng số liệu và đầy quota 500 MB.
+
+**Chuẩn bị:** Đăng xuất (chế độ Khách).
+
+**Bước 1 — chơi như khách:** vào một bài học, trả lời vài câu.
+
+**Bước 2 — kiểm tra không có dòng nào mới:**
+
+```sql
+SELECT COUNT(*) FROM public.question_attempts
+WHERE created_at > NOW() - INTERVAL '5 minutes';
+-- Mong đợi: 0
+```
+
+**Bước 3 — thử ghi trực tiếp bằng Console (app chính, đang là Khách):**
+
+```js
+const r = await window.__sb
+  .from("question_attempts")
+  .insert({ child_id: null, question_ref: "test", source: "lesson", is_correct: true });
+console.log(r.error?.message ?? "⚠️ GHI ĐƯỢC — LỖ HỔNG");
+```
+
+**Mong đợi:** có lỗi vi phạm RLS.
+
+---
+
+### TC-2.19 — `ms` vượt trần ghi `NULL`, không ghi số rác 🔴
+
+> Bé có thể bỏ máy đi chơi rồi quay lại. `ms` = 20 phút là rác, sẽ làm hỏng câu hỏi B
+> (không phân biệt được "suy nghĩ lâu" với "bỏ đi chơi").
+
+**Bước:**
+
+1. Vào **Luyện tập**, bắt đầu một phiên, **không trả lời câu đầu**
+2. **Chờ hơn 5 phút** (trần là 300 giây)
+3. Trả lời câu đó
+
+```sql
+SELECT question_ref, ms, is_correct FROM public.question_attempts
+WHERE source = 'practice' ORDER BY created_at DESC LIMIT 1;
+```
+
+**Mong đợi:** `ms` = **NULL** (không phải `300000`, không phải số lớn hơn).
+
+> ⏱️ Test này mất ~6 phút. Không có cách nhanh hơn mà vẫn kiểm tra đúng thực tế.
+
+---
+
+### TC-2.20 — `anon` không đọc / sửa / xoá được bảng này 🔴
+
+**Chuẩn bị:** Console ở app chính, **đang là Khách**.
+
+```js
+const r = await window.__sb.from("question_attempts").select("*").limit(5);
+console.log({ count: r.data?.length, error: r.error?.message });
+// Mong đợi: count = 0
+```
+
+```js
+const u = await window.__sb.from("question_attempts")
+  .update({ is_correct: true })
+  .neq("id", 0);
+const d = await window.__sb.from("question_attempts").delete().neq("id", 0);
+console.log({ update: u.error?.message ?? `${u.data?.length ?? 0} dòng`, delete: d.error?.message ?? `${d.data?.length ?? 0} dòng` });
+// Mong đợi: 0 dòng bị ảnh hưởng
+```
+
+---
+
+### TC-2.21 — Hàm xoá dữ liệu cũ: chạy được nhưng KHÔNG gọi được qua API 🔴
+
+> Nếu hàm này lọt ra API thì bất kỳ ai có anon key cũng xoá sạch dữ liệu phân tích.
+> Đó là lý do migration có `REVOKE` tường minh — PostgreSQL mặc định cho `PUBLIC` gọi mọi hàm.
+
+**Bước 1 — qua API phải bị chặn** (Console app chính, chế độ Khách):
+
+```js
+const r = await window.__sb.rpc("purge_old_attempts");
+console.log(r.error?.message ?? "⚠️ GỌI ĐƯỢC — LỖ HỔNG");
+```
+
+**Mong đợi:** có lỗi (không tìm thấy hàm, hoặc bị từ chối quyền).
+
+**Bước 2 — chạy từ SQL Editor phải được:**
+
+```sql
+SELECT public.purge_old_attempts();   -- Mong đợi: trả về số dòng đã xoá (0 là bình thường)
+```
+
+---
+
+### TC-2.22 — `purge_old_attempts(10)` bị từ chối
+
+**Bước:**
+
+```sql
+SELECT public.purge_old_attempts(10);
+-- Mong đợi: LỖI "keep_days phải >= 30 (chặn xoá nhầm)"
+```
+
+> Chốt chặn này để gọi nhầm `purge_old_attempts(0)` không làm mất sạch dữ liệu.
+
+---
+
+### TC-2.23 — 3 câu SQL trả lời được A / B / C 🔴
+
+> Đây là **DoD của lát 2b-1**. Nếu 3 câu này không ra số liệu có nghĩa thì tầng dữ liệu coi như chưa xong.
+
+Chạy sau khi đã có ít nhất vài chục lượt trả lời (chơi vài ba phiên luyện tập).
+
+```sql
+-- A: khuôn nào sai nhiều bất thường
+SELECT question_ref, COUNT(*) AS luot,
+       ROUND(100.0 * COUNT(*) FILTER (WHERE NOT is_correct) / COUNT(*), 1) AS ti_le_sai
+FROM public.question_attempts
+GROUP BY question_ref HAVING COUNT(*) >= 5
+ORDER BY ti_le_sai DESC LIMIT 20;
+```
+
+```sql
+-- B: đoán bừa (nhanh + sai) hay không hiểu (chậm + sai)
+SELECT question_ref,
+       COUNT(*) FILTER (WHERE NOT is_correct AND ms < 3000)  AS nghi_doan_bua,
+       COUNT(*) FILTER (WHERE NOT is_correct AND ms > 15000) AS nghi_khong_hieu
+FROM public.question_attempts
+WHERE ms IS NOT NULL GROUP BY question_ref ORDER BY 2 DESC LIMIT 20;
+```
+
+```sql
+-- C: kỹ năng nào bé yếu thật sự
+SELECT topic, COUNT(*) AS luot,
+       ROUND(100.0 * COUNT(*) FILTER (WHERE is_correct) / COUNT(*), 1) AS ti_le_dung
+FROM public.question_attempts
+WHERE child_id = '<child-uuid>' AND topic IS NOT NULL
+GROUP BY topic ORDER BY ti_le_dung ASC;
+```
+
+**Mong đợi:** cả 3 câu chạy không lỗi, và số liệu **khớp với những gì bạn vừa chơi**
+(VD vừa làm sai 2 câu `g1_compare` thì khuôn đó phải hiện tỉ lệ sai > 0).
+
+---
+
+# �📅 PHẦN E — Khung cho các giai đoạn sau
 
 _(Chưa làm — điền chi tiết khi bắt đầu từng giai đoạn)_
 
@@ -1274,14 +1517,17 @@ _(Chưa làm — điền chi tiết khi bắt đầu từng giai đoạn)_
 - [x] Tra cứu học sinh theo nickname / email phụ huynh — `TC-2.3`
 - [x] Trang hồ sơ 1 bé: tiến độ, chuỗi ngày, danh sách lỗi sai, lịch sử giao dịch Xu/XP — `TC-2.1` → `TC-2.6`
 
-**2b — Tầng dữ liệu phân tích**
+**2b — Tầng dữ liệu phân tích** → 📄 kế hoạch: [`docs/phase_2b_plan.md`](phase_2b_plan.md)
+→ 🟡 **lát 2b-1 đã code xong, test ở PHẦN H**
 
-- [ ] `question_attempts` ghi được khi trả lời câu hỏi
-- [ ] 🔴 `ms` không vượt trần (câu bỏ dở giữa chừng phải ghi `NULL`, không ghi số rác)
-- [ ] 🔴 Trả lời được câu hỏi A: **câu hỏi nào có tỉ lệ sai cao bất thường?**
-- [ ] Trả lời được câu hỏi B: phân biệt **đoán bừa** (nhanh + sai) với **không hiểu** (chậm + sai)
-- [ ] Trả lời được câu hỏi C: **chủ đề nào bé yếu thật sự?**
-- [ ] Guest vẫn ghi được attempt với `child_id = NULL`
+- [x] `question_attempts` ghi được khi trả lời câu hỏi — `TC-2.15`, `TC-2.17`
+- [x] 🔴 `ms` không vượt trần (câu bỏ dở giữa chừng ghi `NULL`) — `TC-2.19`
+- [x] 🔴 Trả lời được câu hỏi A: **khuôn/câu nào có tỉ lệ sai cao bất thường?** — `TC-2.23`
+- [x] Trả lời được câu hỏi B: **đoán bừa** (nhanh + sai) vs **không hiểu** (chậm + sai) — `TC-2.23`
+- [x] Trả lời được câu hỏi C: **kỹ năng nào bé yếu thật sự?** — `TC-2.23`
+- [x] **Khách KHÔNG ghi attempt** — đổi ngày 2026-09-20. Bảng này ghi rất nhiều nên mở quyền
+      ghi ẩn danh là mở đường spam. `child_id` NOT NULL, không có policy `anon` — `TC-2.18`
+- [ ] Mini game + màn hình Admin `/analytics` — lát **2b-2**
 - [ ] `app_events` — 📌 **hoãn**, không test giai đoạn này
 
 **2c — Inbox phản hồi**
@@ -1362,6 +1608,16 @@ _(Chưa làm — điền chi tiết khi bắt đầu từng giai đoạn)_
 | TC-2.11 | Quyền ẩn danh bị khoá chặt                  | PASS    | 2026-09-20 | 6/6 phép thử đều bị chặn  |
 | TC-2.12 | Màn hình Báo lỗi câu hỏi trên Admin         | PASS    | 2026-09-20 |                           |
 | TC-2.13 | Đổi trạng thái có ghi audit log             | PASS    | 2026-09-20 |                           |
+| TC-2.14 | Migration 0006 chạy sạch                    |         |            |                           |
+| TC-2.15 | Trả lời 1 câu → có dòng ghi lại             |         |            |                           |
+| TC-2.16 | Câu sinh tự động ID theo KHUÔN              |         |            |                           |
+| TC-2.17 | `source` phân biệt luyện tập / ôn sai       |         |            |                           |
+| TC-2.18 | Khách KHÔNG ghi gì                          |         |            |                           |
+| TC-2.19 | `ms` vượt trần ghi NULL                     |         |            |                           |
+| TC-2.20 | `anon` không đọc / sửa / xoá được           |         |            |                           |
+| TC-2.21 | Hàm purge không gọi được qua API            |         |            |                           |
+| TC-2.22 | `purge_old_attempts(10)` bị từ chối         |         |            |                           |
+| TC-2.23 | 3 câu SQL trả lời được A/B/C                |         |            |                           |
 
 ---
 

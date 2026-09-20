@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ArrowLeft,
@@ -17,6 +17,7 @@ import useUserStore from "../store/useUserStore";
 import useProgressStore from "../store/useProgressStore";
 import useAuthStore from "../store/useAuthStore";
 import { TOPICS, generateQuestion } from "../utils/exerciseGenerator";
+import { recordAttempt } from "../services/attemptService";
 import soundManager from "../utils/soundManager";
 import speechHelper from "../utils/speechHelper";
 import fireConfetti from "../utils/confettiHelper";
@@ -154,6 +155,13 @@ export default function PracticePage() {
   // và phiên kết thúc sớm sau câu đầu tiên.
   const [reviewQueue, setReviewQueue] = useState([]);
 
+  // GĐ 2b — mốc bắt đầu câu hỏi, dùng để tính `ms`. Đặt lại mỗi khi câu hỏi đổi,
+  // kể cả khi vào/ra tab Ôn Câu Sai.
+  const questionStartedAt = useRef(Date.now());
+  useEffect(() => {
+    questionStartedAt.current = Date.now();
+  }, [currentQuestion, mistakeIndex, mainTab]);
+
   const TOTAL_QUESTIONS = 10;
 
   // Auto-scroll to top on question change
@@ -200,6 +208,16 @@ export default function PracticePage() {
     const correct = option === currentQuestion.answer;
     setIsCorrect(correct);
 
+    // GĐ 2b — ghi lại lượt trả lời (khuôn nào hỏng / kỹ năng nào yếu)
+    recordAttempt({
+      ref: currentQuestion.ref,
+      source: "practice",
+      topic: currentQuestion.topic || selectedTopic,
+      grade: selectedGrade,
+      isCorrect: correct,
+      startedAt: questionStartedAt.current,
+    });
+
     if (correct) {
       soundManager.playCorrect();
       const newStreak = streak + 1;
@@ -216,6 +234,7 @@ export default function PracticePage() {
       setStreak(0);
       // Record mistake into spaced repetition queue (preserve visualDisplay)
       recordMistake({
+        ref: currentQuestion.ref ?? null,
         question: currentQuestion.question,
         options: currentQuestion.options,
         answer: currentQuestion.answer,
@@ -261,6 +280,17 @@ export default function PracticePage() {
 
     const isAnsCorrect = option === currentItem.answer;
     setMistakeIsCorrect(isAnsCorrect);
+
+    // GĐ 2b — ôn lại câu từng sai cũng là một lượt trả lời thật.
+    // `ref` được lưu kèm trong sổ câu sai từ lúc ghi (xem `useProgressStore`).
+    recordAttempt({
+      ref: currentItem.ref,
+      source: "review",
+      topic: currentItem.topic || null,
+      grade: currentItem.grade || selectedGrade,
+      isCorrect: isAnsCorrect,
+      startedAt: questionStartedAt.current,
+    });
 
     resolveMistake(currentItem.id, isAnsCorrect);
 

@@ -14,11 +14,11 @@ và **theo từng bài** học. Nhưng điểm trên biểu đồ radar của ph
 
 Ba câu hỏi **chỉ `question_attempts` mới trả lời được**:
 
-| #     | Câu hỏi                                       | Cần gì                               | Biết rồi thì làm gì                              |
-| ----- | --------------------------------------------- | ------------------------------------ | ------------------------------------------------ |
-| **A** | **Câu hỏi nào hỏng?**                         | danh tính câu · đúng/sai             | Sửa đáp án, đổi đáp án nhiễu, xoá câu lỗi        |
-| **B** | **Bé sai vì đoán bừa hay vì không hiểu?**     | `ms` · đúng/sai                      | Đoán bừa → nhắc đọc kỹ; không hiểu → gợi ý ôn lại |
-| **C** | **Kỹ năng nào bé yếu thật sự?**               | kỹ năng · đúng/sai **ở mức từng câu** | Gợi ý phụ huynh cho bé luyện đúng chỗ            |
+| #     | Câu hỏi                                   | Cần gì                                | Biết rồi thì làm gì                               |
+| ----- | ----------------------------------------- | ------------------------------------- | ------------------------------------------------- |
+| **A** | **Câu hỏi nào hỏng?**                     | danh tính câu · đúng/sai              | Sửa đáp án, đổi đáp án nhiễu, xoá câu lỗi         |
+| **B** | **Bé sai vì đoán bừa hay vì không hiểu?** | `ms` · đúng/sai                       | Đoán bừa → nhắc đọc kỹ; không hiểu → gợi ý ôn lại |
+| **C** | **Kỹ năng nào bé yếu thật sự?**           | kỹ năng · đúng/sai **ở mức từng câu** | Gợi ý phụ huynh cho bé luyện đúng chỗ             |
 
 > ❌ **Cố ý để ngoài phạm vi:** "bé bỏ cuộc ở bước nào" và "tỉ lệ quay lại sau 7 ngày" —
 > cần `app_events`, và chưa đủ người dùng để số liệu có nghĩa. Xem bảng D/E trong plan chính.
@@ -27,19 +27,19 @@ Ba câu hỏi **chỉ `question_attempts` mới trả lời được**:
 
 ## 2. Hai quyết định đã chốt (2026-09-20)
 
-| #   | Quyết định                                    | Lý do                                                                                                              |
-| --- | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| 1   | **Khách KHÔNG ghi attempt**                   | Đây là bảng **ghi rất nhiều** (khác `support_tickets` — bảng đó hiếm khi ghi). Không mở quyền ghi ẩn danh = không có đường spam, không có rủi ro đầy quota 500 MB. Mất dữ liệu của khách, nhưng khách không có `child_id` nên **cũng chẳng dùng được cho câu hỏi B và C** — chỉ được câu A một phần. |
-| 2   | **Làm luôn hàm xoá dữ liệu cũ**               | ~1,8 MB/năm cho 1 bé; 100 bé ≈ 180 MB/năm. Hàm SQL nhỏ, chạy tay khi cần.                                            |
+| #   | Quyết định                      | Lý do                                                                                                                                                                                                                                                                                                |
+| --- | ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | **Khách KHÔNG ghi attempt**     | Đây là bảng **ghi rất nhiều** (khác `support_tickets` — bảng đó hiếm khi ghi). Không mở quyền ghi ẩn danh = không có đường spam, không có rủi ro đầy quota 500 MB. Mất dữ liệu của khách, nhưng khách không có `child_id` nên **cũng chẳng dùng được cho câu hỏi B và C** — chỉ được câu A một phần. |
+| 2   | **Làm luôn hàm xoá dữ liệu cũ** | ~1,8 MB/năm cho 1 bé; 100 bé ≈ 180 MB/năm. Hàm SQL nhỏ, chạy tay khi cần.                                                                                                                                                                                                                            |
 
 ---
 
 ## 3. Chia làm 2 lát
 
-| Lát     | Nội dung                                                             | Vì sao tách                                                   |
-| ------- | -------------------------------------------------------------------- | ------------------------------------------------------------- |
+| Lát      | Nội dung                                                                              | Vì sao tách                                                      |
+| -------- | ------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
 | **2b-1** | **Thu thập dữ liệu** — bảng + sinh `ref` + gắn vào bài học/luyện tập/ôn tập/thử thách | Tự nó đã trả lời được A/B/C **bằng SQL**. Rủi ro tập trung ở đây |
-| **2b-2** | **Nhìn thấy dữ liệu** — `ref` cho mini game + màn hình Admin `/analytics` | Làm sau khi 2b-1 đã có dữ liệu thật để kiểm chứng              |
+| **2b-2** | **Nhìn thấy dữ liệu** — `ref` cho mini game + màn hình Admin `/analytics`             | Làm sau khi 2b-1 đã có dữ liệu thật để kiểm chứng                |
 
 > 💡 Có thể **dừng sau 2b-1** nếu bạn muốn xem dữ liệu trước rồi mới quyết định màn hình.
 
@@ -65,21 +65,21 @@ question_attempts
 
 **Chỉ 2 index** — bảng này ghi liên tục nên mỗi index thêm đều làm chậm ghi:
 
-| Index                          | Phục vụ                                          |
-| ------------------------------ | ------------------------------------------------ |
-| `(child_id, created_at DESC)`  | câu hỏi B, C — tra theo từng bé                  |
-| `(question_ref, is_correct)`   | câu hỏi A — gộp theo câu/kỹ năng                 |
+| Index                         | Phục vụ                          |
+| ----------------------------- | -------------------------------- |
+| `(child_id, created_at DESC)` | câu hỏi B, C — tra theo từng bé  |
+| `(question_ref, is_correct)`  | câu hỏi A — gộp theo câu/kỹ năng |
 
 Cố ý **không** đặt index trên `created_at` riêng: hàm xoá dữ liệu cũ chạy rất thưa, quét
 toàn bảng chấp nhận được.
 
 **RLS — 3 policy:**
 
-| Policy          | Vai trò         | Quyền                                      |
-| --------------- | --------------- | ------------------------------------------ |
-| `..._parent_insert` | `authenticated` | INSERT, chỉ cho bé của chính mình      |
-| `..._parent_select` | `authenticated` | SELECT, chỉ bé của chính mình          |
-| `..._admin_read`    | `authenticated` | SELECT tất cả nếu `is_admin()`         |
+| Policy              | Vai trò         | Quyền                             |
+| ------------------- | --------------- | --------------------------------- |
+| `..._parent_insert` | `authenticated` | INSERT, chỉ cho bé của chính mình |
+| `..._parent_select` | `authenticated` | SELECT, chỉ bé của chính mình     |
+| `..._admin_read`    | `authenticated` | SELECT tất cả nếu `is_admin()`    |
 
 **Không có `UPDATE` và không có `DELETE` cho bất kỳ ai** — cùng nguyên tắc với `admin_audit_log`.
 Không có policy nào cho `anon` (đúng quyết định 1).
@@ -108,10 +108,10 @@ SELECT public.purge_old_attempts(365);    -- giữ 1 năm
 
 Có **hai loại câu hỏi**, đánh ID theo hai cách (đã phân tích trong plan chính):
 
-| Loại                        | Nguồn                                             | `question_ref`                 |
-| --------------------------- | ------------------------------------------------- | ------------------------------ |
-| Sinh tự động                | `generateQuestion()`                              | `tmpl:g1_count` (theo **khuôn**) |
-| Viết tay trong bài học      | `gradeXData.js`, slide `type: "quiz"`             | `lesson:g1-c1-l1:4`            |
+| Loại                   | Nguồn                                 | `question_ref`                   |
+| ---------------------- | ------------------------------------- | -------------------------------- |
+| Sinh tự động           | `generateQuestion()`                  | `tmpl:g1_count` (theo **khuôn**) |
+| Viết tay trong bài học | `gradeXData.js`, slide `type: "quiz"` | `lesson:g1-c1-l1:4`              |
 
 Vì sao theo **khuôn** chứ không theo từng câu: câu sinh tự động **không thể "hỏng" riêng lẻ** —
 cái hỏng là **khuôn sinh câu** (đáp án nhiễu trùng, sinh số âm, quên trộn đáp án). Gộp theo khuôn
@@ -122,7 +122,9 @@ vừa đúng bản chất vừa trả lời thẳng câu hỏi C.
 
 ```js
 // đổi hàm cũ thành hàm nội bộ, LUÔN nhận khuôn cụ thể
-function buildQuestion(grade, topic) { /* thân hàm cũ, bỏ đoạn tự chọn khuôn */ }
+function buildQuestion(grade, topic) {
+  /* thân hàm cũ, bỏ đoạn tự chọn khuôn */
+}
 
 export function generateQuestion(grade = 1, topicId = null) {
   const list = TOPICS[`GRADE_${grade}`] || TOPICS.GRADE_1;
@@ -156,13 +158,13 @@ recordAttempt({ ref, source, topic, lessonId, grade, isCorrect, startedAt })
 Cần đo thời gian: mỗi trang giữ một `useRef` mốc thời điểm câu hỏi hiện ra, cập nhật khi
 câu hỏi đổi.
 
-| Trang                        | Chỗ gắn                                    | `source`    | Ghi chú                                    |
-| ---------------------------- | ------------------------------------------ | ----------- | ------------------------------------------ |
-| `LessonPage.jsx`             | `handleQuizAnswer`                          | `lesson`    | `ref = lesson:<lessonId>:<currentSlide>`   |
-| `PracticePage.jsx`           | `handleAnswer`                              | `practice`  | đã có sẵn `topic`                          |
-| `PracticePage.jsx`           | `handleMistakeAnswer`                       | `review`    | ôn lại câu từng sai                        |
-| `ChallengePage.jsx`          | chỗ chấm điểm task                          | `challenge` | 5 chỗ sinh câu nhưng **1 chỗ chấm**        |
-| `GamesPage.jsx`              | —                                           | —           | ⏸️ **để 2b-2** — cần `ref` cho 4 nhánh `generateCalculation` |
+| Trang               | Chỗ gắn               | `source`    | Ghi chú                                                      |
+| ------------------- | --------------------- | ----------- | ------------------------------------------------------------ |
+| `LessonPage.jsx`    | `handleQuizAnswer`    | `lesson`    | `ref = lesson:<lessonId>:<currentSlide>`                     |
+| `PracticePage.jsx`  | `handleAnswer`        | `practice`  | đã có sẵn `topic`                                            |
+| `PracticePage.jsx`  | `handleMistakeAnswer` | `review`    | ôn lại câu từng sai                                          |
+| `ChallengePage.jsx` | chỗ chấm điểm task    | `challenge` | 5 chỗ sinh câu nhưng **1 chỗ chấm**                          |
+| `GamesPage.jsx`     | —                     | —           | ⏸️ **để 2b-2** — cần `ref` cho 4 nhánh `generateCalculation` |
 
 ### 4.5. Bỏ `attempt_no` so với plan cũ
 
@@ -218,29 +220,29 @@ GROUP BY topic ORDER BY ti_le_dung ASC;
 
 ## 6. Test case dự kiến (sẽ thêm vào `admin_portal_test_cases.md`, PHẦN H)
 
-| ID       | Nội dung                                                        | Bắt buộc |
-| -------- | --------------------------------------------------------------- | -------- |
-| TC-2.14  | Migration 0006 chạy sạch; 3 policy, **không** policy cho `anon`  | 🔴       |
-| TC-2.15  | Trả lời 1 câu trong bài học → có dòng trong `question_attempts`  | 🔴       |
-| TC-2.16  | `question_ref` của câu sinh tự động = `tmpl:<khuôn>`, **không** đổi theo lần chạy | 🔴 |
-| TC-2.17  | Luyện tập + ôn câu sai ghi đúng `source` (`practice` / `review`) |          |
-| TC-2.18  | Khách trả lời → **không** ghi dòng nào                          | 🔴       |
-| TC-2.19  | `ms` vượt 300 giây → ghi `NULL`, không ghi số rác               | 🔴       |
-| TC-2.20  | `anon` không đọc / không sửa / không xoá được bảng này           | 🔴       |
-| TC-2.21  | `purge_old_attempts()` xoá đúng, và **không gọi được qua API**   | 🔴       |
-| TC-2.22  | `purge_old_attempts(10)` bị từ chối (chặn xoá nhầm)             |          |
-| TC-2.23  | 3 câu SQL ở mục 4.6 chạy được và ra số liệu hợp lý               | 🔴       |
+| ID      | Nội dung                                                                          | Bắt buộc |
+| ------- | --------------------------------------------------------------------------------- | -------- |
+| TC-2.14 | Migration 0006 chạy sạch; 3 policy, **không** policy cho `anon`                   | 🔴       |
+| TC-2.15 | Trả lời 1 câu trong bài học → có dòng trong `question_attempts`                   | 🔴       |
+| TC-2.16 | `question_ref` của câu sinh tự động = `tmpl:<khuôn>`, **không** đổi theo lần chạy | 🔴       |
+| TC-2.17 | Luyện tập + ôn câu sai ghi đúng `source` (`practice` / `review`)                  |          |
+| TC-2.18 | Khách trả lời → **không** ghi dòng nào                                            | 🔴       |
+| TC-2.19 | `ms` vượt 300 giây → ghi `NULL`, không ghi số rác                                 | 🔴       |
+| TC-2.20 | `anon` không đọc / không sửa / không xoá được bảng này                            | 🔴       |
+| TC-2.21 | `purge_old_attempts()` xoá đúng, và **không gọi được qua API**                    | 🔴       |
+| TC-2.22 | `purge_old_attempts(10)` bị từ chối (chặn xoá nhầm)                               |          |
+| TC-2.23 | 3 câu SQL ở mục 4.6 chạy được và ra số liệu hợp lý                                | 🔴       |
 
 ---
 
 ## 7. Rủi ro và cách giảm
 
-| Rủi ro                                            | Cách xử lý                                                                     |
-| ------------------------------------------------- | ------------------------------------------------------------------------------ |
-| Sửa `generateQuestion` làm sai việc sinh câu      | Bọc hàm, **không** đụng vào thân hàm → hành vi sinh câu không đổi. Test lại `TC-R.5` và `TC-2.4` sau khi sửa |
-| Ghi attempt làm chậm / hỏng bài học               | "Bắn rồi quên", lỗi chỉ `console.warn`, không `await` chặn luồng UI            |
-| Sót chỗ gắn → dữ liệu thiếu, kết luận sai         | `S-9`-kiểu: thêm kiểm tra tĩnh quét xem mọi chỗ gọi `recordMistake` có `recordAttempt` đi kèm |
-| Bảng phình to                                      | Hàm xoá dữ liệu cũ đã có sẵn từ ngày đầu                                       |
+| Rủi ro                                       | Cách xử lý                                                                                                   |
+| -------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| Sửa `generateQuestion` làm sai việc sinh câu | Bọc hàm, **không** đụng vào thân hàm → hành vi sinh câu không đổi. Test lại `TC-R.5` và `TC-2.4` sau khi sửa |
+| Ghi attempt làm chậm / hỏng bài học          | "Bắn rồi quên", lỗi chỉ `console.warn`, không `await` chặn luồng UI                                          |
+| Sót chỗ gắn → dữ liệu thiếu, kết luận sai    | `S-9`-kiểu: thêm kiểm tra tĩnh quét xem mọi chỗ gọi `recordMistake` có `recordAttempt` đi kèm                |
+| Bảng phình to                                | Hàm xoá dữ liệu cũ đã có sẵn từ ngày đầu                                                                     |
 
 ---
 
@@ -256,10 +258,10 @@ GROUP BY topic ORDER BY ti_le_dung ASC;
 
 ## 9. Tóm tắt để duyệt
 
-| #   | Cần bạn xác nhận                                                              |
-| --- | ----------------------------------------------------------------------------- |
-| 1   | Chia 2 lát `2b-1` (thu thập) → `2b-2` (mini game + màn hình `/analytics`)     |
-| 2   | Bỏ cột `attempt_no` (mục 4.5)                                                 |
-| 3   | Chỉ 2 index, chấp nhận `purge` quét toàn bảng (mục 4.1)                        |
-| 4   | `question_ref` hai dạng: `tmpl:<khuôn>` và `lesson:<bài>:<slide>`             |
-| 5   | Mini game + màn hình Analytics để 2b-2, **không** gộp vào đợt này             |
+| #   | Cần bạn xác nhận                                                          |
+| --- | ------------------------------------------------------------------------- |
+| 1   | Chia 2 lát `2b-1` (thu thập) → `2b-2` (mini game + màn hình `/analytics`) |
+| 2   | Bỏ cột `attempt_no` (mục 4.5)                                             |
+| 3   | Chỉ 2 index, chấp nhận `purge` quét toàn bảng (mục 4.1)                   |
+| 4   | `question_ref` hai dạng: `tmpl:<khuôn>` và `lesson:<bài>:<slide>`         |
+| 5   | Mini game + màn hình Analytics để 2b-2, **không** gộp vào đợt này         |

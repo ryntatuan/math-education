@@ -309,6 +309,8 @@ const useProgressStore = create(
             stage: 1,
             nextReviewDate: getDatePlusDays(1),
             lastFailedAt: new Date().toISOString(),
+            // Câu cũ (ghi trước GĐ 2b) chưa có `ref` — điền bù nếu có
+            ref: updated[existingIdx].ref || questionObj.ref || null,
           };
           targetId = updated[existingIdx].id;
           set({ mistakesQueue: updated });
@@ -329,6 +331,9 @@ const useProgressStore = create(
             visualDisplay: questionObj.visualDisplay || null,
             grade: questionObj.grade || 1,
             topic: questionObj.topic || null,
+            // Giữ `ref` để lúc ÔN LẠI vẫn biết đang ôn câu/khuôn nào —
+            // GĐ 2b ghi lượt trả lời theo `ref`. Xem `attemptService.js`.
+            ref: questionObj.ref || null,
             failedCount: 1,
             stage: 1, // 1: 1 day, 2: 3 days, 3: 7 days, 4: mastered
             nextReviewDate: getDatePlusDays(1),

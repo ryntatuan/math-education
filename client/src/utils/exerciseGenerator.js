@@ -206,7 +206,7 @@ function generateOptions(correctAnswer, range = 5, isString = false) {
 
 const EMOJIS = ['🍎', '🍊', '⭐', '🎈', '🚗', '🐱', '🐶', '🌸', '🍭', '⚽']
 
-export function generateQuestion(grade = 1, topicId = null) {
+function buildQuestion(grade = 1, topicId = null) {
   const gNum = Number(grade)
   let topic = topicId
   if (!topic) {
@@ -1068,6 +1068,25 @@ export function generateQuestion(grade = 1, topicId = null) {
     hint: '10 cộng 5 bằng 15!',
     explanation: '10 + 5 = 15.',
   }
+}
+
+/**
+ * Sinh 1 câu hỏi, kèm `ref` (danh tính câu hỏi) và `topic` (kỹ năng).
+ *
+ * VÌ SAO CÓ `ref`: GĐ 2b ghi từng lượt trả lời vào `question_attempts` để trả lời
+ * "khuôn nào hỏng / kỹ năng nào yếu". Câu sinh tự động KHÔNG có danh tính riêng —
+ * mỗi câu chỉ tồn tại đúng 1 lần, nên đánh id cho từng câu là vô nghĩa. Cái có thể
+ * hỏng là KHUÔN sinh câu, và khuôn chính là `topic`. Đánh id theo khuôn vừa đúng
+ * bản chất, vừa trả lời thẳng được câu hỏi "kỹ năng nào yếu".
+ *
+ * Bọc hàm thay vì sửa từng `return` trong `buildQuestion`: hàm đó có hàng chục
+ * nhánh, sửa từng nhánh là cách chắc chắn để sót.
+ */
+export function generateQuestion(grade = 1, topicId = null) {
+  const gNum = Number(grade)
+  const list = TOPICS[`GRADE_${gNum}`] || TOPICS.GRADE_1
+  const topic = topicId || list[randInt(0, list.length - 1)].id
+  return { ...buildQuestion(gNum, topic), ref: `tmpl:${topic}`, topic }
 }
 
 export function generateCalculation(grade = 1) {
