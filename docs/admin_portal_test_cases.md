@@ -233,6 +233,39 @@ Trả về logic thật sau khi test xong:
 
 ---
 
+### A.7. Lấy UUID của bé (cho các câu SQL có `<child-uuid>`)
+
+Nhiều câu SQL trong tài liệu này có đoạn `<child-uuid>`. **Đó là CHỖ TRỐNG, không phải giá trị
+thật.** Dán nguyên vào SQL Editor sẽ báo:
+
+```
+ERROR: 22P02: invalid input syntax for type uuid: "<child-uuid>"
+```
+
+Có **hai cách** lấy UUID thật:
+
+**Cách 1 — từ Admin Portal (nhanh nhất).** Vào `localhost:5174` → **Người dùng** → bấm tên bé.
+Nhìn thanh địa chỉ: `localhost:5174/users/`**`a1b2c3d4-…`** ← phần sau `/users/` chính là UUID.
+
+**Cách 2 — bằng SQL:**
+
+```sql
+SELECT id, nickname, created_at
+FROM public.child_profiles
+ORDER BY created_at DESC;
+```
+
+Rồi thay `<child-uuid>` bằng giá trị thật, **giữ nguyên dấu nháy đơn**:
+
+```sql
+WHERE child_id = 'a1b2c3d4-1234-5678-9abc-def012345678'
+```
+
+> 💡 Nếu chỉ có **1 bé** thì có thể **bỏ hẳn** điều kiện `child_id` — kết quả vẫn đúng.
+> Các mục có chỗ trống này: `A.5`, `TC-2.5`, `TC-2.23`, `TC-R.2`, `TC-R.3`.
+
+---
+
 # 🔐 PHẦN B — GIAI ĐOẠN 0: Bảo mật & nền tảng
 
 ### TC-0.1 — Migration chạy sạch 🔴
@@ -1518,12 +1551,17 @@ WHERE ms IS NOT NULL GROUP BY question_ref ORDER BY 2 DESC LIMIT 20;
 
 ```sql
 -- C: kỹ năng nào bé yếu thật sự
-SELECT topic, COUNT(*) AS luot,
-       ROUND(100.0 * COUNT(*) FILTER (WHERE is_correct) / COUNT(*), 1) AS ti_le_dung
-FROM public.question_attempts
-WHERE child_id = '<child-uuid>' AND topic IS NOT NULL
-GROUP BY topic ORDER BY ti_le_dung ASC;
+-- CỐ Ý không cần điền UUID: gộp theo từng bé luôn, chạy được ngay.
+SELECT cp.nickname, a.topic, COUNT(*) AS luot,
+       ROUND(100.0 * COUNT(*) FILTER (WHERE a.is_correct) / COUNT(*), 1) AS ti_le_dung
+FROM public.question_attempts a
+JOIN public.child_profiles cp ON cp.id = a.child_id
+WHERE a.topic IS NOT NULL
+GROUP BY cp.nickname, a.topic
+ORDER BY cp.nickname, ti_le_dung ASC;
 ```
+
+> 💡 Chỉ muốn 1 bé? Thêm `AND cp.nickname = 'Tên bé'` — **không cần UUID**, xem mục **A.7**.
 
 **Mong đợi:** cả 3 câu chạy không lỗi, và số liệu **khớp với những gì bạn vừa chơi**
 (VD vừa làm sai 2 câu `g1_compare` thì khuôn đó phải hiện tỉ lệ sai > 0).
@@ -1660,3 +1698,4 @@ _(Chưa làm — điền chi tiết khi bắt đầu từng giai đoạn)_
 | `Đã thuộc làu: 0 câu` dù vừa trả lời đúng                       | Đúng thiết kế — cần **3 lần** đúng liên tiếp mới lên bậc 4               | `JSON.parse(localStorage.getItem("toan-vui-progress")).state.mistakesQueue`                  |
 | Mini game vẫn báo thưởng cũ sau khi đổi trên Admin              | App không nhận được sự kiện từ tab khác (khác origin)                    | Tải lại trang app; kiểm tra cache `toan-vui-reward-configs` — xem `TC-R.8`                   |
 | `X is not defined` (`ReferenceError` lúc chạy)                  | Biến chưa khai báo — build **không** bắt được                            | `npm run test:portal:static` → dòng `S-12` — xem `TC-2.7`                                    |
+| `invalid input syntax for type uuid: "<child-uuid>"`           | Chưa thay **chỗ trống** `<child-uuid>` bằng UUID thật                   | Mục **A.7** — lấy UUID từ URL hồ sơ bé hoặc từ `SELECT id, nickname FROM child_profiles`        |
