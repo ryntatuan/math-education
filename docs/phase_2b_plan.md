@@ -266,7 +266,7 @@ Nhánh lạ (không khớp ký hiệu nào) rơi về `other` — **không sập
 | Đua Xe Toán Học (`MathRaceGame`)  | `generateQuestion`      | ✅ có từ 2b-1            | gắn `recordAttempt`                 |
 | Bắn Bóng Số Bay (`NumberPopGame`) | `generateCalculation`   | ➕ sau mục 5.1           | gắn `recordAttempt`                 |
 | Lật Thẻ Ghi Nhớ (`MemoryMatchGame`)| `generateCalculation`  | ➕                       | gắn `recordAttempt`                 |
-| Cân Bằng Thần Kỳ (`MathBalanceGame`)| **không sinh câu hỏi** | —                        | **không làm gì**                    |
+| Cân Bằng Thần Kỳ (`MathBalanceGame`)| **có — `generatePuzzle()` nội bộ** | —                        | **viết `ref` riêng (mục 5.2b)**                    |
 | Phòng Thủ Vũ Trụ (`SpaceDefenseGame`)| `generateCalculation`| ➕                       | gắn `recordAttempt`                 |
 | Câu Cá Thông Thái (`MathFishingGame`)| `generateCalculation`| ➕                       | gắn `recordAttempt`                 |
 
@@ -275,6 +275,46 @@ cùng cách đã dùng ở `PracticePage` và `ChallengePage`.
 
 > ⚠️ **Gọi `recordAttempt` ngay khi bé trả lời**, không gom tới cuối ván. Một ván có nhiều
 > câu; gom tới cuối thì mất hết dữ liệu từng câu — mà đó mới là thứ có giá trị.
+
+### 5.2b. Chỗ gắn `recordAttempt` — theo từng game
+
+> 🔴 **Bài học từ chính lần khảo sát này:** tôi đã kết luận SAI rằng `MathBalanceGame`
+> "không sinh câu hỏi" — chỉ vì grep không thấy `generateCalculation` bên trong nó.
+> Thực tế nó có hàm sinh **riêng** tên `generatePuzzle()`. **Suy từ grep mà không đọc hàm
+> là cách chắc chắn để bỏ sót.** Bảng dưới lấy từ việc đọc trực tiếp các chỗ chấm đúng/sai.
+
+| Game                 | Dòng chấm đúng/sai                       | Gắn ở đâu                                            |
+| -------------------- | ---------------------------------------- | ---------------------------------------------------- |
+| Đua Xe Toán Học      | 833                                      | ngay tại chỗ chấm — một câu, một lần trả lời        |
+| Bắn Bóng Số Bay      | **1157** (`balloon.isCorrect`)           | 🔴 **lúc bóng bị bấm**, không phải lúc tạo bóng (1106) |
+| Lật Thẻ Ghi Nhớ      | 1299                                     | lúc lật đúng cặp thẻ                                  |
+| Cân Bằng Thần Kỳ      | 1534 (`weight === puzzle.missing`)       | trong `handleSelectOption`, **cả hai nhánh**          |
+| Phòng Thủ Vũ Trụ     | 1790                                     | ngay tại chỗ chấm                                     |
+| Câu Cá Thông Thái    | **2010** (`fish.isCorrect`)              | 🔴 **lúc cá bị bắt**, không phải lúc tạo cá (1990)     |
+
+> ⚠️ **Bẫy quan trọng:** hai game Bắn Bóng và Câu Cá **tạo sẵn** nhiều vật thể có
+> `isCorrect` (dòng 1106 và 1990) rồi mới để bé bấm. Ghi ở chỗ TẠO thì mỗi ván sẽ ghi hàng
+> loạt lượt "trả lời" cho những vật bé **chưa từng chạm** — số liệu hỏng ngay từ đầu.
+> Phải ghi ở chỗ bé **BẤM** (1157 và 2010). Hai chỗ đó cũng phải mang theo `ref` của câu,
+> nên cần kiểm tra vật thể có lưu `ref` không; chưa có thì thêm.
+
+**`MathBalanceGame` — `ref` riêng, và là game cho câu hỏi B số liệu tốt nhất:**
+
+`generatePuzzle()` có 4 nhánh. Đặt `ref` ngay trong hàm rồi lưu vào `puzzle`:
+
+| Nhánh                   | `ref`                 |
+| ----------------------- | --------------------- |
+| `grade === 1`           | `calc_balance_g1`     |
+| `grade === 2`           | `calc_balance_g2`     |
+| `grade >= 3` + `isMul`  | `calc_balance_g3_mul` |
+| `grade >= 3` + cộng     | `calc_balance_g3_add` |
+
+> 💡 Đây là **game duy nhất bé có thể trả lời lại cùng một câu** (sai rồi chọn lại). Nên nó
+> là nguồn tốt nhất cho câu hỏi B — "phải thử mấy lần mới đúng" đọc trực tiếp được bằng
+> `GROUP BY question_ref` đếm số dòng cho mỗi bé.
+
+**Mốc thời gian:** đặt lại khi câu hỏi đổi. Riêng Cân Bằng Thần Kỳ đặt lại **sau mỗi lượt
+** trả lời nữa — để `ms` đo "thời gian từ lần thử trước", không cộng dồn cả phiên.
 
 ### 5.3. Màn hình Admin `/analytics`
 
@@ -317,7 +357,7 @@ Dùng lại `Card` / `Stat` / `Empty` của `ChildProfilePage` và cách tô mà
 | #   | Nội dung                                                                     |
 | --- | ---------------------------------------------------------------------------- |
 | 1   | Suy `ref` của mini game từ trường `equation` thay vì sửa 16 chỗ `return`      |
-| 2   | `Cân Bằng Thần Kỳ` không có câu hỏi → **không** gắn gì                        |
+| 2   | **Sửa lại:** `Cân Bằng Thần Kỳ` **CÓ** câu hỏi (hàm nội bộ `generatePuzzle`) → cần `ref` riêng |
 | 3   | Khối C hiển thị mọi bé cùng lúc, chưa làm bộ chọn bé                          |
 | 4   | Ngưỡng tin cậy của khối A là **≥ 20 lượt**                                    |
 | 5   | `/analytics` chỉ đọc, **không** ghi audit log                                 |
