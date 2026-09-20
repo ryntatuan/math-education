@@ -1,6 +1,6 @@
 # 🧪 Test Cases — Admin Portal & Hệ thống kinh tế
 
-> **Cập nhật:** 2026-09-20 · **Trạng thái:** GĐ 0 ✅ · GĐ 1 ✅ · GĐ 2c ✅ đã test PASS · GĐ 2a 🟡 chờ test · GĐ 2b ⏳
+> **Cập nhật:** 2026-09-20 · **Trạng thái:** GĐ 0 ✅ · GĐ 1 ✅ · GĐ 2a ✅ đã test PASS · GĐ 2c ✅ đã test PASS · GĐ 2b 🔵 đang lên kế hoạch
 > **47 test case** · Dùng kèm với `docs/admin_portal_plan.md`.
 
 ---
@@ -1314,54 +1314,54 @@ _(Chưa làm — điền chi tiết khi bắt đầu từng giai đoạn)_
 
 # 📊 BẢNG THEO DÕI KẾT QUẢ
 
-| ID      | Tên test                                    | Kết quả | Ngày | Ghi chú |
-| ------- | ------------------------------------------- | ------- | ---- | ------- |
-| TC-0.1  | Migration chạy sạch                         |         |      |         |
-| TC-0.2  | Vá lỗ hổng leaderboard                      |         |      |         |
-| TC-0.3  | User thường không đọc được hồ sơ người khác |         |      |         |
-| TC-0.4  | `is_admin()` trả đúng                       |         |      |         |
-| TC-0.5  | `admin_audit_log` bất biến                  |         |      |         |
-| TC-0.6  | Admin Portal: đăng nhập đúng người          |         |      |         |
-| TC-0.7  | Thông báo lỗi phân biệt đúng                |         |      |         |
-| TC-0.8  | Bundle tách biệt                            |         |      |         |
-| TC-1.1  | Seed đúng giá trị gốc                       |         |      |         |
-| TC-1.2  | Phát thưởng khớp cấu hình                   |         |      |         |
-| TC-1.3  | 🔴 Đổi config → app nhận ngay               |         |      |         |
-| TC-1.4  | Hệ số nhân X2                               |         |      |         |
-| TC-1.5  | Công thức lên cấp                           |         |      |         |
-| TC-1.6  | Tắt một mục phần thưởng                     |         |      |         |
-| TC-1.7  | Sổ cái ghi đúng và đầy đủ                   |         |      |         |
-| TC-1.8  | Mua hàng ghi sổ âm                          |         |      |         |
-| TC-1.9  | Audit log ghi thay đổi config               |         |      |         |
-| TC-1.10 | Validate form chặn dữ liệu sai              |         |      |         |
-| TC-1.11 | Offline dùng giá trị mặc định               |         |      |         |
-| TC-1.12 | Guest mode không nhận thưởng                |         |      |         |
-| TC-1.13 | Danh sách người dùng tải đúng               |         |      |         |
-| TC-1.14 | Tìm kiếm theo tên bé / email phụ huynh      |         |      |         |
-| TC-1.15 | Phân trang                                  |         |      |         |
-| TC-1.16 | Khoá / Mở khoá tài khoản                    |         |      |         |
-| TC-1.17 | Cảnh báo Xu bất thường                      |         |      |         |
-| TC-R.1  | Guest mode vẫn học được                     |         |      |         |
-| TC-R.2  | Tiến độ guest chuyển lên cloud              |         |      |         |
-| TC-R.3  | Đồng bộ localStorage ↔ Supabase             |         |      |         |
-| TC-R.4  | Bảng xếp hạng vẫn chạy                      |         |      |         |
-| TC-R.5  | 6 mini game vẫn chơi được                   |         |      |         |
-| TC-R.6  | Thú cưng vẫn nuôi được                      |         |      |         |
-| TC-R.7  | Sổ Tay Ôn Bài Sai: phiên nhiều câu          |         |      |         |
-| TC-R.8  | Số thưởng hiển thị khớp config              |         |      |         |
-| TC-2.1  | Migration 0004 chạy sạch                    |         |      |         |
-| TC-2.2  | Hồ sơ bé tải đủ các khối                    |         |      |         |
-| TC-2.3  | Điều hướng tới hồ sơ                        |         |      |         |
-| TC-2.4  | Đồng bộ câu sai lên `child_mistakes`        |         |      |         |
-| TC-2.5  | Số liệu hồ sơ khớp app của bé               |         |      |         |
-| TC-2.6  | Bé không tồn tại → thông báo gọn            |         |      |         |
-| TC-2.7  | Không có biến chưa khai báo _(tự động)_     |         |      |         |
-| TC-2.8  | Migration 0005 chạy sạch                    | PASS | 2026-09-20 | 5 policy đủ, đúng vai trò   |
-| TC-2.9  | Đã đăng nhập thì báo lỗi gắn với bé         | PASS | 2026-09-20 |                             |
-| TC-2.10 | Khách vẫn báo được, `child_id` = NULL       | PASS | 2026-09-20 |                             |
-| TC-2.11 | Quyền ẩn danh bị khoá chặt                  | PASS | 2026-09-20 | 6/6 phép thử đều bị chặn    |
-| TC-2.12 | Màn hình Báo lỗi câu hỏi trên Admin         | PASS | 2026-09-20 |                             |
-| TC-2.13 | Đổi trạng thái có ghi audit log             | PASS | 2026-09-20 |                             |
+| ID      | Tên test                                    | Kết quả | Ngày       | Ghi chú                   |
+| ------- | ------------------------------------------- | ------- | ---------- | ------------------------- |
+| TC-0.1  | Migration chạy sạch                         |         |            |                           |
+| TC-0.2  | Vá lỗ hổng leaderboard                      |         |            |                           |
+| TC-0.3  | User thường không đọc được hồ sơ người khác |         |            |                           |
+| TC-0.4  | `is_admin()` trả đúng                       |         |            |                           |
+| TC-0.5  | `admin_audit_log` bất biến                  |         |            |                           |
+| TC-0.6  | Admin Portal: đăng nhập đúng người          |         |            |                           |
+| TC-0.7  | Thông báo lỗi phân biệt đúng                |         |            |                           |
+| TC-0.8  | Bundle tách biệt                            |         |            |                           |
+| TC-1.1  | Seed đúng giá trị gốc                       |         |            |                           |
+| TC-1.2  | Phát thưởng khớp cấu hình                   |         |            |                           |
+| TC-1.3  | 🔴 Đổi config → app nhận ngay               |         |            |                           |
+| TC-1.4  | Hệ số nhân X2                               |         |            |                           |
+| TC-1.5  | Công thức lên cấp                           |         |            |                           |
+| TC-1.6  | Tắt một mục phần thưởng                     |         |            |                           |
+| TC-1.7  | Sổ cái ghi đúng và đầy đủ                   |         |            |                           |
+| TC-1.8  | Mua hàng ghi sổ âm                          |         |            |                           |
+| TC-1.9  | Audit log ghi thay đổi config               |         |            |                           |
+| TC-1.10 | Validate form chặn dữ liệu sai              |         |            |                           |
+| TC-1.11 | Offline dùng giá trị mặc định               |         |            |                           |
+| TC-1.12 | Guest mode không nhận thưởng                |         |            |                           |
+| TC-1.13 | Danh sách người dùng tải đúng               |         |            |                           |
+| TC-1.14 | Tìm kiếm theo tên bé / email phụ huynh      |         |            |                           |
+| TC-1.15 | Phân trang                                  |         |            |                           |
+| TC-1.16 | Khoá / Mở khoá tài khoản                    |         |            |                           |
+| TC-1.17 | Cảnh báo Xu bất thường                      |         |            |                           |
+| TC-R.1  | Guest mode vẫn học được                     |         |            |                           |
+| TC-R.2  | Tiến độ guest chuyển lên cloud              |         |            |                           |
+| TC-R.3  | Đồng bộ localStorage ↔ Supabase             |         |            |                           |
+| TC-R.4  | Bảng xếp hạng vẫn chạy                      |         |            |                           |
+| TC-R.5  | 6 mini game vẫn chơi được                   |         |            |                           |
+| TC-R.6  | Thú cưng vẫn nuôi được                      |         |            |                           |
+| TC-R.7  | Sổ Tay Ôn Bài Sai: phiên nhiều câu          |         |            |                           |
+| TC-R.8  | Số thưởng hiển thị khớp config              |         |            |                           |
+| TC-2.1  | Migration 0004 chạy sạch                    | PASS    | 2026-09-20 |                           |
+| TC-2.2  | Hồ sơ bé tải đủ các khối                    | PASS    | 2026-09-20 |                           |
+| TC-2.3  | Điều hướng tới hồ sơ                        | PASS    | 2026-09-20 |                           |
+| TC-2.4  | Đồng bộ câu sai lên `child_mistakes`        | PASS    | 2026-09-20 |                           |
+| TC-2.5  | Số liệu hồ sơ khớp app của bé               | PASS    | 2026-09-20 |                           |
+| TC-2.6  | Bé không tồn tại → thông báo gọn            | PASS    | 2026-09-20 |                           |
+| TC-2.7  | Không có biến chưa khai báo _(tự động)_     | PASS    | 2026-09-20 |                           |
+| TC-2.8  | Migration 0005 chạy sạch                    | PASS    | 2026-09-20 | 5 policy đủ, đúng vai trò |
+| TC-2.9  | Đã đăng nhập thì báo lỗi gắn với bé         | PASS    | 2026-09-20 |                           |
+| TC-2.10 | Khách vẫn báo được, `child_id` = NULL       | PASS    | 2026-09-20 |                           |
+| TC-2.11 | Quyền ẩn danh bị khoá chặt                  | PASS    | 2026-09-20 | 6/6 phép thử đều bị chặn  |
+| TC-2.12 | Màn hình Báo lỗi câu hỏi trên Admin         | PASS    | 2026-09-20 |                           |
+| TC-2.13 | Đổi trạng thái có ghi audit log             | PASS    | 2026-09-20 |                           |
 
 ---
 
