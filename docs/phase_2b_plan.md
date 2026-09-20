@@ -205,6 +205,24 @@ GROUP BY topic ORDER BY ti_le_dung ASC;
 
 ---
 
+### 4.7. Điểm mở — câu trong bài học chưa có `topic`
+
+Với `source = 'lesson'`, `topic` để **NULL**. Lý do: câu trong bài học **không thuộc khuôn nào**.
+Danh tính của nó là `lesson_id` + `slide_index`.
+
+**Hệ quả thật:** câu hỏi C ("kỹ năng nào yếu") hiện chỉ tính trên câu **sinh tự động**
+(`practice`, `challenge`). Câu trong bài học — vốn là phần lớn nội dung — **chưa góp vào**.
+
+**Muốn gộp thì cách rẻ nhất là 1 dòng:** ở `LessonPage`, đặt
+`topic: found?.chapter?.id ?? null` (VD `g1-c1`). Nhưng khi đó cột `topic` **trộn hai thang đo**:
+chương của bài học (thô — `g1-c1`) và kỹ năng luyện tập (mịn — `g1_count`). Hai thang khác nhau
+nằm chung một cột dễ dẫn tới kết luận sai khi gộp nhóm.
+
+**Đề xuất:** để nguyên, và ở lát 2b-2 hiển thị **hai khối riêng** — "yếu theo chương bài học"
+(`lesson_id`) và "yếu theo kỹ năng luyện tập" (`topic`). Chỉ gộp khi đã có lý do rõ ràng.
+
+---
+
 ## 5. Lát 2b-2 — Nhìn thấy dữ liệu
 
 - **`generateCalculation()`** — thêm `ref` cho từng nhánh (`calc:g<N>_<phép>`). Hàm này rẽ nhánh

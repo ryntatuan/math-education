@@ -1314,6 +1314,30 @@ FROM public.question_attempts ORDER BY created_at DESC LIMIT 5;
 - `ms` = số mili giây thật (VD `4200`), **không** NULL — trừ khi bạn ngồi quá 5 phút
 - `is_correct` khớp với việc bạn vừa trả lời đúng hay sai
 
+> ℹ️ **`topic` để trống khi `source = 'lesson'` là ĐÚNG thiết kế — không phải lỗi.**
+> Câu trong bài học không thuộc "khuôn" nào; danh tính của nó là `lesson_id` + số slide.
+> `topic` chỉ có nghĩa với câu **sinh tự động**, vì đó mới là thứ đánh ID theo khuôn.
+>
+> Kiểm tra nhanh xem mình đang ở trường hợp nào:
+>
+> ```sql
+> SELECT source,
+>        COUNT(*) AS tong,
+>        COUNT(topic) AS co_topic,
+>        COUNT(*) FILTER (WHERE topic IS NULL) AS khong_topic
+> FROM public.question_attempts GROUP BY source ORDER BY source;
+> ```
+>
+> | `source`    | `co_topic` mong đợi         |
+> | ----------- | --------------------------- |
+> | `lesson`    | **0** — để trống là đúng    |
+> | `practice`  | **= `tong`** — thiếu là LỖI |
+> | `challenge` | **= `tong`** — thiếu là LỖI |
+> | `review`    | có nếu câu gốc từ luyện tập |
+>
+> ⚠️ **Hệ quả cần biết:** câu hỏi C ("kỹ năng nào yếu") hiện chỉ tính được trên câu
+> **sinh tự động**, chưa gồm câu trong bài học. Xem mục 4.7 của `docs/phase_2b_plan.md`.
+
 > ℹ️ **Slide `dialogue` (hội thoại) cũng ghi** — không chỉ slide `quiz`. Thử cả hai loại.
 
 ---
