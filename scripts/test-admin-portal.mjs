@@ -553,7 +553,9 @@ if (!ONLY_DB) {
       //
       // Chỗ nào gọi `recordMistake(` (ghi câu sai) thì cũng phải gọi
       // `recordAttempt(` — cả hai nằm trong cùng nhánh trả lời sai.
-      const callers = CLIENT_SRC.filter((f) => read(f).includes("recordMistake("));
+      const callers = CLIENT_SRC.filter((f) =>
+        read(f).includes("recordMistake("),
+      );
 
       // Canary: bộ dò PHẢI nhìn thấy 2 trang đã biết là có gọi `recordMistake`.
       // Nếu glob hỏng thì `callers` rỗng và test sẽ xanh giả.
@@ -569,7 +571,9 @@ if (!ONLY_DB) {
         `Bộ dò không thấy ${missed.join(", ")} — glob có thể đã hỏng`,
       );
 
-      const missing = callers.filter((f) => !read(f).includes("recordAttempt("));
+      const missing = callers.filter(
+        (f) => !read(f).includes("recordAttempt("),
+      );
       assert(
         missing.length === 0,
         `Gọi recordMistake nhưng thiếu recordAttempt: ${missing.join(", ")}`,

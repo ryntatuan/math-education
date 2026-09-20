@@ -27,10 +27,10 @@ node scripts/test-admin-portal.mjs --db   # chỉ kiểm tra database
 
 **Tool tự kiểm tra 25 mục** (mã `S-x` và `D-x` trong output khớp với `TC-x.y` ở dưới):
 
-| Nhóm  | Nội dung                                                                                                                                                                                                                                                                    | Số mục |
-| ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| Nhóm  | Nội dung                                                                                                                                                                                                                                                                                                                       | Số mục |
+| ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------ |
 | **S** | Quét source: không còn thưởng gán cứng, không còn dependency array mồ côi, mọi khoá `grantReward` đều tồn tại, seed SQL khớp code **cả khoá lẫn giá trị**, 2 bundle tách biệt, không nhúng `service_role`, không gán cứng số Xu/XP trên UI, **không có biến chưa khai báo**, **chỗ ghi câu sai nào cũng ghi kèm lượt trả lời** | 13     |
-| **D** | Gọi REST bằng anon key: seed đủ và đúng giá trị, RLS chặn ghi leaderboard, chặn đọc `profiles`/`child_profiles`/sổ cái, `is_admin()` trả false, audit log bất biến, `reward_configs` đọc công khai được                                                                     | 12     |
+| **D** | Gọi REST bằng anon key: seed đủ và đúng giá trị, RLS chặn ghi leaderboard, chặn đọc `profiles`/`child_profiles`/sổ cái, `is_admin()` trả false, audit log bất biến, `reward_configs` đọc công khai được                                                                                                                        | 12     |
 
 Exit code `0` = tất cả PASS (dùng được trong CI). `1` = có FAIL.
 
@@ -66,13 +66,13 @@ npm --prefix admin  run dev    # 5174
 
 Chạy **đúng thứ tự** trong Supabase → SQL Editor:
 
-| #   | File                                            | Nội dung                                                      |
-| --- | ----------------------------------------------- | ------------------------------------------------------------- |
-| 1   | `supabase/migrations/0001_admin_foundation.sql` | role, `is_admin()`, vá RLS leaderboard, audit log, app_config |
-| 2   | `supabase/migrations/0002_reward_economy.sql`   | reward_configs (giá gốc), sổ cái, hệ số nhân, level curve     |
-| 3   | `supabase/migrations/0003_tune_rewards.sql`     | 🔧 Chốt giá thưởng sau test — hạ thang luyện tập & mini game  |
-| 4   | `supabase/migrations/0004_mistakes_sync.sql`    | 🔧 `child_mistakes.answer` INT → TEXT, index cho hồ sơ bé     |
-| 5   | `supabase/migrations/0005_support_tickets.sql`  | 📮 Bảng `support_tickets` + RLS cho phụ huynh / khách / admin |
+| #   | File                                             | Nội dung                                                           |
+| --- | ------------------------------------------------ | ------------------------------------------------------------------ |
+| 1   | `supabase/migrations/0001_admin_foundation.sql`  | role, `is_admin()`, vá RLS leaderboard, audit log, app_config      |
+| 2   | `supabase/migrations/0002_reward_economy.sql`    | reward_configs (giá gốc), sổ cái, hệ số nhân, level curve          |
+| 3   | `supabase/migrations/0003_tune_rewards.sql`      | 🔧 Chốt giá thưởng sau test — hạ thang luyện tập & mini game       |
+| 4   | `supabase/migrations/0004_mistakes_sync.sql`     | 🔧 `child_mistakes.answer` INT → TEXT, index cho hồ sơ bé          |
+| 5   | `supabase/migrations/0005_support_tickets.sql`   | 📮 Bảng `support_tickets` + RLS cho phụ huynh / khách / admin      |
 | 6   | `supabase/migrations/0006_question_attempts.sql` | 📊 Bảng `question_attempts` + hàm xoá dữ liệu cũ (khách KHÔNG ghi) |
 
 > **Vì sao có cả 0002 và 0003?** `0002` đã chạy rồi nên **không sửa** (sửa migration
@@ -1439,7 +1439,12 @@ WHERE created_at > NOW() - INTERVAL '5 minutes';
 ```js
 const r = await window.__sb
   .from("question_attempts")
-  .insert({ child_id: null, question_ref: "test", source: "lesson", is_correct: true });
+  .insert({
+    child_id: null,
+    question_ref: "test",
+    source: "lesson",
+    is_correct: true,
+  });
 console.log(r.error?.message ?? "⚠️ GHI ĐƯỢC — LỖ HỔNG");
 ```
 
@@ -1480,11 +1485,15 @@ console.log({ count: r.data?.length, error: r.error?.message });
 ```
 
 ```js
-const u = await window.__sb.from("question_attempts")
+const u = await window.__sb
+  .from("question_attempts")
   .update({ is_correct: true })
   .neq("id", 0);
 const d = await window.__sb.from("question_attempts").delete().neq("id", 0);
-console.log({ update: u.error?.message ?? `${u.data?.length ?? 0} dòng`, delete: d.error?.message ?? `${d.data?.length ?? 0} dòng` });
+console.log({
+  update: u.error?.message ?? `${u.data?.length ?? 0} dòng`,
+  delete: d.error?.message ?? `${d.data?.length ?? 0} dòng`,
+});
 // Mong đợi: 0 dòng bị ảnh hưởng
 ```
 
@@ -1698,4 +1707,4 @@ _(Chưa làm — điền chi tiết khi bắt đầu từng giai đoạn)_
 | `Đã thuộc làu: 0 câu` dù vừa trả lời đúng                       | Đúng thiết kế — cần **3 lần** đúng liên tiếp mới lên bậc 4               | `JSON.parse(localStorage.getItem("toan-vui-progress")).state.mistakesQueue`                  |
 | Mini game vẫn báo thưởng cũ sau khi đổi trên Admin              | App không nhận được sự kiện từ tab khác (khác origin)                    | Tải lại trang app; kiểm tra cache `toan-vui-reward-configs` — xem `TC-R.8`                   |
 | `X is not defined` (`ReferenceError` lúc chạy)                  | Biến chưa khai báo — build **không** bắt được                            | `npm run test:portal:static` → dòng `S-12` — xem `TC-2.7`                                    |
-| `invalid input syntax for type uuid: "<child-uuid>"`           | Chưa thay **chỗ trống** `<child-uuid>` bằng UUID thật                   | Mục **A.7** — lấy UUID từ URL hồ sơ bé hoặc từ `SELECT id, nickname FROM child_profiles`        |
+| `invalid input syntax for type uuid: "<child-uuid>"`            | Chưa thay **chỗ trống** `<child-uuid>` bằng UUID thật                    | Mục **A.7** — lấy UUID từ URL hồ sơ bé hoặc từ `SELECT id, nickname FROM child_profiles`     |
