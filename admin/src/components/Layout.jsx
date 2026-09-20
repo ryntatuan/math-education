@@ -93,13 +93,15 @@ export default function Layout() {
           ra 57px (do border), trong khi `pt-14` chỉ 56px → nội dung bị đè mất 1px.
           Ghim cùng một token `14` thì ba chỗ không thể lệch nhau nữa. */}
       <header className="fixed inset-x-0 top-0 z-50 flex h-14 items-center gap-2 border-b border-slate-700 bg-slate-800 px-3 text-slate-200 lg:hidden">
+        {/* Hover dùng `slate-700` chứ không phải `slate-800`: thanh trên cùng nay là
+            `slate-800`, nên hover cùng màu sẽ KHÔNG thấy phản hồi gì. */}
         <button
           type="button"
           onClick={() => setMenuOpen((v) => !v)}
           aria-label={menuOpen ? "Đóng menu" : "Mở menu"}
           aria-expanded={menuOpen}
           aria-controls="admin-sidebar"
-          className="rounded-lg p-2 transition hover:bg-slate-800 hover:text-white"
+          className="rounded-lg p-2 transition hover:bg-slate-700 hover:text-white"
         >
           <MenuIcon open={menuOpen} />
         </button>
