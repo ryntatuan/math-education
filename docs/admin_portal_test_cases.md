@@ -1,7 +1,7 @@
 # 🧪 Test Cases — Admin Portal & Hệ thống kinh tế
 
-> **Cập nhật:** 2026-09-20 · **Trạng thái:** GĐ 0 ✅ · GĐ 1 ✅ · GĐ 2a 🟡 code xong, chờ test · GĐ 2b/2c ⏳
-> **41 test case** · Dùng kèm với `docs/admin_portal_plan.md`.
+> **Cập nhật:** 2026-09-20 · **Trạng thái:** GĐ 0 ✅ · GĐ 1 ✅ · GĐ 2a 🟡 chờ test · GĐ 2c 🟡 code xong, chờ test · GĐ 2b ⏳
+> **47 test case** · Dùng kèm với `docs/admin_portal_plan.md`.
 
 ---
 
@@ -72,6 +72,8 @@ Chạy **đúng thứ tự** trong Supabase → SQL Editor:
 | 2   | `supabase/migrations/0002_reward_economy.sql`   | reward_configs (giá gốc), sổ cái, hệ số nhân, level curve     |
 | 3   | `supabase/migrations/0003_tune_rewards.sql`     | 🔧 Chốt giá thưởng sau test — hạ thang luyện tập & mini game  |
 | 4   | `supabase/migrations/0004_mistakes_sync.sql`    | 🔧 `child_mistakes.answer` INT → TEXT, index cho hồ sơ bé     |
+| 5   | `supabase/migrations/0005_support_tickets.sql`  | 📮 Bảng `support_tickets` + RLS cho phụ huynh / khách / admin |
+| 5   | `supabase/migrations/0005_support_tickets.sql`  | 📮 Bảng `support_tickets` + RLS cho phụ huynh / khách / admin |
 
 > **Vì sao có cả 0002 và 0003?** `0002` đã chạy rồi nên **không sửa** (sửa migration
 > đã áp dụng là cách chắc nhất để môi trường này lệch môi trường kia). `0003` chép lại
@@ -1111,7 +1113,158 @@ Dùng binary có sẵn trong `client/node_modules` — **không phải cài thê
 
 ---
 
-# 📅 PHẦN E — Khung cho các giai đoạn sau
+# � PHẦN G — GIAI ĐOẠN 2c: Hộp thư báo lỗi câu hỏi
+
+> ⚠️ **Phạm vi:** màn hình Admin **không** sửa được nội dung bài học — nội dung còn nằm
+> trong file tĩnh. Sửa nóng là việc của GĐ 3 (CMS). Ticket đã chụp sẵn `lesson_id`,
+> `slide_index`, `question_text`, `correct_answer` nên đủ để tìm và sửa sau.
+
+### TC-2.8 — Migration 0005 chạy sạch 🔴
+
+**Bước:** Chạy `0005_support_tickets.sql` → `Success. No rows returned`.
+
+```sql
+SELECT column_name, data_type FROM information_schema.columns
+WHERE table_name = 'support_tickets' ORDER BY ordinal_position;
+-- Mong đợi có: child_id, lesson_id, slide_index, question_text,
+-- correct_answer, report_type, message, status, admin_note, resolved_by
+```
+
+```sql
+SELECT policyname, cmd, roles FROM pg_policies
+WHERE tablename = 'support_tickets' ORDER BY policyname;
+-- Mong đợi 5 policy: parent_select, parent_insert, anon_insert,
+-- admin_read, admin_update
+```
+
+---
+
+### TC-2.9 — Đã đăng nhập thì báo lỗi gắn với bé 🔴
+
+**Chuẩn bị:** App chính (`5173`), đăng nhập **User A**.
+
+**Bước:** Vào một bài học → tới slide có câu hỏi → bấm **🚩 Báo lỗi câu hỏi** →
+chọn loại lỗi → ghi mô tả → **Gửi báo lỗi**.
+
+**Mong đợi:** hiện **"Cảm ơn bạn!"**. Kiểm chứng:
+
+```sql
+SELECT child_id, lesson_id, slide_index, report_type, status, message
+FROM public.support_tickets ORDER BY created_at DESC LIMIT 3;
+```
+
+- `child_id` = bé đang đăng nhập (không NULL)
+- `lesson_id` đúng bài vừa học (VD `g1-c1-l1`), `slide_index` khớp slide
+- `question_text` = đúng nội dung câu hỏi đã hiện
+- `status = 'new'`
+
+---
+
+### TC-2.10 — Khách vẫn báo được, `child_id` = NULL 🔴
+
+**Chuẩn bị:** Đăng xuất (chế độ Khách).
+
+**Bước:** Làm lại TC-2.9.
+
+**Mong đợi:** vẫn gửi được, và dòng mới có **`child_id IS NULL`**.
+
+> Vì sao cho phép: khách chiếm phần lớn người dùng ban đầu. Xem ghi chú ở đầu
+> `0005_support_tickets.sql`.
+
+---
+
+### TC-2.11 — Quyền ẩn danh bị khoá chặt 🔴
+
+> Đây là test bảo mật quan trọng nhất của GĐ 2c. Nó đảm bảo việc mở cho khách ghi
+> **không** tạo ra lỗ hổng kiểu `USING (true)` đã vá ở GĐ 0.
+
+**Chuẩn bị:** Mở Console ở app chính **khi đang ở chế độ Khách** (xem A.4).
+
+**Bước 1 — Đọc: phải bị chặn**
+
+```js
+const r = await window.__sb.from("support_tickets").select("*").limit(5);
+console.log({ count: r.data?.length, error: r.error?.message });
+```
+
+**Mong đợi:** `count` = `0` (không đọc được gì).
+
+**Bước 2 — Ghi khống `admin_note`: phải bị chặn**
+
+```js
+const r = await window.__sb.from("support_tickets").insert({
+  question_text: "test",
+  status: "new",
+  admin_note: "toi tu dat ghi chu",
+});
+console.log(r.error?.message ?? "⚠️ GHI ĐƯỢC — LỖ HỔNG");
+```
+
+**Mong đợi:** có lỗi vi phạm RLS.
+
+**Bước 3 — Tự đánh dấu đã xử lý: phải bị chặn**
+
+```js
+const r = await window.__sb.from("support_tickets").insert({
+  question_text: "test",
+  status: "resolved",
+});
+console.log(r.error?.message ?? "⚠️ GHI ĐƯỢC — LỖ HỔNG");
+```
+
+**Mong đợi:** có lỗi.
+
+**Bước 4 — Sửa / xoá: phải bị chặn**
+
+```js
+const u = await window.__sb
+  .from("support_tickets")
+  .update({ status: "resolved" })
+  .neq("id", "00000000-0000-0000-0000-000000000000");
+const d = await window.__sb
+  .from("support_tickets")
+  .delete()
+  .neq("id", "00000000-0000-0000-0000-000000000000");
+console.log({ update: u.error?.message, delete: d.error?.message });
+```
+
+**Mong đợi:** cả hai đều có lỗi (hoặc 0 dòng bị ảnh hưởng).
+
+---
+
+### TC-2.12 — Màn hình Báo lỗi câu hỏi trên Admin 🔴
+
+**Chuẩn bị:** `localhost:5174`, đăng nhập admin.
+
+| #   | Thao tác                               | Mong đợi                                                                                           |
+| --- | -------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| a   | Bấm **📮 Báo lỗi câu hỏi** ở menu trái | Vào `/reports`                                                                                     |
+| b   | Tab **Mới**                            | Hiện ticket vừa gửi; số trên tab khớp                                                              |
+| c   | Xem một ticket                         | Có: loại lỗi · thời gian · tên bé (hoặc _Khách_) · câu hỏi · đáp án · vị trí slide · lời người báo |
+| d   | Ticket của khách                       | Ghi rõ **"Khách (chưa đăng nhập)"**                                                                |
+| e   | Bấm tên bé trong ticket                | Sang hồ sơ bé (nếu không phải khách)                                                               |
+| f   | Nhập ghi chú → bấm **Đang xem**        | Thông báo xanh; ticket rời tab Mới, sang tab Đang xem                                              |
+| g   | Gõ tay `localhost:5174/reports`        | Vào thẳng trang, không 404                                                                         |
+
+---
+
+### TC-2.13 — Đổi trạng thái có ghi audit log 🔴
+
+**Bước:** Sau khi làm TC-2.12 (bước f):
+
+```sql
+SELECT created_at, action, entity, entity_id, before, after, reason
+FROM public.admin_audit_log
+WHERE action = 'support_ticket.update'
+ORDER BY created_at DESC LIMIT 5;
+```
+
+**Mong đợi:** có dòng với `entity = 'support_tickets'`, `before.status` và
+`after.status` khác nhau, `after.admin_note` là ghi chú vừa nhập.
+
+---
+
+# �📅 PHẦN E — Khung cho các giai đoạn sau
 
 _(Chưa làm — điền chi tiết khi bắt đầu từng giai đoạn)_
 
@@ -1204,6 +1357,12 @@ _(Chưa làm — điền chi tiết khi bắt đầu từng giai đoạn)_
 | TC-2.5  | Số liệu hồ sơ khớp app của bé               |         |      |         |
 | TC-2.6  | Bé không tồn tại → thông báo gọn            |         |      |         |
 | TC-2.7  | Không có biến chưa khai báo _(tự động)_     |         |      |         |
+| TC-2.8  | Migration 0005 chạy sạch                    |         |      |         |
+| TC-2.9  | Đã đăng nhập thì báo lỗi gắn với bé         |         |      |         |
+| TC-2.10 | Khách vẫn báo được, `child_id` = NULL       |         |      |         |
+| TC-2.11 | Quyền ẩn danh bị khoá chặt                  |         |      |         |
+| TC-2.12 | Màn hình Báo lỗi câu hỏi trên Admin         |         |      |         |
+| TC-2.13 | Đổi trạng thái có ghi audit log             |         |      |         |
 
 ---
 

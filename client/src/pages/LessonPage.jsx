@@ -16,6 +16,7 @@ import {
 import Button from "../components/ui/Button";
 import GoogleIcon from "../components/common/GoogleIcon";
 import ProgressBar, { StarsDisplay } from "../components/ui/ProgressBar";
+import ReportQuestionButton from "../components/report/ReportQuestionButton";
 import MascotIcon from "../components/common/MascotIcon";
 import CoinIcon from "../components/common/CoinIcon";
 import useUserStore from "../store/useUserStore";
@@ -448,6 +449,8 @@ export default function LessonPage() {
               selectedAnswer={selectedAnswer}
               feedback={answerFeedback}
               onAnswer={handleQuizAnswer}
+              lessonId={lessonId}
+              slideIndex={currentSlide}
             />
           )}
 
@@ -1526,7 +1529,14 @@ function ConceptSlide({ content }) {
   );
 }
 
-function QuizSlide({ content, selectedAnswer, feedback, onAnswer }) {
+function QuizSlide({
+  content,
+  selectedAnswer,
+  feedback,
+  onAnswer,
+  lessonId,
+  slideIndex,
+}) {
   const [speaking, setSpeaking] = useState(false);
   const feedbackRef = useRef(null);
 
@@ -1578,15 +1588,23 @@ function QuizSlide({ content, selectedAnswer, feedback, onAnswer }) {
     <div className="slide-quiz-card">
       <div className="quiz-header-banner">
         <span className="quiz-badge">❓ Câu Hỏi Thử Thách</span>
-        <button
-          type="button"
-          className={`lesson-mini-voice-btn ${speaking ? "is-playing" : ""}`}
-          onClick={handleSpeak}
-          title="Nghe đọc câu hỏi"
-        >
-          <Volume2 size={19} />
-          <span>Nghe đọc</span>
-        </button>
+        <div className="quiz-header-actions">
+          <button
+            type="button"
+            className={`lesson-mini-voice-btn ${speaking ? "is-playing" : ""}`}
+            onClick={handleSpeak}
+            title="Nghe đọc câu hỏi"
+          >
+            <Volume2 size={19} />
+            <span>Nghe đọc</span>
+          </button>
+          <ReportQuestionButton
+            lessonId={lessonId}
+            slideIndex={slideIndex}
+            questionText={content.question}
+            correctAnswer={content.answer}
+          />
+        </div>
       </div>
 
       <h2 className="quiz-question">{displayQuestion}</h2>

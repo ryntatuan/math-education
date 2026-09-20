@@ -44,6 +44,10 @@ export default function Layout() {
             <span>🪙</span> Kinh tế Xu/XP
           </NavLink>
 
+          <NavLink to="/reports" className={navLinkClass}>
+            <span>📮</span> Báo lỗi câu hỏi
+          </NavLink>
+
           <div className="pt-4">
             <p className="px-3 pb-2 text-xs font-semibold tracking-wide text-slate-600 uppercase">
               Sắp có

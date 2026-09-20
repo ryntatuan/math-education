@@ -6,6 +6,7 @@ import DashboardPage from "./pages/DashboardPage";
 import EconomyPage from "./pages/EconomyPage";
 import UsersPage from "./pages/UsersPage";
 import ChildProfilePage from "./pages/ChildProfilePage";
+import ReportsPage from "./pages/ReportsPage";
 
 export default function App() {
   return (
@@ -24,6 +25,7 @@ export default function App() {
             <Route path="economy" element={<EconomyPage />} />
             <Route path="users" element={<UsersPage />} />
             <Route path="users/:childId" element={<ChildProfilePage />} />
+            <Route path="reports" element={<ReportsPage />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Route>
         </Routes>

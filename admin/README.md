@@ -148,6 +148,8 @@ http://localhost:5173/**
 | `/`                | Tổng quan — 4 phép kiểm tra RLS chạy tự động      |
 | `/economy`         | Kinh tế Xu/XP — bảng cấu hình phần thưởng         |
 | `/users`           | Người dùng — danh sách bé, khoá/mở khoá tài khoản |
+| `/users/:childId`  | Hồ sơ bé — chỉ đọc, 7 khối thông tin              |
+| `/reports`         | Báo lỗi câu hỏi — hộp thư báo lỗi từ phụ huynh/bé |
 | _(đường dẫn khác)_ | Tự chuyển hướng về `/`                            |
 
 Không có route nào tên `currency`. Tên đúng là **`economy`**.
