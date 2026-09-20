@@ -1634,7 +1634,9 @@ export function generateQuestion(grade = 1, topicId = null) {
   return { ...buildQuestion(gNum, topic), ref: `tmpl:${topic}`, topic };
 }
 
-export function generateCalculation(grade = 1) {
+// Tên cũ của hàm này là `generateCalculation`. Đổi thành `buildCalculation` (nội bộ)
+// ở GĐ 2b-2 để bọc thêm `ref` bên ngoài mà không phải đụng vào thân hàm.
+function buildCalculation(grade = 1) {
   const g = Number(grade);
   if (g === 1) {
     const isAdd = Math.random() > 0.4;
@@ -1817,4 +1819,30 @@ export function generateCalculation(grade = 1) {
       };
     }
   }
+}
+
+// Ký hiệu phép tính → tên kỹ năng. Dùng để suy `topic` từ `equation`.
+const CALC_OP = { "+": "add", "-": "sub", "×": "mul", ":": "div" };
+
+/**
+ * Sinh 1 câu tính toán cho mini game, kèm `ref` (danh tính câu hỏi) và `topic`.
+ *
+ * Cùng lý do với `generateQuestion`: mini game cần ghi từng lượt trả lời vào
+ * `question_attempts` để biết khuôn nào hỏng, kỹ năng nào yếu.
+ *
+ * VÌ SAO SUY TỪ `equation` MÀ KHÔNG SỬA TỪNG `return`: `buildCalculation` có **16 chỗ
+ * `return`** trải trên 5 nhánh lớp. Sửa từng chỗ là cách chắc chắn để sót một chỗ, và
+ * chỗ bị sót sẽ lặng lẽ ghi ra dòng thiếu `ref` mà không ai biết cho tới lúc đọc số liệu.
+ * Mọi nhánh đều trả về `equation`, và mỗi câu chỉ chứa MỘT phép tính → suy ra từ chính
+ * kết quả là đủ, và tự đúng cho cả những nhánh thêm sau này.
+ *
+ * Nhánh lạ (không khớp ký hiệu nào) rơi về `other` — không sập, chỉ thô hơn. Nhưng
+ * `TC-2.24` khẳng định điều đó KHÔNG xảy ra với 5 lớp hiện có.
+ */
+export function generateCalculation(grade = 1) {
+  const g = Number(grade);
+  const q = buildCalculation(g);
+  const symbol = Object.keys(CALC_OP).find((s) => q.equation.includes(s));
+  const topic = `calc_g${g}_${CALC_OP[symbol] ?? "other"}`;
+  return { ...q, ref: `tmpl:${topic}`, topic };
 }

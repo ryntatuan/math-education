@@ -1,7 +1,7 @@
 # 🧪 Test Cases — Admin Portal & Hệ thống kinh tế
 
-> **Cập nhật:** 2026-09-20 · **Trạng thái:** GĐ 0 ✅ · GĐ 1 ✅ · GĐ 2a ✅ đã test PASS · GĐ 2c ✅ đã test PASS · GĐ 2b � ✅ 2b-1 đã test PASS, còn 2b-2
-> **57 test case** · Dùng kèm với `docs/admin_portal_plan.md`.
+> **Cập nhật:** 2026-09-20 · **Trạng thái:** GĐ 0 ✅ · GĐ 1 ✅ · GĐ 2a ✅ đã test PASS · GĐ 2c ✅ đã test PASS · GĐ 2b ✅ đã test PASS (2b-1 + 2b-2) · 📱 Admin Portal responsive ✅
+> **68 test case** · Dùng kèm với `docs/admin_portal_plan.md`.
 
 ---
 
@@ -25,12 +25,12 @@ node scripts/test-admin-portal.mjs --db   # chỉ kiểm tra database
 
 **Không cần cài thư viện nào** — dùng `fetch` có sẵn của Node 18+.
 
-**Tool tự kiểm tra 25 mục** (mã `S-x` và `D-x` trong output khớp với `TC-x.y` ở dưới):
+**Tool tự kiểm tra 27 mục** (mã `S-x` và `D-x` trong output khớp với `TC-x.y` ở dưới):
 
-| Nhóm  | Nội dung                                                                                                                                                                                                                                                                                                                       | Số mục |
-| ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------ |
-| **S** | Quét source: không còn thưởng gán cứng, không còn dependency array mồ côi, mọi khoá `grantReward` đều tồn tại, seed SQL khớp code **cả khoá lẫn giá trị**, 2 bundle tách biệt, không nhúng `service_role`, không gán cứng số Xu/XP trên UI, **không có biến chưa khai báo**, **chỗ ghi câu sai nào cũng ghi kèm lượt trả lời** | 13     |
-| **D** | Gọi REST bằng anon key: seed đủ và đúng giá trị, RLS chặn ghi leaderboard, chặn đọc `profiles`/`child_profiles`/sổ cái, `is_admin()` trả false, audit log bất biến, `reward_configs` đọc công khai được                                                                                                                        | 12     |
+| Nhóm  | Nội dung                                                                                                                                                                                                                                                                                                                                                                   | Số mục |
+| ----- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| **S** | Quét source: không còn thưởng gán cứng, không còn dependency array mồ côi, mọi khoá `grantReward` đều tồn tại, seed SQL khớp code **cả khoá lẫn giá trị**, 2 bundle tách biệt, không nhúng `service_role`, không gán cứng số Xu/XP trên UI, **không có biến chưa khai báo**, **chỗ ghi câu sai nào cũng ghi kèm lượt trả lời**, **mọi game sinh câu đều ghi lượt trả lời** | 14     |
+| **D** | Gọi REST bằng anon key: seed đủ và đúng giá trị, RLS chặn ghi leaderboard, chặn đọc `profiles`/`child_profiles`/sổ cái, `is_admin()` trả false, audit log bất biến, `reward_configs` đọc công khai được, **chặn đọc số liệu phân tích**                                                                                                                                    | 13     |
 
 Exit code `0` = tất cả PASS (dùng được trong CI). `1` = có FAIL.
 
@@ -74,6 +74,7 @@ Chạy **đúng thứ tự** trong Supabase → SQL Editor:
 | 4   | `supabase/migrations/0004_mistakes_sync.sql`     | 🔧 `child_mistakes.answer` INT → TEXT, index cho hồ sơ bé          |
 | 5   | `supabase/migrations/0005_support_tickets.sql`   | 📮 Bảng `support_tickets` + RLS cho phụ huynh / khách / admin      |
 | 6   | `supabase/migrations/0006_question_attempts.sql` | 📊 Bảng `question_attempts` + hàm xoá dữ liệu cũ (khách KHÔNG ghi) |
+| 7   | `supabase/migrations/0007_analytics_queries.sql` | 📈 Hàm `get_question_analytics()` — gộp số liệu cho `/analytics`   |
 
 > **Vì sao có cả 0002 và 0003?** `0002` đã chạy rồi nên **không sửa** (sửa migration
 > đã áp dụng là cách chắc nhất để môi trường này lệch môi trường kia). `0003` chép lại
@@ -1297,10 +1298,12 @@ ORDER BY created_at DESC LIMIT 5;
 
 ---
 
-# � PHẦN H — GIAI ĐOẠN 2b: Tầng dữ liệu phân tích
+# 📊 PHẦN H — GIAI ĐOẠN 2b: Tầng dữ liệu phân tích
 
-> ⚠️ **Lát 2b-1 chỉ THU THẬP dữ liệu** — chưa có màn hình xem. Mini game và màn hình
-> Admin `/analytics` là lát 2b-2. Kế hoạch đầy đủ: `docs/phase_2b_plan.md`.
+> ✅ **Đã có cả 2b-1 và 2b-2.** Lát 2b-1 là tầng **THU THẬP** dữ liệu (`TC-2.14` →
+> `TC-2.23`). Lát 2b-2 gắn nốt **6 mini game** vào cùng đường đó và dựng màn hình
+> `/analytics` (`TC-2.24` → `TC-2.30`).
+> Kế hoạch đầy đủ: `docs/phase_2b_plan.md`.
 >
 > 🎯 **Tầng này tồn tại để trả lời 3 câu:**
 > **A** câu hỏi/khuôn nào hỏng · **B** bé đoán bừa hay không hiểu · **C** kỹ năng nào yếu.
@@ -1437,14 +1440,12 @@ WHERE created_at > NOW() - INTERVAL '5 minutes';
 **Bước 3 — thử ghi trực tiếp bằng Console (app chính, đang là Khách):**
 
 ```js
-const r = await window.__sb
-  .from("question_attempts")
-  .insert({
-    child_id: null,
-    question_ref: "test",
-    source: "lesson",
-    is_correct: true,
-  });
+const r = await window.__sb.from("question_attempts").insert({
+  child_id: null,
+  question_ref: "test",
+  source: "lesson",
+  is_correct: true,
+});
 console.log(r.error?.message ?? "⚠️ GHI ĐƯỢC — LỖ HỔNG");
 ```
 
@@ -1577,6 +1578,436 @@ ORDER BY cp.nickname, ti_le_dung ASC;
 
 ---
 
+## 🎮 Lát 2b-2 — Mini game ghi lượt trả lời + màn hình `/analytics`
+
+> Phần này khép lại GĐ 2b. Lát 2b-1 (ở trên) đã **thu thập** dữ liệu; lát này **gắn
+> nốt 6 mini game** vào cùng đường đó và **dựng màn hình xem số liệu**.
+
+---
+
+### TC-2.24 — Câu mini game đánh ID theo KHUÔN 🔴 _(tự động)_
+
+**Chạy:** `node scratch/verify_calc_ref.mjs`
+
+**Mong đợi:** `1500 lượt` sinh câu (300 × 5 lớp) đều PASS, và in ra đúng **16 khuôn**:
+
+| Lớp   | Khuôn                                                                  |
+| ----- | ---------------------------------------------------------------------- |
+| 1     | `calc_g1_add`, `calc_g1_sub`                                           |
+| 2,3,4 | `calc_g2_add`, `calc_g2_sub`, `calc_g2_mul`, `calc_g2_div` (mỗi lớp 4) |
+| 5     | `calc_g5_add`, `calc_g5_mul`                                           |
+
+**Mỗi kết quả phải có:**
+
+- `ref` bắt đầu bằng `tmpl:calc_g`
+- `topic` khớp phần sau dấu `:` của `ref`
+- **không** khuôn nào là `..._other` — rơi vào `other` nghĩa là có phép tính không nhận ra
+- 4 trường cũ (`question`, `equation`, `options`, `answer`) còn nguyên
+
+> ⚠️ **Lớp 5 chỉ có 2 khuôn, không phải 4.** Đó là đúng: nhánh lớp 5 của bộ này chỉ
+> sinh **cộng số thập phân** và **nhân với 10**. Thấy 16 khuôn là đủ, không phải thiếu.
+>
+> 💡 Vì sao `ref` được suy từ trường `equation` thay vì sửa từng chỗ: hàm gốc có
+> **16 chỗ `return`** trải trên 5 nhánh lớp. Sửa từng chỗ là cách chắc chắn để sót một
+> chỗ — và chỗ bị sót sẽ lặng lẽ ghi ra dòng **thiếu `ref`** mà không ai biết.
+
+---
+
+### TC-2.25 — Chơi mini game → mỗi lần trả lời là MỘT dòng 🔴
+
+> Cũng có cổng chặn tự động: `npm run test:portal:static` → dòng `S-14`.
+> **Đã đo bộ dò:** tạm bỏ `recordAttempt` khỏi `MathBalanceGame` → `S-14` **FAIL** và
+> chỉ đúng tên game (kèm `S-12` báo biến chưa khai báo — hai lớp cùng bắt).
+
+**Chuẩn bị:** App chính (`5173`), đăng nhập **User A** (⚠️ khách không ghi gì).
+
+**Bước:** Vào **Trò chơi** → chơi **Đua Xe Toán Học**, trả lời vài câu.
+
+```sql
+SELECT question_ref, source, topic, grade, ms, is_correct, created_at
+FROM public.question_attempts
+WHERE source = 'game' ORDER BY created_at DESC LIMIT 10;
+```
+
+**Mong đợi:**
+
+- `source = 'game'` · `question_ref` dạng `tmpl:<khuôn>` (VD `tmpl:g1_count`)
+- `topic` = phần sau `tmpl:`
+- `grade` = lớp đang chọn, **không NULL** (bảng có `CHECK 1..5` nên sai là bị chặn ngay)
+- **Mỗi lần trả lời là một dòng** — không gom tới cuối ván
+
+**Lặp lại cho Number Pop, Memory Match, Space Defense, Cân Bằng Thần Kỳ, Câu Cá.**
+
+#### 🔴 Bẫy phải kiểm riêng: ghi ở chỗ TẠO thay vì chỗ BẤM
+
+`NumberPopGame` và `MathFishingGame` **tạo sẵn 4 vật thể** mang `isCorrect` rồi mới để
+bé bấm. Nếu ghi ở chỗ tạo thì **mỗi câu sinh 4 dòng** dù bé chỉ chạm 1 — số liệu sai
+ngay từ đầu mà vẫn trông như có dữ liệu.
+
+**Cách kiểm chắc chắn** — đếm trước, bấm đúng **1 quả**, đếm lại:
+
+```sql
+SELECT COUNT(*) FROM public.question_attempts WHERE source = 'game';
+```
+
+**Mong đợi:** đúng **+1**, không phải +4.
+
+> Lưu ý: đừng đếm theo `question_ref` rồi kết luận — cùng một khuôn xuất hiện nhiều lần
+> trong một ván, nên con số đó không nói lên việc ghi đúng hay sai.
+
+---
+
+### TC-2.26 — Cân Bằng Thần Kỳ ghi `ref` RIÊNG
+
+> 🐞 **Vì sao có mục này:** kế hoạch 2b-2 bản đầu của tôi ghi rằng game này
+> **"không sinh câu hỏi"** — **sai**. Nó có hàm sinh riêng tên `generatePuzzle()`, mà
+> grep `generateCalculation` không nhìn thấy. Nếu tin theo kế hoạch đó thì game này
+> **không bao giờ ghi được dòng nào**, và `/analytics` lặng lẽ thiếu hẳn một nguồn.
+
+**Bước:** App chính → **Cân Bằng Thần Kỳ**, chơi vài vòng.
+
+```sql
+SELECT question_ref, topic, COUNT(*) AS luot,
+       COUNT(*) FILTER (WHERE NOT is_correct) AS so_lan_sai
+FROM public.question_attempts
+WHERE source = 'game' AND question_ref LIKE '%balance%'
+GROUP BY question_ref, topic ORDER BY 1;
+```
+
+**Mong đợi:** thấy các khuôn `calc_balance_*` (1–2 khuôn tuỳ lớp đang chọn):
+
+| Đang chọn   | `question_ref`             |
+| ----------- | -------------------------- |
+| Lớp 1       | `tmpl:calc_balance_g1`     |
+| Lớp 2       | `tmpl:calc_balance_g2`     |
+| Lớp ≥3 nhân | `tmpl:calc_balance_g3_mul` |
+| Lớp ≥3 cộng | `tmpl:calc_balance_g3_add` |
+
+**Kiểm tra quan trọng — sai rồi chọn lại phải sinh 2 dòng:** cố tình chọn sai 1 quả rồi
+chọn đúng. Khuôn đó phải có `so_lan_sai ≥ 1` **và** `luot ≥ 2`.
+
+> 💡 Đây là game **duy nhất** bé trả lời lại được cùng một câu, nên nó là nguồn tốt nhất
+> cho câu hỏi B — "phải thử mấy lần mới đúng" đọc trực tiếp được.
+>
+> ℹ️ Vì sao nhánh lớp ≥3 có **2** khuôn: `generatePuzzle()` sinh đề `a × b` khi
+> `Math.random() > 0.4`, còn lại là phép cộng.
+
+---
+
+### TC-2.27 — Màn hình `/analytics` tải được, 3 khối A/B/C đều ra số liệu 🔴
+
+**Chuẩn bị:** cần ít nhất **20 lượt trong cùng một khuôn** để khối A có dữ liệu. Cách
+nhanh nhất: **Luyện tập một chủ đề** ~20 câu. (Chưa đủ thì xem `TC-2.29`.)
+
+**Bước:** `localhost:5174` → menu trái **📊 Phân tích câu hỏi**.
+
+| #   | Mong đợi                                                                               |
+| --- | -------------------------------------------------------------------------------------- |
+| a   | Vào `/analytics`, không 404                                                            |
+| b   | Dòng tổng hiện `N lượt trả lời trong 30 ngày qua`                                      |
+| c   | **Khối A** — `ref · lượt · tỉ lệ sai`, sai nhiều nhất lên đầu, **chỉ khuôn ≥ 20 lượt** |
+| d   | **Khối B** — `ref · đoán bừa · chưa hiểu`; chỉ tính lượt **có** `ms`                   |
+| e   | **Khối C** — gộp theo **bé · kỹ năng**, `tỉ lệ đúng` thấp nhất lên đầu                 |
+| f   | Gõ tay `localhost:5174/analytics` rồi Enter → vào thẳng, **không** nhảy về Tổng quan   |
+| g   | Console **không** có lỗi đỏ                                                            |
+
+**Đối chiếu bằng SỐ, đừng nhìn rồi đoán.** Màn hình và câu SQL dưới đây đọc từ **cùng
+một hàm**, nên phải ra **y hệt**:
+
+```sql
+SELECT jsonb_pretty(public.get_question_analytics(30, NULL));
+```
+
+> ⚠️ **Đừng đối chiếu với 3 câu SQL ở `TC-2.23`.** Chúng dùng ngưỡng `≥ 5` và không lọc
+> ngày, còn màn hình dùng ngưỡng `20` trong `30 ngày` — khác nhau là đúng, không phải lỗi.
+
+---
+
+### TC-2.28 — Bộ lọc lớp và khoảng ngày đổi số liệu
+
+| #   | Thao tác           | Mong đợi                                                  |
+| --- | ------------------ | --------------------------------------------------------- |
+| a   | Bấm **7 ngày**     | Dòng tổng đổi thành `7 ngày qua`, số **≤** số của 30 ngày |
+| b   | Bấm **90 ngày**    | Số **≥** số của 30 ngày                                   |
+| c   | Chọn **Lớp 3**     | Dòng tổng ghi thêm `· lớp 3`                              |
+| d   | So Lớp 3 với Lớp 5 | Số liệu khác nhau (nếu cả hai lớp đều có dữ liệu)         |
+| e   | Về **Tất cả**      | Khớp lại đúng con số của lần đầu                          |
+
+**Đối chiếu tổ hợp lọc** — đang ở **7 ngày · Lớp 3** thì phải khớp:
+
+```sql
+SELECT jsonb_pretty(public.get_question_analytics(7, 3));
+```
+
+> ⚠️ **Câu trong BÀI HỌC cũng có `grade`** (ghi theo lớp của bài) nên lọc lớp vẫn gồm
+> chúng. Nhưng chúng **không có `topic`**, nên **khối C luôn nhỏ hơn tổng số lượt** —
+> đó là đúng thiết kế, không phải lỗi. Xem ghi chú ở `TC-2.15`.
+
+---
+
+### TC-2.29 — Chưa đủ lượt thì phải NÓI RÕ, không để bảng trống câm 🔴
+
+> Bảng trống mà không giải thích thì bị hiểu nhầm là hỏng. Cùng bài học với Sổ Tay Ôn
+> Bài Sai — "vừa trả lời sai mà sổ rỗng là **đúng thiết kế**".
+
+| #   | Tình huống                              | Mong đợi                                                                                        |
+| --- | --------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| a   | Lọc **7 ngày** khi 7 ngày đó chưa có gì | Khối trắng ghi `7 ngày qua chưa có lượt trả lời nào.` + gợi ý **khách chơi không ghi dòng nào** |
+| b   | Có lượt nhưng mọi khuôn đều < 20 lượt   | Khối A ghi `Chưa khuôn nào đủ 20 lượt (đang có N khuôn dưới ngưỡng)`                            |
+| c   | Cùng lúc                                | Dòng tổng ghi `còn **N** khuôn chưa đủ, cần thêm dữ liệu mới đáng tin`                          |
+| d   | Lọc **Lớp 4** khi lớp 4 chưa có gì      | Thông báo ghi kèm `ở lớp 4`                                                                     |
+
+> ⚠️ Con số **20** đến **từ database** (khoá `min_attempts` trong kết quả hàm), **không**
+> gán cứng trong JSX. Muốn đổi ngưỡng thì chỉ sửa `0007_analytics_queries.sql` — cùng bài
+> học với `TC-R.8`.
+
+---
+
+### TC-2.30 — Migration 0007 chạy sạch; khách KHÔNG gọi được hàm 🔴
+
+**Bước 1 — chạy `0007_analytics_queries.sql`** → `Success. No rows returned`.
+**Chạy lại lần 2 cũng phải thành công** (idempotent).
+
+**Bước 2 — hàm trả đủ 7 khoá:**
+
+```sql
+SELECT jsonb_pretty(public.get_question_analytics(30, NULL));
+-- Mong đợi có đủ: days, grade, min_attempts, total_attempts,
+--                 refs_below_min, broken, guessing, weak
+```
+
+**Bước 3 — tham số vô lý bị kéo về ngưỡng an toàn:**
+
+```sql
+SELECT public.get_question_analytics(0, NULL) -> 'days';
+-- Mong đợi: 1 (bị kéo lên tối thiểu 1, KHÔNG phải 0)
+```
+
+**Bước 4 — khách KHÔNG gọi được** (Console **app chính**, đang là **Khách**):
+
+> ✅ **Có cổng chặn tự động:** `npm run test:portal` → dòng `D-13`. Đã chạy: PASS —
+> `bị REVOKE chặn — HTTP 401`. (HTTP **401** chứ không phải 404 cũng là bằng chứng
+> hàm **đã tồn tại**, tức `0007` đã tạo hàm thành công.)
+>
+> ℹ️ `D-13` cố ý chấp nhận **cả hai** kiểu chặn — lỗi quyền, hoặc 0 dòng. Khẳng định
+> cứng "phải có lỗi" sẽ báo FAIL oan khi lớp RLS đỡ được một mình, mà đó lại là kết
+> quả an toàn.
+
+```js
+const r = await window.__sb.rpc("get_question_analytics", { p_days: 30 });
+console.log(r.error?.message ?? `⚠️ GỌI ĐƯỢC — ${JSON.stringify(r.data)}`);
+```
+
+**Mong đợi:** có lỗi (không tìm thấy hàm, hoặc bị từ chối quyền).
+
+**Bước 5 — hàm chỉ ĐỌC:** trong `0007_analytics_queries.sql` **không** được có
+`INSERT` / `UPDATE` / `DELETE`.
+
+> 🔒 **Vì sao hàm an toàn dù trả số liệu của mọi bé:** `SECURITY INVOKER` — hàm chạy dưới
+> quyền **người gọi**, nên RLS của `question_attempts` vẫn là thứ quyết định. Admin thấy
+> hết nhờ `question_attempts_admin_read`; phụ huynh chỉ thấy bé của mình; khách không thấy gì.
+>
+> ⚠️ **Vì sao phải có hàm này chứ không gọi PostgREST thẳng:** ba khối đều là `GROUP BY`,
+> mà PostgREST **không làm được** `GROUP BY`. Tải dòng thô về gộp bằng JavaScript thì
+> PostgREST chỉ trả tối đa **1000 dòng** một lần — vượt ngưỡng đó màn hình vẫn hiện số,
+> vẫn trông bình thường, nhưng **sai**.
+
+---
+
+# � PHẦN I — Giao diện mobile cho Admin Portal
+
+> Admin Portal vốn chỉ dùng trên máy tính: sidebar rộng **256px** cố định, mỗi trang đệm
+> **32px** mỗi bên. Trên màn 375px, sidebar chiếm 256px → chỉ còn **119px** cho nội dung,
+> không đọc được.
+>
+> Đã sửa: sidebar thành **ngăn kéo** ở mobile · đệm theo breakpoint · bảng rộng **cuộn
+> ngang trong hộp riêng** thay vì bóp cột lại.
+
+### Đã đo, không phải ước lượng
+
+| Chỗ đo                                  | Sau                                            |
+| --------------------------------------- | ---------------------------------------------- |
+| Nội dung có bị thanh trên cùng đè không | `contentTop` 56px **=** `headerBottom` 56px ✅ |
+| Cuộn ngang cấp trang — 6 route ở 375px  | **0 route** bị                                 |
+| Bảng Người dùng (8 cột) ở 375px         | bảng **860px** cuộn trong hộp **341px**        |
+| Độ tương phản chữ trong menu            | **19/19 mục ≥ 4.5:1**, thấp nhất 5.6:1         |
+| Desktop 1280px                          | sidebar tĩnh **256px** — **không đổi**         |
+
+> 🔴 **Một lỗi thật đã bắt được NHỜ ĐO, không nhờ nhìn:** ban đầu thanh trên cùng để tự
+> cao theo nội dung → ra **57px**, trong khi `pt-14` chỉ **56px** → nội dung bị đè mất
+> **1px**. Sửa bằng cách ghim thanh ở `h-14` để nó dùng **cùng token** với `pt-14`.
+> Lỗi 1px này **không nhìn ra được** trong ảnh chụp.
+>
+> ⚠️ `h-14` (thanh trên cùng) · `pt-14` (`<main>`) · `pt-14` (`<aside>`) **phải khớp
+> nhau**. Đổi một chỗ là phải đổi cả ba.
+>
+> ℹ️ Admin Portal **không** có `lucide-react` và cố ý không thêm: nút ☰ là **SVG nội
+> tuyến**. Thêm một dependency chỉ để vẽ 3 đường kẻ là không đáng.
+
+---
+
+### TC-M.1 — Sidebar thành ngăn kéo ở mobile 🔴
+
+**Cách nhanh nhất:** DevTools → **Toggle device toolbar** (Ctrl+Shift+M) → chọn 375px.
+
+| #   | Thao tác                         | Mong đợi                                                      |
+| --- | -------------------------------- | ------------------------------------------------------------- |
+| a   | Mở trang bất kỳ ở 375px          | Sidebar **biến mất**; có thanh trên cùng với nút ☰           |
+| b   | Bấm ☰                           | Ngăn kéo trượt vào từ trái; nền phía sau **tối đi**           |
+| c   | Bấm vào vùng tối                 | Ngăn kéo đóng                                                 |
+| d   | Mở lại rồi bấm **Esc**           | Ngăn kéo đóng                                                 |
+| e   | Mở lại rồi bấm một mục menu      | Sang đúng trang **và** ngăn kéo tự đóng                       |
+| f   | Đang mở ngăn kéo, vuốt lên xuống | Trang phía sau **KHÔNG** cuộn                                 |
+| g   | Đang mở ngăn kéo                 | Nút ☰ vẫn bấm được (đổi thành ✕) — **không** bị ngăn kéo che |
+
+> ⚠️ Mục **(g)** là chỗ dễ sai nhất: thanh trên cùng phải nằm **TRÊN** ngăn kéo
+> (`z-50` > `z-30`). Nằm dưới thì nút đóng duy nhất bị che và người dùng **kẹt** trong
+> ngăn kéo, chỉ còn cách tải lại trang.
+
+---
+
+### TC-M.2 — Không có cuộn ngang ở cấp trang 🔴
+
+> Khác hẳn với "bảng cuộn được". Trang bị cuộn ngang thì **cả tiêu đề trôi đi**, và trên
+> điện thoại người dùng rất dễ lạc.
+
+Ở 375px, lần lượt mở và kiểm **từng đường dẫn**: `/` · `/users` · `/economy` ·
+`/reports` · `/analytics` · `/users/<uuid>`
+
+Dán vào Console:
+
+```js
+console.log(
+  location.pathname,
+  document.documentElement.scrollWidth > document.documentElement.clientWidth
+    ? "❌ TRÀN NGANG"
+    : "✅ không tràn",
+);
+```
+
+**Mong đợi:** cả 6 route đều `✅`.
+
+---
+
+### TC-M.3 — Bảng rộng cuộn ngang trong hộp riêng
+
+**Bước:** Ở 375px, mở **Người dùng** — bảng 8 cột, ca khó nhất.
+
+| #   | Mong đợi                                                                    |
+| --- | --------------------------------------------------------------------------- |
+| a   | Tiêu đề, ô tìm kiếm, nút phân trang **giữ nguyên chỗ** (không bị đẩy ngang) |
+| b   | **Chỉ phần bảng** cuộn ngang khi vuốt                                       |
+| c   | Cột **không bị bóp** lại thành chữ xuống dòng từng chữ một                  |
+
+> 💡 Đây là lý do mỗi bảng có thêm `min-w-[...]`: chỉ `w-full` thì bảng **co lại cho vừa**
+> thay vì cuộn. Bảng 8 cột co trong 341px thì không còn đọc được.
+
+**Kiểm bằng số** — dán vào Console ở 375px:
+
+```js
+const hop = document.querySelector("main table").parentElement;
+console.log({
+  hop: hop.clientWidth, // ~341
+  bang: hop.scrollWidth, // 860
+  cuonDuoc: hop.scrollWidth > hop.clientWidth, // phải là true
+});
+```
+
+---
+
+### TC-M.4 — Desktop không bị ảnh hưởng
+
+**Bước:** Mở rộng cửa sổ lên ≥ 1024px, hoặc tắt chế độ device toolbar.
+
+| #   | Mong đợi                                                    |
+| --- | ----------------------------------------------------------- |
+| a   | Thanh trên cùng **biến mất**                                |
+| b   | Sidebar hiện lại, rộng **256px**, cao hết màn hình          |
+| c   | Nội dung nằm bên phải sidebar, **không** bị đệm 56px ở trên |
+| d   | Không có cuộn ngang                                         |
+
+> ⚠️ Breakpoint là **1024px** (`lg` của Tailwind). Ở 768px (tablet dọc) vẫn là ngăn kéo —
+> đó là **chủ ý**: 768 − 256 = 512px cho nội dung, vẫn quá chật cho bảng 8 cột.
+>
+> 🔴 **Đây là mục dễ bị bỏ qua nhất.** Sửa cho mobile rất dễ làm hỏng desktop mà không
+> ai nhận ra, vì người phát triển đang ở màn hình lớn và chỉ nhìn màn hình lớn.
+
+---
+
+### TC-M.5 — Menu đủ tương phản để đọc 🔴
+
+> **Đây là lỗi thật người dùng báo**, không phải phòng xa: _"menu quá tối màu khó nhìn"_.
+> Đo ra thì đúng — **4 mục dưới ngưỡng** WCAG AA, tệ nhất **2.4:1** (cần **4.5:1**).
+
+| Chỗ                    | Trước                            | Sau                  |
+| ---------------------- | -------------------------------- | -------------------- |
+| Nền sidebar            | `#0f172b`                        | `#1d293d` (sáng hơn) |
+| "Sắp có"               | `#45556c` · **2.4:1** ❌         | 5.6:1 ✅             |
+| "Nội dung bài học"     | `#45556c` · **2.4:1** ❌         | 5.6:1 ✅             |
+| Icon 📚                | `#45556c` **× opacity 0.5** ❌   | bỏ opacity ✅        |
+| Email · "Admin Portal" | `#62748e` · 3.7:1 ❌             | 5.6:1 ✅             |
+| Nhãn "GĐ 3"            | `#62748e` / `#1d293d` · 3.1:1 ❌ | 6.9:1 ✅             |
+
+**Kết quả sau khi sửa: 19/19 mục đạt ≥ 4.5:1, thấp nhất 5.6:1.**
+
+**Cách đo** — mở ngăn kéo ở 375px rồi dán vào Console:
+
+```js
+const cv = document.createElement("canvas");
+cv.width = cv.height = 1;
+const ctx = cv.getContext("2d", { willReadFrequently: true });
+const toRgb = (col) => {
+  // Tô 1 điểm ảnh rồi đọc lại -> sRGB THẬT.
+  ctx.clearRect(0, 0, 1, 1);
+  ctx.fillStyle = "#ffffff";
+  ctx.fillStyle = col;
+  ctx.fillRect(0, 0, 1, 1);
+  return [...ctx.getImageData(0, 0, 1, 1).data].slice(0, 3);
+};
+const lin = (c) =>
+  (c /= 255) <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+const lum = ([r, g, b]) => 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b);
+const bgOf = (el) => {
+  let p = el;
+  while (p) {
+    const c = getComputedStyle(p).backgroundColor;
+    if (c && c !== "rgba(0, 0, 0, 0)" && c !== "transparent") return c;
+    p = p.parentElement;
+  }
+};
+const thap = [];
+for (const el of document
+  .getElementById("admin-sidebar")
+  .querySelectorAll("*")) {
+  const own = [...el.childNodes]
+    .filter((n) => n.nodeType === 3)
+    .map((n) => n.textContent.trim())
+    .join(" ")
+    .trim();
+  if (!own) continue;
+  const cs = getComputedStyle(el);
+  const a = lum(toRgb(cs.color));
+  const b = lum(toRgb(bgOf(el)));
+  const [hi, lo] = a > b ? [a, b] : [b, a];
+  const r = (hi + 0.05) / (lo + 0.05);
+  if (r < 4.5) thap.push(`${own.slice(0, 20)} = ${r.toFixed(1)}`);
+}
+console.log(
+  thap.length ? "❌ DƯỚI NGƯỠNG:\n" + thap.join("\n") : "✅ tất cả ≥ 4.5:1",
+);
+```
+
+> 🔴 **Tailwind v4 phát ra màu `oklch()`, không phải `rgb()`.** Đọc
+> `getComputedStyle().color` rồi tách số bằng regex sẽ ra **số rác** — tôi đã mắc đúng
+> lỗi này: lần đo đầu cho ra "tương phản **1.07**" trong khi thực tế là **12**. Dùng
+> `ctx.fillStyle` cũng **không** đổi `oklch` sang hex (nó trả lại nguyên chuỗi `oklch`).
+> Chỉ có **tô màu rồi đọc lại điểm ảnh** mới đúng.
+>
+> 💡 Bài học chung: khi số đo trông vô lý thì **nghi cái thước trước**, đừng vội kết luận
+> về đối tượng đang đo. Một cái thước hỏng còn tệ hơn không có thước.
+
+---
+
 # �📅 PHẦN E — Khung cho các giai đoạn sau
 
 _(Chưa làm — điền chi tiết khi bắt đầu từng giai đoạn)_
@@ -1589,7 +2020,7 @@ _(Chưa làm — điền chi tiết khi bắt đầu từng giai đoạn)_
 - [x] Trang hồ sơ 1 bé: tiến độ, chuỗi ngày, danh sách lỗi sai, lịch sử giao dịch Xu/XP — `TC-2.1` → `TC-2.6`
 
 **2b — Tầng dữ liệu phân tích** → 📄 kế hoạch: [`docs/phase_2b_plan.md`](phase_2b_plan.md)
-→ ✅ **lát 2b-1 đã test PASS** — test ở PHẦN H
+→ ✅ **2b-1 + 2b-2 đã test PASS** — test ở PHẦN H
 
 - [x] `question_attempts` ghi được khi trả lời câu hỏi — `TC-2.15`, `TC-2.17`
 - [x] 🔴 `ms` không vượt trần (câu bỏ dở giữa chừng ghi `NULL`) — `TC-2.19`
@@ -1598,7 +2029,8 @@ _(Chưa làm — điền chi tiết khi bắt đầu từng giai đoạn)_
 - [x] Trả lời được câu hỏi C: **kỹ năng nào bé yếu thật sự?** — `TC-2.23`
 - [x] **Khách KHÔNG ghi attempt** — đổi ngày 2026-09-20. Bảng này ghi rất nhiều nên mở quyền
       ghi ẩn danh là mở đường spam. `child_id` NOT NULL, không có policy `anon` — `TC-2.18`
-- [ ] Mini game + màn hình Admin `/analytics` — lát **2b-2**
+- [x] Mini game + màn hình Admin `/analytics` — lát **2b-2**
+      → ✅ `TC-2.24` → `TC-2.30` PASS
 - [ ] `app_events` — 📌 **hoãn**, không test giai đoạn này
 
 **2c — Inbox phản hồi**
@@ -1631,80 +2063,95 @@ _(Chưa làm — điền chi tiết khi bắt đầu từng giai đoạn)_
 
 # 📊 BẢNG THEO DÕI KẾT QUẢ
 
-| ID      | Tên test                                    | Kết quả | Ngày       | Ghi chú                   |
-| ------- | ------------------------------------------- | ------- | ---------- | ------------------------- |
-| TC-0.1  | Migration chạy sạch                         |         |            |                           |
-| TC-0.2  | Vá lỗ hổng leaderboard                      |         |            |                           |
-| TC-0.3  | User thường không đọc được hồ sơ người khác |         |            |                           |
-| TC-0.4  | `is_admin()` trả đúng                       |         |            |                           |
-| TC-0.5  | `admin_audit_log` bất biến                  |         |            |                           |
-| TC-0.6  | Admin Portal: đăng nhập đúng người          |         |            |                           |
-| TC-0.7  | Thông báo lỗi phân biệt đúng                |         |            |                           |
-| TC-0.8  | Bundle tách biệt                            |         |            |                           |
-| TC-1.1  | Seed đúng giá trị gốc                       |         |            |                           |
-| TC-1.2  | Phát thưởng khớp cấu hình                   |         |            |                           |
-| TC-1.3  | 🔴 Đổi config → app nhận ngay               |         |            |                           |
-| TC-1.4  | Hệ số nhân X2                               |         |            |                           |
-| TC-1.5  | Công thức lên cấp                           |         |            |                           |
-| TC-1.6  | Tắt một mục phần thưởng                     |         |            |                           |
-| TC-1.7  | Sổ cái ghi đúng và đầy đủ                   |         |            |                           |
-| TC-1.8  | Mua hàng ghi sổ âm                          |         |            |                           |
-| TC-1.9  | Audit log ghi thay đổi config               |         |            |                           |
-| TC-1.10 | Validate form chặn dữ liệu sai              |         |            |                           |
-| TC-1.11 | Offline dùng giá trị mặc định               |         |            |                           |
-| TC-1.12 | Guest mode không nhận thưởng                |         |            |                           |
-| TC-1.13 | Danh sách người dùng tải đúng               |         |            |                           |
-| TC-1.14 | Tìm kiếm theo tên bé / email phụ huynh      |         |            |                           |
-| TC-1.15 | Phân trang                                  |         |            |                           |
-| TC-1.16 | Khoá / Mở khoá tài khoản                    |         |            |                           |
-| TC-1.17 | Cảnh báo Xu bất thường                      |         |            |                           |
-| TC-R.1  | Guest mode vẫn học được                     |         |            |                           |
-| TC-R.2  | Tiến độ guest chuyển lên cloud              |         |            |                           |
-| TC-R.3  | Đồng bộ localStorage ↔ Supabase             |         |            |                           |
-| TC-R.4  | Bảng xếp hạng vẫn chạy                      |         |            |                           |
-| TC-R.5  | 6 mini game vẫn chơi được                   |         |            |                           |
-| TC-R.6  | Thú cưng vẫn nuôi được                      |         |            |                           |
-| TC-R.7  | Sổ Tay Ôn Bài Sai: phiên nhiều câu          |         |            |                           |
-| TC-R.8  | Số thưởng hiển thị khớp config              |         |            |                           |
-| TC-2.1  | Migration 0004 chạy sạch                    | PASS    | 2026-09-20 |                           |
-| TC-2.2  | Hồ sơ bé tải đủ các khối                    | PASS    | 2026-09-20 |                           |
-| TC-2.3  | Điều hướng tới hồ sơ                        | PASS    | 2026-09-20 |                           |
-| TC-2.4  | Đồng bộ câu sai lên `child_mistakes`        | PASS    | 2026-09-20 |                           |
-| TC-2.5  | Số liệu hồ sơ khớp app của bé               | PASS    | 2026-09-20 |                           |
-| TC-2.6  | Bé không tồn tại → thông báo gọn            | PASS    | 2026-09-20 |                           |
-| TC-2.7  | Không có biến chưa khai báo _(tự động)_     | PASS    | 2026-09-20 |                           |
-| TC-2.8  | Migration 0005 chạy sạch                    | PASS    | 2026-09-20 | 5 policy đủ, đúng vai trò |
-| TC-2.9  | Đã đăng nhập thì báo lỗi gắn với bé         | PASS    | 2026-09-20 |                           |
-| TC-2.10 | Khách vẫn báo được, `child_id` = NULL       | PASS    | 2026-09-20 |                           |
-| TC-2.11 | Quyền ẩn danh bị khoá chặt                  | PASS    | 2026-09-20 | 6/6 phép thử đều bị chặn  |
-| TC-2.12 | Màn hình Báo lỗi câu hỏi trên Admin         | PASS    | 2026-09-20 |                           |
-| TC-2.13 | Đổi trạng thái có ghi audit log             | PASS    | 2026-09-20 |                           |
-| TC-2.14 | Migration 0006 chạy sạch                    | PASS    | 2026-09-20 |                           |
-| TC-2.15 | Trả lời 1 câu → có dòng ghi lại             | PASS    | 2026-09-20 |                           |
-| TC-2.16 | Câu sinh tự động ID theo KHUÔN              | PASS    | 2026-09-20 |                           |
-| TC-2.17 | `source` phân biệt luyện tập / ôn sai       | PASS    | 2026-09-20 |                           |
-| TC-2.18 | Khách KHÔNG ghi gì                          | PASS    | 2026-09-20 |                           |
-| TC-2.19 | `ms` vượt trần ghi NULL                     | PASS    | 2026-09-20 |                           |
-| TC-2.20 | `anon` không đọc / sửa / xoá được           | PASS    | 2026-09-20 |                           |
-| TC-2.21 | Hàm purge không gọi được qua API            | PASS    | 2026-09-20 |                           |
-| TC-2.22 | `purge_old_attempts(10)` bị từ chối         | PASS    | 2026-09-20 |                           |
-| TC-2.23 | 3 câu SQL trả lời được A/B/C                | PASS    | 2026-09-20 |                           |
+| ID      | Tên test                                    | Kết quả | Ngày       | Ghi chú                    |
+| ------- | ------------------------------------------- | ------- | ---------- | -------------------------- |
+| TC-0.1  | Migration chạy sạch                         |         |            |                            |
+| TC-0.2  | Vá lỗ hổng leaderboard                      |         |            |                            |
+| TC-0.3  | User thường không đọc được hồ sơ người khác |         |            |                            |
+| TC-0.4  | `is_admin()` trả đúng                       |         |            |                            |
+| TC-0.5  | `admin_audit_log` bất biến                  |         |            |                            |
+| TC-0.6  | Admin Portal: đăng nhập đúng người          |         |            |                            |
+| TC-0.7  | Thông báo lỗi phân biệt đúng                |         |            |                            |
+| TC-0.8  | Bundle tách biệt                            |         |            |                            |
+| TC-1.1  | Seed đúng giá trị gốc                       |         |            |                            |
+| TC-1.2  | Phát thưởng khớp cấu hình                   |         |            |                            |
+| TC-1.3  | 🔴 Đổi config → app nhận ngay               |         |            |                            |
+| TC-1.4  | Hệ số nhân X2                               |         |            |                            |
+| TC-1.5  | Công thức lên cấp                           |         |            |                            |
+| TC-1.6  | Tắt một mục phần thưởng                     |         |            |                            |
+| TC-1.7  | Sổ cái ghi đúng và đầy đủ                   |         |            |                            |
+| TC-1.8  | Mua hàng ghi sổ âm                          |         |            |                            |
+| TC-1.9  | Audit log ghi thay đổi config               |         |            |                            |
+| TC-1.10 | Validate form chặn dữ liệu sai              |         |            |                            |
+| TC-1.11 | Offline dùng giá trị mặc định               |         |            |                            |
+| TC-1.12 | Guest mode không nhận thưởng                |         |            |                            |
+| TC-1.13 | Danh sách người dùng tải đúng               |         |            |                            |
+| TC-1.14 | Tìm kiếm theo tên bé / email phụ huynh      |         |            |                            |
+| TC-1.15 | Phân trang                                  |         |            |                            |
+| TC-1.16 | Khoá / Mở khoá tài khoản                    |         |            |                            |
+| TC-1.17 | Cảnh báo Xu bất thường                      |         |            |                            |
+| TC-R.1  | Guest mode vẫn học được                     |         |            |                            |
+| TC-R.2  | Tiến độ guest chuyển lên cloud              |         |            |                            |
+| TC-R.3  | Đồng bộ localStorage ↔ Supabase             |         |            |                            |
+| TC-R.4  | Bảng xếp hạng vẫn chạy                      |         |            |                            |
+| TC-R.5  | 6 mini game vẫn chơi được                   |         |            |                            |
+| TC-R.6  | Thú cưng vẫn nuôi được                      |         |            |                            |
+| TC-R.7  | Sổ Tay Ôn Bài Sai: phiên nhiều câu          |         |            |                            |
+| TC-R.8  | Số thưởng hiển thị khớp config              |         |            |                            |
+| TC-2.1  | Migration 0004 chạy sạch                    | PASS    | 2026-09-20 |                            |
+| TC-2.2  | Hồ sơ bé tải đủ các khối                    | PASS    | 2026-09-20 |                            |
+| TC-2.3  | Điều hướng tới hồ sơ                        | PASS    | 2026-09-20 |                            |
+| TC-2.4  | Đồng bộ câu sai lên `child_mistakes`        | PASS    | 2026-09-20 |                            |
+| TC-2.5  | Số liệu hồ sơ khớp app của bé               | PASS    | 2026-09-20 |                            |
+| TC-2.6  | Bé không tồn tại → thông báo gọn            | PASS    | 2026-09-20 |                            |
+| TC-2.7  | Không có biến chưa khai báo _(tự động)_     | PASS    | 2026-09-20 |                            |
+| TC-2.8  | Migration 0005 chạy sạch                    | PASS    | 2026-09-20 | 5 policy đủ, đúng vai trò  |
+| TC-2.9  | Đã đăng nhập thì báo lỗi gắn với bé         | PASS    | 2026-09-20 |                            |
+| TC-2.10 | Khách vẫn báo được, `child_id` = NULL       | PASS    | 2026-09-20 |                            |
+| TC-2.11 | Quyền ẩn danh bị khoá chặt                  | PASS    | 2026-09-20 | 6/6 phép thử đều bị chặn   |
+| TC-2.12 | Màn hình Báo lỗi câu hỏi trên Admin         | PASS    | 2026-09-20 |                            |
+| TC-2.13 | Đổi trạng thái có ghi audit log             | PASS    | 2026-09-20 |                            |
+| TC-2.14 | Migration 0006 chạy sạch                    | PASS    | 2026-09-20 |                            |
+| TC-2.15 | Trả lời 1 câu → có dòng ghi lại             | PASS    | 2026-09-20 |                            |
+| TC-2.16 | Câu sinh tự động ID theo KHUÔN              | PASS    | 2026-09-20 |                            |
+| TC-2.17 | `source` phân biệt luyện tập / ôn sai       | PASS    | 2026-09-20 |                            |
+| TC-2.18 | Khách KHÔNG ghi gì                          | PASS    | 2026-09-20 |                            |
+| TC-2.19 | `ms` vượt trần ghi NULL                     | PASS    | 2026-09-20 |                            |
+| TC-2.20 | `anon` không đọc / sửa / xoá được           | PASS    | 2026-09-20 |                            |
+| TC-2.21 | Hàm purge không gọi được qua API            | PASS    | 2026-09-20 |                            |
+| TC-2.22 | `purge_old_attempts(10)` bị từ chối         | PASS    | 2026-09-20 |                            |
+| TC-2.23 | 3 câu SQL trả lời được A/B/C                | PASS    | 2026-09-20 |                            |
+| TC-2.24 | `generateCalculation` đánh ID theo khuôn    | PASS    | 2026-09-20 | 1500 lượt, 16 khuôn, 0 lỗi |
+| TC-2.25 | Mini game → mỗi lần trả lời một dòng        | PASS    | 2026-09-20 | `S-14`: 6 game đều ghi     |
+| TC-2.26 | Cân Bằng Thần Kỳ ghi `ref` riêng            | PASS    | 2026-09-20 | `calc_balance_*`           |
+| TC-2.27 | `/analytics` tải được, 3 khối A/B/C có số   | PASS    | 2026-09-20 | 30 lượt, khối B/C có dòng  |
+| TC-2.28 | Bộ lọc lớp + khoảng ngày đổi số liệu        | PASS    | 2026-09-20 |                            |
+| TC-2.29 | Chưa đủ lượt → thông báo rõ ràng            | PASS    | 2026-09-20 | "còn 3 khuôn chưa đủ"      |
+| TC-2.30 | Migration 0007 + khách không gọi được hàm   | PASS    | 2026-09-20 | `D-13`: HTTP 401           |
+| TC-M.1  | Sidebar thành ngăn kéo ở mobile             | PASS    | 2026-09-20 | 3 cách đóng đều đúng       |
+| TC-M.2  | Không cuộn ngang cấp trang ở mọi route      | PASS    | 2026-09-20 | 6 route, 375px             |
+| TC-M.3  | Bảng rộng cuộn trong hộp riêng              | PASS    | 2026-09-20 | bảng 860px trong hộp 341px |
+| TC-M.4  | Desktop không đổi                           | PASS    | 2026-09-20 | 1280px: sidebar tĩnh 256px |
+| TC-M.5  | Menu đủ tương phản để đọc                   | PASS    | 2026-09-20 | 19/19 mục ≥ 4.5:1          |
 
 ---
 
 ## 🔍 Xử lý khi test FAIL
 
-| Triệu chứng                                                     | Nguyên nhân thường gặp                                                   | Kiểm tra                                                                                     |
-| --------------------------------------------------------------- | ------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------- |
-| Thưởng ra số cũ, không theo config                              | DB chưa có bảng, hoặc cache cũ                                           | `SELECT * FROM reward_configs LIMIT 1;` rồi xoá `toan-vui-reward-configs` trong localStorage |
-| Không có dòng nào trong `coin_transactions`                     | Đang ở guest mode                                                        | Đăng nhập rồi thử lại                                                                        |
-| `ReferenceError: addCoins is not defined`                       | Sót chỗ chưa refactor                                                    | Tìm `addCoins(` trong `client/src`                                                           |
-| Ghi sổ lỗi nhưng thưởng vẫn đúng                                | Bình thường — sổ cái là "bắn rồi quên"                                   | Xem Console, kiểm tra RLS bảng `coin_transactions`                                           |
-| Vào admin bị đá về trang đăng nhập                              | Chưa cấp `role = 'admin'`                                                | `SELECT role FROM profiles WHERE email = '...';`                                             |
-| Đăng nhập admin xong về trang chủ                               | Thiếu Redirect URL                                                       | Supabase → Authentication → URL Configuration                                                |
-| Ôn 2 câu, trả lời 1 câu thì nhảy luôn câu 2 / phiên tự kết thúc | `dueMistakes` bị gọi lại mỗi render, câu vừa trả lời rụng khỏi danh sách | Phải dùng snapshot `reviewQueue` chụp lúc mở tab — xem `TC-R.7`                              |
-| Vừa trả lời sai mà Sổ đã rỗng                                   | Đúng thiết kế — câu mới hẹn ôn **ngày mai**                              | Chạy mục **A.6** nếu cần test ngay                                                           |
-| `Đã thuộc làu: 0 câu` dù vừa trả lời đúng                       | Đúng thiết kế — cần **3 lần** đúng liên tiếp mới lên bậc 4               | `JSON.parse(localStorage.getItem("toan-vui-progress")).state.mistakesQueue`                  |
-| Mini game vẫn báo thưởng cũ sau khi đổi trên Admin              | App không nhận được sự kiện từ tab khác (khác origin)                    | Tải lại trang app; kiểm tra cache `toan-vui-reward-configs` — xem `TC-R.8`                   |
-| `X is not defined` (`ReferenceError` lúc chạy)                  | Biến chưa khai báo — build **không** bắt được                            | `npm run test:portal:static` → dòng `S-12` — xem `TC-2.7`                                    |
-| `invalid input syntax for type uuid: "<child-uuid>"`            | Chưa thay **chỗ trống** `<child-uuid>` bằng UUID thật                    | Mục **A.7** — lấy UUID từ URL hồ sơ bé hoặc từ `SELECT id, nickname FROM child_profiles`     |
+| Triệu chứng                                                     | Nguyên nhân thường gặp                                                   | Kiểm tra                                                                                       |
+| --------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- |
+| Thưởng ra số cũ, không theo config                              | DB chưa có bảng, hoặc cache cũ                                           | `SELECT * FROM reward_configs LIMIT 1;` rồi xoá `toan-vui-reward-configs` trong localStorage   |
+| Không có dòng nào trong `coin_transactions`                     | Đang ở guest mode                                                        | Đăng nhập rồi thử lại                                                                          |
+| `ReferenceError: addCoins is not defined`                       | Sót chỗ chưa refactor                                                    | Tìm `addCoins(` trong `client/src`                                                             |
+| Ghi sổ lỗi nhưng thưởng vẫn đúng                                | Bình thường — sổ cái là "bắn rồi quên"                                   | Xem Console, kiểm tra RLS bảng `coin_transactions`                                             |
+| Vào admin bị đá về trang đăng nhập                              | Chưa cấp `role = 'admin'`                                                | `SELECT role FROM profiles WHERE email = '...';`                                               |
+| Đăng nhập admin xong về trang chủ                               | Thiếu Redirect URL                                                       | Supabase → Authentication → URL Configuration                                                  |
+| Ôn 2 câu, trả lời 1 câu thì nhảy luôn câu 2 / phiên tự kết thúc | `dueMistakes` bị gọi lại mỗi render, câu vừa trả lời rụng khỏi danh sách | Phải dùng snapshot `reviewQueue` chụp lúc mở tab — xem `TC-R.7`                                |
+| Vừa trả lời sai mà Sổ đã rỗng                                   | Đúng thiết kế — câu mới hẹn ôn **ngày mai**                              | Chạy mục **A.6** nếu cần test ngay                                                             |
+| `Đã thuộc làu: 0 câu` dù vừa trả lời đúng                       | Đúng thiết kế — cần **3 lần** đúng liên tiếp mới lên bậc 4               | `JSON.parse(localStorage.getItem("toan-vui-progress")).state.mistakesQueue`                    |
+| Mini game vẫn báo thưởng cũ sau khi đổi trên Admin              | App không nhận được sự kiện từ tab khác (khác origin)                    | Tải lại trang app; kiểm tra cache `toan-vui-reward-configs` — xem `TC-R.8`                     |
+| `X is not defined` (`ReferenceError` lúc chạy)                  | Biến chưa khai báo — build **không** bắt được                            | `npm run test:portal:static` → dòng `S-12` — xem `TC-2.7`                                      |
+| `invalid input syntax for type uuid: "<child-uuid>"`            | Chưa thay **chỗ trống** `<child-uuid>` bằng UUID thật                    | Mục **A.7** — lấy UUID từ URL hồ sơ bé hoặc từ `SELECT id, nickname FROM child_profiles`       |
+| `/analytics` báo `Không đọc được số liệu: …`                    | Chưa chạy `0007`, hoặc mất kết nối                                       | `SELECT public.get_question_analytics(30, NULL);` trong SQL Editor — xem `TC-2.30`             |
+| `/analytics` ra số khác 3 câu SQL ở `TC-2.23`                   | **Bình thường** — ngưỡng và cửa sổ ngày khác nhau                        | Đối chiếu bằng `SELECT jsonb_pretty(public.get_question_analytics(30, NULL));` — xem `TC-2.27` |
+| Mini game có `+ Xu` nhưng `question_attempts` không có dòng nào | Chưa gắn `recordAttempt`, hoặc đang ở chế độ **Khách**                   | `npm run test:portal:static` → dòng `S-14`; khách không ghi gì (`TC-2.25`)                     |

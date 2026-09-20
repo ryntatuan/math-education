@@ -22,6 +22,7 @@ import {
   generateQuestion,
   generateCalculation,
 } from "../utils/exerciseGenerator";
+import { recordAttempt } from "../services/attemptService";
 import soundManager from "../utils/soundManager";
 import fireConfetti from "../utils/confettiHelper";
 import StoriesPage from "./StoriesPage";
@@ -738,6 +739,8 @@ function MathRaceGame({
   const [score, setScore] = useState(0);
   const rewardClaimedRef = useRef(false);
   const [tierReward, setTierReward] = useState(null);
+  // Mốc thời gian của câu đang hiện — GĐ 2b-2. Đặt lại mỗi khi câu đổi.
+  const questionStartedAtRef = useRef(Date.now());
 
   const FINISH_LINE = 100;
 
@@ -745,6 +748,13 @@ function MathRaceGame({
   useEffect(() => {
     setQuestion(generateQuestion(grade));
   }, [grade]);
+
+  // Đặt lại mốc thời gian khi câu đổi. Dùng effect thay vì sửa từng chỗ sinh câu:
+  // câu được sinh ở 3 nơi (lúc mở, sau khi trả lời, khi chơi lại) và còn có thể sinh
+  // thêm ở chỗ khác sau này — khoá theo chính đối tượng `question` thì không sót.
+  useEffect(() => {
+    questionStartedAtRef.current = Date.now();
+  }, [question]);
 
   // Bot timer loop
   useEffect(() => {
@@ -831,6 +841,14 @@ function MathRaceGame({
       if (document.activeElement?.blur) document.activeElement.blur();
 
       const isCorrect = option === question?.answer;
+      recordAttempt({
+        ref: question?.ref,
+        source: "game",
+        topic: question?.topic,
+        grade,
+        isCorrect,
+        startedAt: questionStartedAtRef.current,
+      });
       if (isCorrect) {
         soundManager.playCorrect();
         setFeedback("correct");
@@ -1086,6 +1104,8 @@ function NumberPopGame({ onBack, grade, grantReward, recordGamePlayed }) {
   const gameOverTriggeredRef = useRef(false);
   const gameRecordedRef = useRef(false);
   const [tierReward, setTierReward] = useState(null);
+  // Mốc thời gian của câu đang hiện — GĐ 2b-2.
+  const questionStartedAtRef = useRef(Date.now());
 
   const BALLOON_COLORS = [
     "#ff6b6b",
@@ -1104,6 +1124,9 @@ function NumberPopGame({ onBack, grade, grantReward, recordGamePlayed }) {
       val,
       color: BALLOON_COLORS[idx % BALLOON_COLORS.length],
       isCorrect: val === q.answer,
+      // Mang theo `ref`/`topic` để lúc bé bấm còn biết đã bấm vào câu nào.
+      ref: q.ref,
+      topic: q.topic,
     }));
     setBalloons(newBalloons);
   }, [grade]);
@@ -1111,6 +1134,10 @@ function NumberPopGame({ onBack, grade, grantReward, recordGamePlayed }) {
   useEffect(() => {
     loadNewQuestion();
   }, [loadNewQuestion]);
+
+  useEffect(() => {
+    questionStartedAtRef.current = Date.now();
+  }, [currentQ]);
 
   useEffect(() => {
     if (timeLeft <= 0) {
@@ -1154,6 +1181,18 @@ function NumberPopGame({ onBack, grade, grantReward, recordGamePlayed }) {
     (balloon) => {
       if (gameOver) return;
 
+      // 🔴 Ghi ở chỗ bé BẤM, không phải chỗ tạo bóng: `loadNewQuestion` tạo sẵn 4
+      // quả nhưng bé chỉ chạm 1 quả. Ghi lúc tạo là ghi lượt "trả lời" cho những
+      // quả chưa từng được chạm — số liệu hỏng ngay từ đầu.
+      recordAttempt({
+        ref: balloon.ref,
+        source: "game",
+        topic: balloon.topic,
+        grade,
+        isCorrect: balloon.isCorrect,
+        startedAt: questionStartedAtRef.current,
+      });
+
       if (balloon.isCorrect) {
         soundManager.playCoin();
         setScore((s) => s + 10);
@@ -1163,7 +1202,7 @@ function NumberPopGame({ onBack, grade, grantReward, recordGamePlayed }) {
         setScore((s) => Math.max(0, s - 5));
       }
     },
-    [gameOver, loadNewQuestion],
+    [gameOver, loadNewQuestion, grade],
   );
 
   const handleBack = () => {
@@ -1282,6 +1321,9 @@ function MemoryMatchGame({ onBack, grade, grantReward, recordGamePlayed }) {
   const [gameWon, setGameWon] = useState(false);
   const gameRecordedRef = useRef(false);
   const [tierReward, setTierReward] = useState(null);
+  // Đơn vị của game này là CẶP thẻ, không phải một câu hỏi. Tính giờ từ lúc lật
+  // thẻ đầu của cặp — GĐ 2b-2.
+  const pairStartedAtRef = useRef(Date.now());
 
   const initDeck = useCallback(() => {
     gameRecordedRef.current = false;
@@ -1306,11 +1348,15 @@ function MemoryMatchGame({ onBack, grade, grantReward, recordGamePlayed }) {
           pairId,
           content: equation,
           isEquation: true,
+          ref: q.ref,
+          topic: q.topic,
         });
         pairs.push({
           pairId,
           content: answerStr,
           isEquation: false,
+          ref: q.ref,
+          topic: q.topic,
         });
       }
     }
@@ -1341,6 +1387,8 @@ function MemoryMatchGame({ onBack, grade, grantReward, recordGamePlayed }) {
         return;
 
       soundManager.playClick();
+      // Bắt đầu tính giờ cho CẶP này ngay khi lật thẻ đầu tiên.
+      if (flipped.length === 0) pairStartedAtRef.current = Date.now();
       const newFlipped = [...flipped, card.id];
       setFlipped(newFlipped);
 
@@ -1352,6 +1400,14 @@ function MemoryMatchGame({ onBack, grade, grantReward, recordGamePlayed }) {
         if (firstCard.pairId === secondCard.pairId) {
           // Matched!
           soundManager.playCorrect();
+          recordAttempt({
+            ref: firstCard.ref,
+            source: "game",
+            topic: firstCard.topic,
+            grade,
+            isCorrect: true,
+            startedAt: pairStartedAtRef.current,
+          });
           const newMatched = [...matched, firstCard.pairId];
           setMatched(newMatched);
           setFlipped([]);
@@ -1375,6 +1431,16 @@ function MemoryMatchGame({ onBack, grade, grantReward, recordGamePlayed }) {
           }
         } else {
           // Not matched
+          // Ghi TRƯỚC `setTimeout`: ghi ở trong đó thì `ms` bị cộng thêm 1 giây
+          // chờ lật lại thẻ, làm sai phân tích "đoán bừa hay không hiểu".
+          recordAttempt({
+            ref: firstCard.ref,
+            source: "game",
+            topic: firstCard.topic,
+            grade,
+            isCorrect: false,
+            startedAt: pairStartedAtRef.current,
+          });
           setTimeout(() => {
             soundManager.playWrong();
             setFlipped([]);
@@ -1382,7 +1448,7 @@ function MemoryMatchGame({ onBack, grade, grantReward, recordGamePlayed }) {
         }
       }
     },
-    [flipped, matched, cards, grantReward, recordGamePlayed],
+    [flipped, matched, cards, grade, grantReward, recordGamePlayed],
   );
 
   const handleBack = () => {
@@ -1473,6 +1539,9 @@ function MathBalanceGame({ onBack, grade = 1, grantReward, recordGamePlayed }) {
 
   const TOTAL_ROUNDS = 8;
   const gameRecordedRef = useRef(false);
+  // Game này cho bé THỬ LẠI cùng một câu → mốc thời gian đặt lại sau mỗi lượt
+  // thử, để `ms` đo "từ lần thử trước" chứ không phải từ lúc câu xuất hiện.
+  const attemptStartedAtRef = useRef(Date.now());
   const [tierReward, setTierReward] = useState(null);
 
   const generatePuzzle = useCallback(() => {
@@ -1507,6 +1576,18 @@ function MathBalanceGame({ onBack, grade = 1, grantReward, recordGamePlayed }) {
       missing = target - rightExisting;
     }
 
+    // Game này KHÔNG dùng `generateCalculation` — nó có hàm sinh riêng, nên cần
+    // `ref` riêng (GĐ 2b-2). Suy từ nhánh ĐÃ CHẠY, không đoán lại từ `leftExpr`:
+    // nhánh lớp 1-2 có thể ra "12 kg" không chứa phép tính nào, suy từ chuỗi sẽ hỏng.
+    const topic =
+      grade === 1
+        ? "calc_balance_g1"
+        : grade === 2
+          ? "calc_balance_g2"
+          : leftExpr.includes("×")
+            ? "calc_balance_g3_mul"
+            : "calc_balance_g3_add";
+
     const optSet = new Set([missing]);
     while (optSet.size < 4) {
       const delta =
@@ -1518,7 +1599,15 @@ function MathBalanceGame({ onBack, grade = 1, grantReward, recordGamePlayed }) {
     }
     const options = Array.from(optSet).sort(() => Math.random() - 0.5);
 
-    setPuzzle({ target, leftExpr, rightExisting, missing, options });
+    setPuzzle({
+      target,
+      leftExpr,
+      rightExisting,
+      missing,
+      options,
+      ref: `tmpl:${topic}`,
+      topic,
+    });
     setSelectedWeight(null);
     setIsBalanced(false);
     setWrongOption(null);
@@ -1531,7 +1620,21 @@ function MathBalanceGame({ onBack, grade = 1, grantReward, recordGamePlayed }) {
   const handleSelectOption = (weight) => {
     if (isBalanced || !puzzle) return;
 
-    if (weight === puzzle.missing) {
+    const isCorrect = weight === puzzle.missing;
+    const startedAt = attemptStartedAtRef.current;
+    // Đặt lại NGAY, trước khi ghi: lượt thử sau tính từ đây. Đây chính là thứ làm
+    // cho game này trả lời được câu hỏi B — "phải thử mấy lần mới đúng".
+    attemptStartedAtRef.current = Date.now();
+    recordAttempt({
+      ref: puzzle.ref,
+      source: "game",
+      topic: puzzle.topic,
+      grade,
+      isCorrect,
+      startedAt,
+    });
+
+    if (isCorrect) {
       setSelectedWeight(weight);
       setIsBalanced(true);
       soundManager.playCoin();
@@ -1733,6 +1836,8 @@ function SpaceDefenseGame({
 
   const gameRecordedRef = useRef(false);
   const gameOverTriggeredRef = useRef(false);
+  // Mốc thời gian của câu đang hiện — GĐ 2b-2.
+  const questionStartedAtRef = useRef(Date.now());
   const [tierReward, setTierReward] = useState(null);
 
   const loadNewAsteroid = useCallback(() => {
@@ -1746,6 +1851,10 @@ function SpaceDefenseGame({
   useEffect(() => {
     loadNewAsteroid();
   }, [loadNewAsteroid]);
+
+  useEffect(() => {
+    questionStartedAtRef.current = Date.now();
+  }, [currentQ]);
 
   useEffect(() => {
     if (timeLeft <= 0 || shieldHp <= 0) {
@@ -1787,7 +1896,17 @@ function SpaceDefenseGame({
   const handleShoot = (ans) => {
     if (gameOver || !currentQ || isExploding) return;
 
-    if (ans === currentQ.answer) {
+    const isCorrect = ans === currentQ.answer;
+    recordAttempt({
+      ref: currentQ.ref,
+      source: "game",
+      topic: currentQ.topic,
+      grade,
+      isCorrect,
+      startedAt: questionStartedAtRef.current,
+    });
+
+    if (isCorrect) {
       setLaserActive(true);
       soundManager.playCorrect();
       setTimeout(() => {
@@ -1976,6 +2095,8 @@ function MathFishingGame({ onBack, grade = 1, grantReward, recordGamePlayed }) {
 
   const TARGET_FISH = 6;
   const gameRecordedRef = useRef(false);
+  // Mốc thời gian của câu đang hiện — GĐ 2b-2.
+  const questionStartedAtRef = useRef(Date.now());
   const [tierReward, setTierReward] = useState(null);
   const FISH_EMOJIS = ["🐠", "🐟", "🐡", "🐙"];
 
@@ -1988,6 +2109,9 @@ function MathFishingGame({ onBack, grade = 1, grantReward, recordGamePlayed }) {
       val,
       emoji: FISH_EMOJIS[idx % FISH_EMOJIS.length],
       isCorrect: val === q.answer,
+      // Mang theo `ref`/`topic` để lúc cá bị bắt còn biết đã bắt con nào.
+      ref: q.ref,
+      topic: q.topic,
       yPercent: 12 + idx * 22,
       duration: 10 + (idx % 3) * 3,
       direction: idx % 2 === 0 ? 1 : -1,
@@ -2002,10 +2126,26 @@ function MathFishingGame({ onBack, grade = 1, grantReward, recordGamePlayed }) {
     loadNewQuestion();
   }, [loadNewQuestion]);
 
+  useEffect(() => {
+    questionStartedAtRef.current = Date.now();
+  }, [currentQ]);
+
   const handleCatchFish = (fish) => {
     if (hookingFishId || gameWon) return;
 
     setHookingFishId(fish.id);
+
+    // 🔴 Ghi ở chỗ cá BỊ BẮT, không phải chỗ tạo cá: `loadNewQuestion` tạo sẵn 4
+    // con nhưng bé chỉ bắt được 1. Ghi lúc tạo là ghi lượt "trả lời" cho những
+    // con chưa từng được chạm.
+    recordAttempt({
+      ref: fish.ref,
+      source: "game",
+      topic: fish.topic,
+      grade,
+      isCorrect: fish.isCorrect,
+      startedAt: questionStartedAtRef.current,
+    });
 
     if (fish.isCorrect) {
       setHookSuccess(true);

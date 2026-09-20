@@ -36,10 +36,10 @@ Ba câu hỏi **chỉ `question_attempts` mới trả lời được**:
 
 ## 3. Chia làm 2 lát
 
-| Lát      | Nội dung                                                                              | Vì sao tách                                                      |
-| -------- | ------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| Lát      | Nội dung                                                                              | Vì sao tách                                                                 |
+| -------- | ------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
 | **2b-1** | **Thu thập dữ liệu** — bảng + sinh `ref` + gắn vào bài học/luyện tập/ôn tập/thử thách | Tự nó đã trả lời được A/B/C **bằng SQL**. ✅ **Đã test PASS (2026-09-20).** |
-| **2b-2** | **Nhìn thấy dữ liệu** — `ref` cho mini game + màn hình Admin `/analytics`             | Làm sau khi 2b-1 đã có dữ liệu thật để kiểm chứng                |
+| **2b-2** | **Nhìn thấy dữ liệu** — `ref` cho mini game + màn hình Admin `/analytics`             | Làm sau khi 2b-1 đã có dữ liệu thật để kiểm chứng                           |
 
 > 💡 Có thể **dừng sau 2b-1** nếu bạn muốn xem dữ liệu trước rồi mới quyết định màn hình.
 
@@ -234,14 +234,17 @@ Mọi nhánh đều trả về trường `equation` (VD `"12 + 7"`, `"8 × 5"`).
 chính kết quả**, không cần đụng vào 16 chỗ `return`:
 
 ```js
-function buildCalculation(grade) { /* thân hàm cũ, nguyên vẹn */ }
+function buildCalculation(grade) {
+  /* thân hàm cũ, nguyên vẹn */
+}
 
 const CALC_OP = { "+": "add", "-": "sub", "×": "mul", ":": "div" };
 
 export function generateCalculation(grade = 1) {
   const g = Number(grade);
   const q = buildCalculation(g);
-  const op = Object.keys(CALC_OP).find((s) => q.equation.includes(s)) ?? "other";
+  const op =
+    Object.keys(CALC_OP).find((s) => q.equation.includes(s)) ?? "other";
   const topic = `calc_g${g}_${CALC_OP[op] ?? "other"}`;
   return { ...q, ref: `tmpl:${topic}`, topic };
 }
@@ -249,26 +252,31 @@ export function generateCalculation(grade = 1) {
 
 Nhánh lạ (không khớp ký hiệu nào) rơi về `other` — **không sập**, chỉ thô hơn.
 
-| Lớp   | `ref` sinh ra                                                         |
-| ----- | --------------------------------------------------------------------- |
-| 1     | `calc_g1_add`, `calc_g1_sub`                                          |
+| Lớp   | `ref` sinh ra                                                          |
+| ----- | ---------------------------------------------------------------------- |
+| 1     | `calc_g1_add`, `calc_g1_sub`                                           |
 | 2,3,4 | `calc_g2_add`, `calc_g2_sub`, `calc_g2_mul`, `calc_g2_div` (mỗi lớp 4) |
-| 5     | `calc_g5_add`, `calc_g5_sub`                                          |
+| 5     | `calc_g5_add`, `calc_g5_mul`                                           |
 
-> 🔴 **Phải kiểm chứng trước khi tin:** chạy kiểm tra rằng **mọi** kết quả của
-> `generateCalculation(1..5)` đều có `ref` bắt đầu bằng `tmpl:calc_g` và `topic` khớp `ref`,
-> và **không** rơi vào `other`. Cùng bài học với `oxlint no-undef`: chưa đo thì chưa tin.
+> ⚠️ **Lớp 5 chỉ có 2 khuôn, và là `add` + `mul`** — bản kế hoạch đầu ghi `add` + `sub`,
+> **sai**. Nhánh lớp 5 của generator chỉ sinh **cộng số thập phân** và **nhân với 10**,
+> không có phép trừ. Đúng 16 khuôn cho cả 5 lớp.
+
+> ✅ **Đã kiểm chứng, không phải suy đoán.** `node scratch/verify_calc_ref.mjs` chạy
+> **300 lượt × 5 lớp = 1500 lượt**: `ref` đúng dạng ở mọi lượt, `topic` khớp `ref` ở mọi
+> lượt, **không lượt nào rơi vào `other`**, và 4 trường cũ (`question`, `equation`,
+> `options`, `answer`) còn nguyên. Cùng bài học với `oxlint no-undef`: chưa đo thì chưa tin.
 
 ### 5.2. Gắn `recordAttempt` vào 6 mini game
 
-| Game                              | Hàm sinh câu            | `ref`                    | Việc phải làm                       |
-| --------------------------------- | ----------------------- | ------------------------ | ----------------------------------- |
-| Đua Xe Toán Học (`MathRaceGame`)  | `generateQuestion`      | ✅ có từ 2b-1            | gắn `recordAttempt`                 |
-| Bắn Bóng Số Bay (`NumberPopGame`) | `generateCalculation`   | ➕ sau mục 5.1           | gắn `recordAttempt`                 |
-| Lật Thẻ Ghi Nhớ (`MemoryMatchGame`)| `generateCalculation`  | ➕                       | gắn `recordAttempt`                 |
-| Cân Bằng Thần Kỳ (`MathBalanceGame`)| **có — `generatePuzzle()` nội bộ** | —                        | **viết `ref` riêng (mục 5.2b)**                    |
-| Phòng Thủ Vũ Trụ (`SpaceDefenseGame`)| `generateCalculation`| ➕                       | gắn `recordAttempt`                 |
-| Câu Cá Thông Thái (`MathFishingGame`)| `generateCalculation`| ➕                       | gắn `recordAttempt`                 |
+| Game                                  | Hàm sinh câu                       | `ref`          | Việc phải làm                   |
+| ------------------------------------- | ---------------------------------- | -------------- | ------------------------------- |
+| Đua Xe Toán Học (`MathRaceGame`)      | `generateQuestion`                 | ✅ có từ 2b-1  | gắn `recordAttempt`             |
+| Bắn Bóng Số Bay (`NumberPopGame`)     | `generateCalculation`              | ➕ sau mục 5.1 | gắn `recordAttempt`             |
+| Lật Thẻ Ghi Nhớ (`MemoryMatchGame`)   | `generateCalculation`              | ➕             | gắn `recordAttempt`             |
+| Cân Bằng Thần Kỳ (`MathBalanceGame`)  | **có — `generatePuzzle()` nội bộ** | —              | **viết `ref` riêng (mục 5.2b)** |
+| Phòng Thủ Vũ Trụ (`SpaceDefenseGame`) | `generateCalculation`              | ➕             | gắn `recordAttempt`             |
+| Câu Cá Thông Thái (`MathFishingGame`) | `generateCalculation`              | ➕             | gắn `recordAttempt`             |
 
 `source = "game"`. Mỗi game cần một mốc thời gian riêng (`useRef`) đặt lại khi câu hỏi đổi —
 cùng cách đã dùng ở `PracticePage` và `ChallengePage`.
@@ -283,14 +291,14 @@ cùng cách đã dùng ở `PracticePage` và `ChallengePage`.
 > Thực tế nó có hàm sinh **riêng** tên `generatePuzzle()`. **Suy từ grep mà không đọc hàm
 > là cách chắc chắn để bỏ sót.** Bảng dưới lấy từ việc đọc trực tiếp các chỗ chấm đúng/sai.
 
-| Game                 | Dòng chấm đúng/sai                       | Gắn ở đâu                                            |
-| -------------------- | ---------------------------------------- | ---------------------------------------------------- |
-| Đua Xe Toán Học      | 833                                      | ngay tại chỗ chấm — một câu, một lần trả lời        |
-| Bắn Bóng Số Bay      | **1157** (`balloon.isCorrect`)           | 🔴 **lúc bóng bị bấm**, không phải lúc tạo bóng (1106) |
-| Lật Thẻ Ghi Nhớ      | 1299                                     | lúc lật đúng cặp thẻ                                  |
-| Cân Bằng Thần Kỳ      | 1534 (`weight === puzzle.missing`)       | trong `handleSelectOption`, **cả hai nhánh**          |
-| Phòng Thủ Vũ Trụ     | 1790                                     | ngay tại chỗ chấm                                     |
-| Câu Cá Thông Thái    | **2010** (`fish.isCorrect`)              | 🔴 **lúc cá bị bắt**, không phải lúc tạo cá (1990)     |
+| Game              | Dòng chấm đúng/sai                 | Gắn ở đâu                                              |
+| ----------------- | ---------------------------------- | ------------------------------------------------------ |
+| Đua Xe Toán Học   | 833                                | ngay tại chỗ chấm — một câu, một lần trả lời           |
+| Bắn Bóng Số Bay   | **1157** (`balloon.isCorrect`)     | 🔴 **lúc bóng bị bấm**, không phải lúc tạo bóng (1106) |
+| Lật Thẻ Ghi Nhớ   | 1299                               | lúc lật đúng cặp thẻ                                   |
+| Cân Bằng Thần Kỳ  | 1534 (`weight === puzzle.missing`) | trong `handleSelectOption`, **cả hai nhánh**           |
+| Phòng Thủ Vũ Trụ  | 1790                               | ngay tại chỗ chấm                                      |
+| Câu Cá Thông Thái | **2010** (`fish.isCorrect`)        | 🔴 **lúc cá bị bắt**, không phải lúc tạo cá (1990)     |
 
 > ⚠️ **Bẫy quan trọng:** hai game Bắn Bóng và Câu Cá **tạo sẵn** nhiều vật thể có
 > `isCorrect` (dòng 1106 và 1990) rồi mới để bé bấm. Ghi ở chỗ TẠO thì mỗi ván sẽ ghi hàng
@@ -302,12 +310,12 @@ cùng cách đã dùng ở `PracticePage` và `ChallengePage`.
 
 `generatePuzzle()` có 4 nhánh. Đặt `ref` ngay trong hàm rồi lưu vào `puzzle`:
 
-| Nhánh                   | `ref`                 |
-| ----------------------- | --------------------- |
-| `grade === 1`           | `calc_balance_g1`     |
-| `grade === 2`           | `calc_balance_g2`     |
-| `grade >= 3` + `isMul`  | `calc_balance_g3_mul` |
-| `grade >= 3` + cộng     | `calc_balance_g3_add` |
+| Nhánh                  | `ref`                 |
+| ---------------------- | --------------------- |
+| `grade === 1`          | `calc_balance_g1`     |
+| `grade === 2`          | `calc_balance_g2`     |
+| `grade >= 3` + `isMul` | `calc_balance_g3_mul` |
+| `grade >= 3` + cộng    | `calc_balance_g3_add` |
 
 > 💡 Đây là **game duy nhất bé có thể trả lời lại cùng một câu** (sai rồi chọn lại). Nên nó
 > là nguồn tốt nhất cho câu hỏi B — "phải thử mấy lần mới đúng" đọc trực tiếp được bằng
@@ -321,13 +329,38 @@ cùng cách đã dùng ở `PracticePage` và `ChallengePage`.
 Route `/analytics`, link menu cạnh 📮 _Báo lỗi câu hỏi_. **Chỉ đọc** — không có thao tác ghi
 nên **không cần** `logAudit`.
 
-Ba khối, dùng đúng 3 câu SQL đã kiểm chứng ở `TC-2.23`:
+#### 5.3.1. 🔴 Phải thêm migration `0007` — không gọi PostgREST thẳng được
 
-| Khối                     | Trả lời câu                  | Nội dung hiển thị                                                     |
-| ------------------------ | ---------------------------- | --------------------------------------------------------------------- |
-| **A — Câu hỏi hỏng**     | khuôn/câu nào sai bất thường | `ref · lượt · tỉ lệ sai`, sai nhiều nhất lên đầu, **chỉ khi ≥ 20 lượt** |
-| **B — Đoán bừa / không hiểu** | bé sai vì vội hay vì chưa hiểu | `ref · đoán bừa (nhanh+sai) · không hiểu (chậm+sai)`              |
-| **C — Kỹ năng yếu**      | kỹ năng nào yếu thật sự      | `bé · kỹ năng · lượt · tỉ lệ đúng`, yếu nhất lên đầu                  |
+> **Đây là bổ sung so với bản kế hoạch đầu.** Bản đầu ghi "dùng đúng 3 câu SQL ở
+> `TC-2.23`" mà không nói 3 câu đó chạy bằng cách nào. Đến lúc code mới lộ ra: **không có
+> cách nào chạy chúng từ trình duyệt một cách trung thực.**
+
+Ba khối đều là `GROUP BY`. **PostgREST không làm được `GROUP BY`.** Cách duy nhất để
+dựng chúng từ trình duyệt là tải toàn bộ dòng thô về rồi gộp bằng JavaScript — mà
+PostgREST mặc định chỉ trả **tối đa 1000 dòng một lần**. Vượt ngưỡng đó thì màn hình
+vẫn hiện số, vẫn trông bình thường, nhưng **số SAI**. Đúng kiểu hỏng âm thầm mà cả dự án
+đang tránh.
+
+Nên: gộp trong database bằng hàm `get_question_analytics(p_days, p_grade)` trả về JSONB,
+chỉ vài chục dòng đã tổng hợp. Migration: `supabase/migrations/0007_analytics_queries.sql`.
+
+| Quyết định                                                    | Vì sao                                                                                         |
+| ------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| Hàm trả **JSONB** gồm cả 3 khối, không phải 3 hàm riêng       | Một vòng gọi, một chỗ để đọc hiểu. Ba hàm riêng là ba thứ phải giữ cho khớp nhau               |
+| `SECURITY INVOKER` (mặc định)                                 | Chạy dưới quyền người gọi → RLS vẫn là thứ quyết định. Không tự mở đường vòng qua RLS          |
+| Ngưỡng `20` nằm **trong hàm**, trả về qua khoá `min_attempts` | Màn hình không gán cứng số nào — cùng bài học với `TC-R.8`                                     |
+| Trả thêm `total_attempts` và `refs_below_min`                 | Để nói được "cần thêm bao nhiêu nữa" — bảng trống mà không giải thích thì bị hiểu nhầm là hỏng |
+| **Không** thêm index `created_at`                             | Mọi truy vấn đều phải quét rồi gộp cả khoảng ngày; index chỉ làm chậm mỗi lần ghi              |
+| `REVOKE … FROM PUBLIC, anon` + `GRANT … TO authenticated`     | PostgreSQL mặc định cho `PUBLIC` gọi mọi hàm — cùng lý do với `purge_old_attempts` ở `0006`    |
+| **Không** `LIMIT` cho khối C                                  | `LIMIT` ở đây là cắt âm thầm. Khối C bị chặn tự nhiên bởi (số bé × số kỹ năng) — vốn rất nhỏ   |
+
+Ba khối (dùng lại đúng ngữ nghĩa của 3 câu SQL đã kiểm chứng ở `TC-2.23`):
+
+| Khối                          | Trả lời câu                    | Nội dung hiển thị                                                       |
+| ----------------------------- | ------------------------------ | ----------------------------------------------------------------------- |
+| **A — Câu hỏi hỏng**          | khuôn/câu nào sai bất thường   | `ref · lượt · tỉ lệ sai`, sai nhiều nhất lên đầu, **chỉ khi ≥ 20 lượt** |
+| **B — Đoán bừa / không hiểu** | bé sai vì vội hay vì chưa hiểu | `ref · đoán bừa (nhanh+sai) · không hiểu (chậm+sai)`                    |
+| **C — Kỹ năng yếu**           | kỹ năng nào yếu thật sự        | `bé · kỹ năng · lượt · tỉ lệ đúng`, yếu nhất lên đầu                    |
 
 **Bộ lọc:** khoảng ngày (mặc định **30 ngày**) và lớp (Tất cả / 1–5).
 
@@ -345,22 +378,27 @@ Dùng lại `Card` / `Stat` / `Empty` của `ChildProfilePage` và cách tô mà
 
 | ID      | Nội dung                                                              | Bắt buộc |
 | ------- | --------------------------------------------------------------------- | -------- |
-| TC-2.24 | `generateCalculation` luôn trả `ref = tmpl:calc_g<lớp>_<phép>`         | 🔴       |
-| TC-2.25 | Chơi 1 ván mini game có câu hỏi → mỗi câu một dòng `source = 'game'`   | 🔴       |
-| TC-2.26 | `MathBalanceGame` không sinh câu → không có dòng nào (đúng thiết kế)   |          |
-| TC-2.27 | `/analytics` tải được, cả 3 khối A/B/C đều ra số liệu                  | 🔴       |
-| TC-2.28 | Đổi bộ lọc lớp và khoảng ngày → số liệu đổi theo                       |          |
-| TC-2.29 | Chưa đủ 20 lượt → hiện thông báo rõ ràng, không phải bảng trống câm    | 🔴       |
+| TC-2.24 | `generateCalculation` luôn trả `ref = tmpl:calc_g<lớp>_<phép>`        | 🔴       |
+| TC-2.25 | Chơi mini game → **mỗi lần trả lời một dòng** `source = 'game'`       | 🔴       |
+| TC-2.26 | `MathBalanceGame` có hàm sinh RIÊNG → phải ghi `ref` `calc_balance_*` |          |
+| TC-2.27 | `/analytics` tải được, cả 3 khối A/B/C đều ra số liệu                 | 🔴       |
+| TC-2.28 | Đổi bộ lọc lớp và khoảng ngày → số liệu đổi theo                      |          |
+| TC-2.29 | Chưa đủ 20 lượt → hiện thông báo rõ ràng, không phải bảng trống câm   | 🔴       |
+| TC-2.30 | Migration `0007` chạy sạch; **khách không gọi được** hàm              | 🔴       |
+
+> ⚠️ **`TC-2.26` từng ghi ngược lại** — bản đầu khẳng định game này "không sinh câu →
+> không có dòng nào (đúng thiết kế)". Sai. Giữ lại mục này để chính cái sai đó có người
+> canh: nếu bộ dò `S-14` hỏng, `TC-2.26` là chỗ lộ ra.
 
 ### 5.5. Cần bạn xác nhận trước khi code
 
-| #   | Nội dung                                                                     |
-| --- | ---------------------------------------------------------------------------- |
-| 1   | Suy `ref` của mini game từ trường `equation` thay vì sửa 16 chỗ `return`      |
+| #   | Nội dung                                                                                       |
+| --- | ---------------------------------------------------------------------------------------------- |
+| 1   | Suy `ref` của mini game từ trường `equation` thay vì sửa 16 chỗ `return`                       |
 | 2   | **Sửa lại:** `Cân Bằng Thần Kỳ` **CÓ** câu hỏi (hàm nội bộ `generatePuzzle`) → cần `ref` riêng |
-| 3   | Khối C hiển thị mọi bé cùng lúc, chưa làm bộ chọn bé                          |
-| 4   | Ngưỡng tin cậy của khối A là **≥ 20 lượt**                                    |
-| 5   | `/analytics` chỉ đọc, **không** ghi audit log                                 |
+| 3   | Khối C hiển thị mọi bé cùng lúc, chưa làm bộ chọn bé                                           |
+| 4   | Ngưỡng tin cậy của khối A là **≥ 20 lượt**                                                     |
+| 5   | `/analytics` chỉ đọc, **không** ghi audit log                                                  |
 
 > ⚠️ **Không gộp 2b-2 vào 2b-1.** Màn hình chỉ đáng làm khi đã có dữ liệu thật để nhìn —
 > làm trước thì vừa code mò vừa không kiểm chứng được.

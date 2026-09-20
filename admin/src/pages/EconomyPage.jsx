@@ -228,11 +228,13 @@ export default function EconomyPage() {
   };
 
   if (loading) {
-    return <p className="p-8 text-sm text-slate-500">Đang tải cấu hình…</p>;
+    return (
+      <p className="p-4 text-sm text-slate-500 sm:p-8">Đang tải cấu hình…</p>
+    );
   }
 
   return (
-    <div className="mx-auto max-w-5xl p-8">
+    <div className="mx-auto max-w-5xl p-4 sm:p-6 lg:p-8">
       <header className="mb-6">
         <h1 className="text-2xl font-bold text-slate-900">Kinh tế Xu/XP</h1>
         <p className="mt-1 text-sm text-slate-500">
@@ -312,12 +314,12 @@ export default function EconomyPage() {
       {groups.map(([groupName, items]) => (
         <section
           key={groupName}
-          className="mb-6 rounded-xl border border-slate-200 bg-white"
+          className="mb-6 overflow-x-auto rounded-xl border border-slate-200 bg-white"
         >
           <h2 className="border-b border-slate-200 px-6 py-3 text-sm font-semibold text-slate-900">
             {groupName}
           </h2>
-          <table className="w-full text-sm">
+          <table className="w-full min-w-[560px] text-sm">
             <thead>
               <tr className="border-b border-slate-100 text-left text-xs text-slate-500">
                 <th className="px-6 py-2 font-medium">Hoạt động</th>

@@ -581,6 +581,61 @@ if (!ONLY_DB) {
       return { detail: `${callers.length} file đều có recordAttempt` };
     },
   );
+
+  await test(
+    "S-14",
+    "TC-2.25 — Mọi game có sinh câu hỏi đều ghi lượt trả lời",
+    () => {
+      // VÌ SAO CẦN: 6 mini game, mỗi game sinh câu theo một cách riêng. Gắn sót
+      // một game thì KHÔNG có lỗi nào bung ra — chỉ là bảng `question_attempts`
+      // thiếu hẳn một nguồn, rồi màn hình /analytics lặng lẽ kết luận thiếu.
+      // Lint và build đều không thấy.
+      //
+      // 🔴 Bộ dò này CỐ TÌNH không tìm theo tên hàm sinh câu. Lần khảo sát đầu
+      // tiên đã kết luận SAI rằng `MathBalanceGame` không sinh câu, chỉ vì nó
+      // dùng hàm riêng `generatePuzzle()` mà grep `generateCalculation` không
+      // thấy. Nên ở đây nhận diện theo HÌNH DẠNG: component game nào gọi một
+      // hàm tên bắt đầu bằng `generate` thì cũng phải gọi `recordAttempt`.
+      const rel = "client/src/pages/GamesPage.jsx";
+      const src = read(rel);
+
+      const starts = [...src.matchAll(/\nfunction (\w+Game)\(/g)].map((m) => ({
+        name: m[1],
+        at: m.index + 1,
+      }));
+      assert(starts.length > 0, `Không thấy component game nào trong ${rel}`);
+
+      const generate = [];
+      const missing = [];
+      starts.forEach((s, i) => {
+        const end = i + 1 < starts.length ? starts[i + 1].at : src.length;
+        const body = src.slice(s.at, end);
+        if (!/\bgenerate[A-Z]\w*\(/.test(body)) return; // không sinh câu thì không cần ghi
+        generate.push(s.name);
+        if (!body.includes("recordAttempt(")) missing.push(s.name);
+      });
+
+      // Canary: 6 game đều sinh câu. Con số này đổi thì hoặc có game mới (tốt —
+      // nhớ kiểm tra nó có ghi lượt trả lời), hoặc bộ dò đã hỏng.
+      assert(
+        generate.length === 6,
+        `Mong đợi 6 game sinh câu, thấy ${generate.length}: ${generate.join(", ")}`,
+      );
+      // Canary riêng cho game từng bị bỏ sót. Bộ dò bỏ sót được nó thì bỏ sót
+      // được cả game khác.
+      assert(
+        generate.includes("MathBalanceGame"),
+        "Bộ dò không thấy `MathBalanceGame` — game này sinh câu bằng hàm riêng " +
+          "`generatePuzzle()`, đúng chỗ bộ dò từng bỏ sót",
+      );
+      assert(
+        missing.length === 0,
+        `Game sinh câu nhưng thiếu recordAttempt: ${missing.join(", ")}`,
+      );
+
+      return { detail: `${generate.length} game đều ghi lượt trả lời` };
+    },
+  );
 }
 
 // ═══════════════════════════ DB TESTS ═══════════════════════════
@@ -813,6 +868,40 @@ if (!ONLY_STATIC) {
         assert(r.ok, `HTTP ${r.status} — bảng chưa tồn tại?`);
         assert(r.body.length === 0, "🔴 anon đọc được audit log");
         return { detail: "anon không đọc được" };
+      },
+    );
+
+    await test(
+      "D-13",
+      "TC-2.30 — Anon không đọc được số liệu phân tích",
+      async () => {
+        // Hàm này trả số liệu của MỌI bé. Nếu `anon` đọc được thì bất kỳ ai có anon
+        // key — vốn công khai trong bundle — đều xem được hoạt động học tập của mọi
+        // trẻ.
+        //
+        // Migration 0007 chặn bằng 2 lớp: REVOKE khỏi `anon`, và RLS (hàm là
+        // SECURITY INVOKER nên `anon` không thấy dòng nào của `question_attempts`).
+        // Nên phép thử phải chấp nhận CẢ HAI kiểu chặn — lỗi quyền, hoặc 0 dòng.
+        // Khẳng định cứng "phải có lỗi" sẽ báo FAIL oan khi lớp RLS đỡ được một
+        // mình, mà đó lại là kết quả an toàn.
+        const r = await rest("rpc/get_question_analytics", {
+          method: "POST",
+          body: { p_days: 30 },
+        });
+
+        if (!r.ok) return { detail: `bị REVOKE chặn — HTTP ${r.status}` };
+
+        const leaked =
+          (r.body?.total_attempts ?? 0) > 0 ||
+          (r.body?.broken?.length ?? 0) > 0 ||
+          (r.body?.guessing?.length ?? 0) > 0 ||
+          (r.body?.weak?.length ?? 0) > 0;
+
+        assert(
+          !leaked,
+          `🔴 anon ĐỌC ĐƯỢC số liệu phân tích: ${JSON.stringify(r.body).slice(0, 200)}`,
+        );
+        return { detail: "gọi được nhưng RLS trả 0 dòng — không rò rỉ" };
       },
     );
   }

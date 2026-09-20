@@ -181,12 +181,14 @@ export default function ChildProfilePage() {
   }, [childId]);
 
   if (loading) {
-    return <div className="p-8 text-center text-slate-400">Đang tải…</div>;
+    return (
+      <div className="p-4 text-center text-slate-400 sm:p-8">Đang tải…</div>
+    );
   }
 
   if (error) {
     return (
-      <div className="mx-auto max-w-6xl p-8">
+      <div className="mx-auto max-w-6xl p-4 sm:p-6 lg:p-8">
         <div className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">
           {error}
         </div>
@@ -196,7 +198,7 @@ export default function ChildProfilePage() {
 
   if (!data?.child) {
     return (
-      <div className="mx-auto max-w-6xl p-8">
+      <div className="mx-auto max-w-6xl p-4 sm:p-6 lg:p-8">
         <div className="rounded-lg border border-slate-200 bg-white px-4 py-8 text-center">
           <p className="text-sm text-slate-600">Không tìm thấy hồ sơ bé này.</p>
           <Link
@@ -237,7 +239,7 @@ export default function ChildProfilePage() {
     .reduce((s, t) => s + t.amount, 0);
 
   return (
-    <div className="mx-auto max-w-6xl space-y-5 p-8">
+    <div className="mx-auto max-w-6xl space-y-5 p-4 sm:p-6 lg:p-8">
       <Link
         to="/users"
         className="inline-block text-sm font-medium text-indigo-600 hover:underline"
@@ -389,8 +391,8 @@ export default function ChildProfilePage() {
               <Stat label="Đã thuộc làu" value={masteredCount} tone="emerald" />
             </div>
 
-            <div className="overflow-hidden rounded-lg border border-slate-200">
-              <table className="w-full text-sm">
+            <div className="overflow-x-auto rounded-lg border border-slate-200">
+              <table className="w-full min-w-[640px] text-sm">
                 <thead>
                   <tr className="border-b border-slate-200 bg-slate-50 text-left text-xs text-slate-500">
                     <th className="px-3 py-2 font-medium">Câu hỏi</th>
@@ -444,8 +446,8 @@ export default function ChildProfilePage() {
         {transactions.length === 0 ? (
           <Empty>Chưa có giao dịch nào.</Empty>
         ) : (
-          <div className="overflow-hidden rounded-lg border border-slate-200">
-            <table className="w-full text-sm">
+          <div className="overflow-x-auto rounded-lg border border-slate-200">
+            <table className="w-full min-w-[520px] text-sm">
               <thead>
                 <tr className="border-b border-slate-200 bg-slate-50 text-left text-xs text-slate-500">
                   <th className="px-3 py-2 font-medium">Thời điểm</th>

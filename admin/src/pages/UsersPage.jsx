@@ -254,7 +254,7 @@ export default function UsersPage() {
   };
 
   return (
-    <div className="mx-auto max-w-6xl p-8">
+    <div className="mx-auto max-w-6xl p-4 sm:p-6 lg:p-8">
       <header className="mb-6">
         <h1 className="text-2xl font-bold text-slate-900">Người dùng</h1>
         <p className="mt-1 text-sm text-slate-500">
@@ -268,7 +268,7 @@ export default function UsersPage() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Tìm tên bé hoặc email phụ huynh…"
-          className="w-80 rounded-lg border border-slate-300 px-4 py-2 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 focus:outline-none"
+          className="w-full rounded-lg border border-slate-300 px-4 py-2 text-sm focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 focus:outline-none sm:w-80"
         />
         <span className="text-sm text-slate-500">{total} hồ sơ bé</span>
         {flagged.length > 0 && (
@@ -290,8 +290,8 @@ export default function UsersPage() {
         </div>
       )}
 
-      <div className="overflow-hidden rounded-xl border border-slate-200 bg-white">
-        <table className="w-full text-sm">
+      <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white">
+        <table className="w-full min-w-[860px] text-sm">
           <thead>
             <tr className="border-b border-slate-200 bg-slate-50 text-left text-xs text-slate-500">
               <th className="px-5 py-3 font-medium">Bé</th>
