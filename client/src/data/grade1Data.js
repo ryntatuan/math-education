@@ -158,6 +158,13 @@ export const grade1Data = {
                 question: "Hình dưới đây có mấy con chim?",
                 options: [1, 2, 3, 4],
                 answer: 3,
+                // 🔴 CÂU HỎI BẮT BÉ ĐẾM HÌNH, MÀ SLIDE KHÔNG CÓ GÌ ĐỂ ĐẾM.
+                // Bộ sinh nội dung quên chèn hình. `QuizSlide` (LessonPage.jsx) vẽ
+                // `items` thành khay emoji, nên chỉ cần thêm khoá này là hình hiện ra.
+                // `count` PHẢI khớp `answer` ở trên (3 = 3).
+                // Emoji chim viết dạng mã hoá \u{1F426}: ghi thẳng ký tự từng bị hỏng
+                // thành U+FFFD trong dự án này, và lúc đó không sửa lại được.
+                items: [{ emoji: "\u{1F426}", count: 3 }],
                 mascotHint: "Đếm: một, hai, ba — có 3 con chim.",
               },
             },

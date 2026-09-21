@@ -1110,7 +1110,7 @@ export const grade4Data = {
               type: "quiz",
               content: {
                 question:
-                  "Trong hình chữ nhật ABCD, hai cạnh AB và CD như thế nào với nhau?",
+                  "Hai cạnh đối diện của một hình chữ nhật thì như thế nào với nhau?",
                 options: [
                   "Song song với nhau",
                   "Vuông góc với nhau",
