@@ -46,6 +46,13 @@ supabase/.temp/
 # (README.md is tracked)
 
 
-# Output táº¡m cá»§a cÃ´ng cá»¥ kiá»ƒm thá»­
+# Output tạm của công cụ kiểm thử
 scratch/portal-test-output.txt
 scratch/visual-bundle.*
+scratch/visual-that.cjs
+scratch/cau-truc-slide.json
+scratch/in-gon-*.txt
+scratch/migrate-*-out.txt
+scratch/loi-*.txt
+# Bản sao lưu dữ liệu bài học trước khi tiêm hình (lấy lại được từ lịch sử git)
+scratch/*.truoc-hinh.js
