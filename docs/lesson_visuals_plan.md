@@ -1,0 +1,133 @@
+# Kế hoạch: bổ sung HÌNH ẢNH minh họa cho bài học
+
+Ngày đo: 2026-09-22. Người đề xuất: Copilot. Trạng thái: **chờ bạn duyệt trước khi viết code.**
+
+## 1. Hiện trạng — đo bằng số, không phải cảm nhận
+
+Công cụ đo (mới viết): `node scratch/kiem-tra-hinh-anh.mjs`
+
+| Lớp | Số slide | Slide có hình | Số bài | Bài KHÔNG có hình nào |
+| --- | --- | --- | --- | --- |
+| 1 | 532 | 0 (0,0%) | 97 | 97 (100%) |
+| 2 | 666 | 0 (0,0%) | 120 | 120 (100%) |
+| 3 | 707 | 0 (0,0%) | 123 | 123 (100%) |
+| 4 | 297 | 0 (0,0%) | 65 | 65 (100%) |
+| 5 | 236 | 0 (0,0%) | 54 | 54 (100%) |
+| **Tổng** | **2438** | **0 (0,0%)** | **459** | **459 (100%)** |
+
+Kết luận: **không một slide nào có hình.** Nhận xét của bạn hoàn toàn đúng về số liệu.
+
+Nguyên nhân **không** phải thiếu bộ vẽ. `client/src/pages/LessonPage.jsx` đã dựng sẵn một hệ
+thống hình vẽ **đọc từ dữ liệu** (data-driven), nhưng **nội dung không khai khoá nào** nên
+không có gì được vẽ.
+
+## 2. App ĐÃ CÓ gì (không phải làm mới)
+
+Đây là "hợp đồng" thật của từng bộ vẽ, đọc trực tiếp từ mã:
+
+| Khoá dữ liệu | Vẽ ra cái gì | Kiểu slide dùng được |
+| --- | --- | --- |
+| `items: [{emoji, count, label}]` | Vẽ **`count` bản sao của một emoji** (xếp 1 hàng hoặc khung 10 ô) | `visual` |
+| `number` | Một số lớn ở giữa | `visual` |
+| `operation: {left, sign, right, result}` | Phép tính viết dọc | `visual` |
+| `comparison: {left, sign, right}` | So sánh hai số với dấu > < = | `visual` |
+| `clock: {hour, minute, showLabels, timeText, frameColor, shape, size}` | **Đồng hồ kim vẽ bằng SVG** (tròn hoặc vuông, 3 cỡ) | `visual` + `concept` |
+| `shape` + `shapeLabel` | **Hình vẽ SVG**: vuông, tròn, tam giác, chữ nhật, lập phương | `concept` |
+| `activityGrid: [{period, clock, timeText, desc}]` | Lưới thẻ, mỗi thẻ có thể chứa một đồng hồ | `concept` |
+| `gallery: [{badge, clock, label, timeText}]` + `galleryTitle` | Thư viện thẻ có đồng hồ | `concept` |
+| `dialogue: {...}` | Cảnh hội thoại có nhân vật (Nam, Mai, Rô-bốt, Việt, Mi, Cú Mèo) | `concept`, `dialogue` |
+| `visualDisplay` | Chuỗi emoji/chữ vẽ minh họa cho câu hỏi | slide `quiz` |
+
+**Điểm mấu chốt:** bộ vẽ là dữ liệu điều khiển, nên việc chính là **bổ sung dữ liệu**, không
+phải viết lại giao diện.
+
+## 3. Còn THIẾU gì — phải xây mới mới đủ dùng
+
+Bộ vẽ hiện tại thiên về **đồng hồ** và chỉ có **5 hình cơ bản**. Rất nhiều chủ đề không có
+cách vẽ nào:
+
+**Lớp 1–3**
+- **Trục số** (tia số) — dùng ở lớp 1, 2, 3 khi dạy so sánh, cộng trừ, làm tròn. Sách giáo khoa dùng liên tục.
+- **Khung 10 ô / khối chục – đơn vị** — cách chuẩn để dạy "mấy chục mấy đơn vị".
+- **Tiền Việt Nam** — lớp 2 (CĐ 11) và lớp 3 (CĐ 13) có hẳn bài về tiền, hiện không có hình tờ tiền.
+- **Hình có ghi cạnh và góc** — dạy chu vi, diện tích (lớp 3 CĐ 9).
+- **Thước đo có vạch** (cm, mm) — dạy đo độ dài.
+- **Bảng đơn vị / bảng số liệu** — thống kê lớp 3 CĐ 15.
+
+**Lớp 4–5**
+- **Phân số**: băng giấy chia phần và hình tròn chia phần — không có cách nào dạy phân số mà chỉ có chữ.
+- **Sơ đồ đoạn thẳng** (Tổng – Tỉ, Hiệu – Tỉ) — đây là **cách duy nhất** trẻ hiểu dạng toán này; sách dùng sơ đồ đoạn thẳng.
+- **Góc và thước đo góc**, **hình bình hành / hình thoi / hình thang** (bộ vẽ hiện không có 3 hình này).
+- **Hình khối 3D**: hộp chữ nhật, lập phương, hình trụ, hình cầu (chỉ có "lập phương" ở dạng 2.5D).
+- **Bảng hàng của số thập phân**, **biểu đồ cột / biểu đồ hình quạt**.
+
+## 4. Nguyên tắc đề xuất
+
+1. **Vẽ bằng SVG/emoji do app tự dựng — KHÔNG nhúng ảnh từ sách giáo khoa.**
+   Ba lý do: (a) tránh vấn đề bản quyền ảnh của NXB Giáo dục; (b) nét vẽ vector co giãn đẹp
+   trên mọi màn hình từ điện thoại đến máy tính, ảnh chụp thì vỡ nét; (c) không phải tải ảnh
+   từ mạng nên app vẫn chạy offline như hiện nay.
+2. **Giữ nguyên cách làm data-driven** — hình do dữ liệu bài học quyết định.
+3. **Không đổi mã bài, không đụng phần chữ đang tốt.** Chỉ **thêm** khoá hình vào slide.
+4. **Admin không làm mất hình** — đã kiểm: trình soạn bài dùng phép trải `...content` khi lưu,
+   nên khoá lạ được giữ nguyên. (Nhưng Admin hiện **chưa có ô nhập** cho các khoá hình phong
+   phú — xem mục 7.)
+5. **Sai còn tệ hơn thiếu.** Mỗi hình phải khớp đúng nội dung bài. Không chèn hình trang trí
+   vô nghĩa; không đoán bừa số liệu.
+
+## 5. Kế hoạch theo giai đoạn
+
+| GĐ | Việc | Sản phẩm |
+| --- | --- | --- |
+| 1 | **Mở rộng bộ vẽ** — thêm các component SVG còn thiếu ở mục 3 | `client/src/components/visuals/*` |
+| 2 | **Lớp 1 và Lớp 2** — đếm, cộng trừ, hình, đồng hồ, tiền | dữ liệu hình cho 217 bài |
+| 3 | **Lớp 3** — bảng nhân chia, chu vi/diện tích, đo lường, thống kê | dữ liệu hình cho 123 bài |
+| 4 | **Lớp 4 và Lớp 5** — phân số, sơ đồ đoạn thẳng, hình khối, biểu đồ | dữ liệu hình cho 119 bài |
+
+Mỗi giai đoạn kết thúc bằng: chạy `kiem-tra-hinh-anh.mjs` (đo lại tỉ lệ) → cổng
+`test:portal:static` → build `client` và `admin`. Không sang giai đoạn sau khi giai đoạn
+trước chưa xanh.
+
+## 6. Cách đo tiến độ
+
+Cùng một câu lệnh, trước và sau mỗi giai đoạn:
+
+```powershell
+node scratch/kiem-tra-hinh-anh.mjs
+```
+
+Mục tiêu tối thiểu: **mỗi bài có ít nhất 1 slide có hình** (chỉ số "bài KHÔNG có hình nào"
+về 0). Mục tiêu cao: mọi slide có thể vẽ đều có hình.
+
+## 7. Cần bạn chốt
+
+**a) Ưu tiên lớp nào trước?**
+Đề xuất: **Lớp 1 và 2 trước** — bé nhỏ nhất, chưa đọc thạo nên hình quan trọng nhất; và đây
+cũng là phần dễ vẽ đúng nhất (đếm vật, so sánh số, đồng hồ).
+Lựa chọn khác: lớp 4–5 trước (phân số và sơ đồ đoạn thẳng là chỗ thiếu trầm trọng nhất).
+
+**b) Mức độ tới đâu?**
+1. Mỗi bài **ít nhất 1 slide** có hình (nhanh, khoảng 1 giai đoạn cho cả 5 lớp).
+2. Mỗi bài **3–5 slide** có hình (đề xuất — đủ để bé hình dung xuyên suốt bài).
+3. Mọi slide có thể vẽ đều có hình (lâu nhất, nhưng đầy đủ nhất).
+
+**c) Có cho tôi mở rộng bộ vẽ (GĐ 1) không?**
+Nếu chỉ dùng bộ vẽ hiện có, tôi chỉ làm được: đếm vật thể, phép tính dọc, so sánh, đồng hồ,
+và 5 hình cơ bản. Phân số, sơ đồ đoạn thẳng, hình khối 3D, biểu đồ, tiền Việt Nam, trục số
+**sẽ không có** — mà đó lại là những chỗ trẻ cần hình nhất ở lớp 3–5.
+
+**d) Có cần Admin nhập được hình không?**
+Hiện Admin chưa có ô nhập cho `items`, `gallery`, `dialogue`… Chỉ số ít khoá (`clock`, `shape`)
+là Admin biết. Nếu bạn muốn tự thêm hình qua Admin Portal sau này thì cần thêm một giai đoạn
+nữa để làm giao diện đó. Nếu không, tôi chèn hình trực tiếp vào file dữ liệu (như đã làm với
+nội dung chữ).
+
+## 8. Rủi ro đã lường trước
+
+| Rủi ro | Cách xử lý |
+| --- | --- |
+| Hình sai nội dung bài | Mỗi hình sinh từ chính số liệu trong slide, không đoán; soát tay từng lớp sau khi chèn |
+| Chèn hàng loạt làm hỏng file dữ liệu | Script chèn phải ĐẾM và DỪNG nếu số lượng không khớp (bài học từ các lần sửa hàng loạt trước) |
+| Emoji bị hỏng khi ghi file | Đếm ký tự `U+FFFD` sau mỗi lần ghi (đã thành thói quen) |
+| App nặng hơn vì nhiều SVG | SVG vẽ tại chỗ, không tải ảnh; mỗi slide chỉ vài chục phần tử |
+| Admin ghi đè làm mất hình | Đã kiểm: dùng phép trải nên giữ khoá lạ; sẽ kiểm lại bằng phép thử sau khi chèn |
