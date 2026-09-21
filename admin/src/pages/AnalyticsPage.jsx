@@ -47,7 +47,15 @@ function Section({ title, question, note, children }) {
       <div className="border-b border-slate-100 px-5 py-4">
         <h2 className="font-semibold text-slate-900">{title}</h2>
         <p className="mt-0.5 text-sm text-slate-500">{question}</p>
-        {note && <p className="mt-2 text-xs text-slate-400">{note}</p>}
+        {/* 🔴 `max-w-[70ch]`: đây là chú thích để ĐỌC, không phải bảng. Đo ở màn
+            1920 sau khi bỏ trần bề rộng: 3 dòng chú thích này dài 92 / 101 / **125**
+            ký tự một dòng — mắt phải quét ngang gần hết màn. Chặn ở mức đọc được
+            (~70 ký tự) mà KHÔNG mọc lại khoảng trống hai bên trang: bảng bên dưới
+            vẫn dùng hết bề rộng. Sửa ở đây một lần là đủ cho cả 3 khối A/B/C vì
+            chúng dùng chung component `Section`. */}
+        {note && (
+          <p className="mt-2 max-w-[70ch] text-xs text-slate-400">{note}</p>
+        )}
       </div>
       {/* Bọc ở ĐÂY thay vì bọc từng bảng: chỉ một chỗ, và bảng thêm sau này
           cũng tự được cuộn ngang. */}
@@ -120,7 +128,7 @@ export default function AnalyticsPage() {
   const nothingAtAll = !loading && !error && totalAttempts === 0;
 
   return (
-    <div className="mx-auto max-w-5xl p-4 sm:p-6 lg:p-8">
+    <div className="p-4 sm:p-6 lg:p-8 2xl:p-10">
       <header className="mb-6">
         <h1 className="text-2xl font-bold text-slate-900">Phân tích câu hỏi</h1>
         <p className="mt-1 text-sm text-slate-500">

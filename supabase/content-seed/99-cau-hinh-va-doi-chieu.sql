@@ -17,17 +17,19 @@ SELECT key, value FROM public.app_config
 WHERE key IN ('content_source', 'content_version') ORDER BY key;
 -- Mong đợi: content_source = "static" · content_version = 1
 
--- Đối chiếu số dòng (phải khớp 5 / 41 / 362):
+-- Đối chiếu số dòng (phải khớp 5 / 51 / 459):
 SELECT
   (SELECT COUNT(*) FROM public.content_grades)   AS so_lop,
   (SELECT COUNT(*) FROM public.content_chapters) AS so_chuong,
   (SELECT COUNT(*) FROM public.content_lessons)  AS so_bai,
   (SELECT COUNT(*) FROM public.content_lesson_versions) AS so_phien_ban;
 
--- Kiểm số bài mỗi chương là số THẬT, không phải metadata sai:
--- (5 chương từng khai sai: g2-c8, g2-c9, g2-c10, g3-c9, g3-c10)
-SELECT chapter_id, COUNT(*) AS so_bai
-FROM public.content_lessons
-WHERE chapter_id IN ('g2-c8','g2-c9','g2-c10','g3-c9','g3-c10')
-GROUP BY chapter_id ORDER BY chapter_id;
--- Mong đợi: g2-c8=2, g2-c9=2, g2-c10=3, g3-c9=2, g3-c10=3
+-- Chương nào còn quá ít bài thì in ra (số bài là số THẬT, không phải metadata).
+-- Mong đợi: 0 dòng. Danh sách này KHÔNG viết cứng theo id nên không lỗi thời khi
+-- chương trình đổi — trước đây nó liệt kê 13 id cũ và đã sai sau lần dựng lại.
+SELECT c.id, c.name, COUNT(l.id) AS so_bai
+FROM public.content_chapters c
+LEFT JOIN public.content_lessons l ON l.chapter_id = c.id
+GROUP BY c.id, c.name
+HAVING COUNT(l.id) < 3
+ORDER BY c.id;

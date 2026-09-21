@@ -1,0 +1,69 @@
+
+──────────────────────────────────────────────────────────────────────────────
+  AUTOMATION TEST — ADMIN PORTAL
+──────────────────────────────────────────────────────────────────────────────
+✅ S-1    TC-1.2 — Không còn phần thưởng gán cứng                 66 file đã quét, sạch
+✅ S-2    TC-R.5 — Không còn biến đã xoá trong dependency array   không còn tham chiếu mồ côi
+✅ S-3    TC-1.1 — Mọi khoá rewardService đều có trong seed SQL   27 khoá khớp
+✅ S-4    TC-1.1 — Seed SQL không có khoá thừa                    27 khoá seed đều được dùng
+✅ S-5    TC-1.2 — Mọi lời gọi grantReward dùng khoá đã biết      27 khoá tĩnh hợp lệ, 3 tiền tố động hợp lệ
+✅ S-6    TC-0.8 — Bundle admin tách biệt khỏi app chính          2 app độc lập
+✅ S-7    TC-0.6 — Không nhúng service_role key ở frontend        không có service_role trong frontend
+✅ S-8    TC-0.6 — AdminRoute ghi rõ đây là UX, không phải bảo mật có ghi chú cảnh báo
+✅ S-9    TC-R.8 — Không gán cứng số Xu/XP ở màn hình kết quả     66 file đã quét, sạch
+✅ S-11   TC-1.1 — Trạng thái cuối của migration khớp REWARD_DEFAULTS 27 khoá seed khớp giá trị
+✅ S-10   TC-R.8 — Không còn chuỗi hiển thị thưởng viết chết      không còn chuỗi thưởng viết chết
+✅ S-12   TC-2.7 — Không có biến chưa khai báo (oxlint `no-undef`) client + admin: không có biến chưa khai báo
+✅ S-13   TC-2.15 — Chỗ ghi câu sai nào cũng ghi kèm lượt trả lời 2 file đều có recordAttempt
+✅ S-14   TC-2.25 — Mọi game có sinh câu hỏi đều ghi lượt trả lời 6 game đều ghi lượt trả lời
+✅ S-15   TC-3a.4 — Mọi slide trong file tĩnh đều qua được bộ kiểm tra nội dung 459 bài · 2438 slide · 6 kiểu — hợp lệ hết
+✅ S-16   TC-3a.8+9 — Bộ kiểm tra nội dung BẮT ĐƯỢC nội dung hỏng 10 ca hỏng đều bị bắt · slide hợp lệ vẫn qua
+✅ S-17   TC-3a.2 — 0008 chỉ cho anon đọc bài đã publish, và không hở bảng phiên bản bài học chỉ lộ bản published · phiên bản chỉ admin · không có USING(true)
+✅ S-18   TC-3b.5 — Màn hình nội dung: CHỈ ĐỌC, và đọc từ DB chứ không từ file tĩnh chỉ đọc · truy vấn bảng content_* · không đụng file tĩnh
+✅ S-19   TC-L.1 — Truy vấn không treo vô hạn: hẹn giờ phải chạy THẬT, không chỉ nằm trong source cắt sau 161ms · reject thành {error} · kết quả thật nguyên vẹn · client đã bọc
+✅ S-20   TC-M.6 — Không màn hình nào tự bó hẹp bề rộng, và sidebar không kéo dài trang 0 khung bề rộng lớn · sidebar cao bằng màn hình, tự cuộn, dính khi cuộn
+✅ S-21   TC-M.7 — Nhiều bảng cạnh nhau phải khớp cột (không để `table-layout: auto`) table-fixed · 5 cột 38.5/18/18/18/7.5% · min-w 680px ≥ 122px/cột
+✅ S-22   TC-3c.3 — Trình sửa bài chỉ ghi qua HÀM, không ghi thẳng bảng nội dung 0 chỗ ghi thẳng bảng nội dung · 4 hàm RPC · 0009: 6 revoke + 6 grant, không cấp cho anon
+✅ S-23   TC-3c.2 — Trình sửa bài: form sinh từ schema, và không làm biến dạng dữ liệu 6 kiểu · 2438 slide · không nuốt khoá · giữ nguyên kiểu số
+✅ S-24   TC-3d.2 — Cây dựng từ DÒNG DB giống hệt cây FILE TĨNH (so từng khoá) 5 lớp · 51 chương · 459 bài · 2438 slide — khớp từng khoá · canary bắt được lỗi ageRange
+✅ S-25   TC-3d.7 — Nội dung mới hiện ra khi bé quay lại app, nhưng KHÔNG cắt ngang bài đang học chốt đang-học ✓ · 2 chỗ báo đổi · kiểm lại: quay về tab ✓ + đổi màn hình ✓
+✅ S-26   TC-3c.10 — Trang Tham khảo: chỉ ĐỌC, và KHÔNG nói sai về app chỉ đọc ✓ · 9 biểu cảm khớp app (cả mặt) · 6 kiểu slide đủ nhãn
+✅ S-27   TC-3c.11 — Tạo bài mới: qua HÀM, khoá cho khách, và luôn ở trạng thái `nháp` khoá cho khách ✓ · cấp lại cho admin ✓ · bài mới luôn `draft` ✓ · nút có gọi hàm ✓
+✅ S-28   TC-3d.9 — Bé BÁO phiên bản nội dung lên DB (không chỉ là có cột) có hàm báo cáo ✓ · đọc đúng nguồn từ lát 3d ✓ · trải vào upsert `child_progress` ✓ · đủ 3 cột ✓
+✅ S-29   TC-3d.10 — Xoá bài thẳng trong DB thì app KHÔNG vỡ (và không im lặng sai) trigger `AFTER DELETE` ✓ · chỉ tăng số khi bài đã publish ✓ · khoá cho khách ✓ · vết xoá suy đúng nguồn ✓ · `0017`: không phụ thuộc JWT ✓ · chặn bài 0 slide ✓ · nhận slide lạ ✓ · bỏ mặc định `12` ✓ · Admin dùng `maybeSingle` ✓
+✅ S-30   TC-3c.12 — Nút XOÁ BÀI HỌC: có chốt gõ chữ, và KHÔNG có đường xoá chương hàm SQL chỉ admin ✓ · không đụng chương ✓ · khoá cho khách ✓ · chốt gõ chữ `delete this lesson` ✓ · nút mờ tới khi khớp ✓ · đi qua RPC ✓
+✅ S-31   TC-R.9 — Chế độ Khách KHÔNG ghi gì xuống máy (và vẫn phải ghi khi chưa cấu hình Supabase) khách: KHÔNG ghi ✓ · đã đăng nhập: ghi ✓ · chưa cấu hình Supabase: VẪN ghi ✓ · cả 4 store đều bọc ✓ · khoá riêng khớp tên store, không đụng cache ✓
+──────────────────────────────────────────────────────────────────────────────
+  31 PASS · 0 FAIL · 0 SKIP
+
+──────────────────────────────────────────────────────────────────────────────
+  👤 CẦN TEST TAY (25 mục — cần trình duyệt / đăng nhập Google)
+──────────────────────────────────────────────────────────────────────────────
+     TC-0.6   Đăng nhập Google vào Admin Portal (không tự động hoá được)
+     TC-0.7   Thông báo lỗi phân biệt 3 nguyên nhân
+     TC-1.2   Chơi thật để đối chiếu số Xu/XP hiển thị với bảng ở docs
+     TC-1.3   🔴 Đổi config trên Admin → app nhận ngay (cần 2 trình duyệt)
+     TC-1.4   Hệ số nhân X2 hiển thị đúng trên UI
+     TC-1.5   Công thức lên cấp hiển thị đúng
+     TC-1.6   Tắt một mục → thưởng 0 trên UI
+     TC-1.8   Mua hàng ở Cửa hàng ghi sổ âm
+     TC-1.9   Audit log ghi thay đổi config (xem trên Admin)
+     TC-1.10  Validate form chặn dữ liệu sai
+     TC-1.11  Offline: tắt mạng trong DevTools rồi học bài
+     TC-1.12  Guest mode không nhận thưởng
+     TC-1.13  Danh sách người dùng hiển thị đúng
+     TC-1.14  Tìm kiếm theo tên bé / email phụ huynh
+     TC-1.15  Phân trang
+     TC-1.16  Khoá / Mở khoá tài khoản + audit log
+     TC-1.17  Cảnh báo Xu bất thường
+     TC-R.1   Guest mode vẫn học được
+     TC-R.2   Tiến độ guest chuyển lên cloud khi đăng nhập
+     TC-R.3   Đồng bộ localStorage ↔ Supabase
+     TC-R.4   Bảng xếp hạng vẫn chạy
+     TC-R.5   Chơi cả 6 mini game
+     TC-R.6   Thú cưng vẫn nuôi được
+     TC-R.7   🔴 Sổ Tay Ôn Bài Sai: phiên nhiều câu
+     TC-R.8   🔴 Số thưởng hiển thị khớp config (cả 6 mini game)
+
+  Chi tiết từng bước: docs/admin_portal_test_cases.md
+

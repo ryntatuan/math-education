@@ -1,4 +1,25 @@
 -- ====================================================================
+-- [!!] FILE LỊCH SỬ — ĐỪNG CHẠY LẠI. ĐỌC KHỐI NÀY TRƯỚC KHI TIN NỘI DUNG BÊN DƯỚI.
+-- ====================================================================
+-- Đây là bản CÀI ĐẶT BAN ĐẦU (chạy một lần, đầu dự án). Nó giữ NGUYÊN các lỗi đã được
+-- vá về sau, nên CHẠY LẠI FILE NÀY SẼ MỞ LẠI LỖ HỔNG và làm DB lệch khỏi trạng thái đúng.
+--
+-- Hai chỗ trong file này ĐÃ LỖI THỜI — không được quay về bản ở đây:
+--   1. `leaderboard`: policy "Anyone can upsert leaderboard" (FOR ALL USING (true))
+--      cho phép bất kỳ ai có anon key ghi đè điểm của bé khác.
+--      -> đã vá ở `supabase/migrations/0001_admin_foundation.sql`
+--   2. `child_mistakes.answer` khai `INT`, nhưng đáp án câu so sánh là '>', '<', '='.
+--      -> đã đổi thành `TEXT` ở `supabase/migrations/0004_mistakes_sync.sql`
+--
+-- MUỐN BIẾT TRẠNG THÁI THẬT CỦA DB: đọc `supabase/migrations/` theo thứ tự số
+-- (0001 -> 0017), và lấy bản ĐỊNH NGHĨA CUỐI CÙNG của mỗi hàm/policy — `CREATE OR REPLACE`
+-- ở migration sau là chuyện thường. Quyền của hàm, các bảng CMS (`content_*`), bảng nháp,
+-- và hàm tạo/xoá bài đều CHỈ nằm trong `migrations/`, không có trong file này.
+--
+-- Dựng DB mới: chạy theo đúng thứ tự ở mục A.2 của `docs/admin_portal_test_cases.md`.
+-- ====================================================================
+
+-- ====================================================================
 -- TOÁN VUI TIỂU HỌC - HỆ THỐNG CƠ SỞ DỮ LIỆU TOÀN DIỆN (SUPABASE SQL)
 -- Hướng dẫn: Mở Supabase Dashboard -> Vào mục "SQL Editor" -> Dán toàn bộ file này và bấm "Run"
 -- ====================================================================

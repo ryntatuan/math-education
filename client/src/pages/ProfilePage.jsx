@@ -1,34 +1,92 @@
-import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { motion } from 'framer-motion'
-import { Award, Star, Flame, Trophy, Coins, User, Sparkles, Check, Edit2, ShoppingBag, LogIn, LogOut, ArrowRight, BookOpen, Download, Smartphone } from 'lucide-react'
-import Button from '../components/ui/Button'
-import Card from '../components/ui/Card'
-import ProgressBar from '../components/ui/ProgressBar'
-import CoinIcon from '../components/common/CoinIcon'
-import GoogleIcon from '../components/common/GoogleIcon'
-import useUserStore from '../store/useUserStore'
-import useProgressStore from '../store/useProgressStore'
-import useAuthStore from '../store/useAuthStore'
-import soundManager from '../utils/soundManager'
-import { APP_VERSION } from '../config/appVersion'
-import { Capacitor } from '@capacitor/core'
-import { isAndroid } from '../utils/deviceHelper'
-import './ProfilePage.css'
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+import {
+  Award,
+  Star,
+  Flame,
+  Trophy,
+  Coins,
+  User,
+  Sparkles,
+  Check,
+  Edit2,
+  ShoppingBag,
+  LogIn,
+  LogOut,
+  ArrowRight,
+  BookOpen,
+  Download,
+  Smartphone,
+} from "lucide-react";
+import Button from "../components/ui/Button";
+import Card from "../components/ui/Card";
+import ProgressBar from "../components/ui/ProgressBar";
+import CoinIcon from "../components/common/CoinIcon";
+import GoogleIcon from "../components/common/GoogleIcon";
+import useUserStore from "../store/useUserStore";
+import useProgressStore from "../store/useProgressStore";
+import { demBaiDaHoc } from "../data/curriculum";
+import useAuthStore from "../store/useAuthStore";
+import soundManager from "../utils/soundManager";
+import { APP_VERSION } from "../config/appVersion";
+import { Capacitor } from "@capacitor/core";
+import { isAndroid } from "../utils/deviceHelper";
+import "./ProfilePage.css";
 
 const BADGES_DATA = [
-  { id: 'first_lesson', name: '🌱 Bước Chân Đầu Tiên', desc: 'Hoàn thành bài học đầu tiên', icon: '🌱' },
-  { id: 'streak_3', name: '🔥 Chăm Chỉ 3 Ngày', desc: 'Duy trì chuỗi học 3 ngày liên tiếp', icon: '🔥' },
-  { id: 'stars_10', name: '⭐ Ngôi Sao Sáng', desc: 'Thu thập được 10 ngôi sao', icon: '⭐' },
-  { id: 'level_5', name: '📚 Học Sinh Xuất Sắc', desc: 'Đạt cấp độ Level 5', icon: '📚' },
-  { id: 'math_race_win', name: '🏎️ Tay Lái Vàng', desc: 'Chiến thắng vị trí số 1 cuộc đua toán', icon: '🏎️' },
-  { id: 'coins_100', name: '🪙 Triệu Phú Nhí', desc: 'Tích lũy được hơn 100 xu vàng', icon: '🪙' },
-  { id: 'perfect_quiz', name: '💯 Điểm Mười Đỏ Chói', desc: 'Đạt điểm tối đa trong một bài học', icon: '💯' },
-  { id: 'grade_master', name: '👑 Thần Đồng Toán Học', desc: 'Vượt qua tất cả các bài học một khối lớp', icon: '👑' },
-]
+  {
+    id: "first_lesson",
+    name: "🌱 Bước Chân Đầu Tiên",
+    desc: "Hoàn thành bài học đầu tiên",
+    icon: "🌱",
+  },
+  {
+    id: "streak_3",
+    name: "🔥 Chăm Chỉ 3 Ngày",
+    desc: "Duy trì chuỗi học 3 ngày liên tiếp",
+    icon: "🔥",
+  },
+  {
+    id: "stars_10",
+    name: "⭐ Ngôi Sao Sáng",
+    desc: "Thu thập được 10 ngôi sao",
+    icon: "⭐",
+  },
+  {
+    id: "level_5",
+    name: "📚 Học Sinh Xuất Sắc",
+    desc: "Đạt cấp độ Level 5",
+    icon: "📚",
+  },
+  {
+    id: "math_race_win",
+    name: "🏎️ Tay Lái Vàng",
+    desc: "Chiến thắng vị trí số 1 cuộc đua toán",
+    icon: "🏎️",
+  },
+  {
+    id: "coins_100",
+    name: "🪙 Triệu Phú Nhí",
+    desc: "Tích lũy được hơn 100 xu vàng",
+    icon: "🪙",
+  },
+  {
+    id: "perfect_quiz",
+    name: "💯 Điểm Mười Đỏ Chói",
+    desc: "Đạt điểm tối đa trong một bài học",
+    icon: "💯",
+  },
+  {
+    id: "grade_master",
+    name: "👑 Thần Đồng Toán Học",
+    desc: "Vượt qua tất cả các bài học một khối lớp",
+    icon: "👑",
+  },
+];
 
 function ApkDownloadBanner({ isWeb }) {
-  if (!isWeb) return null
+  if (!isWeb) return null;
   return (
     <motion.div
       className="profile-apk-download-card"
@@ -45,7 +103,10 @@ function ApkDownloadBanner({ isWeb }) {
             <h3>Cài Đặt App Toán Vui Cho Android</h3>
             <span className="apk-badge">Bản v{APP_VERSION} (.APK)</span>
           </div>
-          <p>Trải nghiệm mượt mà hơn, âm thanh sống động và học tập tiện lợi mọi lúc mọi nơi!</p>
+          <p>
+            Trải nghiệm mượt mà hơn, âm thanh sống động và học tập tiện lợi mọi
+            lúc mọi nơi!
+          </p>
         </div>
       </div>
       <a
@@ -58,17 +119,17 @@ function ApkDownloadBanner({ isWeb }) {
         <span>Tải App Ngay (.APK)</span>
       </a>
     </motion.div>
-  )
+  );
 }
 
 export default function ProfilePage() {
-  const navigate = useNavigate()
-  const isNative = Capacitor.isNativePlatform()
-  const isWeb = !isNative
+  const navigate = useNavigate();
+  const isNative = Capacitor.isNativePlatform();
+  const isWeb = !isNative;
   const {
     nickname,
     avatar,
-    unlockedAvatars = ['👦', '👧'],
+    unlockedAvatars = ["👦", "👧"],
     level,
     coins,
     xp,
@@ -77,9 +138,13 @@ export default function ProfilePage() {
     setNickname,
     setAvatar,
     setGrade,
-  } = useUserStore()
+  } = useUserStore();
 
-  const { completedLessons, currentStreak, mathRaceWins = 0 } = useProgressStore()
+  const {
+    completedLessons,
+    currentStreak,
+    mathRaceWins = 0,
+  } = useProgressStore();
   const {
     user,
     isGuest,
@@ -87,52 +152,57 @@ export default function ProfilePage() {
     setAuthModalOpen,
     updateActiveChild,
     signOut,
-  } = useAuthStore()
+  } = useAuthStore();
 
-  const [isEditingName, setIsEditingName] = useState(false)
-  const [tempName, setTempName] = useState(nickname)
-  const [showAvatarPicker, setShowAvatarPicker] = useState(false)
+  const [isEditingName, setIsEditingName] = useState(false);
+  const [tempName, setTempName] = useState(nickname);
+  const [showAvatarPicker, setShowAvatarPicker] = useState(false);
 
   // Đồng bộ tempName khi nickname thay đổi
   useEffect(() => {
     if (!isEditingName) {
-      setTempName(nickname)
+      setTempName(nickname);
     }
-  }, [nickname, isEditingName])
+  }, [nickname, isEditingName]);
 
   // Calculate total stars
-  const totalStars = Object.values(completedLessons).reduce(
-    (sum, l) => sum + (l.stars || 0),
-    0
-  )
-  const totalLessonsDone = Object.keys(completedLessons).length
+  //
+  // 🔴 Đếm CHÉO với cây hiện tại (`demBaiDaHoc`) thay vì đếm số khoá trong
+  // `completedLessons`: bài bị rút hoặc bị xoá trong DB không còn trong chương trình,
+  // nên không được tính vào "số bài đã học" nữa — nếu không hồ sơ sẽ ghi 13 bài
+  // trong khi bé chỉ có thể học 12.
+  const { soBai: totalLessonsDone, soSao: totalStars } =
+    demBaiDaHoc(completedLessons);
 
   // Check badges unlocked
   const isBadgeUnlocked = (badgeId) => {
-    if (badgeId === 'first_lesson') return totalLessonsDone >= 1
-    if (badgeId === 'streak_3') return currentStreak >= 3
-    if (badgeId === 'stars_10') return totalStars >= 10
-    if (badgeId === 'level_5') return level >= 5
-    if (badgeId === 'coins_100') return coins >= 100
-    if (badgeId === 'perfect_quiz') return Object.values(completedLessons).some((l) => l.stars === 3)
-    if (badgeId === 'math_race_win') return (mathRaceWins || 0) >= 1
-    if (badgeId === 'grade_master') return totalLessonsDone >= 8
-    return false
-  }
+    if (badgeId === "first_lesson") return totalLessonsDone >= 1;
+    if (badgeId === "streak_3") return currentStreak >= 3;
+    if (badgeId === "stars_10") return totalStars >= 10;
+    if (badgeId === "level_5") return level >= 5;
+    if (badgeId === "coins_100") return coins >= 100;
+    if (badgeId === "perfect_quiz")
+      return Object.values(completedLessons).some((l) => l.stars === 3);
+    if (badgeId === "math_race_win") return (mathRaceWins || 0) >= 1;
+    if (badgeId === "grade_master") return totalLessonsDone >= 8;
+    return false;
+  };
 
   const handleSaveName = async () => {
-    const trimmed = tempName.trim()
+    const trimmed = tempName.trim();
     if (trimmed) {
-      setNickname(trimmed)
+      setNickname(trimmed);
       if (!isGuest && activeChild) {
-        await updateActiveChild({ nickname: trimmed })
+        await updateActiveChild({ nickname: trimmed });
       }
-      setIsEditingName(false)
-      soundManager.playClick()
+      setIsEditingName(false);
+      soundManager.playClick();
     }
-  }
+  };
 
-  const ownedAvatars = Array.from(new Set([...(unlockedAvatars || ['👦', '👧']), avatar]))
+  const ownedAvatars = Array.from(
+    new Set([...(unlockedAvatars || ["👦", "👧"]), avatar]),
+  );
 
   if (isGuest) {
     return (
@@ -154,11 +224,11 @@ export default function ProfilePage() {
               <span>Học sinh Lớp {grade}</span>
             </div>
             <p className="guest-header-hint">
-              Bạn đang học thử ở Chế độ Khách. Dữ liệu học tập chưa được lưu vĩnh viễn.
+              Bạn đang học thử ở Chế độ Khách. Dữ liệu học tập chưa được lưu
+              vĩnh viễn.
             </p>
           </div>
         </div>
-
 
         {/* Guest Notice & Limitations Card */}
         <motion.div
@@ -172,8 +242,9 @@ export default function ProfilePage() {
             <div className="guest-notice-content">
               <h3>Bé Đang Trải Nghiệm Chế Độ Khách</h3>
               <p>
-                Bé có thể tự do học và làm bài tập môn Toán Lớp {grade} hoàn toàn miễn phí.
-                Để lưu giữ thành tích và mở khóa toàn bộ sân chơi trí tuệ, ba mẹ hãy đăng nhập tài khoản nhé!
+                Bé có thể tự do học và làm bài tập môn Toán Lớp {grade} hoàn
+                toàn miễn phí. Để lưu giữ thành tích và mở khóa toàn bộ sân chơi
+                trí tuệ, ba mẹ hãy đăng nhập tài khoản nhé!
               </p>
             </div>
           </div>
@@ -183,19 +254,32 @@ export default function ProfilePage() {
             <div className="guest-limitations-grid">
               <div className="limit-item">
                 <span className="limit-bullet">❌</span>
-                <span>Không lưu trữ và hiển thị <strong>Xu Vàng, Cấp độ (Level)</strong> và <strong>Chuỗi ngày học (Streak)</strong></span>
+                <span>
+                  Không lưu trữ và hiển thị{" "}
+                  <strong>Xu Vàng, Cấp độ (Level)</strong> và{" "}
+                  <strong>Chuỗi ngày học (Streak)</strong>
+                </span>
               </div>
               <div className="limit-item">
                 <span className="limit-bullet">❌</span>
-                <span>Không có <strong>Bộ sưu tập huy hiệu</strong> thành tích và cửa hàng đổi nhân vật hoạt hình</span>
+                <span>
+                  Không có <strong>Bộ sưu tập huy hiệu</strong> thành tích và
+                  cửa hàng đổi nhân vật hoạt hình
+                </span>
               </div>
               <div className="limit-item">
                 <span className="limit-bullet">❌</span>
-                <span>Không thể truy cập <strong>6 Mini Game rèn phản xạ</strong> và <strong>Truyện Toán tương tác</strong></span>
+                <span>
+                  Không thể truy cập <strong>6 Mini Game rèn phản xạ</strong> và{" "}
+                  <strong>Truyện Toán tương tác</strong>
+                </span>
               </div>
               <div className="limit-item">
                 <span className="limit-bullet">❌</span>
-                <span>Không hiển thị <strong>Báo cáo năng lực Phụ huynh</strong> và đồng bộ đa thiết bị</span>
+                <span>
+                  Không hiển thị <strong>Báo cáo năng lực Phụ huynh</strong> và
+                  đồng bộ đa thiết bị
+                </span>
               </div>
             </div>
           </div>
@@ -205,8 +289,8 @@ export default function ProfilePage() {
               type="button"
               className="btn-guest-login-primary"
               onClick={() => {
-                soundManager.playClick()
-                setAuthModalOpen(true)
+                soundManager.playClick();
+                setAuthModalOpen(true);
               }}
             >
               <GoogleIcon size={20} />
@@ -221,8 +305,8 @@ export default function ProfilePage() {
                 type="button"
                 className="btn-guest-continue-learn"
                 onClick={() => {
-                  soundManager.playClick()
-                  navigate('/')
+                  soundManager.playClick();
+                  navigate("/");
                 }}
               >
                 <BookOpen size={18} />
@@ -236,7 +320,7 @@ export default function ProfilePage() {
         {/* APK Download Card for Web */}
         <ApkDownloadBanner isWeb={isWeb} />
       </div>
-    )
+    );
   }
 
   return (
@@ -265,14 +349,14 @@ export default function ProfilePage() {
                 {ownedAvatars.map((av, i) => (
                   <button
                     key={i}
-                    className={`avatar-choice ${avatar === av ? 'active' : ''}`}
+                    className={`avatar-choice ${avatar === av ? "active" : ""}`}
                     onClick={() => {
-                      setAvatar(av)
+                      setAvatar(av);
                       if (!isGuest && activeChild) {
-                        updateActiveChild({ avatar: av })
+                        updateActiveChild({ avatar: av });
                       }
-                      setShowAvatarPicker(false)
-                      soundManager.playClick()
+                      setShowAvatarPicker(false);
+                      soundManager.playClick();
                     }}
                   >
                     {av}
@@ -282,8 +366,8 @@ export default function ProfilePage() {
               <button
                 className="avatar-shop-link-btn"
                 onClick={() => {
-                  setShowAvatarPicker(false)
-                  navigate('/shop')
+                  setShowAvatarPicker(false);
+                  navigate("/shop");
                 }}
               >
                 <ShoppingBag size={14} /> Mua thêm ở Cửa Hàng 🛍️
@@ -342,7 +426,6 @@ export default function ProfilePage() {
         </div>
       </div>
 
-
       {/* Account & Cloud Sync Section */}
       <div className="profile-account-card">
         <div className="account-card-main-row">
@@ -361,8 +444,8 @@ export default function ProfilePage() {
               </div>
               <p className="account-email-text">
                 {isGuest
-                  ? 'Đăng nhập Google để sao lưu vĩnh viễn tiến độ học'
-                  : (user?.email || 'Tài khoản Google')}
+                  ? "Đăng nhập Google để sao lưu vĩnh viễn tiến độ học"
+                  : user?.email || "Tài khoản Google"}
               </p>
             </div>
           </div>
@@ -372,8 +455,12 @@ export default function ProfilePage() {
               className="btn-account-logout"
               title="Đăng xuất khỏi thiết bị này"
               onClick={() => {
-                if (window.confirm('Bạn có chắc muốn đăng xuất khỏi tài khoản này?')) {
-                  signOut()
+                if (
+                  window.confirm(
+                    "Bạn có chắc muốn đăng xuất khỏi tài khoản này?",
+                  )
+                ) {
+                  signOut();
                 }
               }}
             >
@@ -384,8 +471,8 @@ export default function ProfilePage() {
             <button
               className="btn-account-login"
               onClick={() => {
-                soundManager.playClick()
-                setAuthModalOpen(true)
+                soundManager.playClick();
+                setAuthModalOpen(true);
               }}
             >
               <GoogleIcon size={16} />
@@ -437,21 +524,22 @@ export default function ProfilePage() {
         <div className="section-title-row">
           <h2>🎖️ Bộ Sưu Tập Huy Hiệu</h2>
           <span className="badges-count number">
-            {BADGES_DATA.filter((b) => isBadgeUnlocked(b.id)).length} / {BADGES_DATA.length}
+            {BADGES_DATA.filter((b) => isBadgeUnlocked(b.id)).length} /{" "}
+            {BADGES_DATA.length}
           </span>
         </div>
 
         <div className="badges-grid">
           {BADGES_DATA.map((badge) => {
-            const unlocked = isBadgeUnlocked(badge.id)
+            const unlocked = isBadgeUnlocked(badge.id);
             return (
               <motion.div
                 key={badge.id}
-                className={`badge-item-box ${unlocked ? 'unlocked' : 'locked'}`}
+                className={`badge-item-box ${unlocked ? "unlocked" : "locked"}`}
                 whileHover={{ y: -4 }}
               >
                 <div className="badge-visual-icon">
-                  {unlocked ? badge.icon : '🔒'}
+                  {unlocked ? badge.icon : "🔒"}
                 </div>
                 <div className="badge-details">
                   <h4>{badge.name}</h4>
@@ -459,7 +547,7 @@ export default function ProfilePage() {
                 </div>
                 {unlocked && <span className="unlocked-tag">Đã nhận ✨</span>}
               </motion.div>
-            )
+            );
           })}
         </div>
       </div>
@@ -472,6 +560,5 @@ export default function ProfilePage() {
         <span>Toán Vui v{APP_VERSION} • Made by Rynta</span>
       </div>
     </div>
-  )
+  );
 }
-

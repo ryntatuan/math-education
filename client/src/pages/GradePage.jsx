@@ -1,46 +1,65 @@
-import { useState, useEffect } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
-import { motion } from 'framer-motion'
-import { ArrowLeft, Lock, CheckCircle2, Play, RotateCcw, ArrowRight } from 'lucide-react'
-import Card from '../components/ui/Card'
-import Button from '../components/ui/Button'
-import Badge from '../components/ui/Badge'
-import ProgressBar, { StarsDisplay } from '../components/ui/ProgressBar'
-import useUserStore from '../store/useUserStore'
-import useProgressStore from '../store/useProgressStore'
-import curriculum, { getGrade, getChapter } from '../data/curriculum'
-import soundManager from '../utils/soundManager'
-import RightSidebar from '../components/layout/RightSidebar'
-import './GradePage.css'
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { motion } from "framer-motion";
+import {
+  ArrowLeft,
+  Lock,
+  CheckCircle2,
+  Play,
+  RotateCcw,
+  ArrowRight,
+} from "lucide-react";
+import Card from "../components/ui/Card";
+import Button from "../components/ui/Button";
+import Badge from "../components/ui/Badge";
+import ProgressBar, { StarsDisplay } from "../components/ui/ProgressBar";
+import useUserStore from "../store/useUserStore";
+import useProgressStore from "../store/useProgressStore";
+import curriculum, { getGrade, getChapter } from "../data/curriculum";
+import soundManager from "../utils/soundManager";
+import RightSidebar from "../components/layout/RightSidebar";
+import "./GradePage.css";
 
 export default function GradePage() {
-  const navigate = useNavigate()
-  const { grade, setGrade } = useUserStore()
-  const [selectedGrade, setSelectedGrade] = useState(grade || 1)
+  const navigate = useNavigate();
+  const { grade, setGrade } = useUserStore();
+  const [selectedGrade, setSelectedGrade] = useState(grade || 1);
 
   useEffect(() => {
     if (grade && grade !== selectedGrade) {
-      setSelectedGrade(grade)
+      setSelectedGrade(grade);
     }
-  }, [grade])
+  }, [grade]);
 
-  const gradeData = getGrade(selectedGrade) || curriculum.grades[0]
+  const gradeData = getGrade(selectedGrade) || curriculum.grades[0];
 
   if (!gradeData) {
     return (
       <div className="page-empty">
         <h2>Không tìm thấy lớp</h2>
-        <Button onClick={() => navigate('/')}>Về trang chủ</Button>
+        <Button onClick={() => navigate("/")}>Về trang chủ</Button>
       </div>
-    )
+    );
   }
 
   return (
     <div className="page-2col-layout">
       <div className="learning-main-column">
-        <div className="practice-intro" style={{ marginBottom: '24px', backgroundColor: 'white', border: '1px solid #f1f5f9', padding: '24px', borderRadius: '20px', boxShadow: '0 4px 20px rgba(0, 0, 0, 0.03)' }}>
+        <div
+          className="practice-intro"
+          style={{
+            marginBottom: "24px",
+            backgroundColor: "white",
+            border: "1px solid #f1f5f9",
+            padding: "24px",
+            borderRadius: "20px",
+            boxShadow: "0 4px 20px rgba(0, 0, 0, 0.03)",
+          }}
+        >
           <div className="practice-intro-text">
-            <h1>{gradeData.icon} {gradeData.name}</h1>
+            <h1>
+              {gradeData.icon} {gradeData.name}
+            </h1>
             <p className="grade-page-desc">{gradeData.description}</p>
           </div>
 
@@ -48,10 +67,10 @@ export default function GradePage() {
             {curriculum.grades.map((g) => (
               <button
                 key={g.id}
-                className={`grade-tab-btn ${selectedGrade === g.id ? 'active' : ''}`}
+                className={`grade-tab-btn ${selectedGrade === g.id ? "active" : ""}`}
                 onClick={() => {
-                  setSelectedGrade(g.id)
-                  setGrade(g.id)
+                  setSelectedGrade(g.id);
+                  setGrade(g.id);
                 }}
               >
                 {g.name}
@@ -83,23 +102,30 @@ export default function GradePage() {
       </div>
       <RightSidebar hideOnMobile={true} />
     </div>
-  )
+  );
 }
 
 function ChapterCard({ chapter, index, gradeId, onClick }) {
-  const { getChapterProgress, completedLessons } = useProgressStore()
-  const totalLessonsCount = chapter.lessons?.length || chapter.totalLessons || 0
-  const progress = getChapterProgress(chapter.id, totalLessonsCount)
-  const hasLessons = (chapter.lessons?.length || 0) > 0
-  const isLocked = !hasLessons && !chapter.totalLessons
+  const { getChapterProgress, completedLessons } = useProgressStore();
+  // `??` chứ không `||`: chương bị xoá hết bài có `length === 0`, dễ bị ghi đè thành
+  // một con số mặc định rồi hiện "0/12 bài" cho một chương trống.
+  const totalLessonsCount =
+    chapter.lessons?.length ?? chapter.totalLessons ?? 0;
+  const progress = getChapterProgress(
+    chapter.id,
+    totalLessonsCount,
+    (chapter.lessons ?? []).map((l) => l.id),
+  );
+  const hasLessons = (chapter.lessons?.length || 0) > 0;
+  const isLocked = !hasLessons && !chapter.totalLessons;
 
-  const match = chapter.name.match(/^(?:Chương|Chủ\s*đề)\s+\d+[:\s-]*(.+)$/i)
-  const chapterTag = `Chương ${index + 1}`
-  const chapterTitle = match ? match[1] : chapter.name
-  const fullTitle = `${chapterTag}: ${chapterTitle}`
+  const match = chapter.name.match(/^(?:Chương|Chủ\s*đề)\s+\d+[:\s-]*(.+)$/i);
+  const chapterTag = `Chương ${index + 1}`;
+  const chapterTitle = match ? match[1] : chapter.name;
+  const fullTitle = `${chapterTag}: ${chapterTitle}`;
 
-  const isCompleted = progress.percent === 100
-  const hasStarted = progress.completed > 0
+  const isCompleted = progress.percent === 100;
+  const hasStarted = progress.completed > 0;
 
   return (
     <motion.div
@@ -107,7 +133,7 @@ function ChapterCard({ chapter, index, gradeId, onClick }) {
         hidden: { opacity: 0, y: 12 },
         show: { opacity: 1, y: 0 },
       }}
-      className={`home-chapter-card ${isLocked ? 'chapter-locked' : ''}`}
+      className={`home-chapter-card ${isLocked ? "chapter-locked" : ""}`}
       onClick={isLocked ? undefined : onClick}
       whileHover={!isLocked ? { scale: 1.02, y: -3 } : {}}
       whileTap={!isLocked ? { scale: 0.98 } : {}}
@@ -115,11 +141,11 @@ function ChapterCard({ chapter, index, gradeId, onClick }) {
       <div
         className="chapter-card-icon"
         style={{
-          background: `${chapter.color || '#0284c7'}18`,
-          color: chapter.color || '#0284c7'
+          background: `${chapter.color || "#0284c7"}18`,
+          color: chapter.color || "#0284c7",
         }}
       >
-        <span>{chapter.icon || '🔢'}</span>
+        <span>{chapter.icon || "🔢"}</span>
       </div>
 
       <div className="chapter-card-info">
@@ -127,21 +153,22 @@ function ChapterCard({ chapter, index, gradeId, onClick }) {
           <span
             className="chapter-tag-badge"
             style={{
-              color: chapter.color || '#0284c7',
-              backgroundColor: `${chapter.color || '#0284c7'}15`,
-              borderColor: `${chapter.color || '#0284c7'}30`,
+              color: chapter.color || "#0284c7",
+              backgroundColor: `${chapter.color || "#0284c7"}15`,
+              borderColor: `${chapter.color || "#0284c7"}30`,
             }}
           >
             {chapterTag}
           </span>
           {!isLocked && (
             <div
-              className={`chapter-stars-badge ${progress.earnedStars > 0
-                ? progress.earnedStars === progress.maxStars
-                  ? 'perfect'
-                  : 'active'
-                : 'empty'
-                }`}
+              className={`chapter-stars-badge ${
+                progress.earnedStars > 0
+                  ? progress.earnedStars === progress.maxStars
+                    ? "perfect"
+                    : "active"
+                  : "empty"
+              }`}
               title={`Đã tích lũy ${progress.earnedStars}/${progress.maxStars} sao`}
             >
               <span className="star-icon">⭐</span>
@@ -155,7 +182,9 @@ function ChapterCard({ chapter, index, gradeId, onClick }) {
           {chapterTitle}
         </h3>
 
-        <p className="chapter-card-desc" title={chapter.description}>{chapter.description}</p>
+        <p className="chapter-card-desc" title={chapter.description}>
+          {chapter.description}
+        </p>
 
         <div className="chapter-card-footer">
           {!isLocked && (
@@ -173,7 +202,12 @@ function ChapterCard({ chapter, index, gradeId, onClick }) {
           )}
 
           {isLocked ? (
-            <button type="button" className="btn-chapter-pill start" disabled style={{ opacity: 0.5, cursor: 'not-allowed' }}>
+            <button
+              type="button"
+              className="btn-chapter-pill start"
+              disabled
+              style={{ opacity: 0.5, cursor: "not-allowed" }}
+            >
               <Lock size={12} />
               <span>Sắp ra mắt</span>
             </button>
@@ -196,28 +230,34 @@ function ChapterCard({ chapter, index, gradeId, onClick }) {
         </div>
       </div>
     </motion.div>
-  )
+  );
 }
 
 // Chapter Detail page (Lesson list)
 export function ChapterPage() {
-  const navigate = useNavigate()
-  const { gradeId, chapterId } = useParams()
-  const { getLessonStars, isLessonCompleted, getChapterProgress } = useProgressStore()
+  const navigate = useNavigate();
+  const { gradeId, chapterId } = useParams();
+  const { getLessonStars, isLessonCompleted, getChapterProgress } =
+    useProgressStore();
 
-  const chapter = getChapter(parseInt(gradeId), chapterId)
+  const chapter = getChapter(parseInt(gradeId), chapterId);
 
   if (!chapter) {
     return (
       <div className="page-empty">
         <h2>Không tìm thấy chương</h2>
-        <Button onClick={() => navigate('/')}>Quay lại</Button>
+        <Button onClick={() => navigate("/")}>Quay lại</Button>
       </div>
-    )
+    );
   }
 
-  const totalLessonsCount = chapter.lessons?.length || chapter.totalLessons || 0
-  const progress = getChapterProgress(chapter.id, totalLessonsCount)
+  const totalLessonsCount =
+    chapter.lessons?.length ?? chapter.totalLessons ?? 0;
+  const progress = getChapterProgress(
+    chapter.id,
+    totalLessonsCount,
+    (chapter.lessons ?? []).map((l) => l.id),
+  );
 
   return (
     <div className="chapter-detail-page">
@@ -226,8 +266,8 @@ export function ChapterPage() {
           <button
             className="btn-back"
             onClick={() => {
-              soundManager.playClick()
-              navigate('/')
+              soundManager.playClick();
+              navigate("/");
             }}
           >
             <ArrowLeft size={18} />
@@ -235,7 +275,10 @@ export function ChapterPage() {
           </button>
         </div>
         <div className="chapter-detail-title">
-          <span className="chapter-detail-icon" style={{ background: chapter.color + '22' }}>
+          <span
+            className="chapter-detail-icon"
+            style={{ background: chapter.color + "22" }}
+          >
             {chapter.icon}
           </span>
           <div>
@@ -254,16 +297,16 @@ export function ChapterPage() {
           show: { opacity: 1, transition: { staggerChildren: 0.08 } },
         }}
       >
-        {(!chapter.lessons || chapter.lessons.length === 0) ? (
+        {!chapter.lessons || chapter.lessons.length === 0 ? (
           <div className="page-empty">
-            <span style={{ fontSize: '4rem' }}>🚧</span>
+            <span style={{ fontSize: "4rem" }}>🚧</span>
             <h3>Đang xây dựng nội dung</h3>
             <p>Chương này sẽ sớm có bài học. Hãy quay lại sau nhé!</p>
           </div>
         ) : (
           chapter.lessons.map((lesson, index) => {
-            const completed = isLessonCompleted(lesson.id)
-            const stars = getLessonStars(lesson.id)
+            const completed = isLessonCompleted(lesson.id);
+            const stars = getLessonStars(lesson.id);
 
             return (
               <motion.div
@@ -276,42 +319,44 @@ export function ChapterPage() {
                 <Card
                   hoverable
                   onClick={() => navigate(`/lesson/${lesson.id}`)}
-                  className={`lesson-card ${completed ? 'lesson-completed' : ''}`}
+                  className={`lesson-card ${completed ? "lesson-completed" : ""}`}
                 >
                   <div className="lesson-card-inner">
                     <div
                       className="lesson-number"
                       style={{
                         background: completed
-                          ? 'var(--color-success)'
-                          : chapter.color + '22',
-                        color: completed ? 'white' : chapter.color,
+                          ? "var(--color-success)"
+                          : chapter.color + "22",
+                        color: completed ? "white" : chapter.color,
                       }}
                     >
-                      {completed ? '✓' : index + 1}
+                      {completed ? "✓" : index + 1}
                     </div>
 
                     <div className="lesson-info">
                       <h4>{lesson.title}</h4>
                       <p>{lesson.description}</p>
-                      {completed && <StarsDisplay stars={stars} maxStars={3} size="sm" />}
+                      {completed && (
+                        <StarsDisplay stars={stars} maxStars={3} size="sm" />
+                      )}
                     </div>
 
                     <div className="lesson-action">
                       <Button
-                        variant={completed ? 'outline' : 'primary'}
+                        variant={completed ? "outline" : "primary"}
                         size="sm"
                       >
-                        {completed ? 'Học lại' : 'Bắt đầu'}
+                        {completed ? "Học lại" : "Bắt đầu"}
                       </Button>
                     </div>
                   </div>
                 </Card>
               </motion.div>
-            )
+            );
           })
         )}
       </motion.div>
     </div>
-  )
+  );
 }

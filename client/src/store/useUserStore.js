@@ -4,6 +4,7 @@ import useLeagueStore from "./useLeagueStore";
 import useAuthStore from "./useAuthStore";
 import { getReward, getLevelCurve } from "../services/rewardService";
 import { supabase, isSupabaseConfigured } from "../services/supabaseClient";
+import { createGuestAwareStorage } from "./sessionMode";
 
 /**
  * Ghi sổ cái. Cố ý "bắn rồi quên" — đây là nhật ký kiểm toán, không phải
@@ -180,6 +181,8 @@ const useUserStore = create(
     }),
     {
       name: "toan-vui-user",
+      // Chế độ Khách thì không ghi gì xuống máy — xem `sessionMode.js`.
+      storage: createGuestAwareStorage(),
       migrate: (persistedState) => {
         if (persistedState && persistedState.nickname === "Bé Học Giỏi") {
           persistedState.nickname = "Bé Yêu";

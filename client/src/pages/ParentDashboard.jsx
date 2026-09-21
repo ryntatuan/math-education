@@ -1,5 +1,5 @@
-import { useState, useMemo, useCallback } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useMemo, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Lock,
   ShieldCheck,
@@ -18,66 +18,67 @@ import {
   TrendingUp,
   Sparkles,
   ChevronRight,
-} from 'lucide-react'
-import Button from '../components/ui/Button'
-import Card from '../components/ui/Card'
-import ProgressBar from '../components/ui/ProgressBar'
-import MascotIcon from '../components/common/MascotIcon'
-import useUserStore from '../store/useUserStore'
-import useProgressStore from '../store/useProgressStore'
-import useAuthStore from '../store/useAuthStore'
-import GuestFeatureLock from '../components/auth/GuestFeatureLock'
-import curriculum from '../data/curriculum'
-import soundManager from '../utils/soundManager'
-import KnowledgeRadarChart from '../components/charts/KnowledgeRadarChart'
-import './ParentDashboard.css'
+} from "lucide-react";
+import Button from "../components/ui/Button";
+import Card from "../components/ui/Card";
+import ProgressBar from "../components/ui/ProgressBar";
+import MascotIcon from "../components/common/MascotIcon";
+import useUserStore from "../store/useUserStore";
+import useProgressStore from "../store/useProgressStore";
+import useAuthStore from "../store/useAuthStore";
+import GuestFeatureLock from "../components/auth/GuestFeatureLock";
+import curriculum, { demBaiDaHoc } from "../data/curriculum";
+import soundManager from "../utils/soundManager";
+import KnowledgeRadarChart from "../components/charts/KnowledgeRadarChart";
+import "./ParentDashboard.css";
 
 // 5 Core Math Skill Domains aligned with Vietnam Primary Curriculum
 const SKILL_DOMAINS = [
   {
-    id: 'numbers',
-    title: 'Số học & Nhận biết số',
-    icon: '🔢',
-    color: '#4facfe',
-    chapters: ['g1-c1', 'g1-c3', 'g2-c1', 'g2-c5', 'g3-c3', 'g3-c7'],
-    description: 'Đếm, đọc, viết, so sánh số và cấu tạo hệ thập phân',
+    id: "numbers",
+    title: "Số học & Nhận biết số",
+    icon: "🔢",
+    color: "#4facfe",
+    chapters: ["g1-c1", "g1-c3", "g2-c1", "g2-c5", "g3-c3", "g3-c7"],
+    description: "Đếm, đọc, viết, so sánh số và cấu tạo hệ thập phân",
   },
   {
-    id: 'operations',
-    title: 'Phép cộng & Phép trừ',
-    icon: '➕',
-    color: '#43e97b',
-    chapters: ['g1-c2', 'g1-c4', 'g2-c2'],
-    description: 'Cộng, trừ nhẩm và đặt tính có nhớ / không nhớ',
+    id: "operations",
+    title: "Phép cộng & Phép trừ",
+    icon: "➕",
+    color: "#43e97b",
+    chapters: ["g1-c2", "g1-c4", "g2-c2"],
+    description: "Cộng, trừ nhẩm và đặt tính có nhớ / không nhớ",
   },
   {
-    id: 'multiplication',
-    title: 'Bảng nhân & Bảng chia',
-    icon: '✖️',
-    color: '#fa709a',
-    chapters: ['g2-c3', 'g2-c4', 'g3-c1', 'g3-c2'],
-    description: 'Bảng cửu chương 2–9, phép nhân chia số nhiều chữ số',
+    id: "multiplication",
+    title: "Bảng nhân & Bảng chia",
+    icon: "✖️",
+    color: "#fa709a",
+    chapters: ["g2-c3", "g2-c4", "g3-c1", "g3-c2"],
+    description: "Bảng cửu chương 2–9, phép nhân chia số nhiều chữ số",
   },
   {
-    id: 'geometry',
-    title: 'Hình học & Không gian',
-    icon: '📐',
-    color: '#a18cd1',
-    chapters: ['g1-c5', 'g2-c7', 'g3-c5'],
-    description: 'Nhận biết hình khối, góc, tính chu vi và diện tích',
+    id: "geometry",
+    title: "Hình học & Không gian",
+    icon: "📐",
+    color: "#a18cd1",
+    chapters: ["g1-c5", "g2-c7", "g3-c5"],
+    description: "Nhận biết hình khối, góc, tính chu vi và diện tích",
   },
   {
-    id: 'measurement',
-    title: 'Đo lường & Giải toán có lời văn',
-    icon: '📏',
-    color: '#f6d365',
-    chapters: ['g1-c6', 'g2-c6', 'g3-c4', 'g3-c6', 'g3-c8'],
-    description: 'Đơn vị đo (cm, kg, lít, đồng), xem đồng hồ và bài toán lời văn',
+    id: "measurement",
+    title: "Đo lường & Giải toán có lời văn",
+    icon: "📏",
+    color: "#f6d365",
+    chapters: ["g1-c6", "g2-c6", "g3-c4", "g3-c6", "g3-c8"],
+    description:
+      "Đơn vị đo (cm, kg, lít, đồng), xem đồng hồ và bài toán lời văn",
   },
-]
+];
 
 export default function ParentDashboard() {
-  const { isGuest } = useAuthStore()
+  const { isGuest } = useAuthStore();
   const {
     nickname,
     grade,
@@ -89,135 +90,152 @@ export default function ParentDashboard() {
     setParentPin,
     toggleSound,
     setGrade,
-  } = useUserStore()
+  } = useUserStore();
 
-  const { completedLessons, currentStreak, exerciseResults } = useProgressStore()
+  const { completedLessons, currentStreak, exerciseResults } =
+    useProgressStore();
 
   // PIN security check
-  const defaultPin = parentPin || '1234'
-  const [pinInput, setPinInput] = useState('')
-  const [isUnlocked, setIsUnlocked] = useState(false)
-  const [pinError, setPinError] = useState(false)
+  const defaultPin = parentPin || "1234";
+  const [pinInput, setPinInput] = useState("");
+  const [isUnlocked, setIsUnlocked] = useState(false);
+  const [pinError, setPinError] = useState(false);
 
   // Forgot PIN challenge state
-  const [showForgotPinModal, setShowForgotPinModal] = useState(false)
-  const [challengeQuestion, setChallengeQuestion] = useState(null)
-  const [challengeAnswerInput, setChallengeAnswerInput] = useState('')
-  const [challengeError, setChallengeError] = useState(false)
-  const [resetPinStep, setResetPinStep] = useState(false)
-  const [resetNewPin, setResetNewPin] = useState('')
+  const [showForgotPinModal, setShowForgotPinModal] = useState(false);
+  const [challengeQuestion, setChallengeQuestion] = useState(null);
+  const [challengeAnswerInput, setChallengeAnswerInput] = useState("");
+  const [challengeError, setChallengeError] = useState(false);
+  const [resetPinStep, setResetPinStep] = useState(false);
+  const [resetNewPin, setResetNewPin] = useState("");
 
   // Dashboard active tab
-  const [activeTab, setActiveTab] = useState('overview') // 'overview' | 'progress' | 'skills' | 'settings'
+  const [activeTab, setActiveTab] = useState("overview"); // 'overview' | 'progress' | 'skills' | 'settings'
 
   // Settings states
-  const [currentPinInput, setCurrentPinInput] = useState('')
-  const [newPin, setNewPin] = useState('')
-  const [confirmPin, setConfirmPin] = useState('')
-  const [pinChangeError, setPinChangeError] = useState('')
-  const [pinChangeSuccess, setPinChangeSuccess] = useState(false)
-  const [backupCode, setBackupCode] = useState(null)
+  const [currentPinInput, setCurrentPinInput] = useState("");
+  const [newPin, setNewPin] = useState("");
+  const [confirmPin, setConfirmPin] = useState("");
+  const [pinChangeError, setPinChangeError] = useState("");
+  const [pinChangeSuccess, setPinChangeSuccess] = useState(false);
+  const [backupCode, setBackupCode] = useState(null);
 
   // Generate parent math challenge for PIN recovery
   const openForgotPin = useCallback(() => {
     // Generate an adult math problem: e.g. 17 × 4 = 68 or 28 + 47 = 75
-    const a = Math.floor(Math.random() * 8) + 12 // 12 - 19
-    const b = Math.floor(Math.random() * 6) + 4 // 4 - 9
+    const a = Math.floor(Math.random() * 8) + 12; // 12 - 19
+    const b = Math.floor(Math.random() * 6) + 4; // 4 - 9
     setChallengeQuestion({
       text: `${a} × ${b} = ?`,
       answer: a * b,
-    })
-    setChallengeAnswerInput('')
-    setChallengeError(false)
-    setResetPinStep(false)
-    setResetNewPin('')
-    setShowForgotPinModal(true)
-  }, [])
+    });
+    setChallengeAnswerInput("");
+    setChallengeError(false);
+    setResetPinStep(false);
+    setResetNewPin("");
+    setShowForgotPinModal(true);
+  }, []);
 
-  const handleVerifyChallenge = useCallback((e) => {
-    e.preventDefault()
-    if (parseInt(challengeAnswerInput, 10) === challengeQuestion?.answer) {
-      setResetPinStep(true)
-      setChallengeError(false)
-      soundManager.playCorrect()
-    } else {
-      setChallengeError(true)
-      soundManager.playWrong()
-    }
-  }, [challengeAnswerInput, challengeQuestion])
+  const handleVerifyChallenge = useCallback(
+    (e) => {
+      e.preventDefault();
+      if (parseInt(challengeAnswerInput, 10) === challengeQuestion?.answer) {
+        setResetPinStep(true);
+        setChallengeError(false);
+        soundManager.playCorrect();
+      } else {
+        setChallengeError(true);
+        soundManager.playWrong();
+      }
+    },
+    [challengeAnswerInput, challengeQuestion],
+  );
 
-  const handleSaveResetPin = useCallback((e) => {
-    e.preventDefault()
-    if (/^\d{4}$/.test(resetNewPin)) {
-      setParentPin(resetNewPin)
-      setIsUnlocked(true)
-      setShowForgotPinModal(false)
-      soundManager.playCorrect()
-    } else {
-      setChallengeError(true)
-    }
-  }, [resetNewPin, setParentPin])
+  const handleSaveResetPin = useCallback(
+    (e) => {
+      e.preventDefault();
+      if (/^\d{4}$/.test(resetNewPin)) {
+        setParentPin(resetNewPin);
+        setIsUnlocked(true);
+        setShowForgotPinModal(false);
+        soundManager.playCorrect();
+      } else {
+        setChallengeError(true);
+      }
+    },
+    [resetNewPin, setParentPin],
+  );
 
-  const handleVerifyPin = useCallback((e) => {
-    e.preventDefault()
-    if (pinInput === defaultPin) {
-      setIsUnlocked(true)
-      setPinError(false)
-      soundManager.playCorrect()
-    } else {
-      setPinError(true)
-      soundManager.playWrong()
-    }
-  }, [pinInput, defaultPin])
+  const handleVerifyPin = useCallback(
+    (e) => {
+      e.preventDefault();
+      if (pinInput === defaultPin) {
+        setIsUnlocked(true);
+        setPinError(false);
+        soundManager.playCorrect();
+      } else {
+        setPinError(true);
+        soundManager.playWrong();
+      }
+    },
+    [pinInput, defaultPin],
+  );
 
-  const handleChangePin = useCallback((e) => {
-    e.preventDefault()
-    setPinChangeError('')
-    setPinChangeSuccess(false)
+  const handleChangePin = useCallback(
+    (e) => {
+      e.preventDefault();
+      setPinChangeError("");
+      setPinChangeSuccess(false);
 
-    if (currentPinInput !== defaultPin) {
-      setPinChangeError('Mã PIN hiện tại không chính xác!')
-      soundManager.playWrong()
-      return
-    }
+      if (currentPinInput !== defaultPin) {
+        setPinChangeError("Mã PIN hiện tại không chính xác!");
+        soundManager.playWrong();
+        return;
+      }
 
-    if (!/^\d{4}$/.test(newPin)) {
-      setPinChangeError('Mã PIN mới phải gồm đúng 4 chữ số!')
-      soundManager.playWrong()
-      return
-    }
+      if (!/^\d{4}$/.test(newPin)) {
+        setPinChangeError("Mã PIN mới phải gồm đúng 4 chữ số!");
+        soundManager.playWrong();
+        return;
+      }
 
-    if (newPin !== confirmPin) {
-      setPinChangeError('Mã PIN xác nhận không trùng khớp!')
-      soundManager.playWrong()
-      return
-    }
+      if (newPin !== confirmPin) {
+        setPinChangeError("Mã PIN xác nhận không trùng khớp!");
+        soundManager.playWrong();
+        return;
+      }
 
-    setParentPin(newPin)
-    setPinChangeSuccess(true)
-    setCurrentPinInput('')
-    setNewPin('')
-    setConfirmPin('')
-    soundManager.playCorrect()
-    setTimeout(() => setPinChangeSuccess(false), 4000)
-  }, [currentPinInput, defaultPin, newPin, confirmPin, setParentPin])
+      setParentPin(newPin);
+      setPinChangeSuccess(true);
+      setCurrentPinInput("");
+      setNewPin("");
+      setConfirmPin("");
+      soundManager.playCorrect();
+      setTimeout(() => setPinChangeSuccess(false), 4000);
+    },
+    [currentPinInput, defaultPin, newPin, confirmPin, setParentPin],
+  );
 
   const handleGenerateBackup = useCallback(() => {
-    const code = 'TV-' + Math.random().toString(36).substring(2, 8).toUpperCase()
-    setBackupCode(code)
-    soundManager.playCoin()
-  }, [])
+    const code =
+      "TV-" + Math.random().toString(36).substring(2, 8).toUpperCase();
+    setBackupCode(code);
+    soundManager.playCoin();
+  }, []);
 
   // Calculate actual stats dynamically with useMemo
-  const totalLessons = useMemo(() => Object.keys(completedLessons).length, [completedLessons])
-  const totalStars = useMemo(
-    () => Object.values(completedLessons).reduce((sum, l) => sum + (l.stars || 0), 0),
-    [completedLessons]
-  )
+  //
+  // 🔴 Đếm CHÉO với cây hiện tại (`demBaiDaHoc`), không đếm thẳng số khoá trong
+  // `completedLessons`: bài bị rút/xoá trong DB vẫn nằm trong sổ của bé (cố ý), nên
+  // đếm thẳng sẽ ra "13 bài đã học" trong khi chương trình chỉ còn 12 bài.
+  const { soBai: totalLessons, soSao: totalStars } = useMemo(
+    () => demBaiDaHoc(completedLessons),
+    [completedLessons],
+  );
   const estimatedMinutes = useMemo(
     () => (totalLessons > 0 ? totalLessons * 12 + currentStreak * 10 : 0),
-    [totalLessons, currentStreak]
-  )
+    [totalLessons, currentStreak],
+  );
 
   // ----------------------------------------------------
   // DYNAMIC SKILL EVALUATION ALGORITHM
@@ -226,13 +244,13 @@ export default function ParentDashboard() {
   const skillsEvaluation = useMemo(() => {
     return SKILL_DOMAINS.map((domain) => {
       // Find all curriculum lessons that belong to this domain's chapters
-      let domainTotalLessons = 0
-      let domainCompletedLessons = []
+      let domainTotalLessons = 0;
+      let domainCompletedLessons = [];
 
       curriculum.grades.forEach((gr) => {
         gr.chapters.forEach((ch) => {
           if (domain.chapters.includes(ch.id)) {
-            domainTotalLessons += ch.lessons.length
+            domainTotalLessons += ch.lessons.length;
             ch.lessons.forEach((l) => {
               if (completedLessons[l.id]) {
                 domainCompletedLessons.push({
@@ -240,14 +258,14 @@ export default function ParentDashboard() {
                   lessonTitle: l.title,
                   stars: completedLessons[l.id].stars || 0,
                   completedAt: completedLessons[l.id].completedAt,
-                })
+                });
               }
-            })
+            });
           }
-        })
-      })
+        });
+      });
 
-      const completedCount = domainCompletedLessons.length
+      const completedCount = domainCompletedLessons.length;
 
       if (completedCount === 0) {
         return {
@@ -255,33 +273,38 @@ export default function ParentDashboard() {
           completedCount: 0,
           totalLessons: domainTotalLessons,
           percent: 0,
-          scoreLabel: 'Chưa học',
-          status: 'not_started', // not_started | in_progress | mastered
-          statusBadge: 'Chưa học',
+          scoreLabel: "Chưa học",
+          status: "not_started", // not_started | in_progress | mastered
+          statusBadge: "Chưa học",
           starsEarned: 0,
           recommendation: `Bé chưa học nội dung này. Phụ huynh có thể mở các bài trong chương tương ứng để bé trải nghiệm!`,
-        }
+        };
       }
 
       // Calculate score based on stars earned (out of 3)
-      const totalStarsEarned = domainCompletedLessons.reduce((sum, item) => sum + item.stars, 0)
-      const maxPossibleStars = completedCount * 3
-      const accuracyScore = Math.round((totalStarsEarned / maxPossibleStars) * 100)
+      const totalStarsEarned = domainCompletedLessons.reduce(
+        (sum, item) => sum + item.stars,
+        0,
+      );
+      const maxPossibleStars = completedCount * 3;
+      const accuracyScore = Math.round(
+        (totalStarsEarned / maxPossibleStars) * 100,
+      );
 
-      let scoreLabel = 'Tốt'
-      let status = 'in_progress'
+      let scoreLabel = "Tốt";
+      let status = "in_progress";
       if (accuracyScore >= 90) {
-        scoreLabel = 'Rất Tốt'
-        status = 'mastered'
+        scoreLabel = "Rất Tốt";
+        status = "mastered";
       } else if (accuracyScore >= 75) {
-        scoreLabel = 'Tốt'
-        status = 'in_progress'
+        scoreLabel = "Tốt";
+        status = "in_progress";
       } else if (accuracyScore >= 60) {
-        scoreLabel = 'Khá'
-        status = 'in_progress'
+        scoreLabel = "Khá";
+        status = "in_progress";
       } else {
-        scoreLabel = 'Cần Ôn Thêm'
-        status = 'in_progress'
+        scoreLabel = "Cần Ôn Thêm";
+        status = "in_progress";
       }
 
       return {
@@ -297,9 +320,9 @@ export default function ParentDashboard() {
           accuracyScore >= 80
             ? `Bé nắm rất vững kỹ năng này (${completedCount} bài đã hoàn thành). Hãy tiếp tục duy trì nhé!`
             : `Bé đã học ${completedCount} bài. Nên cho bé làm thêm bài tập luyện tập để củng cố kỹ năng.`,
-      }
-    })
-  }, [completedLessons])
+      };
+    });
+  }, [completedLessons]);
 
   // Recent completed lessons list
   const recentActivities = useMemo(() => {
@@ -308,32 +331,36 @@ export default function ParentDashboard() {
         const found = curriculum.grades
           .flatMap((g) => g.chapters)
           .flatMap((c) => c.lessons)
-          .find((l) => l.id === lessonId)
+          .find((l) => l.id === lessonId);
         return {
           id: lessonId,
           title: found?.title || lessonId,
           stars: data.stars || 0,
-          date: data.completedAt ? new Date(data.completedAt).toLocaleDateString('vi-VN') : 'Gần đây',
-        }
+          date: data.completedAt
+            ? new Date(data.completedAt).toLocaleDateString("vi-VN")
+            : "Gần đây",
+        };
       })
       .slice(-5)
-      .reverse()
-  }, [completedLessons])
+      .reverse();
+  }, [completedLessons]);
 
   // Dynamic feedback from owl mascot
   const mascotAdvice = useMemo(() => {
     if (totalLessons === 0) {
-      return `Bé ${nickname} chưa hoàn thành bài học nào. Ba mẹ hãy đồng hành cùng bé chọn bài học đầu tiên trong phần "Học bài" nhé! 🚀`
+      return `Bé ${nickname} chưa hoàn thành bài học nào. Ba mẹ hãy đồng hành cùng bé chọn bài học đầu tiên trong phần "Học bài" nhé! 🚀`;
     }
     if (totalLessons < 3) {
-      return `Bé ${nickname} vừa mới bắt đầu và đã hoàn thành ${totalLessons} bài học xuất sắc với ${totalStars} ⭐. Khởi đầu rất đáng khích lệ, ba mẹ hãy cùng bé duy trì 10–15 phút mỗi ngày nhé! 🌟`
+      return `Bé ${nickname} vừa mới bắt đầu và đã hoàn thành ${totalLessons} bài học xuất sắc với ${totalStars} ⭐. Khởi đầu rất đáng khích lệ, ba mẹ hãy cùng bé duy trì 10–15 phút mỗi ngày nhé! 🌟`;
     }
-    const masteredSkills = skillsEvaluation.filter((s) => s.status === 'mastered')
+    const masteredSkills = skillsEvaluation.filter(
+      (s) => s.status === "mastered",
+    );
     if (masteredSkills.length > 0) {
-      return `Bé ${nickname} đang tiến bộ vượt bậc! Đặc biệt rất giỏi ở mảng "${masteredSkills[0].title}". Hãy tiếp tục phát huy ở các bài học tiếp theo nhé! 🦉🏆`
+      return `Bé ${nickname} đang tiến bộ vượt bậc! Đặc biệt rất giỏi ở mảng "${masteredSkills[0].title}". Hãy tiếp tục phát huy ở các bài học tiếp theo nhé! 🦉🏆`;
     }
-    return `Bé ${nickname} rất chăm chỉ học tập với chuỗi ${currentStreak} ngày liên tiếp. Hãy tiếp tục khuyến khích bé hoàn thành các bài tập để nhận thêm huy hiệu và sao thưởng nhé!`
-  }, [totalLessons, totalStars, currentStreak, nickname, skillsEvaluation])
+    return `Bé ${nickname} rất chăm chỉ học tập với chuỗi ${currentStreak} ngày liên tiếp. Hãy tiếp tục khuyến khích bé hoàn thành các bài tập để nhận thêm huy hiệu và sao thưởng nhé!`;
+  }, [totalLessons, totalStars, currentStreak, nickname, skillsEvaluation]);
 
   if (isGuest) {
     return (
@@ -344,28 +371,28 @@ export default function ParentDashboard() {
         subtitle="Đăng nhập tài khoản để xem báo cáo học tập chi tiết, theo dõi biểu đồ kỹ năng và cài đặt mã PIN bảo vệ cho bé."
         benefits={[
           {
-            icon: '📊',
-            title: 'Báo Cáo Năng Lực Chuẩn Bộ GD&ĐT',
-            desc: 'Biểu đồ radar phân tích chi tiết 5 nhóm kỹ năng tư duy và tính toán của con.',
+            icon: "📊",
+            title: "Báo Cáo Năng Lực Chuẩn Bộ GD&ĐT",
+            desc: "Biểu đồ radar phân tích chi tiết 5 nhóm kỹ năng tư duy và tính toán của con.",
           },
           {
-            icon: '⏱️',
-            title: 'Theo Dõi Chuyên Cần & Chuỗi Học',
-            desc: 'Nắm bắt thời gian học, chuỗi ngày streak và tỷ lệ làm bài chính xác của bé.',
+            icon: "⏱️",
+            title: "Theo Dõi Chuyên Cần & Chuỗi Học",
+            desc: "Nắm bắt thời gian học, chuỗi ngày streak và tỷ lệ làm bài chính xác của bé.",
           },
           {
-            icon: '🔒',
-            title: 'Mã PIN Bảo Vệ An Toàn',
-            desc: 'Cài đặt mã khóa quản trị riêng tư, ngăn trẻ bấm nhầm vào khu vực cài đặt.',
+            icon: "🔒",
+            title: "Mã PIN Bảo Vệ An Toàn",
+            desc: "Cài đặt mã khóa quản trị riêng tư, ngăn trẻ bấm nhầm vào khu vực cài đặt.",
           },
           {
-            icon: '📱',
-            title: 'Đồng Bộ Tiến Độ Đa Thiết Bị',
-            desc: 'Theo dõi con học tập mọi lúc, mọi nơi trên máy tính bảng hoặc điện thoại.',
+            icon: "📱",
+            title: "Đồng Bộ Tiến Độ Đa Thiết Bị",
+            desc: "Theo dõi con học tập mọi lúc, mọi nơi trên máy tính bảng hoặc điện thoại.",
           },
         ]}
       />
-    )
+    );
   }
 
   // If locked, show PIN entry modal
@@ -382,7 +409,8 @@ export default function ParentDashboard() {
           </div>
           <h2>Khu Vực Dành Cho Phụ Huynh</h2>
           <p>
-            Vui lòng nhập mã PIN 4 chữ số để xem báo cáo học tập và cài đặt ứng dụng.
+            Vui lòng nhập mã PIN 4 chữ số để xem báo cáo học tập và cài đặt ứng
+            dụng.
           </p>
           <span className="default-pin-hint">
             💡 Mã PIN mặc định ban đầu là: <strong>1234</strong>
@@ -394,14 +422,16 @@ export default function ParentDashboard() {
               maxLength={4}
               value={pinInput}
               onChange={(e) => {
-                setPinInput(e.target.value)
-                setPinError(false)
+                setPinInput(e.target.value);
+                setPinError(false);
               }}
               placeholder="••••"
               autoFocus
-              className={pinError ? 'input-error' : ''}
+              className={pinError ? "input-error" : ""}
             />
-            {pinError && <span className="error-msg">Mã PIN chưa chính xác!</span>}
+            {pinError && (
+              <span className="error-msg">Mã PIN chưa chính xác!</span>
+            )}
             <Button variant="primary" size="lg" type="submit">
               Xác Nhận Mở Khóa →
             </Button>
@@ -419,7 +449,10 @@ export default function ParentDashboard() {
         {/* FORGOT PIN CHALLENGE MODAL */}
         <AnimatePresence>
           {showForgotPinModal && (
-            <div className="modal-overlay" onClick={() => setShowForgotPinModal(false)}>
+            <div
+              className="modal-overlay"
+              onClick={() => setShowForgotPinModal(false)}
+            >
               <motion.div
                 className="forgot-pin-modal"
                 onClick={(e) => e.stopPropagation()}
@@ -432,27 +465,35 @@ export default function ParentDashboard() {
                 </div>
                 <h3>Xác Thực Dành Riêng Cho Phụ Huynh</h3>
                 <p>
-                  Để bảo vệ tài khoản của bé, vui lòng giải phép tính dưới đây để khôi phục hoặc đặt lại mã PIN:
+                  Để bảo vệ tài khoản của bé, vui lòng giải phép tính dưới đây
+                  để khôi phục hoặc đặt lại mã PIN:
                 </p>
 
                 {!resetPinStep ? (
-                  <form onSubmit={handleVerifyChallenge} className="challenge-form">
+                  <form
+                    onSubmit={handleVerifyChallenge}
+                    className="challenge-form"
+                  >
                     <div className="challenge-box">
-                      <span className="challenge-math">{challengeQuestion?.text}</span>
+                      <span className="challenge-math">
+                        {challengeQuestion?.text}
+                      </span>
                     </div>
                     <input
                       type="number"
                       value={challengeAnswerInput}
                       onChange={(e) => {
-                        setChallengeAnswerInput(e.target.value)
-                        setChallengeError(false)
+                        setChallengeAnswerInput(e.target.value);
+                        setChallengeError(false);
                       }}
                       placeholder="Nhập kết quả"
                       autoFocus
-                      className={challengeError ? 'input-error' : ''}
+                      className={challengeError ? "input-error" : ""}
                     />
                     {challengeError && (
-                      <span className="error-msg">Kết quả chưa đúng! Vui lòng thử lại.</span>
+                      <span className="error-msg">
+                        Kết quả chưa đúng! Vui lòng thử lại.
+                      </span>
                     )}
                     <div className="modal-actions">
                       <Button
@@ -469,9 +510,13 @@ export default function ParentDashboard() {
                     </div>
                   </form>
                 ) : (
-                  <form onSubmit={handleSaveResetPin} className="challenge-form">
+                  <form
+                    onSubmit={handleSaveResetPin}
+                    className="challenge-form"
+                  >
                     <p className="success-step-msg">
-                      ✅ Xác thực thành công! Vui lòng nhập mã PIN mới (4 chữ số):
+                      ✅ Xác thực thành công! Vui lòng nhập mã PIN mới (4 chữ
+                      số):
                     </p>
                     <input
                       type="password"
@@ -493,7 +538,7 @@ export default function ParentDashboard() {
           )}
         </AnimatePresence>
       </div>
-    )
+    );
   }
 
   return (
@@ -503,17 +548,17 @@ export default function ParentDashboard() {
         <div className="parent-title-group">
           <h1>👨‍👩‍👧 Bảng Điều Khiển Phụ Huynh</h1>
           <p>
-            Theo dõi tiến trình học tập, sự tiến bộ và kỹ năng toán học thực tế của bé{' '}
-            <strong>{nickname}</strong>.
+            Theo dõi tiến trình học tập, sự tiến bộ và kỹ năng toán học thực tế
+            của bé <strong>{nickname}</strong>.
           </p>
         </div>
         <Button
           variant="outline"
           size="sm"
           onClick={() => {
-            setIsUnlocked(false)
-            setPinInput('')
-            soundManager.playClick()
+            setIsUnlocked(false);
+            setPinInput("");
+            soundManager.playClick();
           }}
         >
           <Lock size={16} /> Khóa lại
@@ -523,33 +568,33 @@ export default function ParentDashboard() {
       {/* Tabs Bar */}
       <div className="parent-tabs-bar">
         <button
-          className={`p-tab ${activeTab === 'overview' ? 'active' : ''}`}
-          onClick={() => setActiveTab('overview')}
+          className={`p-tab ${activeTab === "overview" ? "active" : ""}`}
+          onClick={() => setActiveTab("overview")}
         >
           <BarChart3 size={18} /> Tổng Quan
         </button>
         <button
-          className={`p-tab ${activeTab === 'progress' ? 'active' : ''}`}
-          onClick={() => setActiveTab('progress')}
+          className={`p-tab ${activeTab === "progress" ? "active" : ""}`}
+          onClick={() => setActiveTab("progress")}
         >
           <BookOpen size={18} /> Tiến Độ Học
         </button>
         <button
-          className={`p-tab ${activeTab === 'skills' ? 'active' : ''}`}
-          onClick={() => setActiveTab('skills')}
+          className={`p-tab ${activeTab === "skills" ? "active" : ""}`}
+          onClick={() => setActiveTab("skills")}
         >
           <Award size={18} /> Đánh Giá Kỹ Năng
         </button>
         <button
-          className={`p-tab ${activeTab === 'settings' ? 'active' : ''}`}
-          onClick={() => setActiveTab('settings')}
+          className={`p-tab ${activeTab === "settings" ? "active" : ""}`}
+          onClick={() => setActiveTab("settings")}
         >
           <Settings size={18} /> Cài Đặt & Mật Khẩu
         </button>
       </div>
 
       {/* TAB 1: OVERVIEW */}
-      {activeTab === 'overview' && (
+      {activeTab === "overview" && (
         <div className="tab-content-section">
           <div className="parent-stats-grid">
             <div className="p-card stat-big">
@@ -594,7 +639,7 @@ export default function ParentDashboard() {
           </div>
 
           <div className="parent-feedback-card">
-            <h3 style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+            <h3 style={{ display: "flex", alignItems: "center", gap: 6 }}>
               <MascotIcon size={24} />
               <span>Nhận xét của Cú Mèo Thông Thái:</span>
             </h3>
@@ -606,7 +651,10 @@ export default function ParentDashboard() {
             <h3>🕒 Nhật Ký Học Tập Gần Đây</h3>
             {recentActivities.length === 0 ? (
               <div className="no-activity-state">
-                <p>Bé chưa có lịch sử học tập. Hãy cho bé bắt đầu bài học đầu tiên nhé!</p>
+                <p>
+                  Bé chưa có lịch sử học tập. Hãy cho bé bắt đầu bài học đầu
+                  tiên nhé!
+                </p>
               </div>
             ) : (
               <div className="activity-list">
@@ -617,7 +665,9 @@ export default function ParentDashboard() {
                       <span>{act.title}</span>
                     </div>
                     <div className="activity-meta">
-                      <span className="activity-stars">{'⭐'.repeat(act.stars)}</span>
+                      <span className="activity-stars">
+                        {"⭐".repeat(act.stars)}
+                      </span>
                       <span className="activity-date">{act.date}</span>
                     </div>
                   </div>
@@ -629,12 +679,17 @@ export default function ParentDashboard() {
       )}
 
       {/* TAB 2: PROGRESS BY GRADE */}
-      {activeTab === 'progress' && (
+      {activeTab === "progress" && (
         <div className="tab-content-section">
           {curriculum.grades.map((gr) => {
-            const allLessons = gr.chapters.flatMap((c) => c.lessons)
-            const completedCount = allLessons.filter((l) => completedLessons[l.id]).length
-            const percent = allLessons.length > 0 ? Math.round((completedCount / allLessons.length) * 100) : 0
+            const allLessons = gr.chapters.flatMap((c) => c.lessons);
+            const completedCount = allLessons.filter(
+              (l) => completedLessons[l.id],
+            ).length;
+            const percent =
+              allLessons.length > 0
+                ? Math.round((completedCount / allLessons.length) * 100)
+                : 0;
 
             return (
               <div key={gr.id} className="p-grade-progress-card">
@@ -656,37 +711,50 @@ export default function ParentDashboard() {
                   </div>
                 </div>
 
-                <ProgressBar value={percent} max={100} variant="primary" size="md" />
+                <ProgressBar
+                  value={percent}
+                  max={100}
+                  variant="primary"
+                  size="md"
+                />
 
                 <div className="chapters-mini-list">
                   {gr.chapters.map((ch) => {
-                    const chLessons = ch.lessons
-                    const chCompleted = chLessons.filter((l) => completedLessons[l.id]).length
-                    const chPercent = Math.round((chCompleted / chLessons.length) * 100)
+                    const chLessons = ch.lessons;
+                    const chCompleted = chLessons.filter(
+                      (l) => completedLessons[l.id],
+                    ).length;
+                    const chPercent = Math.round(
+                      (chCompleted / chLessons.length) * 100,
+                    );
                     return (
                       <div key={ch.id} className="chapter-mini-row">
                         <span className="ch-name">{ch.name}</span>
                         <span
                           className={`ch-status number ${
-                            chCompleted === chLessons.length ? 'done' : chCompleted > 0 ? 'doing' : ''
+                            chCompleted === chLessons.length
+                              ? "done"
+                              : chCompleted > 0
+                                ? "doing"
+                                : ""
                           }`}
                         >
                           {chCompleted === 0
-                            ? 'Chưa học'
+                            ? "Chưa học"
                             : `${chCompleted}/${chLessons.length} bài (${chPercent}%)`}
                         </span>
                       </div>
-                    )
+                    );
                   })}
                 </div>
               </div>
-            )
+            );
           })}
         </div>
       )}
 
       {/* TAB 3: DYNAMIC SKILLS EVALUATION */}
-      {activeTab === 'skills' && (
+      {activeTab === "skills" && (
         <div className="tab-content-section">
           {/* Radar Spider Chart Visualization */}
           <KnowledgeRadarChart skills={skillsEvaluation} />
@@ -696,14 +764,19 @@ export default function ParentDashboard() {
               <div>
                 <h3>🎯 Đánh Giá Năng Lực Toán Học Theo Chuẩn Bộ GD&ĐT</h3>
                 <p>
-                  Hệ thống tự động phân tích theo 5 mạch kiến thức cốt lõi dựa trên kết quả bài học thực tế của bé:
+                  Hệ thống tự động phân tích theo 5 mạch kiến thức cốt lõi dựa
+                  trên kết quả bài học thực tế của bé:
                 </p>
               </div>
               <div className="skills-summary-pill">
                 <span>
-                  Đã học:{' '}
+                  Đã học:{" "}
                   <strong>
-                    {skillsEvaluation.filter((s) => s.completedCount > 0).length} / 5 kỹ năng
+                    {
+                      skillsEvaluation.filter((s) => s.completedCount > 0)
+                        .length
+                    }{" "}
+                    / 5 kỹ năng
                   </strong>
                 </span>
               </div>
@@ -711,12 +784,12 @@ export default function ParentDashboard() {
 
             <div className="skills-bars-list">
               {skillsEvaluation.map((skill) => {
-                const isLearned = skill.completedCount > 0
+                const isLearned = skill.completedCount > 0;
 
                 return (
                   <div
                     key={skill.id}
-                    className={`skill-item-card ${isLearned ? 'is-learned' : 'is-unlearned'}`}
+                    className={`skill-item-card ${isLearned ? "is-learned" : "is-unlearned"}`}
                   >
                     <div className="skill-item-header">
                       <div className="skill-title-block">
@@ -730,13 +803,17 @@ export default function ParentDashboard() {
                       <div className="skill-score-block">
                         {isLearned ? (
                           <>
-                            <span className="skill-score-val number">{skill.scoreLabel}</span>
+                            <span className="skill-score-val number">
+                              {skill.scoreLabel}
+                            </span>
                             <span className="skill-count-badge">
                               {skill.completedCount} bài đã hoàn thành
                             </span>
                           </>
                         ) : (
-                          <span className="skill-unlearned-badge">Chưa học bài nào</span>
+                          <span className="skill-unlearned-badge">
+                            Chưa học bài nào
+                          </span>
                         )}
                       </div>
                     </div>
@@ -745,7 +822,13 @@ export default function ParentDashboard() {
                       <ProgressBar
                         value={skill.percent}
                         max={100}
-                        variant={skill.percent >= 80 ? 'success' : skill.percent >= 60 ? 'primary' : 'warning'}
+                        variant={
+                          skill.percent >= 80
+                            ? "success"
+                            : skill.percent >= 60
+                              ? "primary"
+                              : "warning"
+                        }
                         size="sm"
                       />
                     </div>
@@ -755,7 +838,7 @@ export default function ParentDashboard() {
                       <span className="rec-text">{skill.recommendation}</span>
                     </div>
                   </div>
-                )
+                );
               })}
             </div>
           </div>
@@ -763,16 +846,20 @@ export default function ParentDashboard() {
       )}
 
       {/* TAB 4: SETTINGS, PIN CHANGE & BACKUP */}
-      {activeTab === 'settings' && (
+      {activeTab === "settings" && (
         <div className="tab-content-section">
           {/* Security: Change PIN */}
           <div className="settings-block-card">
             <h3>🔒 Thay Đổi Mật Khẩu (Mã PIN Phụ Huynh)</h3>
             <p>
-              Mã PIN giúp bảo vệ các cài đặt quan trọng và báo cáo riêng tư của con. Vui lòng ghi nhớ mã PIN này.
+              Mã PIN giúp bảo vệ các cài đặt quan trọng và báo cáo riêng tư của
+              con. Vui lòng ghi nhớ mã PIN này.
             </p>
 
-            <form onSubmit={handleChangePin} className="pin-change-detailed-form">
+            <form
+              onSubmit={handleChangePin}
+              className="pin-change-detailed-form"
+            >
               <div className="form-group-pin">
                 <label>Mã PIN hiện tại:</label>
                 <input
@@ -809,7 +896,9 @@ export default function ParentDashboard() {
                 />
               </div>
 
-              {pinChangeError && <div className="pin-alert error">{pinChangeError}</div>}
+              {pinChangeError && (
+                <div className="pin-alert error">{pinChangeError}</div>
+              )}
               {pinChangeSuccess && (
                 <div className="pin-alert success">
                   <CheckCircle2 size={18} /> Đã đổi mã PIN phụ huynh thành công!
@@ -836,8 +925,8 @@ export default function ParentDashboard() {
               <select
                 value={grade}
                 onChange={(e) => {
-                  setGrade(Number(e.target.value))
-                  soundManager.playClick()
+                  setGrade(Number(e.target.value));
+                  soundManager.playClick();
                 }}
                 className="grade-select"
               >
@@ -853,11 +942,11 @@ export default function ParentDashboard() {
                 <p>Bật hoặc tắt âm thanh vui nhộn khi bé làm bài</p>
               </div>
               <Button
-                variant={soundEnabled ? 'primary' : 'ghost'}
+                variant={soundEnabled ? "primary" : "ghost"}
                 size="sm"
                 onClick={toggleSound}
               >
-                {soundEnabled ? '🔊 Đang bật' : '🔇 Đang tắt'}
+                {soundEnabled ? "🔊 Đang bật" : "🔇 Đang tắt"}
               </Button>
             </div>
           </div>
@@ -866,11 +955,15 @@ export default function ParentDashboard() {
           <div className="settings-block-card">
             <h3>💾 Sao Lưu & Khôi Phục</h3>
             <p>
-              Tạo mã khôi phục để dễ dàng đồng bộ tiến trình học sang thiết bị hoặc trình duyệt khác
-              mà không sợ bị mất dữ liệu.
+              Tạo mã khôi phục để dễ dàng đồng bộ tiến trình học sang thiết bị
+              hoặc trình duyệt khác mà không sợ bị mất dữ liệu.
             </p>
             <div className="backup-action-row">
-              <Button variant="outline" size="md" onClick={handleGenerateBackup}>
+              <Button
+                variant="outline"
+                size="md"
+                onClick={handleGenerateBackup}
+              >
                 <Download size={18} /> Tạo Mã Sao Lưu
               </Button>
               {backupCode && (
@@ -885,5 +978,5 @@ export default function ParentDashboard() {
         </div>
       )}
     </div>
-  )
+  );
 }

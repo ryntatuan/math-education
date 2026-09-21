@@ -17,6 +17,19 @@ import { supabase } from "../lib/supabase";
 const one = (v) => (Array.isArray(v) ? v[0] : v) ?? null;
 
 /**
+ * `app_config.value` là JSONB và có thể là số trần (`21`) hoặc bọc trong object
+ * (`{value: 21}`) — `rewardService.unwrapJsonb` ở client chấp nhận cả hai, nên ở đây
+ * cũng phải. Trả `null` khi không đọc được, KHÔNG trả 0: `0` là một phiên bản hợp lệ.
+ */
+const jsonbNumber = (raw) => {
+  const v = raw?.value;
+  if (typeof v === "number") return v;
+  if (v && typeof v === "object" && typeof v.value === "number") return v.value;
+  if (typeof v === "string" && v.trim() !== "") return Number(v);
+  return null;
+};
+
+/**
  * `:childId` đến từ URL nên có thể là chuỗi rác (gõ tay, bookmark cũ, link dán
  * thiếu ký tự). Gửi thẳng lên PostgREST sẽ nhận 400 `invalid input syntax for
  * type uuid`, và hiện lỗi đó ra màn hình thì vô nghĩa với người dùng.
@@ -92,6 +105,66 @@ function Empty({ children }) {
   return <p className="py-6 text-center text-sm text-slate-400">{children}</p>;
 }
 
+/**
+ * Nội dung máy bé này đang thấy — DoD #6 của GĐ 3 (xem
+ * `supabase/migrations/0013_content_report_and_create_lesson.sql`).
+ *
+ * Vì sao cần: khi phụ huynh báo "bài vẫn sai", cách xử lý KHÁC HẲN nhau tuỳ máy bé
+ * đang thấy bản nào:
+ *   • phiên bản = bản mới nhất  -> nội dung trên DB mới là thứ cần sửa
+ *   • phiên bản cũ / nguồn `static` -> máy bé chưa nhận bản mới, chỉ cần bé mở app
+ *     khi có mạng; sửa nội dung là vô ích
+ *
+ * ⚠️ Đây là BÁO CÁO của lần cuối máy bé CÒN MẠNG, không phải trạng thái trực tiếp —
+ * nên luôn hiện kèm mốc thời gian, để người đọc tự đánh giá độ mới.
+ */
+function ContentSeen({ progress, currentVersion }) {
+  const reportedAt = progress?.content_seen_at;
+  const version = progress?.content_version;
+  const source =
+    {
+      db: "đọc thẳng từ DB",
+      cache: "cache trong máy",
+      static: "file trong bundle (bản lúc build app)",
+    }[progress?.content_source] ?? "chưa rõ nguồn";
+
+  const behind =
+    currentVersion != null && (version == null || version < currentVersion);
+
+  if (!reportedAt) {
+    return (
+      <p className="mt-3 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-xs text-slate-500">
+        Máy bé này <strong>chưa báo</strong> phiên bản nội dung lần nào — bé
+        chưa đồng bộ lên đám mây kể từ khi tính năng này được bật.
+      </p>
+    );
+  }
+
+  return (
+    <div
+      className={`mt-3 rounded-lg border px-3 py-2 text-xs ${
+        behind ? "border-amber-200 bg-amber-50" : "border-slate-200 bg-slate-50"
+      }`}
+    >
+      <div className="text-slate-700">
+        <strong>Nội dung bé đang thấy:</strong>{" "}
+        {version == null
+          ? "không có số (đang chạy bản trong bundle)"
+          : `phiên bản ${version}`}{" "}
+        · {source} · báo lúc {fmtDateTime(reportedAt)}
+      </div>
+      {behind && (
+        <div className="mt-1 text-amber-800">
+          ⚠️ Nội dung hiện tại là <strong>phiên bản {currentVersion}</strong> —
+          máy bé này có thể còn thấy bản cũ. Cách xử lý thường gặp là để bé mở
+          app khi có mạng (app tự kiểm lại lúc mở và mỗi lần đổi màn hình),{" "}
+          <strong>không</strong> phải sửa nội dung.
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function ChildProfilePage() {
   const { childId } = useParams();
 
@@ -117,44 +190,54 @@ export default function ChildProfilePage() {
 
       try {
         // 5 truy vấn độc lập -> chạy song song, không phải chờ nhau
-        const [childRes, mistakesRes, txRes, xpRes] = await Promise.all([
-          supabase
-            .from("child_profiles")
-            .select(
-              `id, nickname, grade, avatar, level, xp, total_xp_for_next_level,
+        const [childRes, mistakesRes, txRes, xpRes, cfgRes] = await Promise.all(
+          [
+            supabase
+              .from("child_profiles")
+              .select(
+                `id, nickname, grade, avatar, level, xp, total_xp_for_next_level,
                coins, is_active, ban_reason, created_at,
                parent:profiles!child_profiles_parent_id_fkey (id, email, full_name, is_banned),
                progress:child_progress (current_streak, longest_streak, last_active_date,
                                         completed_lessons, exercise_results, math_race_wins,
-                                        total_games_played, updated_at),
+                                        total_games_played, updated_at,
+                                        content_version, content_source, content_seen_at),
                pet:child_pets (has_pet, pet_name, pet_type, level, exp, hunger, happiness, stage)`,
-            )
-            .eq("id", childId)
-            .maybeSingle(),
+              )
+              .eq("id", childId)
+              .maybeSingle(),
 
-          supabase
-            .from("child_mistakes")
-            .select(
-              "id, question, answer, stage, failed_count, mastered, next_review_date, created_at",
-            )
-            .eq("child_id", childId)
-            .order("failed_count", { ascending: false })
-            .limit(100),
+            supabase
+              .from("child_mistakes")
+              .select(
+                "id, question, answer, stage, failed_count, mastered, next_review_date, created_at",
+              )
+              .eq("child_id", childId)
+              .order("failed_count", { ascending: false })
+              .limit(100),
 
-          supabase
-            .from("coin_transactions")
-            .select("id, amount, reason, ref_id, balance_after, created_at")
-            .eq("child_id", childId)
-            .order("created_at", { ascending: false })
-            .limit(100),
+            supabase
+              .from("coin_transactions")
+              .select("id, amount, reason, ref_id, balance_after, created_at")
+              .eq("child_id", childId)
+              .order("created_at", { ascending: false })
+              .limit(100),
 
-          supabase
-            .from("xp_events")
-            .select("id, amount, source, created_at")
-            .eq("child_id", childId)
-            .order("created_at", { ascending: false })
-            .limit(100),
-        ]);
+            supabase
+              .from("xp_events")
+              .select("id, amount, source, created_at")
+              .eq("child_id", childId)
+              .order("created_at", { ascending: false })
+              .limit(100),
+
+            // Phiên bản nội dung ĐANG có trên hệ thống — để so với số mà máy bé báo.
+            supabase
+              .from("app_config")
+              .select("key,value")
+              .eq("key", "content_version")
+              .maybeSingle(),
+          ],
+        );
 
         if (childRes.error) throw new Error(childRes.error.message);
         if (cancelled) return;
@@ -167,6 +250,7 @@ export default function ChildProfilePage() {
           transactionsError: txRes.error?.message ?? null,
           xpEvents: xpRes.data || [],
           xpError: xpRes.error?.message ?? null,
+          currentContentVersion: jsonbNumber(cfgRes.data),
         });
       } catch (e) {
         if (!cancelled) setError(e.message);
@@ -188,7 +272,7 @@ export default function ChildProfilePage() {
 
   if (error) {
     return (
-      <div className="mx-auto max-w-6xl p-4 sm:p-6 lg:p-8">
+      <div className="p-4 sm:p-6 lg:p-8 2xl:p-10">
         <div className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">
           {error}
         </div>
@@ -198,7 +282,7 @@ export default function ChildProfilePage() {
 
   if (!data?.child) {
     return (
-      <div className="mx-auto max-w-6xl p-4 sm:p-6 lg:p-8">
+      <div className="p-4 sm:p-6 lg:p-8 2xl:p-10">
         <div className="rounded-lg border border-slate-200 bg-white px-4 py-8 text-center">
           <p className="text-sm text-slate-600">Không tìm thấy hồ sơ bé này.</p>
           <Link
@@ -239,7 +323,7 @@ export default function ChildProfilePage() {
     .reduce((s, t) => s + t.amount, 0);
 
   return (
-    <div className="mx-auto max-w-6xl space-y-5 p-4 sm:p-6 lg:p-8">
+    <div className="space-y-5 p-4 sm:p-6 lg:p-8 2xl:p-10">
       <Link
         to="/users"
         className="inline-block text-sm font-medium text-indigo-600 hover:underline"
@@ -322,6 +406,12 @@ export default function ChildProfilePage() {
             }
           />
         </div>
+
+        {/* Nội dung máy bé đang thấy — DoD #6 của GĐ 3. */}
+        <ContentSeen
+          progress={progress}
+          currentVersion={data.currentContentVersion}
+        />
       </section>
 
       {/* ── Tiến độ học tập ───────────────────────────────────────── */}

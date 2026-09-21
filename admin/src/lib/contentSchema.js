@@ -33,6 +33,19 @@
  *
  * Nguyên tắc rút ra: một khoá chỉ được coi là bắt buộc khi nó có mặt ở **100%**
  * slide của kiểu đó. Thấy nó trong vài ví dụ là chưa đủ.
+ *
+ * ──────────────────────────────────────────────────────────────────────────
+ * 🔴 `mangObject` — KHAI RIÊNG "MẢNG CHỨA OBJECT"
+ *
+ * `array` một mình KHÔNG nói được mảng đó chứa chuỗi hay chứa object. Trình sửa bài
+ * (lát 3c) phải biết: mảng chuỗi thì sửa bằng "mỗi dòng một ý" cho dễ, còn mảng
+ * object thì buộc phải sửa bằng JSON. Đoán sai chiều này thì editor ghi ra
+ * `["a","b"]` ở chỗ `LessonPage` cần `[{...},{...}]` — slide đó hỏng **ÂM THẦM**:
+ * không lỗi, không cảnh báo, chỉ là bé không bao giờ thấy phần đó.
+ *
+ * Số đo (trên 1505 slide thật, xem mục TẦN SUẤT TỪNG KHOÁ):
+ *   mảng OBJECT : items · steps · gallery · activityGrid · dialogueList
+ *   mảng CHUỖI : options · points
  * ══════════════════════════════════════════════════════════════════════════════
  */
 
@@ -65,14 +78,20 @@ export const SLIDE_TYPES = {
   },
 
   summary: {
-    batBuoc: { title: "string", points: "array", mascotMood: "string" },
-    tuyChon: {},
+    // 🔴 `mascotMood` ĐÃ BỊ BỎ KHỎI danh sách BẮT BUỘC (2026-09-20).
+    // Đo được: cả 362 slide "Ghi nhớ" đều mang khoá này, nhưng `SummarySlide`
+    // **không đọc nó** — nghĩa là bắt buộc một khoá mà bé không bao giờ thấy.
+    // Chuyển sang TUỲ CHỌN: dữ liệu cũ vẫn hợp lệ, trình sửa vẫn hiện ô đó với bài
+    // đã có giá trị, mà bài mới thì không phải điền một thứ vô nghĩa.
+    batBuoc: { title: "string", points: "array" },
+    tuyChon: { mascotMood: "string" },
   },
 
   visual: {
     // CHỈ `text` là bắt buộc — xem ghi chú đầu file.
     batBuoc: { text: "string" },
     tuyChon: { items: "array", number: "number" },
+    mangObject: ["items"],
   },
 
   concept: {
@@ -95,6 +114,7 @@ export const SLIDE_TYPES = {
       ["shape", "shapeLabel"],
       ["gallery", "galleryTitle"],
     ],
+    mangObject: ["steps", "gallery", "activityGrid"],
   },
 
   quiz: {
@@ -108,6 +128,7 @@ export const SLIDE_TYPES = {
     // Đáp án BẮT BUỘC nằm trong lựa chọn. Không có luật này thì app chạy bình
     // thường nhưng KHÔNG BAO GIỜ chấm đúng câu đó — sai hoàn toàn âm thầm.
     dapAnTrongOptions: "answer",
+    mangObject: ["items"],
   },
 
   dialogue: {
@@ -126,6 +147,7 @@ export const SLIDE_TYPES = {
     },
     tuyChon: { focusGraphic: "object" },
     dapAnTrongOptions: "correctAnswer",
+    mangObject: ["dialogueList"],
   },
 };
 

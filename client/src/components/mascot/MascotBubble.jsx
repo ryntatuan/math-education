@@ -17,19 +17,11 @@ import CoinIcon from "../common/CoinIcon";
 import useUserStore from "../../store/useUserStore";
 import useAuthStore from "../../store/useAuthStore";
 import soundManager from "../../utils/soundManager";
+// 🔴 Từ vựng biểu cảm nằm ở MỘT chỗ (`data/mascotFaces.js`) — bong bóng và slide
+// "Kể chuyện" cùng đọc file đó. Trước đây mỗi chỗ giữ một bản nên `thinking` hiện
+// 🤔 ở slide mà 🧐 ở đây.
+import { MASCOT_FACES, faceOf } from "../../data/mascotFaces";
 import "./MascotBubble.css";
-
-const moods = {
-  happy: { expression: "😊" },
-  excited: { expression: "🤩" },
-  proud: { expression: "😎" },
-  curious: { expression: "🤔" },
-  encourage: { expression: "💪" },
-  celebrate: { expression: "🎉" },
-  sad: { expression: "😢" },
-  thinking: { expression: "🧐" },
-  hint: { expression: "💡" },
-};
 
 // Math tips database
 const MATH_TIPS = [
@@ -181,7 +173,7 @@ export default function MascotBubble({
   // Cheer quote index
   const [quoteIndex, setQuoteIndex] = useState(0);
 
-  const moodData = moods[currentMood] || moods[mood] || moods.happy;
+  const moodFace = faceOf(MASCOT_FACES[currentMood] ? currentMood : mood);
 
   const handleToggleMascot = () => {
     if (!isInteractive) return;
@@ -450,7 +442,7 @@ export default function MascotBubble({
             <span className="mascot-owl">
               <MascotIcon size={size === "lg" ? 64 : size === "sm" ? 38 : 54} />
             </span>
-            <span className="mascot-expression">{moodData.expression}</span>
+            <span className="mascot-expression">{moodFace}</span>
             {isInteractive && !isOpen && (
               <span className="mascot-glow-indicator" />
             )}

@@ -254,7 +254,7 @@ export default function UsersPage() {
   };
 
   return (
-    <div className="mx-auto max-w-6xl p-4 sm:p-6 lg:p-8">
+    <div className="p-4 sm:p-6 lg:p-8 2xl:p-10">
       <header className="mb-6">
         <h1 className="text-2xl font-bold text-slate-900">Người dùng</h1>
         <p className="mt-1 text-sm text-slate-500">
@@ -455,7 +455,10 @@ export default function UsersPage() {
         </div>
       </div>
 
-      <p className="mt-4 text-xs text-slate-400">
+      {/* `max-w-[70ch]`: chú thích chỉ để đọc. Đo ở màn 1920 thì dòng này **118
+          ký tự** — quá dài để dò. Chặn ở mức đọc được, cố ý KHÔNG đặt trần cho
+          bảng phía trên: bảng nhiều cột thì rộng là ĐÚNG, chữ dài mới là sai. */}
+      <p className="mt-4 max-w-[70ch] text-xs text-slate-400">
         Khoá tài khoản sẽ khiến phụ huynh không thể đăng nhập app của bé. Mọi
         thao tác được ghi vào{" "}
         <code className="mx-1 rounded bg-slate-100 px-1">admin_audit_log</code>{" "}

@@ -4,7 +4,14 @@ import { useAdminAuth } from "../auth/AdminAuthProvider";
 
 // Các mục sẽ mở ở giai đoạn sau. Giữ ở đây để thấy lộ trình,
 // nhưng KHÔNG render thành link để tránh bấm vào trang trống.
-const ROADMAP = [{ label: "Nội dung bài học", phase: "GĐ 3", icon: "📚" }];
+//
+// ⚠️ GĐ 3 (CMS) đã xong — cả 3c lẫn 3d — nên hai mục cũ đã được bỏ khỏi danh sách
+// này. Để nguyên thì sidebar hiện "Sắp có: Sửa bài học (GĐ 3c)" trong khi người
+// dùng ĐANG dùng chính tính năng đó. Danh sách "sắp có" phải nói về việc CHƯA làm.
+const ROADMAP = [
+  { label: "Chỉnh độ khó bot đấu trường", phase: "GĐ 4", icon: "🤖" },
+  { label: "Bảng sức khoẻ hệ thống", phase: "GĐ 4", icon: "🩺" },
+];
 
 // Một chỗ khai báo menu để sidebar dùng chung, không lặp lại 5 lần NavLink.
 const NAV = [
@@ -13,6 +20,10 @@ const NAV = [
   { to: "/economy", icon: "🪙", label: "Kinh tế Xu/XP" },
   { to: "/reports", icon: "📮", label: "Báo lỗi câu hỏi" },
   { to: "/analytics", icon: "📊", label: "Phân tích câu hỏi" },
+  { to: "/content", icon: "📚", label: "Nội dung bài học" },
+  // Đứng ngay sau "Nội dung bài học" vì đó là lúc cần tra: mở trình sửa bài
+  // mà không biết Kiểu bài / Kiểu slide / Biểu cảm linh vật nên chọn gì.
+  { to: "/reference", icon: "📖", label: "Tham khảo" },
 ];
 
 // SVG nội tuyến chứ không dùng thư viện icon: admin portal không có
@@ -120,9 +131,15 @@ export default function Layout() {
         />
       )}
 
+      {/* 🔴 Ở desktop (`lg`) sidebar phải cao ĐÚNG bằng màn hình và tự cuộn bên trong.
+          Trước đây nó là `static` nên cao theo nội dung menu (~550px): ở cửa sổ thấp
+          hơn thế, nó kéo CẢ HÀNG flex cao theo và làm cả trang cuộn — trong khi lẽ ra
+          chỉ phần menu cần cuộn. Đo ở khung 420px: sidebar 550px, cả trang 550px.
+          Dùng `sticky` chứ không `fixed`: vẫn nằm trong luồng nên không phải chừa lề,
+          mà khi trang dài thì sidebar vẫn dính và phủ kín màn hình. */}
       <aside
         id="admin-sidebar"
-        className={`fixed inset-y-0 left-0 z-30 flex w-64 shrink-0 flex-col overflow-y-auto bg-slate-800 pt-14 text-slate-200 transition-transform duration-200 ease-out lg:static lg:z-auto lg:translate-x-0 lg:pt-0 ${
+        className={`fixed inset-y-0 left-0 z-30 flex w-64 shrink-0 flex-col overflow-y-auto bg-slate-800 pt-14 text-slate-200 transition-transform duration-200 ease-out lg:sticky lg:top-0 lg:z-auto lg:h-dvh lg:translate-x-0 lg:pt-0 ${
           menuOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >

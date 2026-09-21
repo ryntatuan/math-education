@@ -4,6 +4,7 @@ import useAuthStore from "./useAuthStore";
 import useUserStore from "./useUserStore";
 import { getReward } from "../services/rewardService";
 import { supabase, isSupabaseConfigured } from "../services/supabaseClient";
+import { createGuestAwareStorage } from "./sessionMode";
 
 /**
  * Ánh xạ nhiệm vụ -> khoá cấu hình phần thưởng.
@@ -400,24 +401,43 @@ const useProgressStore = create(
         return get().completedLessons[lessonId]?.stars || 0;
       },
 
-      getChapterProgress: (chapterId, totalLessons) => {
+      /**
+       * Tiến độ của MỘT chương.
+       *
+       * @param lessonIds (tuỳ chọn) mã các bài **còn tồn tại** trong chương.
+       *
+       * 🔴 VÌ SAO CẦN THAM SỐ THỨ BA. `completedLessons` trong máy bé là sổ
+       * CHỈ-THÊM — bài bị rút/xoá khỏi DB **không** bị gạch khỏi sổ. Đó là chủ ý:
+       * bé không được mất sao vì một thao tác của người lớn. Nhưng khi ĐẾM thì phải
+       * đối chiếu với cây hiện tại, nếu không: chương còn 12 bài mà bé đã học 13
+       * (một bài vừa bị xoá trong DB) ⇒ màn hình hiện "13/12" và `percent` vượt
+       * 100 ⇒ `isCompleted` (=== 100) thành **false**, tức chương đang HOÀN THÀNH
+       * tự nhiên MẤT dấu ✅. Không truyền `lessonIds` thì giữ nguyên hành vi cũ.
+       */
+      getChapterProgress: (chapterId, totalLessons, lessonIds) => {
         const completedLessons = get().completedLessons || {};
+        const conTonTai = Array.isArray(lessonIds) ? new Set(lessonIds) : null;
         let completed = 0;
         let earnedStars = 0;
 
         Object.entries(completedLessons).forEach(([id, data]) => {
-          if (id === chapterId || id.startsWith(`${chapterId}-`)) {
-            completed++;
-            earnedStars += data?.stars || 0;
-          }
+          if (id !== chapterId && !id.startsWith(`${chapterId}-`)) return;
+          // Bài đã bị xoá khỏi DB: còn trong sổ của bé, nhưng không còn trong chương
+          // trình ⇒ không tính vào tử số lẫn mẫu số.
+          if (conTonTai && !conTonTai.has(id)) return;
+          completed++;
+          earnedStars += data?.stars || 0;
         });
 
         const total = totalLessons || 0;
+        // Chặn trên cho an toàn: kể cả khi không truyền `lessonIds` (dữ liệu cũ), con
+        // số hiện ra không bao giờ vượt quá tổng số bài.
         const maxStars = total * 3;
-        const percent = total > 0 ? Math.round((completed / total) * 100) : 0;
+        const percent =
+          total > 0 ? Math.min(100, Math.round((completed / total) * 100)) : 0;
 
         return {
-          completed,
+          completed: Math.min(completed, total),
           total,
           percent,
           earnedStars,
@@ -479,6 +499,8 @@ const useProgressStore = create(
     }),
     {
       name: "toan-vui-progress",
+      // Chế độ Khách thì không ghi gì xuống máy — xem `sessionMode.js`.
+      storage: createGuestAwareStorage(),
     },
   ),
 );

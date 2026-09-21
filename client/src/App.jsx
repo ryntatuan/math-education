@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   BrowserRouter,
   Routes,
@@ -27,6 +27,7 @@ import AuthCallbackPage from "./pages/AuthCallbackPage";
 import useUserStore from "./store/useUserStore";
 import useAuthStore from "./store/useAuthStore";
 import { setupAutoSync } from "./services/syncService";
+import { ngheNoiDung, taiNoiDung } from "./data/contentSource";
 import {
   preloadRewardConfigs,
   refreshRewardConfigs,
@@ -41,6 +42,21 @@ function AppLayout() {
   useMobileLifecycle();
   const location = useLocation();
   const isLessonRoute = location.pathname.startsWith("/lesson/");
+
+  // Ask for a fresh content version on every screen change (home → chapter → lesson…).
+  //
+  // 🔴 WHY THIS EXISTS — measured, not guessed. The app can only know an admin changed
+  // content by asking: there is no push channel. It used to ask at exactly two moments
+  // (launch, and coming back to the tab), so a lesson an admin pulled stayed on screen
+  // while the child sat on one screen — measured: 8 seconds idle, tree unchanged, cache
+  // stuck at version 12. Kids tap between screens constantly, so asking on each route
+  // change is the cheapest trigger that still catches "idle, then navigate".
+  //
+  // Cost: one small `app_config` read per screen change, throttled to 5s inside
+  // `contentSource`; the ~800 KB tree is fetched only when the version actually changed.
+  useEffect(() => {
+    taiNoiDung();
+  }, [location.pathname]);
 
   return (
     <div className={`app-container ${isLessonRoute ? "in-lesson-mode" : ""}`}>
@@ -89,6 +105,8 @@ function AppLayout() {
 
 export default function App() {
   const soundEnabled = useUserStore((state) => state.soundEnabled);
+  // Số này chỉ để ÉP render lại khi nguồn nội dung vừa đổi — giá trị không dùng tới.
+  const [, setPhienNoiDung] = useState(0);
 
   useEffect(() => {
     soundManager.setSoundEnabled(soundEnabled);
@@ -101,11 +119,30 @@ export default function App() {
     // chờ, rewardService dùng cache localStorage hoặc giá trị mặc định.
     preloadRewardConfigs();
 
+    // Nội dung bài học — lát 3d. Không chặn render: cache localStorage đã được đọc
+    // ĐỒNG BỘ lúc nạp module, nên cây có sẵn ngay từ khung hình đầu tiên; hàm này chỉ
+    // tải bản mới hơn ở nền rồi thay vào cho lần ĐỌC KẾ TIẾP (xem ghi chú đầu
+    // `contentSource.js` về lý do không đổi nóng giữa phiên).
+    taiNoiDung();
+
+    // Nội dung vừa được thay (admin publish xong) ⇒ render lại để TRANG ĐANG MỞ đọc
+    // cây mới. `contentSource` tự bỏ qua thông báo này khi đang có bài học mở — xem
+    // ghi chú ở đó về lý do (đang học dở mà cây đổi thì bé bị đẩy về slide 1).
+    const huyNghe = ngheNoiDung(() => setPhienNoiDung((p) => p + 1));
+
     // Nạp lại config khi người dùng quay lại tab/app. Nếu không có bước này,
     // một phiên mở lâu sẽ mãi dùng giá trị cũ dù Admin đã đổi —
     // preloadRewardConfigs() chỉ chạy 1 lần khi tải trang.
+    //
+    // `taiNoiDung()` ở đây là cùng lý do cho NỘI DUNG: nếu chỉ gọi lúc khởi động thì
+    // admin publish xong, app đang mở sẽ **không bao giờ** biết (đo được: bé mở app
+    // ở trang chương, admin publish, chờ 6s — tiêu đề vẫn cũ). Lần gọi này chỉ đọc
+    // `content_version`; tải cả cây chỉ khi số đó ĐÃ ĐỔI.
     const onVisible = () => {
-      if (document.visibilityState === "visible") refreshRewardConfigs();
+      if (document.visibilityState === "visible") {
+        refreshRewardConfigs();
+        taiNoiDung();
+      }
     };
     document.addEventListener("visibilitychange", onVisible);
     window.addEventListener("focus", onVisible);
@@ -113,6 +150,7 @@ export default function App() {
     return () => {
       document.removeEventListener("visibilitychange", onVisible);
       window.removeEventListener("focus", onVisible);
+      huyNghe();
     };
   }, []);
 

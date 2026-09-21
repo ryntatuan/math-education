@@ -234,7 +234,7 @@ export default function EconomyPage() {
   }
 
   return (
-    <div className="mx-auto max-w-5xl p-4 sm:p-6 lg:p-8">
+    <div className="p-4 sm:p-6 lg:p-8 2xl:p-10">
       <header className="mb-6">
         <h1 className="text-2xl font-bold text-slate-900">Kinh tế Xu/XP</h1>
         <p className="mt-1 text-sm text-slate-500">
@@ -319,7 +319,29 @@ export default function EconomyPage() {
           <h2 className="border-b border-slate-200 px-6 py-3 text-sm font-semibold text-slate-900">
             {groupName}
           </h2>
-          <table className="w-full min-w-[560px] text-sm">
+          {/* 🔴 `table-fixed` + `<colgroup>` là BẮT BUỘC để 7 bảng khớp cột với nhau.
+              Mặc định `table-layout: auto` cho MỖI bảng tự chia cột theo nội dung
+              riêng của nó — đo được cột "Xu" rộng **318px** ở nhóm Bài học, **355px**
+              ở nhóm Khác, **339px** ở nhóm Luyện tập, nên cùng một ô nhập nằm ở ba vị
+              trí khác nhau (825 / 873 / 934) và cả trang trông như cột bị lệch.
+              Dùng **phần trăm** chứ không dùng px: bảng vẫn co giãn theo màn hình, mà
+              mọi bảng luôn chia GIỐNG HỆT nhau vì cùng bề rộng khung.
+              Đo sau khi sửa: cả 7 bảng đều `[297, 986, 1237, 1488, 1739]`.
+              🔴 `min-w-[680px]` là con số **tính từ ràng buộc**, không phải chọn cho
+              đẹp: cột 17,5% phải chứa được ô nhập 96px + đệm 2×12px = **120px**.
+              Và 680 phải ≤ khung hẹp nhất có sidebar thật — đo ở màn 1024px:
+              1024 − sidebar 256 − đệm 2×32 − **thanh cuộn 15px** − viền 2 = **687px**.
+              (Đừng tính tay ra 704 rồi tin: thanh cuộn ăn mất 15px, và chính vì bỏ
+              sót nó mà bản `min-w-[700px]` bị cuộn ngang 13px ở màn 1024px.)
+              Hạ `min-w` xuống nữa là ô nhập TRÀN khỏi ô. */}
+          <table className="w-full min-w-[680px] table-fixed text-sm">
+            <colgroup>
+              <col className="w-[38.5%]" />
+              <col className="w-[18%]" />
+              <col className="w-[18%]" />
+              <col className="w-[18%]" />
+              <col className="w-[7.5%]" />
+            </colgroup>
             <thead>
               <tr className="border-b border-slate-100 text-left text-xs text-slate-500">
                 <th className="px-6 py-2 font-medium">Hoạt động</th>
@@ -413,7 +435,9 @@ export default function EconomyPage() {
         </button>
       </div>
 
-      <p className="mt-4 text-xs text-slate-400">
+      {/* `max-w-[70ch]`: chú thích chỉ để đọc — đo ở màn 1920 thì dòng này **96
+          ký tự**. Chặn ở mức đọc được, KHÔNG chặn bề rộng các bảng phía trên. */}
+      <p className="mt-4 max-w-[70ch] text-xs text-slate-400">
         Tắt một mục sẽ khiến hoạt động đó thưởng 0 Xu và 0 XP. Mọi thay đổi được
         ghi vào
         <code className="mx-1 rounded bg-slate-100 px-1">admin_audit_log</code>.

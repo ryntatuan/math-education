@@ -41,7 +41,8 @@
  *  - Kiểm TẤT CẢ slide trước. Chỉ cần 1 slide hỏng là DỪNG HẲN, không ghi nửa vời.
  *    Trạng thái nửa vời khó gỡ hơn nhiều so với chạy lại từ đầu.
  *  - KHÔNG bao giờ in key ra màn hình.
- *  - KHÔNG đụng tới `content_source` — app phải tiếp tục đọc file tĩnh (lát 3d mới bật).
+ *  - KHÔNG đụng tới `content_source` — việc bật/tắt nguồn nội dung là của migration
+ *    `0011_bat_doc_noi_dung_tu_db.sql`, không phải của script dựng dữ liệu này.
  */
 
 import fs from "node:fs";
@@ -158,7 +159,7 @@ console.log(
 
 // Đối chiếu với con số đã đo bằng `scratch/inspect_content_shape.mjs`.
 // Lệch nghĩa là hoặc nội dung đã đổi (tốt — cập nhật số), hoặc bộ đọc đã hỏng.
-const MONG_DOI = { lop: 5, chuong: 41, bai: 362, slide: 1505 };
+const MONG_DOI = { lop: 5, chuong: 51, bai: 459, slide: 2438 };
 const lech =
   grades.length !== MONG_DOI.lop ||
   chapters.length !== MONG_DOI.chuong ||
@@ -169,7 +170,7 @@ console.log(
   lech
     ? `  ⚠️  LỆCH so với số đã đo (${MONG_DOI.lop}/${MONG_DOI.chuong}/${MONG_DOI.bai}/${MONG_DOI.slide}).\n` +
         `      Nội dung có thể vừa được sửa — kiểm lại trước khi ghi.`
-    : `  ✅ khớp số đã đo (5/41/362/1505)`,
+    : `  ✅ khớp số đã đo (5/51/459/2438)`,
 );
 
 if (loi.length) {
@@ -241,6 +242,41 @@ if (MUON_SQL) {
 -- Chạy lại được nhiều lần (ON CONFLICT … DO UPDATE) nên không sinh dòng trùng.
 
 `;
+
+  // ── DỌN: xoá nội dung KHÔNG CÒN trong bộ file tĩnh ────────────────────────
+  // 🔴 VÌ SAO CẦN FILE NÀY. Mọi INSERT bên dưới đều `ON CONFLICT (id) DO UPDATE`
+  // — nghĩa là chỉ THÊM và SỬA, KHÔNG BAO GIỜ XOÁ. Nên khi một chương bị dựng lại
+  // và bài cũ bị bỏ khỏi file tĩnh, những bài đó VẪN NẰM trong DB và vẫn hiện trên
+  // app (đã đúng như vậy ở lần dựng lại lớp 1–3 năm 2026-09-21).
+  // File này xoá ĐÚNG những id không còn trong file tĩnh, không đụng gì khác.
+  //
+  // ⚠️ KHÔNG dùng bảng tạm (TEMP TABLE) ở đây: SQL Editor có thể chạy mỗi câu trên
+  // một kết nối khác nhau ⇒ bảng tạm "biến mất" giữa các câu. Dùng `VALUES` nội tuyến.
+  // ⚠️ Tiến độ của bé (`completedLessons`) KHÔNG tham chiếu bảng nội dung, nên xoá
+  // bài không làm mất tiến độ — chỉ những sao của bài đã bị xoá là không còn được tính.
+  //
+  // 🔴 `content_grades.id` là **INT**, còn `content_chapters.id` và `content_lessons.id`
+  // là TEXT. Sinh `('1')` cho lớp thì Postgres báo `42883: operator does not exist:
+  // text = integer` — đã mắc thật khi chạy file 00 lần đầu (2026-09-21). Nên lớp phải
+  // sinh literal SỐ, không bọc nháy.
+  const khoaValues = (ds, cot = "id", kieu = "text") =>
+    ds
+      .map((x) => `  (${kieu === "int" ? Number(x[cot]) : lit(x[cot])})`)
+      .join(",\n");
+  let don =
+    dau +
+    `-- DỌN nội dung không còn trong bộ file tĩnh. CHẠY FILE NÀY ĐẦU TIÊN.\n`;
+  don += `-- Chỉ xoá id KHÔNG có trong danh sách dưới đây; chạy lại nhiều lần vô hại.\n\n`;
+  don += `-- Bài học (xoá dây chuyền cả phiên bản và bản nháp của bài đó)\n`;
+  don += `DELETE FROM public.content_lessons l\nWHERE NOT EXISTS (\n`;
+  don += `  SELECT 1 FROM (VALUES\n${khoaValues(lessons)}\n) AS g(id) WHERE g.id = l.id\n);\n\n`;
+  don += `-- Chương\n`;
+  don += `DELETE FROM public.content_chapters c\nWHERE NOT EXISTS (\n`;
+  don += `  SELECT 1 FROM (VALUES\n${khoaValues(chapters)}\n) AS g(id) WHERE g.id = c.id\n);\n\n`;
+  don += `-- Lớp (khoá là SỐ nên literal không bọc nháy)\n`;
+  don += `DELETE FROM public.content_grades r\nWHERE NOT EXISTS (\n`;
+  don += `  SELECT 1 FROM (VALUES\n${khoaValues(grades, "id", "int")}\n) AS g(id) WHERE g.id = r.id\n);\n`;
+  fs.writeFileSync(path.join(thuMuc, "00-don-noi-dung-cu.sql"), don, "utf8");
 
   // Lớp + chương: nhỏ, gộp chung một file.
   let s = dau + `-- Lớp và chương\n\n`;
@@ -336,20 +372,22 @@ if (MUON_SQL) {
     `WHERE key IN ('content_source', 'content_version') ORDER BY key;\n` +
     `-- Mong đợi: content_source = "static" · content_version = 1\n\n`;
   cuoi +=
-    `-- Đối chiếu số dòng (phải khớp 5 / 41 / 362):\n` +
+    `-- Đối chiếu số dòng (phải khớp ${grades.length} / ${chapters.length} / ${lessons.length}):\n` +
     `SELECT\n` +
     `  (SELECT COUNT(*) FROM public.content_grades)   AS so_lop,\n` +
     `  (SELECT COUNT(*) FROM public.content_chapters) AS so_chuong,\n` +
     `  (SELECT COUNT(*) FROM public.content_lessons)  AS so_bai,\n` +
     `  (SELECT COUNT(*) FROM public.content_lesson_versions) AS so_phien_ban;\n\n`;
   cuoi +=
-    `-- Kiểm số bài mỗi chương là số THẬT, không phải metadata sai:\n` +
-    `-- (5 chương từng khai sai: g2-c8, g2-c9, g2-c10, g3-c9, g3-c10)\n` +
-    `SELECT chapter_id, COUNT(*) AS so_bai\n` +
-    `FROM public.content_lessons\n` +
-    `WHERE chapter_id IN ('g2-c8','g2-c9','g2-c10','g3-c9','g3-c10')\n` +
-    `GROUP BY chapter_id ORDER BY chapter_id;\n` +
-    `-- Mong đợi: g2-c8=2, g2-c9=2, g2-c10=3, g3-c9=2, g3-c10=3\n`;
+    `-- Chương nào còn quá ít bài thì in ra (số bài là số THẬT, không phải metadata).\n` +
+    `-- Mong đợi: 0 dòng. Danh sách này KHÔNG viết cứng theo id nên không lỗi thời khi\n` +
+    `-- chương trình đổi — trước đây nó liệt kê 13 id cũ và đã sai sau lần dựng lại.\n` +
+    `SELECT c.id, c.name, COUNT(l.id) AS so_bai\n` +
+    `FROM public.content_chapters c\n` +
+    `LEFT JOIN public.content_lessons l ON l.chapter_id = c.id\n` +
+    `GROUP BY c.id, c.name\n` +
+    `HAVING COUNT(l.id) < 3\n` +
+    `ORDER BY c.id;\n`;
   fs.writeFileSync(
     path.join(thuMuc, "99-cau-hinh-va-doi-chieu.sql"),
     cuoi,
@@ -363,7 +401,14 @@ if (MUON_SQL) {
         .sort()
         .map((f) => "   " + f)
         .join("\n")}\n\n` +
-      `   Chạy trong Supabase SQL Editor theo thứ tự tên file (01 → 99).\n` +
+      `   Chạy trong Supabase SQL Editor theo thứ tự tên file (00 → 01 … 06 → 99 → 100).\n` +
+      `   🔴 ĐỪNG BỎ FILE 00: nó xoá những bài/chương đã bị bỏ khỏi file tĩnh. Seed chỉ\n` +
+      `      upsert, nên thiếu bước 00 thì bài cũ (chủ đề sai) VẪN HIỆN trên app của bé.\n` +
+      `   🔴 BƯỚC 100 LÀ BẮT BUỘC: seed chỉ GHI bài, KHÔNG tăng \`content_version\`\n` +
+      `      (\`99-...\` cố ý chỉ đặt số 1 khi đang nhỏ hơn 1). Thiếu bước 100 thì máy các\n` +
+      `      bé vẫn dùng cây đã cache và KHÔNG BAO GIỜ thấy nội dung mới.\n` +
+      `      ⚠️ ĐỪNG gọi hàm \`bump_content_version()\` trong SQL Editor: \`0012\` đã bọc nó\n` +
+      `      bằng chốt admin, mà SQL Editor không có JWT ⇒ \`42501\`. File 100 dùng SQL thô.\n` +
       `   Xong thì chạy: node scripts/migrate-content.mjs --verify\n`,
   );
   process.exit(0);
@@ -464,38 +509,58 @@ if (MUON_DOI_CHIEU) {
   soSanh("Bài bị thiếu", thieu.length, 0);
   soSanh("Bài có nội dung khác", khac.length, 0);
 
-  // Số bài mỗi chương — riêng 5 chương từng khai sai metadata.
+  // Số bài mỗi chương — 13 chương TỪNG MỎNG (ban đầu là 5 chương khai sai metadata,
+  // sau đó là 13 chương được bổ sung bài ngày 2026-09-20).
+  //
+  // 🔴 KHÔNG hardcode số mong đợi nữa. Bản trước ghi cứng {g2-c8: 2, g2-c9: 2, …} nên
+  //    khi bổ sung bài xong thì CHÍNH PHÉP KIỂM báo sai 5 dòng — thước hỏng, dữ liệu sạch.
+  //    Nay lấy kỳ vọng từ FILE TĨNH, thêm bài vào chương nào cũng không phải sửa script.
   const demChuong = new Map();
   for (const l of dbLessons)
     demChuong.set(l.chapter_id, (demChuong.get(l.chapter_id) ?? 0) + 1);
-  const chuongNghi = ["g2-c8", "g2-c9", "g2-c10", "g3-c9", "g3-c10"];
-  const mongChuong = {
-    "g2-c8": 2,
-    "g2-c9": 2,
-    "g2-c10": 3,
-    "g3-c9": 2,
-    "g3-c10": 3,
-  };
-  for (const c of chuongNghi)
+  const demChuongFile = new Map();
+  // Phía file tĩnh, `lessons` là mảng PHẲNG và mỗi phần tử mang `chapter_id`
+  // (xem chỗ dựng `lessons.push({ …, chapter_id: ch.id, … })`). KHÔNG đếm qua
+  // `chapters[].lessons` — mảng đó chỉ để duyệt lúc nạp, không phải nguồn số.
+  for (const l of lessons)
+    demChuongFile.set(l.chapter_id, (demChuongFile.get(l.chapter_id) ?? 0) + 1);
+
+  const chuongTungMong = [
+    "g2-c8",
+    "g2-c9",
+    "g2-c10",
+    "g3-c9",
+    "g3-c10",
+    "g4-c3",
+    "g4-c4",
+    "g4-c5",
+    "g4-c6",
+    "g5-c1",
+    "g5-c3",
+    "g5-c4",
+    "g5-c5",
+  ];
+  for (const c of chuongTungMong)
     soSanh(
-      `Chương ${c} (metadata cũ khai sai)`,
+      `Chương ${c} (từng mỏng — nay phải khớp file tĩnh)`,
       demChuong.get(c) ?? 0,
-      mongChuong[c],
+      demChuongFile.get(c) ?? 0,
     );
 
-  // 🔴 TC-3a.10 — công tắc nội dung phải VẪN là "static".
-  // Script migrate CỐ Ý không đụng vào nó. Nếu nó thành "remote" thì lát 3a đã hoá
-  // thành lát 3d: app đổi hành vi cùng lúc với việc dựng dữ liệu — đúng thứ cần tránh.
+  // 🔴 Công tắc nguồn nội dung — kiểm GIÁ TRỊ HỢP LỆ, không bắt buộc một giá trị cụ thể.
+  // Bản cũ bắt buộc phải = "static" (đúng cho lát 3a). Từ `0011` dự án đã CHUYỂN SANG
+  // "remote" (app đọc nội dung từ DB) ⇒ giữ luật cũ thì `--verify` đỏ VĨNH VIỄN sau mỗi
+  // lần bơm nội dung. Một dòng đỏ luôn đỏ sẽ dạy người đọc bỏ qua cả dòng đỏ thật.
   // `app_config` đọc được bằng anon key nên kiểm được ở đây, không cần quyền gì thêm.
   const cfg = await doc("app_config", "key,value");
   const giaTri = (k) => cfg.find((c) => c.key === k)?.value;
 
   const nguon = giaTri("content_source");
   ketQua.push({
-    nhan: 'content_source vẫn là "static"',
+    nhan: `content_source (${nguon === "remote" ? "app đọc DB" : "app đọc file tĩnh"})`,
     that: JSON.stringify(nguon),
-    mong: JSON.stringify("static"),
-    dat: nguon === "static",
+    mong: '"remote" | "static"',
+    dat: nguon === "remote" || nguon === "static",
   });
 
   const pb = giaTri("content_version");
@@ -518,6 +583,21 @@ if (MUON_DOI_CHIEU) {
     console.log(`\n  Bài thiếu: ${thieu.slice(0, 10).join(", ")}`);
   if (khac.length)
     console.log(`  Bài lệch nội dung: ${khac.slice(0, 10).join(", ")}`);
+  // In đủ danh sách khi còn ít (đang sửa nội dung hàng loạt thì cần biết chính xác
+  // bài nào lệch, không chỉ 10 bài đầu). Đông hơn 200 thì in theo lớp cho gọn mắt.
+  if (khac.length > 10) {
+    if (khac.length <= 200) console.log(`  Toàn bộ: ${khac.join(", ")}`);
+    else {
+      const theo = new Map();
+      for (const id of khac) {
+        const k = id.replace(/-l\d+$/, "");
+        theo.set(k, (theo.get(k) ?? 0) + 1);
+      }
+      console.log(
+        `  Lệch theo chương: ${[...theo].map(([k, v]) => `${k}=${v}`).join(" · ")}`,
+      );
+    }
+  }
 
   const hong = ketQua.filter((k) => !k.dat);
   console.log(
@@ -588,7 +668,8 @@ if (MUON_GHI) {
 
   console.log(
     `\n✅ Xong. Chạy \`node scripts/migrate-content.mjs --verify\` để đối chiếu.\n` +
-      `   content_source KHÔNG bị đụng tới — app vẫn đọc file tĩnh (đúng chủ ý của lát 3a).\n`,
+      `   Script này KHÔNG đụng tới content_source — muốn app đọc nội dung từ DB thì\n` +
+      `   bật bằng migration \`0011_bat_doc_noi_dung_tu_db.sql\`.\n`,
   );
   process.exit(0);
 }

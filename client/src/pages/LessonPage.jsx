@@ -26,10 +26,28 @@ import useAuthStore from "../store/useAuthStore";
 import usePetStore from "../store/usePetStore";
 import { getReward } from "../services/rewardService";
 import curriculum from "../data/curriculum";
+import {
+  baoDangTrongBaiHoc,
+  ngheNoiDung,
+  taiNoiDung,
+} from "../data/contentSource";
+// Một biểu cảm = MỘT mặt trong cả app — xem `data/mascotFaces.js`.
+import { faceOf } from "../data/mascotFaces";
 import soundManager from "../utils/soundManager";
 import speechHelper from "../utils/speechHelper";
 import fireConfetti from "../utils/confettiHelper";
 import "./LessonPage.css";
+
+// Sáu kiểu slide mà màn hình này ĐỌC ĐƯỢC — khớp đúng 6 nhánh vẽ bên dưới và danh
+// sách `SLIDE_TYPES` của Admin. Dùng để nhận ra slide lạ thay vì vẽ ra thẻ trống.
+const LOAI_SLIDE_HOP_LE = [
+  "story",
+  "concept",
+  "visual",
+  "dialogue",
+  "quiz",
+  "summary",
+];
 
 // Find lesson across all grades/chapters
 function findLesson(lessonId) {
@@ -51,6 +69,46 @@ export default function LessonPage() {
     useProgressStore();
 
   const found = findLesson(lessonId);
+  const coBaiHoc = Boolean(found);
+
+  // Đang trong bài thì `contentSource` KHÔNG được đổi cây rồi bắt app render lại —
+  // bé sẽ bị đẩy về slide 1 giữa bài. Khai lúc vào, gỡ lúc ra.
+  //
+  // 🔴 Nhưng khi KHÔNG tìm thấy bài thì phải khai `false`: đó chính là điều kiện để
+  //    màn hình "không tìm thấy bài" tự chữa (effect ngay dưới). Khai `true` ở đây
+  //    sẽ khoá luôn đường tự chữa đó — và khoá im lặng, không báo lỗi gì.
+  useEffect(() => {
+    baoDangTrongBaiHoc(coBaiHoc);
+    return () => baoDangTrongBaiHoc(false);
+  }, [coBaiHoc]);
+
+  /**
+   * 🔴 BÀI KHÔNG CÓ TRONG CÂY ĐANG DÙNG — tự thử lại một lần, và tự vẽ lại.
+   *
+   * Hai tình huống rất khác nhau cùng dẫn tới màn hình này:
+   *   • **Cache còn cũ**: bài vẫn nằm trong DB, nhưng cây trong `localStorage` chưa
+   *     được cập nhật (số phiên bản vừa đổi). Tải lại là thấy bài, không cần bé làm gì.
+   *   • **Bài đã bị xoá trong DB**: tải lại cũng không có. Màn hình vẫn đứng nguyên,
+   *     nhưng đứng yên một cách ĐÚNG — không phải màn hình lỗi, và tiến độ đã học của
+   *     bé còn nguyên (xoá bài không xoá `completedLessons`).
+   *
+   * `force: true` chỉ bỏ qua chốt chặn 5 giây, **không** bỏ qua phép so
+   * `content_version` — cố ý: tải lại ~800 KB vì một đường dẫn gõ sai là không đáng.
+   *
+   * Vì cây mới được báo về qua `ngheNoiDung`, việc tăng `lanThuLai` chỉ để React vẽ
+   * lại — sau đó `findLesson` chạy lại và tự quyết định.
+   */
+  const [, setLanThuLai] = useState(0);
+  const daThuTaiLai = useRef(false);
+  useEffect(() => {
+    if (coBaiHoc) return;
+    const huy = ngheNoiDung(() => setLanThuLai((n) => n + 1));
+    if (!daThuTaiLai.current) {
+      daThuTaiLai.current = true;
+      taiNoiDung({ force: true });
+    }
+    return huy;
+  }, [coBaiHoc]);
   const [currentSlide, setCurrentSlide] = useState(0);
   // GĐ 2b — mốc bắt đầu làm câu hỏi của slide hiện tại, dùng để tính `ms`
   // gửi lên `question_attempts`. Sang slide khác thì tính lại.
@@ -170,6 +228,49 @@ export default function LessonPage() {
       <div className="page-empty">
         <span style={{ fontSize: "4rem" }}>😕</span>
         <h2>Không tìm thấy bài học</h2>
+        <p style={{ maxWidth: 460, textAlign: "center", opacity: 0.75 }}>
+          Bài này có thể đã được người quản trị rút hoặc xoá. Tiến độ bé đã học
+          vẫn được giữ nguyên — bé chọn một bài khác ở trang chủ nhé.
+        </p>
+        <div
+          style={{
+            display: "flex",
+            gap: 12,
+            flexWrap: "wrap",
+            justifyContent: "center",
+          }}
+        >
+          <Button
+            variant="outline"
+            onClick={() => {
+              setLanThuLai((n) => n + 1);
+              taiNoiDung({ force: true });
+            }}
+          >
+            Thử tải lại nội dung
+          </Button>
+          <Button onClick={() => navigate("/")}>Về trang chủ</Button>
+        </div>
+      </div>
+    );
+  }
+
+  // 🔴 BÀI KHÔNG CÓ SLIDE NÀO — phải chặn TRƯỚC khi đọc `slide.type`.
+  //    Tới đây thì `found` đã có, nên trước đây màn hình chạy thẳng vào
+  //    `{slide.type === "story" && …}` với `slide === undefined` ⇒ trắng trang kèm
+  //    `Cannot read properties of undefined (reading 'type')`.
+  //    Xảy ra thật khi một dòng `content_lessons` có `payload = null` hoặc
+  //    `payload.slides = []` — đúng thứ một lệnh `UPDATE`/`INSERT` tay trong SQL
+  //    Editor tạo ra được, và cũng là trạng thái của một bài vừa bị rút nội dung.
+  if (totalSlides === 0) {
+    return (
+      <div className="page-empty">
+        <span style={{ fontSize: "4rem" }}>🧩</span>
+        <h2>Bài này chưa có nội dung</h2>
+        <p style={{ maxWidth: 460, textAlign: "center", opacity: 0.75 }}>
+          Người quản trị chưa thêm slide nào cho bài này. Bé chọn một bài khác ở
+          trang chủ nhé.
+        </p>
         <Button onClick={() => navigate("/")}>Về trang chủ</Button>
       </div>
     );
@@ -334,6 +435,11 @@ export default function LessonPage() {
                 thăng cấp <strong>Level</strong> và mở khóa toàn bộ thành tích
                 nhé!
               </p>
+              <p className="guest-result-text">
+                ⚠️ Ở chế độ Khách, tiến độ học của bé{" "}
+                <strong>không được lưu lại</strong> — mở lại app là bắt đầu từ
+                đầu.
+              </p>
               <button
                 type="button"
                 className="btn-guest-result-login"
@@ -485,6 +591,20 @@ export default function LessonPage() {
           )}
 
           {slide.type === "summary" && <SummarySlide content={slide.content} />}
+
+          {/* 🔴 Slide có kiểu LẠ (dữ liệu bị sửa tay ngoài giao diện Admin, hoặc một
+              kiểu mới mà bản app này chưa biết). Trước đây rơi vào đây là một thẻ
+              TRẮNG — trông y như app hỏng, mà không có lỗi nào trong console. */}
+          {!LOAI_SLIDE_HOP_LE.includes(slide.type) && (
+            <div className="page-empty" style={{ minHeight: "auto" }}>
+              <span style={{ fontSize: "2.5rem" }}>🧩</span>
+              <p style={{ maxWidth: 420, textAlign: "center", opacity: 0.75 }}>
+                Slide này có kiểu lạ ({String(slide.type ?? "không có kiểu")})
+                nên app chưa đọc được. Bé bấm <strong>Tiếp tục</strong> để sang
+                slide sau nhé.
+              </p>
+            </div>
+          )}
         </motion.div>
       </AnimatePresence>
 
@@ -525,14 +645,10 @@ export default function LessonPage() {
 
 function StorySlide({ content }) {
   const [speaking, setSpeaking] = useState(false);
-  const moodEmoji =
-    content.mascotMood === "excited"
-      ? "🤩"
-      : content.mascotMood === "proud"
-        ? "😎"
-        : content.mascotMood === "thinking"
-          ? "🤔"
-          : "😊";
+  // 🔴 Trước đây chổ này tự viết chuỗi if/else chỉ nhận 3 giá trị. Đo được: 93 slide
+  // mang `celebrate` rơi về mặt mặc định 😊, và `thinking` lệch mặt với bong bóng
+  // linh vật (🧐). Nay tra từ vựng chung nên mọi biểu cảm đều ra đúng mặt của nó.
+  const moodEmoji = faceOf(content.mascotMood);
 
   const handleSpeak = () => {
     if (speaking) {
