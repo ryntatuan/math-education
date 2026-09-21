@@ -1,4 +1,4 @@
-# Dependencies
+﻿# Dependencies
 node_modules/
 */node_modules/
 
@@ -46,5 +46,6 @@ supabase/.temp/
 # (README.md is tracked)
 
 
-# Output tạm của công cụ kiểm thử
+# Output táº¡m cá»§a cÃ´ng cá»¥ kiá»ƒm thá»­
 scratch/portal-test-output.txt
+scratch/visual-bundle.*

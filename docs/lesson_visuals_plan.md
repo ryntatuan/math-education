@@ -77,12 +77,48 @@ cách vẽ nào:
 
 ## 5. Kế hoạch theo giai đoạn
 
-| GĐ | Việc | Sản phẩm |
-| --- | --- | --- |
-| 1 | **Mở rộng bộ vẽ** — thêm các component SVG còn thiếu ở mục 3 | `client/src/components/visuals/*` |
-| 2 | **Lớp 1 và Lớp 2** — đếm, cộng trừ, hình, đồng hồ, tiền | dữ liệu hình cho 217 bài |
-| 3 | **Lớp 3** — bảng nhân chia, chu vi/diện tích, đo lường, thống kê | dữ liệu hình cho 123 bài |
-| 4 | **Lớp 4 và Lớp 5** — phân số, sơ đồ đoạn thẳng, hình khối, biểu đồ | dữ liệu hình cho 119 bài |
+| GĐ | Việc | Sản phẩm | Trạng thái |
+| --- | --- | --- | --- |
+| 1 | **Mở rộng bộ vẽ** — thêm các component SVG còn thiếu ở mục 3 | `client/src/components/visuals/*` | **XONG 2026-09-22** |
+| 2 | **Lớp 1 và Lớp 2** — đếm, cộng trừ, hình, đồng hồ, tiền | dữ liệu hình cho 217 bài | chưa làm |
+| 3 | **Lớp 3** — bảng nhân chia, chu vi/diện tích, đo lường, thống kê | dữ liệu hình cho 123 bài | chưa làm |
+| 4 | **Lớp 4 và Lớp 5** — phân số, sơ đồ đoạn thẳng, hình khối, biểu đồ | dữ liệu hình cho 119 bài | chưa làm |
+
+### Giai đoạn 1 đã xong gì
+
+Đã viết 3 file + 1 bộ điều phối, tổng **17 bộ vẽ mới**:
+
+| File | Bộ vẽ |
+| --- | --- |
+| `client/src/components/visuals/CoreVisuals.jsx` | Trục số · Khung 10 ô · Khối chục–đơn vị · Bảng hàng · Thước đo · Tiền Việt Nam · Bảng số liệu |
+| `client/src/components/visuals/GeometryVisuals.jsx` | Hình phẳng (7 loại, ghi được số đo cạnh) · Góc (nhọn/vuông/tù/bẹt) · Hình tròn (tâm, bán kính, đường kính) · Hình khối (lập phương, hộp, trụ, cầu) |
+| `client/src/components/visuals/FractionVisuals.jsx` | Băng giấy phân số · Hình tròn chia phần · **Sơ đồ đoạn thẳng** · Sơ đồ chuyển động · Biểu đồ cột · Biểu đồ hình quạt |
+| `client/src/components/visuals/VisualBlock.jsx` | Bộ điều phối: đọc khoá nào có thì vẽ khoá đó, vẽ được nhiều hình trên một slide |
+
+Đã nối vào `LessonPage.jsx` (chỉ THÊM, không thay khối cũ) nên slide "Hình ảnh" và slide
+"Khái niệm" đều dùng được.
+
+**Bằng chứng đo được:** `scratch/test-visuals-entry.jsx` render cả 17 bộ vẽ thành HTML thật
+bằng `react-dom/server`, thử với 3 loại dữ liệu: mặc định, dữ liệu thật, và **18 bộ dữ liệu
+"độc hại"** (sai kiểu, `null`, số âm, mảng rỗng, giá trị cực lớn).
+
+Kết quả: **399 đạt · 0 hỏng**.
+
+⚠️ Phép thử này **bắt được một lỗi thật gây trắng trang**: `MotionDiagram` ném lỗi
+`Cannot read properties of null (reading 'name')` khi dữ liệu có `a: null`. Nguyên nhân:
+giá trị mặc định của tham số (`= {}`) chỉ áp dụng khi giá trị là `undefined`, còn `null` đi
+qua nguyên vẹn. Đã sửa ở `MotionDiagram` và `Solid` (cùng lỗi tiềm ẩn với `dims: null`).
+
+Cách chạy lại phép thử:
+
+```powershell
+$env:NODE_PATH = "$PWD\client\node_modules"
+& "client\node_modules\@esbuild\win32-x64\esbuild.exe" scratch\test-visuals-entry.jsx `
+  --bundle --platform=node --format=cjs --jsx=automatic `
+  --outfile=scratch\visual-bundle.cjs --loader:.jsx=jsx
+node scratch\visual-bundle.cjs
+```
+
 
 Mỗi giai đoạn kết thúc bằng: chạy `kiem-tra-hinh-anh.mjs` (đo lại tỉ lệ) → cổng
 `test:portal:static` → build `client` và `admin`. Không sang giai đoạn sau khi giai đoạn

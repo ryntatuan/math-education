@@ -20,6 +20,9 @@ import ReportQuestionButton from "../components/report/ReportQuestionButton";
 import { recordAttempt } from "../services/attemptService";
 import MascotIcon from "../components/common/MascotIcon";
 import CoinIcon from "../components/common/CoinIcon";
+// Bộ vẽ hình bổ sung (Giai đoạn 1 kế hoạch hình ảnh) — CHỈ THÊM, không thay khối cũ.
+// Xem `docs/lesson_visuals_plan.md`.
+import VisualBlocks from "../components/visuals/VisualBlock";
 import useUserStore from "../store/useUserStore";
 import useProgressStore from "../store/useProgressStore";
 import useAuthStore from "../store/useAuthStore";
@@ -808,6 +811,11 @@ function VisualSlide({ content }) {
           <span className="number op-num">{content.comparison.right}</span>
         </motion.div>
       )}
+
+      {/* Hình bổ sung: trục số, khung 10 ô, khối chục–đơn vị, bảng hàng, thước, tiền,
+          bảng số liệu, hình phẳng, góc, hình tròn, hình khối, phân số, sơ đồ đoạn thẳng,
+          sơ đồ chuyển động, biểu đồ cột và biểu đồ quạt. */}
+      <VisualBlocks content={content} />
     </div>
   );
 }
@@ -1580,6 +1588,9 @@ function ConceptSlide({ content }) {
       {content.shape && (
         <ShapeGraphic shape={content.shape} label={content.shapeLabel} />
       )}
+
+      {/* Hình bổ sung — cùng bộ với slide "Hình ảnh", để một slide khái niệm cũng minh hoạ được. */}
+      <VisualBlocks content={content} />
 
       {/* 1b. UNIVERSAL VISUAL GRID (1-1 Visual Mapping) */}
       {content.activityGrid && (
