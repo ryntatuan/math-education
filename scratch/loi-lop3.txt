@@ -1,0 +1,8 @@
+══════════════════════════════════════════════════════════════════════════
+  TIÊM HÌNH VÀO LỚP 3   (CHẠY THỬ — KHÔNG GHI)
+══════════════════════════════════════════════════════════════════════════
+
+  Chốt 1 OK — bảng có đúng 123 bài.
+
+❌ DỪNG — 1 lỗi, KHÔNG ghi gì cả:
+   • g3-c16-l6: slide không khớp mẫu chèn — đầu slide thực tế là: type: "visual", ⏎               content: { ⏎                 text: '"tất cả" → cộng    "còn lại" → trừ\n"mỗi" → nhân       "chia đều" → chia', ⏎               }, ⏎ 

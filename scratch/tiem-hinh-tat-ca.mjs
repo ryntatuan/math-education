@@ -973,6 +973,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { SPECS_LOP2 } from "./hinh-lop2.mjs";
+import { SPECS_LOP3 } from "./hinh-lop3.mjs";
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 const SAFE_KEY = /^[A-Za-z_$][A-Za-z0-9_$]*$/;
@@ -1017,15 +1018,21 @@ function fmt(v, ind) {
 //   type: "visual",
 //   content: {
 //     text: "…",
+//
+// 🔴 PHẢI NHẬN CẢ NHÁY ĐƠN `'…'` LẪN NHÁY KÉP `"…"`. Đã đo được ở Lớp 3: slide
+// `g3-c16-l6` viết `text: '"tất cả" → cộng …'` bằng nháy ĐƠN, vì chuỗi bên trong chứa
+// nháy kép nên Prettier KHÔNG đổi được sang nháy kép. Mẫu chỉ nhận nháy kép đã bỏ sót
+// slide đó (rồi lặng lẽ nhảy sang slide của bài sau để chèn — xem chú thích `m.index`).
+// Cũng KHÔNG cho `[^"\\]` khớp xuống dòng: chuỗi trong file luôn viết `\n` bằng hai ký tự.
 const MAU_VISUAL =
-  /type: "visual",\r?\n(\s*)content: \{\r?\n(\s*)text: "(?:[^"\\]|\\.)*",\r?\n/;
+  /type: "visual",\r?\n(\s*)content: \{\r?\n(\s*)text: (?:"(?:[^"\\\n]|\\.)*"|'(?:[^'\\\n]|\\.)*'),\r?\n/;
 
 // Mẫu dự phòng cho slide "khái niệm" — khi bài KHÔNG có slide "hình" nào.
 // Chèn ngay sau dòng `content: {`, tức là các khoá hình đứng ĐẦU object.
 const MAU_CONCEPT = /type: "concept",\r?\n(\s*)content: \{\r?\n(\s*)/;
 
-const MONG_DOI = { 1: 97, 2: 120 };
-const SPECS = { 1: SPECS_LOP1, 2: SPECS_LOP2 };
+const MONG_DOI = { 1: 97, 2: 120, 3: 123 };
+const SPECS = { 1: SPECS_LOP1, 2: SPECS_LOP2, 3: SPECS_LOP3 };
 
 const lop = Number(process.argv[2]);
 const ghiThat = process.argv.includes("--ghi");
@@ -1062,7 +1069,7 @@ if (text.includes("\uFFFD")) {
 // ── CHỐT 2 + 3: tìm đúng bài, đúng slide hình ──────────────────────────────
 const edits = [];
 const loi = [];
-const daChiem = new Set(); // chặn hai bài cùng trỏ vào MỘT chỗ
+const daChiem = new Map(); // vị trí chèn -> id bài đã chiếm (để báo được TRÙNG VỚI BÀI NÀO)
 const baiKhongCoSlideHinh = [];
 
 for (const [id, spec] of Object.entries(specs)) {
@@ -1102,9 +1109,15 @@ for (const [id, spec] of Object.entries(specs)) {
     mau = MAU_CONCEPT;
   }
 
+  // 🔴 BẮT BUỘC `m.index === 0`: `exec` quét TỚI TRƯỚC vô hạn, nên nếu slide của bài
+  // này không khớp mẫu thì nó lặng lẽ nhảy sang slide của BÀI SAU rồi chèn hình sai chỗ.
+  // Buộc khớp ngay tại đầu slide thì sai định dạng là LỖI, không phải chèn nhầm.
   const m = mau.exec(text.slice(moc));
-  if (!m) {
-    loi.push(`${id}: slide không khớp mẫu chèn (có thể đã có hình rồi)`);
+  if (!m || m.index !== 0) {
+    const doan = text.slice(moc, moc + 160).replace(/\n/g, " ⏎ ");
+    loi.push(
+      `${id}: slide không khớp mẫu chèn — đầu slide thực tế là: ${doan}`,
+    );
     continue;
   }
 
@@ -1116,10 +1129,13 @@ for (const [id, spec] of Object.entries(specs)) {
 
   const at = moc + m.index + m[0].length;
   if (daChiem.has(at)) {
-    loi.push(`${id}: chỗ chèn trùng với một bài khác (cùng một slide)`);
+    loi.push(
+      `${id}: chỗ chèn trùng với bài ${daChiem.get(at)} — cùng một slide ` +
+        `(bài này ${coSlideHinh ? "CÓ" : "KHÔNG có"} slide hình)`,
+    );
     continue;
   }
-  daChiem.add(at);
+  daChiem.set(at, id);
   edits.push({ id, at, them, vaoConcept: !coSlideHinh });
 }
 

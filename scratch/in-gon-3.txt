@@ -1,0 +1,155 @@
+
+## g3-c1 | Chủ đề 1: Ôn tập và bổ sung
+g3-c1-l1 | Bài 1: Ôn tập các số đến 1 000 | HINH: 475 = 400 + 70 + 5 ⏎ 999  —  1 000 | RULE: Số 475 gồm 4 trăm, 7 chục và 5 đơn vị. Đọc là: bốn trăm bảy mươi lăm.
+g3-c1-l2 | Bài 2: Ôn tập phép cộng, phép trừ trong phạm vi 1 000 | HINH:   356          534 ⏎ + 127        − 268 ⏎   483          266 | RULE: 356 + 127 = 483 (6+7=13 viết 3 nhớ 1). 534 − 268 = 266 (mượn hai lần).
+g3-c1-l3 | Bài 3: Tìm thành phần trong phép cộng | HINH: ? + 145 = 320 ⏎ ? = 320 − 145 = 175 | RULE: ? + 145 = 320 → ? = 320 − 145 = 175.
+g3-c1-l4 | Bài 4: Tìm thành phần trong phép trừ | HINH: 500 − ? = 260  →  ? = 500 − 260 = 240 ⏎ ? − 130 = 70   →  ? = 70 + 130 = 200 | RULE: 500 − ? = 260 → ? = 500 − 260 = 240. Và ? − 130 = 70 → ? = 70 + 130 = 200.
+g3-c1-l5 | Bài 5: Ôn tập bảng nhân 2 và bảng nhân 5 | HINH: 2 × 7 = 14    5 × 6 = 30 ⏎ 2 × 9 = 18    5 × 8 = 40 | RULE: 2 × 7 = 14 · 2 × 9 = 18 · 5 × 6 = 30 · 5 × 8 = 40.
+g3-c1-l6 | Bài 6: Ôn tập bảng chia 2 và bảng chia 5 | HINH: 14 : 2 = 7 ⏎ 40 : 5 = 8 | RULE: 2 × 7 = 14 → 14 : 2 = 7. 5 × 8 = 40 → 40 : 5 = 8.
+g3-c1-l7 | Bài 7: Bảng nhân 3 | HINH: 3 · 6 · 9 · 12 · 15 · 18 · 21 · 24 · 27 · 30 | RULE: 3 × 1 = 3 · 3 × 2 = 6 · 3 × 3 = 9 · 3 × 4 = 12 · 3 × 5 = 15 · 3 × 6 = 18 · 3 × 7 = 21 · 3 × 8 = 24 · 3 × 9 = 27 · 3 × 10 = 30.
+g3-c1-l8 | Bài 8: Bảng chia 3 | HINH: Bảng nhân 3:  3 × 4 = 12 ⏎ Bảng chia 3:  12 : 3 = 4 | RULE: 3 : 3 = 1 · 6 : 3 = 2 · 9 : 3 = 3 · 12 : 3 = 4 · 15 : 3 = 5 · 18 : 3 = 6 · 21 : 3 = 7 · 24 : 3 = 8 · 27 : 3 = 9 · 30 : 3 = 10.
+g3-c1-l9 | Bài 9: Bảng nhân 4 | HINH: 4 · 8 · 12 · 16 · 20 · 24 · 28 · 32 · 36 · 40 | RULE: 4 × 1 = 4 · 4 × 2 = 8 · 4 × 3 = 12 · 4 × 4 = 16 · 4 × 5 = 20 · 4 × 6 = 24 · 4 × 7 = 28 · 4 × 8 = 32 · 4 × 9 = 36 · 4 × 10 = 40.
+g3-c1-l10 | Bài 10: Bảng chia 4 | HINH: Bảng nhân 4:  4 × 6 = 24 ⏎ Bảng chia 4:  24 : 4 = 6 | RULE: 4 : 4 = 1 · 8 : 4 = 2 · 12 : 4 = 3 · 16 : 4 = 4 · 20 : 4 = 5 · 24 : 4 = 6 · 28 : 4 = 7 · 32 : 4 = 8 · 36 : 4 = 9 · 40 : 4 = 10.
+g3-c1-l11 | Bài 11: Ôn tập hình học và đo lường | HINH: 1 m = 100 cm ⏎ 1 km = 1 000 m ⏎ ▢ ⭕ 🔺 ▭ | RULE: 1 dm = 10 cm; 1 m = 100 cm; 1 km = 1 000 m. Túi gạo nặng 5 kg; chai nước chứa 2 l.
+g3-c1-l12 | Bài 12: Luyện tập chung chủ đề 1 | HINH: 3 × 4 = 12    12 : 3 = 4 ⏎ 4 × 6 = 24    24 : 4 = 6 | RULE: 
+
+## g3-c2 | Chủ đề 2: Bảng nhân, bảng chia
+g3-c2-l1 | Bài 1: Bảng nhân 6 | HINH: 6 · 12 · 18 · 24 · 30 · 36 · 42 · 48 · 54 · 60 | RULE: 6 × 1 = 6 · 6 × 2 = 12 · 6 × 3 = 18 · 6 × 4 = 24 · 6 × 5 = 30 · 6 × 6 = 36 · 6 × 7 = 42 · 6 × 8 = 48 · 6 × 9 = 54 · 6 × 10 = 60.
+g3-c2-l2 | Bài 2: Bảng chia 6 | HINH: Bảng nhân 6:  6 × 7 = 42 ⏎ Bảng chia 6:  42 : 6 = 7 | RULE: 6 : 6 = 1 · 12 : 6 = 2 · 18 : 6 = 3 · 24 : 6 = 4 · 30 : 6 = 5 · 36 : 6 = 6 · 42 : 6 = 7 · 48 : 6 = 8 · 54 : 6 = 9 · 60 : 6 = 10.
+g3-c2-l3 | Bài 3: Bảng nhân 7 | HINH: 7 · 14 · 21 · 28 · 35 · 42 · 49 · 56 · 63 · 70 | RULE: 7 × 1 = 7 · 7 × 2 = 14 · 7 × 3 = 21 · 7 × 4 = 28 · 7 × 5 = 35 · 7 × 6 = 42 · 7 × 7 = 49 · 7 × 8 = 56 · 7 × 9 = 63 · 7 × 10 = 70.
+g3-c2-l4 | Bài 4: Bảng chia 7 | HINH: 7 × 5 = 35 ⏎ 35 : 7 = 5 | RULE: 7 : 7 = 1 · 14 : 7 = 2 · 21 : 7 = 3 · 28 : 7 = 4 · 35 : 7 = 5 · 42 : 7 = 6 · 49 : 7 = 7 · 56 : 7 = 8 · 63 : 7 = 9 · 70 : 7 = 10.
+g3-c2-l5 | Bài 5: Bảng nhân 8 | HINH: 8 · 16 · 24 · 32 · 40 · 48 · 56 · 64 · 72 · 80 | RULE: 8 × 1 = 8 · 8 × 2 = 16 · 8 × 3 = 24 · 8 × 4 = 32 · 8 × 5 = 40 · 8 × 6 = 48 · 8 × 7 = 56 · 8 × 8 = 64 · 8 × 9 = 72 · 8 × 10 = 80.
+g3-c2-l6 | Bài 6: Bảng chia 8 | HINH: 8 × 6 = 48 ⏎ 48 : 8 = 6 | RULE: 8 : 8 = 1 · 16 : 8 = 2 · 24 : 8 = 3 · 32 : 8 = 4 · 40 : 8 = 5 · 48 : 8 = 6 · 56 : 8 = 7 · 64 : 8 = 8 · 72 : 8 = 9 · 80 : 8 = 10.
+g3-c2-l7 | Bài 7: Bảng nhân 9 | HINH: 9 · 18 · 27 · 36 · 45 · 54 · 63 · 72 · 81 · 90 | RULE: 9 × 1 = 9 · 9 × 2 = 18 · 9 × 3 = 27 · 9 × 4 = 36 · 9 × 5 = 45 · 9 × 6 = 54 · 9 × 7 = 63 · 9 × 8 = 72 · 9 × 9 = 81 · 9 × 10 = 90.
+g3-c2-l8 | Bài 8: Bảng chia 9 | HINH: 9 × 7 = 63 ⏎ 63 : 9 = 7 | RULE: 9 : 9 = 1 · 18 : 9 = 2 · 27 : 9 = 3 · 36 : 9 = 4 · 45 : 9 = 5 · 54 : 9 = 6 · 63 : 9 = 7 · 72 : 9 = 8 · 81 : 9 = 9 · 90 : 9 = 10.
+g3-c2-l9 | Bài 9: Tìm thành phần trong phép nhân, phép chia | HINH: ? × 7 = 42  →  ? = 42 : 7 = 6 ⏎ 36 : ? = 4   →  ? = 36 : 4 = 9 | RULE: ? × 7 = 42 → ? = 42 : 7 = 6. ? : 6 = 5 → ? = 5 × 6 = 30. 36 : ? = 4 → ? = 36 : 4 = 9.
+g3-c2-l10 | Bài 10: Một phần mấy | HINH: 1/3 của 12 = 12 : 3 = 4 ⏎ 1/4 của 20 = 20 : 4 = 5 | RULE: 1/3 của 12 là 12 : 3 = 4. 1/2 của 10 là 10 : 2 = 5.
+g3-c2-l11 | Bài 11: Luyện tập chung chủ đề 2 | HINH: 8 × 8 = 64    64 : 8 = 8 ⏎ 9 × 7 = 63    63 : 9 = 7 | RULE: 
+
+## g3-c3 | Chủ đề 3: Làm quen với hình phẳng, hình khối
+g3-c3-l1 | Bài 1: Điểm ở giữa hai điểm | HINH: A •———• O ———• B ⏎ O là điểm ở giữa A và B | RULE: Ba điểm A, O, B thẳng hàng theo thứ tự A, O, B thì O là điểm ở giữa A và B.
+g3-c3-l2 | Bài 2: Trung điểm của đoạn thẳng | HINH: A •————•————• B ⏎       M ⏎ AM = MB | RULE: M là trung điểm của AB khi M nằm giữa A, B và AM = MB.
+g3-c3-l3 | Bài 3: Hình tròn — tâm, bán kính, đường kính | HINH:       A ⏎    •  | ⏎   B •—O—• C ⏎ Đường kính BC = 2 × bán kính OB | RULE: Đường kính gấp đôi bán kính: d = 2 × r.
+g3-c3-l4 | Bài 4: Góc và góc vuông | HINH: Góc đỉnh A, cạnh AB và AC ⏎ └ góc vuông (dùng ê-ke) | RULE: Bốn góc của hình chữ nhật là bốn góc vuông. Đặt ê-ke khớp đúng là góc vuông.
+g3-c3-l5 | Bài 5: Góc không vuông | HINH: ├ góc vuông (ê-ke khớp) ⏎ ╱ góc không vuông (ê-ke không khớp) | RULE: Nếu ê-ke không khớp với góc thì góc đó không vuông.
+g3-c3-l6 | Bài 6: Hình tam giác và hình tứ giác | HINH: 🔺 tam giác: 3 cạnh · 3 đỉnh · 3 góc ⏎ ▭ tứ giác: 4 cạnh · 4 đỉnh · 4 góc | RULE: Hình tam giác: 3 cạnh, 3 đỉnh, 3 góc. Hình tứ giác: 4 cạnh, 4 đỉnh, 4 góc.
+g3-c3-l7 | Bài 7: Hình chữ nhật và hình vuông | HINH: ▭ hình chữ nhật: 4 góc vuông, 2 cặp cạnh bằng nhau ⏎ ▢ hình vuông: 4 góc vuông, 4 cạnh bằng nhau | RULE: Hình chữ nhật: 4 góc vuông, hai cạnh dài bằng nhau, hai cạnh ngắn bằng nhau. Hình vuông: 4 góc vuông, 4 cạnh bằng nhau.
+g3-c3-l8 | Bài 8: Thực hành vẽ góc vuông, đường tròn và các hình | HINH: Ê-ke → vẽ góc vuông, hình vuông, hình chữ nhật ⏎ Compa → vẽ đường tròn | RULE: Vẽ hình vuông cạnh 4 cm: kẻ một cạnh 4 cm, rồi dùng ê-ke kẻ các cạnh còn lại.
+g3-c3-l9 | Bài 9: Khối lập phương và khối hộp chữ nhật | HINH: 🎲 khối lập phương: 6 mặt vuông bằng nhau ⏎ 📦 khối hộp chữ nhật: 6 mặt không đều nhau | RULE: Cả hai đều có 6 mặt, 8 đỉnh và 12 cạnh.
+g3-c3-l10 | Bài 10: Luyện tập chung chủ đề 3 | HINH: d = 2 × r ⏎ ▢ 4 góc vuông · 🔺 3 cạnh · ▭ 4 góc vuông | RULE: 
+
+## g3-c4 | Chủ đề 4: Phép nhân, phép chia trong phạm vi 100
+g3-c4-l1 | Bài 1: Nhân số có hai chữ số với số có một chữ số (không nhớ) | HINH:   32 ⏎ ×  3 ⏎   96 | RULE: 32 × 3: 2 × 3 = 6, viết 6. 3 × 3 = 9, viết 9. Kết quả 96.
+g3-c4-l2 | Bài 2: Nhân số có hai chữ số với số có một chữ số (có nhớ) | HINH:   26 ⏎ ×  3 ⏎   78 ⏎ 6 × 3 = 18 → viết 8 nhớ 1 ⏎ 2 × 3 + 1 = 7 | RULE: 26 × 3: 6 × 3 = 18, viết 8 nhớ 1. 2 × 3 = 6, thêm 1 nhớ = 7. Kết quả 78.
+g3-c4-l3 | Bài 3: Gấp một số lên một số lần | HINH: 4 cm   →   gấp 3 lần   →   12 cm ⏎ 4 × 3 = 12 | RULE: 4 cm gấp 3 lần là 4 × 3 = 12 cm.
+g3-c4-l4 | Bài 4: Phép chia hết | HINH: 12 : 3 = 4  (không dư) ⏎ Thử lại: 4 × 3 = 12 | RULE: 12 : 3 = 4 (không dư). Mỗi bạn được 4 chiếc kẹo, không thừa chiếc nào.
+g3-c4-l5 | Bài 5: Phép chia có dư | HINH: 13 : 3 = 4 (dư 1) ⏎ Thử lại: 4 × 3 + 1 = 13 | RULE: 13 : 3 = 4 (dư 1). Đọc là: mười ba chia ba bằng bốn, dư một.
+g3-c4-l6 | Bài 6: Chia số có hai chữ số cho số có một chữ số | HINH: 48 : 4 = 12 ⏎ 4 : 4 = 1;  8 : 4 = 2 | RULE: 48 : 4: 4 : 4 = 1, viết 1. 8 : 4 = 2, viết 2. Kết quả 12.
+g3-c4-l7 | Bài 7: Giảm một số đi một số lần | HINH: Gấp lên 3 lần:  4 × 3 = 12 ⏎ Giảm đi 3 lần: 12 : 3 = 4 | RULE: 12 cm giảm 3 lần là 12 : 3 = 4 cm.
+g3-c4-l8 | Bài 8: Bài toán giải bằng hai bước tính | HINH: Hàng trên: 8 quả ⏎ Hàng dưới: 8 + 4 = 12 quả ⏎ Cả hai: 8 + 12 = 20 quả | RULE: Bước 1: hàng dưới có 8 + 4 = 12 (quả). Bước 2: cả hai hàng có 8 + 12 = 20 (quả).
+g3-c4-l9 | Bài 9: Luyện tập phép chia có dư | HINH: 19 : 3 = 6 (dư 1) ⏎ 3 × 6 = 18;  19 − 18 = 1 | RULE: 19 : 3: 3 × 6 = 18 (không vượt quá 19). Số dư là 19 − 18 = 1. Vậy 19 : 3 = 6 dư 1.
+g3-c4-l10 | Bài 10: Luyện tập chung chủ đề 4 | HINH: 26 × 3 = 78 ⏎ 48 : 4 = 12 ⏎ 19 : 3 = 6 (dư 1) | RULE: 
+
+## g3-c5 | Chủ đề 5: Một số đơn vị đo độ dài, khối lượng, dung tích, nhiệt độ
+g3-c5-l1 | Bài 1: Mi-li-mét (mm) | HINH: 1 cm = 10 mm ⏎ 1 m = 1 000 mm | RULE: 1 cm = 10 mm. 1 m = 1 000 mm.
+g3-c5-l2 | Bài 2: Gam (g) | HINH: 1 kg = 1 000 g ⏎ 500 g + 500 g = 1 kg | RULE: 1 kg = 1 000 g.
+g3-c5-l3 | Bài 3: Mi-li-lít (ml) | HINH: 1 l = 1 000 ml ⏎ 2 l = 2 000 ml | RULE: 1 l = 1 000 ml.
+g3-c5-l4 | Bài 4: Nhiệt độ và đơn vị đo nhiệt độ | HINH: Nước đá tan:  0 °C ⏎ Cơ thể người: 37 °C ⏎ Nước sôi:     100 °C | RULE: Nước đá đang tan ở 0 °C. Nước sôi ở 100 °C. Cơ thể người bình thường khoảng 37 °C.
+g3-c5-l5 | Bài 5: Đọc nhiệt kế | HINH: 🌡️ 36 °C → bình thường ⏎ 🌡️ 39 °C → có thể bị sốt | RULE: Mực chỉ vạch 36 thì nhiệt độ là 36 °C.
+g3-c5-l6 | Bài 6: Thực hành với mi-li-mét, gam, mi-li-lít, độ C | HINH: mm → bề dày ⏎ g  → vật nhẹ ⏎ ml → chất lỏng ít ⏎ °C → nhiệt độ | RULE: Bề dày quyển vở khoảng 5 mm. Viên kẹo nặng khoảng 5 g. Hộp sữa chứa 180 ml. Trà nóng khoảng 70 °C.
+g3-c5-l7 | Bài 7: Bảng quan hệ giữa các đơn vị đo | HINH: con số 1 000: m↔mm · km↔m · kg↔g · l↔ml ⏎ con số 10:  cm↔mm | RULE: 1 cm = 10 mm · 1 m = 100 cm = 1 000 mm · 1 km = 1 000 m · 1 kg = 1 000 g · 1 l = 1 000 ml.
+g3-c5-l8 | Bài 8: Luyện tập chung chủ đề 5 | HINH: 1 kg = 1 000 g ⏎ 1 l = 1 000 ml ⏎ 1 cm = 10 mm | RULE: 
+
+## g3-c6 | Chủ đề 6: Phép nhân, phép chia trong phạm vi 1 000
+g3-c6-l1 | Bài 1: Nhân số có ba chữ số với số có một chữ số (không nhớ) | HINH:   213 ⏎ ×   3 ⏎   639 | RULE: 213 × 3: 3 × 3 = 9; 1 × 3 = 3; 2 × 3 = 6. Kết quả 639.
+g3-c6-l2 | Bài 2: Nhân số có ba chữ số với số có một chữ số (có nhớ) | HINH:   216 ⏎ ×   3 ⏎   648 ⏎ 6 × 3 = 18 → viết 8 nhớ 1 ⏎ 1 × 3 + 1 = 4 | RULE: 216 × 3: 6 × 3 = 18, viết 8 nhớ 1. 1 × 3 = 3, thêm 1 nhớ = 4. 2 × 3 = 6. Kết quả 648.
+g3-c6-l3 | Bài 3: Chia số có ba chữ số cho số có một chữ số | HINH: 639 : 3 = 213 ⏎ 6:3=2;  3:3=1;  9:3=3 | RULE: 639 : 3: 6 : 3 = 2; 3 : 3 = 1; 9 : 3 = 3. Kết quả 213.
+g3-c6-l4 | Bài 4: Chia số có ba chữ số cho số có một chữ số (có dư) | HINH: 640 : 3 = 213 (dư 1) ⏎ 213 × 3 + 1 = 640 | RULE: 640 : 3: 6 : 3 = 2; 4 : 3 = 1 dư 1; hạ 0 xuống được 10; 10 : 3 = 3 dư 1. Kết quả 213 dư 1.
+g3-c6-l5 | Bài 5: Biểu thức số | HINH: 12 + 5  →  giá trị 17 ⏎ 20 − 8  →  giá trị 12 | RULE: Biểu thức 12 + 5 có giá trị là 17. Biểu thức 20 − 8 có giá trị là 12.
+g3-c6-l6 | Bài 6: Tính giá trị biểu thức có hai phép tính | HINH: 12 + 5 × 2 = 12 + 10 = 22 ⏎ (12 + 5) × 2 = 17 × 2 = 34 | RULE: 12 + 5 × 2 = 12 + 10 = 22. Còn (12 + 5) × 2 = 17 × 2 = 34.
+g3-c6-l7 | Bài 7: So sánh số lớn gấp mấy lần số bé | HINH: AB = 12 cm, CD = 3 cm ⏎ 12 : 3 = 4 → AB gấp 4 lần CD | RULE: 12 : 3 = 4. Vậy đoạn AB dài gấp 4 lần đoạn CD.
+g3-c6-l8 | Bài 8: Luyện tập chung chủ đề 6 | HINH: 213 × 3 = 639 ⏎ 639 : 3 = 213 ⏎ 12 + 5 × 2 = 22 | RULE: 
+
+## g3-c7 | Chủ đề 7: Ôn tập học kì 1
+g3-c7-l1 | Bài 1: Ôn tập phép nhân, phép chia trong phạm vi 100 và 1 000 | HINH: 216 × 3 = 648    648 : 3 = 216 ⏎ 26 × 3 = 78       78 : 3 = 26 | RULE: 26 × 3 = 78; 216 × 3 = 648; 639 : 3 = 213; 48 : 4 = 12.
+g3-c7-l2 | Bài 2: Ôn tập biểu thức số | HINH: 12 + 5 × 2 = 12 + 10 = 22 ⏎ 20 − 8 : 2 = 20 − 4 = 16 | RULE: 12 + 5 × 2 = 22. (12 + 5) × 2 = 34. 20 − 8 : 2 = 16.
+g3-c7-l3 | Bài 3: Ôn tập hình học | HINH: d = 2 × r ⏎ ▢ 4 góc vuông · 🔺 3 cạnh | RULE: Đường kính = 2 × bán kính. Hình vuông và hình chữ nhật có 4 góc vuông.
+g3-c7-l4 | Bài 4: Ôn tập đo lường | HINH: 1 kg = 1 000 g ⏎ 1 l = 1 000 ml ⏎ 1 m = 1 000 mm | RULE: 1 cm = 10 mm; 1 m = 1 000 mm; 1 kg = 1 000 g; 1 l = 1 000 ml.
+g3-c7-l5 | Bài 5: Ôn tập chung học kì 1 | HINH: 8 bảng nhân chia · Nhân chia · Hình học · Đo lường · Biểu thức | RULE: 
+
+## g3-c8 | Chủ đề 8: Các số đến 10 000
+g3-c8-l1 | Bài 1: Các số có bốn chữ số | HINH: 2 475 ⏎ 2 → nghìn · 4 → trăm · 7 → chục · 5 → đơn vị | RULE: Số 2 475 gồm 2 nghìn, 4 trăm, 7 chục và 5 đơn vị.
+g3-c8-l2 | Bài 2: Số 10 000 | HINH: 9 999  —  10 000 ⏎ 10 nghìn = 1 chục nghìn | RULE: 10 000 = 10 nghìn. Đọc là: mười nghìn.
+g3-c8-l3 | Bài 3: Đọc và viết số có bốn chữ số | HINH: 2 475 → hai nghìn bốn trăm bảy mươi lăm ⏎ 4 005 → bốn nghìn không trăm linh năm | RULE: 2 475 đọc là: hai nghìn bốn trăm bảy mươi lăm. 4 005 đọc là: bốn nghìn không trăm linh năm.
+g3-c8-l4 | Bài 4: So sánh các số trong phạm vi 10 000 | HINH: 3 456  <  3 465 ⏎ (3=3; 4=4; 5 < 6) | RULE: 3 456 và 3 465: nghìn bằng nhau (3 = 3), trăm bằng nhau (4 = 4), chục 5 < 6. Vậy 3 456 < 3 465.
+g3-c8-l5 | Bài 5: Làm quen với chữ số La Mã | HINH: I = 1   V = 5   X = 10 | RULE: I = 1 · V = 5 · X = 10.
+g3-c8-l6 | Bài 6: Đọc và viết số La Mã từ I đến XII | HINH: I II III IV V VI VII VIII IX X XI XII ⏎ 1  2   3   4 5  6   7    8  9 10 11 12 | RULE: I, II, III, IV, V, VI, VII, VIII, IX, X, XI, XII.
+g3-c8-l7 | Bài 7: Làm tròn số đến hàng chục, hàng trăm | HINH: 24 → 20   (4 < 5, xuống) ⏎ 27 → 30   (7 ≥ 5, lên) ⏎ 320 → 300 (2 < 5, xuống) ⏎ 360 → 400 (6 ≥ 5, lên) | RULE: 24 làm tròn đến hàng chục: chữ số sau hàng chục là 4 < 5 nên làm tròn xuống → 20. 27 → 30 (vì 7 ≥ 5).
+g3-c8-l8 | Bài 8: Luyện tập chung chủ đề 8 | HINH: 2 475 = 2 000 + 400 + 70 + 5 ⏎ 27 → 30 | RULE: 
+
+## g3-c9 | Chủ đề 9: Chu vi, diện tích một số hình phẳng
+g3-c9-l1 | Bài 1: Chu vi hình tam giác, hình tứ giác | HINH: 3 cm + 4 cm + 5 cm = 12 cm ⏎ Chu vi hình tam giác: 12 cm | RULE: Tam giác có ba cạnh 3 cm, 4 cm, 5 cm. Chu vi = 3 + 4 + 5 = 12 cm.
+g3-c9-l2 | Bài 2: Chu vi hình chữ nhật | HINH: Chu vi = (dài + rộng) × 2 ⏎ (5 + 3) × 2 = 16 cm | RULE: Chu vi = (chiều dài + chiều rộng) × 2. Dài 5 cm, rộng 3 cm: (5 + 3) × 2 = 16 cm.
+g3-c9-l3 | Bài 3: Chu vi hình vuông | HINH: Chu vi = cạnh × 4 ⏎ 4 × 4 = 16 cm | RULE: Chu vi = cạnh × 4. Cạnh 4 cm: 4 × 4 = 16 cm.
+g3-c9-l4 | Bài 4: Diện tích của một hình | HINH: Hình A: 9 ô vuông ⏎ Hình B: 6 ô vuông ⏎ → Diện tích A lớn hơn B | RULE: Tờ giấy A4 có diện tích lớn hơn quyển sách nhỏ.
+g3-c9-l5 | Bài 5: Xăng-ti-mét vuông | HINH: ▢ cạnh 1 cm → diện tích 1 cm² ⏎ 5 ô như vậy → 5 cm² | RULE: 1 cm² là diện tích hình vuông cạnh 1 cm.
+g3-c9-l6 | Bài 6: Diện tích hình chữ nhật | HINH: Diện tích = dài × rộng ⏎ 5 × 3 = 15 cm² | RULE: Diện tích = dài × rộng. Dài 5 cm, rộng 3 cm: 5 × 3 = 15 cm².
+g3-c9-l7 | Bài 7: Diện tích hình vuông | HINH: Diện tích = cạnh × cạnh ⏎ 4 × 4 = 16 cm² | RULE: Diện tích = cạnh × cạnh. Cạnh 4 cm: 4 × 4 = 16 cm².
+g3-c9-l8 | Bài 8: Luyện tập chung chủ đề 9 | HINH: Chu vi hình vuông 4 cm: 4 × 4 = 16 cm ⏎ Diện tích hình vuông 4 cm: 4 × 4 = 16 cm² | RULE: 
+
+## g3-c10 | Chủ đề 10: Cộng, trừ, nhân, chia trong phạm vi 10 000
+g3-c10-l1 | Bài 1: Phép cộng trong phạm vi 10 000 | HINH:   2 345 ⏎ + 1 234 ⏎   3 579 | RULE: 2 345 + 1 234: 5+4=9; 4+3=7; 3+2=5; 2+1=3. Kết quả 3 579.
+g3-c10-l2 | Bài 2: Phép trừ trong phạm vi 10 000 | HINH:   4 568 ⏎ − 2 345 ⏎   2 223 | RULE: 4 568 − 2 345: 8−5=3; 6−4=2; 5−3=2; 4−2=2. Kết quả 2 223.
+g3-c10-l3 | Bài 3: Luyện tập cộng, trừ trong phạm vi 10 000 | HINH:   2 768          5 002 ⏎ + 1 456        − 1 345 ⏎   4 224          3 657 | RULE: 2 768 + 1 456 = 4 224 (8+6=14 viết 4 nhớ 1). 5 002 − 1 345 = 3 657 (mượn nhiều lần).
+g3-c10-l4 | Bài 4: Nhân số có bốn chữ số với số có một chữ số | HINH:   1 234 ⏎ ×     2 ⏎   2 468 | RULE: 1 234 × 2: 4×2=8; 3×2=6; 2×2=4; 1×2=2. Kết quả 2 468.
+g3-c10-l5 | Bài 5: Chia số có bốn chữ số cho số có một chữ số | HINH: 2 468 : 2 = 1 234 ⏎ 2:2=1;  4:2=2;  6:2=3;  8:2=4 | RULE: 2 468 : 2: 2:2=1; 4:2=2; 6:2=3; 8:2=4. Kết quả 1 234.
+g3-c10-l6 | Bài 6: Luyện tập nhân, chia trong phạm vi 10 000 | HINH: 3 215 × 3 = 9 645 ⏎ 8 425 : 4 = 2 106 (dư 1) | RULE: 3 215 × 3 = 9 645. 8 425 : 4 = 2 106 (dư 1).
+g3-c10-l7 | Bài 7: Bài toán có lời văn trong phạm vi 10 000 | HINH:   3 250 ⏎ − 1 480 ⏎   1 770 | RULE: 3 250 − 1 480: 0 không trừ được 8, mượn: 10−8=2. 4 bớt 1 còn 3, 3 không trừ được 8, mượn: 13−8=5. 2 bớt 1 còn 1, 1−1=0. Hạ 3. Kết quả 1 770.
+g3-c10-l8 | Bài 8: Luyện tập chung chủ đề 10 | HINH: 2 345 + 1 234 = 3 579 ⏎ 1 234 × 2 = 2 468 ⏎ 2 468 : 2 = 1 234 | RULE: 
+
+## g3-c11 | Chủ đề 11: Các số đến 100 000
+g3-c11-l1 | Bài 1: Các số có năm chữ số | HINH: 24 568 ⏎ 2 → chục nghìn · 4 → nghìn · 5 → trăm · 6 → chục · 8 → đơn vị | RULE: Số 24 568 gồm 2 chục nghìn, 4 nghìn, 5 trăm, 6 chục và 8 đơn vị.
+g3-c11-l2 | Bài 2: Số 100 000 | HINH: 99 999  —  100 000 ⏎ 10 chục nghìn = 1 trăm nghìn | RULE: 100 000 = 10 chục nghìn = 100 nghìn. Đọc là: một trăm nghìn.
+g3-c11-l3 | Bài 3: Đọc và viết số có năm chữ số | HINH: 24 568 → hai mươi tư nghìn năm trăm sáu mươi tám ⏎ 30 405 → ba mươi nghìn bốn trăm linh năm | RULE: 24 568 đọc là: hai mươi tư nghìn năm trăm sáu mươi tám. 30 405 đọc là: ba mươi nghìn bốn trăm linh năm.
+g3-c11-l4 | Bài 4: So sánh các số trong phạm vi 100 000 | HINH: 24 568  <  24 586 ⏎ (2=2; 4=4; 5=5; 6 < 8) | RULE: 24 568 và 24 586: chục nghìn, nghìn, trăm đều bằng nhau; chục 6 < 8. Vậy 24 568 < 24 586.
+g3-c11-l5 | Bài 5: Làm tròn số đến hàng nghìn, hàng chục nghìn | HINH: 24 300 → 24 000  (3 < 5, xuống) ⏎ 24 800 → 25 000  (8 ≥ 5, lên) | RULE: 24 300 làm tròn đến hàng nghìn: chữ số hàng trăm là 3 < 5 → 24 000. 24 800 → 25 000 (vì 8 ≥ 5).
+g3-c11-l6 | Bài 6: Luyện tập chung chủ đề 11 | HINH: 24 568 = 20 000 + 4 000 + 500 + 60 + 8 ⏎ 24 800 → 25 000 | RULE: 
+
+## g3-c12 | Chủ đề 12: Cộng, trừ trong phạm vi 100 000
+g3-c12-l1 | Bài 1: Phép cộng trong phạm vi 100 000 | HINH:   23 456 ⏎ + 12 345 ⏎   35 801 | RULE: 23 456 + 12 345: 6+5=11 viết 1 nhớ 1; 5+4+1=10 viết 0 nhớ 1; 4+3+1=8; 3+2=5; 2+1=3. Kết quả 35 801.
+g3-c12-l2 | Bài 2: Phép trừ trong phạm vi 100 000 | HINH:   45 678 ⏎ − 23 456 ⏎   22 222 | RULE: 45 678 − 23 456: 8−6=2; 7−5=2; 6−4=2; 5−3=2; 4−2=2. Kết quả 22 222.
+g3-c12-l3 | Bài 3: Luyện tập cộng, trừ trong phạm vi 100 000 | HINH:   35 678          50 000 ⏎ + 24 567        − 12 345 ⏎   60 245          37 655 | RULE: 35 678 + 24 567 = 60 245. 50 000 − 12 345 = 37 655.
+g3-c12-l4 | Bài 4: Bài toán có lời văn trong phạm vi 100 000 | HINH: Cả hai tháng: 34 560 + 25 430 = 59 990 (cái áo) ⏎ Tháng trước hơn: 34 560 − 25 430 = 9 130 (cái áo) | RULE: 34 560 + 25 430 = 59 990 (cái áo). Hơn kém: 34 560 − 25 430 = 9 130 (cái áo).
+g3-c12-l5 | Bài 5: Luyện tập chung chủ đề 12 | HINH: 23 456 + 12 345 = 35 801 ⏎ 35 801 − 12 345 = 23 456 | RULE: 
+
+## g3-c13 | Chủ đề 13: Xem đồng hồ. Tháng - năm. Tiền Việt Nam
+g3-c13-l1 | Bài 1: Xem đồng hồ — giờ và phút | HINH: Kim ngắn → giờ ⏎ Kim dài → phút ⏎ 1 giờ = 60 phút | RULE: Kim ngắn qua số 7, kim dài chỉ số 3 → 7 giờ 15 phút (vì 3 × 5 = 15 phút).
+g3-c13-l2 | Bài 2: Xem đồng hồ — giờ kém | HINH: Kim dài số 8 = 40 phút ⏎ 2 giờ 40 phút = 3 giờ kém 20 phút | RULE: Kim dài chỉ số 8 → còn 20 phút nữa là tới giờ. Kim ngắn gần số 3 → 2 giờ 40 phút = 3 giờ kém 20 phút.
+g3-c13-l3 | Bài 3: Tháng — năm | HINH: 31 ngày: 1 · 3 · 5 · 7 · 8 · 10 · 12 ⏎ 30 ngày: 4 · 6 · 9 · 11 ⏎ 28 hoặc 29 ngày: 2 | RULE: 1 năm = 12 tháng = 365 ngày (năm nhuận 366 ngày).
+g3-c13-l4 | Bài 4: Ngày trong tháng | HINH: ngày 15 tháng 8  →  15/8 ⏎ ngày 1 tháng 1  →  1/1 | RULE: Cách viết: ngày trước, tháng sau, năm cuối cùng. Ví dụ 15/8/2025.
+g3-c13-l5 | Bài 5: Tiền Việt Nam — nhận biết các tờ tiền | HINH: 1 000 đ · 2 000 đ · 5 000 đ · 10 000 đ ⏎ 20 000 đ · 50 000 đ · 100 000 đ · 200 000 đ | RULE: Các tờ tiền thường dùng: 1 000 đồng, 2 000 đồng, 5 000 đồng, 10 000 đồng, 20 000 đồng, 50 000 đồng, 100 000 đồng, 200 000 đồng, 500 000 đồng.
+g3-c13-l6 | Bài 6: Tiền Việt Nam — tính tiền mua hàng | HINH: 15 000 + 9 000 = 24 000 (đồng) ⏎ 50 000 − 24 000 = 26 000 (đồng) | RULE: 15 000 + 9 000 = 24 000 đồng. 50 000 − 24 000 = 26 000 đồng tiền thừa.
+g3-c13-l7 | Bài 7: Luyện tập chung chủ đề 13 | HINH: 1 giờ = 60 phút · 1 năm = 12 tháng ⏎ 2 giờ 40 phút = 3 giờ kém 20 phút | RULE: 
+
+## g3-c14 | Chủ đề 14: Nhân, chia trong phạm vi 100 000
+g3-c14-l1 | Bài 1: Nhân số có năm chữ số với số có một chữ số | HINH:   12 345 ⏎ ×      2 ⏎   24 690 | RULE: 12 345 × 2: 5×2=10 viết 0 nhớ 1; 4×2+1=9; 3×2=6; 2×2=4; 1×2=2. Kết quả 24 690.
+g3-c14-l2 | Bài 2: Chia số có năm chữ số cho số có một chữ số | HINH: 46 848 : 4 = 11 712 ⏎ 4:4=1 · 6:4=1 dư 2 · 28:4=7 · 4:4=1 · 8:4=2 | RULE: 46 848 : 4 = 11 712. Thử lại: 11 712 × 4 = 46 848 ✓
+g3-c14-l3 | Bài 3: Luyện tập nhân, chia trong phạm vi 100 000 | HINH: 13 241 × 3 = 39 723 ⏎ 47 125 : 5 = 9 425 | RULE: 13 241 × 3 = 39 723. 47 125 : 5 = 9 425.
+g3-c14-l4 | Bài 4: Bài toán có lời văn về nhân, chia | HINH: 12 450 × 5 = 62 250 (cái bánh) ⏎ 62 250 : 5 = 12 450 (cái bánh) | RULE: 12 450 × 5 = 62 250 (cái bánh). Chia đều 62 250 cái bánh cho 5 thùng: 62 250 : 5 = 12 450 (cái).
+g3-c14-l5 | Bài 5: Luyện tập chung chủ đề 14 | HINH: 12 345 × 2 = 24 690 ⏎ 46 848 : 4 = 11 712 | RULE: 
+
+## g3-c15 | Chủ đề 15: Làm quen với yếu tố thống kê, xác suất
+g3-c15-l1 | Bài 1: Bảng số liệu | HINH: Bóng đá: 12 bạn ⏎ Cầu lông: 8 bạn ⏎ Bơi     : 5 bạn | RULE: Lớp 3A: bóng đá 12 bạn; cầu lông 8 bạn; bơi 5 bạn. Môn được thích nhất là bóng đá.
+g3-c15-l2 | Bài 2: Biểu đồ tranh | HINH: 🍎🍎🍎🍎  (mỗi 🍎 = 5 bạn) ⏎ 4 × 5 = 20 bạn | RULE: Có 4 ký hiệu 🍎, mỗi ký hiệu là 5 bạn → 4 × 5 = 20 bạn.
+g3-c15-l3 | Bài 3: Khả năng xảy ra của một sự kiện | HINH: Hộp chỉ có bóng đỏ: ⏎ Lấy bóng đỏ  → chắc chắn ⏎ Lấy bóng xanh → không thể | RULE: Hộp chỉ có bóng đỏ: lấy bóng đỏ là CHẮC CHẮN; lấy bóng xanh là KHÔNG THỂ.
+g3-c15-l4 | Bài 4: Luyện tập chung chủ đề 15 | HINH: Bảng: Bóng đá 12 · Cầu lông 8 ⏎ Biểu đồ: 4 × 5 = 20 ⏎ Sự kiện: chắc chắn / có thể / không thể | RULE: 
+
+## g3-c16 | Chủ đề 16: Ôn tập cuối năm
+g3-c16-l1 | Bài 1: Ôn tập số và phép cộng, trừ | HINH: 23 456 + 12 345 = 35 801 ⏎ 45 678 − 23 456 = 22 222 | RULE: 
+g3-c16-l2 | Bài 2: Ôn tập phép nhân, phép chia | HINH: 6 × 7 = 42      42 : 6 = 7 ⏎ 12 345 × 2 = 24 690 ⏎ 46 848 : 4 = 11 712 | RULE: 
+g3-c16-l3 | Bài 3: Ôn tập hình học — chu vi và diện tích | HINH: Hình vuông cạnh 5 cm: ⏎ Chu vi  = 5 × 4 = 20 cm ⏎ Diện tích = 5 × 5 = 25 cm² | RULE: 
+g3-c16-l4 | Bài 4: Ôn tập đo lường | HINH: 1 m = 1 000 mm ⏎ 1 kg = 1 000 g ⏎ 1 l = 1 000 ml | RULE: 
+g3-c16-l5 | Bài 5: Ôn tập thống kê và xác suất | HINH: Bảng: Thứ Hai 15 bạn · Thứ Ba 20 bạn ⏎ Biểu đồ: 5 ký hiệu × 5 bạn = 25 bạn | RULE: 
+g3-c16-l6 | Bài 6: Ôn tập giải bài toán có lời văn | HINH: "tất cả" → cộng    "còn lại" → trừ ⏎ "mỗi" → nhân       "chia đều" → chia | RULE: Có 5 thùng, mỗi thùng 12 450 cái bánh: 12 450 × 5 = 62 250 cái bánh.
+g3-c16-l7 | Bài 7: Luyện tập tổng hợp cuối năm | HINH: Số → Bốn phép tính → Hình học → Đo lường → Thống kê | RULE: 
+g3-c16-l8 | Bài 8: Lễ tốt nghiệp lớp 3 | HINH: Lớp 3 ✅ ⏎ Lớp 4 — sẵn sàng! 🚀 | RULE: 
