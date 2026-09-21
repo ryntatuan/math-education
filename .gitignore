@@ -53,6 +53,9 @@ scratch/visual-that.cjs
 scratch/cau-truc-slide.json
 scratch/in-gon-*.txt
 scratch/migrate-*-out.txt
+scratch/verify-*.txt
+scratch/apk-build.log
+scratch/gates.txt
 scratch/loi-*.txt
 # Bản sao lưu dữ liệu bài học trước khi tiêm hình (lấy lại được từ lịch sử git)
 scratch/*.truoc-hinh.js
