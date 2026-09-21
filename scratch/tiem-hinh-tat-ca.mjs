@@ -972,6 +972,7 @@ const SPECS_LOP1 = {
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
+import { SPECS_LOP2 } from "./hinh-lop2.mjs";
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 const SAFE_KEY = /^[A-Za-z_$][A-Za-z0-9_$]*$/;
@@ -1012,14 +1013,19 @@ function fmt(v, ind) {
   throw new Error(`không in được giá trị kiểu ${typeof v}`);
 }
 
-// Mẫu nhận đúng slide hình CHỈ có `text`:
+// Mẫu nhận slide "hình" CHỈ có `text` — chèn ngay SAU dòng `text` (đọc dễ hơn):
 //   type: "visual",
 //   content: {
 //     text: "…",
-const MAU = /type: "visual",\r?\n(\s*)content: \{\r?\n(\s*)text: "(?:[^"\\]|\\.)*",\r?\n/;
+const MAU_VISUAL =
+  /type: "visual",\r?\n(\s*)content: \{\r?\n(\s*)text: "(?:[^"\\]|\\.)*",\r?\n/;
 
-const MONG_DOI = { 1: 97 };
-const SPECS = { 1: SPECS_LOP1 };
+// Mẫu dự phòng cho slide "khái niệm" — khi bài KHÔNG có slide "hình" nào.
+// Chèn ngay sau dòng `content: {`, tức là các khoá hình đứng ĐẦU object.
+const MAU_CONCEPT = /type: "concept",\r?\n(\s*)content: \{\r?\n(\s*)/;
+
+const MONG_DOI = { 1: 97, 2: 120 };
+const SPECS = { 1: SPECS_LOP1, 2: SPECS_LOP2 };
 
 const lop = Number(process.argv[2]);
 const ghiThat = process.argv.includes("--ghi");
@@ -1056,7 +1062,8 @@ if (text.includes("\uFFFD")) {
 // ── CHỐT 2 + 3: tìm đúng bài, đúng slide hình ──────────────────────────────
 const edits = [];
 const loi = [];
-const daChiem = []; // chặn hai bài cùng trỏ vào một chỗ
+const daChiem = new Set(); // chặn hai bài cùng trỏ vào MỘT chỗ
+const baiKhongCoSlideHinh = [];
 
 for (const [id, spec] of Object.entries(specs)) {
   const dau = `id: "${id}"`;
@@ -1070,21 +1077,34 @@ for (const [id, spec] of Object.entries(specs)) {
     continue;
   }
 
+  // 🔴 Ranh giới của bài này: `id:` kế tiếp. Không có ranh giới này thì khi bài KHÔNG
+  // có slide "hình", phép tìm sẽ nhảy sang slide hình của BÀI SAU — và ta sẽ tiêm hình
+  // của bài này vào bài khác, im lặng. Đã đo được đúng ca này ở Lớp 2.
+  const sauBai = text.indexOf('id: "', i1 + dau.length);
+  const hetBai = sauBai < 0 ? text.length : sauBai;
+
   const iVis = text.indexOf('type: "visual"', i1);
-  if (iVis < 0) {
-    loi.push(`${id}: không có slide hình`);
-    continue;
-  }
-  if (iVis - i1 > 4000) {
-    loi.push(
-      `${id}: slide hình nằm cách ${iVis - i1} ký tự — nghi ngờ bắt nhầm bài khác`,
-    );
-    continue;
+  const coSlideHinh = iVis >= 0 && iVis < hetBai;
+
+  let moc;
+  let mau;
+  if (coSlideHinh) {
+    moc = iVis;
+    mau = MAU_VISUAL;
+  } else {
+    const iCon = text.indexOf('type: "concept"', i1);
+    if (iCon < 0 || iCon >= hetBai) {
+      loi.push(`${id}: không có slide hình, cũng không có slide khái niệm`);
+      continue;
+    }
+    baiKhongCoSlideHinh.push(id);
+    moc = iCon;
+    mau = MAU_CONCEPT;
   }
 
-  const m = MAU.exec(text.slice(iVis));
+  const m = mau.exec(text.slice(moc));
   if (!m) {
-    loi.push(`${id}: slide hình không khớp mẫu (có thể đã có hình rồi)`);
+    loi.push(`${id}: slide không khớp mẫu chèn (có thể đã có hình rồi)`);
     continue;
   }
 
@@ -1094,13 +1114,13 @@ for (const [id, spec] of Object.entries(specs)) {
       .map(([k, v]) => indent + khoa(k) + ": " + fmt(v, indent.length))
       .join(",\n") + ",\n";
 
-  const at = iVis + m.index + m[0].length;
-  if (daChiem.some(([a, b]) => at >= a && at < b)) {
-    loi.push(`${id}: chỗ chèn đã bị bài khác chiếm`);
+  const at = moc + m.index + m[0].length;
+  if (daChiem.has(at)) {
+    loi.push(`${id}: chỗ chèn trùng với một bài khác (cùng một slide)`);
     continue;
   }
-  daChiem.push([at, at + them.length]);
-  edits.push({ id, at, them });
+  daChiem.add(at);
+  edits.push({ id, at, them, vaoConcept: !coSlideHinh });
 }
 
 if (loi.length) {
@@ -1109,7 +1129,13 @@ if (loi.length) {
   process.exit(1);
 }
 console.log(`  Chốt 2 OK — ${edits.length} bài đều tìm thấy đúng một lần.`);
-console.log(`  Chốt 3 OK — ${edits.length} slide hình đều khớp mẫu chèn.`);
+console.log(`  Chốt 3 OK — ${edits.length} slide đều khớp mẫu chèn.`);
+if (baiKhongCoSlideHinh.length) {
+  console.log(
+    `  ↳ ${baiKhongCoSlideHinh.length} bài KHÔNG có slide "hình" ⇒ tiêm vào slide "khái niệm":\n` +
+      `     ${baiKhongCoSlideHinh.join(", ")}`,
+  );
+}
 
 // Chèn từ CUỐI về ĐẦU để vị trí các chỗ trước không bị lệch.
 edits.sort((a, b) => b.at - a.at);
@@ -1154,9 +1180,13 @@ for (const [id, spec] of Object.entries(specs)) {
     sai++;
     continue;
   }
-  const vis = (bai.slides ?? []).find((s) => s.type === "visual");
+  // Hình có thể nằm ở slide "hình" hoặc (với bài không có slide hình) ở slide "khái niệm".
+  const slides = bai.slides ?? [];
+  const coHinh =
+    slides.find((s) => s.type === "visual") ??
+    slides.find((s) => s.type === "concept");
   for (const [k, v] of Object.entries(spec)) {
-    const got = vis?.content?.[k];
+    const got = coHinh?.content?.[k];
     if (JSON.stringify(got) !== JSON.stringify(v)) {
       console.error(
         `   ✗ ${id}.${k}: đọc lại thấy ${JSON.stringify(got)} — mong đợi ${JSON.stringify(v)}`,

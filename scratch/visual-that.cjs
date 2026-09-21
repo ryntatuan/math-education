@@ -37546,7 +37546,13 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "47  =  40  +  7\n4 ch\u1EE5c  +  7 \u0111\u01A1n v\u1ECB"
+                text: "47  =  40  +  7\n4 ch\u1EE5c  +  7 \u0111\u01A1n v\u1ECB",
+                placeValue: {
+                  headers: ["Ch\u1EE5c", "\u0110\u01A1n v\u1ECB"],
+                  digits: [4, 7],
+                  label: "47 g\u1ED3m 4 ch\u1EE5c v\xE0 7 \u0111\u01A1n v\u1ECB \u2014 \u0111\u1ECDc l\xE0 b\u1ED1n m\u01B0\u01A1i b\u1EA3y"
+                },
+                baseTen: { tens: 4, ones: 7 }
               }
             },
             {
@@ -37606,7 +37612,13 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "58  <  85\n5 ch\u1EE5c < 8 ch\u1EE5c"
+                text: "58  <  85\n5 ch\u1EE5c < 8 ch\u1EE5c",
+                comparison: { left: 58, sign: "<", right: 85 },
+                table: {
+                  headers: ["S\u1ED1", "Ch\u1EE5c", "\u0110\u01A1n v\u1ECB"],
+                  rows: [["58", 5, 8], ["85", 8, 5]],
+                  label: "5 ch\u1EE5c b\xE9 h\u01A1n 8 ch\u1EE5c n\xEAn 58 < 85"
+                }
               }
             },
             {
@@ -37661,7 +37673,15 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "0 \u2014 1 \u2014 2 \u2014 3 \u2014 4 \u2014 5 \u2014 6 \u2014 7 \u2014 8 \u2014 9 \u2014 10"
+                text: "0 \u2014 1 \u2014 2 \u2014 3 \u2014 4 \u2014 5 \u2014 6 \u2014 7 \u2014 8 \u2014 9 \u2014 10",
+                numberLine: {
+                  from: 0,
+                  to: 10,
+                  step: 1,
+                  marks: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+                  hops: [{ from: 0, to: 10, label: "sang ph\u1EA3i: t\u0103ng d\u1EA7n" }],
+                  label: "Tia s\u1ED1 \u2014 \u0111i sang ph\u1EA3i s\u1ED1 t\u0103ng, \u0111i sang tr\xE1i s\u1ED1 gi\u1EA3m"
+                }
               }
             },
             {
@@ -37716,7 +37736,14 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "68  \u2014  69  \u2014  70\nli\u1EC1n tr\u01B0\u1EDBc \xB7 ch\xEDnh n\xF3 \xB7 li\u1EC1n sau"
+                text: "68  \u2014  69  \u2014  70\nli\u1EC1n tr\u01B0\u1EDBc \xB7 ch\xEDnh n\xF3 \xB7 li\u1EC1n sau",
+                numberLine: {
+                  from: 68,
+                  to: 70,
+                  step: 1,
+                  marks: [68, 69, 70],
+                  label: "68 l\xE0 li\u1EC1n tr\u01B0\u1EDBc \xB7 69 l\xE0 ch\xEDnh n\xF3 \xB7 70 l\xE0 li\u1EC1n sau"
+                }
               }
             },
             {
@@ -37780,7 +37807,13 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "35  +  24  =  59\ns\u1ED1 h\u1EA1ng \xB7 s\u1ED1 h\u1EA1ng \xB7 t\u1ED5ng"
+                text: "35  +  24  =  59\ns\u1ED1 h\u1EA1ng \xB7 s\u1ED1 h\u1EA1ng \xB7 t\u1ED5ng",
+                operation: { left: 35, sign: "+", right: 24, result: 59 },
+                table: {
+                  headers: ["S\u1ED1 h\u1EA1ng", "S\u1ED1 h\u1EA1ng", "T\u1ED5ng"],
+                  rows: [[35, 24, 59]],
+                  label: "Th\xE0nh ph\u1EA7n c\u1EE7a ph\xE9p c\u1ED9ng"
+                }
               }
             },
             {
@@ -37835,7 +37868,13 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "57  \u2212  23  =  34\ns\u1ED1 b\u1ECB tr\u1EEB \xB7 s\u1ED1 tr\u1EEB \xB7 hi\u1EC7u"
+                text: "57  \u2212  23  =  34\ns\u1ED1 b\u1ECB tr\u1EEB \xB7 s\u1ED1 tr\u1EEB \xB7 hi\u1EC7u",
+                operation: { left: 57, sign: "\u2212", right: 23, result: 34 },
+                table: {
+                  headers: ["S\u1ED1 b\u1ECB tr\u1EEB", "S\u1ED1 tr\u1EEB", "Hi\u1EC7u"],
+                  rows: [[57, 23, 34]],
+                  label: "Th\xE0nh ph\u1EA7n c\u1EE7a ph\xE9p tr\u1EEB"
+                }
               }
             },
             {
@@ -37899,7 +37938,12 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "Mai: 12 c\xE1i k\u1EB9o\nLan:  8 c\xE1i k\u1EB9o\nMai h\u01A1n Lan: 12 \u2212 8 = 4 (c\xE1i k\u1EB9o)"
+                text: "Mai: 12 c\xE1i k\u1EB9o\nLan:  8 c\xE1i k\u1EB9o\nMai h\u01A1n Lan: 12 \u2212 8 = 4 (c\xE1i k\u1EB9o)",
+                operation: { left: 12, sign: "\u2212", right: 8, result: 4 },
+                barModel: {
+                  rows: [{ label: "Mai", parts: 12 }, { label: "Lan", parts: 8 }],
+                  braceLabel: "Mai h\u01A1n Lan 4 c\xE1i k\u1EB9o"
+                }
               }
             },
             {
@@ -37963,7 +38007,13 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "  32        57\n+ 14      \u2212 23\n  46        34"
+                text: "  32        57\n+ 14      \u2212 23\n  46        34",
+                operation: { left: 32, sign: "+", right: 14, result: 46 },
+                table: {
+                  headers: ["Ph\xE9p t\xEDnh", "K\u1EBFt qu\u1EA3"],
+                  rows: [["32 + 14", "46"], ["57 \u2212 23", "34"]],
+                  label: "\u0110\u1EB7t t\xEDnh r\u1ED3i t\xEDnh: c\u1ED9ng tr\u1EEB t\u1EEBng h\xE0ng, b\u1EAFt \u0111\u1EA7u t\u1EEB h\xE0ng \u0111\u01A1n v\u1ECB"
+                }
               }
             },
             {
@@ -38026,7 +38076,14 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "98 \u2014 99 \u2014 100\nli\u1EC1n tr\u01B0\u1EDBc \xB7 l\u1EDBn nh\u1EA5t c\xF3 2 ch\u1EEF s\u1ED1 \xB7 s\u1ED1 c\xF3 3 ch\u1EEF s\u1ED1"
+                text: "98 \u2014 99 \u2014 100\nli\u1EC1n tr\u01B0\u1EDBc \xB7 l\u1EDBn nh\u1EA5t c\xF3 2 ch\u1EEF s\u1ED1 \xB7 s\u1ED1 c\xF3 3 ch\u1EEF s\u1ED1",
+                numberLine: {
+                  from: 98,
+                  to: 100,
+                  step: 1,
+                  marks: [98, 99, 100],
+                  label: "98 li\u1EC1n tr\u01B0\u1EDBc \xB7 99 l\xE0 s\u1ED1 l\u1EDBn nh\u1EA5t c\xF3 hai ch\u1EEF s\u1ED1 \xB7 100 l\xE0 s\u1ED1 c\xF3 ba ch\u1EEF s\u1ED1"
+                }
               }
             },
             {
@@ -38106,7 +38163,22 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "9 + 4  =  9 + 1 + 3  =  10 + 3  =  13\n         \u2191 t\xE1ch 4 th\xE0nh 1 v\xE0 3"
+                text: "9 + 4  =  9 + 1 + 3  =  10 + 3  =  13\n         \u2191 t\xE1ch 4 th\xE0nh 1 v\xE0 3",
+                tenFrame: {
+                  filled: 9,
+                  total: 10,
+                  emoji: "\u{1F535}",
+                  extra: 3,
+                  label: "9 + 1 = 10, r\u1ED3i 10 + 3 = 13"
+                },
+                numberLine: {
+                  from: 9,
+                  to: 13,
+                  step: 1,
+                  marks: [9, 10, 11, 12, 13],
+                  hops: [{ from: 9, to: 13, label: "+4" }],
+                  label: "9 + 4 = 13"
+                }
               }
             },
             {
@@ -38161,7 +38233,25 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "8 + 5  =  8 + 2 + 3  =  10 + 3  =  13"
+                text: "8 + 5  =  8 + 2 + 3  =  10 + 3  =  13",
+                tenFrame: {
+                  filled: 8,
+                  total: 10,
+                  emoji: "\u{1F7E3}",
+                  extra: 2,
+                  label: "8 c\xF2n thi\u1EBFu 2 \u0111\u1EC3 \u0111\u1EE7 10"
+                },
+                numberLine: {
+                  from: 8,
+                  to: 13,
+                  step: 1,
+                  marks: [8, 9, 10, 11, 12, 13],
+                  hops: [
+                    { from: 8, to: 10, label: "+2" },
+                    { from: 10, to: 13, label: "+3" }
+                  ],
+                  label: "8 + 5: t\xE1ch 5 = 2 + 3, \u0111i qua m\u1ED1c 10"
+                }
               }
             },
             {
@@ -38225,7 +38315,19 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "9+2=11 \xB7 9+6=15 \xB7 9+9=18\n8+3=11 \xB7 8+8=16 \xB7 7+7=14"
+                text: "9+2=11 \xB7 9+6=15 \xB7 9+9=18\n8+3=11 \xB7 8+8=16 \xB7 7+7=14",
+                table: {
+                  headers: ["Ph\xE9p t\xEDnh", "K\u1EBFt qu\u1EA3"],
+                  rows: [
+                    ["9 + 2", "11"],
+                    ["9 + 6", "15"],
+                    ["9 + 9", "18"],
+                    ["8 + 3", "11"],
+                    ["8 + 8", "16"],
+                    ["7 + 7", "14"]
+                  ],
+                  label: "B\u1EA3ng c\u1ED9ng (qua 10) trong ph\u1EA1m vi 20"
+                }
               }
             },
             {
@@ -38288,7 +38390,15 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "6 qu\u1EA3 b\xF3ng xanh + 7 qu\u1EA3 b\xF3ng \u0111\u1ECF\n6 + 7 = 13 (qu\u1EA3 b\xF3ng)"
+                text: "6 qu\u1EA3 b\xF3ng xanh + 7 qu\u1EA3 b\xF3ng \u0111\u1ECF\n6 + 7 = 13 (qu\u1EA3 b\xF3ng)",
+                operation: { left: 6, sign: "+", right: 7, result: 13 },
+                tenFrame: {
+                  filled: 10,
+                  total: 10,
+                  emoji: "\u26BD",
+                  extra: 3,
+                  label: "6 qu\u1EA3 + 7 qu\u1EA3: g\u1ED9p \u0111\u1EE7 10 r\u1ED3i c\xF2n 3"
+                }
               }
             },
             {
@@ -38352,7 +38462,15 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "7 con chim  +  5 con chim bay \u0111\u1EBFn  =  12 con chim"
+                text: "7 con chim  +  5 con chim bay \u0111\u1EBFn  =  12 con chim",
+                operation: { left: 7, sign: "+", right: 5, result: 12 },
+                barModel: {
+                  rows: [
+                    { label: "\u0110\xE3 c\xF3", parts: 7 },
+                    { label: "Bay \u0111\u1EBFn", parts: 5 }
+                  ],
+                  braceLabel: "12 con chim"
+                }
               }
             },
             {
@@ -38407,7 +38525,15 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "14 \u2212 6  =  14 \u2212 4 \u2212 2  =  10 \u2212 2  =  8"
+                text: "14 \u2212 6  =  14 \u2212 4 \u2212 2  =  10 \u2212 2  =  8",
+                operation: { left: 14, sign: "\u2212", right: 6, result: 8 },
+                barModel: {
+                  rows: [
+                    { label: "C\xF3 s\u1EB5n", parts: 14 },
+                    { label: "B\u1EDBt \u0111i", parts: 6 }
+                  ],
+                  braceLabel: "8 qu\u1EA3 b\xF3ng"
+                }
               }
             },
             {
@@ -38470,7 +38596,13 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "8 + 5 = 13   v\xE0   13 \u2212 5 = 8   v\xE0   13 \u2212 8 = 5"
+                text: "8 + 5 = 13   v\xE0   13 \u2212 5 = 8   v\xE0   13 \u2212 8 = 5",
+                operation: { left: 8, sign: "+", right: 5, result: 13 },
+                table: {
+                  headers: ["Ph\xE9p t\xEDnh", "K\u1EBFt qu\u1EA3"],
+                  rows: [["8 + 5", "13"], ["13 \u2212 5", "8"], ["13 \u2212 8", "5"]],
+                  label: "T\u1EEB m\u1ED9t ph\xE9p c\u1ED9ng suy ra hai ph\xE9p tr\u1EEB"
+                }
               }
             },
             {
@@ -38539,7 +38671,18 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "13 \u2212 5  =  13 \u2212 3 \u2212 2  =  10 \u2212 2  =  8"
+                text: "13 \u2212 5  =  13 \u2212 3 \u2212 2  =  10 \u2212 2  =  8",
+                numberLine: {
+                  from: 8,
+                  to: 13,
+                  step: 1,
+                  marks: [8, 9, 10, 11, 12, 13],
+                  hops: [
+                    { from: 13, to: 10, label: "\u22123" },
+                    { from: 10, to: 8, label: "\u22122" }
+                  ],
+                  label: "13 \u2212 5: t\xE1ch 5 = 3 + 2, \u0111i l\xF9i qua m\u1ED1c 10"
+                }
               }
             },
             {
@@ -38603,7 +38746,19 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "11\u22122=9 \xB7 12\u22125=7 \xB7 13\u22126=7 \xB7 14\u22128=6 \xB7 16\u22129=7"
+                text: "11\u22122=9 \xB7 12\u22125=7 \xB7 13\u22126=7 \xB7 14\u22128=6 \xB7 16\u22129=7",
+                table: {
+                  headers: ["Ph\xE9p t\xEDnh", "K\u1EBFt qu\u1EA3"],
+                  rows: [
+                    ["11 \u2212 2", "9"],
+                    ["11 \u2212 5", "6"],
+                    ["12 \u2212 3", "9"],
+                    ["13 \u2212 6", "7"],
+                    ["15 \u2212 7", "8"],
+                    ["16 \u2212 9", "7"]
+                  ],
+                  label: "B\u1EA3ng tr\u1EEB (qua 10)"
+                }
               }
             },
             {
@@ -38666,7 +38821,16 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "14 \u2212 ? = 6   \u2192   ? = 14 \u2212 6 = 8"
+                text: "14 \u2212 ? = 6   \u2192   ? = 14 \u2212 6 = 8",
+                operation: { left: 14, sign: "\u2212", right: 6, result: 8 },
+                numberLine: {
+                  from: 6,
+                  to: 14,
+                  step: 1,
+                  marks: [6, 8, 10, 12, 14],
+                  hops: [{ from: 6, to: 14, label: "? = 8" }],
+                  label: "14 \u2212 ? = 6 \u21D2 ? = 14 \u2212 6 = 8"
+                }
               }
             },
             {
@@ -38730,7 +38894,12 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "Mai: 9 nh\xE3n v\u1EDF\nLan: 5 nh\xE3n v\u1EDF\n9 \u2212 5 = 4 (nh\xE3n v\u1EDF)"
+                text: "Mai: 9 nh\xE3n v\u1EDF\nLan: 5 nh\xE3n v\u1EDF\n9 \u2212 5 = 4 (nh\xE3n v\u1EDF)",
+                operation: { left: 9, sign: "\u2212", right: 5, result: 4 },
+                barModel: {
+                  rows: [{ label: "Mai", parts: 9 }, { label: "Lan", parts: 5 }],
+                  braceLabel: "Lan \xEDt h\u01A1n Mai 4 nh\xE3n v\u1EDF"
+                }
               }
             },
             {
@@ -38793,7 +38962,13 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "9 + 5 = 14\n14 \u2212 5 = 9\n14 \u2212 9 = 5"
+                text: "9 + 5 = 14\n14 \u2212 5 = 9\n14 \u2212 9 = 5",
+                operation: { left: 9, sign: "+", right: 5, result: 14 },
+                table: {
+                  headers: ["Ph\xE9p t\xEDnh", "K\u1EBFt qu\u1EA3"],
+                  rows: [["9 + 5", "14"], ["14 \u2212 5", "9"], ["14 \u2212 9", "5"]],
+                  label: "Luy\u1EC7n t\u1EADp chung ch\u1EE7 \u0111\u1EC1 2"
+                }
               }
             },
             {
@@ -38868,7 +39043,16 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "Qu\u1EA3 d\u01B0a h\u1EA5u: 3 kg\nBao g\u1EA1o: 5 kg\nC\u1EB7p s\xE1ch: 2 kg"
+                text: "Qu\u1EA3 d\u01B0a h\u1EA5u: 3 kg\nBao g\u1EA1o: 5 kg\nC\u1EB7p s\xE1ch: 2 kg",
+                table: {
+                  headers: ["V\u1EADt", "N\u1EB7ng"],
+                  rows: [
+                    ["Qu\u1EA3 d\u01B0a h\u1EA5u", "3 kg"],
+                    ["Bao g\u1EA1o", "5 kg"],
+                    ["C\u1EB7p s\xE1ch", "2 kg"]
+                  ],
+                  label: "\u0110\u01A1n v\u1ECB \u0111o kh\u1ED1i l\u01B0\u1EE3ng l\xE0 ki-l\xF4-gam (kg)"
+                }
               }
             },
             {
@@ -38918,6 +39102,11 @@ var grade2Data = {
             {
               type: "concept",
               content: {
+                table: {
+                  headers: ["Kim c\xE2n ch\u1EC9", "V\u1EADt n\u1EB7ng"],
+                  rows: [["V\u1EA1ch 2", "2 kg"], ["V\u1EA1ch 4", "4 kg"], ["V\u1EA1ch 5", "5 kg"]],
+                  label: "\u0110\u1ECDc s\u1ED1 \u0111o tr\xEAn c\xE2n"
+                },
                 badge: "Th\u1EF1c H\xE0nh",
                 title: "\u0110\u1ECDc s\u1ED1 \u0111o tr\xEAn c\xE2n",
                 explanation: "Khi \u0111\u1EB7t v\u1EADt l\xEAn c\xE2n, kim \u0111\u1ED3ng h\u1ED3 s\u1EBD ch\u1EC9 v\xE0o m\u1ED9t v\u1EA1ch s\u1ED1. \u0110\xF3 ch\xEDnh l\xE0 kh\u1ED1i l\u01B0\u1EE3ng c\u1EE7a v\u1EADt.",
@@ -38981,7 +39170,16 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "Chai n\u01B0\u1EDBc: 2 l\nCan d\u1EA7u: 5 l\nCa \u0111ong: 1 l"
+                text: "Chai n\u01B0\u1EDBc: 2 l\nCan d\u1EA7u: 5 l\nCa \u0111ong: 1 l",
+                table: {
+                  headers: ["V\u1EADt", "Ch\u1EE9a \u0111\u01B0\u1EE3c"],
+                  rows: [
+                    ["Chai n\u01B0\u1EDBc", "2 l"],
+                    ["Can d\u1EA7u", "5 l"],
+                    ["Ca \u0111ong", "1 l"]
+                  ],
+                  label: "\u0110\u01A1n v\u1ECB \u0111o dung t\xEDch l\xE0 l\xEDt (l)"
+                }
               }
             },
             {
@@ -39050,7 +39248,13 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "M\u1EF1c n\u01B0\u1EDBc \u0111\u1EBFn v\u1EA1ch 3  \u2192  3 l\n3 l  >  2 l"
+                text: "M\u1EF1c n\u01B0\u1EDBc \u0111\u1EBFn v\u1EA1ch 3  \u2192  3 l\n3 l  >  2 l",
+                comparison: { left: 3, sign: ">", right: 2 },
+                table: {
+                  headers: ["M\u1EF1c n\u01B0\u1EDBc", "C\xF3"],
+                  rows: [["V\u1EA1ch 2", "2 l"], ["V\u1EA1ch 3", "3 l"]],
+                  label: "M\u1EF1c n\u01B0\u1EDBc d\xE2ng \u0111\u1EBFn v\u1EA1ch 3 th\xEC c\xF3 3 l \xB7 3 l > 2 l"
+                }
               }
             },
             {
@@ -39105,7 +39309,13 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "2 kg g\u1EA1o + 3 kg g\u1EA1o = 5 kg g\u1EA1o\n2 l n\u01B0\u1EDBc + 1 l n\u01B0\u1EDBc = 3 l n\u01B0\u1EDBc"
+                text: "2 kg g\u1EA1o + 3 kg g\u1EA1o = 5 kg g\u1EA1o\n2 l n\u01B0\u1EDBc + 1 l n\u01B0\u1EDBc = 3 l n\u01B0\u1EDBc",
+                operation: { left: 2, sign: "+", right: 3, result: 5 },
+                table: {
+                  headers: ["Ph\xE9p t\xEDnh", "K\u1EBFt qu\u1EA3"],
+                  rows: [["2 kg + 3 kg", "5 kg"], ["2 l + 1 l", "3 l"]],
+                  label: "Th\u1EF1c h\xE0nh v\u1EDBi ki-l\xF4-gam v\xE0 l\xEDt"
+                }
               }
             },
             {
@@ -39155,6 +39365,11 @@ var grade2Data = {
             {
               type: "concept",
               content: {
+                table: {
+                  headers: ["\u0110\u1EA1i l\u01B0\u1EE3ng", "\u0110\u01A1n v\u1ECB"],
+                  rows: [["Kh\u1ED1i l\u01B0\u1EE3ng", "kg"], ["Dung t\xEDch", "l"]],
+                  label: "Luy\u1EC7n t\u1EADp chung ch\u1EE7 \u0111\u1EC1 3"
+                },
                 badge: "\xD4n T\u1EADp",
                 title: "Ph\xE2n bi\u1EC7t kg v\xE0 l",
                 explanation: "kg \u0111o \u0111\u1ED9 n\u1EB7ng, l \u0111o s\u1EE9c ch\u1EE9a. C\xF9ng m\u1ED9t con s\u1ED1 nh\u01B0ng kh\xE1c \u0111\u01A1n v\u1ECB l\xE0 kh\xE1c \xFD ngh\u0129a.",
@@ -39242,7 +39457,13 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "  27\n+  5\n  32\n7 + 5 = 12, vi\u1EBFt 2 nh\u1EDB 1"
+                text: "  27\n+  5\n  32\n7 + 5 = 12, vi\u1EBFt 2 nh\u1EDB 1",
+                operation: { left: 27, sign: "+", right: 5, result: 32 },
+                placeValue: {
+                  headers: ["Ch\u1EE5c", "\u0110\u01A1n v\u1ECB"],
+                  digits: [2, 7],
+                  label: "27 + 5: 7 + 5 = 12, vi\u1EBFt 2 nh\u1EDB 1"
+                }
               }
             },
             {
@@ -39297,7 +39518,8 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "  36            45\n+  8          +  9\n  44            54"
+                text: "  36            45\n+  8          +  9\n  44            54",
+                operation: { left: 36, sign: "+", right: 8, result: 44 }
               }
             },
             {
@@ -39361,7 +39583,13 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "  38\n+ 25\n  63\n8 + 5 = 13 \u2192 vi\u1EBFt 3 nh\u1EDB 1\n3 + 2 + 1 = 6"
+                text: "  38\n+ 25\n  63\n8 + 5 = 13 \u2192 vi\u1EBFt 3 nh\u1EDB 1\n3 + 2 + 1 = 6",
+                operation: { left: 38, sign: "+", right: 25, result: 63 },
+                placeValue: {
+                  headers: ["Ch\u1EE5c", "\u0110\u01A1n v\u1ECB"],
+                  digits: [3, 8],
+                  label: "38 + 25: 8 + 5 = 13 vi\u1EBFt 3 nh\u1EDB 1; 3 + 2 + 1 = 6"
+                }
               }
             },
             {
@@ -39425,7 +39653,15 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "C\xF3 28 h\u1ED9p s\u1EEFa, th\xEAm 17 h\u1ED9p\n28 + 17 = 45 (h\u1ED9p s\u1EEFa)"
+                text: "C\xF3 28 h\u1ED9p s\u1EEFa, th\xEAm 17 h\u1ED9p\n28 + 17 = 45 (h\u1ED9p s\u1EEFa)",
+                operation: { left: 28, sign: "+", right: 17, result: 45 },
+                barModel: {
+                  rows: [
+                    { label: "\u0110\xE3 c\xF3", parts: 28 },
+                    { label: "Th\xEAm v\xE0o", parts: 17 }
+                  ],
+                  braceLabel: "45 h\u1ED9p s\u1EEFa"
+                }
               }
             },
             {
@@ -39479,7 +39715,13 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "56 + 7  = 63\n56 + 27 = 83"
+                text: "56 + 7  = 63\n56 + 27 = 83",
+                operation: { left: 56, sign: "+", right: 27, result: 83 },
+                table: {
+                  headers: ["Ph\xE9p t\xEDnh", "K\u1EBFt qu\u1EA3"],
+                  rows: [["56 + 7", "63"], ["56 + 27", "83"]],
+                  label: "Luy\u1EC7n t\u1EADp chung ph\xE9p c\u1ED9ng c\xF3 nh\u1EDB"
+                }
               }
             },
             {
@@ -39543,7 +39785,13 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "  32\n\u2212  7\n  25\n2 kh\xF4ng tr\u1EEB \u0111\u01B0\u1EE3c 7 \u2192 m\u01B0\u1EE3n 1 ch\u1EE5c: 12 \u2212 7 = 5"
+                text: "  32\n\u2212  7\n  25\n2 kh\xF4ng tr\u1EEB \u0111\u01B0\u1EE3c 7 \u2192 m\u01B0\u1EE3n 1 ch\u1EE5c: 12 \u2212 7 = 5",
+                operation: { left: 32, sign: "\u2212", right: 7, result: 25 },
+                placeValue: {
+                  headers: ["Ch\u1EE5c", "\u0110\u01A1n v\u1ECB"],
+                  digits: [3, 2],
+                  label: "32 \u2212 7: 2 kh\xF4ng tr\u1EEB \u0111\u01B0\u1EE3c 7, m\u01B0\u1EE3n 1 ch\u1EE5c th\xE0nh 12; 12 \u2212 7 = 5"
+                }
               }
             },
             {
@@ -39607,7 +39855,8 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "  51\n\u2212 15\n  36\n11 \u2212 5 = 6;  (5 \u2212 1) \u2212 1 = 3"
+                text: "  51\n\u2212 15\n  36\n11 \u2212 5 = 6;  (5 \u2212 1) \u2212 1 = 3",
+                operation: { left: 51, sign: "\u2212", right: 15, result: 36 }
               }
             },
             {
@@ -39662,7 +39911,8 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "  52\n\u2212 27\n  25\n12 \u2212 7 = 5;  (5\u22121) \u2212 2 = 2"
+                text: "  52\n\u2212 27\n  25\n12 \u2212 7 = 5;  (5\u22121) \u2212 2 = 2",
+                operation: { left: 52, sign: "\u2212", right: 27, result: 25 }
               }
             },
             {
@@ -39725,7 +39975,17 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "46 \u2212  3 = 43   (kh\xF4ng m\u01B0\u1EE3n)\n43 \u2212  6 = 37   (c\xF3 m\u01B0\u1EE3n)\n74 \u2212 28 = 46   (c\xF3 m\u01B0\u1EE3n)"
+                text: "46 \u2212  3 = 43   (kh\xF4ng m\u01B0\u1EE3n)\n43 \u2212  6 = 37   (c\xF3 m\u01B0\u1EE3n)\n74 \u2212 28 = 46   (c\xF3 m\u01B0\u1EE3n)",
+                operation: { left: 74, sign: "\u2212", right: 28, result: 46 },
+                table: {
+                  headers: ["Ph\xE9p t\xEDnh", "C\xF3 m\u01B0\u1EE3n kh\xF4ng?"],
+                  rows: [
+                    ["46 \u2212 3", "kh\xF4ng m\u01B0\u1EE3n"],
+                    ["43 \u2212 6", "c\xF3 m\u01B0\u1EE3n"],
+                    ["74 \u2212 28", "c\xF3 m\u01B0\u1EE3n"]
+                  ],
+                  label: "Luy\u1EC7n t\u1EADp chung ph\xE9p tr\u1EEB c\xF3 nh\u1EDB"
+                }
               }
             },
             {
@@ -39788,7 +40048,13 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "27 + 5 = 32\n32 \u2212 5 = 27\n32 \u2212 27 = 5"
+                text: "27 + 5 = 32\n32 \u2212 5 = 27\n32 \u2212 27 = 5",
+                operation: { left: 27, sign: "+", right: 5, result: 32 },
+                table: {
+                  headers: ["Ph\xE9p t\xEDnh", "K\u1EBFt qu\u1EA3"],
+                  rows: [["27 + 5", "32"], ["32 \u2212 5", "27"], ["32 \u2212 27", "5"]],
+                  label: "\xD4n t\u1EADp chung ch\u1EE7 \u0111\u1EC1 4"
+                }
               }
             },
             {
@@ -39854,7 +40120,12 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "A \u2022\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2022 B\n\u0110o\u1EA1n th\u1EB3ng AB"
+                text: "A \u2022\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2022 B\n\u0110o\u1EA1n th\u1EB3ng AB",
+                ruler: {
+                  lengthCm: 5,
+                  measure: { from: 0, to: 5 },
+                  label: "N\u1ED1i \u0111i\u1EC3m A v\u1EDBi \u0111i\u1EC3m B ta \u0111\u01B0\u1EE3c \u0111o\u1EA1n th\u1EB3ng AB"
+                }
               }
             },
             {
@@ -39914,7 +40185,21 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "\u0110o\u1EA1n th\u1EB3ng:  A \u2022\u2014\u2014\u2014\u2014\u2022 B\n\u0110\u01B0\u1EDDng th\u1EB3ng: \u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\n\u0110\u01B0\u1EDDng cong:   ~~~~\\__/~~~~"
+                text: "\u0110o\u1EA1n th\u1EB3ng:  A \u2022\u2014\u2014\u2014\u2014\u2022 B\n\u0110\u01B0\u1EDDng th\u1EB3ng: \u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\u2014\n\u0110\u01B0\u1EDDng cong:   ~~~~\\__/~~~~",
+                ruler: {
+                  lengthCm: 6,
+                  measure: { from: 0, to: 6 },
+                  label: "\u0110o\u1EA1n th\u1EB3ng AB c\xF3 hai \u0111\u1EA7u m\xFAt"
+                },
+                table: {
+                  headers: ["Lo\u1EA1i", "\u0110\u1EB7c \u0111i\u1EC3m"],
+                  rows: [
+                    ["\u0110o\u1EA1n th\u1EB3ng AB", "c\xF3 hai \u0111\u1EA7u m\xFAt"],
+                    ["\u0110\u01B0\u1EDDng th\u1EB3ng AB", "k\xE9o d\xE0i m\xE3i v\u1EC1 hai ph\xEDa"],
+                    ["\u0110\u01B0\u1EDDng cong", "u\u1ED1n l\u01B0\u1EE3n, kh\xF4ng th\u1EB3ng"]
+                  ],
+                  label: "\u0110\u01B0\u1EDDng th\u1EB3ng v\xE0 \u0111\u01B0\u1EDDng cong"
+                }
               }
             },
             {
@@ -39974,7 +40259,15 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "A \u2022\u2014\u2014\u2014\u2022 B \u2014\u2014\u2014\u2022 C   \u2192  th\u1EB3ng h\xE0ng\nA \u2022\u2014\u2014\u2014\u2022 B\n          \u2022 C      \u2192  kh\xF4ng th\u1EB3ng h\xE0ng"
+                text: "A \u2022\u2014\u2014\u2014\u2022 B \u2014\u2014\u2014\u2022 C   \u2192  th\u1EB3ng h\xE0ng\nA \u2022\u2014\u2014\u2014\u2022 B\n          \u2022 C      \u2192  kh\xF4ng th\u1EB3ng h\xE0ng",
+                table: {
+                  headers: ["Ba \u0111i\u1EC3m", "K\u1EBFt lu\u1EADn"],
+                  rows: [
+                    ["A, B, C c\xF9ng n\u1EB1m tr\xEAn m\u1ED9t \u0111\u01B0\u1EDDng th\u1EB3ng", "th\u1EB3ng h\xE0ng"],
+                    ["A, B c\xF9ng \u0111\u01B0\u1EDDng, C n\u1EB1m ngo\xE0i", "kh\xF4ng th\u1EB3ng h\xE0ng"]
+                  ],
+                  label: "Ba \u0111i\u1EC3m th\u1EB3ng h\xE0ng"
+                }
               }
             },
             {
@@ -40034,7 +40327,12 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "A \u2022\u2014\u2014\u2014\u2022 B\n            \\\n             \u2022 C\n              |\n              \u2022 D\n\u0110\u01B0\u1EDDng g\u1EA5p kh\xFAc ABCD"
+                text: "A \u2022\u2014\u2014\u2014\u2022 B\n            \\\n             \u2022 C\n              |\n              \u2022 D\n\u0110\u01B0\u1EDDng g\u1EA5p kh\xFAc ABCD",
+                ruler: {
+                  lengthCm: 10,
+                  measure: { from: 0, to: 10 },
+                  label: "\u0110\u01B0\u1EDDng g\u1EA5p kh\xFAc ABCD g\u1ED3m ba \u0111o\u1EA1n AB, BC, CD n\u1ED1i ti\u1EBFp nhau"
+                }
               }
             },
             {
@@ -40089,7 +40387,18 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "AB = 3 cm \xB7 BC = 4 cm \xB7 CD = 5 cm\n3 + 4 + 5 = 12 (cm)"
+                text: "AB = 3 cm \xB7 BC = 4 cm \xB7 CD = 5 cm\n3 + 4 + 5 = 12 (cm)",
+                operation: { left: 7, sign: "+", right: 5, result: 12 },
+                table: {
+                  headers: ["\u0110o\u1EA1n", "D\xE0i"],
+                  rows: [
+                    ["AB", "3 cm"],
+                    ["BC", "4 cm"],
+                    ["CD", "5 cm"],
+                    ["C\u1EA3 \u0111\u01B0\u1EDDng g\u1EA5p kh\xFAc", "3 + 4 + 5 = 12 cm"]
+                  ],
+                  label: "\u0110\u1ED9 d\xE0i \u0111\u01B0\u1EDDng g\u1EA5p kh\xFAc b\u1EB1ng t\u1ED5ng \u0111\u1ED9 d\xE0i c\xE1c \u0111o\u1EA1n"
+                }
               }
             },
             {
@@ -40153,7 +40462,12 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "A \u2022\u2014\u2014\u2014\u2014\u2014\u2022 B\n  |         |\n  |         |\nD \u2022\u2014\u2014\u2014\u2014\u2014\u2022 C\n4 c\u1EA1nh \xB7 4 \u0111\u1EC9nh"
+                text: "A \u2022\u2014\u2014\u2014\u2014\u2014\u2022 B\n  |         |\n  |         |\nD \u2022\u2014\u2014\u2014\u2014\u2014\u2022 C\n4 c\u1EA1nh \xB7 4 \u0111\u1EC9nh",
+                planeShape: {
+                  kind: "rectangle",
+                  labels: ["c\u1EA1nh AB", "c\u1EA1nh BC"],
+                  formula: "4 c\u1EA1nh: AB, BC, CD, DA \xB7 4 \u0111\u1EC9nh: A, B, C, D"
+                }
               }
             },
             {
@@ -40213,7 +40527,12 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "V\u1EA1ch 0 t\u1EA1i A, ch\u1EA5m B \u1EDF v\u1EA1ch 4\nA \u2022\u2014\u2014\u2014\u2014\u2022 B  = 4 cm"
+                text: "V\u1EA1ch 0 t\u1EA1i A, ch\u1EA5m B \u1EDF v\u1EA1ch 4\nA \u2022\u2014\u2014\u2014\u2014\u2022 B  = 4 cm",
+                ruler: {
+                  lengthCm: 4,
+                  measure: { from: 0, to: 4 },
+                  label: "V\u1EBD \u0111o\u1EA1n th\u1EB3ng AB d\xE0i 4 cm: \u0111\u1EB7t v\u1EA1ch 0 t\u1EA1i A, ch\u1EA5m B \u1EDF v\u1EA1ch 4"
+                }
               }
             },
             {
@@ -40267,7 +40586,16 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "\u0110\u01B0\u1EDDng g\u1EA5p kh\xFAc: c\u1ED9ng c\xE1c \u0111o\u1EA1n\nH\xECnh t\u1EE9 gi\xE1c: 4 c\u1EA1nh, 4 \u0111\u1EC9nh"
+                text: "\u0110\u01B0\u1EDDng g\u1EA5p kh\xFAc: c\u1ED9ng c\xE1c \u0111o\u1EA1n\nH\xECnh t\u1EE9 gi\xE1c: 4 c\u1EA1nh, 4 \u0111\u1EC9nh",
+                planeShape: {
+                  kind: "rectangle",
+                  formula: "H\xECnh t\u1EE9 gi\xE1c: 4 c\u1EA1nh \xB7 4 \u0111\u1EC9nh"
+                },
+                ruler: {
+                  lengthCm: 10,
+                  measure: { from: 0, to: 10 },
+                  label: "\u0110\u01B0\u1EDDng g\u1EA5p kh\xFAc: c\u1ED9ng \u0111\u1ED9 d\xE0i c\xE1c \u0111o\u1EA1n l\u1EA1i"
+                }
               }
             },
             {
@@ -40347,7 +40675,17 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "1 ng\xE0y = 24 gi\u1EDD\nS\xE1ng \xB7 Tr\u01B0a \xB7 Chi\u1EC1u \xB7 T\u1ED1i"
+                text: "1 ng\xE0y = 24 gi\u1EDD\nS\xE1ng \xB7 Tr\u01B0a \xB7 Chi\u1EC1u \xB7 T\u1ED1i",
+                clock: { hour: 8, minute: 0, timeText: "8 gi\u1EDD" },
+                table: {
+                  headers: ["\u0110\u1EA1i l\u01B0\u1EE3ng", "B\u1EB1ng"],
+                  rows: [
+                    ["1 ng\xE0y", "24 gi\u1EDD"],
+                    ["Bu\u1ED5i s\xE1ng", "0 gi\u1EDD \u2192 11 gi\u1EDD"],
+                    ["Bu\u1ED5i chi\u1EC1u", "12 gi\u1EDD \u2192 23 gi\u1EDD"]
+                  ],
+                  label: "Ng\xE0y v\xE0 gi\u1EDD"
+                }
               }
             },
             {
@@ -40402,7 +40740,17 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "1 gi\u1EDD = 60 ph\xFAt\nKim ng\u1EAFn \u2192 gi\u1EDD\nKim d\xE0i  \u2192 ph\xFAt"
+                text: "1 gi\u1EDD = 60 ph\xFAt\nKim ng\u1EAFn \u2192 gi\u1EDD\nKim d\xE0i  \u2192 ph\xFAt",
+                clock: { hour: 3, minute: 30, timeText: "3 gi\u1EDD 30 ph\xFAt" },
+                table: {
+                  headers: ["\u0110\u1EA1i l\u01B0\u1EE3ng", "B\u1EB1ng"],
+                  rows: [
+                    ["1 gi\u1EDD", "60 ph\xFAt"],
+                    ["Kim d\xE0i ch\u1EC9 s\u1ED1 12", "\u0111\xFAng gi\u1EDD"],
+                    ["Kim d\xE0i ch\u1EC9 s\u1ED1 6", "30 ph\xFAt"]
+                  ],
+                  label: "Gi\u1EDD v\xE0 ph\xFAt"
+                }
               }
             },
             {
@@ -40467,7 +40815,18 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "Kim d\xE0i s\u1ED1 12 \u2192 3 gi\u1EDD 00 ph\xFAt\nKim d\xE0i s\u1ED1 3  \u2192 3 gi\u1EDD 15 ph\xFAt\nKim d\xE0i s\u1ED1 6  \u2192 3 gi\u1EDD 30 ph\xFAt\nKim d\xE0i s\u1ED1 9  \u2192 3 gi\u1EDD 45 ph\xFAt"
+                text: "Kim d\xE0i s\u1ED1 12 \u2192 3 gi\u1EDD 00 ph\xFAt\nKim d\xE0i s\u1ED1 3  \u2192 3 gi\u1EDD 15 ph\xFAt\nKim d\xE0i s\u1ED1 6  \u2192 3 gi\u1EDD 30 ph\xFAt\nKim d\xE0i s\u1ED1 9  \u2192 3 gi\u1EDD 45 ph\xFAt",
+                clock: { hour: 3, minute: 30, timeText: "3 gi\u1EDD 30 ph\xFAt" },
+                table: {
+                  headers: ["Kim d\xE0i ch\u1EC9", "\u0110\u1ECDc l\xE0"],
+                  rows: [
+                    ["S\u1ED1 12", "3 gi\u1EDD 00 ph\xFAt"],
+                    ["S\u1ED1 3", "3 gi\u1EDD 15 ph\xFAt"],
+                    ["S\u1ED1 6", "3 gi\u1EDD 30 ph\xFAt"],
+                    ["S\u1ED1 9", "3 gi\u1EDD 45 ph\xFAt"]
+                  ],
+                  label: "Xem \u0111\u1ED3ng h\u1ED3 ch\u1EC9 gi\u1EDD v\xE0 ph\xFAt"
+                }
               }
             },
             {
@@ -40541,7 +40900,16 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "31 ng\xE0y: 1, 3, 5, 7, 8, 10, 12\n30 ng\xE0y: 4, 6, 9, 11\nTh\xE1ng 2: 28 ho\u1EB7c 29 ng\xE0y"
+                text: "31 ng\xE0y: 1, 3, 5, 7, 8, 10, 12\n30 ng\xE0y: 4, 6, 9, 11\nTh\xE1ng 2: 28 ho\u1EB7c 29 ng\xE0y",
+                table: {
+                  headers: ["S\u1ED1 ng\xE0y", "C\xE1c th\xE1ng"],
+                  rows: [
+                    ["31 ng\xE0y", "1, 3, 5, 7, 8, 10, 12"],
+                    ["30 ng\xE0y", "4, 6, 9, 11"],
+                    ["28 ho\u1EB7c 29 ng\xE0y", "Th\xE1ng 2"]
+                  ],
+                  label: "Ng\xE0y v\xE0 th\xE1ng \u2014 m\u1ED9t n\u0103m c\xF3 12 th\xE1ng"
+                }
               }
             },
             {
@@ -40605,7 +40973,12 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "L\u1ECBch th\xE1ng: m\u1ED7i c\u1ED9t l\xE0 m\u1ED9t th\u1EE9\nH\xE0ng \u0111\u1EA7u: Th\u1EE9 Hai \xB7 Th\u1EE9 Ba \xB7 Th\u1EE9 T\u01B0 \xB7 ..."
+                text: "L\u1ECBch th\xE1ng: m\u1ED7i c\u1ED9t l\xE0 m\u1ED9t th\u1EE9\nH\xE0ng \u0111\u1EA7u: Th\u1EE9 Hai \xB7 Th\u1EE9 Ba \xB7 Th\u1EE9 T\u01B0 \xB7 ...",
+                table: {
+                  headers: ["Th\u1EE9 Ba", "Th\u1EE9 T\u01B0", "Th\u1EE9 N\u0103m", "Th\u1EE9 S\xE1u", "Th\u1EE9 B\u1EA3y"],
+                  rows: [[14, 15, 16, 17, 18]],
+                  label: "Ng\xE0y 15 n\u1EB1m \u1EDF c\u1ED9t Th\u1EE9 Ba th\xEC ng\xE0y 15 l\xE0 th\u1EE9 Ba"
+                }
               }
             },
             {
@@ -40665,7 +41038,13 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "7 gi\u1EDD t\u1ED1i \u2192 8 gi\u1EDD t\u1ED1i: 1 gi\u1EDD\n19 gi\u1EDD \u2192 21 gi\u1EDD: 2 gi\u1EDD"
+                text: "7 gi\u1EDD t\u1ED1i \u2192 8 gi\u1EDD t\u1ED1i: 1 gi\u1EDD\n19 gi\u1EDD \u2192 21 gi\u1EDD: 2 gi\u1EDD",
+                clock: { hour: 7, minute: 0, timeText: "7 gi\u1EDD t\u1ED1i = 19 gi\u1EDD" },
+                table: {
+                  headers: ["T\u1EEB", "\u0110\u1EBFn", "\u0110\u01B0\u1EE3c"],
+                  rows: [["7 gi\u1EDD", "8 gi\u1EDD", "1 gi\u1EDD"], ["19 gi\u1EDD", "21 gi\u1EDD", "2 gi\u1EDD"]],
+                  label: "Th\u1EF1c h\xE0nh xem \u0111\u1ED3ng h\u1ED3"
+                }
               }
             },
             {
@@ -40733,7 +41112,17 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "1 ng\xE0y = 24 gi\u1EDD\n1 gi\u1EDD = 60 ph\xFAt\n1 tu\u1EA7n = 7 ng\xE0y"
+                text: "1 ng\xE0y = 24 gi\u1EDD\n1 gi\u1EDD = 60 ph\xFAt\n1 tu\u1EA7n = 7 ng\xE0y",
+                table: {
+                  headers: ["\u0110\u1EA1i l\u01B0\u1EE3ng", "B\u1EB1ng"],
+                  rows: [
+                    ["1 ng\xE0y", "24 gi\u1EDD"],
+                    ["1 gi\u1EDD", "60 ph\xFAt"],
+                    ["1 tu\u1EA7n", "7 ng\xE0y"],
+                    ["1 n\u0103m", "12 th\xE1ng"]
+                  ],
+                  label: "Luy\u1EC7n t\u1EADp chung ch\u1EE7 \u0111\u1EC1 6"
+                }
               }
             },
             {
@@ -40804,7 +41193,13 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "9 + 5 = 14\n14 \u2212 5 = 9\n14 \u2212 9 = 5"
+                text: "9 + 5 = 14\n14 \u2212 5 = 9\n14 \u2212 9 = 5",
+                operation: { left: 9, sign: "+", right: 5, result: 14 },
+                table: {
+                  headers: ["Ph\xE9p t\xEDnh", "K\u1EBFt qu\u1EA3"],
+                  rows: [["9 + 5", "14"], ["14 \u2212 5", "9"], ["14 \u2212 9", "5"]],
+                  label: "\xD4n t\u1EADp c\u1ED9ng tr\u1EEB trong ph\u1EA1m vi 20"
+                }
               }
             },
             {
@@ -40868,7 +41263,13 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "  38          52\n+ 25        \u2212 27\n  63          25"
+                text: "  38          52\n+ 25        \u2212 27\n  63          25",
+                operation: { left: 38, sign: "+", right: 25, result: 63 },
+                table: {
+                  headers: ["Ph\xE9p t\xEDnh", "K\u1EBFt qu\u1EA3"],
+                  rows: [["38 + 25", "63"], ["52 \u2212 27", "25"]],
+                  label: "\xD4n t\u1EADp c\u1ED9ng tr\u1EEB trong ph\u1EA1m vi 100"
+                }
               }
             },
             {
@@ -40932,7 +41333,16 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "\u0110\u01B0\u1EDDng g\u1EA5p kh\xFAc: c\u1ED9ng c\xE1c \u0111o\u1EA1n l\u1EA1i\nT\u1EE9 gi\xE1c: 4 c\u1EA1nh \xB7 4 \u0111\u1EC9nh"
+                text: "\u0110\u01B0\u1EDDng g\u1EA5p kh\xFAc: c\u1ED9ng c\xE1c \u0111o\u1EA1n l\u1EA1i\nT\u1EE9 gi\xE1c: 4 c\u1EA1nh \xB7 4 \u0111\u1EC9nh",
+                planeShape: {
+                  kind: "rectangle",
+                  formula: "H\xECnh t\u1EE9 gi\xE1c: 4 c\u1EA1nh \xB7 4 \u0111\u1EC9nh"
+                },
+                ruler: {
+                  lengthCm: 10,
+                  measure: { from: 0, to: 10 },
+                  label: "\u0110\u1ED9 d\xE0i \u0111\u01B0\u1EDDng g\u1EA5p kh\xFAc b\u1EB1ng t\u1ED5ng \u0111\u1ED9 d\xE0i c\xE1c \u0111o\u1EA1n th\u1EB3ng"
+                }
               }
             },
             {
@@ -40987,7 +41397,21 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "1 dm = 10 cm\n\u0110\u1ED9 d\xE0i: cm, dm\nKh\u1ED1i l\u01B0\u1EE3ng: kg\nDung t\xEDch: l"
+                text: "1 dm = 10 cm\n\u0110\u1ED9 d\xE0i: cm, dm\nKh\u1ED1i l\u01B0\u1EE3ng: kg\nDung t\xEDch: l",
+                ruler: {
+                  lengthCm: 10,
+                  measure: { from: 0, to: 10 },
+                  label: "1 dm = 10 cm"
+                },
+                table: {
+                  headers: ["\u0110\u1EA1i l\u01B0\u1EE3ng", "\u0110\u01A1n v\u1ECB \u0111o"],
+                  rows: [
+                    ["\u0110\u1ED9 d\xE0i", "cm \xB7 dm \xB7 m \xB7 km"],
+                    ["Kh\u1ED1i l\u01B0\u1EE3ng", "kg"],
+                    ["Dung t\xEDch", "l"]
+                  ],
+                  label: "\xD4n t\u1EADp \u0111o l\u01B0\u1EDDng"
+                }
               }
             },
             {
@@ -41051,7 +41475,13 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "Kim d\xE0i s\u1ED1 12 \u2192 4 gi\u1EDD 00 ph\xFAt\nKim d\xE0i s\u1ED1 6  \u2192 4 gi\u1EDD 30 ph\xFAt"
+                text: "Kim d\xE0i s\u1ED1 12 \u2192 4 gi\u1EDD 00 ph\xFAt\nKim d\xE0i s\u1ED1 6  \u2192 4 gi\u1EDD 30 ph\xFAt",
+                clock: { hour: 4, minute: 30, timeText: "4 gi\u1EDD 30 ph\xFAt" },
+                table: {
+                  headers: ["Kim d\xE0i ch\u1EC9", "\u0110\u1ECDc l\xE0"],
+                  rows: [["S\u1ED1 12", "4 gi\u1EDD 00 ph\xFAt"], ["S\u1ED1 6", "4 gi\u1EDD 30 ph\xFAt"]],
+                  label: "\xD4n t\u1EADp xem \u0111\u1ED3ng h\u1ED3 \u2014 m\u1ED9t n\u0103m c\xF3 12 th\xE1ng"
+                }
               }
             },
             {
@@ -41106,7 +41536,18 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "S\u1ED1 \u0111\u1EBFn 100 \xB7 C\u1ED9ng tr\u1EEB \xB7 kg v\xE0 l \xB7 H\xECnh ph\u1EB3ng \xB7 Gi\u1EDD v\xE0 l\u1ECBch"
+                text: "S\u1ED1 \u0111\u1EBFn 100 \xB7 C\u1ED9ng tr\u1EEB \xB7 kg v\xE0 l \xB7 H\xECnh ph\u1EB3ng \xB7 Gi\u1EDD v\xE0 l\u1ECBch",
+                table: {
+                  headers: ["M\u1EA1ch ki\u1EBFn th\u1EE9c", "V\xED d\u1EE5"],
+                  rows: [
+                    ["S\u1ED1 \u0111\u1EBFn 100", "58 < 85"],
+                    ["C\u1ED9ng tr\u1EEB", "38 + 25 = 63"],
+                    ["\u0110o l\u01B0\u1EDDng", "5 kg \xB7 2 l"],
+                    ["H\xECnh ph\u1EB3ng", "\u0111\u01B0\u1EDDng g\u1EA5p kh\xFAc, t\u1EE9 gi\xE1c"],
+                    ["Gi\u1EDD v\xE0 l\u1ECBch", "4 gi\u1EDD 30 ph\xFAt"]
+                  ],
+                  label: "\xD4n t\u1EADp chung h\u1ECDc k\xEC 1"
+                }
               }
             },
             {
@@ -41181,7 +41622,23 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "3 khay, m\u1ED7i khay 2 qu\u1EA3 cam: 2 + 2 + 2 = 6 \u2014 vi\u1EBFt g\u1ECDn l\xE0 2 \xD7 3 = 6"
+                text: "3 khay, m\u1ED7i khay 2 qu\u1EA3 cam: 2 + 2 + 2 = 6 \u2014 vi\u1EBFt g\u1ECDn l\xE0 2 \xD7 3 = 6",
+                tenFrame: {
+                  filled: 6,
+                  total: 10,
+                  emoji: "\u{1F34A}",
+                  label: "3 khay, m\u1ED7i khay 2 qu\u1EA3: 2 + 2 + 2 = 6"
+                },
+                table: {
+                  headers: ["Khay", "S\u1ED1 qu\u1EA3"],
+                  rows: [
+                    ["Khay 1", 2],
+                    ["Khay 2", 2],
+                    ["Khay 3", 2],
+                    ["T\u1ED5ng", "2 \xD7 3 = 6"]
+                  ],
+                  label: "Vi\u1EBFt g\u1ECDn 2 + 2 + 2 = 6 th\xE0nh 2 \xD7 3 = 6"
+                }
               }
             },
             {
@@ -41242,7 +41699,27 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "2 + 2 + 2 + 2 + 2 = 10  \u2192  2 \xD7 5 = 10  (2 \u0111\u01B0\u1EE3c l\u1EA5y 5 l\u1EA7n)"
+                text: "2 + 2 + 2 + 2 + 2 = 10  \u2192  2 \xD7 5 = 10  (2 \u0111\u01B0\u1EE3c l\u1EA5y 5 l\u1EA7n)",
+                numberLine: {
+                  from: 0,
+                  to: 10,
+                  step: 2,
+                  marks: [0, 2, 4, 6, 8, 10],
+                  hops: [
+                    { from: 0, to: 2, label: "1" },
+                    { from: 2, to: 4, label: "2" },
+                    { from: 4, to: 6, label: "3" }
+                  ],
+                  label: "2 \u0111\u01B0\u1EE3c l\u1EA5y 5 l\u1EA7n: 2 \xD7 5 = 10"
+                },
+                table: {
+                  headers: ["T\u1ED5ng c\xE1c s\u1ED1 h\u1EA1ng b\u1EB1ng nhau", "Vi\u1EBFt g\u1ECDn"],
+                  rows: [
+                    ["2 + 2 + 2 + 2 + 2", "2 \xD7 5 = 10"],
+                    ["4 + 4 + 4", "4 \xD7 3 = 12"]
+                  ],
+                  label: "Vi\u1EBFt ph\xE9p nh\xE2n t\u1EEB t\u1ED5ng c\xE1c s\u1ED1 h\u1EA1ng b\u1EB1ng nhau"
+                }
               }
             },
             {
@@ -41297,7 +41774,13 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "2  \xD7  3  =  6\nth\u1EEBa s\u1ED1 \xB7 th\u1EEBa s\u1ED1 \xB7 t\xEDch"
+                text: "2  \xD7  3  =  6\nth\u1EEBa s\u1ED1 \xB7 th\u1EEBa s\u1ED1 \xB7 t\xEDch",
+                operation: { left: 2, sign: "\xD7", right: 3, result: 6 },
+                table: {
+                  headers: ["Th\u1EEBa s\u1ED1", "Th\u1EEBa s\u1ED1", "T\xEDch"],
+                  rows: [[2, 3, 6]],
+                  label: "Th\u1EEBa s\u1ED1 v\xE0 T\xEDch"
+                }
               }
             },
             {
@@ -41361,7 +41844,25 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "2  \xB7  4  \xB7  6  \xB7  8  \xB7  10\n2\xD71  2\xD72  2\xD73  2\xD74  2\xD75"
+                text: "2  \xB7  4  \xB7  6  \xB7  8  \xB7  10\n2\xD71  2\xD72  2\xD73  2\xD74  2\xD75",
+                numberLine: {
+                  from: 2,
+                  to: 10,
+                  step: 2,
+                  marks: [2, 4, 6, 8, 10],
+                  label: "\u0110\u1EBFm th\xEAm 2: 2 \xB7 4 \xB7 6 \xB7 8 \xB7 10"
+                },
+                table: {
+                  headers: ["Ph\xE9p nh\xE2n", "K\u1EBFt qu\u1EA3"],
+                  rows: [
+                    ["2 \xD7 1", "2"],
+                    ["2 \xD7 2", "4"],
+                    ["2 \xD7 3", "6"],
+                    ["2 \xD7 4", "8"],
+                    ["2 \xD7 5", "10"]
+                  ],
+                  label: "B\u1EA3ng nh\xE2n 2 (t\u1EEB 2 \xD7 1 \u0111\u1EBFn 2 \xD7 5)"
+                }
               }
             },
             {
@@ -41416,7 +41917,25 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "12 \xB7 14 \xB7 16 \xB7 18 \xB7 20\n2\xD76  2\xD77  2\xD78  2\xD79  2\xD710"
+                text: "12 \xB7 14 \xB7 16 \xB7 18 \xB7 20\n2\xD76  2\xD77  2\xD78  2\xD79  2\xD710",
+                numberLine: {
+                  from: 12,
+                  to: 20,
+                  step: 2,
+                  marks: [12, 14, 16, 18, 20],
+                  label: "\u0110\u1EBFm th\xEAm 2: 12 \xB7 14 \xB7 16 \xB7 18 \xB7 20"
+                },
+                table: {
+                  headers: ["Ph\xE9p nh\xE2n", "K\u1EBFt qu\u1EA3"],
+                  rows: [
+                    ["2 \xD7 6", "12"],
+                    ["2 \xD7 7", "14"],
+                    ["2 \xD7 8", "16"],
+                    ["2 \xD7 9", "18"],
+                    ["2 \xD7 10", "20"]
+                  ],
+                  label: "B\u1EA3ng nh\xE2n 2 (t\u1EEB 2 \xD7 6 \u0111\u1EBFn 2 \xD7 10)"
+                }
               }
             },
             {
@@ -41479,7 +41998,15 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "M\u1ED7i con cua c\xF3 2 c\xE1i c\xE0ng.\n7 con cua c\xF3: 2 \xD7 7 = 14 (c\xE1i c\xE0ng)"
+                text: "M\u1ED7i con cua c\xF3 2 c\xE1i c\xE0ng.\n7 con cua c\xF3: 2 \xD7 7 = 14 (c\xE1i c\xE0ng)",
+                operation: { left: 2, sign: "\xD7", right: 7, result: 14 },
+                tenFrame: {
+                  filled: 10,
+                  total: 10,
+                  emoji: "\u{1F980}",
+                  extra: 4,
+                  label: "7 con cua, m\u1ED7i con 2 c\xE0ng: 2 \xD7 7 = 14 c\xE1i c\xE0ng"
+                }
               }
             },
             {
@@ -41543,7 +42070,25 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "5  \xB7  10  \xB7  15  \xB7  20  \xB7  25\n5\xD71   5\xD72   5\xD73   5\xD74   5\xD75"
+                text: "5  \xB7  10  \xB7  15  \xB7  20  \xB7  25\n5\xD71   5\xD72   5\xD73   5\xD74   5\xD75",
+                numberLine: {
+                  from: 5,
+                  to: 25,
+                  step: 5,
+                  marks: [5, 10, 15, 20, 25],
+                  label: "\u0110\u1EBFm th\xEAm 5: 5 \xB7 10 \xB7 15 \xB7 20 \xB7 25"
+                },
+                table: {
+                  headers: ["Ph\xE9p nh\xE2n", "K\u1EBFt qu\u1EA3"],
+                  rows: [
+                    ["5 \xD7 1", "5"],
+                    ["5 \xD7 2", "10"],
+                    ["5 \xD7 3", "15"],
+                    ["5 \xD7 4", "20"],
+                    ["5 \xD7 5", "25"]
+                  ],
+                  label: "B\u1EA3ng nh\xE2n 5 (t\u1EEB 5 \xD7 1 \u0111\u1EBFn 5 \xD7 5)"
+                }
               }
             },
             {
@@ -41598,7 +42143,25 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "30 \xB7 35 \xB7 40 \xB7 45 \xB7 50\n5\xD76  5\xD77  5\xD78  5\xD79  5\xD710"
+                text: "30 \xB7 35 \xB7 40 \xB7 45 \xB7 50\n5\xD76  5\xD77  5\xD78  5\xD79  5\xD710",
+                numberLine: {
+                  from: 30,
+                  to: 50,
+                  step: 5,
+                  marks: [30, 35, 40, 45, 50],
+                  label: "\u0110\u1EBFm th\xEAm 5: 30 \xB7 35 \xB7 40 \xB7 45 \xB7 50"
+                },
+                table: {
+                  headers: ["Ph\xE9p nh\xE2n", "K\u1EBFt qu\u1EA3"],
+                  rows: [
+                    ["5 \xD7 6", "30"],
+                    ["5 \xD7 7", "35"],
+                    ["5 \xD7 8", "40"],
+                    ["5 \xD7 9", "45"],
+                    ["5 \xD7 10", "50"]
+                  ],
+                  label: "B\u1EA3ng nh\xE2n 5 (t\u1EEB 5 \xD7 6 \u0111\u1EBFn 5 \xD7 10)"
+                }
               }
             },
             {
@@ -41653,7 +42216,13 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "5 \xD7 3 = 15   v\xE0   3 \xD7 5 = 15\n\u0110\u1ED5i ch\u1ED7 hai th\u1EEBa s\u1ED1, t\xEDch kh\xF4ng \u0111\u1ED5i."
+                text: "5 \xD7 3 = 15   v\xE0   3 \xD7 5 = 15\n\u0110\u1ED5i ch\u1ED7 hai th\u1EEBa s\u1ED1, t\xEDch kh\xF4ng \u0111\u1ED5i.",
+                operation: { left: 5, sign: "\xD7", right: 3, result: 15 },
+                table: {
+                  headers: ["Ph\xE9p t\xEDnh", "T\xEDch"],
+                  rows: [["5 \xD7 3", "15"], ["3 \xD7 5", "15"]],
+                  label: "\u0110\u1ED5i ch\u1ED7 hai th\u1EEBa s\u1ED1 th\xEC t\xEDch kh\xF4ng \u0111\u1ED5i"
+                }
               }
             },
             {
@@ -41722,7 +42291,13 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "10 qu\u1EA3 cam chia v\xE0o 2 \u0111\u0129a, m\u1ED7i \u0111\u0129a 5 qu\u1EA3\n10 : 2 = 5"
+                text: "10 qu\u1EA3 cam chia v\xE0o 2 \u0111\u0129a, m\u1ED7i \u0111\u0129a 5 qu\u1EA3\n10 : 2 = 5",
+                operation: { left: 10, sign: ":", right: 2, result: 5 },
+                fractionCircle: {
+                  parts: 2,
+                  shaded: 1,
+                  label: "10 qu\u1EA3 chia th\xE0nh 2 ph\u1EA7n b\u1EB1ng nhau, m\u1ED7i ph\u1EA7n 5 qu\u1EA3"
+                }
               }
             },
             {
@@ -41777,7 +42352,13 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "10  :  2  =  5\ns\u1ED1 b\u1ECB chia \xB7 s\u1ED1 chia \xB7 th\u01B0\u01A1ng"
+                text: "10  :  2  =  5\ns\u1ED1 b\u1ECB chia \xB7 s\u1ED1 chia \xB7 th\u01B0\u01A1ng",
+                operation: { left: 10, sign: ":", right: 2, result: 5 },
+                table: {
+                  headers: ["S\u1ED1 b\u1ECB chia", "S\u1ED1 chia", "Th\u01B0\u01A1ng"],
+                  rows: [[10, 2, 5]],
+                  label: "S\u1ED1 b\u1ECB chia \u2013 S\u1ED1 chia \u2013 Th\u01B0\u01A1ng"
+                }
               }
             },
             {
@@ -41841,7 +42422,13 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "2 \xD7 3 = 6   \u2192   6 : 2 = 3   v\xE0   6 : 3 = 2"
+                text: "2 \xD7 3 = 6   \u2192   6 : 2 = 3   v\xE0   6 : 3 = 2",
+                operation: { left: 2, sign: "\xD7", right: 3, result: 6 },
+                table: {
+                  headers: ["Ph\xE9p t\xEDnh", "K\u1EBFt qu\u1EA3"],
+                  rows: [["2 \xD7 3", "6"], ["6 : 2", "3"], ["6 : 3", "2"]],
+                  label: "T\u1EEB m\u1ED9t ph\xE9p nh\xE2n vi\u1EBFt \u0111\u01B0\u1EE3c hai ph\xE9p chia"
+                }
               }
             },
             {
@@ -41901,7 +42488,30 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "B\u1EA3ng nh\xE2n 2:  2\xD71=2  2\xD72=4  2\xD73=6 ...\nB\u1EA3ng chia 2:  2:2=1  4:2=2  6:2=3 ..."
+                text: "B\u1EA3ng nh\xE2n 2:  2\xD71=2  2\xD72=4  2\xD73=6 ...\nB\u1EA3ng chia 2:  2:2=1  4:2=2  6:2=3 ...",
+                table: {
+                  headers: ["Ph\xE9p chia", "K\u1EBFt qu\u1EA3"],
+                  rows: [
+                    ["2 : 2", "1"],
+                    ["4 : 2", "2"],
+                    ["6 : 2", "3"],
+                    ["8 : 2", "4"],
+                    ["10 : 2", "5"],
+                    ["12 : 2", "6"],
+                    ["14 : 2", "7"],
+                    ["16 : 2", "8"],
+                    ["18 : 2", "9"],
+                    ["20 : 2", "10"]
+                  ],
+                  label: "B\u1EA3ng chia 2"
+                },
+                numberLine: {
+                  from: 2,
+                  to: 20,
+                  step: 2,
+                  marks: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20],
+                  label: "B\u1EA3ng chia 2 d\u1EF1a v\xE0o b\u1EA3ng nh\xE2n 2"
+                }
               }
             },
             {
@@ -41965,7 +42575,24 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "C\u1EEDa h\xE0ng c\xF3 40 b\xF4ng hoa, b\xF3 m\u1ED7i b\xF3 5 b\xF4ng:\n40 : 5 = 8 (b\xF3 hoa)"
+                text: "C\u1EEDa h\xE0ng c\xF3 40 b\xF4ng hoa, b\xF3 m\u1ED7i b\xF3 5 b\xF4ng:\n40 : 5 = 8 (b\xF3 hoa)",
+                operation: { left: 40, sign: ":", right: 5, result: 8 },
+                table: {
+                  headers: ["Ph\xE9p chia", "K\u1EBFt qu\u1EA3"],
+                  rows: [
+                    ["5 : 5", "1"],
+                    ["10 : 5", "2"],
+                    ["15 : 5", "3"],
+                    ["20 : 5", "4"],
+                    ["25 : 5", "5"],
+                    ["30 : 5", "6"],
+                    ["35 : 5", "7"],
+                    ["40 : 5", "8"],
+                    ["45 : 5", "9"],
+                    ["50 : 5", "10"]
+                  ],
+                  label: "B\u1EA3ng chia 5 \u2014 40 : 5 = 8 b\xF3 hoa"
+                }
               }
             },
             {
@@ -42028,7 +42655,13 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "\xD4 \u0103n quan: 10 \xF4, m\u1ED7i \xF4 5 vi\xEAn s\u1ECFi\n5 \xD7 10 = 50 (vi\xEAn s\u1ECFi)"
+                text: "\xD4 \u0103n quan: 10 \xF4, m\u1ED7i \xF4 5 vi\xEAn s\u1ECFi\n5 \xD7 10 = 50 (vi\xEAn s\u1ECFi)",
+                operation: { left: 5, sign: "\xD7", right: 10, result: 50 },
+                table: {
+                  headers: ["Ph\xE9p t\xEDnh", "K\u1EBFt qu\u1EA3"],
+                  rows: [["5 \xD7 10", "50"], ["50 : 5", "10"], ["50 : 10", "5"]],
+                  label: "\xD4 \u0103n quan: 10 \xF4, m\u1ED7i \xF4 5 vi\xEAn s\u1ECFi"
+                }
               }
             },
             {
@@ -42092,7 +42725,17 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "Gieo x\xFAc x\u1EAFc \u2192 t\xECm ph\xE9p t\xEDnh c\xF3 k\u1EBFt qu\u1EA3 b\u1EB1ng s\u1ED1 ch\u1EA5m\n6 ch\u1EA5m? 2 \xD7 3 = 6 ho\u1EB7c 12 : 2 = 6!"
+                text: "Gieo x\xFAc x\u1EAFc \u2192 t\xECm ph\xE9p t\xEDnh c\xF3 k\u1EBFt qu\u1EA3 b\u1EB1ng s\u1ED1 ch\u1EA5m\n6 ch\u1EA5m? 2 \xD7 3 = 6 ho\u1EB7c 12 : 2 = 6!",
+                table: {
+                  headers: ["S\u1ED1 ch\u1EA5m", "Ph\xE9p t\xEDnh c\xF3 k\u1EBFt qu\u1EA3 b\u1EB1ng s\u1ED1 ch\u1EA5m"],
+                  rows: [
+                    ["6", "2 \xD7 3 = 6"],
+                    ["6", "12 : 2 = 6"],
+                    ["15", "5 \xD7 3 = 15"],
+                    ["8", "2 \xD7 4 = 8"]
+                  ],
+                  label: "Tr\xF2 ch\u01A1i x\xFAc x\u1EAFc: gieo \u0111\u01B0\u1EE3c m\u1EA5y ch\u1EA5m th\xEC t\xECm ph\xE9p t\xEDnh c\xF3 k\u1EBFt qu\u1EA3 b\u1EB1ng s\u1ED1 \u0111\xF3"
+                }
               }
             },
             {
@@ -42172,7 +42815,13 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "Kh\u1ED1i tr\u1EE5: hai m\u1EB7t tr\xF2n \u1EDF hai \u0111\u1EA7u\nV\xED d\u1EE5: lon s\u1EEFa, h\u1ED9p qu\xE0, c\xE2y n\u1EBFn"
+                text: "Kh\u1ED1i tr\u1EE5: hai m\u1EB7t tr\xF2n \u1EDF hai \u0111\u1EA7u\nV\xED d\u1EE5: lon s\u1EEFa, h\u1ED9p qu\xE0, c\xE2y n\u1EBFn",
+                solid: {
+                  kind: "cylinder",
+                  dims: { a: 2, b: 5 },
+                  label: "Kh\u1ED1i tr\u1EE5",
+                  formula: "Hai m\u1EB7t tr\xF2n \u1EDF hai \u0111\u1EA7u"
+                }
               }
             },
             {
@@ -42227,7 +42876,13 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "Kh\u1ED1i c\u1EA7u: tr\xF2n \u0111\u1EC1u, kh\xF4ng c\xF3 m\u1EB7t ph\u1EB3ng\nV\xED d\u1EE5: qu\u1EA3 b\xF3ng, vi\xEAn bi, qu\u1EA3 \u0111\u1ECBa c\u1EA7u"
+                text: "Kh\u1ED1i c\u1EA7u: tr\xF2n \u0111\u1EC1u, kh\xF4ng c\xF3 m\u1EB7t ph\u1EB3ng\nV\xED d\u1EE5: qu\u1EA3 b\xF3ng, vi\xEAn bi, qu\u1EA3 \u0111\u1ECBa c\u1EA7u",
+                solid: {
+                  kind: "sphere",
+                  dims: { a: 3 },
+                  label: "Kh\u1ED1i c\u1EA7u",
+                  formula: "Tr\xF2n \u0111\u1EC1u, kh\xF4ng c\xF3 m\u1EB7t ph\u1EB3ng"
+                }
               }
             },
             {
@@ -42282,7 +42937,20 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "Kh\u1ED1i tr\u1EE5  \u2192  x\u1EBFp ch\u1ED3ng \u0111\u01B0\u1EE3c\nKh\u1ED1i c\u1EA7u  \u2192  l\u0103n m\u1ECDi h\u01B0\u1EDBng, kh\xF4ng x\u1EBFp ch\u1ED3ng \u0111\u01B0\u1EE3c"
+                text: "Kh\u1ED1i tr\u1EE5  \u2192  x\u1EBFp ch\u1ED3ng \u0111\u01B0\u1EE3c\nKh\u1ED1i c\u1EA7u  \u2192  l\u0103n m\u1ECDi h\u01B0\u1EDBng, kh\xF4ng x\u1EBFp ch\u1ED3ng \u0111\u01B0\u1EE3c",
+                solid: {
+                  kind: "cylinder",
+                  dims: { a: 2, b: 5 },
+                  label: "Kh\u1ED1i tr\u1EE5 \u2014 \u0111\u1EB7t \u0111\u1EE9ng v\xE0 x\u1EBFp ch\u1ED3ng \u0111\u01B0\u1EE3c"
+                },
+                table: {
+                  headers: ["Kh\u1ED1i", "\u0110\u1EB7c \u0111i\u1EC3m"],
+                  rows: [
+                    ["Kh\u1ED1i tr\u1EE5", "\u0111\u1EB7t \u0111\u1EE9ng \u0111\u01B0\u1EE3c, x\u1EBFp ch\u1ED3ng \u0111\u01B0\u1EE3c"],
+                    ["Kh\u1ED1i c\u1EA7u", "l\u0103n m\u1ECDi h\u01B0\u1EDBng, kh\xF4ng x\u1EBFp ch\u1ED3ng \u0111\u01B0\u1EE3c"]
+                  ],
+                  label: "So s\xE1nh kh\u1ED1i tr\u1EE5 v\xE0 kh\u1ED1i c\u1EA7u"
+                }
               }
             },
             {
@@ -42341,7 +43009,15 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "Kh\u1ED1i tr\u1EE5: h\u1ED9p s\u1EEFa \xB7 lon n\u01B0\u1EDBc \xB7 c\xE2y n\u1EBFn\nKh\u1ED1i c\u1EA7u: qu\u1EA3 b\xF3ng \xB7 vi\xEAn bi \xB7 qu\u1EA3 \u0111\u1ECBa c\u1EA7u"
+                text: "Kh\u1ED1i tr\u1EE5: h\u1ED9p s\u1EEFa \xB7 lon n\u01B0\u1EDBc \xB7 c\xE2y n\u1EBFn\nKh\u1ED1i c\u1EA7u: qu\u1EA3 b\xF3ng \xB7 vi\xEAn bi \xB7 qu\u1EA3 \u0111\u1ECBa c\u1EA7u",
+                table: {
+                  headers: ["Kh\u1ED1i", "V\xED d\u1EE5 quanh em"],
+                  rows: [
+                    ["Kh\u1ED1i tr\u1EE5", "h\u1ED9p s\u1EEFa \xB7 lon n\u01B0\u1EDBc \xB7 c\xE2y n\u1EBFn"],
+                    ["Kh\u1ED1i c\u1EA7u", "qu\u1EA3 b\xF3ng \xB7 vi\xEAn bi \xB7 qu\u1EA3 \u0111\u1ECBa c\u1EA7u"]
+                  ],
+                  label: "Luy\u1EC7n t\u1EADp chung ch\u1EE7 \u0111\u1EC1 9"
+                }
               }
             },
             {
@@ -42407,7 +43083,21 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "10 \u0111\u01A1n v\u1ECB  \u2192  1 ch\u1EE5c\n10 ch\u1EE5c     \u2192  1 tr\u0103m\n1 tr\u0103m = 100"
+                text: "10 \u0111\u01A1n v\u1ECB  \u2192  1 ch\u1EE5c\n10 ch\u1EE5c     \u2192  1 tr\u0103m\n1 tr\u0103m = 100",
+                placeValue: {
+                  headers: ["Tr\u0103m", "Ch\u1EE5c", "\u0110\u01A1n v\u1ECB"],
+                  digits: [1, 0, 0],
+                  label: "1 tr\u0103m = 100"
+                },
+                table: {
+                  headers: ["\u0110\u1ED5i", "\u0110\u01B0\u1EE3c"],
+                  rows: [
+                    ["10 \u0111\u01A1n v\u1ECB", "1 ch\u1EE5c"],
+                    ["10 ch\u1EE5c", "1 tr\u0103m"],
+                    ["1 tr\u0103m", "100"]
+                  ],
+                  label: "\u0110\u01A1n v\u1ECB, ch\u1EE5c, tr\u0103m"
+                }
               }
             },
             {
@@ -42471,7 +43161,12 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "10 tr\u0103m  \u2192  1 ngh\xECn  \u2192  1000\n999  \u2014  1000"
+                text: "10 tr\u0103m  \u2192  1 ngh\xECn  \u2192  1000\n999  \u2014  1000",
+                placeValue: {
+                  headers: ["Ngh\xECn", "Tr\u0103m", "Ch\u1EE5c", "\u0110\u01A1n v\u1ECB"],
+                  digits: [1, 0, 0, 0],
+                  label: "10 tr\u0103m = 1 ngh\xECn = 1000 \u2014 \u0111\u1ECDc l\xE0 m\u1ED9t ngh\xECn"
+                }
               }
             },
             {
@@ -42535,7 +43230,14 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "100 \xB7 200 \xB7 300 \xB7 400 \xB7 500\n600 \xB7 700 \xB7 800 \xB7 900 \xB7 1000"
+                text: "100 \xB7 200 \xB7 300 \xB7 400 \xB7 500\n600 \xB7 700 \xB7 800 \xB7 900 \xB7 1000",
+                numberLine: {
+                  from: 100,
+                  to: 1e3,
+                  step: 100,
+                  marks: [100, 200, 300, 400, 500, 600, 700, 800, 900, 1e3],
+                  label: "C\xE1c s\u1ED1 tr\xF2n tr\u0103m"
+                }
               }
             },
             {
@@ -42590,7 +43292,19 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "110 \xB7 120 \xB7 130 \xB7 ... \xB7 990\n250 = 2 tr\u0103m + 5 ch\u1EE5c + 0 \u0111\u01A1n v\u1ECB"
+                text: "110 \xB7 120 \xB7 130 \xB7 ... \xB7 990\n250 = 2 tr\u0103m + 5 ch\u1EE5c + 0 \u0111\u01A1n v\u1ECB",
+                numberLine: {
+                  from: 110,
+                  to: 200,
+                  step: 10,
+                  marks: [110, 120, 130, 140, 150, 160, 170, 180, 190, 200],
+                  label: "C\xE1c s\u1ED1 tr\xF2n ch\u1EE5c t\u1EEB 110 \u0111\u1EBFn 200"
+                },
+                placeValue: {
+                  headers: ["Tr\u0103m", "Ch\u1EE5c", "\u0110\u01A1n v\u1ECB"],
+                  digits: [2, 5, 0],
+                  label: "250 = 2 tr\u0103m + 5 ch\u1EE5c + 0 \u0111\u01A1n v\u1ECB"
+                }
               }
             },
             {
@@ -42645,7 +43359,13 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "300  <  500\n240  <  260"
+                text: "300  <  500\n240  <  260",
+                comparison: { left: 300, sign: "<", right: 500 },
+                table: {
+                  headers: ["So s\xE1nh", "V\xEC sao"],
+                  rows: [["300 < 500", "3 < 5"], ["240 < 260", "h\xE0ng ch\u1EE5c 4 < 6"]],
+                  label: "So s\xE1nh c\xE1c s\u1ED1 tr\xF2n tr\u0103m, tr\xF2n ch\u1EE5c"
+                }
               }
             },
             {
@@ -42709,7 +43429,12 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "245\n  \u2502  \u2502  \u2514\u2500\u2500 5 \u0111\u01A1n v\u1ECB\n  \u2502  \u2514\u2500\u2500\u2500\u2500\u2500 4 ch\u1EE5c\n  \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 2 tr\u0103m"
+                text: "245\n  \u2502  \u2502  \u2514\u2500\u2500 5 \u0111\u01A1n v\u1ECB\n  \u2502  \u2514\u2500\u2500\u2500\u2500\u2500 4 ch\u1EE5c\n  \u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 2 tr\u0103m",
+                placeValue: {
+                  headers: ["Tr\u0103m", "Ch\u1EE5c", "\u0110\u01A1n v\u1ECB"],
+                  digits: [2, 4, 5],
+                  label: "245 g\u1ED3m 2 tr\u0103m, 4 ch\u1EE5c v\xE0 5 \u0111\u01A1n v\u1ECB \u2014 \u0111\u1ECDc l\xE0 hai tr\u0103m b\u1ED1n m\u01B0\u01A1i l\u0103m"
+                }
               }
             },
             {
@@ -42769,7 +43494,21 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "405 \u2192 b\u1ED1n tr\u0103m linh n\u0103m\n450 \u2192 b\u1ED1n tr\u0103m n\u0103m m\u01B0\u01A1i\n520 \u2192 n\u0103m tr\u0103m hai m\u01B0\u01A1i"
+                text: "405 \u2192 b\u1ED1n tr\u0103m linh n\u0103m\n450 \u2192 b\u1ED1n tr\u0103m n\u0103m m\u01B0\u01A1i\n520 \u2192 n\u0103m tr\u0103m hai m\u01B0\u01A1i",
+                placeValue: {
+                  headers: ["Tr\u0103m", "Ch\u1EE5c", "\u0110\u01A1n v\u1ECB"],
+                  digits: [4, 0, 5],
+                  label: "405 \u0111\u1ECDc l\xE0 b\u1ED1n tr\u0103m linh n\u0103m"
+                },
+                table: {
+                  headers: ["S\u1ED1", "\u0110\u1ECDc l\xE0"],
+                  rows: [
+                    ["405", "b\u1ED1n tr\u0103m linh n\u0103m"],
+                    ["450", "b\u1ED1n tr\u0103m n\u0103m m\u01B0\u01A1i"],
+                    ["520", "n\u0103m tr\u0103m hai m\u01B0\u01A1i"]
+                  ],
+                  label: "\u0110\u1ECDc v\xE0 vi\u1EBFt s\u1ED1 c\xF3 ba ch\u1EEF s\u1ED1"
+                }
               }
             },
             {
@@ -42838,7 +43577,21 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "245 = 200 + 40 + 5\n376 = 300 + 70 + 6\n405 = 400 + 5"
+                text: "245 = 200 + 40 + 5\n376 = 300 + 70 + 6\n405 = 400 + 5",
+                placeValue: {
+                  headers: ["Tr\u0103m", "Ch\u1EE5c", "\u0110\u01A1n v\u1ECB"],
+                  digits: [2, 4, 5],
+                  label: "245 = 200 + 40 + 5"
+                },
+                table: {
+                  headers: ["S\u1ED1", "Vi\u1EBFt th\xE0nh t\u1ED5ng"],
+                  rows: [
+                    ["245", "200 + 40 + 5"],
+                    ["376", "300 + 70 + 6"],
+                    ["405", "400 + 5"]
+                  ],
+                  label: "Vi\u1EBFt s\u1ED1 th\xE0nh t\u1ED5ng c\xE1c tr\u0103m, ch\u1EE5c, \u0111\u01A1n v\u1ECB"
+                }
               }
             },
             {
@@ -42902,7 +43655,16 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "245  <  254\n(2 = 2; 4 < 5)"
+                text: "245  <  254\n(2 = 2; 4 < 5)",
+                comparison: { left: 245, sign: "<", right: 254 },
+                table: {
+                  headers: ["So s\xE1nh", "V\xEC sao"],
+                  rows: [
+                    ["245 < 254", "h\xE0ng tr\u0103m \u0111\u1EC1u l\xE0 2, h\xE0ng ch\u1EE5c 4 < 5"],
+                    ["376 > 369", "h\xE0ng ch\u1EE5c 7 > 6"]
+                  ],
+                  label: "So s\xE1nh s\u1ED1 c\xF3 ba ch\u1EEF s\u1ED1: so t\u1EEB h\xE0ng tr\u0103m tr\u1EDF xu\u1ED1ng"
+                }
               }
             },
             {
@@ -42966,7 +43728,14 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "B\xE9 \u0111\u1EBFn l\u1EDBn: 199 \xB7 245 \xB7 254\nL\u1EDBn \u0111\u1EBFn b\xE9: 254 \xB7 245 \xB7 199"
+                text: "B\xE9 \u0111\u1EBFn l\u1EDBn: 199 \xB7 245 \xB7 254\nL\u1EDBn \u0111\u1EBFn b\xE9: 254 \xB7 245 \xB7 199",
+                numberLine: {
+                  from: 199,
+                  to: 254,
+                  step: 1,
+                  marks: [199, 245, 254],
+                  label: "B\xE9 \u0111\u1EBFn l\u1EDBn: 199 \xB7 245 \xB7 254 \u2014 l\u1EDBn \u0111\u1EBFn b\xE9: 254 \xB7 245 \xB7 199"
+                }
               }
             },
             {
@@ -43025,7 +43794,21 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "10 \u0111\u01A1n v\u1ECB = 1 ch\u1EE5c\n10 ch\u1EE5c = 1 tr\u0103m\n10 tr\u0103m = 1 ngh\xECn = 1000"
+                text: "10 \u0111\u01A1n v\u1ECB = 1 ch\u1EE5c\n10 ch\u1EE5c = 1 tr\u0103m\n10 tr\u0103m = 1 ngh\xECn = 1000",
+                table: {
+                  headers: ["\u0110\u1ED5i", "\u0110\u01B0\u1EE3c"],
+                  rows: [
+                    ["10 \u0111\u01A1n v\u1ECB", "1 ch\u1EE5c"],
+                    ["10 ch\u1EE5c", "1 tr\u0103m"],
+                    ["10 tr\u0103m", "1 ngh\xECn = 1000"]
+                  ],
+                  label: "Luy\u1EC7n t\u1EADp chung ch\u1EE7 \u0111\u1EC1 10"
+                },
+                placeValue: {
+                  headers: ["Tr\u0103m", "Ch\u1EE5c", "\u0110\u01A1n v\u1ECB"],
+                  digits: [3, 8, 6],
+                  label: "386 = 300 + 80 + 6"
+                }
               }
             },
             {
@@ -43100,7 +43883,17 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "1 dm = 10 cm\n2 dm = 20 cm\n30 cm = 3 dm"
+                text: "1 dm = 10 cm\n2 dm = 20 cm\n30 cm = 3 dm",
+                ruler: {
+                  lengthCm: 10,
+                  measure: { from: 0, to: 10 },
+                  label: "1 dm = 10 cm"
+                },
+                table: {
+                  headers: ["\u0110\u1ED5i", "\u0110\u01B0\u1EE3c"],
+                  rows: [["1 dm", "10 cm"], ["2 dm", "20 cm"], ["30 cm", "3 dm"]],
+                  label: "\u0110\u1EC1-xi-m\xE9t"
+                }
               }
             },
             {
@@ -43161,7 +43954,12 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "1 m = 10 dm\n1 m = 100 cm"
+                text: "1 m = 10 dm\n1 m = 100 cm",
+                ruler: {
+                  lengthCm: 30,
+                  measure: { from: 0, to: 30 },
+                  label: "1 m = 100 cm = 10 dm"
+                }
               }
             },
             {
@@ -43225,7 +44023,12 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "1 km = 1000 m\n2 km = 2000 m"
+                text: "1 km = 1000 m\n2 km = 2000 m",
+                table: {
+                  headers: ["\u0110\u1ED5i", "\u0110\u01B0\u1EE3c"],
+                  rows: [["1 km", "1000 m"], ["2 km", "2000 m"]],
+                  label: "Ki-l\xF4-m\xE9t \u2014 qu\xE3ng \u0111\u01B0\u1EDDng d\xE0i 2 km ngh\u0129a l\xE0 2000 m"
+                }
               }
             },
             {
@@ -43277,7 +44080,21 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "100 \xB7 200 \xB7 500 \xB7 1000 \xB7 2000 \xB7 5000 (\u0111\u1ED3ng)"
+                text: "100 \xB7 200 \xB7 500 \xB7 1000 \xB7 2000 \xB7 5000 (\u0111\u1ED3ng)",
+                money: {
+                  notes: [1e3, 2e3, 5e3],
+                  label: "C\xE1c t\u1EDD ti\u1EC1n Vi\u1EC7t Nam b\xE9 th\u01B0\u1EDDng g\u1EB7p"
+                },
+                table: {
+                  headers: ["T\u1EDD ti\u1EC1n", "M\u1EC7nh gi\xE1"],
+                  rows: [
+                    ["100 \u0111\u1ED3ng", "100"],
+                    ["500 \u0111\u1ED3ng", "500"],
+                    ["1000 \u0111\u1ED3ng", "1000"],
+                    ["5000 \u0111\u1ED3ng", "5000"]
+                  ],
+                  label: "Gi\u1EDBi thi\u1EC7u ti\u1EC1n Vi\u1EC7t Nam"
+                }
               }
             },
             {
@@ -43341,7 +44158,12 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "Mua b\xE1nh: 1500 \u0111\u1ED3ng\nTr\u1EA3: 2000 \u0111\u1ED3ng\nTi\u1EC1n th\u1EEBa: 2000 \u2212 1500 = 500 (\u0111\u1ED3ng)"
+                text: "Mua b\xE1nh: 1500 \u0111\u1ED3ng\nTr\u1EA3: 2000 \u0111\u1ED3ng\nTi\u1EC1n th\u1EEBa: 2000 \u2212 1500 = 500 (\u0111\u1ED3ng)",
+                operation: { left: 2e3, sign: "\u2212", right: 1500, result: 500 },
+                money: {
+                  notes: [2e3, 1e3, 500],
+                  label: "Mua b\xE1nh 1500 \u0111\u1ED3ng, tr\u1EA3 2000 \u0111\u1ED3ng, ti\u1EC1n th\u1EEBa 500 \u0111\u1ED3ng"
+                }
               }
             },
             {
@@ -43405,7 +44227,22 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "cm \u2192 v\u1EADt nh\u1ECF\ndm \u2192 v\u1EADt v\u1EEBa\nm  \u2192 ph\xF2ng h\u1ECDc, s\xE2n\nkm \u2192 qu\xE3ng \u0111\u01B0\u1EDDng"
+                text: "cm \u2192 v\u1EADt nh\u1ECF\ndm \u2192 v\u1EADt v\u1EEBa\nm  \u2192 ph\xF2ng h\u1ECDc, s\xE2n\nkm \u2192 qu\xE3ng \u0111\u01B0\u1EDDng",
+                ruler: {
+                  lengthCm: 15,
+                  measure: { from: 0, to: 15 },
+                  label: "B\xFAt ch\xEC d\xE0i 15 cm"
+                },
+                table: {
+                  headers: ["\u0110\u01A1n v\u1ECB", "\u0110o v\u1EADt"],
+                  rows: [
+                    ["cm", "v\u1EADt nh\u1ECF: b\xFAt ch\xEC"],
+                    ["dm", "v\u1EADt v\u1EEBa: b\xE0n h\u1ECDc"],
+                    ["m", "ph\xF2ng h\u1ECDc, s\xE2n"],
+                    ["km", "qu\xE3ng \u0111\u01B0\u1EDDng"]
+                  ],
+                  label: "Ch\u1ECDn \u0111\u01A1n v\u1ECB \u0111o cho ph\xF9 h\u1EE3p"
+                }
               }
             },
             {
@@ -43478,7 +44315,20 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "1 m = 100 cm\n1 km = 1000 m\n2000 \u0111\u1ED3ng \u2212 1500 \u0111\u1ED3ng = 500 \u0111\u1ED3ng"
+                text: "1 m = 100 cm\n1 km = 1000 m\n2000 \u0111\u1ED3ng \u2212 1500 \u0111\u1ED3ng = 500 \u0111\u1ED3ng",
+                table: {
+                  headers: ["\u0110\u1ED5i", "\u0110\u01B0\u1EE3c"],
+                  rows: [
+                    ["1 m", "100 cm"],
+                    ["1 km", "1000 m"],
+                    ["2000 \u0111\u1ED3ng \u2212 1500 \u0111\u1ED3ng", "500 \u0111\u1ED3ng"]
+                  ],
+                  label: "Luy\u1EC7n t\u1EADp chung ch\u1EE7 \u0111\u1EC1 11"
+                },
+                money: {
+                  notes: [1e3, 500],
+                  label: "1000 \u0111\u1ED3ng + 500 \u0111\u1ED3ng = 1500 \u0111\u1ED3ng"
+                }
               }
             },
             {
@@ -43553,7 +44403,13 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "  235\n+ 412\n  647"
+                text: "  235\n+ 412\n  647",
+                operation: { left: 235, sign: "+", right: 412, result: 647 },
+                placeValue: {
+                  headers: ["Tr\u0103m", "Ch\u1EE5c", "\u0110\u01A1n v\u1ECB"],
+                  digits: [2, 3, 5],
+                  label: "235 + 412: c\u1ED9ng t\u1EEBng h\xE0ng m\u1ED9t, kh\xF4ng nh\u1EDB"
+                }
               }
             },
             {
@@ -43608,7 +44464,13 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "  256\n+ 173\n  429\n5 + 7 = 12 \u2192 vi\u1EBFt 2 nh\u1EDB 1"
+                text: "  256\n+ 173\n  429\n5 + 7 = 12 \u2192 vi\u1EBFt 2 nh\u1EDB 1",
+                operation: { left: 256, sign: "+", right: 173, result: 429 },
+                placeValue: {
+                  headers: ["Tr\u0103m", "Ch\u1EE5c", "\u0110\u01A1n v\u1ECB"],
+                  digits: [2, 5, 6],
+                  label: "256 + 173: 5 + 7 = 12, vi\u1EBFt 2 nh\u1EDB 1"
+                }
               }
             },
             {
@@ -43672,7 +44534,8 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "  265\n+ 148\n  413"
+                text: "  265\n+ 148\n  413",
+                operation: { left: 265, sign: "+", right: 148, result: 413 }
               }
             },
             {
@@ -43724,7 +44587,8 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "  645\n\u2212 213\n  432"
+                text: "  645\n\u2212 213\n  432",
+                operation: { left: 645, sign: "\u2212", right: 213, result: 432 }
               }
             },
             {
@@ -43779,7 +44643,13 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "  534\n\u2212 268\n  266\n14 \u2212 8 = 6;  12 \u2212 6 = 6;  4 \u2212 2 = 2"
+                text: "  534\n\u2212 268\n  266\n14 \u2212 8 = 6;  12 \u2212 6 = 6;  4 \u2212 2 = 2",
+                operation: { left: 534, sign: "\u2212", right: 268, result: 266 },
+                placeValue: {
+                  headers: ["Tr\u0103m", "Ch\u1EE5c", "\u0110\u01A1n v\u1ECB"],
+                  digits: [5, 3, 4],
+                  label: "534 \u2212 268: m\u01B0\u1EE3n 1 ch\u1EE5c r\u1ED3i m\u01B0\u1EE3n 1 tr\u0103m"
+                }
               }
             },
             {
@@ -43834,7 +44704,8 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "  420\n\u2212 165\n  255"
+                text: "  420\n\u2212 165\n  255",
+                operation: { left: 420, sign: "\u2212", right: 165, result: 255 }
               }
             },
             {
@@ -43889,7 +44760,16 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "? + 145 = 320  \u2192  ? = 320 \u2212 145 = 175"
+                text: "? + 145 = 320  \u2192  ? = 320 \u2212 145 = 175",
+                operation: { left: 175, sign: "+", right: 145, result: 320 },
+                numberLine: {
+                  from: 145,
+                  to: 320,
+                  step: 5,
+                  marks: [145, 175, 320],
+                  hops: [{ from: 145, to: 320, label: "+175" }],
+                  label: "? + 145 = 320 \u21D2 ? = 320 \u2212 145 = 175"
+                }
               }
             },
             {
@@ -43953,7 +44833,15 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "\u0110\u1ED9i M\u1ED9t: 245 c\xE2y\n\u0110\u1ED9i Hai: 168 c\xE2y\nC\u1EA3 hai \u0111\u1ED9i: 245 + 168 = 413 (c\xE2y)"
+                text: "\u0110\u1ED9i M\u1ED9t: 245 c\xE2y\n\u0110\u1ED9i Hai: 168 c\xE2y\nC\u1EA3 hai \u0111\u1ED9i: 245 + 168 = 413 (c\xE2y)",
+                operation: { left: 245, sign: "+", right: 168, result: 413 },
+                barModel: {
+                  rows: [
+                    { label: "\u0110\u1ED9i M\u1ED9t", parts: 245 },
+                    { label: "\u0110\u1ED9i Hai", parts: 168 }
+                  ],
+                  braceLabel: "C\u1EA3 hai \u0111\u1ED9i: 245 + 168 = 413 c\xE2y"
+                }
               }
             },
             {
@@ -44016,7 +44904,17 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "256 + 173 = 429\n429 \u2212 173 = 256\n534 \u2212 268 = 266"
+                text: "256 + 173 = 429\n429 \u2212 173 = 256\n534 \u2212 268 = 266",
+                operation: { left: 534, sign: "\u2212", right: 268, result: 266 },
+                table: {
+                  headers: ["Ph\xE9p t\xEDnh", "K\u1EBFt qu\u1EA3"],
+                  rows: [
+                    ["256 + 173", "429"],
+                    ["429 \u2212 173", "256"],
+                    ["534 \u2212 268", "266"]
+                  ],
+                  label: "Luy\u1EC7n t\u1EADp chung ch\u1EE7 \u0111\u1EC1 12"
+                }
               }
             },
             {
@@ -44091,7 +44989,12 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "Nh\xF3m 1: th\xEDch m\xE0u \u0111\u1ECF\nNh\xF3m 2: th\xEDch m\xE0u xanh\nM\u1ED7i b\u1EA1n ch\u1EC9 \u1EDF m\u1ED9t nh\xF3m"
+                text: "Nh\xF3m 1: th\xEDch m\xE0u \u0111\u1ECF\nNh\xF3m 2: th\xEDch m\xE0u xanh\nM\u1ED7i b\u1EA1n ch\u1EC9 \u1EDF m\u1ED9t nh\xF3m",
+                table: {
+                  headers: ["Nh\xF3m", "S\u1ED1 b\u1EA1n"],
+                  rows: [["Th\xEDch m\xE0u \u0111\u1ECF", "?"], ["Th\xEDch m\xE0u xanh", "?"]],
+                  label: "H\u1ECFi t\u1EEBng b\u1EA1n r\u1ED3i x\u1EBFp v\xE0o hai nh\xF3m \u2014 m\u1ED7i b\u1EA1n ch\u1EC9 \u1EDF m\u1ED9t nh\xF3m"
+                }
               }
             },
             {
@@ -44151,7 +45054,12 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "M\xE0u \u0111\u1ECF:   ||||/ ||   \u2192 7 b\u1EA1n\nM\xE0u xanh: ||||      \u2192 4 b\u1EA1n"
+                text: "M\xE0u \u0111\u1ECF:   ||||/ ||   \u2192 7 b\u1EA1n\nM\xE0u xanh: ||||      \u2192 4 b\u1EA1n",
+                table: {
+                  headers: ["M\xE0u", "S\u1ED1 b\u1EA1n"],
+                  rows: [["M\xE0u \u0111\u1ECF", 7], ["M\xE0u xanh", 4]],
+                  label: "Ki\u1EC3m \u0111\u1EBFm b\u1EB1ng v\u1EA1ch: c\u1EE9 5 v\u1EA1ch th\xEC g\u1EA1ch ch\xE9o m\u1ED9t l\u1EA7n"
+                }
               }
             },
             {
@@ -44211,7 +45119,13 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "T\xE1o:   \u{1F34E}\u{1F34E}\u{1F34E}\u{1F34E}\u{1F34E}\nCam:   \u{1F34A}\u{1F34A}\u{1F34A}\n(1 h\xECnh = 1 b\u1EA1n th\xEDch)"
+                text: "T\xE1o:   \u{1F34E}\u{1F34E}\u{1F34E}\u{1F34E}\u{1F34E}\nCam:   \u{1F34A}\u{1F34A}\u{1F34A}\n(1 h\xECnh = 1 b\u1EA1n th\xEDch)",
+                barChart: {
+                  title: "B\u1EA1n th\xEDch lo\u1EA1i qu\u1EA3 n\xE0o",
+                  items: [{ label: "T\xE1o", value: 5 }, { label: "Cam", value: 3 }],
+                  unit: "b\u1EA1n",
+                  highlight: 0
+                }
               }
             },
             {
@@ -44266,7 +45180,13 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "M\u1ED7i h\xECnh = 2 b\u1EA1n\nT\xE1o: 3 h\xECnh \u2192 3 \xD7 2 = 6 b\u1EA1n\nCam: 2 h\xECnh \u2192 2 \xD7 2 = 4 b\u1EA1n"
+                text: "M\u1ED7i h\xECnh = 2 b\u1EA1n\nT\xE1o: 3 h\xECnh \u2192 3 \xD7 2 = 6 b\u1EA1n\nCam: 2 h\xECnh \u2192 2 \xD7 2 = 4 b\u1EA1n",
+                barChart: {
+                  title: "M\u1ED7i h\xECnh l\xE0 2 b\u1EA1n",
+                  items: [{ label: "T\xE1o", value: 6 }, { label: "Cam", value: 4 }],
+                  unit: "b\u1EA1n",
+                  highlight: 0
+                }
               }
             },
             {
@@ -44335,7 +45255,16 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "Ch\u1EAFc ch\u1EAFn: m\u1EB7t tr\u1EDDi m\u1ECDc h\u01B0\u1EDBng \u0110\xF4ng\nC\xF3 th\u1EC3: ng\xE0y mai tr\u1EDDi m\u01B0a\nKh\xF4ng th\u1EC3: b\xE9 cao 3 m\xE9t"
+                text: "Ch\u1EAFc ch\u1EAFn: m\u1EB7t tr\u1EDDi m\u1ECDc h\u01B0\u1EDBng \u0110\xF4ng\nC\xF3 th\u1EC3: ng\xE0y mai tr\u1EDDi m\u01B0a\nKh\xF4ng th\u1EC3: b\xE9 cao 3 m\xE9t",
+                table: {
+                  headers: ["\u0110i\u1EC1u", "Kh\u1EA3 n\u0103ng"],
+                  rows: [
+                    ["M\u1EB7t tr\u1EDDi m\u1ECDc \u1EDF h\u01B0\u1EDBng \u0110\xF4ng", "ch\u1EAFc ch\u1EAFn"],
+                    ["Ng\xE0y mai tr\u1EDDi m\u01B0a", "c\xF3 th\u1EC3"],
+                    ["B\xE9 cao 3 m\xE9t", "kh\xF4ng th\u1EC3"]
+                  ],
+                  label: "Ch\u1EAFc ch\u1EAFn \xB7 c\xF3 th\u1EC3 \xB7 kh\xF4ng th\u1EC3"
+                }
               }
             },
             {
@@ -44408,7 +45337,17 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "Thu th\u1EADp \u2192 Ph\xE2n lo\u1EA1i \u2192 Ki\u1EC3m \u0111\u1EBFm \u2192 Bi\u1EC3u \u0111\u1ED3 tranh"
+                text: "Thu th\u1EADp \u2192 Ph\xE2n lo\u1EA1i \u2192 Ki\u1EC3m \u0111\u1EBFm \u2192 Bi\u1EC3u \u0111\u1ED3 tranh",
+                table: {
+                  headers: ["B\u01B0\u1EDBc", "Vi\u1EC7c l\xE0m"],
+                  rows: [
+                    ["1", "Thu th\u1EADp s\u1ED1 li\u1EC7u"],
+                    ["2", "Ph\xE2n lo\u1EA1i"],
+                    ["3", "Ki\u1EC3m \u0111\u1EBFm"],
+                    ["4", "V\u1EBD bi\u1EC3u \u0111\u1ED3 tranh"]
+                  ],
+                  label: "Luy\u1EC7n t\u1EADp chung ch\u1EE7 \u0111\u1EC1 13"
+                }
               }
             },
             {
@@ -44483,7 +45422,13 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "386 = 300 + 80 + 6\n386  <  396"
+                text: "386 = 300 + 80 + 6\n386  <  396",
+                placeValue: {
+                  headers: ["Tr\u0103m", "Ch\u1EE5c", "\u0110\u01A1n v\u1ECB"],
+                  digits: [3, 8, 6],
+                  label: "386 = 300 + 80 + 6"
+                },
+                comparison: { left: 386, sign: "<", right: 396 }
               }
             },
             {
@@ -44543,7 +45488,13 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "  46          83\n+ 38        \u2212 47\n  84          36"
+                text: "  46          83\n+ 38        \u2212 47\n  84          36",
+                operation: { left: 46, sign: "+", right: 38, result: 84 },
+                table: {
+                  headers: ["Ph\xE9p t\xEDnh", "K\u1EBFt qu\u1EA3"],
+                  rows: [["46 + 38", "84"], ["83 \u2212 47", "36"]],
+                  label: "\xD4n t\u1EADp c\u1ED9ng tr\u1EEB trong ph\u1EA1m vi 100"
+                }
               }
             },
             {
@@ -44598,7 +45549,17 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "  256          534\n+ 173        \u2212 268\n  429          266"
+                text: "  256          534\n+ 173        \u2212 268\n  429          266",
+                operation: { left: 256, sign: "+", right: 173, result: 429 },
+                table: {
+                  headers: ["Ph\xE9p t\xEDnh", "K\u1EBFt qu\u1EA3"],
+                  rows: [
+                    ["235 + 412", "647 (kh\xF4ng nh\u1EDB)"],
+                    ["256 + 173", "429 (c\xF3 nh\u1EDB)"],
+                    ["534 \u2212 268", "266 (c\xF3 m\u01B0\u1EE3n)"]
+                  ],
+                  label: "\xD4n t\u1EADp c\u1ED9ng tr\u1EEB trong ph\u1EA1m vi 1 000"
+                }
               }
             },
             {
@@ -44653,7 +45614,18 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "2 \xD7 8 = 16\n5 \xD7 7 = 35\n18 : 2 = 9\n45 : 5 = 9"
+                text: "2 \xD7 8 = 16\n5 \xD7 7 = 35\n18 : 2 = 9\n45 : 5 = 9",
+                operation: { left: 5, sign: "\xD7", right: 7, result: 35 },
+                table: {
+                  headers: ["Ph\xE9p t\xEDnh", "K\u1EBFt qu\u1EA3"],
+                  rows: [
+                    ["2 \xD7 8", "16"],
+                    ["5 \xD7 7", "35"],
+                    ["18 : 2", "9"],
+                    ["45 : 5", "9"]
+                  ],
+                  label: "\xD4n t\u1EADp ph\xE9p nh\xE2n, ph\xE9p chia"
+                }
               }
             },
             {
@@ -44717,7 +45689,16 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "\u0110\u01B0\u1EDDng g\u1EA5p kh\xFAc: c\u1ED9ng c\xE1c \u0111o\u1EA1n\nKh\u1ED1i tr\u1EE5 x\u1EBFp ch\u1ED3ng \xB7 Kh\u1ED1i c\u1EA7u l\u0103n"
+                text: "\u0110\u01B0\u1EDDng g\u1EA5p kh\xFAc: c\u1ED9ng c\xE1c \u0111o\u1EA1n\nKh\u1ED1i tr\u1EE5 x\u1EBFp ch\u1ED3ng \xB7 Kh\u1ED1i c\u1EA7u l\u0103n",
+                planeShape: {
+                  kind: "rectangle",
+                  formula: "H\xECnh t\u1EE9 gi\xE1c: 4 c\u1EA1nh \xB7 4 \u0111\u1EC9nh"
+                },
+                solid: {
+                  kind: "sphere",
+                  dims: { a: 3 },
+                  label: "Kh\u1ED1i c\u1EA7u l\u0103n m\u1ECDi h\u01B0\u1EDBng"
+                }
               }
             },
             {
@@ -44772,7 +45753,18 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "1 dm = 10 cm\n1 m = 100 cm\n1 km = 1000 m\n1 gi\u1EDD = 60 ph\xFAt"
+                text: "1 dm = 10 cm\n1 m = 100 cm\n1 km = 1000 m\n1 gi\u1EDD = 60 ph\xFAt",
+                table: {
+                  headers: ["\u0110\u1ED5i", "\u0110\u01B0\u1EE3c"],
+                  rows: [
+                    ["1 dm", "10 cm"],
+                    ["1 m", "100 cm"],
+                    ["1 km", "1000 m"],
+                    ["1 gi\u1EDD", "60 ph\xFAt"],
+                    ["1 tu\u1EA7n", "7 ng\xE0y"]
+                  ],
+                  label: "\xD4n t\u1EADp \u0111o l\u01B0\u1EDDng"
+                }
               }
             },
             {
@@ -44833,7 +45825,16 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "M\u1ED7i h\xECnh = 4 quy\u1EC3n\n3 h\xECnh \u2192 3 \xD7 4 = 12 quy\u1EC3n"
+                text: "M\u1ED7i h\xECnh = 4 quy\u1EC3n\n3 h\xECnh \u2192 3 \xD7 4 = 12 quy\u1EC3n",
+                barChart: {
+                  title: "S\u1ED1 quy\u1EC3n v\u1EDF \u0111\xE3 quy\xEAn g\xF3p (m\u1ED7i h\xECnh = 4 quy\u1EC3n)",
+                  items: [
+                    { label: "Nh\xF3m 1", value: 12 },
+                    { label: "Nh\xF3m 2", value: 8 }
+                  ],
+                  unit: "quy\u1EC3n",
+                  highlight: 0
+                }
               }
             },
             {
@@ -44888,7 +45889,18 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "S\u1ED1 \u0111\u1EBFn 1000 \xB7 B\u1ED1n ph\xE9p t\xEDnh \xB7 \u0110o l\u01B0\u1EDDng \xB7 H\xECnh h\u1ECDc \xB7 Th\u1ED1ng k\xEA"
+                text: "S\u1ED1 \u0111\u1EBFn 1000 \xB7 B\u1ED1n ph\xE9p t\xEDnh \xB7 \u0110o l\u01B0\u1EDDng \xB7 H\xECnh h\u1ECDc \xB7 Th\u1ED1ng k\xEA",
+                table: {
+                  headers: ["M\u1EA1ch ki\u1EBFn th\u1EE9c", "V\xED d\u1EE5"],
+                  rows: [
+                    ["S\u1ED1 \u0111\u1EBFn 1000", "386 = 300 + 80 + 6"],
+                    ["B\u1ED1n ph\xE9p t\xEDnh", "5 \xD7 7 = 35"],
+                    ["\u0110o l\u01B0\u1EDDng", "1 m = 100 cm"],
+                    ["H\xECnh h\u1ECDc", "kh\u1ED1i tr\u1EE5, kh\u1ED1i c\u1EA7u"],
+                    ["Th\u1ED1ng k\xEA", "bi\u1EC3u \u0111\u1ED3 tranh"]
+                  ],
+                  label: "\xD4n t\u1EADp chung cu\u1ED1i n\u0103m"
+                }
               }
             },
             {
@@ -44951,7 +45963,20 @@ var grade2Data = {
             {
               type: "visual",
               content: {
-                text: "\u0110\u1ECDc s\u1ED1 \xB7 So s\xE1nh \xB7 \u0110\u1EB7t t\xEDnh \xB7 T\xECm x \xB7 Gi\u1EA3i to\xE1n \xB7 H\xECnh h\u1ECDc \xB7 Bi\u1EC3u \u0111\u1ED3"
+                text: "\u0110\u1ECDc s\u1ED1 \xB7 So s\xE1nh \xB7 \u0110\u1EB7t t\xEDnh \xB7 T\xECm x \xB7 Gi\u1EA3i to\xE1n \xB7 H\xECnh h\u1ECDc \xB7 Bi\u1EC3u \u0111\u1ED3",
+                table: {
+                  headers: ["D\u1EA1ng b\xE0i", "V\xED d\u1EE5"],
+                  rows: [
+                    ["\u0110\u1ECDc s\u1ED1", "386"],
+                    ["So s\xE1nh", "386 < 396"],
+                    ["\u0110\u1EB7t t\xEDnh", "256 + 173 = 429"],
+                    ["T\xECm x", "x + 145 = 320"],
+                    ["Gi\u1EA3i to\xE1n", "245 + 168 = 413"],
+                    ["H\xECnh h\u1ECDc", "kh\u1ED1i c\u1EA7u"],
+                    ["Bi\u1EC3u \u0111\u1ED3", "m\u1ED7i h\xECnh = 4 quy\u1EC3n"]
+                  ],
+                  label: "Luy\u1EC7n \u0111\u1EC1 cu\u1ED1i n\u0103m L\u1EDBp 2"
+                }
               }
             },
             {
