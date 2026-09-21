@@ -47,11 +47,6 @@ export const grade4Data = {
               type: "visual",
               content: {
                 text: "Số 68 352 gồm: 6 chục nghìn, 8 nghìn, 3 trăm, 5 chục và 2 đơn vị. Viết thành tổng: 68 352 = 60 000 + 8 000 + 300 + 50 + 2",
-                placeValue: {
-                  headers: ["Chục nghìn", "Nghìn", "Trăm", "Chục", "Đơn vị"],
-                  digits: [6, 8, 3, 5, 2],
-                  label: "68 352 = 60 000 + 8 000 + 300 + 50 + 2",
-                },
               },
             },
             {
@@ -105,12 +100,6 @@ export const grade4Data = {
               type: "visual",
               content: {
                 text: "Nếu a = 6 thì giá trị của biểu thức 15 + a là: 15 + 6 = 21. Mỗi lần thay chữ a bằng số, ta tính được một giá trị của biểu thức 15 + a.",
-                table: {
-                  headers: ["a", "Giá trị của 15 + a"],
-                  rows: [[6, 21], [10, 25], [0, 15]],
-                  label: "Mỗi lần thay chữ a bằng một số, ta tính được MỘT giá trị của biểu thức",
-                },
-                operation: { left: 15, sign: "+", right: 6, result: 21 },
               },
             },
             {
@@ -161,18 +150,6 @@ export const grade4Data = {
               type: "visual",
               content: {
                 text: "Số 432 516: - Chữ số 4 ở hàng trăm nghìn, có giá trị 400 000. - Chữ số 3 ở hàng chục nghìn, 2 ở hàng nghìn. - Chữ số 5 ở hàng trăm, 1 ở hàng chục, 6 ở hàng đơn vị.",
-                placeValue: {
-                  headers: [
-                    "Trăm nghìn",
-                    "Chục nghìn",
-                    "Nghìn",
-                    "Trăm",
-                    "Chục",
-                    "Đơn vị",
-                  ],
-                  digits: [4, 3, 2, 5, 1, 6],
-                  label: "Số 432 516 — chữ số 4 ở hàng trăm nghìn, có giá trị 400 000",
-                },
               },
             },
             {
@@ -231,14 +208,6 @@ export const grade4Data = {
               type: "visual",
               content: {
                 text: "Bảng phân chia Hàng và Lớp: - LỚP NGHÌN: Hàng trăm nghìn, Hàng chục nghìn, Hàng nghìn - LỚP ĐƠN VỊ: Hàng trăm, Hàng chục, Hàng đơn vị",
-                table: {
-                  headers: ["Lớp", "Gồm các hàng"],
-                  rows: [
-                    ["Lớp nghìn", "trăm nghìn · chục nghìn · nghìn"],
-                    ["Lớp đơn vị", "trăm · chục · đơn vị"],
-                  ],
-                  label: "Bảng phân chia Hàng và Lớp — 3 hàng liền nhau hợp thành 1 lớp",
-                },
               },
             },
             {
@@ -282,18 +251,6 @@ export const grade4Data = {
               type: "visual",
               content: {
                 text: "Ví dụ 1: 100 000 > 99 999 (vì 6 chữ số > 5 chữ số) Ví dụ 2: 753 210 > 751 980 (hàng trăm nghìn và chục nghìn bằng nhau, hàng nghìn có 3 > 1).",
-                comparison: { left: 100000, sign: ">", right: 99999 },
-                table: {
-                  headers: ["So sánh", "Vì sao"],
-                  rows: [
-                    ["100 000 > 99 999", "6 chữ số nhiều hơn 5 chữ số"],
-                    [
-                      "753 210 > 751 980",
-                      "cùng hàng trăm nghìn, chục nghìn; hàng nghìn 3 > 1",
-                    ],
-                  ],
-                  label: "So sánh các số có nhiều chữ số: so từ hàng cao nhất",
-                },
               },
             },
             {
@@ -347,21 +304,6 @@ export const grade4Data = {
               type: "visual",
               content: {
                 text: "Cấu tạo Lớp triệu: - Hàng triệu: 1 000 000 - Hàng chục triệu: 10 000 000 - Hàng trăm triệu: 100 000 000 Số 345 000 000 đọc là: Ba trăm bốn mươi lăm triệu.",
-                placeValue: {
-                  headers: [
-                    "Trăm triệu",
-                    "Chục triệu",
-                    "Triệu",
-                    "Trăm nghìn",
-                    "Chục nghìn",
-                    "Nghìn",
-                    "Trăm",
-                    "Chục",
-                    "Đơn vị",
-                  ],
-                  digits: [3, 4, 5, 0, 0, 0, 0, 0, 0],
-                  label: "345 000 000 đọc là ba trăm bốn mươi lăm triệu",
-                },
               },
             },
             {
@@ -414,23 +356,6 @@ export const grade4Data = {
               type: "visual",
               content: {
                 text: "- Số tự nhiên bé nhất là số 0. - Không có số tự nhiên lớn nhất. - Hai số tự nhiên liên tiếp hơn kém nhau 1 đơn vị. - Dùng 10 chữ số (0 đến 9) để viết mọi số tự nhiên trong hệ thập phân.",
-                numberLine: {
-                  from: 0,
-                  to: 10,
-                  step: 1,
-                  marks: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-                  label: "Số tự nhiên bé nhất là 0 · không có số tự nhiên lớn nhất · hai số liên tiếp hơn kém nhau 1",
-                },
-                table: {
-                  headers: ["Đặc điểm", "Nội dung"],
-                  rows: [
-                    ["Bé nhất", "số 0"],
-                    ["Lớn nhất", "không có"],
-                    ["Hai số liên tiếp", "hơn kém nhau 1 đơn vị"],
-                    ["Chữ số dùng để viết", "0, 1, 2, 3, 4, 5, 6, 7, 8, 9"],
-                  ],
-                  label: "Dãy số tự nhiên và hệ thập phân",
-                },
               },
             },
             {
@@ -488,16 +413,6 @@ export const grade4Data = {
               type: "visual",
               content: {
                 text: "Phân tích giá trị theo hàng: Số 7 245 = 7 000 + 200 + 40 + 5 - Chữ số 7 có giá trị: 7 000 - Chữ số 2 có giá trị: 200 - Chữ số 4 có giá trị: 40 - Chữ số 5 có giá trị: 5",
-                placeValue: {
-                  headers: ["Nghìn", "Trăm", "Chục", "Đơn vị"],
-                  digits: [7, 2, 4, 5],
-                  label: "7 245 = 7 000 + 200 + 40 + 5",
-                },
-                table: {
-                  headers: ["Chữ số", "Giá trị"],
-                  rows: [["7", "7 000"], ["2", "200"], ["4", "40"], ["5", "5"]],
-                  label: "Giá trị của mỗi chữ số phụ thuộc vào HÀNG của nó",
-                },
               },
             },
             {
@@ -541,15 +456,6 @@ export const grade4Data = {
               type: "visual",
               content: {
                 text: "Mối quan hệ đo khối lượng: 1 yến = 10 kg 1 tạ = 10 yến = 100 kg 1 tấn = 10 tạ = 1 000 kg Bảng đơn vị: Tấn > Tạ > Yến > kg > hg > dag > g (mỗi đơn vị gấp 10 lần đơn vị liền sau).",
-                table: {
-                  headers: ["Đổi", "Bằng"],
-                  rows: [
-                    ["1 yến", "10 kg"],
-                    ["1 tạ", "10 yến = 100 kg"],
-                    ["1 tấn", "10 tạ = 1 000 kg"],
-                  ],
-                  label: "Tấn > Tạ > Yến > kg > hg > dag > g — mỗi đơn vị gấp 10 lần đơn vị liền sau",
-                },
               },
             },
             {
@@ -603,15 +509,6 @@ export const grade4Data = {
               type: "visual",
               content: {
                 text: "Quy đổi thời gian: - 1 giờ = 60 phút - 1 phút = 60 giây - 1 thế kỉ = 100 năm Từ năm 1 đến năm 100 là thế kỉ I (thứ nhất). Từ năm 101 đến năm 200 là thế kỉ II (thứ hai). Năm 2024 thuộc thế kỉ XXI (thứ hai mươi mốt).",
-                table: {
-                  headers: ["Đổi", "Bằng"],
-                  rows: [
-                    ["1 giờ", "60 phút"],
-                    ["1 phút", "60 giây"],
-                    ["1 thế kỉ", "100 năm"],
-                  ],
-                  label: "Năm 2024 thuộc thế kỉ XXI (thứ hai mươi mốt)",
-                },
               },
             },
             {
@@ -665,16 +562,6 @@ export const grade4Data = {
               type: "visual",
               content: {
                 text: "Quy tắc: Số trung bình cộng = (Tổng các số hạng) : (Số các số hạng) Ví dụ: Tìm số TBC của 12, 14 và 16: Tổng = 12 + 14 + 16 = 42 Số số hạng = 3 Trung bình cộng = 42 : 3 = 14",
-                operation: { left: 42, sign: ":", right: 3, result: 14 },
-                table: {
-                  headers: ["Bước", "Làm"],
-                  rows: [
-                    ["Tổng các số hạng", "12 + 14 + 16 = 42"],
-                    ["Số các số hạng", "3"],
-                    ["Trung bình cộng", "42 : 3 = 14"],
-                  ],
-                  label: "Trung bình cộng = Tổng các số hạng : Số các số hạng",
-                },
               },
             },
             {
@@ -726,25 +613,6 @@ export const grade4Data = {
               type: "visual",
               content: {
                 text: "Đặc điểm biểu đồ cột: - Cột nằm ngang ghi tên các đối tượng (ví dụ: Lớp 4A, 4B, 4C). - Cột thẳng đứng ghi số lượng (ví dụ: số cây trồng được). - Cột càng cao thì số lượng càng nhiều.",
-                barChart: {
-                  title: "Số cây trồng được của các lớp",
-                  items: [
-                    { label: "Lớp 4A", value: 15 },
-                    { label: "Lớp 4B", value: 12 },
-                    { label: "Lớp 4C", value: 18 },
-                  ],
-                  unit: "cây",
-                  highlight: 2,
-                },
-                table: {
-                  headers: ["Trục", "Ghi gì"],
-                  rows: [
-                    ["Cột nằm ngang", "tên các đối tượng"],
-                    ["Cột thẳng đứng", "số lượng"],
-                    ["Cột càng cao", "số lượng càng nhiều"],
-                  ],
-                  label: "Đặc điểm biểu đồ cột",
-                },
               },
             },
             {
@@ -799,15 +667,6 @@ export const grade4Data = {
               type: "visual",
               content: {
                 text: "Ví dụ cộng: 483 526 + 254 138 = 737 664 Ví dụ trừ: 865 240 - 328 175 = 537 065 Chú ý: Nhớ cộng thêm số nhớ vào hàng tiếp theo bên trái!",
-                operation: { left: 483526, sign: "+", right: 254138, result: 737664 },
-                table: {
-                  headers: ["Phép tính", "Kết quả"],
-                  rows: [
-                    ["483 526 + 254 138", "737 664"],
-                    ["865 240 − 328 175", "537 065"],
-                  ],
-                  label: "Chú ý cộng thêm số nhớ vào hàng tiếp theo bên trái",
-                },
               },
             },
             {
@@ -861,12 +720,6 @@ export const grade4Data = {
               type: "visual",
               content: {
                 text: "Nếu a = 10, b = 5, c = 2 thì giá trị biểu thức a + b × c là: 10 + 5 × 2 = 10 + 10 = 20 (nhớ thực hiện nhân chia trước, cộng trừ sau!).",
-                operation: { left: 5, sign: "×", right: 2, result: 10 },
-                table: {
-                  headers: ["Biểu thức", "Thay số", "Giá trị"],
-                  rows: [["a + b × c", "10 + 5 × 2 = 10 + 10", "20"]],
-                  label: "Nhân chia trước, cộng trừ sau",
-                },
               },
             },
             {
@@ -909,15 +762,6 @@ export const grade4Data = {
               type: "visual",
               content: {
                 text: "Tính thuận tiện: 127 + 389 + 73 = (127 + 73) + 389 = 200 + 389 = 589",
-                operation: { left: 200, sign: "+", right: 389, result: 589 },
-                table: {
-                  headers: ["Bước", "Làm"],
-                  rows: [
-                    ["Đổi chỗ", "127 + 389 + 73 = (127 + 73) + 389"],
-                    ["Tính", "200 + 389 = 589"],
-                  ],
-                  label: "Dùng tính chất giao hoán và kết hợp để tính thuận tiện",
-                },
               },
             },
             {
@@ -960,21 +804,6 @@ export const grade4Data = {
               type: "visual",
               content: {
                 text: "Công thức: - Số lớn = (Tổng + Hiệu) : 2 - Số bé = (Tổng - Hiệu) : 2 (Hoặc: Số bé = Số lớn - Hiệu; Số lớn = Tổng - Số bé)",
-                barModel: {
-                  rows: [
-                    { label: "Số lớn", parts: 8 },
-                    { label: "Số bé", parts: 5 },
-                  ],
-                  braceLabel: "Tổng 13 · Hiệu 3",
-                },
-                table: {
-                  headers: ["Cần tìm", "Công thức"],
-                  rows: [
-                    ["Số lớn", "(Tổng + Hiệu) : 2"],
-                    ["Số bé", "(Tổng − Hiệu) : 2"],
-                  ],
-                  label: "Tìm hai số khi biết Tổng và Hiệu",
-                },
               },
             },
             {
@@ -1028,21 +857,6 @@ export const grade4Data = {
               type: "visual",
               content: {
                 text: "- Góc nhọn: Đỉnh O, hai cạnh OA và OB, bé hơn góc vuông. - Góc tù: Lớn hơn góc vuông. - Góc bẹt: Bằng hai góc vuông (hai cạnh thẳng hàng).",
-                angle: {
-                  kind: "acute",
-                  degrees: 45,
-                  label: "Góc nhọn — bé hơn góc vuông",
-                },
-                table: {
-                  headers: ["Loại góc", "Đặc điểm"],
-                  rows: [
-                    ["Góc nhọn", "bé hơn góc vuông (90°)"],
-                    ["Góc vuông", "bằng 90°"],
-                    ["Góc tù", "lớn hơn góc vuông"],
-                    ["Góc bẹt", "bằng hai góc vuông (180°)"],
-                  ],
-                  label: "Góc nhọn, góc tù, góc bẹt",
-                },
               },
             },
             {
@@ -1091,19 +905,6 @@ export const grade4Data = {
               type: "visual",
               content: {
                 text: "- Vuông góc: Cắt nhau tạo góc 90° (ký hiệu ⊥). - Song song: Cách đều nhau và không bao giờ cắt nhau dù kéo dài mãi.",
-                angle: {
-                  kind: "right",
-                  degrees: 90,
-                  label: "Hai đường thẳng vuông góc tạo thành góc 90° (kí hiệu ⊥)",
-                },
-                table: {
-                  headers: ["Quan hệ", "Đặc điểm"],
-                  rows: [
-                    ["Vuông góc", "cắt nhau tạo góc 90°"],
-                    ["Song song", "cách đều nhau, không bao giờ cắt nhau"],
-                  ],
-                  label: "Hai đường thẳng vuông góc & song song",
-                },
               },
             },
             {
@@ -1153,15 +954,6 @@ export const grade4Data = {
               type: "visual",
               content: {
                 text: "Đặt tính: 142 315 × 3 = 426 945 Tính nhanh: (a × b) × c = a × (b × c)",
-                operation: { left: 142315, sign: "×", right: 3, result: 426945 },
-                table: {
-                  headers: ["Tính chất", "Viết"],
-                  rows: [
-                    ["Giao hoán", "a × b = b × a"],
-                    ["Kết hợp", "(a × b) × c = a × (b × c)"],
-                  ],
-                  label: "Nhân với số có một chữ số",
-                },
               },
             },
             {
@@ -1204,16 +996,6 @@ export const grade4Data = {
               type: "visual",
               content: {
                 text: "- 35 × 10 = 350 - 35 × 100 = 3 500 - 4 800 : 100 = 48 - 70 000 : 1 000 = 70",
-                table: {
-                  headers: ["Phép tính", "Kết quả"],
-                  rows: [
-                    ["35 × 10", "350"],
-                    ["35 × 100", "3 500"],
-                    ["4 800 : 100", "48"],
-                    ["70 000 : 1 000", "70"],
-                  ],
-                  label: "Nhân với 10, 100, 1 000… chỉ việc thêm chữ số 0; chia thì bớt chữ số 0",
-                },
               },
             },
             {
@@ -1265,20 +1047,6 @@ export const grade4Data = {
               type: "visual",
               content: {
                 text: "Mối quan hệ diện tích: 1 m² = 100 dm² 1 dm² = 100 cm² 1 m² = 10 000 cm² Mỗi đơn vị diện tích gấp 100 lần đơn vị bé hơn liền kề!",
-                planeShape: {
-                  kind: "square",
-                  labels: ["1 dm"],
-                  formula: "1 dm² là diện tích hình vuông cạnh 1 dm",
-                },
-                table: {
-                  headers: ["Đổi", "Bằng"],
-                  rows: [
-                    ["1 m²", "100 dm²"],
-                    ["1 dm²", "100 cm²"],
-                    ["1 m²", "10 000 cm²"],
-                  ],
-                  label: "Mỗi đơn vị diện tích gấp 100 lần đơn vị bé hơn liền kề",
-                },
               },
             },
             {
@@ -1331,18 +1099,6 @@ export const grade4Data = {
               type: "visual",
               content: {
                 text: "Công thức: - a × (b + c) = a × b + a × c - a × (b - c) = a × b - a × c Ví dụ tính nhanh: 35 × 11 = 35 × (10 + 1) = 350 + 35 = 385",
-                operation: { left: 35, sign: "×", right: 11, result: 385 },
-                table: {
-                  headers: ["Công thức", "Ví dụ"],
-                  rows: [
-                    [
-                      "a × (b + c) = a × b + a × c",
-                      "35 × 11 = 350 + 35 = 385",
-                    ],
-                    ["a × (b − c) = a × b − a × c", "35 × 9 = 350 − 35 = 315"],
-                  ],
-                  label: "Nhân một số với một tổng, một hiệu",
-                },
               },
             },
             {
@@ -1385,18 +1141,6 @@ export const grade4Data = {
               type: "visual",
               content: {
                 text: "Mẹo nhân nhẩm với 11: Ví dụ: 35 × 11, nên Cộng hai chữ số: 3 + 5 = 8. Chèn 8 vào giữa 3 và 5 được 385! Ví dụ có nhớ: 48 × 11, nên là 4 + 8 = 12. Chèn 2 vào giữa, nhớ 1 sang 4 thành 5, nên là 528!",
-                table: {
-                  headers: ["Phép tính", "Mẹo", "Kết quả"],
-                  rows: [
-                    ["35 × 11", "3 + 5 = 8, chèn 8 vào giữa 3 và 5", "385"],
-                    [
-                      "48 × 11",
-                      "4 + 8 = 12, viết 2 nhớ 1 sang hàng trăm",
-                      "528",
-                    ],
-                  ],
-                  label: "Mẹo nhân nhẩm với 11",
-                },
               },
             },
             {
@@ -1449,12 +1193,6 @@ export const grade4Data = {
               type: "visual",
               content: {
                 text: "Thực hiện phép tính: 128 472 : 6 = 21 412 (dư 0) 157 : 5 = 31 (dư 2, vì 2 < 5 nên phép chia đúng).",
-                operation: { left: 128472, sign: ":", right: 6, result: 21412 },
-                table: {
-                  headers: ["Phép tính", "Kết quả"],
-                  rows: [["128 472 : 6", "21 412"], ["157 : 5", "31 (dư 2)"]],
-                  label: "Chia cho số có một chữ số — số dư luôn bé hơn số chia",
-                },
               },
             },
             {
@@ -1499,19 +1237,6 @@ export const grade4Data = {
               type: "visual",
               content: {
                 text: "Ví dụ: 84 : 21, nên Làm tròn 80 : 20 = 4. Thử: 21 × 4 = 84 (vừa đúng thương là 4). Nếu ở một lượt chia mà số bị chia bé hơn số chia thì ta phải viết chữ số 0 vào thương!",
-                operation: { left: 84, sign: ":", right: 21, result: 4 },
-                table: {
-                  headers: ["Bước", "Làm"],
-                  rows: [
-                    ["Làm tròn để đoán", "80 : 20 = 4"],
-                    ["Thử lại", "21 × 4 = 84 ⇒ thương là 4"],
-                    [
-                      "Chú ý",
-                      "số bị chia bé hơn số chia thì viết 0 vào thương",
-                    ],
-                  ],
-                  label: "Chia cho số có hai, ba chữ số",
-                },
               },
             },
             {
@@ -1566,15 +1291,6 @@ export const grade4Data = {
               type: "visual",
               content: {
                 text: "- Chia hết cho 2: Chữ số tận cùng là 0, 2, 4, 6, 8 (số chẵn). - Chia hết cho 5: Chữ số tận cùng là 0 hoặc 5. - Số có chữ số tận cùng là 0 thì chia hết cho CẢ 2 VÀ 5!",
-                table: {
-                  headers: ["Chia hết cho", "Chữ số tận cùng"],
-                  rows: [
-                    ["2", "0, 2, 4, 6, 8 (số chẵn)"],
-                    ["5", "0 hoặc 5"],
-                    ["cả 2 và 5", "0"],
-                  ],
-                  label: "Chỉ cần nhìn chữ số tận cùng",
-                },
               },
             },
             {
@@ -1629,14 +1345,6 @@ export const grade4Data = {
               type: "visual",
               content: {
                 text: "- Số có tổng các chữ số chia hết cho 9 thì chia hết cho 9. - Số có tổng các chữ số chia hết cho 3 thì chia hết cho 3. - Chú ý: Số chia hết cho 9 thì chắc chắn chia hết cho 3!",
-                table: {
-                  headers: ["Chia hết cho", "Dấu hiệu"],
-                  rows: [
-                    ["9", "tổng các chữ số chia hết cho 9"],
-                    ["3", "tổng các chữ số chia hết cho 3"],
-                  ],
-                  label: "Số chia hết cho 9 thì chắc chắn chia hết cho 3 (điều ngược lại chưa chắc)",
-                },
               },
             },
             {
@@ -1684,16 +1392,6 @@ export const grade4Data = {
               type: "visual",
               content: {
                 text: "Quy đổi: - Ki-lô-mét vuông là diện tích của hình vuông có cạnh dài 1 km. - 1 km² = 1 000 000 m² (gồm chữ số 1 và 6 chữ số 0).",
-                planeShape: {
-                  kind: "square",
-                  labels: ["1 km"],
-                  formula: "1 km² là diện tích hình vuông cạnh 1 km",
-                },
-                table: {
-                  headers: ["Đổi", "Bằng"],
-                  rows: [["1 km²", "1 000 000 m²"]],
-                  label: "Ki-lô-mét vuông",
-                },
               },
             },
             {
@@ -1741,11 +1439,6 @@ export const grade4Data = {
               type: "visual",
               content: {
                 text: "Công thức: Diện tích S = a × h Trong đó: a là độ dài đáy, h là chiều cao (cùng đơn vị đo).",
-                planeShape: {
-                  kind: "parallelogram",
-                  labels: ["đáy a", "chiều cao h"],
-                  formula: "S = a × h (a và h cùng đơn vị đo)",
-                },
               },
             },
             {
@@ -1788,16 +1481,7 @@ export const grade4Data = {
             {
               type: "concept",
               content: {
-                                table: {
-                  headers: ["Số", "Chia hết cho", "Vì sao"],
-                  rows: [
-                    ["1 250", "2 và 5", "tận cùng là 0"],
-                    ["2 345", "5", "tận cùng là 5"],
-                    ["3 478", "2", "tận cùng là 8"],
-                  ],
-                  label: "Luyện tập dấu hiệu chia hết cho 2 và cho 5",
-                },
-badge: "Luyện Chia Hết 2 & 5",
+                badge: "Luyện Chia Hết 2 & 5",
                 title: "Nhìn chữ số tận cùng",
                 points: [
                   "Chia hết cho 2: chữ số tận cùng là 0, 2, 4, 6, 8 (số chẵn).",
@@ -1859,16 +1543,7 @@ badge: "Luyện Chia Hết 2 & 5",
             {
               type: "concept",
               content: {
-                                table: {
-                  headers: ["Số", "Tổng các chữ số", "Chia hết cho"],
-                  rows: [
-                    ["945", "9 + 4 + 5 = 18", "9 (và 3)"],
-                    ["1 245", "1 + 2 + 4 + 5 = 12", "3"],
-                    ["2 300", "2 + 3 + 0 + 0 = 5", "không chia hết cho 3, 9"],
-                  ],
-                  label: "Luyện tập dấu hiệu chia hết cho 9 và cho 3",
-                },
-badge: "Luyện Chia Hết 9 & 3",
+                badge: "Luyện Chia Hết 9 & 3",
                 title: "Tính tổng các chữ số",
                 points: [
                   "Chia hết cho 9: tổng các chữ số chia hết cho 9.",
@@ -1934,19 +1609,7 @@ badge: "Luyện Chia Hết 9 & 3",
             {
               type: "concept",
               content: {
-                                table: {
-                  headers: ["Đề", "Chọn chữ số"],
-                  rows: [
-                    ["2□5 chia hết cho 9", "2 + 5 = 7, cần thêm 2 ⇒ □ = 2"],
-                    ["4□0 chia hết cho cả 2 và 5", "tận cùng 0 ⇒ □ bất kỳ"],
-                    [
-                      "□□ chia hết cho 3 và 9",
-                      "tổng các chữ số phải chia hết cho 9",
-                    ],
-                  ],
-                  label: "Tìm chữ số thay thế — phải thỏa mãn TẤT CẢ các dấu hiệu",
-                },
-badge: "Tìm Chữ Số Thay Thế",
+                badge: "Tìm Chữ Số Thay Thế",
                 title: "Ba bước làm bài",
                 steps: [
                   {
@@ -2016,16 +1679,7 @@ badge: "Tìm Chữ Số Thay Thế",
             {
               type: "concept",
               content: {
-                                table: {
-                  headers: ["Đổi", "Bằng"],
-                  rows: [
-                    ["1 km²", "1 000 000 m²"],
-                    ["3 km²", "3 000 000 m²"],
-                    ["500 000 m²", "0,5 km²"],
-                  ],
-                  label: "Đổi về cùng một đơn vị đo rồi mới so sánh",
-                },
-badge: "Luyện Tập km²",
+                badge: "Luyện Tập km²",
                 title: "Quy đổi và so sánh",
                 points: [
                   "1 km² = 1 000 000 m².",
@@ -2085,13 +1739,7 @@ badge: "Luyện Tập km²",
             {
               type: "concept",
               content: {
-                                planeShape: {
-                  kind: "parallelogram",
-                  labels: ["đáy 9 cm", "chiều cao 5 cm"],
-                  formula: "S = 9 × 5 = 45 cm²",
-                },
-                operation: { left: 9, sign: "×", right: 5, result: 45 },
-badge: "Luyện Hình Bình Hành",
+                badge: "Luyện Hình Bình Hành",
                 title: "Hai dạng bài thường gặp",
                 steps: [
                   {
@@ -2159,22 +1807,7 @@ badge: "Luyện Hình Bình Hành",
             {
               type: "concept",
               content: {
-                                planeShape: {
-                  kind: "parallelogram",
-                  labels: ["đáy a", "chiều cao h"],
-                  formula: "S = a × h",
-                },
-                table: {
-                  headers: ["Dấu hiệu", "Chữ số tận cùng / tổng chữ số"],
-                  rows: [
-                    ["chia hết cho 2", "tận cùng 0, 2, 4, 6, 8"],
-                    ["chia hết cho 5", "tận cùng 0 hoặc 5"],
-                    ["chia hết cho 3", "tổng chữ số ⋮ 3"],
-                    ["chia hết cho 9", "tổng chữ số ⋮ 9"],
-                  ],
-                  label: "Luyện tập chung chương 3",
-                },
-badge: "Ôn Tập Chương 3",
+                badge: "Ôn Tập Chương 3",
                 title: "Ba mảng kiến thức",
                 points: [
                   "Dấu hiệu chia hết cho 2, 5, 9, 3.",
@@ -2246,19 +1879,6 @@ badge: "Ôn Tập Chương 3",
               type: "visual",
               content: {
                 text: "Cấu tạo phân số a/b: - Tử số a: là số tự nhiên viết trên gạch ngang (chỉ số phần lấy đi). - Mẫu số b: là số tự nhiên khác 0 viết dưới gạch ngang (chỉ số phần bằng nhau được chia ra). Thương của phép chia a : b (b khác 0) có thể viết thành phân số a/b.",
-                fractionBar: {
-                  parts: 4,
-                  shaded: 3,
-                  label: "3/4 — tử số 3 là phần lấy đi, mẫu số 4 là số phần bằng nhau",
-                },
-                table: {
-                  headers: ["Thành phần", "Nghĩa"],
-                  rows: [
-                    ["Tử số a", "số phần lấy đi"],
-                    ["Mẫu số b", "số phần bằng nhau được chia ra (b khác 0)"],
-                  ],
-                  label: "Thương của a : b cũng viết được thành phân số a/b",
-                },
               },
             },
             {
@@ -2312,15 +1932,7 @@ badge: "Ôn Tập Chương 3",
             {
               type: "concept",
               content: {
-                                fractionBar: {
-                  rows: [
-                    { parts: 2, shaded: 1, label: "1/2" },
-                    { parts: 4, shaded: 2, label: "2/4" },
-                    { parts: 6, shaded: 3, label: "3/6" },
-                  ],
-                  label: "1/2 = 2/4 = 3/6 — cùng một lượng bánh pizza",
-                },
-badge: "Khái Niệm Phân Số Bằng Nhau",
+                badge: "Khái Niệm Phân Số Bằng Nhau",
                 title: "Tính chất cơ bản của phân số",
                 explanation:
                   "Nếu nhân hoặc chia cả tử số và mẫu số của một phân số với cùng một số tự nhiên khác 0 thì được một phân số bằng phân số đã cho.",
@@ -2412,15 +2024,6 @@ badge: "Khái Niệm Phân Số Bằng Nhau",
               type: "visual",
               content: {
                 text: "- Cùng mẫu: 5/7 > 3/7 (vì 5 > 3) - Khác mẫu: So sánh 2/3 và 3/4, nên Quy đồng: 2/3 = 8/12; 3/4 = 9/12. Vì 8/12 < 9/12 nên 2/3 < 3/4.",
-                fractionBar: {
-                  rows: [
-                    { parts: 7, shaded: 5, label: "5/7" },
-                    { parts: 7, shaded: 3, label: "3/7" },
-                    { parts: 12, shaded: 8, label: "8/12 (tức 2/3)" },
-                    { parts: 12, shaded: 9, label: "9/12 (tức 3/4)" },
-                  ],
-                  label: "Cùng mẫu thì so tử số · khác mẫu thì quy đồng rồi so",
-                },
               },
             },
             {
@@ -2463,14 +2066,6 @@ badge: "Khái Niệm Phân Số Bằng Nhau",
               type: "visual",
               content: {
                 text: "Cùng mẫu: 2/5 + 1/5 = (2+1)/5 = 3/5 Khác mẫu: 1/2 + 1/3 = 3/6 + 2/6 = 5/6 Phép trừ: 5/7 - 2/7 = (5-2)/7 = 3/7",
-                fractionBar: {
-                  rows: [
-                    { parts: 5, shaded: 3, label: "2/5 + 1/5 = 3/5" },
-                    { parts: 6, shaded: 5, label: "1/2 + 1/3 = 5/6" },
-                    { parts: 7, shaded: 3, label: "5/7 − 2/7 = 3/7" },
-                  ],
-                  label: "Cộng trừ phân số — khác mẫu thì quy đồng mẫu số trước",
-                },
               },
             },
             {
@@ -2523,14 +2118,6 @@ badge: "Khái Niệm Phân Số Bằng Nhau",
               type: "visual",
               content: {
                 text: "Công thức nhân: (a/b) × (c/d) = (a × c) / (b × d) Ví dụ: 2/3 × 4/5 = (2×4) / (3×5) = 8/15 Tìm 3/4 của 20: 20 × 3/4 = (20×3)/4 = 60/4 = 15.",
-                fractionBar: {
-                  rows: [
-                    { parts: 15, shaded: 8, label: "2/3 × 4/5 = 8/15" },
-                    { parts: 4, shaded: 3, label: "3/4 của 20 = 15" },
-                  ],
-                  label: "Nhân tử với tử, mẫu với mẫu",
-                },
-                operation: { left: 20, sign: "×", right: 3, result: 60 },
               },
             },
             {
@@ -2582,16 +2169,6 @@ badge: "Khái Niệm Phân Số Bằng Nhau",
               type: "visual",
               content: {
                 text: "Công thức chia: (a/b) : (c/d) = (a/b) × (d/c) = (a × d) / (b × c) Ví dụ: 1/2 : 1/4 = 1/2 × 4/1 = 4/2 = 2",
-                table: {
-                  headers: ["Bước", "Làm"],
-                  rows: [
-                    ["Đảo ngược", "1/2 : 1/4 = 1/2 × 4/1"],
-                    ["Nhân", "= (1 × 4) / (2 × 1) = 4/2"],
-                    ["Kết quả", "= 2"],
-                  ],
-                  label: "Chia phân số = nhân với phân số đảo ngược",
-                },
-                fractionCircle: { parts: 4, shaded: 2, label: "1/2 gồm 2 phần của 1/4" },
               },
             },
             {
@@ -2634,11 +2211,6 @@ badge: "Khái Niệm Phân Số Bằng Nhau",
               type: "visual",
               content: {
                 text: "Công thức diện tích hình thoi: S = (m × n) : 2 Trong đó: m và n là độ dài của hai đường chéo (cùng đơn vị đo).",
-                planeShape: {
-                  kind: "rhombus",
-                  labels: ["chéo m", "chéo n"],
-                  formula: "S = (m × n) : 2 (m và n cùng đơn vị đo)",
-                },
               },
             },
             {
@@ -2680,14 +2252,7 @@ badge: "Khái Niệm Phân Số Bằng Nhau",
             {
               type: "concept",
               content: {
-                                fractionBar: {
-                  rows: [
-                    { parts: 12, shaded: 8, label: "8/12" },
-                    { parts: 3, shaded: 2, label: "rút gọn = 2/3" },
-                  ],
-                  label: "Rút gọn trước khi tính để số nhỏ, dễ tính hơn",
-                },
-badge: "Luyện Rút Gọn - Quy Đồng",
+                badge: "Luyện Rút Gọn - Quy Đồng",
                 title: "Hai kỹ năng, hai mục đích",
                 points: [
                   "Rút gọn: chia cả tử và mẫu cho cùng một số lớn nhất có thể. Ví dụ: 18/24 = 3/4.",
@@ -2752,16 +2317,7 @@ badge: "Luyện Rút Gọn - Quy Đồng",
             {
               type: "concept",
               content: {
-                                fractionBar: {
-                  rows: [
-                    { parts: 6, shaded: 5, label: "1/2 + 1/3 = 5/6" },
-                    { parts: 6, shaded: 1, label: "1/2 − 1/3 = 1/6" },
-                    { parts: 6, shaded: 3, label: "1/2 × 1/3 = 1/6" },
-                    { parts: 6, shaded: 3, label: "1/2 : 1/3 = 3/2" },
-                  ],
-                  label: "Bốn phép tính với phân số",
-                },
-badge: "Luyện Bốn Phép Tính",
+                badge: "Luyện Bốn Phép Tính",
                 title: "Bốn quy tắc cốt lõi",
                 points: [
                   "Cộng, trừ: quy đồng mẫu số rồi cộng hoặc trừ tử số.",
@@ -2819,19 +2375,7 @@ badge: "Luyện Bốn Phép Tính",
             {
               type: "concept",
               content: {
-                                planeShape: {
-                  kind: "rhombus",
-                  labels: ["chéo m", "chéo n"],
-                  formula: "S = (m × n) : 2",
-                },
-                fractionBar: {
-                  rows: [
-                    { parts: 4, shaded: 2, label: "2/4" },
-                    { parts: 2, shaded: 1, label: "rút gọn = 1/2" },
-                  ],
-                  label: "Luyện tập chung chương 4",
-                },
-badge: "Ôn Tập Chương 4",
+                badge: "Ôn Tập Chương 4",
                 title: "Bốn mảng kiến thức",
                 points: [
                   "Khái niệm phân số và phép chia số tự nhiên.",
@@ -2899,10 +2443,6 @@ badge: "Ôn Tập Chương 4",
               type: "visual",
               content: {
                 text: "Định nghĩa: Tỉ số của a và b (b khác 0) là a : b hay a/b. Ví dụ: Lớp có 15 bạn nam và 18 bạn nữ. Tỉ số số nam và số nữ là 15/18 = 5/6.",
-                fractionBar: {
-                  rows: [{ parts: 18, shaded: 15, label: "nam 15 / nữ 18 = 5/6" }],
-                  label: "Tỉ số của a và b là a : b hay a/b (b khác 0)",
-                },
               },
             },
             {
@@ -2946,23 +2486,6 @@ badge: "Ôn Tập Chương 4",
               type: "visual",
               content: {
                 text: "Ví dụ: Tổng hai số là 35, tỉ số là 2/3. - Tổng số phần: 2 + 3 = 5 phần - Giá trị 1 phần: 35 : 5 = 7 - Số bé: 7 × 2 = 14 - Số lớn: 7 × 3 = 21 (hoặc 35 - 14 = 21)",
-                barModel: {
-                  rows: [
-                    { label: "Số bé (2 phần)", parts: 2 },
-                    { label: "Số lớn (3 phần)", parts: 3 },
-                  ],
-                  braceLabel: "Tổng 35 · số bé 14 · số lớn 21",
-                },
-                table: {
-                  headers: ["Bước", "Làm"],
-                  rows: [
-                    ["Tổng số phần", "2 + 3 = 5 phần"],
-                    ["Giá trị 1 phần", "35 : 5 = 7"],
-                    ["Số bé", "7 × 2 = 14"],
-                    ["Số lớn", "7 × 3 = 21"],
-                  ],
-                  label: "Tìm hai số khi biết Tổng và Tỉ số",
-                },
               },
             },
             {
@@ -3020,23 +2543,6 @@ badge: "Ôn Tập Chương 4",
               type: "visual",
               content: {
                 text: "Ví dụ: Hiệu hai số là 24, tỉ số là 1/4. - Hiệu số phần: 4 - 1 = 3 phần - Giá trị 1 phần: 24 : 3 = 8 - Số bé: 8 × 1 = 8 - Số lớn: 8 + 24 = 32 (hoặc 8 × 4 = 32)",
-                barModel: {
-                  rows: [
-                    { label: "Số bé (1 phần)", parts: 1 },
-                    { label: "Số lớn (4 phần)", parts: 4 },
-                  ],
-                  braceLabel: "Hiệu 24 · số bé 8 · số lớn 32",
-                },
-                table: {
-                  headers: ["Bước", "Làm"],
-                  rows: [
-                    ["Hiệu số phần", "4 − 1 = 3 phần"],
-                    ["Giá trị 1 phần", "24 : 3 = 8"],
-                    ["Số bé", "8 × 1 = 8"],
-                    ["Số lớn", "8 + 24 = 32"],
-                  ],
-                  label: "Tìm hai số khi biết Hiệu và Tỉ số",
-                },
               },
             },
             {
@@ -3081,19 +2587,6 @@ badge: "Ôn Tập Chương 4",
               type: "visual",
               content: {
                 text: "- Độ dài thật = Độ dài trên bản đồ × Mẫu số tỉ lệ - Độ dài trên bản đồ = Độ dài thật : Mẫu số tỉ lệ (cùng đơn vị đo)",
-                table: {
-                  headers: ["Cần tìm", "Công thức"],
-                  rows: [
-                    ["Độ dài thật", "độ dài trên bản đồ × mẫu số tỉ lệ"],
-                    ["Độ dài trên bản đồ", "độ dài thật : mẫu số tỉ lệ"],
-                  ],
-                  label: "Tỉ lệ bản đồ — nhớ đổi về cùng một đơn vị đo",
-                },
-                ruler: {
-                  lengthCm: 2,
-                  measure: { from: 0, to: 2 },
-                  label: "2 cm trên bản đồ tỉ lệ 1 : 1 000 ứng với 2 000 cm = 20 m thật",
-                },
               },
             },
             {
@@ -3135,14 +2628,7 @@ badge: "Ôn Tập Chương 4",
             {
               type: "concept",
               content: {
-                                fractionBar: {
-                  rows: [
-                    { label: "nam/nữ = 15/18 = 5/6", parts: 18, shaded: 15 },
-                    { label: "nữ/nam = 18/15 = 6/5", parts: 15, shaded: 15 },
-                  ],
-                  label: "Tỉ số luôn viết đúng thứ tự theo câu hỏi",
-                },
-badge: "Luyện Tỉ Số",
+                badge: "Luyện Tỉ Số",
                 title: "Ba điều cần nhớ về tỉ số",
                 points: [
                   "Tỉ số của 3 và 5 viết là 3 : 5 (cũng có thể viết 3/5).",
@@ -3192,14 +2678,7 @@ badge: "Luyện Tỉ Số",
             {
               type: "concept",
               content: {
-                                barModel: {
-                  rows: [
-                    { label: "Số bé", parts: 2 },
-                    { label: "Số lớn", parts: 3 },
-                  ],
-                  braceLabel: "Tổng 35 ⇒ 14 và 21",
-                },
-badge: "Luyện Tổng - Tỉ",
+                badge: "Luyện Tổng - Tỉ",
                 title: "Ba bước giải",
                 steps: [
                   {
@@ -3269,22 +2748,7 @@ badge: "Luyện Tổng - Tỉ",
             {
               type: "concept",
               content: {
-                                barModel: {
-                  rows: [
-                    { label: "Số bé", parts: 1 },
-                    { label: "Số lớn", parts: 4 },
-                  ],
-                  braceLabel: "Hiệu 24 ⇒ 8 và 32",
-                },
-                table: {
-                  headers: ["Dạng toán", "Chia cho"],
-                  rows: [
-                    ["Tổng – Tỉ", "TỔNG số phần"],
-                    ["Hiệu – Tỉ", "HIỆU số phần"],
-                  ],
-                  label: "Phân biệt Tổng–Tỉ và Hiệu–Tỉ",
-                },
-badge: "Luyện Hiệu - Tỉ",
+                badge: "Luyện Hiệu - Tỉ",
                 title: "Ba bước giải",
                 steps: [
                   {
@@ -3343,20 +2807,7 @@ badge: "Luyện Hiệu - Tỉ",
             {
               type: "concept",
               content: {
-                                table: {
-                  headers: ["Trên bản đồ", "Ngoài thực tế"],
-                  rows: [
-                    ["1 cm (tỉ lệ 1 : 1 000 000)", "1 000 000 cm = 10 km"],
-                    ["2 cm (tỉ lệ 1 : 1 000)", "2 000 cm = 20 m"],
-                  ],
-                  label: "Tỉ lệ bản đồ trong thực tế",
-                },
-                ruler: {
-                  lengthCm: 10,
-                  measure: { from: 0, to: 10 },
-                  label: "1 cm trên bản đồ tỉ lệ 1 : 1 000 000 ứng với 10 km thật",
-                },
-badge: "Ứng Dụng Bản Đồ",
+                badge: "Ứng Dụng Bản Đồ",
                 title: "Hai chiều tính toán",
                 points: [
                   "Độ dài thật = Độ dài trên bản đồ × Mẫu số tỉ lệ.",
@@ -3405,22 +2856,7 @@ badge: "Ứng Dụng Bản Đồ",
             {
               type: "concept",
               content: {
-                                barModel: {
-                  rows: [
-                    { label: "Tổng – Tỉ", parts: 5 },
-                    { label: "Hiệu – Tỉ", parts: 3 },
-                  ],
-                  braceLabel: "Tổng 5 phần · Hiệu 3 phần",
-                },
-                table: {
-                  headers: ["Đề cho", "Dạng toán"],
-                  rows: [
-                    ["tổng và tỉ số", "Tổng – Tỉ"],
-                    ["hiệu và tỉ số", "Hiệu – Tỉ"],
-                  ],
-                  label: "Xác định đúng dạng toán trước khi giải",
-                },
-badge: "Phân Biệt Hai Dạng",
+                badge: "Phân Biệt Hai Dạng",
                 title: "Nhìn đề để chọn dạng",
                 points: [
                   "Đề cho TỔNG (cả hai số cộng lại) ⇒ dạng Tổng - Tỉ, chia cho tổng số phần.",
@@ -3481,14 +2917,7 @@ badge: "Phân Biệt Hai Dạng",
             {
               type: "concept",
               content: {
-                                barModel: {
-                  rows: [
-                    { label: "Số bé", parts: 2 },
-                    { label: "Số lớn", parts: 3 },
-                  ],
-                  braceLabel: "Luyện tập chung chương 5",
-                },
-badge: "Ôn Tập Chương 5",
+                badge: "Ôn Tập Chương 5",
                 title: "Bốn mảng kiến thức",
                 points: [
                   "Tỉ số của hai số (viết đúng thứ tự).",
@@ -3560,20 +2989,7 @@ badge: "Ôn Tập Chương 5",
             {
               type: "concept",
               content: {
-                                placeValue: {
-                  headers: [
-                    "Trăm nghìn",
-                    "Chục nghìn",
-                    "Nghìn",
-                    "Trăm",
-                    "Chục",
-                    "Đơn vị",
-                  ],
-                  digits: [6, 8, 3, 5, 2, 0],
-                  label: "Ôn tập số tự nhiên — 683 520",
-                },
-                operation: { left: 483526, sign: "+", right: 254138, result: 737664 },
-badge: "Kiến Thức Trọng Tâm",
+                badge: "Kiến Thức Trọng Tâm",
                 title: "Ôn tập về số tự nhiên & Phép tính số tự nhiên",
                 explanation: "Ôn lại số tự nhiên và bốn phép tính với số tự nhiên.",
                 points: [
@@ -3623,17 +3039,7 @@ badge: "Kiến Thức Trọng Tâm",
             {
               type: "concept",
               content: {
-                                table: {
-                  headers: ["Đổi", "Bằng"],
-                  rows: [
-                    ["1 tấn", "1 000 kg"],
-                    ["1 tạ", "100 kg"],
-                    ["1 thế kỉ", "100 năm"],
-                    ["1 phút", "60 giây"],
-                  ],
-                  label: "Ôn tập đại lượng — đổi về cùng một đơn vị rồi mới tính",
-                },
-badge: "Kiến Thức Trọng Tâm",
+                badge: "Kiến Thức Trọng Tâm",
                 title: "Ôn tập về đại lượng & Bảng khối lượng, thời gian",
                 explanation: "Ôn lại các đơn vị đo khối lượng, độ dài, diện tích và thời gian.",
                 points: [
@@ -3682,14 +3088,7 @@ badge: "Kiến Thức Trọng Tâm",
             {
               type: "concept",
               content: {
-                                fractionBar: {
-                  rows: [
-                    { parts: 6, shaded: 5, label: "1/2 + 1/3 = 5/6" },
-                    { parts: 12, shaded: 8, label: "2/3 = 8/12" },
-                  ],
-                  label: "Ôn tập phân số — khác mẫu thì quy đồng trước",
-                },
-badge: "Kiến Thức Trọng Tâm",
+                badge: "Kiến Thức Trọng Tâm",
                 title: "Ôn tập về phân số & Các phép tính phân số",
                 explanation: "Ôn lại phân số và bốn phép tính với phân số.",
                 points: [
@@ -3746,21 +3145,6 @@ badge: "Kiến Thức Trọng Tâm",
               type: "visual",
               content: {
                 text: "- Hình chữ nhật: S = a × b - Hình vuông: S = a × a - Hình bình hành: S = a × h - Hình thoi: S = (m × n) : 2",
-                planeShape: {
-                  kind: "parallelogram",
-                  labels: ["đáy a", "chiều cao h"],
-                  formula: "S = a × h",
-                },
-                table: {
-                  headers: ["Hình", "Công thức diện tích"],
-                  rows: [
-                    ["Hình chữ nhật", "S = a × b"],
-                    ["Hình vuông", "S = a × a"],
-                    ["Hình bình hành", "S = a × h"],
-                    ["Hình thoi", "S = (m × n) : 2"],
-                  ],
-                  label: "Ôn tập hình học",
-                },
               },
             },
             {
@@ -3803,14 +3187,7 @@ badge: "Kiến Thức Trọng Tâm",
             {
               type: "concept",
               content: {
-                                barModel: {
-                  rows: [
-                    { label: "Số bé", parts: 2 },
-                    { label: "Số lớn", parts: 3 },
-                  ],
-                  braceLabel: "Tóm tắt đề bằng sơ đồ đoạn thẳng trước khi giải",
-                },
-badge: "Kiến Thức Trọng Tâm",
+                badge: "Kiến Thức Trọng Tâm",
                 title: "Ôn tập giải toán có lời văn",
                 explanation: "Ôn lại các dạng toán có lời văn đã học ở Lớp 4.",
                 points: [
@@ -3862,16 +3239,7 @@ badge: "Kiến Thức Trọng Tâm",
             {
               type: "concept",
               content: {
-                                table: {
-                  headers: ["Cần tìm", "Cách làm"],
-                  rows: [
-                    ["Số hạng chưa biết", "tổng − số hạng đã biết"],
-                    ["Số bị trừ", "hiệu + số trừ"],
-                    ["Số trừ", "số bị trừ − hiệu"],
-                  ],
-                  label: "Ôn tập dấu hiệu chia hết và tìm thành phần chưa biết",
-                },
-badge: "Ôn Tập Chia Hết",
+                badge: "Ôn Tập Chia Hết",
                 title: "Tổng hợp quy tắc",
                 points: [
                   "Chia hết cho 2: chữ số tận cùng là 0, 2, 4, 6, 8.",
@@ -3920,22 +3288,7 @@ badge: "Ôn Tập Chia Hết",
             {
               type: "concept",
               content: {
-                                barModel: {
-                  rows: [
-                    { label: "Số bé", parts: 1 },
-                    { label: "Số lớn", parts: 4 },
-                  ],
-                  braceLabel: "Hiệu 24 ⇒ 8 và 32 · kiểm tra lại 8 + 24 = 32",
-                },
-                table: {
-                  headers: ["Dạng", "Công thức"],
-                  rows: [
-                    ["Tổng – Tỉ", "chia cho TỔNG số phần"],
-                    ["Hiệu – Tỉ", "chia cho HIỆU số phần"],
-                  ],
-                  label: "Ôn tập toán Tổng – Tỉ và Hiệu – Tỉ",
-                },
-badge: "Ôn Tập Hai Dạng",
+                badge: "Ôn Tập Hai Dạng",
                 title: "Cách phân biệt nhanh",
                 points: [
                   "Đề cho tổng ⇒ chia cho TỔNG số phần.",
@@ -3985,22 +3338,7 @@ badge: "Ôn Tập Hai Dạng",
             {
               type: "concept",
               content: {
-                                table: {
-                  headers: ["Nội dung", "Ví dụ"],
-                  rows: [
-                    [
-                      "Số tự nhiên",
-                      "432 516 = 400 000 + 30 000 + 2 000 + 500 + 10 + 6",
-                    ],
-                    ["Bốn phép tính", "128 472 : 6 = 21 412"],
-                    ["Dấu hiệu chia hết", "1 250 chia hết cho 2 và 5"],
-                    ["Phân số", "1/2 + 1/3 = 5/6"],
-                    ["Hình học", "S hình thoi = (m × n) : 2"],
-                  ],
-                  label: "Luyện đề cuối năm Lớp 4 — Đề số 1",
-                },
-                operation: { left: 128472, sign: ":", right: 6, result: 21412 },
-badge: "Đề Số 1",
+                badge: "Đề Số 1",
                 title: "Năm dạng bài hay gặp",
                 points: [
                   "Dạng 1: Số tự nhiên, so sánh số, dấu hiệu chia hết.",
@@ -4057,24 +3395,7 @@ badge: "Đề Số 1",
             {
               type: "concept",
               content: {
-                                barModel: {
-                  rows: [
-                    { label: "Số bé", parts: 2 },
-                    { label: "Số lớn", parts: 3 },
-                  ],
-                  braceLabel: "Tổng (hiệu) số phần ⇒ giá trị một phần ⇒ từng số",
-                },
-                table: {
-                  headers: ["Bước", "Làm"],
-                  rows: [
-                    ["1", "vẽ sơ đồ đoạn thẳng"],
-                    ["2", "tính tổng (hiệu) số phần"],
-                    ["3", "tính giá trị một phần"],
-                    ["4", "tính từng số và kiểm tra lại"],
-                  ],
-                  label: "Luyện đề cuối năm Lớp 4 — Đề số 2",
-                },
-badge: "Đề Số 2",
+                badge: "Đề Số 2",
                 title: "Ba dạng bài nâng cao",
                 points: [
                   "Dạng 1: Tìm hai số khi biết tổng và tỉ số.",
@@ -4131,18 +3452,7 @@ badge: "Đề Số 2",
             {
               type: "concept",
               content: {
-                                table: {
-                  headers: ["Dạng bài", "Ví dụ"],
-                  rows: [
-                    ["Đọc số", "68 352"],
-                    ["So sánh", "100 000 > 99 999"],
-                    ["Tổng – Tỉ", "14 và 21"],
-                    ["Hiệu – Tỉ", "8 và 32"],
-                    ["Hình học", "S = a × h"],
-                  ],
-                  label: "Thử thách Trạng Nguyên Toán Lớp 4 — đọc kỹ đề, nhận dạng bài rồi mới giải",
-                },
-badge: "Kiến Thức Trọng Tâm",
+                badge: "Kiến Thức Trọng Tâm",
                 title: "Thử thách Trạng Nguyên Toán Lớp 4",
                 explanation: "Bài cuối của Lớp 4: tổng hợp toàn bộ kiến thức đã học.",
                 points: [

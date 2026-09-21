@@ -1,0 +1,64 @@
+
+## g5-c1 | Chương 1: Ôn tập phân số, Giải toán tỉ lệ & Bảng đơn vị diện tích
+g5-c1-l1 | Bài 1: Khái niệm, tính chất cơ bản & So sánh phân số | HINH: - Phân số có tử số và mẫu số (khác 0). - Tính chất cơ bản: Nhân hoặc chia cả tử và mẫu với cùng số khác 0 được phân số bằng nó. - So sánh cùng mẫu: tử số lớn hơn thì lớn hơn. Khác mẫu: quy đồng rồi so sánh. | RULE: 
+g5-c1-l2 | Bài 2: Phân số thập phân | HINH: Chuyển phân số thường thành phân số thập phân: - 1/2 = (1×5)/(2×5) = 5/10 - 3/4 = (3×25)/(4×25) = 75/100 - 7/20 = (7×5)/(20×5) = 35/100 | RULE: 
+g5-c1-l3 | Bài 3: Ôn tập bốn phép tính với phân số | HINH: Ví dụ tổng hợp: - 2/3 + 1/4 = 8/12 + 3/12 = 11/12 - 3/5 × 10/9 = (3×10)/(5×9) = 30/45 = 2/3 - 2/7 : 4/5 = 2/7 × 5/4 = 10/28 = 5/14 | RULE: 
+g5-c1-l4 | Bài 4: Hỗn số và các phép tính với hỗn số | HINH: Chuyển hỗn số thành phân số: Tử số = (Phần nguyên × Mẫu số) + Tử số cũ Mẫu số = Giữ nguyên mẫu số cũ Ví dụ: 2 3/4 = (2 × 4 + 3) / 4 = 11/4 | RULE: 
+g5-c1-l5 | Bài 5: Ôn tập và bổ sung về giải toán (Tỉ lệ thuận & nghịch) | HINH: Ví dụ (Tỉ lệ thuận): Mua 5 quyển vở hết 40 000 đồng. Mua 8 quyển vở hết bao nhiêu tiền? Cách 1: Rút về đơn vị: 1 quyển hết 40 000 : 5 = 8 000 đồng, nên là 8 quyển hết 8 000 × 8 = 64 000 đồng. | RULE: 
+g5-c1-l6 | Bài 6: Bảng đơn vị đo độ dài & Bảng đơn vị đo khối lượng | HINH: - Bảng độ dài: km > hm > dam > m > dm > cm > mm (mỗi bước ×10 hoặc :10) - Bảng khối lượng: tấn > tạ > yến > kg > hg > dag > g | RULE: 
+g5-c1-l7 | Bài 7: Đề-ca-mét vuông (dam²), Héc-tô-mét vuông (hm²) | HINH: Bảng đơn vị đo diện tích: km² > hm² > dam² > m² > dm² > cm² > mm² Chú ý: Hai đơn vị đo diện tích liền nhau hơn kém nhau 100 LẦN! 1 hm² = 100 dam² = 10 000 m² | RULE: 
+g5-c1-l8 | Bài 8: Héc-ta (ha) | HINH: Quy đổi héc-ta: 1 ha = 1 hm² = 10 000 m² 1 km² = 100 ha Một sân bóng đá tiêu chuẩn có diện tích gần bằng 1 ha đấy! | RULE: 
+g5-c1-l10 | Bài 9: Luyện tập so sánh phân số | HINH:  | RULE: So với 1 trước — đó là mẹo nhanh nhất và ít sai nhất.
+g5-c1-l11 | Bài 10: Ôn tập tìm hai số khi biết Tổng (Hiệu) và Tỉ số | HINH:  | RULE: Sau khi giải, thử lại bằng cách cộng (hoặc trừ) hai số vừa tìm.
+g5-c1-l12 | Bài 11: Luyện tập bảng đơn vị đo diện tích | HINH:  | RULE: Đơn vị lớn gấp 100 lần đơn vị bé liền sau; đơn vị bé bằng 1/100 đơn vị lớn liền trước.
+g5-c1-l9 | Bài 12: Luyện tập chung Chương 1 | HINH:  | RULE: Đọc kỹ yêu cầu để biết cần viết dạng phân số hay số thập phân.
+
+## g5-c2 | Chương 2: Số thập phân & Các phép tính số thập phân
+g5-c2-l1 | Bài 1: Khái niệm & Hàng của số thập phân | HINH: Cấu tạo số thập phân 375,429: - Phần nguyên: 3 trăm, 7 chục, 5 đơn vị - Dấu phẩy ngăn cách - Phần thập phân: 4 phần mười (hàng phần mười), 2 phần trăm (hàng phần trăm), 9 phần nghìn (hàng phần nghìn) | RULE: 
+g5-c2-l2 | Bài 2: Số thập phân bằng nhau & So sánh số thập phân | HINH:  | RULE: Không được đếm số lượng chữ số để so sánh! 0,5 = 0,50 lớn hơn 0,15.
+g5-c2-l3 | Bài 3: Viết số đo đại lượng dưới dạng số thập phân | HINH: Cách chuyển đổi: - Độ dài: 5 m 6 dm = 5,6 m; 4 km 250 m = 4,25 km - Khối lượng: 2 kg 50 g = 2,05 kg; 3 tấn 500 kg = 3,5 tấn - Diện tích: 4 m² 25 dm² = 4,25 m² (vì 1 m² = 100 dm²) | RULE: 
+g5-c2-l4 | Bài 4: Phép cộng số thập phân & Tổng nhiều số | HINH: Đặt tính cộng: 15,82 + 9,35 -------- 25,17 (Hạ dấu phẩy thẳng cột xuống giữa 25 và 17) | RULE: 
+g5-c2-l5 | Bài 5: Phép trừ hai số thập phân | HINH: Ví dụ: 45,8 - 19,25 Viết thành: 45,80 - 19,25 = 26,55 | RULE: 
+g5-c2-l6 | Bài 6: Phép nhân số thập phân | HINH: Ví dụ: 2,35 × 1,4 - Nhân 235 × 14 = 3290 - Hai thừa số có 2 + 1 = 3 chữ số ở phần thập phân - Tách 3 chữ số từ phải sang trái: 3,290 = 3,29 Nhân nhẩm với 10, 100, 1000: Dịch dấu phẩy sang phải 1, 2, 3 chữ số! | RULE: 
+g5-c2-l7 | Bài 7: Phép chia số thập phân | HINH: Chia cho số thập phân (ví dụ: 12 : 2,5): - Số chia có 1 chữ số thập phân, ta chuyển dấu phẩy ở cả hai số sang phải 1 vị trí: thành 120 : 25 = 4,8! Chia nhẩm cho 10, 100, 1000: Dịch dấu phẩy sang TRÁI 1, 2, 3 chữ số. | RULE: 
+g5-c2-l8 | Bài 8: Tỉ số phần trăm | HINH: Cách viết: - 1/100 = 0,01 = 1% - 35/100 = 0,35 = 35% - 3/4 = 75/100 = 75% Muốn tìm tỉ số phần trăm của hai số a và b: 1. Tìm thương của a và b: a : b 2. Nhân thương đó với 100 và viết thêm ký hiệu %. | RULE: 
+g5-c2-l9 | Bài 9: Giải toán về tỉ số phần trăm (3 bài toán cơ bản) | HINH: Ví dụ: Lớp có 40 học sinh, trong đó có 60% là nữ. Số học sinh nữ là: 40 × 60 : 100 = 24 học sinh. | RULE: 
+g5-c2-l10 | Bài 10: Máy tính bỏ túi & Luyện tập chung Chương 2 | HINH:  | RULE: Máy tính chỉ để kiểm tra kết quả, không thay cho việc tự tính.
+
+## g5-c3 | Chương 3: Hình học & Thể tích hình khối
+g5-c3-l1 | Bài 1: Hình tam giác & Diện tích hình tam giác | HINH: Công thức: S = (a × h) : 2 Trong đó: a là độ dài đáy, h là chiều cao tương ứng. | RULE: 
+g5-c3-l2 | Bài 2: Hình thang & Diện tích hình thang | HINH: Công thức diện tích hình thang: S = (a + b) × h : 2 Trong đó: - a là đáy lớn - b là đáy bé - h là chiều cao (cùng đơn vị đo) | RULE: 
+g5-c3-l3 | Bài 3: Hình tròn & Chu vi hình tròn | HINH: Công thức tính chu vi hình tròn: C = d × 3,14 hoặc C = r × 2 × 3,14 (d là đường kính, r là bán kính) | RULE: 
+g5-c3-l4 | Bài 4: Diện tích hình tròn | HINH: Công thức: S = r × r × 3,14 Trong đó: r là bán kính hình tròn. | RULE: 
+g5-c3-l5 | Bài 5: Biểu đồ hình quạt | HINH: Ví dụ: Biểu đồ kết quả học tập: - Xuất sắc: 50% (nửa hình tròn) - Tốt: 30% - Hoàn thành: 20% Tổng phần trăm luôn bằng 100%. | RULE: 
+g5-c3-l6 | Bài 6: Hình hộp chữ nhật & Hình lập phương | HINH: - Hình hộp chữ nhật: Có 3 kích thước: chiều dài a, chiều rộng b, chiều cao c. 6 mặt đều là hình chữ nhật. - Hình lập phương: Là hình hộp chữ nhật đặc biệt có chiều dài = chiều rộng = chiều cao (6 mặt là hình vuông bằng nhau). | RULE: 
+g5-c3-l7 | Bài 7: Diện tích xung quanh & Toàn phần hình hộp, lập phương | HINH: 1. Hình hộp chữ nhật: - Sxq = (a + b) × 2 × c (Chu vi đáy × Chiều cao) - Stp = Sxq + 2 × (a × b) 2. Hình lập phương (cạnh a): - Sxq = a × a × 4 - Stp = a × a × 6 | RULE: 
+g5-c3-l8 | Bài 8: Thể tích hình hộp chữ nhật & Hình lập phương | HINH: Công thức thể tích: - Hình hộp chữ nhật: V = a × b × c - Hình lập phương: V = a × a × a Đơn vị đo thể tích: 1 m³ = 1000 dm³ = 1 000 000 cm³ Đặc biệt: 1 dm³ = 1 lít (l)! | RULE: 
+g5-c3-l10 | Bài 9: Luyện tập diện tích hình tam giác và hình thang | HINH:  | RULE: Tam giác lấy đáy nhân chiều cao rồi chia 2; hình thang lấy TỔNG hai đáy nhân chiều cao rồi chia 2.
+g5-c3-l11 | Bài 10: Luyện tập chu vi và diện tích hình tròn | HINH:  | RULE: Đọc kỹ đề cho BÁN KÍNH hay ĐƯỜNG KÍNH để chọn đúng công thức.
+g5-c3-l12 | Bài 11: Luyện tập diện tích xung quanh, toàn phần và thể tích | HINH:  | RULE: Đơn vị: diện tích xung quanh và toàn phần là cm²; thể tích là cm³.
+g5-c3-l9 | Bài 12: Hình trụ, Hình cầu & Luyện tập chung | HINH:  | RULE: Ghi đúng đơn vị: diện tích là cm², thể tích là cm³.
+
+## g5-c4 | Chương 4: Số đo thời gian & Toán chuyển động đều
+g5-c4-l1 | Bài 1: Bảng đơn vị đo thời gian & Cộng, trừ số đo thời gian | HINH: Ví dụ cộng: 3 giờ 15 phút + 2 giờ 35 phút = 5 giờ 50 phút. Ví dụ trừ: 4 giờ 20 phút - 1 giờ 35 phút Đổi: 4 giờ 20 phút = 3 giờ 80 phút. Trừ: 3 giờ 80 phút - 1 giờ 35 phút = 2 giờ 45 phút! | RULE: 
+g5-c4-l2 | Bài 2: Nhân, chia số đo thời gian với một số | HINH: Ví dụ nhân: 1 giờ 25 phút × 3 = 3 giờ 75 phút = 4 giờ 15 phút. Ví dụ chia: 7 giờ 40 phút : 4 - 7 giờ : 4 = 1 giờ dư 3 giờ - Đổi 3 giờ = 180 phút. 180 + 40 = 220 phút. - 220 phút : 4 = 55 phút, vậy kết quả: 1 giờ 55 phút. | RULE: 
+g5-c4-l3 | Bài 3: Vận tốc (v = s : t) | HINH: Công thức tính vận tốc: v = s : t Trong đó: - v là vận tốc - s là quãng đường - t là thời gian | RULE: 
+g5-c4-l4 | Bài 4: Quãng đường (s = v × t) | HINH: Công thức quãng đường: s = v × t Ví dụ: Một người đi xe đạp với vận tốc 15 km/giờ trong 2 giờ. Quãng đường đi được là: s = 15 × 2 = 30 km. | RULE: 
+g5-c4-l5 | Bài 5: Thời gian (t = s : v) | HINH: Công thức thời gian: t = s : v Ví dụ: Quãng đường AB dài 90 km, xe máy đi với vận tốc 45 km/giờ. Thời gian đi là: t = 90 : 45 = 2 giờ. | RULE: 
+g5-c4-l6 | Bài 6: Hai chuyển động cùng chiều & Ngược chiều | HINH: 1. Ngược chiều: Thời gian gặp nhau = Khoảng cách ban đầu : (v1 + v2) 2. Cùng chiều (xe sau nhanh hơn đuổi xe trước): Thời gian đuổi kịp = Khoảng cách ban đầu : (v1 - v2) | RULE: 
+g5-c4-l7 | Bài 7: Luyện tập số đo thời gian | HINH:  | RULE: Đơn vị thời gian dùng hệ 60 — đừng tính như số thập phân.
+g5-c4-l8 | Bài 8: Luyện tập ba bài toán chuyển động | HINH:  | RULE: Nhớ một công thức là suy ra được hai công thức còn lại.
+g5-c4-l9 | Bài 9: Luyện tập chung: Số đo thời gian và chuyển động đều | HINH:  | RULE: Đọc kỹ đề để chọn đúng công thức.
+g5-c4-l10 | Bài 10: Luyện đề: Toán chuyển động và tỉ số phần trăm | HINH:  | RULE: Đơn vị vận tốc thường là km/giờ — đổi thời gian ra giờ nếu đề cho phút.
+
+## g5-c5 | Chương 5: Ôn tập cuối năm & Luyện thi chuyển cấp
+g5-c5-l1 | Bài 1: Ôn tập về số tự nhiên, phân số, số thập phân | HINH:  | RULE: Ba loại số này viết qua lại được: 1/2 = 0,5.
+g5-c5-l2 | Bài 2: Ôn tập các phép tính số tự nhiên, phân số, số thập phân | HINH:  | RULE: Thử lại bằng phép tính ngược để chắc kết quả đúng.
+g5-c5-l3 | Bài 3: Ôn tập chu vi, diện tích hình phẳng | HINH: - Tam giác: S = (a × h) / 2 - Hình thang: S = ((a + b) × h) / 2 - Hình tròn: S = r × r × 3,14 - Hình thoi: S = (m × n) / 2 | RULE: 
+g5-c5-l4 | Bài 4: Ôn tập diện tích & Thể tích hình khối | HINH:  | RULE: Phân biệt diện tích (cm²) và thể tích (cm³) nhờ đơn vị của đáp số.
+g5-c5-l5 | Bài 5: Ôn tập toán chuyển động đều & Tỉ số phần trăm | HINH:  | RULE: Đơn vị vận tốc phải khớp đơn vị thời gian, ví dụ km/giờ với giờ.
+g5-c5-l7 | Bài 6: Ôn tập bảng đơn vị đo lường và số đo thời gian | HINH:  | RULE: Độ dài và khối lượng hơn kém 10 lần; diện tích 100 lần; thể tích 1000 lần.
+g5-c5-l8 | Bài 7: Ôn tập toán về tỉ số phần trăm | HINH:  | RULE: Đọc kỹ đề để biết đang hỏi dạng nào trong ba dạng trên.
+g5-c5-l9 | Bài 8: Luyện đề chuyển cấp - Đề số 1 | HINH:  | RULE: Đọc đề, gạch chân dữ kiện, rồi mới tính.
+g5-c5-l10 | Bài 9: Luyện đề chuyển cấp - Đề số 2 | HINH:  | RULE: Toán hai vật: ngược chiều thì cộng vận tốc, cùng chiều thì trừ vận tốc.
+g5-c5-l6 | Bài 10: Thử thách Trạng Nguyên Toán Lớp 5 - Chinh phục Lớp 6 | HINH:  | RULE: Bé đã học xong tiểu học — giữ thói quen tính cẩn thận khi lên Lớp 6!

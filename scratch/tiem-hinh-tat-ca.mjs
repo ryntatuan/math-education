@@ -974,6 +974,8 @@ import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { SPECS_LOP2 } from "./hinh-lop2.mjs";
 import { SPECS_LOP3 } from "./hinh-lop3.mjs";
+import { SPECS_LOP4 } from "./hinh-lop4.mjs";
+import { SPECS_LOP5 } from "./hinh-lop5.mjs";
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 const SAFE_KEY = /^[A-Za-z_$][A-Za-z0-9_$]*$/;
@@ -1031,8 +1033,14 @@ const MAU_VISUAL =
 // Chèn ngay sau dòng `content: {`, tức là các khoá hình đứng ĐẦU object.
 const MAU_CONCEPT = /type: "concept",\r?\n(\s*)content: \{\r?\n(\s*)/;
 
-const MONG_DOI = { 1: 97, 2: 120, 3: 123 };
-const SPECS = { 1: SPECS_LOP1, 2: SPECS_LOP2, 3: SPECS_LOP3 };
+const MONG_DOI = { 1: 97, 2: 120, 3: 123, 4: 65, 5: 54 };
+const SPECS = {
+  1: SPECS_LOP1,
+  2: SPECS_LOP2,
+  3: SPECS_LOP3,
+  4: SPECS_LOP4,
+  5: SPECS_LOP5,
+};
 
 const lop = Number(process.argv[2]);
 const ghiThat = process.argv.includes("--ghi");

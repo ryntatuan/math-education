@@ -79,10 +79,53 @@ cách vẽ nào:
 
 | GĐ | Việc | Sản phẩm | Trạng thái |
 | --- | --- | --- | --- |
-| 1 | **Mở rộng bộ vẽ** — thêm các component SVG còn thiếu ở mục 3 | `client/src/components/visuals/*` | **XONG 2026-09-22** |
-| 2 | **Lớp 1 và Lớp 2** — đếm, cộng trừ, hình, đồng hồ, tiền | dữ liệu hình cho 217 bài | chưa làm |
-| 3 | **Lớp 3** — bảng nhân chia, chu vi/diện tích, đo lường, thống kê | dữ liệu hình cho 123 bài | chưa làm |
-| 4 | **Lớp 4 và Lớp 5** — phân số, sơ đồ đoạn thẳng, hình khối, biểu đồ | dữ liệu hình cho 119 bài | chưa làm |
+| 1 | **Mở rộng bộ vẽ** — thêm các component SVG còn thiếu ở mục 3 | `client/src/components/visuals/*` | **XONG** |
+| 2 | **Lớp 1 và Lớp 2** — đếm, cộng trừ, hình, đồng hồ, tiền | dữ liệu hình cho 217 bài | **XONG** |
+| 3 | **Lớp 3** — bảng nhân chia, chu vi/diện tích, đo lường, thống kê | dữ liệu hình cho 123 bài | **XONG** |
+| 4 | **Lớp 4 và Lớp 5** — phân số, sơ đồ đoạn thẳng, hình khối, biểu đồ | dữ liệu hình cho 119 bài | **XONG** |
+
+### KẾT QUẢ CUỐI
+
+| Số đo | Trước | Sau |
+| --- | --- | --- |
+| Bài có ít nhất một hình | **0 / 459** | **459 / 459** |
+| Slide mang hình (bộ vẽ mới) | 0 / 2438 | 439 / 2438 |
+| Bộ vẽ được dùng | 0 | **17 / 17** |
+
+Số lần dùng từng bộ vẽ (đo trên dữ liệu thật):
+
+| Bộ vẽ | Lần | Bộ vẽ | Lần |
+| --- | --- | --- | --- |
+| `table` | 285 | `barChart` | 7 |
+| `numberLine` | 50 | `circleParts` | 7 |
+| `placeValue` | 42 | `baseTen` | 6 |
+| `planeShape` | 39 | `pieChart` | 6 |
+| `barModel` | 26 | `money` | 5 |
+| `ruler` | 23 | `fractionCircle` | 4 |
+| `fractionBar` | 17 | `angle` | 4 |
+| `solid` | 16 | | |
+| `tenFrame` | 15 | | |
+| `motionDiagram` | 9 | | |
+
+Phép thử: **561 lượt render đạt · 0 hỏng**. Cổng **31 PASS · 0 FAIL**. Build `client` và
+`admin` đều **exit 0**. Không file dữ liệu nào có ký tự hỏng (U+FFFD = 0).
+
+### ⚠️ VIỆC CÒN LẠI BẮT BUỘC — NẠP LẠI NỘI DUNG VÀO DB
+
+App đang đọc nội dung từ **file tĩnh** (`content_source = "static"`) nên **bé thấy hình
+ngay**. Nhưng cây trong DB thì **chưa có hình**, nên:
+
+- Admin Portal (đọc từ DB) sẽ hiện bài **không có hình**.
+- Cổng động `S-24` so `JSON.stringify(slides)` giữa DB và file tĩnh **sẽ báo lệch**.
+
+Cách xử lý (đúng quy trình đã có, xem `docs/content_reload_steps.md`):
+
+```powershell
+node scripts/migrate-content.mjs --sql      # sinh lại file SQL
+# dán các file trong supabase/content-seed/ theo đúng thứ tự vào SQL Editor
+node scripts/migrate-content.mjs --verify   # phải ra exit 0
+```
+
 
 ### Giai đoạn 1 đã xong gì
 
