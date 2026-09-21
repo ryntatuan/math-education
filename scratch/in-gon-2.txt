@@ -1,0 +1,148 @@
+
+## g2-c1 | Chủ đề 1: Ôn tập và bổ sung
+g2-c1-l1 | Bài 1: Ôn tập các số đến 100 | HINH: 47  =  40  +  7 ⏎ 4 chục  +  7 đơn vị | RULE: Số 47 gồm 4 chục và 7 đơn vị. Đọc là: bốn mươi bảy.
+g2-c1-l2 | Bài 2: So sánh các số có hai chữ số | HINH: 58  <  85 ⏎ 5 chục < 8 chục | RULE: 58 và 85: 5 chục bé hơn 8 chục, nên 58 < 85.
+g2-c1-l3 | Bài 3: Tia số | HINH: 0 — 1 — 2 — 3 — 4 — 5 — 6 — 7 — 8 — 9 — 10 | RULE: Đi sang phải thì số tăng dần: 0, 1, 2, 3, 4... Đi sang trái thì số giảm dần.
+g2-c1-l4 | Bài 4: Số liền trước, số liền sau | HINH: 68  —  69  —  70 ⏎ liền trước · chính nó · liền sau | RULE: Số liền trước của 69 là 68 (69 − 1). Số liền sau của 69 là 70 (69 + 1).
+g2-c1-l5 | Bài 5: Thành phần của phép cộng | HINH: 35  +  24  =  59 ⏎ số hạng · số hạng · tổng | RULE: 35 + 24 = 59: số 35 và số 24 là các số hạng; số 59 là tổng.
+g2-c1-l6 | Bài 6: Thành phần của phép trừ | HINH: 57  −  23  =  34 ⏎ số bị trừ · số trừ · hiệu | RULE: 57 − 23 = 34: số 57 là số bị trừ, số 23 là số trừ, số 34 là hiệu.
+g2-c1-l7 | Bài 7: Hơn, kém nhau bao nhiêu | HINH: Mai: 12 cái kẹo ⏎ Lan:  8 cái kẹo ⏎ Mai hơn Lan: 12 − 8 = 4 (cái kẹo) | RULE: Mai hơn Lan số kẹo là: 12 − 8 = 4 (cái kẹo).
+g2-c1-l8 | Bài 8: Đặt tính cộng, trừ (không nhớ) trong phạm vi 100 | HINH:   32        57 ⏎ + 14      − 23 ⏎   46        34 | RULE: 32 + 14: đơn vị 2 + 4 = 6, chục 3 + 1 = 4. Kết quả 46.
+g2-c1-l9 | Bài 9: Luyện tập chung chủ đề 1 | HINH: 98 — 99 — 100 ⏎ liền trước · lớn nhất có 2 chữ số · số có 3 chữ số | RULE: 
+
+## g2-c2 | Chủ đề 2: Phép cộng, phép trừ trong phạm vi 20
+g2-c2-l1 | Bài 1: Phép cộng (qua 10) trong phạm vi 20 | HINH: 9 + 4  =  9 + 1 + 3  =  10 + 3  =  13 ⏎          ↑ tách 4 thành 1 và 3 | RULE: 9 + 4 = ? Ta tách 4 thành 1 và 3. Lấy 9 + 1 = 10, rồi 10 + 3 = 13. Vậy 9 + 4 = 13.
+g2-c2-l2 | Bài 2: Tách số để cộng qua 10 | HINH: 8 + 5  =  8 + 2 + 3  =  10 + 3  =  13 | RULE: 8 + 5: 8 còn thiếu 2 để đủ 10. Tách 5 = 2 + 3. Ta có 8 + 2 = 10, rồi 10 + 3 = 13.
+g2-c2-l3 | Bài 3: Bảng cộng (qua 10) | HINH: 9+2=11 · 9+6=15 · 9+9=18 ⏎ 8+3=11 · 8+8=16 · 7+7=14 | RULE: 9 + 2 = 11 · 9 + 5 = 14 · 8 + 3 = 11 · 8 + 7 = 15 · 7 + 4 = 11 · 6 + 5 = 11.
+g2-c2-l4 | Bài 4: Luyện tập phép cộng qua 10 | HINH: 6 quả bóng xanh + 7 quả bóng đỏ ⏎ 6 + 7 = 13 (quả bóng) | RULE: 
+g2-c2-l5 | Bài 5: Bài toán về thêm một số đơn vị | HINH: 7 con chim  +  5 con chim bay đến  =  12 con chim | RULE: 7 con chim, thêm 5 con: 7 + 5 = 12 (con chim).
+g2-c2-l6 | Bài 6: Bài toán về bớt một số đơn vị | HINH: 14 − 6  =  14 − 4 − 2  =  10 − 2  =  8 | RULE: 14 quả bóng, bớt 6 quả: 14 − 6 = 8 (quả bóng).
+g2-c2-l7 | Bài 7: Luyện tập chung phép cộng, phép trừ qua 10 | HINH: 8 + 5 = 13   và   13 − 5 = 8   và   13 − 8 = 5 | RULE: 
+g2-c2-l8 | Bài 8: Phép trừ (qua 10) trong phạm vi 20 | HINH: 13 − 5  =  13 − 3 − 2  =  10 − 2  =  8 | RULE: 13 − 5 = ? Ta tách 5 thành 3 và 2. Lấy 13 − 3 = 10, rồi 10 − 2 = 8. Vậy 13 − 5 = 8.
+g2-c2-l9 | Bài 9: Bảng trừ (qua 10) | HINH: 11−2=9 · 12−5=7 · 13−6=7 · 14−8=6 · 16−9=7 | RULE: 11 − 2 = 9 · 11 − 5 = 6 · 12 − 3 = 9 · 13 − 6 = 7 · 15 − 7 = 8 · 16 − 9 = 7.
+g2-c2-l10 | Bài 10: Luyện tập phép trừ qua 10 | HINH: 14 − ? = 6   →   ? = 14 − 6 = 8 | RULE: 
+g2-c2-l11 | Bài 11: Bài toán về nhiều hơn, ít hơn một số đơn vị | HINH: Mai: 9 nhãn vở ⏎ Lan: 5 nhãn vở ⏎ 9 − 5 = 4 (nhãn vở) | RULE: Mai 9 nhãn vở, Lan 5 nhãn vở. Lan ít hơn Mai: 9 − 5 = 4 (nhãn vở).
+g2-c2-l12 | Bài 12: Luyện tập chung chủ đề 2 | HINH: 9 + 5 = 14 ⏎ 14 − 5 = 9 ⏎ 14 − 9 = 5 | RULE: 
+
+## g2-c3 | Chủ đề 3: Làm quen với khối lượng, dung tích
+g2-c3-l1 | Bài 1: Ki-lô-gam (kg) — đơn vị đo khối lượng | HINH: Quả dưa hấu: 3 kg ⏎ Bao gạo: 5 kg ⏎ Cặp sách: 2 kg | RULE: Quả dưa hấu nặng 3 kg. Đọc là: ba ki-lô-gam.
+g2-c3-l2 | Bài 2: Đọc số đo trên cân | HINH:  | RULE: Kim chỉ vào vạch 4 thì vật nặng 4 kg. Kim chỉ vạch 2 thì vật nặng 2 kg.
+g2-c3-l3 | Bài 3: Lít (l) — đơn vị đo dung tích | HINH: Chai nước: 2 l ⏎ Can dầu: 5 l ⏎ Ca đong: 1 l | RULE: Chai nước chứa 2 l. Đọc là: hai lít.
+g2-c3-l4 | Bài 4: Đọc số đo dung tích | HINH: Mực nước đến vạch 3  →  3 l ⏎ 3 l  >  2 l | RULE: Mực nước dâng đến vạch 3 thì có 3 l nước. 3 l nhiều hơn 2 l nên 3 l > 2 l.
+g2-c3-l5 | Bài 5: Thực hành và trải nghiệm với ki-lô-gam, lít | HINH: 2 kg gạo + 3 kg gạo = 5 kg gạo ⏎ 2 l nước + 1 l nước = 3 l nước | RULE: Một túi đường nhỏ nặng khoảng 1 kg. Một hộp sữa nhỏ chứa khoảng 1 l.
+g2-c3-l6 | Bài 6: Luyện tập chung chủ đề 3 | HINH:  | RULE: 
+
+## g2-c4 | Chủ đề 4: Phép cộng, phép trừ (có nhớ) trong phạm vi 100
+g2-c4-l1 | Bài 1: Phép cộng (có nhớ) số có hai chữ số với số có một chữ số | HINH:   27 ⏎ +  5 ⏎   32 ⏎ 7 + 5 = 12, viết 2 nhớ 1 | RULE: 27 + 5: 7 + 5 = 12, viết 2 nhớ 1. Hàng chục: 2 thêm 1 bằng 3. Kết quả 32.
+g2-c4-l2 | Bài 2: Luyện tập cộng có nhớ (hai chữ số với một chữ số) | HINH:   36            45 ⏎ +  8          +  9 ⏎   44            54 | RULE: 36 + 8: 6 + 8 = 14, viết 4 nhớ 1. Hàng chục: 3 + 1 = 4. Kết quả 44.
+g2-c4-l3 | Bài 3: Phép cộng (có nhớ) số có hai chữ số với số có hai chữ số | HINH:   38 ⏎ + 25 ⏎   63 ⏎ 8 + 5 = 13 → viết 3 nhớ 1 ⏎ 3 + 2 + 1 = 6 | RULE: 38 + 25: 8 + 5 = 13, viết 3 nhớ 1. Hàng chục: 3 + 2 + 1 = 6. Kết quả 63.
+g2-c4-l4 | Bài 4: Luyện tập cộng có nhớ (hai chữ số với hai chữ số) | HINH: Có 28 hộp sữa, thêm 17 hộp ⏎ 28 + 17 = 45 (hộp sữa) | RULE: 28 + 17: 8 + 7 = 15 viết 5 nhớ 1; 2 + 1 + 1 = 4. Kết quả 45.
+g2-c4-l5 | Bài 5: Luyện tập chung phép cộng có nhớ | HINH: 56 + 7  = 63 ⏎ 56 + 27 = 83 | RULE: 
+g2-c4-l6 | Bài 6: Phép trừ (có nhớ) số có hai chữ số cho số có một chữ số | HINH:   32 ⏎ −  7 ⏎   25 ⏎ 2 không trừ được 7 → mượn 1 chục: 12 − 7 = 5 | RULE: 32 − 7: 2 không trừ được 7, mượn 1 chục thành 12. 12 − 7 = 5, viết 5. Hàng chục: 3 bớt 1 còn 2. Kết quả 25.
+g2-c4-l7 | Bài 7: Luyện tập trừ có nhớ (hai chữ số cho một chữ số) | HINH:   51 ⏎ − 15 ⏎   36 ⏎ 11 − 5 = 6;  (5 − 1) − 1 = 3 | RULE: 51 − 15: 1 không trừ được 5, mượn 1 chục: 11 − 5 = 6. Hàng chục: 5 bớt 1 còn 4, 4 − 1 = 3. Kết quả 36.
+g2-c4-l8 | Bài 8: Phép trừ (có nhớ) số có hai chữ số cho số có hai chữ số | HINH:   52 ⏎ − 27 ⏎   25 ⏎ 12 − 7 = 5;  (5−1) − 2 = 2 | RULE: 52 − 27: 2 không trừ được 7, mượn 1 chục: 12 − 7 = 5. Hàng chục: 5 bớt 1 còn 4, 4 − 2 = 2. Kết quả 25.
+g2-c4-l9 | Bài 9: Luyện tập chung phép trừ có nhớ | HINH: 46 −  3 = 43   (không mượn) ⏎ 43 −  6 = 37   (có mượn) ⏎ 74 − 28 = 46   (có mượn) | RULE: 
+g2-c4-l10 | Bài 10: Ôn tập chung chủ đề 4 | HINH: 27 + 5 = 32 ⏎ 32 − 5 = 27 ⏎ 32 − 27 = 5 | RULE: 
+
+## g2-c5 | Chủ đề 5: Làm quen với hình phẳng
+g2-c5-l1 | Bài 1: Điểm và đoạn thẳng | HINH: A •————————• B ⏎ Đoạn thẳng AB | RULE: Nối điểm A với điểm B ta được đoạn thẳng AB. Đọc là: đoạn thẳng A B.
+g2-c5-l2 | Bài 2: Đường thẳng và đường cong | HINH: Đoạn thẳng:  A •————• B ⏎ Đường thẳng: ———————————— ⏎ Đường cong:   ~~~~\__/~~~~ | RULE: Đoạn thẳng AB có hai đầu mút. Đường thẳng AB kéo dài mãi cả hai phía. Đường cong thì uốn lượn như con rắn.
+g2-c5-l3 | Bài 3: Ba điểm thẳng hàng | HINH: A •———• B ———• C   →  thẳng hàng ⏎ A •———• B ⏎           • C      →  không thẳng hàng | RULE: Ba điểm A, B, C cùng nằm trên một đường thẳng thì A, B, C là ba điểm thẳng hàng.
+g2-c5-l4 | Bài 4: Đường gấp khúc | HINH: A •———• B ⏎             \ ⏎              • C ⏎               | ⏎               • D ⏎ Đường gấp khúc ABCD | RULE: Hình gồm ba đoạn thẳng AB, BC, CD nối tiếp nhau tạo thành đường gấp khúc ABCD.
+g2-c5-l5 | Bài 5: Tính độ dài đường gấp khúc | HINH: AB = 3 cm · BC = 4 cm · CD = 5 cm ⏎ 3 + 4 + 5 = 12 (cm) | RULE: Đường gấp khúc ABCD có AB = 3 cm, BC = 4 cm, CD = 5 cm. Độ dài đường gấp khúc là 3 + 4 + 5 = 12 cm.
+g2-c5-l6 | Bài 6: Hình tứ giác | HINH: A •—————• B ⏎   |         | ⏎   |         | ⏎ D •—————• C ⏎ 4 cạnh · 4 đỉnh | RULE: Hình tứ giác ABCD có 4 cạnh: AB, BC, CD, DA và 4 đỉnh: A, B, C, D.
+g2-c5-l7 | Bài 7: Thực hành vẽ đoạn thẳng, gấp cắt ghép hình | HINH: Vạch 0 tại A, chấm B ở vạch 4 ⏎ A •————• B  = 4 cm | RULE: Vẽ đoạn thẳng AB dài 4 cm: đặt vạch 0 tại A, chấm B ở vạch 4, nối A với B.
+g2-c5-l8 | Bài 8: Luyện tập chung chủ đề 5 | HINH: Đường gấp khúc: cộng các đoạn ⏎ Hình tứ giác: 4 cạnh, 4 đỉnh | RULE: 
+
+## g2-c6 | Chủ đề 6: Ngày - giờ, giờ - phút, ngày - tháng
+g2-c6-l1 | Bài 1: Ngày và giờ | HINH: 1 ngày = 24 giờ ⏎ Sáng · Trưa · Chiều · Tối | RULE: 1 ngày = 24 giờ. Buổi sáng từ 0 giờ đến 11 giờ, buổi chiều từ 12 giờ đến 23 giờ.
+g2-c6-l2 | Bài 2: Giờ và phút | HINH: 1 giờ = 60 phút ⏎ Kim ngắn → giờ ⏎ Kim dài  → phút | RULE: 1 giờ = 60 phút. Khi kim dài chỉ vào số 12 là đúng giờ. Khi kim dài chỉ vào số 6 là 30 phút.
+g2-c6-l3 | Bài 3: Xem đồng hồ chỉ giờ và phút | HINH: Kim dài số 12 → 3 giờ 00 phút ⏎ Kim dài số 3  → 3 giờ 15 phút ⏎ Kim dài số 6  → 3 giờ 30 phút ⏎ Kim dài số 9  → 3 giờ 45 phút | RULE: Kim ngắn chỉ số 3, kim dài chỉ số 6: đọc là 3 giờ 30 phút (ba giờ rưỡi).
+g2-c6-l4 | Bài 4: Ngày và tháng | HINH: 31 ngày: 1, 3, 5, 7, 8, 10, 12 ⏎ 30 ngày: 4, 6, 9, 11 ⏎ Tháng 2: 28 hoặc 29 ngày | RULE: Tháng có 31 ngày: 1, 3, 5, 7, 8, 10, 12. Tháng có 30 ngày: 4, 6, 9, 11. Tháng 2 có 28 ngày (năm thường) hoặc 29 ngày (năm nhuận).
+g2-c6-l5 | Bài 5: Xem lịch | HINH: Lịch tháng: mỗi cột là một thứ ⏎ Hàng đầu: Thứ Hai · Thứ Ba · Thứ Tư · ... | RULE: Ngày 15 nằm ở cột ghi 'Thứ Ba' thì ngày 15 là thứ Ba.
+g2-c6-l6 | Bài 6: Thực hành xem đồng hồ, xem lịch | HINH: 7 giờ tối → 8 giờ tối: 1 giờ ⏎ 19 giờ → 21 giờ: 2 giờ | RULE: Từ 7 giờ đến 8 giờ: 8 − 7 = 1 giờ. Từ 7 giờ đến 9 giờ: 9 − 7 = 2 giờ.
+g2-c6-l7 | Bài 7: Luyện tập chung chủ đề 6 | HINH: 1 ngày = 24 giờ ⏎ 1 giờ = 60 phút ⏎ 1 tuần = 7 ngày | RULE: 
+
+## g2-c7 | Chủ đề 7: Ôn tập học kì 1
+g2-c7-l1 | Bài 1: Ôn tập phép cộng, phép trừ trong phạm vi 20 | HINH: 9 + 5 = 14 ⏎ 14 − 5 = 9 ⏎ 14 − 9 = 5 | RULE: Cộng: 9 + 5 = 9 + 1 + 4 = 14. Trừ: 14 − 5 = 14 − 4 − 1 = 9.
+g2-c7-l2 | Bài 2: Ôn tập phép cộng, phép trừ trong phạm vi 100 | HINH:   38          52 ⏎ + 25        − 27 ⏎   63          25 | RULE: 38 + 25 = 63 (8 + 5 = 13, nhớ 1). 52 − 27 = 25 (mượn 1 chục: 12 − 7 = 5).
+g2-c7-l3 | Bài 3: Ôn tập hình phẳng | HINH: Đường gấp khúc: cộng các đoạn lại ⏎ Tứ giác: 4 cạnh · 4 đỉnh | RULE: Độ dài đường gấp khúc bằng tổng độ dài các đoạn thẳng của nó.
+g2-c7-l4 | Bài 4: Ôn tập đo lường | HINH: 1 dm = 10 cm ⏎ Độ dài: cm, dm ⏎ Khối lượng: kg ⏎ Dung tích: l | RULE: 1 dm = 10 cm. Bút chì dài 15 cm. Túi gạo nặng 5 kg. Chai nước chứa 2 l.
+g2-c7-l5 | Bài 5: Ôn tập xem đồng hồ, xem lịch | HINH: Kim dài số 12 → 4 giờ 00 phút ⏎ Kim dài số 6  → 4 giờ 30 phút | RULE: Kim ngắn số 4, kim dài số 6: 4 giờ 30 phút. Một năm có 12 tháng.
+g2-c7-l6 | Bài 6: Ôn tập chung học kì 1 | HINH: Số đến 100 · Cộng trừ · kg và l · Hình phẳng · Giờ và lịch | RULE: 
+
+## g2-c8 | Chủ đề 8: Phép nhân, phép chia
+g2-c8-l1 | Bài 1: Phép nhân là gì? | HINH: 3 khay, mỗi khay 2 quả cam: 2 + 2 + 2 = 6 — viết gọn là 2 × 3 = 6 | RULE: Mỗi khay có 2 quả: 2 + 2 + 2 = 6. Ta viết gọn thành 2 × 3 = 6. Đọc là: hai nhân ba bằng sáu.
+g2-c8-l2 | Bài 2: Viết phép nhân từ tổng các số hạng bằng nhau | HINH: 2 + 2 + 2 + 2 + 2 = 10  →  2 × 5 = 10  (2 được lấy 5 lần) | RULE: 4 + 4 + 4 có 3 số hạng, mỗi số hạng là 4. Vậy: 4 × 3 = 12.
+g2-c8-l3 | Bài 3: Thừa số và Tích | HINH: 2  ×  3  =  6 ⏎ thừa số · thừa số · tích | RULE: 2 × 3 = 6: số 2 và số 3 là các thừa số; số 6 là tích.
+g2-c8-l4 | Bài 4: Bảng nhân 2 (từ 2 × 1 đến 2 × 5) | HINH: 2  ·  4  ·  6  ·  8  ·  10 ⏎ 2×1  2×2  2×3  2×4  2×5 | RULE: 2 × 1 = 2 · 2 × 2 = 4 · 2 × 3 = 6 · 2 × 4 = 8 · 2 × 5 = 10. Đếm thêm 2 rồi nêu số còn thiếu!
+g2-c8-l5 | Bài 5: Bảng nhân 2 (từ 2 × 6 đến 2 × 10) | HINH: 12 · 14 · 16 · 18 · 20 ⏎ 2×6  2×7  2×8  2×9  2×10 | RULE: 2 × 6 = 12 · 2 × 7 = 14 · 2 × 8 = 16 · 2 × 9 = 18 · 2 × 10 = 20. Mười hai, mười bốn, mười sáu... cứ đếm thêm 2 nhé!
+g2-c8-l6 | Bài 6: Luyện tập bảng nhân 2 | HINH: Mỗi con cua có 2 cái càng. ⏎ 7 con cua có: 2 × 7 = 14 (cái càng) | RULE: 
+g2-c8-l7 | Bài 7: Bảng nhân 5 (từ 5 × 1 đến 5 × 5) | HINH: 5  ·  10  ·  15  ·  20  ·  25 ⏎ 5×1   5×2   5×3   5×4   5×5 | RULE: 5 × 1 = 5 · 5 × 2 = 10 · 5 × 3 = 15 · 5 × 4 = 20 · 5 × 5 = 25. Đếm thêm 5 rồi nêu số còn thiếu!
+g2-c8-l8 | Bài 8: Bảng nhân 5 (từ 5 × 6 đến 5 × 10) | HINH: 30 · 35 · 40 · 45 · 50 ⏎ 5×6  5×7  5×8  5×9  5×10 | RULE: 5 × 6 = 30 · 5 × 7 = 35 · 5 × 8 = 40 · 5 × 9 = 45 · 5 × 10 = 50. Năm mươi là kết quả cuối của bảng nhân 5!
+g2-c8-l9 | Bài 9: Luyện tập bảng nhân 5. Hai lần năm bằng năm lần hai | HINH: 5 × 3 = 15   và   3 × 5 = 15 ⏎ Đổi chỗ hai thừa số, tích không đổi. | RULE: 5 × 3 = 3 × 5 = 15. Đổi chỗ hai thừa số thì tích vẫn bằng nhau.
+g2-c8-l10 | Bài 10: Phép chia là gì? | HINH: 10 quả cam chia vào 2 đĩa, mỗi đĩa 5 quả ⏎ 10 : 2 = 5 | RULE: 10 quả cam chia thành 2 phần bằng nhau, mỗi phần có 5 quả: 10 : 2 = 5. Đọc là: mười chia hai bằng năm.
+g2-c8-l11 | Bài 11: Số bị chia – Số chia – Thương | HINH: 10  :  2  =  5 ⏎ số bị chia · số chia · thương | RULE: 10 : 2 = 5: số 10 là số bị chia, số 2 là số chia, số 5 là thương.
+g2-c8-l12 | Bài 12: Từ một phép nhân viết được hai phép chia | HINH: 2 × 3 = 6   →   6 : 2 = 3   và   6 : 3 = 2 | RULE: Từ 2 × 3 = 6, ta có: 6 : 2 = 3 và 6 : 3 = 2.
+g2-c8-l13 | Bài 13: Bảng chia 2 | HINH: Bảng nhân 2:  2×1=2  2×2=4  2×3=6 ... ⏎ Bảng chia 2:  2:2=1  4:2=2  6:2=3 ... | RULE: 2 : 2 = 1 · 4 : 2 = 2 · 6 : 2 = 3 · 8 : 2 = 4 · 10 : 2 = 5 · 12 : 2 = 6 · 14 : 2 = 7 · 16 : 2 = 8 · 18 : 2 = 9 · 20 : 2 = 10.
+g2-c8-l14 | Bài 14: Bảng chia 5 | HINH: Cửa hàng có 40 bông hoa, bó mỗi bó 5 bông: ⏎ 40 : 5 = 8 (bó hoa) | RULE: 5 : 5 = 1 · 10 : 5 = 2 · 15 : 5 = 3 · 20 : 5 = 4 · 25 : 5 = 5 · 30 : 5 = 6 · 35 : 5 = 7 · 40 : 5 = 8 · 45 : 5 = 9 · 50 : 5 = 10.
+g2-c8-l15 | Bài 15: Luyện tập chung phép nhân, phép chia | HINH: Ô ăn quan: 10 ô, mỗi ô 5 viên sỏi ⏎ 5 × 10 = 50 (viên sỏi) | RULE: 
+g2-c8-l16 | Bài 16: Thử thách - Trò chơi xúc xắc và ô ăn quan | HINH: Gieo xúc xắc → tìm phép tính có kết quả bằng số chấm ⏎ 6 chấm? 2 × 3 = 6 hoặc 12 : 2 = 6! | RULE: 
+
+## g2-c9 | Chủ đề 9: Làm quen với hình khối
+g2-c9-l1 | Bài 1: Khối trụ | HINH: Khối trụ: hai mặt tròn ở hai đầu ⏎ Ví dụ: lon sữa, hộp quà, cây nến | RULE: Lon sữa, hộp quà hình trụ, cây nến, ống nhựa đều có dạng khối trụ.
+g2-c9-l2 | Bài 2: Khối cầu | HINH: Khối cầu: tròn đều, không có mặt phẳng ⏎ Ví dụ: quả bóng, viên bi, quả địa cầu | RULE: Quả bóng, viên bi, quả địa cầu đều có dạng khối cầu.
+g2-c9-l3 | Bài 3: So sánh khối trụ và khối cầu | HINH: Khối trụ  →  xếp chồng được ⏎ Khối cầu  →  lăn mọi hướng, không xếp chồng được | RULE: Lon sữa đặt đứng được và xếp chồng được. Quả bóng thì lăn đi, không xếp chồng được.
+g2-c9-l4 | Bài 4: Luyện tập chung chủ đề 9 | HINH: Khối trụ: hộp sữa · lon nước · cây nến ⏎ Khối cầu: quả bóng · viên bi · quả địa cầu | RULE: 
+
+## g2-c10 | Chủ đề 10: Các số trong phạm vi 1 000
+g2-c10-l1 | Bài 1: Đơn vị, chục, trăm | HINH: 10 đơn vị  →  1 chục ⏎ 10 chục     →  1 trăm ⏎ 1 trăm = 100 | RULE: 10 đơn vị = 1 chục. 10 chục = 1 trăm. 1 trăm = 100.
+g2-c10-l2 | Bài 2: Nghìn và số 1000 | HINH: 10 trăm  →  1 nghìn  →  1000 ⏎ 999  —  1000 | RULE: 10 trăm = 1 nghìn = 1000. Đọc là: một nghìn.
+g2-c10-l3 | Bài 3: Các số tròn trăm | HINH: 100 · 200 · 300 · 400 · 500 ⏎ 600 · 700 · 800 · 900 · 1000 | RULE: Các số tròn trăm: 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000.
+g2-c10-l4 | Bài 4: Các số tròn chục | HINH: 110 · 120 · 130 · ... · 990 ⏎ 250 = 2 trăm + 5 chục + 0 đơn vị | RULE: Các số tròn chục: 10, 20, 30, ..., 100, 110, 120, ..., 990, 1000.
+g2-c10-l5 | Bài 5: So sánh các số tròn trăm, tròn chục | HINH: 300  <  500 ⏎ 240  <  260 | RULE: 300 < 500 vì 3 < 5. 240 < 260 vì hàng chục 4 < 6.
+g2-c10-l6 | Bài 6: Số có ba chữ số | HINH: 245 ⏎   │  │  └── 5 đơn vị ⏎   │  └───── 4 chục ⏎   └──────── 2 trăm | RULE: Số 245 gồm 2 trăm, 4 chục và 5 đơn vị. Đọc là: hai trăm bốn mươi lăm.
+g2-c10-l7 | Bài 7: Đọc và viết số có ba chữ số | HINH: 405 → bốn trăm linh năm ⏎ 450 → bốn trăm năm mươi ⏎ 520 → năm trăm hai mươi | RULE: 405 đọc là: bốn trăm linh năm. 450 đọc là: bốn trăm năm mươi.
+g2-c10-l8 | Bài 8: Viết số thành tổng các trăm, chục, đơn vị | HINH: 245 = 200 + 40 + 5 ⏎ 376 = 300 + 70 + 6 ⏎ 405 = 400 + 5 | RULE: 245 = 200 + 40 + 5. 405 = 400 + 5 (vì 0 chục nên không cần viết).
+g2-c10-l9 | Bài 9: So sánh các số có ba chữ số | HINH: 245  <  254 ⏎ (2 = 2; 4 < 5) | RULE: 245 và 254: hàng trăm đều là 2, so hàng chục 4 < 5. Vậy 245 < 254.
+g2-c10-l10 | Bài 10: Thứ tự các số có ba chữ số | HINH: Bé đến lớn: 199 · 245 · 254 ⏎ Lớn đến bé: 254 · 245 · 199 | RULE: Xếp 245, 254, 199 từ bé đến lớn: 199, 245, 254. Từ lớn đến bé: 254, 245, 199.
+g2-c10-l11 | Bài 11: Luyện tập chung chủ đề 10 | HINH: 10 đơn vị = 1 chục ⏎ 10 chục = 1 trăm ⏎ 10 trăm = 1 nghìn = 1000 | RULE: 
+
+## g2-c11 | Chủ đề 11: Độ dài và đơn vị đo độ dài. Tiền Việt Nam
+g2-c11-l1 | Bài 1: Đề-xi-mét (dm) | HINH: 1 dm = 10 cm ⏎ 2 dm = 20 cm ⏎ 30 cm = 3 dm | RULE: 1 dm = 10 cm. Quyển sách dài 2 dm nghĩa là dài 20 cm.
+g2-c11-l2 | Bài 2: Mét (m) | HINH: 1 m = 10 dm ⏎ 1 m = 100 cm | RULE: 1 m = 10 dm = 100 cm. Chiều cao của bé khoảng 1 m đến 1 m 30 cm.
+g2-c11-l3 | Bài 3: Ki-lô-mét (km) | HINH: 1 km = 1000 m ⏎ 2 km = 2000 m | RULE: 1 km = 1000 m. Quãng đường dài 2 km nghĩa là dài 2000 m.
+g2-c11-l4 | Bài 4: Giới thiệu tiền Việt Nam | HINH: 100 · 200 · 500 · 1000 · 2000 · 5000 (đồng) | RULE: Các tờ tiền thường gặp: 100 đồng, 200 đồng, 500 đồng, 1000 đồng, 2000 đồng, 5000 đồng.
+g2-c11-l5 | Bài 5: Đổi tiền và tính tiền | HINH: Mua bánh: 1500 đồng ⏎ Trả: 2000 đồng ⏎ Tiền thừa: 2000 − 1500 = 500 (đồng) | RULE: 1000 đồng + 500 đồng = 1500 đồng. 2000 đồng − 1500 đồng = 500 đồng.
+g2-c11-l6 | Bài 6: Thực hành và trải nghiệm đo độ dài | HINH: cm → vật nhỏ ⏎ dm → vật vừa ⏎ m  → phòng học, sân ⏎ km → quãng đường | RULE: Bút chì dài 15 cm. Bàn học dài 12 dm. Phòng học dài 8 m. Nhà đến trường 2 km.
+g2-c11-l7 | Bài 7: Luyện tập chung chủ đề 11 | HINH: 1 m = 100 cm ⏎ 1 km = 1000 m ⏎ 2000 đồng − 1500 đồng = 500 đồng | RULE: 
+
+## g2-c12 | Chủ đề 12: Phép cộng, phép trừ trong phạm vi 1 000
+g2-c12-l1 | Bài 1: Phép cộng (không nhớ) trong phạm vi 1 000 | HINH:   235 ⏎ + 412 ⏎   647 | RULE: 235 + 412: 5 + 2 = 7, 3 + 1 = 4, 2 + 4 = 6. Kết quả 647.
+g2-c12-l2 | Bài 2: Phép cộng (có nhớ) trong phạm vi 1 000 | HINH:   256 ⏎ + 173 ⏎   429 ⏎ 5 + 7 = 12 → viết 2 nhớ 1 | RULE: 256 + 173: 6 + 3 = 9, viết 9. 5 + 7 = 12, viết 2 nhớ 1. 2 + 1 + 1 = 4. Kết quả 429.
+g2-c12-l3 | Bài 3: Luyện tập phép cộng trong phạm vi 1 000 | HINH:   265 ⏎ + 148 ⏎   413 | RULE: 265 + 148: 5 + 8 = 13 viết 3 nhớ 1; 6 + 4 + 1 = 11 viết 1 nhớ 1; 2 + 1 + 1 = 4. Kết quả 413.
+g2-c12-l4 | Bài 4: Phép trừ (không nhớ) trong phạm vi 1 000 | HINH:   645 ⏎ − 213 ⏎   432 | RULE: 645 − 213: 5 − 3 = 2, 4 − 1 = 3, 6 − 2 = 4. Kết quả 432.
+g2-c12-l5 | Bài 5: Phép trừ (có nhớ) trong phạm vi 1 000 | HINH:   534 ⏎ − 268 ⏎   266 ⏎ 14 − 8 = 6;  12 − 6 = 6;  4 − 2 = 2 | RULE: 534 − 268: 4 không trừ được 8, mượn 1 chục: 14 − 8 = 6. Hàng chục: 3 bớt 1 còn 2, 2 không trừ được 6, mượn 1 trăm: 12 − 6 = 6. Hàng trăm: 5 bớt 1 còn 
+g2-c12-l6 | Bài 6: Luyện tập phép trừ trong phạm vi 1 000 | HINH:   420 ⏎ − 165 ⏎   255 | RULE: 420 − 165: 0 không trừ được 5, mượn 1 chục: 10 − 5 = 5. Hàng chục: 2 bớt 1 còn 1, 1 không trừ được 6, mượn 1 trăm: 11 − 6 = 5. Hàng trăm: 4 bớt 1 còn 
+g2-c12-l7 | Bài 7: Tìm thành phần chưa biết | HINH: ? + 145 = 320  →  ? = 320 − 145 = 175 | RULE: ... + 145 = 320 → số cần tìm = 320 − 145 = 175.
+g2-c12-l8 | Bài 8: Bài toán có lời văn trong phạm vi 1 000 | HINH: Đội Một: 245 cây ⏎ Đội Hai: 168 cây ⏎ Cả hai đội: 245 + 168 = 413 (cây) | RULE: Cả hai đội trồng: 245 + 168 = 413 (cây). Đội Một hơn đội Hai: 245 − 168 = 77 (cây).
+g2-c12-l9 | Bài 9: Luyện tập chung chủ đề 12 | HINH: 256 + 173 = 429 ⏎ 429 − 173 = 256 ⏎ 534 − 268 = 266 | RULE: 
+
+## g2-c13 | Chủ đề 13: Làm quen với yếu tố thống kê, xác suất
+g2-c13-l1 | Bài 1: Thu thập và phân loại số liệu | HINH: Nhóm 1: thích màu đỏ ⏎ Nhóm 2: thích màu xanh ⏎ Mỗi bạn chỉ ở một nhóm | RULE: Hỏi từng bạn thích màu gì rồi xếp vào hai nhóm: nhóm màu đỏ và nhóm màu xanh.
+g2-c13-l2 | Bài 2: Kiểm đếm số liệu | HINH: Màu đỏ:   ||||/ ||   → 7 bạn ⏎ Màu xanh: ||||      → 4 bạn | RULE: Cứ 5 vạch thì gạch chéo một lần cho dễ đếm: |||| = 4; ||||/ = 5.
+g2-c13-l3 | Bài 3: Biểu đồ tranh | HINH: Táo:   🍎🍎🍎🍎🍎 ⏎ Cam:   🍊🍊🍊 ⏎ (1 hình = 1 bạn thích) | RULE: Nếu mỗi hình quả táo là 1 bạn thì 5 hình quả táo nghĩa là 5 bạn thích táo.
+g2-c13-l4 | Bài 4: Đọc biểu đồ tranh | HINH: Mỗi hình = 2 bạn ⏎ Táo: 3 hình → 3 × 2 = 6 bạn ⏎ Cam: 2 hình → 2 × 2 = 4 bạn | RULE: Mỗi hình là 2 bạn. Nhóm thích táo có 3 hình, vậy có 3 × 2 = 6 bạn.
+g2-c13-l5 | Bài 5: Chắc chắn, có thể, không thể | HINH: Chắc chắn: mặt trời mọc hướng Đông ⏎ Có thể: ngày mai trời mưa ⏎ Không thể: bé cao 3 mét | RULE: Mặt trời mọc ở hướng Đông: chắc chắn. Ngày mai trời mưa: có thể. Bé cao 3 mét: không thể.
+g2-c13-l6 | Bài 6: Luyện tập chung chủ đề 13 | HINH: Thu thập → Phân loại → Kiểm đếm → Biểu đồ tranh | RULE: 
+
+## g2-c14 | Chủ đề 14: Ôn tập cuối năm
+g2-c14-l1 | Bài 1: Ôn tập các số trong phạm vi 1 000 | HINH: 386 = 300 + 80 + 6 ⏎ 386  <  396 | RULE: 386 gồm 3 trăm, 8 chục, 6 đơn vị. 386 = 300 + 80 + 6. So sánh: 386 < 396 vì 8 chục < 9 chục.
+g2-c14-l2 | Bài 2: Ôn tập phép cộng, phép trừ trong phạm vi 100 | HINH:   46          83 ⏎ + 38        − 47 ⏎   84          36 | RULE: 46 + 38 = 84 (6+8=14 viết 4 nhớ 1; 4+3+1=8). 83 − 47 = 36 (13−7=6; 7−4=3).
+g2-c14-l3 | Bài 3: Ôn tập phép cộng, phép trừ trong phạm vi 1 000 | HINH:   256          534 ⏎ + 173        − 268 ⏎   429          266 | RULE: 235 + 412 = 647 (không nhớ). 256 + 173 = 429 (có nhớ). 534 − 268 = 266 (có mượn).
+g2-c14-l4 | Bài 4: Ôn tập phép nhân, phép chia | HINH: 2 × 8 = 16 ⏎ 5 × 7 = 35 ⏎ 18 : 2 = 9 ⏎ 45 : 5 = 9 | RULE: 2 × 8 = 16; 5 × 7 = 35; 18 : 2 = 9; 45 : 5 = 9.
+g2-c14-l5 | Bài 5: Ôn tập hình học | HINH: Đường gấp khúc: cộng các đoạn ⏎ Khối trụ xếp chồng · Khối cầu lăn | RULE: Độ dài đường gấp khúc bằng tổng các đoạn. Hình tứ giác có 4 cạnh, 4 đỉnh.
+g2-c14-l6 | Bài 6: Ôn tập đo lường | HINH: 1 dm = 10 cm ⏎ 1 m = 100 cm ⏎ 1 km = 1000 m ⏎ 1 giờ = 60 phút | RULE: 1 dm = 10 cm; 1 m = 100 cm; 1 km = 1000 m; 1 giờ = 60 phút; 1 tuần = 7 ngày.
+g2-c14-l7 | Bài 7: Ôn tập kiểm đếm số liệu và khả năng | HINH: Mỗi hình = 4 quyển ⏎ 3 hình → 3 × 4 = 12 quyển | RULE: Mỗi hình là 4 quyển vở, có 3 hình thì có 3 × 4 = 12 quyển vở.
+g2-c14-l8 | Bài 8: Ôn tập chung cuối năm | HINH: Số đến 1000 · Bốn phép tính · Đo lường · Hình học · Thống kê | RULE: 
+g2-c14-l9 | Bài 9: Luyện đề cuối năm Lớp 2 | HINH: Đọc số · So sánh · Đặt tính · Tìm x · Giải toán · Hình học · Biểu đồ | RULE: 

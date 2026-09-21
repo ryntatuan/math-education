@@ -17,6 +17,7 @@ const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
 
 // Các khoá mà `LessonPage.jsx` biết cách VẼ thành hình.
 const VISUAL_KEYS = [
+  // bộ vẽ CŨ (đã có trong LessonPage từ trước)
   "clock",
   "shape",
   "operation",
@@ -25,6 +26,24 @@ const VISUAL_KEYS = [
   "gallery",
   "dialogue",
   "visualDisplay",
+  // bộ vẽ MỚI (Giai đoạn 1) — `client/src/components/visuals/*`
+  "baseTen",
+  "tenFrame",
+  "numberLine",
+  "placeValue",
+  "ruler",
+  "money",
+  "table",
+  "planeShape",
+  "angle",
+  "circleParts",
+  "solid",
+  "fractionBar",
+  "fractionCircle",
+  "barModel",
+  "motionDiagram",
+  "barChart",
+  "pieChart",
 ];
 
 const gradeFiles = [1, 2, 3, 4, 5].map((n) => ({

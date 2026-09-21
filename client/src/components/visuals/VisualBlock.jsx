@@ -21,6 +21,41 @@ import { FractionBar, FractionCircle, BarModel, MotionDiagram, BarChart, PieChar
 const isObj = (v) => v && typeof v === "object" && !Array.isArray(v);
 const has = (v) => v !== undefined && v !== null && v !== false && v !== "";
 
+/**
+ * Danh sách khoá hình — NGUỒN SỰ THẬT DUY NHẤT.
+ *
+ * 🔴 Vì sao xuất ra ngoài: danh sách này từng bị **chép làm hai** (một bản trong
+ * `VisualBlocks`, một bản trong `demHinh`). Hai bản chép tay thì sớm muộn lệch nhau,
+ * và khi lệch thì `demHinh` đếm một đằng mà màn hình vẽ một nẻo — công cụ đo báo
+ * "slide này có hình" trong khi bé không thấy gì. Nay chỉ còn MỘT bản.
+ *
+ * Thứ tự dưới đây là thứ tự hiển thị: số → đo lường → hình học → phân số/sơ đồ → biểu đồ.
+ */
+export const HINH_KEYS = [
+  // Số học
+  "baseTen",
+  "tenFrame",
+  "numberLine",
+  "placeValue",
+  // Đo lường
+  "ruler",
+  "money",
+  "table",
+  // Hình học
+  "planeShape",
+  "angle",
+  "circleParts",
+  "solid",
+  // Phân số & sơ đồ
+  "fractionBar",
+  "fractionCircle",
+  "barModel",
+  "motionDiagram",
+  // Biểu đồ
+  "barChart",
+  "pieChart",
+];
+
 export default function VisualBlocks({ content }) {
   if (!isObj(content)) return null;
 
@@ -65,24 +100,5 @@ export default function VisualBlocks({ content }) {
 /** Đếm số hình một slide sẽ vẽ — dùng cho công cụ đo, không dùng trong giao diện. */
 export function demHinh(content) {
   if (!isObj(content)) return 0;
-  const KEYS = [
-    "baseTen",
-    "tenFrame",
-    "numberLine",
-    "placeValue",
-    "ruler",
-    "money",
-    "table",
-    "planeShape",
-    "angle",
-    "circleParts",
-    "solid",
-    "fractionBar",
-    "fractionCircle",
-    "barModel",
-    "motionDiagram",
-    "barChart",
-    "pieChart",
-  ];
-  return KEYS.filter((k) => has(content[k])).length;
+  return HINH_KEYS.filter((k) => has(content[k])).length;
 }
