@@ -15,8 +15,18 @@ const targetDownloadsDir = path.resolve(clientDir, 'public/downloads')
 const targetApk = path.resolve(targetDownloadsDir, 'ToanVui.apk')
 const versionFile = path.resolve(targetDownloadsDir, 'version.json')
 
-// Tự động tăng số cuối phiên bản (patch version) mỗi lần build, trừ khi có cờ --no-bump
-const shouldBump = !process.argv.includes('--no-bump')
+// Tự động tăng số cuối phiên bản (patch version) mỗi lần build, trừ khi có cờ --no-bump.
+//
+// 🔴 TRÊN VERCEL TUYỆT ĐỐI KHÔNG TĂNG PHIÊN BẢN. Đã mắc thật và lỗi này rất khó thấy:
+//   `vercel.json` build bằng `cd client && npm run build`, mà lệnh đó CHÍNH LÀ file này.
+//   Bản cũ tăng phiên bản ở dòng đầu, RỒI MỚI kiểm tra “có phải Vercel không”. Nên mỗi
+//   lần deploy, Vercel lặng lẽ tăng `version.json` + `appVersion.js` thêm 1 trong bản
+//   build rồi mới thoát ⇒ web ghi “Bản v1.0.34” trong khi file APK phục vụ vẫn là 1.0.33.
+//   Mỗi lần deploy con số hiển thị lại nhảy thêm 1, còn APK đứng yên.
+//   ⚠️ Máy Vercel còn không hề build được APK (không có Android SDK) ⇒ việc tăng phiên
+//      bản ở đó là VÔ NGHĨA: nó không được ghi trở lại repo.
+const isVercel = Boolean(process.env.VERCEL || process.env.NOW_BUILDER)
+const shouldBump = !process.argv.includes('--no-bump') && !isVercel
 const targetVer = process.argv.find(arg => /^\d+\.\d+\.\d+$/.test(arg))
 const currentVersion = shouldBump ? bumpPatchVersion(targetVer) : getAppVersion()
 
@@ -35,9 +45,8 @@ console.log('🚀 Đang build giao diện web (Vite production bundle)...')
 execSync('npx vite build', { cwd: clientDir, stdio: 'inherit' })
 
 // Kiểm tra môi trường Vercel hoặc Cloud không có Android SDK
-const isVercel = Boolean(process.env.VERCEL || process.env.NOW_BUILDER)
 if (isVercel) {
-  console.log('\n☁️ Phát hiện môi trường Vercel: Đã build xong Web dist kèm file APK tĩnh.')
+  console.log('\n☁️ Phát hiện môi trường Vercel: Đã build xong Web dist (KHÔNG tăng phiên bản).')
   console.log('='.repeat(55) + '\n')
   process.exit(0)
 }
