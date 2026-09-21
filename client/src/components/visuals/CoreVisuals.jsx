@@ -15,7 +15,7 @@
  *  3. Số liệu trên hình LẤY TỪ DỮ LIỆU, không viết cứng — để hình luôn khớp nội dung bài.
  */
 
-import { CARD_STYLE, CAPTION_STYLE } from "./visualTheme";
+import { CARD_STYLE, CAPTION_STYLE, svgFit } from "./visualTheme";
 
 const PALETTE = {
   ink: "#1e293b",
@@ -75,7 +75,7 @@ export function NumberLine({
     <div style={card}>
       <svg
         viewBox={`0 0 ${W} ${H}`}
-        width="100%"
+        {...svgFit(W)}
         role="img"
         aria-label="Trục số"
       >
@@ -188,7 +188,7 @@ export function TenFrame({
     <div style={card}>
       <svg
         viewBox={`0 0 ${W} ${H}`}
-        width="100%"
+        {...svgFit(W)}
         role="img"
         aria-label="Khung 10 ô"
       >
@@ -260,47 +260,56 @@ export function TenFrame({
 export function BaseTenBlocks({ tens = 3, ones = 4, label = "" }) {
   const tn = clamp(num(tens, 0), 0, 9);
   const on = clamp(num(ones, 0), 0, 9);
-  const rodW = 22;
-  const rodH = 132;
-  const gap = 14;
-  const oneS = 22;
-  const oneGap = 5;
-  const W = tn * (rodW + gap) + on * (oneS + oneGap) + 40;
-  const H = rodH + 58;
 
-  const rodTop = (i) =>
-    Array.from({ length: 10 }).map((_, k) => (
-      <rect
-        key={k}
-        x={10 + i * (rodW + gap)}
-        y={18 + k * (rodH / 10)}
-        width={rodW}
-        height={rodH / 10 - 2}
-        rx="3"
-        fill={PALETTE.amberSoft}
-        stroke={PALETTE.amber}
-        strokeWidth="1.6"
-      />
-    ));
+  // 🔴 KÍCH THƯỚC Ô PHẢI LÀ MỘT HẰNG SỐ DÙNG CHUNG cho cả ô TRONG thanh chục LẪN ô
+  // đơn vị. Đây là điểm sư phạm cốt lõi: trẻ phải thấy “1 ô trong thanh chục = 1 ô đơn vị”.
+  // Bản cũ dùng rodW = 22 nhưng chia thanh chục thành 10 phần cao 13,2 ⇒ ô trong thanh bị
+  // BẸP (22×11,2) trong khi ô đơn vị là 22×22 — trẻ không so sánh được gì.
+  // Và khe giữa các ô trong thanh chỉ 2 đơn vị ⇒ sau khi phóng to gần như DÍNH LIỀN,
+  // không đếm được 10 ô.
+  const o = 18; // cạnh một ô vuông
+  const khe = 4; // khe giữa hai ô — đủ rộng để đếm được ở mọi cỡ màn hình
+  const kheThanh = 14; // khe giữa hai thanh chục
+  const traiDoc = 8;
+  const trenDoc = 8;
 
-  const onesStart = 10 + tn * (rodW + gap) + (tn ? gap : 0);
+  const rodH = 10 * o + 9 * khe;
+  const beRongThanh = tn * o + Math.max(0, tn - 1) * kheThanh;
+  const xDonVi = traiDoc + beRongThanh + (tn && on ? kheThanh : 0);
+  const beRongDonVi = on * o + Math.max(0, on - 1) * khe;
+  const W = xDonVi + beRongDonVi + traiDoc;
+  const H = trenDoc + rodH + 30;
 
   return (
     <div style={card}>
       <svg
-        viewBox={`0 0 ${Math.max(W, 220)} ${H}`}
-        width="100%"
+        viewBox={`0 0 ${Math.max(W, 200)} ${H}`}
+        // Khối này vốn rất cao (10 ô xếp dọc). Giới hạn chiều cao để nó không chiếm
+        // trọn màn hình; SVG tự thu nhỏ và căn giữa theo `preserveAspectRatio` mặc định.
+        {...svgFit(Math.max(W, 200), { maxHeight: 380 })}
         role="img"
         aria-label="Khối chục và đơn vị"
       >
-        {Array.from({ length: tn }).map((_, i) => (
-          <g key={`t${i}`}>{rodTop(i)}</g>
-        ))}
+        {Array.from({ length: tn }).map((_, i) =>
+          Array.from({ length: 10 }).map((_, k) => (
+            <rect
+              key={`t${i}-${k}`}
+              x={traiDoc + i * (o + kheThanh)}
+              y={trenDoc + k * (o + khe)}
+              width={o}
+              height={o}
+              rx="3.5"
+              fill={PALETTE.amberSoft}
+              stroke={PALETTE.amber}
+              strokeWidth="1.6"
+            />
+          )),
+        )}
         {Array.from({ length: tn }).map((_, i) => (
           <text
             key={`tl${i}`}
-            x={10 + i * (rodW + gap) + rodW / 2}
-            y={rodH + 40}
+            x={traiDoc + i * (o + kheThanh) + o / 2}
+            y={trenDoc + rodH + 20}
             textAnchor="middle"
             fontSize="13"
             fontWeight="700"
@@ -312,18 +321,18 @@ export function BaseTenBlocks({ tens = 3, ones = 4, label = "" }) {
         {Array.from({ length: on }).map((_, i) => (
           <g key={`o${i}`}>
             <rect
-              x={onesStart + i * (oneS + oneGap)}
-              y={18 + rodH - oneS}
-              width={oneS}
-              height={oneS}
-              rx="4"
+              x={xDonVi + i * (o + khe)}
+              y={trenDoc + rodH - o}
+              width={o}
+              height={o}
+              rx="3.5"
               fill={PALETTE.blueSoft}
               stroke={PALETTE.blue}
               strokeWidth="1.6"
             />
             <text
-              x={onesStart + i * (oneS + oneGap) + oneS / 2}
-              y={rodH + 40}
+              x={xDonVi + i * (o + khe) + o / 2}
+              y={trenDoc + rodH + 20}
               textAnchor="middle"
               fontSize="13"
               fontWeight="700"
@@ -359,14 +368,20 @@ export function PlaceValueTable({
   const ds = Array.isArray(digits) ? digits.slice(0, hs.length) : [];
   const W = 96 * hs.length + 16;
   const cellW = 96;
-  const H = 132;
+  const H = 142;
   const hi = num(highlight, -1);
+  // 🔴 KHE DỌC giữa hộp tiêu đề và hộp chữ số. Bản cũ đặt hộp tiêu đề cao 38 (y 10→48) và
+  // hộp chữ số bắt đầu đúng y = 48 ⇒ hai hộp CHẠM NHAU, nhìn như dính liền một khối.
+  const KHE_DOC = 10;
+  const yTieuDe = 8;
+  const caoTieuDe = 40;
+  const yChuSo = yTieuDe + caoTieuDe + KHE_DOC;
 
   return (
     <div style={card}>
       <svg
         viewBox={`0 0 ${W} ${H}`}
-        width="100%"
+        {...svgFit(W)}
         role="img"
         aria-label="Bảng hàng"
       >
@@ -374,9 +389,9 @@ export function PlaceValueTable({
           <g key={i}>
             <rect
               x={8 + i * cellW}
-              y={10}
+              y={yTieuDe}
               width={cellW - 6}
-              height={38}
+              height={caoTieuDe}
               rx="8"
               fill={PALETTE.violetSoft}
               stroke={PALETTE.violet}
@@ -384,7 +399,7 @@ export function PlaceValueTable({
             />
             <text
               x={8 + i * cellW + (cellW - 6) / 2}
-              y={35}
+              y={yTieuDe + caoTieuDe / 2 + 5}
               textAnchor="middle"
               fontSize="14"
               fontWeight="800"
@@ -394,7 +409,7 @@ export function PlaceValueTable({
             </text>
             <rect
               x={8 + i * cellW}
-              y={48}
+              y={yChuSo}
               width={cellW - 6}
               height={66}
               rx="8"
@@ -404,7 +419,7 @@ export function PlaceValueTable({
             />
             <text
               x={8 + i * cellW + (cellW - 6) / 2}
-              y={94}
+              y={yChuSo + 33 + 12}
               textAnchor="middle"
               fontSize="34"
               fontWeight="800"
@@ -442,7 +457,7 @@ export function Ruler({
     <div style={card}>
       <svg
         viewBox={`0 0 ${W} ${H}`}
-        width="100%"
+        {...svgFit(W)}
         role="img"
         aria-label="Thước đo"
       >
@@ -705,13 +720,17 @@ export function Table({ headers = [], rows = [], label = "" }) {
   const caoHang = hang.map(
     (h) => Math.max(...h.o.map((d) => d.length)) * CAO_DONG + LOT_O * 2,
   );
-  const H = 6 + caoHang.reduce((a, b) => a + b, 0) + 8;
+  // 🔴 KHE GIỮA CÁC HÀNG. Bản cũ cộng dồn y liền mạch nên hàng tiêu đề CHẠM hàng đầu
+  // tiên (không khe nào), trong khi giữa các CỘT lại có khe 4 — nhìn lệch và như dính.
+  const KHE_HANG = 4;
+  const H =
+    6 + caoHang.reduce((a, b) => a + b, 0) + KHE_HANG * (hang.length - 1) + 8;
 
   let y = 6;
   const hangVe = hang.map((h, i) => {
     const cao = caoHang[i];
     const node = { ...h, y, cao };
-    y += cao;
+    y += cao + KHE_HANG;
     return node;
   });
 
@@ -719,7 +738,7 @@ export function Table({ headers = [], rows = [], label = "" }) {
     <div style={card}>
       <svg
         viewBox={`0 0 ${W} ${H}`}
-        width="100%"
+        {...svgFit(W)}
         role="img"
         aria-label="Bảng số liệu"
       >

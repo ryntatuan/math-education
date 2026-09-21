@@ -13,7 +13,7 @@
  * mặc định, không bao giờ trắng khung.
  */
 
-import { CARD_STYLE, CAPTION_STYLE } from "./visualTheme";
+import { CARD_STYLE, CAPTION_STYLE, svgFit } from "./visualTheme";
 
 const P = {
   ink: "#1e293b",
@@ -66,7 +66,7 @@ export function FractionBar({
     <div style={card}>
       <svg
         viewBox={`0 0 ${W} ${H}`}
-        width="100%"
+        {...svgFit(W)}
         role="img"
         aria-label="Băng giấy phân số"
       >
@@ -137,7 +137,7 @@ export function FractionCircle({ parts = 4, shaded = 1, label = "" }) {
     <div style={card}>
       <svg
         viewBox="0 0 340 250"
-        width="100%"
+        {...svgFit(340)}
         role="img"
         aria-label="Hình tròn chia phần"
       >
@@ -204,7 +204,7 @@ export function BarModel({ rows = [], braceLabel = "", note = "" }) {
     <div style={card}>
       <svg
         viewBox={`0 0 ${W} ${H}`}
-        width="100%"
+        {...svgFit(W)}
         role="img"
         aria-label="Sơ đồ đoạn thẳng"
       >
@@ -320,7 +320,7 @@ export function MotionDiagram({
     <div style={card}>
       <svg
         viewBox={`0 0 ${W} ${H}`}
-        width="100%"
+        {...svgFit(W)}
         role="img"
         aria-label="Sơ đồ chuyển động"
       >
@@ -518,7 +518,7 @@ export function BarChart({
     <div style={card}>
       <svg
         viewBox={`0 0 ${W} ${H}`}
-        width="100%"
+        {...svgFit(W)}
         role="img"
         aria-label="Biểu đồ cột"
       >
@@ -645,7 +645,7 @@ export function PieChart({ title = "", items = [] }) {
     <div style={card}>
       <svg
         viewBox="0 0 560 270"
-        width="100%"
+        {...svgFit(560)}
         role="img"
         aria-label="Biểu đồ hình quạt"
       >

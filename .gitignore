@@ -57,5 +57,9 @@ scratch/verify-*.txt
 scratch/*.log
 scratch/gates.txt
 scratch/loi-*.txt
+# Thư viện hình để đo/ngắm: giữ file .jsx, bỏ bản đóng gói và trang sinh ra
+scratch/tao-thu-vien-hinh.cjs
+scratch/thu-vien-hinh.html
+scratch/nhin-*.png
 # Bản sao lưu dữ liệu bài học trước khi tiêm hình (lấy lại được từ lịch sử git)
 scratch/*.truoc-hinh.js

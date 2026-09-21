@@ -9,7 +9,7 @@
  * số có mặc định; KHÔNG bao giờ để trắng khung vì một giá trị lạ.
  */
 
-import { CARD_STYLE, CAPTION_STYLE } from "./visualTheme";
+import { CARD_STYLE, CAPTION_STYLE, svgFit } from "./visualTheme";
 
 const P = {
   ink: "#1e293b",
@@ -126,7 +126,7 @@ export function PlaneShape({
 
   return (
     <div style={card}>
-      <svg viewBox="0 0 320 240" width="100%" role="img" aria-label={PLANE[k]}>
+      <svg viewBox="0 0 320 240" {...svgFit(320)} role="img" aria-label={PLANE[k]}>
         {k === "circle" ? (
           <>
             <circle
@@ -260,7 +260,7 @@ export function Angle({ kind = "right", degrees = null, label = "" }) {
 
   return (
     <div style={card}>
-      <svg viewBox="0 0 340 220" width="100%" role="img" aria-label={def.name}>
+      <svg viewBox="0 0 340 220" {...svgFit(340)} role="img" aria-label={def.name}>
         <line
           x1={cx}
           y1={cy}
@@ -352,7 +352,7 @@ export function CircleParts({
 
   return (
     <div style={card}>
-      <svg viewBox="0 0 340 240" width="100%" role="img" aria-label="Hình tròn">
+      <svg viewBox="0 0 340 240" {...svgFit(340)} role="img" aria-label="Hình tròn">
         <circle
           cx={cx}
           cy={cy}
@@ -489,7 +489,7 @@ export function Solid({
     <div style={card}>
       <svg
         viewBox="0 0 340 250"
-        width="100%"
+        {...svgFit(340)}
         role="img"
         aria-label={SOLID_NAME[k]}
       >
