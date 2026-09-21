@@ -646,6 +646,46 @@ export default function LessonPage() {
 
 // ---- Slide Components ----
 
+/**
+ * ĐẦU MỖI THẺ SLIDE: nhãn loại slide (trái) + nút loa (phải), CÙNG một hàng.
+ *
+ * 🔴 VÌ SAO TÁCH RA. Trước đây mỗi slide tự vẽ đầu thẻ, và nút đọc luôn kèm chữ
+ * "Nghe đọc". Trên điện thoại, chữ đó chiếm một khoảng đáng kể trên hàng đầu — mà bé
+ * lại xem chủ yếu bằng APK — đồng thời ép nhãn slide co lại. Nay nút đọc CHỈ CÒN ICON loa
+ * (vẫn giữ `title` + `aria-label` cho trình đọc màn hình), còn nhãn slide nằm cùng hàng.
+ *
+ * `children` dùng cho các nút phụ cần đứng cạnh nút loa (nút "Báo lỗi câu hỏi" ở quiz).
+ */
+function SlideHead({
+  label,
+  icon = null,
+  speaking,
+  onSpeak,
+  speakTitle,
+  children = null,
+}) {
+  return (
+    <div className="slide-head">
+      <span className="slide-head-tag">
+        {icon}
+        <span>{label}</span>
+      </span>
+      <div className="slide-head-actions">
+        {children}
+        <button
+          type="button"
+          className={`lesson-mini-voice-btn is-icon ${speaking ? "is-playing" : ""}`}
+          onClick={onSpeak}
+          title={speakTitle}
+          aria-label={speakTitle}
+        >
+          <Volume2 size={20} />
+        </button>
+      </div>
+    </div>
+  );
+}
+
 function StorySlide({ content }) {
   const [speaking, setSpeaking] = useState(false);
   // 🔴 Trước đây chổ này tự viết chuỗi if/else chỉ nhận 3 giá trị. Đo được: 93 slide
@@ -668,21 +708,13 @@ function StorySlide({ content }) {
 
   return (
     <div className="slide-story-card">
-      <div className="story-header-banner">
-        <div className="story-card-top-tag">
-          <Sparkles size={18} />
-          <span>Bài Học Khám Phá</span>
-        </div>
-        <button
-          type="button"
-          className={`lesson-mini-voice-btn ${speaking ? "is-playing" : ""}`}
-          onClick={handleSpeak}
-          title="Nghe đọc nội dung"
-        >
-          <Volume2 size={19} />
-          <span>Nghe đọc</span>
-        </button>
-      </div>
+      <SlideHead
+        label="Bài học"
+        icon={<Sparkles size={17} />}
+        speaking={speaking}
+        onSpeak={handleSpeak}
+        speakTitle="Nghe đọc nội dung"
+      />
 
       <motion.div
         className="story-mascot-hero"
@@ -720,18 +752,14 @@ function VisualSlide({ content }) {
 
   return (
     <div className="slide-visual-card">
-      <div className="visual-header-banner">
-        <h2 className="slide-visual-text">{content.text}</h2>
-        <button
-          type="button"
-          className={`lesson-mini-voice-btn ${speaking ? "is-playing" : ""}`}
-          onClick={handleSpeak}
-          title="Nghe đọc nội dung"
-        >
-          <Volume2 size={20} />
-          <span>Nghe đọc</span>
-        </button>
-      </div>
+      <SlideHead
+        label="Quan sát"
+        speaking={speaking}
+        onSpeak={handleSpeak}
+        speakTitle="Nghe đọc nội dung"
+      />
+
+      <h2 className="slide-visual-text">{content.text}</h2>
 
       {content.items && (
         <div className="visual-items">
@@ -1554,21 +1582,13 @@ function ConceptSlide({ content }) {
 
   return (
     <div className="slide-concept-card">
-      <div className="concept-header-banner">
-        <div className="concept-tag">
-          <Lightbulb size={18} />
-          <span>{content.badge || "Khám Phá Cùng Bé"}</span>
-        </div>
-        <button
-          type="button"
-          className={`lesson-mini-voice-btn ${speaking ? "is-playing" : ""}`}
-          onClick={handleSpeak}
-          title="Nghe cô đọc bài học"
-        >
-          <Volume2 size={20} />
-          <span>Nghe giảng</span>
-        </button>
-      </div>
+      <SlideHead
+        label={content.badge || "Khám Phá Cùng Bé"}
+        icon={<Lightbulb size={17} />}
+        speaking={speaking}
+        onSpeak={handleSpeak}
+        speakTitle="Nghe cô đọc bài học"
+      />
 
       {content.title && <h2 className="concept-title">{content.title}</h2>}
 
@@ -1743,26 +1763,19 @@ function QuizSlide({
 
   return (
     <div className="slide-quiz-card">
-      <div className="quiz-header-banner">
-        <span className="quiz-badge">❓ Câu Hỏi Thử Thách</span>
-        <div className="quiz-header-actions">
-          <button
-            type="button"
-            className={`lesson-mini-voice-btn ${speaking ? "is-playing" : ""}`}
-            onClick={handleSpeak}
-            title="Nghe đọc câu hỏi"
-          >
-            <Volume2 size={19} />
-            <span>Nghe đọc</span>
-          </button>
-          <ReportQuestionButton
-            lessonId={lessonId}
-            slideIndex={slideIndex}
-            questionText={content.question}
-            correctAnswer={content.answer}
-          />
-        </div>
-      </div>
+      <SlideHead
+        label="Thử thách"
+        speaking={speaking}
+        onSpeak={handleSpeak}
+        speakTitle="Nghe đọc câu hỏi"
+      >
+        <ReportQuestionButton
+          lessonId={lessonId}
+          slideIndex={slideIndex}
+          questionText={content.question}
+          correctAnswer={content.answer}
+        />
+      </SlideHead>
 
       <h2 className="quiz-question">{displayQuestion}</h2>
 
@@ -1871,21 +1884,13 @@ function SummarySlide({ content }) {
 
   return (
     <div className="slide-summary-card">
-      <div className="summary-header-banner">
-        <div className="summary-celebrate-badge">
-          <Award size={18} />
-          <span>Tổng Kết Bài Học</span>
-        </div>
-        <button
-          type="button"
-          className={`lesson-mini-voice-btn ${speaking ? "is-playing" : ""}`}
-          onClick={handleSpeak}
-          title="Nghe đọc tổng kết"
-        >
-          <Volume2 size={19} />
-          <span>Nghe đọc</span>
-        </button>
-      </div>
+      <SlideHead
+        label="Tổng kết"
+        icon={<Award size={17} />}
+        speaking={speaking}
+        onSpeak={handleSpeak}
+        speakTitle="Nghe đọc tổng kết"
+      />
 
       <h2 className="summary-title">{content.title}</h2>
 

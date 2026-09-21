@@ -246,11 +246,11 @@ nội dung chữ).
 Nguyên nhân chung: các khối được đặt sát nhau theo đơn vị `viewBox`, mà trên màn hình hình bị
 co lại (hệ số ~0,8–1,0), nên khe 2 đơn vị chỉ còn ~1–2 điểm ảnh — mắt thấy như dính liền.
 
-| Hình                 | Lỗi cũ                                                                       | Cách chữa                                                              |
-| -------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| Khối chục / đơn vị   | Ô trong thanh chục cao 11,2 còn ô đơn vị cao 22, khe dọc 2 ⇒ trông dính, méo | Dùng MỘT cỡ ô vuông 18 cho cả hai, khe 4, khe giữa hai thanh 14         |
-| Bảng hàng (placeValue) | Ô tiêu đề (10→48) và ô chữ số (48→114) chạm đúng mép nhau                   | Cách nhau 10 đơn vị (`KHE_DOC`), chiều cao thẻ 142                      |
-| Bảng số liệu         | Các hàng vẽ liền nhau (`y += cao`), không có khe                            | Thêm `KHE_HANG = 4` giữa các hàng                                       |
+| Hình                   | Lỗi cũ                                                                       | Cách chữa                                                       |
+| ---------------------- | ---------------------------------------------------------------------------- | --------------------------------------------------------------- |
+| Khối chục / đơn vị     | Ô trong thanh chục cao 11,2 còn ô đơn vị cao 22, khe dọc 2 ⇒ trông dính, méo | Dùng MỘT cỡ ô vuông 18 cho cả hai, khe 4, khe giữa hai thanh 14 |
+| Bảng hàng (placeValue) | Ô tiêu đề (10→48) và ô chữ số (48→114) chạm đúng mép nhau                    | Cách nhau 10 đơn vị (`KHE_DOC`), chiều cao thẻ 142              |
+| Bảng số liệu           | Các hàng vẽ liền nhau (`y += cao`), không có khe                             | Thêm `KHE_HANG = 4` giữa các hàng                               |
 
 Đo lại khe hẹp nhất giữa hai hình (khung rộng 644 px như trên máy tính): bảng số liệu 3,3 px ·
 khối chục/đơn vị 5,2 px · bảng hàng 6,5 px · khung 10 ô 11,5 px. **Hai hình cố ý bằng 0**:
@@ -294,4 +294,3 @@ trong thẻ. Đây là đánh đổi có ý: chữ đọc được, nhưng phả
 phải kéo; từ 768 px trở lên không trường hợp nào. Muốn bỏ hẳn việc kéo ngang trên điện thoại thì
 phải làm **bố cục riêng cho màn hẹp** (ví dụ bảng số liệu xếp dọc thành từng ô thay vì lưới) —
 việc lớn hơn, chưa làm.
-

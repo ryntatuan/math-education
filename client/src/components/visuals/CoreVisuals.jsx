@@ -62,10 +62,25 @@ export function NumberLine({
   const W = 560;
   const H = hops.length ? 132 : 92;
   const padL = 26;
-  const padR = 26;
+  /**
+   * 🔴 Bên phải phải chừa chỗ cho NHÃN của mốc cuối, RỒI MỚI tới mũi tên.
+   *
+   * Số đo thật trước khi chữa (thẻ 336 px): nhãn "10" vượt qua mép trái mũi tên 2,3 px,
+   * nhãn "100" vượt 4,3 px ⇒ số cuối nằm NGAY DƯỚI mũi tên, nhìn như bị đè lên.
+   *
+   * ⚠️ Mũi tên ở đây dùng `markerUnits` MẶC ĐỊNH (= `strokeWidth`), nên kích thước thật
+   * là `markerWidth × strokeWidth` = 9 × 3 = **27 đơn vị**, và `refX` dịch 7 × 3 = **21**
+   * đơn vị. Nghĩa là mép trái mũi tên nằm ở `x2 − 21` chứ KHÔNG phải `x2 − 7` — ước lượng
+   * theo `markerWidth` trần sẽ chừa thiếu đúng 14 đơn vị và lại chồng như cũ.
+   */
+  const rongNhan = (v) => String(v).length * 8.6; // cỡ chữ 15 in đậm ⇒ ~8,6 đơn vị/chữ số
+  const nuaNhan = Math.max(rongNhan(b), rongNhan(a)) / 2;
+  const AIR = nuaNhan + 12 + 21; // nhãn + khe thở + thân mũi tên
+  const padR = AIR + 10;
   const axisY = H - 40;
   const span = b - a;
   const x = (v) => padL + ((v - a) / span) * (W - padL - padR);
+  const xMuiTen = W - padR + AIR; // điểm gắn mũi tên, nằm SAU nhãn cuối
 
   const ticks = [];
   for (let v = a; v <= b + 1e-9; v += s) ticks.push(Math.round(v * 1e6) / 1e6);
@@ -95,7 +110,7 @@ export function NumberLine({
         <line
           x1={padL - 12}
           y1={axisY}
-          x2={W - padR + 12}
+          x2={xMuiTen}
           y2={axisY}
           stroke={PALETTE.line}
           strokeWidth="3"
@@ -166,7 +181,8 @@ export function NumberLine({
 /* ─────────────────────────────── KHUNG 10 Ô ───────────────────────────────
  * Cách SGK dạy "đếm thêm cho đủ 10" và "cộng qua 10". Bày sẵn từng ô vuông.
  *   tenFrame: { filled, total = 10, emoji = "🔴", extra = 0, label }
- * `extra` = số ô đã đầy TRƯỚC đó (để vẽ "7 ô đỏ + 3 ô xanh = 10").
+ * `extra` = số ô ĐƯỢC THÊM vào. Phần bù cho đủ khung vẽ trong khung (xanh lá),
+ * phần dư vẽ thành nhóm riêng bên phải, có dấu "+" ở giữa ⇒ đọc thẳng thành "10 + 3".
  */
 export function TenFrame({
   filled = 7,
@@ -177,12 +193,36 @@ export function TenFrame({
 }) {
   const t = clamp(num(total, 10), 1, 20);
   const f = clamp(num(filled, 0), 0, t);
-  const e = clamp(num(extra, 0), 0, t - f);
+  const e = clamp(num(extra, 0), 0, 40);
+  /**
+   * 🔴 `extra` CÓ THỂ LỚN HƠN số ô trống của khung — và bản cũ KẸP nó lại:
+   * `const e = clamp(num(extra, 0), 0, t - f)`. Kẹp trong im lặng nên hình vẽ thiếu
+   * mà không có lỗi nào hiện ra. Đo được 3 ca ở Lớp 2:
+   *   `g2-c7-l1` filled 9, total 10, extra 3 — ý là 9 + 4 = 9 + 1 + 3, mà hình chỉ vẽ
+   *      9 + 1 = 10 ⇒ bé KHÔNG thấy 3 quả còn lại, trong khi lời giảng nói "rồi 10 + 3";
+   *   `g2-c2-l1` (mất 2) và `g2-c8-l6` (mất 4).
+   * Người dùng nhìn màn hình rồi báo; cổng kiểm dữ liệu không thấy vì dữ liệu vẫn hợp lệ.
+   *
+   * Nay: phần bù đủ khung vẽ TRONG khung, phần dư vẽ thành NHÓM RIÊNG bên phải.
+   * Mọi ca trước đây có `extra ≤ total − filled` giữ nguyên hình dạng cũ.
+   */
+  const vaoKhung = Math.min(e, t - f);
+  const ngoaiKhung = e - vaoKhung;
   const perRow = t <= 10 ? 5 : 10;
   const rows = Math.ceil(t / perRow);
   const cell = 44;
-  const W = perRow * cell + 4;
-  const H = rows * cell + 4;
+  const khungW = perRow * cell + 4;
+  const khungH = rows * cell + 4;
+  const kheNhom = 30; // chừa chỗ cho dấu "+"
+  const soCotNhom = Math.min(ngoaiKhung, perRow);
+  const soHangNhom = soCotNhom ? Math.ceil(ngoaiKhung / soCotNhom) : 0;
+  const nhomW = ngoaiKhung ? soCotNhom * cell + 4 : 0;
+  const nhomH = soHangNhom * cell + 4;
+  const W = khungW + (ngoaiKhung ? kheNhom + nhomW : 0);
+  const H = Math.max(khungH, nhomH);
+  const lechKhung = (H - khungH) / 2; // canh giữa hai nhóm theo chiều dọc
+  const lechNhom = (H - nhomH) / 2;
+  const xNhom = khungW + kheNhom;
 
   return (
     <div style={card}>
@@ -195,48 +235,48 @@ export function TenFrame({
         {Array.from({ length: t }).map((_, i) => {
           const r = Math.floor(i / perRow);
           const c = i % perRow;
-          const on = i < f + e;
-          const isExtra = i >= f && i < f + e;
+          const daCo = i < f;
+          const bu = i >= f && i < f + vaoKhung;
+          const yGiua = lechKhung + r * cell + cell / 2;
           return (
             <g key={i}>
               <rect
                 x={c * cell + 2}
-                y={r * cell + 2}
+                y={lechKhung + r * cell + 2}
                 width={cell - 4}
                 height={cell - 4}
                 rx="7"
                 fill={
-                  !on
-                    ? "#f8fafc"
-                    : isExtra
+                  daCo
+                    ? PALETTE.blueSoft
+                    : bu
                       ? PALETTE.greenSoft
-                      : PALETTE.blueSoft
+                      : "#f8fafc"
                 }
                 stroke={PALETTE.line}
                 strokeWidth="2"
               />
-              {on && (
+              {daCo || bu ? (
                 <>
                   <circle
                     cx={c * cell + cell / 2}
-                    cy={r * cell + cell / 2}
+                    cy={yGiua}
                     r={cell * 0.28}
-                    fill={isExtra ? PALETTE.green : PALETTE.blue}
+                    fill={bu ? PALETTE.green : PALETTE.blue}
                   />
                   <text
                     x={c * cell + cell / 2}
-                    y={r * cell + cell / 2 + 5}
+                    y={yGiua + 5}
                     textAnchor="middle"
                     fontSize="15"
                   >
                     {emoji}
                   </text>
                 </>
-              )}
-              {!on && (
+              ) : (
                 <text
                   x={c * cell + cell / 2}
-                  y={r * cell + cell / 2 + 6}
+                  y={yGiua + 6}
                   textAnchor="middle"
                   fontSize="14"
                   fill={PALETTE.line}
@@ -247,6 +287,51 @@ export function TenFrame({
             </g>
           );
         })}
+
+        {/* Nhóm ô CÒN LẠI — chỗ mà bản cũ làm mất. Dấu "+" để đọc thẳng thành "10 + 3". */}
+        {ngoaiKhung > 0 && (
+          <>
+            <text
+              x={khungW + kheNhom / 2}
+              y={H / 2 + 11}
+              textAnchor="middle"
+              fontSize="30"
+              fontWeight="800"
+              fill={PALETTE.ink}
+            >
+              +
+            </text>
+            {Array.from({ length: ngoaiKhung }).map((_, i) => {
+              const r = Math.floor(i / soCotNhom);
+              const c = i % soCotNhom;
+              const cx = xNhom + c * cell + cell / 2;
+              const cy = lechNhom + r * cell + cell / 2;
+              return (
+                <g key={`n${i}`}>
+                  <rect
+                    x={xNhom + c * cell + 2}
+                    y={lechNhom + r * cell + 2}
+                    width={cell - 4}
+                    height={cell - 4}
+                    rx="7"
+                    fill={PALETTE.greenSoft}
+                    stroke={PALETTE.line}
+                    strokeWidth="2"
+                  />
+                  <circle cx={cx} cy={cy} r={cell * 0.28} fill={PALETTE.green} />
+                  <text
+                    x={cx}
+                    y={cy + 5}
+                    textAnchor="middle"
+                    fontSize="15"
+                  >
+                    {emoji}
+                  </text>
+                </g>
+              );
+            })}
+          </>
+        )}
       </svg>
       {label && <span style={caption}>{label}</span>}
     </div>

@@ -212,6 +212,13 @@
   text-align: left;
   flex: 1;
   min-width: 0;
+  /* 🔴 DỮ LIỆU ĐÃ XUỐNG DÒNG SẴN — HTML thì gộp lại thành MỘT hàng.
+     302 slide `visual` viết `text` có `\n` (đo được), ví dụ bài “Phép cộng (qua 10)”:
+     "9 + 4 = 9 + 1 + 3 = 10 + 3 = 13\n ↑ tách 4 thành 1 và 3". Thiếu dòng này thì
+     hai dòng dồn thành một hàng dài, rối mắt bé — đúng lỗi người dùng báo.
+     `pre-wrap` giữ cả XUỐNG DÒNG lẫn các khoảng trắng căn cột (bài đặt tính dọc),
+     mà vẫn tự ngắt dòng khi hẹp. */
+  white-space: pre-wrap;
 }
 
 .lesson-mini-voice-btn {
@@ -241,6 +248,57 @@
   background: #fef08a;
   border-color: #facc15;
   color: #854d0e;
+}
+
+/* ── Đầu thẻ slide: nhãn loại slide + nút loa, CÙNG một hàng ──
+   🔴 Trước đây nút đọc kèm chữ "Nghe đọc" / "Nghe giảng". Trên điện thoại chữ đó
+   chiếm một khoảng đáng kể trên hàng đầu (bé chủ yếu xem bằng APK) và ép nhãn slide
+   co lại. Nay nút chỉ còn ICON loa (vẫn có `title` + `aria-label`), nhãn nằm cùng hàng. */
+.slide-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+}
+
+.slide-head-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+  background: #eef2ff;
+  border: 1px solid #c7d2fe;
+  color: #3730a3;
+  font-size: clamp(0.8rem, 0.95vw, 0.9rem);
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 999px;
+}
+
+/* Nhãn dài thì cắt bằng dấu …, KHÔNG đẩy nút loa ra ngoài màn hình. */
+.slide-head-tag > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.slide-head-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* Nút đọc CHỈ ICON: tròn, đủ to để bấm bằng ngón tay. */
+.lesson-mini-voice-btn.is-icon {
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  justify-content: center;
+  border-radius: 50%;
 }
 
 .visual-items {
@@ -879,6 +937,13 @@
     padding: 6px 12px;
     font-size: 0.82rem;
     gap: 4px;
+  }
+
+  /* Luật chung ngay trên đặt `padding: 6px 12px` ⇒ phải trả lại hình TRÒN cho nút loa. */
+  .lesson-mini-voice-btn.is-icon {
+    width: 34px;
+    height: 34px;
+    padding: 0;
   }
 
   .visual-number {

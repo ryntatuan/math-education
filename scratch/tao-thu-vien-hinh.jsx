@@ -17,9 +17,29 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { CARD_STYLE } from "../client/src/components/visuals/visualTheme.js";
 import { HINH_KEYS } from "../client/src/components/visuals/visualKeys.js";
 
-import { NumberLine, TenFrame, BaseTenBlocks, PlaceValueTable, Ruler, Money, Table } from "../client/src/components/visuals/CoreVisuals.jsx";
-import { PlaneShape, Angle, CircleParts, Solid } from "../client/src/components/visuals/GeometryVisuals.jsx";
-import { FractionBar, FractionCircle, BarModel, MotionDiagram, BarChart, PieChart } from "../client/src/components/visuals/FractionVisuals.jsx";
+import {
+  NumberLine,
+  TenFrame,
+  BaseTenBlocks,
+  PlaceValueTable,
+  Ruler,
+  Money,
+  Table,
+} from "../client/src/components/visuals/CoreVisuals.jsx";
+import {
+  PlaneShape,
+  Angle,
+  CircleParts,
+  Solid,
+} from "../client/src/components/visuals/GeometryVisuals.jsx";
+import {
+  FractionBar,
+  FractionCircle,
+  BarModel,
+  MotionDiagram,
+  BarChart,
+  PieChart,
+} from "../client/src/components/visuals/FractionVisuals.jsx";
 
 const COMP = {
   baseTen: BaseTenBlocks,
@@ -55,10 +75,20 @@ const CA = {
     { filled: 10, total: 10, emoji: "🍒" },
     { filled: 6, total: 10, emoji: "🖐️", extra: 4 },
     { filled: 0, total: 10, emoji: "🍽️" },
+    // Hai ca THẬT trong dữ liệu Lớp 2, trước đây bị kẹp nên vẽ thiếu:
+    //   g2-c7-l1: 9 + 4 = 9 + 1 + 3  (khung đầy 10, còn 3 ở ngoài)
+    { filled: 9, total: 10, emoji: "🔵", extra: 3, label: "9 + 1 = 10, rồi 10 + 3 = 13" },
+    //   g2-c8-l6: 10 + 4 = 14
+    { filled: 10, total: 10, emoji: "🟠", extra: 4, label: "10 + 4 = 14" },
   ],
   numberLine: [
     { from: 0, to: 10, step: 1, marks: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] },
-    { from: 10, to: 100, step: 10, marks: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100] },
+    {
+      from: 10,
+      to: 100,
+      step: 10,
+      marks: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
+    },
     {
       from: 0,
       to: 10,
@@ -75,7 +105,10 @@ const CA = {
     { headers: ["Chục", "Đơn vị"], digits: [4, 7] },
     { headers: ["Trăm", "Chục", "Đơn vị"], digits: [3, 4, 5] },
     { headers: ["Nghìn", "Trăm", "Chục", "Đơn vị"], digits: [2, 4, 7, 5] },
-    { headers: ["Trăm nghìn", "Chục nghìn", "Nghìn", "Trăm", "Chục", "Đơn vị"], digits: [4, 3, 2, 5, 1, 6] },
+    {
+      headers: ["Trăm nghìn", "Chục nghìn", "Nghìn", "Trăm", "Chục", "Đơn vị"],
+      digits: [4, 3, 2, 5, 1, 6],
+    },
   ],
   ruler: [
     { lengthCm: 10, measure: { from: 0, to: 10 } },
@@ -88,7 +121,13 @@ const CA = {
     { notes: [20000, 5000] },
   ],
   table: [
-    { headers: ["Phép tính", "Kết quả"], rows: [["2 + 5", "7"], ["5 + 2", "7"]] },
+    {
+      headers: ["Phép tính", "Kết quả"],
+      rows: [
+        ["2 + 5", "7"],
+        ["5 + 2", "7"],
+      ],
+    },
     {
       headers: ["Trường hợp", "Công thức thời gian"],
       rows: [
@@ -131,7 +170,13 @@ const CA = {
   fractionBar: [
     { parts: 4, shaded: 3 },
     { parts: 12, shaded: 11 },
-    { rows: [{ parts: 2, shaded: 1, label: "1/2" }, { parts: 4, shaded: 2, label: "2/4" }, { parts: 6, shaded: 3, label: "3/6" }] },
+    {
+      rows: [
+        { parts: 2, shaded: 1, label: "1/2" },
+        { parts: 4, shaded: 2, label: "2/4" },
+        { parts: 6, shaded: 3, label: "3/6" },
+      ],
+    },
     { parts: 100, shaded: 75 },
   ],
   fractionCircle: [
@@ -140,21 +185,85 @@ const CA = {
     { parts: 3, shaded: 2 },
   ],
   barModel: [
-    { rows: [{ label: "Số bé", parts: 2 }, { label: "Số lớn", parts: 3 }], braceLabel: "Tổng 35" },
-    { rows: [{ label: "Số bé", parts: 1 }, { label: "Số lớn", parts: 4 }], braceLabel: "Hiệu 24" },
+    {
+      rows: [
+        { label: "Số bé", parts: 2 },
+        { label: "Số lớn", parts: 3 },
+      ],
+      braceLabel: "Tổng 35",
+    },
+    {
+      rows: [
+        { label: "Số bé", parts: 1 },
+        { label: "Số lớn", parts: 4 },
+      ],
+      braceLabel: "Hiệu 24",
+    },
   ],
   motionDiagram: [
-    { mode: "toward", distance: 150, unit: "km", a: { name: "Xe máy", speed: 45 }, b: { name: "Ô tô", speed: 60 }, note: "Ngược chiều: gặp nhau sau 150 : (45 + 60) giờ" },
-    { mode: "chase", distance: 36, unit: "km", a: { name: "Xe máy", speed: 45 }, b: { name: "Xe đạp", speed: 15 } },
-    { mode: "apart", distance: 20, unit: "km", a: { name: "A", speed: 5 }, b: { name: "B", speed: 7 } },
+    {
+      mode: "toward",
+      distance: 150,
+      unit: "km",
+      a: { name: "Xe máy", speed: 45 },
+      b: { name: "Ô tô", speed: 60 },
+      note: "Ngược chiều: gặp nhau sau 150 : (45 + 60) giờ",
+    },
+    {
+      mode: "chase",
+      distance: 36,
+      unit: "km",
+      a: { name: "Xe máy", speed: 45 },
+      b: { name: "Xe đạp", speed: 15 },
+    },
+    {
+      mode: "apart",
+      distance: 20,
+      unit: "km",
+      a: { name: "A", speed: 5 },
+      b: { name: "B", speed: 7 },
+    },
   ],
   barChart: [
-    { title: "Số cây trồng được", items: [{ label: "Lớp 4A", value: 15 }, { label: "Lớp 4B", value: 12 }, { label: "Lớp 4C", value: 18 }], unit: "cây", highlight: 2 },
-    { title: "Nhiều cột", items: [{ label: "Một", value: 1 }, { label: "Hai", value: 4 }, { label: "Ba", value: 9 }, { label: "Bốn", value: 3 }, { label: "Năm", value: 7 }, { label: "Sáu", value: 5 }], unit: "bạn" },
+    {
+      title: "Số cây trồng được",
+      items: [
+        { label: "Lớp 4A", value: 15 },
+        { label: "Lớp 4B", value: 12 },
+        { label: "Lớp 4C", value: 18 },
+      ],
+      unit: "cây",
+      highlight: 2,
+    },
+    {
+      title: "Nhiều cột",
+      items: [
+        { label: "Một", value: 1 },
+        { label: "Hai", value: 4 },
+        { label: "Ba", value: 9 },
+        { label: "Bốn", value: 3 },
+        { label: "Năm", value: 7 },
+        { label: "Sáu", value: 5 },
+      ],
+      unit: "bạn",
+    },
   ],
   pieChart: [
-    { title: "Kết quả học tập", items: [{ label: "Xuất sắc", percent: 50 }, { label: "Tốt", percent: 30 }, { label: "Hoàn thành", percent: 20 }] },
-    { title: "Hai phần", items: [{ label: "Nữ", percent: 60 }, { label: "Nam", percent: 40 }] },
+    {
+      title: "Kết quả học tập",
+      items: [
+        { label: "Xuất sắc", percent: 50 },
+        { label: "Tốt", percent: 30 },
+        { label: "Hoàn thành", percent: 20 },
+      ],
+    },
+    {
+      title: "Hai phần",
+      items: [
+        { label: "Nữ", percent: 60 },
+        { label: "Nam", percent: 40 },
+      ],
+    },
   ],
 };
 
@@ -162,7 +271,9 @@ const phan = [];
 for (const key of HINH_KEYS) {
   const C = COMP[key];
   if (!C) {
-    phan.push(`<section><h2 style="color:#b91c1c">THIẾU COMPONENT: ${key}</h2></section>`);
+    phan.push(
+      `<section><h2 style="color:#b91c1c">THIẾU COMPONENT: ${key}</h2></section>`,
+    );
     continue;
   }
   const khoi = (CA[key] ?? []).map((du, i) => {
@@ -215,5 +326,9 @@ const html = `<!doctype html>
 const dest = path.resolve(process.cwd(), "scratch", "thu-vien-hinh.html");
 fs.writeFileSync(dest, html, "utf8");
 console.log(`Đã ghi ${dest}`);
-console.log(`Số khối: ${HINH_KEYS.reduce((a, k) => a + (CA[k]?.length ?? 0), 0)} · số loại: ${HINH_KEYS.length}`);
-console.log(`Bề rộng thẻ mẫu (CARD_STYLE): maxWidth=${CARD_STYLE.maxWidth}, padding=${CARD_STYLE.padding}`);
+console.log(
+  `Số khối: ${HINH_KEYS.reduce((a, k) => a + (CA[k]?.length ?? 0), 0)} · số loại: ${HINH_KEYS.length}`,
+);
+console.log(
+  `Bề rộng thẻ mẫu (CARD_STYLE): maxWidth=${CARD_STYLE.maxWidth}, padding=${CARD_STYLE.padding}`,
+);
