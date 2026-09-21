@@ -41,7 +41,8 @@ import {
   BarChart,
   PieChart,
 } from "../client/src/components/visuals/FractionVisuals";
-import VisualBlocks, { demHinh } from "../client/src/components/visuals/VisualBlock";
+import VisualBlocks from "../client/src/components/visuals/VisualBlock";
+import { demHinh } from "../client/src/components/visuals/visualKeys";
 
 const CASES = [
   ["NumberLine", NumberLine, { from: 0, to: 10, step: 1, marks: [3, 7], hops: [{ from: 3, to: 7, label: "+4" }], label: "3 + 4 = 7" }],

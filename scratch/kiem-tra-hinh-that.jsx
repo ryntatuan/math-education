@@ -13,7 +13,8 @@
 //
 // CÁCH DÙNG: node scratch/visual-bundle-that.cjs
 import { renderToStaticMarkup } from "react-dom/server";
-import VisualBlocks, { HINH_KEYS } from "../client/src/components/visuals/VisualBlock.jsx";
+import VisualBlocks from "../client/src/components/visuals/VisualBlock.jsx";
+import { HINH_KEYS } from "../client/src/components/visuals/visualKeys.js";
 
 import { grade1Data } from "../client/src/data/grade1Data.js";
 import { grade2Data } from "../client/src/data/grade2Data.js";

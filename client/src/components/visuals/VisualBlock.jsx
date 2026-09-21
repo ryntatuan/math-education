@@ -17,44 +17,9 @@
 import { NumberLine, TenFrame, BaseTenBlocks, PlaceValueTable, Ruler, Money, Table } from "./CoreVisuals";
 import { PlaneShape, Angle, CircleParts, Solid } from "./GeometryVisuals";
 import { FractionBar, FractionCircle, BarModel, MotionDiagram, BarChart, PieChart } from "./FractionVisuals";
-
-const isObj = (v) => v && typeof v === "object" && !Array.isArray(v);
-const has = (v) => v !== undefined && v !== null && v !== false && v !== "";
-
-/**
- * Danh sách khoá hình — NGUỒN SỰ THẬT DUY NHẤT.
- *
- * 🔴 Vì sao xuất ra ngoài: danh sách này từng bị **chép làm hai** (một bản trong
- * `VisualBlocks`, một bản trong `demHinh`). Hai bản chép tay thì sớm muộn lệch nhau,
- * và khi lệch thì `demHinh` đếm một đằng mà màn hình vẽ một nẻo — công cụ đo báo
- * "slide này có hình" trong khi bé không thấy gì. Nay chỉ còn MỘT bản.
- *
- * Thứ tự dưới đây là thứ tự hiển thị: số → đo lường → hình học → phân số/sơ đồ → biểu đồ.
- */
-export const HINH_KEYS = [
-  // Số học
-  "baseTen",
-  "tenFrame",
-  "numberLine",
-  "placeValue",
-  // Đo lường
-  "ruler",
-  "money",
-  "table",
-  // Hình học
-  "planeShape",
-  "angle",
-  "circleParts",
-  "solid",
-  // Phân số & sơ đồ
-  "fractionBar",
-  "fractionCircle",
-  "barModel",
-  "motionDiagram",
-  // Biểu đồ
-  "barChart",
-  "pieChart",
-];
+// Danh sách khoá + hàm đếm nằm ở file `.js` riêng — xem ghi chú đầu `visualKeys.js`
+// (file này chỉ được export COMPONENT thì Fast Refresh mới chạy).
+import { isObj } from "./visualKeys";
 
 export default function VisualBlocks({ content }) {
   if (!isObj(content)) return null;
@@ -113,10 +78,4 @@ export default function VisualBlocks({ content }) {
       {blocks}
     </div>
   );
-}
-
-/** Đếm số hình một slide sẽ vẽ — dùng cho công cụ đo, không dùng trong giao diện. */
-export function demHinh(content) {
-  if (!isObj(content)) return 0;
-  return HINH_KEYS.filter((k) => has(content[k])).length;
 }
