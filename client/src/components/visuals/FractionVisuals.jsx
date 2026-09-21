@@ -44,7 +44,13 @@ const SEG = [P.blue, P.rose, P.amber, P.green, P.violet];
  * fractionBar: { parts: 4, shaded: 3, label: "3/4", unit: "băng giấy", rows: [...] }
  * `rows` cho phép vẽ nhiều băng cùng thang để so sánh / quy đồng mẫu số.
  */
-export function FractionBar({ parts = 4, shaded = 1, label = "", unit = "", rows = null }) {
+export function FractionBar({
+  parts = 4,
+  shaded = 1,
+  label = "",
+  unit = "",
+  rows = null,
+}) {
   const bands =
     Array.isArray(rows) && rows.length
       ? rows.slice(0, 4)
@@ -58,7 +64,12 @@ export function FractionBar({ parts = 4, shaded = 1, label = "", unit = "", rows
 
   return (
     <div style={card}>
-      <svg viewBox={`0 0 ${W} ${H}`} width="100%" role="img" aria-label="Băng giấy phân số">
+      <svg
+        viewBox={`0 0 ${W} ${H}`}
+        width="100%"
+        role="img"
+        aria-label="Băng giấy phân số"
+      >
         {bands.map((r, ri) => {
           const p = clamp(num(r.parts, 4), 1, 20);
           const s = clamp(num(r.shaded, 0), 0, p);
@@ -124,7 +135,12 @@ export function FractionCircle({ parts = 4, shaded = 1, label = "" }) {
 
   return (
     <div style={card}>
-      <svg viewBox="0 0 340 250" width="100%" role="img" aria-label="Hình tròn chia phần">
+      <svg
+        viewBox="0 0 340 250"
+        width="100%"
+        role="img"
+        aria-label="Hình tròn chia phần"
+      >
         {Array.from({ length: p }).map((_, i) => (
           <path
             key={i}
@@ -135,7 +151,15 @@ export function FractionCircle({ parts = 4, shaded = 1, label = "" }) {
             strokeWidth={i < s ? 3 : 2}
           />
         ))}
-        <circle cx={cx} cy={cy} r={r} fill="none" stroke={P.ink} strokeWidth="2.5" opacity="0.5" />
+        <circle
+          cx={cx}
+          cy={cy}
+          r={r}
+          fill="none"
+          stroke={P.ink}
+          strokeWidth="2.5"
+          opacity="0.5"
+        />
       </svg>
       <span style={{ ...caption, color: P.ink, fontSize: 15 }}>
         {label || `Tô màu ${shaded}/${parts} hình tròn`}
@@ -155,9 +179,17 @@ export function FractionCircle({ parts = 4, shaded = 1, label = "" }) {
  */
 export function BarModel({ rows = [], braceLabel = "", note = "" }) {
   const rs = (Array.isArray(rows) ? rows : [])
-    .map((r) => ({ label: r?.label ?? "", parts: clamp(num(r?.parts, 1), 1, 20) }))
+    .map((r) => ({
+      label: r?.label ?? "",
+      parts: clamp(num(r?.parts, 1), 1, 20),
+    }))
     .slice(0, 4);
-  const safe = rs.length ? rs : [{ label: "Số bé", parts: 2 }, { label: "Số lớn", parts: 6 }];
+  const safe = rs.length
+    ? rs
+    : [
+        { label: "Số bé", parts: 2 },
+        { label: "Số lớn", parts: 6 },
+      ];
 
   const unit = Math.max(...safe.map((r) => r.parts)); // số phần lớn nhất
   const W = 560;
@@ -170,13 +202,24 @@ export function BarModel({ rows = [], braceLabel = "", note = "" }) {
 
   return (
     <div style={card}>
-      <svg viewBox={`0 0 ${W} ${H}`} width="100%" role="img" aria-label="Sơ đồ đoạn thẳng">
+      <svg
+        viewBox={`0 0 ${W} ${H}`}
+        width="100%"
+        role="img"
+        aria-label="Sơ đồ đoạn thẳng"
+      >
         {safe.map((r, ri) => {
           const y = top + ri * (rowH + gap);
           const color = SEG[ri % SEG.length];
           return (
             <g key={ri}>
-              <text x="0" y={y + rowH / 2 + 6} fontSize="15" fontWeight="800" fill={P.ink}>
+              <text
+                x="0"
+                y={y + rowH / 2 + 6}
+                fontSize="15"
+                fontWeight="800"
+                fill={P.ink}
+              >
                 {r.label}
               </text>
               {Array.from({ length: r.parts }).map((_, i) => (
@@ -251,7 +294,14 @@ const MOTION_LABEL = {
   chase: "Hai xe đi CÙNG CHIỀU, đuổi nhau",
 };
 
-export function MotionDiagram({ mode = "toward", distance = null, unit = "km", a = null, b = null, note = "" }) {
+export function MotionDiagram({
+  mode = "toward",
+  distance = null,
+  unit = "km",
+  a = null,
+  b = null,
+  note = "",
+}) {
   const m = MOTION_LABEL[mode] ? mode : "toward";
   // ⚠️ MẶC ĐỊNH `= {}` KHÔNG CHẶN ĐƯỢC `null` TRUYỀN THẲNG VÀO. Giá trị mặc định của
   // tham số chỉ áp dụng khi giá trị là `undefined`, còn `null` đi qua nguyên vẹn.
@@ -268,12 +318,32 @@ export function MotionDiagram({ mode = "toward", distance = null, unit = "km", a
 
   return (
     <div style={card}>
-      <svg viewBox={`0 0 ${W} ${H}`} width="100%" role="img" aria-label="Sơ đồ chuyển động">
-        <text x={W / 2} y="26" textAnchor="middle" fontSize="16" fontWeight="800" fill={P.violet}>
+      <svg
+        viewBox={`0 0 ${W} ${H}`}
+        width="100%"
+        role="img"
+        aria-label="Sơ đồ chuyển động"
+      >
+        <text
+          x={W / 2}
+          y="26"
+          textAnchor="middle"
+          fontSize="16"
+          fontWeight="800"
+          fill={P.violet}
+        >
           {MOTION_LABEL[m]}
         </text>
 
-        <line x1={x0} y1={axisY} x2={x1} y2={axisY} stroke={P.grid} strokeWidth="4" strokeLinecap="round" />
+        <line
+          x1={x0}
+          y1={axisY}
+          x2={x1}
+          y2={axisY}
+          stroke={P.grid}
+          strokeWidth="4"
+          strokeLinecap="round"
+        />
 
         {/* Mốc hai đầu */}
         <circle cx={x0} cy={axisY} r="7" fill={P.blue} />
@@ -281,41 +351,102 @@ export function MotionDiagram({ mode = "toward", distance = null, unit = "km", a
 
         {d !== null && (
           <>
-            <line x1={x0} y1={axisY + 26} x2={x1} y2={axisY + 26} stroke={P.soft} strokeWidth="2" strokeDasharray="6 5" />
-            <text x={W / 2} y={axisY + 46} textAnchor="middle" fontSize="15" fontWeight="800" fill={P.soft}>
+            <line
+              x1={x0}
+              y1={axisY + 26}
+              x2={x1}
+              y2={axisY + 26}
+              stroke={P.soft}
+              strokeWidth="2"
+              strokeDasharray="6 5"
+            />
+            <text
+              x={W / 2}
+              y={axisY + 46}
+              textAnchor="middle"
+              fontSize="15"
+              fontWeight="800"
+              fill={P.soft}
+            >
               {d} {unit}
             </text>
           </>
         )}
 
         {/* Xe A */}
-        <text x={x0} y={axisY - 34} textAnchor="middle" fontSize="26">🚗</text>
-        <text x={x0} y={axisY - 52} textAnchor="middle" fontSize="13" fontWeight="800" fill={P.blue}>
+        <text x={x0} y={axisY - 34} textAnchor="middle" fontSize="26">
+          🚗
+        </text>
+        <text
+          x={x0}
+          y={axisY - 52}
+          textAnchor="middle"
+          fontSize="13"
+          fontWeight="800"
+          fill={P.blue}
+        >
           {A.name || "Xe 1"}
         </text>
         {num(A.speed, null) !== null && (
-          <text x={x0} y={axisY - 12} textAnchor="middle" fontSize="13" fontWeight="700" fill={P.blue}>
+          <text
+            x={x0}
+            y={axisY - 12}
+            textAnchor="middle"
+            fontSize="13"
+            fontWeight="700"
+            fill={P.blue}
+          >
             {num(A.speed, 0)} {unit}/giờ
           </text>
         )}
 
         {/* Xe B — mũi tên chỉ hướng đi */}
-        <text x={x1} y={axisY - 34} textAnchor="middle" fontSize="26">🏍️</text>
-        <text x={x1} y={axisY - 52} textAnchor="middle" fontSize="13" fontWeight="800" fill={P.rose}>
+        <text x={x1} y={axisY - 34} textAnchor="middle" fontSize="26">
+          🏍️
+        </text>
+        <text
+          x={x1}
+          y={axisY - 52}
+          textAnchor="middle"
+          fontSize="13"
+          fontWeight="800"
+          fill={P.rose}
+        >
           {B.name || "Xe 2"}
         </text>
         {num(B.speed, null) !== null && (
-          <text x={x1} y={axisY - 12} textAnchor="middle" fontSize="13" fontWeight="700" fill={P.rose}>
+          <text
+            x={x1}
+            y={axisY - 12}
+            textAnchor="middle"
+            fontSize="13"
+            fontWeight="700"
+            fill={P.rose}
+          >
             {num(B.speed, 0)} {unit}/giờ
           </text>
         )}
 
         {/* Mũi tên chỉ chiều */}
         <defs>
-          <marker id="mdBlue" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+          <marker
+            id="mdBlue"
+            markerWidth="9"
+            markerHeight="9"
+            refX="7"
+            refY="4.5"
+            orient="auto"
+          >
             <path d="M0,1 L9,4.5 L0,8 Z" fill={P.blue} />
           </marker>
-          <marker id="mdRose" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+          <marker
+            id="mdRose"
+            markerWidth="9"
+            markerHeight="9"
+            refX="7"
+            refY="4.5"
+            orient="auto"
+          >
             <path d="M0,1 L9,4.5 L0,8 Z" fill={P.rose} />
           </marker>
         </defs>
@@ -338,10 +469,16 @@ export function MotionDiagram({ mode = "toward", distance = null, unit = "km", a
           strokeWidth="3"
           markerEnd={m === "toward" ? "url(#mdRose)" : undefined}
           markerStart={m === "toward" ? undefined : "url(#mdRose)"}
-          transform={m === "toward" ? undefined : `rotate(180 ${(x1 - 20 + x1 - 92) / 2} ${axisY - 74})`}
+          transform={
+            m === "toward"
+              ? undefined
+              : `rotate(180 ${(x1 - 20 + x1 - 92) / 2} ${axisY - 74})`
+          }
         />
       </svg>
-      {note && <span style={{ ...caption, color: P.ink, fontSize: 15 }}>{note}</span>}
+      {note && (
+        <span style={{ ...caption, color: P.ink, fontSize: 15 }}>{note}</span>
+      )}
     </div>
   );
 }
@@ -351,11 +488,21 @@ export function MotionDiagram({ mode = "toward", distance = null, unit = "km", a
  * pieChart: { title, items: [{label, percent}] }
  * Lớp 3 (CĐ 15) và lớp 4 (CĐ 1) dùng biểu đồ cột; lớp 5 (CĐ 3) dùng biểu đồ hình quạt.
  */
-export function BarChart({ title = "", items = [], unit = "", highlight = -1 }) {
+export function BarChart({
+  title = "",
+  items = [],
+  unit = "",
+  highlight = -1,
+}) {
   const its = (Array.isArray(items) ? items : [])
     .map((it) => ({ label: it?.label ?? "", value: num(it?.value, 0) }))
     .slice(0, 8);
-  const safe = its.length ? its : [{ label: "A", value: 4 }, { label: "B", value: 7 }];
+  const safe = its.length
+    ? its
+    : [
+        { label: "A", value: 4 },
+        { label: "B", value: 7 },
+      ];
   const maxV = Math.max(...safe.map((it) => it.value), 1);
   const hi = num(highlight, -1);
 
@@ -369,9 +516,21 @@ export function BarChart({ title = "", items = [], unit = "", highlight = -1 }) 
 
   return (
     <div style={card}>
-      <svg viewBox={`0 0 ${W} ${H}`} width="100%" role="img" aria-label="Biểu đồ cột">
+      <svg
+        viewBox={`0 0 ${W} ${H}`}
+        width="100%"
+        role="img"
+        aria-label="Biểu đồ cột"
+      >
         {title && (
-          <text x={W / 2} y="26" textAnchor="middle" fontSize="16" fontWeight="800" fill={P.ink}>
+          <text
+            x={W / 2}
+            y="26"
+            textAnchor="middle"
+            fontSize="16"
+            fontWeight="800"
+            fill={P.ink}
+          >
             {title}
           </text>
         )}
@@ -387,14 +546,34 @@ export function BarChart({ title = "", items = [], unit = "", highlight = -1 }) 
               stroke={P.grid}
               strokeWidth="1.6"
             />
-            <text x="48" y={baseY - f * plotH + 5} textAnchor="end" fontSize="12" fill={P.soft}>
+            <text
+              x="48"
+              y={baseY - f * plotH + 5}
+              textAnchor="end"
+              fontSize="12"
+              fill={P.soft}
+            >
               {Math.round(maxV * f)}
             </text>
           </g>
         ))}
 
-        <line x1="56" y1={baseY} x2={W - 20} y2={baseY} stroke={P.ink} strokeWidth="2.5" />
-        <line x1="56" y1={baseY} x2="56" y2={topY - 8} stroke={P.ink} strokeWidth="2.5" />
+        <line
+          x1="56"
+          y1={baseY}
+          x2={W - 20}
+          y2={baseY}
+          stroke={P.ink}
+          strokeWidth="2.5"
+        />
+        <line
+          x1="56"
+          y1={baseY}
+          x2="56"
+          y2={topY - 8}
+          stroke={P.ink}
+          strokeWidth="2.5"
+        />
 
         {safe.map((it, i) => {
           const h = (it.value / maxV) * plotH;
@@ -424,7 +603,14 @@ export function BarChart({ title = "", items = [], unit = "", highlight = -1 }) 
                 {it.value}
                 {unit}
               </text>
-              <text x={cx} y={baseY + 24} textAnchor="middle" fontSize="13" fontWeight="700" fill={P.ink}>
+              <text
+                x={cx}
+                y={baseY + 24}
+                textAnchor="middle"
+                fontSize="13"
+                fontWeight="700"
+                fill={P.ink}
+              >
                 {it.label}
               </text>
             </g>
@@ -437,9 +623,17 @@ export function BarChart({ title = "", items = [], unit = "", highlight = -1 }) 
 
 export function PieChart({ title = "", items = [] }) {
   const its = (Array.isArray(items) ? items : [])
-    .map((it) => ({ label: it?.label ?? "", percent: clamp(num(it?.percent, 0), 0, 100) }))
+    .map((it) => ({
+      label: it?.label ?? "",
+      percent: clamp(num(it?.percent, 0), 0, 100),
+    }))
     .slice(0, 6);
-  const safe = its.length ? its : [{ label: "Toán", percent: 25 }, { label: "Khác", percent: 75 }];
+  const safe = its.length
+    ? its
+    : [
+        { label: "Toán", percent: 25 },
+        { label: "Khác", percent: 75 },
+      ];
 
   const cx = 150;
   const cy = 132;
@@ -449,16 +643,29 @@ export function PieChart({ title = "", items = [] }) {
 
   return (
     <div style={card}>
-      <svg viewBox="0 0 560 270" width="100%" role="img" aria-label="Biểu đồ hình quạt">
+      <svg
+        viewBox="0 0 560 270"
+        width="100%"
+        role="img"
+        aria-label="Biểu đồ hình quạt"
+      >
         {title && (
-          <text x="280" y="26" textAnchor="middle" fontSize="16" fontWeight="800" fill={P.ink}>
+          <text
+            x="280"
+            y="26"
+            textAnchor="middle"
+            fontSize="16"
+            fontWeight="800"
+            fill={P.ink}
+          >
             {title}
           </text>
         )}
         {safe.map((it, i) => {
           const a0 = start + (acc / 100) * Math.PI * 2;
           acc += it.percent;
-          const a1 = start + (acc / 100) * Math.PI * 2 + (i === safe.length - 1 ? 0 : 0);
+          const a1 =
+            start + (acc / 100) * Math.PI * 2 + (i === safe.length - 1 ? 0 : 0);
           return (
             <path
               key={i}
@@ -470,13 +677,34 @@ export function PieChart({ title = "", items = [] }) {
             />
           );
         })}
-        <circle cx={cx} cy={cy} r={r} fill="none" stroke={P.ink} strokeWidth="2.5" opacity="0.45" />
+        <circle
+          cx={cx}
+          cy={cy}
+          r={r}
+          fill="none"
+          stroke={P.ink}
+          strokeWidth="2.5"
+          opacity="0.45"
+        />
 
         {/* Chú giải */}
         {safe.map((it, i) => (
           <g key={`l${i}`}>
-            <rect x="300" y={72 + i * 30} width="20" height="20" rx="5" fill={SEG[i % SEG.length]} />
-            <text x="330" y={87 + i * 30} fontSize="14" fontWeight="700" fill={P.ink}>
+            <rect
+              x="300"
+              y={72 + i * 30}
+              width="20"
+              height="20"
+              rx="5"
+              fill={SEG[i % SEG.length]}
+            />
+            <text
+              x="330"
+              y={87 + i * 30}
+              fontSize="14"
+              fontWeight="700"
+              fill={P.ink}
+            >
               {it.label}: {it.percent}%
             </text>
           </g>

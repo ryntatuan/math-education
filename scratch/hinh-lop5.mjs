@@ -18,7 +18,8 @@ export const SPECS_LOP5 = {
         { parts: 4, shaded: 2, label: "2/4 = 3/6" },
         { parts: 6, shaded: 3, label: "3/6" },
       ],
-      label: "Nhân hoặc chia cả tử và mẫu với cùng một số khác 0 thì được phân số bằng nó",
+      label:
+        "Nhân hoặc chia cả tử và mẫu với cùng một số khác 0 thì được phân số bằng nó",
     },
     table: {
       headers: ["So sánh", "Cách làm"],
@@ -99,7 +100,8 @@ export const SPECS_LOP5 = {
         ["1 hm²", "10 000 m²"],
         ["1 dam²", "100 m²"],
       ],
-      label: "km² > hm² > dam² > m² > dm² > cm² > mm² — hai đơn vị liền nhau hơn kém 100 lần",
+      label:
+        "km² > hm² > dam² > m² > dm² > cm² > mm² — hai đơn vị liền nhau hơn kém 100 lần",
     },
   },
   "g5-c1-l8": {
@@ -186,7 +188,8 @@ export const SPECS_LOP5 = {
         ["0,5 và 0,15", "0,5 > 0,15"],
         ["2,35 và 2,4", "2,35 < 2,4"],
       ],
-      label: "KHÔNG đếm số chữ số để so sánh — phải so từng hàng từ trái sang phải",
+      label:
+        "KHÔNG đếm số chữ số để so sánh — phải so từng hàng từ trái sang phải",
     },
   },
   "g5-c2-l3": {
@@ -237,7 +240,10 @@ export const SPECS_LOP5 = {
     table: {
       headers: ["Phép tính", "Cách làm"],
       rows: [
-        ["12 : 2,5", "số chia có 1 chữ số thập phân ⇒ dịch phẩy cả hai số: 120 : 25"],
+        [
+          "12 : 2,5",
+          "số chia có 1 chữ số thập phân ⇒ dịch phẩy cả hai số: 120 : 25",
+        ],
         ["Kết quả", "4,8"],
         ["Chia cho 10, 100", "dịch dấu phẩy sang TRÁI"],
       ],
@@ -259,7 +265,8 @@ export const SPECS_LOP5 = {
         ["35/100 = 0,35 = 35%", "ba mươi lăm phần trăm"],
         ["3/4 = 75/100 = 75%", "bảy mươi lăm phần trăm"],
       ],
-      label: "Tỉ số phần trăm của a và b: lấy a : b rồi nhân 100, thêm kí hiệu %",
+      label:
+        "Tỉ số phần trăm của a và b: lấy a : b rồi nhân 100, thêm kí hiệu %",
     },
   },
   "g5-c2-l9": {
@@ -371,7 +378,10 @@ export const SPECS_LOP5 = {
     table: {
       headers: ["Hình", "Đặc điểm"],
       rows: [
-        ["Hình hộp chữ nhật", "3 kích thước: dài a, rộng b, cao c; 6 mặt chữ nhật"],
+        [
+          "Hình hộp chữ nhật",
+          "3 kích thước: dài a, rộng b, cao c; 6 mặt chữ nhật",
+        ],
         ["Hình lập phương", "6 mặt đều là hình vuông bằng nhau (a = b = c)"],
       ],
       label: "Hình hộp chữ nhật & hình lập phương",
@@ -479,7 +489,10 @@ export const SPECS_LOP5 = {
       headers: ["Phép tính", "Kết quả"],
       rows: [
         ["3 giờ 15 phút + 2 giờ 35 phút", "5 giờ 50 phút"],
-        ["4 giờ 20 phút − 1 giờ 35 phút", "3 giờ 80 phút − 1 giờ 35 phút = 2 giờ 45 phút"],
+        [
+          "4 giờ 20 phút − 1 giờ 35 phút",
+          "3 giờ 80 phút − 1 giờ 35 phút = 2 giờ 45 phút",
+        ],
         ["1 ngày", "24 giờ"],
         ["1 giờ", "60 phút"],
       ],
@@ -526,9 +539,7 @@ export const SPECS_LOP5 = {
     },
     table: {
       headers: ["Cho", "Tính"],
-      rows: [
-        ["v = 15 km/giờ, t = 2 giờ", "s = 15 × 2 = 30 km"],
-      ],
+      rows: [["v = 15 km/giờ, t = 2 giờ", "s = 15 × 2 = 30 km"]],
       label: "Quãng đường s = v × t",
     },
   },
@@ -543,9 +554,7 @@ export const SPECS_LOP5 = {
     },
     table: {
       headers: ["Cho", "Tính"],
-      rows: [
-        ["s = 90 km, v = 45 km/giờ", "t = 90 : 45 = 2 giờ"],
-      ],
+      rows: [["s = 90 km, v = 45 km/giờ", "t = 90 : 45 = 2 giờ"]],
       label: "Thời gian t = s : v",
     },
   },
@@ -641,9 +650,7 @@ export const SPECS_LOP5 = {
   // ═══ Chương 5: Ôn tập cuối năm & luyện thi chuyển cấp ═══
   "g5-c5-l1": {
     fractionBar: {
-      rows: [
-        { parts: 2, shaded: 1, label: "1/2 = 0,5 = 50%" },
-      ],
+      rows: [{ parts: 2, shaded: 1, label: "1/2 = 0,5 = 50%" }],
       label: "Ba loại số viết qua lại được: phân số, số thập phân, phần trăm",
     },
     table: {
@@ -697,7 +704,8 @@ export const SPECS_LOP5 = {
         ["Diện tích", "cm² ; m²"],
         ["Thể tích", "cm³ ; m³"],
       ],
-      label: "Phân biệt diện tích (cm²) và thể tích (cm³) nhờ ĐƠN VỊ của đáp số",
+      label:
+        "Phân biệt diện tích (cm²) và thể tích (cm³) nhờ ĐƠN VỊ của đáp số",
     },
   },
   "g5-c5-l5": {
@@ -779,7 +787,8 @@ export const SPECS_LOP5 = {
         ["Chuyển động", "s = 15 × 2 = 30 km"],
         ["Hình học", "S = (a × h) : 2"],
       ],
-      label: "Luyện đề chuyển cấp — Đề số 1: đọc đề, gạch chân dữ kiện, rồi mới tính",
+      label:
+        "Luyện đề chuyển cấp — Đề số 1: đọc đề, gạch chân dữ kiện, rồi mới tính",
     },
   },
   "g5-c5-l10": {

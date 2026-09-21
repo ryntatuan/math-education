@@ -53,7 +53,8 @@ export const grade5Data = {
                     { parts: 4, shaded: 2, label: "2/4 = 3/6" },
                     { parts: 6, shaded: 3, label: "3/6" },
                   ],
-                  label: "Nhân hoặc chia cả tử và mẫu với cùng một số khác 0 thì được phân số bằng nó",
+                  label:
+                    "Nhân hoặc chia cả tử và mẫu với cùng một số khác 0 thì được phân số bằng nó",
                 },
                 table: {
                   headers: ["So sánh", "Cách làm"],
@@ -121,7 +122,8 @@ export const grade5Data = {
                     { parts: 100, shaded: 75, label: "3/4 = 75/100" },
                     { parts: 100, shaded: 35, label: "7/20 = 35/100" },
                   ],
-                  label: "Phân số thập phân là phân số có mẫu số 10, 100, 1 000…",
+                  label:
+                    "Phân số thập phân là phân số có mẫu số 10, 100, 1 000…",
                 },
               },
             },
@@ -418,7 +420,8 @@ export const grade5Data = {
                     ["1 hm²", "10 000 m²"],
                     ["1 dam²", "100 m²"],
                   ],
-                  label: "km² > hm² > dam² > m² > dm² > cm² > mm² — hai đơn vị liền nhau hơn kém 100 lần",
+                  label:
+                    "km² > hm² > dam² > m² > dm² > cm² > mm² — hai đơn vị liền nhau hơn kém 100 lần",
                 },
               },
             },
@@ -464,7 +467,10 @@ export const grade5Data = {
                 text: "Quy đổi héc-ta: 1 ha = 1 hm² = 10 000 m² 1 km² = 100 ha Một sân bóng đá tiêu chuẩn có diện tích gần bằng 1 ha đấy!",
                 table: {
                   headers: ["Đổi", "Bằng"],
-                  rows: [["1 ha", "1 hm² = 10 000 m²"], ["1 km²", "100 ha"]],
+                  rows: [
+                    ["1 ha", "1 hm² = 10 000 m²"],
+                    ["1 km²", "100 ha"],
+                  ],
                   label: "Héc-ta — sân bóng đá tiêu chuẩn rộng gần bằng 1 ha",
                 },
               },
@@ -514,14 +520,14 @@ export const grade5Data = {
             {
               type: "concept",
               content: {
-                                fractionBar: {
+                fractionBar: {
                   rows: [
                     { parts: 5, shaded: 3, label: "3/5 < 1" },
                     { parts: 5, shaded: 5, label: "5/5 = 1" },
                   ],
                   label: "So với 1 trước — mẹo nhanh nhất và ít sai nhất",
                 },
-badge: "Ba Mẹo So Sánh",
+                badge: "Ba Mẹo So Sánh",
                 title: "So sánh phân số nhanh",
                 points: [
                   "So với 1: tử bé hơn mẫu ⇒ bé hơn 1; tử lớn hơn mẫu ⇒ lớn hơn 1.",
@@ -581,12 +587,13 @@ badge: "Ba Mẹo So Sánh",
             {
               type: "concept",
               content: {
-                                barModel: {
+                barModel: {
                   rows: [
                     { label: "Số bé", parts: 2 },
                     { label: "Số lớn", parts: 3 },
                   ],
-                  braceLabel: "Tổng (hiệu) số phần ⇒ giá trị một phần ⇒ từng số",
+                  braceLabel:
+                    "Tổng (hiệu) số phần ⇒ giá trị một phần ⇒ từng số",
                 },
                 table: {
                   headers: ["Bước", "Làm"],
@@ -598,7 +605,7 @@ badge: "Ba Mẹo So Sánh",
                   ],
                   label: "Ôn tập tìm hai số khi biết Tổng (Hiệu) và Tỉ số",
                 },
-badge: "Hai Dạng Toán Tỉ",
+                badge: "Hai Dạng Toán Tỉ",
                 title: "Phân biệt và cách giải",
                 points: [
                   "Đề cho tổng ⇒ chia cho TỔNG số phần. Đề cho hiệu ⇒ chia cho HIỆU số phần.",
@@ -648,7 +655,7 @@ badge: "Hai Dạng Toán Tỉ",
             {
               type: "concept",
               content: {
-                                table: {
+                table: {
                   headers: ["Đơn vị", "Hơn kém đơn vị liền sau"],
                   rows: [
                     ["km² ; hm² ; dam² ; m²", "100 lần"],
@@ -656,7 +663,7 @@ badge: "Hai Dạng Toán Tỉ",
                   ],
                   label: "Luyện tập bảng đơn vị đo diện tích",
                 },
-badge: "Luyện Bảng Diện Tích",
+                badge: "Luyện Bảng Diện Tích",
                 title: "Thứ tự và cách quy đổi",
                 points: [
                   "Thứ tự: km² > hm² (ha) > dam² > m² > dm² > cm² > mm².",
@@ -706,7 +713,7 @@ badge: "Luyện Bảng Diện Tích",
             {
               type: "concept",
               content: {
-                                table: {
+                table: {
                   headers: ["Nội dung", "Ví dụ"],
                   rows: [
                     ["Phân số", "1/2 = 5/10"],
@@ -716,9 +723,10 @@ badge: "Luyện Bảng Diện Tích",
                   ],
                   label: "Luyện tập chung Chương 1",
                 },
-badge: "Kiến Thức Trọng Tâm",
+                badge: "Kiến Thức Trọng Tâm",
                 title: "Luyện tập chung Chương 1",
-                explanation: "Luyện tập chung các kiến thức về số của chương 1.",
+                explanation:
+                  "Luyện tập chung các kiến thức về số của chương 1.",
                 points: [
                   "So sánh số thập phân: so phần nguyên trước, rồi so từng hàng phần thập phân.",
                   "Đổi phân số thập phân thành số thập phân: 3/10 = 0,3.",
@@ -790,7 +798,8 @@ badge: "Kiến Thức Trọng Tâm",
                     ["phần trăm", 2, "0,02"],
                     ["phần nghìn", 9, "0,009"],
                   ],
-                  label: "Số 375,429 — dấu phẩy ngăn cách phần nguyên và phần thập phân",
+                  label:
+                    "Số 375,429 — dấu phẩy ngăn cách phần nguyên và phần thập phân",
                 },
               },
             },
@@ -850,7 +859,7 @@ badge: "Kiến Thức Trọng Tâm",
             {
               type: "concept",
               content: {
-                                table: {
+                table: {
                   headers: ["So sánh", "Kết luận"],
                   rows: [
                     [
@@ -860,9 +869,10 @@ badge: "Kiến Thức Trọng Tâm",
                     ["0,5 và 0,15", "0,5 > 0,15"],
                     ["2,35 và 2,4", "2,35 < 2,4"],
                   ],
-                  label: "KHÔNG đếm số chữ số để so sánh — phải so từng hàng từ trái sang phải",
+                  label:
+                    "KHÔNG đếm số chữ số để so sánh — phải so từng hàng từ trái sang phải",
                 },
-badge: "Quy Tắc So Sánh",
+                badge: "Quy Tắc So Sánh",
                 title: "Cách so sánh hai số thập phân",
                 explanation:
                   "Để so sánh hai số thập phân, ta thực hiện theo thứ tự:",
@@ -1006,8 +1016,12 @@ badge: "Quy Tắc So Sánh",
                 text: "Đặt tính cộng: 15,82 + 9,35 -------- 25,17 (Hạ dấu phẩy thẳng cột xuống giữa 25 và 17)",
                 table: {
                   headers: ["Phép tính", "Kết quả"],
-                  rows: [["15,82 + 9,35", "25,17"], ["12,5 + 3,75 + 8,25", "24,50"]],
-                  label: "Cộng số thập phân — đặt dấu phẩy thẳng cột rồi hạ xuống kết quả",
+                  rows: [
+                    ["15,82 + 9,35", "25,17"],
+                    ["12,5 + 3,75 + 8,25", "24,50"],
+                  ],
+                  label:
+                    "Cộng số thập phân — đặt dấu phẩy thẳng cột rồi hạ xuống kết quả",
                 },
               },
             },
@@ -1108,7 +1122,8 @@ badge: "Quy Tắc So Sánh",
                     ["Đếm chữ số thập phân", "2 + 1 = 3 chữ số"],
                     ["Tách dấu phẩy", "3 290 ⇒ 3,290 = 3,29"],
                   ],
-                  label: "2,35 × 1,4 = 3,29 — nhân với 10, 100 thì dịch dấu phẩy sang PHẢI",
+                  label:
+                    "2,35 × 1,4 = 3,29 — nhân với 10, 100 thì dịch dấu phẩy sang PHẢI",
                 },
               },
             },
@@ -1239,7 +1254,8 @@ badge: "Quy Tắc So Sánh",
                     ["35/100 = 0,35 = 35%", "ba mươi lăm phần trăm"],
                     ["3/4 = 75/100 = 75%", "bảy mươi lăm phần trăm"],
                   ],
-                  label: "Tỉ số phần trăm của a và b: lấy a : b rồi nhân 100, thêm kí hiệu %",
+                  label:
+                    "Tỉ số phần trăm của a và b: lấy a : b rồi nhân 100, thêm kí hiệu %",
                 },
               },
             },
@@ -1353,7 +1369,7 @@ badge: "Quy Tắc So Sánh",
             {
               type: "concept",
               content: {
-                                table: {
+                table: {
                   headers: ["Dạng", "Ví dụ"],
                   rows: [
                     ["Cộng", "15,82 + 9,35 = 25,17"],
@@ -1362,11 +1378,13 @@ badge: "Quy Tắc So Sánh",
                     ["Chia", "12 : 2,5 = 4,8"],
                     ["Phần trăm", "40 × 60 : 100 = 24"],
                   ],
-                  label: "Máy tính chỉ để KIỂM TRA kết quả, không thay cho việc tự tính",
+                  label:
+                    "Máy tính chỉ để KIỂM TRA kết quả, không thay cho việc tự tính",
                 },
-badge: "Kiến Thức Trọng Tâm",
+                badge: "Kiến Thức Trọng Tâm",
                 title: "Máy tính bỏ túi & Luyện tập chung Chương 2",
-                explanation: "Luyện tập chung các phép tính với số thập phân và dùng máy tính bỏ túi.",
+                explanation:
+                  "Luyện tập chung các phép tính với số thập phân và dùng máy tính bỏ túi.",
                 points: [
                   "Cộng, trừ, nhân, chia số thập phân: đặt tính như số tự nhiên rồi đặt dấu phẩy đúng vị trí.",
                   "Máy tính bỏ túi giúp kiểm tra lại kết quả đã tính.",
@@ -1770,7 +1788,11 @@ badge: "Kiến Thức Trọng Tâm",
                   formula: "Sxq = (a + b) × 2 × c · Stp = Sxq + 2 × (a × b)",
                 },
                 table: {
-                  headers: ["Hình", "Diện tích xung quanh", "Diện tích toàn phần"],
+                  headers: [
+                    "Hình",
+                    "Diện tích xung quanh",
+                    "Diện tích toàn phần",
+                  ],
                   rows: [
                     [
                       "Hộp chữ nhật",
@@ -1890,7 +1912,7 @@ badge: "Kiến Thức Trọng Tâm",
             {
               type: "concept",
               content: {
-                                planeShape: {
+                planeShape: {
                   kind: "trapezoid",
                   labels: ["a", "b", "h"],
                   formula: "S = (a + b) × h : 2",
@@ -1903,7 +1925,7 @@ badge: "Kiến Thức Trọng Tâm",
                   ],
                   label: "Luyện tập diện tích hình tam giác và hình thang",
                 },
-badge: "Luyện Diện Tích",
+                badge: "Luyện Diện Tích",
                 title: "Hai công thức cần nhớ",
                 points: [
                   "Hình tam giác: S = (a × h) : 2 (a là độ dài đáy, h là chiều cao).",
@@ -1964,7 +1986,7 @@ badge: "Luyện Diện Tích",
             {
               type: "concept",
               content: {
-                                circleParts: {
+                circleParts: {
                   radius: 5,
                   diameter: 10,
                   showCircumference: true,
@@ -1981,7 +2003,7 @@ badge: "Luyện Diện Tích",
                   ],
                   label: "Luyện tập chu vi và diện tích hình tròn",
                 },
-badge: "Luyện Hình Tròn",
+                badge: "Luyện Hình Tròn",
                 title: "Ba công thức",
                 points: [
                   "Đường kính = bán kính × 2 (d = r × 2).",
@@ -2041,7 +2063,7 @@ badge: "Luyện Hình Tròn",
             {
               type: "concept",
               content: {
-                                solid: {
+                solid: {
                   kind: "cuboid",
                   dims: { a: 5, b: 4, c: 3 },
                   formula: "V = 5 × 4 × 3 = 60 cm³",
@@ -2055,7 +2077,7 @@ badge: "Luyện Hình Tròn",
                   ],
                   label: "Luyện tập Sxq, Stp và thể tích",
                 },
-badge: "Luyện Ba Đại Lượng",
+                badge: "Luyện Ba Đại Lượng",
                 title: "Phân biệt ba công thức",
                 points: [
                   "Diện tích xung quanh = chu vi mặt đáy × chiều cao.",
@@ -2116,7 +2138,7 @@ badge: "Luyện Ba Đại Lượng",
             {
               type: "concept",
               content: {
-                                solid: {
+                solid: {
                   kind: "cylinder",
                   dims: { a: 2, b: 5 },
                   label: "Hình trụ",
@@ -2130,9 +2152,10 @@ badge: "Luyện Ba Đại Lượng",
                   ],
                   label: "Hình trụ, hình cầu & luyện tập chung",
                 },
-badge: "Kiến Thức Trọng Tâm",
+                badge: "Kiến Thức Trọng Tâm",
                 title: "Hình trụ, Hình cầu & Luyện tập chung",
-                explanation: "Luyện tập chung về hình học: hình thang, tam giác, hình tròn, hình trụ và hình cầu.",
+                explanation:
+                  "Luyện tập chung về hình học: hình thang, tam giác, hình tròn, hình trụ và hình cầu.",
                 points: [
                   "Diện tích hình tam giác = độ dài đáy × chiều cao : 2.",
                   "Diện tích hình tròn = bán kính × bán kính × 3,14.",
@@ -2210,7 +2233,8 @@ badge: "Kiến Thức Trọng Tâm",
                     ["1 ngày", "24 giờ"],
                     ["1 giờ", "60 phút"],
                   ],
-                  label: "Bảng đơn vị đo thời gian — hệ 60, đừng tính như số thập phân",
+                  label:
+                    "Bảng đơn vị đo thời gian — hệ 60, đừng tính như số thập phân",
                 },
               },
             },
@@ -2329,7 +2353,8 @@ badge: "Kiến Thức Trọng Tâm",
                     ["Quãng đường", "s = v × t"],
                     ["Thời gian", "t = s : v"],
                   ],
-                  label: "Ba công thức chuyển động — nhớ một là suy ra được hai",
+                  label:
+                    "Ba công thức chuyển động — nhớ một là suy ra được hai",
                 },
               },
             },
@@ -2545,16 +2570,17 @@ badge: "Kiến Thức Trọng Tâm",
             {
               type: "concept",
               content: {
-                                table: {
+                table: {
                   headers: ["Phép tính", "Kết quả"],
                   rows: [
                     ["1 giờ 25 phút × 3", "4 giờ 15 phút"],
                     ["3 giờ 15 phút + 2 giờ 35 phút", "5 giờ 50 phút"],
                     ["1 thế kỉ", "100 năm"],
                   ],
-                  label: "Luyện tập số đo thời gian — đơn vị thời gian dùng hệ 60",
+                  label:
+                    "Luyện tập số đo thời gian — đơn vị thời gian dùng hệ 60",
                 },
-badge: "Luyện Số Đo Thời Gian",
+                badge: "Luyện Số Đo Thời Gian",
                 title: "Nhớ hệ đếm 60",
                 points: [
                   "1 giờ = 60 phút; 1 phút = 60 giây; 1 ngày = 24 giờ.",
@@ -2608,7 +2634,7 @@ badge: "Luyện Số Đo Thời Gian",
             {
               type: "concept",
               content: {
-                                table: {
+                table: {
                   headers: ["Cần tìm", "Công thức"],
                   rows: [
                     ["Vận tốc", "v = s : t"],
@@ -2625,7 +2651,7 @@ badge: "Luyện Số Đo Thời Gian",
                   b: { name: "Xe đạp", speed: 15 },
                   note: "Cùng quãng đường, vận tốc càng lớn thì thời gian càng nhỏ",
                 },
-badge: "Tam Giác Ba Công Thức",
+                badge: "Tam Giác Ba Công Thức",
                 title: "v · s · t",
                 points: [
                   "Vận tốc: v = s : t (thường là km/giờ).",
@@ -2682,7 +2708,7 @@ badge: "Tam Giác Ba Công Thức",
             {
               type: "concept",
               content: {
-                                motionDiagram: {
+                motionDiagram: {
                   mode: "chase",
                   distance: 36,
                   unit: "km",
@@ -2698,7 +2724,7 @@ badge: "Tam Giác Ba Công Thức",
                   ],
                   label: "Luyện tập chung: số đo thời gian và chuyển động đều",
                 },
-badge: "Ôn Tập Chương 4",
+                badge: "Ôn Tập Chương 4",
                 title: "Bốn mảng kiến thức",
                 points: [
                   "Bảng đơn vị đo thời gian và cách đổi.",
@@ -2748,14 +2774,11 @@ badge: "Ôn Tập Chương 4",
             {
               type: "concept",
               content: {
-                                table: {
+                table: {
                   headers: ["Dạng toán", "Ghi nhớ"],
                   rows: [
                     ["Chuyển động", "v = s : t ; s = v × t ; t = s : v"],
-                    [
-                      "Đổi đơn vị",
-                      "đề cho phút thì đổi ra giờ trước khi tính",
-                    ],
+                    ["Đổi đơn vị", "đề cho phút thì đổi ra giờ trước khi tính"],
                     ["Phần trăm", "a × b : 100"],
                   ],
                   label: "Luyện đề: toán chuyển động và tỉ số phần trăm",
@@ -2768,7 +2791,7 @@ badge: "Ôn Tập Chương 4",
                   b: { name: "Ô tô", speed: 60 },
                   note: "Đơn vị vận tốc phải khớp đơn vị thời gian",
                 },
-badge: "Đề Luyện Tổng Hợp",
+                badge: "Đề Luyện Tổng Hợp",
                 title: "Ba bước làm bài",
                 steps: [
                   {
@@ -2851,9 +2874,10 @@ badge: "Đề Luyện Tổng Hợp",
             {
               type: "concept",
               content: {
-                                fractionBar: {
+                fractionBar: {
                   rows: [{ parts: 2, shaded: 1, label: "1/2 = 0,5 = 50%" }],
-                  label: "Ba loại số viết qua lại được: phân số, số thập phân, phần trăm",
+                  label:
+                    "Ba loại số viết qua lại được: phân số, số thập phân, phần trăm",
                 },
                 table: {
                   headers: ["Viết dạng", "Ví dụ"],
@@ -2864,9 +2888,10 @@ badge: "Đề Luyện Tổng Hợp",
                   ],
                   label: "Ôn tập về số tự nhiên, phân số, số thập phân",
                 },
-badge: "Kiến Thức Trọng Tâm",
+                badge: "Kiến Thức Trọng Tâm",
                 title: "Ôn tập về số tự nhiên, phân số, số thập phân",
-                explanation: "Ôn tập tổng hợp về số tự nhiên, phân số và số thập phân.",
+                explanation:
+                  "Ôn tập tổng hợp về số tự nhiên, phân số và số thập phân.",
                 points: [
                   "Số tự nhiên: đọc, viết, so sánh, phân biệt số chẵn và số lẻ.",
                   "Phân số: rút gọn, so sánh và tính giá trị của phân số.",
@@ -2914,7 +2939,7 @@ badge: "Kiến Thức Trọng Tâm",
             {
               type: "concept",
               content: {
-                                table: {
+                table: {
                   headers: ["Phép tính", "Ví dụ"],
                   rows: [
                     ["Cộng số thập phân", "15,82 + 9,35 = 25,17"],
@@ -2923,7 +2948,7 @@ badge: "Kiến Thức Trọng Tâm",
                   ],
                   label: "Ôn tập các phép tính — thử lại bằng phép tính ngược",
                 },
-badge: "Kiến Thức Trọng Tâm",
+                badge: "Kiến Thức Trọng Tâm",
                 title:
                   "Ôn tập các phép tính số tự nhiên, phân số, số thập phân",
                 explanation: "Ôn lại bốn phép tính với cả ba loại số đã học.",
@@ -3030,7 +3055,11 @@ badge: "Kiến Thức Trọng Tâm",
             {
               type: "concept",
               content: {
-                                solid: { kind: "cube", dims: { a: 3 }, formula: "V = a × a × a" },
+                solid: {
+                  kind: "cube",
+                  dims: { a: 3 },
+                  formula: "V = a × a × a",
+                },
                 table: {
                   headers: ["Đại lượng", "Đơn vị"],
                   rows: [
@@ -3038,11 +3067,13 @@ badge: "Kiến Thức Trọng Tâm",
                     ["Diện tích", "cm² ; m²"],
                     ["Thể tích", "cm³ ; m³"],
                   ],
-                  label: "Phân biệt diện tích (cm²) và thể tích (cm³) nhờ ĐƠN VỊ của đáp số",
+                  label:
+                    "Phân biệt diện tích (cm²) và thể tích (cm³) nhờ ĐƠN VỊ của đáp số",
                 },
-badge: "Kiến Thức Trọng Tâm",
+                badge: "Kiến Thức Trọng Tâm",
                 title: "Ôn tập diện tích & Thể tích hình khối",
-                explanation: "Ôn lại công thức tính diện tích và thể tích các hình đã học.",
+                explanation:
+                  "Ôn lại công thức tính diện tích và thể tích các hình đã học.",
                 points: [
                   "Diện tích hình thang = (đáy lớn + đáy bé) × chiều cao : 2.",
                   "Diện tích xung quanh hình hộp chữ nhật = chu vi đáy × chiều cao.",
@@ -3091,7 +3122,7 @@ badge: "Kiến Thức Trọng Tâm",
             {
               type: "concept",
               content: {
-                                motionDiagram: {
+                motionDiagram: {
                   mode: "toward",
                   distance: 120,
                   unit: "km",
@@ -3107,9 +3138,10 @@ badge: "Kiến Thức Trọng Tâm",
                     { label: "Tìm số khi biết % của nó", percent: 25 },
                   ],
                 },
-badge: "Kiến Thức Trọng Tâm",
+                badge: "Kiến Thức Trọng Tâm",
                 title: "Ôn tập toán chuyển động đều & Tỉ số phần trăm",
-                explanation: "Ôn lại ba đại lượng của toán chuyển động đều và cách tính tỉ số phần trăm.",
+                explanation:
+                  "Ôn lại ba đại lượng của toán chuyển động đều và cách tính tỉ số phần trăm.",
                 points: [
                   "Quãng đường = vận tốc × thời gian.",
                   "Vận tốc = quãng đường : thời gian.",
@@ -3163,7 +3195,7 @@ badge: "Kiến Thức Trọng Tâm",
             {
               type: "concept",
               content: {
-                                table: {
+                table: {
                   headers: ["Đại lượng", "Hai đơn vị liền nhau hơn kém"],
                   rows: [
                     ["Độ dài", "10 lần"],
@@ -3174,7 +3206,7 @@ badge: "Kiến Thức Trọng Tâm",
                   ],
                   label: "Ôn tập bảng đơn vị đo lường và số đo thời gian",
                 },
-badge: "Ôn Tập Đại Lượng",
+                badge: "Ôn Tập Đại Lượng",
                 title: "Bốn bảng đơn vị",
                 points: [
                   "Độ dài: km, hm, dam, m, dm, cm, mm (hơn kém 10 lần).",
@@ -3225,7 +3257,7 @@ badge: "Ôn Tập Đại Lượng",
             {
               type: "concept",
               content: {
-                                pieChart: {
+                pieChart: {
                   title: "Ba dạng toán về tỉ số phần trăm",
                   items: [
                     { label: "Tìm % của một số", percent: 40 },
@@ -3245,7 +3277,7 @@ badge: "Ôn Tập Đại Lượng",
                   ],
                   label: "Ôn tập toán về tỉ số phần trăm",
                 },
-badge: "Ba Dạng Phần Trăm",
+                badge: "Ba Dạng Phần Trăm",
                 title: "Ba dạng cơ bản",
                 points: [
                   "Dạng 1: Tìm tỉ số phần trăm của hai số: lấy số thứ nhất chia số thứ hai rồi nhân 100.",
@@ -3304,7 +3336,7 @@ badge: "Ba Dạng Phần Trăm",
             {
               type: "concept",
               content: {
-                                table: {
+                table: {
                   headers: ["Dạng bài", "Ví dụ"],
                   rows: [
                     ["Số thập phân", "2,35 × 1,4 = 3,29"],
@@ -3313,9 +3345,10 @@ badge: "Ba Dạng Phần Trăm",
                     ["Chuyển động", "s = 15 × 2 = 30 km"],
                     ["Hình học", "S = (a × h) : 2"],
                   ],
-                  label: "Luyện đề chuyển cấp — Đề số 1: đọc đề, gạch chân dữ kiện, rồi mới tính",
+                  label:
+                    "Luyện đề chuyển cấp — Đề số 1: đọc đề, gạch chân dữ kiện, rồi mới tính",
                 },
-badge: "Đề Số 1",
+                badge: "Đề Số 1",
                 title: "Năm dạng bài trọng tâm",
                 points: [
                   "Dạng 1: Số thập phân và bốn phép tính với số thập phân.",
@@ -3373,7 +3406,7 @@ badge: "Đề Số 1",
             {
               type: "concept",
               content: {
-                                motionDiagram: {
+                motionDiagram: {
                   mode: "toward",
                   distance: 150,
                   unit: "km",
@@ -3389,7 +3422,7 @@ badge: "Đề Số 1",
                   ],
                   label: "Luyện đề chuyển cấp — Đề số 2",
                 },
-badge: "Đề Số 2",
+                badge: "Đề Số 2",
                 title: "Ba dạng nâng cao",
                 points: [
                   "Dạng 1: Toán chuyển động của hai vật.",
@@ -3453,7 +3486,7 @@ badge: "Đề Số 2",
             {
               type: "concept",
               content: {
-                                pieChart: {
+                pieChart: {
                   title: "Hành trang lên Lớp 6",
                   items: [
                     { label: "Số học", percent: 40 },
@@ -3470,9 +3503,10 @@ badge: "Đề Số 2",
                   ],
                   label: "Thử thách Trạng Nguyên Toán Lớp 5 — chinh phục Lớp 6",
                 },
-badge: "Kiến Thức Trọng Tâm",
+                badge: "Kiến Thức Trọng Tâm",
                 title: "Thử thách Trạng Nguyên Toán Lớp 5 - Chinh phục Lớp 6",
-                explanation: "Bài cuối của Lớp 5: tổng hợp toàn bộ kiến thức tiểu học.",
+                explanation:
+                  "Bài cuối của Lớp 5: tổng hợp toàn bộ kiến thức tiểu học.",
                 points: [
                   "Số học: số tự nhiên, phân số, số thập phân và tỉ số phần trăm.",
                   "Hình học: chu vi, diện tích và thể tích các hình.",

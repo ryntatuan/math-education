@@ -25,7 +25,8 @@ export const SPECS_LOP4 = {
         [10, 25],
         [0, 15],
       ],
-      label: "Mỗi lần thay chữ a bằng một số, ta tính được MỘT giá trị của biểu thức",
+      label:
+        "Mỗi lần thay chữ a bằng một số, ta tính được MỘT giá trị của biểu thức",
     },
     operation: { left: 15, sign: "+", right: 6, result: 21 },
   },
@@ -52,7 +53,10 @@ export const SPECS_LOP4 = {
       headers: ["So sánh", "Vì sao"],
       rows: [
         ["100 000 > 99 999", "6 chữ số nhiều hơn 5 chữ số"],
-        ["753 210 > 751 980", "cùng hàng trăm nghìn, chục nghìn; hàng nghìn 3 > 1"],
+        [
+          "753 210 > 751 980",
+          "cùng hàng trăm nghìn, chục nghìn; hàng nghìn 3 > 1",
+        ],
       ],
       label: "So sánh các số có nhiều chữ số: so từ hàng cao nhất",
     },
@@ -80,7 +84,8 @@ export const SPECS_LOP4 = {
       to: 10,
       step: 1,
       marks: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-      label: "Số tự nhiên bé nhất là 0 · không có số tự nhiên lớn nhất · hai số liên tiếp hơn kém nhau 1",
+      label:
+        "Số tự nhiên bé nhất là 0 · không có số tự nhiên lớn nhất · hai số liên tiếp hơn kém nhau 1",
     },
     table: {
       headers: ["Đặc điểm", "Nội dung"],
@@ -118,7 +123,8 @@ export const SPECS_LOP4 = {
         ["1 tạ", "10 yến = 100 kg"],
         ["1 tấn", "10 tạ = 1 000 kg"],
       ],
-      label: "Tấn > Tạ > Yến > kg > hg > dag > g — mỗi đơn vị gấp 10 lần đơn vị liền sau",
+      label:
+        "Tấn > Tạ > Yến > kg > hg > dag > g — mỗi đơn vị gấp 10 lần đơn vị liền sau",
     },
   },
   "g4-c1-l10": {
@@ -266,7 +272,8 @@ export const SPECS_LOP4 = {
         ["4 800 : 100", "48"],
         ["70 000 : 1 000", "70"],
       ],
-      label: "Nhân với 10, 100, 1 000… chỉ việc thêm chữ số 0; chia thì bớt chữ số 0",
+      label:
+        "Nhân với 10, 100, 1 000… chỉ việc thêm chữ số 0; chia thì bớt chữ số 0",
     },
   },
   "g4-c2-l9": {
@@ -349,7 +356,8 @@ export const SPECS_LOP4 = {
         ["9", "tổng các chữ số chia hết cho 9"],
         ["3", "tổng các chữ số chia hết cho 3"],
       ],
-      label: "Số chia hết cho 9 thì chắc chắn chia hết cho 3 (điều ngược lại chưa chắc)",
+      label:
+        "Số chia hết cho 9 thì chắc chắn chia hết cho 3 (điều ngược lại chưa chắc)",
     },
   },
   "g4-c3-l3": {
@@ -555,9 +563,7 @@ export const SPECS_LOP4 = {
   // ═══ Chương 5: Tỉ số, Tổng–Tỉ, Hiệu–Tỉ & Bản đồ ═══
   "g4-c5-l1": {
     fractionBar: {
-      rows: [
-        { parts: 18, shaded: 15, label: "nam 15 / nữ 18 = 5/6" },
-      ],
+      rows: [{ parts: 18, shaded: 15, label: "nam 15 / nữ 18 = 5/6" }],
       label: "Tỉ số của a và b là a : b hay a/b (b khác 0)",
     },
   },
@@ -757,7 +763,8 @@ export const SPECS_LOP4 = {
         ["Hiệu – Tỉ", "8 và 32"],
         ["Hình học", "S = a × h"],
       ],
-      label: "Thử thách Trạng Nguyên Toán Lớp 4 — đọc kỹ đề, nhận dạng bài rồi mới giải",
+      label:
+        "Thử thách Trạng Nguyên Toán Lớp 4 — đọc kỹ đề, nhận dạng bài rồi mới giải",
     },
   },
   "g4-c6-l7": {

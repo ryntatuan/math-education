@@ -108,9 +108,13 @@ for (const { grade, file } of gradeFiles) {
 
 const pct = (a, b) => (b ? ((a / b) * 100).toFixed(1) : "0.0");
 
-console.log("══════════════════════════════════════════════════════════════════════");
+console.log(
+  "══════════════════════════════════════════════════════════════════════",
+);
 console.log("  HÌNH ẢNH TRONG BÀI HỌC — đo 5 lớp");
-console.log("══════════════════════════════════════════════════════════════════════\n");
+console.log(
+  "══════════════════════════════════════════════════════════════════════\n",
+);
 
 console.log("  Lớp   slide   slide có hình   bài   bài KHÔNG có hình nào");
 console.log("  ─────────────────────────────────────────────────────────────");
@@ -135,10 +139,13 @@ for (const k of VISUAL_KEYS)
 
 if (process.argv.includes("--theo-lop") || lessonsWithoutVisual.length <= 40) {
   const showAll = lessonsWithoutVisual.length <= 40;
-  const list = showAll ? lessonsWithoutVisual : lessonsWithoutVisual.slice(0, 0);
+  const list = showAll
+    ? lessonsWithoutVisual
+    : lessonsWithoutVisual.slice(0, 0);
   if (list.length) {
-    console.log(`\n  Bài KHÔNG có hình nào (${lessonsWithoutVisual.length} bài):`);
-    for (const l of list)
-      console.log(`    ${l.id.padEnd(14)} ${l.title}`);
+    console.log(
+      `\n  Bài KHÔNG có hình nào (${lessonsWithoutVisual.length} bài):`,
+    );
+    for (const l of list) console.log(`    ${l.id.padEnd(14)} ${l.title}`);
   }
 }

@@ -45,7 +45,13 @@ const SPECS_LOP1 = {
   },
   "g1-c1-l2": {
     tenFrame: { filled: 3, total: 5, emoji: "🍎", label: "3 quả táo — số 3" },
-    numberLine: { from: 1, to: 3, step: 1, marks: [1, 2, 3], label: "Các số 1, 2, 3" },
+    numberLine: {
+      from: 1,
+      to: 3,
+      step: 1,
+      marks: [1, 2, 3],
+      label: "Các số 1, 2, 3",
+    },
   },
   "g1-c1-l3": {
     tenFrame: { filled: 5, total: 5, emoji: "🍒", label: "5 quả — số 5" },
@@ -113,10 +119,22 @@ const SPECS_LOP1 = {
     },
   },
   "g1-c1-l9": {
-    tenFrame: { filled: 2, total: 5, emoji: "🟠", extra: 3, label: "5 gồm 2 và 3" },
+    tenFrame: {
+      filled: 2,
+      total: 5,
+      emoji: "🟠",
+      extra: 3,
+      label: "5 gồm 2 và 3",
+    },
   },
   "g1-c1-l10": {
-    tenFrame: { filled: 6, total: 10, emoji: "🖐️", extra: 4, label: "10 gồm 6 và 4" },
+    tenFrame: {
+      filled: 6,
+      total: 10,
+      emoji: "🖐️",
+      extra: 4,
+      label: "10 gồm 6 và 4",
+    },
   },
   "g1-c1-l11": {
     numberLine: {
@@ -156,7 +174,11 @@ const SPECS_LOP1 = {
     },
   },
   "g1-c2-l3": {
-    planeShape: { kind: "triangle", labels: ["cạnh"], formula: "3 cạnh · 3 đỉnh" },
+    planeShape: {
+      kind: "triangle",
+      labels: ["cạnh"],
+      formula: "3 cạnh · 3 đỉnh",
+    },
   },
   "g1-c2-l4": {
     planeShape: {
@@ -188,7 +210,8 @@ const SPECS_LOP1 = {
   "g1-c2-l7": {
     planeShape: {
       kind: "rectangle",
-      formula: "1 hình tam giác (mái) · 1 hình chữ nhật (thân) · 1 hình vuông (cửa sổ)",
+      formula:
+        "1 hình tam giác (mái) · 1 hình chữ nhật (thân) · 1 hình vuông (cửa sổ)",
     },
   },
   "g1-c2-l8": {
@@ -1007,7 +1030,9 @@ function fmt(v, ind) {
     if (!motDong.includes("\n") && motDong.length + ind <= 78) return motDong;
     return (
       "{\n" +
-      ks.map((k) => pad + "  " + khoa(k) + ": " + fmt(v[k], ind + 2)).join(",\n") +
+      ks
+        .map((k) => pad + "  " + khoa(k) + ": " + fmt(v[k], ind + 2))
+        .join(",\n") +
       ",\n" +
       pad +
       "}"
@@ -1055,7 +1080,9 @@ const soBai = Object.keys(specs).length;
 const file = path.join(ROOT, "client", "src", "data", `grade${lop}Data.js`);
 
 console.log("═".repeat(74));
-console.log(`  TIÊM HÌNH VÀO LỚP ${lop}${ghiThat ? "" : "   (CHẠY THỬ — KHÔNG GHI)"}`);
+console.log(
+  `  TIÊM HÌNH VÀO LỚP ${lop}${ghiThat ? "" : "   (CHẠY THỬ — KHÔNG GHI)"}`,
+);
 console.log("═".repeat(74));
 
 // ── CHỐT 1: số lượng ────────────────────────────────────────────────────────
@@ -1070,7 +1097,9 @@ console.log(`\n  Chốt 1 OK — bảng có đúng ${soBai} bài.`);
 
 let text = fs.readFileSync(file, "utf8");
 if (text.includes("\uFFFD")) {
-  console.error("\n❌ DỪNG: file ĐÃ có ký tự hỏng U+FFFD từ trước. Sửa trước đã.");
+  console.error(
+    "\n❌ DỪNG: file ĐÃ có ký tự hỏng U+FFFD từ trước. Sửa trước đã.",
+  );
   process.exit(1);
 }
 
@@ -1166,7 +1195,9 @@ edits.sort((a, b) => b.at - a.at);
 for (const e of edits) text = text.slice(0, e.at) + e.them + text.slice(e.at);
 
 if (text.includes("\uFFFD")) {
-  console.error("\n❌ DỪNG: nội dung sau khi chèn có ký tự hỏng U+FFFD. Không ghi.");
+  console.error(
+    "\n❌ DỪNG: nội dung sau khi chèn có ký tự hỏng U+FFFD. Không ghi.",
+  );
   process.exit(1);
 }
 
@@ -1229,4 +1260,6 @@ if (sai) {
   );
   process.exit(1);
 }
-console.log(`\n✅ Xong. Giờ chạy: cổng kiểm, scratch/kiem-tra-hinh-anh.mjs, rồi build.\n`);
+console.log(
+  `\n✅ Xong. Giờ chạy: cổng kiểm, scratch/kiem-tra-hinh-anh.mjs, rồi build.\n`,
+);

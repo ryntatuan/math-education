@@ -173,7 +173,10 @@ export const SPECS_LOP3 = {
       ],
       label: "Ôn tập đo độ dài — túi gạo nặng 5 kg, chai nước chứa 2 l",
     },
-    planeShape: { kind: "square", formula: "▢ hình vuông · 🔺 hình tam giác · ▭ hình chữ nhật" },
+    planeShape: {
+      kind: "square",
+      formula: "▢ hình vuông · 🔺 hình tam giác · ▭ hình chữ nhật",
+    },
   },
   "g3-c1-l12": {
     operation: { left: 3, sign: "×", right: 4, result: 12 },
@@ -385,7 +388,8 @@ export const SPECS_LOP3 = {
     ruler: {
       lengthCm: 8,
       measure: { from: 0, to: 8 },
-      label: "A · O · B thẳng hàng theo thứ tự A, O, B ⇒ O là điểm ở giữa A và B",
+      label:
+        "A · O · B thẳng hàng theo thứ tự A, O, B ⇒ O là điểm ở giữa A và B",
     },
   },
   "g3-c3-l2": {
@@ -405,11 +409,16 @@ export const SPECS_LOP3 = {
     },
   },
   "g3-c3-l4": {
-    angle: { kind: "right", degrees: 90, label: "Góc vuông — đặt ê-ke khớp đúng" },
+    angle: {
+      kind: "right",
+      degrees: 90,
+      label: "Góc vuông — đặt ê-ke khớp đúng",
+    },
     table: {
       headers: ["Đỉnh", "Cạnh"],
       rows: [["A", "AB và AC"]],
-      label: "Góc đỉnh A, cạnh AB và AC — bốn góc của hình chữ nhật đều là góc vuông",
+      label:
+        "Góc đỉnh A, cạnh AB và AC — bốn góc của hình chữ nhật đều là góc vuông",
     },
   },
   "g3-c3-l5": {
@@ -451,7 +460,10 @@ export const SPECS_LOP3 = {
     table: {
       headers: ["Hình", "Đặc điểm"],
       rows: [
-        ["Hình chữ nhật", "4 góc vuông, 2 cạnh dài bằng nhau, 2 cạnh ngắn bằng nhau"],
+        [
+          "Hình chữ nhật",
+          "4 góc vuông, 2 cạnh dài bằng nhau, 2 cạnh ngắn bằng nhau",
+        ],
         ["Hình vuông", "4 góc vuông, 4 cạnh bằng nhau"],
       ],
       label: "Hình chữ nhật và hình vuông",
@@ -597,7 +609,11 @@ export const SPECS_LOP3 = {
 
   // ═══ Chủ đề 5: Đơn vị đo độ dài, khối lượng, dung tích, nhiệt độ ═══
   "g3-c5-l1": {
-    ruler: { lengthCm: 10, measure: { from: 0, to: 10 }, label: "1 cm = 10 mm" },
+    ruler: {
+      lengthCm: 10,
+      measure: { from: 0, to: 10 },
+      label: "1 cm = 10 mm",
+    },
     table: {
       headers: ["Đổi", "Được"],
       rows: [
@@ -749,7 +765,8 @@ export const SPECS_LOP3 = {
         ["12 + 5 × 2", "12 + 10", "22"],
         ["(12 + 5) × 2", "17 × 2", "34"],
       ],
-      label: "Nhân chia trước, cộng trừ sau — có ngoặc thì làm trong ngoặc trước",
+      label:
+        "Nhân chia trước, cộng trừ sau — có ngoặc thì làm trong ngoặc trước",
     },
   },
   "g3-c6-l7": {
@@ -885,7 +902,20 @@ export const SPECS_LOP3 = {
   },
   "g3-c8-l6": {
     table: {
-      headers: ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"],
+      headers: [
+        "I",
+        "II",
+        "III",
+        "IV",
+        "V",
+        "VI",
+        "VII",
+        "VIII",
+        "IX",
+        "X",
+        "XI",
+        "XII",
+      ],
       rows: [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]],
       label: "Chữ số La Mã từ I đến XII — dùng để ghi giờ và số thứ tự",
     },
@@ -1202,7 +1232,11 @@ export const SPECS_LOP3 = {
     },
   },
   "g3-c13-l2": {
-    clock: { hour: 2, minute: 40, timeText: "2 giờ 40 phút = 3 giờ kém 20 phút" },
+    clock: {
+      hour: 2,
+      minute: 40,
+      timeText: "2 giờ 40 phút = 3 giờ kém 20 phút",
+    },
     table: {
       headers: ["Kim dài chỉ số", "Nghĩa là"],
       rows: [
@@ -1256,7 +1290,11 @@ export const SPECS_LOP3 = {
     },
   },
   "g3-c13-l7": {
-    clock: { hour: 2, minute: 40, timeText: "2 giờ 40 phút = 3 giờ kém 20 phút" },
+    clock: {
+      hour: 2,
+      minute: 40,
+      timeText: "2 giờ 40 phút = 3 giờ kém 20 phút",
+    },
     table: {
       headers: ["Đại lượng", "Bằng"],
       rows: [

@@ -131,11 +131,15 @@ for (const g of GRADES) {
           const html = renderToStaticMarkup(<VisualBlocks content={c} />);
           if (!html || html.length < 40) {
             hong++;
-            hongList.push(`${l.id} · slide ${s.type} · CẢ slide: render ra RỖNG`);
+            hongList.push(
+              `${l.id} · slide ${s.type} · CẢ slide: render ra RỖNG`,
+            );
           }
         } catch (e) {
           hong++;
-          hongList.push(`${l.id} · slide ${s.type} · CẢ slide: NÉM LỖI — ${e.message}`);
+          hongList.push(
+            `${l.id} · slide ${s.type} · CẢ slide: NÉM LỖI — ${e.message}`,
+          );
         }
       }
 
@@ -156,7 +160,8 @@ console.log("");
 if (hongList.length) {
   console.log(`DANH SÁCH HỎNG (${hongList.length}):`);
   for (const h of hongList.slice(0, 40)) console.log(`  ✗ ${h}`);
-  if (hongList.length > 40) console.log(`  … và ${hongList.length - 40} chỗ nữa`);
+  if (hongList.length > 40)
+    console.log(`  … và ${hongList.length - 40} chỗ nữa`);
   console.log("");
 }
 

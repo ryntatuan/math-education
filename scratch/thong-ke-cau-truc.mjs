@@ -102,15 +102,18 @@ for (const n of [1, 2, 3, 4, 5]) {
   console.log(
     `LỚP ${n}: ${g.chapters} chương · ${g.lessons} bài · ${g.slides} slide`,
   );
-  const types = Object.entries(g.byType).sort((a, b) => b[1].count - a[1].count);
+  const types = Object.entries(g.byType).sort(
+    (a, b) => b[1].count - a[1].count,
+  );
   for (const [type, info] of types) {
     console.log(`  ${type.padEnd(12)} ${String(info.count).padStart(5)}`);
     const sets = [...info.keysets.entries()].sort(
       (a, b) => b[1].count - a[1].count,
     );
     for (const [sig, s] of sets) {
-      const mark =
-        NEW_VISUAL_KEYS.some((k) => sig.split("+").includes(k)) ? " ★mới" : "";
+      const mark = NEW_VISUAL_KEYS.some((k) => sig.split("+").includes(k))
+        ? " ★mới"
+        : "";
       console.log(
         `      ${String(s.count).padStart(5)}  ${sig.slice(0, 100)}${mark}`,
       );

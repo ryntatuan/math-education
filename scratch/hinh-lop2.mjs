@@ -97,7 +97,8 @@ export const SPECS_LOP2 = {
       to: 100,
       step: 1,
       marks: [98, 99, 100],
-      label: "98 liền trước · 99 là số lớn nhất có hai chữ số · 100 là số có ba chữ số",
+      label:
+        "98 liền trước · 99 là số lớn nhất có hai chữ số · 100 là số có ba chữ số",
     },
   },
 
@@ -593,7 +594,11 @@ export const SPECS_LOP2 = {
     },
   },
   "g2-c7-l4": {
-    ruler: { lengthCm: 10, measure: { from: 0, to: 10 }, label: "1 dm = 10 cm" },
+    ruler: {
+      lengthCm: 10,
+      measure: { from: 0, to: 10 },
+      label: "1 dm = 10 cm",
+    },
     table: {
       headers: ["Đại lượng", "Đơn vị đo"],
       rows: [
@@ -872,7 +877,8 @@ export const SPECS_LOP2 = {
         ["15", "5 × 3 = 15"],
         ["8", "2 × 4 = 8"],
       ],
-      label: "Trò chơi xúc xắc: gieo được mấy chấm thì tìm phép tính có kết quả bằng số đó",
+      label:
+        "Trò chơi xúc xắc: gieo được mấy chấm thì tìm phép tính có kết quả bằng số đó",
     },
   },
 
@@ -981,7 +987,8 @@ export const SPECS_LOP2 = {
     placeValue: {
       headers: ["Trăm", "Chục", "Đơn vị"],
       digits: [2, 4, 5],
-      label: "245 gồm 2 trăm, 4 chục và 5 đơn vị — đọc là hai trăm bốn mươi lăm",
+      label:
+        "245 gồm 2 trăm, 4 chục và 5 đơn vị — đọc là hai trăm bốn mươi lăm",
     },
   },
   "g2-c10-l7": {
@@ -1055,7 +1062,11 @@ export const SPECS_LOP2 = {
 
   // ═══ Chủ đề 11: Độ dài và đơn vị đo độ dài. Tiền Việt Nam ═══
   "g2-c11-l1": {
-    ruler: { lengthCm: 10, measure: { from: 0, to: 10 }, label: "1 dm = 10 cm" },
+    ruler: {
+      lengthCm: 10,
+      measure: { from: 0, to: 10 },
+      label: "1 dm = 10 cm",
+    },
     table: {
       headers: ["Đổi", "Được"],
       rows: [

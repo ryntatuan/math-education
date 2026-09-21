@@ -12,12 +12,17 @@
 -- CHẠY LẠI NHIỀU LẦN: chỉ làm phiên bản tăng thêm 1 mỗi lần — vô hại (các bé tải
 --   lại nội dung thêm một lần), không sinh dòng trùng, không mất dữ liệu.
 --
--- BỐI CẢNH LẦN NÀY (2026-09-22): dựng lại toàn bộ chương trình Lớp 1–3 theo đúng số chủ
---   đề của SGK (Lớp 1: 10 · Lớp 2: 10 → **14** · Lớp 3: 10 → **16**), Lớp 4–5 đã rà từng
---   bài và KHÔNG có lỗi chủ đề. Đây là lần đổi cấu trúc lớn nhất từ trước tới nay.
---   ⇒ Số bài ĐỔI: 5 lớp · 51 chương · **459 bài · 2438 slide**.
---   ⚠️ Lần này BẮT BUỘC chạy `00-don-noi-dung-cu.sql` TRƯỚC khi dán seed: có 79 bài bị
---      bỏ khỏi chương trình, mà seed chỉ upsert nên chúng sẽ ở lại DB và vẫn hiện trên app.
+-- BỐI CẢNH LẦN NÀY (2026-09-22, lần 2): bổ sung HÌNH MINH HOẠ cho bài học — thêm 17 kiểu
+--   hình vẽ SVG (trục số, khung 10 ô, bảng hàng, thước đo, tiền Việt Nam, hình phẳng/hình
+--   khối, phân số, sơ đồ đoạn thẳng, sơ đồ chuyển động, biểu đồ cột/quạt…) vào **cả 459
+--   bài**. Số bài và số slide KHÔNG đổi — hình nằm THÊM trong `content` của slide đã có.
+--   ⇒ Quy mô vẫn là: 5 lớp · 51 chương · **459 bài · 2438 slide**.
+--   ✅ Lần này KHÔNG cần `00-don-noi-dung-cu.sql` (không có bài nào bị bỏ khỏi chương
+--      trình), nhưng chạy nó vẫn VÔ HẠI — nó chỉ xoá bài không còn trong file tĩnh.
+--
+-- 📌 LẦN TRƯỚC (giữ lại để tra khi cần): dựng lại chương trình Lớp 1–3 theo đúng số chủ đề
+--   SGK (Lớp 1: 10 · Lớp 2: 10 → 14 · Lớp 3: 10 → 16). Khi đó số bài ĐỔI và có **79 bài mồ
+--   côi** buộc phải dọn bằng `00-don-noi-dung-cu.sql` chạy TRƯỚC seed (seed chỉ upsert).
 -- ════════════════════════════════════════════════════════════════════════════
 
 -- ── 1. Kiểm TRƯỚC khi đẩy: số bài từng lớp ───────────────────────────────
@@ -57,13 +62,14 @@ SET value = to_jsonb(
     updated_at = NOW()
 WHERE key = 'content_version'
 RETURNING (value #>> '{}')::INT AS phien_ban_moi;
--- Mong đợi: SỐ CŨ + 1. Con số cụ thể KHÔNG quan trọng — app chỉ cần thấy số **khác**
---   số cũ là sẽ tải lại nội dung. (Đo ngày 2026-09-22: 27 → **28**.)
+-- Mong đợi: SỐ CŨ + 1. Con số CỤ THỂ không quan trọng — app chỉ cần thấy số **khác**
+--   số cũ là sẽ tải lại nội dung. (Cố ý KHÔNG ghi số đo cụ thể ở đây: con số đó lệch
+--   ngay sau lần chạy sau, và một "mong đợi" lỗi thời còn tệ hơn không có.)
 
 -- ── 3. Kiểm SAU khi đẩy: công tắc vẫn phải là "remote" ─────────────────────
 SELECT key, value FROM public.app_config
 WHERE key IN ('content_source', 'content_version') ORDER BY key;
--- Mong đợi: content_source = "remote" · content_version = số cũ + 1 (đo được: 28).
+-- Mong đợi: content_source = "remote" · content_version = số cũ + 1.
 
 -- ── 4. Kiểm trên app của bé (không cần SQL) ────────────────────────────────
 -- Mở lại app (đúng tài khoản bé đã dùng trước đó) và xem log:
@@ -75,3 +81,10 @@ WHERE key IN ('content_source', 'content_version') ORDER BY key;
 --   • Lớp 3 → chương 1 và chương 2 PHẢI có bảng nhân/chia 3, 4 — đây mới là chỗ đúng SGK.
 --   • Lớp 2 KHÔNG còn dạy "một phần mấy" (1/2, 1/3, 1/4, 1/5) — chủ đề đó thuộc Lớp 3.
 --   • Lớp 1 và Lớp 3 không còn dạy "cộng trừ qua 10" / "phân số" nữa.
+--
+-- Kiểm HÌNH MINH HOẠ (mới, 2026-09-22 lần 2) — vào slide "hình ảnh" của vài bài:
+--   • Lớp 1 Bài 2 (g1-c1-l2): phải thấy KHUNG 10 Ô (3 quả táo) và TRỤC SỐ 1–2–3.
+--   • Lớp 4 (g4-c5-l2): toán Tổng–Tỉ phải có SƠ ĐỒ ĐOẠN THẲNG hai đoạn dài ngắn.
+--   • Lớp 5 (g5-c4-l6): sơ đồ chuyển động phải ghi "Hai xe đi NGƯỢC CHIỀU, gặp nhau".
+--     🔴 Nếu thấy "Hai xe đi RA XA nhau" là DÁN THIẾU — chạy lại `06-bai-lop-5.sql`.
+--   • Bảng số liệu KHÔNG được chồng chữ: bề rộng cột tự co theo nội dung.

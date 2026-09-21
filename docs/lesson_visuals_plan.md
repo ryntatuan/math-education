@@ -6,14 +6,14 @@ Ngày đo: 2026-09-22. Người đề xuất: Copilot. Trạng thái: **chờ b�
 
 Công cụ đo (mới viết): `node scratch/kiem-tra-hinh-anh.mjs`
 
-| Lớp | Số slide | Slide có hình | Số bài | Bài KHÔNG có hình nào |
-| --- | --- | --- | --- | --- |
-| 1 | 532 | 0 (0,0%) | 97 | 97 (100%) |
-| 2 | 666 | 0 (0,0%) | 120 | 120 (100%) |
-| 3 | 707 | 0 (0,0%) | 123 | 123 (100%) |
-| 4 | 297 | 0 (0,0%) | 65 | 65 (100%) |
-| 5 | 236 | 0 (0,0%) | 54 | 54 (100%) |
-| **Tổng** | **2438** | **0 (0,0%)** | **459** | **459 (100%)** |
+| Lớp      | Số slide | Slide có hình | Số bài  | Bài KHÔNG có hình nào |
+| -------- | -------- | ------------- | ------- | --------------------- |
+| 1        | 532      | 0 (0,0%)      | 97      | 97 (100%)             |
+| 2        | 666      | 0 (0,0%)      | 120     | 120 (100%)            |
+| 3        | 707      | 0 (0,0%)      | 123     | 123 (100%)            |
+| 4        | 297      | 0 (0,0%)      | 65      | 65 (100%)             |
+| 5        | 236      | 0 (0,0%)      | 54      | 54 (100%)             |
+| **Tổng** | **2438** | **0 (0,0%)**  | **459** | **459 (100%)**        |
 
 Kết luận: **không một slide nào có hình.** Nhận xét của bạn hoàn toàn đúng về số liệu.
 
@@ -25,18 +25,18 @@ không có gì được vẽ.
 
 Đây là "hợp đồng" thật của từng bộ vẽ, đọc trực tiếp từ mã:
 
-| Khoá dữ liệu | Vẽ ra cái gì | Kiểu slide dùng được |
-| --- | --- | --- |
-| `items: [{emoji, count, label}]` | Vẽ **`count` bản sao của một emoji** (xếp 1 hàng hoặc khung 10 ô) | `visual` |
-| `number` | Một số lớn ở giữa | `visual` |
-| `operation: {left, sign, right, result}` | Phép tính viết dọc | `visual` |
-| `comparison: {left, sign, right}` | So sánh hai số với dấu > < = | `visual` |
-| `clock: {hour, minute, showLabels, timeText, frameColor, shape, size}` | **Đồng hồ kim vẽ bằng SVG** (tròn hoặc vuông, 3 cỡ) | `visual` + `concept` |
-| `shape` + `shapeLabel` | **Hình vẽ SVG**: vuông, tròn, tam giác, chữ nhật, lập phương | `concept` |
-| `activityGrid: [{period, clock, timeText, desc}]` | Lưới thẻ, mỗi thẻ có thể chứa một đồng hồ | `concept` |
-| `gallery: [{badge, clock, label, timeText}]` + `galleryTitle` | Thư viện thẻ có đồng hồ | `concept` |
-| `dialogue: {...}` | Cảnh hội thoại có nhân vật (Nam, Mai, Rô-bốt, Việt, Mi, Cú Mèo) | `concept`, `dialogue` |
-| `visualDisplay` | Chuỗi emoji/chữ vẽ minh họa cho câu hỏi | slide `quiz` |
+| Khoá dữ liệu                                                           | Vẽ ra cái gì                                                      | Kiểu slide dùng được  |
+| ---------------------------------------------------------------------- | ----------------------------------------------------------------- | --------------------- |
+| `items: [{emoji, count, label}]`                                       | Vẽ **`count` bản sao của một emoji** (xếp 1 hàng hoặc khung 10 ô) | `visual`              |
+| `number`                                                               | Một số lớn ở giữa                                                 | `visual`              |
+| `operation: {left, sign, right, result}`                               | Phép tính viết dọc                                                | `visual`              |
+| `comparison: {left, sign, right}`                                      | So sánh hai số với dấu > < =                                      | `visual`              |
+| `clock: {hour, minute, showLabels, timeText, frameColor, shape, size}` | **Đồng hồ kim vẽ bằng SVG** (tròn hoặc vuông, 3 cỡ)               | `visual` + `concept`  |
+| `shape` + `shapeLabel`                                                 | **Hình vẽ SVG**: vuông, tròn, tam giác, chữ nhật, lập phương      | `concept`             |
+| `activityGrid: [{period, clock, timeText, desc}]`                      | Lưới thẻ, mỗi thẻ có thể chứa một đồng hồ                         | `concept`             |
+| `gallery: [{badge, clock, label, timeText}]` + `galleryTitle`          | Thư viện thẻ có đồng hồ                                           | `concept`             |
+| `dialogue: {...}`                                                      | Cảnh hội thoại có nhân vật (Nam, Mai, Rô-bốt, Việt, Mi, Cú Mèo)   | `concept`, `dialogue` |
+| `visualDisplay`                                                        | Chuỗi emoji/chữ vẽ minh họa cho câu hỏi                           | slide `quiz`          |
 
 **Điểm mấu chốt:** bộ vẽ là dữ liệu điều khiển, nên việc chính là **bổ sung dữ liệu**, không
 phải viết lại giao diện.
@@ -47,6 +47,7 @@ Bộ vẽ hiện tại thiên về **đồng hồ** và chỉ có **5 hình cơ 
 cách vẽ nào:
 
 **Lớp 1–3**
+
 - **Trục số** (tia số) — dùng ở lớp 1, 2, 3 khi dạy so sánh, cộng trừ, làm tròn. Sách giáo khoa dùng liên tục.
 - **Khung 10 ô / khối chục – đơn vị** — cách chuẩn để dạy "mấy chục mấy đơn vị".
 - **Tiền Việt Nam** — lớp 2 (CĐ 11) và lớp 3 (CĐ 13) có hẳn bài về tiền, hiện không có hình tờ tiền.
@@ -55,6 +56,7 @@ cách vẽ nào:
 - **Bảng đơn vị / bảng số liệu** — thống kê lớp 3 CĐ 15.
 
 **Lớp 4–5**
+
 - **Phân số**: băng giấy chia phần và hình tròn chia phần — không có cách nào dạy phân số mà chỉ có chữ.
 - **Sơ đồ đoạn thẳng** (Tổng – Tỉ, Hiệu – Tỉ) — đây là **cách duy nhất** trẻ hiểu dạng toán này; sách dùng sơ đồ đoạn thẳng.
 - **Góc và thước đo góc**, **hình bình hành / hình thoi / hình thang** (bộ vẽ hiện không có 3 hình này).
@@ -77,35 +79,35 @@ cách vẽ nào:
 
 ## 5. Kế hoạch theo giai đoạn
 
-| GĐ | Việc | Sản phẩm | Trạng thái |
-| --- | --- | --- | --- |
-| 1 | **Mở rộng bộ vẽ** — thêm các component SVG còn thiếu ở mục 3 | `client/src/components/visuals/*` | **XONG** |
-| 2 | **Lớp 1 và Lớp 2** — đếm, cộng trừ, hình, đồng hồ, tiền | dữ liệu hình cho 217 bài | **XONG** |
-| 3 | **Lớp 3** — bảng nhân chia, chu vi/diện tích, đo lường, thống kê | dữ liệu hình cho 123 bài | **XONG** |
-| 4 | **Lớp 4 và Lớp 5** — phân số, sơ đồ đoạn thẳng, hình khối, biểu đồ | dữ liệu hình cho 119 bài | **XONG** |
+| GĐ  | Việc                                                               | Sản phẩm                          | Trạng thái |
+| --- | ------------------------------------------------------------------ | --------------------------------- | ---------- |
+| 1   | **Mở rộng bộ vẽ** — thêm các component SVG còn thiếu ở mục 3       | `client/src/components/visuals/*` | **XONG**   |
+| 2   | **Lớp 1 và Lớp 2** — đếm, cộng trừ, hình, đồng hồ, tiền            | dữ liệu hình cho 217 bài          | **XONG**   |
+| 3   | **Lớp 3** — bảng nhân chia, chu vi/diện tích, đo lường, thống kê   | dữ liệu hình cho 123 bài          | **XONG**   |
+| 4   | **Lớp 4 và Lớp 5** — phân số, sơ đồ đoạn thẳng, hình khối, biểu đồ | dữ liệu hình cho 119 bài          | **XONG**   |
 
 ### KẾT QUẢ CUỐI
 
-| Số đo | Trước | Sau |
-| --- | --- | --- |
-| Bài có ít nhất một hình | **0 / 459** | **459 / 459** |
-| Slide mang hình (bộ vẽ mới) | 0 / 2438 | 439 / 2438 |
-| Bộ vẽ được dùng | 0 | **17 / 17** |
+| Số đo                       | Trước       | Sau           |
+| --------------------------- | ----------- | ------------- |
+| Bài có ít nhất một hình     | **0 / 459** | **459 / 459** |
+| Slide mang hình (bộ vẽ mới) | 0 / 2438    | 439 / 2438    |
+| Bộ vẽ được dùng             | 0           | **17 / 17**   |
 
 Số lần dùng từng bộ vẽ (đo trên dữ liệu thật):
 
-| Bộ vẽ | Lần | Bộ vẽ | Lần |
-| --- | --- | --- | --- |
-| `table` | 285 | `barChart` | 7 |
-| `numberLine` | 50 | `circleParts` | 7 |
-| `placeValue` | 42 | `baseTen` | 6 |
-| `planeShape` | 39 | `pieChart` | 6 |
-| `barModel` | 26 | `money` | 5 |
-| `ruler` | 23 | `fractionCircle` | 4 |
-| `fractionBar` | 17 | `angle` | 4 |
-| `solid` | 16 | | |
-| `tenFrame` | 15 | | |
-| `motionDiagram` | 9 | | |
+| Bộ vẽ           | Lần | Bộ vẽ            | Lần |
+| --------------- | --- | ---------------- | --- |
+| `table`         | 285 | `barChart`       | 7   |
+| `numberLine`    | 50  | `circleParts`    | 7   |
+| `placeValue`    | 42  | `baseTen`        | 6   |
+| `planeShape`    | 39  | `pieChart`       | 6   |
+| `barModel`      | 26  | `money`          | 5   |
+| `ruler`         | 23  | `fractionCircle` | 4   |
+| `fractionBar`   | 17  | `angle`          | 4   |
+| `solid`         | 16  |                  |     |
+| `tenFrame`      | 15  |                  |     |
+| `motionDiagram` | 9   |                  |     |
 
 Phép thử: **561 lượt render đạt · 0 hỏng**. Cổng **31 PASS · 0 FAIL**. Build `client` và
 `admin` đều **exit 0**. Không file dữ liệu nào có ký tự hỏng (U+FFFD = 0).
@@ -132,7 +134,7 @@ và **tự ngắt dòng** trong ô.
 chuyển động vẫn bị bó hẹp. Đã gộp vào `visualTheme.js` (một nguồn duy nhất).
 
 **4. Sai nội dung hình.** Bài `g5-c4-l6` dạy "ngược chiều **gặp nhau**" nhưng sơ đồ vẽ
-`mode: "apart"` = *"Hai xe đi RA XA nhau"*. Đã sửa thành `"toward"`.
+`mode: "apart"` = _"Hai xe đi RA XA nhau"_. Đã sửa thành `"toward"`.
 
 ⚠️ Rút ra: **phép thử tự động không thay được việc nhìn màn hình.** Cả 4 lỗi trên đều
 "đạt" trong phép thử.
@@ -153,17 +155,16 @@ node scripts/migrate-content.mjs --verify   # phải ra exit 0
 🔴 Bước `100` là **bắt buộc**: nó tăng `content_version`, nhờ đó máy các bé mới biết là
 có bản mới và bỏ cây đã cache (nếu thiếu, máy bé **KHÔNG BAO GIỜ** thấy nội dung mới).
 
-
 ### Giai đoạn 1 đã xong gì
 
 Đã viết 3 file + 1 bộ điều phối, tổng **17 bộ vẽ mới**:
 
-| File | Bộ vẽ |
-| --- | --- |
-| `client/src/components/visuals/CoreVisuals.jsx` | Trục số · Khung 10 ô · Khối chục–đơn vị · Bảng hàng · Thước đo · Tiền Việt Nam · Bảng số liệu |
+| File                                                | Bộ vẽ                                                                                                                                              |
+| --------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `client/src/components/visuals/CoreVisuals.jsx`     | Trục số · Khung 10 ô · Khối chục–đơn vị · Bảng hàng · Thước đo · Tiền Việt Nam · Bảng số liệu                                                      |
 | `client/src/components/visuals/GeometryVisuals.jsx` | Hình phẳng (7 loại, ghi được số đo cạnh) · Góc (nhọn/vuông/tù/bẹt) · Hình tròn (tâm, bán kính, đường kính) · Hình khối (lập phương, hộp, trụ, cầu) |
-| `client/src/components/visuals/FractionVisuals.jsx` | Băng giấy phân số · Hình tròn chia phần · **Sơ đồ đoạn thẳng** · Sơ đồ chuyển động · Biểu đồ cột · Biểu đồ hình quạt |
-| `client/src/components/visuals/VisualBlock.jsx` | Bộ điều phối: đọc khoá nào có thì vẽ khoá đó, vẽ được nhiều hình trên một slide |
+| `client/src/components/visuals/FractionVisuals.jsx` | Băng giấy phân số · Hình tròn chia phần · **Sơ đồ đoạn thẳng** · Sơ đồ chuyển động · Biểu đồ cột · Biểu đồ hình quạt                               |
+| `client/src/components/visuals/VisualBlock.jsx`     | Bộ điều phối: đọc khoá nào có thì vẽ khoá đó, vẽ được nhiều hình trên một slide                                                                    |
 
 Đã nối vào `LessonPage.jsx` (chỉ THÊM, không thay khối cũ) nên slide "Hình ảnh" và slide
 "Khái niệm" đều dùng được.
@@ -189,7 +190,6 @@ $env:NODE_PATH = "$PWD\client\node_modules"
 node scratch\visual-bundle.cjs
 ```
 
-
 Mỗi giai đoạn kết thúc bằng: chạy `kiem-tra-hinh-anh.mjs` (đo lại tỉ lệ) → cổng
 `test:portal:static` → build `client` và `admin`. Không sang giai đoạn sau khi giai đoạn
 trước chưa xanh.
@@ -213,6 +213,7 @@ cũng là phần dễ vẽ đúng nhất (đếm vật, so sánh số, đồng h
 Lựa chọn khác: lớp 4–5 trước (phân số và sơ đồ đoạn thẳng là chỗ thiếu trầm trọng nhất).
 
 **b) Mức độ tới đâu?**
+
 1. Mỗi bài **ít nhất 1 slide** có hình (nhanh, khoảng 1 giai đoạn cho cả 5 lớp).
 2. Mỗi bài **3–5 slide** có hình (đề xuất — đủ để bé hình dung xuyên suốt bài).
 3. Mọi slide có thể vẽ đều có hình (lâu nhất, nhưng đầy đủ nhất).
@@ -230,10 +231,10 @@ nội dung chữ).
 
 ## 8. Rủi ro đã lường trước
 
-| Rủi ro | Cách xử lý |
-| --- | --- |
-| Hình sai nội dung bài | Mỗi hình sinh từ chính số liệu trong slide, không đoán; soát tay từng lớp sau khi chèn |
+| Rủi ro                               | Cách xử lý                                                                                    |
+| ------------------------------------ | --------------------------------------------------------------------------------------------- |
+| Hình sai nội dung bài                | Mỗi hình sinh từ chính số liệu trong slide, không đoán; soát tay từng lớp sau khi chèn        |
 | Chèn hàng loạt làm hỏng file dữ liệu | Script chèn phải ĐẾM và DỪNG nếu số lượng không khớp (bài học từ các lần sửa hàng loạt trước) |
-| Emoji bị hỏng khi ghi file | Đếm ký tự `U+FFFD` sau mỗi lần ghi (đã thành thói quen) |
-| App nặng hơn vì nhiều SVG | SVG vẽ tại chỗ, không tải ảnh; mỗi slide chỉ vài chục phần tử |
-| Admin ghi đè làm mất hình | Đã kiểm: dùng phép trải nên giữ khoá lạ; sẽ kiểm lại bằng phép thử sau khi chèn |
+| Emoji bị hỏng khi ghi file           | Đếm ký tự `U+FFFD` sau mỗi lần ghi (đã thành thói quen)                                       |
+| App nặng hơn vì nhiều SVG            | SVG vẽ tại chỗ, không tải ảnh; mỗi slide chỉ vài chục phần tử                                 |
+| Admin ghi đè làm mất hình            | Đã kiểm: dùng phép trải nên giữ khoá lạ; sẽ kiểm lại bằng phép thử sau khi chèn               |

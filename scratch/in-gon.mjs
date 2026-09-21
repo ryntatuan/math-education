@@ -16,6 +16,8 @@ for (const ch of data.chapters ?? []) {
     const t = String(vis?.content?.text ?? "").replace(/\n/g, " ⏎ ");
     const con = (l.slides ?? []).find((s) => s.type === "concept");
     const rule = String(con?.content?.rule ?? "").replace(/\n/g, " ⏎ ");
-    console.log(`${l.id} | ${l.title} | HINH: ${t} | RULE: ${rule.slice(0, 150)}`);
+    console.log(
+      `${l.id} | ${l.title} | HINH: ${t} | RULE: ${rule.slice(0, 150)}`,
+    );
   }
 }

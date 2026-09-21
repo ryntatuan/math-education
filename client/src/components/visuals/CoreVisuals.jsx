@@ -40,7 +40,8 @@ const card = CARD_STYLE;
 const caption = CAPTION_STYLE;
 
 const clamp = (n, lo, hi) => Math.min(hi, Math.max(lo, n));
-const num = (v, fallback) => (Number.isFinite(Number(v)) ? Number(v) : fallback);
+const num = (v, fallback) =>
+  Number.isFinite(Number(v)) ? Number(v) : fallback;
 
 /* ─────────────────────────────── TRỤC SỐ (TIA SỐ) ───────────────────────────────
  * Dùng ở lớp 1–3: so sánh số, đếm thêm, cộng trừ trên tia, làm tròn số.
@@ -72,7 +73,12 @@ export function NumberLine({
 
   return (
     <div style={card}>
-      <svg viewBox={`0 0 ${W} ${H}`} width="100%" role="img" aria-label="Trục số">
+      <svg
+        viewBox={`0 0 ${W} ${H}`}
+        width="100%"
+        role="img"
+        aria-label="Trục số"
+      >
         <defs>
           <marker
             id="nlArrow"
@@ -180,7 +186,12 @@ export function TenFrame({
 
   return (
     <div style={card}>
-      <svg viewBox={`0 0 ${W} ${H}`} width="100%" role="img" aria-label="Khung 10 ô">
+      <svg
+        viewBox={`0 0 ${W} ${H}`}
+        width="100%"
+        role="img"
+        aria-label="Khung 10 ô"
+      >
         {Array.from({ length: t }).map((_, i) => {
           const r = Math.floor(i / perRow);
           const c = i % perRow;
@@ -276,7 +287,12 @@ export function BaseTenBlocks({ tens = 3, ones = 4, label = "" }) {
 
   return (
     <div style={card}>
-      <svg viewBox={`0 0 ${Math.max(W, 220)} ${H}`} width="100%" role="img" aria-label="Khối chục và đơn vị">
+      <svg
+        viewBox={`0 0 ${Math.max(W, 220)} ${H}`}
+        width="100%"
+        role="img"
+        aria-label="Khối chục và đơn vị"
+      >
         {Array.from({ length: tn }).map((_, i) => (
           <g key={`t${i}`}>{rodTop(i)}</g>
         ))}
@@ -336,7 +352,10 @@ export function PlaceValueTable({
   highlight = -1,
   label = "",
 }) {
-  const hs = Array.isArray(headers) && headers.length ? headers : ["Trăm", "Chục", "Đơn vị"];
+  const hs =
+    Array.isArray(headers) && headers.length
+      ? headers
+      : ["Trăm", "Chục", "Đơn vị"];
   const ds = Array.isArray(digits) ? digits.slice(0, hs.length) : [];
   const W = 96 * hs.length + 16;
   const cellW = 96;
@@ -345,7 +364,12 @@ export function PlaceValueTable({
 
   return (
     <div style={card}>
-      <svg viewBox={`0 0 ${W} ${H}`} width="100%" role="img" aria-label="Bảng hàng">
+      <svg
+        viewBox={`0 0 ${W} ${H}`}
+        width="100%"
+        role="img"
+        aria-label="Bảng hàng"
+      >
         {hs.map((h, i) => (
           <g key={i}>
             <rect
@@ -416,7 +440,12 @@ export function Ruler({
 
   return (
     <div style={card}>
-      <svg viewBox={`0 0 ${W} ${H}`} width="100%" role="img" aria-label="Thước đo">
+      <svg
+        viewBox={`0 0 ${W} ${H}`}
+        width="100%"
+        role="img"
+        aria-label="Thước đo"
+      >
         <rect
           x="16"
           y={y}
@@ -456,7 +485,14 @@ export function Ruler({
             </g>
           );
         })}
-        <text x={W - 30} y={y + 22} textAnchor="middle" fontSize="13" fontWeight="800" fill={PALETTE.amber}>
+        <text
+          x={W - 30}
+          y={y + 22}
+          textAnchor="middle"
+          fontSize="13"
+          fontWeight="800"
+          fill={PALETTE.amber}
+        >
           {unit}
         </text>
 
@@ -550,7 +586,14 @@ export function Money({ notes = [20000, 5000], label = "" }) {
               >
                 {thousands(n)}
               </div>
-              <div style={{ fontSize: 11, fontWeight: 700, color: st.bd, opacity: 0.85 }}>
+              <div
+                style={{
+                  fontSize: 11,
+                  fontWeight: 700,
+                  color: st.bd,
+                  opacity: 0.85,
+                }}
+              >
                 đồng
               </div>
             </div>
@@ -645,13 +688,17 @@ export function Table({ headers = [], rows = [], label = "" }) {
   // Mỗi dòng cao theo ô có nhiều dòng chữ nhất.
   const hang = [];
   hang.push({
-    o: Array.from({ length: soCot }, (_, c) => bocChu(hs[c], Math.floor((beRongCot[c] - LOT_O * 2) / RONG_KY_TU))),
+    o: Array.from({ length: soCot }, (_, c) =>
+      bocChu(hs[c], Math.floor((beRongCot[c] - LOT_O * 2) / RONG_KY_TU)),
+    ),
     dauBang: true,
   });
   for (const r of rs) {
     const o = Array.isArray(r) ? r : [r];
     hang.push({
-      o: Array.from({ length: soCot }, (_, c) => bocChu(o[c], Math.floor((beRongCot[c] - LOT_O * 2) / RONG_KY_TU))),
+      o: Array.from({ length: soCot }, (_, c) =>
+        bocChu(o[c], Math.floor((beRongCot[c] - LOT_O * 2) / RONG_KY_TU)),
+      ),
       dauBang: false,
     });
   }
