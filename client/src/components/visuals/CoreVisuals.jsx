@@ -15,6 +15,8 @@
  *  3. Số liệu trên hình LẤY TỪ DỮ LIỆU, không viết cứng — để hình luôn khớp nội dung bài.
  */
 
+import { CARD_STYLE, CAPTION_STYLE } from "./visualTheme";
+
 const PALETTE = {
   ink: "#1e293b",
   soft: "#64748b",
@@ -33,24 +35,9 @@ const PALETTE = {
   grid: "#e2e8f0",
 };
 
-const card = {
-  background: PALETTE.paper,
-  border: `2px solid ${PALETTE.grid}`,
-  borderRadius: 18,
-  padding: "14px 16px",
-  margin: "14px auto",
-  maxWidth: 560,
-  boxShadow: "0 2px 10px rgba(15,23,42,.06)",
-};
-
-const caption = {
-  display: "block",
-  textAlign: "center",
-  marginTop: 8,
-  fontSize: 14,
-  fontWeight: 700,
-  color: PALETTE.soft,
-};
+// Kiểu dáng dùng chung — xem `visualTheme.js` (không chép lại ở đây nữa).
+const card = CARD_STYLE;
+const caption = CAPTION_STYLE;
 
 const clamp = (n, lo, hi) => Math.min(hi, Math.max(lo, n));
 const num = (v, fallback) => (Number.isFinite(Number(v)) ? Number(v) : fallback);
@@ -582,69 +569,156 @@ export function Money({ notes = [20000, 5000], label = "" }) {
  * Lớp 2–5: biểu đồ tranh quy về bảng số liệu, bảng đơn vị đo, bảng thống kê.
  *   table: { headers: ["Đối tượng","Số lượng"], rows: [["Bóng đá", 12], ["Cầu lông", 8]], label }
  */
+/**
+ * Ngắt một chuỗi thành nhiều dòng vừa bề rộng ô.
+ *
+ * 🔴 VÌ SAO PHẢI TỰ NGẮT: SVG KHÔNG có tính năng tự xuống dòng như HTML — thẻ `<text>`
+ * vẽ một dòng thẳng, chữ dài thì tràn ra ngoài ô và ĐÈ LÊN ô bên cạnh. Đã ĐO được thật
+ * ở bài `g5-c4-l6`: ô "khoảng cách ban đầu : (v1 + v2)" dài ~33 ký tự, vẽ trong ô rộng
+ * 132 px nên chữ chồng lên cột kế tiếp, không đọc được. Trước đó bảng luôn dùng bề rộng
+ * cột CỐ ĐỊNH 132 px cho mọi nội dung, nên bảng nào có chữ dài cũng hỏng.
+ *
+ * Từ dài hơn cả ô (ví dụ tên không có dấu cách) thì cắt cứng để không tràn ra ngoài.
+ */
+function bocChu(giaTri, soKyTu) {
+  const raw = String(giaTri ?? "")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (!raw) return [""];
+  const gioiHan = Math.max(4, soKyTu);
+  const dong = [];
+  let cur = "";
+  for (let tu of raw.split(" ")) {
+    while (tu.length > gioiHan) {
+      if (cur) {
+        dong.push(cur);
+        cur = "";
+      }
+      dong.push(tu.slice(0, gioiHan));
+      tu = tu.slice(gioiHan);
+    }
+    const thu = cur ? `${cur} ${tu}` : tu;
+    if (thu.length <= gioiHan) cur = thu;
+    else {
+      if (cur) dong.push(cur);
+      cur = tu;
+    }
+  }
+  if (cur) dong.push(cur);
+  return dong.length ? dong : [""];
+}
+
+// Ước lượng bề rộng 1 ký tự ở cỡ chữ 15 đậm 700 (đủ dùng cho tiếng Việt có dấu).
+const RONG_KY_TU = 7.6;
+const LOT_O = 10; // lề trong mỗi ô
+const CAO_DONG = 18;
+const COT_MIN = 78;
+const COT_MAX = 300;
+
 export function Table({ headers = [], rows = [], label = "" }) {
   const hs = Array.isArray(headers) ? headers : [];
   const rs = Array.isArray(rows) ? rows : [];
-  const cols = Math.max(hs.length, ...rs.map((r) => (Array.isArray(r) ? r.length : 0)), 1);
-  const colW = 132;
-  const rowH = 40;
-  const W = cols * colW + 12;
-  const H = (rs.length + 1) * rowH + 14;
+  const soCot = Math.max(
+    hs.length,
+    ...rs.map((r) => (Array.isArray(r) ? r.length : 0)),
+    1,
+  );
+
+  // Bề rộng mỗi cột = vừa đủ cho nội dung DÀI NHẤT của cột đó (trong khoảng cho phép).
+  const beRongCot = Array.from({ length: soCot }, (_, c) => {
+    let dai = String(hs[c] ?? "").length;
+    for (const r of rs) {
+      const o = Array.isArray(r) ? r : [r];
+      dai = Math.max(dai, String(o[c] ?? "").length);
+    }
+    return clamp(Math.round(dai * RONG_KY_TU) + LOT_O * 2, COT_MIN, COT_MAX);
+  });
+
+  const mocX = [];
+  let chay = 6;
+  for (const w of beRongCot) {
+    mocX.push(chay);
+    chay += w;
+  }
+  const W = chay + 6;
+
+  // Mỗi dòng cao theo ô có nhiều dòng chữ nhất.
+  const hang = [];
+  hang.push({
+    o: Array.from({ length: soCot }, (_, c) => bocChu(hs[c], Math.floor((beRongCot[c] - LOT_O * 2) / RONG_KY_TU))),
+    dauBang: true,
+  });
+  for (const r of rs) {
+    const o = Array.isArray(r) ? r : [r];
+    hang.push({
+      o: Array.from({ length: soCot }, (_, c) => bocChu(o[c], Math.floor((beRongCot[c] - LOT_O * 2) / RONG_KY_TU))),
+      dauBang: false,
+    });
+  }
+  const caoHang = hang.map(
+    (h) => Math.max(...h.o.map((d) => d.length)) * CAO_DONG + LOT_O * 2,
+  );
+  const H = 6 + caoHang.reduce((a, b) => a + b, 0) + 8;
+
+  let y = 6;
+  const hangVe = hang.map((h, i) => {
+    const cao = caoHang[i];
+    const node = { ...h, y, cao };
+    y += cao;
+    return node;
+  });
 
   return (
     <div style={card}>
-      <svg viewBox={`0 0 ${W} ${H}`} width="100%" role="img" aria-label="Bảng số liệu">
-        {Array.from({ length: cols }).map((_, c) => (
-          <g key={`h${c}`}>
-            <rect
-              x={6 + c * colW}
-              y={6}
-              width={colW - 4}
-              height={rowH}
-              rx="7"
-              fill={PALETTE.greenSoft}
-              stroke={PALETTE.green}
-              strokeWidth="2"
-            />
-            <text
-              x={6 + c * colW + (colW - 4) / 2}
-              y={6 + rowH / 2 + 6}
-              textAnchor="middle"
-              fontSize="14"
-              fontWeight="800"
-              fill={PALETTE.green}
-            >
-              {hs[c] ?? ""}
-            </text>
-          </g>
-        ))}
-        {rs.map((r, ri) => {
-          const cells = Array.isArray(r) ? r : [r];
-          return Array.from({ length: cols }).map((_, c) => (
-            <g key={`r${ri}c${c}`}>
-              <rect
-                x={6 + c * colW}
-                y={6 + (ri + 1) * rowH}
-                width={colW - 4}
-                height={rowH}
-                rx="6"
-                fill={ri % 2 ? "#f8fafc" : PALETTE.paper}
-                stroke={PALETTE.grid}
-                strokeWidth="1.6"
-              />
-              <text
-                x={6 + c * colW + (colW - 4) / 2}
-                y={6 + (ri + 1) * rowH + rowH / 2 + 6}
-                textAnchor="middle"
-                fontSize="15"
-                fontWeight="700"
-                fill={PALETTE.ink}
-              >
-                {cells[c] ?? ""}
-              </text>
-            </g>
-          ));
-        })}
+      <svg
+        viewBox={`0 0 ${W} ${H}`}
+        width="100%"
+        role="img"
+        aria-label="Bảng số liệu"
+      >
+        {hangVe.map((h, ri) =>
+          h.o.map((dong, c) => {
+            const x = mocX[c];
+            const rong = beRongCot[c] - 4;
+            const giua = x + rong / 2;
+            const yDongDau =
+              h.y + h.cao / 2 - ((dong.length - 1) * CAO_DONG) / 2 + 5;
+            return (
+              <g key={`${ri}-${c}`}>
+                <rect
+                  x={x}
+                  y={h.y}
+                  width={rong}
+                  height={h.cao}
+                  rx={h.dauBang ? 7 : 6}
+                  fill={
+                    h.dauBang
+                      ? PALETTE.greenSoft
+                      : ri % 2
+                        ? "#f8fafc"
+                        : PALETTE.paper
+                  }
+                  stroke={h.dauBang ? PALETTE.green : PALETTE.grid}
+                  strokeWidth={h.dauBang ? 2 : 1.6}
+                />
+                <text
+                  x={giua}
+                  y={yDongDau}
+                  textAnchor="middle"
+                  fontSize={h.dauBang ? 14 : 15}
+                  fontWeight={h.dauBang ? 800 : 700}
+                  fill={h.dauBang ? PALETTE.green : PALETTE.ink}
+                >
+                  {dong.map((ln, li) => (
+                    <tspan key={li} x={giua} dy={li === 0 ? 0 : CAO_DONG}>
+                      {ln}
+                    </tspan>
+                  ))}
+                </text>
+              </g>
+            );
+          }),
+        )}
       </svg>
       {label && <span style={caption}>{label}</span>}
     </div>

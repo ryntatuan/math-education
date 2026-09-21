@@ -110,21 +110,48 @@ Số lần dùng từng bộ vẽ (đo trên dữ liệu thật):
 Phép thử: **561 lượt render đạt · 0 hỏng**. Cổng **31 PASS · 0 FAIL**. Build `client` và
 `admin` đều **exit 0**. Không file dữ liệu nào có ký tự hỏng (U+FFFD = 0).
 
+### 🔴 HAI LỖI CHỈ NHÌN MÀN HÌNH MỚI THẤY
+
+Phép thử render báo "561 đạt · 0 hỏng" — nhưng khi **mở app thật và chụp ảnh** thì lộ ra
+hai lỗi mà phép thử KHÔNG THỂ thấy, vì cả hai đều đúng về mặt "có render ra HTML":
+
+**1. Hình không hiện, vì app không đọc file tĩnh.** `content_source = "remote"` và
+`content_version = 108` ⇒ app đọc nội dung **từ DB**, mà DB chưa có hình. Phép thử render
+đọc thẳng file tĩnh nên vẫn xanh. **Bài học: phép thử đọc nguồn nào thì chỉ chứng minh
+được nguồn đó.** Muốn biết bé thấy gì thì phải mở app.
+
+**2. Bảng số liệu chồng chữ.** Khối hình nằm trong thẻ `display: flex; align-items: center`,
+mà `margin: 14px auto` làm flex item co về vừa nội dung ⇒ khối chỉ rộng **361 px** trong thẻ
+**833 px**. Kèm theo, `Table` vẽ trong `viewBox` **cố định 132 px mỗi cột** và SVG không tự
+xuống dòng ⇒ ô dài như "khoảng cách ban đầu : (v1 + v2)" tràn sang cột bên cạnh.
+Đã sửa: khối hình khai `width: 100%`, `Table` tự tính bề rộng cột theo nội dung dài nhất
+và **tự ngắt dòng** trong ô.
+
+**3. `card` bị chép làm BA bản** (mỗi file bộ vẽ một bản). Sửa bề rộng ở `CoreVisuals` thì
+`FractionVisuals` và `GeometryVisuals` **vẫn giữ giá trị cũ** — bảng giãn đúng mà sơ đồ
+chuyển động vẫn bị bó hẹp. Đã gộp vào `visualTheme.js` (một nguồn duy nhất).
+
+**4. Sai nội dung hình.** Bài `g5-c4-l6` dạy "ngược chiều **gặp nhau**" nhưng sơ đồ vẽ
+`mode: "apart"` = *"Hai xe đi RA XA nhau"*. Đã sửa thành `"toward"`.
+
+⚠️ Rút ra: **phép thử tự động không thay được việc nhìn màn hình.** Cả 4 lỗi trên đều
+"đạt" trong phép thử.
+
 ### ⚠️ VIỆC CÒN LẠI BẮT BUỘC — NẠP LẠI NỘI DUNG VÀO DB
 
-App đang đọc nội dung từ **file tĩnh** (`content_source = "static"`) nên **bé thấy hình
-ngay**. Nhưng cây trong DB thì **chưa có hình**, nên:
-
-- Admin Portal (đọc từ DB) sẽ hiện bài **không có hình**.
-- Cổng động `S-24` so `JSON.stringify(slides)` giữa DB và file tĩnh **sẽ báo lệch**.
-
-Cách xử lý (đúng quy trình đã có, xem `docs/content_reload_steps.md`):
+App đang đọc nội dung từ **DB** (`content_source = "remote"`), và DB **chưa có hình**
+(`migrate-content.mjs --verify` báo **459/459 bài có nội dung khác**). Nghĩa là **bé chưa
+thấy hình nào** cho tới khi nạp lại:
 
 ```powershell
-node scripts/migrate-content.mjs --sql      # sinh lại file SQL
-# dán các file trong supabase/content-seed/ theo đúng thứ tự vào SQL Editor
+node scripts/migrate-content.mjs --sql      # sinh lại file SQL (đã sinh sẵn)
+# dán các file trong supabase/content-seed/ theo đúng thứ tự vào SQL Editor:
+#   00 → 01 → 02 → 03 → 04 → 05 → 06 → 99 → 100
 node scripts/migrate-content.mjs --verify   # phải ra exit 0
 ```
+
+🔴 Bước `100` là **bắt buộc**: nó tăng `content_version`, nhờ đó máy các bé mới biết là
+có bản mới và bỏ cây đã cache (nếu thiếu, máy bé **KHÔNG BAO GIỜ** thấy nội dung mới).
 
 
 ### Giai đoạn 1 đã xong gì

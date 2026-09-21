@@ -94,7 +94,25 @@ export default function VisualBlocks({ content }) {
   if (isObj(content.pieChart)) blocks.push(<PieChart key="pieChart" {...content.pieChart} />);
 
   if (!blocks.length) return null;
-  return <div className="visual-blocks">{blocks}</div>;
+  // 🔴 PHẢI KHAI `width: 100%` Ở ĐÂY. Khối này được đặt trong `.slide-visual-card`, mà
+  // thẻ đó là `display: flex; align-items: center`. Một flex item KHÔNG tự giãn bề rộng
+  // khi `align-items` là `center` — nó co lại bằng nội dung. Đã ĐO được thật: khối hình
+  // chỉ rộng **361 px** trong khi thẻ rộng **833 px**, nên hình bị bó hẹp một góc và bảng
+  // số liệu bị chồng chữ. Thêm `width: 100%` là khối giãn đúng bằng thẻ.
+  return (
+    <div
+      className="visual-blocks"
+      style={{
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "stretch",
+        gap: 14,
+      }}
+    >
+      {blocks}
+    </div>
+  );
 }
 
 /** Đếm số hình một slide sẽ vẽ — dùng cho công cụ đo, không dùng trong giao diện. */

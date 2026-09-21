@@ -29474,6 +29474,27 @@ var require_jsx_runtime = __commonJS({
 // scratch/kiem-tra-hinh-that.jsx
 var import_server = __toESM(require_server_node());
 
+// client/src/components/visuals/visualTheme.js
+var CARD_STYLE = {
+  background: "#ffffff",
+  border: "2px solid #e2e8f0",
+  borderRadius: 18,
+  padding: "14px 16px",
+  margin: "14px auto",
+  width: "100%",
+  maxWidth: 680,
+  boxSizing: "border-box",
+  boxShadow: "0 2px 10px rgba(15,23,42,.06)"
+};
+var CAPTION_STYLE = {
+  display: "block",
+  textAlign: "center",
+  marginTop: 8,
+  fontSize: 14,
+  fontWeight: 700,
+  color: "#64748b"
+};
+
 // client/src/components/visuals/CoreVisuals.jsx
 var import_jsx_runtime = __toESM(require_jsx_runtime(), 1);
 var PALETTE = {
@@ -29493,23 +29514,8 @@ var PALETTE = {
   paper: "#ffffff",
   grid: "#e2e8f0"
 };
-var card = {
-  background: PALETTE.paper,
-  border: `2px solid ${PALETTE.grid}`,
-  borderRadius: 18,
-  padding: "14px 16px",
-  margin: "14px auto",
-  maxWidth: 560,
-  boxShadow: "0 2px 10px rgba(15,23,42,.06)"
-};
-var caption = {
-  display: "block",
-  textAlign: "center",
-  marginTop: 8,
-  fontSize: 14,
-  fontWeight: 700,
-  color: PALETTE.soft
-};
+var card = CARD_STYLE;
+var caption = CAPTION_STYLE;
 var clamp = (n, lo, hi) => Math.min(hi, Math.max(lo, n));
 var num = (v, fallback) => Number.isFinite(Number(v)) ? Number(v) : fallback;
 function NumberLine({
@@ -30004,74 +30010,127 @@ function Money({ notes = [2e4, 5e3], label = "" }) {
     ] })
   ] });
 }
+function bocChu(giaTri, soKyTu) {
+  const raw = String(giaTri ?? "").replace(/\s+/g, " ").trim();
+  if (!raw) return [""];
+  const gioiHan = Math.max(4, soKyTu);
+  const dong = [];
+  let cur = "";
+  for (let tu of raw.split(" ")) {
+    while (tu.length > gioiHan) {
+      if (cur) {
+        dong.push(cur);
+        cur = "";
+      }
+      dong.push(tu.slice(0, gioiHan));
+      tu = tu.slice(gioiHan);
+    }
+    const thu = cur ? `${cur} ${tu}` : tu;
+    if (thu.length <= gioiHan) cur = thu;
+    else {
+      if (cur) dong.push(cur);
+      cur = tu;
+    }
+  }
+  if (cur) dong.push(cur);
+  return dong.length ? dong : [""];
+}
+var RONG_KY_TU = 7.6;
+var LOT_O = 10;
+var CAO_DONG = 18;
+var COT_MIN = 78;
+var COT_MAX = 300;
 function Table({ headers = [], rows = [], label = "" }) {
   const hs = Array.isArray(headers) ? headers : [];
   const rs = Array.isArray(rows) ? rows : [];
-  const cols = Math.max(hs.length, ...rs.map((r) => Array.isArray(r) ? r.length : 0), 1);
-  const colW = 132;
-  const rowH = 40;
-  const W = cols * colW + 12;
-  const H = (rs.length + 1) * rowH + 14;
+  const soCot = Math.max(
+    hs.length,
+    ...rs.map((r) => Array.isArray(r) ? r.length : 0),
+    1
+  );
+  const beRongCot = Array.from({ length: soCot }, (_, c) => {
+    let dai = String(hs[c] ?? "").length;
+    for (const r of rs) {
+      const o = Array.isArray(r) ? r : [r];
+      dai = Math.max(dai, String(o[c] ?? "").length);
+    }
+    return clamp(Math.round(dai * RONG_KY_TU) + LOT_O * 2, COT_MIN, COT_MAX);
+  });
+  const mocX = [];
+  let chay = 6;
+  for (const w of beRongCot) {
+    mocX.push(chay);
+    chay += w;
+  }
+  const W = chay + 6;
+  const hang = [];
+  hang.push({
+    o: Array.from({ length: soCot }, (_, c) => bocChu(hs[c], Math.floor((beRongCot[c] - LOT_O * 2) / RONG_KY_TU))),
+    dauBang: true
+  });
+  for (const r of rs) {
+    const o = Array.isArray(r) ? r : [r];
+    hang.push({
+      o: Array.from({ length: soCot }, (_, c) => bocChu(o[c], Math.floor((beRongCot[c] - LOT_O * 2) / RONG_KY_TU))),
+      dauBang: false
+    });
+  }
+  const caoHang = hang.map(
+    (h) => Math.max(...h.o.map((d) => d.length)) * CAO_DONG + LOT_O * 2
+  );
+  const H = 6 + caoHang.reduce((a, b) => a + b, 0) + 8;
+  let y = 6;
+  const hangVe = hang.map((h, i) => {
+    const cao = caoHang[i];
+    const node = { ...h, y, cao };
+    y += cao;
+    return node;
+  });
   return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { style: card, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("svg", { viewBox: `0 0 ${W} ${H}`, width: "100%", role: "img", "aria-label": "B\u1EA3ng s\u1ED1 li\u1EC7u", children: [
-      Array.from({ length: cols }).map((_, c) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("g", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-          "rect",
-          {
-            x: 6 + c * colW,
-            y: 6,
-            width: colW - 4,
-            height: rowH,
-            rx: "7",
-            fill: PALETTE.greenSoft,
-            stroke: PALETTE.green,
-            strokeWidth: "2"
-          }
-        ),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-          "text",
-          {
-            x: 6 + c * colW + (colW - 4) / 2,
-            y: 6 + rowH / 2 + 6,
-            textAnchor: "middle",
-            fontSize: "14",
-            fontWeight: "800",
-            fill: PALETTE.green,
-            children: hs[c] ?? ""
-          }
+    /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+      "svg",
+      {
+        viewBox: `0 0 ${W} ${H}`,
+        width: "100%",
+        role: "img",
+        "aria-label": "B\u1EA3ng s\u1ED1 li\u1EC7u",
+        children: hangVe.map(
+          (h, ri) => h.o.map((dong, c) => {
+            const x = mocX[c];
+            const rong = beRongCot[c] - 4;
+            const giua = x + rong / 2;
+            const yDongDau = h.y + h.cao / 2 - (dong.length - 1) * CAO_DONG / 2 + 5;
+            return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("g", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                "rect",
+                {
+                  x,
+                  y: h.y,
+                  width: rong,
+                  height: h.cao,
+                  rx: h.dauBang ? 7 : 6,
+                  fill: h.dauBang ? PALETTE.greenSoft : ri % 2 ? "#f8fafc" : PALETTE.paper,
+                  stroke: h.dauBang ? PALETTE.green : PALETTE.grid,
+                  strokeWidth: h.dauBang ? 2 : 1.6
+                }
+              ),
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+                "text",
+                {
+                  x: giua,
+                  y: yDongDau,
+                  textAnchor: "middle",
+                  fontSize: h.dauBang ? 14 : 15,
+                  fontWeight: h.dauBang ? 800 : 700,
+                  fill: h.dauBang ? PALETTE.green : PALETTE.ink,
+                  children: dong.map((ln, li) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("tspan", { x: giua, dy: li === 0 ? 0 : CAO_DONG, children: ln }, li))
+                }
+              )
+            ] }, `${ri}-${c}`);
+          })
         )
-      ] }, `h${c}`)),
-      rs.map((r, ri) => {
-        const cells = Array.isArray(r) ? r : [r];
-        return Array.from({ length: cols }).map((_, c) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("g", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-            "rect",
-            {
-              x: 6 + c * colW,
-              y: 6 + (ri + 1) * rowH,
-              width: colW - 4,
-              height: rowH,
-              rx: "6",
-              fill: ri % 2 ? "#f8fafc" : PALETTE.paper,
-              stroke: PALETTE.grid,
-              strokeWidth: "1.6"
-            }
-          ),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-            "text",
-            {
-              x: 6 + c * colW + (colW - 4) / 2,
-              y: 6 + (ri + 1) * rowH + rowH / 2 + 6,
-              textAnchor: "middle",
-              fontSize: "15",
-              fontWeight: "700",
-              fill: PALETTE.ink,
-              children: cells[c] ?? ""
-            }
-          )
-        ] }, `r${ri}c${c}`));
-      })
-    ] }),
+      }
+    ),
     label && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { style: caption, children: label })
   ] });
 }
@@ -30093,23 +30152,8 @@ var P = {
   violet: "#7c3aed",
   paper: "#ffffff"
 };
-var card2 = {
-  background: P.paper,
-  border: `2px solid ${P.grid}`,
-  borderRadius: 18,
-  padding: "14px 16px",
-  margin: "14px auto",
-  maxWidth: 560,
-  boxShadow: "0 2px 10px rgba(15,23,42,.06)"
-};
-var caption2 = {
-  display: "block",
-  textAlign: "center",
-  marginTop: 8,
-  fontSize: 14,
-  fontWeight: 700,
-  color: P.soft
-};
+var card2 = CARD_STYLE;
+var caption2 = CAPTION_STYLE;
 var num2 = (v, fb) => Number.isFinite(Number(v)) ? Number(v) : fb;
 var clamp2 = (n, lo, hi) => Math.min(hi, Math.max(lo, n));
 var PLANE = {
@@ -30422,23 +30466,8 @@ var P2 = {
   violetSoft: "#ede9fe",
   paper: "#ffffff"
 };
-var card3 = {
-  background: P2.paper,
-  border: `2px solid ${P2.grid}`,
-  borderRadius: 18,
-  padding: "14px 16px",
-  margin: "14px auto",
-  maxWidth: 560,
-  boxShadow: "0 2px 10px rgba(15,23,42,.06)"
-};
-var caption3 = {
-  display: "block",
-  textAlign: "center",
-  marginTop: 8,
-  fontSize: 14,
-  fontWeight: 700,
-  color: P2.soft
-};
+var card3 = CARD_STYLE;
+var caption3 = CAPTION_STYLE;
 var num3 = (v, fb) => Number.isFinite(Number(v)) ? Number(v) : fb;
 var clamp3 = (n, lo, hi) => Math.min(hi, Math.max(lo, n));
 var SEG = [P2.blue, P2.rose, P2.amber, P2.green, P2.violet];
@@ -30835,7 +30864,20 @@ function VisualBlocks({ content }) {
   if (isObj(content.barChart)) blocks.push(/* @__PURE__ */ (0, import_jsx_runtime4.jsx)(BarChart, { ...content.barChart }, "barChart"));
   if (isObj(content.pieChart)) blocks.push(/* @__PURE__ */ (0, import_jsx_runtime4.jsx)(PieChart, { ...content.pieChart }, "pieChart"));
   if (!blocks.length) return null;
-  return /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("div", { className: "visual-blocks", children: blocks });
+  return /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(
+    "div",
+    {
+      className: "visual-blocks",
+      style: {
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "stretch",
+        gap: 14
+      },
+      children: blocks
+    }
+  );
 }
 
 // client/src/data/grade1Data.js
@@ -61530,7 +61572,7 @@ var grade5Data = {
               content: {
                 text: "1. Ng\u01B0\u1EE3c chi\u1EC1u: Th\u1EDDi gian g\u1EB7p nhau = Kho\u1EA3ng c\xE1ch ban \u0111\u1EA7u : (v1 + v2) 2. C\xF9ng chi\u1EC1u (xe sau nhanh h\u01A1n \u0111u\u1ED5i xe tr\u01B0\u1EDBc): Th\u1EDDi gian \u0111u\u1ED5i k\u1ECBp = Kho\u1EA3ng c\xE1ch ban \u0111\u1EA7u : (v1 - v2)",
                 motionDiagram: {
-                  mode: "apart",
+                  mode: "toward",
                   distance: 150,
                   unit: "km",
                   a: { name: "Xe m\xE1y", speed: 45 },

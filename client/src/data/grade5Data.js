@@ -2484,7 +2484,7 @@ badge: "Kiến Thức Trọng Tâm",
               content: {
                 text: "1. Ngược chiều: Thời gian gặp nhau = Khoảng cách ban đầu : (v1 + v2) 2. Cùng chiều (xe sau nhanh hơn đuổi xe trước): Thời gian đuổi kịp = Khoảng cách ban đầu : (v1 - v2)",
                 motionDiagram: {
-                  mode: "apart",
+                  mode: "toward",
                   distance: 150,
                   unit: "km",
                   a: { name: "Xe máy", speed: 45 },

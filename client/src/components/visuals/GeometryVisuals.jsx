@@ -9,6 +9,8 @@
  * số có mặc định; KHÔNG bao giờ để trắng khung vì một giá trị lạ.
  */
 
+import { CARD_STYLE, CAPTION_STYLE } from "./visualTheme";
+
 const P = {
   ink: "#1e293b",
   soft: "#64748b",
@@ -25,24 +27,9 @@ const P = {
   paper: "#ffffff",
 };
 
-const card = {
-  background: P.paper,
-  border: `2px solid ${P.grid}`,
-  borderRadius: 18,
-  padding: "14px 16px",
-  margin: "14px auto",
-  maxWidth: 560,
-  boxShadow: "0 2px 10px rgba(15,23,42,.06)",
-};
-
-const caption = {
-  display: "block",
-  textAlign: "center",
-  marginTop: 8,
-  fontSize: 14,
-  fontWeight: 700,
-  color: P.soft,
-};
+// Kiểu dáng dùng chung — xem `visualTheme.js`.
+const card = CARD_STYLE;
+const caption = CAPTION_STYLE;
 
 const num = (v, fb) => (Number.isFinite(Number(v)) ? Number(v) : fb);
 const clamp = (n, lo, hi) => Math.min(hi, Math.max(lo, n));

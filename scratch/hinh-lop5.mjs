@@ -551,7 +551,10 @@ export const SPECS_LOP5 = {
   },
   "g5-c4-l6": {
     motionDiagram: {
-      mode: "apart",
+      // "Ngược chiều" trong toán chuyển động nghĩa là đi VỀ PHÍA NHAU rồi gặp nhau
+      // ⇒ phải là `toward`. Để `apart` thì hình vẽ "hai xe đi RA XA nhau", ngược hẳn
+      // với nội dung bài. Đã sửa sau khi XEM ẢNH CHỤP thật của slide.
+      mode: "toward",
       distance: 150,
       unit: "km",
       a: { name: "Xe máy", speed: 45 },
