@@ -45,3 +45,6 @@ supabase/.temp/
 # Documentation
 # (README.md is tracked)
 
+
+# Output tạm của công cụ kiểm thử
+scratch/portal-test-output.txt

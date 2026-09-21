@@ -309,217 +309,319 @@ export const TOPICS = {
   GRADE_1: [
     {
       id: "g1_count",
-      name: "Đếm hình & Nhận biết số (0-20)",
+      name: "Các số từ 0 đến 10",
       icon: "🔢",
-      chapter: "Chương 1",
-    },
-    {
-      id: "g1_add_sub_10",
-      name: "Phép cộng, phép trừ phạm vi 10",
-      icon: "➕",
-      chapter: "Chương 2",
+      chapter: "Chủ đề 1",
     },
     {
       id: "g1_compare",
-      name: "So sánh lớn hơn, bé hơn, bằng (>, <, =)",
+      name: "So sánh số trong phạm vi 10 (>, <, =)",
       icon: "⚖️",
-      chapter: "Chương 2",
+      chapter: "Chủ đề 1",
     },
     {
-      id: "g1_numbers_20",
-      name: "Các số trong phạm vi 20",
-      icon: "🔟",
-      chapter: "Chương 3",
+      id: "g1_shapes",
+      name: "Hình phẳng: vuông, tròn, tam giác, chữ nhật",
+      icon: "🔷",
+      chapter: "Chủ đề 2",
     },
     {
-      id: "g1_add_sub_20",
-      name: "Phép cộng, phép trừ phạm vi 20",
+      id: "g1_add_sub_10",
+      name: "Cộng, trừ trong phạm vi 10",
       icon: "➕",
-      chapter: "Chương 4",
+      chapter: "Chủ đề 3",
+    },
+    {
+      id: "g1_shapes_3d",
+      name: "Khối lập phương, khối hộp chữ nhật",
+      icon: "📦",
+      chapter: "Chủ đề 4",
+    },
+    {
+      id: "g1_position",
+      name: "Vị trí: trên – dưới, trước – sau, trái – phải",
+      icon: "🧭",
+      chapter: "Chủ đề 4",
+    },
+    {
+      id: "g1_review_hk1",
+      name: "Ôn tập học kì 1",
+      icon: "📖",
+      chapter: "Chủ đề 5",
     },
     {
       id: "g1_numbers_100",
       name: "Các số đến 100, chục và đơn vị",
       icon: "💯",
-      chapter: "Chương 5",
+      chapter: "Chủ đề 6",
     },
     {
-      id: "g1_shapes",
-      name: "Nhận biết hình phẳng & hình khối",
-      icon: "🔷",
-      chapter: "Chương 6",
+      id: "g1_compare_2digit",
+      name: "So sánh số có hai chữ số",
+      icon: "⚖️",
+      chapter: "Chủ đề 6",
+    },
+    {
+      id: "g1_length_cm",
+      name: "Độ dài và đo độ dài (xăng-ti-mét)",
+      icon: "📏",
+      chapter: "Chủ đề 7",
     },
     {
       id: "g1_add_sub_100",
-      name: "Cộng trừ không nhớ phạm vi 100",
+      name: "Cộng, trừ (không nhớ) trong phạm vi 100",
       icon: "🧮",
-      chapter: "Chương 7",
+      chapter: "Chủ đề 8",
     },
     {
       id: "g1_time_clock",
-      name: "Xem đồng hồ giờ đúng & Các ngày trong tuần",
+      name: "Xem giờ đúng, các ngày trong tuần",
       icon: "⏰",
-      chapter: "Chương 8",
-    },
-    {
-      id: "g1_shapes_3d",
-      name: "Làm quen với hình khối (Lập phương, Hộp CN)",
-      icon: "📦",
-      chapter: "Chương 9",
+      chapter: "Chủ đề 9",
     },
     {
       id: "g1_final_review",
       name: "Ôn tập cuối năm Lớp 1",
       icon: "🏆",
-      chapter: "Tổng hợp",
+      chapter: "Chủ đề 10",
     },
   ],
   GRADE_2: [
     {
       id: "g2_review_100",
-      name: "Ôn tập & Bổ sung (Tia số, liền trước, liền sau)",
+      name: "Ôn tập số đến 100, tia số, liền trước – liền sau",
       icon: "🔙",
-      chapter: "Chương 1",
-    },
-    {
-      id: "g2_add_sub_100",
-      name: "Cộng trừ có nhớ phạm vi 100",
-      icon: "🧮",
-      chapter: "Chương 2",
-    },
-    {
-      id: "g2_mul_2345",
-      name: "Bảng nhân 2 và Bảng nhân 5",
-      icon: "✖️",
-      chapter: "Chương 3",
-    },
-    {
-      id: "g2_div_2345",
-      name: "Bảng chia 2 và Bảng chia 5",
-      icon: "➗",
-      chapter: "Chương 4",
-    },
-    {
-      id: "g2_numbers_1000",
-      name: "Các số đến 1000 & So sánh số tròn trăm",
-      icon: "💯",
-      chapter: "Chương 5",
-    },
-    {
-      id: "g2_measure",
-      name: "Đo lường (kg, lít, dm, m, km)",
-      icon: "📏",
-      chapter: "Chương 6",
-    },
-    {
-      id: "g2_geometry",
-      name: "Đường gấp khúc, hình tứ giác, khối trụ, cầu",
-      icon: "📐",
-      chapter: "Chương 7",
-    },
-    {
-      id: "g2_add_sub_1000",
-      name: "Phép cộng, phép trừ trong phạm vi 1000",
-      icon: "➕",
-      chapter: "Chương 8",
+      chapter: "Chủ đề 1",
     },
     {
       id: "g2_components",
-      name: "Tìm thành phần phép tính (+, -, ×, ÷)",
+      name: "Thành phần của phép cộng, phép trừ",
       icon: "🔍",
-      chapter: "Chương 8",
+      chapter: "Chủ đề 1",
     },
     {
-      id: "g2_stats_prob",
-      name: "Biểu đồ tranh & Chắc chắn, có thể, không thể",
-      icon: "📊",
-      chapter: "Chương 9",
+      id: "g2_add_sub_20",
+      name: "Cộng, trừ qua 10 trong phạm vi 20",
+      icon: "➕",
+      chapter: "Chủ đề 2",
+    },
+    {
+      id: "g2_measure_weight",
+      name: "Ki-lô-gam và lít",
+      icon: "⚖️",
+      chapter: "Chủ đề 3",
+    },
+    {
+      id: "g2_add_sub_100",
+      name: "Cộng, trừ (có nhớ) trong phạm vi 100",
+      icon: "🧮",
+      chapter: "Chủ đề 4",
+    },
+    {
+      id: "g2_geometry",
+      name: "Điểm, đoạn thẳng, đường gấp khúc, hình tứ giác",
+      icon: "📐",
+      chapter: "Chủ đề 5",
     },
     {
       id: "g2_time_calendar",
-      name: "Xem đồng hồ (giờ, phút) & Lịch tháng",
-      icon: "📅",
-      chapter: "Chương 10",
+      name: "Ngày – giờ, giờ – phút, ngày – tháng",
+      icon: "🕐",
+      chapter: "Chủ đề 6",
+    },
+    {
+      id: "g2_review_hk1",
+      name: "Ôn tập học kì 1",
+      icon: "📖",
+      chapter: "Chủ đề 7",
+    },
+    {
+      id: "g2_mul_2345",
+      name: "Bảng nhân 2 và bảng nhân 5",
+      icon: "✖️",
+      chapter: "Chủ đề 8",
+    },
+    {
+      id: "g2_div_2345",
+      name: "Bảng chia 2 và bảng chia 5",
+      icon: "➗",
+      chapter: "Chủ đề 8",
+    },
+    {
+      id: "g2_shapes_3d",
+      name: "Khối trụ và khối cầu",
+      icon: "🥫",
+      chapter: "Chủ đề 9",
+    },
+    {
+      id: "g2_numbers_1000",
+      name: "Các số trong phạm vi 1 000",
+      icon: "💯",
+      chapter: "Chủ đề 10",
+    },
+    {
+      id: "g2_measure",
+      name: "Đề-xi-mét, mét, ki-lô-mét",
+      icon: "📏",
+      chapter: "Chủ đề 11",
+    },
+    {
+      id: "g2_money",
+      name: "Tiền Việt Nam",
+      icon: "🪙",
+      chapter: "Chủ đề 11",
+    },
+    {
+      id: "g2_add_sub_1000",
+      name: "Cộng, trừ trong phạm vi 1 000",
+      icon: "🔢",
+      chapter: "Chủ đề 12",
+    },
+    {
+      id: "g2_stats_prob",
+      name: "Biểu đồ tranh & khả năng xảy ra của sự kiện",
+      icon: "📊",
+      chapter: "Chủ đề 13",
     },
     {
       id: "g2_final_review",
       name: "Ôn tập cuối năm Lớp 2",
       icon: "🏆",
-      chapter: "Tổng hợp",
+      chapter: "Chủ đề 14",
     },
   ],
   GRADE_3: [
     {
       id: "g3_review_1000",
-      name: "Ôn tập & Bổ sung (Số đến 1 000)",
+      name: "Ôn tập số và cộng trừ trong phạm vi 1 000",
       icon: "🔙",
-      chapter: "Chương 1",
+      chapter: "Chủ đề 1",
+    },
+    {
+      id: "g3_mul_3_4",
+      name: "Bảng nhân 3 và bảng nhân 4",
+      icon: "✖️",
+      chapter: "Chủ đề 1",
+    },
+    {
+      id: "g3_div_3_4",
+      name: "Bảng chia 3 và bảng chia 4",
+      icon: "➗",
+      chapter: "Chủ đề 1",
     },
     {
       id: "g3_mul_6789",
       name: "Bảng nhân 6, 7, 8, 9",
       icon: "✖️",
-      chapter: "Chương 2",
-    },
-    {
-      id: "g3_fraction",
-      name: "Phân số đơn giản: Một phần mấy (1/2, 1/3...)",
-      icon: "🍰",
-      chapter: "Chương 2",
+      chapter: "Chủ đề 2",
     },
     {
       id: "g3_div_6789",
-      name: "Bảng chia 6, 7, 8, 9 & Phép chia có dư",
+      name: "Bảng chia 6, 7, 8, 9 và phép chia có dư",
       icon: "➗",
-      chapter: "Chương 3",
+      chapter: "Chủ đề 2",
+    },
+    {
+      id: "g3_fraction",
+      name: "Một phần mấy (1/2, 1/3, 1/4…)",
+      icon: "🍰",
+      chapter: "Chủ đề 2",
+    },
+    {
+      id: "g3_geometry_flat",
+      name: "Trung điểm, hình tròn, góc và góc vuông",
+      icon: "📐",
+      chapter: "Chủ đề 3",
     },
     {
       id: "g3_mul_div_multi",
-      name: "Nhân chia số 2, 3, 4 chữ số với số 1 chữ số",
+      name: "Nhân, chia số có hai, ba chữ số cho số có một chữ số",
       icon: "🧮",
-      chapter: "Chương 3",
-    },
-    {
-      id: "g3_numbers_100k",
-      name: "Các số đến 100 000 & Chữ số La Mã",
-      icon: "🏛️",
-      chapter: "Chương 4",
-    },
-    {
-      id: "g3_expressions",
-      name: "Biểu thức số & Tính giá trị biểu thức",
-      icon: "🔢",
-      chapter: "Chương 5",
-    },
-    {
-      id: "g3_perimeter_area",
-      name: "Chu vi & Diện tích HCN, hình vuông (cm²)",
-      icon: "📐",
-      chapter: "Chương 6",
-    },
-    {
-      id: "g3_measure_units",
-      name: "Đơn vị mm, gam, ml, nhiệt độ & Tiền Việt Nam",
-      icon: "🪙",
-      chapter: "Chương 7",
+      chapter: "Chủ đề 4",
     },
     {
       id: "g3_word_problems",
-      name: "Bài toán giải bằng 2 bước tính",
+      name: "Bài toán giải bằng hai bước tính",
       icon: "💡",
-      chapter: "Chương 8",
+      chapter: "Chủ đề 4",
+    },
+    {
+      id: "g3_measure_units",
+      name: "Mi-li-mét, gam, mi-li-lít, nhiệt độ (độ C)",
+      icon: "🌡️",
+      chapter: "Chủ đề 5",
+    },
+    {
+      id: "g3_expressions",
+      name: "Biểu thức số và thứ tự thực hiện phép tính",
+      icon: "🔢",
+      chapter: "Chủ đề 6",
+    },
+    {
+      id: "g3_review_hk1",
+      name: "Ôn tập học kì 1",
+      icon: "📖",
+      chapter: "Chủ đề 7",
+    },
+    {
+      id: "g3_numbers_10k",
+      name: "Các số đến 10 000",
+      icon: "💯",
+      chapter: "Chủ đề 8",
+    },
+    {
+      id: "g3_roman",
+      name: "Chữ số La Mã",
+      icon: "🏛️",
+      chapter: "Chủ đề 8",
+    },
+    {
+      id: "g3_perimeter_area",
+      name: "Chu vi, diện tích hình chữ nhật và hình vuông",
+      icon: "📏",
+      chapter: "Chủ đề 9",
+    },
+    {
+      id: "g3_add_sub_10k",
+      name: "Cộng, trừ trong phạm vi 10 000",
+      icon: "➕",
+      chapter: "Chủ đề 10",
+    },
+    {
+      id: "g3_numbers_100k",
+      name: "Các số đến 100 000",
+      icon: "🔢",
+      chapter: "Chủ đề 11",
+    },
+    {
+      id: "g3_add_sub_100k",
+      name: "Cộng, trừ trong phạm vi 100 000",
+      icon: "➖",
+      chapter: "Chủ đề 12",
+    },
+    {
+      id: "g3_time_money",
+      name: "Xem đồng hồ, tháng – năm, tiền Việt Nam",
+      icon: "💵",
+      chapter: "Chủ đề 13",
+    },
+    {
+      id: "g3_mul_div_100k",
+      name: "Nhân, chia số có năm chữ số cho số có một chữ số",
+      icon: "✖️",
+      chapter: "Chủ đề 14",
     },
     {
       id: "g3_stats_prob",
-      name: "Bảng số liệu & Khả năng xảy ra sự kiện",
+      name: "Bảng số liệu & khả năng xảy ra của sự kiện",
       icon: "📊",
-      chapter: "Chương 9",
+      chapter: "Chủ đề 15",
     },
     {
       id: "g3_final_review",
       name: "Ôn tập cuối năm Lớp 3",
       icon: "🏆",
-      chapter: "Tổng hợp",
+      chapter: "Chủ đề 16",
     },
   ],
   GRADE_4: [
@@ -531,7 +633,7 @@ export const TOPICS = {
     },
     {
       id: "g4_measures_stats",
-      name: "Yến, tạ, tấn; dm², m², km²; thế kỉ & Trung bình cộng",
+      name: "Yến, tạ, tấn; giây, thế kỉ; trung bình cộng; biểu đồ cột",
       icon: "📊",
       chapter: "Chương 1",
     },
@@ -542,9 +644,27 @@ export const TOPICS = {
       chapter: "Chương 2",
     },
     {
+      id: "g4_geometry_angles",
+      name: "Góc nhọn, góc tù, góc bẹt; vuông góc, song song",
+      icon: "📐",
+      chapter: "Chương 2",
+    },
+    {
+      id: "g4_area_units",
+      name: "Đề-xi-mét vuông và mét vuông",
+      icon: "🟦",
+      chapter: "Chương 2",
+    },
+    {
       id: "g4_mul_div_natural",
-      name: "Nhân, chia số nhiều chữ số & Nhân nhẩm với 11",
+      name: "Nhân, chia số nhiều chữ số; nhân nhẩm với 11",
       icon: "✖️",
+      chapter: "Chương 2",
+    },
+    {
+      id: "g4_sum_diff",
+      name: "Tìm hai số khi biết Tổng và Hiệu",
+      icon: "⚖️",
       chapter: "Chương 2",
     },
     {
@@ -554,52 +674,64 @@ export const TOPICS = {
       chapter: "Chương 3",
     },
     {
+      id: "g4_km2",
+      name: "Ki-lô-mét vuông",
+      icon: "🗺️",
+      chapter: "Chương 3",
+    },
+    {
       id: "g4_geometry",
-      name: "Góc nhọn/tù/bẹt & Diện tích hình bình hành, hình thoi",
+      name: "Diện tích hình bình hành và hình thoi",
       icon: "📐",
       chapter: "Chương 3",
     },
     {
       id: "g4_fractions_basic",
-      name: "Phân số bằng nhau, rút gọn, quy đồng & so sánh",
+      name: "Phân số: rút gọn, quy đồng, so sánh",
       icon: "🍰",
       chapter: "Chương 4",
     },
     {
       id: "g4_fractions_calc",
-      name: "Bốn phép tính phân số (+, -, ×, ÷)",
+      name: "Bốn phép tính với phân số (+, -, ×, ÷)",
       icon: "🧮",
       chapter: "Chương 4",
     },
     {
-      id: "g4_sum_diff",
-      name: "Tìm hai số khi biết Tổng và Hiệu",
-      icon: "⚖️",
+      id: "g4_sum_ratio",
+      name: "Tìm hai số khi biết Tổng – Tỉ, Hiệu – Tỉ",
+      icon: "💡",
       chapter: "Chương 5",
     },
     {
-      id: "g4_sum_ratio",
-      name: "Tìm hai số khi biết Tổng - Tỉ, Hiệu - Tỉ",
-      icon: "💡",
+      id: "g4_map_scale",
+      name: "Tỉ lệ bản đồ và ứng dụng",
+      icon: "🗺️",
       chapter: "Chương 5",
     },
     {
       id: "g4_final_review",
       name: "Ôn tập cuối năm Lớp 4",
       icon: "🏆",
-      chapter: "Tổng hợp",
+      chapter: "Chương 6",
     },
   ],
   GRADE_5: [
     {
       id: "g5_fractions_mixed",
-      name: "Hỗn số & Bài toán tỉ lệ thuận, nghịch",
+      name: "Ôn tập phân số, hỗn số; toán tỉ lệ thuận – nghịch",
       icon: "🍰",
       chapter: "Chương 1",
     },
     {
+      id: "g5_area_units",
+      name: "Đề-ca-mét vuông, héc-tô-mét vuông, héc-ta",
+      icon: "🟩",
+      chapter: "Chương 1",
+    },
+    {
       id: "g5_decimals_basic",
-      name: "Số thập phân, cấu tạo hàng & Đổi đơn vị đo",
+      name: "Số thập phân: cấu tạo hàng, đổi đơn vị đo",
       icon: "🔢",
       chapter: "Chương 2",
     },
@@ -611,31 +743,37 @@ export const TOPICS = {
     },
     {
       id: "g5_percentages",
-      name: "Tỉ số phần trăm & 3 bài toán tỉ số %",
+      name: "Tỉ số phần trăm và ba bài toán tỉ số phần trăm",
       icon: "🏷️",
       chapter: "Chương 2",
     },
     {
       id: "g5_geometry_plane",
-      name: "Diện tích tam giác, hình thang, hình tròn",
+      name: "Diện tích hình tam giác, hình thang, hình tròn",
       icon: "📐",
       chapter: "Chương 3",
     },
     {
       id: "g5_geometry_solid",
-      name: "Diện tích & Thể tích hình hộp chữ nhật, lập phương",
+      name: "Diện tích xung quanh, toàn phần và thể tích",
       icon: "📦",
       chapter: "Chương 3",
     },
     {
+      id: "g5_charts_stats",
+      name: "Biểu đồ hình quạt và đọc số liệu",
+      icon: "📊",
+      chapter: "Chương 3",
+    },
+    {
       id: "g5_time_units",
-      name: "Đơn vị thời gian & Cộng trừ nhân chia thời gian",
+      name: "Đơn vị đo thời gian và phép tính thời gian",
       icon: "⏳",
       chapter: "Chương 4",
     },
     {
       id: "g5_motion_basic",
-      name: "Toán chuyển động đều (v, s, t)",
+      name: "Vận tốc, quãng đường, thời gian",
       icon: "🏎️",
       chapter: "Chương 4",
     },
@@ -646,16 +784,10 @@ export const TOPICS = {
       chapter: "Chương 4",
     },
     {
-      id: "g5_charts_stats",
-      name: "Biểu đồ hình quạt & Bài toán thực tế chuyển cấp",
-      icon: "📊",
-      chapter: "Chương 5",
-    },
-    {
       id: "g5_final_review",
-      name: "Ôn tập cuối năm & Thi chuyển cấp",
+      name: "Luyện đề chuyển cấp",
       icon: "🏆",
-      chapter: "Tổng hợp",
+      chapter: "Chương 5",
     },
   ],
 };
@@ -700,7 +832,25 @@ function generateOptions(correctAnswer, range = 5, isString = false) {
 
 const EMOJIS = ["🍎", "🍊", "⭐", "🎈", "🚗", "🐱", "🐶", "🌸", "🍭", "⚽"];
 
-function buildQuestion(grade = 1, topicId = null) {
+/**
+ * Rút ngẫu nhiên một khuôn khác RỒI sinh câu từ khuôn đó.
+ *
+ * Dùng cho hai việc:
+ *  1. Các chủ đề "Ôn tập …" — ôn tập nghĩa là trộn kiến thức cả lớp, chứ không phải
+ *     một dạng câu riêng. Trước đây các chủ đề này KHÔNG có nhánh `if` nên rơi xuống
+ *     câu dự phòng cố định ⇒ bé nhận đúng một câu lặp lại mãi.
+ *  2. Lưới an toàn cuối cùng của `buildQuestion` (xem cuối hàm).
+ *
+ * `depth` chặn đệ quy vô hạn: nếu cả lớp đều thiếu nhánh `if` thì vẫn phải dừng.
+ */
+function pickFromGrade(grade, topicIds, depth = 0) {
+  const ids = topicIds?.length
+    ? topicIds
+    : (TOPICS[`GRADE_${grade}`] || TOPICS.GRADE_1).map((t) => t.id);
+  return buildQuestion(grade, ids[randInt(0, ids.length - 1)], depth);
+}
+
+function buildQuestion(grade = 1, topicId = null, depth = 0) {
   const gNum = Number(grade);
   let topic = topicId;
   if (!topic) {
@@ -973,28 +1123,68 @@ function buildQuestion(grade = 1, topicId = null) {
   }
 
   if (topic === "g2_time_calendar") {
-    const days = [30, 31, 28, 31];
-    return {
-      question: "Một tuần lễ có bao nhiêu ngày?",
-      options: shuffle([7, 5, 6, 8]),
-      answer: 7,
-      hint: "Từ Thứ Hai đến Chủ Nhật có bao nhiêu ngày?",
-      explanation: "Một tuần lễ có đúng 7 ngày.",
-    };
+    const drafts = [
+      () => ({
+        question: "Một tuần lễ có bao nhiêu ngày?",
+        options: shuffle([7, 5, 6, 8]),
+        answer: 7,
+        hint: "Từ Thứ Hai đến Chủ Nhật có bao nhiêu ngày?",
+        explanation: "Một tuần lễ có đúng 7 ngày.",
+      }),
+      () => {
+        const hour = randInt(1, 12);
+        const minute = randInt(0, 11) * 5;
+        const read = minute === 0 ? `${hour} giờ` : `${hour} giờ ${minute} phút`;
+        return {
+          question: `Đồng hồ có kim ngắn qua số ${hour}, kim dài chỉ số ${minute / 5}. Hỏi lúc đó là mấy giờ?`,
+          options: shuffle([
+            read,
+            `${(hour % 12) + 1} giờ ${minute} phút`,
+            `${hour} giờ ${(minute + 5) % 60} phút`,
+            `${hour === 1 ? 12 : hour - 1} giờ ${minute} phút`,
+          ]),
+          answer: read,
+          hint: "Kim dài chỉ số nào thì lấy số đó nhân với 5 để ra số phút!",
+          explanation: `Kim dài chỉ số ${minute / 5} ⇒ ${minute / 5} × 5 = ${minute} phút. Vậy là ${read}.`,
+        };
+      },
+      () => {
+        const days = [28, 29, 30, 31][randInt(0, 3)];
+        const month = randInt(1, 12);
+        return {
+          question: `Tháng ${month} có thể có bao nhiêu ngày? (chọn đáp án có thể đúng)`,
+          options: shuffle([28, 29, 30, 31]),
+          answer: days,
+          hint: "Tháng 2 có 28 hoặc 29 ngày; tháng 4, 6, 9, 11 có 30 ngày; các tháng còn lại có 31 ngày.",
+          explanation: `Tháng ${month} có thể có ${days} ngày.`,
+        };
+      },
+    ];
+    return drafts[randInt(0, drafts.length - 1)]();
   }
 
   if (topic === "g2_stats_prob") {
+    const suKien = [
+      { q: "Mặt trời mọc ở hướng Đông", a: "Chắc chắn xảy ra" },
+      { q: "Ngày mai trời có mưa", a: "Có thể xảy ra" },
+      { q: "Tháng Hai có 32 ngày", a: "Không thể xảy ra" },
+      { q: "Một tuần lễ có 7 ngày", a: "Chắc chắn xảy ra" },
+      { q: "Tung một con xúc xắc được mặt 7 chấm", a: "Không thể xảy ra" },
+      { q: "Lấy được một viên bi đỏ khi hộp có cả bi đỏ và bi xanh", a: "Có thể xảy ra" },
+      { q: "Bé lớn lên thêm 1 tuổi sau một năm", a: "Chắc chắn xảy ra" },
+      { q: "Tháng Sáu có 31 ngày", a: "Không thể xảy ra" },
+    ];
+    const chon = suKien[randInt(0, suKien.length - 1)];
     return {
-      question: "Mặt trời mọc ở hướng Đông là sự kiện:",
+      question: `Sự kiện "${chon.q}" là sự kiện:`,
       options: shuffle([
         "Chắc chắn xảy ra",
         "Có thể xảy ra",
         "Không thể xảy ra",
       ]),
-      answer: "Chắc chắn xảy ra",
-      hint: "Mỗi buổi sáng mặt trời luôn luôn mọc ở hướng Đông!",
-      explanation:
-        "Mặt trời mọc ở hướng Đông là một quy luật tự nhiên chắc chắn xảy ra.",
+      answer: chon.a,
+      hint: "Hỏi xem sự việc đó luôn xảy ra, không bao giờ xảy ra, hay tuỳ lúc?",
+      explanation: `"${chon.q}" là sự kiện ${chon.a.toLowerCase()}.`,
     };
   }
 
@@ -1146,17 +1336,25 @@ function buildQuestion(grade = 1, topicId = null) {
   }
 
   if (topic === "g3_stats_prob") {
+    const tinhHuong = [
+      { q: "Trong hộp có 5 viên bi đỏ và 5 viên bi xanh, không nhìn vào hộp bốc 1 viên thì bốc được bi đỏ", a: "Có thể xảy ra" },
+      { q: "Trong hộp chỉ có bi đỏ, bốc 1 viên thì bốc được bi đỏ", a: "Chắc chắn xảy ra" },
+      { q: "Trong hộp chỉ có bi đỏ, bốc 1 viên thì bốc được bi xanh", a: "Không thể xảy ra" },
+      { q: "Cây cao thêm sau một năm", a: "Chắc chắn xảy ra" },
+      { q: "Ngày mai bé được điểm 10", a: "Có thể xảy ra" },
+      { q: "Một tuần lễ có 10 ngày", a: "Không thể xảy ra" },
+    ];
+    const chon = tinhHuong[randInt(0, tinhHuong.length - 1)];
     return {
-      question:
-        "Trong hộp có 5 viên bi đỏ và 5 viên bi xanh. Không nhìn vào hộp, bốc 1 viên bi thì khả năng bốc được bi đỏ là:",
+      question: `${chon.q}. Đó là sự kiện:`,
       options: shuffle([
-        "Có thể xảy ra",
         "Chắc chắn xảy ra",
+        "Có thể xảy ra",
         "Không thể xảy ra",
       ]),
-      answer: "Có thể xảy ra",
-      hint: "Vì có cả bi đỏ và bi xanh nên ta có thể bốc trúng bi đỏ hoặc xanh!",
-      explanation: "Đây là sự kiện có thể xảy ra.",
+      answer: chon.a,
+      hint: "Tự hỏi: việc đó luôn xảy ra, không bao giờ xảy ra, hay tuỳ lúc?",
+      explanation: `Đó là sự kiện ${chon.a.toLowerCase()}.`,
     };
   }
 
@@ -1595,23 +1793,865 @@ function buildQuestion(grade = 1, topicId = null) {
   }
 
   if (topic === "g5_charts_stats") {
+    const mauSac = randInt(2, 5);
+    const phanTram = [50, 25, 20, 40][randInt(0, 3)];
+    const rutGon = ["1/2", "1/4", "1/5", "2/5"][[50, 25, 20, 40].indexOf(phanTram)];
     return {
-      question:
-        "Biểu đồ hình quạt biểu thị 100% học sinh một trường. Nếu góc quạt môn Toán chiếm 25%, số học sinh thích môn Toán tương ứng với phân số nào?",
-      options: shuffle(["1/4", "1/2", "1/5", "3/4"]),
-      answer: "1/4",
-      hint: "25% = 25/100 = 1/4!",
-      explanation: "25% rút gọn bằng 1/4.",
+      question: `Biểu đồ hình quạt biểu thị 100% học sinh một trường. Nếu số học sinh thích môn Toán chiếm ${phanTram}% thì tương ứng với phân số nào?`,
+      options: shuffle(["1/2", "1/4", "1/5", "2/5", "3/5", "1/10"]).slice(0, 4),
+      answer: rutGon,
+      hint: `${phanTram}% = ${phanTram}/100, rồi rút gọn phân số đó!`,
+      explanation: `${phanTram}% = ${phanTram}/100 = ${rutGon}. (Biểu đồ có ${mauSac} phần.)`,
     };
   }
 
-  // Fallback default question
+  // ══════════════════════════════════════════════════════════════════════════
+  // CÁC KHUÔN BỔ SUNG — viết 2026-09-22 sau khi ĐO được 13/57 khuôn HỎNG.
+  //
+  // Nhóm A: 9 khuôn THIẾU nhánh `if` ⇒ rơi xuống câu dự phòng cố định
+  //   ("Tính: 10 + 5 = ?") ⇒ bé nhận ĐÚNG một câu lặp lại mãi, không lỗi nào hiện ra.
+  // Nhóm B: 4 khuôn có nhánh nhưng ngân hàng chỉ có MỘT biến thể (đã sửa tại chỗ).
+  //
+  // Các khuôn "Ôn tập …" ủy quyền cho `pickFromGrade`: ôn tập là trộn kiến thức của
+  // CẢ LỚP, không phải một dạng câu riêng. Danh sách id truyền vào chỉ gồm những
+  // khuôn CHẮC CHẮN có nhánh, để không bao giờ đệ quy về chính chỗ dự phòng.
+  //
+  // ⚠️ Đặt ở CUỐI hàm là có chủ ý: mỗi nhánh đều `return`, nên vị trí không đổi
+  //   kết quả, và tránh phải chèn vào giữa 5 khối lớp đang có sẵn.
+  // ══════════════════════════════════════════════════════════════════════════
+
+  // ── Lớp 1 ───────────────────────────────────────────────────────────────
+  // Nhánh `g1_numbers_20` GIỮ LẠI dù chủ đề đã bỏ khỏi danh sách chọn: bé nào từng
+  // làm dạng này sẽ còn thấy lại trong Sổ Tay Ôn Bài Sai.
+  if (topic === "g1_numbers_20") {
+    const n = randInt(11, 20);
+    const chuc = Math.floor(n / 10);
+    const dv = n % 10;
+    return {
+      question: `Số ${n} gồm mấy chục và mấy đơn vị?`,
+      options: shuffle([
+        `${chuc} chục và ${dv} đơn vị`,
+        `${dv} chục và ${chuc} đơn vị`,
+        `${chuc} chục và ${dv === 9 ? 8 : dv + 1} đơn vị`,
+        `2 chục và ${dv} đơn vị`,
+      ]),
+      answer: `${chuc} chục và ${dv} đơn vị`,
+      hint: "Số từ 11 đến 20 luôn gồm 1 chục và một số đơn vị!",
+      explanation: `${n} = 10 + ${dv}, tức là ${chuc} chục và ${dv} đơn vị.`,
+    };
+  }
+
+  if (topic === "g1_shapes_3d") {
+    const cauHoi = [
+      {
+        q: "Đồ vật nào có dạng KHỐI LẬP PHƯƠNG?",
+        a: "con xúc xắc 🎲",
+        sai: ["quả bóng ⚽", "lon nước 🥫", "cái đĩa 🍽️"],
+      },
+      {
+        q: "Đồ vật nào có dạng KHỐI HỘP CHỮ NHẬT?",
+        a: "hộp sữa 🥛",
+        sai: ["quả bóng ⚽", "viên bi 🔴", "cái nón 🧢"],
+      },
+      {
+        q: "Khối lập phương có mấy mặt?",
+        a: "6 mặt",
+        sai: ["4 mặt", "8 mặt", "12 mặt"],
+      },
+      {
+        q: "Khối hộp chữ nhật có mấy mặt?",
+        a: "6 mặt",
+        sai: ["4 mặt", "5 mặt", "8 mặt"],
+      },
+    ];
+    const chon = cauHoi[randInt(0, cauHoi.length - 1)];
+    return {
+      question: chon.q,
+      options: shuffle([chon.a, ...chon.sai]),
+      answer: chon.a,
+      hint: "Khối lập phương có 6 mặt đều là hình vuông; khối hộp chữ nhật có 6 mặt là hình chữ nhật!",
+      explanation: `Đáp án đúng là: ${chon.a}.`,
+    };
+  }
+
+  if (topic === "g1_final_review")
+    return pickFromGrade(
+      1,
+      [
+        "g1_count",
+        "g1_add_sub_10",
+        "g1_compare",
+        "g1_numbers_100",
+        "g1_add_sub_100",
+        "g1_shapes",
+        "g1_time_clock",
+      ],
+      depth,
+    );
+
+  // ── Lớp 2 ───────────────────────────────────────────────────────────────
+  if (topic === "g2_review_100") {
+    const n = randInt(10, 99);
+    const kieu = randInt(0, 2);
+    if (kieu === 0)
+      return {
+        question: `Số liền sau của ${n} là số nào?`,
+        options: generateOptions(n + 1, 3),
+        answer: n + 1,
+        hint: "Số liền sau thì cộng thêm 1!",
+        explanation: `Số liền sau của ${n} là ${n + 1}.`,
+      };
+    if (kieu === 1)
+      return {
+        question: `Số liền trước của ${n} là số nào?`,
+        options: generateOptions(n - 1, 3),
+        answer: n - 1,
+        hint: "Số liền trước thì bớt đi 1!",
+        explanation: `Số liền trước của ${n} là ${n - 1}.`,
+      };
+    const soSanh = [">", "<", "="][randInt(0, 2)];
+    return {
+      question: `Điền dấu thích hợp: ${n} ... ${soSanh === ">" ? n - randInt(1, 9) : soSanh === "<" ? n + randInt(1, 9) : n}`,
+      options: [">", "<", "="],
+      answer: soSanh,
+      hint: "Mũi tên nhọn luôn chĩa về phía số bé hơn!",
+      explanation: "So hàng chục trước, bằng nhau thì so hàng đơn vị.",
+    };
+  }
+
+  if (topic === "g2_add_sub_20") {
+    const isAdd = Math.random() > 0.5;
+    if (isAdd) {
+      const a = randInt(6, 9);
+      const b = randInt(11 - a, 9);
+      const ans = a + b;
+      return {
+        question: `Tính nhẩm: ${a} + ${b} = ?`,
+        options: generateOptions(ans, 4),
+        answer: ans,
+        hint: `Tách ${b} = ${10 - a} + ${b - (10 - a)}, rồi cộng cho đủ 10 trước!`,
+        explanation: `${a} + ${b} = ${ans} (cộng qua 10).`,
+      };
+    }
+    const a = randInt(12, 18);
+    const b = randInt(3, 9);
+    const ans = a - b;
+    return {
+      question: `Tính nhẩm: ${a} - ${b} = ?`,
+      options: generateOptions(ans, 4),
+      answer: ans,
+      hint: `Tách ${b} để trừ cho tròn 10 trước, rồi trừ nốt phần còn lại!`,
+      explanation: `${a} - ${b} = ${ans} (trừ qua 10).`,
+    };
+  }
+
+  if (topic === "g2_measure_weight") {
+    const kieu = randInt(0, 2);
+    if (kieu === 0) {
+      const kg = randInt(2, 9);
+      return {
+        question: `Bao gạo nặng ${kg} kg, bớt đi 1 kg thì còn bao nhiêu ki-lô-gam?`,
+        options: generateOptions(kg - 1, 2),
+        answer: kg - 1,
+        hint: "Bớt đi thì làm phép trừ!",
+        explanation: `${kg} - 1 = ${kg - 1} kg.`,
+      };
+    }
+    if (kieu === 1) {
+      const l = randInt(3, 9);
+      return {
+        question: `Can có ${l} lít nước, rót thêm ${randInt(1, 3)} lít nữa. Can có tất cả bao nhiêu lít?`,
+        options: generateOptions(l + 2, 2),
+        answer: l + 2,
+        hint: "Rót thêm thì làm phép cộng!",
+        explanation: `Đơn vị đo dung tích là lít.`,
+      };
+    }
+    return {
+      question: "Đơn vị nào dùng để đo KHỐI LƯỢNG?",
+      options: shuffle(["ki-lô-gam (kg)", "lít (l)", "xăng-ti-mét (cm)", "giờ"]),
+      answer: "ki-lô-gam (kg)",
+      hint: "Khối lượng là nặng nhẹ; dung tích là nhiều ít chất lỏng.",
+      explanation: "Đo khối lượng bằng kg; đo dung tích bằng lít.",
+    };
+  }
+
+  if (topic === "g2_review_hk1")
+    return pickFromGrade(
+      2,
+      [
+        "g2_review_100",
+        "g2_add_sub_20",
+        "g2_add_sub_100",
+        "g2_geometry",
+        "g2_time_calendar",
+        "g2_components",
+      ],
+      depth,
+    );
+
+  if (topic === "g2_shapes_3d") {
+    const cauHoi = [
+      { q: "Vật nào có dạng KHỐI TRỤ?", a: "lon nước 🥫", sai: ["quả bóng ⚽", "con xúc xắc 🎲", "quyển sách 📕"] },
+      { q: "Vật nào có dạng KHỐI CẦU?", a: "quả bóng ⚽", sai: ["lon nước 🥫", "hộp sữa 🥛", "cái hộp 📦"] },
+      { q: "Khối trụ có hai mặt đáy là hình gì?", a: "hình tròn", sai: ["hình vuông", "hình tam giác", "hình chữ nhật"] },
+      { q: "Quả địa cầu 🌍 có dạng khối gì?", a: "khối cầu", sai: ["khối trụ", "khối lập phương", "khối hộp chữ nhật"] },
+    ];
+    const chon = cauHoi[randInt(0, cauHoi.length - 1)];
+    return {
+      question: chon.q,
+      options: shuffle([chon.a, ...chon.sai]),
+      answer: chon.a,
+      hint: "Khối trụ lăn được và có hai đáy tròn; khối cầu tròn xoe như quả bóng.",
+      explanation: `Đáp án đúng là: ${chon.a}.`,
+    };
+  }
+
+  if (topic === "g2_money") {
+    const kieu = randInt(0, 3);
+    if (kieu === 0) {
+      const t = [10, 20, 50][randInt(0, 2)];
+      return {
+        question: `Tờ tiền ${t} 000 đồng đổi được mấy tờ 10 000 đồng?`,
+        options: generateOptions(t / 10, 2),
+        answer: t / 10,
+        hint: "Lấy số tiền lớn chia cho 10 000!",
+        explanation: `${t} 000 : 10 000 = ${t / 10} tờ.`,
+      };
+    }
+    if (kieu === 1) {
+      const a = randInt(2, 5) * 5000;
+      const b = randInt(2, 5) * 5000;
+      return {
+        question: `Một hộp bút giá ${a} đồng, một quyển vở giá ${b} đồng. Mua cả hai hết bao nhiêu tiền?`,
+        options: generateOptions(a + b, 5000),
+        answer: a + b,
+        hint: "Mua cả hai thì cộng hai số tiền lại!",
+        explanation: `${a} + ${b} = ${a + b} đồng.`,
+      };
+    }
+    if (kieu === 2) {
+      const tong = randInt(4, 10) * 5000;
+      const gia = randInt(1, 3) * 5000;
+      return {
+        question: `Bé có ${tong} đồng, mua quyển vở hết ${gia} đồng. Bé còn lại bao nhiêu tiền?`,
+        options: generateOptions(tong - gia, 5000),
+        answer: tong - gia,
+        hint: "Còn lại thì làm phép trừ!",
+        explanation: `${tong} - ${gia} = ${tong - gia} đồng.`,
+      };
+    }
+    return {
+      question: "Đơn vị tiền của Việt Nam là gì?",
+      options: shuffle(["đồng", "đô-la", "yên", "nhân dân tệ"]),
+      answer: "đồng",
+      hint: "Trên mỗi tờ tiền Việt Nam đều ghi chữ “đồng”!",
+      explanation: "Đơn vị tiền tệ của Việt Nam là ĐỒNG.",
+    };
+  }
+
+  if (topic === "g2_final_review")
+    return pickFromGrade(
+      2,
+      [
+        "g2_review_100",
+        "g2_components",
+        "g2_add_sub_20",
+        "g2_measure_weight",
+        "g2_add_sub_100",
+        "g2_geometry",
+        "g2_time_calendar",
+        "g2_mul_2345",
+        "g2_div_2345",
+        "g2_shapes_3d",
+        "g2_numbers_1000",
+        "g2_measure",
+        "g2_money",
+        "g2_add_sub_1000",
+        "g2_stats_prob",
+      ],
+      depth,
+    );
+
+  // ── Lớp 3 ───────────────────────────────────────────────────────────────
+  // 🔴 Đây là hai khuôn mà chủ app đã phát hiện thiếu: bảng nhân/chia 3 và 4 thuộc
+  // LỚP 3 (chủ đề 1), không phải LỚP 2. Trước đây phần Luyện tập lớp 3 chỉ có bảng
+  // 6, 7, 8, 9 nên bé lớp 3 không có chỗ luyện bảng 3 và 4.
+  if (topic === "g3_mul_3_4") {
+    const t = [3, 4][randInt(0, 1)];
+    const m = randInt(1, 10);
+    const ans = t * m;
+    return {
+      question: `Tính nhẩm: ${t} × ${m} = ?`,
+      options: generateOptions(ans, t * 2),
+      answer: ans,
+      hint: `Đếm thêm ${t} liên tiếp ${m} lần: ${Array.from(
+        { length: Math.min(m, 4) },
+        (_, i) => t * (i + 1),
+      ).join(", ")}${m > 4 ? ", …" : ""}`,
+      explanation: `${t} × ${m} = ${ans}.`,
+    };
+  }
+
+  if (topic === "g3_div_3_4") {
+    const d = [3, 4][randInt(0, 1)];
+    const q = randInt(2, 10);
+    const dividend = d * q;
+    return {
+      question: `Tính nhẩm: ${dividend} : ${d} = ?`,
+      options: generateOptions(q, 2),
+      answer: q,
+      hint: `${d} nhân mấy thì bằng ${dividend}?`,
+      explanation: `${dividend} : ${d} = ${q} (vì ${d} × ${q} = ${dividend}).`,
+    };
+  }
+
+  if (topic === "g3_geometry_flat") {
+    if (Math.random() > 0.5) {
+      const doan = randInt(6, 20);
+      const dat = Math.random() > 0.5;
+      return {
+        question: `Đoạn thẳng AB dài ${doan} cm. M là trung điểm của AB. Hỏi AM dài bao nhiêu xăng-ti-mét?`,
+        options: generateOptions(doan / 2, 3),
+        answer: doan / 2,
+        hint: "Trung điểm chia đoạn thẳng thành hai phần bằng nhau!",
+        explanation: `AM = MB = ${doan} : 2 = ${doan / 2} cm${dat ? "" : ""}.`,
+      };
+    }
+    const goc = [
+      { q: "Góc bé hơn góc vuông gọi là gì?", a: "góc nhọn", sai: ["góc tù", "góc bẹt", "góc vuông"] },
+      { q: "Góc lớn hơn góc vuông và bé hơn góc bẹt gọi là gì?", a: "góc tù", sai: ["góc nhọn", "góc vuông", "góc bẹt"] },
+      { q: "Góc bằng hai góc vuông gọi là gì?", a: "góc bẹt", sai: ["góc nhọn", "góc tù", "góc vuông"] },
+    ];
+    const chon = goc[randInt(0, goc.length - 1)];
+    return {
+      question: chon.q,
+      options: shuffle([chon.a, ...chon.sai]),
+      answer: chon.a,
+      hint: "Góc vuông tham chiếu là góc của cạnh ô vuông trong vở!",
+      explanation: `Đáp án đúng: ${chon.a}.`,
+    };
+  }
+
+  if (topic === "g3_review_hk1")
+    return pickFromGrade(
+      3,
+      [
+        "g3_review_1000",
+        "g3_mul_3_4",
+        "g3_div_3_4",
+        "g3_mul_6789",
+        "g3_div_6789",
+        "g3_fraction",
+        "g3_mul_div_multi",
+        "g3_measure_units",
+        "g3_expressions",
+      ],
+      depth,
+    );
+
+  if (topic === "g3_numbers_10k") {
+    const n = randInt(1000, 9999);
+    const nghin = Math.floor(n / 1000);
+    const tram = Math.floor((n % 1000) / 100);
+    const chuc = Math.floor((n % 100) / 10);
+    const dv = n % 10;
+    return {
+      question: `Số ${n} gồm mấy nghìn, mấy trăm, mấy chục và mấy đơn vị?`,
+      options: shuffle([
+        `${nghin} nghìn, ${tram} trăm, ${chuc} chục, ${dv} đơn vị`,
+        `${tram} nghìn, ${nghin} trăm, ${chuc} chục, ${dv} đơn vị`,
+        `${nghin} nghìn, ${chuc} trăm, ${tram} chục, ${dv} đơn vị`,
+        `${nghin} nghìn, ${tram} trăm, ${dv} chục, ${chuc} đơn vị`,
+      ]),
+      answer: `${nghin} nghìn, ${tram} trăm, ${chuc} chục, ${dv} đơn vị`,
+      hint: "Đọc lần lượt từ trái sang phải: nghìn → trăm → chục → đơn vị!",
+      explanation: `${n} = ${nghin}000 + ${tram}00 + ${chuc}0 + ${dv}.`,
+    };
+  }
+
+  if (topic === "g3_roman") {
+    const laMa = [
+      { r: "I", v: 1 },
+      { r: "II", v: 2 },
+      { r: "III", v: 3 },
+      { r: "IV", v: 4 },
+      { r: "V", v: 5 },
+      { r: "VI", v: 6 },
+      { r: "IX", v: 9 },
+      { r: "X", v: 10 },
+      { r: "XI", v: 11 },
+      { r: "XIV", v: 14 },
+      { r: "XV", v: 15 },
+      { r: "XIX", v: 19 },
+      { r: "XX", v: 20 },
+      { r: "XXI", v: 21 },
+    ];
+    const chon = laMa[randInt(0, laMa.length - 1)];
+    return {
+      question: `Chữ số La Mã “${chon.r}” biểu diễn số tự nhiên nào?`,
+      options: generateOptions(chon.v, 4).map((x) => Math.max(1, x)),
+      answer: chon.v,
+      hint: "I = 1, V = 5, X = 10. I đứng TRƯỚC V hoặc X thì bớt đi 1!",
+      explanation: `Chữ số La Mã ${chon.r} có giá trị là ${chon.v}.`,
+    };
+  }
+
+  if (topic === "g3_add_sub_10k") {
+    const isAdd = Math.random() > 0.5;
+    if (isAdd) {
+      const a = randInt(1000, 6000);
+      const b = randInt(1000, 9999 - a);
+      return {
+        question: `Đặt tính rồi tính: ${a} + ${b} = ?`,
+        options: generateOptions(a + b, 50),
+        answer: a + b,
+        hint: "Đặt tính thẳng cột rồi cộng từ hàng đơn vị, nhớ sang hàng bên trái!",
+        explanation: `${a} + ${b} = ${a + b}.`,
+      };
+    }
+    const a = randInt(5000, 9999);
+    const b = randInt(1000, a - 1);
+    return {
+      question: `Đặt tính rồi tính: ${a} - ${b} = ?`,
+      options: generateOptions(a - b, 50),
+      answer: a - b,
+      hint: "Đặt tính thẳng cột rồi trừ từ phải sang trái, mượn khi cần!",
+      explanation: `${a} - ${b} = ${a - b}.`,
+    };
+  }
+
+  if (topic === "g3_add_sub_100k") {
+    const isAdd = Math.random() > 0.5;
+    if (isAdd) {
+      const a = randInt(10000, 60000);
+      const b = randInt(10000, 99999 - a);
+      return {
+        question: `Đặt tính rồi tính: ${a} + ${b} = ?`,
+        options: generateOptions(a + b, 500),
+        answer: a + b,
+        hint: "Cộng từ hàng đơn vị lên hàng chục nghìn!",
+        explanation: `${a} + ${b} = ${a + b}.`,
+      };
+    }
+    const a = randInt(50000, 99999);
+    const b = randInt(10000, a - 1);
+    return {
+      question: `Đặt tính rồi tính: ${a} - ${b} = ?`,
+      options: generateOptions(a - b, 500),
+      answer: a - b,
+      hint: "Trừ từ phải sang trái, mượn 1 từ hàng bên trái khi không đủ trừ!",
+      explanation: `${a} - ${b} = ${a - b}.`,
+    };
+  }
+
+  if (topic === "g3_mul_div_100k") {
+    if (Math.random() > 0.5) {
+      const a = randInt(10000, 40000);
+      const b = randInt(2, 4);
+      return {
+        question: `Đặt tính rồi tính: ${a} × ${b} = ?`,
+        options: generateOptions(a * b, 1000),
+        answer: a * b,
+        hint: "Nhân lần lượt từ hàng đơn vị lên hàng chục nghìn, nhớ sang trái!",
+        explanation: `${a} × ${b} = ${a * b}.`,
+      };
+    }
+    const b = randInt(2, 4);
+    const q = randInt(10000, 20000);
+    return {
+      question: `Đặt tính rồi tính: ${b * q} : ${b} = ?`,
+      options: generateOptions(q, 1000),
+      answer: q,
+      hint: "Chia lần lượt từ hàng chục nghìn xuống hàng đơn vị!",
+      explanation: `${b * q} : ${b} = ${q}.`,
+    };
+  }
+
+  if (topic === "g3_time_money") {
+    const kieu = randInt(0, 2);
+    if (kieu === 0) {
+      const gio = randInt(1, 11);
+      const phut = randInt(1, 11) * 5;
+      return {
+        question: `${gio} giờ ${phut} phút còn đọc là mấy giờ kém mấy phút?`,
+        options: shuffle([
+          `${gio + 1} giờ kém ${60 - phut} phút`,
+          `${gio} giờ kém ${60 - phut} phút`,
+          `${gio + 1} giờ kém ${phut} phút`,
+          `${gio} giờ kém ${phut} phút`,
+        ]),
+        answer: `${gio + 1} giờ kém ${60 - phut} phút`,
+        hint: "Còn bao nhiêu phút nữa là tới giờ tiếp theo thì gọi là “kém bấy nhiêu”!",
+        explanation: `${gio} giờ ${phut} phút = ${gio + 1} giờ kém ${60 - phut} phút.`,
+      };
+    }
+    if (kieu === 1) {
+      return {
+        question: "Một năm có bao nhiêu tháng?",
+        options: generateOptions(12, 2),
+        answer: 12,
+        hint: "Đếm từ tháng 1 đến tháng 12!",
+        explanation: "Một năm có 12 tháng.",
+      };
+    }
+    const gia = randInt(3, 9) * 5000;
+    const dua = Math.ceil((gia + 5000) / 10000) * 10000;
+    return {
+      question: `Bé mua hộp bút giá ${gia} đồng và đưa ${dua} đồng. Bé được trả lại bao nhiêu tiền?`,
+      options: generateOptions(dua - gia, 5000),
+      answer: dua - gia,
+      hint: "Tiền thừa = số tiền đưa trừ số tiền phải trả!",
+      explanation: `${dua} - ${gia} = ${dua - gia} đồng.`,
+    };
+  }
+
+  if (topic === "g3_review_1000") {
+    const n = randInt(100, 999);
+    const tram = Math.floor(n / 100);
+    const chuc = Math.floor((n % 100) / 10);
+    const dv = n % 10;
+    if (Math.random() > 0.5)
+      return {
+        question: `Số ${n} gồm mấy trăm, mấy chục và mấy đơn vị?`,
+        options: shuffle([
+          `${tram} trăm, ${chuc} chục, ${dv} đơn vị`,
+          `${chuc} trăm, ${tram} chục, ${dv} đơn vị`,
+          `${tram} trăm, ${dv} chục, ${chuc} đơn vị`,
+          `${dv} trăm, ${chuc} chục, ${tram} đơn vị`,
+        ]),
+        answer: `${tram} trăm, ${chuc} chục, ${dv} đơn vị`,
+        hint: "Đọc từ trái sang phải: hàng trăm → hàng chục → hàng đơn vị!",
+        explanation: `${n} = ${tram} trăm + ${chuc} chục + ${dv} đơn vị.`,
+      };
+    const a = randInt(200, 700);
+    const b = randInt(100, 999 - a);
+    return {
+      question: `Đặt tính rồi tính: ${a} + ${b} = ?`,
+      options: generateOptions(a + b, 20),
+      answer: a + b,
+      hint: "Cộng từ hàng đơn vị, nhớ 1 sang hàng chục rồi hàng trăm!",
+      explanation: `${a} + ${b} = ${a + b}.`,
+    };
+  }
+
+  if (topic === "g3_final_review")
+    return pickFromGrade(
+      3,
+      [
+        "g3_review_1000",
+        "g3_mul_3_4",
+        "g3_div_3_4",
+        "g3_mul_6789",
+        "g3_div_6789",
+        "g3_fraction",
+        "g3_geometry_flat",
+        "g3_mul_div_multi",
+        "g3_word_problems",
+        "g3_measure_units",
+        "g3_expressions",
+        "g3_numbers_10k",
+        "g3_roman",
+        "g3_perimeter_area",
+        "g3_add_sub_10k",
+        "g3_stats_prob",
+      ],
+      depth,
+    );
+
+  // ── Lớp 4 ───────────────────────────────────────────────────────────────
+  if (topic === "g4_final_review")
+    return pickFromGrade(
+      4,
+      [
+        "g4_numbers_million",
+        "g4_measures_stats",
+        "g4_add_sub_natural",
+        "g4_mul_div_natural",
+        "g4_sum_diff",
+        "g4_divisibility",
+        "g4_geometry",
+        "g4_fractions_basic",
+        "g4_fractions_calc",
+        "g4_sum_ratio",
+      ],
+      depth,
+    );
+
+  // ── Lớp 5 ───────────────────────────────────────────────────────────────
+  if (topic === "g5_final_review")
+    return pickFromGrade(
+      5,
+      [
+        "g5_fractions_mixed",
+        "g5_decimals_basic",
+        "g5_decimals_calc",
+        "g5_percentages",
+        "g5_geometry_plane",
+        "g5_geometry_solid",
+        "g5_time_units",
+        "g5_motion_basic",
+        "g5_motion_advanced",
+        "g5_charts_stats",
+      ],
+      depth,
+    );
+
+  // ── Lớp 1 (tiếp) ────────────────────────────────────────────────────────
+  if (topic === "g1_position") {
+    const tinhHuong = [
+      {
+        q: "Ba bạn An, Bình, Cường đứng thành một hàng ngang. An đứng ngoài cùng bên trái, Cường đứng ngoài cùng bên phải. Hỏi Bình đứng bên phải bạn nào?",
+        a: "bạn An",
+        sai: ["bạn Cường", "không bên phải ai", "bên phải cả hai bạn"],
+      },
+      {
+        q: "Trên bàn có quyển sách, trên quyển sách có một cái bút. Hỏi cái bút ở phía nào của quyển sách?",
+        a: "ở phía trên",
+        sai: ["ở phía dưới", "ở bên trái", "ở bên phải"],
+      },
+      {
+        q: "Cái ghế nằm ở dưới cái bàn. Hỏi cái bàn ở phía nào của cái ghế?",
+        a: "ở phía trên",
+        sai: ["ở phía dưới", "ở bên trái", "ở bên phải"],
+      },
+      {
+        q: "Bé giơ tay phải lên. Hỏi tay đó ở phía nào của cơ thể bé?",
+        a: "phía bên phải",
+        sai: ["phía bên trái", "phía trước", "phía sau"],
+      },
+      {
+        q: "Bé đứng quay mặt về phía cửa ra vào, ba lô đeo sau lưng. Hỏi ba lô ở phía nào của bé?",
+        a: "phía sau",
+        sai: ["phía trước", "phía trên", "phía dưới"],
+      },
+    ];
+    const chon = tinhHuong[randInt(0, tinhHuong.length - 1)];
+    return {
+      question: chon.q,
+      options: shuffle([chon.a, ...chon.sai]),
+      answer: chon.a,
+      hint: "Đọc kĩ xem đồ vật này nằm ở đâu so với đồ vật kia!",
+      explanation: `Đáp án đúng: ${chon.a}.`,
+    };
+  }
+
+  if (topic === "g1_compare_2digit") {
+    const a = randInt(10, 99);
+    let b = randInt(10, 99);
+    if (Math.random() < 0.25) b = a;
+    const ans = a > b ? ">" : a < b ? "<" : "=";
+    return {
+      question: `Điền dấu thích hợp vào chỗ trống: ${a} ... ${b}`,
+      options: [">", "<", "="],
+      answer: ans,
+      hint: "So hàng chục trước; hàng chục bằng nhau thì mới so hàng đơn vị!",
+      explanation: `${a} ${ans} ${b}.`,
+    };
+  }
+
+  if (topic === "g1_length_cm") {
+    const kieu = randInt(0, 2);
+    if (kieu === 0) {
+      const a = randInt(3, 12);
+      const b = randInt(2, 9);
+      return {
+        question: `Đoạn thẳng AB dài ${a} cm, đoạn thẳng BC dài ${b} cm. Hỏi đoạn thẳng AC (nối tiếp) dài bao nhiêu xăng-ti-mét?`,
+        options: generateOptions(a + b, 3).map((x) => Math.max(1, x)),
+        answer: a + b,
+        hint: "Nối tiếp nhau thì cộng hai độ dài lại!",
+        explanation: `${a} + ${b} = ${a + b} cm.`,
+      };
+    }
+    if (kieu === 1) {
+      const a = randInt(8, 15);
+      const b = randInt(2, 7);
+      return {
+        question: `Băng giấy dài ${a} cm, cắt đi ${b} cm. Hỏi băng giấy còn lại dài bao nhiêu xăng-ti-mét?`,
+        options: generateOptions(a - b, 3).map((x) => Math.max(1, x)),
+        answer: a - b,
+        hint: "Cắt đi thì làm phép trừ!",
+        explanation: `${a} - ${b} = ${a - b} cm.`,
+      };
+    }
+    return {
+      question: "Đơn vị dùng để đo độ dài trong lớp học là gì?",
+      options: shuffle(["xăng-ti-mét (cm)", "ki-lô-gam (kg)", "lít (l)", "giờ"]),
+      answer: "xăng-ti-mét (cm)",
+      hint: "Độ dài là ngắn dài; đo bằng thước kẻ có vạch xăng-ti-mét!",
+      explanation: "Đo độ dài bằng xăng-ti-mét (cm).",
+    };
+  }
+
+  if (topic === "g1_review_hk1")
+    return pickFromGrade(
+      1,
+      [
+        "g1_count",
+        "g1_compare",
+        "g1_add_sub_10",
+        "g1_shapes",
+        "g1_shapes_3d",
+        "g1_position",
+      ],
+      depth,
+    );
+
+  // ── Lớp 4 (tiếp) ────────────────────────────────────────────────────────
+  if (topic === "g4_geometry_angles") {
+    const kieu = randInt(0, 2);
+    if (kieu === 0) {
+      const cauHoi = [
+        { q: "Góc bé hơn góc vuông gọi là gì?", a: "góc nhọn", sai: ["góc tù", "góc bẹt", "góc vuông"] },
+        { q: "Góc lớn hơn góc vuông và bé hơn góc bẹt gọi là gì?", a: "góc tù", sai: ["góc nhọn", "góc vuông", "góc bẹt"] },
+        { q: "Góc bằng hai góc vuông gọi là gì?", a: "góc bẹt", sai: ["góc nhọn", "góc tù", "góc vuông"] },
+      ];
+      const chon = cauHoi[randInt(0, cauHoi.length - 1)];
+      return {
+        question: chon.q,
+        options: shuffle([chon.a, ...chon.sai]),
+        answer: chon.a,
+        hint: "Lấy góc vuông của ô li trong vở làm mốc để so!",
+        explanation: `Đáp án đúng: ${chon.a}.`,
+      };
+    }
+    if (kieu === 1)
+      return {
+        question: "Hai đường thẳng cắt nhau tạo thành bốn góc vuông. Hai đường thẳng đó gọi là gì?",
+        options: shuffle([
+          "hai đường thẳng vuông góc",
+          "hai đường thẳng song song",
+          "hai đường thẳng cắt nhau",
+          "hai đường thẳng trùng nhau",
+        ]),
+        answer: "hai đường thẳng vuông góc",
+        hint: "Vuông góc là cắt nhau tạo thành góc vuông!",
+        explanation: "Hai đường thẳng vuông góc tạo thành bốn góc vuông.",
+      };
+    return {
+      question: "Hai đường thẳng không bao giờ cắt nhau, dù kéo dài mãi, gọi là gì?",
+      options: shuffle([
+        "hai đường thẳng song song",
+        "hai đường thẳng vuông góc",
+        "hai đường thẳng cắt nhau",
+        "hai đường thẳng xiên nhau",
+      ]),
+      answer: "hai đường thẳng song song",
+      hint: "Hãy nhớ hai thanh ray đường tàu — chúng song song!",
+      explanation: "Hai đường thẳng song song không bao giờ cắt nhau.",
+    };
+  }
+
+  if (topic === "g4_area_units") {
+    const kieu = randInt(0, 1);
+    if (kieu === 0)
+      return {
+        question: "1 m² bằng bao nhiêu đề-xi-mét vuông?",
+        options: shuffle([100, 10, 1000, 10000]),
+        answer: 100,
+        hint: "1 m = 10 dm, nên 1 m² = 10 × 10 dm²!",
+        explanation: "1 m² = 100 dm².",
+      };
+    const n = randInt(2, 9);
+    return {
+      question: `Đổi: ${n} m² = ... dm²`,
+      options: shuffle([n * 100, n * 10, n * 1000, n * 10000]),
+      answer: n * 100,
+      hint: "1 m² = 100 dm², nên lấy số mét vuông nhân với 100!",
+      explanation: `${n} m² = ${n * 100} dm².`,
+    };
+  }
+
+  if (topic === "g4_km2") {
+    const kieu = randInt(0, 2);
+    if (kieu === 0)
+      return {
+        question: "1 km² bằng bao nhiêu mét vuông?",
+        options: shuffle([1000000, 1000, 10000, 100000]),
+        answer: 1000000,
+        hint: "1 km = 1000 m, nên 1 km² = 1000 × 1000 m²!",
+        explanation: "1 km² = 1 000 000 m².",
+      };
+    if (kieu === 1) {
+      const n = randInt(2, 9);
+      return {
+        question: `Đổi: ${n} km² = ... m²`,
+        options: shuffle([n * 1000000, n * 1000, n * 10000, n * 100000]),
+        answer: n * 1000000,
+        hint: "1 km² = 1 000 000 m²!",
+        explanation: `${n} km² = ${n * 1000000} m².`,
+      };
+    }
+    const a = randInt(3, 9);
+    const b = randInt(2, a - 1);
+    return {
+      question: `Một khu rừng hình chữ nhật dài ${a} km, rộng ${b} km. Diện tích khu rừng là bao nhiêu ki-lô-mét vuông?`,
+      options: generateOptions(a * b, 3).map((x) => Math.max(1, x)),
+      answer: a * b,
+      hint: "Diện tích hình chữ nhật = chiều dài × chiều rộng!",
+      explanation: `S = ${a} × ${b} = ${a * b} km².`,
+    };
+  }
+
+  if (topic === "g4_map_scale") {
+    const tiLe = [100, 200, 500, 1000][randInt(0, 3)];
+    const kieu = randInt(0, 1);
+    if (kieu === 0) {
+      const trenBan = randInt(2, 9);
+      const thuc = trenBan * tiLe;
+      return {
+        question: `Bản đồ có tỉ lệ 1 : ${tiLe}. Trên bản đồ đoạn đường dài ${trenBan} cm. Hỏi trên thực tế đoạn đường dài bao nhiêu xăng-ti-mét?`,
+        options: generateOptions(thuc, tiLe).map((x) => Math.max(1, x)),
+        answer: thuc,
+        hint: `Tỉ lệ 1 : ${tiLe} nghĩa là 1 cm trên bản đồ ứng với ${tiLe} cm thực tế!`,
+        explanation: `${trenBan} × ${tiLe} = ${thuc} cm trên thực tế.`,
+      };
+    }
+    const trenBan = randInt(2, 8);
+    return {
+      question: `Bản đồ ghi tỉ lệ 1 : ${tiLe}. Hỏi 1 cm trên bản đồ ứng với bao nhiêu xăng-ti-mét trên thực tế?`,
+      options: shuffle([tiLe, tiLe / 2, tiLe * 10, trenBan]),
+      answer: tiLe,
+      hint: "Tỉ lệ 1 : a nghĩa là 1 đơn vị trên bản đồ = a đơn vị thực tế.",
+      explanation: `1 cm trên bản đồ ứng với ${tiLe} cm trên thực tế.`,
+    };
+  }
+
+  // ── Lớp 5 (tiếp) ────────────────────────────────────────────────────────
+  if (topic === "g5_area_units") {
+    const bang = [
+      { donVi: "dam²", heSo: 100 },
+      { donVi: "hm²", heSo: 10000 },
+      { donVi: "ha", heSo: 10000 },
+    ];
+    const chon = bang[randInt(0, bang.length - 1)];
+    const n = randInt(2, 9);
+    return {
+      question: `Đổi: ${n} ${chon.donVi} = ... m²`,
+      options: shuffle([
+        n * chon.heSo,
+        n * chon.heSo * 10,
+        n * chon.heSo / 10,
+        n * chon.heSo * 100,
+      ]).map((x) => Math.round(x)),
+      answer: n * chon.heSo,
+      hint: "1 dam² = 100 m² · 1 hm² = 10 000 m² · 1 ha = 10 000 m²!",
+      explanation: `${n} ${chon.donVi} = ${n * chon.heSo} m².`,
+    };
+  }
+
+  // ── LƯỚI AN TOÀN CUỐI CÙNG ───────────────────────────────────────────────
+  // KHÔNG trả một câu cố định nữa. Đã ĐO được hậu quả của bản cũ: 9/57 khuôn thiếu
+  // nhánh nên bé nhận ĐÚNG một câu "Tính: 10 + 5 = ?" lặp lại mãi. Rút ngẫu nhiên
+  // một khuôn khác của cùng lớp vừa hữu ích vừa không bao giờ để lộ câu vô nghĩa.
+  // `depth` chặn đệ quy vô hạn nếu cả lớp đều thiếu nhánh.
+  if (depth < 3) return pickFromGrade(gNum, null, depth + 1);
   return {
-    question: "Tính: 10 + 5 = ?",
-    options: [15, 12, 14, 16],
-    answer: 15,
-    hint: "10 cộng 5 bằng 15!",
-    explanation: "10 + 5 = 15.",
+    question: `Tính nhẩm: ${gNum * 2} + ${gNum * 3} = ?`,
+    options: generateOptions(gNum * 5, gNum),
+    answer: gNum * 5,
+    hint: "Cộng từng hàng một, bắt đầu từ hàng đơn vị!",
+    explanation: `${gNum * 2} + ${gNum * 3} = ${gNum * 5}.`,
   };
 }
 
@@ -1627,11 +2667,43 @@ function buildQuestion(grade = 1, topicId = null) {
  * Bọc hàm thay vì sửa từng `return` trong `buildQuestion`: hàm đó có hàng chục
  * nhánh, sửa từng nhánh là cách chắc chắn để sót.
  */
+/**
+ * Bảo đảm `options` KHÔNG có hai lựa chọn giống hệt nhau, và luôn chứa đáp án.
+ *
+ * 🔴 VÌ SAO CẦN MỘT CHỖ THAY VÌ SỬA TỪNG KHUÔN. Đo được **13/79 khuôn** sinh ra hai ô
+ * giống hệt nhau — bé nhìn thấy hai đáp án y như nhau. Nguyên nhân có hai loại:
+ *   1. Khuôn tự viết mảng lựa chọn bằng chuỗi (`"11 giờ", "12 giờ", "10 giờ", "12 giờ"`)
+ *      → trùng khi hai giá trị tính ra bằng nhau.
+ *   2. `.map(Math.max(1, x))` kéo một lựa chọn 0 thành 1, đụng vào lựa chọn 1 đã có.
+ * `generateOptions` tự nó an toàn (`Set`), nhưng 13 khuôn kia không đi qua nó.
+ * Sửa ở đây thì mọi khuôn hiện có VÀ mọi khuôn viết sau đều được bảo vệ.
+ *
+ * Không đòi đúng 4 lựa chọn: đáp án là CHUỖI thì không bù được cho an toàn, mà 2–3
+ * lựa chọn vẫn là câu hỏi hợp lệ. Chỉ bù khi đáp án là SỐ.
+ */
+function withDistinctOptions(q) {
+  if (!q || !Array.isArray(q.options)) return q;
+  const key = (v) => String(v);
+  const distinct = [];
+  for (const o of q.options)
+    if (!distinct.some((d) => key(d) === key(o))) distinct.push(o);
+  // Đáp án phải LUÔN nằm trong lựa chọn — cổng `S-15` và bộ chấm điểm đều dựa vào đó.
+  if (!distinct.some((d) => key(d) === key(q.answer))) distinct.unshift(q.answer);
+  if (distinct.length < 3 && typeof q.answer === "number") {
+    for (let offset = 1; offset < 60 && distinct.length < 4; offset++)
+      for (const cand of [q.answer + offset, q.answer - offset])
+        if (cand >= 0 && !distinct.some((d) => key(d) === key(cand)))
+          distinct.push(cand);
+  }
+  return { ...q, options: shuffle(distinct) };
+}
+
 export function generateQuestion(grade = 1, topicId = null) {
   const gNum = Number(grade);
   const list = TOPICS[`GRADE_${gNum}`] || TOPICS.GRADE_1;
   const topic = topicId || list[randInt(0, list.length - 1)].id;
-  return { ...buildQuestion(gNum, topic), ref: `tmpl:${topic}`, topic };
+  const q = buildQuestion(gNum, topic);
+  return { ...withDistinctOptions(q), ref: `tmpl:${topic}`, topic };
 }
 
 // Tên cũ của hàm này là `generateCalculation`. Đổi thành `buildCalculation` (nội bộ)
@@ -1844,5 +2916,5 @@ export function generateCalculation(grade = 1) {
   const q = buildCalculation(g);
   const symbol = Object.keys(CALC_OP).find((s) => q.equation.includes(s));
   const topic = `calc_g${g}_${CALC_OP[symbol] ?? "other"}`;
-  return { ...q, ref: `tmpl:${topic}`, topic };
+  return { ...withDistinctOptions(q), ref: `tmpl:${topic}`, topic };
 }
