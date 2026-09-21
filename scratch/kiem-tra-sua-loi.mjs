@@ -11,11 +11,22 @@ const g1 = (await import("../client/src/data/grade1Data.js")).grade1Data;
 const g2 = (await import("../client/src/data/grade2Data.js")).grade2Data;
 const g4 = (await import("../client/src/data/grade4Data.js")).grade4Data;
 
-const NGUON = { g1, g2, g4, g3: (await import("../client/src/data/grade3Data.js")).grade3Data };
-const FILE = { g1: "grade1Data.js", g2: "grade2Data.js", g3: "grade3Data.js", g4: "grade4Data.js" };
+const NGUON = {
+  g1,
+  g2,
+  g4,
+  g3: (await import("../client/src/data/grade3Data.js")).grade3Data,
+};
+const FILE = {
+  g1: "grade1Data.js",
+  g2: "grade2Data.js",
+  g3: "grade3Data.js",
+  g4: "grade4Data.js",
+};
 
 const bai = (g, id) => {
-  for (const c of g.chapters) for (const l of c.lessons) if (l.id === id) return l;
+  for (const c of g.chapters)
+    for (const l of c.lessons) if (l.id === id) return l;
   return null;
 };
 const slides = (g, id) => bai(g, id)?.slides || [];
@@ -58,7 +69,9 @@ if (Array.isArray(itemsChim) && itemsChim[0]) {
   );
   // 1F426 = 🐦. Viết dạng mã hoá để không bị hỏng khi ghi file — nhưng phải kiểm lại
   // là nó THẬT SỰ là chim, chứ không phải ký tự thay thế.
-  const cp = [...String(itemsChim[0].emoji)].map((c) => c.codePointAt(0).toString(16));
+  const cp = [...String(itemsChim[0].emoji)].map((c) =>
+    c.codePointAt(0).toString(16),
+  );
   kiem(
     "emoji là chim (U+1F426), không phải ký tự hỏng",
     cp.length === 1 && cp[0] === "1f426",
@@ -149,7 +162,9 @@ for (const [k, g] of Object.entries(NGUON)) {
         const it = s.content?.items;
         kiem(
           `${k} ${l.id}: câu hỏi biểu đồ có hình đếm được`,
-          Array.isArray(it) && it.length > 0 && it.every((x) => Number(x.count) > 0),
+          Array.isArray(it) &&
+            it.length > 0 &&
+            it.every((x) => Number(x.count) > 0),
           JSON.stringify(it),
         );
       }
@@ -158,7 +173,9 @@ for (const [k, g] of Object.entries(NGUON)) {
 }
 console.log(`  (đã kiểm ${demBieuDo} câu hỏi có chữ "biểu đồ")`);
 
-console.log("\n=== 6. Mọi emoji trong `items` phải là ký tự THẬT, không phải U+FFFD ===");
+console.log(
+  "\n=== 6. Mọi emoji trong `items` phải là ký tự THẬT, không phải U+FFFD ===",
+);
 let demItems = 0;
 let itemsHong = 0;
 for (const [k, g] of Object.entries(NGUON)) {
@@ -173,16 +190,24 @@ for (const [k, g] of Object.entries(NGUON)) {
           const laFFFD = em.includes("\uFFFD") || em.length === 0;
           if (laFFFD) {
             itemsHong++;
-            console.log(`  HỎNG  [${k}] ${l.id}: emoji hỏng = ${JSON.stringify(em)}`);
+            console.log(
+              `  HỎNG  [${k}] ${l.id}: emoji hỏng = ${JSON.stringify(em)}`,
+            );
           }
         }
       }
     }
   }
 }
-kiem(`tất cả ${demItems} emoji trong items đều nguyên vẹn`, itemsHong === 0, `${itemsHong} hỏng`);
+kiem(
+  `tất cả ${demItems} emoji trong items đều nguyên vẹn`,
+  itemsHong === 0,
+  `${itemsHong} hỏng`,
+);
 
-console.log("\n=== 7. Câu hỏi lời văn (băng giấy / thước): có hình và SỐ KHỚP câu hỏi ===");
+console.log(
+  "\n=== 7. Câu hỏi lời văn (băng giấy / thước): có hình và SỐ KHỚP câu hỏi ===",
+);
 // Yêu cầu của người dùng 2026-09-22: thêm hình minh hoạ cho các câu còn lại.
 // Phép kiểm dưới đây bắt đúng họ lỗi "hình vẽ một đằng, câu hỏi nói một nẻo".
 const CAN_HINH = [
@@ -201,7 +226,11 @@ for (const [g, id] of CAN_HINH) {
       if (l.id !== id) continue;
       for (const s of l.slides) {
         const k = s.content || {};
-        if (s.type !== "quiz" || !/thước|băng giấy|vạch/.test(String(k.question || ""))) continue;
+        if (
+          s.type !== "quiz" ||
+          !/thước|băng giấy|vạch/.test(String(k.question || ""))
+        )
+          continue;
         kiem(
           `${id}: có hình minh hoạ`,
           k.barModel != null || k.ruler != null,
@@ -215,7 +244,9 @@ for (const [g, id] of CAN_HINH) {
             : [];
         if (!soNghia.length) continue;
         const nguon = `${k.question} ${k.answer} ${(k.options || []).join(" ")}`;
-        const thieu = soNghia.filter((n) => !new RegExp(`(^|[^0-9])${n}([^0-9]|$)`).test(nguon));
+        const thieu = soNghia.filter(
+          (n) => !new RegExp(`(^|[^0-9])${n}([^0-9]|$)`).test(nguon),
+        );
         kiem(
           `${id}: số trong hình (${soNghia.join("/")}) đều có trong câu hỏi/đáp án`,
           thieu.length === 0,

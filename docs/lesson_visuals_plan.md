@@ -305,12 +305,12 @@ Sau khi dán lại seed, hình là 13 ô — khớp `9 + 1 = 10, rồi 10 + 3 = 
 Từ đó tôi viết thêm một phép đo cho **cả 17 loại hình**: phần tử nào vẽ ra ngoài khung `viewBox`
 (quá 2 đơn vị) thì báo. Kết quả: **4 lỗi thật**, đều đã chữa.
 
-| Hình         | Đo được trước khi chữa                                                                   | Cách chữa                                                        |
-| ------------ | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| Trục số      | Nhịp (hop) vẽ **nửa đường tròn** bán kính bằng nửa dây cung: nhịp dài 508 đơn vị ⇒ đỉnh cung vươn tới **y = −161** trong khung cao 132 ⇒ bé chỉ thấy một mẩu cung bị cắt | Dùng **cung bậc hai nông**, chiều cao cố định 20 (nhịp thứ hai 30) |
-| Sơ đồ đoạn thẳng | Nhãn "Tổng 35" / "Hiệu 24" vươn tới **663–666 đơn vị** trong khung 560 ⇒ **tràn 103 đơn vị** | Tính bề rộng cả **phần chữ ở cuối hàng** rồi mới chia thanh      |
-| Hình góc     | Góc 120° có chấm đầu tia ở **x = −10 → 0** ⇒ mất một phần chấm (góc bẹt còn xa hơn)          | **Dời đỉnh góc** theo bề rộng thật của hình rồi canh giữa          |
-| Hình khối    | Nhãn "Sáu mặt đều là hình vuông bằng nhau" ở tâm x = 130 ⇒ mép trái **vượt ra 8,9 đơn vị** | Canh giữa theo bề rộng khung (x = 170) và rút gọn câu             |
+| Hình             | Đo được trước khi chữa                                                                                                                                                   | Cách chữa                                                          |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| Trục số          | Nhịp (hop) vẽ **nửa đường tròn** bán kính bằng nửa dây cung: nhịp dài 508 đơn vị ⇒ đỉnh cung vươn tới **y = −161** trong khung cao 132 ⇒ bé chỉ thấy một mẩu cung bị cắt | Dùng **cung bậc hai nông**, chiều cao cố định 20 (nhịp thứ hai 30) |
+| Sơ đồ đoạn thẳng | Nhãn "Tổng 35" / "Hiệu 24" vươn tới **663–666 đơn vị** trong khung 560 ⇒ **tràn 103 đơn vị**                                                                             | Tính bề rộng cả **phần chữ ở cuối hàng** rồi mới chia thanh        |
+| Hình góc         | Góc 120° có chấm đầu tia ở **x = −10 → 0** ⇒ mất một phần chấm (góc bẹt còn xa hơn)                                                                                      | **Dời đỉnh góc** theo bề rộng thật của hình rồi canh giữa          |
+| Hình khối        | Nhãn "Sáu mặt đều là hình vuông bằng nhau" ở tâm x = 130 ⇒ mép trái **vượt ra 8,9 đơn vị**                                                                               | Canh giữa theo bề rộng khung (x = 170) và rút gọn câu              |
 
 Sau khi chữa: **0/61 hình vẽ ra ngoài khung**.
 
@@ -336,4 +336,3 @@ Ba điều chỉnh nhỏ kèm theo:
 - Số của mỗi hàng trong `BarModel` chuyển sang **bên trái, ngay trước thanh**: nếu để ở cuối
   thanh thì trên điện thoại hình phải kéo ngang và bé **thấy thanh mà không thấy số**, mà số
   ("20 cm") mới là thứ cần đọc.
-

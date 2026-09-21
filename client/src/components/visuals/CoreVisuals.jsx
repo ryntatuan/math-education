@@ -254,11 +254,7 @@ export function TenFrame({
                 height={cell - 4}
                 rx="7"
                 fill={
-                  daCo
-                    ? PALETTE.blueSoft
-                    : bu
-                      ? PALETTE.greenSoft
-                      : "#f8fafc"
+                  daCo ? PALETTE.blueSoft : bu ? PALETTE.greenSoft : "#f8fafc"
                 }
                 stroke={PALETTE.line}
                 strokeWidth="2"
@@ -325,13 +321,13 @@ export function TenFrame({
                     stroke={PALETTE.line}
                     strokeWidth="2"
                   />
-                  <circle cx={cx} cy={cy} r={cell * 0.28} fill={PALETTE.green} />
-                  <text
-                    x={cx}
-                    y={cy + 5}
-                    textAnchor="middle"
-                    fontSize="15"
-                  >
+                  <circle
+                    cx={cx}
+                    cy={cy}
+                    r={cell * 0.28}
+                    fill={PALETTE.green}
+                  />
+                  <text x={cx} y={cy + 5} textAnchor="middle" fontSize="15">
                     {emoji}
                   </text>
                 </g>

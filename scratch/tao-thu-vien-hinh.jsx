@@ -77,7 +77,13 @@ const CA = {
     { filled: 0, total: 10, emoji: "🍽️" },
     // Hai ca THẬT trong dữ liệu Lớp 2, trước đây bị kẹp nên vẽ thiếu:
     //   g2-c7-l1: 9 + 4 = 9 + 1 + 3  (khung đầy 10, còn 3 ở ngoài)
-    { filled: 9, total: 10, emoji: "🔵", extra: 3, label: "9 + 1 = 10, rồi 10 + 3 = 13" },
+    {
+      filled: 9,
+      total: 10,
+      emoji: "🔵",
+      extra: 3,
+      label: "9 + 1 = 10, rồi 10 + 3 = 13",
+    },
     //   g2-c8-l6: 10 + 4 = 14
     { filled: 10, total: 10, emoji: "🟠", extra: 4, label: "10 + 4 = 14" },
   ],
@@ -117,7 +123,11 @@ const CA = {
     // Ba ca THẬT vừa thêm cho câu hỏi lời văn (Lớp 1–2): không đo, đoạn 0→6, đoạn 0→9.
     { lengthCm: 10, label: "Vạch 0 nằm ở đầu trái của thước" },
     { lengthCm: 10, measure: { from: 0, to: 6 }, label: "Đoạn thẳng dài 6 cm" },
-    { lengthCm: 10, measure: { from: 0, to: 9 }, label: "Đọc số ở đầu kia: 9 cm" },
+    {
+      lengthCm: 10,
+      measure: { from: 0, to: 9 },
+      label: "Đọc số ở đầu kia: 9 cm",
+    },
   ],
   money: [
     { notes: [1000, 2000, 5000] },

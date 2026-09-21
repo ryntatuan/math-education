@@ -216,7 +216,9 @@ export function BarModel({
    * bé nhìn thấy hai thanh mà **không thấy số** — mà số mới là thứ cần đọc ("20 cm").
    * Đặt trước thanh thì luôn nằm trong phần nhìn thấy đầu tiên.
    */
-  const rongNgoac = braceLabel ? 54 + RONG_CHU * String(braceLabel).length + 6 : 0;
+  const rongNgoac = braceLabel
+    ? 54 + RONG_CHU * String(braceLabel).length + 6
+    : 0;
   const RIGHT = rongNgoac + 10;
   const W = 560;
   const barAreaW = W - 142 - RIGHT;

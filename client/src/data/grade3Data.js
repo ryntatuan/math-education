@@ -459,7 +459,10 @@ export const grade3Data = {
                 operation: { left: 40, sign: ":", right: 5, result: 8 },
                 table: {
                   headers: ["Phép chia", "Kết quả"],
-                  rows: [["14 : 2", "7"], ["40 : 5", "8"]],
+                  rows: [
+                    ["14 : 2", "7"],
+                    ["40 : 5", "8"],
+                  ],
                   label: "Ôn tập bảng chia 2 và bảng chia 5",
                 },
               },
@@ -859,8 +862,13 @@ export const grade3Data = {
                 text: "1 m = 100 cm\n1 km = 1 000 m\n▢ ⭕ 🔺 ▭",
                 table: {
                   headers: ["Đổi", "Được"],
-                  rows: [["1 dm", "10 cm"], ["1 m", "100 cm"], ["1 km", "1 000 m"]],
-                  label: "Ôn tập đo độ dài — túi gạo nặng 5 kg, chai nước chứa 2 l",
+                  rows: [
+                    ["1 dm", "10 cm"],
+                    ["1 m", "100 cm"],
+                    ["1 km", "1 000 m"],
+                  ],
+                  label:
+                    "Ôn tập đo độ dài — túi gạo nặng 5 kg, chai nước chứa 2 l",
                 },
                 planeShape: {
                   kind: "square",
@@ -1750,8 +1758,16 @@ export const grade3Data = {
               type: "visual",
               content: {
                 text: "1/3 của 12 = 12 : 3 = 4\n1/4 của 20 = 20 : 4 = 5",
-                fractionBar: { parts: 3, shaded: 1, label: "1/3 của 12 = 12 : 3 = 4" },
-                fractionCircle: { parts: 4, shaded: 1, label: "1/4 của 20 = 20 : 4 = 5" },
+                fractionBar: {
+                  parts: 3,
+                  shaded: 1,
+                  label: "1/3 của 12 = 12 : 3 = 4",
+                },
+                fractionCircle: {
+                  parts: 4,
+                  shaded: 1,
+                  label: "1/4 của 20 = 20 : 4 = 5",
+                },
               },
             },
             {
@@ -1908,7 +1924,8 @@ export const grade3Data = {
                 ruler: {
                   lengthCm: 8,
                   measure: { from: 0, to: 8 },
-                  label: "A · O · B thẳng hàng theo thứ tự A, O, B ⇒ O là điểm ở giữa A và B",
+                  label:
+                    "A · O · B thẳng hàng theo thứ tự A, O, B ⇒ O là điểm ở giữa A và B",
                 },
               },
             },
@@ -1971,7 +1988,8 @@ export const grade3Data = {
                 ruler: {
                   lengthCm: 8,
                   measure: { from: 0, to: 4 },
-                  label: "M là trung điểm của AB khi M nằm giữa A, B và AM = MB",
+                  label:
+                    "M là trung điểm của AB khi M nằm giữa A, B và AM = MB",
                 },
               },
             },
@@ -2128,7 +2146,8 @@ export const grade3Data = {
                 table: {
                   headers: ["Đỉnh", "Cạnh"],
                   rows: [["A", "AB và AC"]],
-                  label: "Góc đỉnh A, cạnh AB và AC — bốn góc của hình chữ nhật đều là góc vuông",
+                  label:
+                    "Góc đỉnh A, cạnh AB và AC — bốn góc của hình chữ nhật đều là góc vuông",
                 },
               },
             },
@@ -2193,7 +2212,10 @@ export const grade3Data = {
                 },
                 table: {
                   headers: ["Góc", "Ê-ke"],
-                  rows: [["Vuông", "khớp"], ["Không vuông", "không khớp"]],
+                  rows: [
+                    ["Vuông", "khớp"],
+                    ["Không vuông", "không khớp"],
+                  ],
                   label: "Phân biệt góc vuông và góc không vuông",
                 },
               },
@@ -2265,7 +2287,10 @@ export const grade3Data = {
                 },
                 table: {
                   headers: ["Hình", "Cạnh", "Đỉnh", "Góc"],
-                  rows: [["Tam giác", 3, 3, 3], ["Tứ giác", 4, 4, 4]],
+                  rows: [
+                    ["Tam giác", 3, 3, 3],
+                    ["Tứ giác", 4, 4, 4],
+                  ],
                   label: "Hình tam giác và hình tứ giác",
                 },
               },
@@ -2558,7 +2583,10 @@ export const grade3Data = {
               content: {
                 text: "d = 2 × r\n▢ 4 góc vuông · 🔺 3 cạnh · ▭ 4 góc vuông",
                 circleParts: { radius: 3, diameter: 6, label: "d = 2 × r" },
-                planeShape: { kind: "square", formula: "4 góc vuông · 4 cạnh bằng nhau" },
+                planeShape: {
+                  kind: "square",
+                  formula: "4 góc vuông · 4 cạnh bằng nhau",
+                },
               },
             },
             {
@@ -2715,7 +2743,8 @@ export const grade3Data = {
                 placeValue: {
                   headers: ["Chục", "Đơn vị"],
                   digits: [2, 6],
-                  label: "26 × 3: 6 × 3 = 18 viết 8 nhớ 1; 2 × 3 = 6 thêm 1 = 7",
+                  label:
+                    "26 × 3: 6 × 3 = 18 viết 8 nhớ 1; 2 × 3 = 6 thêm 1 = 7",
                 },
               },
             },
@@ -2872,7 +2901,8 @@ export const grade3Data = {
                 table: {
                   headers: ["Phép chia", "Thử lại"],
                   rows: [["12 : 3 = 4 (không dư)", "4 × 3 = 12"]],
-                  label: "Phép chia hết — mỗi bạn 4 chiếc kẹo, không thừa chiếc nào",
+                  label:
+                    "Phép chia hết — mỗi bạn 4 chiếc kẹo, không thừa chiếc nào",
                 },
               },
             },
@@ -3304,7 +3334,11 @@ export const grade3Data = {
                 operation: { left: 26, sign: "×", right: 3, result: 78 },
                 table: {
                   headers: ["Phép tính", "Kết quả"],
-                  rows: [["26 × 3", "78"], ["48 : 4", "12"], ["19 : 3", "6 (dư 1)"]],
+                  rows: [
+                    ["26 × 3", "78"],
+                    ["48 : 4", "12"],
+                    ["19 : 3", "6 (dư 1)"],
+                  ],
                   label: "Luyện tập chung chủ đề 4",
                 },
               },
@@ -3392,7 +3426,10 @@ export const grade3Data = {
                 },
                 table: {
                   headers: ["Đổi", "Được"],
-                  rows: [["1 cm", "10 mm"], ["1 m", "1 000 mm"]],
+                  rows: [
+                    ["1 cm", "10 mm"],
+                    ["1 m", "1 000 mm"],
+                  ],
                   label: "Mi-li-mét (mm)",
                 },
               },
@@ -3459,7 +3496,10 @@ export const grade3Data = {
                 text: "1 kg = 1 000 g\n500 g + 500 g = 1 kg",
                 table: {
                   headers: ["Đổi", "Được"],
-                  rows: [["1 kg", "1 000 g"], ["500 g + 500 g", "1 kg"]],
+                  rows: [
+                    ["1 kg", "1 000 g"],
+                    ["500 g + 500 g", "1 kg"],
+                  ],
                   label: "Gam (g) — đơn vị đo khối lượng",
                 },
               },
@@ -3526,7 +3566,10 @@ export const grade3Data = {
                 text: "1 l = 1 000 ml\n2 l = 2 000 ml",
                 table: {
                   headers: ["Đổi", "Được"],
-                  rows: [["1 l", "1 000 ml"], ["2 l", "2 000 ml"]],
+                  rows: [
+                    ["1 l", "1 000 ml"],
+                    ["2 l", "2 000 ml"],
+                  ],
                   label: "Mi-li-lít (ml) — đơn vị đo dung tích",
                 },
               },
@@ -4057,7 +4100,8 @@ export const grade3Data = {
                 placeValue: {
                   headers: ["Trăm", "Chục", "Đơn vị"],
                   digits: [2, 1, 6],
-                  label: "216 × 3: 6 × 3 = 18 viết 8 nhớ 1; 1 × 3 = 3 thêm 1 = 4",
+                  label:
+                    "216 × 3: 6 × 3 = 18 viết 8 nhớ 1; 1 × 3 = 3 thêm 1 = 4",
                 },
               },
             },
@@ -4263,7 +4307,10 @@ export const grade3Data = {
                 operation: { left: 12, sign: "+", right: 5, result: 17 },
                 table: {
                   headers: ["Biểu thức", "Giá trị"],
-                  rows: [["12 + 5", "17"], ["20 − 8", "12"]],
+                  rows: [
+                    ["12 + 5", "17"],
+                    ["20 − 8", "12"],
+                  ],
                   label: "Biểu thức số",
                 },
               },
@@ -4329,7 +4376,8 @@ export const grade3Data = {
                     ["12 + 5 × 2", "12 + 10", "22"],
                     ["(12 + 5) × 2", "17 × 2", "34"],
                   ],
-                  label: "Nhân chia trước, cộng trừ sau — có ngoặc thì làm trong ngoặc trước",
+                  label:
+                    "Nhân chia trước, cộng trừ sau — có ngoặc thì làm trong ngoặc trước",
                 },
               },
             },
@@ -4704,8 +4752,15 @@ export const grade3Data = {
               type: "visual",
               content: {
                 text: "d = 2 × r\n▢ 4 góc vuông · 🔺 3 cạnh",
-                circleParts: { radius: 3, diameter: 6, label: "Đường kính = 2 × bán kính" },
-                planeShape: { kind: "square", formula: "4 góc vuông · 4 cạnh bằng nhau" },
+                circleParts: {
+                  radius: 3,
+                  diameter: 6,
+                  label: "Đường kính = 2 × bán kính",
+                },
+                planeShape: {
+                  kind: "square",
+                  formula: "4 góc vuông · 4 cạnh bằng nhau",
+                },
               },
             },
             {
@@ -5149,7 +5204,11 @@ export const grade3Data = {
                 comparison: { left: 3456, sign: "<", right: 3465 },
                 table: {
                   headers: ["Hàng", "So sánh"],
-                  rows: [["Nghìn", "3 = 3"], ["Trăm", "4 = 4"], ["Chục", "5 < 6"]],
+                  rows: [
+                    ["Nghìn", "3 = 3"],
+                    ["Trăm", "4 = 4"],
+                    ["Chục", "5 < 6"],
+                  ],
                   label: "3 456 < 3 465 vì hàng chục 5 < 6",
                 },
               },
@@ -5220,7 +5279,11 @@ export const grade3Data = {
                 text: "I = 1   V = 5   X = 10",
                 table: {
                   headers: ["Chữ số La Mã", "Giá trị"],
-                  rows: [["I", 1], ["V", 5], ["X", 10]],
+                  rows: [
+                    ["I", 1],
+                    ["V", 5],
+                    ["X", 10],
+                  ],
                   label: "Làm quen với chữ số La Mã",
                 },
               },
@@ -5295,7 +5358,8 @@ export const grade3Data = {
                     "XII",
                   ],
                   rows: [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]],
-                  label: "Chữ số La Mã từ I đến XII — dùng để ghi giờ và số thứ tự",
+                  label:
+                    "Chữ số La Mã từ I đến XII — dùng để ghi giờ và số thứ tự",
                 },
               },
             },
@@ -5762,7 +5826,10 @@ export const grade3Data = {
                 text: "Hình A: 9 ô vuông\nHình B: 6 ô vuông\n→ Diện tích A lớn hơn B",
                 table: {
                   headers: ["Hình", "Số ô vuông"],
-                  rows: [["Hình A", 9], ["Hình B", 6]],
+                  rows: [
+                    ["Hình A", 9],
+                    ["Hình B", 6],
+                  ],
                   label: "Diện tích hình A lớn hơn diện tích hình B",
                 },
               },
@@ -5834,7 +5901,10 @@ export const grade3Data = {
                 },
                 table: {
                   headers: ["Số ô 1 cm²", "Diện tích"],
-                  rows: [["1", "1 cm²"], ["5", "5 cm²"]],
+                  rows: [
+                    ["1", "1 cm²"],
+                    ["5", "5 cm²"],
+                  ],
                   label: "Xăng-ti-mét vuông",
                 },
               },
@@ -6262,7 +6332,10 @@ export const grade3Data = {
                 operation: { left: 2768, sign: "+", right: 1456, result: 4224 },
                 table: {
                   headers: ["Phép tính", "Kết quả"],
-                  rows: [["2 768 + 1 456", "4 224"], ["5 002 − 1 345", "3 657"]],
+                  rows: [
+                    ["2 768 + 1 456", "4 224"],
+                    ["5 002 − 1 345", "3 657"],
+                  ],
                   label: "Luyện tập cộng, trừ trong phạm vi 10 000",
                 },
               },
@@ -6464,7 +6537,10 @@ export const grade3Data = {
                 operation: { left: 3215, sign: "×", right: 3, result: 9645 },
                 table: {
                   headers: ["Phép tính", "Kết quả"],
-                  rows: [["3 215 × 3", "9 645"], ["8 425 : 4", "2 106 (dư 1)"]],
+                  rows: [
+                    ["3 215 × 3", "9 645"],
+                    ["8 425 : 4", "2 106 (dư 1)"],
+                  ],
                   label: "Luyện tập nhân, chia trong phạm vi 10 000",
                 },
               },
@@ -6691,7 +6767,8 @@ export const grade3Data = {
                 placeValue: {
                   headers: ["Chục nghìn", "Nghìn", "Trăm", "Chục", "Đơn vị"],
                   digits: [2, 4, 5, 6, 8],
-                  label: "24 568 gồm 2 chục nghìn, 4 nghìn, 5 trăm, 6 chục và 8 đơn vị",
+                  label:
+                    "24 568 gồm 2 chục nghìn, 4 nghìn, 5 trăm, 6 chục và 8 đơn vị",
                 },
               },
             },
@@ -7166,7 +7243,12 @@ export const grade3Data = {
               type: "visual",
               content: {
                 text: "  23 456\n+ 12 345\n  35 801",
-                operation: { left: 23456, sign: "+", right: 12345, result: 35801 },
+                operation: {
+                  left: 23456,
+                  sign: "+",
+                  right: 12345,
+                  result: 35801,
+                },
               },
             },
             {
@@ -7224,7 +7306,12 @@ export const grade3Data = {
               type: "visual",
               content: {
                 text: "  45 678\n− 23 456\n  22 222",
-                operation: { left: 45678, sign: "−", right: 23456, result: 22222 },
+                operation: {
+                  left: 45678,
+                  sign: "−",
+                  right: 23456,
+                  result: 22222,
+                },
               },
             },
             {
@@ -7282,7 +7369,12 @@ export const grade3Data = {
               type: "visual",
               content: {
                 text: "  35 678          50 000\n+ 24 567        − 12 345\n  60 245          37 655",
-                operation: { left: 35678, sign: "+", right: 24567, result: 60245 },
+                operation: {
+                  left: 35678,
+                  sign: "+",
+                  right: 24567,
+                  result: 60245,
+                },
                 table: {
                   headers: ["Phép tính", "Kết quả"],
                   rows: [
@@ -7348,7 +7440,12 @@ export const grade3Data = {
               type: "visual",
               content: {
                 text: "Cả hai tháng: 34 560 + 25 430 = 59 990 (cái áo)\nTháng trước hơn: 34 560 − 25 430 = 9 130 (cái áo)",
-                operation: { left: 34560, sign: "+", right: 25430, result: 59990 },
+                operation: {
+                  left: 34560,
+                  sign: "+",
+                  right: 25430,
+                  result: 59990,
+                },
                 barModel: {
                   rows: [
                     { label: "Tháng trước", parts: 34560 },
@@ -7421,7 +7518,12 @@ export const grade3Data = {
               type: "visual",
               content: {
                 text: "23 456 + 12 345 = 35 801\n35 801 − 12 345 = 23 456",
-                operation: { left: 23456, sign: "+", right: 12345, result: 35801 },
+                operation: {
+                  left: 23456,
+                  sign: "+",
+                  right: 12345,
+                  result: 35801,
+                },
                 table: {
                   headers: ["Phép tính", "Kết quả"],
                   rows: [
@@ -7742,8 +7844,12 @@ export const grade3Data = {
                 text: "ngày 15 tháng 8  →  15/8\nngày 1 tháng 1  →  1/1",
                 table: {
                   headers: ["Cách đọc", "Cách viết"],
-                  rows: [["ngày 15 tháng 8", "15/8"], ["ngày 1 tháng 1", "1/1"]],
-                  label: "Ngày trước, tháng sau, năm cuối cùng — ví dụ 15/8/2025",
+                  rows: [
+                    ["ngày 15 tháng 8", "15/8"],
+                    ["ngày 1 tháng 1", "1/1"],
+                  ],
+                  label:
+                    "Ngày trước, tháng sau, năm cuối cùng — ví dụ 15/8/2025",
                 },
               },
             },
@@ -7889,10 +7995,16 @@ export const grade3Data = {
               type: "visual",
               content: {
                 text: "15 000 + 9 000 = 24 000 (đồng)\n50 000 − 24 000 = 26 000 (đồng)",
-                operation: { left: 50000, sign: "−", right: 24000, result: 26000 },
+                operation: {
+                  left: 50000,
+                  sign: "−",
+                  right: 24000,
+                  result: 26000,
+                },
                 money: {
                   notes: [50000, 15000, 9000],
-                  label: "Mua hết 24 000 đồng, trả 50 000 đồng, tiền thừa 26 000 đồng",
+                  label:
+                    "Mua hết 24 000 đồng, trả 50 000 đồng, tiền thừa 26 000 đồng",
                 },
               },
             },
@@ -8232,7 +8344,10 @@ export const grade3Data = {
                 operation: { left: 13241, sign: "×", right: 3, result: 39723 },
                 table: {
                   headers: ["Phép tính", "Kết quả"],
-                  rows: [["13 241 × 3", "39 723"], ["47 125 : 5", "9 425"]],
+                  rows: [
+                    ["13 241 × 3", "39 723"],
+                    ["47 125 : 5", "9 425"],
+                  ],
                   label: "Luyện tập nhân, chia trong phạm vi 100 000",
                 },
               },
@@ -8373,7 +8488,10 @@ export const grade3Data = {
                 operation: { left: 12345, sign: "×", right: 2, result: 24690 },
                 table: {
                   headers: ["Phép tính", "Kết quả"],
-                  rows: [["12 345 × 2", "24 690"], ["46 848 : 4", "11 712"]],
+                  rows: [
+                    ["12 345 × 2", "24 690"],
+                    ["46 848 : 4", "11 712"],
+                  ],
                   label: "Luyện tập chung chủ đề 14",
                 },
               },
@@ -8458,8 +8576,13 @@ export const grade3Data = {
                 text: "Bóng đá: 12 bạn\nCầu lông: 8 bạn\nBơi     : 5 bạn",
                 table: {
                   headers: ["Môn", "Số bạn"],
-                  rows: [["Bóng đá", 12], ["Cầu lông", 8], ["Bơi", 5]],
-                  label: "Bảng số liệu lớp 3A — môn được nhiều bạn thích nhất là bóng đá",
+                  rows: [
+                    ["Bóng đá", 12],
+                    ["Cầu lông", 8],
+                    ["Bơi", 5],
+                  ],
+                  label:
+                    "Bảng số liệu lớp 3A — môn được nhiều bạn thích nhất là bóng đá",
                 },
               },
             },
@@ -8768,7 +8891,12 @@ export const grade3Data = {
               type: "visual",
               content: {
                 text: "23 456 + 12 345 = 35 801\n45 678 − 23 456 = 22 222",
-                operation: { left: 23456, sign: "+", right: 12345, result: 35801 },
+                operation: {
+                  left: 23456,
+                  sign: "+",
+                  right: 12345,
+                  result: 35801,
+                },
                 table: {
                   headers: ["Phép tính", "Kết quả"],
                   rows: [
@@ -8927,7 +9055,8 @@ export const grade3Data = {
                 planeShape: {
                   kind: "square",
                   labels: ["5 cm"],
-                  formula: "Chu vi = 5 × 4 = 20 cm · Diện tích = 5 × 5 = 25 cm²",
+                  formula:
+                    "Chu vi = 5 × 4 = 20 cm · Diện tích = 5 × 5 = 25 cm²",
                 },
                 table: {
                   headers: ["Cần tính", "Công thức"],
@@ -9329,7 +9458,10 @@ export const grade3Data = {
                 },
                 table: {
                   headers: ["Mốc", "Trạng thái"],
-                  rows: [["Lớp 3", "Hoàn thành ✅"], ["Lớp 4", "Sẵn sàng 🚀"]],
+                  rows: [
+                    ["Lớp 3", "Hoàn thành ✅"],
+                    ["Lớp 4", "Sẵn sàng 🚀"],
+                  ],
                   label: "Lễ tốt nghiệp lớp 3",
                 },
               },

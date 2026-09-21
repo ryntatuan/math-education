@@ -60,7 +60,14 @@ const nhomA = [];
 const nhomB = [];
 const nhomC = [];
 const nhomD = [];
-const dem = { quiz: 0, quizCoHinh: 0, slide: 0, coVisualDisplay: 0, visualSlide: 0, visualRong: 0 };
+const dem = {
+  quiz: 0,
+  quizCoHinh: 0,
+  slide: 0,
+  coVisualDisplay: 0,
+  visualSlide: 0,
+  visualRong: 0,
+};
 
 for (const [file, key] of NGUON) {
   const mod = await import(`../client/src/data/${file}`);
@@ -89,7 +96,14 @@ for (const [file, key] of NGUON) {
             if (coKhoaHinh || coEmojiDuoi) dem.quizCoHinh++;
           }
           if (TRO_HINH.test(q) && !coKhoaHinh && !coEmojiDuoi) {
-            nhomA.push({ lop, bai: bai.id, slide: i, q, kieu: sl.type, khoa: Object.keys(c).join(",") });
+            nhomA.push({
+              lop,
+              bai: bai.id,
+              slide: i,
+              q,
+              kieu: sl.type,
+              khoa: Object.keys(c).join(","),
+            });
           }
         }
 
@@ -104,7 +118,13 @@ for (const [file, key] of NGUON) {
             c.comparison != null;
           if (!coHinh) {
             dem.visualRong++;
-            nhomD.push({ lop, bai: bai.id, slide: i, text: String(c.text || "").slice(0, 60), khoa: Object.keys(c).join(",") });
+            nhomD.push({
+              lop,
+              bai: bai.id,
+              slide: i,
+              text: String(c.text || "").slice(0, 60),
+              khoa: Object.keys(c).join(","),
+            });
           }
         }
 
@@ -112,7 +132,14 @@ for (const [file, key] of NGUON) {
         for (const k of ["text", "title", "rule", "explanation", "question"]) {
           const v = c[k];
           if (typeof v === "string" && v.includes("\n")) {
-            nhomB.push({ lop, bai: bai.id, slide: i, kieu: sl.type, k: v.split("\n").length, v });
+            nhomB.push({
+              lop,
+              bai: bai.id,
+              slide: i,
+              kieu: sl.type,
+              k: v.split("\n").length,
+              v,
+            });
           }
         }
 
@@ -126,7 +153,9 @@ for (const [file, key] of NGUON) {
           const e = Number(c.tenFrame.extra) || 0;
           if (e > t - f) {
             nhomC.push({
-              lop, bai: bai.id, slide: i,
+              lop,
+              bai: bai.id,
+              slide: i,
               tenFrame: c.tenFrame,
               ngoai: e - Math.max(0, t - f),
               tong: f + e,
@@ -139,18 +168,26 @@ for (const [file, key] of NGUON) {
 }
 
 console.log(`\n=== SOÁT ${dem.slide} slide · ${dem.quiz} câu hỏi ===`);
-console.log(`Slide có khoá 'visualDisplay' (app bài học KHÔNG vẽ khoá này): ${dem.coVisualDisplay}`);
+console.log(
+  `Slide có khoá 'visualDisplay' (app bài học KHÔNG vẽ khoá này): ${dem.coVisualDisplay}`,
+);
 console.log(`Câu hỏi CÓ hình để đếm/xem: ${dem.quizCoHinh}/${dem.quiz}`);
 
-console.log(`\n--- A. Câu hỏi nhắc tới hình nhưng KHÔNG có hình: ${nhomA.length} ---`);
+console.log(
+  `\n--- A. Câu hỏi nhắc tới hình nhưng KHÔNG có hình: ${nhomA.length} ---`,
+);
 for (const x of nhomA) {
   console.log(`  [${x.lop}] ${x.bai} slide${x.slide} (${x.kieu}) — "${x.q}"`);
   console.log(`        khoá đang có: ${x.khoa}`);
 }
 
-console.log(`\n--- B. Chữ có xuống dòng trong dữ liệu (HTML gộp 1 hàng): ${nhomB.length} ---`);
+console.log(
+  `\n--- B. Chữ có xuống dòng trong dữ liệu (HTML gộp 1 hàng): ${nhomB.length} ---`,
+);
 for (const x of nhomB) {
-  console.log(`  [${x.lop}] ${x.bai} slide${x.slide} (${x.kieu}) .${x.k} dòng:`);
+  console.log(
+    `  [${x.lop}] ${x.bai} slide${x.slide} (${x.kieu}) .${x.k} dòng:`,
+  );
   console.log(`        ${JSON.stringify(x.v)}`);
 }
 

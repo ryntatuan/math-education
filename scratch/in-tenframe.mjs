@@ -38,7 +38,8 @@ for (const [file, key] of NGUON) {
           `\n[${file.replace("Data.js", "")}] ${bai.id} · slide${i} (${bai.slides[i].type})`,
         );
         for (const k of KHOA_TEXT) {
-          if (typeof c[k] === "string") console.log(`   .${k}: ${JSON.stringify(c[k])}`);
+          if (typeof c[k] === "string")
+            console.log(`   .${k}: ${JSON.stringify(c[k])}`);
         }
         console.log(
           `   tenFrame: filled=${f} total=${t} extra=${e} emoji=${tf.emoji} label=${JSON.stringify(tf.label || "")}`,

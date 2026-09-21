@@ -221,7 +221,12 @@ export const grade1Data = {
               type: "visual",
               content: {
                 text: "🖐️ = 5 ngón tay\n1 · 2 · 3 · 4 · 5",
-                tenFrame: { filled: 5, total: 5, emoji: "🍒", label: "5 quả — số 5" },
+                tenFrame: {
+                  filled: 5,
+                  total: 5,
+                  emoji: "🍒",
+                  label: "5 quả — số 5",
+                },
                 numberLine: {
                   from: 1,
                   to: 5,
@@ -576,7 +581,11 @@ export const grade1Data = {
                 comparison: { left: 5, sign: ">", right: 2 },
                 table: {
                   headers: ["Bên trái", "Dấu", "Bên phải"],
-                  rows: [["5", ">", "2"], ["2", "<", "5"], ["5", "=", "5"]],
+                  rows: [
+                    ["5", ">", "2"],
+                    ["2", "<", "5"],
+                    ["5", "=", "5"],
+                  ],
                   label: "Ba dấu cần nhớ: > , < , =",
                 },
               },
@@ -1292,7 +1301,8 @@ export const grade1Data = {
                 text: "🔺 + 🔺  →  ▢\n▢▢\n▢▢      →  ▢ (lớn hơn)",
                 planeShape: {
                   kind: "square",
-                  formula: "🔺 + 🔺 = ▢  (ghép 2 tam giác vuông thành 1 hình vuông)",
+                  formula:
+                    "🔺 + 🔺 = ▢  (ghép 2 tam giác vuông thành 1 hình vuông)",
                   showName: false,
                 },
               },
@@ -1359,7 +1369,8 @@ export const grade1Data = {
                 text: "🏠 → 1 hình tam giác (mái)\n     1 hình chữ nhật (thân)\n     1 hình vuông (cửa sổ)",
                 planeShape: {
                   kind: "rectangle",
-                  formula: "1 hình tam giác (mái) · 1 hình chữ nhật (thân) · 1 hình vuông (cửa sổ)",
+                  formula:
+                    "1 hình tam giác (mái) · 1 hình chữ nhật (thân) · 1 hình vuông (cửa sổ)",
                 },
               },
             },
@@ -1641,7 +1652,10 @@ export const grade1Data = {
                 operation: { left: 5, sign: "+", right: 2, result: 7 },
                 table: {
                   headers: ["Phép tính", "Kết quả"],
-                  rows: [["2 + 5", "7"], ["5 + 2", "7"]],
+                  rows: [
+                    ["2 + 5", "7"],
+                    ["5 + 2", "7"],
+                  ],
                   label: "Đổi chỗ hai số, kết quả không đổi",
                 },
               },
@@ -1703,7 +1717,10 @@ export const grade1Data = {
                 operation: { left: 5, sign: "+", right: 0, result: 5 },
                 table: {
                   headers: ["Phép tính", "Kết quả"],
-                  rows: [["5 + 0", "5"], ["0 + 3", "3"]],
+                  rows: [
+                    ["5 + 0", "5"],
+                    ["0 + 3", "3"],
+                  ],
                   label: "Cộng với 0 thì giữ nguyên số đó",
                 },
               },
@@ -1883,7 +1900,10 @@ export const grade1Data = {
                 operation: { left: 4, sign: "−", right: 0, result: 4 },
                 table: {
                   headers: ["Phép tính", "Kết quả"],
-                  rows: [["4 − 0", "4"], ["4 − 4", "0"]],
+                  rows: [
+                    ["4 − 0", "4"],
+                    ["4 − 4", "0"],
+                  ],
                   label: "Trừ 0 thì giữ nguyên · trừ hết thì bằng 0",
                 },
               },
@@ -2106,7 +2126,11 @@ export const grade1Data = {
                 operation: { left: 5, sign: "+", right: 3, result: 8 },
                 table: {
                   headers: ["Phép tính", "Kết quả"],
-                  rows: [["5 + 3", "8"], ["8 − 3", "5"], ["8 − 5", "3"]],
+                  rows: [
+                    ["5 + 3", "8"],
+                    ["8 − 3", "5"],
+                    ["8 − 5", "3"],
+                  ],
                   label: "Từ một phép cộng suy ra hai phép trừ",
                 },
               },
@@ -2384,7 +2408,11 @@ export const grade1Data = {
                 operation: { left: 4, sign: "+", right: 6, result: 10 },
                 table: {
                   headers: ["Phép tính", "Kết quả"],
-                  rows: [["4 + 6", "10"], ["10 − 4", "6"], ["10 − 6", "4"]],
+                  rows: [
+                    ["4 + 6", "10"],
+                    ["10 − 4", "6"],
+                    ["10 − 6", "4"],
+                  ],
                   label: "Một phép cộng, hai phép trừ",
                 },
               },
@@ -3031,7 +3059,11 @@ export const grade1Data = {
                 comparison: { left: 8, sign: ">", right: 5 },
                 table: {
                   headers: ["So sánh", "Dấu"],
-                  rows: [["8 với 5", ">"], ["5 với 8", "<"], ["8 với 8", "="]],
+                  rows: [
+                    ["8 với 5", ">"],
+                    ["5 với 8", "<"],
+                    ["8 với 8", "="],
+                  ],
                   label: "Ôn tập so sánh số",
                 },
               },
@@ -3091,7 +3123,11 @@ export const grade1Data = {
                 operation: { left: 4, sign: "+", right: 5, result: 9 },
                 table: {
                   headers: ["Phép tính", "Kết quả"],
-                  rows: [["4 + 5", "9"], ["9 − 4", "5"], ["9 − 5", "4"]],
+                  rows: [
+                    ["4 + 5", "9"],
+                    ["9 − 4", "5"],
+                    ["9 − 5", "4"],
+                  ],
                   label: "Ôn tập cộng trừ trong phạm vi 10",
                 },
               },
@@ -3247,7 +3283,10 @@ export const grade1Data = {
                 text: "💡 đèn ở TRÊN bàn\n🎒 cặp ở DƯỚI bàn",
                 table: {
                   headers: ["Đồ vật", "Vị trí"],
-                  rows: [["Đèn bàn", "Ở trên bàn"], ["Cặp sách", "Ở dưới bàn"]],
+                  rows: [
+                    ["Đèn bàn", "Ở trên bàn"],
+                    ["Cặp sách", "Ở dưới bàn"],
+                  ],
                   label: "Ôn tập vị trí trong không gian",
                 },
               },
@@ -3449,7 +3488,11 @@ export const grade1Data = {
               type: "visual",
               content: {
                 text: "11 · 12 · 13 · 14 · 15 · 16 · 17 · 18 · 19 · 20",
-                baseTen: { tens: 1, ones: 4, label: "14 gồm 1 chục và 4 đơn vị" },
+                baseTen: {
+                  tens: 1,
+                  ones: 4,
+                  label: "14 gồm 1 chục và 4 đơn vị",
+                },
                 numberLine: {
                   from: 11,
                   to: 20,
@@ -3893,7 +3936,8 @@ export const grade1Data = {
                   to: 35,
                   step: 1,
                   marks: [33, 34, 35],
-                  label: "33 là số liền trước của 34 · 35 là số liền sau của 34",
+                  label:
+                    "33 là số liền trước của 34 · 35 là số liền sau của 34",
                 },
               },
             },
@@ -4258,7 +4302,8 @@ export const grade1Data = {
                 ruler: {
                   lengthCm: 5,
                   measure: { from: 0, to: 5 },
-                  label: "Bút xanh dài 5 cm, bút đỏ dài 3 cm — bút xanh dài hơn",
+                  label:
+                    "Bút xanh dài 5 cm, bút đỏ dài 3 cm — bút xanh dài hơn",
                 },
               },
             },
@@ -4324,8 +4369,12 @@ export const grade1Data = {
                 text: "Bàn     = 3 gang tay\nCửa sổ  = 2 gang tay\n→ Bàn dài hơn",
                 table: {
                   headers: ["Vật", "Số gang tay"],
-                  rows: [["Bàn học", "3"], ["Cửa sổ", "2"]],
-                  label: "Bàn dài 3 gang tay, cửa sổ dài 2 gang tay → bàn dài hơn",
+                  rows: [
+                    ["Bàn học", "3"],
+                    ["Cửa sổ", "2"],
+                  ],
+                  label:
+                    "Bàn dài 3 gang tay, cửa sổ dài 2 gang tay → bàn dài hơn",
                 },
               },
             },
@@ -4453,7 +4502,8 @@ export const grade1Data = {
                 ruler: {
                   lengthCm: 8,
                   measure: { from: 0, to: 8 },
-                  label: "Đầu vật đặt ở vạch 0, đầu kia ở vạch 8 → vật dài 8 cm",
+                  label:
+                    "Đầu vật đặt ở vạch 0, đầu kia ở vạch 8 → vật dài 8 cm",
                 },
               },
             },
@@ -4735,7 +4785,8 @@ export const grade1Data = {
                 ruler: {
                   lengthCm: 5,
                   measure: { from: 0, to: 5 },
-                  label: "1 cm = 1 khoảng trên thước — nhớ đặt vạch 0 vào đầu vật",
+                  label:
+                    "1 cm = 1 khoảng trên thước — nhớ đặt vạch 0 vào đầu vật",
                 },
               },
             },
@@ -5495,7 +5546,11 @@ export const grade1Data = {
                 operation: { left: 32, sign: "+", right: 14, result: 46 },
                 table: {
                   headers: ["Phép tính", "Kết quả"],
-                  rows: [["25 + 4", "29"], ["32 + 14", "46"], ["57 − 23", "34"]],
+                  rows: [
+                    ["25 + 4", "29"],
+                    ["32 + 14", "46"],
+                    ["57 − 23", "34"],
+                  ],
                   label: "Luyện tập chung cộng trừ trong phạm vi 100",
                 },
               },
@@ -5579,7 +5634,8 @@ export const grade1Data = {
                 clock: {
                   hour: 3,
                   minute: 0,
-                  timeText: "Mặt đồng hồ có 12 số — kim ngắn chỉ giờ, kim dài chỉ phút",
+                  timeText:
+                    "Mặt đồng hồ có 12 số — kim ngắn chỉ giờ, kim dài chỉ phút",
                 },
               },
             },
@@ -6014,7 +6070,8 @@ export const grade1Data = {
                     [8, 9, 10, 11, 12, 13, 14],
                     [15, 16, 17, 18, 19, 20, 21],
                   ],
-                  label: "Tờ lịch tháng 9 — mỗi cột là một thứ, mỗi ô là một ngày",
+                  label:
+                    "Tờ lịch tháng 9 — mỗi cột là một thứ, mỗi ô là một ngày",
                 },
               },
             },
@@ -6160,7 +6217,10 @@ export const grade1Data = {
                 },
                 table: {
                   headers: ["Đại lượng", "Bằng"],
-                  rows: [["1 tuần", "7 ngày"], ["1 ngày", "24 giờ"]],
+                  rows: [
+                    ["1 tuần", "7 ngày"],
+                    ["1 ngày", "24 giờ"],
+                  ],
                   label: "Thực hành và luyện tập chung",
                 },
               },
@@ -6315,7 +6375,11 @@ export const grade1Data = {
                 operation: { left: 6, sign: "+", right: 4, result: 10 },
                 table: {
                   headers: ["Phép tính", "Kết quả"],
-                  rows: [["6 + 4", "10"], ["10 − 6", "4"], ["10 − 4", "6"]],
+                  rows: [
+                    ["6 + 4", "10"],
+                    ["10 − 6", "4"],
+                    ["10 − 4", "6"],
+                  ],
                   label: "6 + 4 = 10 → 10 − 6 = 4 và 10 − 4 = 6",
                 },
               },
@@ -6463,7 +6527,11 @@ export const grade1Data = {
                 operation: { left: 32, sign: "+", right: 14, result: 46 },
                 table: {
                   headers: ["Phép tính", "Kết quả"],
-                  rows: [["25 + 4", "29"], ["32 + 14", "46"], ["57 − 23", "34"]],
+                  rows: [
+                    ["25 + 4", "29"],
+                    ["32 + 14", "46"],
+                    ["57 − 23", "34"],
+                  ],
                   label: "Ôn tập cộng trừ trong phạm vi 100",
                 },
               },
@@ -6617,7 +6685,8 @@ export const grade1Data = {
                 ruler: {
                   lengthCm: 5,
                   measure: { from: 0, to: 5 },
-                  label: "Đoạn thẳng dài 5 cm nếu đầu kia trùng vạch 5 của thước",
+                  label:
+                    "Đoạn thẳng dài 5 cm nếu đầu kia trùng vạch 5 của thước",
                 },
               },
             },
@@ -6679,7 +6748,10 @@ export const grade1Data = {
                 clock: { hour: 8, minute: 0, timeText: "8 giờ" },
                 table: {
                   headers: ["Đại lượng", "Bằng"],
-                  rows: [["1 tuần", "7 ngày"], ["1 ngày", "24 giờ"]],
+                  rows: [
+                    ["1 tuần", "7 ngày"],
+                    ["1 ngày", "24 giờ"],
+                  ],
                   label: "Ôn tập thời gian — giờ và lịch",
                 },
               },
