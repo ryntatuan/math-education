@@ -238,3 +238,60 @@ nội dung chữ).
 | Emoji bị hỏng khi ghi file           | Đếm ký tự `U+FFFD` sau mỗi lần ghi (đã thành thói quen)                                       |
 | App nặng hơn vì nhiều SVG            | SVG vẽ tại chỗ, không tải ảnh; mỗi slide chỉ vài chục phần tử                                 |
 | Admin ghi đè làm mất hình            | Đã kiểm: dùng phép trải nên giữ khoá lạ; sẽ kiểm lại bằng phép thử sau khi chèn               |
+
+## 9. Khắc phục "dính vào nhau" và co giãn theo màn hình (làm ngày 2026-09-22)
+
+### 9.1 Ba lỗi chạm nhau đã chữa
+
+Nguyên nhân chung: các khối được đặt sát nhau theo đơn vị `viewBox`, mà trên màn hình hình bị
+co lại (hệ số ~0,8–1,0), nên khe 2 đơn vị chỉ còn ~1–2 điểm ảnh — mắt thấy như dính liền.
+
+| Hình                 | Lỗi cũ                                                                       | Cách chữa                                                              |
+| -------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| Khối chục / đơn vị   | Ô trong thanh chục cao 11,2 còn ô đơn vị cao 22, khe dọc 2 ⇒ trông dính, méo | Dùng MỘT cỡ ô vuông 18 cho cả hai, khe 4, khe giữa hai thanh 14         |
+| Bảng hàng (placeValue) | Ô tiêu đề (10→48) và ô chữ số (48→114) chạm đúng mép nhau                   | Cách nhau 10 đơn vị (`KHE_DOC`), chiều cao thẻ 142                      |
+| Bảng số liệu         | Các hàng vẽ liền nhau (`y += cao`), không có khe                            | Thêm `KHE_HANG = 4` giữa các hàng                                       |
+
+Đo lại khe hẹp nhất giữa hai hình (khung rộng 644 px như trên máy tính): bảng số liệu 3,3 px ·
+khối chục/đơn vị 5,2 px · bảng hàng 6,5 px · khung 10 ô 11,5 px. **Hai hình cố ý bằng 0**:
+`fractionBar` và `barModel` — chúng là các đoạn của MỘT băng liền nhau, thêm khe là vẽ sai.
+
+### 9.2 Co giãn: chữ không được teo xuống mức không đọc được
+
+Đo trên app thật ở màn hình điện thoại 375 px (khối hình chỉ rộng **311 px**): chữ trong hình co
+còn **5,3 px ở bảng số liệu**, 6,4 px ở biểu đồ cột, 6,7 px ở thước, 8,0 px ở trục số — không đọc
+được, mà app lại phát hành chủ yếu qua APK (điện thoại). Vì `<svg width="100%">` co theo thẻ, chữ
+dùng đơn vị `viewBox` nên co theo.
+
+Quy tắc mới, nằm ở **một chỗ**: `svgFit(vbW)` trong `client/src/components/visuals/visualTheme.js`,
+dùng cho **cả 16 thẻ `<svg>`** (trước đây mỗi nơi tự viết `width="100%"`).
+
+- Bề rộng tối thiểu = `viewBox × 0,85`, **chặn trên ở 644 px**.
+- 644 px chính là bề rộng thẻ trên máy tính (680 `maxWidth` − 32 padding − 4 viền), và được
+  **suy ra trong code**, không viết cứng.
+- Chặn trên là bắt buộc: nếu không, hình rộng 792 đòi 673 px > 644 ⇒ tự nhiên mọc thanh cuộn ngang
+  trên máy tính, đúng chỗ trước đó vẫn hiển thị tốt.
+- Hình rộng hơn thẻ thì **thẻ tự cuộn ngang** (`overflowX: auto`) thay vì co chữ xuống nữa.
+
+Kết quả đo trên app thật:
+
+| Màn hình | Chữ nhỏ nhất trong hình | Thẻ phải kéo ngang | Trang có tràn ngang? |
+| -------- | ----------------------: | -----------------: | -------------------- |
+| 320 px   |                 11,0 px |                2/2 | Không (312 = 312)    |
+| 375 px   |                 11,0 px |                2/2 | Không (367 = 367)    |
+| 512 px   |                 12,9 px |                1/2 | Không (504 = 504)    |
+| 768 px   |                 11,4 px |                0/2 | Không                |
+| 1280 px  |                 14,9 px |                0/2 | Không                |
+
+Bảng đầy đủ của cả 17 loại ở 375 px: chữ nhỏ nhất giờ là **10,2 px** (biểu đồ cột) và không loại
+nào dưới 10 px; trước khi sửa có 4 loại dưới 9 px. Trên máy tính, bề rộng khung vẫn đúng 644 px
+như cũ nên **không có gì thay đổi** ở màn hình lớn.
+
+### 9.3 Việc còn lại (chưa làm, để bạn quyết)
+
+Trên điện thoại, hình rộng (bảng nhiều cột, biểu đồ cột, sơ đồ chuyển động…) nay phải **kéo ngang**
+trong thẻ. Đây là đánh đổi có ý: chữ đọc được, nhưng phải kéo. Ở 375 px có 24/54 trường hợp đo
+phải kéo; từ 768 px trở lên không trường hợp nào. Muốn bỏ hẳn việc kéo ngang trên điện thoại thì
+phải làm **bố cục riêng cho màn hẹp** (ví dụ bảng số liệu xếp dọc thành từng ô thay vì lưới) —
+việc lớn hơn, chưa làm.
+
