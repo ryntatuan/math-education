@@ -12,17 +12,27 @@
 -- CHẠY LẠI NHIỀU LẦN: chỉ làm phiên bản tăng thêm 1 mỗi lần — vô hại (các bé tải
 --   lại nội dung thêm một lần), không sinh dòng trùng, không mất dữ liệu.
 --
--- BỐI CẢNH LẦN NÀY (2026-09-22, lần 2): bổ sung HÌNH MINH HOẠ cho bài học — thêm 17 kiểu
---   hình vẽ SVG (trục số, khung 10 ô, bảng hàng, thước đo, tiền Việt Nam, hình phẳng/hình
---   khối, phân số, sơ đồ đoạn thẳng, sơ đồ chuyển động, biểu đồ cột/quạt…) vào **cả 459
---   bài**. Số bài và số slide KHÔNG đổi — hình nằm THÊM trong `content` của slide đã có.
+-- BỐI CẢNH LẦN NÀY (2026-09-22, lần 3): SỬA LỖI HIỂN THỊ HÌNH + THÊM HÌNH CHO CÂU HỎI.
+--   Người dùng tự nhìn màn hình rồi báo 4 lỗi, và soát thêm ra 4 lỗi nữa cùng họ:
+--     • Khung 10 ô khai THIẾU số liệu: bài 9 + 4 khai `extra: 3` trong khi phải là 4
+--       (4 = 1 + 3) ⇒ dự liệu cũ vẽ ra 12 ô. Nay `extra: 4` ⇒ 13 ô, khớp lời giảng.
+--     • 16 câu hỏi nay CÓ HÌNH để nhìn: 1 câu đếm con chim, 8 câu "trên biểu đồ",
+--       7 câu lời văn (thước đo / sơ đồ hai băng giấy 20 cm và 17 cm).
+--     • Hai câu hỏi trỏ vào hình không tồn tại ("Trong hình chữ nhật ABCD",
+--       "Vật nào dưới đây") đã bỏ phần trỏ sai — không đổi đáp án.
+--   Số bài và số slide KHÔNG đổi; hình nằm THÊM trong `content` của slide đã có.
 --   ⇒ Quy mô vẫn là: 5 lớp · 51 chương · **459 bài · 2438 slide**.
---   ✅ Lần này KHÔNG cần `00-don-noi-dung-cu.sql` (không có bài nào bị bỏ khỏi chương
---      trình), nhưng chạy nó vẫn VÔ HẠI — nó chỉ xoá bài không còn trong file tĩnh.
+--   ⚠️ LẦN NÀY BẮT BUỘC dán `02`, `03`, `04` VÀ `05` (cả bốn đều có thay đổi).
+--      `01` và `06` không đổi. `00-don-noi-dung-cu.sql` KHÔNG cần (không bài nào bị bỏ),
+--      nhưng chạy nó vẫn VÔ HẠI — nó chỉ xoá bài không còn trong file tĩnh.
 --
--- 📌 LẦN TRƯỚC (giữ lại để tra khi cần): dựng lại chương trình Lớp 1–3 theo đúng số chủ đề
---   SGK (Lớp 1: 10 · Lớp 2: 10 → 14 · Lớp 3: 10 → 16). Khi đó số bài ĐỔI và có **79 bài mồ
---   côi** buộc phải dọn bằng `00-don-noi-dung-cu.sql` chạy TRƯỚC seed (seed chỉ upsert).
+-- 📌 LẦN TRƯỚC (lần 2): bổ sung HÌNH MINH HOẠ — thêm 17 kiểu hình vẽ SVG (trục số, khung
+--   10 ô, bảng hàng, thước đo, tiền Việt Nam, hình phẳng/khối, phân số, sơ đồ đoạn thẳng,
+--   sơ đồ chuyển động, biểu đồ cột/quạt…) vào cả 459 bài. DB nào chưa từng nạp lần 2 thì các
+--   file seed dưới đây vẫn bao trùm đủ cả hai lần — cứ dán theo đúng thứ tự là xong.
+-- 📌 LẦN TRƯỚC NỮA: dựng lại chương trình Lớp 1–3 theo đúng số chủ đề SGK (Lớp 1: 10 ·
+--   Lớp 2: 10 → 14 · Lớp 3: 10 → 16). Khi đó số bài ĐỔI và có **79 bài mồ côi** buộc phải
+--   dọn bằng `00-don-noi-dung-cu.sql` chạy TRƯỚC seed (seed chỉ upsert).
 -- ════════════════════════════════════════════════════════════════════════════
 
 -- ── 1. Kiểm TRƯỚC khi đẩy: số bài từng lớp ───────────────────────────────
@@ -82,9 +92,23 @@ WHERE key IN ('content_source', 'content_version') ORDER BY key;
 --   • Lớp 2 KHÔNG còn dạy "một phần mấy" (1/2, 1/3, 1/4, 1/5) — chủ đề đó thuộc Lớp 3.
 --   • Lớp 1 và Lớp 3 không còn dạy "cộng trừ qua 10" / "phân số" nữa.
 --
--- Kiểm HÌNH MINH HOẠ (mới, 2026-09-22 lần 2) — vào slide "hình ảnh" của vài bài:
---   • Lớp 1 Bài 2 (g1-c1-l2): phải thấy KHUNG 10 Ô (3 quả táo) và TRỤC SỐ 1–2–3.
---   • Lớp 4 (g4-c5-l2): toán Tổng–Tỉ phải có SƠ ĐỒ ĐOẠN THẲNG hai đoạn dài ngắn.
---   • Lớp 5 (g5-c4-l6): sơ đồ chuyển động phải ghi "Hai xe đi NGƯỢC CHIỀU, gặp nhau".
---     🔴 Nếu thấy "Hai xe đi RA XA nhau" là DÁN THIẾU — chạy lại `06-bai-lop-5.sql`.
---   • Bảng số liệu KHÔNG được chồng chữ: bề rộng cột tự co theo nội dung.
+-- Kiểm HÌNH và CÂU HỎI — đúng những chỗ vừa sửa (2026-09-22 lần 3):
+--   • Lớp 2 Bài 1 (g2-c2-l1) slide 3/5: khung 10 ô phải vẽ 9 ô xanh + 1 ô xanh lá TRONG
+--     khung, rồi dấu "+" và 3 ô xanh lá NGOÀI khung ⇒ tổng 13 ô.
+--     🔴 Nếu chỉ thấy 10 ô, hoặc thấy "+ 2" ⇒ DÁN THIẾU: chạy lại `03-bai-lop-2.sql`.
+--   • Lớp 2 (g2-c2-l2) slide 3/5: 8 ô xanh + 2 ô xanh lá trong khung, "+" và 3 ô ngoài = 13.
+--   • Lớp 1 Bài 2 (g1-c1-l2) slide câu hỏi "Hình dưới đây có mấy con chim?":
+--     phải thấy 3 con chim để bé đếm. Dán thiếu thì câu hỏi không có gì để nhìn.
+--   • Câu hỏi có chữ "trên biểu đồ" (Lớp 2: g2-c13-l3, g2-c13-l4, g2-c13-l6, g2-c14-l7;
+--     Lớp 3: g3-c15-l2, g3-c15-l4, g3-c16-l5) phải có khay hình bên dưới câu hỏi.
+--   • Câu hỏi lời văn có hình: Lớp 1 (g1-c7-l4, g1-c7-l8) và Lớp 2 (g2-c5-l7) có THƯỚC ĐO;
+--     Lớp 2 (g2-c1-l7, g2-c1-l9) và Lớp 3 (g3-c4-l3) có SƠ ĐỒ ĐOẠN THẲNG.
+--     Số của mỗi hàng ("20 cm", "17 cm") phải nằm BÊN TRÁI, ngay trước thanh.
+--   • Trục số: số ở mốc cuối KHÔNG bị mũi tên đè lên; vòng cung "nhảy" (nếu có) nông,
+--     không vượt ra ngoài khung.
+--   • Sơ đồ đoạn thẳng (toán Tổng–Tỉ, Lớp 4 `g4-c5-l2`): nhãn "Tổng 35" phải HIỆN ĐỦ,
+--     không bị cắt ở mép phải.
+--   • Đầu mỗi thẻ slide: nút đọc CHỈ CÒN ICON LOA, nhãn loại slide ("Bài học", "Quan sát",
+--     "Thử thách", "Tổng kết") nằm cùng hàng; ở slide câu hỏi thứ tự là [loa] rồi [cờ].
+--   • Chữ dài trong slide "hình ảnh" phải xuống dòng đúng như dữ liệu
+--     (ví dụ g2-c2-l1: dòng thứ hai là "↑ tách 4 thành 1 và 3").
