@@ -498,6 +498,15 @@ export const grade2Data = {
                   "Băng giấy xanh dài 20 cm, băng giấy đỏ dài 17 cm. Băng giấy xanh dài hơn bao nhiêu xăng-ti-mét?",
                 options: [3, 7, 17, 37],
                 answer: 3,
+                // Sơ đồ hai băng giấy — mỗi vạch là 1 cm, nhãn ghi rõ đơn vị cm.
+                barModel: {
+                  rows: [
+                    { label: "Băng xanh", parts: 20 },
+                    { label: "Băng đỏ", parts: 17 },
+                  ],
+                  unit: "cm",
+                  note: "Băng xanh dài hơn: 20 − 17 = 3 cm",
+                },
                 mascotHint: "20 − 17 = 3 cm.",
               },
             },
@@ -648,6 +657,14 @@ export const grade2Data = {
                   "Băng xanh, dài hơn 37 cm",
                 ],
                 answer: "Băng xanh, dài hơn 3 cm",
+                barModel: {
+                  rows: [
+                    { label: "Băng xanh", parts: 20 },
+                    { label: "Băng đỏ", parts: 17 },
+                  ],
+                  unit: "cm",
+                  note: "20 cm > 17 cm, và 20 − 17 = 3 cm",
+                },
                 mascotHint: "20 cm > 17 cm, và 20 − 17 = 3 cm.",
               },
             },
@@ -3163,6 +3180,11 @@ badge: "Ôn Tập",
                   "Muốn vẽ đoạn thẳng dài 5 cm, bé đặt vạch số mấy của thước vào điểm đầu?",
                 options: ["Vạch 0", "Vạch 1", "Vạch 5", "Vạch 10"],
                 answer: "Vạch 0",
+                ruler: {
+                  lengthCm: 10,
+                  measure: { from: 0, to: 5 },
+                  label: "Vạch 0 ở điểm đầu, chấm điểm thứ hai ở vạch 5",
+                },
                 mascotHint:
                   "Luôn đặt vạch 0 trùng với điểm đầu, rồi chấm điểm thứ hai ở vạch 5.",
               },

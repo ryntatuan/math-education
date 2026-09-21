@@ -182,8 +182,49 @@ for (const [k, g] of Object.entries(NGUON)) {
 }
 kiem(`tất cả ${demItems} emoji trong items đều nguyên vẹn`, itemsHong === 0, `${itemsHong} hỏng`);
 
-console.log(`\nTỔNG: ${dat} đạt · ${hong} hỏng\n`);
-process.exit(hong ? 1 : 0);
+console.log("\n=== 7. Câu hỏi lời văn (băng giấy / thước): có hình và SỐ KHỚP câu hỏi ===");
+// Yêu cầu của người dùng 2026-09-22: thêm hình minh hoạ cho các câu còn lại.
+// Phép kiểm dưới đây bắt đúng họ lỗi "hình vẽ một đằng, câu hỏi nói một nẻo".
+const CAN_HINH = [
+  ["g1", "g1-c7-l4"],
+  ["g1", "g1-c7-l8"],
+  ["g2", "g2-c1-l7"],
+  ["g2", "g2-c1-l9"],
+  ["g2", "g2-c5-l7"],
+  ["g3", "g3-c4-l3"],
+];
+for (const [g, id] of CAN_HINH) {
+  const gd = NGUON[g];
+  if (!gd) continue;
+  for (const c of gd.chapters) {
+    for (const l of c.lessons) {
+      if (l.id !== id) continue;
+      for (const s of l.slides) {
+        const k = s.content || {};
+        if (s.type !== "quiz" || !/thước|băng giấy|vạch/.test(String(k.question || ""))) continue;
+        kiem(
+          `${id}: có hình minh hoạ`,
+          k.barModel != null || k.ruler != null,
+          Object.keys(k).join(","),
+        );
+        // Số "có nghĩa" của hình: số phần của sơ đồ, hoặc hai đầu của đoạn đang đo.
+        const soNghia = k.barModel
+          ? (k.barModel.rows || []).map((r) => Number(r.parts))
+          : k.ruler && k.ruler.measure
+            ? [Number(k.ruler.measure.from), Number(k.ruler.measure.to)]
+            : [];
+        if (!soNghia.length) continue;
+        const nguon = `${k.question} ${k.answer} ${(k.options || []).join(" ")}`;
+        const thieu = soNghia.filter((n) => !new RegExp(`(^|[^0-9])${n}([^0-9]|$)`).test(nguon));
+        kiem(
+          `${id}: số trong hình (${soNghia.join("/")}) đều có trong câu hỏi/đáp án`,
+          thieu.length === 0,
+          `thiếu: ${thieu.join(", ")}`,
+        );
+      }
+    }
+  }
+}
 
 console.log(`\nTỔNG: ${dat} đạt · ${hong} hỏng\n`);
 process.exit(hong ? 1 : 0);

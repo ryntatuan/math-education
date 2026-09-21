@@ -4464,6 +4464,11 @@ export const grade1Data = {
                   "Khi đo độ dài, bé đặt vạch số mấy của thước vào một đầu vật?",
                 options: ["Vạch 0", "Vạch 1", "Vạch 5", "Vạch cuối thước"],
                 answer: "Vạch 0",
+                // Hình minh hoạ: cây thước để bé thấy vạch 0 nằm ở đầu trái.
+                ruler: {
+                  lengthCm: 10,
+                  label: "Vạch 0 nằm ở đầu trái của thước",
+                },
                 mascotHint:
                   "Đặt vạch 0 trùng với một đầu vật rồi đọc số ở đầu kia.",
               },
@@ -4475,6 +4480,11 @@ export const grade1Data = {
                   "Một đoạn thẳng có đầu ở vạch 0 và đầu kia ở vạch 6. Đoạn thẳng dài bao nhiêu?",
                 options: ["5 cm", "6 cm", "7 cm", "60 cm"],
                 answer: "6 cm",
+                ruler: {
+                  lengthCm: 10,
+                  measure: { from: 0, to: 6 },
+                  label: "Đoạn thẳng dài 6 cm",
+                },
                 mascotHint: "Đọc số ở đầu kia: 6 cm.",
               },
             },
@@ -4736,6 +4746,11 @@ export const grade1Data = {
                   "Đoạn thẳng có đầu ở vạch 0 và đầu kia ở vạch 9 của thước. Đoạn thẳng dài bao nhiêu?",
                 options: ["8 cm", "9 cm", "10 cm", "90 cm"],
                 answer: "9 cm",
+                ruler: {
+                  lengthCm: 10,
+                  measure: { from: 0, to: 9 },
+                  label: "Đọc số ở đầu kia của đoạn thẳng: 9 cm",
+                },
                 mascotHint: "Đọc số ở đầu kia: 9 cm.",
               },
             },

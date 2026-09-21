@@ -2802,6 +2802,15 @@ export const grade3Data = {
                   "Băng giấy đỏ dài 4 cm, băng giấy xanh dài gấp 3 lần. Băng giấy xanh dài bao nhiêu?",
                 options: ["7 cm", "12 cm", "1 cm", "43 cm"],
                 answer: "12 cm",
+                // Sơ đồ so sánh: băng đỏ 4 cm, băng xanh gấp 3 lần = 12 cm.
+                barModel: {
+                  rows: [
+                    { label: "Băng đỏ", parts: 4 },
+                    { label: "Băng xanh", parts: 12 },
+                  ],
+                  unit: "cm",
+                  note: "Băng xanh gấp 3 lần: 4 × 3 = 12 cm",
+                },
                 mascotHint: "Gấp 3 lần thì nhân 3: 4 × 3 = 12 cm.",
               },
             },
