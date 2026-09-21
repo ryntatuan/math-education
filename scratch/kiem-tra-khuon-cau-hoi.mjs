@@ -11,7 +11,13 @@ import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
-const TARGET = path.join(ROOT, "client", "src", "utils", "exerciseGenerator.js");
+const TARGET = path.join(
+  ROOT,
+  "client",
+  "src",
+  "utils",
+  "exerciseGenerator.js",
+);
 
 const { TOPICS, generateQuestion } = await import(pathToFileURL(TARGET).href);
 
@@ -22,8 +28,7 @@ const SAMPLE_SIZE = 60;
 // Đã mắc báo động giả: `g1_shapes` luôn hỏi "Hình dưới đây là hình gì?" nhưng
 // `visualDisplay` và `answer` đổi theo 4 hình ⇒ ngân hàng câu hỏi vẫn CÓ 4 biến thể.
 // Chỉ đếm chuỗi `question` thì khuôn này bị báo "1/60" oan.
-const identityOf = (q) =>
-  `${q.question}|${q.answer}|${q.visualDisplay ?? ""}`;
+const identityOf = (q) => `${q.question}|${q.answer}|${q.visualDisplay ?? ""}`;
 
 let templateCount = 0;
 const broken = [];
@@ -31,7 +36,9 @@ const thin = [];
 
 for (const [groupKey, templates] of Object.entries(TOPICS)) {
   const grade = Number(groupKey.replace("GRADE_", ""));
-  console.log(`\n── Lớp ${grade} (${groupKey}) — ${templates.length} chủ đề ──`);
+  console.log(
+    `\n── Lớp ${grade} (${groupKey}) — ${templates.length} chủ đề ──`,
+  );
 
   for (const t of templates) {
     templateCount++;
@@ -73,12 +80,20 @@ for (const [groupKey, templates] of Object.entries(TOPICS)) {
         `  rơi-cuối: ${fallbackCount}` +
         (badRefCount ? `  ref-sai: ${badRefCount}` : "") +
         (missingKeyCount ? `  thiếu-khoá: ${missingKeyCount}` : "") +
-        (duplicateOptionCount ? `  LỰA CHỌN TRÙNG: ${duplicateOptionCount}` : "") +
+        (duplicateOptionCount
+          ? `  LỰA CHỌN TRÙNG: ${duplicateOptionCount}`
+          : "") +
         `  [${t.chapter}] ${t.name}`,
     );
 
     if (isBroken)
-      broken.push({ grade, id: t.id, name: t.name, distinctVariants, fallbackCount });
+      broken.push({
+        grade,
+        id: t.id,
+        name: t.name,
+        distinctVariants,
+        fallbackCount,
+      });
     else if (isThin)
       thin.push({ grade, id: t.id, name: t.name, distinctVariants });
   }
@@ -128,7 +143,9 @@ for (let grade = 1; grade <= 5; grade++) {
       const q = generateQuestion(grade);
       const missing = requiredKeys.filter((k) => q?.[k] === undefined);
       if (missing.length)
-        smokeErrors.push(`lớp ${grade} (không topic): thiếu ${missing.join(",")}`);
+        smokeErrors.push(
+          `lớp ${grade} (không topic): thiếu ${missing.join(",")}`,
+        );
       smokeCount++;
     } catch (e) {
       smokeErrors.push(`lớp ${grade} (không topic): NÉM LỖI ${e.message}`);
@@ -139,7 +156,9 @@ for (let grade = 1; grade <= 5; grade++) {
       const q = generateCalculation(grade);
       const missing = calcKeys.filter((k) => q?.[k] === undefined);
       if (missing.length)
-        smokeErrors.push(`lớp ${grade} (tính toán): thiếu ${missing.join(",")}`);
+        smokeErrors.push(
+          `lớp ${grade} (tính toán): thiếu ${missing.join(",")}`,
+        );
       smokeCount++;
     } catch (e) {
       smokeErrors.push(`lớp ${grade} (tính toán): NÉM LỖI ${e.message}`);

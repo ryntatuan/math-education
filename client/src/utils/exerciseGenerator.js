@@ -1134,7 +1134,8 @@ function buildQuestion(grade = 1, topicId = null, depth = 0) {
       () => {
         const hour = randInt(1, 12);
         const minute = randInt(0, 11) * 5;
-        const read = minute === 0 ? `${hour} giờ` : `${hour} giờ ${minute} phút`;
+        const read =
+          minute === 0 ? `${hour} giờ` : `${hour} giờ ${minute} phút`;
         return {
           question: `Đồng hồ có kim ngắn qua số ${hour}, kim dài chỉ số ${minute / 5}. Hỏi lúc đó là mấy giờ?`,
           options: shuffle([
@@ -1170,7 +1171,10 @@ function buildQuestion(grade = 1, topicId = null, depth = 0) {
       { q: "Tháng Hai có 32 ngày", a: "Không thể xảy ra" },
       { q: "Một tuần lễ có 7 ngày", a: "Chắc chắn xảy ra" },
       { q: "Tung một con xúc xắc được mặt 7 chấm", a: "Không thể xảy ra" },
-      { q: "Lấy được một viên bi đỏ khi hộp có cả bi đỏ và bi xanh", a: "Có thể xảy ra" },
+      {
+        q: "Lấy được một viên bi đỏ khi hộp có cả bi đỏ và bi xanh",
+        a: "Có thể xảy ra",
+      },
       { q: "Bé lớn lên thêm 1 tuổi sau một năm", a: "Chắc chắn xảy ra" },
       { q: "Tháng Sáu có 31 ngày", a: "Không thể xảy ra" },
     ];
@@ -1337,9 +1341,18 @@ function buildQuestion(grade = 1, topicId = null, depth = 0) {
 
   if (topic === "g3_stats_prob") {
     const tinhHuong = [
-      { q: "Trong hộp có 5 viên bi đỏ và 5 viên bi xanh, không nhìn vào hộp bốc 1 viên thì bốc được bi đỏ", a: "Có thể xảy ra" },
-      { q: "Trong hộp chỉ có bi đỏ, bốc 1 viên thì bốc được bi đỏ", a: "Chắc chắn xảy ra" },
-      { q: "Trong hộp chỉ có bi đỏ, bốc 1 viên thì bốc được bi xanh", a: "Không thể xảy ra" },
+      {
+        q: "Trong hộp có 5 viên bi đỏ và 5 viên bi xanh, không nhìn vào hộp bốc 1 viên thì bốc được bi đỏ",
+        a: "Có thể xảy ra",
+      },
+      {
+        q: "Trong hộp chỉ có bi đỏ, bốc 1 viên thì bốc được bi đỏ",
+        a: "Chắc chắn xảy ra",
+      },
+      {
+        q: "Trong hộp chỉ có bi đỏ, bốc 1 viên thì bốc được bi xanh",
+        a: "Không thể xảy ra",
+      },
       { q: "Cây cao thêm sau một năm", a: "Chắc chắn xảy ra" },
       { q: "Ngày mai bé được điểm 10", a: "Có thể xảy ra" },
       { q: "Một tuần lễ có 10 ngày", a: "Không thể xảy ra" },
@@ -1795,7 +1808,9 @@ function buildQuestion(grade = 1, topicId = null, depth = 0) {
   if (topic === "g5_charts_stats") {
     const mauSac = randInt(2, 5);
     const phanTram = [50, 25, 20, 40][randInt(0, 3)];
-    const rutGon = ["1/2", "1/4", "1/5", "2/5"][[50, 25, 20, 40].indexOf(phanTram)];
+    const rutGon = ["1/2", "1/4", "1/5", "2/5"][
+      [50, 25, 20, 40].indexOf(phanTram)
+    ];
     return {
       question: `Biểu đồ hình quạt biểu thị 100% học sinh một trường. Nếu số học sinh thích môn Toán chiếm ${phanTram}% thì tương ứng với phân số nào?`,
       options: shuffle(["1/2", "1/4", "1/5", "2/5", "3/5", "1/10"]).slice(0, 4),
@@ -1969,7 +1984,12 @@ function buildQuestion(grade = 1, topicId = null, depth = 0) {
     }
     return {
       question: "Đơn vị nào dùng để đo KHỐI LƯỢNG?",
-      options: shuffle(["ki-lô-gam (kg)", "lít (l)", "xăng-ti-mét (cm)", "giờ"]),
+      options: shuffle([
+        "ki-lô-gam (kg)",
+        "lít (l)",
+        "xăng-ti-mét (cm)",
+        "giờ",
+      ]),
       answer: "ki-lô-gam (kg)",
       hint: "Khối lượng là nặng nhẹ; dung tích là nhiều ít chất lỏng.",
       explanation: "Đo khối lượng bằng kg; đo dung tích bằng lít.",
@@ -1992,10 +2012,26 @@ function buildQuestion(grade = 1, topicId = null, depth = 0) {
 
   if (topic === "g2_shapes_3d") {
     const cauHoi = [
-      { q: "Vật nào có dạng KHỐI TRỤ?", a: "lon nước 🥫", sai: ["quả bóng ⚽", "con xúc xắc 🎲", "quyển sách 📕"] },
-      { q: "Vật nào có dạng KHỐI CẦU?", a: "quả bóng ⚽", sai: ["lon nước 🥫", "hộp sữa 🥛", "cái hộp 📦"] },
-      { q: "Khối trụ có hai mặt đáy là hình gì?", a: "hình tròn", sai: ["hình vuông", "hình tam giác", "hình chữ nhật"] },
-      { q: "Quả địa cầu 🌍 có dạng khối gì?", a: "khối cầu", sai: ["khối trụ", "khối lập phương", "khối hộp chữ nhật"] },
+      {
+        q: "Vật nào có dạng KHỐI TRỤ?",
+        a: "lon nước 🥫",
+        sai: ["quả bóng ⚽", "con xúc xắc 🎲", "quyển sách 📕"],
+      },
+      {
+        q: "Vật nào có dạng KHỐI CẦU?",
+        a: "quả bóng ⚽",
+        sai: ["lon nước 🥫", "hộp sữa 🥛", "cái hộp 📦"],
+      },
+      {
+        q: "Khối trụ có hai mặt đáy là hình gì?",
+        a: "hình tròn",
+        sai: ["hình vuông", "hình tam giác", "hình chữ nhật"],
+      },
+      {
+        q: "Quả địa cầu 🌍 có dạng khối gì?",
+        a: "khối cầu",
+        sai: ["khối trụ", "khối lập phương", "khối hộp chữ nhật"],
+      },
     ];
     const chon = cauHoi[randInt(0, cauHoi.length - 1)];
     return {
@@ -2119,9 +2155,21 @@ function buildQuestion(grade = 1, topicId = null, depth = 0) {
       };
     }
     const goc = [
-      { q: "Góc bé hơn góc vuông gọi là gì?", a: "góc nhọn", sai: ["góc tù", "góc bẹt", "góc vuông"] },
-      { q: "Góc lớn hơn góc vuông và bé hơn góc bẹt gọi là gì?", a: "góc tù", sai: ["góc nhọn", "góc vuông", "góc bẹt"] },
-      { q: "Góc bằng hai góc vuông gọi là gì?", a: "góc bẹt", sai: ["góc nhọn", "góc tù", "góc vuông"] },
+      {
+        q: "Góc bé hơn góc vuông gọi là gì?",
+        a: "góc nhọn",
+        sai: ["góc tù", "góc bẹt", "góc vuông"],
+      },
+      {
+        q: "Góc lớn hơn góc vuông và bé hơn góc bẹt gọi là gì?",
+        a: "góc tù",
+        sai: ["góc nhọn", "góc vuông", "góc bẹt"],
+      },
+      {
+        q: "Góc bằng hai góc vuông gọi là gì?",
+        a: "góc bẹt",
+        sai: ["góc nhọn", "góc tù", "góc vuông"],
+      },
     ];
     const chon = goc[randInt(0, goc.length - 1)];
     return {
@@ -2476,7 +2524,12 @@ function buildQuestion(grade = 1, topicId = null, depth = 0) {
     }
     return {
       question: "Đơn vị dùng để đo độ dài trong lớp học là gì?",
-      options: shuffle(["xăng-ti-mét (cm)", "ki-lô-gam (kg)", "lít (l)", "giờ"]),
+      options: shuffle([
+        "xăng-ti-mét (cm)",
+        "ki-lô-gam (kg)",
+        "lít (l)",
+        "giờ",
+      ]),
       answer: "xăng-ti-mét (cm)",
       hint: "Độ dài là ngắn dài; đo bằng thước kẻ có vạch xăng-ti-mét!",
       explanation: "Đo độ dài bằng xăng-ti-mét (cm).",
@@ -2502,9 +2555,21 @@ function buildQuestion(grade = 1, topicId = null, depth = 0) {
     const kieu = randInt(0, 2);
     if (kieu === 0) {
       const cauHoi = [
-        { q: "Góc bé hơn góc vuông gọi là gì?", a: "góc nhọn", sai: ["góc tù", "góc bẹt", "góc vuông"] },
-        { q: "Góc lớn hơn góc vuông và bé hơn góc bẹt gọi là gì?", a: "góc tù", sai: ["góc nhọn", "góc vuông", "góc bẹt"] },
-        { q: "Góc bằng hai góc vuông gọi là gì?", a: "góc bẹt", sai: ["góc nhọn", "góc tù", "góc vuông"] },
+        {
+          q: "Góc bé hơn góc vuông gọi là gì?",
+          a: "góc nhọn",
+          sai: ["góc tù", "góc bẹt", "góc vuông"],
+        },
+        {
+          q: "Góc lớn hơn góc vuông và bé hơn góc bẹt gọi là gì?",
+          a: "góc tù",
+          sai: ["góc nhọn", "góc vuông", "góc bẹt"],
+        },
+        {
+          q: "Góc bằng hai góc vuông gọi là gì?",
+          a: "góc bẹt",
+          sai: ["góc nhọn", "góc tù", "góc vuông"],
+        },
       ];
       const chon = cauHoi[randInt(0, cauHoi.length - 1)];
       return {
@@ -2517,7 +2582,8 @@ function buildQuestion(grade = 1, topicId = null, depth = 0) {
     }
     if (kieu === 1)
       return {
-        question: "Hai đường thẳng cắt nhau tạo thành bốn góc vuông. Hai đường thẳng đó gọi là gì?",
+        question:
+          "Hai đường thẳng cắt nhau tạo thành bốn góc vuông. Hai đường thẳng đó gọi là gì?",
         options: shuffle([
           "hai đường thẳng vuông góc",
           "hai đường thẳng song song",
@@ -2529,7 +2595,8 @@ function buildQuestion(grade = 1, topicId = null, depth = 0) {
         explanation: "Hai đường thẳng vuông góc tạo thành bốn góc vuông.",
       };
     return {
-      question: "Hai đường thẳng không bao giờ cắt nhau, dù kéo dài mãi, gọi là gì?",
+      question:
+        "Hai đường thẳng không bao giờ cắt nhau, dù kéo dài mãi, gọi là gì?",
       options: shuffle([
         "hai đường thẳng song song",
         "hai đường thẳng vuông góc",
@@ -2631,7 +2698,7 @@ function buildQuestion(grade = 1, topicId = null, depth = 0) {
       options: shuffle([
         n * chon.heSo,
         n * chon.heSo * 10,
-        n * chon.heSo / 10,
+        (n * chon.heSo) / 10,
         n * chon.heSo * 100,
       ]).map((x) => Math.round(x)),
       answer: n * chon.heSo,
@@ -2688,7 +2755,8 @@ function withDistinctOptions(q) {
   for (const o of q.options)
     if (!distinct.some((d) => key(d) === key(o))) distinct.push(o);
   // Đáp án phải LUÔN nằm trong lựa chọn — cổng `S-15` và bộ chấm điểm đều dựa vào đó.
-  if (!distinct.some((d) => key(d) === key(q.answer))) distinct.unshift(q.answer);
+  if (!distinct.some((d) => key(d) === key(q.answer)))
+    distinct.unshift(q.answer);
   if (distinct.length < 3 && typeof q.answer === "number") {
     for (let offset = 1; offset < 60 && distinct.length < 4; offset++)
       for (const cand of [q.answer + offset, q.answer - offset])
