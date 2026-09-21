@@ -671,7 +671,8 @@ function SlideHead({
         <span>{label}</span>
       </span>
       <div className="slide-head-actions">
-        {children}
+        {/* Thứ tự CỐ ĐỊNH: nút loa TRƯỚC, các nút phụ (cờ báo lỗi) SAU ⇒ cờ nằm ngoài cùng
+            bên phải. Người dùng đã yêu cầu đổi lại thứ tự này. */}
         <button
           type="button"
           className={`lesson-mini-voice-btn is-icon ${speaking ? "is-playing" : ""}`}
@@ -681,6 +682,7 @@ function SlideHead({
         >
           <Volume2 size={20} />
         </button>
+        {children}
       </div>
     </div>
   );
@@ -1805,6 +1807,11 @@ function QuizSlide({
           ))}
         </div>
       )}
+
+      {/* Hình minh hoạ câu hỏi — dùng CHUNG bộ vẽ với slide "hình ảnh" (thước, sơ đồ
+          đoạn thẳng, biểu đồ…). Trước đây slide câu hỏi không vẽ gì, nên câu hỏi nhắc
+          tới hình là bó không có gì để nhìn. */}
+      <VisualBlocks content={content} />
 
       <div className="quiz-options">
         {content.options.map((option, index) => {

@@ -294,3 +294,46 @@ trong thẻ. Đây là đánh đổi có ý: chữ đọc được, nhưng phả
 phải kéo; từ 768 px trở lên không trường hợp nào. Muốn bỏ hẳn việc kéo ngang trên điện thoại thì
 phải làm **bố cục riêng cho màn hẹp** (ví dụ bảng số liệu xếp dọc thành từng ô thay vì lưới) —
 việc lớn hơn, chưa làm.
+
+### 9.4 Vòng soát thứ hai: "vẽ ra ngoài khung" (2026-09-22, sau khi bạn xem lại)
+
+Sau khi xem ảnh chụp, bạn hỏi vì sao hình 9 + 4 lại vẽ 9 + 1 + 2. Nguyên nhân **không phải bộ vẽ**
+mà là **DB chưa nạp lại**: bộ vẽ mới (vẽ thêm nhóm ô còn lại) chạy trên dữ liệu cũ
+(`extra: 3`) nên ra 12 ô. Kiểm chứng bằng cách đọc thẳng trong DB: `tenFrame` vẫn là `extra: 3`.
+Sau khi dán lại seed, hình là 13 ô — khớp `9 + 1 = 10, rồi 10 + 3 = 13` và khớp trục số 9 → 13.
+
+Từ đó tôi viết thêm một phép đo cho **cả 17 loại hình**: phần tử nào vẽ ra ngoài khung `viewBox`
+(quá 2 đơn vị) thì báo. Kết quả: **4 lỗi thật**, đều đã chữa.
+
+| Hình         | Đo được trước khi chữa                                                                   | Cách chữa                                                        |
+| ------------ | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| Trục số      | Nhịp (hop) vẽ **nửa đường tròn** bán kính bằng nửa dây cung: nhịp dài 508 đơn vị ⇒ đỉnh cung vươn tới **y = −161** trong khung cao 132 ⇒ bé chỉ thấy một mẩu cung bị cắt | Dùng **cung bậc hai nông**, chiều cao cố định 20 (nhịp thứ hai 30) |
+| Sơ đồ đoạn thẳng | Nhãn "Tổng 35" / "Hiệu 24" vươn tới **663–666 đơn vị** trong khung 560 ⇒ **tràn 103 đơn vị** | Tính bề rộng cả **phần chữ ở cuối hàng** rồi mới chia thanh      |
+| Hình góc     | Góc 120° có chấm đầu tia ở **x = −10 → 0** ⇒ mất một phần chấm (góc bẹt còn xa hơn)          | **Dời đỉnh góc** theo bề rộng thật của hình rồi canh giữa          |
+| Hình khối    | Nhãn "Sáu mặt đều là hình vuông bằng nhau" ở tâm x = 130 ⇒ mép trái **vượt ra 8,9 đơn vị** | Canh giữa theo bề rộng khung (x = 170) và rút gọn câu             |
+
+Sau khi chữa: **0/61 hình vẽ ra ngoài khung**.
+
+⚠️ Khi đo kiểu này **phải bỏ qua các phần tử nằm trong `<defs>`/`<marker>`** — chúng không được
+xếp bố cục nên `getBoundingClientRect` trả số vô nghĩa (đã đo được "tràn 21 987 đơn vị" ở
+sơ đồ chuyển động, tất cả là do mũi tên trong `<marker>`).
+
+### 9.5 Câu hỏi trong bài học cũng cần hình (và đã có)
+
+`QuizSlide` vốn **đã** dựng được khay hình (`content.items`) nhưng dữ liệu chưa dùng lần nào:
+đo được **0/723 câu hỏi có hình**. Nay đã thêm hình cho **16 câu**: 1 câu đếm con chim,
+8 câu "trên biểu đồ", 7 câu lời văn (thước và băng giấy) — trong đó 2 câu phải sửa lại chữ vì
+trước đó hỏi về "hình chữ nhật ABCD" và "vật nào dưới đây" mà không hề vẽ gì.
+
+Để câu hỏi mang được cả hình của bộ vẽ (thước, sơ đồ đoạn thẳng…), slide câu hỏi nay gọi
+`<VisualBlocks>` giống slide "hình ảnh". Tổng số slide mang hình: **446** (trước 439).
+
+Ba điều chỉnh nhỏ kèm theo:
+
+- Nút **"Nghe đọc" chỉ còn icon loa**, nhãn loại slide nằm cùng hàng; thứ tự trong hàng là
+  **[loa] rồi [cờ báo lỗi]** — đúng yêu cầu của bạn.
+- `BarModel` thêm tham số `unit` để ghi "20 cm" thay vì "20 phần".
+- Số của mỗi hàng trong `BarModel` chuyển sang **bên trái, ngay trước thanh**: nếu để ở cuối
+  thanh thì trên điện thoại hình phải kéo ngang và bé **thấy thanh mà không thấy số**, mà số
+  ("20 cm") mới là thứ cần đọc.
+

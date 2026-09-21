@@ -252,10 +252,19 @@ const ANGLE_DEF = {
 export function Angle({ kind = "right", degrees = null, label = "" }) {
   const def = ANGLE_DEF[kind] || ANGLE_DEF.right;
   const deg = clamp(num(degrees, def.deg), 5, 180);
-  const cx = 70;
-  const cy = 175;
   const R = 150;
+  const VbW = 340;
   const rad = (deg * Math.PI) / 180;
+  /**
+   * 🔴 DỜI ĐỈNH GÓC ĐỂ CẢ HÌNH NẰM TRONG KHUNG.
+   * Đỉnh cố định ở x = 70 mà tia dài 150 đơn vị ⇒ góc từ 110° trở lên có đầu tia vượt
+   * qua mép trái: đo thật, góc 120° cho chấm đầu tia ở **x = −10 → 0** ⇒ mất một phần
+   * chấm, và góc bẹt 180° còn ra xa hơn. Nay tính bề rộng THẬT của hình rồi canh giữa.
+   */
+  const trai = Math.max(0, -R * Math.cos(rad)); // tia chéo vươn sang trái bao nhiêu
+  const span = R + trai;
+  const cx = (VbW - span) / 2 + trai;
+  const cy = 175;
   const ex = cx + R * Math.cos(rad);
   const ey = cy - R * Math.sin(rad);
 
@@ -537,15 +546,17 @@ export function Solid({
               strokeWidth="3"
             />
             {k === "cube" && (
+              // ⚠️ Căn giữa theo BỀ RỘNG KHUNG (170), không phải 130: câu này dài 36 ký tự
+              // (≈278 đơn vị) nên tâm ở 130 làm mép trái vượt ra ngoài khung 8,9 đơn vị.
               <text
-                x="130"
+                x="170"
                 y="240"
                 textAnchor="middle"
                 fontSize="15"
                 fontWeight="800"
                 fill={P.ink}
               >
-                Sáu mặt đều là hình vuông bằng nhau
+                Sáu mặt đều là hình vuông
               </text>
             )}
           </>

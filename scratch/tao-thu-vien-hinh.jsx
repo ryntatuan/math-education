@@ -114,6 +114,10 @@ const CA = {
     { lengthCm: 10, measure: { from: 0, to: 10 } },
     { lengthCm: 30, measure: { from: 0, to: 30 } },
     { lengthCm: 5, measure: { from: 0, to: 5 } },
+    // Ba ca THẬT vừa thêm cho câu hỏi lời văn (Lớp 1–2): không đo, đoạn 0→6, đoạn 0→9.
+    { lengthCm: 10, label: "Vạch 0 nằm ở đầu trái của thước" },
+    { lengthCm: 10, measure: { from: 0, to: 6 }, label: "Đoạn thẳng dài 6 cm" },
+    { lengthCm: 10, measure: { from: 0, to: 9 }, label: "Đọc số ở đầu kia: 9 cm" },
   ],
   money: [
     { notes: [1000, 2000, 5000] },
@@ -198,6 +202,23 @@ const CA = {
         { label: "Số lớn", parts: 4 },
       ],
       braceLabel: "Hiệu 24",
+    },
+    // Hai ca THẬT của câu hỏi "băng giấy": đơn vị là cm, một hàng 20 phần (mức tối đa).
+    {
+      rows: [
+        { label: "Băng xanh", parts: 20 },
+        { label: "Băng đỏ", parts: 17 },
+      ],
+      unit: "cm",
+      note: "Băng xanh dài hơn: 20 − 17 = 3 cm",
+    },
+    {
+      rows: [
+        { label: "Băng đỏ", parts: 4 },
+        { label: "Băng xanh", parts: 12 },
+      ],
+      unit: "cm",
+      note: "Băng xanh gấp 3 lần: 4 × 3 = 12 cm",
     },
   ],
   motionDiagram: [

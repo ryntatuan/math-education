@@ -177,7 +177,12 @@ export function FractionCircle({ parts = 4, shaded = 1, label = "" }) {
  * Mỗi hàng là một đoạn thẳng chia thành `parts` phần bằng nhau — đúng cách sách giáo khoa
  * biểu diễn dạng toán này. Hàng đầu tiên được coi là "1 phần" quy chiếu.
  */
-export function BarModel({ rows = [], braceLabel = "", note = "" }) {
+export function BarModel({
+  rows = [],
+  braceLabel = "",
+  note = "",
+  unit = "phần",
+}) {
   const rs = (Array.isArray(rows) ? rows : [])
     .map((r) => ({
       label: r?.label ?? "",
@@ -191,10 +196,31 @@ export function BarModel({ rows = [], braceLabel = "", note = "" }) {
         { label: "Số lớn", parts: 6 },
       ];
 
-  const unit = Math.max(...safe.map((r) => r.parts)); // số phần lớn nhất
+  // Số phần LỚN NHẤT quyết định độ rộng một phần ⇒ các hàng so sánh được với nhau.
+  // ⚠️ Đừng đặt tên biến này là `unit` — đã có tham số `unit` là ĐƠN VỊ hiển thị
+  // ("phần", "cm"...). Trùng tên là ghi đè âm thầm tham số.
+  const maxParts = Math.max(...safe.map((r) => r.parts));
+  /**
+   * 🔴 BỀ RỘNG PHẢI TÍNH CẢ PHẦN CHỮ Ở CUỐI HÀNG.
+   *
+   * Bản cũ lấy `barAreaW = W - 150` — tức chỉ chừa 8 đơn vị sau vạch dài nhất — nên nhãn
+   * cuối hàng ("2 phần", "20 cm") và nhãn dấu ngoặc ("Tổng 35", "Hiệu 24") bị vẽ RA NGOÀI
+   * khung viewBox. Đo thật trên thư viện hình: chữ vươn tới **663–666 đơn vị** trong khung
+   * **560** ⇒ tràn **103–106 đơn vị**, bé chỉ thấy một phần của "Tổng 35".
+   * (Cùng họ lỗi với số đè mũi tên ở trục số: bộ vẽ không tính chỗ cho chữ của chính nó.)
+   */
+  const RONG_CHU = 8.4; // đơn vị/ký tự, cỡ chữ 14–15 in đậm
+  /**
+   * Số của mỗi hàng nay nằm BÊN TRÁI, ngay trước thanh (`x = 132`, căn phải).
+   * 🔴 VÌ SAO ĐỔI CHỖ: để số ở CUỐI thanh thì trên điện thoại hình phải kéo ngang và
+   * bé nhìn thấy hai thanh mà **không thấy số** — mà số mới là thứ cần đọc ("20 cm").
+   * Đặt trước thanh thì luôn nằm trong phần nhìn thấy đầu tiên.
+   */
+  const rongNgoac = braceLabel ? 54 + RONG_CHU * String(braceLabel).length + 6 : 0;
+  const RIGHT = rongNgoac + 10;
   const W = 560;
-  const barAreaW = W - 150;
-  const segW = barAreaW / unit;
+  const barAreaW = W - 142 - RIGHT;
+  const segW = barAreaW / maxParts;
   const rowH = 40;
   const gap = 26;
   const top = 44;
@@ -236,13 +262,14 @@ export function BarModel({ rows = [], braceLabel = "", note = "" }) {
                 />
               ))}
               <text
-                x={142 + r.parts * segW + 10}
+                x={132}
                 y={y + rowH / 2 + 6}
+                textAnchor="end"
                 fontSize="14"
                 fontWeight="700"
                 fill={color}
               >
-                {r.parts} phần
+                {r.parts} {unit}
               </text>
             </g>
           );

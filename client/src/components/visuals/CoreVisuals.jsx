@@ -146,12 +146,19 @@ export function NumberLine({
         {hops.map((h, i) => {
           const x1 = x(num(h.from, a));
           const x2 = x(num(h.to, a));
-          const r = Math.abs(x2 - x1) / 2;
-          const right = x2 > x1;
+          /**
+           * 🔴 ĐỪNG vẽ NỬA ĐƯỜNG TRÒN (bán kính = nửa dây cung). Nhịp dài bằng cả trục
+           * (508 đơn vị) thì bán kính là 254 ⇒ đỉnh cung vẽ VỐNG RA NGOÀI khung: đo thật
+           * trên thư viện hình, cung vươn tới **y = −161,1** trong khung cao **132** ⇒ bé
+           * chỉ thấy một mẩu cung bị cắt. Nay dùng cung BẬC HAI nông, chiều cao cố định
+           * (đỉnh cung ở nửa chiều cao điểm điều khiển). Nhịp thứ hai cao hơn để hai cung
+           * không trùng lên nhau.
+           */
+          const hopH = 20 + i * 10;
           return (
             <g key={i}>
               <path
-                d={`M${x1},${axisY - 12} A${r},${r} 0 0 ${right ? 1 : 0} ${x2},${axisY - 12}`}
+                d={`M${x1},${axisY - 12} Q${(x1 + x2) / 2},${axisY - 12 - hopH * 2} ${x2},${axisY - 12}`}
                 fill="none"
                 stroke={PALETTE.violet}
                 strokeWidth="2.5"
@@ -160,7 +167,7 @@ export function NumberLine({
               {h.label && (
                 <text
                   x={(x1 + x2) / 2}
-                  y={axisY - 22 - r * 0.55}
+                  y={axisY - 18 - hopH}
                   textAnchor="middle"
                   fontSize="15"
                   fontWeight="800"
