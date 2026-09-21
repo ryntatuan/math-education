@@ -336,3 +336,101 @@ Ba điều chỉnh nhỏ kèm theo:
 - Số của mỗi hàng trong `BarModel` chuyển sang **bên trái, ngay trước thanh**: nếu để ở cuối
   thanh thì trên điện thoại hình phải kéo ngang và bé **thấy thanh mà không thấy số**, mà số
   ("20 cm") mới là thứ cần đọc.
+
+### 9.6 Hình phải VỪA thẻ trên điện thoại — bỏ hẳn việc kéo ngang (2026-09-22, lần 4)
+
+**Vấn đề bạn báo:** nhiều hình phải **scroll sang phải** mới xem hết.
+
+**Đo trước khi sửa** (trang `scratch/visual-fit.html`, màn 375 px, 550 ca hình THẬT của cả 5 lớp):
+
+| Chỉ số                          | Trước             | Sau         |
+| ------------------------------- | ----------------- | ----------- |
+| Thẻ phải kéo ngang              | **166 / 550**     | **0 / 550** |
+| Hình rộng nhất (đơn vị viewBox) | 948 (bảng 12 cột) | 380         |
+| Chữ nhỏ nhất trong hình         | 9,5 px            | 10,2 px     |
+| Phần tử vẽ ra ngoài khung       | —                 | 0           |
+| Cặp chữ đè lên nhau             | —                 | 0           |
+
+**Nguyên nhân.** Lần 3 tôi chữa "chữ quá nhỏ" bằng `minWidth = viewBox × 0,85`. Cách đó giữ
+chữ to nhưng **đẩy SVG rộng hơn thẻ** ⇒ thẻ mọc thanh cuộn ngang. Không thể vừa nhét một
+bảng 948 đơn vị vào thẻ mà vừa giữ nguyên cỡ chữ — phải **hẹp bề rộng viewBox lại**.
+
+**Bề rộng thật dùng được của một hình, đo trong app ở màn 375 px:**
+
+```
+375 − 20 (khung trang) − 8 (lề slide) − 28 (thẻ .slide-visual-card) − 36 (thẻ hình) = 283 px
+```
+
+(màn 360 px: ≈ 268 px). Vì chữ trong hình tính bằng **đơn vị viewBox**, chữ cỡ `f` hiện ra
+`f × 283 / viewBoxW` px. Từ đó ra quy tắc đã áp cho MỌI hình:
+
+> **viewBox rộng ≤ 380 đơn vị và cỡ chữ ≥ 14 đơn vị.**
+> ⇒ iPhone 375 px: chữ 15 đơn vị ≈ 11,2 px. Máy 360 px: ≈ 10,6 px.
+
+**Sửa gì cho từng hình**
+
+| Hình                   | Trước                 | Nay                                                                            |
+| ---------------------- | --------------------- | ------------------------------------------------------------------------------ |
+| Trục số                | rộng cứng 560         | **tự tính** theo bề rộng nhãn thật, kẹp trong [260, 380]                       |
+| Khung 10 ô             | ô 44 ⇒ tới 434        | ô 38 (khung 5 ô) / 34 (khung 10 ô); nhóm ô dư bị chặn số cột                   |
+| Khối chục – đơn vị     | ô 18 ⇒ tới 498        | ô 15, khe 3/8; nhãn "10"/"1" cỡ 15                                             |
+| Bảng hàng              | cột cứng 96 ⇒ tới 880 | cột theo **từ dài nhất** của tiêu đề (hai dòng), cắt thành **nhiều khối**      |
+| Thước đo               | 520/L ⇒ tới 584       | 296/L; nhãn cm **cách quãng** khi vạch sát nhau                                |
+| Bảng số liệu           | cột 78–300 ⇒ tới 948  | cột theo nội dung, **cắt thành nhiều khối** xếp dọc khi quá 12 cột đôi chỗ     |
+| Băng giấy phân số      | 520                   | 380; **nhãn phương trình của mỗi dòng chuyển xuống DƯỚI băng**                 |
+| Sơ đồ đoạn thẳng       | 560                   | 380; nhãn hàng **trên thanh**, số **bên trái**, nhãn ngoặc **ngắt dòng**       |
+| Sơ đồ chuyển động      | 560                   | 360; xếp lại chiều dọc (tiêu đề 22, mũi tên 36, tên 56, emoji 90, vận tốc 114) |
+| Biểu đồ cột            | 560                   | 350; tiêu đề **ngắt dòng** và hạ vùng vẽ xuống                                 |
+| Biểu đồ quạt           | 560                   | 360; bánh nhỏ lại (r = 62), chú giải sát bên phải, **ngắt dòng**               |
+| Hình học, phân số tròn | 320–340               | giữ nguyên (vốn đã đủ hẹp)                                                     |
+
+**Hệ quả trên máy tính (có chủ ý).** `svgFit` nay thêm **trần phóng to 1,6 lần**. Trước đây
+`width: 100%` làm hình 194 đơn vị bị vẽ to **3,4 lần** (khung 5 ô có ô vuông 128 px) — hình
+nào hẹp thì càng bị phóng đại. Nay:
+
+- **Điện thoại không bị trần chen vào**: ở màn 375 px thẻ chỉ cho 283 px, mà 1,6 × 194 = 310
+  ⇒ `width: 100%` mới là giới hạn. Chỉ hình rất hẹp (viewBox < 177) mới chạm trần, và khi đó
+  vẫn vừa thẻ nên **không sinh cuộn ngang**.
+- **Máy tính**: hình rộng 380 đơn vị (trục số, bảng, sơ đồ) hiện 608 px — gần đúng bề rộng
+  644 px như trước, nên bố cục trang bài học gần như không đổi; các hình hẹp thì gọn lại.
+
+**Bảy lỗi tìm thêm được trong lúc đo** (đều là loại "nhìn mới thấy", cổng không bắt):
+
+| Chỗ                 | Lỗi đo được                                                                             | Chữa                                                           |
+| ------------------- | --------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| Bảng hàng 9 cột     | bề rộng ô lấy "phần còn lại của khối" ⇒ các ô `x=8 w=280`, `x=64 w=224` **đè lên nhau** | lấy đúng `cotTuNhien[c]`                                       |
+| Bảng hàng           | đoán 7,4 đơn vị/ký tự ⇒ tiêu đề các cột đè nhau 15–21 px                                | đo thật: chữ hoa tiếng Việt ≈ **9,5** đơn vị/ký tự (cỡ 14 đậm) |
+| Trục số 199→254     | nhãn **253 và 254 cách nhau 3 px**; mốc 245 bị mất nhãn                                 | vẽ nhãn cho MỐC ĐÁNH DẤU trước, rồi thêm nếu còn chỗ           |
+| Trục số có 2–3 nhịp | hai nhãn cung cách nhau 10 đơn vị ⇒ **đè nhau**; nhịp thứ ba vượt lên khỏi khung        | nhịp cao 20 + i×22; **chiều cao khung tăng theo số nhịp**      |
+| Thước đo            | chữ "cm" ở `y + 22` còn số ở `y + 30` ⇒ **"cm" đè lên số cuối**                         | "cm" lên trên thước, vạch đo nhấc lên theo                     |
+| Biểu đồ cột         | số của cột cao nhất **đè lên tiêu đề** (5 px)                                           | hạ mép trên vùng vẽ xuống (58 thay vì 44)                      |
+| Sơ đồ chuyển động   | emoji cỡ 26 cao 28 đơn vị trên đường chân chữ ⇒ **đè lên tên xe**                       | giãn cột dọc: tên 56, emoji 90, vận tốc 114                    |
+| Biểu đồ quạt / cột  | tiêu đề dài (51 và 46 ký tự) **tràn ra ngoài khung**                                    | ngắt dòng (và hạ bánh/vùng vẽ xuống)                           |
+
+**Số đo để dùng lại khi sửa hình** (đo bằng `getBBox` trong trình duyệt, cỡ chữ tính bằng px = đơn vị):
+
+| Chữ                      | Cỡ  | Bề rộng thật                                        |
+| ------------------------ | --- | --------------------------------------------------- |
+| "Trăm" (hoa, có dấu)     | 14  | 37,9 ⇒ **9,5 / ký tự**                              |
+| "triệu" (thường)         | 14  | 34,1 ⇒ 6,8 / ký tự                                  |
+| "VIII", "20"             | 15  | 25,3 và 17,6 ⇒ 6,3–8,8                              |
+| "Đo lường & chuyển động" | 13  | 156,3 ⇒ 7,1 / ký tự                                 |
+| Emoji (🚗)               | 26  | rộng 35,7 · **cao 28 trên / 7 dưới** đường chân chữ |
+
+**Cách đo lại sau này** (bắt buộc mỗi khi đổi bề rộng hình):
+
+```
+1) gói + sinh trang đo: esbuild scratch/visual-fit.jsx --bundle --platform=node --format=cjs
+       --jsx=automatic --outfile=scratch/visual-fit.cjs  rồi  node scratch/visual-fit.cjs
+2) mở scratch/visual-fit.html, đặt `.khung` về 311px (= màn 375) hoặc 296px (= màn 360)
+3) kiểm 4 con số: số thẻ có `scrollWidth > clientWidth` (phải 0),
+   số phần tử vượt viewBox (phải 0), số cặp `<text>` đè nhau (phải 0),
+   chữ nhỏ nhất (≥ 10 px).
+```
+
+Trang đó chứa **HẾT 555 ca hình khác nhau** trong dữ liệu 5 lớp — cố ý không cắt bớt, vì
+"ca to nhất theo JSON" không nhất thiết là "ca rộng nhất".
+
+**Giới hạn còn lại (nói thẳng).** Máy rất hẹp (320 px) thì chữ trong hình còn ~8,2 px và bảng
+nhiều cột bị cắt thành nhiều khối nên **hình cao hơn**. Đây là đánh đổi không tránh được: một
+bảng 12 cột không thể vừa 283 px mà chữ vẫn 11 px.

@@ -16,54 +16,79 @@ export const CARD_STYLE = {
   background: "#ffffff",
   border: "2px solid #e2e8f0",
   borderRadius: 18,
-  padding: "14px 16px",
+  // 12 (thay vì 16) hai bên: trên điện thoại mỗi đơn vị lề đều quý — xem `svgFit`.
+  padding: "12px 12px",
   margin: "14px auto",
   width: "100%",
   maxWidth: 680,
   boxSizing: "border-box",
   boxShadow: "0 2px 10px rgba(15,23,42,.06)",
-  // Hình rộng hơn ngưỡng cho phép thì CUỘN NGANG trong thẻ, không co chữ xuống nữa.
+  // LƯỚI AN TOÀN, không phải cách hiển thị: mọi hình nay đã vừa thẻ (đo 555 ca thật,
+  // xem `svgFit`), nên thanh cuộn này không bao giờ mọc. Giữ lại để nếu một ngày dữ liệu
+  // sinh ra hình quá khổ thì thẻ vẫn cuộn được, chứ không tràn chữ ra ngoài khung.
   overflowX: "auto",
 };
 
 /**
- * Tỉ lệ thu nhỏ NHỎ NHẤT của một khối hình (so với bề rộng viewBox).
+ * 🔴 VÌ SAO BỎ HẲN NGƯỠNG "BỀ RỘNG TỐI THIỂU" (`minWidth`) — bản 1.0.34 trở về trước.
  *
- * 🔴 VÌ SAO CẦN. `<svg width="100%">` co theo thẻ cha, mà chữ trong hình dùng đơn vị
- * viewBox (13–15). Trên điện thoại thẻ chỉ còn ~300 px, hình rộng 560–792 đơn vị bị co
- * ~0,4 lần ⇒ chữ 14 đơn vị chỉ còn **5,3 px — không đọc được**. Đo thật ở màn hình
- * 375 px: bảng số liệu 5,3 px · biểu đồ cột 6,4 px · thước 6,7 px · trục số 8 px.
- * App này phát hành chủ yếu qua APK (điện thoại) nên đây là lỗi nặng, không phải chuyện nhỏ.
+ * Bản cũ đặt `minWidth = viewBox × 0,85` để chữ khỏi co xuống 5–6 px trên điện thoại.
+ * Cách đó giữ được chữ TO nhưng **ĐẨY SVG RỘNG HƠN THẺ** ⇒ thẻ mọc thanh cuộn ngang.
+ * Đo trên **555 ca hình THẬT** của cả 5 lớp: ở màn 375 px có **166 ca phải kéo ngang**
+ * (ca nặng nhất rộng 948 đơn vị trong khi thẻ chỉ cho 283 px). Người dùng báo đúng:
+ * "các hình vẽ đang bị phải scroll sang phải".
  *
- * 0,85 chọn sao cho chữ 12–15 đơn vị (cỡ nhỏ nhất đang dùng, ở biểu đồ cột) còn
- * ≥ ~10 px trên màn hình. Hẹp hơn nữa thì hình giữ nguyên bề rộng tối thiểu và
- * **người đọc kéo ngang** (xem `overflowX` ở trên) — vì không có cách nào vừa nhét
- * một bảng 10 cột vào 300 px vừa đọc được chữ.
+ * NAY: SVG LUÔN VỪA THẺ (không còn `minWidth`). Muốn chữ vẫn đọc được thì
+ * **BỀ RỘNG VIEWBOX phải hẹp lại** — đã làm cho từng hình, tính từ số đo thật:
+ *
+ *   Bề rộng DÙNG ĐƯỢC của một hình, đo trong app ở màn 375 px:
+ *     375 − 20 (khung trang) − 8 (lề slide) − 28 (thẻ .slide-visual-card) − 36 (thẻ hình)
+ *     = **283 px**  (máy 360 px: ≈ 268 px)
+ *
+ *   ⇒ chữ `fontU` đơn vị viewBox hiện ra `fontU × 283 / viewBoxW` px.
+ *   ⇒ QUY TẮC ĐÃ ÁP CHO MỌI HÌNH: viewBox rộng ≤ `VUA_HINH` (380) và cỡ chữ ≥ 14 đơn vị
+ *     ⇒ ở iPhone 375 px chữ 15 đơn vị ≈ **11,2 px**, máy 360 px ≈ 10,6 px.
+ *
+ * ⚠️ Sửa một hình thì PHẢI đo lại: `scratch/visual-fit.jsx` dựng trang chứa mọi ca hình
+ * có thật trong dữ liệu 5 lớp (555 ca), rồi đo bằng trình duyệt — xem `docs/lesson_visuals_plan.md`.
  */
-export const MIN_SCALE = 0.85;
+export const VUA_HINH = 380;
+
+const CARD_CONTENT_MAX = CARD_STYLE.maxWidth - 12 * 2 - 2 * 2; // 680 − padding − viền = 652
 
 /**
- * Props chuẩn cho thẻ `<svg>` của mọi khối hình: giãn hết bề rộng thẻ, nhưng không
- * nhỏ hơn `viewBox × MIN_SCALE` — và **không bao giờ đòi rộng hơn bề rộng thẻ trên
- * máy tính**.
+ * Trần phóng to khi SVG giãn hết thẻ (máy tính).
  *
- * 🔴 VÌ SAO PHẢI CHẶN TRÊN. Ngưỡng `MIN_SCALE` một mình sẽ gây lỗi ngược: hình rộng
- * 792 đơn vị × 0,85 = 673 px, mà thẻ trên máy tính chỉ cho 644 px ⇒ tự nhiên mọc thanh
- * cuộn ngang trên desktop, đúng chỗ trước đó vẫn hiển thị tốt (chữ 11,4 px, đọc thoải mái).
- * Chặn ở 644 px thì: màn hình lớn KHÔNG đổi gì, màn hình hẹp vẫn được nới tới 644 px
- * trước khi phải cuộn.
+ * 🔴 VÌ SAO CẦN TRẦN. Không có trần thì `<svg width="100%">` giãn tới 652 px, tức hình
+ * 194 đơn vị bị vẽ to gấp **3,4 lần** (khung 5 ô trên máy tính có ô vuông 128 px). Đó là
+ * hành vi cũ và nó khiến mọi hình trông "phóng đại" trên màn hình lớn.
  *
- * ⚠️ Phải dùng CHUNG một hàm: bề rộng tối thiểu tính từ chính `viewBox` của từng hình,
- * nên nếu mỗi nơi tự viết một số thì sớm muộn cũng lệch nhau (đúng kiểu lỗi `card` ba bản
- * đã gây ra trước đây).
+ * 1,6 chọn theo hai đầu:
+ *   • ĐIỆN THOẠI KHÔNG BỊ ẢNH HƯỞNG: ở màn 375 px thẻ chỉ cho 283 px, mà 1,6 × 194 = 310
+ *     ⇒ `width: 100%` (283) mới là giới hạn, trần không chen vào. Chỉ những hình rất hẹp
+ *     (viewBox < 177) mới chạm trần trên điện thoại, và khi đó chúng vẫn vừa thẻ.
+ *   • MÁY TÍNH: hình rộng 380 đơn vị (trục số, bảng, sơ đồ) nay hiện 608 px — gần đúng bề
+ *     rộng 644 px như trước, nên bố cục trang bài học gần như không đổi.
  */
-const CARD_CONTENT_MAX = CARD_STYLE.maxWidth - 16 * 2 - 2 * 2; // 680 − padding − viền = 644
+const PHONG_TO_DAI_NHAT = 1.6;
 
+/**
+ * Props chuẩn cho thẻ `<svg>` của mọi khối hình: giãn hết bề rộng thẻ, **không bao giờ
+ * rộng hơn thẻ** (⇒ không bao giờ có thanh cuộn ngang), và không phóng to quá 1,25 lần.
+ *
+ * ⚠️ Phải dùng CHUNG một hàm: mỗi nơi tự viết một số thì sớm muộn cũng lệch nhau (đúng
+ * kiểu lỗi `card` ba bản đã gây ra trước đây).
+ */
 export function svgFit(vbW, them = {}) {
-  const minWidth = Math.min(Math.round(vbW * MIN_SCALE), CARD_CONTENT_MAX);
+  const maxWidth = Math.min(
+    Math.round(vbW * PHONG_TO_DAI_NHAT),
+    CARD_CONTENT_MAX,
+  );
   return {
     width: "100%",
-    style: { minWidth, ...them },
+    // `margin: 0 auto` để hình nằm giữa thẻ khi đã chạm trần (thẻ là flex `align-items:
+    // stretch` nên flex item chạm trần sẽ dồn về bên trái nếu thiếu dòng này).
+    style: { display: "block", margin: "0 auto", maxWidth, ...them },
   };
 }
 
@@ -75,3 +100,35 @@ export const CAPTION_STYLE = {
   fontWeight: 700,
   color: "#64748b",
 };
+
+/**
+ * Ngắt một chuỗi thành nhiều dòng theo số ký tự cho phép.
+ *
+ * 🔴 VÌ SAO CẦN: SVG KHÔNG tự xuống dòng — thẻ `<text>` vẽ một dòng thẳng, chữ dài thì tràn
+ * ra ngoài viewBox và bị cắt. Đã gặp thật: nhãn dấu ngoặc của sơ đồ đoạn thẳng
+ * ("Cả hai tháng 59 990 cái áo · hơn kém 9 130", 42 ký tự ≈ 350 đơn vị) vẽ ngang bên phải
+ * thanh nên đẩy chính các thanh sơ đồ co lại còn một mẩu.
+ *
+ * ⚠️ KHÁC `bocChu` trong `CoreVisuals.jsx`: hàm đó CẮT CỨNG từ dài hơn ô (dùng cho ô bảng
+ * để chữ không đè sang cột bên); hàm này KHÔNG cắt giữa từ — dùng cho nhãn, thà cao thêm
+ * dòng còn hơn cắt đôi chữ.
+ */
+export function ngatDong(chu, soKyTu) {
+  const gioiHan = Math.max(4, soKyTu);
+  const dong = [];
+  let cur = "";
+  for (const tu of String(chu ?? "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .split(" ")) {
+    if (!tu) continue;
+    const thu = cur ? `${cur} ${tu}` : tu;
+    if (thu.length <= gioiHan) cur = thu;
+    else {
+      if (cur) dong.push(cur);
+      cur = tu;
+    }
+  }
+  if (cur) dong.push(cur);
+  return dong.length ? dong : [""];
+}

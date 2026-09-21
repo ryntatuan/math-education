@@ -61,5 +61,8 @@ scratch/loi-*.txt
 scratch/tao-thu-vien-hinh.cjs
 scratch/thu-vien-hinh.html
 scratch/nhin-*.png
+# Trang đo HÌNH THẬT (mọi ca hình có trong dữ liệu 5 lớp) — giữ .jsx, bỏ bản đóng gói + trang
+scratch/visual-fit.cjs
+scratch/visual-fit.html
 # Bản sao lưu dữ liệu bài học trước khi tiêm hình (lấy lại được từ lịch sử git)
 scratch/*.truoc-hinh.js

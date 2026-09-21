@@ -13,7 +13,13 @@
  * mặc định, không bao giờ trắng khung.
  */
 
-import { CARD_STYLE, CAPTION_STYLE, svgFit } from "./visualTheme";
+import {
+  CARD_STYLE,
+  CAPTION_STYLE,
+  svgFit,
+  VUA_HINH,
+  ngatDong,
+} from "./visualTheme";
 
 const P = {
   ink: "#1e293b",
@@ -56,10 +62,18 @@ export function FractionBar({
       ? rows.slice(0, 4)
       : [{ parts, shaded, label: "" }];
 
-  const W = 520;
+  const W = VUA_HINH;
   const rowH = 46;
-  const gap = 16;
-  const H = bands.length * (rowH + gap) + 16;
+  /**
+   * 🔴 CHỖ CHO NHÃN CỦA TỪNG DÒNG, VÀ NHÃN NAY NẰM **DƯỚI** BĂNG.
+   *
+   * Bản cũ vẽ nhãn ở cuối băng (`x = W − 6`, căn phải) nên nhãn dài — ca thật ở bài
+   * `g5-c1-l3` là `"2/3 + 1/4 = 8/12 + 3/12 = 11/12"`, 31 ký tự ≈ 260 đơn vị — **nằm đè
+   * lên chính các ô của băng giấy**. Thu hẹp hình lại còn làm tỉ lệ đè tăng lên. Vẽ dưới
+   * băng thì không đè gì, và nhãn có cả bề ngang 380 đơn vị để hiện (31 ký tự ≈ 223).
+   */
+  const KHE_DONG = 28;
+  const H = bands.length * (rowH + KHE_DONG) + 8;
   const left = 10;
 
   return (
@@ -74,7 +88,7 @@ export function FractionBar({
           const p = clamp(num(r.parts, 4), 1, 20);
           const s = clamp(num(r.shaded, 0), 0, p);
           const w = (W - 24) / p;
-          const y = 10 + ri * (rowH + gap);
+          const y = 8 + ri * (rowH + KHE_DONG);
           return (
             <g key={ri}>
               {Array.from({ length: p }).map((_, i) => (
@@ -92,10 +106,10 @@ export function FractionBar({
               ))}
               {r.label && (
                 <text
-                  x={W - 6}
-                  y={y + rowH / 2 + 6}
-                  textAnchor="end"
-                  fontSize="15"
+                  x={left}
+                  y={y + rowH + 20}
+                  textAnchor="start"
+                  fontSize="14"
                   fontWeight="800"
                   fill={SEG[ri % SEG.length]}
                 >
@@ -209,24 +223,38 @@ export function BarModel({
    * **560** ⇒ tràn **103–106 đơn vị**, bé chỉ thấy một phần của "Tổng 35".
    * (Cùng họ lỗi với số đè mũi tên ở trục số: bộ vẽ không tính chỗ cho chữ của chính nó.)
    */
-  const RONG_CHU = 8.4; // đơn vị/ký tự, cỡ chữ 14–15 in đậm
+  const RONG_CHU = 8.4; // đơn vị/ký tự, cỡ chữ 14 in đậm
   /**
-   * Số của mỗi hàng nay nằm BÊN TRÁI, ngay trước thanh (`x = 132`, căn phải).
-   * 🔴 VÌ SAO ĐỔI CHỖ: để số ở CUỐI thanh thì trên điện thoại hình phải kéo ngang và
-   * bé nhìn thấy hai thanh mà **không thấy số** — mà số mới là thứ cần đọc ("20 cm").
-   * Đặt trước thanh thì luôn nằm trong phần nhìn thấy đầu tiên.
+   * Số của mỗi hàng nằm BÊN TRÁI, ngay trước thanh (`textAnchor="end"`).
+   * 🔴 VÌ SAO ĐỔI CHỖ: để số ở CUỐI thanh thì trên điện thoại hình phải kéo ngang và bé
+   * nhìn thấy hai thanh mà **không thấy số** — mà số mới là thứ cần đọc ("20 cm").
    */
-  const rongNgoac = braceLabel
-    ? 54 + RONG_CHU * String(braceLabel).length + 6
+  const W = VUA_HINH;
+  const LE_TRAI = 12;
+  const soDaiNhat = Math.max(
+    ...safe.map((r) => `${r.parts} ${unit}`.trim().length),
+    1,
+  );
+  const rongSo = RONG_CHU * soDaiNhat + 12;
+  const xBar = LE_TRAI + rongSo;
+  /**
+   * 🔴 NHÃN DẤU NGOẶC PHẢI NGẮT DÒNG. Ca thật ở bài `g4-c5-l2`: "Tổng 35 · số bé 14 ·
+   * số lớn 21" (30 ký tự ≈ 252 đơn vị) và ở `g3-c12-l4` tới 42 ký tự ≈ 350 đơn vị.
+   * Bản cũ chừa một dải ngang cho nhãn này nên bề rộng còn lại cho thanh chỉ ~70 đơn vị
+   * — đúng lúc đó lại là ca 20 phần, thành ra các phần mỏng như sợi chỉ.
+   * Ngắt thành dòng thì dải bên phải hẹp lại, thanh được rộng.
+   */
+  const dongNgoac = braceLabel ? ngatDong(braceLabel, 14) : [];
+  const rongNgoac = dongNgoac.length
+    ? 20 + Math.max(...dongNgoac.map((d) => d.length)) * RONG_CHU
     : 0;
-  const RIGHT = rongNgoac + 10;
-  const W = 560;
-  const barAreaW = W - 142 - RIGHT;
+  const xNgoac = W - rongNgoac;
+  const barAreaW = Math.max(60, xNgoac - 12 - xBar);
   const segW = barAreaW / maxParts;
   const rowH = 40;
-  const gap = 26;
-  const top = 44;
-  const H = top + safe.length * (rowH + gap) + 34;
+  const gap = 28; // đủ chỗ cho NHÃN HÀNG nằm trên thanh và SỐ nằm bên trái
+  const top = 36;
+  const H = top + safe.length * (rowH + gap) - gap + 14;
 
   return (
     <div style={card}>
@@ -241,10 +269,11 @@ export function BarModel({
           const color = SEG[ri % SEG.length];
           return (
             <g key={ri}>
+              {/* Nhãn hàng nằm TRÊN thanh, sát đầu thanh — không giành bề ngang với thanh */}
               <text
-                x="0"
-                y={y + rowH / 2 + 6}
-                fontSize="15"
+                x={xBar}
+                y={y - 9}
+                fontSize="14"
                 fontWeight="800"
                 fill={P.ink}
               >
@@ -253,7 +282,7 @@ export function BarModel({
               {Array.from({ length: r.parts }).map((_, i) => (
                 <rect
                   key={i}
-                  x={142 + i * segW}
+                  x={xBar + i * segW}
                   y={y}
                   width={segW}
                   height={rowH}
@@ -264,8 +293,8 @@ export function BarModel({
                 />
               ))}
               <text
-                x={132}
-                y={y + rowH / 2 + 6}
+                x={xBar - 8}
+                y={y + rowH / 2 + 5}
                 textAnchor="end"
                 fontSize="14"
                 fontWeight="700"
@@ -281,22 +310,25 @@ export function BarModel({
         {braceLabel && (
           <g>
             <line
-              x1={142 + barAreaW + 44}
-              y1={top + 4}
-              x2={142 + barAreaW + 44}
-              y2={top + safe.length * (rowH + gap) - gap + 4}
+              x1={xNgoac}
+              y1={top - 2}
+              x2={xNgoac}
+              y2={top + safe.length * (rowH + gap) - gap + 2}
               stroke={P.violet}
               strokeWidth="3"
             />
-            <text
-              x={142 + barAreaW + 54}
-              y={top + 20}
-              fontSize="15"
-              fontWeight="800"
-              fill={P.violet}
-            >
-              {braceLabel}
-            </text>
+            {dongNgoac.map((d, i) => (
+              <text
+                key={i}
+                x={xNgoac + 10}
+                y={top + 14 + i * 20}
+                fontSize="14"
+                fontWeight="800"
+                fill={P.violet}
+              >
+                {d}
+              </text>
+            ))}
           </g>
         )}
       </svg>
@@ -338,11 +370,20 @@ export function MotionDiagram({
   // ⇒ cả trang bài học trắng. Chặn tường minh thay vì tin vào giá trị mặc định.
   const A = a && typeof a === "object" ? a : {};
   const B = b && typeof b === "object" ? b : {};
-  const W = 560;
-  const H = 168;
-  const axisY = 104;
-  const x0 = 42;
-  const x1 = W - 42;
+  // 360 thay vì 560: tên xe, vận tốc và quãng đường đều là chữ ngắn, không việc gì phải
+  // rộng 560 đơn vị rồi bắt bé kéo ngang (xem `svgFit`).
+  const W = VUA_HINH - 20;
+  /**
+   * 🔴 XẾP LẠI CHIỀU DỌC — số đo THẬT của từng thứ (font 26 emoji cao 28 trên / 7 dưới
+   * đường chân chữ; chữ 14 cao 15 trên / 4 dưới):
+   *   tiêu đề 22 · mũi tên 36 · tên xe 56 · emoji 90 · vận tốc 114 · trục 124 · quãng 150/170.
+   * Bản cũ để tên xe ở `axisY − 52` và emoji ở `axisY − 34` ⇒ emoji cỡ 26 vươn tới
+   * `axisY − 60`, **đè lên tên xe** 11–15 đơn vị ở cả 8 ca thật.
+   */
+  const H = 190;
+  const axisY = 124;
+  const x0 = 48;
+  const x1 = W - 48;
   const d = num(distance, null);
 
   return (
@@ -355,9 +396,9 @@ export function MotionDiagram({
       >
         <text
           x={W / 2}
-          y="26"
+          y="24"
           textAnchor="middle"
-          fontSize="16"
+          fontSize="15"
           fontWeight="800"
           fill={P.violet}
         >
@@ -408,9 +449,9 @@ export function MotionDiagram({
         </text>
         <text
           x={x0}
-          y={axisY - 52}
+          y={axisY - 68}
           textAnchor="middle"
-          fontSize="13"
+          fontSize="14"
           fontWeight="800"
           fill={P.blue}
         >
@@ -421,7 +462,7 @@ export function MotionDiagram({
             x={x0}
             y={axisY - 12}
             textAnchor="middle"
-            fontSize="13"
+            fontSize="14"
             fontWeight="700"
             fill={P.blue}
           >
@@ -435,9 +476,9 @@ export function MotionDiagram({
         </text>
         <text
           x={x1}
-          y={axisY - 52}
+          y={axisY - 68}
           textAnchor="middle"
-          fontSize="13"
+          fontSize="14"
           fontWeight="800"
           fill={P.rose}
         >
@@ -448,7 +489,7 @@ export function MotionDiagram({
             x={x1}
             y={axisY - 12}
             textAnchor="middle"
-            fontSize="13"
+            fontSize="14"
             fontWeight="700"
             fill={P.rose}
           >
@@ -482,18 +523,18 @@ export function MotionDiagram({
 
         <line
           x1={x0 + 20}
-          y1={axisY - 74}
+          y1={axisY - 88}
           x2={m === "apart" || m === "chase" ? x0 + 92 : x0 + 92}
-          y2={axisY - 74}
+          y2={axisY - 88}
           stroke={P.blue}
           strokeWidth="3"
           markerEnd="url(#mdBlue)"
         />
         <line
           x1={x1 - 20}
-          y1={axisY - 74}
+          y1={axisY - 88}
           x2={x1 - 92}
-          y2={axisY - 74}
+          y2={axisY - 88}
           stroke={P.rose}
           strokeWidth="3"
           markerEnd={m === "toward" ? "url(#mdRose)" : undefined}
@@ -501,7 +542,7 @@ export function MotionDiagram({
           transform={
             m === "toward"
               ? undefined
-              : `rotate(180 ${(x1 - 20 + x1 - 92) / 2} ${axisY - 74})`
+              : `rotate(180 ${(x1 - 20 + x1 - 92) / 2} ${axisY - 88})`
           }
         />
       </svg>
@@ -535,12 +576,27 @@ export function BarChart({
   const maxV = Math.max(...safe.map((it) => it.value), 1);
   const hi = num(highlight, -1);
 
-  const W = 560;
-  const H = 260;
+  // 350 thay vì 560 — biểu đồ chỉ 2–4 cột trong dữ liệu thật, không cần rộng gấp đôi thẻ.
+  const W = 350;
+  const TRUC_X = 52; // trục tung
+  /**
+   * 🔴 TIÊU ĐỀ DÀI PHẢI NGẮT DÒNG. Ca thật ở bài `g2-c14-l7`: "Số quyển vở đã quyên góp
+   * (mỗi hình = 4 quyển)" — 46 ký tự ≈ 350 đơn vị, vẽ một dòng là tràn ra ngoài khung
+   * (đo được: vượt 2,4 đơn vị). Ngắt dòng thì phải HẠ vùng vẽ xuống, nếu không tiêu đề
+   * đè lên cột cao nhất.
+   */
+  const dongTieuDe = title ? ngatDong(title, 42) : [];
+  const leTieuDe = dongTieuDe.length > 1 ? (dongTieuDe.length - 1) * 26 : 0;
+  const H = 260 + leTieuDe;
   const baseY = H - 52;
-  const topY = 44;
+  /**
+   * 🔴 `topY = 58` chứ không phải 44: nhãn giá trị của cột CAO NHẤT nằm ở `topY − 8`, mà
+   * tiêu đề chiếm tới y ≈ 28 ⇒ hể cột cao hết cỡ là **số đè lên tiêu đề** (đo được 5 px
+   * chồng nhau ở cả 6 bài biểu đồ cột thật: `g2-c13-l3`, `g3-c15-l2`, `g4-c1-l12`…).
+   */
+  const topY = 58 + leTieuDe;
   const plotH = baseY - topY;
-  const slot = (W - 80) / safe.length;
+  const slot = (W - TRUC_X - 16) / safe.length;
   const barW = Math.min(slot * 0.56, 62);
 
   return (
@@ -551,16 +607,20 @@ export function BarChart({
         role="img"
         aria-label="Biểu đồ cột"
       >
-        {title && (
+        {dongTieuDe.length > 0 && (
           <text
             x={W / 2}
-            y="26"
+            y="24"
             textAnchor="middle"
-            fontSize="16"
+            fontSize="15"
             fontWeight="800"
             fill={P.ink}
           >
-            {title}
+            {dongTieuDe.map((d, i) => (
+              <tspan key={i} x={W / 2} dy={i === 0 ? 0 : 18}>
+                {d}
+              </tspan>
+            ))}
           </text>
         )}
 
@@ -568,18 +628,18 @@ export function BarChart({
         {[0, 0.25, 0.5, 0.75, 1].map((f, i) => (
           <g key={i}>
             <line
-              x1="56"
+              x1={TRUC_X}
               y1={baseY - f * plotH}
-              x2={W - 20}
+              x2={W - 16}
               y2={baseY - f * plotH}
               stroke={P.grid}
               strokeWidth="1.6"
             />
             <text
-              x="48"
+              x={TRUC_X - 8}
               y={baseY - f * plotH + 5}
               textAnchor="end"
-              fontSize="12"
+              fontSize="13"
               fill={P.soft}
             >
               {Math.round(maxV * f)}
@@ -588,17 +648,17 @@ export function BarChart({
         ))}
 
         <line
-          x1="56"
+          x1={TRUC_X}
           y1={baseY}
-          x2={W - 20}
+          x2={W - 16}
           y2={baseY}
           stroke={P.ink}
           strokeWidth="2.5"
         />
         <line
-          x1="56"
+          x1={TRUC_X}
           y1={baseY}
-          x2="56"
+          x2={TRUC_X}
           y2={topY - 8}
           stroke={P.ink}
           strokeWidth="2.5"
@@ -606,7 +666,7 @@ export function BarChart({
 
         {safe.map((it, i) => {
           const h = (it.value / maxV) * plotH;
-          const cx = 56 + slot * i + slot / 2;
+          const cx = TRUC_X + slot * i + slot / 2;
           const on = i === hi;
           return (
             <g key={i}>
@@ -629,8 +689,7 @@ export function BarChart({
                 fontWeight="800"
                 fill={on ? P.amber : P.blue}
               >
-                {it.value}
-                {unit}
+                {unit ? `${it.value} ${unit}` : it.value}
               </text>
               <text
                 x={cx}
@@ -664,30 +723,68 @@ export function PieChart({ title = "", items = [] }) {
         { label: "Khác", percent: 75 },
       ];
 
-  const cx = 150;
-  const cy = 132;
-  const r = 96;
+  /**
+   * 🔴 BÁNH VÀ CHÚ GIẢI PHẢI XẾP LẠI CHO HẸP. Bản cũ đặt bánh kính 96 ở `cx = 150` và
+   * chú giải từ `x = 300`, tổng bề rộng ~520 đơn vị ⇒ trên điện thoại phải kéo ngang.
+   * Nay bánh nhỏ hơn (r = 62) và chú giải sát ngay bên phải, cả hình gọn trong 360 đơn vị.
+   * Chữ chú giải dài nhất trong dữ liệu là "Tìm tỉ số % của hai số" (23 ký tự ≈ 161).
+   */
+  const W = VUA_HINH - 20;
+  /**
+   * Tiêu đề cũng phải ngắt dòng: ca thật ở bài `g5-c2-l8` là "3/4 = 75% — tỉ số phần trăm
+   * là phân số có mẫu 100" — 51 ký tự ≈ 380 đơn vị, vẽ một dòng thì tràn mỗi bên ~10 đơn vị.
+   */
+  const dongTieuDe = title ? ngatDong(title, 44) : [];
+  const leTieuDe = dongTieuDe.length > 1 ? (dongTieuDe.length - 1) * 18 : 0;
+  const cx = 86;
+  const cy = 120 + leTieuDe;
+  const r = 62;
+  /**
+   * 🔴 CHÚ GIẢI CŨNG PHẢI NGẮT DÒNG. Nhãn dài nhất trong dữ liệu là
+   * "Đo lường & chuyển động" (bài `g5-c5-l6`) — 23 ký tự nhưng chữ có dấu nên đo thật
+   * ra ~190 đơn vị, vượt khung 19,6 đơn vị khi vẽ một dòng bên phải bánh.
+   */
+  const RONG_CHU_GIAI = 8.3; // chữ 13 đậm — ĐO THẬT, đừng ước theo 7,0
+  const xChuGiai = 168;
+  const xNhan = xChuGiai + 22;
+  const soKyTu = Math.max(8, Math.floor((W - xNhan - 6) / RONG_CHU_GIAI));
+  const chuGiai = safe.map((it) =>
+    ngatDong(`${it.label}: ${it.percent}%`, soKyTu),
+  );
+  const CAO_DONG_GIAI = 16;
+  const caoMuc = chuGiai.map((d) => Math.max(30, d.length * CAO_DONG_GIAI + 8));
+  const yMuc = [];
+  let yc = 72;
+  for (const h of caoMuc) {
+    yMuc.push(yc);
+    yc += h;
+  }
+  const H = Math.max(cy + r + 26, yc + 4);
   const start = -Math.PI / 2;
   let acc = 0;
 
   return (
     <div style={card}>
       <svg
-        viewBox="0 0 560 270"
-        {...svgFit(560)}
+        viewBox={`0 0 ${W} ${H}`}
+        {...svgFit(W)}
         role="img"
         aria-label="Biểu đồ hình quạt"
       >
-        {title && (
+        {dongTieuDe.length > 0 && (
           <text
-            x="280"
-            y="26"
+            x={W / 2}
+            y="24"
             textAnchor="middle"
-            fontSize="16"
+            fontSize="15"
             fontWeight="800"
             fill={P.ink}
           >
-            {title}
+            {dongTieuDe.map((d, i) => (
+              <tspan key={i} x={W / 2} dy={i === 0 ? 0 : 18}>
+                {d}
+              </tspan>
+            ))}
           </text>
         )}
         {safe.map((it, i) => {
@@ -720,21 +817,25 @@ export function PieChart({ title = "", items = [] }) {
         {safe.map((it, i) => (
           <g key={`l${i}`}>
             <rect
-              x="300"
-              y={72 + i * 30}
-              width="20"
-              height="20"
+              x={xChuGiai}
+              y={yMuc[i] + 2}
+              width="16"
+              height="16"
               rx="5"
               fill={SEG[i % SEG.length]}
             />
             <text
-              x="330"
-              y={87 + i * 30}
-              fontSize="14"
+              x={xNhan}
+              y={yMuc[i] + 15}
+              fontSize="13"
               fontWeight="700"
               fill={P.ink}
             >
-              {it.label}: {it.percent}%
+              {chuGiai[i].map((d, li) => (
+                <tspan key={li} x={xNhan} dy={li === 0 ? 0 : CAO_DONG_GIAI}>
+                  {d}
+                </tspan>
+              ))}
             </text>
           </g>
         ))}
