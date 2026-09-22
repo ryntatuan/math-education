@@ -43,6 +43,7 @@ const PLANE = {
   rhombus: "Hình thoi",
   trapezoid: "Hình thang",
   circle: "Hình tròn",
+  quad: "Hình tứ giác",
 };
 
 /* Toạ độ đỉnh cho từng hình, trên khung 320×240. */
@@ -90,6 +91,18 @@ const SHAPE_POINTS = {
     [280, 180],
     [40, 180],
   ],
+  /**
+   * TỨ GIÁC THƯỜNG — cố ý KHÔNG vuông, KHÔNG đều, bốn cạnh dài ngắn khác nhau.
+   * 🔴 VÌ SAO CẦN: bài Lớp 2 `g2-c5-l6` dạy "hình TỨ GIÁC ABCD" mà lấy hình chữ nhật
+   * làm minh hoạ thì trẻ dễ hiểu sai thành "tứ giác = hình chữ nhật". Sách giáo khoa
+   * cũng vẽ một tứ giác chung rồi mới nói "hình vuông, hình chữ nhật CŨNG LÀ hình tứ giác".
+   */
+  quad: [
+    [66, 46],
+    [252, 62],
+    [272, 178],
+    [46, 166],
+  ],
 };
 
 const FILL = {
@@ -99,6 +112,7 @@ const FILL = {
   parallelogram: [P.amberSoft, P.amber],
   rhombus: [P.amberSoft, P.amber],
   trapezoid: [P.greenSoft, P.green],
+  quad: [P.greenSoft, P.green],
   circle: [P.amberSoft, P.amber],
 };
 
@@ -152,6 +166,12 @@ const HUONG_CHU_DINH = {
     [0, -1],
     [0.7, 0.7],
     [-0.7, 0.7],
+  ],
+  quad: [
+    [-0.9, -0.7],
+    [0.9, -0.5],
+    [0.9, 0.8],
+    [-0.9, 0.7],
   ],
 };
 

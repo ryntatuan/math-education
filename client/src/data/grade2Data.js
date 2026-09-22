@@ -3233,7 +3233,9 @@ export const grade2Data = {
                 // (AB, BC, CD, DA) và từng đỉnh (A, B, C, D) — hình cũ chỉ ghi một chữ
                 // "đỉnh" chung, trẻ không biết đỉnh nào là A, đỉnh nào là B.
                 planeShape: {
-                  kind: "rectangle",
+                  // TỨ GIÁC THƯỜNG, không dùng hình chữ nhật: nếu minh hoạ "tứ giác"
+                  // bằng hình chữ nhật thì trẻ dễ hiểu sai "tứ giác = hình chữ nhật".
+                  kind: "quad",
                   labels: ["AB", "BC", "CD", "DA"],
                   vertexLabels: ["A", "B", "C", "D"],
                   formula: "4 cạnh: AB, BC, CD, DA · 4 đỉnh: A, B, C, D",
