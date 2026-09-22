@@ -62,7 +62,13 @@ for (const [file, key] of NGUON) {
         if (!c.solid) continue;
         tongKhoi++;
         if (c.solid.sideLetters) coChu++;
-        const chu = [c.text, c.formula, c.rule, c.explanation, (c.points || []).join(" ")]
+        const chu = [
+          c.text,
+          c.formula,
+          c.rule,
+          c.explanation,
+          (c.points || []).join(" "),
+        ]
           .filter((x) => typeof x === "string")
           .join(" · ");
         if (CONG_THUC_CHU.test(chu)) khoiCanChu++;
@@ -80,5 +86,9 @@ if (coChu < khoiCanChu) {
   console.log("  ✗ HỎNG: còn khối cần chữ mà chưa ghi");
 }
 console.log("");
-console.log(hong === 0 ? "✓ CANARY ĐẠT — luật H không xanh giả" : `✗ CANARY HỎNG (${hong} lỗi)`);
+console.log(
+  hong === 0
+    ? "✓ CANARY ĐẠT — luật H không xanh giả"
+    : `✗ CANARY HỎNG (${hong} lỗi)`,
+);
 process.exit(hong === 0 ? 0 : 1);

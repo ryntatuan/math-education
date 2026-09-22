@@ -54,6 +54,14 @@ const assert = (cond, msg) => {
 // ─────────────────────────── Đọc source ───────────────────────────
 
 const read = (rel) => fs.readFileSync(path.join(ROOT, rel), "utf8");
+/**
+ * Đọc file rồi bỏ BOM (U+FEFF) ở đầu.
+ * 🔴 VÌ SAO CẦN: `JSON.parse` gặp BOM là ném `Unexpected token '\uFEFF'` — cổng đỏ với
+ * một câu vô nghĩa thay vì câu hướng dẫn thật. BOM xuất hiện khi file bị ghi bằng công cụ
+ * tự thêm BOM (PowerShell `Out-File -Encoding utf8` chẳng hạn). Đã gặp thật khi thử cổng S-32.
+ * `fs.writeFileSync(..., "utf8")` của Node KHÔNG thêm BOM ⇒ phía ghi đã sạch.
+ */
+const readJson = (rel) => JSON.parse(read(rel).replace(/^\uFEFF/, ""));
 const exists = (rel) => fs.existsSync(path.join(ROOT, rel));
 
 function walk(dir, exts) {
@@ -2534,6 +2542,75 @@ if (!ONLY_DB) {
       return {
         detail:
           "khách: KHÔNG ghi ✓ · đã đăng nhập: ghi ✓ · chưa cấu hình Supabase: VẪN ghi ✓ · cả 4 store đều bọc ✓ · khoá riêng khớp tên store, không đụng cache ✓",
+      };
+    },
+  );
+
+  await test(
+    "S-32",
+    "Seed SQL phải MỚI như dữ liệu (không được để seed cũ hơn bài học)",
+    async () => {
+      // 🔴 VÌ SAO CẦN. Ngày 2026-09-22 tôi sửa dữ liệu bài học ở hai vòng phát hành
+      // (1.0.38 tứ giác thường, 1.0.39 chữ a/b/c trên cạnh khối) nhưng **quên chạy
+      // `--sql`**. File seed trên đĩa vẫn là bản của vòng 1.0.37 ⇒ người dùng dán đúng
+      // những file đó vào Supabase và `--verify` báo **6 bài lệch nội dung**; phải dán
+      // lại lần nữa. Đây là lỗi IM LẶNG: seed cũ vẫn "hợp lệ", chỉ không khớp bài học.
+      //
+      // Cách canh: `migrate-content.mjs --sql` ghi kèm `.dau-van-tay.json` (băm sha256
+      // của `lessons.map(l => [l.id, l.payload])`). Cổng này tính LẠI y hệt từ dữ liệu
+      // hiện tại rồi so. Lệch ⇒ đỏ kèm đúng câu lệnh cần chạy.
+      const dt = "supabase/content-seed/.dau-van-tay.json";
+      assert(exists(dt), `Không thấy ${dt} — chạy: node scripts/migrate-content.mjs --sql`);
+      const ghi = readJson(dt);
+
+      const files = [
+        ["grade1Data.js", "grade1Data"],
+        ["grade2Data.js", "grade2Data"],
+        ["grade3Data.js", "grade3Data"],
+        ["grade4Data.js", "grade4Data"],
+        ["grade5Data.js", "grade5Data"],
+      ];
+      const lessons = [];
+      for (const [file, key] of files) {
+        const mod = await import(
+          new URL(`../client/src/data/${file}`, import.meta.url)
+        );
+        for (const ch of mod[key].chapters) {
+          for (const lesson of ch.lessons) {
+            lessons.push({ id: lesson.id, payload: { slides: lesson.slides } });
+          }
+        }
+      }
+      const { createHash } = await import("node:crypto");
+      const tinhLai = createHash("sha256")
+        .update(JSON.stringify(lessons.map((l) => [l.id, l.payload])))
+        .digest("hex")
+        .slice(0, 16);
+
+      assert(
+        tinhLai === ghi.dauVanTay,
+        `Seed SQL đã CŨ so với dữ liệu bài học (dấu vân tay ${ghi.dauVanTay} ≠ ${tinhLai}). ` +
+          `Dán file seed cũ vào Supabase thì app của bé KHÔNG thấy hình/chữ mới. ` +
+          `Chạy: node scripts/migrate-content.mjs --sql  rồi commit lại file trong supabase/content-seed/.`,
+      );
+
+      // Canary: đổi một slide trong bản sao (trong bộ nhớ, KHÔNG chạm file thật) thì
+      // dấu vân tay PHẢI khác — chứng minh phép băm thật sự nhìn vào nội dung bài học,
+      // chứ không phải một hằng số vô nghĩa.
+      const banSao = JSON.parse(JSON.stringify(lessons));
+      banSao[0].payload.slides[0].content.text =
+        (banSao[0].payload.slides[0].content.text ?? "") + " (canary)";
+      const bamKhac = createHash("sha256")
+        .update(JSON.stringify(banSao.map((l) => [l.id, l.payload])))
+        .digest("hex")
+        .slice(0, 16);
+      assert(
+        bamKhac !== ghi.dauVanTay,
+        "Canary: đổi nội dung một slide mà dấu vân tay KHÔNG đổi — phép băm vô nghĩa",
+      );
+
+      return {
+        detail: `dấu vân tay ${ghi.dauVanTay} khớp dữ liệu hiện tại (${ghi.bai} bài · ${ghi.slide} slide) · canary phân biệt được ✓`,
       };
     },
   );

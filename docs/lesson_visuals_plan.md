@@ -513,8 +513,8 @@ bằng `VisualBlocks`), `PHÉP THỬ BỘ VẼ HÌNH: 399 đạt · 0 hỏng`, c
 
 ### 9.8 Hình phải GHI TÊN ĐIỂM — A, B, C, D, M, O (2026-09-22, lần 6)
 
-**Vấn đề bạn báo:** *"mô tả hình chữ nhật có cạnh AB và BC và 4 đỉnh A, B, C, D nhưng lại
-không ghi chú A, B, C, D lên trên hình thì làm sao trẻ hiểu được?"*
+**Vấn đề bạn báo:** _"mô tả hình chữ nhật có cạnh AB và BC và 4 đỉnh A, B, C, D nhưng lại
+không ghi chú A, B, C, D lên trên hình thì làm sao trẻ hiểu được?"_
 
 Đúng — và khi soát ra thì đây là **cả một họ lỗi**, không phải một chỗ: chữ trong bài **gọi
 tên điểm** mà trên hình **không có chữ nào**. Nặng nhất là 4 bài Lớp 2 Chủ đề 5 dạy
@@ -522,19 +522,19 @@ tên điểm** mà trên hình **không có chữ nào**. Nặng nhất là 4 b�
 các chữ A, B, C, D**, mà hình minh hoạ lại là… **cái thước đo**, có bài không có hình nào
 (chữ A, B, C, D chỉ nằm trong đoạn văn, viết dạng `A •———• B`).
 
-| Chỗ | Trước | Sau |
-| --- | --- | --- |
-| Lớp 2 `g2-c5-l6` tứ giác ABCD | một chữ "đỉnh" chung ở góc trên trái | **A, B, C, D** ở từng đỉnh + **AB, BC, CD, DA** trên từng cạnh |
-| Lớp 2 `g2-c5-l1` đoạn thẳng AB | hình CÁI THƯỚC ĐO | điểm A, điểm B có chấm và tên |
-| Lớp 2 `g2-c5-l2` đoạn thẳng / đường thẳng / đường cong | 1 slide: thước + bảng | 3 slide, mỗi slide 1 hình có tên A, B |
-| Lớp 2 `g2-c5-l3` ba điểm thẳng hàng | chỉ có BẢNG, không có hình | 2 hình: A·B·C **thẳng hàng** và A·B với **C không thẳng hàng** |
-| Lớp 2 `g2-c5-l4` đường gấp khúc ABCD | hình CÁI THƯỚC ĐO | đường gấp khúc thật, A·B·C·D ở bốn đỉnh |
-| Lớp 3 `g3-c3-l1` O là điểm ở giữa A, B | hình CÁI THƯỚC ĐO | ba điểm A · O · B trên đoạn thẳng |
-| Lớp 3 `g3-c3-l2` M là trung điểm của AB | hình CÁI THƯỚC ĐO | đoạn A · M · B **có vạch bằng nhau ở hai nửa** (thấy AM = MB) |
-| Lớp 3 `g3-c3-l3` đường tròn | chỉ có chữ O ở tâm | **O** ở tâm, **B** và **C** ở hai đầu đường kính, **A** trên đường tròn |
-| Lớp 3 `g3-c3-l4` góc đỉnh A, cạnh AB và AC | không có chữ nào | **A** ở đỉnh, **B** và **C** ở hai đầu cạnh |
-| Lớp 4 `g4-c2-l5` góc nhọn đỉnh O, cạnh OA và OB | không có chữ nào | **O** ở đỉnh, **A** và **B** ở hai đầu cạnh |
-| Lớp 5 `g5-c3-l3`, `l4` hình tròn | chỉ ghi "bán kính" | ghi đúng chữ công thức dùng: **bán kính r**, **đường kính d** |
+| Chỗ                                                    | Trước                                | Sau                                                                     |
+| ------------------------------------------------------ | ------------------------------------ | ----------------------------------------------------------------------- |
+| Lớp 2 `g2-c5-l6` tứ giác ABCD                          | một chữ "đỉnh" chung ở góc trên trái | **A, B, C, D** ở từng đỉnh + **AB, BC, CD, DA** trên từng cạnh          |
+| Lớp 2 `g2-c5-l1` đoạn thẳng AB                         | hình CÁI THƯỚC ĐO                    | điểm A, điểm B có chấm và tên                                           |
+| Lớp 2 `g2-c5-l2` đoạn thẳng / đường thẳng / đường cong | 1 slide: thước + bảng                | 3 slide, mỗi slide 1 hình có tên A, B                                   |
+| Lớp 2 `g2-c5-l3` ba điểm thẳng hàng                    | chỉ có BẢNG, không có hình           | 2 hình: A·B·C **thẳng hàng** và A·B với **C không thẳng hàng**          |
+| Lớp 2 `g2-c5-l4` đường gấp khúc ABCD                   | hình CÁI THƯỚC ĐO                    | đường gấp khúc thật, A·B·C·D ở bốn đỉnh                                 |
+| Lớp 3 `g3-c3-l1` O là điểm ở giữa A, B                 | hình CÁI THƯỚC ĐO                    | ba điểm A · O · B trên đoạn thẳng                                       |
+| Lớp 3 `g3-c3-l2` M là trung điểm của AB                | hình CÁI THƯỚC ĐO                    | đoạn A · M · B **có vạch bằng nhau ở hai nửa** (thấy AM = MB)           |
+| Lớp 3 `g3-c3-l3` đường tròn                            | chỉ có chữ O ở tâm                   | **O** ở tâm, **B** và **C** ở hai đầu đường kính, **A** trên đường tròn |
+| Lớp 3 `g3-c3-l4` góc đỉnh A, cạnh AB và AC             | không có chữ nào                     | **A** ở đỉnh, **B** và **C** ở hai đầu cạnh                             |
+| Lớp 4 `g4-c2-l5` góc nhọn đỉnh O, cạnh OA và OB        | không có chữ nào                     | **O** ở đỉnh, **A** và **B** ở hai đầu cạnh                             |
+| Lớp 5 `g5-c3-l3`, `l4` hình tròn                       | chỉ ghi "bán kính"                   | ghi đúng chữ công thức dùng: **bán kính r**, **đường kính d**           |
 
 **Bộ vẽ mới `pointLine`** — 7 kiểu, một nguồn duy nhất cho mọi hình "điểm và đường":
 `segment` (đoạn thẳng) · `line` (đường thẳng kéo dài) · `curve` (đường cong) ·
@@ -544,18 +544,21 @@ câu hỏi "nối A với B được hình gì?", **cố ý không vẽ sẵn đ
 Mỗi điểm là một **chấm tròn + tên**, hướng ghi tên viết cứng theo từng hình nên chữ luôn
 nằm NGOÀI hình, không bao giờ đè lên nét vẽ.
 
-**Cách làm ở các bộ vẽ cũ** (đều theo một luật: *có chữ thì phải NỚI KHUNG*):
+**Cách làm ở các bộ vẽ cũ** (đều theo một luật: _có chữ thì phải NỚI KHUNG_):
+
 - `PlaneShape`: thêm `vertexLabels` — khung cao 240 → 266 và tên hình hạ từ `y 228` → `254`,
   nếu không chữ ở đỉnh dưới (y ≈ 206) sẽ chồng lên tên hình.
 - `Angle`: thêm `vertexLetter` + `armLetters` — khung cao 220 → 250, tên góc hạ xuống 242.
 - `CircleParts`: thêm `pointLabels` + `radiusLabel`/`diameterLabel` — khung giữ nguyên.
 
 **Ba lần phép đo bắt lỗi của CHÍNH TÔI trong vòng này** (ghi lại vì rất đáng nhớ):
+
 1. Hai chữ "bán kính r" và "đường kính d" đặt đối xứng qua tâm ⇒ **đè nhau ở giữa** ~7 đơn vị.
 2. Sửa bằng cách hạ "đường kính d" xuống dưới đường kính ⇒ **đè lên chữ "O"** ở tâm.
 3. Chốt: để "đường kính d" ở TRÊN đường kính và lệch hẳn sang trái ⇒ 0 chồng chéo.
 
 **Hai họ lỗi mới trong công cụ soát** (`scratch/soat-hinh-sai.mjs`):
+
 - **F. gọi tên điểm mà hình không ghi tên**: **11 → 3 chỗ**. 3 chỗ còn lại **cố ý không sửa**:
   1 câu hỏi mà vẽ hình là cho luôn đáp án ("Điểm nào ở giữa?") + 2 bài toán lời văn
   ("Đoạn thẳng AB dài 12 cm. Trung điểm M cách A bao nhiêu?").
@@ -575,12 +578,13 @@ Phép thử: `PHÉP THỬ HÌNH THẬT: 602 đạt · 0 hỏng` (**489 slide man
 **Quy mô nội dung đổi:** 2450 → **2455 slide** (tách slide để mỗi hình một slide).
 Số bài/chương không đổi. ⚠️ Nhắc lại: đổi số slide phải đổi **`MONG_DOI` +
 chuỗi "khớp số đã đo" trong `migrate-content.mjs` + 3 câu trong `test-admin-portal.mjs`**
-+ dòng "Quy mô nội dung hiện tại" ở `docs/admin_portal_test_cases.md` + 2 chỗ trong
-`curriculum_audit.md` + `content_reload_steps.md` + `100-tang-phien-ban-sau-bo-sung.sql`.
+
+- dòng "Quy mô nội dung hiện tại" ở `docs/admin_portal_test_cases.md` + 2 chỗ trong
+  `curriculum_audit.md` + `content_reload_steps.md` + `100-tang-phien-ban-sau-bo-sung.sql`.
 
 ### 9.9 Hình khối phải ghi ĐÚNG CHỮ mà công thức dùng — a, b, c (2026-09-22, lần 7)
 
-**Bạn chốt:** *"hãy ghi đúng chữ lên cạnh khối"* — tiếp ngay sau vòng ghi tên điểm A, B, C, D.
+**Bạn chốt:** _"hãy ghi đúng chữ lên cạnh khối"_ — tiếp ngay sau vòng ghi tên điểm A, B, C, D.
 
 **Vấn đề.** Lớp 5 dạy công thức **bằng chữ**: `Sxq = (a + b) × 2 × c`, `V = a × b × c`,
 `V = a × a × a`, trong khi hình khối chỉ ghi **số** ("dài 4, rộng 3, cao 2"). Trẻ phải tự
@@ -590,11 +594,11 @@ tứ giác không ghi tên đỉnh.
 **Cách chữa.** `Solid` thêm `sideLetters` — ghi chữ lên **ba cạnh nhìn thấy** theo đúng cách
 sách giáo khoa:
 
-| Chữ | Cạnh | Vị trí |
-| --- | --- | --- |
-| `a` | cạnh DÀI dưới cùng | dưới cạnh đáy trước |
+| Chữ | Cạnh                | Vị trí              |
+| --- | ------------------- | ------------------- |
+| `a` | cạnh DÀI dưới cùng  | dưới cạnh đáy trước |
 | `b` | cạnh RỘNG (nghiêng) | dưới–phải, cạnh sâu |
-| `c` | cạnh CAO | cạnh đứng bên trái |
+| `c` | cạnh CAO            | cạnh đứng bên trái  |
 
 **Khối lập phương** ghi `a` ở **hai cạnh đứng** (trái và phải) để thấy mọi cạnh đều bằng `a` —
 đúng ý `V = a × a × a`. **Cố ý KHÔNG ghi ở cạnh đáy**: chỗ đó đã có câu "Sáu mặt đều là hình

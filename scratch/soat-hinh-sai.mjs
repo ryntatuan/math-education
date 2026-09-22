@@ -184,7 +184,8 @@ for (const [file, key] of NGUON) {
           ]
             .filter((x) => typeof x === "string")
             .join(" · ");
-          const co = c.solid.sideLetters && Object.keys(c.solid.sideLetters).length;
+          const co =
+            c.solid.sideLetters && Object.keys(c.solid.sideLetters).length;
           if (CONG_THUC_CHU.test(chuCongThuc) && !co) {
             nhom.H.push(
               `${noi} · ${chuCongThuc.replace(/\s+/g, " ").slice(0, 100)}`,

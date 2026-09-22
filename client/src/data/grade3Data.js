@@ -1933,7 +1933,8 @@ export const grade3Data = {
                 pointLine: {
                   kind: "segment",
                   points: ["A", "O", "B"],
-                  formula: "Ba điểm A, O, B thẳng hàng ⇒ O là điểm ở giữa A và B",
+                  formula:
+                    "Ba điểm A, O, B thẳng hàng ⇒ O là điểm ở giữa A và B",
                 },
               },
             },

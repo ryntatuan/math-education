@@ -200,7 +200,9 @@ export function PlaneShape({
    */
   vertexLabels = [],
 }) {
-  const chuDinh = Array.isArray(vertexLabels) ? vertexLabels.filter(Boolean) : [];
+  const chuDinh = Array.isArray(vertexLabels)
+    ? vertexLabels.filter(Boolean)
+    : [];
   const coChuDinh = chuDinh.length > 0;
   /**
    * Ghi tên đỉnh thì phải HẠ ĐÁY khung xuống: chữ ở đỉnh dưới nằm quanh y ≈ 206, mà tên
@@ -289,9 +291,8 @@ export function PlaneShape({
             ))}
             {coChuDinh
               ? pts.map(([vx, vy], i) => {
-                  const [dx, dy] = (HUONG_CHU_DINH[k] || HUONG_CHU_DINH.rectangle)[
-                    i % pts.length
-                  ];
+                  const [dx, dy] = (HUONG_CHU_DINH[k] ||
+                    HUONG_CHU_DINH.rectangle)[i % pts.length];
                   return (
                     <text
                       key={`c${i}`}
@@ -1823,13 +1824,7 @@ export function PointLine({
               </g>
             ))}
             <circle cx="250" cy="124" r="5.5" fill={P.ink} />
-            <text
-              x="264"
-              y="130"
-              fontSize="17"
-              fontWeight="900"
-              fill={P.rose}
-            >
+            <text x="264" y="130" fontSize="17" fontWeight="900" fill={P.rose}>
               {chu[2] || ""}
             </text>
           </>
@@ -1847,35 +1842,38 @@ export function PointLine({
               strokeLinecap="round"
               opacity={kind === "pointsOnly" ? 0 : 1}
             />
-            {(kind === "line" ? [92, 228] : chu.length >= 3 ? [46, 160, 274] : [46, 274]).map(
-              (x, i, ds) => (
-                <g key={i}>
-                  <circle cx={x} cy={yNgang} r="5.5" fill={P.ink} />
-                  <text
-                    x={x + (i === 0 ? -13 : i === ds.length - 1 ? 13 : 0)}
-                    y={
-                      kind === "line"
-                        ? yNgang - 16
-                        : i === 0 || i === ds.length - 1
-                          ? yNgang + 26
-                          : yNgang - 16
-                    }
-                    textAnchor={
-                      kind === "line" || (i !== 0 && i !== ds.length - 1)
-                        ? "middle"
-                        : i === 0
-                          ? "end"
-                          : "start"
-                    }
-                    fontSize="17"
-                    fontWeight="900"
-                    fill={P.rose}
-                  >
-                    {chu[i] || ""}
-                  </text>
-                </g>
-              ),
-            )}
+            {(kind === "line"
+              ? [92, 228]
+              : chu.length >= 3
+                ? [46, 160, 274]
+                : [46, 274]
+            ).map((x, i, ds) => (
+              <g key={i}>
+                <circle cx={x} cy={yNgang} r="5.5" fill={P.ink} />
+                <text
+                  x={x + (i === 0 ? -13 : i === ds.length - 1 ? 13 : 0)}
+                  y={
+                    kind === "line"
+                      ? yNgang - 16
+                      : i === 0 || i === ds.length - 1
+                        ? yNgang + 26
+                        : yNgang - 16
+                  }
+                  textAnchor={
+                    kind === "line" || (i !== 0 && i !== ds.length - 1)
+                      ? "middle"
+                      : i === 0
+                        ? "end"
+                        : "start"
+                  }
+                  fontSize="17"
+                  fontWeight="900"
+                  fill={P.rose}
+                >
+                  {chu[i] || ""}
+                </text>
+              </g>
+            ))}
             {kind === "segment" &&
               equalMarks &&
               [103, 217].map((x, i) => (

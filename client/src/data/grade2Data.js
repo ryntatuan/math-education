@@ -2996,7 +2996,8 @@ export const grade2Data = {
                 pointLine: {
                   kind: "notCollinear",
                   points: ["A", "B", "C"],
-                  formula: "C không nằm trên đường thẳng AB ⇒ ba điểm KHÔNG thẳng hàng",
+                  formula:
+                    "C không nằm trên đường thẳng AB ⇒ ba điểm KHÔNG thẳng hàng",
                 },
               },
             },

@@ -47,6 +47,7 @@
 
 import fs from "node:fs";
 import path from "node:path";
+import { createHash } from "node:crypto";
 import { fileURLToPath } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -391,6 +392,38 @@ if (MUON_SQL) {
   fs.writeFileSync(
     path.join(thuMuc, "99-cau-hinh-va-doi-chieu.sql"),
     cuoi,
+    "utf8",
+  );
+
+  /**
+   * 🔴 DẤU VÂN TAY của bộ dữ liệu vừa sinh ra seed.
+   *
+   * VÌ SAO PHẢI CÓ. Ngày 2026-09-22 tôi sửa dữ liệu bài học ở hai vòng phát hành
+   * (1.0.38, 1.0.39) nhưng **quên chạy lại `--sql`** ⇒ file seed trên đĩa vẫn là bản
+   * CŨ. Người dùng dán đúng những file đó vào Supabase, và `--verify` báo **6 bài lệch
+   * nội dung** — mất thêm một vòng dán tay. Lỗi im lặng: seed vẫn "hợp lệ", chỉ cũ.
+   *
+   * Nay mỗi lần sinh seed có ghi kèm dấu vân tay. Cổng `S-32` trong
+   * `scripts/test-admin-portal.mjs` đọc lại dấu này rồi **tính lại từ dữ liệu hiện tại**;
+   * lệch nhau ⇒ CỔNG ĐỎ kèm đúng câu cần chạy. Nhờ vậy không thể quên lần nữa.
+   */
+  const dauVanTay = createHash("sha256")
+    .update(JSON.stringify(lessons.map((l) => [l.id, l.payload])))
+    .digest("hex")
+    .slice(0, 16);
+  fs.writeFileSync(
+    path.join(thuMuc, ".dau-van-tay.json"),
+    JSON.stringify(
+      {
+        dauVanTay,
+        bai: lessons.length,
+        slide: soSlide,
+        ghiLuc: new Date().toISOString(),
+        cachTinh: "sha256(JSON.stringify(lessons.map(l => [l.id, l.payload]))).slice(0,16)",
+      },
+      null,
+      2,
+    ) + "\n",
     "utf8",
   );
 
