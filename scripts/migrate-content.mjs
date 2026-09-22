@@ -419,7 +419,8 @@ if (MUON_SQL) {
         bai: lessons.length,
         slide: soSlide,
         ghiLuc: new Date().toISOString(),
-        cachTinh: "sha256(JSON.stringify(lessons.map(l => [l.id, l.payload]))).slice(0,16)",
+        cachTinh:
+          "sha256(JSON.stringify(lessons.map(l => [l.id, l.payload]))).slice(0,16)",
       },
       null,
       2,

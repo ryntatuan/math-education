@@ -2560,7 +2560,10 @@ if (!ONLY_DB) {
       // của `lessons.map(l => [l.id, l.payload])`). Cổng này tính LẠI y hệt từ dữ liệu
       // hiện tại rồi so. Lệch ⇒ đỏ kèm đúng câu lệnh cần chạy.
       const dt = "supabase/content-seed/.dau-van-tay.json";
-      assert(exists(dt), `Không thấy ${dt} — chạy: node scripts/migrate-content.mjs --sql`);
+      assert(
+        exists(dt),
+        `Không thấy ${dt} — chạy: node scripts/migrate-content.mjs --sql`,
+      );
       const ghi = readJson(dt);
 
       const files = [
