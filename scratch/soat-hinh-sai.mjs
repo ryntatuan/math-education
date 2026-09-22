@@ -90,7 +90,11 @@ const CO_TEN_DIEM = (c) =>
     c.pointLine,
   );
 
-const nhom = { A: [], B: [], C: [], D: [], E: [], F: [], G: [] };
+/** Công thức dùng CHỮ cái kích thước (a, b, c) ⇒ hình khối phải ghi chữ lên cạnh. */
+const CONG_THUC_CHU =
+  /(\(a \+ b\)|a × b|a × a|cạnh a|chiều dài a|chiều rộng b|chiều cao c|V = a|Sxq = \(a)/i;
+
+const nhom = { A: [], B: [], C: [], D: [], E: [], F: [], G: [], H: [] };
 let soSlide = 0;
 let soSlideHinh = 0;
 
@@ -169,6 +173,25 @@ for (const [file, key] of NGUON) {
           );
         }
 
+        // ── H. công thức dùng chữ a, b, c mà HÌNH KHỐI không ghi chữ lên cạnh
+        if (c.solid) {
+          const chuCongThuc = [
+            c.text,
+            c.formula,
+            c.rule,
+            c.explanation,
+            (c.points || []).join(" "),
+          ]
+            .filter((x) => typeof x === "string")
+            .join(" · ");
+          const co = c.solid.sideLetters && Object.keys(c.solid.sideLetters).length;
+          if (CONG_THUC_CHU.test(chuCongThuc) && !co) {
+            nhom.H.push(
+              `${noi} · ${chuCongThuc.replace(/\s+/g, " ").slice(0, 100)}`,
+            );
+          }
+        }
+
         // ── G. bài dạy về ĐOẠN THẲNG / ĐIỂM có tên (AB, A·O·B) mà hình lại là THƯỚC ĐO
         if (
           c.ruler &&
@@ -200,3 +223,4 @@ inNhom("D. bài 'nhận biết hình trong đồ vật' thiếu hình đồ vậ
 inNhom("E. dạy GHÉP/CẮT mà không có hình minh hoạ", nhom.E);
 inNhom("F. gọi TÊN ĐIỂM (A, B, C, M, O…) mà hình không ghi tên", nhom.F);
 inNhom("G. bài đoạn thẳng có tên (AB) mà hình lại là THƯỚC ĐO", nhom.G);
+inNhom("H. công thức dùng chữ a, b, c mà hình khối không ghi chữ", nhom.H);

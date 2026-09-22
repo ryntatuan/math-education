@@ -181,3 +181,9 @@ WHERE key IN ('content_source', 'content_version') ORDER BY key;
 --   • Lớp 4 (g4-c2-l5) góc nhọn: phải có chữ O ở đỉnh và A, B ở hai đầu cạnh.
 --   • Lớp 5 (g5-c3-l3, l4) hình tròn: phải ghi "bán kính r" và "đường kính d" — đúng chữ
 --     mà công thức dùng.
+--   • Lớp 5 hình KHỐI (g5-c3-l6, g5-c3-l7, g5-c3-l8, g5-c3-l12, g5-c5-l4): cạnh khối phải
+--     ghi CHỮ a, b, c cho khớp công thức dùng chữ — "Sxq = (a + b) × 2 × c",
+--     "V = a × b × c", "V = a × a × a". Quy ước: a = cạnh dài dưới cùng, b = cạnh rộng
+--     (nghiêng, bên phải), c = cạnh cao (đứng, bên trái). Khối lập phương ghi a ở hai cạnh
+--     đứng. Duới hình vẫn có dòng số "dài 4, rộng 3, cao 2" để bé đối chiếu chữ ↔ số.
+--     🔴 Nếu hình khối CHỈ có số mà không có chữ a, b, c ⇒ DÁN THIẾU `06-bai-lop-5.sql`.

@@ -7,7 +7,7 @@ Ngày đo: 2026-09-22. Người đề xuất: Copilot. Trạng thái: **chờ b�
 Công cụ đo (mới viết): `node scratch/kiem-tra-hinh-anh.mjs`
 
 > ⚠️ Bảng dưới là **số đo LÚC BẮT ĐẦU** (lúc đó chưa slide nào có hình). Tình trạng hiện tại
-> xem **mục 9.7–9.8** ở cuối tài liệu: 5 lớp · 51 chương · 459 bài · **2455 slide**, **489 slide
+> xem **mục 9.7–9.9** ở cuối tài liệu: 5 lớp · 51 chương · 459 bài · **2455 slide**, **489 slide
 > mang hình**, 590 lượt render hình THẬT đạt · 0 hỏng.
 
 | Lớp      | Số slide | Slide có hình | Số bài  | Bài KHÔNG có hình nào |
@@ -577,3 +577,43 @@ Số bài/chương không đổi. ⚠️ Nhắc lại: đổi số slide phải 
 chuỗi "khớp số đã đo" trong `migrate-content.mjs` + 3 câu trong `test-admin-portal.mjs`**
 + dòng "Quy mô nội dung hiện tại" ở `docs/admin_portal_test_cases.md` + 2 chỗ trong
 `curriculum_audit.md` + `content_reload_steps.md` + `100-tang-phien-ban-sau-bo-sung.sql`.
+
+### 9.9 Hình khối phải ghi ĐÚNG CHỮ mà công thức dùng — a, b, c (2026-09-22, lần 7)
+
+**Bạn chốt:** *"hãy ghi đúng chữ lên cạnh khối"* — tiếp ngay sau vòng ghi tên điểm A, B, C, D.
+
+**Vấn đề.** Lớp 5 dạy công thức **bằng chữ**: `Sxq = (a + b) × 2 × c`, `V = a × b × c`,
+`V = a × a × a`, trong khi hình khối chỉ ghi **số** ("dài 4, rộng 3, cao 2"). Trẻ phải tự
+đoán xem chữ `a` trong công thức ứng với cạnh nào trên hình — cùng một họ lỗi với việc hình
+tứ giác không ghi tên đỉnh.
+
+**Cách chữa.** `Solid` thêm `sideLetters` — ghi chữ lên **ba cạnh nhìn thấy** theo đúng cách
+sách giáo khoa:
+
+| Chữ | Cạnh | Vị trí |
+| --- | --- | --- |
+| `a` | cạnh DÀI dưới cùng | dưới cạnh đáy trước |
+| `b` | cạnh RỘNG (nghiêng) | dưới–phải, cạnh sâu |
+| `c` | cạnh CAO | cạnh đứng bên trái |
+
+**Khối lập phương** ghi `a` ở **hai cạnh đứng** (trái và phải) để thấy mọi cạnh đều bằng `a` —
+đúng ý `V = a × a × a`. **Cố ý KHÔNG ghi ở cạnh đáy**: chỗ đó đã có câu "Sáu mặt đều là hình
+vuông" ở `y = 240`, ghi thêm là **hai dòng chữ chồng nhau** (đã đo, phép đo bắt được).
+
+**5 slide được gắn chữ** (đều là slide có công thức hoặc điểm kiến thức dùng a, b, c):
+Lớp 5 `g5-c3-l6` (visual), `g5-c3-l7` (visual), `g5-c3-l8` (visual), `g5-c3-l12` (concept),
+`g5-c5-l4` (concept).
+
+**Hai luật soát mới, kèm CANARY** (`scratch/soat-hinh-sai.mjs` + `scratch/canary-soat-h.mjs`):
+
+- **H. công thức dùng chữ a, b, c mà hình khối không ghi chữ**: **4 chỗ → 0 chỗ**.
+- 🔴 **Vì sao phải có canary:** một luật soát bằng regex rất dễ **XANH GIẢ** — regex không
+  bao giờ khớp thì báo 0 chỗ, trông y như "đã sạch". Canary kiểm **HAI VẾ**:
+  (1) bắt được 5/5 mẫu thật (`Sxq = (a + b) × 2 × c`, `V = a × b × c`, `V = a × a × a`,
+  "chiều dài a, chiều rộng b, chiều cao c", "Hình lập phương (cạnh a)") **và**
+  (2) **KHÔNG** bắt nhầm 5 câu không liên quan ("Hai đáy là hình tròn bằng nhau", "6 mặt ·
+  8 đỉnh · 12 cạnh", "Sáu mặt đều là hình vuông"…). Chạy: `node scratch/canary-soat-h.mjs`
+  (exit ≠ 0 nếu hỏng).
+
+**Đo lại:** 580 ca — 0 kéo ngang, 0 tràn khung, 0 cặp chữ đè nhau ở cả 375/360/320 px.
+`PHÉP THỬ HÌNH THẬT: 602 đạt · 0 hỏng`. Số slide **KHÔNG đổi** (2455) ⇒ không phải sửa cổng.

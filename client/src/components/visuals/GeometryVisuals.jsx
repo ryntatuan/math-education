@@ -772,6 +772,22 @@ export function Solid({
   dims = null,
   label = "",
   formula = "",
+  /**
+   * CHỮ GHI LÊN CẠNH KHỐI — `{ a: "a", b: "b", c: "c" }` cho hộp chữ nhật / lập phương.
+   *
+   * 🔴 VÌ SAO CẦN. Lớp 5 dạy công thức bằng CHỮ: "Sxq = (a + b) × 2 × c", "V = a × b × c",
+   * "V = a × a × a" — nhưng hình khối chỉ ghi SỐ ("dài 4, rộng 3, cao 2"). Trẻ phải tự
+   * đoán xem chữ a trong công thức ứng với cạnh nào trên hình. Cùng họ lỗi với việc hình
+   * tứ giác không ghi tên đỉnh A, B, C, D (người dùng báo 2026-09-22).
+   *
+   * Vị trí: `a` = cạnh DÀI dưới cùng, `b` = cạnh RỘNG (nghiêng, bên phải), `c` = cạnh
+   * CAO (thẳng đứng, bên trái). Đúng cách sách giáo khoa ghi.
+   *
+   * ⚠️ KHỐI LẬP PHƯƠNG cố ý KHÔNG ghi chữ ở cạnh dưới: chỗ đó đã có câu "Sáu mặt đều là
+   * hình vuông" ở y = 240, ghi thêm là hai dòng chữ chồng nhau. Lập phương ghi `a` ở cạnh
+   * trên và cạnh đứng bên trái.
+   */
+  sideLetters = null,
 }) {
   const k = SOLID_NAME[kind] ? kind : "cuboid";
   // Cùng lý do như `MotionDiagram`: mặc định `= {}` không chặn `null`.
@@ -779,6 +795,7 @@ export function Solid({
   const a = num(D.a, 0);
   const b = num(D.b, 0);
   const c = num(D.c, 0);
+  const SL = sideLetters && typeof sideLetters === "object" ? sideLetters : {};
 
   const dimText =
     k === "cube"
@@ -827,6 +844,70 @@ export function Solid({
               stroke={P.blue}
               strokeWidth="3"
             />
+            {/* Chữ a, b, c ghi lên ba cạnh — khớp công thức dùng chữ của Lớp 5. */}
+            {SL.c && (
+              <text
+                x="46"
+                y="161"
+                textAnchor="end"
+                fontSize="18"
+                fontWeight="900"
+                fill={P.blue}
+              >
+                {SL.c}
+              </text>
+            )}
+            {k === "cuboid" && SL.a && (
+              <text
+                x="130"
+                y="236"
+                textAnchor="middle"
+                fontSize="18"
+                fontWeight="900"
+                fill={P.blue}
+              >
+                {SL.a}
+              </text>
+            )}
+            {k === "cube" && SL.a && (
+              /**
+               * Lập phương: chữ `a` ở HAI cạnh đứng (trái và phải) — nhấn mạnh MỌI cạnh của
+               * lập phương đều bằng `a` (đúng ý công thức V = a × a × a). Cố ý KHÔNG ghi ở
+               * cạnh dưới vì chỗ đó đã có câu "Sáu mặt đều là hình vuông" (sẽ chồng chữ).
+               */
+              <>
+                <text
+                  x="46"
+                  y="161"
+                  textAnchor="end"
+                  fontSize="18"
+                  fontWeight="900"
+                  fill={P.blue}
+                >
+                  {SL.a}
+                </text>
+                <text
+                  x="274"
+                  y="116"
+                  fontSize="18"
+                  fontWeight="900"
+                  fill={P.rose}
+                >
+                  {SL.a}
+                </text>
+              </>
+            )}
+            {k === "cuboid" && SL.b && (
+              <text
+                x="244"
+                y="201"
+                fontSize="18"
+                fontWeight="900"
+                fill={P.rose}
+              >
+                {SL.b}
+              </text>
+            )}
             {k === "cube" && (
               // ⚠️ Căn giữa theo BỀ RỘNG KHUNG (170), không phải 130: câu này dài 36 ký tự
               // (≈278 đơn vị) nên tâm ở 130 làm mép trái vượt ra ngoài khung 8,9 đơn vị.

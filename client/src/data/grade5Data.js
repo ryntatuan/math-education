@@ -1747,6 +1747,9 @@ export const grade5Data = {
                 solid: {
                   kind: "cuboid",
                   dims: { a: 4, b: 3, c: 2 },
+                  // Chữ a, b, c phải nằm trên cạnh: bài này nói "3 kích thước: chiều dài a,
+                  // chiều rộng b, chiều cao c" mà hình chỉ ghi số 4, 3, 2.
+                  sideLetters: { a: "a", b: "b", c: "c" },
                   label: "Hình hộp chữ nhật",
                   formula: "6 mặt đều là hình chữ nhật · 8 đỉnh · 12 cạnh",
                 },
@@ -1814,6 +1817,8 @@ export const grade5Data = {
                 solid: {
                   kind: "cuboid",
                   dims: { a: 4, b: 3, c: 2 },
+                  // Công thức trên hình dùng chữ: "Sxq = (a + b) × 2 × c" ⇒ ghi a, b, c lên cạnh.
+                  sideLetters: { a: "a", b: "b", c: "c" },
                   formula: "Sxq = (a + b) × 2 × c · Stp = Sxq + 2 × (a × b)",
                 },
                 table: {
@@ -1878,6 +1883,7 @@ export const grade5Data = {
                 solid: {
                   kind: "cube",
                   dims: { a: 3 },
+                  sideLetters: { a: "a" },
                   formula: "V = a × a × a · 1 dm³ = 1 lít",
                 },
                 table: {
@@ -2095,6 +2101,8 @@ export const grade5Data = {
                 solid: {
                   kind: "cuboid",
                   dims: { a: 5, b: 4, c: 3 },
+                  // Điểm kiến thức nhắc "V = a × b × c" ⇒ ghi a, b, c lên cạnh khối.
+                  sideLetters: { a: "a", b: "b", c: "c" },
                   formula: "V = 5 × 4 × 3 = 60 cm³",
                 },
                 table: {
@@ -3093,6 +3101,7 @@ export const grade5Data = {
                 solid: {
                   kind: "cube",
                   dims: { a: 3 },
+                  sideLetters: { a: "a" },
                   formula: "V = a × a × a",
                 },
                 table: {
