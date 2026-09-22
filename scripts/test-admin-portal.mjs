@@ -1666,7 +1666,7 @@ if (!ONLY_DB) {
       const d = demCay(cay);
       assert(
         d.lop === 5 && d.chuong === 51 && d.bai === 459 && d.slide === 2450,
-        `Cây DB sai quy mô: ${d.lop}/${d.chuong}/${d.bai}/${d.slide} — mong đợi 5/51/459/2438`,
+        `Cây DB sai quy mô: ${d.lop}/${d.chuong}/${d.bai}/${d.slide} — mong đợi 5/51/459/2450`,
       );
 
       const lech = soSanh(goc, cay);

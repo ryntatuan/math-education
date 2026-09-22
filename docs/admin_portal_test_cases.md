@@ -2532,7 +2532,7 @@ ORDER BY proname;
 npm run test:portal:static        # → dòng S-23
 ```
 
-**Mong đợi:** `6 kiểu · 1966 slide · không nuốt khoá · giữ nguyên kiểu số`.
+**Mong đợi:** `6 kiểu · 2450 slide · không nuốt khoá · giữ nguyên kiểu số`.
 
 Cổng này `import()` thằng `admin/src/lib/soanBai.js` và thử **hành vi thât**:
 
@@ -3101,7 +3101,7 @@ const g = await __sb.from("content_grades").select("id,name,age_range");
 const c = await __sb.from("content_chapters").select("id").limit(1000);
 const l = await __sb.from("content_lessons").select("id,status").limit(1000);
 console.log(g.data?.length, c.data?.length, l.data?.length, g.error, l.error);
-// Mong đợi: 5 · 41 · 461 · null · null
+// Mong đợi: 5 · 51 · 459 · null · null
 // (Không đọc được thì chế độ Khách không mở nổi danh sách lớp)
 ```
 
