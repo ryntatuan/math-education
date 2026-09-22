@@ -39,6 +39,13 @@
 --   ⚠️ LẦN NÀY BẮT BUỘC dán `02`, `03`, `04`, `05` VÀ `06` (cả NĂM lớp đều có thay đổi).
 --      `01` và `99` không đổi. `00-don-noi-dung-cu.sql` KHÔNG cần (không bài nào bị bỏ),
 --      nhưng chạy nó vẫn VÔ HẠI — nó chỉ xoá bài không còn trong file tĩnh.
+--   ℹ️ NẾU DB ĐÃ DÁN LẦN ĐẦU RỒI thì lần sửa này CHỈ CẦN dán lại 2 file: `03-bai-lop-2.sql`
+--      và `06-bai-lop-5.sql` (đúng 2 file chứa 6 bài vừa đổi: tứ giác thường + chữ a, b, c
+--      trên cạnh khối), rồi dán `100-...` để tăng phiên bản. Không cần dán lại cả 5 file.
+--      Cách kiểm chắc chắn: `node scripts/migrate-content.mjs --verify` ⇒ phải ra
+--      **"Bài có nội dung khác: 0"**. Còn số khác 0 thì seed đang CŨ hơn dữ liệu (hoặc dán
+--      thiếu file) — chạy `node scripts/migrate-content.mjs --sql` để sinh lại rồi dán lại.
+--      Cổng `S-32` (`npm run test:portal:static`) canh đúng chuyện này, không thể quên nữa.
 --
 -- 📌 LẦN TRƯỚC (lần 4): 7 lỗi hình học ở Lớp 1 CĐ 2 — hình vuông bị vẽ thành hình chữ nhật
 --   (17 chỗ ở cả 5 lớp), nói "3 cạnh · 3 đỉnh" mà hình không có đỉnh nào, đồ vật vẽ quá nhỏ,
