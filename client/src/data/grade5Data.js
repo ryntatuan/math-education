@@ -1544,6 +1544,17 @@ export const grade5Data = {
               content: {
                 mascotMood: "happy",
                 text: "Hình tròn có tâm O, bán kính r và đường kính d = 2 × r. Số 3,14 là số Pi kỳ diệu gắn liền với mọi hình tròn! ⭕",
+                // Câu mở bài gọi tên "tâm O, bán kính r, đường kính d" ⇒ hình phải có đúng
+                // ba chữ đó, không thì trẻ chỉ thấy chữ suông.
+                circleParts: {
+                  radius: 3,
+                  diameter: 6,
+                  showCenter: true,
+                  pointLabels: { center: "O" },
+                  radiusLabel: "bán kính r",
+                  diameterLabel: "đường kính d",
+                  label: "Tâm O · bán kính r · đường kính d = 2 × r",
+                },
               },
             },
             {
@@ -1555,6 +1566,9 @@ export const grade5Data = {
                   diameter: 6,
                   showCenter: true,
                   showCircumference: true,
+                  // Ghi đúng chữ mà công thức dùng: r (bán kính) và d (đường kính).
+                  radiusLabel: "bán kính r",
+                  diameterLabel: "đường kính d",
                   label: "Chu vi C = d × 3,14 hoặc C = r × 2 × 3,14",
                 },
               },
@@ -1602,6 +1616,7 @@ export const grade5Data = {
                 circleParts: {
                   radius: 3,
                   showCenter: true,
+                  radiusLabel: "bán kính r",
                   label: "Diện tích S = r × r × 3,14",
                 },
                 table: {

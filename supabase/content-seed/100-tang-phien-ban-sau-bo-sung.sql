@@ -12,33 +12,38 @@
 -- CHẠY LẠI NHIỀU LẦN: chỉ làm phiên bản tăng thêm 1 mỗi lần — vô hại (các bé tải
 --   lại nội dung thêm một lần), không sinh dòng trùng, không mất dữ liệu.
 --
--- BỐI CẢNH LẦN NÀY (2026-09-22, lần 4): SỬA HÌNH HỌC CHO ĐÚNG — "HÌNH VẼ PHẢI NÓI ĐÚNG
---   ĐIỀU LỜI GIẢNG NÓI". Chủ app tự chụp màn hình rồi báo 7 lỗi ở Lớp 1 Chủ đề 2, kèm yêu cầu
---   "rà soát và bổ sung với tất cả bài học khác" — nên đã soát cả 5 lớp:
---     • HÌNH VUÔNG bị vẽ thành HÌNH CHỮ NHẬT ở 17 chỗ thuộc cả 5 lớp (kể cả bài dạy
---       "diện tích hình vuông = cạnh × cạnh"). Nay vuông thật: 80→240 ngang, 30→190 dọc.
---     • Lời giảng nói "3 cạnh · 3 đỉnh" mà hình CHỈ có chữ "cạnh". Nay mọi hình có nhắc tới
---       đỉnh đều có CHẤM TRÒN ở từng đỉnh + nhãn "đỉnh" (cổng soát: 4 chỗ thiếu → 0 chỗ).
---     • Quyển sách / đồ vật vẽ quá nhỏ, trẻ không nhìn ra. Nay có bộ vẽ ĐỒ VẬT THẬT (10 kiểu,
---       vẽ bằng SVG của app — KHÔNG dùng ảnh sách giáo khoa): quyển sách, mặt đồng hồ, viên
---       gạch lát nền, mái nhà, cửa sổ, bánh xe, cửa ra vào, mặt bàn, quả bóng, ngôi nhà.
---     • "Ghép 2 tam giác vuông thành 1 hình vuông" mà KHÔNG thấy cách ghép. Nay có bộ vẽ
---       GHÉP HÌNH: hai mảnh RỜI → mũi tên → hình kết quả (còn vạch đứt chỉ chỗ hai mảnh khít).
---     • Slide NHỒI 4 đồ vật + bảng vào một slide ⇒ đã TÁCH, mỗi hình một slide, hình to hẳn.
---     • "Nhà có mái tam giác, thân chữ nhật, cửa sổ vuông" mà minh hoạ là hình chữ nhật ⇒
---       nay vẽ đúng ngôi nhà (mái tam giác + thân chữ nhật + cửa sổ vuông).
---     • Câu hỏi nói "minh hoạ hình ngôi nhà" mà KHÔNG có hình ⇒ nay có hình.
---   Soát thêm cả 5 lớp, cùng những lỗi đó còn ở: 3 slide nhồi 2 hình (Lớp 2 `g2-c14-l5`,
---   Lớp 3 `g3-c3-l8`, `g3-c3-l10`) đã tách đôi; 7 slide kể chuyện / câu hỏi thiếu hình đã thêm
---   hình (Lớp 2 hình tứ giác; Lớp 4 hai đường thẳng vuông góc, hình thoi; Lớp 5 biểu đồ hình
---   quạt, hình hộp chữ nhật, hình trụ; Lớp 1 câu hỏi ghép hình — CỐ Ý chỉ vẽ hai mảnh rời,
---   KHÔNG vẽ hình kết quả, để trẻ còn phải suy nghĩ). Số bài và số chương KHÔNG đổi; hình nằm
---   THÊM trong `content` của slide đã có.
---   ⇒ Quy mô nay: 5 lớp · 51 chương · **459 bài · 2450 slide** (số slide TĂNG 3 do tách slide).
+-- BỐI CẢNH LẦN NÀY (2026-09-22, lần 5): GHI TÊN ĐIỂM LÊN HÌNH (A, B, C, D, M, O…).
+--   Người dùng báo: "mô tả hình chữ nhật có cạnh AB và BC và 4 đỉnh A, B, C, D nhưng lại
+--   không ghi chú A, B, C, D lên trên hình thì làm sao trẻ hiểu được?". Soát ra cả một họ
+--   lỗi: chữ trong bài GỌI TÊN ĐIỂM mà trên hình không có chữ nào.
+--     • Hình tứ giác ABCD (Lớp 2): nay mỗi đỉnh có ĐÚNG TÊN của nó (A, B, C, D) và mỗi cạnh
+--       ghi tên cạnh (AB, BC, CD, DA) — trước đây chỉ có một chữ "đỉnh" chung.
+--     • BỘ VẼ MỚI "điểm và đường": các bài "đoạn thẳng AB", "đường gấp khúc ABCD", "ba điểm
+--       thẳng hàng" trước đây vẽ bằng… CÁI THƯỚC ĐO, hoặc không có hình nào (chữ A, B, C, D
+--       chỉ nằm trong đoạn văn, viết dạng "A •———• B"). Nay vẽ đúng: ĐIỂM (chấm tròn) + TÊN
+--       ĐIỂM, gồm đoạn thẳng, đường thẳng, đường cong, đường gấp khúc, ba điểm thẳng hàng,
+--       ba điểm KHÔNG thẳng hàng, và trường hợp chỉ có hai điểm rời — dùng cho câu hỏi "nối
+--       hai điểm A và B được hình gì?" (cố ý KHÔNG vẽ sẵn đoạn thẳng, vẽ là cho luôn đáp án).
+--     • Lớp 3: "góc đỉnh A, cạnh AB và AC" nay có chữ A ở đỉnh, B và C ở hai đầu cạnh;
+--       "trung điểm M của AB" nay vẽ đúng đoạn A·M·B có vạch bằng nhau ở hai nửa (thấy
+--       AM = MB), "O là điểm ở giữa A và B" vẽ đúng ba điểm A, O, B — thay cho cái thước.
+--     • Lớp 3 hình tròn: nay ghi tên từng điểm — tâm O, hai đầu đường kính là B và C, điểm A
+--       trên đường tròn — để khớp câu "bán kính OA = OB, đường kính BC".
+--     • Lớp 4: "góc nhọn đỉnh O, hai cạnh OA và OB" nay có chữ O, A, B ngay trên hình.
+--     • Lớp 5: hình tròn ghi đúng chữ mà công thức dùng — bán kính r, đường kính d.
+--   Công cụ soát thêm 2 họ lỗi: F = chữ gọi tên điểm mà hình không ghi tên (11 chỗ → 3 chỗ;
+--   3 chỗ còn lại là 1 câu hỏi mà vẽ hình là cho luôn đáp án + 2 bài toán lời văn, KHÔNG sửa);
+--   G = bài đoạn thẳng có tên mà hình lại là thước đo (nay 0 chỗ).
+--   Số bài và số chương KHÔNG đổi; số slide TĂNG vì mỗi hình được tách ra một slide.
+--   ⇒ Quy mô nay: 5 lớp · 51 chương · **459 bài · 2455 slide**.
 --   ⚠️ LẦN NÀY BẮT BUỘC dán `02`, `03`, `04`, `05` VÀ `06` (cả NĂM lớp đều có thay đổi).
 --      `01` và `99` không đổi. `00-don-noi-dung-cu.sql` KHÔNG cần (không bài nào bị bỏ),
 --      nhưng chạy nó vẫn VÔ HẠI — nó chỉ xoá bài không còn trong file tĩnh.
 --
+-- 📌 LẦN TRƯỚC (lần 4): 7 lỗi hình học ở Lớp 1 CĐ 2 — hình vuông bị vẽ thành hình chữ nhật
+--   (17 chỗ ở cả 5 lớp), nói "3 cạnh · 3 đỉnh" mà hình không có đỉnh nào, đồ vật vẽ quá nhỏ,
+--   ghép hình mà không thấy cách ghép, slide nhồi nhiều hình, nhà vẽ sai, câu hỏi thiếu hình.
+--   Nay có bộ vẽ ĐỒ VẬT THẬT (10 kiểu) và bộ vẽ GHÉP HÌNH.
 -- 📌 LẦN TRƯỚC (lần 3): sửa lỗi hiển thị hình + thêm hình cho câu hỏi — khung 10 ô khai thiếu
 --   số liệu (bài 9 + 4 khai `extra: 3` trong khi phải là 4), 16 câu hỏi nay có hình (đếm chim,
 --   "trên biểu đồ", thước đo, sơ đồ hai băng giấy), bỏ 2 câu trỏ vào hình không tồn tại.
@@ -100,7 +105,7 @@ WHERE key IN ('content_source', 'content_version') ORDER BY key;
 
 -- ── 4. Kiểm trên app của bé (không cần SQL) ────────────────────────────────
 -- Mở lại app (đúng tài khoản bé đã dùng trước đó) và xem log:
---   [nội dung] đọc từ DB: 5 lớp · 51 chương · 459 bài · 2450 slide · phiên bản N
+--   [nội dung] đọc từ DB: 5 lớp · 51 chương · 459 bài · 2455 slide · phiên bản N
 --
 -- Kiểm ĐÚNG những chỗ từng sai — đây là lỗi mà chủ app tự phát hiện:
 --   • Lớp 2 → chương về phép nhân CHỈ được có bảng nhân 2 và bảng nhân 5.
@@ -156,3 +161,23 @@ WHERE key IN ('content_source', 'content_version') ORDER BY key;
 --   • Lớp 4 Bài 6 (g4-c2-l6) và Bài 7 (g4-c4-l7), Lớp 5 Bài 5 (g5-c3-l5), Bài 6 (g5-c3-l6),
 --     Bài 12 (g5-c3-l9): slide kể chuyện nay đều CÓ HÌNH (góc vuông / hình thoi / biểu đồ hình
 --     quạt / hình hộp chữ nhật / hình trụ) — trước đây chỉ có chữ.
+--
+-- Kiểm TÊN ĐIỂM TRÊN HÌNH — đúng những chỗ vừa sửa (2026-09-22 lần 5):
+--   • Lớp 2 Bài 6 tứ giác (g2-c5-l6) slide hình: hình chữ nhật phải có ĐỦ BỐN CHỮ A, B, C, D
+--     ở bốn góc (mỗi góc một chữ, không phải một chữ "đỉnh" chung) và TÊN CẠNH AB, BC, CD, DA
+--     viết trên bốn cạnh. Đây chính là chỗ chủ app báo "không ghi chú A, B, C, D lên trên
+--     hình thì làm sao trẻ hiểu được?".
+--   • Lớp 2 Chủ đề 5 (g2-c5-l1 → l4): thoát ra vào từng bài, mỗi bài phải thấy ĐIỂM CHẤM TRÒN
+--     kèm CHỮ A, B (hoặc A, B, C, D với đường gấp khúc) trên một hình vẽ thật:
+--     đoạn thẳng AB · đường thẳng AB kéo dài hai phía · đường cong uốn lượn · đường gấp khúc
+--     ABCD (ba đoạn AB, BC, CD) · ba điểm A, B, C thẳng hàng · ba điểm A, B, C KHÔNG thẳng hàng.
+--     🔴 Nếu vẫn thấy hình CÁI THƯỚC ĐO ở các slide này ⇒ DÁN THIẾU `03-bai-lop-2.sql`.
+--   • Lớp 2 câu hỏi "Nối hai điểm A và B ta được hình gì?": cố ý CHỈ có hai điểm RỜI, không
+--     có đoạn thẳng — vì vẽ sẵn đoạn thẳng là cho luôn đáp án. Đây là CỐ Ý, không phải lỗi.
+--   • Lớp 3 (g3-c3-l1, l2, l3, l4): "O là điểm ở giữa A và B" phải thấy A · O · B trên một
+--     đoạn thẳng; "M là trung điểm của AB" phải thấy A · M · B **có vạch bằng nhau ở hai nửa**;
+--     hình tròn phải có tâm O và hai đầu đường kính ghi B, C; góc phải có chữ A ở đỉnh và
+--     B, C ở hai đầu cạnh.
+--   • Lớp 4 (g4-c2-l5) góc nhọn: phải có chữ O ở đỉnh và A, B ở hai đầu cạnh.
+--   • Lớp 5 (g5-c3-l3, l4) hình tròn: phải ghi "bán kính r" và "đường kính d" — đúng chữ
+--     mà công thức dùng.

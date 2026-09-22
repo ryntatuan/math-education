@@ -1047,10 +1047,14 @@ export const grade4Data = {
             {
               type: "visual",
               content: {
-                text: "- Góc nhọn: Đỉnh O, hai cạnh OA và OB, bé hơn góc vuông. - Góc tù: Lớn hơn góc vuông. - Góc bẹt: Bằng hai góc vuông (hai cạnh thẳng hàng).",
+                text: "Góc nhọn đỉnh O, hai cạnh OA và OB — bé hơn góc vuông.",
+                // 🔴 Lời giảng gọi tên "Đỉnh O, hai cạnh OA và OB" mà hình không có
+                // chữ O, A, B nào: trẻ không biết đỉnh nào là O. Nay ghi tên lên hình.
                 angle: {
                   kind: "acute",
                   degrees: 45,
+                  vertexLetter: "O",
+                  armLetters: ["B", "A"],
                   label: "Góc nhọn — bé hơn góc vuông",
                 },
                 table: {

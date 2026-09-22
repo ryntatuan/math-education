@@ -112,6 +112,49 @@ const FILL = {
  * `labels` ghi số đo lên cạnh theo thứ tự — đúng cách SGK đánh số vào hình khi dạy
  * chu vi và diện tích.
  */
+/**
+ * Hướng đặt TÊN ĐỈNH ra phía ngoài hình — viết cứng theo từng loại hình, KHÔNG tính
+ * trung bình cộng (vừa khỏi phải đo, vừa không sợ `pts` rỗng ở hình tròn).
+ * Thứ tự khớp đúng thứ tự điểm trong `SHAPE_POINTS`.
+ */
+const HUONG_CHU_DINH = {
+  square: [
+    [-1, -1],
+    [1, -1],
+    [1, 1],
+    [-1, 1],
+  ],
+  rectangle: [
+    [-1, -1],
+    [1, -1],
+    [1, 1],
+    [-1, 1],
+  ],
+  parallelogram: [
+    [-0.8, -0.8],
+    [0.8, -0.8],
+    [0.8, 0.8],
+    [-0.8, 0.8],
+  ],
+  trapezoid: [
+    [-0.8, -0.8],
+    [0.8, -0.8],
+    [0.8, 0.8],
+    [-0.8, 0.8],
+  ],
+  rhombus: [
+    [0, -1],
+    [1, 0],
+    [0, 1],
+    [-1, 0],
+  ],
+  triangle: [
+    [0, -1],
+    [0.7, 0.7],
+    [-0.7, 0.7],
+  ],
+};
+
 export function PlaneShape({
   kind = "rectangle",
   labels = [],
@@ -126,7 +169,25 @@ export function PlaneShape({
    */
   vertices = false,
   vertexLabel = "đỉnh",
+  /**
+   * TÊN TỪNG ĐỈNH, ví dụ `["A","B","C","D"]`. Có giá trị thì mỗi đỉnh được ghi đúng tên
+   * của nó (và tự vẽ luôn chấm ở đỉnh, không cần `vertices`).
+   *
+   * 🔴 VÌ SAO CẦN. Bài Lớp 2 `g2-c5-l6` dạy "Hình tứ giác ABCD có 4 cạnh: AB, BC, CD, DA
+   * và 4 đỉnh: A, B, C, D", nhưng hình chỉ ghi một chữ "đỉnh" chung. Người dùng báo:
+   * "mô tả hình chữ nhật có cạnh AB và BC và 4 đỉnh A, B, C, D nhưng lại không ghi chú
+   * A, B, C, D lên trên hình thì làm sao trẻ hiểu được?".
+   */
+  vertexLabels = [],
 }) {
+  const chuDinh = Array.isArray(vertexLabels) ? vertexLabels.filter(Boolean) : [];
+  const coChuDinh = chuDinh.length > 0;
+  /**
+   * Ghi tên đỉnh thì phải HẠ ĐÁY khung xuống: chữ ở đỉnh dưới nằm quanh y ≈ 206, mà tên
+   * hình vốn ở y = 228 ⇒ hai dòng chữ chồng nhau. Hình KHÔNG có tên đỉnh giữ nguyên
+   * 320×240 như cũ (mọi số đo cũ không đổi).
+   */
+  const H = coChuDinh ? 266 : 240;
   const k = PLANE[kind] ? kind : "rectangle";
   const [fill, stroke] = FILL[k];
   const lb = Array.isArray(labels) ? labels : [];
@@ -143,7 +204,7 @@ export function PlaneShape({
   return (
     <div style={card}>
       <svg
-        viewBox="0 0 320 240"
+        viewBox={`0 0 320 ${H}`}
         {...svgFit(320)}
         role="img"
         aria-label={PLANE[k]}
@@ -193,7 +254,7 @@ export function PlaneShape({
           />
         )}
 
-        {k !== "circle" && vertices && (
+        {k !== "circle" && (vertices || coChuDinh) && (
           <>
             {pts.map(([vx, vy], i) => (
               <circle
@@ -206,18 +267,39 @@ export function PlaneShape({
                 strokeWidth="2"
               />
             ))}
-            {vertexLabel && (
-              <text
-                x={pts[0][0] - 8}
-                y={pts[0][1] - 6}
-                textAnchor="end"
-                fontSize="15"
-                fontWeight="800"
-                fill={stroke}
-              >
-                {vertexLabel}
-              </text>
-            )}
+            {coChuDinh
+              ? pts.map(([vx, vy], i) => {
+                  const [dx, dy] = (HUONG_CHU_DINH[k] || HUONG_CHU_DINH.rectangle)[
+                    i % pts.length
+                  ];
+                  return (
+                    <text
+                      key={`c${i}`}
+                      x={vx + dx * 15}
+                      y={vy + dy * 15 + 5}
+                      textAnchor={
+                        dx > 0.35 ? "start" : dx < -0.35 ? "end" : "middle"
+                      }
+                      fontSize="17"
+                      fontWeight="900"
+                      fill={stroke}
+                    >
+                      {chuDinh[i % chuDinh.length]}
+                    </text>
+                  );
+                })
+              : vertexLabel && (
+                  <text
+                    x={pts[0][0] - 8}
+                    y={pts[0][1] - 6}
+                    textAnchor="end"
+                    fontSize="15"
+                    fontWeight="800"
+                    fill={stroke}
+                  >
+                    {vertexLabel}
+                  </text>
+                )}
           </>
         )}
 
@@ -253,7 +335,7 @@ export function PlaneShape({
         {showName && (
           <text
             x="160"
-            y="228"
+            y={coChuDinh ? 254 : 228}
             textAnchor="middle"
             fontSize="16"
             fontWeight="800"
@@ -293,8 +375,25 @@ const ANGLE_DEF = {
   },
 };
 
-export function Angle({ kind = "right", degrees = null, label = "" }) {
+/**
+ * `vertexLetter` + `armLetters`: GHI TÊN điểm lên hình.
+ * 🔴 VÌ SAO CẦN: Lớp 3 `g3-c3-l4` dạy "Góc đỉnh A, cạnh AB và AC" và Lớp 4 `g4-c2-l5`
+ * dạy "Góc nhọn: Đỉnh O, hai cạnh OA và OB" — nhưng hình chỉ có chữ "Góc vuông",
+ * KHÔNG có chữ A, B, C hay O nào. Cùng họ lỗi người dùng báo ở hình tứ giác ABCD.
+ * `armLetters[0]` = tia ngang (bên phải), `armLetters[1]` = tia chéo.
+ */
+export function Angle({
+  kind = "right",
+  degrees = null,
+  label = "",
+  vertexLetter = "",
+  armLetters = [],
+}) {
   const def = ANGLE_DEF[kind] || ANGLE_DEF.right;
+  const coChu = Boolean(vertexLetter) || armLetters.filter(Boolean).length > 0;
+  /** Có chữ thì nới khung xuống để chữ ở đỉnh không đè lên tên góc. */
+  const H = coChu ? 250 : 220;
+  const yTen = coChu ? 242 : 212;
   const deg = clamp(num(degrees, def.deg), 5, 180);
   const R = 150;
   const VbW = 340;
@@ -319,7 +418,7 @@ export function Angle({ kind = "right", degrees = null, label = "" }) {
   return (
     <div style={card}>
       <svg
-        viewBox="0 0 340 220"
+        viewBox={`0 0 340 ${H}`}
         {...svgFit(340)}
         role="img"
         aria-label={def.name}
@@ -374,9 +473,61 @@ export function Angle({ kind = "right", degrees = null, label = "" }) {
         {deg !== 180 && <circle cx={ex} cy={ey} r="5" fill={P.ink} />}
         <circle cx={cx} cy={cy} r="5.5" fill={P.ink} />
 
+        {coChu && (
+          <>
+            {vertexLetter && (
+              <text
+                x={cx - 12}
+                y={cy + 26}
+                textAnchor="end"
+                fontSize="17"
+                fontWeight="900"
+                fill={P.ink}
+              >
+                {vertexLetter}
+              </text>
+            )}
+            {armLetters[0] &&
+              (cx + R + 13 > 322 ? (
+                <text
+                  x={cx + R - 6}
+                  y={cy - 12}
+                  textAnchor="end"
+                  fontSize="17"
+                  fontWeight="900"
+                  fill={P.ink}
+                >
+                  {armLetters[0]}
+                </text>
+              ) : (
+                <text
+                  x={cx + R + 13}
+                  y={cy + 6}
+                  fontSize="17"
+                  fontWeight="900"
+                  fill={P.ink}
+                >
+                  {armLetters[0]}
+                </text>
+              ))}
+            {armLetters[1] && deg !== 180 && (
+              <text
+                x={ex + (ex >= cx ? 14 : -14)}
+                y={ey + (ey < cy ? -4 : 20)}
+                textAnchor={ex >= cx ? "start" : "end"}
+                fontSize="17"
+                fontWeight="900"
+                fill={P.ink}
+              >
+                {armLetters[1]}
+              </text>
+            )}
+          </>
+        )}
+
         <text
           x={170}
-          y="212"
+          y={yTen}
           textAnchor="middle"
           fontSize="17"
           fontWeight="800"
@@ -403,7 +554,18 @@ export function CircleParts({
   showCenter = true,
   showCircumference = false,
   label = "",
+  /**
+   * `pointLabels`: GHI TÊN ĐIỂM trên hình tròn — `{ center, right, left, down }`.
+   * 🔴 VÌ SAO CẦN: Lớp 3 `g3-c3-l2` dạy "Bán kính OA = OB", "Đường kính BC" nhưng hình
+   * chỉ có chữ "bán kính" và chữ "O". Cùng họ lỗi với hình tứ giác ABCD.
+   */
+  pointLabels = null,
+  /** Cho phép đổi chữ ghi ở hai bán kính, ví dụ "bán kính r" (Lớp 5 dùng chữ r, d). */
+  radiusLabel = "bán kính",
+  /** Chữ ghi trên đường kính (mặc định rỗng — hình cũ không đổi). */
+  diameterLabel = "",
 }) {
+  const PL = pointLabels && typeof pointLabels === "object" ? pointLabels : {};
   const r = num(radius, null);
   const d = num(diameter, null);
   const rr = r ?? (d ? d / 2 : 5);
@@ -459,7 +621,7 @@ export function CircleParts({
           fontWeight="800"
           fill={P.blue}
         >
-          bán kính
+          {radiusLabel}
         </text>
 
         {/* Đường kính (nằm ngang qua tâm, mép này sang mép kia) */}
@@ -488,8 +650,64 @@ export function CircleParts({
           fontWeight="800"
           fill={P.rose}
         >
-          bán kính
+          {radiusLabel}
         </text>
+
+        {diameterLabel && (
+          /**
+           * 🔴 KHÔNG đặt chữ của đường kính đối xứng qua tâm: "bán kính r" (nửa phải) và
+           * "đường kính d" (nửa trái) cùng nằm trên `cy - 10` thì hai chuỗi ĐÈ NHAU ở giữa.
+           * Hạ xuống dưới đường kính cũng hỏng: chữ "O" ở tâm (kết thúc tại `cx - 10`,
+           * cao tới `cy + 22`) đè lên. Chốt: ở TRÊN đường kính, lệch hẳn sang trái —
+           * phép đo trên trang hình thật xác nhận hết chồng.
+           */
+          <text
+            x={cx - R / 2 - 16}
+            y={cy - 10}
+            textAnchor="middle"
+            fontSize="14"
+            fontWeight="800"
+            fill={P.rose}
+          >
+            {diameterLabel}
+          </text>
+        )}
+
+        {PL.right && (
+          <text
+            x={cx + R + 13}
+            y={cy + 6}
+            fontSize="17"
+            fontWeight="900"
+            fill={P.ink}
+          >
+            {PL.right}
+          </text>
+        )}
+        {PL.left && (
+          <text
+            x={cx - R - 13}
+            y={cy + 6}
+            textAnchor="end"
+            fontSize="17"
+            fontWeight="900"
+            fill={P.ink}
+          >
+            {PL.left}
+          </text>
+        )}
+        {PL.down && (
+          <text
+            x={cx - 7}
+            y={cy + R + 24}
+            textAnchor="middle"
+            fontSize="17"
+            fontWeight="900"
+            fill={P.ink}
+          >
+            {PL.down}
+          </text>
+        )}
 
         {showCenter && (
           <>
@@ -502,7 +720,7 @@ export function CircleParts({
               fontWeight="800"
               fill={P.ink}
             >
-              O
+              {PL.center || "O"}
             </text>
           </>
         )}
@@ -845,12 +1063,54 @@ function VeDoVat({ kind, windows }) {
           stroke={P.blue}
           strokeWidth="5"
         />
-        <line x1="80" y1="72" x2="220" y2="72" stroke={P.paper} strokeWidth="3" />
-        <line x1="80" y1="122" x2="220" y2="122" stroke={P.paper} strokeWidth="3" />
-        <line x1="150" y1="27" x2="150" y2="72" stroke={P.paper} strokeWidth="3" />
-        <line x1="112" y1="72" x2="112" y2="122" stroke={P.paper} strokeWidth="3" />
-        <line x1="188" y1="72" x2="188" y2="122" stroke={P.paper} strokeWidth="3" />
-        <line x1="150" y1="122" x2="150" y2="167" stroke={P.paper} strokeWidth="3" />
+        <line
+          x1="80"
+          y1="72"
+          x2="220"
+          y2="72"
+          stroke={P.paper}
+          strokeWidth="3"
+        />
+        <line
+          x1="80"
+          y1="122"
+          x2="220"
+          y2="122"
+          stroke={P.paper}
+          strokeWidth="3"
+        />
+        <line
+          x1="150"
+          y1="27"
+          x2="150"
+          y2="72"
+          stroke={P.paper}
+          strokeWidth="3"
+        />
+        <line
+          x1="112"
+          y1="72"
+          x2="112"
+          y2="122"
+          stroke={P.paper}
+          strokeWidth="3"
+        />
+        <line
+          x1="188"
+          y1="72"
+          x2="188"
+          y2="122"
+          stroke={P.paper}
+          strokeWidth="3"
+        />
+        <line
+          x1="150"
+          y1="122"
+          x2="150"
+          y2="167"
+          stroke={P.paper}
+          strokeWidth="3"
+        />
       </>
     );
   if (kind === "roof")
@@ -879,8 +1139,22 @@ function VeDoVat({ kind, windows }) {
           stroke={P.blue}
           strokeWidth="6"
         />
-        <line x1="150" y1="22" x2="150" y2="158" stroke={P.blue} strokeWidth="4" />
-        <line x1="82" y1="90" x2="218" y2="90" stroke={P.blue} strokeWidth="4" />
+        <line
+          x1="150"
+          y1="22"
+          x2="150"
+          y2="158"
+          stroke={P.blue}
+          strokeWidth="4"
+        />
+        <line
+          x1="82"
+          y1="90"
+          x2="218"
+          y2="90"
+          stroke={P.blue}
+          strokeWidth="4"
+        />
       </>
     );
   if (kind === "wheel")
@@ -948,8 +1222,22 @@ function VeDoVat({ kind, windows }) {
           stroke={P.amber}
           strokeWidth="5"
         />
-        <line x1="70" y1="135" x2="58" y2="182" stroke={P.amber} strokeWidth="6" />
-        <line x1="230" y1="135" x2="242" y2="182" stroke={P.amber} strokeWidth="6" />
+        <line
+          x1="70"
+          y1="135"
+          x2="58"
+          y2="182"
+          stroke={P.amber}
+          strokeWidth="6"
+        />
+        <line
+          x1="230"
+          y1="135"
+          x2="242"
+          y2="182"
+          stroke={P.amber}
+          strokeWidth="6"
+        />
       </>
     );
   if (kind === "ball")
@@ -1114,8 +1402,8 @@ export function ShapeJoin({
         aria-label="Ghép hình"
       >
         <g transform={lech ? `translate(${lech},0)` : undefined}>
-        {laVuong
-          ? // 4 hình vuông nhỏ xếp thành 1 hình vuông lớn
+          {laVuong ? (
+            // 4 hình vuông nhỏ xếp thành 1 hình vuông lớn
             Array.from({ length: 4 }).map((_, i) => (
               <rect
                 key={i}
@@ -1129,7 +1417,8 @@ export function ShapeJoin({
                 strokeWidth="3"
               />
             ))
-          : // 2 tam giác vuông bằng nhau (một nửa của hình vuông, cắt theo đường chéo)
+          ) : (
+            // 2 tam giác vuông bằng nhau (một nửa của hình vuông, cắt theo đường chéo)
             <>
               <polygon
                 points={`0,0 ${s},0 ${s},${s}`}
@@ -1145,105 +1434,369 @@ export function ShapeJoin({
                 strokeWidth="3"
                 strokeLinejoin="round"
               />
-            </>}
+            </>
+          )}
 
-        {/* mũi tên "ghép lại" — chỉ vẽ khi CÓ hình kết quả */}
-        {showResult && (
-          <>
-            <line
-              x1={rongManh + 14}
-              y1={yGiua}
-              x2={xKet - 12}
-              y2={yGiua}
-              stroke={P.ink}
-              strokeWidth="3"
-            />
-            <polygon
-              points={`${xKet - 12},${yGiua} ${xKet - 24},${yGiua - 8} ${xKet - 24},${yGiua + 8}`}
-              fill={P.ink}
-            />
-          </>
-        )}
+          {/* mũi tên "ghép lại" — chỉ vẽ khi CÓ hình kết quả */}
+          {showResult && (
+            <>
+              <line
+                x1={rongManh + 14}
+                y1={yGiua}
+                x2={xKet - 12}
+                y2={yGiua}
+                stroke={P.ink}
+                strokeWidth="3"
+              />
+              <polygon
+                points={`${xKet - 12},${yGiua} ${xKet - 24},${yGiua - 8} ${xKet - 24},${yGiua + 8}`}
+                fill={P.ink}
+              />
+            </>
+          )}
 
-        {/* kết quả sau khi ghép */}
-        {showResult && (
-          <>
-            <rect
-              x={xKet}
-              y="0"
-              width={s}
-              height={s}
-              fill={P.greenSoft}
-              stroke={P.green}
-              strokeWidth="4"
-            />
-            {!laVuong && (
-              <>
-                <line
-                  x1={xKet}
-                  y1="0"
-                  x2={xKet + s}
-                  y2={s}
-                  stroke={P.green}
-                  strokeWidth="3"
-                  strokeDasharray="7 6"
-                />
-                <polygon
-                  points={`${xKet},0 ${xKet + s},0 ${xKet + s},${s}`}
-                  fill={P.rose}
-                  fillOpacity="0.22"
-                />
-                <polygon
-                  points={`${xKet},0 ${xKet},${s} ${xKet + s},${s}`}
-                  fill={P.amber}
-                  fillOpacity="0.22"
-                />
-              </>
-            )}
-            {laVuong &&
-              [1, 2].map((i) => (
-                <g key={i}>
+          {/* kết quả sau khi ghép */}
+          {showResult && (
+            <>
+              <rect
+                x={xKet}
+                y="0"
+                width={s}
+                height={s}
+                fill={P.greenSoft}
+                stroke={P.green}
+                strokeWidth="4"
+              />
+              {!laVuong && (
+                <>
                   <line
-                    x1={xKet + i * (s / 2)}
+                    x1={xKet}
                     y1="0"
-                    x2={xKet + i * (s / 2)}
+                    x2={xKet + s}
                     y2={s}
                     stroke={P.green}
                     strokeWidth="3"
                     strokeDasharray="7 6"
                   />
-                </g>
-              ))}
-          </>
-        )}
+                  <polygon
+                    points={`${xKet},0 ${xKet + s},0 ${xKet + s},${s}`}
+                    fill={P.rose}
+                    fillOpacity="0.22"
+                  />
+                  <polygon
+                    points={`${xKet},0 ${xKet},${s} ${xKet + s},${s}`}
+                    fill={P.amber}
+                    fillOpacity="0.22"
+                  />
+                </>
+              )}
+              {laVuong &&
+                [1, 2].map((i) => (
+                  <g key={i}>
+                    <line
+                      x1={xKet + i * (s / 2)}
+                      y1="0"
+                      x2={xKet + i * (s / 2)}
+                      y2={s}
+                      stroke={P.green}
+                      strokeWidth="3"
+                      strokeDasharray="7 6"
+                    />
+                  </g>
+                ))}
+            </>
+          )}
 
-        <text
-          x={rongManh / 2}
-          y={s + 44}
-          textAnchor="middle"
-          fontSize="15"
-          fontWeight="800"
-          fill={P.ink}
-        >
-          {laVuong ? "4 hình vuông" : `${pieces} hình tam giác`}
-        </text>
-        {showResult && (
           <text
-            x={xKet + s / 2}
+            x={rongManh / 2}
             y={s + 44}
             textAnchor="middle"
             fontSize="15"
             fontWeight="800"
-            fill={P.green}
+            fill={P.ink}
           >
-            1 hình vuông
+            {laVuong ? "4 hình vuông" : `${pieces} hình tam giác`}
           </text>
-        )}
+          {showResult && (
+            <text
+              x={xKet + s / 2}
+              y={s + 44}
+              textAnchor="middle"
+              fontSize="15"
+              fontWeight="800"
+              fill={P.green}
+            >
+              1 hình vuông
+            </text>
+          )}
         </g>
       </svg>
       {note && (
         <span style={{ ...caption, color: P.ink, fontSize: 15 }}>{note}</span>
       )}
+    </div>
+  );
+}
+
+/* ─────── ĐIỂM · ĐOẠN THẲNG · ĐƯỜNG THẲNG · ĐƯỜNG GẤP KHÚC · BA ĐIỂM THẲNG HÀNG ───────
+ * pointLine: { kind: "segment"|"line"|"curve"|"polyline"|"collinear", points: ["A","B"], equalMarks, formula, label }
+ *
+ * 🔴 VÌ SAO PHẢI CÓ BỘ VẼ NÀY. Lớp 2 Chủ đề 5 dạy "đoạn thẳng AB", "đường gấp khúc ABCD",
+ * "ba điểm thẳng hàng" — TÊN GỌI của hình CHÍNH LÀ các chữ A, B, C, D. Nhưng hình của
+ * những bài đó lại là... **cái thước đo** (`ruler`), hoặc **không có hình nào**: chữ
+ * A, B, C, D chỉ nằm trong `text` dạng hình vẽ bằng ký tự (`A •———• B`). Trẻ không nhìn
+ * thấy một điểm nào, trong khi cả bài học nói về "điểm A", "đầu mút A và B".
+ * Người dùng báo ở bài hình tứ giác: "…nhưng lại KHÔNG ghi chú A, B, C, D lên trên hình
+ * thì làm sao trẻ hiểu được?".
+ *
+ * Chữ A, B, C, D chính là nội dung bài học, nên bộ vẽ này vẽ ĐIỂM (chấm tròn) + TÊN ĐIỂM:
+ *   segment   A •————• B      (thêm điểm giữa: A •——•——• B ⇒ dạy trung điểm)
+ *   line      —— A •————• B ——  (kéo dài mãi hai phía)
+ *   curve     ~~~~~ (đường cong uốn lượn, để so sánh)
+ *   polyline  A •———• B ╲ • C ╲ • D  (đường gấp khúc)
+ *   collinear A •———• B ———• C  (ba điểm cùng nằm trên một đường thẳng)
+ *   notCollinear  A •—• B   C↘  (C KHÔNG nằm trên đường thẳng AB)
+ *   pointsOnly    A •    • B   (CHỈ hai điểm rời — cho câu hỏi "nối hai điểm A, B được
+ *                               hình gì?": vẽ sẵn đoạn thẳng là cho luôn đáp án)
+ */
+export function PointLine({
+  kind = "segment",
+  points = [],
+  /** Vạch hai đoạn bằng nhau ở giữa (dạy TRUNG ĐIỂM: AM = MB). */
+  equalMarks = false,
+  formula = "",
+  label = "",
+}) {
+  const chu = (Array.isArray(points) ? points : []).filter(Boolean);
+  /** Ba kiểu vẽ theo chiều ngang; gấp khúc vẽ riêng theo toạ độ từng đỉnh. */
+  const yNgang = 84;
+  const H = kind === "polyline" ? 240 : 160;
+
+  return (
+    <div style={card}>
+      <svg
+        viewBox={`0 0 320 ${H}`}
+        {...svgFit(320)}
+        role="img"
+        aria-label={
+          kind === "polyline"
+            ? "Đường gấp khúc"
+            : kind === "collinear"
+              ? "Ba điểm thẳng hàng"
+              : kind === "notCollinear"
+                ? "Ba điểm không thẳng hàng"
+                : kind === "pointsOnly"
+                  ? "Hai điểm A và B"
+                  : kind === "curve"
+                    ? "Đường cong"
+                    : kind === "line"
+                      ? "Đường thẳng"
+                      : "Đoạn thẳng"
+        }
+      >
+        {kind === "polyline" ? (
+          <>
+            {(() => {
+              // A → B → C → D: ba đoạn thẳng nối tiếp, KHÔNG cùng nằm trên một đường.
+              const dinh = [
+                [46, 62],
+                [196, 62],
+                [250, 140],
+                [140, 198],
+              ];
+              /** Hướng ghi tên từng đỉnh — viết cứng để chữ luôn nằm NGOÀI hình. */
+              const huong = [
+                [-1, 0.2],
+                [0, -1],
+                [1, 0.2],
+                [0, 1],
+              ];
+              return (
+                <>
+                  <polyline
+                    points={dinh.map((p) => p.join(",")).join(" ")}
+                    fill="none"
+                    stroke={P.ink}
+                    strokeWidth="3.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  {dinh.map(([x, y], i) => (
+                    <g key={i}>
+                      <circle cx={x} cy={y} r="5.5" fill={P.ink} />
+                      <text
+                        x={x + huong[i][0] * 16}
+                        y={y + huong[i][1] * 16 + 5}
+                        textAnchor={
+                          huong[i][0] > 0.35
+                            ? "start"
+                            : huong[i][0] < -0.35
+                              ? "end"
+                              : "middle"
+                        }
+                        fontSize="17"
+                        fontWeight="900"
+                        fill={P.rose}
+                      >
+                        {chu[i] || ""}
+                      </text>
+                    </g>
+                  ))}
+                </>
+              );
+            })()}
+          </>
+        ) : kind === "curve" ? (
+          <path
+            d="M24,96 C66,18 104,158 160,88 C214,22 252,152 296,84"
+            fill="none"
+            stroke={P.violet}
+            strokeWidth="3.5"
+            strokeLinecap="round"
+          />
+        ) : kind === "collinear" ? (
+          <>
+            <line
+              x1="26"
+              y1={yNgang}
+              x2="294"
+              y2={yNgang}
+              stroke={P.ink}
+              strokeWidth="3.5"
+              strokeLinecap="round"
+            />
+            {[70, 165, 260].map((x, i) => (
+              <g key={i}>
+                <circle cx={x} cy={yNgang} r="5.5" fill={P.ink} />
+                <text
+                  x={x}
+                  y={yNgang - 16}
+                  textAnchor="middle"
+                  fontSize="17"
+                  fontWeight="900"
+                  fill={P.rose}
+                >
+                  {chu[i] || ""}
+                </text>
+              </g>
+            ))}
+          </>
+        ) : kind === "notCollinear" ? (
+          <>
+            {/* Đường thẳng AB kéo dài (nét mờ) để thấy C KHÔNG nằm trên đó. */}
+            <line
+              x1="26"
+              y1={yNgang}
+              x2="294"
+              y2={yNgang}
+              stroke={P.ink}
+              strokeWidth="2"
+              strokeDasharray="7 6"
+              opacity="0.4"
+            />
+            <line
+              x1="46"
+              y1={yNgang}
+              x2="200"
+              y2={yNgang}
+              stroke={P.ink}
+              strokeWidth="3.5"
+              strokeLinecap="round"
+            />
+            {[
+              [46, "end", -13],
+              [200, "middle", 0],
+            ].map(([x, neo, lech], i) => (
+              <g key={i}>
+                <circle cx={x} cy={yNgang} r="5.5" fill={P.ink} />
+                <text
+                  x={x + lech}
+                  y={yNgang - 16}
+                  textAnchor={neo}
+                  fontSize="17"
+                  fontWeight="900"
+                  fill={P.rose}
+                >
+                  {chu[i] || ""}
+                </text>
+              </g>
+            ))}
+            <circle cx="250" cy="124" r="5.5" fill={P.ink} />
+            <text
+              x="264"
+              y="130"
+              fontSize="17"
+              fontWeight="900"
+              fill={P.rose}
+            >
+              {chu[2] || ""}
+            </text>
+          </>
+        ) : (
+          <>
+            {/* `line` = đường thẳng: kéo dài quá hai điểm; `segment` = chỉ trong hai điểm.
+                Ba điểm (A · M · B) thì điểm giữa nằm CHÍNH GIỮA để thấy AM = MB. */}
+            <line
+              x1={kind === "line" ? 12 : 46}
+              y1={yNgang}
+              x2={kind === "line" ? 308 : 274}
+              y2={yNgang}
+              stroke={P.ink}
+              strokeWidth="3.5"
+              strokeLinecap="round"
+              opacity={kind === "pointsOnly" ? 0 : 1}
+            />
+            {(kind === "line" ? [92, 228] : chu.length >= 3 ? [46, 160, 274] : [46, 274]).map(
+              (x, i, ds) => (
+                <g key={i}>
+                  <circle cx={x} cy={yNgang} r="5.5" fill={P.ink} />
+                  <text
+                    x={x + (i === 0 ? -13 : i === ds.length - 1 ? 13 : 0)}
+                    y={
+                      kind === "line"
+                        ? yNgang - 16
+                        : i === 0 || i === ds.length - 1
+                          ? yNgang + 26
+                          : yNgang - 16
+                    }
+                    textAnchor={
+                      kind === "line" || (i !== 0 && i !== ds.length - 1)
+                        ? "middle"
+                        : i === 0
+                          ? "end"
+                          : "start"
+                    }
+                    fontSize="17"
+                    fontWeight="900"
+                    fill={P.rose}
+                  >
+                    {chu[i] || ""}
+                  </text>
+                </g>
+              ),
+            )}
+            {kind === "segment" &&
+              equalMarks &&
+              [103, 217].map((x, i) => (
+                <line
+                  key={i}
+                  x1={x}
+                  y1={yNgang - 9}
+                  x2={x}
+                  y2={yNgang + 9}
+                  stroke={P.green}
+                  strokeWidth="3"
+                />
+              ))}
+          </>
+        )}
+      </svg>
+      {formula && (
+        <span style={{ ...caption, color: P.ink, fontSize: 15 }}>
+          {formula}
+        </span>
+      )}
+      {label && <span style={caption}>{label}</span>}
     </div>
   );
 }

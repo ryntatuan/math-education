@@ -27,7 +27,9 @@ for (const g of theo) {
   for (const chuong of data.chapters || []) {
     for (const bai of chuong.lessons || []) {
       if (!loc.some((l) => bai.id.startsWith(l))) continue;
-      ra.push(`\n${"=".repeat(90)}\nBÀI ${bai.id} — ${bai.title}\n${"=".repeat(90)}`);
+      ra.push(
+        `\n${"=".repeat(90)}\nBÀI ${bai.id} — ${bai.title}\n${"=".repeat(90)}`,
+      );
       const slides = bai.slides || [];
       slides.forEach((sl, i) => {
         const c = sl.content || {};

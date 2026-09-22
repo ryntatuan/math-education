@@ -7,7 +7,7 @@ Ngày đo: 2026-09-22. Người đề xuất: Copilot. Trạng thái: **chờ b�
 Công cụ đo (mới viết): `node scratch/kiem-tra-hinh-anh.mjs`
 
 > ⚠️ Bảng dưới là **số đo LÚC BẮT ĐẦU** (lúc đó chưa slide nào có hình). Tình trạng hiện tại
-> xem **mục 9.7** ở cuối tài liệu: 5 lớp · 51 chương · 459 bài · **2450 slide**, **476 slide
+> xem **mục 9.7–9.8** ở cuối tài liệu: 5 lớp · 51 chương · 459 bài · **2455 slide**, **489 slide
 > mang hình**, 590 lượt render hình THẬT đạt · 0 hỏng.
 
 | Lớp      | Số slide | Slide có hình | Số bài  | Bài KHÔNG có hình nào |
@@ -442,18 +442,18 @@ bảng 12 cột không thể vừa 283 px mà chữ vẫn 11 px.
 ### 9.7 Hình vẽ phải nói ĐÚNG điều lời giảng nói (2026-09-22, lần 5)
 
 **Vấn đề bạn báo:** bạn chụp màn hình 7 slide của **Lớp 1 – Chủ đề 2** rồi chỉ ra từng lỗi, và
-mỗi lần đều yêu cầu *"rà soát và bổ sung với tất cả bài học khác"*. Bảy lỗi, xếp theo nguyên
+mỗi lần đều yêu cầu _"rà soát và bổ sung với tất cả bài học khác"_. Bảy lỗi, xếp theo nguyên
 nhân — vì **một nguyên nhân thường nằm ở nhiều bài**:
 
-| Lỗi bạn báo                                                | Nguyên nhân thật                                                                                             | Cách chữa                                                                                   |
-| ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------- |
-| "hình tam giác chỉ có cạnh chứ không có đỉnh"              | lời giảng nói "3 cạnh · 3 đỉnh" nhưng hình **chỉ ghi chữ "cạnh"**                                            | thêm `vertices`: chấm tròn ở từng đỉnh + nhãn "đỉnh"                                        |
-| "quyển sách quá nhỏ, trẻ không nhìn thấy"                  | hình minh hoạ chỉ là **hình chữ nhật trơn** — không ai nhìn ra là quyển sách                                 | bộ vẽ mới `shapePicture` — **10 đồ vật** vẽ bằng SVG của app                                 |
-| "nhồi nhét nhiều thông tin vào 1 slide"                    | 1 slide chứa **4 dòng chữ + bảng + 1 hình** ⇒ mọi thứ bé tí                                                  | tách thành **5 slide**, mỗi slide MỘT đồ vật to                                             |
-| "diễn giải hình vuông nhưng lại vẽ hình chữ nhật"          | `SHAPE_POINTS.square` là **180 × 140** — một hình chữ nhật dán nhãn "Hình vuông"                             | sửa thành **160 × 160**; lỗi này nằm ở **17 chỗ của cả 5 lớp**                               |
-| "ghép 2 tam giác vuông thành hình vuông mà không thấy cách ghép" | hình cũ là **một hình chữ nhật** + dòng chữ, không hề cho thấy hai mảnh rời                               | bộ vẽ mới `shapeJoin`: 2 mảnh RỜI → mũi tên → hình kết quả (vạch đứt chỉ chỗ khít)          |
-| "nhà có mái tam giác, thân chữ nhật, cửa sổ vuông mà minh hoạ là hình chữ nhật" | hình minh hoạ **không liên quan** tới lời giảng                                        | vẽ đúng ngôi nhà: mái tam giác + thân chữ nhật + cửa sổ vuông                               |
-| "thử thách minh hoạ ngôi nhà nhưng không có hình ảnh"      | slide câu hỏi **không có hình nào**                                                                          | thêm hình ngôi nhà (bản 2 cửa sổ để bé đếm)                                                 |
+| Lỗi bạn báo                                                                     | Nguyên nhân thật                                                                 | Cách chữa                                                                          |
+| ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| "hình tam giác chỉ có cạnh chứ không có đỉnh"                                   | lời giảng nói "3 cạnh · 3 đỉnh" nhưng hình **chỉ ghi chữ "cạnh"**                | thêm `vertices`: chấm tròn ở từng đỉnh + nhãn "đỉnh"                               |
+| "quyển sách quá nhỏ, trẻ không nhìn thấy"                                       | hình minh hoạ chỉ là **hình chữ nhật trơn** — không ai nhìn ra là quyển sách     | bộ vẽ mới `shapePicture` — **10 đồ vật** vẽ bằng SVG của app                       |
+| "nhồi nhét nhiều thông tin vào 1 slide"                                         | 1 slide chứa **4 dòng chữ + bảng + 1 hình** ⇒ mọi thứ bé tí                      | tách thành **5 slide**, mỗi slide MỘT đồ vật to                                    |
+| "diễn giải hình vuông nhưng lại vẽ hình chữ nhật"                               | `SHAPE_POINTS.square` là **180 × 140** — một hình chữ nhật dán nhãn "Hình vuông" | sửa thành **160 × 160**; lỗi này nằm ở **17 chỗ của cả 5 lớp**                     |
+| "ghép 2 tam giác vuông thành hình vuông mà không thấy cách ghép"                | hình cũ là **một hình chữ nhật** + dòng chữ, không hề cho thấy hai mảnh rời      | bộ vẽ mới `shapeJoin`: 2 mảnh RỜI → mũi tên → hình kết quả (vạch đứt chỉ chỗ khít) |
+| "nhà có mái tam giác, thân chữ nhật, cửa sổ vuông mà minh hoạ là hình chữ nhật" | hình minh hoạ **không liên quan** tới lời giảng                                  | vẽ đúng ngôi nhà: mái tam giác + thân chữ nhật + cửa sổ vuông                      |
+| "thử thách minh hoạ ngôi nhà nhưng không có hình ảnh"                           | slide câu hỏi **không có hình nào**                                              | thêm hình ngôi nhà (bản 2 cửa sổ để bé đếm)                                        |
 
 **Hai bộ vẽ mới** (đăng ký trong `visualKeys.js`, `VisualBlock.jsx`):
 
@@ -469,13 +469,13 @@ nhân — vì **một nguyên nhân thường nằm ở nhiều bài**:
 `scratch/soat-kq.txt`). Nó chia lỗi thành 5 họ A–E rồi **liệt kê từng chỗ**, để không phải tin
 vào cảm nhận:
 
-| Họ lỗi                                                     | Trước | Sau   |
-| ---------------------------------------------------------- | ----- | ----- |
-| A. chỗ vẽ `planeShape.square` (nay đã vuông thật — thông tin) | 14  | 14    |
-| B. nói tới ĐỈNH mà hình chưa đánh dấu đỉnh                  | 4     | **0** |
-| C. slide nhồi (bảng + hình, hoặc ≥ 2 hình + chữ dài)       | 30    | **27** |
-| D. bài "nhận biết hình trong đồ vật" thiếu hình đồ vật     | 4     | **1** |
-| E. dạy GHÉP/CẮT mà không có hình minh hoạ                  | 11    | **4** |
+| Họ lỗi                                                        | Trước | Sau    |
+| ------------------------------------------------------------- | ----- | ------ |
+| A. chỗ vẽ `planeShape.square` (nay đã vuông thật — thông tin) | 14    | 14     |
+| B. nói tới ĐỈNH mà hình chưa đánh dấu đỉnh                    | 4     | **0**  |
+| C. slide nhồi (bảng + hình, hoặc ≥ 2 hình + chữ dài)          | 30    | **27** |
+| D. bài "nhận biết hình trong đồ vật" thiếu hình đồ vật        | 4     | **1**  |
+| E. dạy GHÉP/CẮT mà không có hình minh hoạ                     | 11    | **4**  |
 
 **Những chỗ còn lại của C/D/E — nói rõ vì sao để nguyên:**
 
@@ -508,5 +508,72 @@ Phép thử tự động: `PHÉP THỬ HÌNH THẬT: 590 đạt · 0 hỏng` (m�
 bằng `VisualBlocks`), `PHÉP THỬ BỘ VẼ HÌNH: 399 đạt · 0 hỏng`, cổng admin `31 PASS · 0 FAIL`.
 
 **Quy mô nội dung đổi:** 2447 → **2450 slide** (tách 3 slide nhồi). Số bài/chương không đổi.
-⚠️ Con số 2450 này còn nằm trong `scripts/migrate-content.mjs` (`MONG_DOI`) và 3 câu trong
+⚠️ Con số này còn nằm trong `scripts/migrate-content.mjs` (`MONG_DOI`) và 3 câu trong
 `scripts/test-admin-portal.mjs` — **đổi số slide thì phải đổi cả 5 chỗ**, nếu không cổng đỏ oan.
+
+### 9.8 Hình phải GHI TÊN ĐIỂM — A, B, C, D, M, O (2026-09-22, lần 6)
+
+**Vấn đề bạn báo:** *"mô tả hình chữ nhật có cạnh AB và BC và 4 đỉnh A, B, C, D nhưng lại
+không ghi chú A, B, C, D lên trên hình thì làm sao trẻ hiểu được?"*
+
+Đúng — và khi soát ra thì đây là **cả một họ lỗi**, không phải một chỗ: chữ trong bài **gọi
+tên điểm** mà trên hình **không có chữ nào**. Nặng nhất là 4 bài Lớp 2 Chủ đề 5 dạy
+"đoạn thẳng AB", "đường gấp khúc ABCD", "ba điểm thẳng hàng" — tên gọi của hình **chính là
+các chữ A, B, C, D**, mà hình minh hoạ lại là… **cái thước đo**, có bài không có hình nào
+(chữ A, B, C, D chỉ nằm trong đoạn văn, viết dạng `A •———• B`).
+
+| Chỗ | Trước | Sau |
+| --- | --- | --- |
+| Lớp 2 `g2-c5-l6` tứ giác ABCD | một chữ "đỉnh" chung ở góc trên trái | **A, B, C, D** ở từng đỉnh + **AB, BC, CD, DA** trên từng cạnh |
+| Lớp 2 `g2-c5-l1` đoạn thẳng AB | hình CÁI THƯỚC ĐO | điểm A, điểm B có chấm và tên |
+| Lớp 2 `g2-c5-l2` đoạn thẳng / đường thẳng / đường cong | 1 slide: thước + bảng | 3 slide, mỗi slide 1 hình có tên A, B |
+| Lớp 2 `g2-c5-l3` ba điểm thẳng hàng | chỉ có BẢNG, không có hình | 2 hình: A·B·C **thẳng hàng** và A·B với **C không thẳng hàng** |
+| Lớp 2 `g2-c5-l4` đường gấp khúc ABCD | hình CÁI THƯỚC ĐO | đường gấp khúc thật, A·B·C·D ở bốn đỉnh |
+| Lớp 3 `g3-c3-l1` O là điểm ở giữa A, B | hình CÁI THƯỚC ĐO | ba điểm A · O · B trên đoạn thẳng |
+| Lớp 3 `g3-c3-l2` M là trung điểm của AB | hình CÁI THƯỚC ĐO | đoạn A · M · B **có vạch bằng nhau ở hai nửa** (thấy AM = MB) |
+| Lớp 3 `g3-c3-l3` đường tròn | chỉ có chữ O ở tâm | **O** ở tâm, **B** và **C** ở hai đầu đường kính, **A** trên đường tròn |
+| Lớp 3 `g3-c3-l4` góc đỉnh A, cạnh AB và AC | không có chữ nào | **A** ở đỉnh, **B** và **C** ở hai đầu cạnh |
+| Lớp 4 `g4-c2-l5` góc nhọn đỉnh O, cạnh OA và OB | không có chữ nào | **O** ở đỉnh, **A** và **B** ở hai đầu cạnh |
+| Lớp 5 `g5-c3-l3`, `l4` hình tròn | chỉ ghi "bán kính" | ghi đúng chữ công thức dùng: **bán kính r**, **đường kính d** |
+
+**Bộ vẽ mới `pointLine`** — 7 kiểu, một nguồn duy nhất cho mọi hình "điểm và đường":
+`segment` (đoạn thẳng) · `line` (đường thẳng kéo dài) · `curve` (đường cong) ·
+`polyline` (đường gấp khúc, tên ở 4 đỉnh) · `collinear` (ba điểm thẳng hàng) ·
+`notCollinear` (ba điểm KHÔNG thẳng hàng) · `pointsOnly` (chỉ hai điểm rời — dùng cho
+câu hỏi "nối A với B được hình gì?", **cố ý không vẽ sẵn đoạn thẳng** vì vẽ là cho luôn đáp án).
+Mỗi điểm là một **chấm tròn + tên**, hướng ghi tên viết cứng theo từng hình nên chữ luôn
+nằm NGOÀI hình, không bao giờ đè lên nét vẽ.
+
+**Cách làm ở các bộ vẽ cũ** (đều theo một luật: *có chữ thì phải NỚI KHUNG*):
+- `PlaneShape`: thêm `vertexLabels` — khung cao 240 → 266 và tên hình hạ từ `y 228` → `254`,
+  nếu không chữ ở đỉnh dưới (y ≈ 206) sẽ chồng lên tên hình.
+- `Angle`: thêm `vertexLetter` + `armLetters` — khung cao 220 → 250, tên góc hạ xuống 242.
+- `CircleParts`: thêm `pointLabels` + `radiusLabel`/`diameterLabel` — khung giữ nguyên.
+
+**Ba lần phép đo bắt lỗi của CHÍNH TÔI trong vòng này** (ghi lại vì rất đáng nhớ):
+1. Hai chữ "bán kính r" và "đường kính d" đặt đối xứng qua tâm ⇒ **đè nhau ở giữa** ~7 đơn vị.
+2. Sửa bằng cách hạ "đường kính d" xuống dưới đường kính ⇒ **đè lên chữ "O"** ở tâm.
+3. Chốt: để "đường kính d" ở TRÊN đường kính và lệch hẳn sang trái ⇒ 0 chồng chéo.
+
+**Hai họ lỗi mới trong công cụ soát** (`scratch/soat-hinh-sai.mjs`):
+- **F. gọi tên điểm mà hình không ghi tên**: **11 → 3 chỗ**. 3 chỗ còn lại **cố ý không sửa**:
+  1 câu hỏi mà vẽ hình là cho luôn đáp án ("Điểm nào ở giữa?") + 2 bài toán lời văn
+  ("Đoạn thẳng AB dài 12 cm. Trung điểm M cách A bao nhiêu?").
+- **G. bài đoạn thẳng có tên (AB) mà hình lại là thước đo**: **0 chỗ** (đã chuyển hết 4 chỗ).
+
+**Đo lại sau khi sửa** (580 ca hình thật, đã thêm 14 ca `pointLine`):
+
+| Màn hình        | Thẻ kéo ngang | Phần tử vượt khung | Cặp chữ đè nhau | Chữ nhỏ nhất |
+| --------------- | ------------- | ------------------ | --------------- | ------------ |
+| 375 px (311 px) | **0 / 580**   | 0                  | 0               | 10,2 px      |
+| 360 px (296 px) | **0 / 580**   | 0                  | 0               | 9,7 px       |
+| 320 px (228 px) | **0 / 580**   | 0                  | 0               | 7,2 px       |
+
+Phép thử: `PHÉP THỬ HÌNH THẬT: 602 đạt · 0 hỏng` (**489 slide mang hình**),
+`PHÉP THỬ BỘ VẼ HÌNH: 399 đạt · 0 hỏng`, cổng admin **31 PASS · 0 FAIL**.
+
+**Quy mô nội dung đổi:** 2450 → **2455 slide** (tách slide để mỗi hình một slide).
+Số bài/chương không đổi. ⚠️ Nhắc lại: đổi số slide phải đổi **`MONG_DOI` +
+chuỗi "khớp số đã đo" trong `migrate-content.mjs` + 3 câu trong `test-admin-portal.mjs`**
++ dòng "Quy mô nội dung hiện tại" ở `docs/admin_portal_test_cases.md` + 2 chỗ trong
+`curriculum_audit.md` + `content_reload_steps.md` + `100-tang-phien-ban-sau-bo-sung.sql`.

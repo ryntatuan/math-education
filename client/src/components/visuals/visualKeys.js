@@ -44,6 +44,8 @@ export const HINH_KEYS = [
   // Hình học trực quan cho Lớp 1 (đồ vật + cách ghép hình)
   "shapePicture",
   "shapeJoin",
+  // Điểm & đường (Lớp 2 — tên điểm A, B, C, D là nội dung bài học)
+  "pointLine",
   // Phân số & sơ đồ
   "fractionBar",
   "fractionCircle",

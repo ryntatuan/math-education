@@ -1910,6 +1910,13 @@ export const grade3Data = {
                 explanation:
                   "Khi ba điểm thẳng hàng, điểm nằm GIỮA hai điểm còn lại gọi là ĐIỂM Ở GIỮA.",
                 rule: "Ba điểm A, O, B thẳng hàng theo thứ tự A, O, B thì O là điểm ở giữa A và B.",
+                // Khái niệm "điểm ở giữa" phải CÓ HÌNH: trẻ phải thấy O nằm giữa A và B.
+                // (Hình cũ của bài này là cái thước đo, và chỉ nói về trung điểm.)
+                pointLine: {
+                  kind: "segment",
+                  points: ["A", "O", "B"],
+                  formula: "O nằm giữa A và B ⇒ O là điểm ở giữa đoạn thẳng AB",
+                },
                 points: [
                   "Ba điểm phải THẲNG HÀNG thì mới có điểm ở giữa.",
                   "A và B là hai điểm hai đầu, O nằm giữa.",
@@ -1920,12 +1927,13 @@ export const grade3Data = {
             {
               type: "visual",
               content: {
-                text: "A •———• O ———• B\nO là điểm ở giữa A và B",
-                ruler: {
-                  lengthCm: 8,
-                  measure: { from: 0, to: 8 },
-                  label:
-                    "A · O · B thẳng hàng theo thứ tự A, O, B ⇒ O là điểm ở giữa A và B",
+                // 🔴 Trước đây là `ruler` (cái thước đo): bài dạy "O là điểm ở giữa A và B"
+                // mà hình không có điểm nào. Nay vẽ đúng ba điểm A, O, B trên một đoạn thẳng.
+                text: "O là điểm ở giữa A và B",
+                pointLine: {
+                  kind: "segment",
+                  points: ["A", "O", "B"],
+                  formula: "Ba điểm A, O, B thẳng hàng ⇒ O là điểm ở giữa A và B",
                 },
               },
             },
@@ -1984,12 +1992,16 @@ export const grade3Data = {
             {
               type: "visual",
               content: {
-                text: "A •————•————• B\n      M\nAM = MB",
-                ruler: {
-                  lengthCm: 8,
-                  measure: { from: 0, to: 4 },
-                  label:
-                    "M là trung điểm của AB khi M nằm giữa A, B và AM = MB",
+                // 🔴 Trước đây là `ruler` — bài dạy TRUNG ĐIỂM của đoạn thẳng AB mà hình
+                // lại là cái thước; chữ A, M, B chỉ nằm trong `text`. Nay vẽ đúng: A, M, B
+                // trên một đoạn thẳng, có vạch bằng nhau ở hai nửa để thấy AM = MB.
+                text: "M là trung điểm của đoạn thẳng AB: AM = MB",
+                pointLine: {
+                  kind: "segment",
+                  points: ["A", "M", "B"],
+                  equalMarks: true,
+                  formula:
+                    "M nằm giữa A, B và AM = MB ⇒ M là trung điểm của AB",
                 },
               },
             },
@@ -2042,6 +2054,15 @@ export const grade3Data = {
               content: {
                 mascotMood: "curious",
                 text: "Rô-bốt vẽ một hình tròn có tâm O. Bé cùng tìm bán kính và đường kính nhé! ⭕",
+                // Câu mở bài đã gọi "tâm O" và nói tới bán kính/đường kính ⇒ vẽ luôn hình
+                // có chữ O ở tâm, kèm bán kính và đường kính để trẻ nhìn thấy đồ vật thật.
+                circleParts: {
+                  radius: 3,
+                  diameter: 6,
+                  showCenter: true,
+                  pointLabels: { center: "O" },
+                  label: "Tâm O · bán kính · đường kính",
+                },
               },
             },
             {
@@ -2062,13 +2083,21 @@ export const grade3Data = {
             {
               type: "visual",
               content: {
-                text: "      A\n   •  |\n  B •—O—• C\nĐường kính BC = 2 × bán kính OB",
+                text: "Tâm O · bán kính OA = OB · đường kính BC = 2 × bán kính",
+                // 🔴 Ghi TÊN ĐIỂM lên hình tròn: đề bài gọi "bán kính OA = OB",
+                // "đường kính BC" mà hình cũ chỉ có chữ O ở tâm.
                 circleParts: {
                   radius: 3,
                   diameter: 6,
                   showCenter: true,
                   showCircumference: true,
-                  label: "Đường kính = 2 × bán kính (d = 2 × r)",
+                  pointLabels: {
+                    center: "O",
+                    right: "B",
+                    left: "C",
+                    down: "A",
+                  },
+                  label: "Bán kính OA = OB · đường kính BC = 2 × bán kính",
                 },
               },
             },
@@ -2137,10 +2166,14 @@ export const grade3Data = {
             {
               type: "visual",
               content: {
-                text: "Góc đỉnh A, cạnh AB và AC\n└ góc vuông (dùng ê-ke)",
+                text: "Góc đỉnh A, hai cạnh AB và AC (góc vuông — dùng ê-ke)",
+                // 🔴 Tên A, B, C phải nằm TRÊN hình: chữ trong đề bài gọi "góc đỉnh A,
+                // cạnh AB và AC" mà hình chỉ có một chữ "Góc vuông" trơ trọi.
                 angle: {
                   kind: "right",
                   degrees: 90,
+                  vertexLetter: "A",
+                  armLetters: ["B", "C"],
                   label: "Góc vuông — đặt ê-ke khớp đúng",
                 },
                 table: {

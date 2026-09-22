@@ -66,8 +66,31 @@ const DO_VAT =
 const HOI_HINH =
   /(có dạng hình|dạng hình gì|là hình gì|nhìn và gọi tên hình|gọi tên hình)/i;
 const GHEP = /(ghép|cắt|lắp ghép)/i;
+/**
+ * Chữ trong bài GỌI TÊN ĐIỂM: "góc đỉnh A", "hình tứ giác ABCD", "đoạn thẳng AB",
+ * "bán kính OA", "tâm O"… Đây là họ lỗi người dùng báo ngày 2026-09-22:
+ * "mô tả hình chữ nhật có cạnh AB và BC và 4 đỉnh A, B, C, D nhưng lại không ghi chú
+ * A, B, C, D lên trên hình thì làm sao trẻ hiểu được?".
+ * Cố ý bám vào CỤM TIẾNG VIỆT của sách giáo khoa (không bắt mọi cặp chữ hoa) để
+ * không báo oan những từ như "SGK", "Stp".
+ */
+const GOI_TEN_DIEM =
+  /(đỉnh|điểm|tâm)\s+[A-Z]\b|bán kính\s*[A-Z]{2}|đường kính\s*[A-Z]{2}|(đoạn thẳng|đường thẳng|đường gấp khúc)\s*[A-Z]{2,4}|hình\s+(tứ giác|chữ nhật|vuông|tam giác|thoi|thang)\s*[A-Z]{3,4}/;
+/** Hình ĐÃ có ghi tên điểm chưa (mỗi bộ vẽ có trường riêng). */
+const CO_TEN_DIEM = (c) =>
+  Boolean(
+    (c.planeShape &&
+      ((c.planeShape.vertexLabels || []).length > 0 ||
+        c.planeShape.vertexLetter)) ||
+    (c.angle && (c.angle.vertexLetter || (c.angle.armLetters || []).length)) ||
+    (c.circleParts &&
+      (c.circleParts.showCenter !== false ||
+        (c.circleParts.pointLabels &&
+          Object.values(c.circleParts.pointLabels).some(Boolean)))) ||
+    c.pointLine,
+  );
 
-const nhom = { A: [], B: [], C: [], D: [], E: [] };
+const nhom = { A: [], B: [], C: [], D: [], E: [], F: [], G: [] };
 let soSlide = 0;
 let soSlideHinh = 0;
 
@@ -92,7 +115,9 @@ for (const [file, key] of NGUON) {
 
         // ── A. hình vuông phải vẽ cho đúng
         if (c.planeShape && c.planeShape.kind === "square") {
-          nhom.A.push(`${noi} · nhãn "${c.planeShape.labels || ""}" · chữ: ${chu.slice(0, 70)}`);
+          nhom.A.push(
+            `${noi} · nhãn "${c.planeShape.labels || ""}" · chữ: ${chu.slice(0, 70)}`,
+          );
         }
 
         // ── B. nói tới ĐỈNH mà hình chưa đánh dấu đỉnh
@@ -105,7 +130,9 @@ for (const [file, key] of NGUON) {
           /đỉnh/i.test(chu) &&
           ps.vertices !== true
         ) {
-          nhom.B.push(`${noi} · nhãn [${ps.labels.join(", ")}] · ${chu.slice(0, 70)}`);
+          nhom.B.push(
+            `${noi} · nhãn [${ps.labels.join(", ")}] · ${chu.slice(0, 70)}`,
+          );
         }
 
         // ── C. slide nhồi: BẢNG lại thêm HÌNH, hoặc nhiều hình + chữ dài
@@ -134,6 +161,25 @@ for (const [file, key] of NGUON) {
         if (GHEP.test(chu) && !c.shapeJoin && !c.items && !coHinhDang.length) {
           nhom.E.push(`${noi} · loại ${sl.type} · ${chu.slice(0, 110)}`);
         }
+
+        // ── F. bài GỌI TÊN ĐIỂM (A, B, C, M, O…) mà HÌNH KHÔNG GHI TÊN
+        if (GOI_TEN_DIEM.test(chu) && !CO_TEN_DIEM(c)) {
+          nhom.F.push(
+            `${noi} · [${coHinh.join(", ") || "KHÔNG có hình"}] · ${chu.slice(0, 100)}`,
+          );
+        }
+
+        // ── G. bài dạy về ĐOẠN THẲNG / ĐIỂM có tên (AB, A·O·B) mà hình lại là THƯỚC ĐO
+        if (
+          c.ruler &&
+          /(đoạn thẳng|đường gấp khúc)\s*[A-Z]{2}|trung điểm|điểm\s+(ở\s+giữa\s+)?[A-Z]\b/i.test(
+            chu,
+          )
+        ) {
+          nhom.G.push(
+            `${noi} · ruler đang vẽ thay hình đoạn thẳng · ${chu.slice(0, 90)}`,
+          );
+        }
       }
     }
   }
@@ -152,3 +198,5 @@ inNhom("B. nói tới ĐỈNH mà hình chưa đánh dấu đỉnh", nhom.B);
 inNhom("C. slide nhồi (bảng + hình, hoặc nhiều hình + chữ dài)", nhom.C);
 inNhom("D. bài 'nhận biết hình trong đồ vật' thiếu hình đồ vật", nhom.D);
 inNhom("E. dạy GHÉP/CẮT mà không có hình minh hoạ", nhom.E);
+inNhom("F. gọi TÊN ĐIỂM (A, B, C, M, O…) mà hình không ghi tên", nhom.F);
+inNhom("G. bài đoạn thẳng có tên (AB) mà hình lại là THƯỚC ĐO", nhom.G);

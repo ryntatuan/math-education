@@ -23,7 +23,15 @@ import {
   Money,
   Table,
 } from "./CoreVisuals";
-import { PlaneShape, Angle, CircleParts, Solid, ShapePicture, ShapeJoin } from "./GeometryVisuals";
+import {
+  PlaneShape,
+  Angle,
+  CircleParts,
+  Solid,
+  ShapePicture,
+  ShapeJoin,
+  PointLine,
+} from "./GeometryVisuals";
 import {
   FractionBar,
   FractionCircle,
@@ -70,11 +78,11 @@ export default function VisualBlocks({ content }) {
     blocks.push(<Solid key="solid" {...content.solid} />);
   // Đồ vật có dạng hình (Lớp 1 CĐ 2) và cách ghép hình.
   if (isObj(content.shapePicture))
-    blocks.push(
-      <ShapePicture key="shapePicture" {...content.shapePicture} />,
-    );
+    blocks.push(<ShapePicture key="shapePicture" {...content.shapePicture} />);
   if (isObj(content.shapeJoin))
     blocks.push(<ShapeJoin key="shapeJoin" {...content.shapeJoin} />);
+  if (isObj(content.pointLine))
+    blocks.push(<PointLine key="pointLine" {...content.pointLine} />);
 
   // ── Phân số & sơ đồ ─────────────────────────────────────────────────────
   if (isObj(content.fractionBar))

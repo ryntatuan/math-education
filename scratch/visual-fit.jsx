@@ -41,6 +41,7 @@ import {
   Solid,
   ShapePicture,
   ShapeJoin,
+  PointLine,
 } from "../client/src/components/visuals/GeometryVisuals.jsx";
 import {
   FractionBar,
@@ -65,6 +66,7 @@ const COMP = {
   solid: Solid,
   shapePicture: ShapePicture,
   shapeJoin: ShapeJoin,
+  pointLine: PointLine,
   fractionBar: FractionBar,
   fractionCircle: FractionCircle,
   barModel: BarModel,

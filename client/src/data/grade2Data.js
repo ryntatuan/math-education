@@ -2781,6 +2781,13 @@ export const grade2Data = {
                 explanation:
                   "ĐIỂM là một chấm nhỏ, được đặt tên bằng chữ in hoa: A, B, C... Nối hai điểm với nhau ta được một ĐOẠN THẲNG.",
                 rule: "Nối điểm A với điểm B ta được đoạn thẳng AB. Đọc là: đoạn thẳng A B.",
+                // Slide khái niệm cũng phải có hình: cả bài này nói về "điểm A", "đầu mút
+                // A và B" mà hình cũ chỉ nằm ở slide sau, dưới dạng cái thước đo.
+                pointLine: {
+                  kind: "segment",
+                  points: ["A", "B"],
+                  formula: "Nối A với B được đoạn thẳng AB",
+                },
                 points: [
                   "Đoạn thẳng có hai đầu mút là hai điểm.",
                   "Người ta dùng thước thẳng để nối và đo.",
@@ -2791,11 +2798,13 @@ export const grade2Data = {
             {
               type: "visual",
               content: {
-                text: "A •————————• B\nĐoạn thẳng AB",
-                ruler: {
-                  lengthCm: 5,
-                  measure: { from: 0, to: 5 },
-                  label: "Nối điểm A với điểm B ta được đoạn thẳng AB",
+                // 🔴 Trước đây slide này vẽ cái THƯỚC ĐO (`ruler`): bài dạy "đoạn thẳng AB"
+                // mà hình không có điểm A, điểm B nào — chữ A, B chỉ nằm trong `text`.
+                text: "Nối điểm A với điểm B ta được đoạn thẳng AB",
+                pointLine: {
+                  kind: "segment",
+                  points: ["A", "B"],
+                  formula: "Đoạn thẳng AB có hai đầu mút là A và B",
                 },
               },
             },
@@ -2803,6 +2812,12 @@ export const grade2Data = {
               type: "quiz",
               content: {
                 question: "Nối hai điểm A và B ta được hình gì?",
+                // CỐ Ý chỉ vẽ hai điểm RỜI, không vẽ đoạn thẳng: vẽ sẵn là cho luôn đáp án.
+                pointLine: {
+                  kind: "pointsOnly",
+                  points: ["A", "B"],
+                  formula: "Hai điểm A và B — nối lại thì được hình gì?",
+                },
                 options: [
                   "Đoạn thẳng AB",
                   "Đường cong",
@@ -2857,12 +2872,39 @@ export const grade2Data = {
             {
               type: "visual",
               content: {
-                text: "Đoạn thẳng:  A •————• B\nĐường thẳng: ————————————\nĐường cong:   ~~~~\\__/~~~~",
-                ruler: {
-                  lengthCm: 6,
-                  measure: { from: 0, to: 6 },
-                  label: "Đoạn thẳng AB có hai đầu mút",
+                text: "Đoạn thẳng AB: chỉ từ A đến B",
+                pointLine: {
+                  kind: "segment",
+                  points: ["A", "B"],
+                  formula: "Đoạn thẳng AB có hai đầu mút A và B",
                 },
+              },
+            },
+            {
+              type: "visual",
+              content: {
+                text: "Đường thẳng AB: kéo dài mãi về hai phía",
+                pointLine: {
+                  kind: "line",
+                  points: ["A", "B"],
+                  formula: "Đường thẳng AB đi qua A, B và kéo dài mãi hai phía",
+                },
+              },
+            },
+            {
+              type: "visual",
+              content: {
+                text: "Đường cong: uốn lượn, không thẳng",
+                pointLine: {
+                  kind: "curve",
+                  formula: "Đường cong uốn lượn, không có đầu mút thẳng",
+                },
+              },
+            },
+            {
+              type: "visual",
+              content: {
+                text: "Ba loại đường — bé phân biệt nhé",
                 table: {
                   headers: ["Loại", "Đặc điểm"],
                   rows: [
@@ -2923,6 +2965,11 @@ export const grade2Data = {
                 explanation:
                   "Ba điểm được gọi là THẲNG HÀNG khi chúng cùng nằm trên một đường thẳng.",
                 rule: "Ba điểm A, B, C cùng nằm trên một đường thẳng thì A, B, C là ba điểm thẳng hàng.",
+                pointLine: {
+                  kind: "collinear",
+                  points: ["A", "B", "C"],
+                  formula: "A, B, C cùng nằm trên một đường thẳng",
+                },
                 points: [
                   "Muốn kiểm tra, bé đặt thước thẳng qua hai điểm rồi xem điểm thứ ba có nằm trên mép thước không.",
                   "Ba điểm không cùng nằm trên một đường thẳng thì không thẳng hàng.",
@@ -2933,7 +2980,30 @@ export const grade2Data = {
             {
               type: "visual",
               content: {
-                text: "A •———• B ———• C   →  thẳng hàng\nA •———• B\n          • C      →  không thẳng hàng",
+                text: "Ba điểm A, B, C cùng nằm trên một đường thẳng",
+                pointLine: {
+                  kind: "collinear",
+                  points: ["A", "B", "C"],
+                  formula:
+                    "A, B, C cùng nằm trên một đường thẳng ⇒ ba điểm THẲNG HÀNG",
+                },
+              },
+            },
+            {
+              type: "visual",
+              content: {
+                text: "Điểm C không nằm trên đường thẳng AB",
+                pointLine: {
+                  kind: "notCollinear",
+                  points: ["A", "B", "C"],
+                  formula: "C không nằm trên đường thẳng AB ⇒ ba điểm KHÔNG thẳng hàng",
+                },
+              },
+            },
+            {
+              type: "visual",
+              content: {
+                text: "Ba điểm thẳng hàng hay không?",
                 table: {
                   headers: ["Ba điểm", "Kết luận"],
                   rows: [
@@ -2993,6 +3063,11 @@ export const grade2Data = {
                 explanation:
                   "ĐƯỜNG GẤP KHÚC gồm nhiều đoạn thẳng nối tiếp nhau, không cùng nằm trên một đường thẳng.",
                 rule: "Hình gồm ba đoạn thẳng AB, BC, CD nối tiếp nhau tạo thành đường gấp khúc ABCD.",
+                pointLine: {
+                  kind: "polyline",
+                  points: ["A", "B", "C", "D"],
+                  formula: "AB, BC, CD nối tiếp nhau ⇒ đường gấp khúc ABCD",
+                },
                 points: [
                   "Mỗi đoạn thẳng trong đường gấp khúc gọi là một đoạn của đường gấp khúc.",
                   "Đường gấp khúc ABCD gồm ba đoạn: AB, BC và CD.",
@@ -3003,12 +3078,11 @@ export const grade2Data = {
             {
               type: "visual",
               content: {
-                text: "A •———• B\n            \\\n             • C\n              |\n              • D\nĐường gấp khúc ABCD",
-                ruler: {
-                  lengthCm: 10,
-                  measure: { from: 0, to: 10 },
-                  label:
-                    "Đường gấp khúc ABCD gồm ba đoạn AB, BC, CD nối tiếp nhau",
+                text: "Đường gấp khúc ABCD gồm ba đoạn: AB, BC, CD",
+                pointLine: {
+                  kind: "polyline",
+                  points: ["A", "B", "C", "D"],
+                  formula: "Đường gấp khúc ABCD = AB + BC + CD",
                 },
               },
             },
@@ -3154,11 +3228,14 @@ export const grade2Data = {
             {
               type: "visual",
               content: {
-                text: "A •—————• B\n  |         |\n  |         |\nD •—————• C\n4 cạnh · 4 đỉnh",
+                text: "Hình tứ giác ABCD: 4 cạnh AB, BC, CD, DA · 4 đỉnh A, B, C, D",
+                // 🔴 TÊN A, B, C, D PHẢI NẰM TRÊN HÌNH. Lời giảng gọi tên từng cạnh
+                // (AB, BC, CD, DA) và từng đỉnh (A, B, C, D) — hình cũ chỉ ghi một chữ
+                // "đỉnh" chung, trẻ không biết đỉnh nào là A, đỉnh nào là B.
                 planeShape: {
                   kind: "rectangle",
-                  labels: ["cạnh AB", "cạnh BC"],
-                  vertices: true,
+                  labels: ["AB", "BC", "CD", "DA"],
+                  vertexLabels: ["A", "B", "C", "D"],
                   formula: "4 cạnh: AB, BC, CD, DA · 4 đỉnh: A, B, C, D",
                 },
               },
@@ -3211,6 +3288,12 @@ export const grade2Data = {
                 explanation:
                   "Đặt thước sao cho vạch 0 trùng với điểm đầu. Chấm điểm thứ hai ở đúng vạch số cần vẽ, rồi nối hai điểm lại.",
                 rule: "Vẽ đoạn thẳng AB dài 4 cm: đặt vạch 0 tại A, chấm B ở vạch 4, nối A với B.",
+                // Hình phải có A và B: cả bài nói về hai đầu mút A, B của đoạn thẳng.
+                pointLine: {
+                  kind: "segment",
+                  points: ["A", "B"],
+                  formula: "Đoạn thẳng AB dài 4 cm",
+                },
                 points: [
                   "Vạch 0 phải trùng đúng điểm đầu.",
                   "Giữ thước thật chắc để đường vẽ không bị lệch.",
