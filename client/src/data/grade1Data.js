@@ -927,6 +927,10 @@ export const grade1Data = {
               content: {
                 mascotMood: "curious",
                 text: "Viên gạch hoa nhà Rô-bốt có bốn cạnh dài bằng nhau. Đó là hình gì nhỉ? 🔷",
+                shapePicture: {
+                  kind: "brick",
+                  note: "Viên gạch hoa có dạng hình vuông",
+                },
               },
             },
             {
@@ -951,6 +955,7 @@ export const grade1Data = {
                 planeShape: {
                   kind: "square",
                   labels: ["cạnh"],
+                  vertices: true,
                   formula: "4 cạnh dài bằng nhau · 4 đỉnh",
                 },
               },
@@ -1002,6 +1007,10 @@ export const grade1Data = {
               content: {
                 mascotMood: "happy",
                 text: "Mặt đồng hồ tròn xoe, không có cạnh nào cả. Đó là hình gì nhỉ? ⭕",
+                shapePicture: {
+                  kind: "clock",
+                  note: "Mặt đồng hồ có dạng hình tròn",
+                },
               },
             },
             {
@@ -1063,6 +1072,10 @@ export const grade1Data = {
               content: {
                 mascotMood: "curious",
                 text: "Mái nhà của Rô-bốt có ba cạnh. Bé đoán xem đó là hình gì? 🔺",
+                shapePicture: {
+                  kind: "roof",
+                  note: "Mái nhà có dạng hình tam giác",
+                },
               },
             },
             {
@@ -1086,6 +1099,7 @@ export const grade1Data = {
                 planeShape: {
                   kind: "triangle",
                   labels: ["cạnh"],
+                  vertices: true,
                   formula: "3 cạnh · 3 đỉnh",
                 },
               },
@@ -1123,6 +1137,10 @@ export const grade1Data = {
               content: {
                 mascotMood: "curious",
                 text: "Quyển sách của bé có bốn cạnh, nhưng hai cạnh dài hơn hai cạnh kia. Đó là hình gì? 📕",
+                shapePicture: {
+                  kind: "book",
+                  note: "Quyển sách có dạng hình chữ nhật",
+                },
               },
             },
             {
@@ -1212,8 +1230,47 @@ export const grade1Data = {
             {
               type: "visual",
               content: {
-                text: "⭕ mặt đồng hồ\n▢ viên gạch\n🔺 mái nhà\n▭ quyển sách",
-                planeShape: { kind: "square" },
+                text: "⭕ Mặt đồng hồ → hình tròn",
+                shapePicture: {
+                  kind: "clock",
+                  note: "Mặt đồng hồ có dạng hình tròn",
+                },
+              },
+            },
+            {
+              type: "visual",
+              content: {
+                text: "▢ Viên gạch → hình vuông",
+                shapePicture: {
+                  kind: "brick",
+                  note: "Viên gạch lát nền có dạng hình vuông",
+                },
+              },
+            },
+            {
+              type: "visual",
+              content: {
+                text: "🔺 Mái nhà → hình tam giác",
+                shapePicture: {
+                  kind: "roof",
+                  note: "Mái nhà có dạng hình tam giác",
+                },
+              },
+            },
+            {
+              type: "visual",
+              content: {
+                text: "▭ Quyển sách → hình chữ nhật",
+                shapePicture: {
+                  kind: "book",
+                  note: "Quyển sách có dạng hình chữ nhật",
+                },
+              },
+            },
+            {
+              type: "visual",
+              content: {
+                text: "Bé nhìn đồ vật và gọi tên hình của nó",
                 table: {
                   headers: ["Đồ vật", "Có dạng hình"],
                   rows: [
@@ -1230,6 +1287,10 @@ export const grade1Data = {
               type: "quiz",
               content: {
                 question: "Bánh xe đạp có dạng hình gì?",
+                shapePicture: {
+                  kind: "wheel",
+                  note: "Bánh xe có dạng hình tròn",
+                },
                 options: [
                   "Hình tròn",
                   "Hình vuông",
@@ -1244,6 +1305,10 @@ export const grade1Data = {
               type: "quiz",
               content: {
                 question: "Cửa ra vào của lớp học có dạng hình gì?",
+                shapePicture: {
+                  kind: "door",
+                  note: "Cửa ra vào có dạng hình chữ nhật",
+                },
                 options: [
                   "Hình chữ nhật",
                   "Hình tròn",
@@ -1278,6 +1343,11 @@ export const grade1Data = {
               content: {
                 mascotMood: "excited",
                 text: "Rô-bốt ghép hai hình tam giác thành một hình vuông! Bé thử xem được không nhé 🔷",
+                shapeJoin: {
+                  piece: "rightTriangle",
+                  pieces: 2,
+                  note: "Hai tam giác vuông ghép lại thành một hình vuông",
+                },
               },
             },
             {
@@ -1293,17 +1363,32 @@ export const grade1Data = {
                   "Ghép bốn hình vuông nhỏ → một hình vuông lớn.",
                   "Dùng bộ xếp hình để thử nhiều cách khác nhau.",
                 ],
+                shapeJoin: {
+                  piece: "rightTriangle",
+                  pieces: 2,
+                  note: "Hai tam giác vuông ghép lại thành một hình vuông",
+                },
               },
             },
             {
               type: "visual",
               content: {
-                text: "🔺 + 🔺  →  ▢\n▢▢\n▢▢      →  ▢ (lớn hơn)",
-                planeShape: {
-                  kind: "square",
-                  formula:
-                    "🔺 + 🔺 = ▢  (ghép 2 tam giác vuông thành 1 hình vuông)",
-                  showName: false,
+                text: "Ghép 2 tam giác vuông → 1 hình vuông",
+                shapeJoin: {
+                  piece: "rightTriangle",
+                  pieces: 2,
+                  note: "Hai tam giác vuông ghép lại thành một hình vuông",
+                },
+              },
+            },
+            {
+              type: "visual",
+              content: {
+                text: "Ghép 4 hình vuông nhỏ → 1 hình vuông lớn",
+                shapeJoin: {
+                  piece: "square",
+                  pieces: 4,
+                  note: "Bốn hình vuông nhỏ ghép lại thành một hình vuông lớn",
                 },
               },
             },
@@ -1320,6 +1405,14 @@ export const grade1Data = {
                 ],
                 answer: "Hình vuông",
                 mascotHint: "Ghép hai tam giác giống nhau được một hình vuông.",
+                // KHÔNG vẽ hình kết quả: đây là câu hỏi "ghép lại được hình gì?" — vẽ luôn
+                // hình vuông thì trẻ chỉ cần nhìn là biết đáp án, không phải suy nghĩ.
+                shapeJoin: {
+                  piece: "rightTriangle",
+                  pieces: 2,
+                  showResult: false,
+                  note: "Hai tam giác vuông giống nhau — ghép lại sẽ được hình gì?",
+                },
               },
             },
             {
@@ -1346,6 +1439,11 @@ export const grade1Data = {
               content: {
                 mascotMood: "curious",
                 text: "Trong hình ngôi nhà này có bao nhiêu hình nhỉ? Bé đếm thật kĩ nhé! 🏠",
+                shapePicture: {
+                  kind: "house",
+                  windows: 1,
+                  note: "Ngôi nhà có 1 mái tam giác, 1 thân chữ nhật, 1 cửa sổ vuông",
+                },
               },
             },
             {
@@ -1361,16 +1459,21 @@ export const grade1Data = {
                   "Đếm theo loại sẽ không bị sót.",
                   "Đếm xong ghi số lượng từng loại.",
                 ],
+                shapePicture: {
+                  kind: "house",
+                  windows: 1,
+                  note: "Ngôi nhà có 1 mái tam giác, 1 thân chữ nhật, 1 cửa sổ vuông",
+                },
               },
             },
             {
               type: "visual",
               content: {
                 text: "🏠 → 1 hình tam giác (mái)\n     1 hình chữ nhật (thân)\n     1 hình vuông (cửa sổ)",
-                planeShape: {
-                  kind: "rectangle",
-                  formula:
-                    "1 hình tam giác (mái) · 1 hình chữ nhật (thân) · 1 hình vuông (cửa sổ)",
+                shapePicture: {
+                  kind: "house",
+                  windows: 1,
+                  note: "1 hình tam giác (mái) · 1 hình chữ nhật (thân) · 1 hình vuông (cửa sổ)",
                 },
               },
             },
@@ -1379,6 +1482,11 @@ export const grade1Data = {
               content: {
                 question:
                   "Một ngôi nhà vẽ bằng 1 mái tam giác, 1 thân chữ nhật và 2 cửa sổ vuông. Hỏi có mấy hình vuông?",
+                shapePicture: {
+                  kind: "house",
+                  windows: 2,
+                  note: "Ngôi nhà có 2 cửa sổ vuông",
+                },
                 options: [1, 2, 3, 4],
                 answer: 2,
                 mascotHint: "Có 2 cửa sổ hình vuông.",
@@ -2625,8 +2733,29 @@ export const grade1Data = {
             {
               type: "visual",
               content: {
-                text: "🎲 xúc xắc → lập phương\n📦 hộp quà → hộp chữ nhật",
-                solid: { kind: "cuboid", dims: { a: 3, b: 2, c: 2 } },
+                text: "🎲 Xúc xắc → khối lập phương",
+                solid: {
+                  kind: "cube",
+                  dims: { a: 3 },
+                  label: "Khối lập phương",
+                },
+              },
+            },
+            {
+              type: "visual",
+              content: {
+                text: "📦 Hộp quà → khối hộp chữ nhật",
+                solid: {
+                  kind: "cuboid",
+                  dims: { a: 3, b: 2, c: 2 },
+                  label: "Khối hộp chữ nhật",
+                },
+              },
+            },
+            {
+              type: "visual",
+              content: {
+                text: "Bé nhìn đồ vật và gọi tên khối của nó",
                 table: {
                   headers: ["Đồ vật", "Là khối gì"],
                   rows: [
@@ -2897,8 +3026,18 @@ export const grade1Data = {
             {
               type: "visual",
               content: {
-                text: "🎲 lập phương · 📦 hộp chữ nhật\ntrên · dưới · trái · phải",
-                solid: { kind: "cube", dims: { a: 3 } },
+                text: "🎲 Khối lập phương · 📦 Khối hộp chữ nhật",
+                solid: {
+                  kind: "cube",
+                  dims: { a: 3 },
+                  label: "Khối lập phương",
+                },
+              },
+            },
+            {
+              type: "visual",
+              content: {
+                text: "Các từ chỉ vị trí",
                 table: {
                   headers: ["Từ chỉ vị trí", "Nghĩa"],
                   rows: [
@@ -3194,8 +3333,7 @@ export const grade1Data = {
             {
               type: "visual",
               content: {
-                text: "▢ · ⭕ · 🔺 · ▭\n🎲 khối lập phương · 📦 khối hộp chữ nhật",
-                planeShape: { kind: "square" },
+                text: "▢ Hình vuông · ⭕ Hình tròn · 🔺 Hình tam giác · ▭ Hình chữ nhật",
                 table: {
                   headers: ["Hình", "Đặc điểm"],
                   rows: [
@@ -6598,8 +6736,19 @@ export const grade1Data = {
             {
               type: "visual",
               content: {
-                text: "▢ · ⭕ · 🔺 · ▭\n🎲 khối lập phương · 📦 khối hộp chữ nhật",
-                planeShape: { kind: "square" },
+                text: "▢ Hình vuông · ⭕ Hình tròn · 🔺 Hình tam giác · ▭ Hình chữ nhật",
+                planeShape: {
+                  kind: "square",
+                  labels: ["cạnh"],
+                  vertices: true,
+                  formula: "Hình vuông: 4 cạnh bằng nhau",
+                },
+              },
+            },
+            {
+              type: "visual",
+              content: {
+                text: "🎲 Khối lập phương · 📦 Khối hộp chữ nhật",
                 solid: {
                   kind: "cube",
                   dims: { a: 3 },

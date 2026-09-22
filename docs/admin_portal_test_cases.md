@@ -2,7 +2,7 @@
 
 > **Cập nhật:** 2026-09-21 · **Trạng thái:** GĐ 0 ✅ · GĐ 1 ✅ · GĐ 2a ✅ đã test PASS · GĐ 2c ✅ đã test PASS · GĐ 2b ✅ đã test PASS (2b-1 + 2b-2) · 📱 Admin Portal responsive ✅ · GĐ 3a ✅ đã test PASS · GĐ 3b ✅ đã test PASS (cả 10 mục) · 🔌 Truy vấn có hẹn giờ ✅ đã test PASS · 📐 Bố cục mọi menu ✅ đã test PASS · 🛠️ GĐ 3c ✅ đã chạy trên DB thật · 🔄 GĐ 3d ✅ **đã bật công tắc** (app đọc từ DB) · 📖 Trang Tham khảo ✅ · ✅ **GĐ 3: 4 lát đã xong và đủ 6/6 DoD** (`0013`) · 🆕 tạo được bài học mới · 🗑️ **xoá bài thẳng trong DB thì app tự lành** (`0014` ✅ đã đo cả hai chiều) · 🗑️ **nút xoá một bài học có chốt gõ chữ** (`0015` — không có đường xoá chương) · 📚 **Bổ sung 99 bài cho 13 chương mỏng của cả 5 lớp** (toàn hệ thống: 362 → **461 bài**, 1505 → **1966 slide**; Lớp 1–3 đánh số theo từng chương, Lớp 4–5 đã chuẩn hoá theo cùng quy ước) — dán lại seed rồi chạy `100-tang-phien-ban-sau-bo-sung.sql` để máy các bé nhận bài mới · 🐞 **`0017` vá lỗi thật:** trigger xoá bài gọi hàm có chốt admin ⇒ xoá bài _published_ bằng SQL thô bị `42501` và **huỷ cả câu DELETE** · 🚫 **Chế độ Khách KHÔNG lưu gì xuống máy** (cổng `S-31` + đã đo tay 2026-09-21) · 🐞 **vá tạo TRÙNG hồ sơ bé** (đo được: 2 tài khoản có 2 bé — đã dọn 2 dòng rỗng, đo lại 0/0/1 ✅) · 🐞 **thú cưng nay đồng bộ lên cloud** (trước đó là code chết — ✅ đã test và ĐO được số 2026-09-21: 2 lần ghi lên `child_pets` cách nhau **3,142 giây**)
 > **104 test case** · Dùng kèm với `docs/admin_portal_plan.md`.
-> 🔢 **Quy mô nội dung hiện tại:** 5 lớp · 51 chương · **459 bài** · **2438 slide** (sau khi dựng lại chương trình Lớp 1–3 theo SGK, 2026-09-21). Mọi con số `362`/`1505`/`390`/`1634`/`461`/`1966` còn lại trong tài liệu là **SỐ ĐO LỊCH SỬ** tại thời điểm ghi (kể cả trong các bảng PASS đã chốt) — đọc kèm ghi chú này; dòng nào còn số cũ thì hiểu là _số tại thời điểm ghi_, không phải số đang đúng.
+> 🔢 **Quy mô nội dung hiện tại:** 5 lớp · 51 chương · **459 bài** · **2450 slide** (sau khi dựng lại chương trình Lớp 1–3 theo SGK 2026-09-21, rồi tách slide nhồi hình 2026-09-22). Mọi con số `362`/`1505`/`390`/`1634`/`461`/`1966` còn lại trong tài liệu là **SỐ ĐO LỊCH SỬ** tại thời điểm ghi (kể cả trong các bảng PASS đã chốt) — đọc kèm ghi chú này; dòng nào còn số cũ thì hiểu là _số tại thời điểm ghi_, không phải số đang đúng.
 >
 > 📌 **Quyết định tự đưa ra ở lát 3c/3d** (kèm lý do + cách đổi): [`docs/phase_3c_3d_decisions.md`](phase_3c_3d_decisions.md)
 
@@ -2974,7 +2974,7 @@ WHERE key IN ('content_source','content_version') ORDER BY key;
 npm run test:portal:static        # → dòng S-24
 ```
 
-**Mong đợi:** `5 lớp · 51 chương · 459 bài · 2438 slide — khớp từng khoá · canary bắt được lỗi ageRange`.
+**Mong đợi:** `5 lớp · 51 chương · 459 bài · 2450 slide — khớp từng khoá · canary bắt được lỗi ageRange`.
 
 Cổng này lấy **chính 5 file tĩnh**, trải chúng ra thành đúng hình dạng dòng DB mà
 `scripts/migrate-content.mjs` ghi, rồi dựng lại cây bằng `dungCayNoiDung.js` và so với cây
@@ -3476,8 +3476,8 @@ node scripts/migrate-content.mjs          # chạy thử, không ghi gì
 
 ```
   Đọc từ file tĩnh:
-    5 lớp · 51 chương · 459 bài · 2438 slide
-  ✅ khớp số đã đo (5/51/459/2438)
+    5 lớp · 51 chương · 459 bài · 2450 slide
+  ✅ khớp số đã đo (5/51/459/2450)
   ✅ tất cả slide hợp lệ
 ```
 
@@ -3486,7 +3486,7 @@ node scripts/migrate-content.mjs          # chạy thử, không ghi gì
 > - 16 (Lớp 3) + 6 (Lớp 4) + 5 (Lớp 5) = **51**. Comment cũ trong `curriculum.js` ghi "50
 >   Chapters total" là **sai** — Lớp 4 chỉ có 6 chương, Lớp 5 chỉ có 5. Đã sửa comment.
 >
-> Cũng có cổng tự động: `npm run test:portal:static` → `S-15` kiểm **cả 2438 slide**, và
+> Cũng có cổng tự động: `npm run test:portal:static` → `S-15` kiểm **cả 2450 slide**, và
 > `S-16` kiểm chiều ngược lại (bộ kiểm tra có bắt được lỗi không).
 
 ---

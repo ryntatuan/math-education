@@ -41,6 +41,9 @@ export const HINH_KEYS = [
   "angle",
   "circleParts",
   "solid",
+  // Hình học trực quan cho Lớp 1 (đồ vật + cách ghép hình)
+  "shapePicture",
+  "shapeJoin",
   // Phân số & sơ đồ
   "fractionBar",
   "fractionCircle",

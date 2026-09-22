@@ -434,3 +434,75 @@ Trang đó chứa **HẾT 555 ca hình khác nhau** trong dữ liệu 5 lớp �
 **Giới hạn còn lại (nói thẳng).** Máy rất hẹp (320 px) thì chữ trong hình còn ~8,2 px và bảng
 nhiều cột bị cắt thành nhiều khối nên **hình cao hơn**. Đây là đánh đổi không tránh được: một
 bảng 12 cột không thể vừa 283 px mà chữ vẫn 11 px.
+
+### 9.7 Hình vẽ phải nói ĐÚNG điều lời giảng nói (2026-09-22, lần 5)
+
+**Vấn đề bạn báo:** bạn chụp màn hình 7 slide của **Lớp 1 – Chủ đề 2** rồi chỉ ra từng lỗi, và
+mỗi lần đều yêu cầu *"rà soát và bổ sung với tất cả bài học khác"*. Bảy lỗi, xếp theo nguyên
+nhân — vì **một nguyên nhân thường nằm ở nhiều bài**:
+
+| Lỗi bạn báo                                                | Nguyên nhân thật                                                                                             | Cách chữa                                                                                   |
+| ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------- |
+| "hình tam giác chỉ có cạnh chứ không có đỉnh"              | lời giảng nói "3 cạnh · 3 đỉnh" nhưng hình **chỉ ghi chữ "cạnh"**                                            | thêm `vertices`: chấm tròn ở từng đỉnh + nhãn "đỉnh"                                        |
+| "quyển sách quá nhỏ, trẻ không nhìn thấy"                  | hình minh hoạ chỉ là **hình chữ nhật trơn** — không ai nhìn ra là quyển sách                                 | bộ vẽ mới `shapePicture` — **10 đồ vật** vẽ bằng SVG của app                                 |
+| "nhồi nhét nhiều thông tin vào 1 slide"                    | 1 slide chứa **4 dòng chữ + bảng + 1 hình** ⇒ mọi thứ bé tí                                                  | tách thành **5 slide**, mỗi slide MỘT đồ vật to                                             |
+| "diễn giải hình vuông nhưng lại vẽ hình chữ nhật"          | `SHAPE_POINTS.square` là **180 × 140** — một hình chữ nhật dán nhãn "Hình vuông"                             | sửa thành **160 × 160**; lỗi này nằm ở **17 chỗ của cả 5 lớp**                               |
+| "ghép 2 tam giác vuông thành hình vuông mà không thấy cách ghép" | hình cũ là **một hình chữ nhật** + dòng chữ, không hề cho thấy hai mảnh rời                               | bộ vẽ mới `shapeJoin`: 2 mảnh RỜI → mũi tên → hình kết quả (vạch đứt chỉ chỗ khít)          |
+| "nhà có mái tam giác, thân chữ nhật, cửa sổ vuông mà minh hoạ là hình chữ nhật" | hình minh hoạ **không liên quan** tới lời giảng                                        | vẽ đúng ngôi nhà: mái tam giác + thân chữ nhật + cửa sổ vuông                               |
+| "thử thách minh hoạ ngôi nhà nhưng không có hình ảnh"      | slide câu hỏi **không có hình nào**                                                                          | thêm hình ngôi nhà (bản 2 cửa sổ để bé đếm)                                                 |
+
+**Hai bộ vẽ mới** (đăng ký trong `visualKeys.js`, `VisualBlock.jsx`):
+
+- `shapePicture` — `{ kind, windows, note, showShape }`: vẽ **đồ vật thật** cỡ lớn (quyển sách,
+  mặt đồng hồ, viên gạch lát nền, mái nhà, cửa sổ, bánh xe, cửa ra vào, mặt bàn, quả bóng,
+  ngôi nhà) rồi ghi tên **đồ vật** ở trên và tên **hình** ở dưới. Trẻ thấy vật trước, tên hình
+  sau — đúng cách trẻ nhận biết hình.
+- `shapeJoin` — `{ piece, pieces, note, showResult }`: hai mảnh rời → mũi tên → kết quả.
+  `showResult: false` **cố ý không vẽ hình kết quả** — dùng cho câu hỏi "ghép lại được hình gì?":
+  vẽ luôn hình kết quả thì câu hỏi chỉ còn là bài tập nhìn, không phải suy nghĩ.
+
+**Soát toàn bộ 5 lớp** (công cụ mới `scratch/soat-hinh-sai.mjs`, ghi kết quả ra
+`scratch/soat-kq.txt`). Nó chia lỗi thành 5 họ A–E rồi **liệt kê từng chỗ**, để không phải tin
+vào cảm nhận:
+
+| Họ lỗi                                                     | Trước | Sau   |
+| ---------------------------------------------------------- | ----- | ----- |
+| A. chỗ vẽ `planeShape.square` (nay đã vuông thật — thông tin) | 14  | 14    |
+| B. nói tới ĐỈNH mà hình chưa đánh dấu đỉnh                  | 4     | **0** |
+| C. slide nhồi (bảng + hình, hoặc ≥ 2 hình + chữ dài)       | 30    | **27** |
+| D. bài "nhận biết hình trong đồ vật" thiếu hình đồ vật     | 4     | **1** |
+| E. dạy GHÉP/CẮT mà không có hình minh hoạ                  | 11    | **4** |
+
+**Những chỗ còn lại của C/D/E — nói rõ vì sao để nguyên:**
+
+- **C = 27**: đều là **bảng công thức + MỘT hình** ở Lớp 3–5 (ví dụ bảng quy đổi đơn vị đi kèm
+  một hình vuông). Phép đo cho thấy chúng **không tràn, không đè chữ**; tách tiếp sẽ làm bài
+  loãng mà không sửa được lỗi nào. **Ba slide nhồi THẬT (≥ 2 hình) đã tách đôi**: Lớp 2
+  `g2-c14-l5`, Lớp 3 `g3-c3-l8`, `g3-c3-l10` — trong đó `g2-c14-l5` và `g3-c3-l10` còn dạy sai
+  chỗ khác: chữ nói "3 cạnh" mà **không có hình tam giác nào**, chữ nói "đường gấp khúc" mà
+  hình là hình chữ nhật. Đã sửa cả chữ lẫn hình cho khớp nhau.
+- **D = 1**: Lớp 1 `g1-c2-l5#1` — slide tóm tắt "Hình ở quanh em". Bốn đồ vật được nhắc ở đây
+  có **hình to ở ngay bốn slide kế tiếp**, nên thêm hình vào đây là lặp vô ích.
+- **E = 4**: ba chỗ là **bài toán lời văn** bị luật soát bắt nhầm chữ "cắt" ("Bạn Nam cắt 30
+  hình tròn…"), một chỗ là Lớp 5 `g5-c3-l5` — đã thêm **biểu đồ hình quạt** vào slide kể chuyện
+  nhưng luật soát chỉ tính "hình dạng", không tính biểu đồ, nên vẫn bị đếm. **Không phải lỗi.**
+
+**Bảy slide kể chuyện/câu hỏi được thêm hình** (cùng một lỗi "chỉ có chữ"):
+Lớp 2 `g2-c5-l6` (tứ giác — `showName: false` vì tên hình vẽ là "Hình bình hành", từ chưa học
+ở lớp 2), Lớp 4 `g4-c2-l6` (góc vuông), `g4-c4-l7` (hình thoi), Lớp 5 `g5-c3-l5` (biểu đồ quạt),
+`g5-c3-l6` (hộp chữ nhật), `g5-c3-l9` (hình trụ), Lớp 1 `g1-c2-l6` (câu hỏi ghép hình).
+
+**Đo lại sau khi sửa** (568 ca hình thật, không cắt bớt):
+
+| Màn hình        | Thẻ kéo ngang | Phần tử vượt khung | Cặp chữ đè nhau | Chữ nhỏ nhất |
+| --------------- | ------------- | ------------------ | --------------- | ------------ |
+| 375 px (311 px) | **0 / 568**   | 0                  | 0               | 10,2 px      |
+| 360 px (296 px) | **0 / 568**   | 0                  | 0               | 9,7 px       |
+| 320 px (228 px) | **0 / 568**   | 0                  | 0               | 7,2 px       |
+
+Phép thử tự động: `PHÉP THỬ HÌNH THẬT: 590 đạt · 0 hỏng` (mỗi slide có hình được render thật
+bằng `VisualBlocks`), `PHÉP THỬ BỘ VẼ HÌNH: 399 đạt · 0 hỏng`, cổng admin `31 PASS · 0 FAIL`.
+
+**Quy mô nội dung đổi:** 2447 → **2450 slide** (tách 3 slide nhồi). Số bài/chương không đổi.
+⚠️ Con số 2450 này còn nằm trong `scripts/migrate-content.mjs` (`MONG_DOI`) và 3 câu trong
+`scripts/test-admin-portal.mjs` — **đổi số slide thì phải đổi cả 5 chỗ**, nếu không cổng đỏ oan.

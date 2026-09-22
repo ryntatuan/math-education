@@ -1649,6 +1649,14 @@ export const grade5Data = {
               content: {
                 mascotMood: "happy",
                 text: "Biểu đồ hình quạt giống như một chiếc bánh pizza tròn được cắt thành từng miếng quạt! Toàn bộ hình tròn tương ứng với 100%! 🍕📊",
+                pieChart: {
+                  title: "Cả hình tròn = 100%",
+                  items: [
+                    { label: "Xuất sắc", percent: 50 },
+                    { label: "Tốt", percent: 30 },
+                    { label: "Hoàn thành", percent: 20 },
+                  ],
+                },
               },
             },
             {
@@ -1709,6 +1717,12 @@ export const grade5Data = {
               content: {
                 mascotMood: "happy",
                 text: "Bao diêm, viên gạch có dạng hình hộp chữ nhật! Con súc sắc có dạng hình lập phương! Cả hai hình đều có: 6 mặt, 8 đỉnh và 12 cạnh! 🎲📦",
+                solid: {
+                  kind: "cuboid",
+                  dims: { a: 4, b: 3, c: 2 },
+                  label: "Hình hộp chữ nhật — bao diêm, viên gạch",
+                  formula: "6 mặt · 8 đỉnh · 12 cạnh",
+                },
               },
             },
             {
@@ -2133,6 +2147,12 @@ export const grade5Data = {
               content: {
                 mascotMood: "excited",
                 text: "Lon nước ngọt có dạng hình trụ (gồm 2 mặt đáy là hình tròn bằng nhau và 1 mặt xung quanh). Quả bóng tròn xoe có dạng hình cầu! ⚽🥫",
+                solid: {
+                  kind: "cylinder",
+                  dims: { a: 2, b: 5 },
+                  label: "Hình trụ — lon nước ngọt",
+                  formula: "Hai mặt đáy là hai hình tròn bằng nhau",
+                },
               },
             },
             {

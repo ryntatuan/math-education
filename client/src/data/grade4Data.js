@@ -1105,6 +1105,11 @@ export const grade4Data = {
               content: {
                 mascotMood: "happy",
                 text: "Hai đường thẳng cắt nhau tạo thành 4 góc vuông gọi là hai đường thẳng vuông góc! Hai đường thẳng không bao giờ cắt nhau gọi là hai đường thẳng song song (như hai thanh đường ray tàu hoả)! 🛤️",
+                angle: {
+                  kind: "right",
+                  degrees: 90,
+                  label: "Hai đường thẳng vuông góc tạo thành 4 góc vuông",
+                },
               },
             },
             {
@@ -2665,6 +2670,11 @@ export const grade4Data = {
               content: {
                 mascotMood: "excited",
                 text: "Hình thoi có 4 cạnh bằng nhau! Hai đường chéo vuông góc với nhau và cắt nhau tại trung điểm của mỗi đường! 🔷",
+                planeShape: {
+                  kind: "rhombus",
+                  labels: ["cạnh", "cạnh"],
+                  formula: "4 cạnh bằng nhau · hai đường chéo vuông góc",
+                },
               },
             },
             {

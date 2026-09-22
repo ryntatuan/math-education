@@ -57,6 +57,13 @@ scratch/verify-*.txt
 scratch/*.log
 scratch/gates.txt
 scratch/loi-*.txt
+# Bản đóng gói .cjs của các công cụ trong scratch/ (sinh lại bằng esbuild, không cần lưu)
+scratch/*.cjs
+# Kết quả chữ của công cụ soát hình / in bài (chạy lại là có, không cần lưu)
+scratch/soat-kq.txt
+scratch/soat-hinh-sai.txt
+scratch/in-bai.txt
+scratch/in-bai2.txt
 # Thư viện hình để đo/ngắm: giữ file .jsx, bỏ bản đóng gói và trang sinh ra
 scratch/tao-thu-vien-hinh.cjs
 scratch/thu-vien-hinh.html

@@ -3124,6 +3124,17 @@ export const grade2Data = {
               content: {
                 mascotMood: "happy",
                 text: "Rô-bốt cắt một hình có bốn cạnh. Bé đoán xem đó là hình gì? ✂️",
+                // Trẻ lớp 2 không tự hình dung được "hình có bốn cạnh" nếu không thấy hình:
+                // vẽ một tứ giác thường (không vuông, không đều) để trẻ thấy 4 cạnh thật.
+                // `showName: false` vì tên hình vẽ là "Hình bình hành" — từ chưa học ở lớp 2,
+                // in ra sẽ làm trẻ rối; ở đây chỉ cần thấy "hình có 4 cạnh".
+                planeShape: {
+                  kind: "parallelogram",
+                  labels: ["cạnh", "cạnh"],
+                  vertices: true,
+                  showName: false,
+                  formula: "Hình có 4 cạnh",
+                },
               },
             },
             {
@@ -3147,6 +3158,7 @@ export const grade2Data = {
                 planeShape: {
                   kind: "rectangle",
                   labels: ["cạnh AB", "cạnh BC"],
+                  vertices: true,
                   formula: "4 cạnh: AB, BC, CD, DA · 4 đỉnh: A, B, C, D",
                 },
               },
@@ -8604,11 +8616,19 @@ export const grade2Data = {
             {
               type: "visual",
               content: {
-                text: "Đường gấp khúc: cộng các đoạn\nKhối trụ xếp chồng · Khối cầu lăn",
+                text: "Hình tứ giác: 4 cạnh · 4 đỉnh",
                 planeShape: {
                   kind: "rectangle",
+                  labels: ["cạnh", "cạnh"],
+                  vertices: true,
                   formula: "Hình tứ giác: 4 cạnh · 4 đỉnh",
                 },
+              },
+            },
+            {
+              type: "visual",
+              content: {
+                text: "Khối trụ xếp chồng · Khối cầu lăn mọi hướng",
                 solid: {
                   kind: "sphere",
                   dims: { a: 3 },

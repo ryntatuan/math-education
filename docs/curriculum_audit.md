@@ -4,7 +4,7 @@ Ngày rà: 2026-09-21 · Nguồn: 8 file OCR trong `docs/Data Source/` · Dữ l
 
 > **TRẠNG THÁI: ĐÃ XỬ LÝ XONG (2026-09-22).** Cả 10 lỗi ở mục 4 đã sửa. Lớp 1, 2, 3 được
 > **dựng lại toàn bộ** (10 · 14 · 16 chủ đề), Lớp 4–5 đã **rà từng bài** và không có lỗi nào.
-> Số đo hiện tại: **5 lớp · 51 chương · 459 bài · 2438 slide**; DB đã nạp lại và `--verify`
+> Số đo hiện tại: **5 lớp · 51 chương · 459 bài · 2450 slide**; DB đã nạp lại và `--verify`
 > khớp hoàn toàn. Bảng ở mục 2 và mục 3 giữ nguyên **số đo lúc rà** (trước khi sửa) để đối
 > chiếu — đọc mục 5 để biết việc nào đã làm.
 
@@ -323,7 +323,7 @@ Bạn đã chốt cả bốn câu hỏi ở mục 6, và tôi đã làm xong the
 | Lớp 3    | 10 chương · 108 bài | **16 chủ đề · 123 bài**                      | 707      |
 | Lớp 4    | 6 chương · 65 bài   | giữ nguyên (đã đúng)                         | —        |
 | Lớp 5    | 5 chương · 54 bài   | giữ nguyên (đã đúng)                         | —        |
-| **Tổng** |                     | **5 lớp · 51 chương · 459 bài · 2438 slide** |          |
+| **Tổng** |                     | **5 lớp · 51 chương · 459 bài · 2450 slide** |          |
 
 Mười lỗi ở mục 4 **đã xử lý hết**: lớp 2 không còn dạy bảng nhân/chia 3–4 và "một phần mấy";
 lớp 1 không còn "cộng trừ qua 10 trong phạm vi 20"; lớp 3 đã nhận bảng nhân/chia 3–4,

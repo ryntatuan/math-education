@@ -732,6 +732,12 @@ function StorySlide({ content }) {
       <div className="story-dialog-bubble">
         <p className="story-dialog-text">{content.text}</p>
       </div>
+
+      {/* 🔴 CÂU CHUYỆN CŨNG PHẢI MANG ĐƯỢC HÌNH. Câu mở bài hay hỏi "…đó là hình gì nhỉ?"
+          (Lớp 1 CĐ 2) mà chỉ có emoji nhỏ trong chữ thì trẻ không thấy đồ vật để đoán.
+          Người dùng báo ở bài `g1-c2-l4`: "mô tả quyển sách quá nhỏ, trẻ không thể nhìn thấy".
+          Trước đây slide "bài học" không gọi `VisualBlocks` nên dữ liệu có hình cũng không vẽ. */}
+      <VisualBlocks content={content} />
     </div>
   );
 }

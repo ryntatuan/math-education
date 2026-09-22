@@ -2283,6 +2283,7 @@ export const grade3Data = {
                 planeShape: {
                   kind: "triangle",
                   labels: ["cạnh", "cạnh"],
+                  vertices: true,
                   formula: "3 cạnh · 3 đỉnh · 3 góc",
                 },
                 table: {
@@ -2444,12 +2445,18 @@ export const grade3Data = {
             {
               type: "visual",
               content: {
-                text: "Ê-ke → vẽ góc vuông, hình vuông, hình chữ nhật\nCompa → vẽ đường tròn",
+                text: "Ê-ke → vẽ góc vuông, hình vuông",
                 planeShape: {
                   kind: "square",
                   labels: ["4 cm"],
                   formula: "Vẽ hình vuông cạnh 4 cm bằng ê-ke",
                 },
+              },
+            },
+            {
+              type: "visual",
+              content: {
+                text: "Compa → vẽ đường tròn",
                 circleParts: {
                   radius: 3,
                   showCenter: true,
@@ -2581,10 +2588,17 @@ export const grade3Data = {
             {
               type: "visual",
               content: {
-                text: "d = 2 × r\n▢ 4 góc vuông · 🔺 3 cạnh · ▭ 4 góc vuông",
+                text: "Đường kính = 2 × bán kính (d = 2 × r)",
                 circleParts: { radius: 3, diameter: 6, label: "d = 2 × r" },
+              },
+            },
+            {
+              type: "visual",
+              content: {
+                text: "Hình vuông: 4 góc vuông · 4 cạnh bằng nhau",
                 planeShape: {
                   kind: "square",
+                  labels: ["cạnh"],
                   formula: "4 góc vuông · 4 cạnh bằng nhau",
                 },
               },

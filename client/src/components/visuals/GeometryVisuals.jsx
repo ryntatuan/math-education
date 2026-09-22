@@ -9,7 +9,7 @@
  * số có mặc định; KHÔNG bao giờ để trắng khung vì một giá trị lạ.
  */
 
-import { CARD_STYLE, CAPTION_STYLE, svgFit } from "./visualTheme";
+import { CARD_STYLE, CAPTION_STYLE, svgFit, ngatDong } from "./visualTheme";
 
 const P = {
   ink: "#1e293b",
@@ -45,13 +45,21 @@ const PLANE = {
   circle: "Hình tròn",
 };
 
-/* Toạ độ đỉnh cho từng hình, trên khung 320×220. */
+/* Toạ độ đỉnh cho từng hình, trên khung 320×240. */
 const SHAPE_POINTS = {
+  /**
+   * 🔴 HÌNH VUÔNG PHẢI LÀ HÌNH VUÔNG THẬT. Bản cũ để [70,40]–[250,40]–[250,180]–[70,180]
+   * = **180 × 140** — tức là một HÌNH CHỮ NHẬT dán nhãn "Hình vuông". Người dùng nhìn màn
+   * hình rồi báo (bài `g1-c2-l5`: "diễn giải hình vuông nhưng lại đang vẽ hình chữ nhật"),
+   * và lỗi này nằm ở **17 chỗ** của cả 5 lớp — trong đó có bài dạy "diện tích hình vuông =
+   * cạnh × cạnh", nơi hình vẽ sai làm hỏng luôn ý niệm cạnh × cạnh.
+   * Nay: 80→240 ngang và 30→190 dọc, đúng **160 × 160**.
+   */
   square: [
-    [70, 40],
-    [250, 40],
-    [250, 180],
-    [70, 180],
+    [80, 30],
+    [240, 30],
+    [240, 190],
+    [80, 190],
   ],
   rectangle: [
     [50, 50],
@@ -110,6 +118,14 @@ export function PlaneShape({
   formula = "",
   showName = true,
   radiusLabel = "",
+  /**
+   * Đánh dấu ĐỈNH: chấm tròn ở mỗi đỉnh + nhãn "đỉnh".
+   * 🔴 VÌ SAO CẦN: lời giảng nói "3 cạnh · 3 đỉnh" nhưng hình chỉ ghi chữ "cạnh" — người
+   * dùng báo ở bài `g1-c2-l3` ("chỉ có cạnh chứ không có đỉnh"). Trẻ phải ĐẾM ĐƯỢC đỉnh
+   * trên hình, không chỉ đọc chữ.
+   */
+  vertices = false,
+  vertexLabel = "đỉnh",
 }) {
   const k = PLANE[kind] ? kind : "rectangle";
   const [fill, stroke] = FILL[k];
@@ -175,6 +191,34 @@ export function PlaneShape({
             strokeWidth="3"
             strokeLinejoin="round"
           />
+        )}
+
+        {k !== "circle" && vertices && (
+          <>
+            {pts.map(([vx, vy], i) => (
+              <circle
+                key={`v${i}`}
+                cx={vx}
+                cy={vy}
+                r="5.5"
+                fill={stroke}
+                stroke={P.paper}
+                strokeWidth="2"
+              />
+            ))}
+            {vertexLabel && (
+              <text
+                x={pts[0][0] - 8}
+                y={pts[0][1] - 6}
+                textAnchor="end"
+                fontSize="15"
+                fontWeight="800"
+                fill={stroke}
+              >
+                {vertexLabel}
+              </text>
+            )}
+          </>
         )}
 
         {k !== "circle" &&
@@ -681,6 +725,525 @@ export function Solid({
         </span>
       )}
       {label && <span style={caption}>{label}</span>}
+    </div>
+  );
+}
+
+/* ────────────────── ĐỒ VẬT CÓ DẠNG HÌNH (nhận biết hình trong đồ vật) ──────────────────
+ * shapePicture: { kind: "book"|"clock"|"brick"|"roof"|"window"|"wheel"|"door"|"board"|"ball"|"house",
+ *                 windows, note, showShape }
+ *
+ * 🔴 VÌ SAO CẦN. Chủ đề "Nhận biết các hình trong đồ vật quanh em" (Lớp 1 CĐ 2) trước đây chỉ
+ * có EMOJI nhỏ nằm trong câu chữ (📕 ⭕ 🔺) — người dùng báo nguyên văn: "mô tả quyển sách quá
+ * nhỏ, trẻ không thể nhìn thấy được". Đồ vật phải được VẼ TO, đúng hình dạng, kèm TÊN HÌNH,
+ * để trẻ nhìn là thấy ngay hình dạng đó.
+ *
+ * Mọi hình do app tự vẽ bằng SVG (không dùng ảnh của sách nào) nên không vướng bản quyền.
+ */
+const DO_VAT = {
+  book: { ten: "Quyển sách", hinh: "Hình chữ nhật", mau: P.blue },
+  clock: { ten: "Mặt đồng hồ", hinh: "Hình tròn", mau: P.amber },
+  brick: { ten: "Viên gạch lát nền", hinh: "Hình vuông", mau: P.blue },
+  roof: { ten: "Mái nhà", hinh: "Hình tam giác", mau: P.rose },
+  window: { ten: "Cửa sổ", hinh: "Hình vuông", mau: P.blue },
+  wheel: { ten: "Bánh xe", hinh: "Hình tròn", mau: P.ink },
+  door: { ten: "Cửa ra vào", hinh: "Hình chữ nhật", mau: P.amber },
+  board: { ten: "Mặt bàn", hinh: "Hình chữ nhật", mau: P.amber },
+  ball: { ten: "Quả bóng", hinh: "Hình tròn", mau: P.rose },
+  house: {
+    ten: "Ngôi nhà",
+    hinh: "Tam giác (mái) · chữ nhật (thân) · vuông (cửa sổ)",
+    mau: P.violet,
+  },
+};
+
+/** Vẽ một đồ vật trong khung 300 × 200 (phần trên của viewBox). */
+function VeDoVat({ kind, windows }) {
+  const nWin = clamp(num(windows, 2), 0, 4);
+  if (kind === "book")
+    return (
+      <>
+        <rect
+          x="55"
+          y="35"
+          width="190"
+          height="130"
+          rx="8"
+          fill={P.blueSoft}
+          stroke={P.blue}
+          strokeWidth="5"
+        />
+        <rect x="55" y="35" width="28" height="130" rx="8" fill={P.blue} />
+        <rect
+          x="248"
+          y="48"
+          width="14"
+          height="104"
+          rx="4"
+          fill={P.paper}
+          stroke={P.blue}
+          strokeWidth="3"
+        />
+      </>
+    );
+  if (kind === "clock")
+    return (
+      <>
+        <circle
+          cx="150"
+          cy="100"
+          r="76"
+          fill={P.paper}
+          stroke={P.amber}
+          strokeWidth="9"
+        />
+        {Array.from({ length: 12 }).map((_, i) => {
+          const g = (i / 12) * Math.PI * 2 - Math.PI / 2;
+          return (
+            <line
+              key={i}
+              x1={150 + 62 * Math.cos(g)}
+              y1={100 + 62 * Math.sin(g)}
+              x2={150 + 71 * Math.cos(g)}
+              y2={100 + 71 * Math.sin(g)}
+              stroke={P.amber}
+              strokeWidth="3"
+            />
+          );
+        })}
+        <line
+          x1="150"
+          y1="100"
+          x2="150"
+          y2="58"
+          stroke={P.ink}
+          strokeWidth="6"
+          strokeLinecap="round"
+        />
+        <line
+          x1="150"
+          y1="100"
+          x2="186"
+          y2="100"
+          stroke={P.ink}
+          strokeWidth="5"
+          strokeLinecap="round"
+        />
+        <circle cx="150" cy="100" r="6" fill={P.ink} />
+      </>
+    );
+  if (kind === "brick")
+    return (
+      <>
+        <rect
+          x="75"
+          y="22"
+          width="150"
+          height="150"
+          rx="6"
+          fill={P.blueSoft}
+          stroke={P.blue}
+          strokeWidth="5"
+        />
+        <line x1="80" y1="72" x2="220" y2="72" stroke={P.paper} strokeWidth="3" />
+        <line x1="80" y1="122" x2="220" y2="122" stroke={P.paper} strokeWidth="3" />
+        <line x1="150" y1="27" x2="150" y2="72" stroke={P.paper} strokeWidth="3" />
+        <line x1="112" y1="72" x2="112" y2="122" stroke={P.paper} strokeWidth="3" />
+        <line x1="188" y1="72" x2="188" y2="122" stroke={P.paper} strokeWidth="3" />
+        <line x1="150" y1="122" x2="150" y2="167" stroke={P.paper} strokeWidth="3" />
+      </>
+    );
+  if (kind === "roof")
+    return (
+      <>
+        <rect x="192" y="52" width="24" height="46" fill={P.amber} rx="3" />
+        <polygon
+          points="55,148 150,32 245,148"
+          fill={P.roseSoft}
+          stroke={P.rose}
+          strokeWidth="5"
+          strokeLinejoin="round"
+        />
+      </>
+    );
+  if (kind === "window")
+    return (
+      <>
+        <rect
+          x="80"
+          y="20"
+          width="140"
+          height="140"
+          rx="4"
+          fill={P.blueSoft}
+          stroke={P.blue}
+          strokeWidth="6"
+        />
+        <line x1="150" y1="22" x2="150" y2="158" stroke={P.blue} strokeWidth="4" />
+        <line x1="82" y1="90" x2="218" y2="90" stroke={P.blue} strokeWidth="4" />
+      </>
+    );
+  if (kind === "wheel")
+    return (
+      <>
+        <circle
+          cx="150"
+          cy="100"
+          r="76"
+          fill={P.paper}
+          stroke={P.ink}
+          strokeWidth="14"
+        />
+        <circle
+          cx="150"
+          cy="100"
+          r="46"
+          fill="none"
+          stroke={P.soft}
+          strokeWidth="3"
+        />
+        {Array.from({ length: 6 }).map((_, i) => {
+          const g = (i / 6) * Math.PI * 2;
+          return (
+            <line
+              key={i}
+              x1={150 + 10 * Math.cos(g)}
+              y1={100 + 10 * Math.sin(g)}
+              x2={150 + 46 * Math.cos(g)}
+              y2={100 + 46 * Math.sin(g)}
+              stroke={P.soft}
+              strokeWidth="3"
+            />
+          );
+        })}
+        <circle cx="150" cy="100" r="10" fill={P.soft} />
+      </>
+    );
+  if (kind === "door")
+    return (
+      <>
+        <rect
+          x="95"
+          y="15"
+          width="110"
+          height="160"
+          rx="4"
+          fill={P.amberSoft}
+          stroke={P.amber}
+          strokeWidth="5"
+        />
+        <circle cx="186" cy="98" r="7" fill={P.amber} />
+      </>
+    );
+  if (kind === "board")
+    return (
+      <>
+        <rect
+          x="45"
+          y="35"
+          width="210"
+          height="100"
+          rx="6"
+          fill={P.amberSoft}
+          stroke={P.amber}
+          strokeWidth="5"
+        />
+        <line x1="70" y1="135" x2="58" y2="182" stroke={P.amber} strokeWidth="6" />
+        <line x1="230" y1="135" x2="242" y2="182" stroke={P.amber} strokeWidth="6" />
+      </>
+    );
+  if (kind === "ball")
+    return (
+      <>
+        <circle
+          cx="150"
+          cy="100"
+          r="76"
+          fill={P.roseSoft}
+          stroke={P.rose}
+          strokeWidth="6"
+        />
+        <path
+          d="M104,66 Q150,40 196,66"
+          fill="none"
+          stroke={P.paper}
+          strokeWidth="7"
+          strokeLinecap="round"
+        />
+        <path
+          d="M104,134 Q150,160 196,134"
+          fill="none"
+          stroke={P.rose}
+          strokeWidth="4"
+          strokeDasharray="8 6"
+        />
+      </>
+    );
+  // house: mái tam giác + thân chữ nhật + N cửa sổ vuông (đúng như lời giảng)
+  const dauCuaSo = 150 - (nWin * 44 - 8) / 2;
+  return (
+    <>
+      <polygon
+        points="50,112 150,22 250,112"
+        fill={P.roseSoft}
+        stroke={P.rose}
+        strokeWidth="5"
+        strokeLinejoin="round"
+      />
+      <rect
+        x="72"
+        y="112"
+        width="156"
+        height="86"
+        fill={P.blueSoft}
+        stroke={P.blue}
+        strokeWidth="5"
+      />
+      {Array.from({ length: nWin }).map((_, i) => (
+        <rect
+          key={i}
+          x={dauCuaSo + i * 44}
+          y="132"
+          width="36"
+          height="36"
+          rx="3"
+          fill={P.amberSoft}
+          stroke={P.amber}
+          strokeWidth="4"
+        />
+      ))}
+    </>
+  );
+}
+
+export function ShapePicture({
+  kind = "book",
+  windows = 2,
+  note = "",
+  showShape = true,
+}) {
+  const k = DO_VAT[kind] ? kind : "book";
+  const { ten, hinh, mau } = DO_VAT[k];
+  /**
+   * 🔴 NHÃN TÊN HÌNH PHẢI NGẮT DÒNG. Ca thật `g1-c2-l7`: "Tam giác (mái) · chữ nhật
+   * (thân) · vuông (cửa sổ)" — 49 ký tự ≈ 380 đơn vị trong khung rộng 300 ⇒ **tràn ra
+   * ngoài 32 đơn vị mỗi bên** (phép đo trên trang hình thật bắt được ngay).
+   */
+  const dongHinh = showShape && hinh ? ngatDong(hinh, 34) : [];
+  const H = 262 + Math.max(0, dongHinh.length - 1) * 22;
+
+  return (
+    <div style={card}>
+      <svg
+        viewBox={`0 0 300 ${H}`}
+        {...svgFit(300)}
+        role="img"
+        aria-label={ten}
+      >
+        <VeDoVat kind={k} windows={windows} />
+        <text
+          x="150"
+          y="222"
+          textAnchor="middle"
+          fontSize="16"
+          fontWeight="800"
+          fill={P.ink}
+        >
+          {ten}
+        </text>
+        {dongHinh.length > 0 && (
+          <text
+            x="150"
+            y="248"
+            textAnchor="middle"
+            fontSize="15"
+            fontWeight="800"
+            fill={mau}
+          >
+            {dongHinh.map((d, i) => (
+              <tspan key={i} x="150" dy={i === 0 ? 0 : 22}>
+                {d}
+              </tspan>
+            ))}
+          </text>
+        )}
+      </svg>
+      {note && (
+        <span style={{ ...caption, color: P.ink, fontSize: 15 }}>{note}</span>
+      )}
+    </div>
+  );
+}
+
+/* ────────────────── GHÉP HÌNH — cho thấy CÁCH ghép ──────────────────
+ * shapeJoin: { piece: "rightTriangle"|"square", pieces, note, showResult }
+ *
+ * 🔴 VÌ SAO CẦN. Lớp 1 CĐ 2 bài 6 dạy "ghép hai tam giác vuông thành một hình vuông", nhưng
+ * hình minh hoạ cũ chỉ là MỘT hình chữ nhật kèm dòng chữ — người dùng báo: "diễn giải ghép 2
+ * tam giác vuông tạo thành hình vuông nhưng hình minh họa không mô tả cách thức ghép, hình được
+ * mô tả cũng là hình chữ nhật chứ không phải hình vuông".
+ *
+ * Nay vẽ đúng cách sách giáo khoa trình bày: HAI MẢNH RỜI (thấy được đường ghép) → mũi tên →
+ * hình sau khi ghép (còn vạch đứt chỉ chỗ hai mảnh khít vào nhau).
+ *
+ * `showResult: false` = CHỈ vẽ hai mảnh rời, không vẽ hình kết quả — dùng cho CÂU HỎI "ghép lại
+ * được hình gì?", nếu vẽ luôn hình kết quả thì câu hỏi mất hết ý nghĩa.
+ */
+export function ShapeJoin({
+  piece = "rightTriangle",
+  pieces = 2,
+  note = "",
+  showResult = true,
+}) {
+  const laVuong = piece === "square";
+  const s = 108; // cạnh hình vuông kết quả
+  const khe = 12; // khe giữa hai mảnh cho thấy chúng RỜI nhau
+  const xKet = 176;
+  const rongManh = laVuong ? 106 : s + khe;
+  const yGiua = laVuong ? 53 : (s + khe) / 2;
+  /** Không vẽ hình kết quả thì thu khung lại cho hai mảnh to hẳn lên. */
+  const lech = showResult ? 0 : 20;
+  const rongKhung = showResult ? 300 : rongManh + 40;
+
+  return (
+    <div style={card}>
+      <svg
+        viewBox={`0 0 ${rongKhung} 180`}
+        {...svgFit(rongKhung)}
+        role="img"
+        aria-label="Ghép hình"
+      >
+        <g transform={lech ? `translate(${lech},0)` : undefined}>
+        {laVuong
+          ? // 4 hình vuông nhỏ xếp thành 1 hình vuông lớn
+            Array.from({ length: 4 }).map((_, i) => (
+              <rect
+                key={i}
+                x={(i % 2) * 56}
+                y={Math.floor(i / 2) * 56}
+                width="50"
+                height="50"
+                rx="4"
+                fill={i % 3 === 0 ? P.amberSoft : P.roseSoft}
+                stroke={i % 3 === 0 ? P.amber : P.rose}
+                strokeWidth="3"
+              />
+            ))
+          : // 2 tam giác vuông bằng nhau (một nửa của hình vuông, cắt theo đường chéo)
+            <>
+              <polygon
+                points={`0,0 ${s},0 ${s},${s}`}
+                fill={P.roseSoft}
+                stroke={P.rose}
+                strokeWidth="3"
+                strokeLinejoin="round"
+              />
+              <polygon
+                points={`${khe},${khe} ${khe},${s + khe} ${s + khe},${s + khe}`}
+                fill={P.amberSoft}
+                stroke={P.amber}
+                strokeWidth="3"
+                strokeLinejoin="round"
+              />
+            </>}
+
+        {/* mũi tên "ghép lại" — chỉ vẽ khi CÓ hình kết quả */}
+        {showResult && (
+          <>
+            <line
+              x1={rongManh + 14}
+              y1={yGiua}
+              x2={xKet - 12}
+              y2={yGiua}
+              stroke={P.ink}
+              strokeWidth="3"
+            />
+            <polygon
+              points={`${xKet - 12},${yGiua} ${xKet - 24},${yGiua - 8} ${xKet - 24},${yGiua + 8}`}
+              fill={P.ink}
+            />
+          </>
+        )}
+
+        {/* kết quả sau khi ghép */}
+        {showResult && (
+          <>
+            <rect
+              x={xKet}
+              y="0"
+              width={s}
+              height={s}
+              fill={P.greenSoft}
+              stroke={P.green}
+              strokeWidth="4"
+            />
+            {!laVuong && (
+              <>
+                <line
+                  x1={xKet}
+                  y1="0"
+                  x2={xKet + s}
+                  y2={s}
+                  stroke={P.green}
+                  strokeWidth="3"
+                  strokeDasharray="7 6"
+                />
+                <polygon
+                  points={`${xKet},0 ${xKet + s},0 ${xKet + s},${s}`}
+                  fill={P.rose}
+                  fillOpacity="0.22"
+                />
+                <polygon
+                  points={`${xKet},0 ${xKet},${s} ${xKet + s},${s}`}
+                  fill={P.amber}
+                  fillOpacity="0.22"
+                />
+              </>
+            )}
+            {laVuong &&
+              [1, 2].map((i) => (
+                <g key={i}>
+                  <line
+                    x1={xKet + i * (s / 2)}
+                    y1="0"
+                    x2={xKet + i * (s / 2)}
+                    y2={s}
+                    stroke={P.green}
+                    strokeWidth="3"
+                    strokeDasharray="7 6"
+                  />
+                </g>
+              ))}
+          </>
+        )}
+
+        <text
+          x={rongManh / 2}
+          y={s + 44}
+          textAnchor="middle"
+          fontSize="15"
+          fontWeight="800"
+          fill={P.ink}
+        >
+          {laVuong ? "4 hình vuông" : `${pieces} hình tam giác`}
+        </text>
+        {showResult && (
+          <text
+            x={xKet + s / 2}
+            y={s + 44}
+            textAnchor="middle"
+            fontSize="15"
+            fontWeight="800"
+            fill={P.green}
+          >
+            1 hình vuông
+          </text>
+        )}
+        </g>
+      </svg>
+      {note && (
+        <span style={{ ...caption, color: P.ink, fontSize: 15 }}>{note}</span>
+      )}
     </div>
   );
 }

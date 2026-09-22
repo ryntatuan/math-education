@@ -39,6 +39,8 @@ import {
   Angle,
   CircleParts,
   Solid,
+  ShapePicture,
+  ShapeJoin,
 } from "../client/src/components/visuals/GeometryVisuals.jsx";
 import {
   FractionBar,
@@ -61,6 +63,8 @@ const COMP = {
   angle: Angle,
   circleParts: CircleParts,
   solid: Solid,
+  shapePicture: ShapePicture,
+  shapeJoin: ShapeJoin,
   fractionBar: FractionBar,
   fractionCircle: FractionCircle,
   barModel: BarModel,
