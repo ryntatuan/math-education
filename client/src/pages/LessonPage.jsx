@@ -728,6 +728,37 @@ function StorySlide({ content }) {
         <p className="story-dialog-text">{content.text}</p>
       </div>
 
+      {/* 1.5. EMOJI ITEMS */}
+      {content.items && (
+        <div className="visual-items">
+          {content.items.map((item, i) => (
+            <div key={i} className="visual-item-group">
+              {item.label && <span className="visual-label">{item.label}</span>}
+              <div
+                className={`visual-emojis ${item.count <= 5 ? "single-row-emojis" : "ten-frame-emojis"}`}
+              >
+                {Array.from({ length: item.count || 1 }).map((_, j) => (
+                  <motion.span
+                    key={j}
+                    className="visual-emoji"
+                    initial={{ scale: 0, rotate: -20 }}
+                    animate={{ scale: 1, rotate: 0 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 15,
+                      delay: j * 0.05,
+                    }}
+                  >
+                    {item.emoji}
+                  </motion.span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
       {/* 🔴 CÂU CHUYỆN CŨNG PHẢI MANG ĐƯỢC HÌNH. Câu mở bài hay hỏi "…đó là hình gì nhỉ?"
           (Lớp 1 CĐ 2) mà chỉ có emoji nhỏ trong chữ thì trẻ không thấy đồ vật để đoán.
           Người dùng báo ở bài `g1-c2-l4`: "mô tả quyển sách quá nhỏ, trẻ không thể nhìn thấy".
@@ -1610,6 +1641,37 @@ function ConceptSlide({ content }) {
 
       {content.shape && (
         <ShapeGraphic shape={content.shape} label={content.shapeLabel} />
+      )}
+
+      {/* 1.5. EMOJI ITEMS */}
+      {content.items && (
+        <div className="visual-items">
+          {content.items.map((item, i) => (
+            <div key={i} className="visual-item-group">
+              {item.label && <span className="visual-label">{item.label}</span>}
+              <div
+                className={`visual-emojis ${item.count <= 5 ? "single-row-emojis" : "ten-frame-emojis"}`}
+              >
+                {Array.from({ length: item.count || 1 }).map((_, j) => (
+                  <motion.span
+                    key={j}
+                    className="visual-emoji"
+                    initial={{ scale: 0, rotate: -20 }}
+                    animate={{ scale: 1, rotate: 0 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 15,
+                      delay: j * 0.05,
+                    }}
+                  >
+                    {item.emoji}
+                  </motion.span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
       )}
 
       {/* Hình bổ sung — cùng bộ với slide "Hình ảnh", để một slide khái niệm cũng minh hoạ được. */}

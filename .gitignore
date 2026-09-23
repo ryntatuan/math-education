@@ -1,4 +1,4 @@
-﻿# Dependencies
+# Dependencies
 node_modules/
 */node_modules/
 
@@ -73,3 +73,12 @@ scratch/visual-fit.cjs
 scratch/visual-fit.html
 # Bản sao lưu dữ liệu bài học trước khi tiêm hình (lấy lại được từ lịch sử git)
 scratch/*.truoc-hinh.js
+client/src/data/*.bak
+
+# SGK scans & screenshot artifacts
+scripts/sgk_g1_p*.png
+scripts/page_*.png
+scripts/g1c*.png
+scripts/slide_*.png
+scratch/*.png
+

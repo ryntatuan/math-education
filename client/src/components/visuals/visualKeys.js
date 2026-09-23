@@ -41,9 +41,10 @@ export const HINH_KEYS = [
   "angle",
   "circleParts",
   "solid",
-  // Hình học trực quan cho Lớp 1 (đồ vật + cách ghép hình)
+  // Hình học trực quan cho Lớp 1 (đồ vật + cách ghép hình + vị trí không gian)
   "shapePicture",
   "shapeJoin",
+  "spatialScene",
   // Điểm & đường (Lớp 2 — tên điểm A, B, C, D là nội dung bài học)
   "pointLine",
   // Phân số & sơ đồ

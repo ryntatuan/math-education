@@ -30,6 +30,7 @@ import {
   Solid,
   ShapePicture,
   ShapeJoin,
+  SpatialScene,
   PointLine,
 } from "./GeometryVisuals";
 import {
@@ -70,6 +71,21 @@ export default function VisualBlocks({ content }) {
   // ── Hình học ────────────────────────────────────────────────────────────
   if (isObj(content.planeShape))
     blocks.push(<PlaneShape key="planeShape" {...content.planeShape} />);
+  if (Array.isArray(content.planeShapes))
+    blocks.push(
+      <div key="planeShapes" style={{ display: "flex", gap: "20px", justifyContent: "center", flexWrap: "wrap" }}>
+        {content.planeShapes.map((shape, idx) => (
+          <div key={idx} style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+            <PlaneShape {...shape} />
+            {shape.label && (
+              <span style={{ marginTop: "12px", fontSize: "1.1rem", color: "#334155", fontWeight: 500 }}>
+                {shape.label}
+              </span>
+            )}
+          </div>
+        ))}
+      </div>
+    );
   if (isObj(content.angle))
     blocks.push(<Angle key="angle" {...content.angle} />);
   if (isObj(content.circleParts))
@@ -81,6 +97,8 @@ export default function VisualBlocks({ content }) {
     blocks.push(<ShapePicture key="shapePicture" {...content.shapePicture} />);
   if (isObj(content.shapeJoin))
     blocks.push(<ShapeJoin key="shapeJoin" {...content.shapeJoin} />);
+  if (isObj(content.spatialScene))
+    blocks.push(<SpatialScene key="spatialScene" {...content.spatialScene} />);
   if (isObj(content.pointLine))
     blocks.push(<PointLine key="pointLine" {...content.pointLine} />);
 

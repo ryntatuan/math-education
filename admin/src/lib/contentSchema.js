@@ -74,7 +74,8 @@ const KIEM = {
 export const SLIDE_TYPES = {
   story: {
     batBuoc: { mascotMood: "string", text: "string" },
-    tuyChon: {},
+    tuyChon: { items: "array", planeShapes: "array" },
+    mangObject: ["items", "planeShapes"],
   },
 
   summary: {
@@ -109,12 +110,14 @@ export const SLIDE_TYPES = {
       gallery: "array",
       galleryTitle: "string",
       activityGrid: "array",
+      items: "array",
+      planeShapes: "array",
     },
     cap: [
       ["shape", "shapeLabel"],
       ["gallery", "galleryTitle"],
     ],
-    mangObject: ["steps", "gallery", "activityGrid"],
+    mangObject: ["steps", "gallery", "activityGrid", "items", "planeShapes"],
   },
 
   quiz: {
@@ -124,11 +127,11 @@ export const SLIDE_TYPES = {
       answer: "any",
       mascotHint: "string",
     },
-    tuyChon: { items: "array" },
+    tuyChon: { items: "array", planeShapes: "array" },
     // Đáp án BẮT BUỘC nằm trong lựa chọn. Không có luật này thì app chạy bình
     // thường nhưng KHÔNG BAO GIỜ chấm đúng câu đó — sai hoàn toàn âm thầm.
     dapAnTrongOptions: "answer",
-    mangObject: ["items"],
+    mangObject: ["items", "planeShapes"],
   },
 
   dialogue: {

@@ -35,10 +35,11 @@ const num = (v, fb) => (Number.isFinite(Number(v)) ? Number(v) : fb);
 const clamp = (n, lo, hi) => Math.min(hi, Math.max(lo, n));
 
 /* Danh sách hình phẳng được hỗ trợ. Tên hiển thị lấy từ đây nên KHÔNG BAO GIỜ trắng khung. */
-const PLANE = {
+  const PLANE = {
   square: "Hình vuông",
   rectangle: "Hình chữ nhật",
   triangle: "Hình tam giác",
+  rightTriangle: "Hình tam giác vuông",
   parallelogram: "Hình bình hành",
   rhombus: "Hình thoi",
   trapezoid: "Hình thang",
@@ -67,6 +68,11 @@ const SHAPE_POINTS = {
     [270, 50],
     [270, 170],
     [50, 170],
+  ],
+  rightTriangle: [
+    [80, 50],
+    [80, 170],
+    [200, 170],
   ],
   triangle: [
     [160, 30],
@@ -108,6 +114,7 @@ const SHAPE_POINTS = {
 const FILL = {
   square: [P.blueSoft, P.blue],
   rectangle: [P.blueSoft, P.blue],
+  rightTriangle: [P.roseSoft, P.rose],
   triangle: [P.roseSoft, P.rose],
   parallelogram: [P.amberSoft, P.amber],
   rhombus: [P.amberSoft, P.amber],
@@ -143,6 +150,11 @@ const HUONG_CHU_DINH = {
     [1, -1],
     [1, 1],
     [-1, 1],
+  ],
+  rightTriangle: [
+    [-1, -1],
+    [-1, 1],
+    [1, 1],
   ],
   parallelogram: [
     [-0.8, -0.8],
@@ -764,6 +776,8 @@ export function CircleParts({
 const SOLID_NAME = {
   cube: "Khối lập phương",
   cuboid: "Khối hộp chữ nhật",
+  compare: "Khối lập phương & Khối hộp chữ nhật",
+  rubikOnTable: "Khối Rubik trên bàn",
   cylinder: "Khối trụ",
   sphere: "Khối cầu",
 };
@@ -775,23 +789,10 @@ export function Solid({
   formula = "",
   /**
    * CHỮ GHI LÊN CẠNH KHỐI — `{ a: "a", b: "b", c: "c" }` cho hộp chữ nhật / lập phương.
-   *
-   * 🔴 VÌ SAO CẦN. Lớp 5 dạy công thức bằng CHỮ: "Sxq = (a + b) × 2 × c", "V = a × b × c",
-   * "V = a × a × a" — nhưng hình khối chỉ ghi SỐ ("dài 4, rộng 3, cao 2"). Trẻ phải tự
-   * đoán xem chữ a trong công thức ứng với cạnh nào trên hình. Cùng họ lỗi với việc hình
-   * tứ giác không ghi tên đỉnh A, B, C, D (người dùng báo 2026-09-22).
-   *
-   * Vị trí: `a` = cạnh DÀI dưới cùng, `b` = cạnh RỘNG (nghiêng, bên phải), `c` = cạnh
-   * CAO (thẳng đứng, bên trái). Đúng cách sách giáo khoa ghi.
-   *
-   * ⚠️ KHỐI LẬP PHƯƠNG cố ý KHÔNG ghi chữ ở cạnh dưới: chỗ đó đã có câu "Sáu mặt đều là
-   * hình vuông" ở y = 240, ghi thêm là hai dòng chữ chồng nhau. Lập phương ghi `a` ở cạnh
-   * trên và cạnh đứng bên trái.
    */
   sideLetters = null,
 }) {
   const k = SOLID_NAME[kind] ? kind : "cuboid";
-  // Cùng lý do như `MotionDiagram`: mặc định `= {}` không chặn `null`.
   const D = dims && typeof dims === "object" ? dims : {};
   const a = num(D.a, 0);
   const b = num(D.b, 0);
@@ -817,68 +818,41 @@ export function Solid({
         role="img"
         aria-label={SOLID_NAME[k]}
       >
-        {k === "cube" || k === "cuboid" ? (
+        {k === "cube" ? (
           <>
+            {/* KHỐI LẬP PHƯƠNG: Mặt trước đúng là HÌNH VUÔNG 120 × 120 */}
             <polygon
-              points="60,95 200,95 200,215 60,215"
+              points="80,95 200,95 200,215 80,215"
               fill={P.blueSoft}
               stroke={P.blue}
               strokeWidth="3"
             />
+            {/* Mặt trên */}
             <polygon
-              points="60,95 120,50 260,50 200,95"
+              points="80,95 130,50 250,50 200,95"
               fill={P.amberSoft}
               stroke={P.amber}
               strokeWidth="3"
             />
+            {/* Mặt bên phải */}
             <polygon
-              points="200,95 260,50 260,170 200,215"
+              points="200,95 250,50 250,170 200,215"
               fill={P.roseSoft}
               stroke={P.rose}
               strokeWidth="3"
             />
             <line
-              x1="60"
+              x1="80"
               y1="95"
-              x2="60"
+              x2="80"
               y2="215"
               stroke={P.blue}
               strokeWidth="3"
             />
-            {/* Chữ a, b, c ghi lên ba cạnh — khớp công thức dùng chữ của Lớp 5. */}
-            {SL.c && (
-              <text
-                x="46"
-                y="161"
-                textAnchor="end"
-                fontSize="18"
-                fontWeight="900"
-                fill={P.blue}
-              >
-                {SL.c}
-              </text>
-            )}
-            {k === "cuboid" && SL.a && (
-              <text
-                x="130"
-                y="236"
-                textAnchor="middle"
-                fontSize="18"
-                fontWeight="900"
-                fill={P.blue}
-              >
-                {SL.a}
-              </text>
-            )}
-            {k === "cube" && SL.a && (
-              /**
-               * Lập phương: chữ `a` ở HAI cạnh đứng (trái và phải) — nhấn mạnh MỌI cạnh của
-               * lập phương đều bằng `a` (đúng ý công thức V = a × a × a). Cố ý KHÔNG ghi ở
-               * cạnh dưới vì chỗ đó đã có câu "Sáu mặt đều là hình vuông" (sẽ chồng chữ).
-               */
+            {SL.a && (
               <>
                 <text
-                  x="46"
+                  x="66"
                   y="161"
                   textAnchor="end"
                   fontSize="18"
@@ -888,7 +862,7 @@ export function Solid({
                   {SL.a}
                 </text>
                 <text
-                  x="274"
+                  x="264"
                   y="116"
                   fontSize="18"
                   fontWeight="900"
@@ -898,10 +872,76 @@ export function Solid({
                 </text>
               </>
             )}
-            {k === "cuboid" && SL.b && (
+            <text
+              x="170"
+              y="238"
+              textAnchor="middle"
+              fontSize="14"
+              fontWeight="800"
+              fill={P.ink}
+            >
+              Sáu mặt đều là hình vuông bằng nhau
+            </text>
+          </>
+        ) : k === "cuboid" ? (
+          <>
+            {/* KHỐI HỘP CHỮ NHẬT: Mặt trước đúng là HÌNH CHỮ NHẬT DÀI 190 × 90 */}
+            <polygon
+              points="35,115 225,115 225,205 35,205"
+              fill={P.blueSoft}
+              stroke={P.blue}
+              strokeWidth="3"
+            />
+            {/* Mặt trên */}
+            <polygon
+              points="35,115 85,70 275,70 225,115"
+              fill={P.amberSoft}
+              stroke={P.amber}
+              strokeWidth="3"
+            />
+            {/* Mặt bên phải */}
+            <polygon
+              points="225,115 275,70 275,160 225,205"
+              fill={P.roseSoft}
+              stroke={P.rose}
+              strokeWidth="3"
+            />
+            <line
+              x1="35"
+              y1="115"
+              x2="35"
+              y2="205"
+              stroke={P.blue}
+              strokeWidth="3"
+            />
+            {SL.c && (
               <text
-                x="244"
-                y="201"
+                x="24"
+                y="165"
+                textAnchor="end"
+                fontSize="18"
+                fontWeight="900"
+                fill={P.blue}
+              >
+                {SL.c}
+              </text>
+            )}
+            {SL.a && (
+              <text
+                x="130"
+                y="224"
+                textAnchor="middle"
+                fontSize="18"
+                fontWeight="900"
+                fill={P.blue}
+              >
+                {SL.a}
+              </text>
+            )}
+            {SL.b && (
+              <text
+                x="260"
+                y="195"
                 fontSize="18"
                 fontWeight="900"
                 fill={P.rose}
@@ -909,20 +949,145 @@ export function Solid({
                 {SL.b}
               </text>
             )}
-            {k === "cube" && (
-              // ⚠️ Căn giữa theo BỀ RỘNG KHUNG (170), không phải 130: câu này dài 36 ký tự
-              // (≈278 đơn vị) nên tâm ở 130 làm mép trái vượt ra ngoài khung 8,9 đơn vị.
-              <text
-                x="170"
-                y="240"
-                textAnchor="middle"
-                fontSize="15"
-                fontWeight="800"
-                fill={P.ink}
-              >
-                Sáu mặt đều là hình vuông
+            <text
+              x="160"
+              y="238"
+              textAnchor="middle"
+              fontSize="14"
+              fontWeight="800"
+              fill={P.ink}
+            >
+              Có 6 mặt, các mặt đối diện là hình chữ nhật
+            </text>
+          </>
+        ) : k === "compare" ? (
+          <>
+            {/* SO SÁNH 2 KHỐI CẠNH NHAU */}
+            {/* 1. Khối lập phương (trái) */}
+            <g>
+              <polygon
+                points="25,100 95,100 95,170 25,170"
+                fill={P.blueSoft}
+                stroke={P.blue}
+                strokeWidth="2.5"
+              />
+              <polygon
+                points="25,100 55,70 125,70 95,100"
+                fill={P.amberSoft}
+                stroke={P.amber}
+                strokeWidth="2.5"
+              />
+              <polygon
+                points="95,100 125,70 125,140 95,170"
+                fill={P.roseSoft}
+                stroke={P.rose}
+                strokeWidth="2.5"
+              />
+              <line x1="25" y1="100" x2="25" y2="170" stroke={P.blue} strokeWidth="2.5" />
+              <text x="75" y="195" textAnchor="middle" fontSize="14" fontWeight="800" fill={P.ink}>
+                Khối lập phương
               </text>
-            )}
+              <text x="75" y="215" textAnchor="middle" fontSize="12" fontWeight="700" fill={P.blue}>
+                6 mặt đều là hình vuông
+              </text>
+            </g>
+
+            {/* 2. Khối hộp chữ nhật (phải) */}
+            <g>
+              <polygon
+                points="160,115 270,115 270,170 160,170"
+                fill={P.blueSoft}
+                stroke={P.blue}
+                strokeWidth="2.5"
+              />
+              <polygon
+                points="160,115 195,85 305,85 270,115"
+                fill={P.amberSoft}
+                stroke={P.amber}
+                strokeWidth="2.5"
+              />
+              <polygon
+                points="270,115 305,85 305,140 270,170"
+                fill={P.roseSoft}
+                stroke={P.rose}
+                strokeWidth="2.5"
+              />
+              <line x1="160" y1="115" x2="160" y2="170" stroke={P.blue} strokeWidth="2.5" />
+              <text x="235" y="195" textAnchor="middle" fontSize="14" fontWeight="800" fill={P.ink}>
+                Khối hộp chữ nhật
+              </text>
+              <text x="235" y="215" textAnchor="middle" fontSize="12" fontWeight="700" fill={P.amber}>
+                Các mặt là hình chữ nhật
+              </text>
+            </g>
+          </>
+        ) : k === "rubikOnTable" ? (
+          <>
+            {/* KHỐI RUBIK Ở TRÊN BÀN */}
+            {/* Mặt bàn gỗ */}
+            <polygon
+              points="15,160 75,115 325,115 265,160"
+              fill="#fde68a"
+              stroke="#d97706"
+              strokeWidth="3"
+            />
+            <rect x="15" y="160" width="250" height="15" fill="#d97706" rx="2" />
+            <rect x="25" y="175" width="14" height="42" fill="#b45309" rx="2" />
+            <rect x="240" y="175" width="14" height="42" fill="#b45309" rx="2" />
+
+            {/* Bóng đổ khối Rubik */}
+            <ellipse cx="145" cy="148" rx="55" ry="12" fill="#000000" opacity="0.18" />
+
+            {/* Khối Rubik 3x3 */}
+            <g transform="translate(85, 45)">
+              <rect x="0" y="35" width="84" height="84" fill="#0f172a" rx="3" />
+              <polygon points="0,35 35,0 119,0 84,35" fill="#0f172a" />
+              <polygon points="84,35 119,0 119,84 84,119" fill="#0f172a" />
+
+              {/* Ô vuông mặt trước (3x3) */}
+              <rect x="2" y="37" width="24" height="24" rx="2" fill="#ef4444" />
+              <rect x="30" y="37" width="24" height="24" rx="2" fill="#22c55e" />
+              <rect x="58" y="37" width="24" height="24" rx="2" fill="#ef4444" />
+              <rect x="2" y="65" width="24" height="24" rx="2" fill="#ffffff" />
+              <rect x="30" y="65" width="24" height="24" rx="2" fill="#ef4444" />
+              <rect x="58" y="65" width="24" height="24" rx="2" fill="#eab308" />
+              <rect x="2" y="93" width="24" height="24" rx="2" fill="#3b82f6" />
+              <rect x="30" y="93" width="24" height="24" rx="2" fill="#22c55e" />
+              <rect x="58" y="93" width="24" height="24" rx="2" fill="#ef4444" />
+
+              {/* Ô bình hành mặt trên (3x3) - căn chỉnh hoàn toàn bên trong đa giác đen */}
+              <polygon points="3,33 14,24 38,24 27,33" fill="#eab308" />
+              <polygon points="15,22 26,13 50,13 39,22" fill="#ffffff" />
+              <polygon points="27,11 38,2 62,2 51,11" fill="#3b82f6" />
+              <polygon points="30,33 41,24 65,24 54,33" fill="#eab308" />
+              <polygon points="42,22 53,13 77,13 66,22" fill="#eab308" />
+              <polygon points="54,11 65,2 89,2 78,11" fill="#ffffff" />
+              <polygon points="57,33 68,24 92,24 81,33" fill="#22c55e" />
+              <polygon points="69,22 80,13 104,13 93,22" fill="#f97316" />
+              <polygon points="81,11 92,2 116,2 105,11" fill="#eab308" />
+
+              {/* Ô bình hành mặt phải (3x3) */}
+              <polygon points="86,37 96,27 96,51 86,61" fill="#f97316" />
+              <polygon points="86,65 96,55 96,79 86,89" fill="#3b82f6" />
+              <polygon points="86,93 96,83 96,107 86,117" fill="#22c55e" />
+              <polygon points="98,25 108,15 108,39 98,49" fill="#ffffff" />
+              <polygon points="98,53 108,43 108,67 98,77" fill="#f97316" />
+              <polygon points="98,81 108,71 108,95 98,105" fill="#3b82f6" />
+              <polygon points="110,13 117,6 117,30 110,37" fill="#f97316" />
+              <polygon points="110,41 117,34 117,58 110,65" fill="#22c55e" />
+              <polygon points="110,69 117,62 117,86 110,93" fill="#f97316" />
+            </g>
+
+            <text
+              x="170"
+              y="238"
+              textAnchor="middle"
+              fontSize="14"
+              fontWeight="800"
+              fill={P.ink}
+            >
+              Khối Rubik ở trên mặt bàn
+            </text>
           </>
         ) : k === "cylinder" ? (
           <>
@@ -1027,7 +1192,7 @@ export function Solid({
           x="170"
           y="26"
           textAnchor="middle"
-          fontSize="17"
+          fontSize={k === "compare" ? "15" : "17"}
           fontWeight="800"
           fill={P.ink}
         >
@@ -1074,6 +1239,16 @@ const DO_VAT = {
     ten: "Ngôi nhà",
     hinh: "Tam giác (mái) · chữ nhật (thân) · vuông (cửa sổ)",
     mau: P.violet,
+  },
+  boat: {
+    ten: "Chiếc thuyền",
+    hinh: "1 hình chữ nhật (thân) + 2 hình tam giác (buồm)",
+    mau: P.blue,
+  },
+  fish: {
+    ten: "Con cá",
+    hinh: "1 hình thoi (thân) + 1 hình tam giác (đuôi)",
+    mau: P.amber,
   },
 };
 
@@ -1369,6 +1544,106 @@ function VeDoVat({ kind, windows }) {
         />
       </>
     );
+  if (kind === "boat")
+    return (
+      <>
+        {/* Cột buồm */}
+        <line
+          x1="148"
+          y1="20"
+          x2="148"
+          y2="120"
+          stroke={P.ink}
+          strokeWidth="4"
+          strokeLinecap="round"
+        />
+        {/* Cánh buồm to (tam giác) */}
+        <polygon
+          points="146,25 80,120 146,120"
+          fill={P.roseSoft}
+          stroke={P.rose}
+          strokeWidth="4"
+          strokeLinejoin="round"
+        />
+        {/* Cánh buồm nhỏ (tam giác) */}
+        <polygon
+          points="150,50 150,120 205,120"
+          fill={P.amberSoft}
+          stroke={P.amber}
+          strokeWidth="4"
+          strokeLinejoin="round"
+        />
+        {/* Thân thuyền (chữ nhật) */}
+        <rect
+          x="65"
+          y="120"
+          width="170"
+          height="42"
+          rx="6"
+          fill={P.blueSoft}
+          stroke={P.blue}
+          strokeWidth="5"
+        />
+        {/* Gợn sóng nước */}
+        <path
+          d="M45,172 Q75,164 105,172 T165,172 T225,172 T265,172"
+          fill="none"
+          stroke={P.blue}
+          strokeWidth="3"
+          strokeLinecap="round"
+        />
+      </>
+    );
+  if (kind === "fish")
+    return (
+      <>
+        {/* Thân cá (hình thoi) */}
+        <polygon
+          points="135,35 210,100 135,165 60,100"
+          fill={P.amberSoft}
+          stroke={P.amber}
+          strokeWidth="5"
+          strokeLinejoin="round"
+        />
+        {/* Mắt cá */}
+        <circle cx="85" cy="100" r="7" fill={P.paper} stroke={P.ink} strokeWidth="2" />
+        <circle cx="83" cy="100" r="3.5" fill={P.ink} />
+        {/* Mang cá */}
+        <path
+          d="M110,75 Q125,100 110,125"
+          fill="none"
+          stroke={P.amber}
+          strokeWidth="3"
+          strokeLinecap="round"
+        />
+        {/* Đuôi cá (tam giác) */}
+        <polygon
+          points="210,100 270,55 270,145"
+          fill={P.greenSoft}
+          stroke={P.green}
+          strokeWidth="4"
+          strokeLinejoin="round"
+        />
+        {/* Vây cá */}
+        <polygon
+          points="135,35 155,18 160,35"
+          fill={P.amberSoft}
+          stroke={P.amber}
+          strokeWidth="3"
+          strokeLinejoin="round"
+        />
+        <polygon
+          points="135,165 155,182 160,165"
+          fill={P.amberSoft}
+          stroke={P.amber}
+          strokeWidth="3"
+          strokeLinejoin="round"
+        />
+        {/* Bong bóng nước */}
+        <circle cx="42" cy="85" r="5" fill="none" stroke={P.blue} strokeWidth="2" />
+        <circle cx="32" cy="70" r="3.5" fill="none" stroke={P.blue} strokeWidth="2" />
+      </>
+    );
   // house: mái tam giác + thân chữ nhật + N cửa sổ vuông (đúng như lời giảng)
   const dauCuaSo = 150 - (nWin * 44 - 8) / 2;
   return (
@@ -1411,9 +1686,12 @@ export function ShapePicture({
   windows = 2,
   note = "",
   showShape = true,
+  label = "",
 }) {
   const k = DO_VAT[kind] ? kind : "book";
-  const { ten, hinh, mau } = DO_VAT[k];
+  const vat = DO_VAT[k];
+  const ten = label || vat.ten;
+  const { hinh, mau } = vat;
   /**
    * 🔴 NHÃN TÊN HÌNH PHẢI NGẮT DÒNG. Ca thật `g1-c2-l7`: "Tam giác (mái) · chữ nhật
    * (thân) · vuông (cửa sổ)" — 49 ký tự ≈ 380 đơn vị trong khung rộng 300 ⇒ **tràn ra
@@ -1485,6 +1763,263 @@ export function ShapeJoin({
   note = "",
   showResult = true,
 }) {
+  if (piece === "boat") {
+    return (
+      <div style={card}>
+        <svg
+          viewBox="0 0 340 180"
+          {...svgFit(340)}
+          role="img"
+          aria-label="Ghép thuyền"
+        >
+          {/* Bên trái: 3 mảnh rời (1 chữ nhật + 2 tam giác) */}
+          <g>
+            {/* Buồm to */}
+            <polygon
+              points="60,20 25,85 60,85"
+              fill={P.roseSoft}
+              stroke={P.rose}
+              strokeWidth="3"
+              strokeLinejoin="round"
+            />
+            {/* Buồm nhỏ */}
+            <polygon
+              points="68,40 68,85 105,85"
+              fill={P.amberSoft}
+              stroke={P.amber}
+              strokeWidth="3"
+              strokeLinejoin="round"
+            />
+            {/* Thân thuyền */}
+            <rect
+              x="18"
+              y="95"
+              width="95"
+              height="26"
+              rx="4"
+              fill={P.blueSoft}
+              stroke={P.blue}
+              strokeWidth="3"
+            />
+            <text
+              x="65"
+              y="148"
+              textAnchor="middle"
+              fontSize="12"
+              fontWeight="700"
+              fill={P.ink}
+            >
+              1 chữ nhật + 2 tam giác
+            </text>
+          </g>
+
+          {/* Mũi tên ghép */}
+          {showResult && (
+            <g>
+              <line
+                x1="126"
+                y1="70"
+                x2="168"
+                y2="70"
+                stroke={P.ink}
+                strokeWidth="3"
+              />
+              <polygon
+                points="168,70 156,64 156,76"
+                fill={P.ink}
+              />
+              <text
+                x="147"
+                y="55"
+                textAnchor="middle"
+                fontSize="11"
+                fontWeight="700"
+                fill={P.soft}
+              >
+                Ghép lại
+              </text>
+            </g>
+          )}
+
+          {/* Bên phải: Con thuyền hoàn chỉnh */}
+          {showResult && (
+            <g>
+              {/* Cột buồm */}
+              <line
+                x1="252"
+                y1="15"
+                x2="252"
+                y2="92"
+                stroke={P.ink}
+                strokeWidth="3"
+                strokeLinecap="round"
+              />
+              {/* Buồm to */}
+              <polygon
+                points="250,20 205,90 250,90"
+                fill={P.roseSoft}
+                stroke={P.rose}
+                strokeWidth="3"
+                strokeLinejoin="round"
+              />
+              {/* Buồm nhỏ */}
+              <polygon
+                points="254,40 254,90 295,90"
+                fill={P.amberSoft}
+                stroke={P.amber}
+                strokeWidth="3"
+                strokeLinejoin="round"
+              />
+              {/* Thân thuyền */}
+              <rect
+                x="195"
+                y="92"
+                width="114"
+                height="28"
+                rx="4"
+                fill={P.blueSoft}
+                stroke={P.blue}
+                strokeWidth="3"
+              />
+              <text
+                x="252"
+                y="148"
+                textAnchor="middle"
+                fontSize="14"
+                fontWeight="800"
+                fill={P.blue}
+              >
+                Chiếc thuyền
+              </text>
+            </g>
+          )}
+        </svg>
+        {note && (
+          <span style={{ ...caption, color: P.ink, fontSize: 15 }}>{note}</span>
+        )}
+      </div>
+    );
+  }
+
+  if (piece === "fish") {
+    return (
+      <div style={card}>
+        <svg
+          viewBox="0 0 340 180"
+          {...svgFit(340)}
+          role="img"
+          aria-label="Ghép con cá"
+        >
+          {/* Bên trái: 2 mảnh rời (1 hình thoi + 1 tam giác) */}
+          <g>
+            {/* Hình thoi (thân) */}
+            <polygon
+              points="60,25 96,65 60,105 24,65"
+              fill={P.amberSoft}
+              stroke={P.amber}
+              strokeWidth="3"
+              strokeLinejoin="round"
+            />
+            {/* Tam giác (đuôi) */}
+            <polygon
+              points="106,65 138,40 138,90"
+              fill={P.greenSoft}
+              stroke={P.green}
+              strokeWidth="3"
+              strokeLinejoin="round"
+            />
+            <text
+              x="75"
+              y="148"
+              textAnchor="middle"
+              fontSize="12"
+              fontWeight="700"
+              fill={P.ink}
+            >
+              1 hình thoi + 1 tam giác
+            </text>
+          </g>
+
+          {/* Mũi tên ghép */}
+          {showResult && (
+            <g>
+              <line
+                x1="148"
+                y1="65"
+                x2="186"
+                y2="65"
+                stroke={P.ink}
+                strokeWidth="3"
+              />
+              <polygon
+                points="186,65 174,59 174,71"
+                fill={P.ink}
+              />
+              <text
+                x="167"
+                y="50"
+                textAnchor="middle"
+                fontSize="11"
+                fontWeight="700"
+                fill={P.soft}
+              >
+                Ghép lại
+              </text>
+            </g>
+          )}
+
+          {/* Bên phải: Con cá hoàn chỉnh */}
+          {showResult && (
+            <g>
+              {/* Thân cá (hình thoi) */}
+              <polygon
+                points="248,25 288,65 248,105 208,65"
+                fill={P.amberSoft}
+                stroke={P.amber}
+                strokeWidth="3"
+                strokeLinejoin="round"
+              />
+              {/* Mắt cá */}
+              <circle cx="225" cy="65" r="4.5" fill={P.ink} />
+              <circle cx="223" cy="63" r="1.5" fill={P.paper} />
+              {/* Đuôi cá */}
+              <polygon
+                points="288,65 324,35 324,95"
+                fill={P.greenSoft}
+                stroke={P.green}
+                strokeWidth="3"
+                strokeLinejoin="round"
+              />
+              {/* Đường ranh giới giữa 2 mảnh */}
+              <line
+                x1="288"
+                y1="55"
+                x2="288"
+                y2="75"
+                stroke={P.ink}
+                strokeWidth="2"
+                strokeDasharray="2 2"
+              />
+              <text
+                x="266"
+                y="148"
+                textAnchor="middle"
+                fontSize="14"
+                fontWeight="800"
+                fill={P.amber}
+              >
+                Con cá
+              </text>
+            </g>
+          )}
+        </svg>
+        {note && (
+          <span style={{ ...caption, color: P.ink, fontSize: 15 }}>{note}</span>
+        )}
+      </div>
+    );
+  }
+
   const laVuong = piece === "square";
   const s = 108; // cạnh hình vuông kết quả
   const khe = 12; // khe giữa hai mảnh cho thấy chúng RỜI nhau
@@ -1899,3 +2434,263 @@ export function PointLine({
     </div>
   );
 }
+
+/* ─────────────────────────── VỊ TRÍ KHÔNG GIAN (LỚP 1 CĐ 4) ───────────────────────────
+ * spatialScene: { mode: "topBottom"|"leftRight"|"frontBack"|"ballUnderTableQuiz"|"carLeftQuiz", note }
+ */
+export function SpatialScene({ mode = "topBottom", note = "" }) {
+  if (mode === "topBottom" || mode === "ballUnderTableQuiz") {
+    const isQuiz = mode === "ballUnderTableQuiz";
+    return (
+      <div style={card}>
+        <svg viewBox="0 0 340 230" {...svgFit(340)} role="img" aria-label="Vị trí Trên - Dưới">
+          {/* Chân bàn phía sau (vẽ trước để mặt bàn che phần đỉnh) */}
+          <line x1="102" y1="75" x2="102" y2="155" stroke="#92400e" strokeWidth="4.5" strokeLinecap="round" />
+          <line x1="285" y1="75" x2="285" y2="155" stroke="#92400e" strokeWidth="4.5" strokeLinecap="round" />
+
+          {/* Mặt bàn gỗ */}
+          <polygon
+            points="45,100 100,70 295,70 240,100"
+            fill="#fde68a"
+            stroke="#d97706"
+            strokeWidth="3"
+          />
+          <rect x="45" y="100" width="195" height="12" fill="#d97706" rx="2" />
+
+          {/* Chân bàn phía trước */}
+          <line x1="55" y1="112" x2="55" y2="180" stroke="#b45309" strokeWidth="6" strokeLinecap="round" />
+          <line x1="230" y1="112" x2="230" y2="180" stroke="#b45309" strokeWidth="6" strokeLinecap="round" />
+
+          {/* Mặt sàn */}
+          <line x1="15" y1="180" x2="325" y2="180" stroke="#cbd5e1" strokeWidth="3" strokeDasharray="6 4" />
+
+          {/* QUYỂN SÁCH Ở TRÊN BÀN */}
+          {!isQuiz && (
+            <g>
+              {/* Bóng đổ của quyển sách trên mặt bàn */}
+              <ellipse cx="170" cy="87" rx="66" ry="11" fill="#78350f" opacity="0.32" />
+
+              {/* Bìa sách cứng (màu đỏ mận) bên dưới các trang */}
+              <path
+                d="M 170,55 C 148,47 126,47 107,51 L 107,83 C 126,79 148,79 170,87 Z"
+                fill="#b91c1c"
+                stroke="#991b1b"
+                strokeWidth="2"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M 170,55 C 192,47 214,47 233,51 L 233,83 C 214,79 192,79 170,87 Z"
+                fill="#b91c1c"
+                stroke="#991b1b"
+                strokeWidth="2"
+                strokeLinejoin="round"
+              />
+
+              {/* Gáy sách & mép trang sách (độ dày cuốn sách) */}
+              <line x1="108.5" y1="52" x2="108.5" y2="82" stroke="#e2e8f0" strokeWidth="2" />
+              <line x1="231.5" y1="52" x2="231.5" y2="82" stroke="#cbd5e1" strokeWidth="2" />
+
+              {/* Trang sách bên trái (trắng muốt, uốn cong tự nhiên) */}
+              <path
+                d="M 170,56 C 150,49 128,49 110,52 L 110,81 C 128,78 150,78 170,85 Z"
+                fill="#ffffff"
+                stroke="#e2e8f0"
+                strokeWidth="1.5"
+                strokeLinejoin="round"
+              />
+
+              {/* Trang sách bên phải (trắng kem nhẹ) */}
+              <path
+                d="M 170,56 C 190,49 212,49 230,52 L 230,81 C 212,78 190,78 170,85 Z"
+                fill="#f8fafc"
+                stroke="#e2e8f0"
+                strokeWidth="1.5"
+                strokeLinejoin="round"
+              />
+
+              {/* Nếp gấp rãnh gáy sách ở giữa */}
+              <line x1="170" y1="56" x2="170" y2="85" stroke="#94a3b8" strokeWidth="1.8" />
+              <line x1="168" y1="57" x2="168" y2="84" stroke="#cbd5e1" strokeWidth="1" />
+              <line x1="172" y1="57" x2="172" y2="84" stroke="#cbd5e1" strokeWidth="1" />
+
+              {/* Nội dung trên trang trái: Tiêu đề xanh + các dòng chữ */}
+              <line x1="118" y1="58" x2="142" y2="58" stroke="#3b82f6" strokeWidth="2.5" strokeLinecap="round" />
+              <line x1="118" y1="64" x2="162" y2="64" stroke="#94a3b8" strokeWidth="2" strokeLinecap="round" />
+              <line x1="118" y1="70" x2="160" y2="70" stroke="#94a3b8" strokeWidth="2" strokeLinecap="round" />
+              <line x1="118" y1="76" x2="150" y2="76" stroke="#94a3b8" strokeWidth="2" strokeLinecap="round" />
+
+              {/* Nội dung trên trang phải: Hình tam giác, hình tròn minh hoạ + dòng chữ */}
+              <polygon points="186,57 194,70 178,70" fill="#ef4444" />
+              <circle cx="206" cy="64" r="6" fill="#3b82f6" />
+              <line x1="178" y1="76" x2="222" y2="76" stroke="#94a3b8" strokeWidth="2" strokeLinecap="round" />
+
+              {/* Dải ruy-băng đỏ đánh dấu trang rủ xuống bàn */}
+              <path
+                d="M 170,62 Q 166,74 168,86 Q 169,93 166,98 L 170,95 L 174,98 Q 172,93 171,86 Q 173,74 170,62 Z"
+                fill="#e11d48"
+                stroke="#9f1239"
+                strokeWidth="0.8"
+              />
+
+              {/* Nhãn Ở TRÊN */}
+              <rect x="80" y="14" width="165" height="26" rx="13" fill="#dbeafe" stroke="#2563eb" strokeWidth="1.5" />
+              <text x="162" y="32" textAnchor="middle" fontSize="13" fontWeight="800" fill="#1e40af">
+                ⬆️ Sách ở TRÊN bàn
+              </text>
+            </g>
+          )}
+
+          {/* QUẢ BÓNG Ở DƯỚI GẦM BÀN */}
+          <g>
+            <ellipse cx="145" cy="178" rx="20" ry="5" fill="#000000" opacity="0.15" />
+            <circle cx="145" cy="158" r="18" fill="#fb923c" stroke="#c2410c" strokeWidth="2.5" />
+            {/* Đường múi bóng */}
+            <path d="M132,152 Q145,158 145,176" fill="none" stroke="#ffffff" strokeWidth="2" />
+            <path d="M158,152 Q145,158 145,176" fill="none" stroke="#ffffff" strokeWidth="2" />
+            <path d="M135,168 Q145,158 155,168" fill="none" stroke="#ffffff" strokeWidth="2" />
+            {/* Nhãn Ở DƯỚI */}
+            {isQuiz ? (
+              <>
+                <rect x="95" y="196" width="150" height="26" rx="13" fill="#ffedd5" stroke="#ea580c" strokeWidth="1.5" />
+                <text x="170" y="214" textAnchor="middle" fontSize="13" fontWeight="800" fill="#9a3412">
+                  Vị trí của quả bóng?
+                </text>
+              </>
+            ) : (
+              <>
+                <rect x="75" y="196" width="190" height="26" rx="13" fill="#ffedd5" stroke="#ea580c" strokeWidth="1.5" />
+                <text x="170" y="214" textAnchor="middle" fontSize="13" fontWeight="800" fill="#9a3412">
+                  ⬇️ Quả bóng ở DƯỚI gầm bàn
+                </text>
+              </>
+            )}
+          </g>
+        </svg>
+        {note && <span style={{ ...caption, color: P.ink, fontSize: 15 }}>{note}</span>}
+      </div>
+    );
+  }
+
+  if (mode === "leftRight" || mode === "carLeftQuiz") {
+    const isQuiz = mode === "carLeftQuiz";
+    return (
+      <div style={card}>
+        <svg viewBox="0 0 340 230" {...svgFit(340)} role="img" aria-label="Vị trí Trái - Phải">
+          {/* Đường phân chia ở giữa */}
+          <line x1="170" y1="15" x2="170" y2="190" stroke="#e2e8f0" strokeWidth="3" strokeDasharray="8 6" />
+
+          {/* BÊN TRÁI: Chiếc ô tô */}
+          <g>
+            {!isQuiz && (
+              <>
+                <rect x="25" y="15" width="120" height="28" rx="14" fill="#dbeafe" stroke="#2563eb" strokeWidth="1.5" />
+                <text x="85" y="34" textAnchor="middle" fontSize="13" fontWeight="800" fill="#1e40af">
+                  ⬅️ Bên TRÁI
+                </text>
+              </>
+            )}
+            {/* Vẽ ô tô */}
+            <g transform="translate(40, 70)">
+              <path d="M20,25 L35,8 L65,8 L78,25 Z" fill="#60a5fa" stroke="#2563eb" strokeWidth="2.5" />
+              <rect x="5" y="25" width="85" height="25" rx="5" fill="#3b82f6" stroke="#1d4ed8" strokeWidth="2.5" />
+              <polygon points="36,11 62,11 62,23 25,23" fill="#dbeafe" />
+              <circle cx="8" cy="35" r="4" fill="#fef08a" />
+              <circle cx="25" cy="50" r="12" fill="#1e293b" />
+              <circle cx="25" cy="50" r="5" fill="#cbd5e1" />
+              <circle cx="70" cy="50" r="12" fill="#1e293b" />
+              <circle cx="70" cy="50" r="5" fill="#cbd5e1" />
+            </g>
+            <text x="85" y="165" textAnchor="middle" fontSize="14" fontWeight="800" fill="#1e40af">
+              Chiếc ô tô
+            </text>
+          </g>
+
+          {/* BÊN PHẢI: Quả bóng */}
+          <g>
+            {!isQuiz && (
+              <>
+                <rect x="195" y="15" width="120" height="28" rx="14" fill="#fce7f3" stroke="#db2777" strokeWidth="1.5" />
+                <text x="255" y="34" textAnchor="middle" fontSize="13" fontWeight="800" fill="#9d174d">
+                  Bên PHẢI ➡️
+                </text>
+              </>
+            )}
+            {/* Vẽ quả bóng */}
+            <g transform="translate(215, 70)">
+              <ellipse cx="40" cy="62" rx="25" ry="6" fill="#000000" opacity="0.15" />
+              <circle cx="40" cy="32" r="30" fill="#ec4899" stroke="#be185d" strokeWidth="3" />
+              <circle cx="40" cy="32" r="14" fill="#fdf2f8" stroke="#be185d" strokeWidth="2" />
+              <path d="M40,2 L40,62" stroke="#be185d" strokeWidth="2" strokeDasharray="4 3" />
+            </g>
+            <text x="255" y="165" textAnchor="middle" fontSize="14" fontWeight="800" fill="#9d174d">
+              Quả bóng
+            </text>
+          </g>
+
+          {/* Dòng kết luận phía dưới */}
+          <rect x="25" y="192" width="290" height="28" rx="6" fill="#f8fafc" stroke="#e2e8f0" strokeWidth="1.5" />
+          <text x="170" y="211" textAnchor="middle" fontSize="13" fontWeight="800" fill="#1e293b">
+            {isQuiz
+              ? "Bé hãy xác định vị trí hai đồ vật"
+              : "Ô tô ở bên TRÁI · Quả bóng ở bên PHẢI"}
+          </text>
+        </svg>
+        {note && <span style={{ ...caption, color: P.ink, fontSize: 15 }}>{note}</span>}
+      </div>
+    );
+  }
+
+  // mode === "frontBack"
+  return (
+    <div style={card}>
+      <svg viewBox="0 0 340 230" {...svgFit(340)} role="img" aria-label="Trước - Sau, Ở giữa">
+        {/* Đường đi / hàng kẻ */}
+        <line x1="20" y1="160" x2="320" y2="160" stroke="#cbd5e1" strokeWidth="4" />
+        <polygon points="325,160 310,152 310,168" fill="#94a3b8" />
+        <text x="315" y="180" textAnchor="end" fontSize="11" fontWeight="700" fill="#64748b">
+          Hướng đi ➔
+        </text>
+
+        {/* 1. Đi đầu: Ở ĐẰNG TRƯỚC */}
+        <g transform="translate(210, 60)">
+          <circle cx="40" cy="50" r="30" fill="#22c55e" stroke="#15803d" strokeWidth="3" />
+          <circle cx="40" cy="50" r="14" fill="#dcfce7" />
+          <text x="40" y="55" textAnchor="middle" fontSize="15" fontWeight="900" fill="#15803d">1</text>
+          <rect x="-5" y="-30" width="90" height="24" rx="12" fill="#dcfce7" stroke="#15803d" strokeWidth="1.5" />
+          <text x="40" y="-14" textAnchor="middle" fontSize="12" fontWeight="800" fill="#15803d">
+            Ở TRƯỚC
+          </text>
+        </g>
+
+        {/* 2. Ở GIỮA */}
+        <g transform="translate(125, 60)">
+          <circle cx="40" cy="50" r="30" fill="#eab308" stroke="#a16207" strokeWidth="3" />
+          <circle cx="40" cy="50" r="14" fill="#fef9c3" />
+          <text x="40" y="55" textAnchor="middle" fontSize="15" fontWeight="900" fill="#a16207">2</text>
+          <rect x="-5" y="-30" width="90" height="24" rx="12" fill="#fef9c3" stroke="#a16207" strokeWidth="1.5" />
+          <text x="40" y="-14" textAnchor="middle" fontSize="12" fontWeight="800" fill="#a16207">
+            Ở GIỮA
+          </text>
+        </g>
+
+        {/* 3. Đi cuối: Ở ĐẰNG SAU */}
+        <g transform="translate(40, 60)">
+          <circle cx="40" cy="50" r="30" fill="#ef4444" stroke="#b91c1c" strokeWidth="3" />
+          <circle cx="40" cy="50" r="14" fill="#fee2e2" />
+          <text x="40" y="55" textAnchor="middle" fontSize="15" fontWeight="900" fill="#b91c1c">3</text>
+          <rect x="-5" y="-30" width="90" height="24" rx="12" fill="#fee2e2" stroke="#b91c1c" strokeWidth="1.5" />
+          <text x="40" y="-14" textAnchor="middle" fontSize="12" fontWeight="800" fill="#b91c1c">
+            Ở SAU
+          </text>
+        </g>
+
+        <rect x="25" y="195" width="290" height="26" rx="6" fill="#f8fafc" stroke="#e2e8f0" strokeWidth="1.5" />
+        <text x="170" y="213" textAnchor="middle" fontSize="13" fontWeight="800" fill="#1e293b">
+          Xếp hàng: Số 1 ở TRƯỚC · Số 2 ở GIỮA · Số 3 ở SAU
+        </text>
+      </svg>
+      {note && <span style={{ ...caption, color: P.ink, fontSize: 15 }}>{note}</span>}
+    </div>
+  );
+}
+
