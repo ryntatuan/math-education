@@ -839,6 +839,14 @@
   align-items: center;
   justify-content: center;
   padding: 16px;
+  /* 🔴 BÙ BỀ RỘNG THANH CUỘN để modal canh giữa theo MÉP CỬA SỔ.
+     `inset: 0` cho hộp nền đúng bằng VÙNG NHÌN THẤY (không tính thanh cuộn dọc bên
+     phải), nên modal canh giữa vùng đó — nhìn ra thì lệch TRÁI đúng nửa bề rộng thanh
+     cuộn. Đo thật (cửa sổ 778x772, thanh cuộn 8px): lề trái 115 / lề phải 123 ⇒ lệch 4px;
+     máy người dùng (thanh cuộn ~17px) lệch 9px — đúng bằng con số họ nhìn thấy.
+     `100vw` tính CẢ thanh cuộn, `100%` chỉ tính vùng nhìn thấy ⇒ hiệu của chúng CHÍNH LÀ
+     bề rộng thanh cuộn (0 trên điện thoại/khi không có thanh cuộn ⇒ không đổi gì). */
+  padding-left: calc(16px + (100vw - 100%));
   box-sizing: border-box;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;

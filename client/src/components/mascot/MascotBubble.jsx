@@ -379,7 +379,7 @@ export default function MascotBubble({
                         <p className="cheer-quote-original">
                           “{quote.original}”
                         </p>
-                        <p className="cheer-quote-author">— {quote.author}</p>
+                        <p className="cheer-quote-author">— {quote.author} —</p>
                       </div>
                       <button
                         className="action-cycle-btn"
