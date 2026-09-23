@@ -32,9 +32,15 @@
 }
 
 /* Sizes */
-.mascot-sm .mascot-character { font-size: 2.5rem; }
-.mascot-md .mascot-character { font-size: 3.5rem; }
-.mascot-lg .mascot-character { font-size: 5rem; }
+.mascot-sm .mascot-character {
+  font-size: 2.5rem;
+}
+.mascot-md .mascot-character {
+  font-size: 3.5rem;
+}
+.mascot-lg .mascot-character {
+  font-size: 5rem;
+}
 
 /* Character */
 .mascot-character {
@@ -88,7 +94,8 @@
 }
 
 @keyframes mascot-pulse-glow {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
     opacity: 0.9;
   }
@@ -119,7 +126,6 @@
   transform: translateY(-2px);
   border-color: var(--color-primary);
 }
-
 
 .bubble-tap-hint {
   display: block;
@@ -152,8 +158,8 @@
 }
 
 .mascot-bubble-close:hover {
-  background: #FFE3E3;
-  color: #E03131;
+  background: #ffe3e3;
+  color: #e03131;
   transform: scale(1.15);
 }
 
@@ -670,7 +676,12 @@
 }
 
 @keyframes pulse-speaking {
-  0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
-  100% { transform: scale(1.15); box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); }
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
+  }
+  100% {
+    transform: scale(1.15);
+    box-shadow: 0 0 0 6px rgba(239, 68, 68, 0);
+  }
 }
-

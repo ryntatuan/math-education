@@ -350,7 +350,9 @@ export default function MascotBubble({
                   {activeTab === "tips" && (
                     <div className="mascot-tips-section">
                       <div className="tip-card-box">
-                        <h5>{currentTips[tipIndex % currentTips.length].title}</h5>
+                        <h5>
+                          {currentTips[tipIndex % currentTips.length].title}
+                        </h5>
                         <p>{currentTips[tipIndex % currentTips.length].desc}</p>
                       </div>
                       <button
