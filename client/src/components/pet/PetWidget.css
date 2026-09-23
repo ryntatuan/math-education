@@ -908,9 +908,17 @@
   box-shadow: 0 4px 12px rgba(245, 159, 0, 0.2);
 }
 
+/* 🔴 LỖI ĐÃ SỬA 2026-09-23: logo thú trong thẻ CHỌN THÚ CƯNG bị dính mép TRÁI.
+   Nguyên nhân: khung này là `display: block`, mà ảnh mặt thú (`.pet-avatar-svg`)
+   CŨNG là `display: block` — `text-align: center` của thẻ KHÔNG canh được phần tử
+   block, nên ảnh nằm sát lề trái (chỗ bên phải bỏ trống).
+   Đo thật trước khi sửa: tâm ảnh lệch trái **70px** (lề trái 7px / lề phải 148px).
+   Sau khi sửa: lệch **0**, lề 78/78. */
 .pet-choice-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 2.8rem;
-  display: block;
   margin-bottom: 6px;
 }
 
@@ -1444,6 +1452,86 @@
   color: var(--color-text-secondary);
   margin: 0;
   line-height: 1.35;
+}
+
+/* Hàng tiêu đề + nút Đổi tên (tên thú cưng sửa được sau khi nhận nuôi) */
+.pet-evo-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pet-rename-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #fff4e6;
+  border: 1.5px solid #ffd8a8;
+  color: #e8590c;
+  font-family: inherit;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 5px 10px;
+  min-height: 30px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: background 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.pet-rename-btn:hover {
+  background: #ffe8cc;
+}
+
+.pet-rename-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pet-rename-input {
+  flex: 1;
+  min-width: 0;
+  padding: 9px 12px;
+  border-radius: var(--radius-xl);
+  border: 2px solid #ffd43b;
+  background: #fffdf5;
+  font-family: inherit;
+  font-size: 0.95rem;
+  color: var(--color-text-primary);
+}
+
+.pet-rename-input:focus {
+  outline: none;
+  border-color: #f59f00;
+  box-shadow: 0 0 0 3px rgba(245, 159, 0, 0.18);
+}
+
+.pet-rename-save {
+  flex-shrink: 0;
+  background: #12b886;
+  color: #fff;
+  border: none;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 800;
+  padding: 10px 16px;
+  min-height: 40px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: background 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.pet-rename-save:hover:not(:disabled) {
+  background: #0ca678;
+}
+
+.pet-rename-save:disabled {
+  background: #ced4da;
+  cursor: not-allowed;
 }
 
 /* Khung xem trước: bấm vào đây để vuốt ve thú cưng */

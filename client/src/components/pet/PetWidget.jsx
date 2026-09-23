@@ -1,6 +1,14 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, Check, X, Utensils, Gamepad2, Gift } from "lucide-react";
+import {
+  Sparkles,
+  Check,
+  X,
+  Utensils,
+  Gamepad2,
+  Gift,
+  Pencil,
+} from "lucide-react";
 import Button from "../ui/Button";
 import GoogleIcon from "../common/GoogleIcon";
 import ProgressBar from "../ui/ProgressBar";
@@ -16,6 +24,7 @@ import useProgressStore from "../../store/useProgressStore";
 import PetAvatar from "./PetAvatar";
 import PetModalOverlay from "./PetModalOverlay";
 import useAuthStore from "../../store/useAuthStore";
+import useUserStore from "../../store/useUserStore";
 import soundManager from "../../utils/soundManager";
 import fireConfetti from "../../utils/confettiHelper";
 import "./PetWidget.css";
@@ -42,9 +51,12 @@ export default function PetWidget({ compact = false }) {
     openGiftBox,
     setPetEvolution,
     petPet,
+    renamePet,
   } = state;
 
   const { progressQuest } = useProgressStore();
+  // Xu để nhận nuôi thú có giá (Cú con miễn phí, 3 con còn lại phải trả Xu)
+  const { coins, spendCoins } = useUserStore();
 
   const [showAdoptModal, setShowAdoptModal] = useState(false);
   const [showGuestPetModal, setShowGuestPetModal] = useState(false);
@@ -54,9 +66,14 @@ export default function PetWidget({ compact = false }) {
   const [showToyMenu, setShowToyMenu] = useState(false);
   // Modal xem/đổi ngoại hình thú cưng (mở khi bé bấm vào thú cưng)
   const [showEvolutionModal, setShowEvolutionModal] = useState(false);
+  // Đổi tên thú cưng sau khi đã nhận nuôi (nằm trong modal ngoại hình)
+  const [editingName, setEditingName] = useState(false);
+  const [nameDraft, setNameDraft] = useState("");
 
   // Thông báo lỗi/thành công cục bộ
   const [localMsg, setLocalMsg] = useState({ text: "", type: "" });
+  // Báo lỗi ngay TRONG khung chọn thú cưng (VD: chưa đủ Xu)
+  const [adoptError, setAdoptError] = useState("");
   // Modal chúc mừng khi mở hộp quà (hiện giữa màn hình)
   const [giftModal, setGiftModal] = useState(null);
 
@@ -144,11 +161,45 @@ export default function PetWidget({ compact = false }) {
     }
   };
 
+  // Nhận nuôi: MỌI con đều nhận được, ràng buộc DUY NHẤT là đủ Xu.
+  // (Trước đây con có giá bị coi là "khoá" — phải mua trong Cửa Hàng mới có.)
   const handleConfirmAdopt = () => {
+    const petInfo =
+      PET_TYPES.find((p) => p.id === selectedPetType) || PET_TYPES[0];
+    const price = petInfo.price || 0;
+
+    if (price > 0 && coins < price) {
+      soundManager.playWrong();
+      setAdoptError(
+        `Thiếu ${price - coins} Xu để nhận nuôi ${petInfo.name}. Bé học thêm bài để kiếm Xu nhé!`,
+      );
+      return;
+    }
+
+    if (price > 0) spendCoins(price, "pet.adopt");
+    // `adoptPet` tự thêm con này vào `unlockedPets` nên không cần gọi `unlockPet`.
     adoptPet(selectedPetType, customName.trim() || undefined);
     setShowAdoptModal(false);
+    setAdoptError("");
     soundManager.playFanfare();
     fireConfetti({ particleCount: 80, spread: 70 });
+  };
+
+  const handleStartRename = () => {
+    soundManager.playClick();
+    setNameDraft(petName || "");
+    setEditingName(true);
+  };
+
+  // Lưu tên mới. Tên rỗng thì KHÔNG lưu (nút Lưu đã bị khoá sẵn).
+  // Không cần báo "đã đổi tên" ở thẻ phía sau: bong bóng trong modal đã đổi ngay
+  // thành "Tớ là <tên mới>! …" và tiêu đề modal cũng đổi theo.
+  const handleSaveName = () => {
+    const tenMoi = nameDraft.trim();
+    if (!tenMoi) return;
+    renamePet(tenMoi);
+    setEditingName(false);
+    soundManager.playCorrect();
   };
 
   // Not adopted yet or guest account: Teaser / Locked card
@@ -249,14 +300,16 @@ export default function PetWidget({ compact = false }) {
 
                 <div className="pet-choice-grid">
                   {PET_TYPES.map((p) => {
-                    const isLocked = p.price > 0;
+                    // `canAfford` chỉ để HIỂN THỊ — bấm được cả con chưa đủ Xu để bé
+                    // biết còn thiếu bao nhiêu; chốt chặn thật nằm ở nút Nhận Nuôi.
+                    const canAfford = p.price === 0 || coins >= p.price;
                     return (
                       <div
                         key={p.id}
-                        className={`pet-choice-card ${selectedPetType === p.id ? "active" : ""} ${isLocked ? "locked" : ""}`}
+                        className={`pet-choice-card ${selectedPetType === p.id ? "active" : ""} ${canAfford ? "" : "locked"}`}
                         onClick={() => {
-                          if (isLocked) return;
                           setSelectedPetType(p.id);
+                          setAdoptError("");
                           soundManager.playClick();
                         }}
                       >
@@ -267,14 +320,29 @@ export default function PetWidget({ compact = false }) {
                             className="pet-choice-avatar"
                           />
                         </span>
-                        <h4>
-                          {p.name} {isLocked && `(🪙 ${p.price})`}
-                        </h4>
-                        <p>{isLocked ? "Mua trong Cửa Hàng" : p.desc}</p>
+                        <h4>{p.name}</h4>
+                        <p className="pet-choice-price">
+                          {p.price === 0 ? (
+                            "Miễn phí 🎁"
+                          ) : (
+                            <>
+                              🪙 <span className="number">{p.price}</span> Xu
+                            </>
+                          )}
+                        </p>
+                        <p
+                          className={`pet-choice-note ${canAfford ? "can-afford" : "cannot-afford"}`}
+                        >
+                          {canAfford
+                            ? p.desc
+                            : `Cần thêm ${p.price - coins} Xu`}
+                        </p>
                       </div>
                     );
                   })}
                 </div>
+
+                {adoptError && <p className="pet-adopt-error">{adoptError}</p>}
 
                 <div className="pet-name-input-box">
                   <label>Đặt tên cho thú cưng (tùy chọn):</label>
@@ -645,11 +713,46 @@ export default function PetWidget({ compact = false }) {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
             >
-              <h2>Ngoại hình của {petName}</h2>
+              <div className="pet-evo-title-row">
+                <h2>Ngoại hình của {petName}</h2>
+                <button
+                  type="button"
+                  className="pet-rename-btn"
+                  onClick={handleStartRename}
+                  title="Đổi tên thú cưng"
+                >
+                  <Pencil size={13} /> Đổi tên
+                </button>
+              </div>
               <p className="pet-evo-sub">
                 Thú cưng lên cấp sẽ mở thêm ngoại hình. Cái nào đã mở là bé chọn
                 được nhé!
               </p>
+
+              {editingName && (
+                <div className="pet-rename-box">
+                  <input
+                    className="pet-rename-input"
+                    value={nameDraft}
+                    maxLength={16}
+                    autoFocus
+                    placeholder="Tên mới cho thú cưng (tối đa 16 ký tự)"
+                    onChange={(e) => setNameDraft(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") handleSaveName();
+                      if (e.key === "Escape") setEditingName(false);
+                    }}
+                  />
+                  <button
+                    type="button"
+                    className="pet-rename-save"
+                    disabled={!nameDraft.trim()}
+                    onClick={handleSaveName}
+                  >
+                    Lưu
+                  </button>
+                </div>
+              )}
 
               <button
                 type="button"

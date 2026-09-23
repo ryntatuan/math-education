@@ -51,7 +51,7 @@ export const PET_TYPES = [
     name: "Mèo Mướp Siêu Nhẩm",
     icon: "🐱",
     desc: "Nhanh nhẹn, mê các con số",
-    price: 200,
+    price: 500,
     sound: "Meo meo!",
   },
   {
@@ -59,7 +59,7 @@ export const PET_TYPES = [
     name: "Corgi Thông Thái",
     icon: "🐶",
     desc: "Trung thành, thích nhẩm toán nhanh",
-    price: 300,
+    price: 2000,
     sound: "Gâu gâu!",
   },
   {
@@ -67,7 +67,7 @@ export const PET_TYPES = [
     name: "Rồng Nhỏ May Mắn",
     icon: "🐲",
     desc: "Mạnh mẽ, tỏa năng lượng tích cực",
-    price: 800,
+    price: 5000,
     sound: "Grừ grừ!",
   },
 ];
@@ -267,6 +267,25 @@ const usePetStore = create(
           petType: found.id,
           petName: found.name,
           petSpeech: `Tớ đã trở lại! Chúng ta tiếp tục học nào! 🚀`,
+        });
+      },
+
+      /**
+       * Đổi tên thú cưng SAU khi đã nhận nuôi.
+       * Trước đây bé chỉ đặt tên được MỘT LẦN lúc nhận nuôi rồi không sửa được nữa
+       * (người dùng báo 2026-09-23).
+       *
+       * Tên rỗng / toàn dấu cách ⇒ GIỮ NGUYÊN tên cũ, không xoá tên của bé.
+       * Cắt 16 ký tự cho khớp `maxLength` của ô nhập và cho vừa thẻ tên trên widget.
+       */
+      renamePet: (name) => {
+        const tenMoi = String(name ?? "")
+          .trim()
+          .slice(0, 16);
+        if (!tenMoi) return;
+        set({
+          petName: tenMoi,
+          petSpeech: `Tớ là ${tenMoi}! Rất vui được gặp bạn! 🐾`,
         });
       },
 
