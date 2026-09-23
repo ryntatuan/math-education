@@ -165,6 +165,22 @@ function ContentSeen({ progress, currentVersion }) {
   );
 }
 
+/**
+ * Suy giảm 2% cho mỗi GIỜ TRÒN đã trôi qua — phải giống hệt client
+ * (`usePetStore.decayByHour`), nếu không phụ huynh và bé sẽ thấy hai số khác nhau.
+ * Mốc thời gian là ISO string đọc từ `child_pets`.
+ */
+const DECAY_PER_HOUR = 2;
+const decayByHour = (value, isoTimestamp) => {
+  const raw = Number(value) || 0;
+  if (!isoTimestamp) return Math.round(raw);
+  const hours = Math.max(
+    0,
+    Math.floor((Date.now() - new Date(isoTimestamp).getTime()) / 3600000),
+  );
+  return Math.max(0, Math.min(100, Math.round(raw - hours * DECAY_PER_HOUR)));
+};
+
 export default function ChildProfilePage() {
   const { childId } = useParams();
 
@@ -202,7 +218,7 @@ export default function ChildProfilePage() {
                                         completed_lessons, exercise_results, math_race_wins,
                                         total_games_played, updated_at,
                                         content_version, content_source, content_seen_at),
-               pet:child_pets (has_pet, pet_name, pet_type, level, exp, hunger, happiness, stage)`,
+               pet:child_pets (*)`,
               )
               .eq("id", childId)
               .maybeSingle(),
@@ -608,12 +624,35 @@ export default function ChildProfilePage() {
         {!pet?.has_pet ? (
           <Empty>Bé chưa nuôi thú cưng.</Empty>
         ) : (
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-            <Stat label="Tên" value={pet.pet_name} hint={pet.pet_type} />
-            <Stat label="Cấp" value={pet.level} hint={`${pet.exp} EXP`} />
-            <Stat label="Đói bụng" value={`${pet.hunger}%`} />
-            <Stat label="Vui vẻ" value={`${pet.happiness}%`} />
-          </div>
+          (() => {
+            const materializedHunger = decayByHour(
+              pet.hunger,
+              pet.last_fed_time,
+            );
+            const materializedHappiness = decayByHour(
+              pet.happiness,
+              pet.last_happy_time,
+            );
+            return (
+              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+                <Stat label="Tên" value={pet.pet_name} hint={pet.pet_type} />
+                <Stat label="Cấp" value={pet.level} hint={`${pet.exp} EXP`} />
+                <Stat
+                  label="Đói bụng"
+                  value={`${materializedHunger}%`}
+                  hint={pet.last_fed_time ? `Gốc: ${pet.hunger}%` : undefined}
+                />
+                <Stat
+                  label="Vui vẻ"
+                  value={`${materializedHappiness}%`}
+                  hint={
+                    pet.last_happy_time ? `Gốc: ${pet.happiness}%` : undefined
+                  }
+                />
+                <Stat label="Hộp Quà" value={pet.unopened_gift_boxes || 0} />
+              </div>
+            );
+          })()
         )}
       </Card>
     </div>

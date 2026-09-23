@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Ultra Soft Drop Shadow -->
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#000000" flood-opacity="0.12"/>
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000000" flood-opacity="0.1"/>
+    </filter>
+    
+    <!-- 3D Bevel for Heads -->
+    <filter id="headBevel" x="-20%" y="-20%" width="140%" height="140%">
+      <!-- Bottom shadow for volume -->
+      <feGaussianBlur in="SourceAlpha" stdDeviation="15" result="blurShadow"/>
+      <feOffset in="blurShadow" dx="0" dy="15" result="offsetShadow"/>
+      <feComposite in="offsetShadow" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowDiff"/>
+      <feFlood flood-color="#000000" flood-opacity="0.25" result="shadowColor"/>
+      <feComposite in="shadowColor" in2="shadowDiff" operator="in" result="innerShadow"/>
+      
+      <!-- Top highlight for volume -->
+      <feGaussianBlur in="SourceAlpha" stdDeviation="8" result="blurLight"/>
+      <feOffset in="blurLight" dx="0" dy="-8" result="offsetLight"/>
+      <feComposite in="offsetLight" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="lightDiff"/>
+      <feFlood flood-color="#ffffff" flood-opacity="0.7" result="lightColor"/>
+      <feComposite in="lightColor" in2="lightDiff" operator="in" result="innerHighlight"/>
+      
+      <feMerge>
+        <feMergeNode in="SourceGraphic"/>
+        <feMergeNode in="innerShadow"/>
+        <feMergeNode in="innerHighlight"/>
+      </feMerge>
+    </filter>
+    
+    <filter id="blurSoft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="15"/>
+    </filter>
+    
+    <!-- Glossy Eye Material -->
+    <radialGradient id="eyeShine" cx="35%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#4F3628"/>
+      <stop offset="100%" stop-color="#140804"/>
+    </radialGradient>
+    <radialGradient id="eyeShineGreen" cx="35%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#216B40"/>
+      <stop offset="100%" stop-color="#0C361E"/>
+    </radialGradient>
+    
+    <linearGradient id="owlBase" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#9C6B4A"/>
+      <stop offset="100%" stop-color="#553420"/>
+    </linearGradient>
+    <linearGradient id="owlFace" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFF0DF"/>
+      <stop offset="100%" stop-color="#DEB693"/>
+    </linearGradient>
+    <linearGradient id="owlBelly" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FCE1D4"/>
+      <stop offset="100%" stop-color="#C58572"/>
+    </linearGradient>
+    <radialGradient id="owlEyeBg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFDD4A"/>
+      <stop offset="100%" stop-color="#E89F15"/>
+    </radialGradient>
+    <clipPath id="owlClip">
+      <rect x="116" y="130" width="280" height="250" rx="110"/>
+    </clipPath>
+    <linearGradient id="owlEar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#734B31"/>
+      <stop offset="100%" stop-color="#402414"/>
+    </linearGradient>
+    <linearGradient id="owlEarInner" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#DEB693"/>
+      <stop offset="100%" stop-color="#C58572"/>
+    </linearGradient>
+    
+  </defs>
+
+    <g filter="url(#softShadow)">
+      <!-- Feet -->
+      <path d="M 176 360 A 25 25 0 0 0 226 360 Z" fill="#D45A22"/>
+      <path d="M 286 360 A 25 25 0 0 0 336 360 Z" fill="#D45A22"/>
+      
+      <!-- Cute Cat-like Tufts (Ears) -->
+      <path d="M 140 160 C 110 80, 160 50, 200 130 Z" fill="url(#owlEar)"/>
+      <path d="M 372 160 C 402 80, 352 50, 312 130 Z" fill="url(#owlEar)"/>
+      <!-- Inner Tufts -->
+      <path d="M 150 150 C 130 90, 160 70, 185 125 Z" fill="url(#owlEarInner)"/>
+      <path d="M 362 150 C 382 90, 352 70, 327 125 Z" fill="url(#owlEarInner)"/>
+      
+      <!-- Head Group -->
+      <g filter="url(#headBevel)">
+        <!-- Head Base -->
+        <rect x="116" y="130" width="280" height="250" rx="110" fill="url(#owlBase)"/>
+        
+        <g clip-path="url(#owlClip)">
+          <!-- Cream Belly -->
+          <ellipse cx="256" cy="340" rx="110" ry="80" fill="url(#owlBelly)"/>
+          
+          <!-- Beautiful Facial Disc (Figure 8 mask) -->
+          <ellipse cx="186" cy="230" rx="75" ry="85" fill="url(#owlFace)"/>
+          <ellipse cx="326" cy="230" rx="75" ry="85" fill="url(#owlFace)"/>
+        </g>
+      </g>
+    </g>
+    
+    <!-- Dark Brow lines -->
+    <path d="M 170 160 Q 186 150 200 165" fill="none" stroke="#402414" stroke-width="8" stroke-linecap="round"/>
+    <path d="M 342 160 Q 326 150 312 165" fill="none" stroke="#402414" stroke-width="8" stroke-linecap="round"/>
+    
+    
+        <g stroke="#B8581F" stroke-width="10" filter="url(#headBevel)">
+            <path d="M 138 235 A 48 48 0 0 0 234 235 Z" fill="url(#owlEyeBg)"/>
+            <path d="M 278 235 A 48 48 0 0 0 374 235 Z" fill="url(#owlEyeBg)"/>
+        </g>
+        <circle cx="186" cy="250" r="14" fill="url(#eyeShine)"/>
+        <circle cx="326" cy="250" r="14" fill="url(#eyeShine)"/>
+        <path d="M 138 220 L 234 235 M 374 220 L 278 235" stroke="#B8581F" stroke-width="10" stroke-linecap="round"/>
+        <!-- Tears -->
+        <path d="M186 265 L186 300 M326 265 L326 300" stroke="#56CCF2" stroke-width="10" stroke-linecap="round"/>
+        
+    <path d="M 236 295 L 276 295 L 256 275 Z" fill="#F47B36" filter="url(#headBevel)"/>
+    
+</svg>

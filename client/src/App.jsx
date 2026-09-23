@@ -11,6 +11,7 @@ import Header from "./components/layout/Header";
 import BottomNav from "./components/layout/BottomNav";
 import AuthModal from "./components/auth/AuthModal";
 import DownloadAppModal from "./components/modals/DownloadAppModal";
+import BoosterTimer from "./components/layout/BoosterTimer";
 import HomePage from "./pages/HomePage";
 import GradePage, { ChapterPage } from "./pages/GradePage";
 import MascotBubble from "./components/mascot/MascotBubble";
@@ -92,6 +93,7 @@ function AppLayout() {
       {!isLessonRoute && <BottomNav />}
       <AuthModal />
       <DownloadAppModal />
+      <BoosterTimer />
       {!isLessonRoute && (
         <MascotBubble
           text="Chào bạn! Hôm nay mình học toán nhé! 🎓"

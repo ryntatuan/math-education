@@ -9,8 +9,6 @@
   box-sizing: border-box;
 }
 
-
-
 /* ========================================
    CỘT TRÁI: TRỤC HỌC TẬP CHÍNH
    ======================================== */
@@ -94,7 +92,9 @@
 .home-grade-btn.active {
   background: linear-gradient(135deg, #ecfeff 0%, #cffafe 100%);
   border-color: #06b6d4;
-  box-shadow: 0 4px 0 #0891b2, 0 6px 16px rgba(6, 182, 212, 0.2);
+  box-shadow:
+    0 4px 0 #0891b2,
+    0 6px 16px rgba(6, 182, 212, 0.2);
   transform: translateY(-2px);
 }
 
@@ -224,7 +224,9 @@
   border: 2px solid #e2e8f0;
   border-radius: var(--radius-xl, 20px);
   padding: clamp(12px, 1.1vw, 18px) clamp(14px, 1.3vw, 20px);
-  box-shadow: 0 4px 0 #cbd5e1, 0 4px 14px rgba(0, 0, 0, 0.03);
+  box-shadow:
+    0 4px 0 #cbd5e1,
+    0 4px 14px rgba(0, 0, 0, 0.03);
   display: flex;
   gap: clamp(12px, 1vw, 16px);
   cursor: pointer;
@@ -235,7 +237,9 @@
 
 .home-chapter-card:hover {
   border-color: #38bdf8;
-  box-shadow: 0 6px 0 #38bdf8, 0 8px 20px rgba(56, 189, 248, 0.15);
+  box-shadow:
+    0 6px 0 #38bdf8,
+    0 8px 20px rgba(56, 189, 248, 0.15);
 }
 
 .chapter-card-icon {
@@ -507,7 +511,9 @@
   gap: 12px;
   cursor: pointer;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .home-arena-mini-card:hover {
@@ -565,7 +571,10 @@
   gap: 10px;
   cursor: pointer;
   box-shadow: 0 4px 16px rgba(16, 185, 129, 0.1);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
 }
 
 .home-download-app-card:hover {
@@ -631,7 +640,7 @@
   padding: 8px 14px;
   font-size: 0.86rem;
   font-weight: 800;
-  font-family: 'Quicksand', var(--font-heading), sans-serif;
+  font-family: "Quicksand", var(--font-heading), sans-serif;
   box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
   cursor: pointer;
   transition: all 0.2s ease;
@@ -651,17 +660,24 @@
     gap: 20px;
   }
 
+  /* LƯU Ý: khoảng 1025–1240px cột phụ VẪN nằm bên phải (chỉ rộng 340–420px)
+     nên KHÔNG được chia cột ở đây — chia ra là hai cột ~170px, chữ dồn cục.
+     Việc xếp lại cột phụ nằm ở media ≤1024px bên dưới. */
+}
+
+/* ≤1024px: cột phụ tụt xuống dưới nội dung chính ⇒ xếp MỘT cột, mỗi thẻ đủ chiều rộng.
+   - `align-items: start` để thẻ thú cưng KHÔNG bị kéo cao bằng thẻ Nhiệm vụ cùng hàng
+     (trước đây grid stretch làm thẻ thú cưng 390px trong khi nội dung chỉ ~150px).
+   - 1 cột nên Đấu trường và Tải app cùng chiều rộng, không còn thẻ lẻ loi nửa hàng. */
+@media (max-width: 1024px) {
   .companion-sticky-column {
     position: static;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: 14px;
     width: 100%;
     box-sizing: border-box;
-  }
-
-  .home-arena-mini-card {
-    grid-column: 1 / -1;
   }
 }
 

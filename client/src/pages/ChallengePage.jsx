@@ -887,7 +887,7 @@ export default function ChallengePage() {
                       actionLabel: "Chăm thú ngay",
                       path: "/games?tab=pet",
                       icon: "🐾",
-                      desc: "Cho bạn thú cưng của bé ăn một bữa ngon miệng để tăng độ vui",
+                      desc: "Cho thú cưng ăn hoặc chơi cùng bé để tăng độ no, độ vui và XP",
                     },
                   };
                   const action = questActions[quest.id] || {

@@ -612,7 +612,9 @@ export default function ParentDashboard() {
                 <Flame size={28} />
               </div>
               <div className="stat-data-box">
-                <span className="stat-val number">{currentStreak} ngày</span>
+                <span className="stat-val">
+                  <span className="number">{currentStreak}</span> ngày
+                </span>
                 <span className="stat-lbl">Chuỗi ngày chăm chỉ</span>
               </div>
             </div>
@@ -622,7 +624,9 @@ export default function ParentDashboard() {
                 <BookOpen size={28} />
               </div>
               <div className="stat-data-box">
-                <span className="stat-val number">{totalLessons} bài</span>
+                <span className="stat-val">
+                  <span className="number">{totalLessons}</span> bài
+                </span>
                 <span className="stat-lbl">Bài học hoàn thành</span>
               </div>
             </div>

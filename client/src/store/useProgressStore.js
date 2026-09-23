@@ -109,7 +109,7 @@ const DEFAULT_DAILY_QUESTS = [
   },
   {
     id: "quest_pet",
-    title: "Cho thú cưng ăn 1 bữa",
+    title: "Cho thú cưng ăn hoặc chơi",
     target: 1,
     current: 0,
     reward: 10,
@@ -240,6 +240,21 @@ const useProgressStore = create(
             })),
             dailyQuestsClaimed: false,
           });
+          return;
+        }
+
+        // Cùng ngày: đồng bộ lại phần CHỮ của nhiệm vụ (tên/icon) để khi app
+        // đổi nội dung thì bé thấy ngay, mà không mất tiến độ đã làm.
+        if (dailyQuests?.length) {
+          const synced = dailyQuests.map((q) => {
+            const fresh = DEFAULT_DAILY_QUESTS.find((d) => d.id === q.id);
+            return fresh && (fresh.title !== q.title || fresh.icon !== q.icon)
+              ? { ...q, title: fresh.title, icon: fresh.icon }
+              : q;
+          });
+          if (synced.some((q, i) => q !== dailyQuests[i])) {
+            set({ dailyQuests: synced });
+          }
         }
       },
 

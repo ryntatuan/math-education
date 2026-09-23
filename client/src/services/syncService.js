@@ -47,6 +47,39 @@ export function setActiveChildIdGetter(fn) {
 }
 
 /**
+ * Ghi dòng thú cưng lên `child_pets`.
+ *
+ * Cột `last_happy_time` chỉ có sau migration `0019_pet_happiness_decay.sql`. Nếu DB chưa
+ * chạy SQL đó mà mình vẫn gửi kèm trường này, PostgREST trả `PGRST204` và **hỏng cả lượt
+ * lưu** — mọi thay đổi về thú (cho ăn, lên cấp…) đều mất mà chỉ hiện trong console. Nên
+ * gặp đúng lỗi đó thì gửi lại lần hai, bỏ cột mới đi.
+ */
+async function upsertPetRow(payload) {
+  const { error } = await supabase.from("child_pets").upsert(payload);
+  if (!error) return null;
+
+  const missingColumn = /last_happy_time|PGRST204|does not exist/i.test(
+    `${error.code || ""} ${error.message || ""}`,
+  );
+  if (!missingColumn) {
+    console.error("Lỗi lưu thú cưng lên Cloud:", error);
+    return error;
+  }
+
+  const { last_happy_time: _skipped, ...safePayload } = payload;
+  const { error: retryError } = await supabase
+    .from("child_pets")
+    .upsert(safePayload);
+  if (retryError) {
+    console.error(
+      "Lỗi lưu thú cưng lên Cloud (bản không cột mới):",
+      retryError,
+    );
+  }
+  return retryError || null;
+}
+
+/**
  * Lên lịch lưu THÚ CƯNG lên đám mây. Tách khỏi `scheduleCloudSync` vì thú cưng nằm ở bảng
  * `child_pets`, còn nhịp kia chỉ ghi `child_profiles` + `child_progress` + `leaderboard`.
  */
@@ -249,17 +282,27 @@ export const syncService = {
 
       // Đồng bộ thú cưng
       if (localPetData.hasPet) {
-        await supabase.from("child_pets").upsert({
+        await upsertPetRow({
           child_id: newChild.id,
           has_pet: true,
-          pet_type: localPetData.petType || "corgi",
-          pet_name: localPetData.petName || "Bạn Cún Nhỏ",
+          pet_type: localPetData.petType || "owl",
+          pet_name: localPetData.petName || "Bạn Cú Nhỏ",
+          unlocked_pets: localPetData.unlockedPets || ["owl"],
           hunger: localPetData.hunger || 80,
           happiness: localPetData.happiness || 90,
           level: localPetData.level || 1,
           exp: localPetData.exp || 0,
-          stage: localPetData.stage || "baby",
           inventory: localPetData.inventory || {},
+          unopened_gift_boxes: localPetData.unopenedGiftBoxes || 0,
+          // Tái dùng cột `stage` có sẵn để lưu ngoại hình bé chọn
+          // ("auto" = theo cấp). Không cần migration mới.
+          stage: localPetData.petEvolution || "auto",
+          last_fed_time: new Date(
+            localPetData.lastFedTime || Date.now(),
+          ).toISOString(),
+          last_happy_time: new Date(
+            localPetData.lastHappinessTime || Date.now(),
+          ).toISOString(),
         });
       }
 
@@ -360,17 +403,53 @@ export const syncService = {
         .single();
 
       if (pet && pet.has_pet) {
+        const fedTime =
+          typeof pet.last_fed_time === "string"
+            ? Date.parse(pet.last_fed_time)
+            : Number(pet.last_fed_time) || Date.now();
+        // Mốc suy giảm độ vui. Cột mới từ migration 0019 -> DB cũ thì lấy "bây giờ".
+        const happyTime =
+          typeof pet.last_happy_time === "string"
+            ? Date.parse(pet.last_happy_time)
+            : Number(pet.last_happy_time) || Date.now();
+
         usePetStore.setState({
           hasPet: true,
           petType: pet.pet_type,
           petName: pet.pet_name,
+          unlockedPets: pet.unlocked_pets || ["owl"],
           hunger: pet.hunger,
           happiness: pet.happiness,
           level: pet.level,
           exp: pet.exp,
-          stage: pet.stage,
+          expForNextLevel: usePetStore
+            .getState()
+            .getExpForNextLevel(pet.level || 1),
           inventory: pet.inventory || {},
+          unopenedGiftBoxes: pet.unopened_gift_boxes || 0,
+          // `stage` cũ (app phiên bản trước ghi "baby"/"teen"/"master") sẽ
+          // không khớp id nào ⇒ `getActiveEvolution` tự rơi về theo cấp.
+          petEvolution: pet.stage || "auto",
+          lastFedTime: fedTime,
+          lastHappinessTime: happyTime,
         });
+
+        // Tặng 1 quả táo miễn phí mỗi ngày (Reset lúc 7h sáng VN - UTC 0h)
+        const todayUTC = new Date().toISOString().split("T")[0];
+        if (pet.last_free_food_date !== todayUTC) {
+          usePetStore.getState().addFood("apple", 1);
+          try {
+            const { error: updateErr } = await supabase
+              .from("child_pets")
+              .update({
+                last_free_food_date: todayUTC,
+              })
+              .eq("child_id", childId);
+            if (updateErr) console.warn("Lỗi lưu táo miễn phí", updateErr);
+          } catch (err) {
+            console.warn("Lỗi lưu táo miễn phí", err);
+          }
+        }
       } else {
         usePetStore.setState({
           hasPet: false,
@@ -452,17 +531,25 @@ export const syncService = {
     if (!petState.hasPet) return;
 
     try {
-      await supabase.from("child_pets").upsert({
+      await upsertPetRow({
         child_id: childId,
         has_pet: true,
         pet_type: petState.petType,
         pet_name: petState.petName,
+        unlocked_pets: petState.unlockedPets || ["owl"],
         hunger: petState.hunger,
         happiness: petState.happiness,
         level: petState.level,
         exp: petState.exp,
-        stage: petState.stage,
         inventory: petState.inventory,
+        unopened_gift_boxes: petState.unopenedGiftBoxes || 0,
+        stage: petState.petEvolution || "auto",
+        last_fed_time: new Date(
+          petState.lastFedTime || Date.now(),
+        ).toISOString(),
+        last_happy_time: new Date(
+          petState.lastHappinessTime || Date.now(),
+        ).toISOString(),
         updated_at: new Date().toISOString(),
       });
     } catch (e) {
@@ -528,9 +615,13 @@ export function setupAutoSync() {
       state.happiness !== prevState.happiness ||
       state.level !== prevState.level ||
       state.exp !== prevState.exp ||
-      state.stage !== prevState.stage ||
       state.petName !== prevState.petName ||
       state.petType !== prevState.petType ||
+      state.unlockedPets !== prevState.unlockedPets ||
+      state.unopenedGiftBoxes !== prevState.unopenedGiftBoxes ||
+      state.petEvolution !== prevState.petEvolution ||
+      state.lastFedTime !== prevState.lastFedTime ||
+      state.lastHappinessTime !== prevState.lastHappinessTime ||
       state.inventory !== prevState.inventory
     ) {
       schedulePetSync();

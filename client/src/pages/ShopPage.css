@@ -93,6 +93,15 @@
 .shop-item-emoji {
   font-size: 4rem;
   padding: var(--space-3) 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Mặt thú vẽ SVG (PetAvatar.jsx) trong thẻ thú ở Cửa Hàng */
+.shop-pet-avatar {
+  width: 88px;
+  height: 88px;
 }
 
 .shop-item-info h3 {
@@ -109,4 +118,56 @@
 .shop-buy-btn {
   width: 100%;
   margin-top: auto;
+}
+
+/* Shop Tabs */
+.shop-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.shop-tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 20px;
+  background: #f8f9fa;
+  border: 2px solid #dee2e6;
+  font-weight: 700;
+  color: #495057;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.shop-tab.active {
+  background: #fff3bf;
+  border-color: #f59f00;
+  color: #d9480f;
+  transform: scale(1.05);
+}
+
+.shop-tab:hover:not(.active) {
+  background: #e9ecef;
+}
+
+.shop-section-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #c2410c;
+  margin-bottom: 16px;
+  margin-top: 16px;
+}
+
+.shop-item-desc {
+  font-size: 0.8rem;
+  color: #2b8a3e;
+  font-weight: bold;
+  margin: 4px 0;
+}
+
+.shop-notification.error {
+  background: #fa5252;
 }

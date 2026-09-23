@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Ultra Soft Drop Shadow -->
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#000000" flood-opacity="0.12"/>
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000000" flood-opacity="0.1"/>
+    </filter>
+    
+    <!-- 3D Bevel for Heads -->
+    <filter id="headBevel" x="-20%" y="-20%" width="140%" height="140%">
+      <!-- Bottom shadow for volume -->
+      <feGaussianBlur in="SourceAlpha" stdDeviation="15" result="blurShadow"/>
+      <feOffset in="blurShadow" dx="0" dy="15" result="offsetShadow"/>
+      <feComposite in="offsetShadow" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowDiff"/>
+      <feFlood flood-color="#000000" flood-opacity="0.25" result="shadowColor"/>
+      <feComposite in="shadowColor" in2="shadowDiff" operator="in" result="innerShadow"/>
+      
+      <!-- Top highlight for volume -->
+      <feGaussianBlur in="SourceAlpha" stdDeviation="8" result="blurLight"/>
+      <feOffset in="blurLight" dx="0" dy="-8" result="offsetLight"/>
+      <feComposite in="offsetLight" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="lightDiff"/>
+      <feFlood flood-color="#ffffff" flood-opacity="0.7" result="lightColor"/>
+      <feComposite in="lightColor" in2="lightDiff" operator="in" result="innerHighlight"/>
+      
+      <feMerge>
+        <feMergeNode in="SourceGraphic"/>
+        <feMergeNode in="innerShadow"/>
+        <feMergeNode in="innerHighlight"/>
+      </feMerge>
+    </filter>
+    
+    <filter id="blurSoft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="15"/>
+    </filter>
+    
+    <!-- Glossy Eye Material -->
+    <radialGradient id="eyeShine" cx="35%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#4F3628"/>
+      <stop offset="100%" stop-color="#140804"/>
+    </radialGradient>
+    <radialGradient id="eyeShineGreen" cx="35%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#216B40"/>
+      <stop offset="100%" stop-color="#0C361E"/>
+    </radialGradient>
+    
+    <linearGradient id="dragonBase" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#38EF7D"/>
+      <stop offset="100%" stop-color="#11998E"/>
+    </linearGradient>
+    <linearGradient id="dragonBelly" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFF5C3"/>
+      <stop offset="100%" stop-color="#F4D03F"/>
+    </linearGradient>
+    <linearGradient id="dragonGold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FDEB71"/>
+      <stop offset="100%" stop-color="#F8D800"/>
+    </linearGradient>
+    <linearGradient id="dragonFrill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FF9A9E"/>
+      <stop offset="100%" stop-color="#FECFEF"/>
+    </linearGradient>
+    <clipPath id="dragonClip">
+      <rect x="116" y="140" width="280" height="230" rx="100"/>
+    </clipPath>
+    <filter id="gemGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    
+  </defs>
+
+    <g filter="url(#softShadow)">
+      <!-- Majestic Curved Horns -->
+      <path d="M 160 160 C 100 80, 150 20, 200 40 C 180 80, 190 120, 195 150 Z" fill="url(#dragonGold)"/>
+      <path d="M 352 160 C 412 80, 362 20, 312 40 C 332 80, 322 120, 317 150 Z" fill="url(#dragonGold)"/>
+      
+      <!-- Magical Side Frills (Axolotl/Dragon style) -->
+      <!-- Top Frills -->
+      <path d="M 130 180 C 80 160, 50 180, 70 210 C 90 200, 110 210, 120 220 Z" fill="url(#dragonFrill)"/>
+      <path d="M 382 180 C 432 160, 462 180, 442 210 C 422 200, 402 210, 392 220 Z" fill="url(#dragonFrill)"/>
+      <!-- Bottom Frills -->
+      <path d="M 120 240 C 60 250, 70 280, 100 290 C 110 270, 120 270, 130 260 Z" fill="url(#dragonFrill)"/>
+      <path d="M 392 240 C 452 250, 442 280, 412 290 C 402 270, 392 270, 382 260 Z" fill="url(#dragonFrill)"/>
+      
+      <!-- Head Group with Bevel -->
+      <g filter="url(#headBevel)">
+        <!-- Base Teal Scales -->
+        <rect x="116" y="140" width="280" height="230" rx="100" fill="url(#dragonBase)"/>
+        
+        <!-- Clipped Face Details -->
+        <g clip-path="url(#dragonClip)">
+          <!-- Golden Belly/Chest sweeping up -->
+          <ellipse cx="256" cy="350" rx="120" ry="90" fill="url(#dragonBelly)"/>
+          
+          <!-- Cute cheeks -->
+          <circle cx="150" cy="270" r="35" fill="#1ABC9C" opacity="0.6" filter="url(#blurSoft)"/>
+          <circle cx="362" cy="270" r="35" fill="#1ABC9C" opacity="0.6" filter="url(#blurSoft)"/>
+        </g>
+      </g>
+      
+      <!-- Prominent Snout (Drawn on top of face to give depth) -->
+      <ellipse cx="256" cy="285" rx="85" ry="55" fill="url(#dragonBelly)" filter="url(#headBevel)"/>
+    </g>
+    
+    <!-- Glowing Ruby Gemstone on Forehead -->
+    <path d="M 256 145 L 270 165 L 256 185 L 242 165 Z" fill="#FF416C" filter="url(#gemGlow)"/>
+    <path d="M 256 150 L 265 165 L 256 180 L 247 165 Z" fill="#FF8E9F"/>
+    
+    <!-- Dragon Eyebrows/Scales over eyes -->
+    <path d="M 160 180 Q 186 160 210 180" fill="none" stroke="#0E6251" stroke-width="8" stroke-linecap="round"/>
+    <path d="M 352 180 Q 326 160 302 180" fill="none" stroke="#0E6251" stroke-width="8" stroke-linecap="round"/>
+    
+    
+        <ellipse cx="191" cy="225" rx="12" ry="16.2" fill="url(#eyeShineGreen)"/>
+        <ellipse cx="321" cy="225" rx="12" ry="16.2" fill="url(#eyeShineGreen)"/>
+        <path d="M176 210 L206 220" stroke="#0E6251" stroke-width="10" stroke-linecap="round"/>
+        <path d="M336 210 L306 220" stroke="#0E6251" stroke-width="10" stroke-linecap="round"/>
+        
+    
+        <path d="M 231.5 325 Q 256 310 280.5 325" fill="none" stroke="#0E6251" stroke-width="8" stroke-linecap="round"/>
+        
+    
+    <!-- Dragon Nostrils -->
+    <ellipse cx="230" cy="265" rx="5" ry="8" fill="#117A65" transform="rotate(-20 230 265)"/>
+    <ellipse cx="282" cy="265" rx="5" ry="8" fill="#117A65" transform="rotate(20 282 265)"/>
+    
+</svg>

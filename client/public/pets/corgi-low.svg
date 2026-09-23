@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Ultra Soft Drop Shadow -->
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#000000" flood-opacity="0.12"/>
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000000" flood-opacity="0.1"/>
+    </filter>
+    
+    <!-- 3D Bevel for Heads -->
+    <filter id="headBevel" x="-20%" y="-20%" width="140%" height="140%">
+      <!-- Bottom shadow for volume -->
+      <feGaussianBlur in="SourceAlpha" stdDeviation="15" result="blurShadow"/>
+      <feOffset in="blurShadow" dx="0" dy="15" result="offsetShadow"/>
+      <feComposite in="offsetShadow" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowDiff"/>
+      <feFlood flood-color="#000000" flood-opacity="0.25" result="shadowColor"/>
+      <feComposite in="shadowColor" in2="shadowDiff" operator="in" result="innerShadow"/>
+      
+      <!-- Top highlight for volume -->
+      <feGaussianBlur in="SourceAlpha" stdDeviation="8" result="blurLight"/>
+      <feOffset in="blurLight" dx="0" dy="-8" result="offsetLight"/>
+      <feComposite in="offsetLight" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="lightDiff"/>
+      <feFlood flood-color="#ffffff" flood-opacity="0.7" result="lightColor"/>
+      <feComposite in="lightColor" in2="lightDiff" operator="in" result="innerHighlight"/>
+      
+      <feMerge>
+        <feMergeNode in="SourceGraphic"/>
+        <feMergeNode in="innerShadow"/>
+        <feMergeNode in="innerHighlight"/>
+      </feMerge>
+    </filter>
+    
+    <filter id="blurSoft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="15"/>
+    </filter>
+    
+    <!-- Glossy Eye Material -->
+    <radialGradient id="eyeShine" cx="35%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#4F3628"/>
+      <stop offset="100%" stop-color="#140804"/>
+    </radialGradient>
+    <radialGradient id="eyeShineGreen" cx="35%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#216B40"/>
+      <stop offset="100%" stop-color="#0C361E"/>
+    </radialGradient>
+    
+    <linearGradient id="corgiBase" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FEE4C8"/>
+      <stop offset="100%" stop-color="#C58957"/>
+    </linearGradient>
+    <clipPath id="corgiClip">
+      <rect x="116" y="140" width="280" height="230" rx="100"/>
+    </clipPath>
+    
+  </defs>
+
+    <g filter="url(#softShadow)">
+      <!-- Floppy Apple-style Dog Ears -->
+      <rect x="90" y="110" width="85" height="140" rx="42" fill="#5E3A26" transform="rotate(25 132 110)"/>
+      <rect x="337" y="110" width="85" height="140" rx="42" fill="#5E3A26" transform="rotate(-25 379 110)"/>
+      
+      <!-- Head Group with 3D Bevel -->
+      <g filter="url(#headBevel)">
+        <!-- Base Tan Fur -->
+        <rect x="116" y="140" width="280" height="230" rx="100" fill="url(#corgiBase)"/>
+        
+        <!-- Clipped Face Details -->
+        <g clip-path="url(#corgiClip)">
+          <!-- Apple-style Cream Muzzle (No white stripe) -->
+          <ellipse cx="256" cy="315" rx="120" ry="90" fill="url(#corgiMuzzle)"/>
+        </g>
+      </g>
+    </g>
+    
+    <!-- Cute Eyebrows -->
+    <ellipse cx="190" cy="175" rx="10" ry="14" fill="#5E3A26"/>
+    <ellipse cx="322" cy="175" rx="10" ry="14" fill="#5E3A26"/>
+    
+    
+        <ellipse cx="196" cy="225" rx="12" ry="16.2" fill="url(#eyeShine)"/>
+        <ellipse cx="316" cy="225" rx="12" ry="16.2" fill="url(#eyeShine)"/>
+        <path d="M181 210 L211 220" stroke="#24140C" stroke-width="10" stroke-linecap="round"/>
+        <path d="M331 210 L301 220" stroke="#24140C" stroke-width="10" stroke-linecap="round"/>
+        
+    
+        <path d="M 231.5 310 Q 256 295 280.5 310" fill="none" stroke="#4A2612" stroke-width="8" stroke-linecap="round"/>
+        
+    
+    <!-- Wet Dog Nose -->
+    <ellipse cx="256" cy="265" rx="28" ry="18" fill="#2A1610"/>
+    <ellipse cx="256" cy="255" rx="14" ry="6" fill="#8C5C38"/>
+    <ellipse cx="264" cy="257" rx="6" ry="3" fill="#FFFFFF" opacity="0.8" transform="rotate(-10 264 257)"/>
+    
+</svg>

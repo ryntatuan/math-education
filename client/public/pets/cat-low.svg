@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Ultra Soft Drop Shadow -->
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#000000" flood-opacity="0.12"/>
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000000" flood-opacity="0.1"/>
+    </filter>
+    
+    <!-- 3D Bevel for Heads -->
+    <filter id="headBevel" x="-20%" y="-20%" width="140%" height="140%">
+      <!-- Bottom shadow for volume -->
+      <feGaussianBlur in="SourceAlpha" stdDeviation="15" result="blurShadow"/>
+      <feOffset in="blurShadow" dx="0" dy="15" result="offsetShadow"/>
+      <feComposite in="offsetShadow" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowDiff"/>
+      <feFlood flood-color="#000000" flood-opacity="0.25" result="shadowColor"/>
+      <feComposite in="shadowColor" in2="shadowDiff" operator="in" result="innerShadow"/>
+      
+      <!-- Top highlight for volume -->
+      <feGaussianBlur in="SourceAlpha" stdDeviation="8" result="blurLight"/>
+      <feOffset in="blurLight" dx="0" dy="-8" result="offsetLight"/>
+      <feComposite in="offsetLight" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="lightDiff"/>
+      <feFlood flood-color="#ffffff" flood-opacity="0.7" result="lightColor"/>
+      <feComposite in="lightColor" in2="lightDiff" operator="in" result="innerHighlight"/>
+      
+      <feMerge>
+        <feMergeNode in="SourceGraphic"/>
+        <feMergeNode in="innerShadow"/>
+        <feMergeNode in="innerHighlight"/>
+      </feMerge>
+    </filter>
+    
+    <filter id="blurSoft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="15"/>
+    </filter>
+    
+    <!-- Glossy Eye Material -->
+    <radialGradient id="eyeShine" cx="35%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#4F3628"/>
+      <stop offset="100%" stop-color="#140804"/>
+    </radialGradient>
+    <radialGradient id="eyeShineGreen" cx="35%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#216B40"/>
+      <stop offset="100%" stop-color="#0C361E"/>
+    </radialGradient>
+    
+    <linearGradient id="catBase" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFECA1"/>
+      <stop offset="40%" stop-color="#FFB366"/>
+      <stop offset="100%" stop-color="#F25C78"/>
+    </linearGradient>
+    <linearGradient id="catEar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFD659"/>
+      <stop offset="100%" stop-color="#FF9B5E"/>
+    </linearGradient>
+    
+  </defs>
+
+    <g filter="url(#softShadow)">
+      <!-- Ears -->
+      <path d="M120 180 L 130 70 Q 150 60 230 160 Z" fill="url(#catEar)" filter="url(#headBevel)"/>
+      <path d="M140 160 L 145 95 L 200 155 Z" fill="#FFA6A0"/>
+      <path d="M392 180 L 382 70 Q 362 60 282 160 Z" fill="url(#catEar)" filter="url(#headBevel)"/>
+      <path d="M372 160 L 367 95 L 312 155 Z" fill="#FFA6A0"/>
+      
+      <!-- Head -->
+      <rect x="116" y="140" width="280" height="230" rx="100" fill="url(#catBase)" filter="url(#headBevel)"/>
+    </g>
+    
+    <!-- Cheeks Glow -->
+    <circle cx="150" cy="260" r="35" fill="#FF5277" opacity="0.3" filter="url(#blurSoft)"/>
+    <circle cx="362" cy="260" r="35" fill="#FF5277" opacity="0.3" filter="url(#blurSoft)"/>
+    
+    <!-- Whiskers -->
+    <path d="M 150 240 L 80 230 M 140 265 L 70 265" stroke="#E56767" stroke-width="6" stroke-linecap="round"/>
+    <path d="M 362 240 L 432 230 M 372 265 L 442 265" stroke="#E56767" stroke-width="6" stroke-linecap="round"/>
+    
+    
+        <ellipse cx="191" cy="225" rx="12" ry="16.2" fill="url(#eyeShine)"/>
+        <ellipse cx="321" cy="225" rx="12" ry="16.2" fill="url(#eyeShine)"/>
+        <path d="M176 210 L206 220" stroke="#24140C" stroke-width="10" stroke-linecap="round"/>
+        <path d="M336 210 L306 220" stroke="#24140C" stroke-width="10" stroke-linecap="round"/>
+        
+    
+        <path d="M 236.4 295 Q 256 280 275.6 295" fill="none" stroke="#7A1325" stroke-width="8" stroke-linecap="round"/>
+        
+    
+    <!-- Nose -->
+    <path d="M 244 240 L 268 240 L 256 252 Z" fill="#FF3B65"/>
+    
+</svg>

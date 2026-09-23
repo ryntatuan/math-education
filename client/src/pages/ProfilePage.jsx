@@ -505,7 +505,9 @@ export default function ProfilePage() {
         <div className="p-stat-card">
           <div className="p-stat-icon icon-streak">🔥</div>
           <div className="p-stat-data">
-            <span className="p-stat-num number">{currentStreak} Ngày</span>
+            <span className="p-stat-num">
+              <span className="number">{currentStreak}</span> Ngày
+            </span>
             <span className="p-stat-name">Chuỗi Học</span>
           </div>
         </div>

@@ -1,0 +1,65 @@
+.booster-timer {
+  position: fixed;
+  bottom: calc(58px + var(--sab, 0px) + 10px);
+  left: calc(var(--sidebar-width, 260px) + 10px);
+  z-index: 101;
+  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+  border: 2px solid #ff758c;
+  border-radius: 20px;
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(255, 117, 140, 0.3);
+  animation: bounceIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@media (max-width: 1024px) {
+  .booster-timer {
+    left: 10px;
+  }
+}
+
+.booster-timer-icon {
+  font-size: 1.5rem;
+  animation: pulse 1s infinite alternate;
+}
+
+.booster-timer-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.booster-timer-title {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #d6336c;
+  text-transform: uppercase;
+}
+
+.booster-timer-time {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #a61e4d;
+  font-family: monospace;
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.15);
+  }
+}

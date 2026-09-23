@@ -26,7 +26,6 @@ import VisualBlocks from "../components/visuals/VisualBlock";
 import useUserStore from "../store/useUserStore";
 import useProgressStore from "../store/useProgressStore";
 import useAuthStore from "../store/useAuthStore";
-import usePetStore from "../store/usePetStore";
 import { getReward } from "../services/rewardService";
 import curriculum from "../data/curriculum";
 import {
@@ -295,10 +294,6 @@ export default function LessonPage() {
 
       completeLesson(lessonId, stars);
       progressQuest("quest_lesson", 1);
-
-      try {
-        usePetStore.getState().rewardFoodForStudy();
-      } catch (e) {}
 
       const reward = grantReward(rewardKey, lessonId);
       setEarnedReward(reward);

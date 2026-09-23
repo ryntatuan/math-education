@@ -5,7 +5,6 @@ import {
   Circle,
   Gift,
   Sparkles,
-  Flame,
   ArrowRight,
   Lock,
   LogIn,
@@ -22,7 +21,6 @@ import "./DailyQuestsCard.css";
 export default function DailyQuestsCard() {
   const { isGuest, setAuthModalOpen } = useAuthStore();
   const {
-    currentStreak,
     dailyQuests,
     dailyQuestsClaimed,
     initOrResetDailyQuests,
@@ -66,7 +64,7 @@ export default function DailyQuestsCard() {
             </span>
           </div>
           <div className="guest-quest-row-dimmed">
-            <span>🐾 Cho thú cưng ăn 1 bữa</span>
+            <span>🐾 Cho thú cưng ăn hoặc chơi</span>
             <span className="locked-pill">
               <Lock size={11} /> +10 Xu
             </span>
@@ -114,20 +112,9 @@ export default function DailyQuestsCard() {
           <div className="quests-icon-wrap">📋</div>
           <div>
             <h3>Nhiệm Vụ Mỗi Ngày</h3>
-            <p>Học 1 bài hoặc chơi 1 game bất kỳ để giữ chuỗi ngày học 🔥</p>
+            <p>Hoàn thành để nhận Xu và XP mỗi ngày</p>
           </div>
         </div>
-
-        {!isGuest ? (
-          <div className="quests-streak-badge">
-            <Flame size={20} className="streak-fire-icon" />
-            <span className="streak-val number">{currentStreak} Ngày</span>
-          </div>
-        ) : (
-          <div className="quests-guest-pill">
-            <span>⚡ Khách</span>
-          </div>
-        )}
       </div>
 
       {/* Progress Bar */}
@@ -165,20 +152,21 @@ export default function DailyQuestsCard() {
               <span className="quest-title">
                 {quest.icon} {quest.title}
               </span>
-              <span className="quest-count-tag number">
-                {quest.current} / {quest.target}
+              <span className="quest-meta-row">
+                <span className="quest-count-tag number">
+                  {quest.current} / {quest.target}
+                </span>
+                {!isGuest ? (
+                  <span className="quest-reward-pill number">
+                    +{quest.reward} Xu &amp; +{quest.reward * 2} XP
+                  </span>
+                ) : (
+                  <span className="quest-reward-pill guest-reward-tag">
+                    Luyện tập
+                  </span>
+                )}
               </span>
             </div>
-
-            {!isGuest ? (
-              <span className="quest-reward-pill number">
-                +{quest.reward} Xu & +{quest.reward * 2} XP
-              </span>
-            ) : (
-              <span className="quest-reward-pill guest-reward-tag">
-                Luyện tập
-              </span>
-            )}
           </div>
         ))}
       </div>
@@ -190,9 +178,7 @@ export default function DailyQuestsCard() {
         </div>
         <div className="bonus-text">
           <strong>
-            {isGuest
-              ? "Rương Thưởng Mỗi Ngày"
-              : "Rương Thưởng Hoàn Thành Ngày (+50 Xu & 60 XP)"}
+            {isGuest ? "Rương Thưởng Mỗi Ngày" : "Rương Thưởng Ngày"}
           </strong>
           <span>
             {allDone
@@ -200,8 +186,8 @@ export default function DailyQuestsCard() {
                 ? "Đã nhận thưởng hôm nay!"
                 : isGuest
                   ? "Hoàn thành xuất sắc nhiệm vụ hôm nay!"
-                  : "Tuyệt vời! Bấm nhận thưởng nào!"
-              : "Hoàn thành đủ 3 nhiệm vụ để mở rương!"}
+                  : "Tuyệt vời! Bấm nhận +50 Xu & 60 XP!"
+              : "Đủ 3 nhiệm vụ để nhận +50 Xu & 60 XP"}
           </span>
         </div>
 

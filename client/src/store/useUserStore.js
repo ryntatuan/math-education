@@ -70,6 +70,9 @@ const useUserStore = create(
       autoSpeakLesson: false,
       parentPin: null,
 
+      // Boosters (không đồng bộ lên cloud, chỉ lưu local)
+      activeBoosters: [],
+
       // Actions
       setGrade: (grade) => set({ grade }),
       setNickname: (nickname) => set({ nickname }),
@@ -83,6 +86,34 @@ const useUserStore = create(
             ]),
           ),
         })),
+
+      addBooster: ({ type = 'XP', multiplier, durationMinutes }) => {
+        set((state) => {
+          const now = Date.now();
+          // Lọc bùa hết hạn
+          const aliveBoosters = (state.activeBoosters || []).filter(b => b.expiresAt > now);
+          
+          return {
+            activeBoosters: [
+              ...aliveBoosters,
+              {
+                type,
+                multiplier,
+                expiresAt: now + durationMinutes * 60 * 1000,
+              },
+            ],
+          };
+        });
+      },
+
+      cleanupBoosters: () => {
+        set((state) => {
+          const now = Date.now();
+          const alive = (state.activeBoosters || []).filter(b => b.expiresAt > now);
+          if (alive.length === (state.activeBoosters || []).length) return {};
+          return { activeBoosters: alive };
+        });
+      },
 
       /**
        * Cộng Xu. `reason` là khoá trong reward_configs (hoặc 'manual' khi
@@ -109,13 +140,23 @@ const useUserStore = create(
         return false;
       },
 
-      addXp: (amount, reason = "unknown") => {
+      addXp: (baseAmount, reason = "unknown") => {
         try {
-          if (useAuthStore.getState().isGuest) return false;
+          if (useAuthStore.getState().isGuest) return 0;
         } catch {}
         const state = get();
+        const now = Date.now();
+
+        // 1. Áp dụng Bùa XP (nếu có)
+        const aliveBoosters = (state.activeBoosters || []).filter(b => b.type === 'XP' && b.expiresAt > now);
+        const multiplier = aliveBoosters.length > 0 
+          ? Math.max(...aliveBoosters.map(b => b.multiplier)) 
+          : 1;
+        
+        const finalAmount = Math.round(baseAmount * multiplier);
+
         const { base, growth } = getLevelCurve();
-        let newXp = state.xp + amount;
+        let newXp = state.xp + finalAmount;
         let newLevel = state.level;
         let newTotalXp = state.totalXpForNextLevel || base;
 
@@ -129,18 +170,21 @@ const useUserStore = create(
           xp: newXp,
           level: newLevel,
           totalXpForNextLevel: newTotalXp,
+          // Cập nhật mảng bùa (xóa bùa hết hạn)
+          activeBoosters: aliveBoosters,
         });
 
-        logXpEvent(amount, reason);
+        logXpEvent(finalAmount, reason);
 
         // Also contribute to weekly league leaderboard
         try {
-          useLeagueStore.getState().addLeagueXp(amount);
+          useLeagueStore.getState().addLeagueXp(finalAmount);
         } catch (e) {
           // Ignore
         }
 
-        return newLevel > state.level; // returns true if leveled up
+        // Return amount for UI display (so UI shows the multiplied value)
+        return finalAmount;
       },
 
       /**
@@ -151,9 +195,15 @@ const useUserStore = create(
        */
       grantReward: (key, refId = null) => {
         const reward = getReward(key);
+        let grantedXp = 0;
         if (reward.coins) get().addCoins(reward.coins, key, refId);
-        if (reward.xp) get().addXp(reward.xp, key, refId);
-        return reward;
+        if (reward.xp) {
+          grantedXp = get().addXp(reward.xp, key, refId);
+        }
+        return {
+          ...reward,
+          xp: grantedXp || reward.xp // Use the multiplied XP value
+        };
       },
 
       toggleSound: () =>
@@ -177,6 +227,7 @@ const useUserStore = create(
           xp: 0,
           totalXpForNextLevel: 100,
           autoSpeakLesson: false,
+          activeBoosters: [],
         }),
     }),
     {
