@@ -375,14 +375,17 @@ export default function MascotBubble({
                             {quote.emoji}
                           </span>
                         </p>
+                        {/* Câu gốc tiếng Anh — chữ nhỏ hơn, để bé làm quen dần */}
+                        <p className="cheer-quote-original">
+                          “{quote.original}”
+                        </p>
                         <p className="cheer-quote-author">— {quote.author}</p>
                       </div>
                       <button
                         className="action-cycle-btn"
                         onClick={handleNextQuote}
                       >
-                        <Sparkles size={14} /> Câu nói khác ({quoteIndex + 1}/
-                        {MATH_QUOTES.length})
+                        <Sparkles size={14} /> Câu nói khác
                       </button>
                     </div>
                   )}

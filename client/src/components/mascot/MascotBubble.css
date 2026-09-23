@@ -504,11 +504,39 @@
   white-space: nowrap;
 }
 
+/* Câu gốc tiếng Anh: nhỏ hơn, mờ hơn câu tiếng Việt nhưng vẫn đọc được */
+.cheer-quote-original {
+  margin: 0;
+  font-size: 11.5px;
+  font-weight: 600;
+  font-style: italic;
+  line-height: 1.45;
+  color: #7048e8;
+  opacity: 0.78;
+}
+
 .cheer-quote-author {
   margin: 0;
   font-size: 12px;
   font-weight: 700;
   color: #7048e8;
+}
+
+/* Màn hình THẤP: câu tiếng Việt + câu gốc tiếng Anh có thể cao hơn màn hình.
+   Đo được ở 375x667: câu dài nhất cần 486px thân bảng + 134px khoảng cách đáy = 620px,
+   nên chỉ còn 47px dư ở trên. Dưới ngưỡng đó thì CHẶN chiều cao bảng và cho phần thân
+   tự cuộn — nếu không, mép trên bị cắt và bé không đọc được câu nói.
+   (Kèm `justify-content: flex-start` vì thân bảng đang canh giữa: khi nội dung cao hơn
+   khung, canh giữa trong flex sẽ cắt mất phần ĐẦU và không kéo lên được.) */
+@media (max-height: 620px) {
+  .mascot-assistant-panel {
+    max-height: calc(100dvh - 150px);
+  }
+
+  .mascot-panel-body {
+    overflow-y: auto;
+    justify-content: flex-start;
+  }
 }
 
 /* Footer */
