@@ -473,15 +473,36 @@
   text-align: center;
 }
 
+/* Khung chỉ là NỀN — chữ nằm ở hai lớp con: câu nói + tên tác giả.
+   (Trước đây khung tự giữ font/italic; nay tách ra để tên tác giả không bị in nghiêng.) */
 .cheer-card-box {
   background: linear-gradient(135deg, #f3d9fa, #e7f5ff);
   border-radius: var(--radius-xl);
   padding: var(--space-4);
-  font-size: 13px;
-  font-weight: 700;
   color: #5f3dc4;
-  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cheer-quote-text {
+  margin: 0;
+  font-size: 13.5px;
+  font-weight: 700;
+  line-height: 1.55;
   font-style: italic;
+}
+
+.cheer-quote-emoji {
+  font-style: normal;
+  white-space: nowrap;
+}
+
+.cheer-quote-author {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+  color: #7048e8;
 }
 
 /* Footer */

@@ -21,49 +21,13 @@ import soundManager from "../../utils/soundManager";
 // "Kể chuyện" cùng đọc file đó. Trước đây mỗi chỗ giữ một bản nên `thinking` hiện
 // 🤔 ở slide mà 🧐 ở đây.
 import { MASCOT_FACES, faceOf } from "../../data/mascotFaces";
+import { GRADE_MATH_TIPS } from "../../data/mathTips";
+// 🔴 Lời động viên KHÔNG lọc theo lớp — dùng chung một danh sách cho mọi lớp.
+// Xem ghi chú đầu `data/mathQuotes.js` (khác với `mathTips.js` có theo lớp).
+import { MATH_QUOTES, getRandomQuoteIndex } from "../../data/mathQuotes";
 import "./MascotBubble.css";
 
-// Math tips database
-const MATH_TIPS = [
-  {
-    title: "Mẹo Cộng 9 Cực Nhanh 🧠",
-    desc: "Bé hãy cộng với 10 rồi bớt đi 1 đơn vị nhé! Ví dụ: 7 + 9 = (7 + 10) - 1 = 16.",
-  },
-  {
-    title: "Mẹo Trừ 9 Dễ Dàng ⚡",
-    desc: "Lấy số đó trừ đi 10 rồi cộng thêm 1. Ví dụ: 15 - 9 = (15 - 10) + 1 = 6.",
-  },
-  {
-    title: "Bí Mật Bảng Nhân 5 ✋",
-    desc: "Mọi kết quả trong bảng nhân 5 đều có số tận cùng là 0 hoặc 5: 5, 10, 15, 20, 25...",
-  },
-  {
-    title: "Cộng Số Tròn Chục Siêu Dễ 🎯",
-    desc: "Khi tính 30 + 40, bé chỉ cần nhẩm 3 + 4 = 7 rồi thêm số 0 ở sau thành 70!",
-  },
-  {
-    title: "Nhân 4 Bằng Cách Gấp Đôi 💡",
-    desc: "Muốn nhân một số với 4, bé chỉ cần gấp đôi 2 lần. Ví dụ: 6 × 4 -> 6 gấp đôi là 12, 12 gấp đôi là 24!",
-  },
-  {
-    title: "Chia 4 Bằng Cách Chia Đôi ✂️",
-    desc: "Muốn chia cho 4, bé chỉ cần chia 2 hai lần. Ví dụ: 28 : 4 -> 28 chia đôi là 14, 14 chia đôi là 7!",
-  },
-  {
-    title: "Mẹo Bàn Tay Bảng Nhân 9 👐",
-    desc: "Xòe 10 ngón tay, gập ngón thứ N cần nhân: các ngón bên trái là hàng chục, bên phải là hàng đơn vị!",
-  },
-];
-
-// Motivational quotes
-const MOTIVATIONAL_QUOTES = [
-  "Toán học như một trò chơi xếp hình, mỗi bài giải là một chiến thắng rực rỡ! 🧩✨",
-  "Bé rất thông minh và chăm chỉ! Cú Mèo rất tự hào về bé! 🦉❤️",
-  "Sai một bài không sao cả, sai là cơ hội để mình khám phá thêm điều thú vị! 🌈",
-  "Mỗi ngày dành 10 phút luyện toán, não bé sẽ khỏe mạnh như siêu nhân! 🚀💪",
-  "Cố lên trạng nguyên toán học nhí! Tương lai tươi sáng đang chờ đón bé! 🌟",
-  "Đọc kỹ đề bài, suy nghĩ bình tĩnh là chìa khóa giải mọi bài toán! 🔑",
-];
+// Math tips are now imported from data/mathTips.js
 
 // Quiz generator based on grade
 function generateMiniQuiz(grade) {
@@ -169,11 +133,13 @@ export default function MascotBubble({
 
   // Math tips index
   const [tipIndex, setTipIndex] = useState(0);
+  const currentTips = GRADE_MATH_TIPS[grade] || GRADE_MATH_TIPS[1];
 
-  // Cheer quote index
-  const [quoteIndex, setQuoteIndex] = useState(0);
+  // Cheer quote index — mở lên là câu NGẮU NHIÊN để bé không luôn thấy câu đầu
+  const [quoteIndex, setQuoteIndex] = useState(getRandomQuoteIndex);
 
   const moodFace = faceOf(MASCOT_FACES[currentMood] ? currentMood : mood);
+  const quote = MATH_QUOTES[quoteIndex];
 
   const handleToggleMascot = () => {
     if (!isInteractive) return;
@@ -218,12 +184,12 @@ export default function MascotBubble({
   };
 
   const handleNextTip = () => {
-    setTipIndex((prev) => (prev + 1) % MATH_TIPS.length);
+    setTipIndex((prev) => (prev + 1) % currentTips.length);
     setCurrentMood("hint");
   };
 
   const handleNextQuote = () => {
-    setQuoteIndex((prev) => (prev + 1) % MOTIVATIONAL_QUOTES.length);
+    setQuoteIndex((prev) => (prev + 1) % MATH_QUOTES.length);
     setCurrentMood("happy");
   };
 
@@ -384,8 +350,8 @@ export default function MascotBubble({
                   {activeTab === "tips" && (
                     <div className="mascot-tips-section">
                       <div className="tip-card-box">
-                        <h5>{MATH_TIPS[tipIndex].title}</h5>
-                        <p>{MATH_TIPS[tipIndex].desc}</p>
+                        <h5>{currentTips[tipIndex % currentTips.length].title}</h5>
+                        <p>{currentTips[tipIndex % currentTips.length].desc}</p>
                       </div>
                       <button
                         className="action-cycle-btn"
@@ -400,13 +366,21 @@ export default function MascotBubble({
                   {activeTab === "cheer" && (
                     <div className="mascot-cheer-section">
                       <div className="cheer-card-box">
-                        <p>"{MOTIVATIONAL_QUOTES[quoteIndex]}"</p>
+                        <p className="cheer-quote-text">
+                          “{quote.text}”
+                          <span className="cheer-quote-emoji">
+                            {" "}
+                            {quote.emoji}
+                          </span>
+                        </p>
+                        <p className="cheer-quote-author">— {quote.author}</p>
                       </div>
                       <button
                         className="action-cycle-btn"
                         onClick={handleNextQuote}
                       >
-                        <Sparkles size={14} /> Lời chúc khác
+                        <Sparkles size={14} /> Câu nói khác ({quoteIndex + 1}/
+                        {MATH_QUOTES.length})
                       </button>
                     </div>
                   )}
