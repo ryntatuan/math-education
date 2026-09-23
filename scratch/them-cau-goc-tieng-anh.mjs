@@ -77,7 +77,12 @@ const SUA = [
     /text: "Đừng mong có lối tắt[^"]*",(\r?\n)([ \t]*)author: "Euclid",(\r?\n)([ \t]*)emoji: "[^"]*",/,
     (k, n1, i1, n2, i2) =>
       'text: "Mỗi phát minh lớn giải được một bài toán lớn — nhưng trong lời giải của bất cứ bài toán nào cũng có một hạt mầm của phát minh.",' +
-      n1 + i1 + 'author: "George Pólya",' + n2 + i2 + 'emoji: "🎯",',
+      n1 +
+      i1 +
+      'author: "George Pólya",' +
+      n2 +
+      i2 +
+      'emoji: "🎯",',
   ],
   [
     /text: "Lúc đầu con sẽ sai nhiều hơn đúng[^"]*",/,
@@ -133,7 +138,9 @@ const mẫu = /(\r?\n[ \t]*text: "(?:[^"\\]|\\.)*",)(\r?\n[ \t]*)/g;
 let i = 0;
 s = s.replace(mẫu, (khop, dongText, dongSau) => {
   if (i >= EN.length) {
-    console.error("✗ DỪNG: file có nhiều câu hơn số câu tiếng Anh đã chuẩn bị.");
+    console.error(
+      "✗ DỪNG: file có nhiều câu hơn số câu tiếng Anh đã chuẩn bị.",
+    );
     process.exit(1);
   }
   const thutLe = dongSau.replace(/^\r?\n/, "");
@@ -141,7 +148,9 @@ s = s.replace(mẫu, (khop, dongText, dongSau) => {
   return `${dongText}${NL}${thutLe}original: ${en},${dongSau}`;
 });
 if (i !== EN.length) {
-  console.error(`✗ DỪNG: chỉ chèn được ${i}/${EN.length} câu — KHÔNG ghi file.`);
+  console.error(
+    `✗ DỪNG: chỉ chèn được ${i}/${EN.length} câu — KHÔNG ghi file.`,
+  );
   process.exit(1);
 }
 
@@ -159,7 +168,12 @@ console.log(`khoá original: ${soOriginal}/50`);
 console.log(`ký tự hỏng U+FFFD: ${soFFFD}`);
 console.log(`số câu: ${m.MATH_QUOTES.length}`);
 console.log(`mọi câu đủ 4 khoá (text/original/author/emoji): ${du4Khoa}`);
-if (soOriginal !== 50 || soFFFD !== 0 || m.MATH_QUOTES.length !== 50 || !du4Khoa) {
+if (
+  soOriginal !== 50 ||
+  soFFFD !== 0 ||
+  m.MATH_QUOTES.length !== 50 ||
+  !du4Khoa
+) {
   console.error("✗ TỰ KIỂM KHÔNG ĐẠT — xem lại file!");
   process.exit(1);
 }
