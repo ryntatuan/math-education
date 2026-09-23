@@ -827,8 +827,9 @@
 .pet-adopt-overlay {
   position: fixed;
   inset: 0;
-  width: 100vw;
-  height: 100vh;
+  /* KHÔNG dùng `width: 100vw` — nó tính CẢ thanh cuộn dọc nên hộp nền rộng hơn
+     vùng nhìn thấy ~15px, đẩy modal lệch phải khoảng nửa thanh cuộn.
+     `inset: 0` đã cho hộp nền đúng bằng vùng nhìn thấy. */
   height: 100dvh;
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(6px);

@@ -14,6 +14,7 @@ import usePetStore, {
 } from "../../store/usePetStore";
 import useProgressStore from "../../store/useProgressStore";
 import PetAvatar from "./PetAvatar";
+import PetModalOverlay from "./PetModalOverlay";
 import useAuthStore from "../../store/useAuthStore";
 import soundManager from "../../utils/soundManager";
 import fireConfetti from "../../utils/confettiHelper";
@@ -234,7 +235,7 @@ export default function PetWidget({ compact = false }) {
         {/* Adopt Modal */}
         <AnimatePresence>
           {showAdoptModal && (
-            <div className="pet-adopt-overlay">
+            <PetModalOverlay>
               <motion.div
                 className="pet-adopt-modal"
                 initial={{ scale: 0.9, opacity: 0 }}
@@ -303,17 +304,14 @@ export default function PetWidget({ compact = false }) {
                   </Button>
                 </div>
               </motion.div>
-            </div>
+            </PetModalOverlay>
           )}
         </AnimatePresence>
 
         {/* Guest Pet Locked / Intro Modal */}
         <AnimatePresence>
           {showGuestPetModal && (
-            <div
-              className="pet-adopt-overlay"
-              onClick={() => setShowGuestPetModal(false)}
-            >
+            <PetModalOverlay onClick={() => setShowGuestPetModal(false)}>
               <motion.div
                 className="pet-adopt-modal guest-pet-modal"
                 onClick={(e) => e.stopPropagation()}
@@ -385,7 +383,7 @@ export default function PetWidget({ compact = false }) {
                   </Button>
                 </div>
               </motion.div>
-            </div>
+            </PetModalOverlay>
           )}
         </AnimatePresence>
       </div>
@@ -604,7 +602,7 @@ export default function PetWidget({ compact = false }) {
       {/* MODAL CHÚC MỪNG KHI MỞ HỘP QUÀ — hiện giữa màn hình */}
       <AnimatePresence>
         {giftModal && (
-          <div className="pet-adopt-overlay" onClick={() => setGiftModal(null)}>
+          <PetModalOverlay onClick={() => setGiftModal(null)}>
             <motion.div
               className="pet-gift-modal"
               onClick={(e) => e.stopPropagation()}
@@ -632,17 +630,14 @@ export default function PetWidget({ compact = false }) {
                 Tuyệt vời! Học luôn 🚀
               </Button>
             </motion.div>
-          </div>
+          </PetModalOverlay>
         )}
       </AnimatePresence>
 
       {/* MODAL NGOẠI HÌNH — mở khi bé bấm vào thú cưng */}
       <AnimatePresence>
         {showEvolutionModal && (
-          <div
-            className="pet-adopt-overlay"
-            onClick={() => setShowEvolutionModal(false)}
-          >
+          <PetModalOverlay onClick={() => setShowEvolutionModal(false)}>
             <motion.div
               className="pet-evo-modal"
               onClick={(e) => e.stopPropagation()}
@@ -722,7 +717,7 @@ export default function PetWidget({ compact = false }) {
                 Xong
               </Button>
             </motion.div>
-          </div>
+          </PetModalOverlay>
         )}
       </AnimatePresence>
     </div>
