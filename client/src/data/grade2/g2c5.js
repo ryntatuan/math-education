@@ -731,13 +731,19 @@ export const g2c5 = {
           }
         },
         {
-          "type": "visual",
-          "content": {
-            "text": "Đường gấp khúc: cộng các đoạn\nHình tứ giác: 4 cạnh, 4 đỉnh",
+          type: "visual",
+          content: {
+            "text": "Đường gấp khúc: cộng các đoạn",
             "planeShape": {
               "kind": "rectangle",
               "formula": "Hình tứ giác: 4 cạnh · 4 đỉnh"
-            },
+            }
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            "text":"Hình tứ giác: 4 cạnh, 4 đỉnh",
             "ruler": {
               "lengthCm": 10,
               "measure": {
@@ -746,7 +752,7 @@ export const g2c5 = {
               },
               "label": "Đường gấp khúc: cộng độ dài các đoạn lại"
             }
-          }
+          },
         },
         {
           "type": "quiz",

@@ -208,9 +208,9 @@ export const g2c9 = {
           }
         },
         {
-          "type": "visual",
-          "content": {
-            "text": "Khối trụ  →  xếp chồng được\nKhối cầu  →  lăn mọi hướng, không xếp chồng được",
+          type: "visual",
+          content: {
+            "text": "Khối trụ  →  xếp chồng được",
             "solid": {
               "kind": "cylinder",
               "dims": {
@@ -218,7 +218,13 @@ export const g2c9 = {
                 "b": 5
               },
               "label": "Khối trụ — đặt đứng và xếp chồng được"
-            },
+            }
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            "text":"Khối cầu  →  lăn mọi hướng, không xếp chồng được",
             "table": {
               "headers": [
                 "Khối",
@@ -236,7 +242,7 @@ export const g2c9 = {
               ],
               "label": "So sánh khối trụ và khối cầu"
             }
-          }
+          },
         },
         {
           "type": "quiz",

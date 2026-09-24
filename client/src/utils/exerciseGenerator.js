@@ -792,6 +792,105 @@ export const TOPICS = {
   ],
 };
 
+/**
+ * HAI DẠNG BÀI “BÉ TỰ LÀM” CỦA PHẦN LUYỆN TẬP (người dùng yêu cầu 2026-09-25: đưa dạng
+ * “điền dấu vào ô trống” và “mê cung số — bé tự nối” vào Luyện tập).
+ *
+ * 🔴 VÌ SAO ĐỂ RIÊNG, KHÔNG NHÉT VÀO `TOPICS`. `generateQuestion(grade)` **không truyền
+ * chủ đề** đang được Thử thách (`ChallengePage`) và Mini game (`GamesPage`) gọi — hai màn
+ * đó chỉ biết vẽ câu hỏi nhiều lựa chọn. Nếu hai dạng này nằm trong danh sách chung thì
+ * thỉnh thoảng bé vào Thử thách sẽ gặp một câu **không có gì bấm** (mê cung không được vẽ ở đó).
+ * Để riêng ⇒ chỉ trang Luyện tập (chọn chủ đề tường minh) mới sinh ra chúng.
+ */
+export const PRACTICE_EXTRA_TOPICS = {
+  GRADE_1: [
+    {
+      id: "g1_dot_cards",
+      name: "So sánh bằng thẻ chấm — bé chọn dấu",
+      icon: "🎲",
+      chapter: "Chủ đề 1",
+    },
+    {
+      id: "g1_number_maze",
+      name: "Mê cung số (đến 20) — bé tự nối đường về nhà",
+      icon: "🏫",
+      chapter: "Chủ đề 1",
+    },
+  ],
+  GRADE_2: [
+    {
+      id: "g2_number_maze",
+      name: "Mê cung số (đến 99) — bé tự nối đường về nhà",
+      icon: "🏫",
+      chapter: "Chủ đề 1",
+    },
+  ],
+  GRADE_3: [
+    {
+      id: "g3_number_maze",
+      name: "Mê cung số (đến 99) — bé tự nối đường về nhà",
+      icon: "🏫",
+      chapter: "Chủ đề 1",
+    },
+  ],
+  GRADE_4: [
+    {
+      id: "g4_number_maze",
+      name: "Mê cung số (đến 99) — bé tự nối đường về nhà",
+      icon: "🏫",
+      chapter: "Chương 1",
+    },
+  ],
+  GRADE_5: [
+    {
+      id: "g5_number_maze",
+      name: "Mê cung số (đến 99) — bé tự nối đường về nhà",
+      icon: "🏫",
+      chapter: "Chương 1",
+    },
+  ],
+};
+
+/** Số LỚN NHẤT trong bảng mê cung của từng lớp (lớp 1 học đến 20, lớp trên đến 99). */
+const MAZE_MAX = { 1: 20, 2: 99, 3: 99, 4: 99, 5: 99 };
+
+/**
+ * Mã chủ đề “Mê cung số” của một lớp — dùng cho TRÒ CHƠI Mê Cung Về Nhà (và trang Luyện tập).
+ * Lớp ngoài 1–5 thì lấy lớp 1 cho an toàn.
+ */
+export function mazeTopicId(grade) {
+  const g = Number(grade);
+  return `g${g >= 1 && g <= 5 ? g : 1}_number_maze`;
+}
+
+/**
+ * Chọn LUẬT của mê cung: dấu (lớn hơn / nhỏ hơn) và “số chặn cửa” — RANDOM nhưng số luôn ở
+ * KHOẢNG GIỮA dải số của lớp.
+ *
+ * 🔴 VÌ SAO KHÔNG ĐỂ RANDOM CẢ DẢI. Người dùng 2026-09-25: “tuy random con số chặn cửa
+ * nhưng phải đảm bảo không quá lớn hoặc quá nhỏ, để luôn có đủ số lớn hơn và số bé hơn,
+ * tránh trường hợp số chặn cửa là 2 thì bé chỉ việc chọn đường đi toàn số 1”. Chừa **30%
+ * dải số ở mỗi bên** ⇒ lớp 1 (1–20): số chặn cửa 7…14 (mỗi bên ≥ 6 số); lớp 2–5 (1–99):
+ * 30…70 (mỗi bên ≥ 29 số). Không bao giờ ra số 1 hay 2.
+ */
+function mazeRule(grade) {
+  const min = 1;
+  const max = MAZE_MAX[Number(grade)] || 20;
+  const span = max - min;
+  return {
+    min,
+    max,
+    rule: {
+      /** Dấu cũng random: “đi qua ô lớn hơn N” hoặc “đi qua ô nhỏ hơn N”. */
+      op: Math.random() < 0.5 ? ">" : "<",
+      value: randInt(
+        min + Math.round(span * 0.3),
+        max - Math.round(span * 0.3),
+      ),
+    },
+  };
+}
+
 function randInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -833,6 +932,227 @@ function generateOptions(correctAnswer, range = 5, isString = false) {
 const EMOJIS = ["🍎", "🍊", "⭐", "🎈", "🚗", "🐱", "🐶", "🌸", "🍭", "⚽"];
 
 /**
+ * Phương án cho câu “Số N gồm mấy trăm, mấy chục, mấy đơn vị?” — đổi chỗ các hàng để ra
+ * phương án sai.
+ *
+ * 🔴 VÌ SAO PHẢI BÙ THÊM. Khi số có chữ số LẶP (222, 100, 4444…) thì các phương án đổi chỗ
+ * TRÙNG NHAU hết; `withDistinctOptions` gộp trùng, mà đáp án là CHUỖI nên không bù được ⇒
+ * câu hỏi chỉ còn ĐÚNG MỘT lựa chọn là đáp án — bé bấm gì cũng đúng, câu hỏi vô nghĩa.
+ * Đo được (`scratch/soat-cau-hoi-thieu-lua-chon.mjs`): “Số 888…” chỉ còn 1 lựa chọn.
+ * ⇒ Bù bằng cách lệch một hàng đi 1 đơn vị cho tới khi đủ 4 lựa chọn khác nhau.
+ *
+ * @param places [{ value, label }] theo thứ tự hàng lớn → bé, ví dụ
+ *               [{ value: 8, label: "trăm" }, { value: 8, label: "chục" }, …]
+ */
+function digitPlaceOptions(places) {
+  const text = (list) => list.map((p) => `${p.value} ${p.label}`).join(", ");
+  const correct = text(places);
+  const options = new Set([correct]);
+  for (let i = 0; i < places.length; i++)
+    for (let j = i + 1; j < places.length; j++) {
+      const copy = places.map((p) => ({ ...p }));
+      [copy[i].value, copy[j].value] = [copy[j].value, copy[i].value];
+      options.add(text(copy));
+    }
+  for (let offset = 1; options.size < 4 && offset < 10; offset++) {
+    const copy = places.map((p) => ({ ...p }));
+    const at = copy.length - 1; // lệch hàng đơn vị trước
+    copy[at].value = (copy[at].value + offset) % 10;
+    options.add(text(copy));
+  }
+  return { answer: correct, options: shuffle([...options]) };
+}
+
+/**
+ * Tìm một đường đi ĐƠN (đi được cả 4 hướng) từ góc trên-trái tới góc dưới-phải, dài trong
+ * khoảng `minCells`…`maxCells` ô.
+ *
+ * 🔴 VÌ SAO CẦN. Trước đây bộ sinh chỉ “chèn một vòng 2 ô” vào đường ngắn để có đường dài hơn —
+ * nhưng đường ngắn LẮT LÉO thường không còn chỗ cho vòng 2 ô ⇒ đo được **20/200 bảng chỉ có
+ * ĐÚNG MỘT đường về nhà**. Đường dựng sẵn bằng hàm này LUÔN tồn tại (nó chính là một đường đơn
+ * hợp lệ) nên lúc nào cũng có ≥ 2 đường: một 11 ô và một ≥ 13 ô.
+ *
+ * `maxCells` để đường vòng KHÔNG lang thang kín bảng: bản đầu không giới hạn ⇒ có bảng mở tới
+ * 36/36 ô, bảng thành quá dễ và mất hết ngõ cụt.
+ */
+function randomLongRoute(rows, cols, minCells, maxCells, runs = 80) {
+  const STEPS = [
+    [1, 0],
+    [-1, 0],
+    [0, 1],
+    [0, -1],
+  ];
+  for (let run = 0; run < runs; run++) {
+    const seen = new Set(["0-0"]);
+    const path = [[0, 0]];
+    let found = null;
+    const dfs = (r, c) => {
+      if (found) return;
+      if (r === rows - 1 && c === cols - 1) {
+        // Chỉ nhận khi đường đã đủ DÀI nhưng chưa quá dài
+        if (path.length >= minCells) found = path.map((p) => [...p]);
+        return;
+      }
+      if (path.length >= maxCells) return; // hết chỗ lang thang
+      for (const [dr, dc] of shuffle(STEPS)) {
+        const nr = r + dr;
+        const nc = c + dc;
+        if (nr < 0 || nc < 0 || nr >= rows || nc >= cols) continue;
+        const k = `${nr}-${nc}`;
+        if (seen.has(k)) continue;
+        seen.add(k);
+        path.push([nr, nc]);
+        dfs(nr, nc);
+        seen.delete(k);
+        path.pop();
+        if (found) return;
+      }
+    };
+    dfs(0, 0);
+    if (found && found.length >= minCells) return found;
+  }
+  return [];
+}
+
+/**
+ *
+ * Năm tính chất phải LUÔN đúng (người dùng yêu cầu 2026-09-25):
+ *   1. LUÔN VỀ ĐƯỢC NHÀ. Nếu rắc số ngẫu nhiên khắp bảng rồi mới dò đường thì có lần bí,
+ *      bé bấm mãi không xong và tưởng app hỏng.
+ *   2. ĐƯỜNG ĐI LẮT LÉO: đường ngắn nhất là đường chỉ rẽ phải/xuống (đúng bằng khoảng cách
+ *      ngắn nhất có thể) nhưng phải NGOẰN NGOÈO, không phải “xuống thẳng rồi ngang qua”.
+ *      🔴 Đã từng sai vì `shuffle(moves)` — hàm này TRẢ VỀ mảng mới mà kết quả bị bỏ đi,
+ *      nên thứ tự luôn là D,D,D,D,D,R,R,R,R,R. Nay lấy kết quả trả về và còn đòi ≥5 lần đổi hướng.
+ *   3. BẢNG THOÁNG: nhiều ô đi được ⇒ nhiều đường hợp lệ, không chỉ một lối duy nhất.
+ *   4. ÍT NHẤT HAI ĐƯỜNG VỀ NHÀ: một đường NGẮN NHẤT và một đường DÀI HƠN (chèn “vòng” 2 ô).
+ *   5. CÓ NGÕ CỤT: ô đi được nhưng cụt — bé bước vào thì chỉ quay lại được ô vừa đi qua.
+ *
+ * LUẬT `rule = { op, value }` với `op` là `>` (lớn hơn) hoặc `<` (nhỏ hơn) — cả hai dấu đều
+ * random. Ô đi được nhận số ở PHÍA thoả luật, ô còn lại nhận số ở phía kia. Dải số do lớp
+ * quyết định (xem `mazeRule`).
+ * Kiểm chứng: `scratch/kiem-tra-me-cung.mjs`.
+ */
+function buildNumberMaze(rows, cols, min, max, rule) {
+  const inGrid = (r, c) => r >= 0 && c >= 0 && r < rows && c < cols;
+  const key = (r, c) => `${r}-${c}`;
+  const STEPS = [
+    [1, 0],
+    [-1, 0],
+    [0, 1],
+    [0, -1],
+  ];
+  /** Phía số thoả luật: `>` ⇒ số LỚN, `<` ⇒ số BÉ. */
+  const lonHon = rule.op === ">";
+  const openRange = lonHon ? [rule.value + 1, max] : [min, rule.value - 1];
+  const blockRange = lonHon ? [min, rule.value] : [rule.value, max];
+  /** Ô ĐI ĐƯỢC. Ô ngoài tập này nhận số ở phía còn lại nên không nối vào được. */
+  const open = new Set();
+
+  // ── 1. ĐƯỜNG NGẮN NHẤT: chỉ rẽ phải/xuống ⇒ đúng bằng đường ngắn nhất có thể, ──
+  //    nhưng phải LẮT LÉO. Thử nhiều cách trộn, lấy cách có nhiều lần đổi hướng nhất
+  //    (và đạt mức tối thiểu) — nếu chỉ trộn một lần thì có lúc ra “xuống thẳng rồi ngang qua”.
+  const minTurns = Math.max(3, Math.round((rows + cols - 2) / 2));
+  const pickMoves = () => {
+    let best = null;
+    let bestTurns = -1;
+    for (let attempt = 0; attempt < 60; attempt++) {
+      const thu = shuffle([
+        ...Array(rows - 1).fill("D"),
+        ...Array(cols - 1).fill("R"),
+      ]);
+      let turns = 0;
+      for (let i = 1; i < thu.length; i++) if (thu[i] !== thu[i - 1]) turns++;
+      if (turns > bestTurns) {
+        best = thu;
+        bestTurns = turns;
+      }
+      if (turns >= minTurns) return thu;
+    }
+    return best;
+  };
+  const moves = pickMoves();
+  const shortPath = [[0, 0]];
+  let r = 0;
+  let c = 0;
+  for (const m of moves) {
+    if (m === "R") c += 1;
+    else r += 1;
+    shortPath.push([r, c]);
+  }
+  shortPath.forEach(([a, b]) => open.add(key(a, b)));
+
+  // ── 2. ĐƯỜNG DÀI HƠN (13–15 ô): một đường VÒNG VÈO dựng sẵn ──
+  //    Chọn phương án làm bảng mở rộng ÍT NHẤT (≤ 19 ô) để bảng vẫn còn chỗ cho ngõ cụt.
+  let longRoute = [];
+  let bestUnion = Infinity;
+  for (let attempt = 0; attempt < 40; attempt++) {
+    const thu = randomLongRoute(rows, cols, 13, 15);
+    if (!thu.length) continue;
+    const union = new Set([...open, ...thu.map(([a, b]) => key(a, b))]);
+    if (union.size < bestUnion) {
+      bestUnion = union.size;
+      longRoute = thu;
+    }
+    if (bestUnion <= 19) break;
+  }
+  longRoute.forEach(([a, b]) => open.add(key(a, b)));
+
+  // ── 3. MỞ THÊM VÀI Ô cho bảng thoáng (thêm đường hợp lệ + thêm nhánh cụt) ──
+  //    Chỉ mở ô NẰM SÁT một ô đang mở ⇒ mọi ô mở đều tới được từ ô xuất phát. Ưu tiên mở
+  //    loại ô “cụt” (chỉ có ĐÚNG 1 ô mở bên cạnh) để vừa thoáng vừa chắc chắn có ngõ cụt.
+  const frontier = () => {
+    const out = new Set();
+    for (const k of open) {
+      const [a, b] = k.split("-").map(Number);
+      for (const [da, db] of STEPS) {
+        const x = a + da;
+        const y = b + db;
+        if (inGrid(x, y) && !open.has(key(x, y))) out.add(key(x, y));
+      }
+    }
+    return [...out];
+  };
+  const soOMoBenCanh = (k) => {
+    const [a, b] = k.split("-").map(Number);
+    return STEPS.filter(([da, db]) => open.has(key(a + da, b + db))).length;
+  };
+  const allFrontier = frontier();
+  const tipFrontier = allFrontier.filter((k) => soOMoBenCanh(k) === 1);
+  const restFrontier = allFrontier.filter((k) => soOMoBenCanh(k) > 1);
+  [
+    ...shuffle(tipFrontier).slice(0, randInt(1, 2)),
+    ...shuffle(restFrontier).slice(0, randInt(1, 2)),
+  ].forEach((k) => open.add(k));
+
+  // ── 4. CHẮC CHẮN CÓ NGÕ CỤT: ô CHƯA mở mà chỉ có ĐÚNG MỘT ô mở bên cạnh ──
+  //    Mở nó ⇒ từ nó chỉ quay lại được ô vừa đi qua ⇒ cụt thật. Bước này làm SAU cùng
+  //    nên các ô mở thêm ở bước 3 không thể “nối dài” cho nó.
+  const deadEndTips = [];
+  for (let i = 0; i < rows; i++)
+    for (let j = 0; j < cols; j++) {
+      if (open.has(key(i, j))) continue;
+      const soOMoBenCanh = STEPS.filter(([da, db]) =>
+        open.has(key(i + da, j + db)),
+      ).length;
+      if (soOMoBenCanh === 1) deadEndTips.push([i, j]);
+    }
+  if (deadEndTips.length) {
+    const [dr, dc] = deadEndTips[randInt(0, deadEndTips.length - 1)];
+    open.add(key(dr, dc));
+  }
+
+  // ── 5. RẮC SỐ: ô đi được nhận số ở PHÍA THOẢ LUẬT, ô còn lại nhận số ở phía kia ──
+  const grid = Array.from({ length: rows }, (_, i) =>
+    Array.from({ length: cols }, (_, j) =>
+      open.has(key(i, j))
+        ? randInt(openRange[0], openRange[1])
+        : randInt(blockRange[0], blockRange[1]),
+    ),
+  );
+  return { grid, rule };
+}
+
+/**
  * Rút ngẫu nhiên một khuôn khác RỒI sinh câu từ khuôn đó.
  *
  * Dùng cho hai việc:
@@ -856,6 +1176,40 @@ function buildQuestion(grade = 1, topicId = null, depth = 0) {
   if (!topic) {
     const topicArr = TOPICS[`GRADE_${gNum}`] || TOPICS.GRADE_1;
     topic = topicArr[randInt(0, topicArr.length - 1)].id;
+  }
+
+  /**
+   * MÊ CUNG SỐ — DÙNG CHUNG CHO MỌI LỚP (`type: "maze"`).
+   *
+   * Dải số theo lớp (lớp 1: 1–20, lớp 2–5: 1–99) và “số chặn cửa” random nhưng luôn ở
+   * khoảng giữa dải — xem `mazeNumbers`. Đặt TRƯỚC các nhánh lớp 1 vì nó phục vụ mọi lớp.
+   */
+  if (/^g\d+_number_maze$/.test(topic)) {
+    const { min, max, rule } = mazeRule(gNum);
+    const { grid } = buildNumberMaze(6, 6, min, max, rule);
+    const { op, value } = rule;
+    /** Lời đề bài cho bé đọc — khớp đúng dấu đã random (MazePath cũng hiện đúng lời này). */
+    const clause = op === ">" ? `lớn hơn ${value}` : `nhỏ hơn ${value}`;
+    /** Các số bé ĐƯỢC đi qua — lấy từ chính bảng vừa sinh, không viết cứng. */
+    const allowedValues = [
+      ...new Set(
+        grid.flat().filter((v) => (op === ">" ? v > value : v < value)),
+      ),
+    ].sort((a, b) => a - b);
+    return {
+      type: "maze",
+      maze: { grid, rule },
+      question: `Nối đường từ trường về nhà, chỉ đi qua ô có số ${clause}.`,
+      /** Liệt kê số đi được khi dải số còn ngắn (lớp 1); dải 1–99 thì chỉ nói luật cho gọn. */
+      note:
+        allowedValues.length <= 10
+          ? `Chỉ đi qua ô có số ${clause}: ${allowedValues.join(", ")}.`
+          : `Chỉ đi qua ô có số ${clause}.`,
+      options: ["Đã nối xong"],
+      answer: "Đã nối xong",
+      hint: `Ô nối tiếp phải nằm ngay cạnh ô vừa nối và phải ${clause}.`,
+      explanation: "Bé nối được đường về nhà rồi!",
+    };
   }
 
   // ==========================================
@@ -1010,6 +1364,25 @@ function buildQuestion(grade = 1, topicId = null, depth = 0) {
     };
   }
 
+  /**
+   * THẺ CHẤM — bé đếm chấm hai thẻ rồi chọn dấu. `type: "dotCards"` để trang Luyện tập
+   * vẽ hình tương tác (`DotCardsFill`) thay vì 4 nút A/B/C/D.
+   */
+  if (topic === "g1_dot_cards") {
+    const left = randInt(1, 6);
+    const right = randInt(1, 6);
+    const ans = left > right ? ">" : left < right ? "<" : "=";
+    return {
+      type: "dotCards",
+      dots: { left, right },
+      question: "Đếm số chấm ở mỗi thẻ rồi chọn dấu cho đúng nhé!",
+      options: [">", "<", "="],
+      answer: ans,
+      hint: "Đếm chấm hai thẻ rồi so sánh — dấu mở về phía thẻ nhiều chấm hơn.",
+      explanation: `Thẻ trái có ${left} chấm, thẻ phải có ${right} chấm nên ${left} ${ans} ${right}.`,
+    };
+  }
+
   // ==========================================
   // --- GRADE 2 GENERATORS ---
   // ==========================================
@@ -1057,15 +1430,15 @@ function buildQuestion(grade = 1, topicId = null, depth = 0) {
     const hundreds = Math.floor(num / 100);
     const tens = Math.floor((num % 100) / 10);
     const units = num % 10;
+    const { answer, options } = digitPlaceOptions([
+      { value: hundreds, label: "trăm" },
+      { value: tens, label: "chục" },
+      { value: units, label: "đơn vị" },
+    ]);
     return {
       question: `Số ${num} gồm mấy trăm, mấy chục và mấy đơn vị?`,
-      options: shuffle([
-        `${hundreds} trăm, ${tens} chục, ${units} đơn vị`,
-        `${tens} trăm, ${hundreds} chục, ${units} đơn vị`,
-        `${hundreds} trăm, ${units} chục, ${tens} đơn vị`,
-        `${units} trăm, ${tens} chục, ${hundreds} đơn vị`,
-      ]),
-      answer: `${hundreds} trăm, ${tens} chục, ${units} đơn vị`,
+      options,
+      answer,
       hint: "Đếm từ trái sang phải: hàng trăm, hàng chục, hàng đơn vị!",
       explanation: `${num} = ${hundreds} trăm + ${tens} chục + ${units} đơn vị.`,
     };
@@ -1857,16 +2230,72 @@ function buildQuestion(grade = 1, topicId = null, depth = 0) {
   }
 
   if (topic === "g1_shapes_3d") {
+    // Câu hỏi bám ĐÚNG hình của SGK Lớp 1 (tr.94 · tr.100 · tr.101), mỗi câu kèm hình.
+    // 🔴 `visualDisplay` là DESCRIPTOR gọn ({ kind, mode, params }) chứ KHÔNG phải cây JSX:
+    //    cây JSX khi zustand ghi vào localStorage sẽ bị JSON.stringify thành object thường
+    //    rồi React ném "Objects are not valid as a React child" khi tải lại trang.
+    //    `parsePracticeQuestion` (PracticePage) đổi descriptor thành hình.
+    const scene = (mode, params) => ({ kind: "spatialScene", mode, params });
     const cauHoi = [
       {
-        q: "Đồ vật nào có dạng KHỐI LẬP PHƯƠNG?",
-        a: "con xúc xắc 🎲",
-        sai: ["quả bóng ⚽", "lon nước 🥫", "cái đĩa 🍽️"],
+        q: "Mặt trước của con xúc xắc có mấy chấm?",
+        a: 5,
+        sai: [3, 4, 6],
+        visual: scene("diceFaces"),
+        hint: "Mặt trước có 4 chấm ở bốn góc và 1 chấm ở giữa.",
       },
       {
-        q: "Đồ vật nào có dạng KHỐI HỘP CHỮ NHẬT?",
-        a: "hộp sữa 🥛",
-        sai: ["quả bóng ⚽", "viên bi 🔴", "cái nón 🧢"],
+        q: "Mặt bên phải của con xúc xắc có mấy chấm?",
+        a: 6,
+        sai: [3, 4, 5],
+        visual: scene("diceFaces"),
+        hint: "Mặt bên phải có 2 cột, mỗi cột 3 chấm.",
+      },
+      {
+        q: "Mặt trên của con xúc xắc có mấy chấm?",
+        a: 3,
+        sai: [2, 4, 5],
+        visual: scene("diceFaces"),
+        hint: "Mặt trên có 3 chấm nằm chéo nhau.",
+      },
+      {
+        q: "Lâu đài bạn Mai có mấy khối lập phương ở hàng nền?",
+        a: 5,
+        sai: [3, 4, 6],
+        visual: scene("maisCastle"),
+        hint: "Đếm từng khối một ở hàng dưới cùng.",
+      },
+      {
+        q: "Ba chữ T, H, C xếp bằng khối lập phương nhỏ. Chữ nào dùng nhiều khối nhất?",
+        a: "chữ H",
+        sai: ["chữ T", "chữ C", "ba chữ bằng nhau"],
+        visual: scene("lettersTHC"),
+        hint: "Chữ T dùng 5 khối, chữ C dùng 5 khối, chữ H dùng 7 khối.",
+      },
+      {
+        q: "Ba hàng gạch xếp chồng: trên cùng 2 viên, hàng giữa 3 viên, dưới cùng 4 viên. Cả ba hàng có tất cả bao nhiêu viên?",
+        a: 9,
+        sai: [7, 8, 10],
+        visual: scene("brickRows"),
+        hint: "2 + 3 + 4 = 9 viên gạch.",
+      },
+      {
+        q: "Hai hình đều xếp từ khối lập phương nhỏ. Hình nào có nhiều khối hơn?",
+        a: "hai hình bằng nhau",
+        sai: [
+          "hình bên trái nhiều hơn",
+          "hình bên phải nhiều hơn",
+          "không đếm được",
+        ],
+        visual: scene("cubeWalls"),
+        hint: "Hình bên trái có 8 khối, hình bên phải 4 × 2 = 8 khối.",
+      },
+      {
+        q: "Xếp 8 khối lập phương nhỏ thành một khối lập phương lớn thì mỗi tầng có mấy khối?",
+        a: 4,
+        sai: [2, 3, 8],
+        visual: scene("cubeComposite2x2"),
+        hint: "Mỗi tầng 2 hàng, mỗi hàng 2 khối: 4 khối một tầng.",
       },
       {
         q: "Khối lập phương có mấy mặt?",
@@ -1878,13 +2307,31 @@ function buildQuestion(grade = 1, topicId = null, depth = 0) {
         a: "6 mặt",
         sai: ["4 mặt", "5 mặt", "8 mặt"],
       },
+      {
+        q: "Đồ vật nào có dạng KHỐI LẬP PHƯƠNG?",
+        a: "con xúc xắc 🎲",
+        sai: ["quả bóng ⚽", "lon nước 🥫", "cái đĩa 🍽️"],
+      },
+      {
+        q: "Đồ vật nào có dạng KHỐI HỘP CHỮ NHẬT?",
+        a: "viên gạch 🧱",
+        sai: ["quả bóng ⚽", "viên bi 🔴", "cái nón 🧢"],
+      },
+      {
+        q: "Khối hộp chữ nhật khác khối lập phương ở điểm nào?",
+        a: "các mặt không đều bằng nhau",
+        sai: ["có 4 mặt", "không xếp chồng được", "không có mặt nào"],
+      },
     ];
     const chon = cauHoi[randInt(0, cauHoi.length - 1)];
     return {
       question: chon.q,
       options: shuffle([chon.a, ...chon.sai]),
       answer: chon.a,
-      hint: "Khối lập phương có 6 mặt đều là hình vuông; khối hộp chữ nhật có 6 mặt là hình chữ nhật!",
+      visualDisplay: chon.visual,
+      hint:
+        chon.hint ||
+        "Khối lập phương có 6 mặt đều là hình vuông; khối hộp chữ nhật có 6 mặt không đều nhau!",
       explanation: `Đáp án đúng là: ${chon.a}.`,
     };
   }
@@ -1899,6 +2346,8 @@ function buildQuestion(grade = 1, topicId = null, depth = 0) {
         "g1_numbers_100",
         "g1_add_sub_100",
         "g1_shapes",
+        "g1_shapes_3d",
+        "g1_position",
         "g1_time_clock",
       ],
       depth,
@@ -2204,15 +2653,16 @@ function buildQuestion(grade = 1, topicId = null, depth = 0) {
     const tram = Math.floor((n % 1000) / 100);
     const chuc = Math.floor((n % 100) / 10);
     const dv = n % 10;
+    const { answer, options } = digitPlaceOptions([
+      { value: nghin, label: "nghìn" },
+      { value: tram, label: "trăm" },
+      { value: chuc, label: "chục" },
+      { value: dv, label: "đơn vị" },
+    ]);
     return {
       question: `Số ${n} gồm mấy nghìn, mấy trăm, mấy chục và mấy đơn vị?`,
-      options: shuffle([
-        `${nghin} nghìn, ${tram} trăm, ${chuc} chục, ${dv} đơn vị`,
-        `${tram} nghìn, ${nghin} trăm, ${chuc} chục, ${dv} đơn vị`,
-        `${nghin} nghìn, ${chuc} trăm, ${tram} chục, ${dv} đơn vị`,
-        `${nghin} nghìn, ${tram} trăm, ${dv} chục, ${chuc} đơn vị`,
-      ]),
-      answer: `${nghin} nghìn, ${tram} trăm, ${chuc} chục, ${dv} đơn vị`,
+      options,
+      answer,
       hint: "Đọc lần lượt từ trái sang phải: nghìn → trăm → chục → đơn vị!",
       explanation: `${n} = ${nghin}000 + ${tram}00 + ${chuc}0 + ${dv}.`,
     };
@@ -2359,19 +2809,20 @@ function buildQuestion(grade = 1, topicId = null, depth = 0) {
     const tram = Math.floor(n / 100);
     const chuc = Math.floor((n % 100) / 10);
     const dv = n % 10;
-    if (Math.random() > 0.5)
+    if (Math.random() > 0.5) {
+      const { answer, options } = digitPlaceOptions([
+        { value: tram, label: "trăm" },
+        { value: chuc, label: "chục" },
+        { value: dv, label: "đơn vị" },
+      ]);
       return {
         question: `Số ${n} gồm mấy trăm, mấy chục và mấy đơn vị?`,
-        options: shuffle([
-          `${tram} trăm, ${chuc} chục, ${dv} đơn vị`,
-          `${chuc} trăm, ${tram} chục, ${dv} đơn vị`,
-          `${tram} trăm, ${dv} chục, ${chuc} đơn vị`,
-          `${dv} trăm, ${chuc} chục, ${tram} đơn vị`,
-        ]),
-        answer: `${tram} trăm, ${chuc} chục, ${dv} đơn vị`,
+        options,
+        answer,
         hint: "Đọc từ trái sang phải: hàng trăm → hàng chục → hàng đơn vị!",
         explanation: `${n} = ${tram} trăm + ${chuc} chục + ${dv} đơn vị.`,
       };
+    }
     const a = randInt(200, 700);
     const b = randInt(100, 999 - a);
     return {
@@ -2447,7 +2898,73 @@ function buildQuestion(grade = 1, topicId = null, depth = 0) {
 
   // ── Lớp 1 (tiếp) ────────────────────────────────────────────────────────
   if (topic === "g1_position") {
+    // Mỗi câu có HÌNH (SGK tr.96–98) hoặc là tình huống đời thường của bé.
+    // `visualDisplay` = descriptor gọn — xem ghi chú ở `g1_shapes_3d`.
+    const scene = (mode, params) => ({ kind: "spatialScene", mode, params });
     const tinhHuong = [
+      {
+        q: "Hàng có ba bạn Mai, Nam, Rô-bốt. Ai đứng ở bên trái?",
+        a: "bạn Mai",
+        sai: ["bạn Nam", "Rô-bốt", "không có ai"],
+        visual: scene("kidsLeftRight"),
+        hint: "Từ trái sang phải là: Mai, Nam, rồi Rô-bốt.",
+      },
+      {
+        q: "Trong hình, bên trái là con vật nào?",
+        a: "con thỏ",
+        sai: ["con rùa", "con mèo", "con cá"],
+        visual: scene("rabbitTurtleLeftRight"),
+        hint: "Thỏ đứng bên trái, rùa đứng bên phải.",
+      },
+      {
+        q: "Ba chú thỏ chạy về phía củ cà rốt. Thỏ nào ở giữa?",
+        a: "thỏ khoang",
+        sai: ["thỏ nâu", "thỏ xám", "không có thỏ nào"],
+        visual: scene("rabbitQueue"),
+        hint: "Thỏ nâu ở trước, thỏ khoang ở giữa, thỏ xám ở sau.",
+      },
+      {
+        q: "Trong hình, toa nào ở ngay sau đầu máy?",
+        a: "toa 1",
+        sai: ["toa 2", "toa 3", "toa 4"],
+        visual: scene("trainCars"),
+        hint: "Đầu máy đi trước, ngay sau đầu máy là toa 1.",
+      },
+      {
+        q: "Trên cột đèn giao thông, đèn ở trên cùng là đèn màu gì?",
+        a: "đèn đỏ",
+        sai: ["đèn vàng", "đèn xanh", "đèn trắng"],
+        visual: scene("trafficLight"),
+        hint: "Đèn đỏ ở trên cùng, đèn vàng ở giữa, đèn xanh ở dưới cùng.",
+      },
+      {
+        q: "Đèn vàng ở vị trí nào trên cột đèn?",
+        a: "ở giữa",
+        sai: ["trên cùng", "dưới cùng", "bên trái"],
+        visual: scene("trafficLight", { showColors: true }),
+        hint: "Đọc tên màu ghi bên cạnh mỗi đèn để tìm đèn vàng.",
+      },
+      {
+        q: "Hai hàng bạn cùng quay về phía ti vi. Hàng nào ở gần ti vi hơn?",
+        a: "hàng trước",
+        sai: ["hàng sau", "hai hàng bằng nhau", "không có hàng nào"],
+        visual: scene("movieRows", { front: 4, back: 6 }),
+        hint: "Hàng trước ở gần ti vi hơn, hàng sau ở xa ti vi hơn.",
+      },
+      {
+        q: "Hàng sau có 6 bạn, hàng trước có 4 bạn. Cả hai hàng có tất cả bao nhiêu bạn?",
+        a: 10,
+        sai: [8, 9, 11],
+        visual: scene("movieRows", { front: 4, back: 6 }),
+        hint: "Đếm số bạn ở hình rồi cộng lại: 6 bạn thêm 4 bạn nữa.",
+      },
+      {
+        q: "Búp bê ở đâu so với mặt bàn?",
+        a: "ở trên",
+        sai: ["ở dưới", "ở trước", "ở sau"],
+        visual: scene("dollCatTable"),
+        hint: "Ngồi trên mặt bàn nghĩa là ở phía trên.",
+      },
       {
         q: "Ba bạn An, Bình, Cường đứng thành một hàng ngang. An đứng ngoài cùng bên trái, Cường đứng ngoài cùng bên phải. Hỏi Bình đứng bên phải bạn nào?",
         a: "bạn An",
@@ -2479,7 +2996,8 @@ function buildQuestion(grade = 1, topicId = null, depth = 0) {
       question: chon.q,
       options: shuffle([chon.a, ...chon.sai]),
       answer: chon.a,
-      hint: "Đọc kĩ xem đồ vật này nằm ở đâu so với đồ vật kia!",
+      visualDisplay: chon.visual,
+      hint: chon.hint || "Đọc kĩ xem đồ vật này nằm ở đâu so với đồ vật kia!",
       explanation: `Đáp án đúng: ${chon.a}.`,
     };
   }

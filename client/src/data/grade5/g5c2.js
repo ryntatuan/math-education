@@ -597,8 +597,8 @@ export const g5c2 = {
           }
         },
         {
-          "type": "visual",
-          "content": {
+          type: "visual",
+          content: {
             "text": "Cách viết: - 1/100 = 0,01 = 1% - 35/100 = 0,35 = 35% - 3/4 = 75/100 = 75% Muốn tìm tỉ số phần trăm của hai số a và b: 1. Tìm thương của a và b: a : b 2. Nhân thương đó với 100 và viết thêm ký hiệu %.",
             "pieChart": {
               "title": "3/4 = 75% — tỉ số phần trăm là phân số có mẫu 100",
@@ -612,7 +612,13 @@ export const g5c2 = {
                   "percent": 25
                 }
               ]
-            },
+            }
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            "text": "Tỉ số phần trăm của a và b: lấy a : b rồi nhân 100, thêm kí hiệu %",
             "table": {
               "headers": [
                 "Viết",
@@ -634,7 +640,7 @@ export const g5c2 = {
               ],
               "label": "Tỉ số phần trăm của a và b: lấy a : b rồi nhân 100, thêm kí hiệu %"
             }
-          }
+          },
         },
         {
           "type": "quiz",
@@ -677,8 +683,8 @@ export const g5c2 = {
           }
         },
         {
-          "type": "visual",
-          "content": {
+          type: "visual",
+          content: {
             "text": "Ví dụ: Lớp có 40 học sinh, trong đó có 60% là nữ. Số học sinh nữ là: 40 × 60 : 100 = 24 học sinh.",
             "pieChart": {
               "title": "Lớp có 40 học sinh, 60% là nữ",
@@ -692,7 +698,13 @@ export const g5c2 = {
                   "percent": 40
                 }
               ]
-            },
+            }
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            "text": "40 × 60 : 100 = 24 học sinh nữ",
             "table": {
               "headers": [
                 "Dạng toán",
@@ -714,7 +726,7 @@ export const g5c2 = {
               ],
               "label": "40 × 60 : 100 = 24 học sinh nữ"
             }
-          }
+          },
         },
         {
           "type": "quiz",

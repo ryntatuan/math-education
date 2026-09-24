@@ -238,13 +238,19 @@ export const g2c7 = {
           }
         },
         {
-          "type": "visual",
-          "content": {
-            "text": "Đường gấp khúc: cộng các đoạn lại\nTứ giác: 4 cạnh · 4 đỉnh",
+          type: "visual",
+          content: {
+            "text": "Đường gấp khúc: cộng các đoạn lại",
             "planeShape": {
               "kind": "rectangle",
               "formula": "Hình tứ giác: 4 cạnh · 4 đỉnh"
-            },
+            }
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            "text":"Tứ giác: 4 cạnh · 4 đỉnh",
             "ruler": {
               "lengthCm": 10,
               "measure": {
@@ -253,7 +259,7 @@ export const g2c7 = {
               },
               "label": "Độ dài đường gấp khúc bằng tổng độ dài các đoạn thẳng"
             }
-          }
+          },
         },
         {
           "type": "quiz",
@@ -317,9 +323,9 @@ export const g2c7 = {
           }
         },
         {
-          "type": "visual",
-          "content": {
-            "text": "1 dm = 10 cm\nĐộ dài: cm, dm\nKhối lượng: kg\nDung tích: l",
+          type: "visual",
+          content: {
+            "text": "1 dm = 10 cm",
             "ruler": {
               "lengthCm": 10,
               "measure": {
@@ -327,7 +333,13 @@ export const g2c7 = {
                 "to": 10
               },
               "label": "1 dm = 10 cm"
-            },
+            }
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            "text":"Độ dài: cm, dm\nKhối lượng: kg\nDung tích: l",
             "table": {
               "headers": [
                 "Đại lượng",
@@ -349,7 +361,7 @@ export const g2c7 = {
               ],
               "label": "Ôn tập đo lường"
             }
-          }
+          },
         },
         {
           "type": "quiz",

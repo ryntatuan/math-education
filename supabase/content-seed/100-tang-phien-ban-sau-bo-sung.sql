@@ -12,7 +12,62 @@
 -- CHẠY LẠI NHIỀU LẦN: chỉ làm phiên bản tăng thêm 1 mỗi lần — vô hại (các bé tải
 --   lại nội dung thêm một lần), không sinh dòng trùng, không mất dữ liệu.
 --
--- BỐI CẢNH LẦN NÀY (2026-09-22, lần 5): GHI TÊN ĐIỂM LÊN HÌNH (A, B, C, D, M, O…).
+-- LƯU Ý LẦN 8 (2026-09-25): BỎ PHƯƠNG ÁN VÔ NGHĨA Ở CÂU "ĐIỀN DẤU" + XẾP 3 PHƯƠNG ÁN MỘT HÀNG.
+--   Người dùng gửi ảnh chụp slide "Điền dấu thích hợp: 6 ? 6" có 4 phương án `> < = −`
+--   và hỏi: "dấu này là dấu gì? tại sao phép so sánh lại có dấu trừ ở đây?".
+--   Đúng vậy: câu so sánh chỉ có 3 đáp án, còn `+` / `−` là phương án nhiễu VÔ NGHĨA
+--   (di chứng của quy tắc cũ "câu nào cũng phải đủ 4 phương án").
+--   Đã xoá ở **7 chỗ**: `g1c1.js` x5 (3 ? 5 · 6 ? 6 · 4 ? 7 · 8 ? 7 · 4 ? 4),
+--   `g1c5.js` (4 ? 9), `g1c10.js` (63 ? 36).
+--   Kèm theo: quiz có ĐÚNG 3 phương án NGẮN (≤ 2 ký tự) nay xếp MỘT HÀNG 3 ô
+--   (`LessonPage` thêm lớp `quiz-options-3`; số đáp án LẺ mà đáp án DÀI thì ô cuối canh giữa).
+--   Phần DỮ LIỆU cần dán; phần XẾP Ô là MÃ (`client/…`) nên phải deploy web / build APK mới thấy.
+--   Công cụ soát: `node scratch/soat-phuong-an-quiz.mjs` — 786 câu · 0 lỗi.
+--   ⚠️ LẦN NÀY CHỈ CẦN DÁN: `02-bai-lop-1.sql` rồi `100-...` (file này). `00` không cần;
+--      `01`, `03`, `04`, `05`, `06`, `99` KHÔNG đổi.
+--   ⚠️ Số slide KHÔNG đổi ⇒ vẫn 5 lớp · 51 chương · 459 bài · **2656 slide**.
+--   ✅ Kiểm trên app: Lớp 1 Bài 8 (`g1-c1-l8`), slide 10/14 phải CHỈ có 3 nút `> < =`
+--      (không còn `−`) và 3 nút nằm CÙNG MỘT HÀNG.
+--
+-- BỐI CẢNH LẦN NÀY (2026-09-24, lần 6): VIẾT LẠI CHỦ ĐỀ 4 LỚP 1 THEO SGK (tr.92–101).
+-- BỐI CẢNH LẦN NÀY (2026-09-24, lần 7): VIẾT LẠI **CHỦ ĐỀ 1 LỚP 1** THEO SGK (tr.6–45).
+--   Yêu cầu người dùng: “bổ sung thêm trong plan là rà soát file scan của TẤT CẢ các trang tài liệu
+--   học của Lớp 1… sau khi xong Lớp 1 thì tới Lớp 2,3,4,5: tất cả các lớp đều phải rà soát hết
+--   tất cả file ảnh để đồng bộ và nâng cao chất lượng”.
+--   Bảng phát hiện chi tiết: `docs/sgk_audit_lop1.md` (16 + 3 + 4 + 3 phát hiện).
+--   12 bài của Chủ đề 1 (`g1-c1-l1` … `g1-c1-l12`) viết lại theo ĐÚNG 7 bài của SGK:
+--   **67 slide cũ → 128 slide**, **47 lượt hình**.
+--   Đổi cho khớp sách: số 0 nay học CÙNG nhóm 0–3 (SGK tr.8) thay vì đứng riêng sau 6–10;
+--   bỏ dạy trước “5 > 4” ở bài số 4–5 (dấu so sánh để đúng bài 8); bài cuối là
+--   Luyện tập chung **tiếp theo** của SGK tr.42–45. Có dạy **chữ đọc số** (một, hai, ba…).
+--   KHÔNG làm theo yêu cầu người dùng: “Tập viết số” (tr.9, 15) và 2 trò chơi bàn cờ có
+--   xúc xắc (tr.19, tr.43).
+--   Số liệu tự chọn (ảnh scan mờ, đã ghi vào bảng §7 của kế hoạch): cà rốt tô màu 3 củ ·
+--   gà ghi số 2 là 3 con · 4 con vật 6 chân · số vật trong 4 tranh cảnh · các cặp “cho thêm”.
+--   ⚠️ LẦN NÀY CHỈ CẦN DÁN: `02-bai-lop-1.sql` rồi `100-...` (file này).
+--   ⇒ Quy mô nay: 5 lớp · 51 chương · **459 bài · 2656 slide**.
+--
+-- 📌 LẦN 6 (2026-09-24): VIẾT LẠI CHỦ ĐỀ 4 LỚP 1 THEO SGK (tr.92–101).
+--   Người dùng yêu cầu: “giúp trẻ dễ học bài hơn, luôn luôn có hình minh họa chính xác,
+--   tận dụng các hoạt động rất hay trong SGK thay vì những slide đơn điệu”.
+--   7 bài của Chủ đề 4 (`g1-c4-l1` … `g1-c4-l7`) được viết lại: 39 slide cũ → **68 slide**,
+--   mỗi bài đều theo cấu trúc SGK: Kể chuyện → Khám Phá → Hoạt động/Thực hành → Luyện tập
+--   → Ghi nhớ; và mỗi bài đều có hình (không còn slide chữ suông).
+--   Đáp án LẤY TỪ CHÍNH SGK (đo lại trên ảnh 300 DPI, không đoán):
+--     • Lâu đài bạn Mai (tr.94): hàng nền **5 khối lập phương**, **2** khối hộp chữ nhật đỏ.
+--     • Chữ T/H/C (tr.94): T = 5 · H = 7 · C = 5 ⇒ chữ H nhiều khối nhất.
+--     • Bộ hình A–G (tr.100): **A, C, E** là khối lập phương (mặt trước ĐO ĐƯỢC là vuông:
+--       105×105 · vuông nhỏ · 168×159) — **B, G** là khối hộp chữ nhật; D là khối trụ.
+--     • Con xúc xắc (tr.100): mặt trước **5** chấm · mặt bên phải **6** chấm · mặt trên **3** chấm
+--       (cũng đúng quy luật xúc xắc thật: 5+2 = 3+4 = 6+1 = 7 ⇒ số đo tự kiểm chéo).
+--     • Hai hình xếp bằng khối nhỏ (tr.101): trái 8 khối · phải 4×2 = 8 khối ⇒ “bằng nhau”.
+--     • Ba hàng gạch (tr.97): 2 + 3 + 4 = 9 viên; hai hàng bạn xem ti vi: 6 + 4 = 10 bạn
+--       (người dùng đếm lại trên sách giấy ngày 2026-09-24).
+--   ⚠️ LẦN NÀY CHỈ CẦN DÁN: `02-bai-lop-1.sql` rồi `100-...` (file này).
+--      `01`, `03`, `04`, `05`, `06`, `99` KHÔNG đổi. `00` không cần (không bài nào bị bỏ).
+--   ⇒ Quy mô LẦN ĐÓ: 5 lớp · 51 chương · **459 bài · 2484 slide** (nay là 2545 — xem lần 7).
+--
+-- 📌 LẦN 5 (2026-09-22): GHI TÊN ĐIỂM LÊN HÌNH (A, B, C, D, M, O…).
 --   Người dùng báo: "mô tả hình chữ nhật có cạnh AB và BC và 4 đỉnh A, B, C, D nhưng lại
 --   không ghi chú A, B, C, D lên trên hình thì làm sao trẻ hiểu được?". Soát ra cả một họ
 --   lỗi: chữ trong bài GỌI TÊN ĐIỂM mà trên hình không có chữ nào.
@@ -35,7 +90,7 @@
 --   3 chỗ còn lại là 1 câu hỏi mà vẽ hình là cho luôn đáp án + 2 bài toán lời văn, KHÔNG sửa);
 --   G = bài đoạn thẳng có tên mà hình lại là thước đo (nay 0 chỗ).
 --   Số bài và số chương KHÔNG đổi; số slide TĂNG vì mỗi hình được tách ra một slide.
---   ⇒ Quy mô nay: 5 lớp · 51 chương · **459 bài · 2455 slide**.
+--   ⇒ Quy mô LẦN ĐÓ: 5 lớp · 51 chương · **459 bài · 2455 slide** (nay là 2484 — xem lần 6).
 --   ⚠️ LẦN NÀY BẮT BUỘC dán `02`, `03`, `04`, `05` VÀ `06` (cả NĂM lớp đều có thay đổi).
 --      `01` và `99` không đổi. `00-don-noi-dung-cu.sql` KHÔNG cần (không bài nào bị bỏ),
 --      nhưng chạy nó vẫn VÔ HẠI — nó chỉ xoá bài không còn trong file tĩnh.
@@ -112,7 +167,7 @@ WHERE key IN ('content_source', 'content_version') ORDER BY key;
 
 -- ── 4. Kiểm trên app của bé (không cần SQL) ────────────────────────────────
 -- Mở lại app (đúng tài khoản bé đã dùng trước đó) và xem log:
---   [nội dung] đọc từ DB: 5 lớp · 51 chương · 459 bài · 2455 slide · phiên bản N
+--   [nội dung] đọc từ DB: 5 lớp · 51 chương · 459 bài · 2545 slide · phiên bản N
 --
 -- Kiểm ĐÚNG những chỗ từng sai — đây là lỗi mà chủ app tự phát hiện:
 --   • Lớp 2 → chương về phép nhân CHỈ được có bảng nhân 2 và bảng nhân 5.

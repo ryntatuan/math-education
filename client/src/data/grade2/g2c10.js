@@ -41,9 +41,9 @@ export const g2c10 = {
           }
         },
         {
-          "type": "visual",
-          "content": {
-            "text": "10 đơn vị  →  1 chục\n10 chục     →  1 trăm\n1 trăm = 100",
+          type: "visual",
+          content: {
+            "text": "10 đơn vị  →  1 chục",
             "placeValue": {
               "headers": [
                 "Trăm",
@@ -56,7 +56,13 @@ export const g2c10 = {
                 0
               ],
               "label": "1 trăm = 100"
-            },
+            }
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            "text":"10 chục     →  1 trăm\n1 trăm = 100",
             "table": {
               "headers": [
                 "Đổi",
@@ -78,7 +84,7 @@ export const g2c10 = {
               ],
               "label": "Đơn vị, chục, trăm"
             }
-          }
+          },
         },
         {
           "type": "quiz",
@@ -316,9 +322,9 @@ export const g2c10 = {
           }
         },
         {
-          "type": "visual",
-          "content": {
-            "text": "110 · 120 · 130 · ... · 990\n250 = 2 trăm + 5 chục + 0 đơn vị",
+          type: "visual",
+          content: {
+            "text": "110 · 120 · 130 · ... · 990",
             "numberLine": {
               "from": 110,
               "to": 200,
@@ -336,7 +342,13 @@ export const g2c10 = {
                 200
               ],
               "label": "Các số tròn chục từ 110 đến 200"
-            },
+            }
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            "text":"250 = 2 trăm + 5 chục + 0 đơn vị",
             "placeValue": {
               "headers": [
                 "Trăm",
@@ -350,7 +362,7 @@ export const g2c10 = {
               ],
               "label": "250 = 2 trăm + 5 chục + 0 đơn vị"
             }
-          }
+          },
         },
         {
           "type": "quiz",
@@ -574,9 +586,9 @@ export const g2c10 = {
           }
         },
         {
-          "type": "visual",
-          "content": {
-            "text": "405 → bốn trăm linh năm\n450 → bốn trăm năm mươi\n520 → năm trăm hai mươi",
+          type: "visual",
+          content: {
+            "text": "405 → bốn trăm linh năm",
             "placeValue": {
               "headers": [
                 "Trăm",
@@ -589,7 +601,13 @@ export const g2c10 = {
                 5
               ],
               "label": "405 đọc là bốn trăm linh năm"
-            },
+            }
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            "text":"450 → bốn trăm năm mươi\n520 → năm trăm hai mươi",
             "table": {
               "headers": [
                 "Số",
@@ -611,7 +629,7 @@ export const g2c10 = {
               ],
               "label": "Đọc và viết số có ba chữ số"
             }
-          }
+          },
         },
         {
           "type": "quiz",
@@ -682,9 +700,9 @@ export const g2c10 = {
           }
         },
         {
-          "type": "visual",
-          "content": {
-            "text": "245 = 200 + 40 + 5\n376 = 300 + 70 + 6\n405 = 400 + 5",
+          type: "visual",
+          content: {
+            "text": "245 = 200 + 40 + 5",
             "placeValue": {
               "headers": [
                 "Trăm",
@@ -697,7 +715,13 @@ export const g2c10 = {
                 5
               ],
               "label": "245 = 200 + 40 + 5"
-            },
+            }
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            "text":"376 = 300 + 70 + 6\n405 = 400 + 5",
             "table": {
               "headers": [
                 "Số",
@@ -719,7 +743,7 @@ export const g2c10 = {
               ],
               "label": "Viết số thành tổng các trăm, chục, đơn vị"
             }
-          }
+          },
         },
         {
           "type": "quiz",
@@ -954,9 +978,9 @@ export const g2c10 = {
           }
         },
         {
-          "type": "visual",
-          "content": {
-            "text": "10 đơn vị = 1 chục\n10 chục = 1 trăm\n10 trăm = 1 nghìn = 1000",
+          type: "visual",
+          content: {
+            "text": "10 đơn vị = 1 chục",
             "table": {
               "headers": [
                 "Đổi",
@@ -977,7 +1001,13 @@ export const g2c10 = {
                 ]
               ],
               "label": "Luyện tập chung chủ đề 10"
-            },
+            }
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            "text":"10 chục = 1 trăm\n10 trăm = 1 nghìn = 1000",
             "placeValue": {
               "headers": [
                 "Trăm",
@@ -991,7 +1021,7 @@ export const g2c10 = {
               ],
               "label": "386 = 300 + 80 + 6"
             }
-          }
+          },
         },
         {
           "type": "quiz",

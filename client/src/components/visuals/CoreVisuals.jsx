@@ -15,7 +15,16 @@
  *  3. Số liệu trên hình LẤY TỪ DỮ LIỆU, không viết cứng — để hình luôn khớp nội dung bài.
  */
 
-import { CARD_STYLE, CAPTION_STYLE, svgFit, VUA_HINH } from "./visualTheme";
+import {
+  CARD_STYLE,
+  CAPTION_STYLE,
+  captionText,
+  svgFit,
+  VUA_HINH,
+  ACCENT,
+  ACCENT_SOFT,
+  ACCENT_TINT,
+} from "./visualTheme";
 
 const PALETTE = {
   ink: "#1e293b",
@@ -82,6 +91,23 @@ export function NumberLine({
   const rongNhan = (v) => String(v).length * 8.6; // cỡ chữ 15 in đậm ⇒ ~8,6 đơn vị/chữ số
   const ticks = [];
   for (let v = a; v <= b + 1e-9; v += s) ticks.push(Math.round(v * 1e6) / 1e6);
+  /**
+   * 🔴 `marks` PHẢI được vẽ, kể cả khi không nằm trên nhịp `step`.
+   * Bản trước chỉ sinh mốc theo nhịp ⇒ bài `g3-c11-l15` (trục 24 000→25 000, bước 1 000,
+   * `marks` = 24 300 và 24 800) **chỉ hiện đúng 24 000 và 25 000**: lời thích nói tới hai
+   * con số KHÔNG có trên hình (người dùng phát hiện 2026-09-24).
+   */
+  for (const m of marks) {
+    const v = num(m, NaN);
+    if (
+      Number.isFinite(v) &&
+      v >= a - 1e-9 &&
+      v <= b + 1e-9 &&
+      !ticks.includes(v)
+    )
+      ticks.push(v);
+  }
+  ticks.sort((p, q) => p - q);
   const nhanDau = ticks[0];
   const nhanCuoi = ticks[ticks.length - 1];
   const nuaNhan = Math.max(rongNhan(nhanCuoi), rongNhan(nhanDau)) / 2;
@@ -93,11 +119,20 @@ export function NumberLine({
    * (11 nhãn 1 chữ số) chỉ cần ~220 đơn vị, còn trục 10→100 (nhãn 3 chữ số) cần ~330.
    * Kẹp trong [260, VUA_HINH] để hình nhỏ không bị dài ngoẵng, hình to không vượt vua.
    */
-  const canRong = ticks.slice(0, -1).reduce((tong, t, i) => {
+  const canRongNhip = ticks.slice(0, -1).reduce((tong, t, i) => {
     const khe = (rongNhan(t) + rongNhan(ticks[i + 1])) / 2 + 6;
     return tong + khe;
   }, padL + padR);
-  const W = clamp(Math.round(canRong), 260, VUA_HINH);
+  /**
+   * Cặp mốc SÁT nhau (mốc lẻ nằm gần mốc nhịp, ví dụ 24 000 ✕ 24 300) cần chỗ riêng: tính
+   * thẳng bề rộng cần cho TỪNG cặp rồi lấy giá trị lớn nhất, nếu không hai nhãn dính nhau.
+   */
+  const canRongCap = ticks.slice(0, -1).reduce((lon, t, i) => {
+    const khe = (rongNhan(t) + rongNhan(ticks[i + 1])) / 2 + 6;
+    const phan = (ticks[i + 1] - t) / (b - a);
+    return phan > 0 ? Math.max(lon, padL + padR + khe / phan) : lon;
+  }, 0);
+  const W = clamp(Math.round(Math.max(canRongNhip, canRongCap)), 260, VUA_HINH);
   const axisY = H - 40;
   const span = b - a;
   const x = (v) => padL + ((v - a) / span) * (W - padL - padR);
@@ -211,7 +246,7 @@ export function NumberLine({
               <path
                 d={`M${x1},${axisY - 12} Q${(x1 + x2) / 2},${axisY - 12 - hopH * 2} ${x2},${axisY - 12}`}
                 fill="none"
-                stroke={PALETTE.violet}
+                style={{ stroke: ACCENT }}
                 strokeWidth="2.5"
                 strokeDasharray="5 4"
               />
@@ -222,7 +257,7 @@ export function NumberLine({
                   textAnchor="middle"
                   fontSize="15"
                   fontWeight="800"
-                  fill={PALETTE.violet}
+                  style={{ fill: ACCENT }}
                 >
                   {h.label}
                 </text>
@@ -431,73 +466,87 @@ export function BaseTenBlocks({ tens = 3, ones = 4, label = "" }) {
   const beRongDonVi = on * o + Math.max(0, on - 1) * khe;
   const W = xDonVi + beRongDonVi + traiDoc;
   const H = trenDoc + rodH + 30;
+  /**
+   * 🔴 CANH GIỮA NỘI DUNG TRONG KHUNG. Bản cũ luôn dùng khung rộng `max(W, 200)` nhưng vẽ
+   * bắt đầu từ x = 8 ⇒ hình 1 chục + 0 đơn vị (nội dung 26 đơn vị) nằm lệch trái, **dư 176
+   * đơn vị** bên phải (người dùng báo 2026-09-24 qua `visual-fit`). Nay dịch nội dung sang
+   * phải `dx` để lề hai bên bằng nhau — KHÔNG đổi bề rộng khung nên không thay tỉ lệ hình.
+   */
+  const vbW = Math.max(W, 200);
+  const dx = (vbW - W) / 2;
 
   return (
     <div style={card}>
       <svg
-        viewBox={`0 0 ${Math.max(W, 200)} ${H}`}
+        viewBox={`0 0 ${vbW} ${H}`}
         // Khối này vốn rất cao (10 ô xếp dọc). Giới hạn chiều cao để nó không chiếm
         // trọn màn hình; SVG tự thu nhỏ và căn giữa theo `preserveAspectRatio` mặc định.
-        {...svgFit(Math.max(W, 200), { maxHeight: 380 })}
+        {...svgFit(vbW, { maxHeight: 380 })}
         role="img"
         aria-label="Khối chục và đơn vị"
       >
-        {Array.from({ length: tn }).map((_, i) =>
-          Array.from({ length: 10 }).map((_, k) => (
-            <rect
-              key={`t${i}-${k}`}
-              x={traiDoc + i * (o + kheThanh)}
-              y={trenDoc + k * (o + khe)}
-              width={o}
-              height={o}
-              rx="3.5"
-              fill={PALETTE.amberSoft}
-              stroke={PALETTE.amber}
-              strokeWidth="1.6"
-            />
-          )),
-        )}
-        {Array.from({ length: tn }).map((_, i) => (
-          <text
-            key={`tl${i}`}
-            x={traiDoc + i * (o + kheThanh) + o / 2}
-            y={trenDoc + rodH + 20}
-            textAnchor="middle"
-            fontSize="15"
-            fontWeight="700"
-            fill={PALETTE.amber}
-          >
-            10
-          </text>
-        ))}
-        {Array.from({ length: on }).map((_, i) => (
-          <g key={`o${i}`}>
-            <rect
-              x={xDonVi + i * (o + khe)}
-              y={trenDoc + rodH - o}
-              width={o}
-              height={o}
-              rx="3.5"
-              fill={PALETTE.blueSoft}
-              stroke={PALETTE.blue}
-              strokeWidth="1.6"
-            />
+        <g transform={`translate(${dx},0)`}>
+          {Array.from({ length: tn }).map((_, i) =>
+            Array.from({ length: 10 }).map((_, k) => (
+              <rect
+                key={`t${i}-${k}`}
+                x={traiDoc + i * (o + kheThanh)}
+                y={trenDoc + k * (o + khe)}
+                width={o}
+                height={o}
+                rx="3.5"
+                fill={PALETTE.amberSoft}
+                stroke={PALETTE.amber}
+                strokeWidth="1.6"
+              />
+            )),
+          )}
+          {Array.from({ length: tn }).map((_, i) => (
             <text
-              x={xDonVi + i * (o + khe) + o / 2}
+              key={`tl${i}`}
+              x={traiDoc + i * (o + kheThanh) + o / 2}
               y={trenDoc + rodH + 20}
               textAnchor="middle"
               fontSize="15"
               fontWeight="700"
-              fill={PALETTE.blue}
+              fill={PALETTE.amber}
             >
-              1
+              10
             </text>
-          </g>
-        ))}
+          ))}
+          {Array.from({ length: on }).map((_, i) => (
+            <g key={`o${i}`}>
+              <rect
+                x={xDonVi + i * (o + khe)}
+                y={trenDoc + rodH - o}
+                width={o}
+                height={o}
+                rx="3.5"
+                fill={PALETTE.blueSoft}
+                stroke={PALETTE.blue}
+                strokeWidth="1.6"
+              />
+              <text
+                x={xDonVi + i * (o + khe) + o / 2}
+                y={trenDoc + rodH + 20}
+                textAnchor="middle"
+                fontSize="15"
+                fontWeight="700"
+                fill={PALETTE.blue}
+              >
+                1
+              </text>
+            </g>
+          ))}
+        </g>
       </svg>
       <span style={caption}>
-        {tn} chục và {on} đơn vị = <b>{tn * 10 + on}</b>
-        {label ? ` · ${label}` : ""}
+        {captionText(
+          on === 0
+            ? `${tn} chục = ${tn * 10}`
+            : `${tn} chục và ${on} đơn vị = ${tn * 10 + on}`,
+          label,
+        )}
       </span>
     </div>
   );
@@ -569,8 +618,31 @@ export function PlaceValueTable({
       : nat1.map((w, i) =>
           Math.max(nat2[i], Math.round((w * nganSach) / tong1)),
         );
-  const soCotMoiKhoi = chiaKhoi(cotTuNhien, nganSach);
-  const KHE_KHOI = 22;
+  /**
+   * 🔴 MỌI CỘT RỘNG BẰNG NHAU (lấy cột rộng nhất làm chuẩn).
+   *
+   * Bản trước để mỗi cột rộng theo tiêu đề của chính nó ⇒ trong CÙNG một bảng có ô 83, ô 50,
+   * ô 40, ô 34; hai khối còn khác nhau cả số dòng chữ ⇒ người dùng thấy "chữ không đồng đều
+   * về khung và khoảng cách, to nhỏ khác nhau, nhìn rất xấu" (2026-09-24). Ô đều nhau cũng
+   * giúp bé so từng hàng với nhau dễ hơn.
+   */
+  const rongCot = Math.max(...cotTuNhien);
+  const soCotMoiKhoi = chiaKhoi(
+    hs.map(() => rongCot),
+    nganSach,
+  );
+  const LE = 8;
+  /** Khe giữa hai khối phải đủ rộng để vẽ mũi tên "đọc tiếp". */
+  const KHE_KHOI = 34;
+  /**
+   * CHIỀU CAO HỘP TIÊU ĐỀ DÙNG CHUNG cho mọi khối (theo tiêu đề cần nhiều dòng nhất) —
+   * nếu không, khối 1 hộp cao 60 còn khối 2 hộp cao 40, nhìn lệch hẳn.
+   */
+  const chuTatCa = hs.map((h) =>
+    bocChu(h, Math.floor((rongCot - LE_O) / RONG_CHU_TIEU_DE)),
+  );
+  const soDongMax = Math.max(...chuTatCa.map((d) => d.length));
+  const caoTieuDe = soDongMax > 1 ? 40 + (soDongMax - 1) * 20 : 40;
 
   const khoi = [];
   let y = 0;
@@ -578,26 +650,14 @@ export function PlaceValueTable({
     const cot = [];
     for (let c = i0; c < Math.min(i0 + soCotMoiKhoi, hs.length); c++)
       cot.push(c);
-    let chay = 8;
-    const mocX = cot.map((c) => {
-      const x = chay;
-      chay += cotTuNhien[c];
-      return x;
-    });
-    const chu = cot.map((c) =>
-      bocChu(hs[c], Math.floor((cotTuNhien[c] - LE_O) / RONG_CHU_TIEU_DE)),
-    );
-    const soDong = Math.max(...chu.map((d) => d.length));
-    const caoTieuDe = soDong > 1 ? 60 : 40;
+    const mocX = cot.map((_, j) => LE + j * rongCot);
     const yChuSo = yTieuDe + caoTieuDe + KHE_DOC;
     const cao = yChuSo + CAO_CHU_SO + 8;
     khoi.push({
       cot,
       mocX,
-      chu,
-      rong: chay + 8,
-      caoTieuDe,
-      dav: yTieuDe + caoTieuDe / 2 + 5,
+      chu: cot.map((c) => chuTatCa[c]),
+      rong: LE + cot.length * rongCot + LE,
       yChuSo,
       cao,
       y,
@@ -605,8 +665,15 @@ export function PlaceValueTable({
     y += cao + KHE_KHOI;
   }
 
+  /** Số đọc liền: nhóm 3 chữ số từ phải sang (cách viết chuẩn của SGK). */
+  const soLien = ds
+    .map((d) => String(d))
+    .join("")
+    .replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+  const coNhieuKhoi = khoi.length > 1;
   const W = Math.max(...khoi.map((k) => k.rong));
-  const H = y - KHE_KHOI + 8;
+  const ySoLien = y - KHE_KHOI + 6;
+  const H = y - KHE_KHOI + 8 + (coNhieuKhoi ? 40 : 0);
 
   return (
     <div style={card}>
@@ -619,32 +686,45 @@ export function PlaceValueTable({
         {khoi.map((k, ki) =>
           k.cot.map((c, j) => {
             /**
-             * 🔴 BỀ RỘNG Ô = BỀ RỘNG CHÍNH CỘT ĐÓ (`cotTuNhien[c]`).
-             * Bản đầu tôi lấy `k.rong − mocX[j] − 8` — tức "phần còn lại của cả khối" — nên
-             * MỌI ô trong khối đều rộng bằng nhau và cùng kết thúc ở mép phải: đo được các ô
-             * `x=8 w=280`, `x=64 w=224`, `x=120 w=168`… và chữ thì đè lên nhau.
+             * 🔴 BỀ RỘNG Ô = BỀ RỘNG CHUNG `rongCot` (mọi ô mọi khối đều bằng nhau).
+             * Bản đầu lấy `k.rong − mocX[j] − 8` — tức "phần còn lại của cả khối" — nên MỌI ô
+             * trong khối cùng kết thúc ở mép phải: đo được `x=8 w=280`, `x=64 w=224`… và chữ
+             * đè lên nhau.
              */
-            const rongO = cotTuNhien[c] - 6;
+            const rongO = rongCot - 6;
             const giua = k.mocX[j] + rongO / 2;
+            // Canh giữa chữ của tiêu đề theo SỐ DÒNG của chính tiêu đề đó (hộp chung cao bằng nhau).
+            const dong = k.chu[j].length;
+            const dav = yTieuDe + caoTieuDe / 2 + 5 - (dong - 1) * 10;
             return (
               <g key={`${ki}-${c}`}>
                 <rect
                   x={k.mocX[j]}
                   y={k.y + yTieuDe}
                   width={rongO}
-                  height={k.caoTieuDe}
+                  height={caoTieuDe}
                   rx="8"
-                  fill={PALETTE.violetSoft}
-                  stroke={PALETTE.violet}
-                  strokeWidth="2"
+                  style={{ fill: ACCENT }}
+                  stroke="none"
+                />
+                {/* lớp tối mỏng: có chương màu rất nhạt (#ffd166, #c77dff) ⇒ 0,34 để
+                    chữ trắng trên dải tiêu đề vẫn đủ tương phản */}
+                <rect
+                  x={k.mocX[j]}
+                  y={k.y + yTieuDe}
+                  width={rongO}
+                  height={caoTieuDe}
+                  rx="8"
+                  fill="#0f172a"
+                  opacity="0.34"
                 />
                 <text
                   x={giua}
-                  y={k.y + k.dav}
+                  y={k.y + dav}
                   textAnchor="middle"
                   fontSize="14"
                   fontWeight="800"
-                  fill={PALETTE.violet}
+                  fill="#ffffff"
                 >
                   {k.chu[j].map((d, li) => (
                     <tspan key={li} x={giua} dy={li === 0 ? 0 : 20}>
@@ -675,6 +755,74 @@ export function PlaceValueTable({
               </g>
             );
           }),
+        )}
+
+        {/**
+         * 🔴 KHI BẢNG BỊ CẮT LÀM NHIỀU KHỐI thì phải nói rõ ĐÓ LÀ MỘT SỐ.
+         * Người dùng phản ánh: số 345 000 000 nằm trên hai dòng nên trẻ không biết đang đọc
+         * "345000000" hay là hai số "34500" và "0000" (2026-09-24). Nay vẽ thêm
+         * (1) mũi tên "đọc tiếp" từ cuối khối trên xuống đầu khối dưới, và
+         * (2) một dòng ghi SỐ ĐỌC LIỀN theo cách nhóm 3 chữ số của SGK.
+         */}
+        {coNhieuKhoi &&
+          khoi.slice(0, -1).map((k, ki) => {
+            const sau = khoi[ki + 1];
+            const xCuoi = k.mocX[k.mocX.length - 1] + rongCot - 6;
+            const yGiua = k.y + k.cao + KHE_KHOI / 2;
+            const yToi = sau.y + yTieuDe - 3;
+            const xVao = sau.mocX[0] + (rongCot - 6) / 2;
+            return (
+              <g key={`noi-${ki}`}>
+                <path
+                  d={`M ${xCuoi} ${k.y + k.cao - 6} L ${xCuoi} ${yGiua} L ${xVao} ${yGiua} L ${xVao} ${yToi - 7}`}
+                  fill="none"
+                  style={{ stroke: ACCENT }}
+                  strokeWidth="2"
+                  strokeDasharray="6 4"
+                  strokeLinejoin="round"
+                />
+                <polygon
+                  points={`${xVao - 5},${yToi - 8} ${xVao + 5},${yToi - 8} ${xVao},${yToi}`}
+                  style={{ fill: ACCENT }}
+                />
+                <text
+                  x={W / 2}
+                  y={yGiua + 5}
+                  textAnchor="middle"
+                  fontSize="13"
+                  fontWeight="800"
+                  stroke="#ffffff"
+                  strokeWidth="4"
+                  style={{ fill: ACCENT, paintOrder: "stroke" }}
+                >
+                  đọc tiếp
+                </text>
+              </g>
+            );
+          })}
+        {coNhieuKhoi && (
+          <>
+            <rect
+              x="8"
+              y={ySoLien + 4}
+              width={W - 16}
+              height={28}
+              rx="9"
+              fill={PALETTE.blueSoft}
+              stroke={PALETTE.blue}
+              strokeWidth="2"
+            />
+            <text
+              x={W / 2}
+              y={ySoLien + 24}
+              textAnchor="middle"
+              fontSize="16"
+              fontWeight="800"
+              fill={PALETTE.blue}
+            >
+              {`Đọc liền thành số: ${soLien}`}
+            </text>
+          </>
         )}
       </svg>
       {label && <span style={caption}>{label}</span>}
@@ -829,7 +977,12 @@ export function Money({ notes = [20000, 5000], label = "" }) {
     .map((n) => num(n, 0))
     .filter((n) => n > 0)
     .slice(0, 6);
-  const shown = ds.length ? ds : [20000];
+  /**
+   * 🔴 KHÔNG còn mặc định `[20000]`. Bản cũ: dữ liệu thiếu khoá `notes` (6 slide dùng khoá
+   * `amount` — sai hợp đồng) ⇒ hình tự vẽ **tờ 20 000 đồng không có trong bài** kèm chú thích
+   * “Tổng: 0 đồng”. Nay thiếu `notes` thì **không vẽ gì**.
+   */
+  const shown = ds;
   const total = shown.reduce((s, n) => s + n, 0);
   const thousands = (n) =>
     n >= 1000 ? `${(n / 1000).toLocaleString("vi-VN")} 000` : `${n}`;
@@ -882,10 +1035,17 @@ export function Money({ notes = [20000, 5000], label = "" }) {
           );
         })}
       </div>
-      <span style={caption}>
-        Tổng: <b>{total.toLocaleString("vi-VN")} đồng</b>
-        {label ? ` · ${label}` : ""}
-      </span>
+      {shown.length > 0 && (
+        <span style={caption}>
+          {captionText(
+            // Một tờ thì gọi TÊN tờ; nhiều tờ mới cộng lại thành “Tổng”.
+            shown.length === 1
+              ? `Tờ ${thousands(shown[0])} đồng`
+              : `Tổng: ${total.toLocaleString("vi-VN")} đồng`,
+            label,
+          )}
+        </span>
+      )}
     </div>
   );
 }
@@ -945,6 +1105,8 @@ const CAO_DONG = 18;
  */
 const COT_MIN = 46;
 const COT_MAX = 300;
+/** Bề rộng hẹp nhất cho một cột khi phải co lại (chữ sẽ xuống dòng trong ô). */
+const COT_HEP_NHAT = 84;
 /**
  * 🔴 KHE GIỮA CÁC HÀNG. Bản cũ cộng dồn y liền mạch nên hàng tiêu đề CHẠM hàng đầu
  * tiên (không khe nào), trong khi giữa các CỘT lại có khe 4 — nhìn lệch và như dính.
@@ -997,7 +1159,24 @@ export function Table({ headers = [], rows = [], label = "" }) {
     return clamp(Math.round(dai * RONG_KY_TU) + LOT_O * 2, COT_MIN, COT_MAX);
   });
 
-  const soCotMoiKhoi = chiaKhoi(beRongCot, VUA_HINH - 12);
+  /**
+   * 🔴 BẢNG 2–3 CỘT THÌ KHÔNG ĐƯỢC CẮT THÀNH NHIỀU KHỐI.
+   * `chiaKhoi` cắt theo CỘT, mà cắt theo cột thì mất luôn quan hệ **HÀNG**: bảng
+   * “So sánh | Vì sao” của bài `g4-c1-l5` bị vẽ thành hai khối rời (“So sánh” ở trên,
+   * “Vì sao” ở dưới) nên bé không còn thấy dòng nào ứng với lý do nào
+   * (người dùng báo 2026-09-24). Bảng ít cột thì thà để CHỮ XUỐNG DÒNG trong ô.
+   */
+  const NGAN_SACH = VUA_HINH - 12;
+  const beRongDung = (() => {
+    if (soCot > 3) return beRongCot;
+    const w = [...beRongCot];
+    const tong = () => w.reduce((a, b) => a + b, 0);
+    while (tong() > NGAN_SACH && Math.max(...w) > COT_HEP_NHAT) {
+      w[w.indexOf(Math.max(...w))] -= 4;
+    }
+    return w;
+  })();
+  const soCotMoiKhoi = soCot <= 3 ? soCot : chiaKhoi(beRongDung, NGAN_SACH);
   const KHE_KHOI = 22;
 
   const khoi = [];
@@ -1010,11 +1189,11 @@ export function Table({ headers = [], rows = [], label = "" }) {
     let chay = 6;
     for (const c of cot) {
       mocX.push(chay);
-      chay += beRongCot[c];
+      chay += beRongDung[c];
     }
 
     const gioiHan = cot.map((c) =>
-      Math.floor((beRongCot[c] - LOT_O * 2) / RONG_KY_TU),
+      Math.floor((beRongDung[c] - LOT_O * 2) / RONG_KY_TU),
     );
     const hang = [];
     hang.push({
@@ -1056,52 +1235,123 @@ export function Table({ headers = [], rows = [], label = "" }) {
         role="img"
         aria-label="Bảng số liệu"
       >
-        {khoi.map((k, ki) =>
-          k.hangVe.map((h, ri) =>
-            h.o.map((dong, j) => {
-              const x = k.mocX[j];
-              const rong = beRongCot[k.cot[j]] - 4;
-              const giua = x + rong / 2;
-              const yHang = k.y + h.y;
-              const yDongDau =
-                yHang + h.cao / 2 - ((dong.length - 1) * CAO_DONG) / 2 + 5;
-              return (
-                <g key={`${ki}-${ri}-${j}`}>
-                  <rect
-                    x={x}
-                    y={yHang}
-                    width={rong}
-                    height={h.cao}
-                    rx={h.dauBang ? 7 : 6}
-                    fill={
-                      h.dauBang
-                        ? PALETTE.greenSoft
-                        : ri % 2
-                          ? "#f8fafc"
-                          : PALETTE.paper
-                    }
-                    stroke={h.dauBang ? PALETTE.green : PALETTE.grid}
-                    strokeWidth={h.dauBang ? 2 : 1.6}
-                  />
-                  <text
-                    x={giua}
-                    y={yDongDau}
-                    textAnchor="middle"
-                    fontSize={h.dauBang ? 14 : 15}
-                    fontWeight={h.dauBang ? 800 : 700}
-                    fill={h.dauBang ? PALETTE.green : PALETTE.ink}
-                  >
-                    {dong.map((ln, li) => (
-                      <tspan key={li} x={giua} dy={li === 0 ? 0 : CAO_DONG}>
-                        {ln}
-                      </tspan>
-                    ))}
-                  </text>
-                </g>
-              );
-            }),
-          ),
-        )}
+        {khoi.map((k, ki) => {
+          const x0 = 6;
+          const x1 = k.rong - 6;
+          const rongBang = x1 - x0;
+          return (
+            <g key={ki}>
+              {/* khung ngoài bo tròn — cả bảng là MỘT khối, không phải các ô rời */}
+              <rect
+                x={x0 - 3}
+                y={k.y + 3}
+                width={rongBang + 6}
+                height={k.cao - 6}
+                rx={14}
+                fill={PALETTE.paper}
+                style={{ stroke: ACCENT }}
+                strokeWidth="2"
+              />
+              {k.hangVe.map((h, ri) => {
+                const yHang = k.y + h.y;
+                return (
+                  <g key={ri}>
+                    {h.dauBang ? (
+                      <>
+                        <rect
+                          x={x0}
+                          y={yHang}
+                          width={rongBang}
+                          height={h.cao}
+                          rx={10}
+                          style={{ fill: ACCENT }}
+                        />
+                        <rect
+                          x={x0}
+                          y={yHang}
+                          width={rongBang}
+                          height={h.cao}
+                          rx={10}
+                          fill="#0f172a"
+                          opacity="0.34"
+                        />
+                      </>
+                    ) : (
+                      ri % 2 === 0 && (
+                        <rect
+                          x={x0}
+                          y={yHang}
+                          width={rongBang}
+                          height={h.cao}
+                          style={{ fill: ACCENT_TINT }}
+                        />
+                      )
+                    )}
+                    {ri > 0 && (
+                      <line
+                        x1={x0}
+                        y1={yHang}
+                        x2={x1}
+                        y2={yHang}
+                        stroke={PALETTE.grid}
+                        strokeWidth="1.5"
+                      />
+                    )}
+                  </g>
+                );
+              })}
+              {/* vạch ngăn dọc giữa các cột */}
+              {k.mocX.slice(1).map((x, j) => (
+                <line
+                  key={`v${j}`}
+                  x1={x - 3}
+                  y1={k.y + 8}
+                  x2={x - 3}
+                  y2={k.y + k.cao - 8}
+                  stroke={PALETTE.grid}
+                  strokeWidth="1.2"
+                />
+              ))}
+              {k.hangVe.map((h, ri) =>
+                h.o.map((dong, j) => {
+                  const x = k.mocX[j];
+                  const rong = beRongDung[k.cot[j]] - 4;
+                  const giua = x + rong / 2;
+                  const yDongDau =
+                    k.y +
+                    h.y +
+                    h.cao / 2 -
+                    ((dong.length - 1) * CAO_DONG) / 2 +
+                    5;
+                  const laCotDau = j === 0;
+                  return (
+                    <text
+                      key={`${ri}-${j}`}
+                      x={giua}
+                      y={yDongDau}
+                      textAnchor="middle"
+                      fontSize="15"
+                      fontWeight={h.dauBang || laCotDau ? 800 : 600}
+                      fill={
+                        h.dauBang
+                          ? "#ffffff"
+                          : laCotDau
+                            ? PALETTE.ink
+                            : PALETTE.soft
+                      }
+                    >
+                      {dong.map((ln, li) => (
+                        <tspan key={li} x={giua} dy={li === 0 ? 0 : CAO_DONG}>
+                          {ln}
+                        </tspan>
+                      ))}
+                    </text>
+                  );
+                }),
+              )}
+            </g>
+          );
+        })}
       </svg>
       {label && <span style={caption}>{label}</span>}
     </div>

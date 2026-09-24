@@ -211,9 +211,9 @@ export const g3c11 = {
           }
         },
         {
-          "type": "visual",
-          "content": {
-            "text": "24 568 → hai mươi tư nghìn năm trăm sáu mươi tám\n30 405 → ba mươi nghìn bốn trăm linh năm",
+          type: "visual",
+          content: {
+            "text": "24 568 → hai mươi tư nghìn năm trăm sáu mươi tám",
             "placeValue": {
               "headers": [
                 "Chục nghìn",
@@ -230,7 +230,13 @@ export const g3c11 = {
                 5
               ],
               "label": "30 405 đọc là ba mươi nghìn bốn trăm linh năm"
-            },
+            }
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            "text":"30 405 → ba mươi nghìn bốn trăm linh năm",
             "table": {
               "headers": [
                 "Số",
@@ -248,7 +254,7 @@ export const g3c11 = {
               ],
               "label": "Đọc và viết số có năm chữ số"
             }
-          }
+          },
         },
         {
           "type": "quiz",
@@ -407,9 +413,9 @@ export const g3c11 = {
           }
         },
         {
-          "type": "visual",
-          "content": {
-            "text": "24 300 → 24 000  (3 < 5, xuống)\n24 800 → 25 000  (8 ≥ 5, lên)",
+          type: "visual",
+          content: {
+            "text": "24 300 → 24 000  (3 < 5, xuống)",
             "table": {
               "headers": [
                 "Làm tròn",
@@ -426,7 +432,13 @@ export const g3c11 = {
                 ]
               ],
               "label": "Làm tròn số đến hàng nghìn, hàng chục nghìn"
-            },
+            }
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            "text":"24 800 → 25 000  (8 ≥ 5, lên)",
             "numberLine": {
               "from": 24000,
               "to": 25000,
@@ -439,7 +451,7 @@ export const g3c11 = {
               ],
               "label": "24 300 gần 24 000 · 24 800 gần 25 000"
             }
-          }
+          },
         },
         {
           "type": "quiz",
@@ -510,9 +522,9 @@ export const g3c11 = {
           }
         },
         {
-          "type": "visual",
-          "content": {
-            "text": "24 568 = 20 000 + 4 000 + 500 + 60 + 8\n24 800 → 25 000",
+          type: "visual",
+          content: {
+            "text": "24 568 = 20 000 + 4 000 + 500 + 60 + 8",
             "placeValue": {
               "headers": [
                 "Chục nghìn",
@@ -529,7 +541,13 @@ export const g3c11 = {
                 8
               ],
               "label": "24 568 = 20 000 + 4 000 + 500 + 60 + 8"
-            },
+            }
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            "text":"24 800 → 25 000",
             "table": {
               "headers": [
                 "Làm tròn",
@@ -547,7 +565,7 @@ export const g3c11 = {
               ],
               "label": "Luyện tập chung chủ đề 11"
             }
-          }
+          },
         },
         {
           "type": "quiz",

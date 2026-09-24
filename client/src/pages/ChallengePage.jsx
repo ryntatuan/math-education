@@ -29,6 +29,7 @@ import soundManager from "../utils/soundManager";
 import fireConfetti from "../utils/confettiHelper";
 import GuestChallengeLock from "../components/auth/GuestChallengeLock";
 import RightSidebar from "../components/layout/RightSidebar";
+import { reviveQuestionVisual } from "../components/common/QuestionVisual";
 import { getReward } from "../services/rewardService";
 import "./ChallengePage.css";
 
@@ -619,7 +620,9 @@ export default function ChallengePage() {
                         <h2>{questions[activeTaskIndex].question}</h2>
                         {questions[activeTaskIndex].visualDisplay && (
                           <div className="task-visual-box">
-                            {questions[activeTaskIndex].visualDisplay}
+                            {reviveQuestionVisual(
+                              questions[activeTaskIndex].visualDisplay,
+                            )}
                           </div>
                         )}
                       </div>

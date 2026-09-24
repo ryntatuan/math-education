@@ -20,8 +20,8 @@ export const g5c5 = {
           }
         },
         {
-          "type": "concept",
-          "content": {
+          type: "concept",
+          content: {
             "fractionBar": {
               "rows": [
                 {
@@ -32,6 +32,22 @@ export const g5c5 = {
               ],
               "label": "Ba loại số viết qua lại được: phân số, số thập phân, phần trăm"
             },
+            "badge": "Kiến Thức Trọng Tâm",
+            "title": "Ôn tập về số tự nhiên, phân số, số thập phân",
+            "explanation": "Ôn tập tổng hợp về số tự nhiên, phân số và số thập phân.",
+            "points": [
+              "Số tự nhiên: đọc, viết, so sánh, phân biệt số chẵn và số lẻ.",
+              "Phân số: rút gọn, so sánh và tính giá trị của phân số.",
+              "Số thập phân: đọc, viết, so sánh và làm tròn số."
+            ],
+            "rule": "Ba loại số này viết qua lại được: 1/2 = 0,5."
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            "badge": "Kiến Thức Trọng Tâm",
+            title: "Ôn tập về số tự nhiên, phân số, số thập phân",
             "table": {
               "headers": [
                 "Viết dạng",
@@ -52,17 +68,8 @@ export const g5c5 = {
                 ]
               ],
               "label": "Ôn tập về số tự nhiên, phân số, số thập phân"
-            },
-            "badge": "Kiến Thức Trọng Tâm",
-            "title": "Ôn tập về số tự nhiên, phân số, số thập phân",
-            "explanation": "Ôn tập tổng hợp về số tự nhiên, phân số và số thập phân.",
-            "points": [
-              "Số tự nhiên: đọc, viết, so sánh, phân biệt số chẵn và số lẻ.",
-              "Phân số: rút gọn, so sánh và tính giá trị của phân số.",
-              "Số thập phân: đọc, viết, so sánh và làm tròn số."
-            ],
-            "rule": "Ba loại số này viết qua lại được: 1/2 = 0,5."
-          }
+            }
+          },
         },
         {
           "type": "quiz",
@@ -178,8 +185,8 @@ export const g5c5 = {
           }
         },
         {
-          "type": "visual",
-          "content": {
+          type: "visual",
+          content: {
             "text": "- Tam giác: S = (a × h) / 2 - Hình thang: S = ((a + b) × h) / 2 - Hình tròn: S = r × r × 3,14 - Hình thoi: S = (m × n) / 2",
             "planeShape": {
               "kind": "trapezoid",
@@ -189,7 +196,13 @@ export const g5c5 = {
                 "h"
               ],
               "formula": "S = (a + b) × h : 2"
-            },
+            }
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            "text": "Ôn tập chu vi, diện tích hình phẳng",
             "table": {
               "headers": [
                 "Hình",
@@ -215,7 +228,7 @@ export const g5c5 = {
               ],
               "label": "Ôn tập chu vi, diện tích hình phẳng"
             }
-          }
+          },
         },
         {
           "type": "quiz",
@@ -264,8 +277,8 @@ export const g5c5 = {
           }
         },
         {
-          "type": "concept",
-          "content": {
+          type: "concept",
+          content: {
             "solid": {
               "kind": "cube",
               "dims": {
@@ -276,6 +289,22 @@ export const g5c5 = {
               },
               "formula": "V = a × a × a"
             },
+            "badge": "Kiến Thức Trọng Tâm",
+            "title": "Ôn tập diện tích & Thể tích hình khối",
+            "explanation": "Ôn lại công thức tính diện tích và thể tích các hình đã học.",
+            "points": [
+              "Diện tích hình thang = (đáy lớn + đáy bé) × chiều cao : 2.",
+              "Diện tích xung quanh hình hộp chữ nhật = chu vi đáy × chiều cao.",
+              "Thể tích hình lập phương = cạnh × cạnh × cạnh."
+            ],
+            "rule": "Phân biệt diện tích (cm²) và thể tích (cm³) nhờ đơn vị của đáp số."
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            "badge": "Kiến Thức Trọng Tâm",
+            title: "Phân biệt diện tích (cm²) và thể tích (cm³) nhờ ĐƠN VỊ của đáp số",
             "table": {
               "headers": [
                 "Đại lượng",
@@ -296,17 +325,8 @@ export const g5c5 = {
                 ]
               ],
               "label": "Phân biệt diện tích (cm²) và thể tích (cm³) nhờ ĐƠN VỊ của đáp số"
-            },
-            "badge": "Kiến Thức Trọng Tâm",
-            "title": "Ôn tập diện tích & Thể tích hình khối",
-            "explanation": "Ôn lại công thức tính diện tích và thể tích các hình đã học.",
-            "points": [
-              "Diện tích hình thang = (đáy lớn + đáy bé) × chiều cao : 2.",
-              "Diện tích xung quanh hình hộp chữ nhật = chu vi đáy × chiều cao.",
-              "Thể tích hình lập phương = cạnh × cạnh × cạnh."
-            ],
-            "rule": "Phân biệt diện tích (cm²) và thể tích (cm³) nhờ đơn vị của đáp số."
-          }
+            }
+          },
         },
         {
           "type": "quiz",
@@ -349,8 +369,8 @@ export const g5c5 = {
           }
         },
         {
-          "type": "concept",
-          "content": {
+          type: "concept",
+          content: {
             "motionDiagram": {
               "mode": "toward",
               "distance": 120,
@@ -365,6 +385,22 @@ export const g5c5 = {
               },
               "note": "Đơn vị vận tốc phải khớp đơn vị thời gian"
             },
+            "badge": "Kiến Thức Trọng Tâm",
+            "title": "Ôn tập toán chuyển động đều & Tỉ số phần trăm",
+            "explanation": "Ôn lại ba đại lượng của toán chuyển động đều và cách tính tỉ số phần trăm.",
+            "points": [
+              "Quãng đường = vận tốc × thời gian.",
+              "Vận tốc = quãng đường : thời gian.",
+              "Thời gian = quãng đường : vận tốc."
+            ],
+            "rule": "Đơn vị vận tốc phải khớp đơn vị thời gian, ví dụ km/giờ với giờ."
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            "badge": "Kiến Thức Trọng Tâm",
+            title: "Ba dạng toán tỉ số phần trăm",
             "pieChart": {
               "title": "Ba dạng toán tỉ số phần trăm",
               "items": [
@@ -381,17 +417,8 @@ export const g5c5 = {
                   "percent": 25
                 }
               ]
-            },
-            "badge": "Kiến Thức Trọng Tâm",
-            "title": "Ôn tập toán chuyển động đều & Tỉ số phần trăm",
-            "explanation": "Ôn lại ba đại lượng của toán chuyển động đều và cách tính tỉ số phần trăm.",
-            "points": [
-              "Quãng đường = vận tốc × thời gian.",
-              "Vận tốc = quãng đường : thời gian.",
-              "Thời gian = quãng đường : vận tốc."
-            ],
-            "rule": "Đơn vị vận tốc phải khớp đơn vị thời gian, ví dụ km/giờ với giờ."
-          }
+            }
+          },
         },
         {
           "type": "quiz",
@@ -525,8 +552,8 @@ export const g5c5 = {
           }
         },
         {
-          "type": "concept",
-          "content": {
+          type: "concept",
+          content: {
             "pieChart": {
               "title": "Ba dạng toán về tỉ số phần trăm",
               "items": [
@@ -544,6 +571,22 @@ export const g5c5 = {
                 }
               ]
             },
+            "badge": "Ba Dạng Phần Trăm",
+            "title": "Ba dạng cơ bản",
+            "points": [
+              "Dạng 1: Tìm tỉ số phần trăm của hai số: lấy số thứ nhất chia số thứ hai rồi nhân 100.",
+              "Dạng 2: Tìm a% của một số: lấy số đó chia 100 rồi nhân a.",
+              "Dạng 3: Tìm một số khi biết a% của nó: lấy giá trị đã biết chia a rồi nhân 100.",
+              "Ví dụ: 10% của 200 000 đồng = 200 000 : 100 × 10 = 20 000 đồng."
+            ],
+            "rule": "Đọc kỹ đề để biết đang hỏi dạng nào trong ba dạng trên."
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            "badge": "Ba Dạng Phần Trăm",
+            title: "Ôn tập toán về tỉ số phần trăm",
             "table": {
               "headers": [
                 "Dạng",
@@ -564,17 +607,8 @@ export const g5c5 = {
                 ]
               ],
               "label": "Ôn tập toán về tỉ số phần trăm"
-            },
-            "badge": "Ba Dạng Phần Trăm",
-            "title": "Ba dạng cơ bản",
-            "points": [
-              "Dạng 1: Tìm tỉ số phần trăm của hai số: lấy số thứ nhất chia số thứ hai rồi nhân 100.",
-              "Dạng 2: Tìm a% của một số: lấy số đó chia 100 rồi nhân a.",
-              "Dạng 3: Tìm một số khi biết a% của nó: lấy giá trị đã biết chia a rồi nhân 100.",
-              "Ví dụ: 10% của 200 000 đồng = 200 000 : 100 × 10 = 20 000 đồng."
-            ],
-            "rule": "Đọc kỹ đề để biết đang hỏi dạng nào trong ba dạng trên."
-          }
+            }
+          },
         },
         {
           "type": "quiz",
@@ -728,8 +762,8 @@ export const g5c5 = {
           }
         },
         {
-          "type": "concept",
-          "content": {
+          type: "concept",
+          content: {
             "motionDiagram": {
               "mode": "toward",
               "distance": 150,
@@ -744,6 +778,21 @@ export const g5c5 = {
               },
               "note": "Ngược chiều thì CỘNG vận tốc · cùng chiều thì TRỪ vận tốc"
             },
+            "badge": "Đề Số 2",
+            "title": "Ba dạng nâng cao",
+            "points": [
+              "Dạng 1: Toán chuyển động của hai vật.",
+              "Dạng 2: Toán tỉ số phần trăm có tăng giá hoặc giảm giá.",
+              "Dạng 3: Hình học tổng hợp (diện tích và thể tích)."
+            ],
+            "rule": "Toán hai vật: ngược chiều thì cộng vận tốc, cùng chiều thì trừ vận tốc."
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            "badge": "Đề Số 2",
+            title: "Luyện đề chuyển cấp — Đề số 2",
             "table": {
               "headers": [
                 "Trường hợp",
@@ -760,16 +809,8 @@ export const g5c5 = {
                 ]
               ],
               "label": "Luyện đề chuyển cấp — Đề số 2"
-            },
-            "badge": "Đề Số 2",
-            "title": "Ba dạng nâng cao",
-            "points": [
-              "Dạng 1: Toán chuyển động của hai vật.",
-              "Dạng 2: Toán tỉ số phần trăm có tăng giá hoặc giảm giá.",
-              "Dạng 3: Hình học tổng hợp (diện tích và thể tích)."
-            ],
-            "rule": "Toán hai vật: ngược chiều thì cộng vận tốc, cùng chiều thì trừ vận tốc."
-          }
+            }
+          },
         },
         {
           "type": "quiz",
@@ -832,8 +873,8 @@ export const g5c5 = {
           }
         },
         {
-          "type": "concept",
-          "content": {
+          type: "concept",
+          content: {
             "pieChart": {
               "title": "Hành trang lên Lớp 6",
               "items": [
@@ -851,6 +892,22 @@ export const g5c5 = {
                 }
               ]
             },
+            "badge": "Kiến Thức Trọng Tâm",
+            "title": "Thử thách Trạng Nguyên Toán Lớp 5 - Chinh phục Lớp 6",
+            "explanation": "Bài cuối của Lớp 5: tổng hợp toàn bộ kiến thức tiểu học.",
+            "points": [
+              "Số học: số tự nhiên, phân số, số thập phân và tỉ số phần trăm.",
+              "Hình học: chu vi, diện tích và thể tích các hình.",
+              "Toán chuyển động đều và toán về tỉ lệ."
+            ],
+            "rule": "Bé đã học xong tiểu học — giữ thói quen tính cẩn thận khi lên Lớp 6!"
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            "badge": "Kiến Thức Trọng Tâm",
+            title: "Thử thách Trạng Nguyên Toán Lớp 5 — chinh phục Lớp 6",
             "table": {
               "headers": [
                 "Điều bé mang theo",
@@ -871,17 +928,8 @@ export const g5c5 = {
                 ]
               ],
               "label": "Thử thách Trạng Nguyên Toán Lớp 5 — chinh phục Lớp 6"
-            },
-            "badge": "Kiến Thức Trọng Tâm",
-            "title": "Thử thách Trạng Nguyên Toán Lớp 5 - Chinh phục Lớp 6",
-            "explanation": "Bài cuối của Lớp 5: tổng hợp toàn bộ kiến thức tiểu học.",
-            "points": [
-              "Số học: số tự nhiên, phân số, số thập phân và tỉ số phần trăm.",
-              "Hình học: chu vi, diện tích và thể tích các hình.",
-              "Toán chuyển động đều và toán về tỉ lệ."
-            ],
-            "rule": "Bé đã học xong tiểu học — giữ thói quen tính cẩn thận khi lên Lớp 6!"
-          }
+            }
+          },
         },
         {
           "type": "quiz",

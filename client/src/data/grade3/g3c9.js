@@ -461,16 +461,22 @@ export const g3c9 = {
           }
         },
         {
-          "type": "visual",
-          "content": {
-            "text": "▢ cạnh 1 cm → diện tích 1 cm²\n5 ô như vậy → 5 cm²",
+          type: "visual",
+          content: {
+            "text": "▢ cạnh 1 cm → diện tích 1 cm²",
             "planeShape": {
               "kind": "square",
               "labels": [
                 "1 cm"
               ],
               "formula": "1 cm² là diện tích hình vuông cạnh 1 cm"
-            },
+            }
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            "text":"5 ô như vậy → 5 cm²",
             "table": {
               "headers": [
                 "Số ô 1 cm²",
@@ -488,7 +494,7 @@ export const g3c9 = {
               ],
               "label": "Xăng-ti-mét vuông"
             }
-          }
+          },
         },
         {
           "type": "quiz",
@@ -774,16 +780,22 @@ export const g3c9 = {
           }
         },
         {
-          "type": "visual",
-          "content": {
-            "text": "Chu vi hình vuông 4 cm: 4 × 4 = 16 cm\nDiện tích hình vuông 4 cm: 4 × 4 = 16 cm²",
+          type: "visual",
+          content: {
+            "text": "Chu vi hình vuông 4 cm: 4 × 4 = 16 cm",
             "planeShape": {
               "kind": "square",
               "labels": [
                 "4 cm"
               ],
               "formula": "Chu vi 4 × 4 = 16 cm · Diện tích 4 × 4 = 16 cm²"
-            },
+            }
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            "text":"Diện tích hình vuông 4 cm: 4 × 4 = 16 cm²",
             "table": {
               "headers": [
                 "Cần tính",
@@ -805,7 +817,7 @@ export const g3c9 = {
               ],
               "label": "Luyện tập chung chủ đề 9"
             }
-          }
+          },
         },
         {
           "type": "quiz",

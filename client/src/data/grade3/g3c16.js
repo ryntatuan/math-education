@@ -235,16 +235,22 @@ export const g3c16 = {
           }
         },
         {
-          "type": "visual",
-          "content": {
-            "text": "Hình vuông cạnh 5 cm:\nChu vi  = 5 × 4 = 20 cm\nDiện tích = 5 × 5 = 25 cm²",
+          type: "visual",
+          content: {
+            "text": "Hình vuông cạnh 5 cm:",
             "planeShape": {
               "kind": "square",
               "labels": [
                 "5 cm"
               ],
               "formula": "Chu vi = 5 × 4 = 20 cm · Diện tích = 5 × 5 = 25 cm²"
-            },
+            }
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            "text":"Chu vi  = 5 × 4 = 20 cm\nDiện tích = 5 × 5 = 25 cm²",
             "table": {
               "headers": [
                 "Cần tính",
@@ -270,7 +276,7 @@ export const g3c16 = {
               ],
               "label": "Ôn tập hình học — chu vi và diện tích"
             }
-          }
+          },
         },
         {
           "type": "quiz",
@@ -771,9 +777,9 @@ export const g3c16 = {
           }
         },
         {
-          "type": "visual",
-          "content": {
-            "text": "Lớp 3 ✅\nLớp 4 — sẵn sàng! 🚀",
+          type: "visual",
+          content: {
+            "text": "Lớp 3 ✅",
             "numberLine": {
               "from": 1,
               "to": 5,
@@ -791,7 +797,13 @@ export const g3c16 = {
                 }
               ],
               "label": "Lớp 3 xong rồi — sẵn sàng lên Lớp 4"
-            },
+            }
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            "text":"Lớp 4 — sẵn sàng! 🚀",
             "table": {
               "headers": [
                 "Mốc",
@@ -809,7 +821,7 @@ export const g3c16 = {
               ],
               "label": "Lễ tốt nghiệp lớp 3"
             }
-          }
+          },
         },
         {
           "type": "quiz",

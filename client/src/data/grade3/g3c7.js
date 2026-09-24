@@ -226,19 +226,25 @@ export const g3c7 = {
           }
         },
         {
-          "type": "visual",
-          "content": {
-            "text": "d = 2 × r\n▢ 4 góc vuông · 🔺 3 cạnh",
+          type: "visual",
+          content: {
+            "text": "d = 2 × r",
             "circleParts": {
               "radius": 3,
               "diameter": 6,
               "label": "Đường kính = 2 × bán kính"
-            },
+            }
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            "text":"▢ 4 góc vuông · 🔺 3 cạnh",
             "planeShape": {
               "kind": "square",
               "formula": "4 góc vuông · 4 cạnh bằng nhau"
             }
-          }
+          },
         },
         {
           "type": "quiz",

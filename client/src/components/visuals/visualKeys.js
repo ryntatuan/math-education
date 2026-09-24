@@ -45,6 +45,10 @@ export const HINH_KEYS = [
   "shapePicture",
   "shapeJoin",
   "spatialScene",
+  // Đếm – so sánh – tách gộp cho Lớp 1 (Chủ đề 1: các số từ 0 đến 10)
+  "numberScene",
+  // Nhóm – phần – gộp/bớt cho Lớp 1–4 (thay `tenFrame` ở các ca bị ép khung)
+  "groupScene",
   // Điểm & đường (Lớp 2 — tên điểm A, B, C, D là nội dung bài học)
   "pointLine",
   // Phân số & sơ đồ

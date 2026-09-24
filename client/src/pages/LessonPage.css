@@ -478,6 +478,20 @@
   margin-top: 6px;
 }
 
+/* Câu “điền dấu” chỉ có 3 đáp án (>, <, =) và đáp án rất ngắn ⇒ xếp MỘT HÀNG 3 Ô cho gọn,
+   không để lẻ 1 ô nằm riêng một hàng. Chỉ áp khi bé thật sự chỉ có 3 lựa chọn ngắn
+   (JS thêm class `quiz-options-3`), nên không làm bẹp các câu có đáp án dài. */
+.quiz-options-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* Số đáp án LẺ (3, 5, 7…) mà đáp án dài thì ô cuối cùng được canh giữa thay vì lệch trái. */
+.quiz-options:not(.quiz-options-3) > .quiz-option:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+  width: min(100%, 420px);
+  justify-self: center;
+}
+
 .quiz-option {
   display: flex;
   align-items: center;

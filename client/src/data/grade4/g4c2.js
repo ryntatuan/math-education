@@ -240,8 +240,8 @@ export const g4c2 = {
           }
         },
         {
-          "type": "visual",
-          "content": {
+          type: "visual",
+          content: {
             "text": "Công thức: - Số lớn = (Tổng + Hiệu) : 2 - Số bé = (Tổng - Hiệu) : 2 (Hoặc: Số bé = Số lớn - Hiệu; Số lớn = Tổng - Số bé)",
             "barModel": {
               "rows": [
@@ -255,7 +255,13 @@ export const g4c2 = {
                 }
               ],
               "braceLabel": "Tổng 13 · Hiệu 3"
-            },
+            }
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            "text": "Tìm hai số khi biết Tổng và Hiệu",
             "table": {
               "headers": [
                 "Cần tìm",
@@ -273,7 +279,7 @@ export const g4c2 = {
               ],
               "label": "Tìm hai số khi biết Tổng và Hiệu"
             }
-          }
+          },
         },
         {
           "type": "quiz",
@@ -330,8 +336,8 @@ export const g4c2 = {
           }
         },
         {
-          "type": "visual",
-          "content": {
+          type: "visual",
+          content: {
             "text": "Góc nhọn đỉnh O, hai cạnh OA và OB — bé hơn góc vuông.",
             "angle": {
               "kind": "acute",
@@ -342,7 +348,13 @@ export const g4c2 = {
                 "A"
               ],
               "label": "Góc nhọn — bé hơn góc vuông"
-            },
+            }
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            "text": "Góc nhọn, góc tù, góc bẹt",
             "table": {
               "headers": [
                 "Loại góc",
@@ -368,7 +380,7 @@ export const g4c2 = {
               ],
               "label": "Góc nhọn, góc tù, góc bẹt"
             }
-          }
+          },
         },
         {
           "type": "quiz",
@@ -429,14 +441,20 @@ export const g4c2 = {
           }
         },
         {
-          "type": "visual",
-          "content": {
+          type: "visual",
+          content: {
             "text": "- Vuông góc: Cắt nhau tạo góc 90° (ký hiệu ⊥). - Song song: Cách đều nhau và không bao giờ cắt nhau dù kéo dài mãi.",
             "angle": {
               "kind": "right",
               "degrees": 90,
               "label": "Hai đường thẳng vuông góc tạo thành góc 90° (kí hiệu ⊥)"
-            },
+            }
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            "text": "Hai đường thẳng vuông góc & song song",
             "table": {
               "headers": [
                 "Quan hệ",
@@ -454,7 +472,7 @@ export const g4c2 = {
               ],
               "label": "Hai đường thẳng vuông góc & song song"
             }
-          }
+          },
         },
         {
           "type": "quiz",
@@ -664,8 +682,8 @@ export const g4c2 = {
           }
         },
         {
-          "type": "visual",
-          "content": {
+          type: "visual",
+          content: {
             "text": "Mối quan hệ diện tích: 1 m² = 100 dm² 1 dm² = 100 cm² 1 m² = 10 000 cm² Mỗi đơn vị diện tích gấp 100 lần đơn vị bé hơn liền kề!",
             "planeShape": {
               "kind": "square",
@@ -673,7 +691,13 @@ export const g4c2 = {
                 "1 dm"
               ],
               "formula": "1 dm² là diện tích hình vuông cạnh 1 dm"
-            },
+            }
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            "text": "Mỗi đơn vị diện tích gấp 100 lần đơn vị bé hơn liền kề",
             "table": {
               "headers": [
                 "Đổi",
@@ -695,7 +719,7 @@ export const g4c2 = {
               ],
               "label": "Mỗi đơn vị diện tích gấp 100 lần đơn vị bé hơn liền kề"
             }
-          }
+          },
         },
         {
           "type": "quiz",

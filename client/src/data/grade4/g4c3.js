@@ -164,8 +164,8 @@ export const g4c3 = {
           }
         },
         {
-          "type": "visual",
-          "content": {
+          type: "visual",
+          content: {
             "text": "Quy đổi: - Ki-lô-mét vuông là diện tích của hình vuông có cạnh dài 1 km. - 1 km² = 1 000 000 m² (gồm chữ số 1 và 6 chữ số 0).",
             "planeShape": {
               "kind": "square",
@@ -173,7 +173,13 @@ export const g4c3 = {
                 "1 km"
               ],
               "formula": "1 km² là diện tích hình vuông cạnh 1 km"
-            },
+            }
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            "text": "Ki-lô-mét vuông",
             "table": {
               "headers": [
                 "Đổi",
@@ -187,7 +193,7 @@ export const g4c3 = {
               ],
               "label": "Ki-lô-mét vuông"
             }
-          }
+          },
         },
         {
           "type": "quiz",
@@ -750,8 +756,8 @@ export const g4c3 = {
           }
         },
         {
-          "type": "concept",
-          "content": {
+          type: "concept",
+          content: {
             "planeShape": {
               "kind": "parallelogram",
               "labels": [
@@ -760,6 +766,21 @@ export const g4c3 = {
               ],
               "formula": "S = a × h"
             },
+            "badge": "Ôn Tập Chương 3",
+            "title": "Ba mảng kiến thức",
+            "points": [
+              "Dấu hiệu chia hết cho 2, 5, 9, 3.",
+              "Ki-lô-mét vuông và cách đổi đơn vị (1 km² = 1 000 000 m²).",
+              "Hình bình hành: đặc điểm và diện tích S = a × h."
+            ],
+            "rule": "Đọc kỹ đề để biết bài thuộc mảng nào."
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            "badge": "Ôn Tập Chương 3",
+            title: "Luyện tập chung chương 3",
             "table": {
               "headers": [
                 "Dấu hiệu",
@@ -784,16 +805,8 @@ export const g4c3 = {
                 ]
               ],
               "label": "Luyện tập chung chương 3"
-            },
-            "badge": "Ôn Tập Chương 3",
-            "title": "Ba mảng kiến thức",
-            "points": [
-              "Dấu hiệu chia hết cho 2, 5, 9, 3.",
-              "Ki-lô-mét vuông và cách đổi đơn vị (1 km² = 1 000 000 m²).",
-              "Hình bình hành: đặc điểm và diện tích S = a × h."
-            ],
-            "rule": "Đọc kỹ đề để biết bài thuộc mảng nào."
-          }
+            }
+          },
         },
         {
           "type": "quiz",

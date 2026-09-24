@@ -159,8 +159,8 @@ export const g5c4 = {
           }
         },
         {
-          "type": "visual",
-          "content": {
+          type: "visual",
+          content: {
             "text": "Công thức tính vận tốc: v = s : t Trong đó: - v là vận tốc - s là quãng đường - t là thời gian",
             "motionDiagram": {
               "mode": "toward",
@@ -175,7 +175,13 @@ export const g5c4 = {
                 "speed": 15
               },
               "note": "v = s : t — đơn vị vận tốc thường là km/giờ"
-            },
+            }
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            "text": "Ba công thức chuyển động — nhớ một là suy ra được hai",
             "table": {
               "headers": [
                 "Đại lượng",
@@ -197,7 +203,7 @@ export const g5c4 = {
               ],
               "label": "Ba công thức chuyển động — nhớ một là suy ra được hai"
             }
-          }
+          },
         },
         {
           "type": "quiz",
@@ -247,8 +253,8 @@ export const g5c4 = {
           }
         },
         {
-          "type": "visual",
-          "content": {
+          type: "visual",
+          content: {
             "text": "Công thức quãng đường: s = v × t Ví dụ: Một người đi xe đạp với vận tốc 15 km/giờ trong 2 giờ. Quãng đường đi được là: s = 15 × 2 = 30 km.",
             "motionDiagram": {
               "mode": "toward",
@@ -260,7 +266,13 @@ export const g5c4 = {
               },
               "b": null,
               "note": "s = v × t = 15 × 2 = 30 km"
-            },
+            }
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            "text": "Quãng đường s = v × t",
             "table": {
               "headers": [
                 "Cho",
@@ -274,7 +286,7 @@ export const g5c4 = {
               ],
               "label": "Quãng đường s = v × t"
             }
-          }
+          },
         },
         {
           "type": "quiz",
@@ -317,8 +329,8 @@ export const g5c4 = {
           }
         },
         {
-          "type": "visual",
-          "content": {
+          type: "visual",
+          content: {
             "text": "Công thức thời gian: t = s : v Ví dụ: Quãng đường AB dài 90 km, xe máy đi với vận tốc 45 km/giờ. Thời gian đi là: t = 90 : 45 = 2 giờ.",
             "motionDiagram": {
               "mode": "toward",
@@ -330,7 +342,13 @@ export const g5c4 = {
               },
               "b": null,
               "note": "t = s : v = 90 : 45 = 2 giờ"
-            },
+            }
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            "text": "Thời gian t = s : v",
             "table": {
               "headers": [
                 "Cho",
@@ -344,7 +362,7 @@ export const g5c4 = {
               ],
               "label": "Thời gian t = s : v"
             }
-          }
+          },
         },
         {
           "type": "quiz",
@@ -388,8 +406,8 @@ export const g5c4 = {
           }
         },
         {
-          "type": "visual",
-          "content": {
+          type: "visual",
+          content: {
             "text": "1. Ngược chiều: Thời gian gặp nhau = Khoảng cách ban đầu : (v1 + v2) 2. Cùng chiều (xe sau nhanh hơn đuổi xe trước): Thời gian đuổi kịp = Khoảng cách ban đầu : (v1 - v2)",
             "motionDiagram": {
               "mode": "toward",
@@ -404,7 +422,13 @@ export const g5c4 = {
                 "speed": 60
               },
               "note": "Ngược chiều: gặp nhau sau 150 : (45 + 60) giờ"
-            },
+            }
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            "text": "Hai chuyển động cùng chiều & ngược chiều",
             "table": {
               "headers": [
                 "Trường hợp",
@@ -422,7 +446,7 @@ export const g5c4 = {
               ],
               "label": "Hai chuyển động cùng chiều & ngược chiều"
             }
-          }
+          },
         },
         {
           "type": "quiz",
@@ -546,8 +570,8 @@ export const g5c4 = {
           }
         },
         {
-          "type": "concept",
-          "content": {
+          type: "concept",
+          content: {
             "table": {
               "headers": [
                 "Cần tìm",
@@ -569,6 +593,22 @@ export const g5c4 = {
               ],
               "label": "Luyện tập ba bài toán chuyển động"
             },
+            "badge": "Tam Giác Ba Công Thức",
+            "title": "v · s · t",
+            "points": [
+              "Vận tốc: v = s : t (thường là km/giờ).",
+              "Quãng đường: s = v × t (km).",
+              "Thời gian: t = s : v (giờ).",
+              "Ví dụ: v = 45 km/giờ, t = 3 giờ ⇒ s = 45 × 3 = 135 km."
+            ],
+            "rule": "Nhớ một công thức là suy ra được hai công thức còn lại."
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            "badge": "Tam Giác Ba Công Thức",
+            title: "v · s · t",
             "motionDiagram": {
               "mode": "toward",
               "distance": 90,
@@ -582,17 +622,8 @@ export const g5c4 = {
                 "speed": 15
               },
               "note": "Cùng quãng đường, vận tốc càng lớn thì thời gian càng nhỏ"
-            },
-            "badge": "Tam Giác Ba Công Thức",
-            "title": "v · s · t",
-            "points": [
-              "Vận tốc: v = s : t (thường là km/giờ).",
-              "Quãng đường: s = v × t (km).",
-              "Thời gian: t = s : v (giờ).",
-              "Ví dụ: v = 45 km/giờ, t = 3 giờ ⇒ s = 45 × 3 = 135 km."
-            ],
-            "rule": "Nhớ một công thức là suy ra được hai công thức còn lại."
-          }
+            }
+          },
         },
         {
           "type": "quiz",
@@ -662,8 +693,8 @@ export const g5c4 = {
           }
         },
         {
-          "type": "concept",
-          "content": {
+          type: "concept",
+          content: {
             "motionDiagram": {
               "mode": "chase",
               "distance": 36,
@@ -678,6 +709,22 @@ export const g5c4 = {
               },
               "note": "Cùng chiều: đuổi kịp sau 36 : (45 − 15) giờ"
             },
+            "badge": "Ôn Tập Chương 4",
+            "title": "Bốn mảng kiến thức",
+            "points": [
+              "Bảng đơn vị đo thời gian và cách đổi.",
+              "Cộng, trừ, nhân, chia số đo thời gian (hệ đếm 60).",
+              "Ba công thức vận tốc - quãng đường - thời gian.",
+              "Hai chuyển động: ngược chiều t = s : (v1 + v2); cùng chiều t = s : (v1 - v2)."
+            ],
+            "rule": "Đọc kỹ đề để chọn đúng công thức."
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            "badge": "Ôn Tập Chương 4",
+            title: "Luyện tập chung: số đo thời gian và chuyển động đều",
             "table": {
               "headers": [
                 "Trường hợp",
@@ -694,17 +741,8 @@ export const g5c4 = {
                 ]
               ],
               "label": "Luyện tập chung: số đo thời gian và chuyển động đều"
-            },
-            "badge": "Ôn Tập Chương 4",
-            "title": "Bốn mảng kiến thức",
-            "points": [
-              "Bảng đơn vị đo thời gian và cách đổi.",
-              "Cộng, trừ, nhân, chia số đo thời gian (hệ đếm 60).",
-              "Ba công thức vận tốc - quãng đường - thời gian.",
-              "Hai chuyển động: ngược chiều t = s : (v1 + v2); cùng chiều t = s : (v1 - v2)."
-            ],
-            "rule": "Đọc kỹ đề để chọn đúng công thức."
-          }
+            }
+          },
         },
         {
           "type": "quiz",
@@ -753,8 +791,8 @@ export const g5c4 = {
           }
         },
         {
-          "type": "concept",
-          "content": {
+          type: "concept",
+          content: {
             "table": {
               "headers": [
                 "Dạng toán",
@@ -776,20 +814,6 @@ export const g5c4 = {
               ],
               "label": "Luyện đề: toán chuyển động và tỉ số phần trăm"
             },
-            "motionDiagram": {
-              "mode": "toward",
-              "distance": 120,
-              "unit": "km",
-              "a": {
-                "name": "Xe máy",
-                "speed": 45
-              },
-              "b": {
-                "name": "Ô tô",
-                "speed": 60
-              },
-              "note": "Đơn vị vận tốc phải khớp đơn vị thời gian"
-            },
             "badge": "Đề Luyện Tổng Hợp",
             "title": "Ba bước làm bài",
             "steps": [
@@ -807,7 +831,28 @@ export const g5c4 = {
               }
             ],
             "rule": "Đơn vị vận tốc thường là km/giờ — đổi thời gian ra giờ nếu đề cho phút."
-          }
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            "badge": "Đề Luyện Tổng Hợp",
+            title: "Ba bước làm bài",
+            "motionDiagram": {
+              "mode": "toward",
+              "distance": 120,
+              "unit": "km",
+              "a": {
+                "name": "Xe máy",
+                "speed": 45
+              },
+              "b": {
+                "name": "Ô tô",
+                "speed": 60
+              },
+              "note": "Đơn vị vận tốc phải khớp đơn vị thời gian"
+            }
+          },
         },
         {
           "type": "quiz",

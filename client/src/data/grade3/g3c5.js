@@ -41,9 +41,9 @@ export const g3c5 = {
           }
         },
         {
-          "type": "visual",
-          "content": {
-            "text": "1 cm = 10 mm\n1 m = 1 000 mm",
+          type: "visual",
+          content: {
+            "text": "1 cm = 10 mm",
             "ruler": {
               "lengthCm": 10,
               "measure": {
@@ -51,7 +51,13 @@ export const g3c5 = {
                 "to": 10
               },
               "label": "1 cm = 10 mm"
-            },
+            }
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            "text":"1 m = 1 000 mm",
             "table": {
               "headers": [
                 "Đổi",
@@ -69,7 +75,7 @@ export const g3c5 = {
               ],
               "label": "Mi-li-mét (mm)"
             }
-          }
+          },
         },
         {
           "type": "quiz",
@@ -491,9 +497,9 @@ export const g3c5 = {
           }
         },
         {
-          "type": "visual",
-          "content": {
-            "text": "mm → bề dày\ng  → vật nhẹ\nml → chất lỏng ít\n°C → nhiệt độ",
+          type: "visual",
+          content: {
+            "text": "mm → bề dày",
             "ruler": {
               "lengthCm": 5,
               "measure": {
@@ -501,7 +507,13 @@ export const g3c5 = {
                 "to": 5
               },
               "label": "Bề dày quyển vở khoảng 5 mm"
-            },
+            }
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            "text":"g  → vật nhẹ\nml → chất lỏng ít\n°C → nhiệt độ",
             "table": {
               "headers": [
                 "Đơn vị",
@@ -527,7 +539,7 @@ export const g3c5 = {
               ],
               "label": "Thực hành với mm, g, ml, °C"
             }
-          }
+          },
         },
         {
           "type": "quiz",

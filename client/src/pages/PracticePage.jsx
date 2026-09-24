@@ -13,10 +13,17 @@ import Button from "../components/ui/Button";
 import ProgressBar from "../components/ui/ProgressBar";
 import CoinIcon from "../components/common/CoinIcon";
 import GoogleIcon from "../components/common/GoogleIcon";
+import { reviveQuestionVisual } from "../components/common/QuestionVisual";
+import { DotCardsFill } from "../components/visuals/interactiveDotCards";
+import { MazePath } from "../components/visuals/interactiveMaze";
 import useUserStore from "../store/useUserStore";
 import useProgressStore from "../store/useProgressStore";
 import useAuthStore from "../store/useAuthStore";
-import { TOPICS, generateQuestion } from "../utils/exerciseGenerator";
+import {
+  TOPICS,
+  PRACTICE_EXTRA_TOPICS,
+  generateQuestion,
+} from "../utils/exerciseGenerator";
 import { recordAttempt } from "../services/attemptService";
 import soundManager from "../utils/soundManager";
 import speechHelper from "../utils/speechHelper";
@@ -24,6 +31,13 @@ import fireConfetti from "../utils/confettiHelper";
 import RightSidebar from "../components/layout/RightSidebar";
 import "./HomePage.css";
 import "./PracticePage.css";
+
+/**
+ * HAI DẠNG BÀI “BÉ TỰ LÀM”: hình tương tác TỰ CHỨA nút trả lời ⇒ KHÔNG dùng cột 4 nút A/B/C/D.
+ * Chúng chỉ được sinh ra khi bé chọn đúng chủ đề trong trang này (xem `PRACTICE_EXTRA_TOPICS`
+ * trong `exerciseGenerator.js`) — Thử thách và Mini game không bao giờ gặp.
+ */
+const DANG_TU_LAM = ["dotCards", "maze"];
 
 // Parse and format question visually, extracting emojis, SVG shapes, and equations
 function parsePracticeQuestion(q) {
@@ -37,7 +51,7 @@ function parsePracticeQuestion(q) {
     return {
       type: "visual",
       title: q.question,
-      visual,
+      visual: reviveQuestionVisual(visual),
     };
   }
 
@@ -171,7 +185,10 @@ export default function PracticePage() {
     if (document.body) document.body.scrollTop = 0;
   }, [questionIndex, mistakeIndex]);
 
-  const topicsList = TOPICS[`GRADE_${selectedGrade}`] || TOPICS.GRADE_1;
+  const topicsList = [
+    ...(TOPICS[`GRADE_${selectedGrade}`] || TOPICS.GRADE_1),
+    ...(PRACTICE_EXTRA_TOPICS[`GRADE_${selectedGrade}`] || []),
+  ];
 
   const dueMistakes = getDueMistakes ? getDueMistakes() : [];
   const masteredCount = (mistakesQueue || []).filter((m) => m.mastered).length;
@@ -198,7 +215,11 @@ export default function PracticePage() {
     setSessionActive(true);
   };
 
-  const handleAnswer = (option) => {
+  /**
+   * `opts.quiet` = hình tương tác (thẻ chấm / mê cung) đã tự kêu rồi ⇒ đừng kêu thêm lần nữa.
+   * Điểm, tiền, chuỗi, sổ bài sai vẫn tính y như câu hỏi thường.
+   */
+  const handleAnswer = (option, opts = {}) => {
     if (isAnswered) return;
     if (document.activeElement?.blur) document.activeElement.blur();
 
@@ -219,7 +240,7 @@ export default function PracticePage() {
     });
 
     if (correct) {
-      soundManager.playCorrect();
+      if (!opts.quiet) soundManager.playCorrect();
       const newStreak = streak + 1;
       setStreak(newStreak);
       setCorrectCount((prev) => prev + 1);
@@ -357,7 +378,46 @@ export default function PracticePage() {
 
         {/* Question & Interaction Area: 2-Column Responsive Layout (Aligned with GamesPage) */}
         <div className="practice-card-box">
+          {/* ── Hai dạng bài “bé tự làm” (người dùng yêu cầu 2026-09-25) ──
+              Bé làm xong ở trong hình ⇒ gọi `handleAnswer` của trang ⇒ tiền / điểm / chuỗi /
+              sổ bài sai vẫn chạy y như câu hỏi thường. `quiet: true` vì chính hình đã kêu
+              (thẻ chấm: FillBar, mê cung: playFanfare) — không kêu hai lần. */}
+          {DANG_TU_LAM.includes(currentQuestion?.type) && (
+            <>
+              <div className="practice-q-header">
+                <h2 className="practice-q-text">{currentQuestion.question}</h2>
+                <button
+                  type="button"
+                  className="practice-speak-mini-btn"
+                  onClick={() => speechHelper.speak(currentQuestion.question)}
+                  title="Nghe đọc câu hỏi"
+                >
+                  <Volume2 size={16} />
+                </button>
+              </div>
+              {currentQuestion.type === "dotCards" ? (
+                <DotCardsFill
+                  key={`tu-lam-${questionIndex}`}
+                  left={currentQuestion.dots?.left}
+                  right={currentQuestion.dots?.right}
+                  onDone={(sign) => handleAnswer(sign, { quiet: true })}
+                />
+              ) : (
+                <MazePath
+                  key={`tu-lam-${questionIndex}`}
+                  grid={currentQuestion.maze?.grid}
+                  rule={currentQuestion.maze?.rule}
+                  note={currentQuestion.note}
+                  onDone={() =>
+                    handleAnswer(currentQuestion.answer, { quiet: true })
+                  }
+                />
+              )}
+            </>
+          )}
           {(() => {
+            // Hai dạng trên đã vẽ ở trên rồi và không có 4 lựa chọn ⇒ không vẽ cột nút.
+            if (DANG_TU_LAM.includes(currentQuestion?.type)) return null;
             const parsed = parsePracticeQuestion(currentQuestion);
             return (
               <div className="practice-interaction-grid">

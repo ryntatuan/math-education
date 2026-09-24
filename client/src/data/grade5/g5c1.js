@@ -20,8 +20,8 @@ export const g5c1 = {
           }
         },
         {
-          "type": "visual",
-          "content": {
+          type: "visual",
+          content: {
             "text": "- Phân số có tử số và mẫu số (khác 0). - Tính chất cơ bản: Nhân hoặc chia cả tử và mẫu với cùng số khác 0 được phân số bằng nó. - So sánh cùng mẫu: tử số lớn hơn thì lớn hơn. Khác mẫu: quy đồng rồi so sánh.",
             "fractionBar": {
               "rows": [
@@ -42,7 +42,13 @@ export const g5c1 = {
                 }
               ],
               "label": "Nhân hoặc chia cả tử và mẫu với cùng một số khác 0 thì được phân số bằng nó"
-            },
+            }
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            "text": "Khái niệm, tính chất cơ bản & so sánh phân số",
             "table": {
               "headers": [
                 "So sánh",
@@ -60,7 +66,7 @@ export const g5c1 = {
               ],
               "label": "Khái niệm, tính chất cơ bản & so sánh phân số"
             }
-          }
+          },
         },
         {
           "type": "quiz",
@@ -263,14 +269,20 @@ export const g5c1 = {
           }
         },
         {
-          "type": "visual",
-          "content": {
+          type: "visual",
+          content: {
             "text": "Chuyển hỗn số thành phân số: Tử số = (Phần nguyên × Mẫu số) + Tử số cũ Mẫu số = Giữ nguyên mẫu số cũ Ví dụ: 2 3/4 = (2 × 4 + 3) / 4 = 11/4",
             "fractionCircle": {
               "parts": 4,
               "shaded": 3,
               "label": "2 3/4 = (2 × 4 + 3) / 4 = 11/4"
-            },
+            }
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            "text": "Chuyển hỗn số thành phân số",
             "table": {
               "headers": [
                 "Thành phần",
@@ -288,7 +300,7 @@ export const g5c1 = {
               ],
               "label": "Chuyển hỗn số thành phân số"
             }
-          }
+          },
         },
         {
           "type": "quiz",
@@ -331,8 +343,8 @@ export const g5c1 = {
           }
         },
         {
-          "type": "visual",
-          "content": {
+          type: "visual",
+          content: {
             "text": "Ví dụ (Tỉ lệ thuận): Mua 5 quyển vở hết 40 000 đồng. Mua 8 quyển vở hết bao nhiêu tiền? Cách 1: Rút về đơn vị: 1 quyển hết 40 000 : 5 = 8 000 đồng, nên là 8 quyển hết 8 000 × 8 = 64 000 đồng.",
             "barModel": {
               "rows": [
@@ -346,7 +358,13 @@ export const g5c1 = {
                 }
               ],
               "braceLabel": "40 000 đồng ⇒ 64 000 đồng"
-            },
+            }
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            "text": "Giải toán về quan hệ tỉ lệ (tỉ lệ thuận)",
             "table": {
               "headers": [
                 "Bước",
@@ -364,7 +382,7 @@ export const g5c1 = {
               ],
               "label": "Giải toán về quan hệ tỉ lệ (tỉ lệ thuận)"
             }
-          }
+          },
         },
         {
           "type": "quiz",
@@ -722,8 +740,8 @@ export const g5c1 = {
           }
         },
         {
-          "type": "concept",
-          "content": {
+          type: "concept",
+          content: {
             "barModel": {
               "rows": [
                 {
@@ -737,6 +755,21 @@ export const g5c1 = {
               ],
               "braceLabel": "Tổng (hiệu) số phần ⇒ giá trị một phần ⇒ từng số"
             },
+            "badge": "Hai Dạng Toán Tỉ",
+            "title": "Phân biệt và cách giải",
+            "points": [
+              "Đề cho tổng ⇒ chia cho TỔNG số phần. Đề cho hiệu ⇒ chia cho HIỆU số phần.",
+              "Ví dụ tổng: tổng 120, tỉ số 2 : 3 ⇒ một phần = 120 : 5 = 24 ⇒ hai số là 48 và 72.",
+              "Ví dụ hiệu: hiệu 36, tỉ số 1 : 4 ⇒ một phần = 36 : 3 = 12 ⇒ hai số là 12 và 48."
+            ],
+            "rule": "Sau khi giải, thử lại bằng cách cộng (hoặc trừ) hai số vừa tìm."
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            "badge": "Hai Dạng Toán Tỉ",
+            title: "Ôn tập tìm hai số khi biết Tổng (Hiệu) và Tỉ số",
             "table": {
               "headers": [
                 "Bước",
@@ -761,16 +794,8 @@ export const g5c1 = {
                 ]
               ],
               "label": "Ôn tập tìm hai số khi biết Tổng (Hiệu) và Tỉ số"
-            },
-            "badge": "Hai Dạng Toán Tỉ",
-            "title": "Phân biệt và cách giải",
-            "points": [
-              "Đề cho tổng ⇒ chia cho TỔNG số phần. Đề cho hiệu ⇒ chia cho HIỆU số phần.",
-              "Ví dụ tổng: tổng 120, tỉ số 2 : 3 ⇒ một phần = 120 : 5 = 24 ⇒ hai số là 48 và 72.",
-              "Ví dụ hiệu: hiệu 36, tỉ số 1 : 4 ⇒ một phần = 36 : 3 = 12 ⇒ hai số là 12 và 48."
-            ],
-            "rule": "Sau khi giải, thử lại bằng cách cộng (hoặc trừ) hai số vừa tìm."
-          }
+            }
+          },
         },
         {
           "type": "quiz",

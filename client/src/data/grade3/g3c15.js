@@ -122,9 +122,9 @@ export const g3c15 = {
           }
         },
         {
-          "type": "visual",
-          "content": {
-            "text": "🍎🍎🍎🍎  (mỗi 🍎 = 5 bạn)\n4 × 5 = 20 bạn",
+          type: "visual",
+          content: {
+            "text": "🍎🍎🍎🍎  (mỗi 🍎 = 5 bạn)",
             "barChart": {
               "title": "Số bạn thích bóng đá (mỗi 🍎 = 5 bạn)",
               "items": [
@@ -135,7 +135,13 @@ export const g3c15 = {
               ],
               "unit": "bạn",
               "highlight": 0
-            },
+            }
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            "text":"4 × 5 = 20 bạn",
             "table": {
               "headers": [
                 "Số ký hiệu",
@@ -149,7 +155,7 @@ export const g3c15 = {
               ],
               "label": "Biểu đồ tranh"
             }
-          }
+          },
         },
         {
           "type": "quiz",
@@ -320,9 +326,9 @@ export const g3c15 = {
           }
         },
         {
-          "type": "visual",
-          "content": {
-            "text": "Bảng: Bóng đá 12 · Cầu lông 8\nBiểu đồ: 4 × 5 = 20\nSự kiện: chắc chắn / có thể / không thể",
+          type: "visual",
+          content: {
+            "text": "Bảng: Bóng đá 12 · Cầu lông 8",
             "barChart": {
               "title": "Bảng số liệu lớp 3A",
               "items": [
@@ -341,7 +347,13 @@ export const g3c15 = {
               ],
               "unit": "bạn",
               "highlight": 0
-            },
+            }
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            "text":"Biểu đồ: 4 × 5 = 20\nSự kiện: chắc chắn / có thể / không thể",
             "table": {
               "headers": [
                 "Sự kiện",
@@ -363,7 +375,7 @@ export const g3c15 = {
               ],
               "label": "Luyện tập chung chủ đề 15"
             }
-          }
+          },
         },
         {
           "type": "quiz",

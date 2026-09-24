@@ -27,7 +27,9 @@ import soundManager from "../utils/soundManager";
 import fireConfetti from "../utils/confettiHelper";
 import StoriesPage from "./StoriesPage";
 import PetWidget from "../components/pet/PetWidget";
+import MazeRaceGame from "../components/games/MazeRaceGame";
 import RightSidebar from "../components/layout/RightSidebar";
+import { reviveQuestionVisual } from "../components/common/QuestionVisual";
 import "./GamesPage.css";
 
 const GameOverStars = ({ stars }) => {
@@ -131,6 +133,17 @@ const GAME_LIST = [
     icon: "🎣",
     difficulty: "Bình tĩnh",
   },
+  {
+    id: "maze_home",
+    title: "Mê Cung Về Nhà",
+    subtitle: "Maze Race",
+    description:
+      "Nối đường từ trường về nhà qua các ô đúng luật. Về càng nhanh càng nhiều sao: ≤20 giây = 3 sao!",
+    color: "#F59F00",
+    bgGradient: "linear-gradient(135deg, #ffd89b 0%, #ffb457 100%)",
+    icon: "🏠",
+    difficulty: "Nhanh & khéo",
+  },
 ];
 
 export default function GamesPage() {
@@ -172,11 +185,11 @@ export default function GamesPage() {
             icon="🎮"
             badgeText="TRÒ CHƠI & TRUYỆN TOÁN"
             title="Sân Chơi Toán Học Dành Riêng Cho Thành Viên"
-            subtitle="Đăng nhập tài khoản để mở khóa toàn bộ 6 Mini Game rèn phản xạ tính nhẩm siêu tốc và 8 Truyện Tranh Toán Tương Tác kỳ thú!"
+            subtitle={`Đăng nhập tài khoản để mở khóa toàn bộ ${GAME_LIST.length} Mini Game rèn phản xạ tính nhẩm siêu tốc và 8 Truyện Tranh Toán Tương Tác kỳ thú!`}
             benefits={[
               {
                 icon: "🏎️",
-                title: "Trọn Bộ 6 Mini Game Toán Học",
+                title: `Trọn Bộ ${GAME_LIST.length} Mini Game Toán Học`,
                 desc: "Đua xe toán học, Bắn bóng bay, Lật thẻ trí nhớ, Cán cân thần kỳ và Bắn thiên thạch.",
               },
               {
@@ -343,6 +356,13 @@ export default function GamesPage() {
         />
       ) : activeGame === "math_fishing" ? (
         <MathFishingGame
+          onBack={() => setActiveGame(null)}
+          grade={grade}
+          grantReward={grantReward}
+          recordGamePlayed={recordGamePlayed}
+        />
+      ) : activeGame === "maze_home" ? (
+        <MazeRaceGame
           onBack={() => setActiveGame(null)}
           grade={grade}
           grantReward={grantReward}
@@ -656,7 +676,7 @@ function parseRaceQuestion(q) {
     return {
       type: "visual",
       title: q.question,
-      visual: q.visualDisplay,
+      visual: reviveQuestionVisual(q.visualDisplay),
     };
   }
 
@@ -1241,7 +1261,7 @@ function NumberPopGame({ onBack, grade, grantReward, recordGamePlayed }) {
               <div className="equation-badge number">{currentQ.question}</div>
               {currentQ.visualDisplay && (
                 <div className="pop-visual-display">
-                  {currentQ.visualDisplay}
+                  {reviveQuestionVisual(currentQ.visualDisplay)}
                 </div>
               )}
             </div>

@@ -92,14 +92,60 @@ export function svgFit(vbW, them = {}) {
   };
 }
 
+/**
+ * MÀU NHẤN CỦA HÌNH — **CÓ MỤC ĐÍCH**: lấy theo MÀU CHƯƠNG của bài học.
+ *
+ * 🔴 VÌ SAO. Bản trước tôi tự chọn tím (#7c3aed) cho mọi dải tiêu đề bảng và bong bóng
+ * chú thích, **không có lý do hệ thống nào** ⇒ mọi hình giống hệt nhau (“tại sao tất cả
+ * khung đều màu tím?” — người dùng hỏi 2026-09-24), và mất luôn sự phân biệt màu giữa các
+ * loại hình. Nay `LessonPage` đặt `--figure-accent` = `chapter.color` (mỗi chương đã có màu
+ * riêng từ trước, dùng ở trang Lớp/Trang chủ), nên hình của chương nào mang màu chương đó.
+ *
+ * PHÂN VAI MÀU (giữ đúng nghĩa, đừng đổi lẫn nhau):
+ *   • `ACCENT*`  — màu CHƯƠNG: khung, dải tiêu đề, bong bóng chú thích.
+ *   • `amber`    — phần ĐANG XÉT / ĐÁP ÁN (ô cần chú ý).
+ *   • `green`    — ĐÚNG / hoàn thành.
+ *   • `blue`     — trục số, điểm mốc, số liệu.
+ * `ACCENT` phải dùng qua `style={{ fill: ACCENT }}` (khai báo CSS) — **không** dùng ở thuộc
+ * tính `fill="var(--x)"`, vì SVG không giải mã `var()` trong thuộc tính.
+ */
+export const ACCENT = "var(--figure-accent, #6366f1)";
+export const ACCENT_SOFT =
+  "color-mix(in srgb, var(--figure-accent, #6366f1) 16%, #ffffff)";
+export const ACCENT_TINT =
+  "color-mix(in srgb, var(--figure-accent, #6366f1) 7%, #ffffff)";
+export const ACCENT_LINE =
+  "color-mix(in srgb, var(--figure-accent, #6366f1) 42%, #ffffff)";
+
+/**
+ * Chú thích dưới MỌI hình — bong bóng bo tròn tô nhạt màu chương, chữ nâu đậm.
+ * (Chữ dùng màu `ink` cố định chứ không dùng màu chương: có chương màu rất nhạt như
+ * `#ffd166` / `#c77dff`, chữ theo màu chương sẽ khó đọc.)
+ */
 export const CAPTION_STYLE = {
   display: "block",
   textAlign: "center",
-  marginTop: 8,
-  fontSize: 14,
+  marginTop: 10,
+  fontSize: 14.5,
   fontWeight: 700,
-  color: "#64748b",
+  lineHeight: 1.35,
+  color: "#1e293b",
+  background: ACCENT_SOFT,
+  border: `1.5px solid ${ACCENT_LINE}`,
+  borderRadius: 12,
+  padding: "7px 10px",
 };
+
+/**
+ * Chữ chú thích dưới hình — LUÔN chỉ MỘT câu.
+ *
+ * 🔴 Bản cũ ghép **câu bộ vẽ tự tính** với `label` do tác giả viết bằng ` · ` ⇒ trẻ đọc cùng
+ * một ý hai lần trên một hàng, ví dụ: “1 chục và 4 đơn vị = 14 · 14 gồm 1 chục và 4 đơn vị”
+ * (người dùng báo 2026-09-24). Nay: có `label` thì dùng `label` (tác giả viết, hợp ngữ cảnh),
+ * không có `label` thì dùng câu tự tính. Bộ vẽ nào tự tính câu riêng thì truyền vào `auto`.
+ */
+export const captionText = (auto, label) =>
+  label ? String(label) : String(auto ?? "");
 
 /**
  * Ngắt một chuỗi thành nhiều dòng theo số ký tự cho phép.

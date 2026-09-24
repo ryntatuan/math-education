@@ -50,6 +50,15 @@ const SEG = [P.blue, P.rose, P.amber, P.green, P.violet];
  * fractionBar: { parts: 4, shaded: 3, label: "3/4", unit: "băng giấy", rows: [...] }
  * `rows` cho phép vẽ nhiều băng cùng thang để so sánh / quy đồng mẫu số.
  */
+/**
+ * Băng giấy chia phần — nay chứng minh được cả PHÉP CỘNG và PHÉP CHIA/NHÓM:
+ *   • `extra`  (mỗi dòng): số ô tô bằng MÀU THỨ HAI ⇒ một băng 6 ô có 3 ô xanh + 2 ô hổng
+ *     chính là hình vẽ của `1/2 + 1/3 = 3/6 + 2/6 = 5/6`
+ *     (người dùng phát hiện 2026-09-24: hình cũ 6 ô tô 5, KHÔNG nói được vì sao bằng 5/6).
+ *   • `groups` (mỗi dòng): cứ `groups` ô thì vẽ một vạch đậm ⇒ thấy được “12 chia thành 3
+ *     phần, mỗi phần 4 ô” hay “18 bạn chia thành 6 nhóm 3 bạn”.
+ * Hai tham số đều TUỲ CHỌN ⇒ mọi hình cũ không đổi.
+ */
 export function FractionBar({
   parts = 4,
   shaded = 1,
@@ -73,7 +82,8 @@ export function FractionBar({
    * băng thì không đè gì, và nhãn có cả bề ngang 380 đơn vị để hiện (31 ký tự ≈ 223).
    */
   const KHE_DONG = 28;
-  const H = bands.length * (rowH + KHE_DONG) + 8;
+  /** +12 cho lề trên: nhãn của dòng đầu không được chạm mép khung. */
+  const H = bands.length * (rowH + KHE_DONG) + 20;
   const left = 10;
 
   return (
@@ -87,23 +97,71 @@ export function FractionBar({
         {bands.map((r, ri) => {
           const p = clamp(num(r.parts, 4), 1, 20);
           const s = clamp(num(r.shaded, 0), 0, p);
+          const them = clamp(num(r.extra, 0), 0, p - s);
+          const nhom = clamp(num(r.groups, 0), 0, 20);
           const w = (W - 24) / p;
-          const y = 8 + ri * (rowH + KHE_DONG);
+          const y = 20 + ri * (rowH + KHE_DONG);
+          const mauChinh = SEG[ri % SEG.length];
+          const mauPhu = SEG[(ri + 1) % SEG.length];
+          const soNhom = nhom > 1 ? Math.floor(p / nhom) : 0;
           return (
             <g key={ri}>
-              {Array.from({ length: p }).map((_, i) => (
-                <rect
-                  key={i}
-                  x={left + i * w}
-                  y={y}
-                  width={w}
-                  height={rowH}
-                  fill={i < s ? SEG[ri % SEG.length] : P.paper}
-                  fillOpacity={i < s ? 0.28 : 1}
-                  stroke={i < s ? SEG[ri % SEG.length] : P.grid}
-                  strokeWidth={i < s ? 3 : 2}
-                />
-              ))}
+              {Array.from({ length: p }).map((_, i) => {
+                const toChinh = i < s;
+                const toPhu = !toChinh && i < s + them;
+                return (
+                  <rect
+                    key={i}
+                    x={left + i * w}
+                    y={y}
+                    width={w}
+                    height={rowH}
+                    fill={toChinh ? mauChinh : toPhu ? mauPhu : P.paper}
+                    fillOpacity={toChinh || toPhu ? 0.28 : 1}
+                    stroke={toChinh ? mauChinh : toPhu ? mauPhu : P.grid}
+                    strokeWidth={toChinh || toPhu ? 3 : 2}
+                  />
+                );
+              })}
+              {/**
+               * 🔴 Ô LỚN — cách SGK quốc tế (fraction strips + regrouping) dạy “vì sao bằng nhau”:
+               * gộp 4 ô nhỏ thành 1 Ô LỚN (khung đậm, đánh số 1·2·3 ở trên) ⇒ trẻ thấy
+               * “12 ô nhỏ = 3 ô lớn; 8 ô nhỏ = 2 ô lớn” = `8/12 = 2/3` (người dùng yêu cầu
+               * 2026-09-24: “để trẻ nhận biết 8 hình nhỏ/12 = 2 hình lớn/3”).
+               */}
+              {soNhom > 1 &&
+                Array.from({ length: soNhom }).map((_, g) => {
+                  const x = left + g * nhom * w + 1.5;
+                  const rw = nhom * w - 3;
+                  const kin = (g + 1) * nhom <= s;
+                  return (
+                    <g key={`o-lon${g}`}>
+                      <rect
+                        x={x}
+                        y={y - 3}
+                        width={rw}
+                        height={rowH + 6}
+                        rx="9"
+                        fill="none"
+                        stroke={kin ? mauChinh : P.soft}
+                        strokeWidth={kin ? 3.5 : 2}
+                      />
+                      <text
+                        x={x + 9}
+                        y={y + 17}
+                        textAnchor="start"
+                        fontSize="13"
+                        fontWeight="800"
+                        fill={kin ? mauChinh : P.soft}
+                        stroke="#ffffff"
+                        strokeWidth="3"
+                        style={{ paintOrder: "stroke" }}
+                      >
+                        {g + 1}
+                      </text>
+                    </g>
+                  );
+                })}
               {r.label && (
                 <text
                   x={left}
@@ -111,7 +169,7 @@ export function FractionBar({
                   textAnchor="start"
                   fontSize="14"
                   fontWeight="800"
-                  fill={SEG[ri % SEG.length]}
+                  fill={mauChinh}
                 >
                   {r.label}
                 </text>
@@ -736,7 +794,7 @@ export function PieChart({ title = "", items = [] }) {
    */
   const dongTieuDe = title ? ngatDong(title, 44) : [];
   const leTieuDe = dongTieuDe.length > 1 ? (dongTieuDe.length - 1) * 18 : 0;
-  const cx = 86;
+  const cx = 102;
   const cy = 120 + leTieuDe;
   const r = 62;
   /**
@@ -745,7 +803,7 @@ export function PieChart({ title = "", items = [] }) {
    * ra ~190 đơn vị, vượt khung 19,6 đơn vị khi vẽ một dòng bên phải bánh.
    */
   const RONG_CHU_GIAI = 8.3; // chữ 13 đậm — ĐO THẬT, đừng ước theo 7,0
-  const xChuGiai = 168;
+  const xChuGiai = 184;
   const xNhan = xChuGiai + 22;
   const soKyTu = Math.max(8, Math.floor((W - xNhan - 6) / RONG_CHU_GIAI));
   const chuGiai = safe.map((it) =>

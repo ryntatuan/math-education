@@ -41,6 +41,8 @@ import {
   BarChart,
   PieChart,
 } from "./FractionVisuals";
+import { NumberScene } from "./Grade1NumberVisuals";
+import { GroupScene } from "./GroupVisuals";
 // Danh sách khoá + hàm đếm nằm ở file `.js` riêng — xem ghi chú đầu `visualKeys.js`
 // (file này chỉ được export COMPONENT thì Fast Refresh mới chạy).
 import { isObj } from "./visualKeys";
@@ -73,18 +75,40 @@ export default function VisualBlocks({ content }) {
     blocks.push(<PlaneShape key="planeShape" {...content.planeShape} />);
   if (Array.isArray(content.planeShapes))
     blocks.push(
-      <div key="planeShapes" style={{ display: "flex", gap: "20px", justifyContent: "center", flexWrap: "wrap" }}>
+      <div
+        key="planeShapes"
+        style={{
+          display: "flex",
+          gap: "20px",
+          justifyContent: "center",
+          flexWrap: "wrap",
+        }}
+      >
         {content.planeShapes.map((shape, idx) => (
-          <div key={idx} style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+          <div
+            key={idx}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
             <PlaneShape {...shape} />
             {shape.label && (
-              <span style={{ marginTop: "12px", fontSize: "1.1rem", color: "#334155", fontWeight: 500 }}>
+              <span
+                style={{
+                  marginTop: "12px",
+                  fontSize: "1.1rem",
+                  color: "#334155",
+                  fontWeight: 500,
+                }}
+              >
                 {shape.label}
               </span>
             )}
           </div>
         ))}
-      </div>
+      </div>,
     );
   if (isObj(content.angle))
     blocks.push(<Angle key="angle" {...content.angle} />);
@@ -99,6 +123,13 @@ export default function VisualBlocks({ content }) {
     blocks.push(<ShapeJoin key="shapeJoin" {...content.shapeJoin} />);
   if (isObj(content.spatialScene))
     blocks.push(<SpatialScene key="spatialScene" {...content.spatialScene} />);
+  // Đếm – so sánh – tách gộp cho Lớp 1 Chủ đề 1 (SGK tr.6–45).
+  if (isObj(content.numberScene))
+    blocks.push(<NumberScene key="numberScene" {...content.numberScene} />);
+  // Nhóm – phần – gộp/bớt (Lớp 1–4). Dùng THAY `tenFrame` ở mọi ca "mỗi ... có ...",
+  // "gộp cho đủ 10", "bớt đi" — xem ghi chú đầu `GroupVisuals.jsx`.
+  if (isObj(content.groupScene))
+    blocks.push(<GroupScene key="groupScene" {...content.groupScene} />);
   if (isObj(content.pointLine))
     blocks.push(<PointLine key="pointLine" {...content.pointLine} />);
 

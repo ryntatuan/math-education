@@ -23,6 +23,7 @@ import CoinIcon from "../components/common/CoinIcon";
 // Bộ vẽ hình bổ sung (Giai đoạn 1 kế hoạch hình ảnh) — CHỈ THÊM, không thay khối cũ.
 // Xem `docs/lesson_visuals_plan.md`.
 import VisualBlocks from "../components/visuals/VisualBlock";
+import { InteractiveContext } from "../components/visuals/interactiveFill";
 import useUserStore from "../store/useUserStore";
 import useProgressStore from "../store/useProgressStore";
 import useAuthStore from "../store/useAuthStore";
@@ -505,7 +506,14 @@ export default function LessonPage() {
   }
 
   return (
-    <div className="lesson-page">
+    <div
+      className="lesson-page"
+      /**
+       * MÀU NHẤN CỦA HÌNH = MÀU CHƯƠNG (xem `visualTheme.js`).
+       * Đặt ở đây một lần cho cả trang; mọi hình bên trong dùng `var(--figure-accent)`.
+       */
+      style={{ "--figure-accent": found?.chapter?.color || undefined }}
+    >
       {/* Header */}
       <div className="lesson-header">
         <button
@@ -550,11 +558,23 @@ export default function LessonPage() {
           exit={{ opacity: 0, x: -50 }}
           transition={{ duration: 0.3 }}
         >
-          {slide.type === "story" && <StorySlide content={slide.content} />}
+          {slide.type === "story" && (
+            <InteractiveContext.Provider value={true}>
+              <StorySlide content={slide.content} />
+            </InteractiveContext.Provider>
+          )}
 
-          {slide.type === "concept" && <ConceptSlide content={slide.content} />}
+          {slide.type === "concept" && (
+            <InteractiveContext.Provider value={true}>
+              <ConceptSlide content={slide.content} />
+            </InteractiveContext.Provider>
+          )}
 
-          {slide.type === "visual" && <VisualSlide content={slide.content} />}
+          {slide.type === "visual" && (
+            <InteractiveContext.Provider value={true}>
+              <VisualSlide content={slide.content} />
+            </InteractiveContext.Provider>
+          )}
 
           {slide.type === "dialogue" && (
             <DialogueSlide
@@ -1876,7 +1896,14 @@ function QuizSlide({
           tới hình là bó không có gì để nhìn. */}
       <VisualBlocks content={content} />
 
-      <div className="quiz-options">
+      <div
+        className={`quiz-options${
+          content.options.length === 3 &&
+          content.options.every((o) => String(o).length <= 2)
+            ? " quiz-options-3"
+            : ""
+        }`}
+      >
         {content.options.map((option, index) => {
           const isSelected = selectedAnswer === option;
           const isCorrect = option === content.answer;
