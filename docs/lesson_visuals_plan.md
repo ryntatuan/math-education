@@ -7,8 +7,9 @@ Ngày đo: 2026-09-22. Người đề xuất: Copilot. Trạng thái: **chờ b�
 Công cụ đo (mới viết): `node scratch/kiem-tra-hinh-anh.mjs`
 
 > ⚠️ Bảng dưới là **số đo LÚC BẮT ĐẦU** (lúc đó chưa slide nào có hình). Tình trạng hiện tại
-> xem **mục 9.7–9.9** ở cuối tài liệu: 5 lớp · 51 chương · 459 bài · **2455 slide**, **489 slide
-> mang hình**, 590 lượt render hình THẬT đạt · 0 hỏng.
+> xem **mục 9.7–9.9** ở cuối tài liệu: 5 lớp · 51 chương · 459 bài · **2656 slide**, **751 slide
+> mang hình**, **659 lượt render hình THẬT đạt · 0 hỏng** (đo lại sau vòng “mỗi slide chỉ một hình”
+> ngày 2026-09-24 — xem §8i của `docs/sgk_curriculum_standardization_plan.md`).
 
 | Lớp      | Số slide | Slide có hình | Số bài  | Bài KHÔNG có hình nào |
 | -------- | -------- | ------------- | ------- | --------------------- |

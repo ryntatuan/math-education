@@ -81,4 +81,15 @@ scripts/page_*.png
 scripts/g1c*.png
 scripts/slide_*.png
 scratch/*.png
+# Ảnh trang SGK trích ra để đối chiếu bằng mắt (sinh lại: scratch/trich-anh-sgk.py)
+scratch/sgk-*/
+
+# Bản sao lưu dữ liệu lúc tách theo chương (lấy lại được từ lịch sử git)
+scratch/truoc-tach/
+# Bản đóng gói esbuild + kết quả đo tạm trong scratch/ (chạy lại là có, giữ lại script)
+scratch/*.bundle.mjs
+scratch/*.txt
+scratch/cau-truc-lop*.md
+# Trang xem trước hình (giữ file .jsx, bỏ trang sinh ra bằng esbuild)
+scratch/xem-truoc-*.html
 

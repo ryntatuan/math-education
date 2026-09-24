@@ -41,6 +41,7 @@ import {
   Solid,
   ShapePicture,
   ShapeJoin,
+  SpatialScene,
   PointLine,
 } from "../client/src/components/visuals/GeometryVisuals.jsx";
 import {
@@ -51,6 +52,9 @@ import {
   BarChart,
   PieChart,
 } from "../client/src/components/visuals/FractionVisuals.jsx";
+import { NumberScene } from "../client/src/components/visuals/Grade1NumberVisuals.jsx";
+import { InteractiveContext } from "../client/src/components/visuals/interactiveFill.jsx";
+import { GroupScene } from "../client/src/components/visuals/GroupVisuals.jsx";
 
 const COMP = {
   baseTen: BaseTenBlocks,
@@ -66,6 +70,9 @@ const COMP = {
   solid: Solid,
   shapePicture: ShapePicture,
   shapeJoin: ShapeJoin,
+  spatialScene: SpatialScene,
+  numberScene: NumberScene,
+  groupScene: GroupScene,
   pointLine: PointLine,
   fractionBar: FractionBar,
   fractionCircle: FractionCircle,
@@ -118,6 +125,22 @@ for (const [lop, data] of NGUON) {
           if (!m.has(j)) m.set(j, { props: p, where: [] });
           m.get(j).where.push(`${lop}/${bai.id}#${i}`);
         }
+        /**
+         * ⚠️ `planeShapes` là MẢNG hình, do `VisualBlock` vẽ RIÊNG (không nằm trong
+         * `HINH_KEYS`) ⇒ trước đây **51 ca không hề được đo**. Nay đưa từng phần tử vào
+         * mục `planeShape` để đo chung.
+         */
+        if (Array.isArray(c.planeShapes)) {
+          if (!theoLoai.has("planeShape"))
+            theoLoai.set("planeShape", new Map());
+          const m = theoLoai.get("planeShape");
+          for (const p of c.planeShapes) {
+            if (!p || typeof p !== "object") continue;
+            const j = JSON.stringify(p);
+            if (!m.has(j)) m.set(j, { props: p, where: [] });
+            m.get(j).where.push(`${lop}/${bai.id}#${i}`);
+          }
+        }
       }
     }
   }
@@ -142,7 +165,11 @@ for (const k of HINH_KEYS) {
     let html = "";
     let loi = "";
     try {
-      html = renderToStaticMarkup(<C {...du.props} />);
+      html = renderToStaticMarkup(
+        <InteractiveContext.Provider value={true}>
+          <C {...du.props} />
+        </InteractiveContext.Provider>,
+      );
     } catch (e) {
       loi = e.message;
     }
@@ -150,9 +177,11 @@ for (const k of HINH_KEYS) {
     const them = du.where.length > 3 ? ` (+${du.where.length - 3})` : "";
     const du2 = JSON.stringify(du.props);
     const duNgan = du2.length > 320 ? `${du2.slice(0, 320)}…` : du2;
+    const duDay = du2.replace(/</g, "\\u003c");
     return `<div class="ca" data-key="${k}" data-i="${i + 1}" data-where="${nhan}${them}">
   <div class="nhan">${k} #${i + 1} — ${nhan}${them}</div>
   ${loi ? `<pre class="loi">LỖI: ${loi}</pre>` : html}
+  <script type="application/json" class="json">${duDay}</script>
   <pre class="du">${duNgan}</pre>
 </div>`;
   });
