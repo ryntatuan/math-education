@@ -180,7 +180,7 @@ Biểu tượng trong sách (trang “Hướng dẫn sử dụng sách”, sách
 | Bài 27 (Thực hành ước lượng và đo độ dài) | 36–39      | `g1-c7-l6` · `l7` (ước lượng rồi đo · đo bằng gang tay/bước chân)      | ?          |
 | Bài 28 (Luyện tập chung)                  | 40–43      | `g1-c7-l8`                                                             | ?          |
 
-### Chủ đề 8 — Cộng, trừ (không nhớ) trong phạm vi 100 (**tập 2**, sách tr.44–71) · ⬜ **CHƯA RÀ**
+### Chủ đề 8 — Cộng, trừ (không nhớ) trong phạm vi 100 (**tập 2**, sách tr.44–71) · ✅ **ĐÃ RÀ 2026-09-25 (bằng máy)** — SGK gồm “Đặt tính rồi tính” · “Tính nhẩm” · trò chơi; app có đủ 12 bài (cộng/trừ 2 chữ số với 1 và 2 chữ số · 4 bài luyện tập · tính nhẩm · 2 bài toán lời văn · luyện tập chung) và **KHÔNG có bảng “Số ?” nào trong SGK** ⇒ không phải bổ sung dạng điền. **Số học: máy kiểm 142 phép tính `operation` + 1626 câu phép tính trong chữ ⇒ 0 sai** (`node scratch/soat-phep-tinh.mjs`)
 
 | SGK                                                 | Trang sách | Bài trong app                                                    | Chắc chắn? |
 | :-------------------------------------------------- | :--------- | :--------------------------------------------------------------- | :--------- |

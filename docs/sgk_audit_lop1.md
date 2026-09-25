@@ -388,6 +388,39 @@ Quy mô: **2684 → 2690** (Lớp 1: 662 → 668) — phần tăng là 6 slide C
 
 ---
 
+## ĐỢT CHỦ ĐỀ 8 — Cộng, trừ (không nhớ) trong phạm vi 100 (sách tr.44–71) — ✅ ĐÃ RÀ (bằng MÁY)
+
+**Cách rà khác hẳn các chương trước: kiểm SỐ HỌC bằng máy thay vì nhìn 28 trang ảnh.**
+Nhóm lỗi C (số liệu sai) là nhóm máy kiểm **chắc hơn mắt người**: viết công cụ mới
+`scratch/soat-phep-tinh.mjs` đọc thẳng dữ liệu 5 lớp và kiểm:
+
+| Nguồn | Đã kiểm | Kết quả |
+| :---- | ------: | :------ |
+| `operation` (`{left, sign, right, result}`) | **142** | 0 sai |
+| `comparison` (dạng object và dạng chuỗi) | **10** | 0 sai |
+| Mọi câu “a op b = c” trong **chữ** của slide (thầy thuật, giải thích, gợi ý, ô bảng…) | **1626** | 0 sai |
+| Câu hỏi “a op b = ?” so với `answer` | 9 | 0 sai |
+
+**Kết luận CĐ8:** SGK chỉ có 3 loại bài (đặt tính rồi tính · tính nhẩm · trò chơi theo nhóm) và
+**không có bảng “Số ?”** nào ⇒ **không phải bổ sung dạng điền**; app đã có đủ 12 bài, khớp cấu trúc SGK.
+Vậy chương này **không phải sửa dữ liệu** — cái được là **bảo đảm số học toàn hệ thống**.
+
+> 🔴 **Ba nhóm BÁO OAN của công cụ đã sửa (ghi để lần sau viết luật là tránh ngay):**
+> 1. **Cắt đôi số / cắt phép tính con:** `14 − 6  =  14 − 4 − 2  =  8` bị khớp thành `14 − 6 = 1`;
+>    `3 + 4 + 5 = 12` bị khớp thành `4 + 5 = 12`. Chữa: chốt `(?!\d)` sau kết quả + xét **vế trước**
+>    bằng mẫu “SỐ rồi TOÁN TỬ ở cuối”.
+> 2. **Số thập phân · phân số · tỉ số:** `3,45 × 10`, `2/5 × 10`, `AB : CD = 4 : 7 = 4/7` — chữa:
+>    chặn `,` và `/` ở **cả hai bên**. Và `:` là cái bẫy: vừa là phép chia vừa là **dấu câu**
+>    (“Tính: 45 + 9 = 54”) —— nên chỉ chặn khi trước `:` **là chữ số**.
+> 3. **Dấu cách phân nghìn làm `gonSo` gộp qua XUỐNG DÒNG:** `"… = 429\n429 − 173 …"` thành `429429`.
+>    Chữa: chỉ gộp **dấu cách thường** (`(\d) (?=\d{3}\b)`), không dùng `\s`.
+>
+> **Và bài học chống “cổng xanh giả”:** công cụ có **CANARY 13 ca hai vế** (bắt được `3 + 4 = 8`,
+> **không** bắt `3 + 4 = 7` · `3 + 4 + 5 = 12` · `45 + 9 = 36? Không!` · `13 : 3 = 4 (dư 1)` ·
+> `2/5 × 10 = 4` · `AB : CD = 4 : 7`). Chạy công cụ là biết thước còn sống hay không.
+
+---
+
 ## ĐỢT CHỦ ĐỀ 7 — Độ dài và đo độ dài (sách tr.28–43) — 🔄 ĐANG RÀ (đã thêm 1 bài)
 
 **Đã xem ảnh:** tr.36 · tr.38 (và toàn bộ chữ tr.28–43 qua OCR tách theo trang).
