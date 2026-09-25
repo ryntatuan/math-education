@@ -265,6 +265,23 @@ export const g2c1 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            text: "Viết số thích hợp vào ô trống — số liền sau",
+            bangTinh: {
+              headers: ["Số", "Số liền sau"],
+              rows: [
+                [45, null],
+                [67, null],
+                [89, null],
+              ],
+              answers: [46, 68, 90],
+              options: [44, 46, 66, 68, 88, 90],
+              label: "Số liền sau của một số là số đứng ngay sau nó.",
+            },
+          },
+        },
+        {
           type: "quiz",
           content: {
             question: "Số liền sau của 69 là số nào?",

@@ -2532,7 +2532,7 @@ ORDER BY proname;
 npm run test:portal:static        # → dòng S-23
 ```
 
-**Mong đợi:** `6 kiểu · 2735 slide · không nuốt khoá · giữ nguyên kiểu số`.
+**Mong đợi:** `6 kiểu · 2738 slide · không nuốt khoá · giữ nguyên kiểu số`.
 
 Cổng này `import()` thằng `admin/src/lib/soanBai.js` và thử **hành vi thât**:
 
@@ -2974,7 +2974,7 @@ WHERE key IN ('content_source','content_version') ORDER BY key;
 npm run test:portal:static        # → dòng S-24
 ```
 
-**Mong đợi:** `5 lớp · 51 chương · 459 bài · 2735 slide — khớp từng khoá · canary bắt được lỗi ageRange`.
+**Mong đợi:** `5 lớp · 51 chương · 459 bài · 2738 slide — khớp từng khoá · canary bắt được lỗi ageRange`.
 
 Cổng này lấy **chính 5 file tĩnh**, trải chúng ra thành đúng hình dạng dòng DB mà
 `scripts/migrate-content.mjs` ghi, rồi dựng lại cây bằng `dungCayNoiDung.js` và so với cây
@@ -3476,8 +3476,8 @@ node scripts/migrate-content.mjs          # chạy thử, không ghi gì
 
 ```
   Đọc từ file tĩnh:
-    5 lớp · 51 chương · 459 bài · 2735 slide
-  ✅ khớp số đã đo (5/51/459/2735)
+    5 lớp · 51 chương · 459 bài · 2738 slide
+  ✅ khớp số đã đo (5/51/459/2738)
   ✅ tất cả slide hợp lệ
 ```
 
@@ -3486,7 +3486,7 @@ node scripts/migrate-content.mjs          # chạy thử, không ghi gì
 > - 16 (Lớp 3) + 6 (Lớp 4) + 5 (Lớp 5) = **51**. Comment cũ trong `curriculum.js` ghi "50
 >   Chapters total" là **sai** — Lớp 4 chỉ có 6 chương, Lớp 5 chỉ có 5. Đã sửa comment.
 >
-> Cũng có cổng tự động: `npm run test:portal:static` → `S-15` kiểm **cả 2735 slide**, và
+> Cũng có cổng tự động: `npm run test:portal:static` → `S-15` kiểm **cả 2738 slide**, và
 > `S-16` kiểm chiều ngược lại (bộ kiểm tra có bắt được lỗi không).
 
 ---

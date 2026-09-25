@@ -568,6 +568,23 @@ export const g4c1 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            text: "Viết số thích hợp vào ô trống — đổi đơn vị đo khối lượng",
+            bangTinh: {
+              headers: ["Đổi", "Kết quả"],
+              rows: [
+                ["3 tạ = … kg", null],
+                ["2 tấn = … kg", null],
+                ["5 yến = … kg", null],
+              ],
+              answers: [300, 2000, 50],
+              options: [50, 300, 500, 2000],
+              label: "1 yến = 10 kg · 1 tạ = 100 kg · 1 tấn = 1000 kg",
+            },
+          },
+        },
+        {
           type: "quiz",
           content: {
             question: "5 tấn bằng bao nhiêu ki-lô-gam?",

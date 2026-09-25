@@ -12,6 +12,18 @@
 -- CHẠY LẠI NHIỀU LẦN: chỉ làm phiên bản tăng thêm 1 mỗi lần — vô hại (các bé tải
 --   lại nội dung thêm một lần), không sinh dòng trùng, không mất dữ liệu.
 --
+--   📐 **THÊM BẢNG ĐIỀN + ĐẶT TÍNH CHO LỚP 4–5 (cùng ngày):** công cụ `scratch/dem-dang-bai-sgk.mjs`
+--      đếm dạng bài trong SGK ("số thích hợp", "đặt tính rồi tính", "nối"…) và số hình tương tác
+--      trong app theo từng lớp ⇒ phát hiện **Lớp 4 và Lớp 5 TRƯỚC ĐÓ KHÔNG CÓ HÌNH ĐIỀN NÀO**
+--      (`cotTinh`/`bangTinh` = 0) dù SGK dùng “đặt tính rồi tính” 35–40 lần.
+--      Đã thêm: Lớp 4 — `g4-c2-l1` (35 480 + 24 150 · 70 000 − 15 000) · `g4-c2-l7` (1 423 × 3) ·
+--      `g4-c2-l11` (245 × 12) · `g4-c6-l1` (483 526 + 254 138) · `g4-c1-l9` (bảng điền đổi yến/tạ/tấn);
+--      Lớp 5 — `g5-c2-l4` (38,5 + 24,15) · `l5` (50 − 23,75) · `l6` (1,2 × 0,4) · `g5-c5-l2`
+--      (12,5 × 3,2 · 15,82 + 9,35) · `g5-c2-l1` (bảng đếm chữ số phần thập phân); Lớp 2 — `g2-c1-l4`
+--      (bảng điền “số liền sau”).
+--      ⚠️ Số slide ĐÃ ĐỔI: 2725 → **2738** (Lớp 4: 324 · Lớp 5: 271 · Lớp 2: 704). Số bài KHÔNG đổi.
+--      ⚠️ LẦN NÀY CẦN DÁN: `03-bai-lop-2.sql`, `05-bai-lop-4.sql`, `06-bai-lop-5.sql` rồi `100-...`.
+--
 -- LƯU Ý LẦN 17 (2026-09-26): ĐẶT TÍNH ĐIỀN ĐƯỢC Ở **LỚP 2–4** + THÊM **PHÉP NHÂN** CHO `cotTinh`.
 --   Cùng họ việc với LẦN 16 (dạng “Đặt tính rồi tính” của SGK có ở gần như mọi chương 1–5):
 --   chuyển nốt các slide còn **in sẵn cả cột** (trẻ đọc luôn kết quả) sang `cotTinh`, và **bộ vẽ
@@ -96,7 +108,7 @@
 --     thay bằng hình ⚖️ (nếu để nguyên thì vừa rồi hình cái CÂN sẽ hoá thành ĐỒNG HỒ).
 --   ✅ Kiểm: `node scratch/soat-hinh-khong-hien.mjs` = 0 ca · `soat-o-trong` = 0 ô trống tĩnh ·
 --      `soat-phep-tinh` = 0 sai · cổng tĩnh **32 PASS** · `build:web` exit 0.
---   ⚠️ Số bài và số slide KHÔNG đổi: 5 lớp · 51 chương · **460 bài · 2735 slide**.
+--   ⚠️ Số bài và số slide KHÔNG đổi: 5 lớp · 51 chương · **460 bài · 2738 slide**.
 --   ⚠️ LẦN NÀY CẦN DÁN: `02-bai-lop-1.sql`, `03-bai-lop-2.sql`, `04-bai-lop-3.sql` rồi `100-...`.
 --      `01`, `05`, `06`, `99` KHÔNG đổi. `00` không cần (không bài nào bị bỏ).
 --
@@ -139,7 +151,7 @@
 -- LƯU Ý LẦN 11 (2026-09-25): **MỌI Ô TRỐNG PHẢI ĐIỀN ĐƯỢC** (yêu cầu người dùng) + 6 slide CĐ6 Lớp 1.
 --   Yêu cầu: “tất cả các dạng bài có điền vào ô trống không được là slide tĩnh và đều có thể điền
 --   đáp án vào được; đảm bảo tất cả các dạng bài tập đều có đáp án để trẻ lựa chọn và tương tác”.
---   Công cụ soát mới: `node scratch/soat-o-trong.mjs` (2735 slide / 1439 slide cho bấm của cả 5 lớp).
+--   Công cụ soát mới: `node scratch/soat-o-trong.mjs` (2738 slide / 1439 slide cho bấm của cả 5 lớp).
 --   Sửa 10 ca thật:
 --     • 5 bảng CĐ3 (`g1-c3-l3/l4/l8/l9/l14`) từ bảng IN CỨNG ô “?” → **`bangTinh`** (bé bấm ô, chọn số).
 --     • 2 bảng Lớp 3 (`g3-c1-l4` tìm số bị trừ · `g3-c2-l9` nhân–chia) → `bangTinh`, hàng đầu giữ làm MẪU.
@@ -176,7 +188,7 @@
 --       hình không in sẵn đáp án (`showShape: false`).
 --     • `l8`: thêm 3 câu hỏi kiểu SGK tr.47/49 (chọn nhiều hình A–E; “KHÔNG là hình vuông”).
 --   ⚠️ Số slide ĐÃ ĐỔI: 2656 → **2659** (8 bài CĐ2: 48 → 51 slide) ⇒
---      vẫn 5 lớp · 51 chương · 460 bài · **2735 slide**.
+--      vẫn 5 lớp · 51 chương · 460 bài · **2738 slide**.
 --   ⚠️ LẦN NÀY CẦN DÁN: `02-bai-lop-1.sql` · `03-bai-lop-2.sql` · `04-bai-lop-3.sql`
 --      rồi `100-...` (file này). `00`, `01`, `05`, `06`, `99` KHÔNG đổi.
 --

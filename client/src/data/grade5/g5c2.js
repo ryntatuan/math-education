@@ -66,6 +66,19 @@ export const g5c2 = {
           }
         },
         {
+          "type": "visual",
+          "content": {
+            "text": "Viết số thích hợp vào ô trống — phần thập phân có mấy chữ số",
+            "bangTinh": {
+              "headers": ["Số thập phân", "Mấy chữ số ở phần thập phân"],
+              "rows": [["3,45", null], ["12,7", null], ["0,208", null]],
+              "answers": [2, 1, 3],
+              "options": [1, 2, 3, 4],
+              "label": "Đếm các chữ số đứng SAU dấu phẩy."
+            }
+          }
+        },
+        {
           "type": "quiz",
           "content": {
             "question": "Trong số thập phân 18,256, chữ số 5 thuộc hàng nào?",
