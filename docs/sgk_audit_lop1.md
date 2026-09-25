@@ -396,6 +396,8 @@ Quy mô: **2684 → 2690** (Lớp 1: 662 → 668) — phần tăng là 6 slide C
 | :----------------- | :----------------------------------------------------------- | :--------------------------------------------------------------------------------- |
 | `g1-c6-l2` slide 5 | Bảng **Viết số · Đọc số** 11 → 20                            | Bảng **tra cứu** (mọi ô in sẵn) — không phải bài điền, nên **không** đặt ô `?` nào |
 | `g1-c6-l2` slide 6 | _“Số 18 đọc là gì?”_ → **mười tám**                          | Lựa chọn: mười tám · mười bảy · tám mươi · mười chín                               |
+| `g1-c6-l2` slide 7 | **“Số ?” — dãy số 1 → 20** có 4 ô trống (SGK **tr.5** HĐ3) | Ô điền được (`TrainFill`); bộ vẽ **tự chia 2 hàng** vì 20 ô không vừa một hàng — đáp án `[4, 13, 14, 18]` |
+| `g1-c6-l2` slide 8 | **“Số ?” — 6 đoàn tàu** (SGK **tr.6** LT1)                | Đúng **6 hàng như sách**, 12 ô trống — đáp án `[13,14, 14,15, 14,15, 18,19, 13,15, 17,19]`                 |
 | `g1-c6-l3` slide 5 | _“100 gồm mấy chục?”_ → **10 chục**                          |                                                                                    |
 | `g1-c6-l7` slide 5 | _“Số nào có hai chữ số giống nhau?”_ → **44**                |                                                                                    |
 | `g1-c6-l7` slide 6 | _“Số tròn chục lớn nhất mà bé hơn 100?”_ → **90**            |                                                                                    |
@@ -405,5 +407,16 @@ _(Số slide nói trên là **số thứ tự trong bài**, đã đối chiếu 
 không chép tay.)_
 
 **Còn lại của CĐ6:** rà 12 bài `g1-c6-l1` … `l12` theo ảnh SGK tập 2 (tr.4–27) bằng quy trình §11
-(bảng phát hiện nhóm A–E trước, rồi mới sửa). Khi thêm bảng/bài điền mới: **dùng `bangTinh`** —
-không được in cứng ô `?` (luật §8o).
+(bảng phát hiện nhóm A–E trước, rồi mới sửa). Đã xem ảnh **tr.5, tr.6, tr.7**; **chưa** làm:
+HĐ1 tr.5 (mỗi túi 10 quả cà chua → 12 · 15 · 18 · 20) · HĐ2 tr.5 (đếm khối lập phương và cá trong
+tranh) · trò chơi “Đường đến Đảo giấu vàng” tr.7 (trò chơi theo nhóm — cân nhắc có đưa vào app
+không) · và **tr.9–27** (số tròn chục · số đến 99 · đọc–viết số · so sánh · bảng 100 số · luyện tập chung).
+Khi thêm bảng/bài điền mới: **dùng `bangTinh`** (bảng) hoặc **`numberScene.mode = "numberTrain"`**
+(dãy số — bản điền được đã có sẵn, chỉ cần `answers` khớp số ô) — **không được in cứng ô `?`** (§8o).
+
+> ⚠️ **Quan sát khi thử trong app (2026-09-25):** thanh “Trước / Tiếp tục” là `position: sticky`
+> nên khi trang đang cuộn, nó **che mất hàng nút chọn dưới cùng** của những slide có nhiều nút
+> (12 ô trống ⇒ 9 nút). Nội dung vẫn cuộn tới được nên **không phải lỗi chặn**, nhưng nếu người
+> dùng thấy vướng thì cách chữa rẻ nhất là giảm số nút (`options`) hoặc chừa lề dưới cho slide.
+Khi thêm bảng/bài điền mới: **dùng `bangTinh`** (bảng) hoặc **`numberScene.mode = "numberTrain"`**
+(dãy số) — **không được in cứng ô `?`** (luật §8o).

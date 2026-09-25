@@ -138,6 +138,68 @@ export const g1c6 = {
           },
         },
         {
+          /**
+           * SGK tr.5 (hoạt động 3): dãy số 1 → 20 vòng quanh con chim cánh cụt, có 4 ô “?”.
+           * Dãy 20 số KHÔNG vừa một hàng ⇒ bộ vẽ tự chia 2 hàng (xem `oRibbon`).
+           */
+          type: "visual",
+          content: {
+            text: "Số ? — dãy số từ 1 đến 20 (SGK tr.5)",
+            numberScene: {
+              mode: "numberTrain",
+              kind: "ribbon",
+              numbers: [
+                1,
+                2,
+                3,
+                null,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                null,
+                null,
+                15,
+                16,
+                17,
+                null,
+                19,
+                20,
+              ],
+              answers: [4, 13, 14, 18],
+              note: "Bé đọc dãy số từ 1 đến 20 rồi điền những số còn thiếu.",
+            },
+          },
+        },
+        {
+          /**
+           * SGK tr.6 (luyện tập 1): 6 đoàn tàu, mỗi đoàn là một dãy số liền nhau còn thiếu số.
+           * Đáp án đọc theo thứ tự trái → phải, trên → dưới.
+           */
+          type: "visual",
+          content: {
+            text: "Số ? — các đoàn tàu (SGK tr.6)",
+            numberScene: {
+              mode: "numberTrain",
+              kind: "wagons",
+              rows: [
+                [10, 11, 12, "?", "?"],
+                ["?", "?", 16, 17, 18],
+                [12, 13, "?", "?", 16],
+                [15, 16, 17, "?", "?"],
+                [11, 12, "?", 14, "?"],
+                [16, "?", 18, "?", 20],
+              ],
+              answers: [13, 14, 14, 15, 14, 15, 18, 19, 13, 15, 17, 19],
+              note: "Mỗi đoàn tàu là một dãy số liền nhau — bé điền các số còn thiếu.",
+            },
+          },
+        },
+        {
           type: "quiz",
           content: {
             question: "Số 18 đọc là gì?",

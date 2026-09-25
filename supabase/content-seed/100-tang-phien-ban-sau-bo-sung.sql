@@ -12,21 +12,25 @@
 -- CHẠY LẠI NHIỀU LẦN: chỉ làm phiên bản tăng thêm 1 mỗi lần — vô hại (các bé tải
 --   lại nội dung thêm một lần), không sinh dòng trùng, không mất dữ liệu.
 --
--- LƯU Ý LẦN 12 (2026-09-25): HAI DÃY SỐ LỚP 1 NAY **BÉ BẤM ĐIỀN ĐƯỢC** (vòng 2 của yêu cầu “ô trống phải điền được”).
+-- LƯU Ý LẦN 12 (2026-09-25): HAI DÃY SỐ LỚP 1 NAY **BÉ BẤM ĐIỀN ĐƯỢC** (vòng 2 của yêu cầu “ô trống phải điền được”)
+--   + 2 slide “Số ?” mới của Chủ đề 6 theo SGK tr.5–6.
 --   Phát hiện nhờ **sửa thước đo**: công cụ soát trước đó xếp nhầm 13 `mode` của `numberScene` vào nhóm
 --   “tự tương tác”, trong khi đọc mã thì chỉ có 3 nhánh thật sự tương tác (`numberMaze`, `dotCards`,
 --   `comparePairs`) ⇒ 2 slide này bị bỏ qua dù trẻ không bấm được gì.
 --     • `g1-c1-l4` slide 9 — dãy số 0 → 10, 4 ô trống (`answers: [2, 3, 7, 10]`).
 --     • `g1-c1-l11` slide 7 — 6 đoàn tàu (SGK tr.40), 6 ô `?` (`answers: [5, 4, 5, 8, 9, 1]`).
---   Bộ vẽ: `TrainFill` (`Grade1NumberVisuals.jsx`) — bản tĩnh và bản điền được dùng CHUNG một hàm vẽ.
+--   Bộ vẽ: `TrainFill` (`Grade1NumberVisuals.jsx`) — bản tĩnh và bản điền được dùng CHUNG một hàm vẽ;
+--   dãy dài tự chia nhiều hàng (SGK tr.5 có dãy 1 → 20).
+--   Thêm cho Chủ đề 6 (`g1-c6-l2`): dãy **1 → 20** có 4 ô “?” (SGK tr.5 HĐ3) và **6 đoàn tàu “Số ?”**
+--   (SGK tr.6 LT1) — đúng 6 hàng như sách, 12 ô trống.
 --   Cổng mới trong `scratch/kiem-tra-slide.mjs`: `numberTrain` có ô trống ⇒ phải có `answers` khớp số ô.
---   ⚠️ Số slide KHÔNG đổi (2690) — chỉ đổi DỮ LIỆU 2 slide.
+--   ⚠️ Số slide ĐÃ ĐỔI: 2690 → **2692** (Lớp 1: 668 → **670 slide**).
 --   ⚠️ LẦN NÀY CẦN DÁN: `02-bai-lop-1.sql` rồi `100-...` (file này). Không cần dán các file lớp khác.
 --
 -- LƯU Ý LẦN 11 (2026-09-25): **MỌI Ô TRỐNG PHẢI ĐIỀN ĐƯỢC** (yêu cầu người dùng) + 6 slide CĐ6 Lớp 1.
 --   Yêu cầu: “tất cả các dạng bài có điền vào ô trống không được là slide tĩnh và đều có thể điền
 --   đáp án vào được; đảm bảo tất cả các dạng bài tập đều có đáp án để trẻ lựa chọn và tương tác”.
---   Công cụ soát mới: `node scratch/soat-o-trong.mjs` (2690 slide / 1439 slide cho bấm của cả 5 lớp).
+--   Công cụ soát mới: `node scratch/soat-o-trong.mjs` (2692 slide / 1439 slide cho bấm của cả 5 lớp).
 --   Sửa 10 ca thật:
 --     • 5 bảng CĐ3 (`g1-c3-l3/l4/l8/l9/l14`) từ bảng IN CỨNG ô “?” → **`bangTinh`** (bé bấm ô, chọn số).
 --     • 2 bảng Lớp 3 (`g3-c1-l4` tìm số bị trừ · `g3-c2-l9` nhân–chia) → `bangTinh`, hàng đầu giữ làm MẪU.
@@ -63,7 +67,7 @@
 --       hình không in sẵn đáp án (`showShape: false`).
 --     • `l8`: thêm 3 câu hỏi kiểu SGK tr.47/49 (chọn nhiều hình A–E; “KHÔNG là hình vuông”).
 --   ⚠️ Số slide ĐÃ ĐỔI: 2656 → **2659** (8 bài CĐ2: 48 → 51 slide) ⇒
---      vẫn 5 lớp · 51 chương · 459 bài · **2690 slide**.
+--      vẫn 5 lớp · 51 chương · 459 bài · **2692 slide**.
 --   ⚠️ LẦN NÀY CẦN DÁN: `02-bai-lop-1.sql` · `03-bai-lop-2.sql` · `04-bai-lop-3.sql`
 --      rồi `100-...` (file này). `00`, `01`, `05`, `06`, `99` KHÔNG đổi.
 --

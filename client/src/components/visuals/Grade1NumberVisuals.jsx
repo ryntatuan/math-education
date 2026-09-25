@@ -1177,10 +1177,23 @@ const laOTrong = (v) => v === null || v === "?" || v === "";
  * Toạ độ ô của DÃY DỌC (`kind = "ribbon"`) — MỘT NGUỒN DUY NHẤT cho cả bản tĩnh lẫn bản bé
  * điền được. (Trước đây công thức nằm ngay trong JSX; viết bản tương tác mà chép lại công
  * thức là hai bản sẽ lệch nhau ở lần sửa sau.)
+ *
+ * 🔴 TỰ XUỐNG DÒNG: dãy dài (SGK tr.5 có dãy **1 → 20**) không vừa một hàng — 20 ô × 32 đơn vị
+ * = 640 > 360 nên `startX` ra **số âm** và hình vẽ tràn ra ngoài khung. Nay chia thành nhiều
+ * hàng, mỗi hàng tối đa `MAX_O` ô và **mỗi hàng tự canh giữa** (hàng cuối ngắn vẫn cân).
  */
+const MAX_O = 11;
 function oRibbon(ns) {
-  const startX = 180 - ((ns.length - 1) * 32 + 28) / 2;
-  return ns.map((v, i) => ({ v, x: startX + i * 32, y: 16, w: 28, h: 34 }));
+  const hang = [];
+  for (let i = 0; i < ns.length; i += MAX_O) {
+    const phan = ns.slice(i, i + MAX_O);
+    const startX = 180 - ((phan.length - 1) * 32 + 28) / 2;
+    const y = 16 + hang.length * 44;
+    hang.push(
+      phan.map((v, j) => ({ v, x: startX + j * 32, y, w: 28, h: 34 })),
+    );
+  }
+  return hang;
 }
 
 /** Toạ độ ĐẦU MÁY + từng TOA (`kind = "wagons"`). */
@@ -1245,10 +1258,10 @@ function TrainFill({
   tinh = false,
 }) {
   const laRibbon = kind === "ribbon";
-  const oR = laRibbon ? oRibbon(numbers) : [];
+  const hangRibbon = laRibbon ? oRibbon(numbers) : [];
   const hang = laRibbon ? [] : oWagons(rows);
-  const dsO = (laRibbon ? oR : hang.flatMap((r) => r.cells)).filter((o) =>
-    laOTrong(o.v),
+  const dsO = (laRibbon ? hangRibbon.flat() : hang.flatMap((r) => r.cells)).filter(
+    (o) => laOTrong(o.v),
   );
   const choBam = !tinh && dsO.length > 0 && answers.length === dsO.length;
   const fill = useFillSlots(choBam ? answers : []);
@@ -1338,7 +1351,7 @@ function TrainFill({
     );
   };
 
-  const H = laRibbon ? 82 : hang.length * 40 + 14;
+  const H = laRibbon ? hangRibbon.length * 44 + 26 : hang.length * 40 + 14;
 
   return (
     <div style={card}>
@@ -1351,7 +1364,13 @@ function TrainFill({
         }
       >
         {laRibbon &&
-          oR.map((o, i) => (laOTrong(o.v) ? veO(o, i) : veTinh(o, i)))}
+          hangRibbon.map((r, i) => (
+            <g key={i}>
+              {r.map((o, j) =>
+                laOTrong(o.v) ? veO(o, `${i}-${j}`) : veTinh(o, `${i}-${j}`),
+              )}
+            </g>
+          ))}
         {!laRibbon &&
           hang.map((r) => (
             <g key={r.i}>
@@ -1365,7 +1384,7 @@ function TrainFill({
           ))}
         <text
           x="180"
-          y={laRibbon ? 70 : H - 2}
+          y={laRibbon ? H - 4 : H - 2}
           textAnchor="middle"
           fontSize="14"
           fontWeight="700"
