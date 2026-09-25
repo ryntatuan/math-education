@@ -200,15 +200,19 @@ export const g1c3 = {
           type: "visual",
           content: {
             text: "Điền kết quả còn thiếu (SGK tr.64)",
-            table: {
+            bangTinh: {
               headers: ["Phép tính", "Kết quả"],
               rows: [
                 ["9 + 0", "9"],
-                ["8 + 1", "?"],
-                ["7 + 2", "?"],
-                ["6 + 3", "?"],
-                ["5 + 4", "?"],
+                ["8 + 1", null],
+                ["7 + 2", null],
+                ["6 + 3", null],
+                ["5 + 4", null],
               ],
+              answers: [9, 9, 9, 9],
+              options: [8, 9, 10],
+              title: "Bé chọn số điền vào ô ?",
+              hint: "Các phép cộng trong bảng đều có kết quả bằng 9 — bé đếm tiếp để kiểm tra.",
               label: "Các phép cộng trong bảng đều có kết quả bằng 9",
             },
           },
@@ -296,17 +300,21 @@ export const g1c3 = {
           type: "visual",
           content: {
             text: "Điền kết quả còn thiếu (SGK tr.62)",
-            table: {
+            bangTinh: {
               headers: ["Phép tính", "Kết quả"],
               rows: [
                 ["6 + 1", "7"],
-                ["5 + 2", "?"],
-                ["4 + 3", "?"],
+                ["5 + 2", null],
+                ["4 + 3", null],
                 ["3 + 4", "7"],
-                ["2 + 5", "?"],
-                ["1 + 6", "?"],
+                ["2 + 5", null],
+                ["1 + 6", null],
                 ["0 + 7", "7"],
               ],
+              answers: [7, 7, 7, 7],
+              options: [6, 7, 8],
+              title: "Bé chọn số điền vào ô ?",
+              hint: "Mọi phép cộng trong bảng đều có kết quả bằng 7.",
               label: "Mọi phép cộng trong bảng đều có kết quả bằng 7",
             },
           },
@@ -625,15 +633,19 @@ export const g1c3 = {
           type: "visual",
           content: {
             text: "Điền kết quả còn thiếu (SGK tr.66)",
-            table: {
+            bangTinh: {
               headers: ["Phép tính", "Kết quả"],
               rows: [
                 ["9 + 1", "10"],
-                ["8 + 2", "?"],
-                ["7 + 3", "?"],
-                ["6 + 4", "?"],
-                ["5 + 5", "?"],
+                ["8 + 2", null],
+                ["7 + 3", null],
+                ["6 + 4", null],
+                ["5 + 5", null],
               ],
+              answers: [10, 10, 10, 10],
+              options: [9, 10, 11],
+              title: "Bé chọn số điền vào ô ?",
+              hint: "Các phép cộng trong bảng đều có kết quả bằng 10.",
               label: "Các phép cộng trong bảng đều có kết quả bằng 10",
             },
           },
@@ -728,16 +740,20 @@ export const g1c3 = {
           type: "visual",
           content: {
             text: "Điền kết quả còn thiếu (SGK tr.76)",
-            table: {
+            bangTinh: {
               headers: ["Phép tính", "Kết quả"],
               rows: [
                 ["7 − 1", "6"],
-                ["7 − 2", "?"],
+                ["7 − 2", null],
                 ["7 − 3", "4"],
-                ["7 − 4", "?"],
+                ["7 − 4", null],
                 ["7 − 7", "0"],
                 ["7 − 0", "7"],
               ],
+              answers: [5, 3],
+              options: [2, 3, 4, 5],
+              title: "Bé chọn số điền vào ô ?",
+              hint: "Lấy 7 trừ dần: bé đếm lùi từ 7.",
               label: "Lấy 7 trừ 0, 1, 2, 3 … 7 — xem kết quả nhỏ dần",
             },
           },
@@ -1144,16 +1160,20 @@ export const g1c3 = {
           type: "visual",
           content: {
             text: "Từ phép cộng suy ra phép trừ (SGK tr.86)",
-            table: {
+            bangTinh: {
               headers: ["Phép tính", "Kết quả"],
               rows: [
                 ["1 + 9", "10"],
-                ["10 − 1", "?"],
-                ["10 − 9", "?"],
+                ["10 − 1", null],
+                ["10 − 9", null],
                 ["2 + 8", "10"],
-                ["10 − 2", "?"],
-                ["10 − 8", "?"],
+                ["10 − 2", null],
+                ["10 − 8", null],
               ],
+              answers: [9, 1, 8, 2],
+              options: [1, 2, 8, 9],
+              title: "Bé chọn số điền vào ô ?",
+              hint: "Từ một phép cộng, bé viết được hai phép trừ.",
               label: "Bảng quan hệ giữa phép cộng và phép trừ trong phạm vi 10",
             },
           },

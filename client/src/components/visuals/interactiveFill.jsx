@@ -93,12 +93,20 @@ export function slotLook(fill, i, laMau = false) {
   return { fill: "#f8fafc", stroke: "#94a3b8", color: "#64748b", dash: true };
 }
 
-/** Dải nút chọn + tiến độ + “Làm lại”, hiện NGAY DƯỚI hình. Nút ≥ 50px cho ngón tay bé. */
+/**
+ * Dải nút chọn + tiến độ + “Làm lại”, hiện NGAY DƯỚI hình. Nút ≥ 50px cho ngón tay bé.
+ *
+ * `renderOption` (tuỳ chọn) cho phép nút là HÌNH VẼ thay vì chữ — dùng cho “hình thích hợp
+ * đặt vào dấu ?” (bé chọn giữa các hình). `tenOption` là nhãn đọc màn hình của từng giá trị.
+ * Nhờ vậy phần tiến độ/ chúc mừng/ “Làm lại” chỉ có MỘT bản, không phải chép lại.
+ */
 export function FillBar({
   fill,
   options = [">", "<", "="],
   title = "Bé chọn dấu",
   hint = "Ô màu đỏ chưa đúng — bé đếm số chấm hai bên rồi so sánh lại nhé.",
+  renderOption,
+  tenOption,
 }) {
   const xong = fill.solved.filter(Boolean).length;
   const tong = fill.soO;
@@ -136,14 +144,18 @@ export function FillBar({
         </span>
         {options.map((o) => (
           <button
-            key={o}
+            key={String(o)}
             type="button"
             onClick={() => fill.pick(o)}
             disabled={fill.done}
-            aria-label={`Chọn ${o}`}
+            aria-label={`Chọn ${(tenOption && tenOption[o]) || o}`}
             style={{
               minWidth: 58,
               minHeight: 50,
+              display: renderOption ? "flex" : undefined,
+              alignItems: "center",
+              justifyContent: "center",
+              padding: renderOption ? 6 : undefined,
               fontSize: 24,
               fontWeight: 900,
               borderRadius: 12,
@@ -154,7 +166,7 @@ export function FillBar({
               opacity: fill.done ? 0.5 : 1,
             }}
           >
-            {o}
+            {renderOption ? renderOption(o) : o}
           </button>
         ))}
         <span style={{ fontWeight: 800, fontSize: 14, color: "#0369a1" }}>

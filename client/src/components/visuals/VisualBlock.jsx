@@ -34,6 +34,8 @@ import {
   SpatialScene,
   PointLine,
 } from "./GeometryVisuals";
+// Bảng có ô trống ĐIỀN ĐƯỢC — ở file riêng vì dùng hook `useFillSlots` (xem đầu file đó).
+import BangTinh from "./interactiveTable";
 import {
   FractionBar,
   FractionCircle,
@@ -125,6 +127,9 @@ export default function VisualBlocks({ content }) {
   // Dãy hình lặp quy luật — “hình thích hợp đặt vào dấu ?” (Lớp 1 SGK tr.55 · tr.111).
   if (isObj(content.patternRow))
     blocks.push(<PatternRow key="patternRow" {...content.patternRow} />);
+  // BẢNG CÓ Ô TRỐNG BÉ ĐIỀN ĐƯỢC — không bao giờ để ô “?” là hình tĩnh.
+  if (isObj(content.bangTinh))
+    blocks.push(<BangTinh key="bangTinh" {...content.bangTinh} />);
   if (isObj(content.spatialScene))
     blocks.push(<SpatialScene key="spatialScene" {...content.spatialScene} />);
   // Đếm – so sánh – tách gộp cho Lớp 1 Chủ đề 1 (SGK tr.6–45).

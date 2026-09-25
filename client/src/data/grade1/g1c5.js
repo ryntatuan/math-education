@@ -391,6 +391,8 @@ export const g1c5 = {
                 "?",
                 "square",
               ],
+              answers: ["triangle"],
+              options: ["triangle", "circle", "square"],
               label: "Tròn · tam giác · vuông — lặp lại ba hình một lượt",
             },
           },

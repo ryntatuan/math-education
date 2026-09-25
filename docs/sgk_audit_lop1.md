@@ -307,3 +307,80 @@ toàn hệ thống **2671 → 2684** (Lớp 1: 649 → 662).
 SGK tr.46–55 có **16 hoạt động**, app hiện phản ánh trọn **11**. Còn thiếu: đếm hình trong tranh (tr.47 HĐ3 · tr.48 LT1 · tr.49 LT3 — có bảng điền số lượng), xếp **que tính** (tr.48 LT2 · tr.54 LT2), ghép hình 3–5 miếng ra *chữ nhật · hình thang · mũi tên · tam giác lớn* (tr.50–53 — cần mở rộng `shapeJoin`), 9 đồ vật quanh em (tr.54 LT1: ê-ke · con tem · đĩa DVD · cái bánh · khung cửa sổ · bảng lớp), đếm miếng bìa để ghép mũi tên (tr.55 LT4).
 
 > ✅ **Đã bổ sung 2026-09-25:** **dãy hình lặp quy luật** tr.55 LT3 (cả hai bài: quy luật theo MÀU và quy luật theo HÌNH) — bằng khoá hình mới **`patternRow`** vẽ đúng như SGK: ô cần điền là **ô trống nét đứt có dấu `?`**, không vẽ sẵn hình.
+
+---
+
+## ĐỢT “Ô TRỐNG PHẢI ĐIỀN ĐƯỢC” (yêu cầu người dùng 2026-09-25) — ✅ ĐÃ SỬA XONG
+
+**Yêu cầu (nguyên văn):** *“kiểm tra và đảm bảo tất cả các dạng bài có điền vào ô trống không được là
+slide tĩnh và đều có thể điền đáp án vào được; đảm bảo tất cả các dạng bài tập đều có đáp án để trẻ
+lựa chọn và tương tác”*.
+
+### Bảng phát hiện (công cụ `node scratch/soat-o-trong.mjs`, soi 2690 slide của cả 5 lớp)
+
+| # | Bài · slide | Hình | Lỗi | Cách sửa |
+| :- | :---------- | :--- | :-- | :------- |
+| 1 | `g1-c3-l3` slide 4 | `table` | Bảng in cứng 4 ô `"?"` — bé chỉ nhìn | → **`bangTinh`**: đáp án `[9,9,9,9]`, chọn `6/7/8` |
+| 2 | `g1-c3-l4` slide 4 | `table` | y như trên (4 ô) | → `bangTinh`, đáp án `[7,7,7,7]` |
+| 3 | `g1-c3-l8` slide 4 | `table` | 4 ô `"?"` | → `bangTinh`, đáp án `[10,10,10,10]` |
+| 4 | `g1-c3-l9` slide 4 | `table` | 2 ô `"?"` (7 trừ dần) | → `bangTinh`, đáp án `[5,3]`, chọn `2/3/4/5` |
+| 5 | `g1-c3-l14` slide 4 | `table` | 4 ô `"?"` (quan hệ cộng–trừ) | → `bangTinh`, đáp án `[9,1,8,2]` |
+| 6 | `g3-c1-l4` slide 3 | `table` | 4 ô `"?"` trong câu phép tính | → `bangTinh`; **hàng 1 giữ làm MẪU** (`500 − ? = 260` → `240`), bé điền hàng 2 (`200`) |
+| 7 | `g3-c2-l9` slide 3 | `table` | 6 ô `"?"` (nhân–chia) | → `bangTinh`; hàng mẫu `? × 7 = 42` → `6`, bé điền `30` và `9` |
+| 8 | `g2-c13-l1` slide 3 | `table` | 2 ô `"?"` nhưng **không có số liệu nào để điền** | → bỏ ô `"?"`, đổi thành **ví dụ có số thật** (đỏ 7 bạn · xanh 4 bạn, khớp bài sau) |
+| 9 | `g1-c2-l8` slide 9 | `patternRow` | Ô `?` trong dãy hình quy luật **theo màu** — không bấm được | → nay **bé chọn HÌNH** để điền; ô hiện **hình tròn ĐỎ** đúng quy luật màu |
+| 10 | `g1-c2-l8` slide 11 | `patternRow` | Ô `?` quy luật **theo hình** | → chọn giữa tròn · tam giác · vuông; đáp án **tam giác** |
+| 11 | `g1-c5-l4` slide 6 | `patternRow` | Ô `?` (SGK tr.111) | → như trên; đáp án **tam giác** |
+
+*(5 slide dãy hình còn lại nằm trên slide CÂU HỎI — bé trả lời bằng các lựa chọn của câu hỏi nên
+hợp lệ, công cụ in ra khi chạy `--het`.)*
+
+### Cách sửa — hai bộ vẽ
+
+- **`bangTinh`** (`client/src/components/visuals/interactiveTable.jsx`): bảng 2 cột; ô `null` trong
+  `rows` = **ô trống bé điền**; `answers` = đáp án từng ô theo thứ tự đọc; `options` = các số cho bé
+  chọn. Bé bấm ô (hoặc ô tự chọn), chọn số, **chấm ngay**: đúng → ô xanh, sai → ô đỏ + hiện gợi ý,
+  có đếm `x/N`, nút “Làm lại”, và **chúc mừng khi xong hết**. Nếu `answers` lệch số ô ⇒ bảng tự rơi
+  về dạng tĩnh (không sập), và công cụ soát sẽ báo lỗi dữ liệu.
+- **`patternRow`** (nay nhận `answers`/`options`): ô `?` là ô bấm được; dải nút chọn là **hình vẽ**
+  (tròn · tam giác · vuông) — dùng `FillBar` với `renderOption`/`tenOption` nên phần tiến độ · chúc
+  mừng · “Làm lại” **chỉ có một bản**, không chép lại.
+
+### Luật thường trực (đã thêm vào `scratch/kiem-tra-slide.mjs`)
+
+1. Bảng vẽ bằng `table` **không được** in cứng ô `"?"` (phải dùng `bangTinh` hoặc bỏ dấu `?`).
+2. `bangTinh`: số đáp án **phải** bằng số ô `null`; phải có `options` ≥ 2; **chỉ** đặt trên slide
+   `story` / `concept` / `visual` (ngoài ba kiểu này thì không cho bấm — lỗi im lặng).
+3. `patternRow` có **> 1** ô `?` mà không có đáp án, đặt trên slide câu hỏi = lỗi.
+
+### Bằng chứng
+
+`soat-o-trong.mjs`: **0 ca cần sửa** (7 ca hợp lệ) · `kiem-tra-slide.mjs`: **0 lỗi** · cổng **32 PASS · 0 FAIL** ·
+build sạch · trang đo **707 ca: 0 lỗi vẽ · 0 tràn · 0 chữ chồng** ở 375/360/320 px ·
+**kiểm thật trong app** (`/lesson/g1-c3-l4`): bấm **sai** → ô đỏ, tiến độ giữ `0/4`; bấm **đúng** 4 ô →
+“🎉 Bé làm đúng hết!” `4/4`, các nút chọn tự khoá; (`/lesson/g1-c5-l4` slide 6): chọn “hình tam giác” →
+ô thứ 8 hiện **tam giác xanh, viền xanh lá**, `1/1` — **đã xem ảnh chụp cả hai**.
+
+Quy mô: **2684 → 2690** (Lớp 1: 662 → 668) — phần tăng là 6 slide CĐ6 ở mục dưới.
+
+---
+
+## ĐỢT CHỦ ĐỀ 6 — Các số đến 100 (Lớp 1, sách tập 2 tr.4–27) — 🔄 ĐANG LÀM
+
+Đã bổ sung **6 slide** theo **Bài 21 (số có hai chữ số, sách tr.4–15)** — bảng Viết/Đọc số lấy đúng mẫu tr.4; các câu hỏi theo nội dung đọc – viết – so sánh số có hai chữ số. *(Các trang cụ thể sẽ được chốt lại khi rà trọn CĐ6 theo quy trình §11.)*
+
+| Slide | Nội dung | Ghi chú |
+| :---- | :------- | :------ |
+| `g1-c6-l2` slide 5 | Bảng **Viết số · Đọc số** 11 → 20 | Bảng **tra cứu** (mọi ô in sẵn) — không phải bài điền, nên **không** đặt ô `?` nào |
+| `g1-c6-l2` slide 6 | *“Số 18 đọc là gì?”* → **mười tám** | Lựa chọn: mười tám · mười bảy · tám mươi · mười chín |
+| `g1-c6-l3` slide 5 | *“100 gồm mấy chục?”* → **10 chục** | |
+| `g1-c6-l7` slide 5 | *“Số nào có hai chữ số giống nhau?”* → **44** | |
+| `g1-c6-l7` slide 6 | *“Số tròn chục lớn nhất mà bé hơn 100?”* → **90** | |
+| `g1-c6-l9` slide 4 | *“Trong bảng 100 số, số nào đứng ngay dưới số 45?”* → **55** | |
+
+*(Số slide nói trên là **số thứ tự trong bài**, đã đối chiếu lại bằng script đọc thẳng dữ liệu —
+không chép tay.)*
+
+**Còn lại của CĐ6:** rà 12 bài `g1-c6-l1` … `l12` theo ảnh SGK tập 2 (tr.4–27) bằng quy trình §11
+(bảng phát hiện nhóm A–E trước, rồi mới sửa). Khi thêm bảng/bài điền mới: **dùng `bangTinh`** —
+không được in cứng ô `?` (luật §8o).

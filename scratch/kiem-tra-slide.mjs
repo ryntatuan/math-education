@@ -48,6 +48,12 @@ const KIEU_SLIDE = new Set([
   "dialogue",
 ]);
 
+/**
+ * Kiểu slide CHO BẤM — `LessonPage.jsx` chỉ bọc `InteractiveContext` cho ba kiểu này.
+ * Hình có ô trống đặt ngoài ba kiểu này sẽ rơi về dạng TĨNH, im lặng, trẻ không điền được.
+ */
+const SLIDE_CHO_BAM = new Set(["story", "concept", "visual"]);
+
 /** Các `kind` mà bộ vẽ thật sự biết vẽ (đọc từ GeometryVisuals.jsx). */
 const KIND_SHAPE_PICTURE = new Set([
   "book",
@@ -194,6 +200,106 @@ for (const [file, key, soLopThutu] of NGUON) {
               bai.id,
               i,
               `planeShape.kind = "${p.kind}" không có bộ vẽ`,
+            );
+        }
+
+        // 🔴 LUẬT “Ô TRỐNG PHẢI ĐIỀN ĐƯỢC” (yêu cầu người dùng 2026-09-25).
+        // Bốn lỗi từng xảy ra thật: (1) bảng in cứng ô “?” — trẻ chỉ nhìn; (2) bảng điền được
+        // nhưng đặt trên slide câu hỏi ⇒ `InteractiveContext` = false ⇒ rơi về tĩnh;
+        // (3) `bangTinh` thiếu đáp án / lệch số ô ⇒ tự rơi về tĩnh mà không báo gì;
+        // (4) dãy hình có ô “?” mà không có hình nào cho trẻ chọn.
+        const choBam = SLIDE_CHO_BAM.has(s.type);
+        const demNullTrongBang = (rows) =>
+          Array.isArray(rows)
+            ? rows.reduce(
+                (a, r) =>
+                  a +
+                  (Array.isArray(r)
+                    ? r.filter((x) => x === null).length
+                    : 0),
+                0,
+              )
+            : 0;
+
+        if (c.bangTinh) {
+          const soOT = demNullTrongBang(c.bangTinh.rows);
+          const soDA = Array.isArray(c.bangTinh.answers)
+            ? c.bangTinh.answers.length
+            : -1;
+          if (soOT === 0)
+            themLoi(
+              file,
+              bai.id,
+              i,
+              "bangTinh không có ô trống nào (rows toàn giá trị in sẵn) — bảng chỉ để nhìn thì dùng `table`",
+            );
+          else if (soDA !== soOT)
+            themLoi(
+              file,
+              bai.id,
+              i,
+              `bangTinh có ${soOT} ô trống nhưng ${soDA} đáp án ⇒ ô KHÔNG điền được`,
+            );
+          if (!Array.isArray(c.bangTinh.options) || c.bangTinh.options.length < 2)
+            themLoi(file, bai.id, i, "bangTinh thiếu `options` (cần ≥2 lựa chọn)");
+          if (!choBam)
+            themLoi(
+              file,
+              bai.id,
+              i,
+              `bangTinh đặt trên slide “${s.type}” ⇒ ô trống không bấm được (chỉ story/concept/visual mới cho bấm)`,
+            );
+        }
+
+        if (c.patternRow) {
+          const soOT = (Array.isArray(c.patternRow.shapes)
+            ? c.patternRow.shapes
+            : []
+          ).filter((x) => x === "?").length;
+          if (soOT > 0) {
+            const coDA = Array.isArray(c.patternRow.answers);
+            if (coDA && c.patternRow.answers.length !== soOT)
+              themLoi(
+                file,
+                bai.id,
+                i,
+                `patternRow có ${soOT} ô “?” nhưng ${c.patternRow.answers.length} đáp án ⇒ ô không điền được`,
+              );
+            else if (coDA && (!Array.isArray(c.patternRow.options) || c.patternRow.options.length < 2))
+              themLoi(file, bai.id, i, "patternRow thiếu `options` (cần ≥2 hình cho trẻ bấm)");
+            else if (!coDA && soOT > 1 && !choBam)
+              themLoi(
+                file,
+                bai.id,
+                i,
+                `patternRow có ${soOT} ô “?” trên slide “${s.type}” — một câu trả lời không phủ hết`,
+              );
+            else if (!coDA && soOT === 1 && !choBam)
+              canhBao.push({
+                file,
+                bai: bai.id,
+                slide: i,
+                msg: "patternRow 1 ô “?” trên slide câu hỏi — hợp lệ nếu câu hỏi hỏi đúng ô đó",
+              });
+          }
+        }
+
+        // Bảng vẽ bằng `table` mà in cứng ô “?” = ô trống tĩnh. (Soi rộng hơn — mọi khoá dữ
+        // liệu, kể cả chữ lời dẫn — nằm ở `scratch/soat-o-trong.mjs`.)
+        if (c.table && Array.isArray(c.table.rows)) {
+          const oT = [];
+          c.table.rows.forEach((r, ri) =>
+            (Array.isArray(r) ? r : []).forEach((cell, ci) => {
+              if (typeof cell === "string" && cell.trim() === "?")
+                oT.push(`rows[${ri}][${ci}]`);
+            }),
+          );
+          if (oT.length)
+            themLoi(
+              file,
+              bai.id,
+              i,
+              `bảng có ô “?” IN CỨNG ở ${oT.join(", ")} — trẻ không điền được; dùng \`bangTinh\` hoặc bỏ hẳn dấu ?`,
             );
         }
 

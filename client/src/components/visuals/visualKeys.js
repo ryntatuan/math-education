@@ -47,6 +47,8 @@ export const HINH_KEYS = [
   "spatialScene",
   // Dãy hình lặp quy luật — “hình thích hợp đặt vào dấu ?” (Lớp 1: SGK tr.55 và tr.111)
   "patternRow",
+  // Bảng có Ô TRỐNG bé điền được (ô `null` trong `rows` + đáp án ở `answers`)
+  "bangTinh",
   // Đếm – so sánh – tách gộp cho Lớp 1 (Chủ đề 1: các số từ 0 đến 10)
   "numberScene",
   // Nhóm – phần – gộp/bớt cho Lớp 1–4 (thay `tenFrame` ở các ca bị ép khung)

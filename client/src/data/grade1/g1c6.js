@@ -116,6 +116,37 @@ export const g1c6 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            text: "Viết số và đọc số — bảng như SGK tr.4",
+            table: {
+              headers: ["Viết số", "Đọc số"],
+              rows: [
+                ["11", "mười một"],
+                ["12", "mười hai"],
+                ["13", "mười ba"],
+                ["14", "mười bốn"],
+                ["15", "mười lăm"],
+                ["16", "mười sáu"],
+                ["17", "mười bảy"],
+                ["18", "mười tám"],
+                ["19", "mười chín"],
+                ["20", "hai mươi"],
+              ],
+              label: "Đọc từng số: mười một, mười hai… đến hai mươi",
+            },
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số 18 đọc là gì?",
+            options: ["mười tám", "mười bảy", "tám mươi", "mười chín"],
+            answer: "mười tám",
+            mascotHint: "18 gồm 1 chục và 8 đơn vị, đọc là mười tám.",
+          },
+        },
+        {
           type: "quiz",
           content: {
             question: "Số 15 gồm mấy chục và mấy đơn vị?",
@@ -196,6 +227,15 @@ export const g1c6 = {
             options: [15, 40, 44, 4],
             answer: 40,
             mascotHint: "40 có hàng đơn vị là 0 nên là số tròn chục.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "100 gồm mấy chục?",
+            options: ["1 chục", "10 chục", "100 chục"],
+            answer: "10 chục",
+            mascotHint: "10 chục gộp lại được 100; 100 đọc là một trăm.",
           },
         },
         {
@@ -497,6 +537,24 @@ export const g1c6 = {
         {
           type: "quiz",
           content: {
+            question: "Số nào có hai chữ số giống nhau?",
+            options: [23, 44, 45, 50],
+            answer: 44,
+            mascotHint: "44 có chữ số hàng chục và hàng đơn vị đều là 4.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số tròn chục lớn nhất mà bé hơn 100 là số nào?",
+            options: [80, 90, 99, 100],
+            answer: 90,
+            mascotHint: "Các số tròn chục bé hơn 100 là 10, 20, …, 90. Lớn nhất là 90.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
             question: "Trong các số 12, 45, 7, 30, số nào lớn nhất?",
             options: [12, 45, 7, 30],
             answer: 45,
@@ -630,6 +688,16 @@ export const g1c6 = {
               ],
               label: "Bảng các số từ 1 đến 100 (năm chục đầu)",
             },
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question:
+              "Trong bảng 100 số, số nào đứng ngay dưới số 45?",
+            options: [46, 55, 54, 35],
+            answer: 55,
+            mascotHint: "Xuống một hàng là thêm 10: 45 thêm 10 được 55.",
           },
         },
         {

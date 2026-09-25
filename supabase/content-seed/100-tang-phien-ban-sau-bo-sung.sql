@@ -12,6 +12,23 @@
 -- CHẠY LẠI NHIỀU LẦN: chỉ làm phiên bản tăng thêm 1 mỗi lần — vô hại (các bé tải
 --   lại nội dung thêm một lần), không sinh dòng trùng, không mất dữ liệu.
 --
+-- LƯU Ý LẦN 11 (2026-09-25): **MỌI Ô TRỐNG PHẢI ĐIỀN ĐƯỢC** (yêu cầu người dùng) + 6 slide CĐ6 Lớp 1.
+--   Yêu cầu: “tất cả các dạng bài có điền vào ô trống không được là slide tĩnh và đều có thể điền
+--   đáp án vào được; đảm bảo tất cả các dạng bài tập đều có đáp án để trẻ lựa chọn và tương tác”.
+--   Công cụ soát mới: `node scratch/soat-o-trong.mjs` (2690 slide / 1439 slide cho bấm của cả 5 lớp).
+--   Sửa 10 ca thật:
+--     • 5 bảng CĐ3 (`g1-c3-l3/l4/l8/l9/l14`) từ bảng IN CỨNG ô “?” → **`bangTinh`** (bé bấm ô, chọn số).
+--     • 2 bảng Lớp 3 (`g3-c1-l4` tìm số bị trừ · `g3-c2-l9` nhân–chia) → `bangTinh`, hàng đầu giữ làm MẪU.
+--     • 1 bảng Lớp 2 (`g2-c13-l1` phân loại) → ví dụ có số thật (7 bạn · 4 bạn), bỏ hẳn ô “?” vì bảng
+--       đó không có số liệu nào để bé điền.
+--     • 3 dãy hình (`g1-c2-l8` ×2 · `g1-c5-l4`) → `patternRow` **nay bé chọn HÌNH để điền**.
+--   Bộ vẽ mới `bangTinh` (`interactiveTable.jsx`); `FillBar` thêm `renderOption`/`tenOption`.
+--   Luật mới trong `scratch/kiem-tra-slide.mjs`: bảng `table` không được in cứng ô `"?"`; `bangTinh`
+--   phải khớp số đáp án/số ô + có `options`, và chỉ đặt trên slide `story/concept/visual`.
+--   Kèm: **CĐ6 Lớp 1 — 6 slide** (bảng Viết số/Đọc số 11–20 theo SGK tr.4–5 + 5 câu hỏi).
+--   ⚠️ Số slide ĐÃ ĐỔI: 2684 → **2690** (Lớp 1: 662 → **668 slide**).
+--   ⚠️ LẦN NÀY CẦN DÁN: `02-bai-lop-1.sql` + `03-bai-lop-2.sql` + `04-bai-lop-3.sql` rồi `100-...`.
+--
 -- LƯU Ý LẦN 10 (2026-09-25): RÀ SOÁT **CHỦ ĐỀ 3 LỚP 1** (SGK tr.56–91) + BỔ SUNG DẠNG BÀI THEO SGK.
 --   Đọc 21 trang ảnh 300 DPI (PDF 57–77 + 81 + 87) đối chiếu 14 bài `g1-c3-l1` … `l14`.
 --   Kiểm từng câu: app **KHÔNG sai phép tính nào** (3+2, 4+3, 2+5=5+2, 5+0, 9−3, 4−4, 10−5, 3+?=7 …).
@@ -35,7 +52,7 @@
 --       hình không in sẵn đáp án (`showShape: false`).
 --     • `l8`: thêm 3 câu hỏi kiểu SGK tr.47/49 (chọn nhiều hình A–E; “KHÔNG là hình vuông”).
 --   ⚠️ Số slide ĐÃ ĐỔI: 2656 → **2659** (8 bài CĐ2: 48 → 51 slide) ⇒
---      vẫn 5 lớp · 51 chương · 459 bài · **2684 slide**.
+--      vẫn 5 lớp · 51 chương · 459 bài · **2690 slide**.
 --   ⚠️ LẦN NÀY CẦN DÁN: `02-bai-lop-1.sql` · `03-bai-lop-2.sql` · `04-bai-lop-3.sql`
 --      rồi `100-...` (file này). `00`, `01`, `05`, `06`, `99` KHÔNG đổi.
 --

@@ -45,6 +45,7 @@ import {
   SpatialScene,
   PointLine,
 } from "../client/src/components/visuals/GeometryVisuals.jsx";
+import BangTinh from "../client/src/components/visuals/interactiveTable.jsx";
 import {
   FractionBar,
   FractionCircle,
@@ -72,6 +73,7 @@ const COMP = {
   shapePicture: ShapePicture,
   shapeJoin: ShapeJoin,
   patternRow: PatternRow,
+  bangTinh: BangTinh,
   spatialScene: SpatialScene,
   numberScene: NumberScene,
   groupScene: GroupScene,

@@ -21,8 +21,8 @@
 | :------------------------- | :------------------------------------------- | :-------------------------------- |
 | Cổng tĩnh                  | `32 PASS · 0 FAIL · 0 SKIP`, exit 0          | Cổng chạy được trở lại            |
 | Import `gradeNData.js`     | 51/51 dòng có đuôi `.js`                     | Node nạp được dữ liệu             |
-| Quy mô Lớp 1               | **10 chương · 97 bài · 662 slide**           | (Đợt 1.1: CĐ4 · Đợt 2: CĐ1 + CĐ2) |
-| Quy mô toàn hệ thống       | **5 lớp · 51 chương · 459 bài · 2684 slide** | Khớp `MONG_DOI` (sau đợt rà CĐ2)  |
+| Quy mô Lớp 1               | **10 chương · 97 bài · 668 slide**           | (Đợt 1.1: CĐ4 · Đợt 2: CĐ1 + CĐ2) |
+| Quy mô toàn hệ thống       | **5 lớp · 51 chương · 459 bài · 2690 slide** | Khớp `MONG_DOI` (sau đợt rà CĐ2)  |
 | Tập `id` Lớp 1             | 97/97, `Compare-Object` với HEAD rỗng        | Không đổi id ⇒ an toàn tiến độ    |
 | Chương `g1-c4` SAU Đợt 1.1 | **7 bài · 68 slide** (7+7+10+11+9+11+13)     | Từ 39 slide cũ                    |
 | Nội dung trong DB          | **chưa nạp** (mới chỉ có ở file tĩnh + seed) | Còn phải dán seed                 |
@@ -235,7 +235,7 @@ sequenceDiagram
 
 | Nội dung                                                                                                                                                | Nguồn                                                                                                     |
 | :------------------------------------------------------------------------------------------------------------------------------------------------------ | :-------------------------------------------------------------------------------------------------------- |
-| Cổng `32 PASS · 0 FAIL`; Lớp 1 = 97 bài / 662 slide; tổng 5 · 51 · 459 · 2684; `id` khớp HEAD 97/97                                                     | Đo trực tiếp ngày 2026-09-24 (cập nhật sau vòng tách hình — §8i)                                          |
+| Cổng `32 PASS · 0 FAIL`; Lớp 1 = 97 bài / 668 slide; tổng 5 · 51 · 459 · 2690; `id` khớp HEAD 97/97                                                     | Đo trực tiếp ngày 2026-09-24 (cập nhật sau vòng tách hình — §8i)                                          |
 | Hình bạn Mai: hàng nền **5 khối lập phương**, **2** khối hộp chữ nhật đỏ                                                                                | **Người dùng chốt 2026-09-24** (đối chiếu SGK tr.94)                                                      |
 | Chữ T = 5, H = 7, C = 5 → H nhiều nhất, T = C                                                                                                           | Đếm lại trên ảnh phóng to (trang sách 94)                                                                 |
 | Thứ tự **Mai – Nam – Rô-bốt**; đôi **Thỏ – Rùa**                                                                                                        | Chữ in trên SGK tr.98 (`scratch/kiem-tra-t98.png`)                                                        |
@@ -676,13 +676,58 @@ Bạn gửi ảnh hình `groupScene` (`6 + 7 = 6 + 4 + 3`) và báo: _“diễn 
 
 ---
 
+## 8o. Yêu cầu người dùng — **MỌI Ô TRỐNG PHẢI ĐIỀN ĐƯỢC** (2026-09-25)
+
+**Người dùng ghi chú:** *“kiểm tra và đảm bảo tất cả các dạng bài có điền vào ô trống không được
+là slide tĩnh và đều có thể điền đáp án vào được; đảm bảo tất cả các dạng bài tập đều có đáp án
+để trẻ lựa chọn và tương tác”*.
+
+**Cách kiểm (mới, chạy được lặp lại):** `node scratch/soat-o-trong.mjs` — soi **2690 slide / 1439
+slide cho bấm** trong cả 5 lớp, tìm mọi khoá DỮ LIỆU có ô `?` / `…` / ô `null`, rồi phân loại:
+`[A]` hình không tự tương tác mà có ô trống · `[B]` hình điền được nhưng đặt trên slide câu hỏi
+(không bọc `InteractiveContext` ⇒ rơi về tĩnh, **im lặng**) · `[C]` sai hợp đồng dữ liệu (số đáp
+án ≠ số ô, thiếu `options`) · `[D]` hợp lệ (in ra khi thêm `--het`).
+
+| Hạng mục | Kết quả |
+| :------- | :------ |
+| Ca thật phải sửa | **10** (sau khi sửa 2 chỗ công cụ BÁO OAN — xem bài học bên dưới). |
+| Sửa ① — 5 bảng CĐ3 | `l3` tr.64 · `l4` tr.62 · `l8` tr.66 · `l9` tr.76 · `l14` tr.86: từ `table` **in cứng ô “?”** → **`bangTinh`** (bé bấm ô, chọn số, chấm ngay). |
+| Sửa ② — 2 bảng Lớp 3 | `g3-c1-l4` (tìm số bị trừ) và `g3-c2-l9` (nhân/chia): → `bangTinh`; **hàng đầu giữ làm MẪU in sẵn** để bé làm các hàng sau (dạy bằng ví dụ mẫu rồi bé tự làm — đúng cách SGK). |
+| Sửa ③ — 1 bảng Lớp 2 | `g2-c13-l1` (phân loại theo nhóm): bảng **không có số liệu nào để điền** ⇒ đổi thành **ví dụ có số thật** (màu đỏ 7 bạn · màu xanh 4 bạn — khớp đúng bài sau `g2-c13-l2`), không còn ô “?” nào. |
+| Sửa ④ — 3 dãy hình | `g1-c2-l8` (×2: quy luật theo MÀU và theo HÌNH) và `g1-c5-l4`: `patternRow` **nay bé điền được** — bấm ô `?`, chọn **HÌNH** từ dải nút (nút là hình vẽ), đúng thì ô hiện đúng hình đó. |
+| 🔧 Bộ vẽ mới | **`bangTinh`** (`client/src/components/visuals/interactiveTable.jsx`): bảng 2 cột, ô `null` = ô trống, `answers` = đáp án từng ô, `options` = số cho bé chọn; tự rơi về dạng tĩnh nếu đáp án lệch số ô (không sập). |
+| 🔧 Mở rộng | `PatternRow` nhận thêm `answers` / `options` / `onDone`; `FillBar` nhận `renderOption` + `tenOption` ⇒ **một bản** tiến độ · chúc mừng · “Làm lại” dùng chung cho cả nút chữ lẫn nút hình. |
+| Luật thường trực | Thêm vào `scratch/kiem-tra-slide.mjs`: bảng `table` **không được** in cứng ô `"?"`; `bangTinh` phải có số đáp án = số ô trống, `options` ≥ 2, và **chỉ** nằm trên slide `story/concept/visual`; `patternRow` có **> 1** ô `?` trên slide câu hỏi = lỗi. |
+| Kèm theo | **CĐ6 (Lớp 1) — 6 slide mới:** bảng **Viết số/Đọc số 11–20** (SGK tr.4–5, in sẵn — đây là bảng TRA CỨU nên không có ô trống) + 5 câu hỏi: *“Số 18 đọc là gì?”* · *“100 gồm mấy chục?”* · *“Số nào có hai chữ số giống nhau?”* · *“Số tròn chục lớn nhất bé hơn 100?”* · *“Số nào đứng ngay dưới 45 trong bảng 100 số?”* |
+| Đăng ký khoá | `visualKeys.js` (`HINH_KEYS`) + `VisualBlock.jsx` + **trang đo** `scratch/visual-fit.jsx` (đủ 3 chỗ, như `patternRow`). |
+| Số liệu | Hệ thống **2684 → 2690** · Lớp 1 **662 → 668**. |
+| Bằng chứng | cổng **32 PASS · 0 FAIL** · `node scratch/kiem-tra-slide.mjs` **0 lỗi** · `soat-o-trong.mjs` **0 ca cần sửa** (7 ca hợp lệ in ra khi `--het`) · build sạch · đo **707 ca: 0 lỗi vẽ · 0 tràn · 0 chữ chồng** ở 375/360/320 px · **kiểm THẬT trong app**: bấm sai → ô đỏ + hiện gợi ý, bấm đúng 4 ô → “🎉 Bé làm đúng hết!” `4/4`; dãy hình: chọn “hình tam giác” → ô thứ 8 hiện **tam giác xanh, viền xanh** `1/1` (đã xem ảnh chụp). |
+
+> 🔴 **Bài học của đợt này (đều là lỗi tôi mắc thật, ghi để lần sau không lặp):**
+>
+> 1. **Cổng xanh giả:** `soat-o-trong.mjs` ban đầu chỉ soi CHUỖI, nên **không thấy** ô trống của
+>    `bangTinh` (đánh dấu bằng `null`) ⇒ bảng điền được đặt sai chỗ vẫn được báo “sạch”. Phải tự
+>    thêm ô `null` vào danh sách ô trống. **Số đo vô lý thì nghi cây thước trước.**
+> 2. **Báo oan do thước sai:** `table.headers[1] = “Bé làm gì?”` và `pointLine.formula = “Điểm nào
+>    nằm giữa A và B?”` là **lời dẫn**, không phải ô trống ⇒ bỏ qua khoá chữ (`headers`, `formula`,
+>    `options`, …). Thêm luật: chuỗi có dấu `=` / `→` là **CÂU phép tính** (`“500 − ? = 260”`), không
+>    phải ô điền — chỗ bé điền là ô `null` bên cạnh.
+> 3. **Lỗi che khuất biến (crash thật, chưa tới tay bé):** trong `PatternRow` tôi viết
+>    `const [fill, stroke] = …` — trùng tên với `fill` của `useFillSlots` ⇒ nhánh ô `?` đọc vào vùng
+>    cấm (TDZ) và ném `Cannot access 'fill' before initialization`. Đổi tên thành `mauHinh`/`vienHinh`.
+> 4. **Đừng tin “bấm được” khi chưa đo hình học:** Playwright báo nút chọn bị SVG “che” ⇒ tôi đo lại
+>    `getBoundingClientRect` của `<svg>` và nút: **không hề chồng nhau** (đáy SVG 241 px, đỉnh nút
+>    284 px) — nguyên nhân là slide đang chạy animation vào. **Đo trước, kết luận sau.**
+
+---
+
 ## 9. Đợt 2 (tiếp) — Rà soát các chương CÒN LẠI của Lớp 1
 
 **Vì sao:** Chủ đề 4 mới chỉ là 1 trong 10 chương. Các chương còn lại viết từ trước, **chưa từng được đối chiếu với ảnh SGK** — cùng một họ lỗi có thể còn nằm ở đó.
 
 | Hạng mục         | Số đo thật (2026-09-24)                                                                   |
 | :--------------- | :---------------------------------------------------------------------------------------- | --- |
-| Nội dung phải rà | Lớp 1: **10 chương · 97 bài · 662 slide** (CĐ1 + CĐ2 xong — §8b, §8l)                     |     |
+| Nội dung phải rà | Lớp 1: **10 chương · 97 bài · 668 slide** (CĐ1 + CĐ2 xong — §8b, §8l)                     |     |
 | Ảnh phải xem hết | `Math grade 1 part 1.pdf` **117 trang** + `part 2.pdf` **109 trang** = **226 trang**      |
 | Ngữ liệu chữ     | `.md` OCR của Lớp 1 rất mỏng (**22 KB** + **30 KB**) ⇒ **phải đọc ẢNH**, đừng dựa vào OCR |
 

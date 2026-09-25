@@ -767,20 +767,24 @@ export const g3c2 = {
         {
           type: "visual",
           content: {
-            text: "? × 7 = 42  →  ? = 42 : 7 = 6\n36 : ? = 4   →  ? = 36 : 4 = 9",
+            text: "Mẫu: ? × 7 = 42  →  ? = 42 : 7 = 6\nBé tìm số bị che ở hai hàng còn lại nhé!",
             operation: {
               left: 6,
               sign: "×",
               right: 7,
               result: 42,
             },
-            table: {
-              headers: ["Tìm gì", "Cách làm"],
+            bangTinh: {
+              headers: ["Tìm số bị che", "Kết quả"],
               rows: [
-                ["? × 7 = 42", "? = 42 : 7 = 6"],
-                ["? : 6 = 5", "? = 5 × 6 = 30"],
-                ["36 : ? = 4", "? = 36 : 4 = 9"],
+                ["? × 7 = 42", "6"],
+                ["? : 6 = 5", null],
+                ["36 : ? = 4", null],
               ],
+              answers: [30, 9],
+              options: [9, 11, 30],
+              title: "Bé chọn số điền vào ô ?",
+              hint: "Số bị chia = thương × số chia; số chia = số bị chia : thương.",
               label: "Tìm thành phần trong phép nhân, phép chia",
             },
           },

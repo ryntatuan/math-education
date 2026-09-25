@@ -282,19 +282,23 @@ export const g3c1 = {
         {
           type: "visual",
           content: {
-            text: "500 − ? = 260  →  ? = 500 − 260 = 240\n? − 130 = 70   →  ? = 70 + 130 = 200",
+            text: "Mẫu: 500 − ? = 260  →  ? = 500 − 260 = 240\nBé tìm số bị che ở hàng thứ hai nhé!",
             operation: {
               left: 500,
               sign: "−",
               right: 260,
               result: 240,
             },
-            table: {
-              headers: ["Tìm gì", "Cách làm"],
+            bangTinh: {
+              headers: ["Tìm số bị che", "Kết quả"],
               rows: [
-                ["500 − ? = 260", "? = 500 − 260 = 240"],
-                ["? − 130 = 70", "? = 70 + 130 = 200"],
+                ["500 − ? = 260", "240"],
+                ["? − 130 = 70", null],
               ],
+              answers: [200],
+              options: [60, 200, 330],
+              title: "Bé chọn số điền vào ô ?",
+              hint: "Số bị trừ = hiệu + số trừ. Bé tính 70 + 130 nhé.",
               label: "Tìm thành phần trong phép trừ",
             },
           },

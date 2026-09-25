@@ -36,7 +36,7 @@ export const g2c13 = {
         {
           "type": "visual",
           "content": {
-            "text": "Nhóm 1: thích màu đỏ\nNhóm 2: thích màu xanh\nMỗi bạn chỉ ở một nhóm",
+            "text": "Ví dụ: hỏi các bạn trong lớp\nThích màu đỏ: 7 bạn\nThích màu xanh: 4 bạn\nMỗi bạn chỉ ở một nhóm",
             "table": {
               "headers": [
                 "Nhóm",
@@ -45,14 +45,14 @@ export const g2c13 = {
               "rows": [
                 [
                   "Thích màu đỏ",
-                  "?"
+                  "7 bạn"
                 ],
                 [
                   "Thích màu xanh",
-                  "?"
+                  "4 bạn"
                 ]
               ],
-              "label": "Hỏi từng bạn rồi xếp vào hai nhóm — mỗi bạn chỉ ở một nhóm"
+              "label": "Ví dụ: hỏi các bạn trong lớp rồi xếp vào hai nhóm — mỗi bạn chỉ ở một nhóm"
             }
           }
         },

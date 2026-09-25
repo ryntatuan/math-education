@@ -9,6 +9,14 @@
  * số có mặc định; KHÔNG bao giờ để trắng khung vì một giá trị lạ.
  */
 
+import { useEffect, useState } from "react";
+
+import {
+  useInteractive,
+  useFillSlots,
+  slotLook,
+  FillBar,
+} from "./interactiveFill";
 import {
   CARD_STYLE,
   CAPTION_STYLE,
@@ -1957,7 +1965,101 @@ const MAU_HINH = {
   rhombus: ["#a78bfa", "#6d28d9"],
 };
 
-export function PatternRow({ shapes = [], colors = [], label = "" }) {
+/** Tên tiếng Việt của từng hình — dùng làm nhãn đọc màn hình cho nút chọn hình. */
+const TEN_HINH = {
+  circle: "hình tròn",
+  triangle: "hình tam giác",
+  square: "hình vuông",
+  rectangle: "hình chữ nhật",
+  rhombus: "hình thoi",
+};
+
+/** Màu của một hình: ưu tiên màu riêng của ô, không có thì lấy màu theo loại hình. */
+const mauCua = (k, mau) => (mau ? [mau, mau] : MAU_HINH[k] || MAU_HINH.square);
+
+/** Vẽ MỘT hình nhỏ — dùng chung cho DÃY HÌNH và cho NÚT CHỌN HÌNH (một nguồn sự thật). */
+function HinhNho({ k, x, y, O, fill, stroke, net = 3 }) {
+  const cx = x + O / 2;
+  const cy = y + O / 2;
+  if (k === "circle")
+    return (
+      <circle
+        cx={cx}
+        cy={cy}
+        r={O / 2}
+        fill={fill}
+        stroke={stroke}
+        strokeWidth={net}
+      />
+    );
+  if (k === "triangle")
+    return (
+      <polygon
+        points={`${cx},${y} ${x + O},${y + O} ${x},${y + O}`}
+        fill={fill}
+        stroke={stroke}
+        strokeWidth={net}
+        strokeLinejoin="round"
+      />
+    );
+  if (k === "rectangle")
+    return (
+      <rect
+        x={x}
+        y={y + 5}
+        width={O}
+        height={O - 10}
+        rx="3"
+        fill={fill}
+        stroke={stroke}
+        strokeWidth={net}
+      />
+    );
+  if (k === "rhombus")
+    return (
+      <polygon
+        points={`${cx},${y} ${x + O},${cy} ${cx},${y + O} ${x},${cy}`}
+        fill={fill}
+        stroke={stroke}
+        strokeWidth={net}
+        strokeLinejoin="round"
+      />
+    );
+  return (
+    <rect
+      x={x}
+      y={y}
+      width={O}
+      height={O}
+      rx="4"
+      fill={fill}
+      stroke={stroke}
+      strokeWidth={net}
+    />
+  );
+}
+
+/**
+ * ⚠️ YÊU CẦU NGƯỜI DÙNG (2026-09-25): ô “?” trong dãy hình KHÔNG được là hình để nhìn —
+ * bé phải bấm được và chọn được đáp án. Nay ô “?” là Ô ĐIỀN thật (dùng chung bộ máy
+ * `useFillSlots`/`slotLook`/`FillBar`): bé bấm ô, chọn hình ở dải nút, app chấm NGAY —
+ * đúng thì ô hiện đúng hình đó (viền xanh), sai thì viền đỏ và bé thử lại.
+ *
+ * `answers`  — hình đúng của TỪNG ô “?”, theo thứ tự đọc (ví dụ `["triangle"]`).
+ *              Không có `answers` (hoặc đếm lệch) ⇒ dãy hình vẽ ở dạng TĨNH: đó là cách dùng
+ *              có ý đồ cho slide CÂU HỎI (bé trả lời bằng các lựa chọn của câu hỏi).
+ * `options`  — các hình cho bé chọn (mặc định tròn · tam giác · vuông).
+ */
+export function PatternRow({
+  shapes = [],
+  colors = [],
+  label = "",
+  answers = [],
+  options = ["circle", "triangle", "square"],
+  hint = "Bé đọc theo lượt: cứ mấy hình thì quy luật lặp lại một lần?",
+  onDone,
+}) {
+  const interactive = useInteractive();
   const ds = (Array.isArray(shapes) ? shapes : []).filter(
     (s) => s !== undefined && s !== null && s !== "",
   );
@@ -1971,6 +2073,23 @@ export function PatternRow({ shapes = [], colors = [], label = "" }) {
   const yTop = 26;
   const H = 106;
 
+  /** Vị trí các ô “?” — mỗi ô là MỘT chỗ bé điền, theo thứ tự đọc. */
+  const oTrong = ds.map((k, i) => (k === "?" ? i : -1)).filter((i) => i >= 0);
+  const dungHopDong =
+    interactive &&
+    oTrong.length > 0 &&
+    Array.isArray(answers) &&
+    answers.length === oTrong.length;
+  const fill = useFillSlots(dungHopDong ? answers : []);
+  const [reported, setReported] = useState(false);
+  useEffect(() => {
+    if (dungHopDong && fill.done && !reported && typeof onDone === "function") {
+      setReported(true);
+      onDone();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [fill.done, dungHopDong]);
+
   return (
     <div style={card}>
       <svg
@@ -1983,88 +2102,120 @@ export function PatternRow({ shapes = [], colors = [], label = "" }) {
           const x = x0 + i * (O + G);
           const cx = x + O / 2;
           const cy = yTop + O / 2;
-          if (k === "?")
+          if (k === "?") {
+            const slot = oTrong.indexOf(i);
+            const bam = dungHopDong;
+            const look = bam
+              ? slotLook(fill, slot)
+              : {
+                  fill: P.amberSoft,
+                  stroke: P.amber,
+                  color: P.amber,
+                  dash: true,
+                };
+            const daXong = bam && fill.solved[slot];
+            const dangThu = bam && fill.picked[slot] !== null && !daXong;
+            const hinhChon = bam ? fill.picked[slot] : null;
+            const [f2, s2] = hinhChon ? mauCua(hinhChon, colors[i]) : [null, null];
             return (
-              <g key={i}>
+              <g
+                key={i}
+                onClick={() => bam && fill.setActive(slot)}
+                style={{ cursor: bam ? "pointer" : "default" }}
+              >
                 <rect
                   x={x}
                   y={yTop}
                   width={O}
                   height={O}
                   rx="6"
-                  fill={P.amberSoft}
-                  stroke={P.amber}
+                  fill={look.fill}
+                  stroke={look.stroke}
                   strokeWidth="2.5"
-                  strokeDasharray="6 4"
+                  strokeDasharray={look.dash ? "6 4" : undefined}
                 />
-                <text
-                  x={cx}
-                  y={cy + 8}
-                  textAnchor="middle"
-                  fontSize="22"
-                  fontWeight="900"
-                  fill={P.amber}
-                >
-                  ?
-                </text>
+                {daXong && (
+                  <HinhNho
+                    k={hinhChon}
+                    x={x}
+                    y={yTop}
+                    O={O}
+                    fill={f2}
+                    stroke={s2}
+                    net={2.6}
+                  />
+                )}
+                {dangThu && (
+                  <g opacity="0.55">
+                    <HinhNho
+                      k={hinhChon}
+                      x={x}
+                      y={yTop}
+                      O={O}
+                      fill={f2}
+                      stroke={s2}
+                      net={2.6}
+                    />
+                  </g>
+                )}
+                {!daXong && !dangThu && (
+                  <text
+                    x={cx}
+                    y={cy + 8}
+                    textAnchor="middle"
+                    fontSize="22"
+                    fontWeight="900"
+                    fill={look.color}
+                  >
+                    ?
+                  </text>
+                )}
               </g>
             );
-          const [fill, stroke] = colors[i]
+          }
+          // ⚠️ KHÔNG đặt tên hai biến này là `fill`/`stroke`: `fill` đã là biến của
+          // `useFillSlots` ở trên — trùng tên thì nhánh ô “?” ở trên đọc vào vùng cấm
+          // (TDZ) và ném `Cannot access 'fill' before initialization`.
+          const [mauHinh, vienHinh] = colors[i]
             ? [colors[i], colors[i]]
             : MAU_HINH[k] || MAU_HINH.square;
-          if (k === "circle")
-            return (
-              <circle
-                key={i}
-                cx={cx}
-                cy={cy}
-                r={O / 2}
-                fill={fill}
-                stroke={stroke}
-                strokeWidth="3"
-              />
-            );
-          if (k === "triangle")
-            return (
-              <polygon
-                key={i}
-                points={`${cx},${yTop} ${x + O},${yTop + O} ${x},${yTop + O}`}
-                fill={fill}
-                stroke={stroke}
-                strokeWidth="3"
-                strokeLinejoin="round"
-              />
-            );
-          if (k === "rectangle")
-            return (
-              <rect
-                key={i}
-                x={x}
-                y={yTop + 5}
-                width={O}
-                height={O - 10}
-                rx="3"
-                fill={fill}
-                stroke={stroke}
-                strokeWidth="3"
-              />
-            );
           return (
-            <rect
+            <HinhNho
               key={i}
+              k={k}
               x={x}
               y={yTop}
-              width={O}
-              height={O}
-              rx="4"
-              fill={fill}
-              stroke={stroke}
-              strokeWidth="3"
+              O={O}
+              fill={mauHinh}
+              stroke={vienHinh}
+              net={3}
             />
           );
         })}
       </svg>
       {label && <span style={{ ...caption, color: P.ink }}>{label}</span>}
+      {dungHopDong && (
+        <FillBar
+          fill={fill}
+          options={options}
+          title="Bé chọn hình điền vào ô ?"
+          hint={hint}
+          tenOption={TEN_HINH}
+          renderOption={(k) => (
+            <svg width="32" height="32" viewBox="0 0 34 34" aria-hidden="true">
+              <HinhNho
+                k={k}
+                x={2}
+                y={2}
+                O={30}
+                fill={mauCua(k)[0]}
+                stroke={mauCua(k)[1]}
+                net={2.4}
+              />
+            </svg>
+          )}
+        />
+      )}
     </div>
   );
 }
