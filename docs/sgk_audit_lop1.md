@@ -229,22 +229,22 @@ chữ nhật” bị coi là tên điểm H/N/G/K) và 6 ca là **bài toán l�
 
 ### Nhóm A — dạng bài SGK còn thiếu (đã bổ sung 12 slide)
 
-| #   | SGK | Dạng bài                                                                 | Trước đây | Đã bổ sung vào |
-| :-- | :-- | :----------------------------------------------------------------------- | :-------- | :------------- |
+| #   | SGK                       | Dạng bài                                                       | Trước đây                      | Đã bổ sung vào                                                                                                                  |
+| :-- | :------------------------ | :------------------------------------------------------------- | :----------------------------- | :------------------------------------------------------------------------------------------------------------------------------ |
 | A1  | tr.62 · 64 · 66 · 76 · 86 | **Bảng tính — điền số ?** (SGK lặp **6 lần** trong chương này) | **Cả 5 lớp không có dạng này** | `l3` (tr.64, tổng 9) · `l4` (tr.62, tổng 7) · `l8` (tr.66, tổng 10) · `l9` (tr.76, 7 trừ dần) · `l14` (tr.86, quan hệ cộng–trừ) |
-| A2  | tr.66 | **Cộng ba số**: `3 + 1 + 2 = 6`, nhẩm từng bước | **Cả 5 lớp không có dạng này** | `l4` (1 slide ví dụ + 1 câu hỏi) |
+| A2  | tr.66                     | **Cộng ba số**: `3 + 1 + 2 = 6`, nhẩm từng bước                | **Cả 5 lớp không có dạng này** | `l4` (1 slide ví dụ + 1 câu hỏi)                                                                                                |
 
 Mỗi bổ sung đi kèm **1 câu hỏi kiểm tra** đúng số của bảng, và **mỗi slide chỉ còn 1 bảng** (theo chính sách §8i).
 
 ### Nhóm A — còn lại (cần VẼ MỚI, chưa làm)
 
-| Dạng bài SGK | Trang | Vì sao chưa làm |
-| :----------- | :---- | :-------------- |
-| **Tháp số** (đỉnh = tổng hai ô dưới: 4 1 1 0 → 5 2 ? → 7 ? → ?) | tr.67 LT5 | Cần bộ vẽ mới (bảng bậc thang), không dùng lại được khoá nào có sẵn |
-| **Nối / tìm cặp**: “Tìm chuồng cho thỏ” (tr.63 HĐ4), “Cặp tấm thẻ anh em” (tr.65) | tr.63 · 65 | Cần dạng “nối” mới; hiện quiz chỉ có 1 đáp án đúng |
-| **Tranh để đếm rồi viết phép tính** (bể cá/bể trống · thuyền · bướm/kem · chim trên cành) | tr.63 HĐ3 · 65 HĐ1 · 71 HĐ4 · 74 | Cần cảnh vẽ mới (đếm được, có nhóm rời) |
-| **Bồn hoa “kết quả lớn hơn 3”** (so kết quả với một số) | tr.76 LT2 | Cần cảnh hoa + dạng so sánh; có thể dùng `groupScene` nếu chấp nhận bố cục khác SGK |
-| **Tính nhẩm theo cột** (9 phép một ô, nhiều trang) | tr.58 · 62 · 64 · 66 · 70 · 76 | Đây là dạng “bài tập giấy”; **Luyện tập** (Practice) đã phủ dạng tính nhẩm nên chưa cần thêm slide |
+| Dạng bài SGK                                                                              | Trang                            | Vì sao chưa làm                                                                                    |
+| :---------------------------------------------------------------------------------------- | :------------------------------- | :------------------------------------------------------------------------------------------------- |
+| **Tháp số** (đỉnh = tổng hai ô dưới: 4 1 1 0 → 5 2 ? → 7 ? → ?)                           | tr.67 LT5                        | Cần bộ vẽ mới (bảng bậc thang), không dùng lại được khoá nào có sẵn                                |
+| **Nối / tìm cặp**: “Tìm chuồng cho thỏ” (tr.63 HĐ4), “Cặp tấm thẻ anh em” (tr.65)         | tr.63 · 65                       | Cần dạng “nối” mới; hiện quiz chỉ có 1 đáp án đúng                                                 |
+| **Tranh để đếm rồi viết phép tính** (bể cá/bể trống · thuyền · bướm/kem · chim trên cành) | tr.63 HĐ3 · 65 HĐ1 · 71 HĐ4 · 74 | Cần cảnh vẽ mới (đếm được, có nhóm rời)                                                            |
+| **Bồn hoa “kết quả lớn hơn 3”** (so kết quả với một số)                                   | tr.76 LT2                        | Cần cảnh hoa + dạng so sánh; có thể dùng `groupScene` nếu chấp nhận bố cục khác SGK                |
+| **Tính nhẩm theo cột** (9 phép một ô, nhiều trang)                                        | tr.58 · 62 · 64 · 66 · 70 · 76   | Đây là dạng “bài tập giấy”; **Luyện tập** (Practice) đã phủ dạng tính nhẩm nên chưa cần thêm slide |
 
 ### Bằng chứng sau khi bổ sung
 
@@ -252,6 +252,46 @@ Mỗi bổ sung đi kèm **1 câu hỏi kiểm tra** đúng số của bảng, v
 - Trang đo hình: **692 ca** (trước 682) — **0 ca không vẽ được · 0 tràn thẻ · 0 chữ chồng**.
 - Chạy thật trên app: `l3` 7/7 · `l4` 9/9 · `l8` 8/8 · `l9` 8/8 · `l14` 8/8 — hết slide, không lỗi, app **chấm đúng cả 6 đáp án mới** (9 · 7 · 6 · 10 · 5 · 1).
 - Quy mô: CĐ3 **77 → 89 slide**; toàn hệ thống **2659 → 2671** (Lớp 1: 637 → 649).
+
+---
+
+## ĐỢT CHỦ ĐỀ 5 — Ôn tập học kì 1 (sách tr.102–113) — ✅ RÀ + BỔ SUNG 2026-09-25
+
+**Ảnh đã đọc:** 6 trang (`page-0103.png` · `page-0104.png` · `page-0106.png` · `page-0110.png` · `page-0112.png` +
+trang đầu chương) = sách 102–105, 109, 111.
+
+### Số liệu: app không sai phép tính nào
+
+Đã kiểm từng con số trong 6 bài (`g1-c5-l1` … `l6`): dãy 0→10 · số liền sau/trước 7 · 10 gồm 7 và 3 ·
+4 < 9 · 8 > 5 · 7 + 3 = 10 · 10 − 7 = 3 · 6 + 3 = 9 vịt — **đúng hết**.
+
+### Nhóm A — đã bổ sung 9 slide
+
+| # | SGK | Dạng bài | Đã thêm vào |
+| :-- | :-- | :-- | :-- |
+| 1 | tr.103 LT2 | **Đếm con vật trong tranh** (7 loại) + **“con vật nào ÍT NHẤT?”** | `l1`: 2 câu hỏi dùng cảnh nông trại có sẵn (`sceneCount` · farm) |
+| 2 | tr.105 bài 3 | **Suy luận thứ tự**: “rùa đỏ xen vào giữa thì rùa nâu thứ mấy?” → **thứ tư** | `l1`: 1 câu hỏi (đáp án “Thứ tư”) |
+| 3 | tr.105 bài 4 | **Chia nhóm có điều kiện**: 3 thỏ vào 2 chuồng, chuồng A nhiều hơn → A = 2 | `l1`: 1 câu hỏi (đáp án 2) |
+| 4 | tr.103 LT3 | **So sánh SỐ với BIỂU THỨC**: `9 ? 9 − 1` · `10 ? 8 + 2` · `5 + 1 ? 8` | `l2`: 3 câu hỏi (đáp án > · = · <) |
+| 5 | tr.111 bài 3 | **“Hình thích hợp đặt vào dấu ?”** — dãy tròn · tam giác · vuông lặp lại | `l4`: 1 slide hình + 1 câu hỏi (đáp án **hình tam giác**) |
+
+### Còn lại (cần vẽ mới / mở rộng bộ vẽ — ghi để không quên)
+
+| Dạng bài SGK | Trang | Vì sao chưa làm |
+| :----------- | :---- | :-------------- |
+| **Nối số lượng với SỐ và CHỮ** (bể cá → “3” → “ba”) | tr.102 | Cần dạng “nối” (mỗi quiz hiện chỉ có 1 đáp án đúng) |
+| **Ghép 4 tam giác thành mũi tên / tam giác lớn** | tr.111 bài 4 | `shapeJoin` mới có 2 hình đích; cần mở rộng (việc chung với CĐ2 tr.50–53) |
+| **Trò chơi “Bắt gà”** (bàn cờ có xúc xắc) | tr.109 | **Cố ý bỏ** theo quyết định 2026-09-24 của bạn (A13) |
+
+### Bằng chứng
+
+`kiem-tra-slide.mjs`: **0 lỗi** · cổng **32 PASS** · build sạch · trang đo hình **6 ca `patternRow` vẽ được,
+0 ca lỗi** · đo hiển thị **375/360/320 px: 0 tràn thẻ · 0 tràn viewBox · 0 chữ chồng** ·
+đã NHÌN ảnh chụp: dãy hình đúng thứ tự SGK (tròn xanh · tam giác xanh dương · vuông đỏ · ô `?` nét đứt)
+và cảnh nông trại đếm được (2 bò · 4 gà · 6 cá).
+
+Quy mô: CĐ5 **34 → 43 slide** (CĐ2 thêm 4 slide quy luật: 51 → 55);
+toàn hệ thống **2671 → 2684** (Lớp 1: 649 → 662).
 
 **Công cụ kiểm mới (chạy lại được bất cứ lúc nào):**
 
@@ -264,4 +304,6 @@ Mỗi bổ sung đi kèm **1 câu hỏi kiểm tra** đúng số của bảng, v
 
 ### Việc CÒN LẠI của chương 2 (chưa làm, cần vẽ mới nhiều — chờ bạn chốt)
 
-SGK tr.46–55 có **16 hoạt động**, app hiện phản ánh trọn **9**. Còn thiếu: đếm hình trong tranh (tr.47 HĐ3 · tr.48 LT1 · tr.49 LT3 — có bảng điền số lượng), xếp **que tính** (tr.48 LT2 · tr.54 LT2), ghép hình 3–5 miếng ra _chữ nhật · hình thang · mũi tên · tam giác lớn_ (tr.50–53), 9 đồ vật quanh em (tr.54 LT1: ê-ke · con tem · đĩa DVD · cái bánh · khung cửa sổ · bảng lớp), **dãy hình lặp quy luật** (tr.55 LT3 — cả 5 lớp chưa có dạng này), đếm miếng bìa để ghép mũi tên (tr.55 LT4).
+SGK tr.46–55 có **16 hoạt động**, app hiện phản ánh trọn **11**. Còn thiếu: đếm hình trong tranh (tr.47 HĐ3 · tr.48 LT1 · tr.49 LT3 — có bảng điền số lượng), xếp **que tính** (tr.48 LT2 · tr.54 LT2), ghép hình 3–5 miếng ra *chữ nhật · hình thang · mũi tên · tam giác lớn* (tr.50–53 — cần mở rộng `shapeJoin`), 9 đồ vật quanh em (tr.54 LT1: ê-ke · con tem · đĩa DVD · cái bánh · khung cửa sổ · bảng lớp), đếm miếng bìa để ghép mũi tên (tr.55 LT4).
+
+> ✅ **Đã bổ sung 2026-09-25:** **dãy hình lặp quy luật** tr.55 LT3 (cả hai bài: quy luật theo MÀU và quy luật theo HÌNH) — bằng khoá hình mới **`patternRow`** vẽ đúng như SGK: ô cần điền là **ô trống nét đứt có dấu `?`**, không vẽ sẵn hình.

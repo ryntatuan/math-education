@@ -1935,6 +1935,140 @@ export function ShapePicture({
   );
 }
 
+/* ───────────── DÃY HÌNH LẶP QUY LUẬT — “hình thích hợp đặt vào dấu ?” ─────────────
+ * patternRow: { shapes: ["circle","triangle","square",…,"?"], colors: ["#22c55e",…], label }
+ *
+ * 🔴 VÌ SAO CẦN. SGK Lớp 1 có dạng bài này ở **hai chương**: tr.55 (Chủ đề 2 — Luyện tập 3)
+ * và tr.111 (Chủ đề 5 — Ôn tập hình học, bài 3: “Hình thích hợp đặt vào dấu "?" là hình nào?”),
+ * và cả 5 lớp trong app **chưa có dạng nào**. Trẻ phải NHÌN ra quy luật lặp (tròn · tam giác ·
+ * vuông · tròn · …) nên hình phải vẽ đúng thứ tự, đúng màu, và **ô cần điền phải là ô trống có
+ * dấu `?`** — nếu vẽ sẵn một hình ở chỗ đó thì câu hỏi mất nghĩa (bài học từ §8d-quater:
+ * hình trên slide câu hỏi mà in sẵn đáp án là lỗi).
+ *
+ * `shapes` là MẢNG CHUỖI (không phải mảng object) ⇒ không cần khai `mangObject` trong
+ * `admin/src/lib/contentSchema.js`. Màu theo từng loại hình, đúng tông SGK tr.111:
+ * hình tròn xanh lá · tam giác xanh dương · hình vuông đỏ.
+ */
+const MAU_HINH = {
+  circle: ["#22c55e", "#15803d"],
+  triangle: ["#38bdf8", "#0284c7"],
+  square: ["#ef4444", "#b91c1c"],
+  rectangle: ["#fb923c", "#c2410c"],
+  rhombus: ["#a78bfa", "#6d28d9"],
+};
+
+export function PatternRow({ shapes = [], colors = [], label = "" }) {
+  const ds = (Array.isArray(shapes) ? shapes : []).filter(
+    (s) => s !== undefined && s !== null && s !== "",
+  );
+  const n = Math.max(1, ds.length);
+  const O = 30; // cạnh ô hình
+  const G = 10; // khe giữa hai ô
+  const B = 16; // lề hai bên
+  const canRong = n * O + (n - 1) * G;
+  const W = Math.max(360, canRong + B * 2);
+  const x0 = (W - canRong) / 2;
+  const yTop = 26;
+  const H = 106;
+
+  return (
+    <div style={card}>
+      <svg
+        viewBox={`0 0 ${W} ${H}`}
+        {...svgFit(W)}
+        role="img"
+        aria-label="Dãy hình lặp quy luật"
+      >
+        {ds.map((k, i) => {
+          const x = x0 + i * (O + G);
+          const cx = x + O / 2;
+          const cy = yTop + O / 2;
+          if (k === "?")
+            return (
+              <g key={i}>
+                <rect
+                  x={x}
+                  y={yTop}
+                  width={O}
+                  height={O}
+                  rx="6"
+                  fill={P.amberSoft}
+                  stroke={P.amber}
+                  strokeWidth="2.5"
+                  strokeDasharray="6 4"
+                />
+                <text
+                  x={cx}
+                  y={cy + 8}
+                  textAnchor="middle"
+                  fontSize="22"
+                  fontWeight="900"
+                  fill={P.amber}
+                >
+                  ?
+                </text>
+              </g>
+            );
+          const [fill, stroke] = colors[i]
+            ? [colors[i], colors[i]]
+            : MAU_HINH[k] || MAU_HINH.square;
+          if (k === "circle")
+            return (
+              <circle
+                key={i}
+                cx={cx}
+                cy={cy}
+                r={O / 2}
+                fill={fill}
+                stroke={stroke}
+                strokeWidth="3"
+              />
+            );
+          if (k === "triangle")
+            return (
+              <polygon
+                key={i}
+                points={`${cx},${yTop} ${x + O},${yTop + O} ${x},${yTop + O}`}
+                fill={fill}
+                stroke={stroke}
+                strokeWidth="3"
+                strokeLinejoin="round"
+              />
+            );
+          if (k === "rectangle")
+            return (
+              <rect
+                key={i}
+                x={x}
+                y={yTop + 5}
+                width={O}
+                height={O - 10}
+                rx="3"
+                fill={fill}
+                stroke={stroke}
+                strokeWidth="3"
+              />
+            );
+          return (
+            <rect
+              key={i}
+              x={x}
+              y={yTop}
+              width={O}
+              height={O}
+              rx="4"
+              fill={fill}
+              stroke={stroke}
+              strokeWidth="3"
+            />
+          );
+        })}
+      </svg>
+      {label && <span style={{ ...caption, color: P.ink }}>{label}</span>}
+    </div>
+  );
+}
+
 /* ────────────────── GHÉP HÌNH — cho thấy CÁCH ghép ──────────────────
  * shapeJoin: { piece: "rightTriangle"|"square", pieces, note, showResult }
  *

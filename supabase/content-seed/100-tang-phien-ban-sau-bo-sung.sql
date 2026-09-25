@@ -35,7 +35,7 @@
 --       hình không in sẵn đáp án (`showShape: false`).
 --     • `l8`: thêm 3 câu hỏi kiểu SGK tr.47/49 (chọn nhiều hình A–E; “KHÔNG là hình vuông”).
 --   ⚠️ Số slide ĐÃ ĐỔI: 2656 → **2659** (8 bài CĐ2: 48 → 51 slide) ⇒
---      vẫn 5 lớp · 51 chương · 459 bài · **2671 slide**.
+--      vẫn 5 lớp · 51 chương · 459 bài · **2684 slide**.
 --   ⚠️ LẦN NÀY CẦN DÁN: `02-bai-lop-1.sql` · `03-bai-lop-2.sql` · `04-bai-lop-3.sql`
 --      rồi `100-...` (file này). `00`, `01`, `05`, `06`, `99` KHÔNG đổi.
 --

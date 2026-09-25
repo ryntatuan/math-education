@@ -754,6 +754,115 @@ export const g1c2 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            text: "Hình thích hợp đặt vào dấu ? — quy luật theo MÀU (SGK tr.55)",
+            patternRow: {
+              shapes: [
+                "circle",
+                "circle",
+                "circle",
+                "circle",
+                "circle",
+                "circle",
+                "?",
+                "circle",
+                "circle",
+              ],
+              colors: [
+                "#ef4444",
+                "#facc15",
+                "#38bdf8",
+                "#ef4444",
+                "#facc15",
+                "#38bdf8",
+                null,
+                "#facc15",
+                "#38bdf8",
+              ],
+              label: "Đỏ · vàng · xanh — lặp lại ba màu một lượt",
+            },
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question:
+              "Dãy hình tròn lặp lại ba màu: đỏ, vàng, xanh. Hình tròn ở dấu ? có màu gì?",
+            patternRow: {
+              shapes: [
+                "circle",
+                "circle",
+                "circle",
+                "circle",
+                "circle",
+                "circle",
+                "?",
+                "circle",
+                "circle",
+              ],
+              colors: [
+                "#ef4444",
+                "#facc15",
+                "#38bdf8",
+                "#ef4444",
+                "#facc15",
+                "#38bdf8",
+                null,
+                "#facc15",
+                "#38bdf8",
+              ],
+            },
+            options: ["Màu đỏ", "Màu vàng", "Màu xanh"],
+            answer: "Màu đỏ",
+            mascotHint: "Cứ ba hình là một lượt: đỏ, vàng, xanh rồi lại đỏ.",
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Hình thích hợp đặt vào dấu ? — quy luật theo HÌNH (SGK tr.55)",
+            patternRow: {
+              shapes: [
+                "triangle",
+                "circle",
+                "square",
+                "triangle",
+                "circle",
+                "square",
+                "?",
+                "circle",
+                "square",
+              ],
+              label: "Tam giác · tròn · vuông — lặp lại ba hình một lượt",
+            },
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question:
+              "Dãy hình lặp lại theo thứ tự: tam giác, tròn, vuông. Hình ở dấu ? là hình nào?",
+            patternRow: {
+              shapes: [
+                "triangle",
+                "circle",
+                "square",
+                "triangle",
+                "circle",
+                "square",
+                "?",
+                "circle",
+                "square",
+              ],
+            },
+            options: ["Hình tam giác", "Hình tròn", "Hình vuông"],
+            answer: "Hình tam giác",
+            mascotHint:
+              "Cứ ba hình là một lượt: tam giác, tròn, vuông rồi lại tam giác.",
+          },
+        },
+        {
           type: "summary",
           content: {
             title: "Bé nhớ rất tốt:",

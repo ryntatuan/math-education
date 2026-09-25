@@ -93,3 +93,6 @@ scratch/cau-truc-lop*.md
 # Trang xem trước hình (giữ file .jsx, bỏ trang sinh ra bằng esbuild)
 scratch/xem-truoc-*.html
 
+
+# Thu muc thu vien noi vao scratch de esbuild phan giai duoc react (junction, khong phai ma nguon)
+scratch/node_modules/

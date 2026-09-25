@@ -41,6 +41,7 @@ import {
   Solid,
   ShapePicture,
   ShapeJoin,
+  PatternRow,
   SpatialScene,
   PointLine,
 } from "../client/src/components/visuals/GeometryVisuals.jsx";
@@ -70,6 +71,7 @@ const COMP = {
   solid: Solid,
   shapePicture: ShapePicture,
   shapeJoin: ShapeJoin,
+  patternRow: PatternRow,
   spatialScene: SpatialScene,
   numberScene: NumberScene,
   groupScene: GroupScene,

@@ -67,6 +67,55 @@ export const g1c5 = {
           },
         },
         {
+          type: "quiz",
+          content: {
+            question: "Đếm trong tranh nông trại: có mấy con gà?",
+            numberScene: {
+              mode: "sceneCount",
+              kind: "farm",
+              legend: [{ emoji: "🐔" }, { emoji: "🐄" }, { emoji: "🐟" }],
+            },
+            options: [3, 4, 5, 6],
+            answer: 4,
+            mascotHint: "Đếm từng con gà một: một, hai, ba, bốn.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Trong tranh, con vật nào có số lượng ÍT NHẤT?",
+            numberScene: {
+              mode: "sceneCount",
+              kind: "farm",
+              legend: [{ emoji: "🐄" }, { emoji: "🐔" }, { emoji: "🐟" }],
+            },
+            options: ["Con bò", "Con gà", "Con cá"],
+            answer: "Con bò",
+            mascotHint: "Đếm từng loại: bò 2 con, gà 4 con, cá 6 con. Ít nhất là con bò.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question:
+              "Ba bạn rùa đi theo thứ tự: rùa xanh thứ nhất, rùa vàng thứ hai, rùa nâu thứ ba. Nếu rùa đỏ xen vào giữa rùa xanh và rùa vàng thì rùa nâu đi thứ mấy?",
+            options: ["Thứ hai", "Thứ ba", "Thứ tư"],
+            answer: "Thứ tư",
+            mascotHint:
+              "Xen rùa đỏ vào giữa thì thứ tự thành: xanh, đỏ, vàng, nâu — rùa nâu lùi xuống thứ tư.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question:
+              "Có 3 bạn thỏ chạy vào hai chuồng A và B, biết rằng chuồng A có nhiều thỏ hơn chuồng B. Hỏi chuồng A có mấy bạn thỏ?",
+            options: [1, 2, 3],
+            answer: 2,
+            mascotHint: "Chia 3 thành 2 và 1 — chuồng A nhiều hơn nên có 2 bạn.",
+          },
+        },
+        {
           type: "summary",
           content: {
             title: "Bé nhớ rất tốt:",
@@ -134,6 +183,33 @@ export const g1c5 = {
             options: [">", "<", "="],
             answer: "<",
             mascotHint: "4 bé hơn 9 nên dùng dấu <.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Điền dấu thích hợp: 9 ? 9 − 1",
+            options: [">", "<", "="],
+            answer: ">",
+            mascotHint: "9 − 1 = 8, mà 9 lớn hơn 8 nên dùng dấu >.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Điền dấu thích hợp: 10 ? 8 + 2",
+            options: [">", "<", "="],
+            answer: "=",
+            mascotHint: "8 + 2 = 10, hai bên bằng nhau nên dùng dấu =.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Điền dấu thích hợp: 5 + 1 ? 8",
+            options: [">", "<", "="],
+            answer: "<",
+            mascotHint: "5 + 1 = 6, mà 6 bé hơn 8 nên dùng dấu <.",
           },
         },
         {
@@ -297,6 +373,50 @@ export const g1c5 = {
             ],
             answer: "Khối lập phương",
             mascotHint: "Khối lập phương có 6 mặt vuông bằng nhau.",
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Hình thích hợp đặt vào dấu ? là hình nào? (SGK tr.111)",
+            patternRow: {
+              shapes: [
+                "circle",
+                "triangle",
+                "square",
+                "circle",
+                "triangle",
+                "square",
+                "circle",
+                "?",
+                "square",
+              ],
+              label: "Tròn · tam giác · vuông — lặp lại ba hình một lượt",
+            },
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question:
+              "Dãy hình lặp lại theo thứ tự: tròn, tam giác, vuông. Hình thích hợp đặt vào dấu ? là hình nào?",
+            patternRow: {
+              shapes: [
+                "circle",
+                "triangle",
+                "square",
+                "circle",
+                "triangle",
+                "square",
+                "circle",
+                "?",
+                "square",
+              ],
+            },
+            options: ["Hình tròn", "Hình tam giác", "Hình vuông"],
+            answer: "Hình tam giác",
+            mascotHint:
+              "Đọc theo lượt: tròn, tam giác, vuông rồi lại tròn, tam giác… nên dấu ? là hình tam giác.",
           },
         },
         {

@@ -21,8 +21,8 @@
 | :------------------------- | :------------------------------------------- | :-------------------------------- |
 | Cổng tĩnh                  | `32 PASS · 0 FAIL · 0 SKIP`, exit 0          | Cổng chạy được trở lại            |
 | Import `gradeNData.js`     | 51/51 dòng có đuôi `.js`                     | Node nạp được dữ liệu             |
-| Quy mô Lớp 1               | **10 chương · 97 bài · 649 slide**           | (Đợt 1.1: CĐ4 · Đợt 2: CĐ1 + CĐ2) |
-| Quy mô toàn hệ thống       | **5 lớp · 51 chương · 459 bài · 2671 slide** | Khớp `MONG_DOI` (sau đợt rà CĐ2)  |
+| Quy mô Lớp 1               | **10 chương · 97 bài · 662 slide**           | (Đợt 1.1: CĐ4 · Đợt 2: CĐ1 + CĐ2) |
+| Quy mô toàn hệ thống       | **5 lớp · 51 chương · 459 bài · 2684 slide** | Khớp `MONG_DOI` (sau đợt rà CĐ2)  |
 | Tập `id` Lớp 1             | 97/97, `Compare-Object` với HEAD rỗng        | Không đổi id ⇒ an toàn tiến độ    |
 | Chương `g1-c4` SAU Đợt 1.1 | **7 bài · 68 slide** (7+7+10+11+9+11+13)     | Từ 39 slide cũ                    |
 | Nội dung trong DB          | **chưa nạp** (mới chỉ có ở file tĩnh + seed) | Còn phải dán seed                 |
@@ -235,7 +235,7 @@ sequenceDiagram
 
 | Nội dung                                                                                                                                                | Nguồn                                                                                                     |
 | :------------------------------------------------------------------------------------------------------------------------------------------------------ | :-------------------------------------------------------------------------------------------------------- |
-| Cổng `32 PASS · 0 FAIL`; Lớp 1 = 97 bài / 649 slide; tổng 5 · 51 · 459 · 2671; `id` khớp HEAD 97/97                                                     | Đo trực tiếp ngày 2026-09-24 (cập nhật sau vòng tách hình — §8i)                                          |
+| Cổng `32 PASS · 0 FAIL`; Lớp 1 = 97 bài / 662 slide; tổng 5 · 51 · 459 · 2684; `id` khớp HEAD 97/97                                                     | Đo trực tiếp ngày 2026-09-24 (cập nhật sau vòng tách hình — §8i)                                          |
 | Hình bạn Mai: hàng nền **5 khối lập phương**, **2** khối hộp chữ nhật đỏ                                                                                | **Người dùng chốt 2026-09-24** (đối chiếu SGK tr.94)                                                      |
 | Chữ T = 5, H = 7, C = 5 → H nhiều nhất, T = C                                                                                                           | Đếm lại trên ảnh phóng to (trang sách 94)                                                                 |
 | Thứ tự **Mai – Nam – Rô-bốt**; đôi **Thỏ – Rùa**                                                                                                        | Chữ in trên SGK tr.98 (`scratch/kiem-tra-t98.png`)                                                        |
@@ -639,13 +639,13 @@ Bạn gửi ảnh hình `groupScene` (`6 + 7 = 6 + 4 + 3`) và báo: _“diễn 
 **Bảng phát hiện + kết quả chi tiết:** `docs/sgk_audit_lop1.md` (mục “ĐỢT CHỦ ĐỀ 3”).
 **Ảnh dùng:** 21 trang (`page-0057.png` … `page-0077.png`, `page-0081.png`, `page-0087.png`).
 
-| Hạng mục  | Kết quả                                                                                                                                                        |
-| :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Số liệu   | Kiểm **từng phép tính** trong 14 bài: **không có lỗi nào** (khác với CĐ2 — chương này viết cẩn thận hơn).                                                       |
-| Bổ sung   | **12 slide**: dạng **“bảng tính — điền số ?”** (SGK lặp 6 lần: tr.62 · 64 · 66 · 76 · 86) vào 5 bài, và **cộng ba số** `3 + 1 + 2` (tr.66) — **cả 5 lớp trước đây không có hai dạng này**. |
-| Còn lại   | Cần bộ vẽ mới: **tháp số** (tr.67) · dạng **nối/tìm cặp** (tr.63, 65) · **tranh đếm rồi viết phép tính** (tr.63, 65, 71, 74) · **bồn hoa “kết quả lớn hơn 3”** (tr.76). |
-| Bằng chứng | cổng **32 PASS** · build sạch · **692 ca hình: 0 lỗi vẽ · 0 tràn · 0 chồng** · chạy thật 5 bài (7/7 · 9/9 · 8/8 · 8/8 · 8/8), chấm đúng cả 6 đáp án mới.          |
-| Số liệu   | CĐ3 **77 → 89 slide**; hệ thống **2659 → 2671** (Lớp 1: 637 → 649). Đã dùng công cụ mới `scratch/doi-quy-mo.mjs` để đồng bộ 9 file ghi cứng.                     |
+| Hạng mục   | Kết quả                                                                                                                                                                                    |
+| :--------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Số liệu    | Kiểm **từng phép tính** trong 14 bài: **không có lỗi nào** (khác với CĐ2 — chương này viết cẩn thận hơn).                                                                                  |
+| Bổ sung    | **12 slide**: dạng **“bảng tính — điền số ?”** (SGK lặp 6 lần: tr.62 · 64 · 66 · 76 · 86) vào 5 bài, và **cộng ba số** `3 + 1 + 2` (tr.66) — **cả 5 lớp trước đây không có hai dạng này**. |
+| Còn lại    | Cần bộ vẽ mới: **tháp số** (tr.67) · dạng **nối/tìm cặp** (tr.63, 65) · **tranh đếm rồi viết phép tính** (tr.63, 65, 71, 74) · **bồn hoa “kết quả lớn hơn 3”** (tr.76).                    |
+| Bằng chứng | cổng **32 PASS** · build sạch · **692 ca hình: 0 lỗi vẽ · 0 tràn · 0 chồng** · chạy thật 5 bài (7/7 · 9/9 · 8/8 · 8/8 · 8/8), chấm đúng cả 6 đáp án mới.                                   |
+| Số liệu    | CĐ3 **77 → 89 slide**; hệ thống **2659 → 2671** (Lớp 1: 637 → 649). Đã dùng công cụ mới `scratch/doi-quy-mo.mjs` để đồng bộ 9 file ghi cứng.                                               |
 
 > 🔴 **Cổng S-25 đã bắt lỗi của chính tôi trong đợt này:** nhánh “chế độ dev dùng file tĩnh” tôi thêm vào
 > `contentSource.js` có thêm một lời gọi `phatThayDoi()` ⇒ cổng đếm được **3** lời gọi trong khi nó canh
@@ -655,13 +655,34 @@ Bạn gửi ảnh hình `groupScene` (`6 + 7 = 6 + 4 + 3`) và báo: _“diễn 
 
 ---
 
+## 8n. Đợt 5 — **CHỦ ĐỀ 5 LỚP 1** (Ôn tập học kì 1, SGK tr.102–113): RÀ + BỔ SUNG 2026-09-25
+
+**Bảng phát hiện + kết quả chi tiết:** `docs/sgk_audit_lop1.md` (mục “ĐỢT CHỦ ĐỀ 5”).
+**Ảnh dùng:** 6 trang (sách 102–105, 109, 111).
+
+| Hạng mục | Kết quả |
+| :------- | :------ |
+| Số liệu | Kiểm từng con số trong 6 bài: **không sai chỗ nào**. |
+| Bổ sung | **9 slide**: đếm con vật trong tranh + “con nào ít nhất” (tr.103) · suy luận thứ tự rùa (tr.105) · chia 3 thỏ vào 2 chuồng (tr.105) · so sánh **số với biểu thức** `9 ? 9 − 1`, `10 ? 8 + 2`, `5 + 1 ? 8` (tr.103) · dãy hình lặp quy luật (tr.111). |
+| 🔧 Bộ vẽ mới | **`patternRow`** — dãy hình lặp quy luật, ô cần điền vẽ bằng **nét đứt + dấu `?`** (không để hình vẽ sẵn vào chỗ trả lời — bài học §8d-quater). Dùng cho **cả CĐ2 tr.55 (2 bài: theo màu và theo hình)** lẫn CĐ5 tr.111. |
+| Đăng ký khoá | `visualKeys.js` (`HINH_KEYS`) + `VisualBlock.jsx` + **trang đo** `scratch/visual-fit.jsx` (thiếu bước này thì trang đo báo `thieuComponent: true` — đã mắc và sửa ngay). |
+| Bằng chứng | cổng **32 PASS** · build sạch · **6 ca `patternRow` vẽ được · 0 ca lỗi** · đo **375/360/320 px: 0 tràn thẻ · 0 tràn viewBox · 0 chữ chồng** · đã NHÌN ảnh chụp cả dãy hình và cảnh nông trại. |
+| Số liệu | CĐ5 **34 → 43** · CĐ2 **51 → 55** · hệ thống **2671 → 2684** · Lớp 1 **649 → 662**. |
+
+> 🔴 **Lỗi công cụ đã gặp trong đợt này:** `npx esbuild` từ thư mục gốc **không phân giải được `react`**
+> (react nằm ở `client/node_modules`, gốc không có) ⇒ gói đo cũ im lặng được chạy lại và tôi suýt tin
+> “đã đo rồi”. Cách chữa: `mklink /J scratch\node_modules client\node_modules` (junction, không cần quyền
+> admin) — **nhớ `Test-Path scratch/node_modules/react-dom` trước khi tin bất kỳ số đo nào**.
+
+---
+
 ## 9. Đợt 2 (tiếp) — Rà soát các chương CÒN LẠI của Lớp 1
 
 **Vì sao:** Chủ đề 4 mới chỉ là 1 trong 10 chương. Các chương còn lại viết từ trước, **chưa từng được đối chiếu với ảnh SGK** — cùng một họ lỗi có thể còn nằm ở đó.
 
 | Hạng mục         | Số đo thật (2026-09-24)                                                                   |
 | :--------------- | :---------------------------------------------------------------------------------------- | --- |
-| Nội dung phải rà | Lớp 1: **10 chương · 97 bài · 649 slide** (CĐ1 + CĐ2 xong — §8b, §8l)                     |     |
+| Nội dung phải rà | Lớp 1: **10 chương · 97 bài · 662 slide** (CĐ1 + CĐ2 xong — §8b, §8l)                     |     |
 | Ảnh phải xem hết | `Math grade 1 part 1.pdf` **117 trang** + `part 2.pdf` **109 trang** = **226 trang**      |
 | Ngữ liệu chữ     | `.md` OCR của Lớp 1 rất mỏng (**22 KB** + **30 KB**) ⇒ **phải đọc ẢNH**, đừng dựa vào OCR |
 

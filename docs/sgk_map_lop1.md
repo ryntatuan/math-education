@@ -20,7 +20,7 @@ tiền lệ: bản kế hoạch đầu tiên ghi sai “Bài 16 = tr.101” tron
   ```
 - 🔴 **trang PDF = trang sách + 1** — đã kiểm chéo **4 mẫu**: tập 1: sách 2 = PDF 3, sách 4 = PDF 5;
   tập 2: sách 3 = PDF 4, sách 4 = PDF 5. Ví dụ: “Bài 4 (So sánh số), sách tr.24” ⇒ xem `part-1/page-0025.png`.
-- Quy mô app (sinh lại bằng `node scratch/in-cau-truc-lop.bundle.mjs 1`): **10 chương · 97 bài · 649 slide**.
+- Quy mô app (sinh lại bằng `node scratch/in-cau-truc-lop.bundle.mjs 1`): **10 chương · 97 bài · 662 slide**.
 - Cột **“Chắc chắn?”**: `✔` = mô tả bài trong app **đã ghi rõ trang SGK** (đọc từ `client/src/data/grade1/*.js`);
   `?` = tôi **suy theo nội dung** ⇒ khi rà chương đó **phải mở ảnh kiểm lại**, đừng tin cột này.
 
@@ -153,7 +153,7 @@ Biểu tượng trong sách (trang “Hướng dẫn sử dụng sách”, sách
 | Bài 15 (Vị trí, định hướng trong không gian) | 96–99      | `g1-c4-l4` · `l5` · `l6` | ✔          |
 | Bài 16 (Luyện tập chung)                     | 100–101    | `g1-c4-l7`               | ✔          |
 
-### Chủ đề 5 — Ôn tập học kì 1 (sách tr.102–113) · ⬜ **CHƯA RÀ**
+### Chủ đề 5 — Ôn tập học kì 1 (sách tr.102–113) · ✅ **ĐÃ RÀ 2026-09-25** (6/12 trang) — bổ sung 9 slide: `docs/sgk_audit_lop1.md`
 
 | SGK                                             | Trang sách | Bài trong app     | Chắc chắn? |
 | :---------------------------------------------- | :--------- | :---------------- | :--------- |
@@ -213,13 +213,13 @@ Biểu tượng trong sách (trang “Hướng dẫn sử dụng sách”, sách
 
 ## 3. Trạng thái rà soát Lớp 1
 
-| Chương               | SGK                | Trạng thái                  | Ghi chú                                              |
-| :------------------- | :----------------- | :-------------------------- | :--------------------------------------------------- |
-| 1                    | Các số từ 0 đến 10 | ✅ đã rà (2026-09-24)       | Bảng phát hiện: `docs/sgk_audit_lop1.md`             |
-| 4                    | Hình khối          | ✅ đã rà (Đợt 1.1)          | plan §8                                              |
-| 2                    | Hình phẳng         | ✅ đã rà + sửa (2026-09-25) | plan §8l · 6 lỗi nội dung + 3 hoạt động SGK thêm vào |
-| 3                       | Phép cộng, trừ PV 10 | ✅ đã rà 21/36 trang (2026-09-25) | plan §8m · app không sai phép tính nào · thêm 12 slide dạng bài SGK |
-| 5, 6, 7, 8, 9, 10       | —                  | ⬜ **chưa rà ảnh SGK**      | Cần làm theo §9 của plan (mỗi chương một đợt nhỏ)    |
+| Chương            | SGK                  | Trạng thái                        | Ghi chú                                                             |
+| :---------------- | :------------------- | :-------------------------------- | :------------------------------------------------------------------ |
+| 1                 | Các số từ 0 đến 10   | ✅ đã rà (2026-09-24)             | Bảng phát hiện: `docs/sgk_audit_lop1.md`                            |
+| 4                 | Hình khối            | ✅ đã rà (Đợt 1.1)                | plan §8                                                             |
+| 2                 | Hình phẳng           | ✅ đã rà + sửa (2026-09-25)       | plan §8l · 6 lỗi nội dung + 3 hoạt động SGK thêm vào                |
+| 3                 | Phép cộng, trừ PV 10 | ✅ đã rà 21/36 trang (2026-09-25) | plan §8m · app không sai phép tính nào · thêm 12 slide dạng bài SGK |
+| 5, 6, 7, 8, 9, 10 | —                    | ⬜ **chưa rà ảnh SGK**            | Cần làm theo §9 của plan (mỗi chương một đợt nhỏ)                   |
 
 ---
 

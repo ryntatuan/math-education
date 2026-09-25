@@ -30,6 +30,7 @@ import {
   Solid,
   ShapePicture,
   ShapeJoin,
+  PatternRow,
   SpatialScene,
   PointLine,
 } from "./GeometryVisuals";
@@ -121,6 +122,9 @@ export default function VisualBlocks({ content }) {
     blocks.push(<ShapePicture key="shapePicture" {...content.shapePicture} />);
   if (isObj(content.shapeJoin))
     blocks.push(<ShapeJoin key="shapeJoin" {...content.shapeJoin} />);
+  // Dãy hình lặp quy luật — “hình thích hợp đặt vào dấu ?” (Lớp 1 SGK tr.55 · tr.111).
+  if (isObj(content.patternRow))
+    blocks.push(<PatternRow key="patternRow" {...content.patternRow} />);
   if (isObj(content.spatialScene))
     blocks.push(<SpatialScene key="spatialScene" {...content.spatialScene} />);
   // Đếm – so sánh – tách gộp cho Lớp 1 Chủ đề 1 (SGK tr.6–45).

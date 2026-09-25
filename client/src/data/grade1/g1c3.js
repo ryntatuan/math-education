@@ -330,7 +330,8 @@ export const g1c3 = {
                 ["1", "3 + 1 = 4"],
                 ["2", "4 + 2 = 6"],
               ],
-              label: "3 + 1 + 2 = 6 — làm lần lượt từ trái sang phải (SGK tr.66)",
+              label:
+                "3 + 1 + 2 = 6 — làm lần lượt từ trái sang phải (SGK tr.66)",
             },
           },
         },
