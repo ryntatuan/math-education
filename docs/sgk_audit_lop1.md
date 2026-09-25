@@ -41,6 +41,29 @@ thập phân · số 0 · nhớ nhiều cấp · canary hai vế — và nó đ�
 cổng tĩnh **32 PASS** · `build:web` exit 0 · đo trong app: chữ số cao **31–34 px**, 0 tràn ngang ·
 thử thật trong app: sai → ô xám, đúng → hiện số, **2/2 + “🎉 Bé làm đúng hết!” + pháo giấy**.
 
+**Kết quả đo (2026-09-26) — và BA LỖI LIÊN QUAN đã tìm ra rồi sửa:**
+
+Người dùng gửi ảnh slide đặt tính: *“danh sách số để chọn đang quá lớn, trong khi đề bài quá nhỏ,
+nhìn quá xấu và không cân đối… hãy đoán các lỗi liên quan có thể xảy ra để fix toàn bộ”*.
+Công cụ mới **`scratch/do-can-doi-hinh.mjs`** đo trong app thật ở 390 px: cỡ chữ trong hình ·
+chiều cao khối nút so với chiều cao hình · **mọi vùng chạm có đạt 44 px**.
+
+| Chỗ | Lỗi đo được | Đã sửa |
+| :---- | :---------- | :----- |
+| `FillBar` (dùng chung) | luôn vẽ nút `58×50` ⇒ bàn phím **0–9** to hơn cả đề bài | nút tự co theo số lựa chọn (≥5 ⇒ 44×44, vẫn đủ vùng chạm) |
+| `FillBar` bố cục | tiêu đề + nút + tiến độ + “Làm lại” chung một hàng ⇒ nút “10” rơi xuống hàng dưới, “0/4” chen cạnh nút cuối | tách **3 hàng**: tiêu đề · nút · tiến độ + “Làm lại” |
+| `cotTinh` (mới) | khung 340 ⇒ hình bị thu nhỏ, ô “?” 64 px nhưng đề bài bé | khung = đúng bề rộng khối số ⇒ **chữ đề bài 76 px**, ô “?” 64 px |
+| `bangTinh` | **ô “?” chỉ bấm được 18 px** (hàng cao 28 đơn vị), chữ bảng 18 px | hàng cao 56 ⇒ ô “?” **47 px**, chữ 30 px, khung 300 |
+| `patternRow` | ô chỉ **~25 px** | ô 44 đơn vị, tối đa 5 ô/hàng rồi **tự xuống hàng** ⇒ 47–58 px |
+
+> ⚠️ **Thước đầu tiên của tôi SAI:** tôi so “cỡ nút ÷ cỡ chữ trong hình” và lấy ngưỡng 1,6 ⇒ báo oan
+> hàng loạt, vì nút 44–50 px là **sàn vùng chạm** chứ không phải “quá to”. Cái người dùng nhìn thấy là
+> **khối nút chiếm nửa màn hình trong khi đề bài bé tí** ⇒ luật đúng là so **chiều cao khối nút với chiều
+> cao hình**. (Lần thứ N trong dự án: số đo vô lý thì nghi cây thước trước.)
+
+Sau khi sửa: **9 slide tương tác → 0 ca cần sửa** · 47 slide đủ 21 loại hình → chữ nhỏ nhất ≥ 13 px ·
+36 slide đồng hồ → ≥ 12 px · 0 tràn ngang.
+
 **Còn lại:** các chương khác của 5 lớp vẫn còn cột đặt tính tĩnh — chuyển dần theo từng chương.
 
 ---

@@ -247,12 +247,11 @@ export const g1c8 = {
         {
           type: "visual",
           content: {
-            text: "  24\n+ 15\n  39",
-            operation: {
+            text: "Bé đặt tính rồi cộng: 24 + 15",
+            cotTinh: {
               left: 24,
-              sign: "+",
               right: 15,
-              result: 39,
+              sign: "+",
             },
           },
         },
@@ -307,12 +306,11 @@ export const g1c8 = {
         {
           type: "visual",
           content: {
-            text: "  39\n−  5\n  34",
-            operation: {
+            text: "Bé đặt tính rồi trừ: 39 − 5",
+            cotTinh: {
               left: 39,
-              sign: "−",
               right: 5,
-              result: 34,
+              sign: "−",
             },
           },
         },
@@ -369,12 +367,11 @@ export const g1c8 = {
         {
           type: "visual",
           content: {
-            text: "  48\n−  6\n  42",
-            operation: {
+            text: "Bé đặt tính rồi trừ: 48 − 6",
+            cotTinh: {
               left: 48,
-              sign: "−",
               right: 6,
-              result: 42,
+              sign: "−",
             },
           },
         },
@@ -428,12 +425,11 @@ export const g1c8 = {
         {
           type: "visual",
           content: {
-            text: "  57\n− 23\n  34",
-            operation: {
+            text: "Bé đặt tính rồi trừ: 57 − 23",
+            cotTinh: {
               left: 57,
-              sign: "−",
               right: 23,
-              result: 34,
+              sign: "−",
             },
           },
         },

@@ -94,7 +94,15 @@ export function slotLook(fill, i, laMau = false) {
 }
 
 /**
- * Dải nút chọn + tiến độ + “Làm lại”, hiện NGAY DƯỚI hình. Nút ≥ 50px cho ngón tay bé.
+ * Dải nút chọn + tiến độ + “Làm lại”, hiện NGAY DƯỚI hình.
+ *
+ * 🔴 CỠ NÚT TỰ CO THEO SỐ LỰA CHỌN (người dùng báo 2026-09-26). Trước đây mọi nút đều
+ * `58×50 px · chữ 24` — hợp với 3 dấu `> < =`, nhưng bàn phím **0–9** (10 nút) thì mỗi nút
+ * to hơn cả ĐỀ BÀI: ảnh người dùng gửi cho thấy cột đặt tính bé tí mà bàn phím chiếm nửa màn
+ * hình, nhìn mất cân đối. Nay:
+ *   • ≤ 4 lựa chọn (dấu so sánh, đáp án chữ): giữ nút TO như cũ — ngón tay bé dễ bấm.
+ *   • ≥ 5 lựa chọn (bàn phím số, dải hình): nút gọn hơn nhưng **không dưới 44 px** — vẫn đạt
+ *     chuẩn vùng chạm cho trẻ, mà nhường chỗ cho hình.
  *
  * `renderOption` (tuỳ chọn) cho phép nút là HÌNH VẼ thay vì chữ — dùng cho “hình thích hợp
  * đặt vào dấu ?” (bé chọn giữa các hình). `tenOption` là nhãn đọc màn hình của từng giá trị.
@@ -111,6 +119,11 @@ export function FillBar({
   const xong = fill.solved.filter(Boolean).length;
   const tong = fill.soO;
   const conSai = fill.picked.some((p, i) => p !== null && !fill.solved[i]);
+  /** Cỡ nút theo SỐ lựa chọn — xem ghi chú đầu `FillBar`. */
+  const nhieuLuaChon = options.length >= 5;
+  const coNut = nhieuLuaChon
+    ? { minWidth: 44, minHeight: 44, fontSize: 20, padding: "0 4px" }
+    : { minWidth: 58, minHeight: 50, fontSize: 24, padding: undefined };
   /**
    * CHÚC MỪNG khi bé làm đúng HẾT (người dùng yêu cầu 2026-09-25: cho đồng bộ với câu hỏi
    * và với mê cung). Dùng `useRef` chứ không `useState` để không thêm lần vẽ nào;
@@ -130,18 +143,31 @@ export function FillBar({
   }, [xong, tong]);
   return (
     <div style={{ marginTop: 10 }}>
+      {/* 🔴 BA HÀNG RIÊNG (người dùng báo 2026-09-26: “nhìn quá xấu và không cân đối”).
+          Trước đây tiêu đề + nút + tiến độ + “Làm lại” nằm CHUNG một hàng flex-wrap, nên với
+          4 lựa chọn thì nút “10” rơi xuống hàng dưới còn “0/4” và “Làm lại” chen ngay cạnh nút
+          cuối — nhìn như lỗi. Nay: tiêu đề một hàng · NÚT CHỌN một hàng · tiến độ + “Làm lại”
+          một hàng. Với mọi số lựa chọn (3 dấu, 4 đáp án, 10 chữ số) bố cục vẫn gọn và đều. */}
+      <div
+        style={{
+          textAlign: "center",
+          fontWeight: 800,
+          fontSize: 14,
+          color: "#475569",
+          marginBottom: 6,
+        }}
+      >
+        {fill.done ? "🎉 Bé làm đúng hết!" : `${title}:`}
+      </div>
       <div
         style={{
           display: "flex",
           flexWrap: "wrap",
-          gap: 10,
+          gap: nhieuLuaChon ? 8 : 10,
           alignItems: "center",
           justifyContent: "center",
         }}
       >
-        <span style={{ fontWeight: 800, fontSize: 14, color: "#475569" }}>
-          {fill.done ? "🎉 Bé làm đúng hết!" : `${title}:`}
-        </span>
         {options.map((o) => (
           <button
             key={String(o)}
@@ -150,13 +176,13 @@ export function FillBar({
             disabled={fill.done}
             aria-label={`Chọn ${(tenOption && tenOption[o]) || o}`}
             style={{
-              minWidth: 58,
-              minHeight: 50,
+              minWidth: coNut.minWidth,
+              minHeight: coNut.minHeight,
               display: renderOption ? "flex" : undefined,
               alignItems: "center",
               justifyContent: "center",
-              padding: renderOption ? 6 : undefined,
-              fontSize: 24,
+              padding: renderOption ? 6 : coNut.padding,
+              fontSize: coNut.fontSize,
               fontWeight: 900,
               borderRadius: 12,
               border: "2px solid #7c3aed",
@@ -169,6 +195,16 @@ export function FillBar({
             {renderOption ? renderOption(o) : o}
           </button>
         ))}
+      </div>
+      <div
+        style={{
+          display: "flex",
+          gap: 10,
+          alignItems: "center",
+          justifyContent: "center",
+          marginTop: 8,
+        }}
+      >
         <span style={{ fontWeight: 800, fontSize: 14, color: "#0369a1" }}>
           {xong}/{tong}
         </span>
@@ -176,7 +212,7 @@ export function FillBar({
           type="button"
           onClick={fill.reset}
           style={{
-            minHeight: 44,
+            minHeight: 40,
             padding: "0 14px",
             fontSize: 13,
             fontWeight: 800,

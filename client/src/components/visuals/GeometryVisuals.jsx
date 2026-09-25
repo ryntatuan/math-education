@@ -2064,14 +2064,21 @@ export function PatternRow({
     (s) => s !== undefined && s !== null && s !== "",
   );
   const n = Math.max(1, ds.length);
-  const O = 30; // cạnh ô hình
+  // 🔴 CỠ Ô + XUỐNG HÀNG (đo được 2026-09-26): ô 30 đơn vị trên khung ≥360 ⇒ tỉ lệ ~0,85
+  // ⇒ ô chỉ còn ~25 px — trẻ không bấm nổi (chuẩn vùng chạm 44 px). Nay ô 44 đơn vị và khung
+  // hẹp theo SỐ Ô MỖI HÀNG (tối đa 5) nên tự phóng to; dãy dài thì xuống hàng như sách in.
+  const O = 44; // cạnh ô hình
   const G = 10; // khe giữa hai ô
-  const B = 16; // lề hai bên
-  const canRong = n * O + (n - 1) * G;
-  const W = Math.max(360, canRong + B * 2);
+  const B = 14; // lề hai bên
+  const SO_MOI_HANG = 5;
+  const soMoiHang = Math.min(n, SO_MOI_HANG);
+  const soHang = Math.ceil(n / soMoiHang);
+  const canRong = soMoiHang * O + (soMoiHang - 1) * G;
+  const W = Math.max(160, canRong + B * 2);
   const x0 = (W - canRong) / 2;
-  const yTop = 26;
-  const H = 106;
+  const yTop = 22;
+  const hangCao = O + 16;
+  const H = yTop + soHang * hangCao + 12;
 
   /** Vị trí các ô “?” — mỗi ô là MỘT chỗ bé điền, theo thứ tự đọc. */
   const oTrong = ds.map((k, i) => (k === "?" ? i : -1)).filter((i) => i >= 0);
@@ -2099,9 +2106,12 @@ export function PatternRow({
         aria-label="Dãy hình lặp quy luật"
       >
         {ds.map((k, i) => {
-          const x = x0 + i * (O + G);
+          const hang = Math.floor(i / soMoiHang);
+          const cot = i % soMoiHang;
+          const x = x0 + cot * (O + G);
+          const y = yTop + hang * hangCao;
           const cx = x + O / 2;
-          const cy = yTop + O / 2;
+          const cy = y + O / 2;
           if (k === "?") {
             const slot = oTrong.indexOf(i);
             const bam = dungHopDong;
@@ -2127,7 +2137,7 @@ export function PatternRow({
               >
                 <rect
                   x={x}
-                  y={yTop}
+                  y={y}
                   width={O}
                   height={O}
                   rx="6"
@@ -2140,7 +2150,7 @@ export function PatternRow({
                   <HinhNho
                     k={hinhChon}
                     x={x}
-                    y={yTop}
+                    y={y}
                     O={O}
                     fill={f2}
                     stroke={s2}
@@ -2152,7 +2162,7 @@ export function PatternRow({
                     <HinhNho
                       k={hinhChon}
                       x={x}
-                      y={yTop}
+                      y={y}
                       O={O}
                       fill={f2}
                       stroke={s2}
@@ -2186,7 +2196,7 @@ export function PatternRow({
               key={i}
               k={k}
               x={x}
-              y={yTop}
+              y={y}
               O={O}
               fill={mauHinh}
               stroke={vienHinh}

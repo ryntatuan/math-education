@@ -118,11 +118,16 @@ export function CotTinh({
   }, [fill.done]);
 
   // ---- hình học ----
-  const W = 340;
-  const oRong = 34;
-  const oCao = 44;
+  // 🔴 CỠ Ô + CỠ KHUNG (người dùng báo 2026-09-26: “danh sách số để chọn quá lớn, đề bài quá nhỏ”).
+  // `svgFit` cho ảnh rộng tối đa `viewBox × 1,6`, nên **khung càng hẹp thì hình càng to**.
+  // Lấy khung = đúng bề rộng khối số + lề cho dấu phép tính ⇒ chữ số trong đề bài to hơn nút
+  // chọn (nút 44 px theo `FillBar`), đúng thứ tự quan trọng: ĐỀ BÀI là chính, nút là phụ.
+  const oRong = 44;
+  const oCao = 56;
+  const coChu = 34;
   const soCot = Math.max(hangA.length, hangB.length, hangKQ.length);
   const rongSo = soCot * oRong;
+  const W = Math.max(150, rongSo + 56); // 56 = chỗ cho dấu +/− và lề phải
   const x0 = W - 14 - rongSo; // canh phải khối số
   const caoNho = coNho ? 30 : 0;
   const yA = 10 + caoNho;
@@ -144,7 +149,7 @@ export function CotTinh({
         x={xCell(i) + oRong / 2}
         y={y + oCao / 2 + 10}
         textAnchor="middle"
-        fontSize={ch === "," ? "26" : "28"}
+        fontSize={ch === "," ? String(coChu - 4) : String(coChu)}
         fontWeight="800"
         fill={P.ink}
         fontFamily="var(--font-number, sans-serif)"
@@ -183,7 +188,7 @@ export function CotTinh({
           x={xCell(i) + oRong / 2}
           y={y + oCao / 2 + 10}
           textAnchor="middle"
-          fontSize="28"
+          fontSize={String(coChu)}
           fontWeight="900"
           fill={look.color}
           fontFamily="var(--font-number, sans-serif)"
@@ -216,10 +221,10 @@ export function CotTinh({
         {[...hangA].map((ch, i) => veChuSo(ch, i, yA))}
         {/* dấu phép tính + số hạng thứ hai */}
         <text
-          x={x0 - 6}
-          y={yB + oCao / 2 + 10}
+          x={x0 - 12}
+          y={yB + oCao / 2 + 12}
           textAnchor="end"
-          fontSize="30"
+          fontSize="38"
           fontWeight="900"
           fill={P.violet}
         >
@@ -285,7 +290,7 @@ export function CotTinh({
                   x={xCell(o.viTri) + oRong / 2}
                   y={18}
                   textAnchor="middle"
-                  fontSize="15"
+                  fontSize="18"
                   fontWeight="900"
                   fill={look.color}
                 >

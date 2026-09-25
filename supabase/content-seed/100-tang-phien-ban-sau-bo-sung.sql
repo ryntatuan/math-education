@@ -33,6 +33,27 @@
 --   ⚠️ Số slide ĐÃ ĐỔI: 2712 → **2713** (Lớp 1: 690 → **691**); số bài KHÔNG đổi (460).
 --   ⚠️ LẦN NÀY CẦN DÁN: `02-bai-lop-1.sql` rồi `100-...` (file này). Các file lớp khác KHÔNG đổi.
 --
+--   📐 **SỬA CỠ + VÙNG CHẠM + BỐ CỤC (cùng ngày, người dùng gửi ảnh):** “danh sách số để chọn đang
+--      quá lớn, trong khi đề bài quá nhỏ, nhìn quá xấu và không cân đối”. Công cụ đo mới
+--      `scratch/do-can-doi-hinh.mjs` (chạy trong APP THẬT ở 390 px) tìm ra **3 lỗi thật**:
+--        1. `FillBar` luôn vẽ nút `58×50 · chữ 24` ⇒ với bàn phím **0–9** thì nút to hơn cả đề bài.
+--           Nay nút tự co theo số lựa chọn (`>= 5` lựa chọn ⇒ 44×44, vẫn đạt chuẩn vùng chạm).
+--        2. **Bảng điền `bangTinh` có ô “?” chỉ bấm được 18 px** (hàng cao 28 đơn vị) — trẻ không
+--           bấm nổi. Nay hàng cao 56 ⇒ ô “?” **47 px**, chữ trong bảng 19→30 px, khung hẹp lại (300)
+--           để tự phóng to.
+--        3. **`patternRow` có ô chỉ ~25 px.** Nay ô 44 đơn vị, tối đa 5 ô/hàng rồi **tự xuống hàng**
+--           ⇒ ô ≈ 47–58 px.
+--      Và **khối đặt tính được phóng to** (khung = đúng bề rộng khối số + lề) ⇒ chữ số trong đề
+--      bài 76 px > nút 44 px — đúng thứ tự: ĐỀ BÀI là chính, nút là phụ.
+--      Ngoài ra `FillBar` nay xếp **3 hàng riêng** (tiêu đề · nút chọn · tiến độ + “Làm lại”):
+--      trước đây bốn thứ nằm chung hàng flex-wrap nên nút “10” rơi xuống hàng dưới còn “0/4” chen
+--      ngay cạnh nút cuối — nhìn như lỗi.
+--      ✅ Đo lại: 9 slide tương tác (bangTinh · cotTinh · numberScene) ⇒ **0 ca cần sửa**;
+--      47 slide đủ 21 loại hình ⇒ chữ nhỏ nhất ≥ 13 px; 36 slide đồng hồ ⇒ ≥ 12 px; 0 tràn ngang.
+--      ⚠️ Phần này là **MÃ** — không đổi dữ liệu (trừ 4 slide Lớp 1 CĐ8: `g1-c8-l3` 32+14 ·
+--      `l5` 39−5 · `l6` 48−6 · `l7` 57−23 nay là `cotTinh`), nên **cần deploy web / build APK**.
+--      ⚠️ Nếu dán lại seed thì vẫn chỉ cần `02-bai-lop-1.sql` rồi `100-...`; quy mô KHÔNG đổi (2713).
+--
 -- LƯU Ý LẦN 15 (2026-09-25): CHỦ ĐỀ 9 LỚP 1 + **HÌNH ĐỒNG HỒ KHÔNG BAO GIỜ HIỆN RA** (Lớp 2–4).
 --   🔴 Phát hiện nặng: `LessonPage.jsx` chỉ vẽ `number` · `operation` · `comparison` · `clock`
 --   trong slide `type: "visual"`. Slide `story` / `quiz` / `summary` chỉ gọi `VisualBlocks`, mà

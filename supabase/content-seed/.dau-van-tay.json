@@ -1,7 +1,7 @@
 {
-  "dauVanTay": "0939fe47b87f1152",
+  "dauVanTay": "610bba08cfb5da19",
   "bai": 460,
   "slide": 2713,
-  "ghiLuc": "2026-09-25T17:00:21.698Z",
+  "ghiLuc": "2026-09-25T17:11:14.199Z",
   "cachTinh": "sha256(JSON.stringify(lessons.map(l => [l.id, l.payload]))).slice(0,16)"
 }

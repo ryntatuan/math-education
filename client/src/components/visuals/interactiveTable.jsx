@@ -76,13 +76,18 @@ export function BangTinh({
   }, [fill.done, dungHopDong]);
 
   const soCot = Math.max(2, headers.length);
-  const W = 340;
+  // 🔴 ĐO ĐƯỢC (2026-09-26): khung 340 trong thẻ ~306 px ⇒ tỉ lệ 0,9 ⇒ hàng cao 28 đơn vị
+  // chỉ còn ~18 px, ô “?” bấm không nổi và chữ bé hơn hẳn dãy nút (nút 44–50 px).
+  // Nay khung hẹp lại (300) để tự phóng to + hàng cao 52 ⇒ ô “?” ≈ 45 px, chữ 19 đơn vị ≈ 19 px.
+  const W = 300;
   const le = 12;
   const rongBang = W - le * 2;
   const rongCot0 = Math.round(rongBang * 0.58);
   const rongCot1 = rongBang - rongCot0;
-  const caoDau = 30;
-  const caoHang = 28;
+  const caoDau = 34;
+  // 56 đơn vị ⇒ ô “?” cao 46 đơn vị ≈ **47 px** (đo bằng `scratch/do-can-doi-hinh.mjs`);
+  // để 52 thì chỉ được 42,8 px — dưới chuẩn vùng chạm 44 px của trẻ.
+  const caoHang = 56;
   const H = caoDau + hang.length * caoHang + 10;
 
   let k = -1; // đếm ô trống theo thứ tự đọc
@@ -108,7 +113,7 @@ export function BangTinh({
           x={le + rongCot0 / 2}
           y={4 + caoDau / 2 + 5}
           textAnchor="middle"
-          fontSize="15"
+          fontSize="18"
           fontWeight="800"
           fill={P.head}
         >
@@ -118,7 +123,7 @@ export function BangTinh({
           x={le + rongCot0 + rongCot1 / 2}
           y={4 + caoDau / 2 + 5}
           textAnchor="middle"
-          fontSize="15"
+          fontSize="18"
           fontWeight="800"
           fill={P.head}
         >
@@ -148,9 +153,9 @@ export function BangTinh({
               />
               <text
                 x={le + rongCot0 / 2}
-                y={y + caoHang / 2 + 5}
+                y={y + caoHang / 2 + 6}
                 textAnchor="middle"
-                fontSize="15"
+                fontSize="19"
                 fontWeight="700"
                 fill={P.ink}
               >
@@ -163,9 +168,9 @@ export function BangTinh({
                   return (
                     <text
                       x={le + rongCot0 + rongCot1 / 2}
-                      y={cy + 5}
+                      y={cy + 6}
                       textAnchor="middle"
-                      fontSize="15"
+                      fontSize="19"
                       fontWeight="800"
                       fill={P.ink}
                     >
@@ -193,21 +198,21 @@ export function BangTinh({
                     style={{ cursor: laODangLam ? "pointer" : "default" }}
                   >
                     <rect
-                      x={le + rongCot0 + 14}
-                      y={y + 4}
-                      width={rongCot1 - 28}
-                      height={caoHang - 8}
-                      rx="7"
+                      x={le + rongCot0 + 8}
+                      y={y + 5}
+                      width={rongCot1 - 16}
+                      height={caoHang - 10}
+                      rx="9"
                       fill={look.fill}
                       stroke={look.stroke}
-                      strokeWidth="2.2"
+                      strokeWidth="2.4"
                       strokeDasharray={look.dash ? "6 4" : undefined}
                     />
                     <text
                       x={le + rongCot0 + rongCot1 / 2}
-                      y={cy + 6}
+                      y={cy + 8}
                       textAnchor="middle"
-                      fontSize="16"
+                      fontSize="24"
                       fontWeight="900"
                       fill={look.color}
                     >
