@@ -16,6 +16,35 @@
 
 ---
 
+## PHẦN E — ĐO “CHỮ TRONG HÌNH CÓ ĐỌC ĐƯỢC KHÔNG” (2026-09-25, người dùng báo)
+
+Người dùng gửi ảnh bài `g3-c8-l5` (Lớp 3, chữ số La Mã) và nói: *“các số la mã trong đồng hồ quá
+nhỏ, trẻ không thể thấy được”*. **Đúng, và nguyên nhân không nằm ở dữ liệu:**
+
+| Bước | Phát hiện |
+| :---- | :-------- |
+| Đọc mã + CSS | `@media (max-width: 640px)` ép `.clock-svg { width: 135px !important }` cho **MỌI cỡ** ⇒ mặt đồng hồ 220 đơn vị co còn **0,61** ⇒ chữ 11 đơn vị chỉ còn **~7 px** |
+| Bộ vẽ | `ClockGraphic` có `sm=120 · md=165 · lg=220`, nhưng CSS đè hết thành 135 ⇒ dữ liệu có xin cỡ nào cũng vô ích |
+| Họ lỗi tương tự | `.dialogue-focus-graphic .clock-svg` ép **125px** (slide hội thoại) ⇒ chữ ~5,5 px |
+| Vì sao các bảng đo trước KHÔNG thấy | `scratch/visual-fit.jsx` đo hình theo `HINH_KEYS` — mà `clock`/`number`/`operation` **không** nằm trong đó, và trang đo cũng không chạy trong app nên không gặp CSS mobile |
+
+**Đã sửa:** cỡ đồng hồ trên điện thoại thành `min(180px, 52vw)` (và 170px cho slide hội thoại);
+số La Mã dùng `lg` bất kể slide nào + cỡ chữ 17 (bé 14); mặt đồng hồ trên slide **bài học** từ `sm` → `md`.
+
+**Hai công cụ đo mới (chạy trên APP THẬT, khổ 390×844):**
+`scratch/do-chu-hinh.mjs` (mọi slide có đồng hồ) · `scratch/do-chu-hinh-moi-loai.mjs` (mọi loại hình) ·
+`scratch/chup-slide.mjs <bài> <slide>` để chụp một slide ở đúng khổ điện thoại mà nhìn.
+
+Kết quả sau khi sửa: **36 slide có đồng hồ → chữ nhỏ nhất ≥ 12 px, 0 tràn ngang**;
+**47 slide đủ loại hình (21 loại) → chữ nhỏ nhất ≥ 13 px, 0 tràn ngang**.
+
+> 🔴 **Bài học đo lường (lặp lại lần thứ N trong dự án):** nhìn ảnh nhỏ rồi đoán là sai hai lần
+> trong cùng một việc — (1) ảnh chụp làm tôi tưởng kim đồng hồ chỉ 4 giờ, đo toạ độ mới ra **237° =
+> 7,9 giờ** (đúng 8 giờ); (2) “số đo vô lý thì nghi cây thước trước”. Ảnh chỉ dùng để **phát hiện**,
+> còn **kết luận thì phải đo**.
+
+---
+
 ## PHẦN A — Bảng ánh xạ trang → bài
 
 > 📌 **Bảng này là bản gốc lúc rà (trước khi sửa), nên có vài dòng đã cũ** (ví dụ `l2` khi đó tên là
@@ -418,6 +447,58 @@ Vậy chương này **không phải sửa dữ liệu** — cái được là **
 > **Và bài học chống “cổng xanh giả”:** công cụ có **CANARY 13 ca hai vế** (bắt được `3 + 4 = 8`,
 > **không** bắt `3 + 4 = 7` · `3 + 4 + 5 = 12` · `45 + 9 = 36? Không!` · `13 : 3 = 4 (dư 1)` ·
 > `2/5 × 10 = 4` · `AB : CD = 4 : 7`). Chạy công cụ là biết thước còn sống hay không.
+
+---
+
+## ĐỢT CHỦ ĐỀ 9 — Thời gian: giờ và lịch (sách tr.72–87) — ✅ ĐÃ RÀ
+
+### a) Đồng hồ trong app: đo bằng công cụ trước, soi bằng mắt sau
+
+`node scratch/soat-dong-ho.mjs` in ra **33 slide có mặt đồng hồ** kèm “giờ hình vẽ” và “giờ chữ
+nhắc tới”. Lọc riêng CĐ9 Lớp 1 được **4 slide**, cả 4 đều khớp:
+`g1-c9-l1` (3:00, chữ nói về mặt đồng hồ) · `g1-c9-l2` (7:00 ↔ “7 giờ”) ·
+`g1-c9-l4` (8:00 trong bảng giờ vào lớp) · `g1-c9-l9` (9:00 ↔ “9 giờ”).
+
+> ⚠️ **Suýt đọc sai công cụ:** dòng in ra có dạng `L1 g1-c9-l1 #2 …` — tôi tưởng `L1` là
+> “mức 1 = nặng nhất”. Đọc mã mới biết `L` là **Lớp** (L1…L5). Số đo vô lý ⇒ nghi cây thước trước.
+
+### b) 🔴 DẠNG LỖI MỚI (F): hình ghi trong dữ liệu nhưng KHÔNG có chỗ vẽ
+
+SGK in **hình đồng hồ** cho trẻ đọc giờ. App có viết *“Đồng hồ chỉ mấy giờ?”* nhưng
+câu hỏi lại **mô tả kim bằng chữ**: “Kim ngắn chỉ số 7, kim dài chỉ số 12…” ⇒ lộ đáp án,
+trẻ không phải đọc đồng hồ, chỉ phải đọc chữ.
+
+Đào sâu thì ra nguyên nhân gốc: `LessonPage.jsx` chỉ vẽ `number` · `operation` · `comparison` ·
+`clock` trong `VisualSlide`; slide `story` / `quiz` / `summary` chỉ gọi `VisualBlocks` — mà
+`VisualBlocks` vẽ theo `HINH_KEYS` (`visualKeys.js`), **KHÔNG có 4 khoá đó** ⇒ dữ liệu đặt
+`clock` lên slide câu hỏi thì **hình không bao giờ hiện**, im lặng, không lỗi, không cảnh báo.
+
+| Bước | Kết quả |
+| :---- | ----- |
+| Công cụ mới `scratch/soat-hinh-khong-hien.mjs` | **22 ca** mất hình (Lớp 2–4) — canary 6/6 |
+| Đọc mã để lập **bản đồ vẽ theo từng kiểu slide** | 2 ca đầu là **tôi báo oan** (`ConceptSlide` CÓ vẽ `clock`) ⇒ sửa công cụ thành bảng, canary 10/10 |
+| Thêm khối dùng chung `CalcFigures` (số · phép tính · đồng hồ · so sánh) cho `StorySlide` · `ConceptSlide` · `QuizSlide` | **23 hình hiện ra** (9 story · 11 quiz · 3 concept), đo lại = 0 ca mất hình |
+
+### c) Sửa cho khớp SGK
+
+- **4 câu hỏi Lớp 1 CĐ9**: bỏ mô tả kim trong đề → đề còn *“Đồng hồ chỉ mấy giờ?”* (hoặc
+  *“Xem đồng hồ rồi cho biết bé làm gì lúc đó?”*), **giữ lời giải thích ở `mascotHint`**.
+- **6 câu hỏi Lớp 2/3** (`g2-c6`, `g3-c13`): cũng bỏ phần “Kim ngắn chỉ số 3, kim dài chỉ số 6”
+  khỏi đề — gợi ý xuống `mascotHint` (`g3` thêm luật “3 × 5 = 15 phút”).
+- **Mặt đồng hồ số La Mã** (`ClockGraphic` thêm `roman`): SGK Lớp 3 “Làm quen với chữ số La Mã”
+  in mặt đồng hồ cổ I…XII; app trước dây đặt `clock` cho hai slide đó nhưng vẽ số 1…12 ⇒ **nghịch chữ**.
+  Nay có `roman: true`, cỡ chữ hạ xuống 13 (bé 11) để “VIII” không chồn vạch. Đo thật:
+  **12 nhãn, 0 chồn nhau, cách tâm gần nhất 20 px**.
+- **Bỏ `clock` ở 1 slide sai ngữ cảnh**: `g2-c3-l2` “Cân đồng hồ có kim chỉ số…” — đó là **cái cân**,
+  không phải đồng hồ ⇒ thay bằng `items` ⚖️. (Nếu để nguyên thì vừa rồi hình cái CÂN sẽ hoá thành ĐỒNG HỒ.)
+
+### d) Kiểm chứng
+
+`node --check` 5 file dữ liệu ✓ · `kiem-tra-slide` 0 lỗi · `soat-o-trong` 0 ô trống tĩnh ·
+`soat-hinh-khong-hien` 0 ca · `soat-phep-tinh` 0 sai · **cổng tĩnh 32 PASS** · `build:web` exit 0 ·
+seed SQL sinh lại (S-32 đỏ lúc đầu vì đúng lý do: dữ liệu mới hơn seed).
+Xem bằng trình duyệt thật: `g2-c6-l3` (đồng hồ 3:30 + đề ngắn) · `g1-c9-l2` (đồng hồ 7:00) ·
+`g3-c8-l5` (đồng hồ La Mã).
 
 ---
 

@@ -783,6 +783,8 @@ function StorySlide({ content }) {
           (Lớp 1 CĐ 2) mà chỉ có emoji nhỏ trong chữ thì trẻ không thấy đồ vật để đoán.
           Người dùng báo ở bài `g1-c2-l4`: "mô tả quyển sách quá nhỏ, trẻ không thể nhìn thấy".
           Trước đây slide "bài học" không gọi `VisualBlocks` nên dữ liệu có hình cũng không vẽ. */}
+      {/* Mặt đồng hồ cỡ md trong slide bài học (trước là sm ⇒ chữ số quá nhỏ). */}
+      <CalcFigures content={content} clockSize="md" />
       <VisualBlocks content={content} />
     </div>
   );
@@ -844,55 +846,7 @@ function VisualSlide({ content }) {
         </div>
       )}
 
-      {content.number !== null && content.number !== undefined && (
-        <motion.div
-          className="visual-number"
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ delay: 0.4, type: "spring", stiffness: 200 }}
-        >
-          <span className="number">{content.number}</span>
-        </motion.div>
-      )}
-
-      {content.operation && (
-        <motion.div
-          className="visual-operation"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-        >
-          <span className="number op-num">{content.operation.left}</span>
-          <span className="op-sign">{content.operation.sign}</span>
-          <span className="number op-num">{content.operation.right}</span>
-          <span className="op-sign">=</span>
-          <span className="number op-result">{content.operation.result}</span>
-        </motion.div>
-      )}
-
-      {content.clock && (
-        <ClockGraphic
-          hour={content.clock.hour}
-          minute={content.clock.minute}
-          showLabels={content.clock.showLabels !== false}
-          timeText={content.clock.timeText}
-        />
-      )}
-
-      {content.comparison && (
-        <motion.div
-          className="visual-operation"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-        >
-          <span className="number op-num">{content.comparison.left}</span>
-          <span className="op-sign comparison-sign">
-            {content.comparison.sign}
-          </span>
-          <span className="number op-num">{content.comparison.right}</span>
-        </motion.div>
-      )}
+      <CalcFigures content={content} />
 
       {/* Hình bổ sung: trục số, khung 10 ô, khối chục–đơn vị, bảng hàng, thước, tiền,
           bảng số liệu, hình phẳng, góc, hình tròn, hình khối, phân số, sơ đồ đoạn thẳng,
@@ -912,6 +866,7 @@ function ClockGraphic({
   frameColor = "#3b82f6",
   shape = "circle",
   size = "md",
+  roman = false,
 }) {
   const isSm = size === "sm";
   const isLg = size === "lg";
@@ -920,11 +875,33 @@ function ClockGraphic({
   const cy = 110;
   const r = 88;
 
-  const numbers = [12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+  // Mặt đồng hồ số La Mã — SGK Lớp 3 “Làm quen với chữ số La Mã” in mặt đồng hồ cổ
+  // ghi I…XII, mà 12 số La Mã dài hơn số thường nên phải hạ cỡ chữ cho khỏi chồn vạch.
+  const VI_TRI = [12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+  const LA_MA = [
+    "XII",
+    "I",
+    "II",
+    "III",
+    "IV",
+    "V",
+    "VI",
+    "VII",
+    "VIII",
+    "IX",
+    "X",
+    "XI",
+  ];
+  const oSo = VI_TRI.map((v, i) => ({
+    value: v,
+    label: roman ? LA_MA[i] : String(v),
+  }));
+  const coSoLaMa = roman;
+
   const hourAngle = ((hour % 12) + minute / 60) * 30;
   const minuteAngle = minute * 6;
   const isSquare = shape === "square";
-  const gradId = `clockFaceGrad-${hour}-${minute}-${shape}-${frameColor.replace("#", "")}`;
+  const gradId = `clockFaceGrad-${hour}-${minute}-${shape}-${frameColor.replace("#", "")}${roman ? "-roman" : ""}`;
 
   return (
     <div className={`clock-graphic-container size-${size}`}>
@@ -1027,26 +1004,34 @@ function ClockGraphic({
           })}
 
           {/* 12 Numbers */}
-          {numbers.map((num) => {
-            const angle = (num === 12 ? 0 : num * 30) * (Math.PI / 180);
+          {oSo.map((o) => {
+            const angle = (o.value === 12 ? 0 : o.value * 30) * (Math.PI / 180);
             const nx = cx + (r - 24) * Math.sin(angle);
             const ny = cy - (r - 24) * Math.cos(angle) + 5;
             return (
               <text
-                key={num}
+                key={o.value}
                 x={nx}
                 y={ny}
                 textAnchor="middle"
-                fontSize={isSm ? "16" : "15"}
+                fontSize={
+                  // Số La Mã dài hơn ("VIII") nên phải nhỏ hơn số thường, nhưng KHÔNG được
+                  // nhỏ tới mức trẻ không đọc được — và vì mặt La Mã luôn cỡ lg nên
+                  // 16 đơn vị ≈ 16 px trên màn hình (đo bằng `scratch/do-chu-hinh.mjs`).
+                  coSoLaMa ? (isSm ? "14" : "17") : isSm ? "16" : "15"
+                }
                 fontWeight="800"
                 fontFamily="var(--font-heading, sans-serif)"
                 fill={
-                  num === 12 || num === 3 || num === 6 || num === 9
+                  o.value === 12 ||
+                  o.value === 3 ||
+                  o.value === 6 ||
+                  o.value === 9
                     ? "#0f172a"
                     : "#64748b"
                 }
               >
-                {num}
+                {o.label}
               </text>
             );
           })}
@@ -1122,6 +1107,88 @@ function ClockGraphic({
         </div>
       )}
     </div>
+  );
+}
+
+/**
+ * KHỐI HÌNH DÙNG CHUNG cho mọi kiểu slide: số · câu phép tính · mặt đồng hồ · so sánh.
+ *
+ * 🔴 VÌ SAO CÓ. Trước đây bốn khối này chỉ được vẽ trong `VisualSlide` (slide `type: "visual"`).
+ * Các slide `story` / `quiz` / `summary` chỉ gọi `VisualBlocks` — mà `VisualBlocks` vẽ theo
+ * `HINH_KEYS` (visualKeys.js), trong đó KHÔNG có `number`/`operation`/`comparison`/`clock`.
+ * ⇒ Dữ liệu đặt `clock` lên slide `story`/`quiz` thì hình KHÔNG BAO GIỜ hiện ra, im lặng.
+ * Đo được 20 ca như vậy (Lớp 2–4), riêng slide câu hỏi “Đồng hồ chỉ mấy giờ?” thì SGK in
+ * hình đồng hồ cho trẻ đọc — mất hình là mất chính bài tập.
+ * Công cụ soi: `node scratch/soat-hinh-khong-hien.mjs`.
+ *
+ * `clockSize`: cỡ mặt đồng hồ khi dữ liệu không tự ghi `content.clock.size`
+ * (slide hình: md · khái niệm: lg · câu hỏi: md · bài học: md).
+ *
+ * 🔴 **Mặt đồng hồ SỐ LA MÃ luôn cỡ `lg`** (trừ khi dữ liệu tự ghi cỡ): số La Mã dài hơn
+ * chữ số thường ("VIII") nên phải hạ cỡ chữ cho khỏi chồn vạch, mà hạ cỡ chữ trên mặt đồng hồ
+ * nhỏ thì trẻ KHÔNG ĐỌC ĐƯỢC. Người dùng báo thật 2026-09-25 (ảnh `g3-c8-l5`): mặt đồng hồ
+ * cỡ `sm` (120 px) + chữ 11 ⇒ chữ chỉ còn **~6 px**. Xem `scratch/do-chu-hinh.mjs`.
+ */
+function CalcFigures({ content, clockSize = "md" }) {
+  return (
+    <>
+      {content.number !== null && content.number !== undefined && (
+        <motion.div
+          className="visual-number"
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ delay: 0.4, type: "spring", stiffness: 200 }}
+        >
+          <span className="number">{content.number}</span>
+        </motion.div>
+      )}
+
+      {content.operation && (
+        <motion.div
+          className="visual-operation"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+        >
+          <span className="number op-num">{content.operation.left}</span>
+          <span className="op-sign">{content.operation.sign}</span>
+          <span className="number op-num">{content.operation.right}</span>
+          <span className="op-sign">=</span>
+          <span className="number op-result">{content.operation.result}</span>
+        </motion.div>
+      )}
+
+      {content.clock && (
+        <ClockGraphic
+          hour={content.clock.hour}
+          minute={content.clock.minute}
+          showLabels={content.clock.showLabels !== false}
+          timeText={content.clock.timeText}
+          frameColor={content.clock.frameColor || "#3b82f6"}
+          shape={content.clock.shape || "circle"}
+          size={
+            content.clock.size ||
+            (content.clock.roman === true ? "lg" : clockSize)
+          }
+          roman={content.clock.roman === true}
+        />
+      )}
+
+      {content.comparison && (
+        <motion.div
+          className="visual-operation"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+        >
+          <span className="number op-num">{content.comparison.left}</span>
+          <span className="op-sign comparison-sign">
+            {content.comparison.sign}
+          </span>
+          <span className="number op-num">{content.comparison.right}</span>
+        </motion.div>
+      )}
+    </>
   );
 }
 
@@ -1647,17 +1714,7 @@ function ConceptSlide({ content }) {
       {content.title && <h2 className="concept-title">{content.title}</h2>}
 
       {/* 1. VISUAL HERO CENTER (Always prioritized first) */}
-      {content.clock && (
-        <ClockGraphic
-          hour={content.clock.hour}
-          minute={content.clock.minute}
-          showLabels={content.clock.showLabels !== false}
-          timeText={content.clock.timeText}
-          frameColor={content.clock.frameColor || "#3b82f6"}
-          shape={content.clock.shape || "circle"}
-          size={content.clock.size || "lg"}
-        />
-      )}
+      <CalcFigures content={content} clockSize="lg" />
 
       {content.shape && (
         <ShapeGraphic shape={content.shape} label={content.shapeLabel} />
@@ -1893,7 +1950,9 @@ function QuizSlide({
 
       {/* Hình minh hoạ câu hỏi — dùng CHUNG bộ vẽ với slide "hình ảnh" (thước, sơ đồ
           đoạn thẳng, biểu đồ…). Trước đây slide câu hỏi không vẽ gì, nên câu hỏi nhắc
-          tới hình là bó không có gì để nhìn. */}
+          tới hình là bó không có gì để nhìn. Mặt đồng hồ cũng vậy: SGK in đồng hồ cho
+          trẻ đọc giờ, nên câu hỏi "Đồng hồ chỉ mấy giờ?" phải có đồng hồ mới đúng bài. */}
+      <CalcFigures content={content} />
       <VisualBlocks content={content} />
 
       <div

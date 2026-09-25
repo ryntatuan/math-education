@@ -133,10 +133,13 @@ export const g2c3 = {
           "content": {
             "mascotMood": "happy",
             "text": "Cân đồng hồ có kim chỉ số đấy. Bé cùng đọc nhé! ⚖️",
-            "clock": {
-              "hour": 8,
-              "minute": 0
-            }
+            "items": [
+              {
+                "emoji": "⚖️",
+                "label": "Cân đồng hồ",
+                "count": 1
+              }
+            ]
           }
         },
         {

@@ -221,8 +221,7 @@ export const g2c6 = {
         {
           type: "quiz",
           content: {
-            question:
-              "Kim ngắn chỉ số 3, kim dài chỉ số 6. Đồng hồ chỉ mấy giờ?",
+            question: "Đồng hồ chỉ mấy giờ?",
             options: [
               "3 giờ 6 phút",
               "3 giờ 30 phút",
@@ -240,8 +239,7 @@ export const g2c6 = {
         {
           type: "quiz",
           content: {
-            question:
-              "Kim ngắn chỉ số 8, kim dài chỉ số 3. Đồng hồ chỉ mấy giờ?",
+            question: "Đồng hồ chỉ mấy giờ?",
             options: [
               "8 giờ 15 phút",
               "8 giờ 3 phút",
@@ -539,8 +537,7 @@ export const g2c6 = {
         {
           type: "quiz",
           content: {
-            question:
-              "Kim ngắn chỉ số 10, kim dài chỉ số 6. Đồng hồ chỉ mấy giờ?",
+            question: "Đồng hồ chỉ mấy giờ?",
             options: [
               "10 giờ 6 phút",
               "10 giờ 30 phút",

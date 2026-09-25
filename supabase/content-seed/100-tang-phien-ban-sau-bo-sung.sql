@@ -12,6 +12,32 @@
 -- CHẠY LẠI NHIỀU LẦN: chỉ làm phiên bản tăng thêm 1 mỗi lần — vô hại (các bé tải
 --   lại nội dung thêm một lần), không sinh dòng trùng, không mất dữ liệu.
 --
+-- LƯU Ý LẦN 15 (2026-09-25): CHỦ ĐỀ 9 LỚP 1 + **HÌNH ĐỒNG HỒ KHÔNG BAO GIỜ HIỆN RA** (Lớp 2–4).
+--   🔴 Phát hiện nặng: `LessonPage.jsx` chỉ vẽ `number` · `operation` · `comparison` · `clock`
+--   trong slide `type: "visual"`. Slide `story` / `quiz` / `summary` chỉ gọi `VisualBlocks`, mà
+--   `VisualBlocks` vẽ theo `HINH_KEYS` — trong đó KHÔNG có 4 khoá đó ⇒ dữ liệu đặt `clock` lên
+--   slide câu hỏi thì ĐỒNG HỒ KHÔNG HIỆN, im lặng, không lỗi, không cảnh báo. Đo được **22 ca**
+--   (Lớp 2–4). Công cụ mới: `node scratch/soat-hinh-khong-hien.mjs` (bảng bản đồ vẽ theo từng
+--   kiểu slide + canary 10/10 hai vế; đã bỏ 2 ca báo oan vì `ConceptSlide` CÓ vẽ `clock`).
+--   Cách chữa: thêm khối dùng chung `CalcFigures` (số · phép tính · đồng hồ · so sánh) rồi gọi
+--   ở `StorySlide` · `ConceptSlide` · `QuizSlide` ⇒ **23 hình hiện ra** (9 story · 11 quiz · 3 concept).
+--   ⚠️ PHẦN NÀY LÀ **MÃ** (`client/src/pages/LessonPage.jsx`) — dán SQL thôi CHƯA thấy hình mới;
+--      phải deploy web / build APK lại. Dữ liệu bên dưới chỉ là phần đổi đề bài.
+--   • Chủ đề 9 Lớp 1 (SGK tr.72–87): 4 câu hỏi đổi từ **mô tả kim bằng chữ** (“Kim ngắn chỉ số 7,
+--     kim dài chỉ số 12…”) sang **cho HÌNH đồng hồ** + đề ngắn “Đồng hồ chỉ mấy giờ?” — đúng kiểu
+--     SGK in hình cho trẻ đọc. Lời giải thích giữ nguyên trong `mascotHint` (`g1-c9-l2` ×2, `l4`, `l9`).
+--   • Lớp 2 (`g2-c6`) và Lớp 3 (`g3-c13`): 6 câu hỏi bỏ phần mô tả kim khỏi đề (hình đồng hồ đã có).
+--   • Lớp 3 `g3-c8-l5`, `g3-c8-l6` (chữ số La Mã): mặt đồng hồ nay vẽ **số La Mã I…XII**
+--     (`clock.roman = true`) — trước đây hình vẽ số 1…12, NGHỊCH với chữ “mặt đồng hồ cổ ghi I, II, III”.
+--     Đo thật ở 380 px: 12 nhãn, **0 nhãn chồng nhau**, cách tâm gần nhất 20 px.
+--   • `g2-c3-l2` “Cân đồng hồ có kim chỉ số…” — đó là **cái cân**, không phải đồng hồ ⇒ bỏ `clock`,
+--     thay bằng hình ⚖️ (nếu để nguyên thì vừa rồi hình cái CÂN sẽ hoá thành ĐỒNG HỒ).
+--   ✅ Kiểm: `node scratch/soat-hinh-khong-hien.mjs` = 0 ca · `soat-o-trong` = 0 ô trống tĩnh ·
+--      `soat-phep-tinh` = 0 sai · cổng tĩnh **32 PASS** · `build:web` exit 0.
+--   ⚠️ Số bài và số slide KHÔNG đổi: 5 lớp · 51 chương · **460 bài · 2712 slide**.
+--   ⚠️ LẦN NÀY CẦN DÁN: `02-bai-lop-1.sql`, `03-bai-lop-2.sql`, `04-bai-lop-3.sql` rồi `100-...`.
+--      `01`, `05`, `06`, `99` KHÔNG đổi. `00` không cần (không bài nào bị bỏ).
+--
 -- LƯU Ý LẦN 14 (2026-09-25): CHỦ ĐỀ 7 LỚP 1 — THÊM **BÀI CÒN THIẾU** “CAO HƠN, THẤP HƠN” (SGK tr.30–31).
 --   SGK có hẳn một phần “Cao hơn, thấp hơn” (Bài 25) mà app KHÔNG có bài nào (nhóm lỗi A).
 --   Bài mới: `g1-c7-l9` — chèn ở VỊ TRÍ THỨ 2 (giữ id mới để không mất tiến độ của bé), sau đó

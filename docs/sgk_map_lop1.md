@@ -190,7 +190,7 @@ Biểu tượng trong sách (trang “Hướng dẫn sử dụng sách”, sách
 | Bài 32 (Trừ số có hai chữ số cho số có hai chữ số)  | 58–63      | `g1-c8-l7` · `l8`                                                | ?          |
 | Bài 33 (Luyện tập chung)                            | 64–71      | `g1-c8-l9`…`l12` (tính nhẩm · toán lời văn ×2 · luyện tập chung) | ?          |
 
-### Chủ đề 9 — Thời gian. Giờ và lịch (**tập 2**, sách tr.72–87) · ⬜ **CHƯA RÀ**
+### Chủ đề 9 — Thời gian: giờ và lịch (**tập 2**, sách tr.72–87) · ✅ **ĐÃ RÀ 2026-09-25** — SGK gồm “Đồng hồ chỉ mấy giờ?” (in HÌNH đồng hồ) · “Bạn nào cầm đồng hồ chỉ 7 giờ?” · xem lịch. App khớp đủ 9 bài (mặt đồng hồ · xem giờ đúng · các buổi · thực hành · các ngày trong tuần · hôm nay–ngày mai–hôm qua · tờ lịch · xem lịch tìm ngày · luyện tập chung). **Đã sửa 4 câu hỏi** từ mô tả kim bằng chữ → **cho hình đồng hồ** đúng kiểu SGK
 
 | SGK                                | Trang sách | Bài trong app                                                   | Chắc chắn? |
 | :--------------------------------- | :--------- | :-------------------------------------------------------------- | :--------- |

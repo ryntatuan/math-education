@@ -126,7 +126,8 @@ export const g1c9 = {
         {
           "type": "quiz",
           "content": {
-            "question": "Kim ngắn chỉ số 7, kim dài chỉ số 12. Đồng hồ chỉ mấy giờ?",
+            "question": "Đồng hồ chỉ mấy giờ?",
+            "clock": { "hour": 7, "minute": 0, "timeText": "" },
             "options": [
               "7 giờ",
               "12 giờ",
@@ -134,13 +135,14 @@ export const g1c9 = {
               "7 giờ 12 phút"
             ],
             "answer": "7 giờ",
-            "mascotHint": "Kim dài chỉ 12 nên đọc theo kim ngắn: 7 giờ."
+            "mascotHint": "Kim dài chỉ 12 nên đọc theo kim ngắn: kim ngắn chỉ số 7."
           }
         },
         {
           "type": "quiz",
           "content": {
-            "question": "Kim ngắn chỉ số 3, kim dài chỉ số 12. Đồng hồ chỉ mấy giờ?",
+            "question": "Đồng hồ chỉ mấy giờ?",
+            "clock": { "hour": 3, "minute": 0, "timeText": "" },
             "options": [
               "3 giờ",
               "12 giờ",
@@ -315,7 +317,8 @@ export const g1c9 = {
         {
           "type": "quiz",
           "content": {
-            "question": "Kim ngắn chỉ số 8, kim dài chỉ số 12. Bé làm gì lúc 8 giờ?",
+            "question": "Xem đồng hồ rồi cho biết bé làm gì lúc đó?",
+            "clock": { "hour": 8, "minute": 0, "timeText": "" },
             "options": [
               "Vào lớp học",
               "Đi ngủ",
@@ -323,7 +326,7 @@ export const g1c9 = {
               "Đi bơi"
             ],
             "answer": "Vào lớp học",
-            "mascotHint": "8 giờ sáng là giờ vào lớp."
+            "mascotHint": "Kim ngắn chỉ số 8, kim dài chỉ số 12 → 8 giờ sáng, giờ vào lớp."
           }
         },
         {
@@ -787,7 +790,8 @@ export const g1c9 = {
         {
           "type": "quiz",
           "content": {
-            "question": "Kim ngắn chỉ số 9, kim dài chỉ số 12. Đồng hồ chỉ mấy giờ?",
+            "question": "Đồng hồ chỉ mấy giờ?",
+            "clock": { "hour": 9, "minute": 0, "timeText": "" },
             "options": [
               "9 giờ",
               "12 giờ",

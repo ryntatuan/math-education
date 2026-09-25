@@ -1937,9 +1937,10 @@
     border-radius: 20px;
   }
 
+  /* 🔴 Cùng họ lỗi với `.clock-svg` ở trên: 125px làm số trên mặt đồng hồ chỉ ~5,5px. */
   .dialogue-focus-graphic .clock-svg {
-    width: 125px !important;
-    height: 125px !important;
+    width: min(170px, 48vw) !important;
+    height: min(170px, 48vw) !important;
   }
 
   .dialogue-focus-graphic .clock-graphic-container {
@@ -2031,8 +2032,11 @@
   }
 
   .clock-graphic-container .clock-svg {
-    width: 135px !important;
-    height: 135px !important;
+    /* 🔴 Trước là 135px cho MỌI cỡ: mặt đồng hồ 220 đơn vị co còn 0,61 ⇒ số La Mã
+       ("VIII") chỉ ~7px, trẻ không đọc được (người dùng báo 2026-09-25, bài `g3-c8-l5`).
+       Mặt đồng hồ LÀ nội dung bài học nên phải đủ to: 180px ⇒ chữ 17 đơn vị ≈ 14px. */
+    width: min(180px, 52vw) !important;
+    height: min(180px, 52vw) !important;
   }
 
   .clock-labels-pill-row {

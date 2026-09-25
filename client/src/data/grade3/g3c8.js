@@ -330,6 +330,7 @@ export const g3c8 = {
             clock: {
               hour: 8,
               minute: 0,
+              roman: true,
             },
           },
         },
@@ -399,6 +400,7 @@ export const g3c8 = {
             clock: {
               hour: 8,
               minute: 0,
+              roman: true,
             },
           },
         },

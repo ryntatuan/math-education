@@ -781,7 +781,7 @@ Sau khi Lớp 1 xong thì làm lần lượt **Lớp 2 → 3 → 4 → 5**, mỗ
 
 **Bước 1 — Trích ảnh 300 DPI.** Dùng `scripts/ocr-textbook-pdfs.py` (hoặc lệnh `pymupdf` ở §5.2) trích **toàn bộ** trang của từng tập vào `scratch/` (đã bị `.gitignore` chặn). **Kiểm chéo 2 trang đã biết** trước khi tin quy ước số trang.
 
-**Bước 2 — Quét 5 nhóm lỗi** (mỗi nhóm đều đã từng xảy ra thật):
+**Bước 2 — Quét 6 nhóm lỗi** (mỗi nhóm đều đã từng xảy ra thật):
 
 | Nhóm                                 | Nội dung kiểm                                                                                             |
 | :----------------------------------- | :-------------------------------------------------------------------------------------------------------- |
@@ -790,6 +790,18 @@ Sau khi Lớp 1 xong thì làm lần lượt **Lớp 2 → 3 → 4 → 5**, mỗ
 | **C. Số liệu sai**                   | Số đếm/số đo trên hình không khớp SGK (tiền lệ: hai hàng bạn 5+4 trong khi sách là 6+4)                   |
 | **D. Câu hỏi thiếu hình**            | Câu hỏi nói về hình nhưng không vẽ hình, hoặc vẽ mà bé không đọc được                                     |
 | **E. Chữ gọi tên mà hình không ghi** | Bài nói “cạnh AB”, “đỉnh A” mà trên hình không có chữ A, B                                                |
+
+**Nhóm F (thêm 2026-09-25) — Hình không có chỗ vẽ.** Dữ liệu khai `clock` / `operation` /
+`number` / `comparison` ở một slide mà **không thành phần nào vẽ khoá đó** thì hình không
+bao giờ hiện, im lặng, không lỗi, không cảnh báo. Gặp thật: **22 ca** ở Lớp 2–4 (Chủ đề 9 Lớp 1
+và các bài xem đồng hồ Lớp 2–3). Công cụ: `node scratch/soat-hinh-khong-hien.mjs`.
+
+> ⚠️ **Nhóm C và F đều là nhóm “máy kiểm chắc hơn mắt người” — chạy công cụ TRƯỚC khi mở ảnh:**
+> C: `node scratch/soat-phep-tinh.mjs` (kiểm `operation`, `comparison` và MỌI câu “a op b = c”
+> trong chữ; canary hai vế) · F: `node scratch/soat-hinh-khong-hien.mjs`.
+> 🔴 **Không được ĐOÁN “cái gì được vẽ”.** Bảng bản đồ vẽ của công cụ F phải **đọc từ mã**
+> `LessonPage.jsx`; lần đầu tôi đoán `ConceptSlide` không vẽ `clock` ⇒ **báo oan 2 ca** (mà
+> trong mã có vẽ, dòng ~1650). Đoán sai ở đây còn tai hại hơn không có công cụ.
 
 **Bước 3 — Chưa chốt được thì GHI “?” VÀ HỎI.** Ảnh scan mờ thì **không đoán số**; ghi vào bảng là “chưa chốt” và hỏi người dùng (họ có sách giấy — chính nhờ vậy mới phát hiện 6 + 4 = 10).
 
