@@ -246,8 +246,16 @@ export function PlaneShape({
    * để lề trái/phải bằng nhau. Chữ ước 8,5 đơn vị/ký tự cho cỡ 17–16, 7,4 cho cỡ 15.
    */
   const RONG_CHU = 8.5;
-  let mx0 = Math.min(...pts.map((p) => p[0]));
-  let mx1 = Math.max(...pts.map((p) => p[0]));
+  /**
+   * 🔴 HÌNH TRÒN KHÔNG CÓ TOẠ ĐỘ ĐỈNH — nó được vẽ bằng `<circle cx=160 cy=115 r=78>`.
+   * Bản cũ gọi thẳng `pts.map(...)` khi `pts` là `undefined` ⇒ React NÉM
+   * "Cannot read properties of undefined (reading 'map')" và **cả slide không hiện**.
+   *
+   * Đã xảy ra thật ở **21 slide** của 4 lớp (`g1-c2-l2`, `g3-c3-l3`, `g5-c3-l4`…) — dữ liệu
+   * đúng, chỉ bộ vẽ thiếu vế. Nay lấy sẵn bbox của đường tròn (160 ± 78) khi không có đỉnh.
+   */
+  let mx0 = pts ? Math.min(...pts.map((p) => p[0])) : 82;
+  let mx1 = pts ? Math.max(...pts.map((p) => p[0])) : 238;
   if (k !== "circle") {
     /**
      * ⚠️ Nhãn “đỉnh”/tên đỉnh CHỈ được vẽ khi `vertices` hoặc `vertexLabels` có giá trị —

@@ -19,8 +19,8 @@ export const g3c13 = {
             mascotMood: "curious",
             text: "7 giờ 15 phút — mẹ nhắc bé đi học đấy! Bé đọc được đồng hồ chưa? ⏰",
             clock: {
-              hour: 8,
-              minute: 0,
+              hour: 7,
+              minute: 15,
             },
           },
         },
@@ -68,7 +68,7 @@ export const g3c13 = {
             answer: "7 giờ",
             mascotHint: "Kim dài chỉ số 12 nghĩa là đúng giờ: 7 giờ.",
             clock: {
-              hour: 8,
+              hour: 7,
               minute: 0,
             },
           },
@@ -87,8 +87,8 @@ export const g3c13 = {
             answer: "7 giờ 15 phút",
             mascotHint: "3 × 5 = 15 phút. Vậy là 7 giờ 15 phút.",
             clock: {
-              hour: 8,
-              minute: 0,
+              hour: 7,
+              minute: 15,
             },
           },
         },
@@ -586,8 +586,8 @@ export const g3c13 = {
             answer: "9 giờ 30 phút",
             mascotHint: "6 × 5 = 30 phút. Vậy là 9 giờ 30 phút.",
             clock: {
-              hour: 8,
-              minute: 0,
+              hour: 9,
+              minute: 30,
             },
           },
         },

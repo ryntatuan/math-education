@@ -56,6 +56,11 @@ export const g3c3 = {
           content: {
             question:
               "Ba điểm A, O, B thẳng hàng theo thứ tự A, O, B. Điểm nào ở giữa?",
+            pointLine: {
+              kind: "segment",
+              points: ["A", "O", "B"],
+              formula: "Điểm nào nằm giữa A và B?",
+            },
             options: ["Điểm A", "Điểm O", "Điểm B", "Không có điểm nào"],
             answer: "Điểm O",
             mascotHint: "O nằm giữa A và B.",
@@ -101,6 +106,12 @@ export const g3c3 = {
               "Nếu AB dài 8 cm thì trung điểm M cách A và B mỗi bên 4 cm.",
               "Điểm ở giữa chưa chắc là trung điểm, nhưng trung điểm luôn là điểm ở giữa.",
             ],
+            pointLine: {
+              kind: "segment",
+              points: ["A", "M", "B"],
+              equalMarks: true,
+              formula: "M nằm giữa A, B và AM = MB",
+            },
           },
         },
         {
@@ -120,6 +131,12 @@ export const g3c3 = {
           content: {
             question:
               "Đoạn thẳng AB dài 10 cm, M là trung điểm của AB. Hỏi AM dài bao nhiêu?",
+            pointLine: {
+              kind: "segment",
+              points: ["A", "M", "B"],
+              equalMarks: true,
+              formula: "M là trung điểm ⇒ AM = MB",
+            },
             options: ["4 cm", "5 cm", "6 cm", "10 cm"],
             answer: "5 cm",
             mascotHint: "Trung điểm chia đôi: 10 : 2 = 5 cm.",
@@ -311,11 +328,12 @@ export const g3c3 = {
           type: "visual",
           content: {
             text: "Góc đỉnh A, cạnh AB và AC — bốn góc của hình chữ nhật đều là góc vuông",
-            table: {
-              headers: ["Đỉnh", "Cạnh"],
-              rows: [["A", "AB và AC"]],
-              label:
-                "Góc đỉnh A, cạnh AB và AC — bốn góc của hình chữ nhật đều là góc vuông",
+            angle: {
+              kind: "right",
+              degrees: 90,
+              vertexLetter: "A",
+              armLetters: ["B", "C"],
+              label: "Góc đỉnh A, hai cạnh AB và AC",
             },
           },
         },
@@ -882,6 +900,12 @@ export const g3c3 = {
           content: {
             question:
               "Đoạn thẳng AB dài 12 cm. Trung điểm M của AB cách A bao nhiêu xăng-ti-mét?",
+            pointLine: {
+              kind: "segment",
+              points: ["A", "M", "B"],
+              equalMarks: true,
+              formula: "M là trung điểm của AB",
+            },
             options: ["4 cm", "6 cm", "12 cm", "24 cm"],
             answer: "6 cm",
             mascotHint: "12 : 2 = 6 cm.",

@@ -30,9 +30,9 @@ export const g1c2 = {
             badge: "Khám Phá",
             title: "Hình vuông",
             explanation: "HÌNH VUÔNG có 4 cạnh và 4 cạnh đều DÀI BẰNG NHAU.",
-            rule: "Hình vuông có 4 cạnh bằng nhau và 4 góc vuông.",
+            rule: "Hình vuông có 4 cạnh dài bằng nhau.",
             points: [
-              "Viên gạch hoa, mặt đồng hồ vuông có dạng hình vuông.",
+              "Viên gạch hoa, ô cửa sổ vuông có dạng hình vuông.",
               "Bốn cạnh bằng nhau, không cạnh nào dài hơn cạnh nào.",
               "Đếm đỉnh: hình vuông có 4 đỉnh.",
             ],
@@ -63,6 +63,7 @@ export const g1c2 = {
           type: "quiz",
           content: {
             question: "Đặc điểm nào đúng với hình vuông?",
+            planeShape: { kind: "square" },
             options: [
               "Bốn cạnh dài bằng nhau",
               "Ba cạnh",
@@ -113,7 +114,7 @@ export const g1c2 = {
             rule: "Hình tròn không có cạnh và không có đỉnh.",
             points: [
               "Bánh xe, mặt đồng hồ, cái đĩa có dạng hình tròn.",
-              "Hình tròn lăn được.",
+              "Bánh xe có dạng hình tròn nên lăn được.",
               "Hình tròn khác hình vuông: không có cạnh, không có đỉnh.",
             ],
           },
@@ -132,6 +133,7 @@ export const g1c2 = {
           type: "quiz",
           content: {
             question: "Hình tròn có mấy cạnh?",
+            planeShape: { kind: "circle" },
             options: [1, 2, 4, "Không có cạnh nào"],
             answer: "Không có cạnh nào",
             mascotHint: "Hình tròn không có cạnh, chỉ có đường bao cong.",
@@ -197,6 +199,7 @@ export const g1c2 = {
           type: "quiz",
           content: {
             question: "Hình tam giác có mấy cạnh?",
+            planeShape: { kind: "triangle" },
             options: [2, 3, 4, 5],
             answer: 3,
             mascotHint: "'Tam' là ba — hình tam giác có 3 cạnh.",
@@ -262,6 +265,7 @@ export const g1c2 = {
           type: "quiz",
           content: {
             question: "Hình chữ nhật khác hình vuông ở điểm nào?",
+            planeShapes: [{ kind: "square" }, { kind: "rectangle" }],
             options: [
               "Bốn cạnh không bằng nhau, chỉ hai dài bằng nhau và hai ngắn bằng nhau",
               "Có ba cạnh",
@@ -317,43 +321,65 @@ export const g1c2 = {
           },
         },
         {
-          type: "visual",
+          type: "quiz",
           content: {
-            text: "⭕ Mặt đồng hồ → hình tròn",
-            shapePicture: {
-              kind: "clock",
-              note: "Mặt đồng hồ có dạng hình tròn",
-            },
+            question: "Mặt đồng hồ có dạng hình gì?",
+            shapePicture: { kind: "clock", showShape: false },
+            options: [
+              "Hình tròn",
+              "Hình vuông",
+              "Hình tam giác",
+              "Hình chữ nhật",
+            ],
+            answer: "Hình tròn",
+            mascotHint:
+              "Mặt đồng hồ có đường bao cong, không có cạnh — đấy là hình tròn.",
           },
         },
         {
-          type: "visual",
+          type: "quiz",
           content: {
-            text: "▢ Viên gạch → hình vuông",
-            shapePicture: {
-              kind: "brick",
-              note: "Viên gạch lát nền có dạng hình vuông",
-            },
+            question: "Viên gạch lát nền có dạng hình gì?",
+            shapePicture: { kind: "brick", showShape: false },
+            options: [
+              "Hình vuông",
+              "Hình tròn",
+              "Hình chữ nhật",
+              "Hình tam giác",
+            ],
+            answer: "Hình vuông",
+            mascotHint: "Viên gạch có bốn cạnh dài bằng nhau — hình vuông.",
           },
         },
         {
-          type: "visual",
+          type: "quiz",
           content: {
-            text: "🔺 Mái nhà → hình tam giác",
-            shapePicture: {
-              kind: "roof",
-              note: "Mái nhà có dạng hình tam giác",
-            },
+            question: "Mái nhà có dạng hình gì?",
+            shapePicture: { kind: "roof", showShape: false },
+            options: [
+              "Hình tam giác",
+              "Hình vuông",
+              "Hình tròn",
+              "Hình chữ nhật",
+            ],
+            answer: "Hình tam giác",
+            mascotHint: "Mái nhà có ba cạnh — hình tam giác.",
           },
         },
         {
-          type: "visual",
+          type: "quiz",
           content: {
-            text: "▭ Quyển sách → hình chữ nhật",
-            shapePicture: {
-              kind: "book",
-              note: "Quyển sách có dạng hình chữ nhật",
-            },
+            question: "Quyển sách có dạng hình gì?",
+            shapePicture: { kind: "book", showShape: false },
+            options: [
+              "Hình chữ nhật",
+              "Hình vuông",
+              "Hình tam giác",
+              "Hình tròn",
+            ],
+            answer: "Hình chữ nhật",
+            mascotHint:
+              "Quyển sách có hai cạnh dài và hai cạnh ngắn — hình chữ nhật.",
           },
         },
         {
@@ -528,8 +554,8 @@ export const g1c2 = {
             text: "Trong hình ngôi nhà này có bao nhiêu hình nhỉ? Bé đếm thật kĩ nhé! 🏠",
             shapePicture: {
               kind: "house",
-              windows: 1,
-              note: "Ngôi nhà có 1 mái tam giác, 1 thân chữ nhật, 1 cửa sổ vuông",
+              windows: 2,
+              note: "Ngôi nhà có mái tam giác, thân chữ nhật và các cửa sổ vuông",
             },
           },
         },
@@ -540,7 +566,7 @@ export const g1c2 = {
             title: "Đếm hình theo từng loại",
             explanation:
               "Hình ghép có nhiều hình nhỏ bên trong. Bé đếm lần lượt từng LOẠI hình để không sót.",
-            rule: "Ngôi nhà: 1 mái là hình tam giác, 1 thân là hình chữ nhật, 1 cửa sổ là hình vuông.",
+            rule: "Ngôi nhà: 1 mái là hình tam giác, 1 thân là hình chữ nhật, 2 cửa sổ là 2 hình vuông.",
             points: [
               "Đếm hình tam giác trước, rồi hình vuông, rồi hình chữ nhật.",
               "Đếm theo loại sẽ không bị sót.",
@@ -548,19 +574,19 @@ export const g1c2 = {
             ],
             shapePicture: {
               kind: "house",
-              windows: 1,
-              note: "Ngôi nhà có 1 mái tam giác, 1 thân chữ nhật, 1 cửa sổ vuông",
+              windows: 2,
+              note: "Ngôi nhà có mái tam giác, thân chữ nhật và các cửa sổ vuông",
             },
           },
         },
         {
           type: "visual",
           content: {
-            text: "🏠 → 1 hình tam giác (mái)\n     1 hình chữ nhật (thân)\n     1 hình vuông (cửa sổ)",
+            text: "🏠 → 1 hình tam giác (mái)\n     1 hình chữ nhật (thân)\n     2 hình vuông (2 cửa sổ)",
             shapePicture: {
               kind: "house",
-              windows: 1,
-              note: "1 hình tam giác (mái) · 1 hình chữ nhật (thân) · 1 hình vuông (cửa sổ)",
+              windows: 2,
+              note: "1 hình tam giác (mái) · 1 hình chữ nhật (thân) · 2 hình vuông (2 cửa sổ)",
             },
           },
         },
@@ -640,6 +666,12 @@ export const g1c2 = {
           type: "quiz",
           content: {
             question: "Hình nào có 3 cạnh?",
+            planeShapes: [
+              { kind: "rectangle", showName: false },
+              { kind: "triangle", showName: false },
+              { kind: "square", showName: false },
+              { kind: "circle", showName: false },
+            ],
             options: [
               "Hình tam giác",
               "Hình vuông",
@@ -654,6 +686,12 @@ export const g1c2 = {
           type: "quiz",
           content: {
             question: "Hình nào KHÔNG có cạnh nào?",
+            planeShapes: [
+              { kind: "circle", showName: false },
+              { kind: "square", showName: false },
+              { kind: "triangle", showName: false },
+              { kind: "rectangle", showName: false },
+            ],
             options: [
               "Hình tròn",
               "Hình vuông",
@@ -662,6 +700,57 @@ export const g1c2 = {
             ],
             answer: "Hình tròn",
             mascotHint: "Hình tròn chỉ có đường bao cong, không có cạnh.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Những hình nào là hình tròn?",
+            planeShapes: [
+              { kind: "square", label: "A", showName: false },
+              { kind: "circle", label: "B", showName: false },
+              { kind: "triangle", label: "C", showName: false },
+              { kind: "rectangle", label: "D", showName: false },
+              { kind: "circle", label: "E", showName: false },
+            ],
+            options: ["B và E", "B và C", "A và D", "C và D"],
+            answer: "B và E",
+            mascotHint:
+              "Hình tròn có đường bao cong. Bé tìm xem hình nào cong tròn nhé.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Những hình nào là hình tam giác?",
+            planeShapes: [
+              { kind: "triangle", label: "A", showName: false },
+              { kind: "square", label: "B", showName: false },
+              { kind: "triangle", label: "C", showName: false },
+              { kind: "circle", label: "D", showName: false },
+              { kind: "rectangle", label: "E", showName: false },
+            ],
+            options: ["A và C", "A và B", "B và E", "C và D"],
+            answer: "A và C",
+            mascotHint:
+              "Hình tam giác có ba cạnh. Hai hình A và C đều có ba cạnh.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Những hình nào KHÔNG là hình vuông?",
+            planeShapes: [
+              { kind: "square", label: "A", showName: false },
+              { kind: "rectangle", label: "B", showName: false },
+              { kind: "circle", label: "C", showName: false },
+              { kind: "square", label: "D", showName: false },
+              { kind: "triangle", label: "E", showName: false },
+            ],
+            options: ["B, C và E", "A và D", "B và D", "C và E"],
+            answer: "B, C và E",
+            mascotHint:
+              "A và D là hình vuông (bốn cạnh dài bằng nhau) nên các hình còn lại không phải hình vuông.",
           },
         },
         {
