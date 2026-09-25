@@ -177,3 +177,91 @@ Ba phát hiện nhóm C **đã xử lý xong trong §8b**, dưới đây là b�
 2. **B1 — bảng ánh xạ trang → bài:** `docs/sgk_map_lop1.md` — mục lục SGK chép **từ ảnh** cho cả 2 tập,
    bảng ánh xạ cho **cả 10 chương**, kèm **số trang PDF** để mở đúng ảnh, và cột “Chắc chắn?” để biết
    chỗ nào còn phải đối chiếu ảnh khi rà.
+
+---
+
+## ĐỢT CHỦ ĐỀ 2 — Làm quen với một số hình phẳng (sách tr.46–55) — ✅ ĐÃ SỬA XONG 2026-09-25
+
+**Ảnh đã đọc:** `scratch/sgk-lop1/math-grade-1-part-1/page-0047.png` … `page-0056.png`
+(sách 46–55 = PDF 47–56; **đã kiểm chân trang từng ảnh**: PDF 47 in số 46 … PDF 56 in số 55 ✔).
+**Kết quả:** 8 bài `g1-c2-l1` … `l8`, **48 → 51 slide**; cổng **32 PASS**; build sạch; hình **0 tràn · 0 chồng**.
+
+### Bảng phát hiện (đã sửa hết) — 5 nhóm A–E
+
+| #   | Nhóm | Chỗ          | Phát hiện                                                                                                                                                            | Đã sửa thành                                                                                                                                              |
+| :-- | :--- | :----------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| C1  | C    | `l1` concept | “Viên gạch hoa, **mặt đồng hồ vuông** có dạng hình vuông” — SGK tr.46 dùng ĐỒNG HỒ làm ví dụ HÌNH TRÒN, và chính `l2` dạy “mặt đồng hồ tròn xoe” ⇒ hai bài mâu thuẫn | “Viên gạch hoa, **ô cửa sổ vuông** có dạng hình vuông”                                                                                                    |
+| C2  | C    | `l7`         | Cùng một bài, hai số khác nhau: kể chuyện/khám phá/ví dụ vẽ nhà **1 cửa sổ**, còn ghi nhớ và câu hỏi nói **2 hình vuông**                                            | Thống nhất **2 cửa sổ** ở MỌI slide (hình + lời khớp nhau)                                                                                                |
+| C3  | C    | `l1` rule    | “Hình vuông có 4 cạnh bằng nhau **và 4 góc vuông**” — góc vuông là nội dung **LỚP 3** (ê-ke, `g3-c3`)                                                                | “Hình vuông có 4 cạnh dài bằng nhau.”                                                                                                                     |
+| C4  | C    | `l2` concept | “**Hình tròn lăn được**” — hình tròn là hình PHẲNG, đặt trên bàn không lăn; cái lăn được là khối trụ                                                                 | “**Bánh xe** có dạng hình tròn nên lăn được.”                                                                                                             |
+| A1  | A    | `l5`         | SGK tr.46 HĐ1 là hoạt động HỎI–ĐÁP theo đồ vật (đồng hồ · khăn · cờ · miếng gỗ), app chỉ có 4 slide “xem hình” in sẵn đáp án (“Mặt đồng hồ → hình tròn”)             | **4 slide đó thành 4 CÂU HỎI** (đồng hồ · viên gạch · mái nhà · quyển sách), hình **không in tên hình** (`showShape: false`) — số slide của bài không đổi |
+| A2  | A    | `l8` (mới)   | SGK tr.47 HĐ2 “Những hình nào là hình tròn / tam giác?” — app không có dạng chọn nhiều hình                                                                          | Thêm **2 câu hỏi** với hàng **5 hình A–E**, đáp án dạng cặp (“B và E”, “A và C”) — đúng kiểu SGK                                                          |
+| A5  | A    | `l8` (mới)   | SGK tr.49 LT4 “Những hình nào **KHÔNG** là hình vuông?” — app không có                                                                                               | Thêm **1 câu hỏi** 5 hình A–E, đáp án “B, C và E”                                                                                                         |
+| D1  | D    | `l8`         | 2 câu hỏi cuối hỏi về hình mà **không vẽ hình nào** (Lớp 1 bé phải nhìn thấy)                                                                                        | Thêm hàng 4 hình phẳng vào chính câu hỏi (không in tên hình)                                                                                              |
+| D2  | D    | `l1`–`l4`    | Câu hỏi đặc điểm hình không kèm hình, dù bài đã có sẵn hình vẽ                                                                                                       | Thêm `planeShape` cho `l1`/`l2`/`l3`; `l4` dùng **2 hình cạnh nhau** (vuông + chữ nhật) để so sánh                                                        |
+| E   | E    | —            | Không có ca nào: các bài chỉ gọi TÊN HÌNH, không gọi tên đỉnh/cạnh                                                                                                   | —                                                                                                                                                         |
+
+### Hai lỗi NẰM NGOÀI chương này, tìm ra nhân dịp rà (đã sửa, ảnh hưởng 4 lớp)
+
+| #   | Chỗ                                                                                              | Lỗi                                                                                                                                                                                                                                                                                         | Đã sửa                                                                                                                                                                                                       |
+| :-- | :----------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| G1  | **`PlaneShape` khi `kind: "circle"` — 21 slide của 4 lớp** (`g1-c2-l2`, `g3-c3-l3`, `g5-c3-l4`…) | Bộ vẽ gọi `pts.map(...)` khi `SHAPE_POINTS` **không có** toạ độ cho hình tròn ⇒ React ném “Cannot read properties of undefined (reading 'map')” ⇒ **cả slide không hiện**. Dữ liệu đúng, chỉ bộ vẽ thiếu vế. Phát hiện khi dựng trang xem trước chương 2 (trang trắng + lỗi ở console).     | Dùng bbox đường tròn (`160 ± 78`) khi không có toạ độ đỉnh — hình tròn vẽ được; đã kiểm trên app thật ở `g1-c2-l2`.                                                                                          |
+| G2  | **Mặt đồng hồ sai giờ ở 8 slide** (L1 `g1-c9`, L2 `g2-c6`/`g2-c7`, L3 `g3-c13`)                  | 2 slide KỂ CHUYỆN và 6 CÂU HỎI mô tả một giờ nhưng đồng hồ vẽ **8 giờ 00** (giá trị mặc định) — trẻ nhìn hình 8 giờ rồi trả lời câu hỏi về 3 giờ 30 / 7 giờ 15.                                                                                                                             | Đặt lại `clock` cho khớp đúng giờ trong lời: 7:15 · 7:00 · 3:30 · 8:15 · 10:30 · 9:30 (mỗi chỗ dùng chính câu hỏi làm mốc).                                                                                  |
+| G3  | **7 ca HÌNH KHÔNG VẼ ĐƯỢC** trên toàn bộ 5 lớp (trang đo `visual-fit.html` có `class="loi"`)     | Cùng họ với G1: dữ liệu dùng `kind` mà bộ vẽ không có ⇒ slide trắng hình. Con số **7** này là đo được từ trước nhưng chưa từng được đọc thành lỗi.                                                                                                                                          | Sau khi sửa G1: trang đo báo **0 ca LỖI** (682 ca hình thật của 5 lớp đều vẽ được).                                                                                                                          |
+| G4  | **Nhóm D/E ở Lớp 2–3 — 6 chỗ** (`g2-c5-l4`, `g2-c5-l6`, `g3-c3-l1`, `g3-c3-l2` ×2, `g3-c3-l4`)   | (a) 3 câu hỏi/nhánh nói về đường gấp khúc ABCD · ba điểm A,O,B · trung điểm M của AB nhưng **không vẽ hình**; (b) bài “Hình tứ giác ABCD có 4 cạnh AB, BC, CD, DA” lại vẽ **hình chữ nhật không ghi tên đỉnh**; (c) bài “Góc đỉnh A, cạnh AB và AC” chỉ có **bảng chữ**, không có hình góc. | Thêm `pointLine`/`planeShape`/`angle` đúng chỗ: 4 nhánh nay có hình (`pointLine` ×3 · `planeShape kind=quad` + `vertexLabels` · `angle kind=right`). Đã kiểm trên app thật: hình hiện, app chấm đúng đáp án. |
+
+**Giới hạn còn lại của phép soát nhóm E** (`scratch/soat-ten-diem.mjs`, 27 slide có tên điểm): còn **8 ca** nhưng **đều là chuyện chữ, không phải lỗi** — 2 ca báo oan ở Lớp 1 (chữ “Hình
+chữ nhật” bị coi là tên điểm H/N/G/K) và 6 ca là **bài toán lời văn** dùng tên đoạn AB/CD (L3 `g3-c6-l7`, L4 `g4-c5-l1`, L5 `g5-c4-l5`, `g5-c5-l6`) — SGK cũng không đòi hình cho những bài này.
+
+---
+
+## ĐỢT CHỦ ĐỀ 3 — Phép cộng, phép trừ trong phạm vi 10 (sách tr.56–91) — ✅ RÀ + BỔ SUNG 2026-09-25
+
+**Ảnh đã đọc:** 21 trang (`part-1/page-0057.png` … `page-0077.png`, `page-0081.png`, `page-0087.png`
+= sách 56–76, 80, 86). Chưa đọc: các trang luyện tập 77–79, 82–85, 88–91.
+
+### Kết quả quan trọng nhất: KHÔNG có lỗi số liệu
+
+Đã kiểm **từng phép tính** trong 14 bài (`g1-c3-l1` … `l14`): 3+2=5 · 4+3=7 · 5+2=7 · 2+5=5+2=7 ·
+3+6=9 · 5+0=5 · 0+3=3 · 7+0=7 · 9−3=6 · 8−2=6 · 4−0=4 · 4−4=0 · 6−6=0 · 9−5=4 · 9−4=5 · 8−3=5 ·
+10−4=6 · 5+3=8 → 8−3=5 · 8−5=3 · 6+2=8 → 8−2=6 · 3+?=7→4 · ?+2=6→4 · 8−3=5 · 6+3=9 · 7−4=3 ·
+4+6=10 → 10−4=6 · 10−6=4 — **tất cả đúng**.
+
+### Nhóm A — dạng bài SGK còn thiếu (đã bổ sung 12 slide)
+
+| #   | SGK | Dạng bài                                                                 | Trước đây | Đã bổ sung vào |
+| :-- | :-- | :----------------------------------------------------------------------- | :-------- | :------------- |
+| A1  | tr.62 · 64 · 66 · 76 · 86 | **Bảng tính — điền số ?** (SGK lặp **6 lần** trong chương này) | **Cả 5 lớp không có dạng này** | `l3` (tr.64, tổng 9) · `l4` (tr.62, tổng 7) · `l8` (tr.66, tổng 10) · `l9` (tr.76, 7 trừ dần) · `l14` (tr.86, quan hệ cộng–trừ) |
+| A2  | tr.66 | **Cộng ba số**: `3 + 1 + 2 = 6`, nhẩm từng bước | **Cả 5 lớp không có dạng này** | `l4` (1 slide ví dụ + 1 câu hỏi) |
+
+Mỗi bổ sung đi kèm **1 câu hỏi kiểm tra** đúng số của bảng, và **mỗi slide chỉ còn 1 bảng** (theo chính sách §8i).
+
+### Nhóm A — còn lại (cần VẼ MỚI, chưa làm)
+
+| Dạng bài SGK | Trang | Vì sao chưa làm |
+| :----------- | :---- | :-------------- |
+| **Tháp số** (đỉnh = tổng hai ô dưới: 4 1 1 0 → 5 2 ? → 7 ? → ?) | tr.67 LT5 | Cần bộ vẽ mới (bảng bậc thang), không dùng lại được khoá nào có sẵn |
+| **Nối / tìm cặp**: “Tìm chuồng cho thỏ” (tr.63 HĐ4), “Cặp tấm thẻ anh em” (tr.65) | tr.63 · 65 | Cần dạng “nối” mới; hiện quiz chỉ có 1 đáp án đúng |
+| **Tranh để đếm rồi viết phép tính** (bể cá/bể trống · thuyền · bướm/kem · chim trên cành) | tr.63 HĐ3 · 65 HĐ1 · 71 HĐ4 · 74 | Cần cảnh vẽ mới (đếm được, có nhóm rời) |
+| **Bồn hoa “kết quả lớn hơn 3”** (so kết quả với một số) | tr.76 LT2 | Cần cảnh hoa + dạng so sánh; có thể dùng `groupScene` nếu chấp nhận bố cục khác SGK |
+| **Tính nhẩm theo cột** (9 phép một ô, nhiều trang) | tr.58 · 62 · 64 · 66 · 70 · 76 | Đây là dạng “bài tập giấy”; **Luyện tập** (Practice) đã phủ dạng tính nhẩm nên chưa cần thêm slide |
+
+### Bằng chứng sau khi bổ sung
+
+- `node scratch/kiem-tra-slide.mjs g1-c3` → **0 lỗi** · cổng **32 PASS · 0 FAIL** · build sạch.
+- Trang đo hình: **692 ca** (trước 682) — **0 ca không vẽ được · 0 tràn thẻ · 0 chữ chồng**.
+- Chạy thật trên app: `l3` 7/7 · `l4` 9/9 · `l8` 8/8 · `l9` 8/8 · `l14` 8/8 — hết slide, không lỗi, app **chấm đúng cả 6 đáp án mới** (9 · 7 · 6 · 10 · 5 · 1).
+- Quy mô: CĐ3 **77 → 89 slide**; toàn hệ thống **2659 → 2671** (Lớp 1: 637 → 649).
+
+**Công cụ kiểm mới (chạy lại được bất cứ lúc nào):**
+
+- `node scratch/kiem-tra-slide.mjs [mã-chương]` — tự kiểm 5 lớp: `type` lạ · đáp án **không** nằm trong lựa chọn · lựa chọn **trùng nhau** · slide hình có **≥ 2 hình vẽ** · `kind` hình **không có bộ vẽ** · chú thích hình **in sẵn đáp án** · **đồng hồ phải chỉ đúng giờ mà chữ nhắc**. Hiện: **0 lỗi** (119 cảnh báo “chữ nhắc lại phép tính” — để rà sau).
+- `node scratch/dem-plane-shape-hong.mjs` — đếm ca `planeShape` mà bộ vẽ không có toạ độ (đọc thẳng từ mã nguồn, không chép tay).
+- `node scratch/soat-dong-ho.mjs` — liệt kê MỌI slide có `clock` kèm giờ trong chữ, để đối chiếu bằng mắt.
+- `node scratch/soat-ten-diem.mjs` — nhóm E: chữ gọi tên điểm (điểm A · cạnh AB · trung điểm M · tam giác ABC…) mà hình không in ra tên đó (đã bỏ qua slide `summary`).
+- Trang đo `scratch/visual-fit.html`: cột `class="loi"` là **ca không vẽ được** — sau khi sửa hình tròn: **0/682 ca**.
+- `scratch/xem-truoc-cd2.jsx` → `scratch/xem-truoc-cd2.html` — xem trước **cả 51 slide** của chương kèm hình thật (bản mẫu cho các chương sau).
+
+### Việc CÒN LẠI của chương 2 (chưa làm, cần vẽ mới nhiều — chờ bạn chốt)
+
+SGK tr.46–55 có **16 hoạt động**, app hiện phản ánh trọn **9**. Còn thiếu: đếm hình trong tranh (tr.47 HĐ3 · tr.48 LT1 · tr.49 LT3 — có bảng điền số lượng), xếp **que tính** (tr.48 LT2 · tr.54 LT2), ghép hình 3–5 miếng ra _chữ nhật · hình thang · mũi tên · tam giác lớn_ (tr.50–53), 9 đồ vật quanh em (tr.54 LT1: ê-ke · con tem · đĩa DVD · cái bánh · khung cửa sổ · bảng lớp), **dãy hình lặp quy luật** (tr.55 LT3 — cả 5 lớp chưa có dạng này), đếm miếng bìa để ghép mũi tên (tr.55 LT4).

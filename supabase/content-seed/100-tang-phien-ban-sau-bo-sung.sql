@@ -12,6 +12,33 @@
 -- CHẠY LẠI NHIỀU LẦN: chỉ làm phiên bản tăng thêm 1 mỗi lần — vô hại (các bé tải
 --   lại nội dung thêm một lần), không sinh dòng trùng, không mất dữ liệu.
 --
+-- LƯU Ý LẦN 10 (2026-09-25): RÀ SOÁT **CHỦ ĐỀ 3 LỚP 1** (SGK tr.56–91) + BỔ SUNG DẠNG BÀI THEO SGK.
+--   Đọc 21 trang ảnh 300 DPI (PDF 57–77 + 81 + 87) đối chiếu 14 bài `g1-c3-l1` … `l14`.
+--   Kiểm từng câu: app **KHÔNG sai phép tính nào** (3+2, 4+3, 2+5=5+2, 5+0, 9−3, 4−4, 10−5, 3+?=7 …).
+--   Bổ sung **12 slide** cho các dạng bài SGK mà app còn thiếu:
+--     • **Bảng tính — điền số ?** (SGK lặp 6 lần trong chương này) ở 5 bài:
+--       `l3` (tr.64, các phép cộng đều bằng 9) · `l4` (tr.62, đều bằng 7) ·
+--       `l8` (tr.66, đều bằng 10) · `l9` (tr.76, 7 trừ dần) · `l14` (tr.86, quan hệ cộng–trừ trong 10).
+--     • **Cộng ba số** `3 + 1 + 2 = 6` (`l4`, SGK tr.66) — trước đây CẢ 5 LỚP không có dạng này.
+--   ⚠️ Số slide ĐÃ ĐỔI: 2659 → **2671** (Lớp 1: 637 → **649 slide**).
+--   ⚠️ LẦN NÀY CẦN DÁN: `02-bai-lop-1.sql` rồi `100-...` (file này).
+--
+-- LƯU Ý LẦN 9 (2026-09-25): RÀ SOÁT **CHỦ ĐỀ 2 LỚP 1** THEO SGK (tr.46–55).
+--   Mở 10 ảnh trang sách 300 DPI (PDF 47–56) đối chiếu 8 bài `g1-c2-l1` … `l8`.
+--   Sửa 6 lỗi nội dung thật:
+--     • `l1`: bỏ “mặt đồng hồ vuông có dạng hình vuông” — SGK dùng ĐỒNG HỒ làm ví dụ
+--       HÌNH TRÒN (tr.46), và chính bài `l2` dạy “mặt đồng hồ tròn xoe”.
+--     • `l1`: bỏ vế “4 góc vuông” (góc vuông là nội dung LỚP 3).
+--     • `l2`: “Hình tròn lăn được” → “Bánh xe có dạng hình tròn nên lăn được”.
+--     • `l7`: thống nhất ngôi nhà **2 cửa sổ vuông** (trước: kể chuyện 1, ghi nhớ 2).
+--     • `l5`: 4 slide “xem hình” → 4 CÂU HỎI đúng SGK tr.46 HĐ1 (đồng hồ/gạch/mái/sách),
+--       hình không in sẵn đáp án (`showShape: false`).
+--     • `l8`: thêm 3 câu hỏi kiểu SGK tr.47/49 (chọn nhiều hình A–E; “KHÔNG là hình vuông”).
+--   ⚠️ Số slide ĐÃ ĐỔI: 2656 → **2659** (8 bài CĐ2: 48 → 51 slide) ⇒
+--      vẫn 5 lớp · 51 chương · 459 bài · **2671 slide**.
+--   ⚠️ LẦN NÀY CẦN DÁN: `02-bai-lop-1.sql` · `03-bai-lop-2.sql` · `04-bai-lop-3.sql`
+--      rồi `100-...` (file này). `00`, `01`, `05`, `06`, `99` KHÔNG đổi.
+--
 -- LƯU Ý LẦN 8 (2026-09-25): BỎ PHƯƠNG ÁN VÔ NGHĨA Ở CÂU "ĐIỀN DẤU" + XẾP 3 PHƯƠNG ÁN MỘT HÀNG.
 --   Người dùng gửi ảnh chụp slide "Điền dấu thích hợp: 6 ? 6" có 4 phương án `> < = −`
 --   và hỏi: "dấu này là dấu gì? tại sao phép so sánh lại có dấu trừ ở đây?".
@@ -25,7 +52,7 @@
 --   Công cụ soát: `node scratch/soat-phuong-an-quiz.mjs` — 786 câu · 0 lỗi.
 --   ⚠️ LẦN NÀY CHỈ CẦN DÁN: `02-bai-lop-1.sql` rồi `100-...` (file này). `00` không cần;
 --      `01`, `03`, `04`, `05`, `06`, `99` KHÔNG đổi.
---   ⚠️ Số slide KHÔNG đổi ⇒ vẫn 5 lớp · 51 chương · 459 bài · **2656 slide**.
+--   ⚠️ Số slide KHÔNG đổi (lần này chỉ sửa phương án + cách xếp ô).
 --   ✅ Kiểm trên app: Lớp 1 Bài 8 (`g1-c1-l8`), slide 10/14 phải CHỈ có 3 nút `> < =`
 --      (không còn `−`) và 3 nút nằm CÙNG MỘT HÀNG.
 --
@@ -45,7 +72,7 @@
 --   Số liệu tự chọn (ảnh scan mờ, đã ghi vào bảng §7 của kế hoạch): cà rốt tô màu 3 củ ·
 --   gà ghi số 2 là 3 con · 4 con vật 6 chân · số vật trong 4 tranh cảnh · các cặp “cho thêm”.
 --   ⚠️ LẦN NÀY CHỈ CẦN DÁN: `02-bai-lop-1.sql` rồi `100-...` (file này).
---   ⇒ Quy mô nay: 5 lớp · 51 chương · **459 bài · 2656 slide**.
+--   ⇒ Quy mô của lần 7: 5 lớp · 51 chương · **459 bài · 2656 slide** (nay là 2671 — xem LẦN 10).
 --
 -- 📌 LẦN 6 (2026-09-24): VIẾT LẠI CHỦ ĐỀ 4 LỚP 1 THEO SGK (tr.92–101).
 --   Người dùng yêu cầu: “giúp trẻ dễ học bài hơn, luôn luôn có hình minh họa chính xác,

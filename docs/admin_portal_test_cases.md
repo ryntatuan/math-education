@@ -2,7 +2,7 @@
 
 > **Cập nhật:** 2026-09-21 · **Trạng thái:** GĐ 0 ✅ · GĐ 1 ✅ · GĐ 2a ✅ đã test PASS · GĐ 2c ✅ đã test PASS · GĐ 2b ✅ đã test PASS (2b-1 + 2b-2) · 📱 Admin Portal responsive ✅ · GĐ 3a ✅ đã test PASS · GĐ 3b ✅ đã test PASS (cả 10 mục) · 🔌 Truy vấn có hẹn giờ ✅ đã test PASS · 📐 Bố cục mọi menu ✅ đã test PASS · 🛠️ GĐ 3c ✅ đã chạy trên DB thật · 🔄 GĐ 3d ✅ **đã bật công tắc** (app đọc từ DB) · 📖 Trang Tham khảo ✅ · ✅ **GĐ 3: 4 lát đã xong và đủ 6/6 DoD** (`0013`) · 🆕 tạo được bài học mới · 🗑️ **xoá bài thẳng trong DB thì app tự lành** (`0014` ✅ đã đo cả hai chiều) · 🗑️ **nút xoá một bài học có chốt gõ chữ** (`0015` — không có đường xoá chương) · 📚 **Bổ sung 99 bài cho 13 chương mỏng của cả 5 lớp** (toàn hệ thống: 362 → **461 bài**, 1505 → **1966 slide**; Lớp 1–3 đánh số theo từng chương, Lớp 4–5 đã chuẩn hoá theo cùng quy ước) — dán lại seed rồi chạy `100-tang-phien-ban-sau-bo-sung.sql` để máy các bé nhận bài mới · 🐞 **`0017` vá lỗi thật:** trigger xoá bài gọi hàm có chốt admin ⇒ xoá bài _published_ bằng SQL thô bị `42501` và **huỷ cả câu DELETE** · 🚫 **Chế độ Khách KHÔNG lưu gì xuống máy** (cổng `S-31` + đã đo tay 2026-09-21) · 🐞 **vá tạo TRÙNG hồ sơ bé** (đo được: 2 tài khoản có 2 bé — đã dọn 2 dòng rỗng, đo lại 0/0/1 ✅) · 🐞 **thú cưng nay đồng bộ lên cloud** (trước đó là code chết — ✅ đã test và ĐO được số 2026-09-21: 2 lần ghi lên `child_pets` cách nhau **3,142 giây**)
 > **104 test case** · Dùng kèm với `docs/admin_portal_plan.md`.
-> 🔢 **Quy mô nội dung hiện tại:** 5 lớp · 51 chương · **459 bài** · **2656 slide** (sau khi dựng lại chương trình Lớp 1–3 theo SGK 2026-09-21, tách slide nhồi hình + thêm hình có TÊN ĐIỂM 2026-09-22, rồi viết lại **Chủ đề 4 Lớp 1** theo SGK tr.92–101 ngày 2026-09-24: 39 → 68 slide, rồi viết lại **Chủ đề 1 Lớp 1** theo SGK tr.6–45 ngày 2026-09-24: 67 → 128 slide, rồi **tách slide dạy hai vấn đề** thành hai slide ngày 2026-09-24: 2545 → 2547, rồi **tách slide chứa nhiều hình** để mỗi slide còn đúng một hình ngày 2026-09-24: 2547 → 2656).
+> 🔢 **Quy mô nội dung hiện tại:** 5 lớp · 51 chương · **459 bài** · **2671 slide** (sau khi dựng lại chương trình Lớp 1–3 theo SGK 2026-09-21, tách slide nhồi hình + thêm hình có TÊN ĐIỂM 2026-09-22, rồi viết lại **Chủ đề 4 Lớp 1** theo SGK tr.92–101 ngày 2026-09-24: 39 → 68 slide, rồi viết lại **Chủ đề 1 Lớp 1** theo SGK tr.6–45 ngày 2026-09-24: 67 → 128 slide, rồi **tách slide dạy hai vấn đề** thành hai slide ngày 2026-09-24: 2545 → 2547, rồi **tách slide chứa nhiều hình** để mỗi slide còn đúng một hình ngày 2026-09-24: 2547 → 2656, rồi **rà soát Chủ đề 2 Lớp 1** theo SGK tr.46–55 ngày 2026-09-25: 2656 → 2659, rồi **bổ sung dạng bài SGK cho Chủ đề 3 Lớp 1** ngày 2026-09-25: 2659 → 2671).
 >
 > 📌 **Quyết định tự đưa ra ở lát 3c/3d** (kèm lý do + cách đổi): [`docs/phase_3c_3d_decisions.md`](phase_3c_3d_decisions.md)
 
@@ -2532,7 +2532,7 @@ ORDER BY proname;
 npm run test:portal:static        # → dòng S-23
 ```
 
-**Mong đợi:** `6 kiểu · 2656 slide · không nuốt khoá · giữ nguyên kiểu số`.
+**Mong đợi:** `6 kiểu · 2671 slide · không nuốt khoá · giữ nguyên kiểu số`.
 
 Cổng này `import()` thằng `admin/src/lib/soanBai.js` và thử **hành vi thât**:
 
@@ -2974,7 +2974,7 @@ WHERE key IN ('content_source','content_version') ORDER BY key;
 npm run test:portal:static        # → dòng S-24
 ```
 
-**Mong đợi:** `5 lớp · 51 chương · 459 bài · 2656 slide — khớp từng khoá · canary bắt được lỗi ageRange`.
+**Mong đợi:** `5 lớp · 51 chương · 459 bài · 2671 slide — khớp từng khoá · canary bắt được lỗi ageRange`.
 
 Cổng này lấy **chính 5 file tĩnh**, trải chúng ra thành đúng hình dạng dòng DB mà
 `scripts/migrate-content.mjs` ghi, rồi dựng lại cây bằng `dungCayNoiDung.js` và so với cây
@@ -3476,8 +3476,8 @@ node scripts/migrate-content.mjs          # chạy thử, không ghi gì
 
 ```
   Đọc từ file tĩnh:
-    5 lớp · 51 chương · 459 bài · 2656 slide
-  ✅ khớp số đã đo (5/51/459/2656)
+    5 lớp · 51 chương · 459 bài · 2671 slide
+  ✅ khớp số đã đo (5/51/459/2671)
   ✅ tất cả slide hợp lệ
 ```
 
@@ -3486,7 +3486,7 @@ node scripts/migrate-content.mjs          # chạy thử, không ghi gì
 > - 16 (Lớp 3) + 6 (Lớp 4) + 5 (Lớp 5) = **51**. Comment cũ trong `curriculum.js` ghi "50
 >   Chapters total" là **sai** — Lớp 4 chỉ có 6 chương, Lớp 5 chỉ có 5. Đã sửa comment.
 >
-> Cũng có cổng tự động: `npm run test:portal:static` → `S-15` kiểm **cả 2656 slide**, và
+> Cũng có cổng tự động: `npm run test:portal:static` → `S-15` kiểm **cả 2671 slide**, và
 > `S-16` kiểm chiều ngược lại (bộ kiểm tra có bắt được lỗi không).
 
 ---

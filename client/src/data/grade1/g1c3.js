@@ -197,6 +197,32 @@ export const g1c3 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            text: "Điền kết quả còn thiếu (SGK tr.64)",
+            table: {
+              headers: ["Phép tính", "Kết quả"],
+              rows: [
+                ["9 + 0", "9"],
+                ["8 + 1", "?"],
+                ["7 + 2", "?"],
+                ["6 + 3", "?"],
+                ["5 + 4", "?"],
+              ],
+              label: "Các phép cộng trong bảng đều có kết quả bằng 9",
+            },
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "7 + 2 bằng bao nhiêu?",
+            options: [7, 8, 9, 10],
+            answer: 9,
+            mascotHint: "7 + 2 = 9. Đổi chỗ thành 2 + 7 cũng bằng 9.",
+          },
+        },
+        {
           type: "quiz",
           content: {
             question: "Biết 3 + 6 = 9. Vậy 6 + 3 bằng bao nhiêu?",
@@ -264,6 +290,57 @@ export const g1c3 = {
               ],
               label: "Cộng với 0 thì giữ nguyên số đó",
             },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Điền kết quả còn thiếu (SGK tr.62)",
+            table: {
+              headers: ["Phép tính", "Kết quả"],
+              rows: [
+                ["6 + 1", "7"],
+                ["5 + 2", "?"],
+                ["4 + 3", "?"],
+                ["3 + 4", "7"],
+                ["2 + 5", "?"],
+                ["1 + 6", "?"],
+                ["0 + 7", "7"],
+              ],
+              label: "Mọi phép cộng trong bảng đều có kết quả bằng 7",
+            },
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "5 + 2 bằng bao nhiêu?",
+            options: [6, 7, 8, 9],
+            answer: 7,
+            mascotHint: "Từ 5 đếm tiếp 2 bước: 6, 7.",
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Cộng ba số: 3 + 1 + 2",
+            table: {
+              headers: ["Bước", "Phép tính"],
+              rows: [
+                ["1", "3 + 1 = 4"],
+                ["2", "4 + 2 = 6"],
+              ],
+              label: "3 + 1 + 2 = 6 — làm lần lượt từ trái sang phải (SGK tr.66)",
+            },
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "3 + 1 + 2 bằng bao nhiêu?",
+            options: [4, 5, 6, 7],
+            answer: 6,
+            mascotHint: "Làm từng bước: 3 + 1 = 4, rồi 4 + 2 = 6.",
           },
         },
         {
@@ -544,6 +621,32 @@ export const g1c3 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            text: "Điền kết quả còn thiếu (SGK tr.66)",
+            table: {
+              headers: ["Phép tính", "Kết quả"],
+              rows: [
+                ["9 + 1", "10"],
+                ["8 + 2", "?"],
+                ["7 + 3", "?"],
+                ["6 + 4", "?"],
+                ["5 + 5", "?"],
+              ],
+              label: "Các phép cộng trong bảng đều có kết quả bằng 10",
+            },
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "8 + 2 bằng bao nhiêu?",
+            options: [9, 10, 11, 6],
+            answer: 10,
+            mascotHint: "Từ 8 đếm tiếp 2 bước: 9, 10.",
+          },
+        },
+        {
           type: "quiz",
           content: {
             question: "4 + 5 bằng bao nhiêu?",
@@ -618,6 +721,33 @@ export const g1c3 = {
               ],
               label: "Bảng trừ trong phạm vi 10",
             },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Điền kết quả còn thiếu (SGK tr.76)",
+            table: {
+              headers: ["Phép tính", "Kết quả"],
+              rows: [
+                ["7 − 1", "6"],
+                ["7 − 2", "?"],
+                ["7 − 3", "4"],
+                ["7 − 4", "?"],
+                ["7 − 7", "0"],
+                ["7 − 0", "7"],
+              ],
+              label: "Lấy 7 trừ 0, 1, 2, 3 … 7 — xem kết quả nhỏ dần",
+            },
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "7 − 2 bằng bao nhiêu?",
+            options: [4, 5, 6, 9],
+            answer: 5,
+            mascotHint: "Từ 7 đếm lùi 2 bước: 6, 5.",
           },
         },
         {
@@ -1007,6 +1137,33 @@ export const g1c3 = {
               ],
               label: "Một phép cộng, hai phép trừ",
             },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Từ phép cộng suy ra phép trừ (SGK tr.86)",
+            table: {
+              headers: ["Phép tính", "Kết quả"],
+              rows: [
+                ["1 + 9", "10"],
+                ["10 − 1", "?"],
+                ["10 − 9", "?"],
+                ["2 + 8", "10"],
+                ["10 − 2", "?"],
+                ["10 − 8", "?"],
+              ],
+              label: "Bảng quan hệ giữa phép cộng và phép trừ trong phạm vi 10",
+            },
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "1 + 9 = 10. Vậy 10 − 9 bằng bao nhiêu?",
+            options: [1, 8, 9, 10],
+            answer: 1,
+            mascotHint: "10 − 9 = 1 (vì 1 + 9 = 10).",
           },
         },
         {

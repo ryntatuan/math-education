@@ -17,15 +17,15 @@
 
 ### 1.1. Số đo xác nhận (đo lại độc lập ngày 2026-09-24)
 
-| Hạng mục                   | Số đo thật                                   | Ý nghĩa                              |
-| :------------------------- | :------------------------------------------- | :----------------------------------- |
-| Cổng tĩnh                  | `32 PASS · 0 FAIL · 0 SKIP`, exit 0          | Cổng chạy được trở lại               |
-| Import `gradeNData.js`     | 51/51 dòng có đuôi `.js`                     | Node nạp được dữ liệu                |
-| Quy mô Lớp 1               | **10 chương · 97 bài · 634 slide**           | (Đợt 1.1: CĐ4 · Đợt 2: CĐ1)          |
-| Quy mô toàn hệ thống       | **5 lớp · 51 chương · 459 bài · 2656 slide** | Khớp `MONG_DOI` (sau vòng tách hình) |
-| Tập `id` Lớp 1             | 97/97, `Compare-Object` với HEAD rỗng        | Không đổi id ⇒ an toàn tiến độ       |
-| Chương `g1-c4` SAU Đợt 1.1 | **7 bài · 68 slide** (7+7+10+11+9+11+13)     | Từ 39 slide cũ                       |
-| Nội dung trong DB          | **chưa nạp** (mới chỉ có ở file tĩnh + seed) | Còn phải dán seed                    |
+| Hạng mục                   | Số đo thật                                   | Ý nghĩa                           |
+| :------------------------- | :------------------------------------------- | :-------------------------------- |
+| Cổng tĩnh                  | `32 PASS · 0 FAIL · 0 SKIP`, exit 0          | Cổng chạy được trở lại            |
+| Import `gradeNData.js`     | 51/51 dòng có đuôi `.js`                     | Node nạp được dữ liệu             |
+| Quy mô Lớp 1               | **10 chương · 97 bài · 649 slide**           | (Đợt 1.1: CĐ4 · Đợt 2: CĐ1 + CĐ2) |
+| Quy mô toàn hệ thống       | **5 lớp · 51 chương · 459 bài · 2671 slide** | Khớp `MONG_DOI` (sau đợt rà CĐ2)  |
+| Tập `id` Lớp 1             | 97/97, `Compare-Object` với HEAD rỗng        | Không đổi id ⇒ an toàn tiến độ    |
+| Chương `g1-c4` SAU Đợt 1.1 | **7 bài · 68 slide** (7+7+10+11+9+11+13)     | Từ 39 slide cũ                    |
+| Nội dung trong DB          | **chưa nạp** (mới chỉ có ở file tĩnh + seed) | Còn phải dán seed                 |
 
 ### 1.2. Việc còn tồn phải làm trước khi viết code
 
@@ -49,7 +49,7 @@ Hệ thống hiện tại quản lý chặt chẽ 5 kiểu slide cơ bản (`sto
 ### 2.2. Quy ước đánh số bài học & quy mô hệ thống
 
 - **Đánh số bài học:** Tuân thủ tuyệt đối quy ước đánh số theo chương (`Bài 1, Bài 2, ...`) để đảm bảo tính nhất quán với công cụ `scratch/chuan-hoa-danh-so.mjs` và hệ thống định tuyến `g{grade}-c{chapter}-l{lesson}`. Số hiệu bài SGK gốc được ghi rõ trong trường `description` (Ví dụ: `description: "SGK Bài 14 (tr.92–95): Nhận biết khối lập phương, khối hộp chữ nhật"`). **Không đổi `id` của bài đã có.**
-- **Quy mô nội dung:** quy mô hiện tại là `5 lớp · 51 chương · 459 bài · 2656 slide` (Lớp 1: **10 chương · 97 bài · 634 slide**). Đợt 1.1 viết lại Chủ đề 4 (39 → **68 slide**), Đợt 2 viết lại Chủ đề 1 (67 → **128 slide**); các đợt sau viết lại từng chương nên **số slide sẽ tiếp tục đổi** — không thể "bảo toàn" một cách máy móc. Mỗi lần đổi, phải sửa đồng bộ **7 chỗ ghi cứng**:
+- **Quy mô nội dung:** quy mô hiện tại là `5 lớp · 51 chương · 459 bài · 2671 slide` (Lớp 1: **10 chương · 97 bài · 649 slide**). Đợt 1.1 viết lại Chủ đề 4 (39 → **68 slide**), Đợt 2 viết lại Chủ đề 1 (67 → **128 slide**); các đợt sau viết lại từng chương nên **số slide sẽ tiếp tục đổi** — không thể "bảo toàn" một cách máy móc. Mỗi lần đổi, phải sửa đồng bộ **7 chỗ ghi cứng**:
   1. `scripts/migrate-content.mjs` — `MONG_DOI` + chuỗi `"khớp số đã đo (…)"`
   2. `scripts/migrate-content.mjs` — câu in cuối về thứ tự dán file
   3. `scripts/test-admin-portal.mjs` — `S-15` (2 câu), `S-23`, `S-24` + chuỗi thông báo
@@ -235,7 +235,7 @@ sequenceDiagram
 
 | Nội dung                                                                                                                                                | Nguồn                                                                                                     |
 | :------------------------------------------------------------------------------------------------------------------------------------------------------ | :-------------------------------------------------------------------------------------------------------- |
-| Cổng `32 PASS · 0 FAIL`; Lớp 1 = 97 bài / 634 slide; tổng 5 · 51 · 459 · 2656; `id` khớp HEAD 97/97                                                     | Đo trực tiếp ngày 2026-09-24 (cập nhật sau vòng tách hình — §8i)                                          |
+| Cổng `32 PASS · 0 FAIL`; Lớp 1 = 97 bài / 649 slide; tổng 5 · 51 · 459 · 2671; `id` khớp HEAD 97/97                                                     | Đo trực tiếp ngày 2026-09-24 (cập nhật sau vòng tách hình — §8i)                                          |
 | Hình bạn Mai: hàng nền **5 khối lập phương**, **2** khối hộp chữ nhật đỏ                                                                                | **Người dùng chốt 2026-09-24** (đối chiếu SGK tr.94)                                                      |
 | Chữ T = 5, H = 7, C = 5 → H nhiều nhất, T = C                                                                                                           | Đếm lại trên ảnh phóng to (trang sách 94)                                                                 |
 | Thứ tự **Mai – Nam – Rô-bốt**; đôi **Thỏ – Rùa**                                                                                                        | Chữ in trên SGK tr.98 (`scratch/kiem-tra-t98.png`)                                                        |
@@ -609,13 +609,59 @@ Bạn gửi ảnh hình `groupScene` (`6 + 7 = 6 + 4 + 3`) và báo: _“diễn 
 
 ---
 
+## 8l. Đợt 3 — **CHỦ ĐỀ 2 LỚP 1** (SGK tr.46–55): ĐÃ XONG 2026-09-25
+
+**Bảng phát hiện + kết quả chi tiết:** `docs/sgk_audit_lop1.md` (mục “ĐỢT CHỦ ĐỀ 2”).
+**Ảnh dùng:** `scratch/sgk-lop1/math-grade-1-part-1/page-0047.png` … `page-0056.png` (sách 46–55 = PDF 47–56, đã kiểm chân trang).
+
+| Hạng mục            | Kết quả                                                                                                                                                                                                                                                                               |
+| :------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Nội dung            | 8 bài `g1-c2-l1` … `l8`: **48 → 51 slide**. Sửa **4 lỗi kiến thức** (đồng hồ “vuông”, nhà 1 cửa sổ vs 2 cửa sổ, “4 góc vuông” là nội dung Lớp 3, “hình tròn lăn được”).                                                                                                               |
+| Bám SGK             | `l5`: 4 slide “xem hình” in sẵn đáp án → **4 CÂU HỎI** đúng HĐ1 tr.46 (số slide không đổi). `l8`: thêm **3 câu hỏi kiểu SGK** tr.47/49 (chọn nhiều hình A–E; “KHÔNG là hình vuông”).                                                                                                  |
+| Câu hỏi             | Mọi câu hỏi nay **có hình** (`l1`–`l4`, `l8`); hình trong câu hỏi **không in tên hình** (`showName: false`) để bé phải tự nhìn.                                                                                                                                                       |
+| 🔴 Lỗi ngoài chương | **`PlaneShape` với `kind: "circle"` làm SẬP slide — 21 slide của 4 lớp** (thiếu toạ độ cho hình tròn ⇒ `pts.map` ném lỗi). **Đã sửa gốc.**                                                                                                                                            |
+| 🔴 Lỗi ngoài chương | **Mặt đồng hồ sai giờ ở 8 slide** (L1 · L2 · L3): đề nói 3 giờ 30 / 7 giờ 15 nhưng hình vẽ 8 giờ 00. **Đã sửa.**                                                                                                                                                                      |
+| Công cụ             | Mới: `scratch/kiem-tra-slide.mjs` (7 luật, cả 5 lớp) · `scratch/dem-plane-shape-hong.mjs` · `scratch/soat-dong-ho.mjs` · `scratch/soat-ten-diem.mjs` (nhóm E) · `scratch/xem-truoc-cd2.jsx` → `xem-truoc-cd2.html`.                                                                   |
+| 🔴 Lỗi thứ ba       | **7 ca hình KHÔNG VẼ ĐƯỢC** trên toàn bộ 5 lớp (trang đo `visual-fit.html`) → sau khi sửa: **0/682 ca**. Đây là con số đã có sẵn từ trước nhưng chưa từng được đọc thành lỗi.                                                                                                         |
+| Nhóm D/E khác lớp   | Sửa **6 chỗ** ở Lớp 2–3: câu hỏi/nhánh nói về đường gấp khúc · ba điểm A,O,B · trung điểm M của AB mà **không vẽ hình**; “tứ giác ABCD” vẽ bằng hình chữ nhật **không ghi tên đỉnh**; “Góc đỉnh A, cạnh AB và AC” chỉ có **bảng chữ**. Đã kiểm trên app: hình hiện, chấm đúng đáp án. |
+| Bằng chứng          | Cổng **32 PASS · 0 FAIL** · build sạch · **682 ca hình thật ở 375/360/320 px: 0 tràn thẻ · 0 tràn viewBox · 0 chữ chồng** · chạy thật trên app: `l1` 6/6, `l2` 5/5, `l5` 10/10, `l7` 5/5, `l8` 9/9 **không lỗi**, app chấm đúng **cả 5 đáp án mới**.                                  |
+| Số liệu             | Đã cập nhật 7 chỗ ghi cứng: **2656 → 2659 slide** (Lớp 1: 634 → 637); seed sinh lại, vân tay `2c622684669e5474`.                                                                                                                                                                      |
+| Chưa làm            | Các hoạt động cần vẽ mới của chương: đếm hình trong tranh (tr.47–49), que tính (tr.48, 54), ghép hình 3–5 miếng (tr.50–53), 9 đồ vật tr.54, **dãy quy luật** tr.55 LT3, đếm miếng bìa tr.55.                                                                                          |
+
+> 📌 **Mẹo rút ra cho các chương sau:** khi thêm hàng hình vào câu hỏi phải **tắt `showName`**, nếu không
+> hình tự in tên (“Hình tròn”) và nhãn A–E bị tách rời khỏi hình; và mọi `planeShape` mới phải dùng `kind`
+> **có** trong `SHAPE_POINTS` (kiểm bằng `scratch/dem-plane-shape-hong.mjs`).
+
+---
+
+## 8m. Đợt 4 — **CHỦ ĐỀ 3 LỚP 1** (SGK tr.56–91): ĐÃ RÀ + BỔ SUNG 2026-09-25
+
+**Bảng phát hiện + kết quả chi tiết:** `docs/sgk_audit_lop1.md` (mục “ĐỢT CHỦ ĐỀ 3”).
+**Ảnh dùng:** 21 trang (`page-0057.png` … `page-0077.png`, `page-0081.png`, `page-0087.png`).
+
+| Hạng mục  | Kết quả                                                                                                                                                        |
+| :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Số liệu   | Kiểm **từng phép tính** trong 14 bài: **không có lỗi nào** (khác với CĐ2 — chương này viết cẩn thận hơn).                                                       |
+| Bổ sung   | **12 slide**: dạng **“bảng tính — điền số ?”** (SGK lặp 6 lần: tr.62 · 64 · 66 · 76 · 86) vào 5 bài, và **cộng ba số** `3 + 1 + 2` (tr.66) — **cả 5 lớp trước đây không có hai dạng này**. |
+| Còn lại   | Cần bộ vẽ mới: **tháp số** (tr.67) · dạng **nối/tìm cặp** (tr.63, 65) · **tranh đếm rồi viết phép tính** (tr.63, 65, 71, 74) · **bồn hoa “kết quả lớn hơn 3”** (tr.76). |
+| Bằng chứng | cổng **32 PASS** · build sạch · **692 ca hình: 0 lỗi vẽ · 0 tràn · 0 chồng** · chạy thật 5 bài (7/7 · 9/9 · 8/8 · 8/8 · 8/8), chấm đúng cả 6 đáp án mới.          |
+| Số liệu   | CĐ3 **77 → 89 slide**; hệ thống **2659 → 2671** (Lớp 1: 637 → 649). Đã dùng công cụ mới `scratch/doi-quy-mo.mjs` để đồng bộ 9 file ghi cứng.                     |
+
+> 🔴 **Cổng S-25 đã bắt lỗi của chính tôi trong đợt này:** nhánh “chế độ dev dùng file tĩnh” tôi thêm vào
+> `contentSource.js` có thêm một lời gọi `phatThayDoi()` ⇒ cổng đếm được **3** lời gọi trong khi nó canh
+> đúng **2** (nhánh nạp từ DB và nhánh quay về nội dung tĩnh) ⇒ đỏ. Đã bỏ lời gọi đó (trong chế độ dev
+> nguồn không bao giờ đổi nên không có gì để báo). **Bài học: cổng canh số lời gọi thì mọi thay đổi cấu
+> trúc hàm đều phải chạy lại cổng, không chỉ khi sửa dữ liệu.**
+
+---
+
 ## 9. Đợt 2 (tiếp) — Rà soát các chương CÒN LẠI của Lớp 1
 
 **Vì sao:** Chủ đề 4 mới chỉ là 1 trong 10 chương. Các chương còn lại viết từ trước, **chưa từng được đối chiếu với ảnh SGK** — cùng một họ lỗi có thể còn nằm ở đó.
 
 | Hạng mục         | Số đo thật (2026-09-24)                                                                   |
 | :--------------- | :---------------------------------------------------------------------------------------- | --- |
-| Nội dung phải rà | Lớp 1: **10 chương · 97 bài · 634 slide** (Chương 1 đã xong — xem §8b)                    |     |
+| Nội dung phải rà | Lớp 1: **10 chương · 97 bài · 649 slide** (CĐ1 + CĐ2 xong — §8b, §8l)                     |     |
 | Ảnh phải xem hết | `Math grade 1 part 1.pdf` **117 trang** + `part 2.pdf` **109 trang** = **226 trang**      |
 | Ngữ liệu chữ     | `.md` OCR của Lớp 1 rất mỏng (**22 KB** + **30 KB**) ⇒ **phải đọc ẢNH**, đừng dựa vào OCR |
 
@@ -637,12 +683,12 @@ Sau khi Lớp 1 xong thì làm lần lượt **Lớp 2 → 3 → 4 → 5**, mỗ
 
 | Lớp      | Ảnh phải xem hết          | Chương | Bài | Slide | Ngữ liệu chữ (`.md`)  |
 | :------- | :------------------------ | :----- | :-- | :---- | :-------------------- |
-| 1        | 117 + 109 = **226 trang** | 10     | 97  | 634   | 22 + 30 KB (rất mỏng) |
+| 1        | 117 + 109 = **226 trang** | 10     | 97  | 637   | 22 + 30 KB (rất mỏng) |
 | 2        | 142 + 142 = **284 trang** | 14     | 120 | 695   | 62 + 61 KB            |
 | 3        | 126 + 130 = **256 trang** | 16     | 123 | 742   | 68 + 86 KB            |
 | 4        | **186 trang**             | 6      | 65  | 319   | 168 KB                |
 | 5        | **187 trang**             | 5      | 54  | 266   | 166 KB                |
-| **Tổng** | **1 139 trang**           | 51     | 459 | 2 656 | —                     |
+| **Tổng** | **1 139 trang**           | 51     | 459 | 2 659 | —                     |
 
 **Lưu ý riêng từng lớp** (rút từ các lần sửa trước — đều là lỗi đã xảy ra thật):
 

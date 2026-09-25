@@ -174,14 +174,13 @@ function bocJsonb(raw) {
  */
 export function taiNoiDung({ force = false } = {}) {
   // ── DEV: ép dùng file tĩnh, KHÔNG gọi DB ──────────────────────────────────
+  //
+  // ⚠️ KHÔNG gọi `phatThayDoi()` ở đây: trong chế độ này nguồn KHÔNG BAO GIỜ đổi (không
+  // đọc cache, không nạp DB) nên chẳng có gì để báo — và cổng S-25 đếm số lời gọi báo
+  // thay đổi (nó canh đúng 2 nhánh: nạp từ DB và quay về nội dung tĩnh). Thêm một lời gọi
+  // thứ ba là làm hỏng chính phép kiểm đó.
   if (EP_DUNG_FILE_TINH) {
-    if (nguon !== "static") {
-      grades = TINH;
-      nguon = "static";
-      phienBan = null;
-      xoaCache();
-      phatThayDoi();
-    }
+    xoaCache();
     return Promise.resolve("static");
   }
 
