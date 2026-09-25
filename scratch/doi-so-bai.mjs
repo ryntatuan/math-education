@@ -22,7 +22,12 @@ const PHEP = [
   ],
   ["scripts/migrate-content.mjs", "(5/51/459/2705)", "(5/51/460/2712)", 1],
   // 2. scripts/test-admin-portal.mjs — cổng đọc dữ liệu tĩnh + cổng cây DB
-  ["scripts/test-admin-portal.mjs", "assert(soBai === 459,", "assert(soBai === 460,", 1],
+  [
+    "scripts/test-admin-portal.mjs",
+    "assert(soBai === 459,",
+    "assert(soBai === 460,",
+    1,
+  ],
   [
     "scripts/test-admin-portal.mjs",
     "`Mong đợi 459 bài, đọc được ${soBai}`",
@@ -77,7 +82,9 @@ for (const [f, cu, moi, mongDoi] of PHEP) {
   const soLan = t.split(cu).length - 1;
   if (soLan !== mongDoi) {
     ok = false;
-    ketQua.push(`❌ ${f}: khớp ${soLan} lần, mong đợi ${mongDoi} — “${cu.slice(0, 50)}…”`);
+    ketQua.push(
+      `❌ ${f}: khớp ${soLan} lần, mong đợi ${mongDoi} — “${cu.slice(0, 50)}…”`,
+    );
     continue;
   }
   ketQua.push(`✓ ${f}: ${soLan} chỗ`);

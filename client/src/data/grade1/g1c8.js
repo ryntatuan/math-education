@@ -38,17 +38,22 @@ export const g1c8 = {
         {
           type: "visual",
           content: {
-            text: "  25\n+  4\n  29",
+            text: "25 gồm 2 chục và 5 đơn vị",
             placeValue: {
               headers: ["Chục", "Đơn vị"],
               digits: [2, 5],
               label: "25 gồm 2 chục và 5 đơn vị",
             },
-            operation: {
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Bé đặt tính rồi cộng: 25 + 4",
+            cotTinh: {
               left: 25,
-              sign: "+",
               right: 4,
-              result: 29,
+              sign: "+",
             },
           },
         },
@@ -105,12 +110,11 @@ export const g1c8 = {
         {
           type: "visual",
           content: {
-            text: "  34\n+  5\n  39",
-            operation: {
+            text: "Bé đặt tính rồi cộng: 34 + 5",
+            cotTinh: {
               left: 34,
-              sign: "+",
               right: 5,
-              result: 39,
+              sign: "+",
             },
           },
         },

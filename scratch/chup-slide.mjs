@@ -7,7 +7,9 @@ import { chromium } from "playwright";
 
 const [baiId, soSlide, ra = "scratch/anh-slide.png"] = process.argv.slice(2);
 if (!baiId || !soSlide) {
-  console.log("Thiếu tham số. Dùng: node scratch/chup-slide.mjs <bài> <slide> [file.png]");
+  console.log(
+    "Thiếu tham số. Dùng: node scratch/chup-slide.mjs <bài> <slide> [file.png]",
+  );
   process.exit(1);
 }
 const PORT = process.env.PORT ?? "5174";

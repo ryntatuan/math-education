@@ -89,7 +89,7 @@ const KHOA_LOI = new Set([
 const KHOA_CO_O_TRONG = new Set(["bangTinh", "numberScene"]);
 
 /** Hình TỰ TƯƠNG TÁC được (trẻ bấm điền ngay trong hình). */
-const HINH_CHO_BAM = new Set(["bangTinh"]);
+const HINH_CHO_BAM = new Set(["bangTinh", "cotTinh"]);
 
 /**
  * Dãy số (`numberScene.mode = "numberTrain"`) nay ĐIỀN ĐƯỢC khi có `answers` khớp số ô trống

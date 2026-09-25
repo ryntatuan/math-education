@@ -83,7 +83,8 @@ export const g3c13 = {
               "7 giờ 30 phút",
             ],
             answer: "7 giờ 15 phút",
-            mascotHint: "Kim ngắn qua số 7, kim dài chỉ số 3 → 3 × 5 = 15 phút. Vậy là 7 giờ 15 phút.",
+            mascotHint:
+              "Kim ngắn qua số 7, kim dài chỉ số 3 → 3 × 5 = 15 phút. Vậy là 7 giờ 15 phút.",
             clock: {
               hour: 7,
               minute: 15,
@@ -581,7 +582,8 @@ export const g3c13 = {
               "9 giờ 15 phút",
             ],
             answer: "9 giờ 30 phút",
-            mascotHint: "Kim ngắn qua số 9, kim dài chỉ số 6 → 6 × 5 = 30 phút. Vậy là 9 giờ 30 phút.",
+            mascotHint:
+              "Kim ngắn qua số 9, kim dài chỉ số 6 → 6 × 5 = 30 phút. Vậy là 9 giờ 30 phút.",
             clock: {
               hour: 9,
               minute: 30,

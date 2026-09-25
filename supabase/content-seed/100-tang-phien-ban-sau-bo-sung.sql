@@ -12,6 +12,27 @@
 -- CHẠY LẠI NHIỀU LẦN: chỉ làm phiên bản tăng thêm 1 mỗi lần — vô hại (các bé tải
 --   lại nội dung thêm một lần), không sinh dòng trùng, không mất dữ liệu.
 --
+-- LƯU Ý LẦN 16 (2026-09-25): **“ĐẶT TÍNH RỒI TÍNH” NAY ĐIỀN ĐƯỢC** (dạng bài phổ biến nhất của SGK 1–5).
+--   Trước: app chỉ in một cột CHỮ trong `text` kèm `operation` — trẻ đọc luôn kết quả, không có gì để làm.
+--   Nay có khoá hình mới **`cotTinh`**: vẽ đúng cột đặt tính (thẳng hàng theo chữ số, có gạch ngang,
+--   hàng “nhớ” khi cần) và **bé bấm từng ô ? rồi chọn chữ số 0–9**. Chấm NGAY: đúng → ô hiện số,
+--   sai → ô đỏ, có tiến độ `1/2`, `2/2`, pháo giấy và nút “Làm lại”.
+--   📌 **Đáp án KHÔNG khai trong dữ liệu** — hàm thuần `columnMath.js` tự tính từ `left`/`right`/`sign`
+--      (hỗ trợ cả số thập phân `15,82 + 9,35`) ⇒ không thể có chuyện dữ liệu lệch đáp án.
+--      Dữ liệu chỉ ghi: `cotTinh: { left: 25, right: 4, sign: "+" }` (`sign`: `"+"` hoặc `"−"`).
+--   • Lớp 1 `g1-c8-l1`: tách thành 2 slide — bảng hàng “25 gồm 2 chục và 5 đơn vị” + **đặt tính 25 + 4**.
+--   • Lớp 1 `g1-c8-l2`: **đặt tính 34 + 5**. Cả hai đã bỏ cột in sẵn trong `text` (đó chính là đáp án in sẵn).
+--   ⚠️ PHẦN NÀY GỒM CẢ **MÃ** (`interactiveColumn.jsx`, `columnMath.js`, `VisualBlock.jsx`,
+--      `visualKeys.js`) — dán SQL thôi CHƯA thấy; phải deploy web / build APK lại.
+--   ✅ Cổng mới `node scratch/kiem-tra-dat-tinh.mjs` — **29 ca** (cộng có nhớ, trừ có mượn, số thập phân,
+--      số 0, nhớ nhiều cấp, canary hai vế). Luật mới trong `scratch/kiem-tra-slide.mjs`: thiếu
+--      `left`/`right`, dấu lạ, trừ ra số ÂM, hoặc đặt trên slide không cho bấm ⇒ ĐỎ.
+--   ✅ Đo trong app (390×844): ô chữ số cao **31–34 px**, hình rộng 306 px, **0 tràn ngang**;
+--      thử thật: bấm ô ? → chọn 4 (sai, ô xám) → chọn 9 (đúng) → 1/2 → chọn 2 → **2/2 + “🎉 Bé làm
+--      đúng hết!” + pháo giấy**, nút chọn khoá lại.
+--   ⚠️ Số slide ĐÃ ĐỔI: 2712 → **2713** (Lớp 1: 690 → **691**); số bài KHÔNG đổi (460).
+--   ⚠️ LẦN NÀY CẦN DÁN: `02-bai-lop-1.sql` rồi `100-...` (file này). Các file lớp khác KHÔNG đổi.
+--
 -- LƯU Ý LẦN 15 (2026-09-25): CHỦ ĐỀ 9 LỚP 1 + **HÌNH ĐỒNG HỒ KHÔNG BAO GIỜ HIỆN RA** (Lớp 2–4).
 --   🔴 Phát hiện nặng: `LessonPage.jsx` chỉ vẽ `number` · `operation` · `comparison` · `clock`
 --   trong slide `type: "visual"`. Slide `story` / `quiz` / `summary` chỉ gọi `VisualBlocks`, mà
@@ -34,7 +55,7 @@
 --     thay bằng hình ⚖️ (nếu để nguyên thì vừa rồi hình cái CÂN sẽ hoá thành ĐỒNG HỒ).
 --   ✅ Kiểm: `node scratch/soat-hinh-khong-hien.mjs` = 0 ca · `soat-o-trong` = 0 ô trống tĩnh ·
 --      `soat-phep-tinh` = 0 sai · cổng tĩnh **32 PASS** · `build:web` exit 0.
---   ⚠️ Số bài và số slide KHÔNG đổi: 5 lớp · 51 chương · **460 bài · 2712 slide**.
+--   ⚠️ Số bài và số slide KHÔNG đổi: 5 lớp · 51 chương · **460 bài · 2713 slide**.
 --   ⚠️ LẦN NÀY CẦN DÁN: `02-bai-lop-1.sql`, `03-bai-lop-2.sql`, `04-bai-lop-3.sql` rồi `100-...`.
 --      `01`, `05`, `06`, `99` KHÔNG đổi. `00` không cần (không bài nào bị bỏ).
 --
@@ -77,7 +98,7 @@
 -- LƯU Ý LẦN 11 (2026-09-25): **MỌI Ô TRỐNG PHẢI ĐIỀN ĐƯỢC** (yêu cầu người dùng) + 6 slide CĐ6 Lớp 1.
 --   Yêu cầu: “tất cả các dạng bài có điền vào ô trống không được là slide tĩnh và đều có thể điền
 --   đáp án vào được; đảm bảo tất cả các dạng bài tập đều có đáp án để trẻ lựa chọn và tương tác”.
---   Công cụ soát mới: `node scratch/soat-o-trong.mjs` (2712 slide / 1439 slide cho bấm của cả 5 lớp).
+--   Công cụ soát mới: `node scratch/soat-o-trong.mjs` (2713 slide / 1439 slide cho bấm của cả 5 lớp).
 --   Sửa 10 ca thật:
 --     • 5 bảng CĐ3 (`g1-c3-l3/l4/l8/l9/l14`) từ bảng IN CỨNG ô “?” → **`bangTinh`** (bé bấm ô, chọn số).
 --     • 2 bảng Lớp 3 (`g3-c1-l4` tìm số bị trừ · `g3-c2-l9` nhân–chia) → `bangTinh`, hàng đầu giữ làm MẪU.
@@ -114,7 +135,7 @@
 --       hình không in sẵn đáp án (`showShape: false`).
 --     • `l8`: thêm 3 câu hỏi kiểu SGK tr.47/49 (chọn nhiều hình A–E; “KHÔNG là hình vuông”).
 --   ⚠️ Số slide ĐÃ ĐỔI: 2656 → **2659** (8 bài CĐ2: 48 → 51 slide) ⇒
---      vẫn 5 lớp · 51 chương · 460 bài · **2712 slide**.
+--      vẫn 5 lớp · 51 chương · 460 bài · **2713 slide**.
 --   ⚠️ LẦN NÀY CẦN DÁN: `02-bai-lop-1.sql` · `03-bai-lop-2.sql` · `04-bai-lop-3.sql`
 --      rồi `100-...` (file này). `00`, `01`, `05`, `06`, `99` KHÔNG đổi.
 --

@@ -63,7 +63,8 @@ const BAI = {
     {
       type: "quiz",
       content: {
-        question: "Cây A cao 5 gang tay, cây B cao 3 gang tay. Cây nào cao hơn?",
+        question:
+          "Cây A cao 5 gang tay, cây B cao 3 gang tay. Cây nào cao hơn?",
         options: ["Cây A", "Cây B", "Hai cây cao bằng nhau"],
         answer: "Cây A",
         mascotHint: "5 gang tay nhiều hơn 3 gang tay nên cây A cao hơn.",
@@ -72,7 +73,8 @@ const BAI = {
     {
       type: "quiz",
       content: {
-        question: "Cây B cao 3 gang tay, cây C cao 4 gang tay. Cây nào thấp hơn?",
+        question:
+          "Cây B cao 3 gang tay, cây C cao 4 gang tay. Cây nào thấp hơn?",
         options: ["Cây B", "Cây C", "Hai cây cao bằng nhau"],
         answer: "Cây B",
         mascotHint: "3 gang tay ít hơn 4 gang tay nên cây B thấp hơn.",
@@ -116,8 +118,7 @@ if (moc < 0) throw new Error("Không thấy g1-c7-l2 — dừng, không ghi gì.
 const iMoBai = nguon.lastIndexOf("    {", moc);
 if (iMoBai < 0) throw new Error("Không tìm thấy dấu mở bài — dừng.");
 
-const chu =
-  JSON.stringify(BAI, null, 2).split("\n").join("\n    ") + ",\n";
+const chu = JSON.stringify(BAI, null, 2).split("\n").join("\n    ") + ",\n";
 
 const ra = nguon.slice(0, iMoBai) + "    " + chu + nguon.slice(iMoBai);
 console.log("Chèn bài “Cao hơn, thấp hơn” (6 slide + 1 summary) vào CĐ7.");

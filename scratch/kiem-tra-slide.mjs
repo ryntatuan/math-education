@@ -257,6 +257,51 @@ for (const [file, key, soLopThutu] of NGUON) {
             );
         }
 
+        if (c.cotTinh) {
+          const ct = c.cotTinh;
+          const soOk = (v) => v !== undefined && v !== null && v !== "";
+          if (!soOk(ct.left) || !soOk(ct.right))
+            themLoi(
+              file,
+              bai.id,
+              i,
+              "cotTinh thiếu `left` hoặc `right` (đặt tính cần đủ hai số)",
+            );
+          const dauCt = ct.sign === "-" || ct.sign === "−" ? "−" : "+";
+          if (!["+", "-", "−"].includes(ct.sign ?? "+"))
+            themLoi(
+              file,
+              bai.id,
+              i,
+              `cotTinh có dấu “${ct.sign}” — chỉ nhận "+" hoặc "−"`,
+            );
+          if (
+            dauCt === "−" &&
+            Number(String(ct.left).replace(",", ".")) <
+              Number(String(ct.right).replace(",", "."))
+          )
+            themLoi(
+              file,
+              bai.id,
+              i,
+              `cotTinh trừ ra số ÂM (${ct.left} − ${ct.right}) — chương trình tiểu học không dạy`,
+            );
+          if (ct.remember === true && dauCt === "−")
+            themCanhBao(
+              file,
+              bai.id,
+              i,
+              "cotTinh: `remember` (hàng nhớ) hiện chỉ vẽ cho phép CỘNG — bỏ đi nếu là phép trừ",
+            );
+          if (ct.blanks !== "none" && !choBam)
+            themLoi(
+              file,
+              bai.id,
+              i,
+              `cotTinh đặt trên slide “${s.type}” ⇒ ô kết quả không bấm được (chỉ story/concept/visual mới cho bấm; muốn in sẵn thì ghi blanks: "none")`,
+            );
+        }
+
         if (c.patternRow) {
           const soOT = (
             Array.isArray(c.patternRow.shapes) ? c.patternRow.shapes : []

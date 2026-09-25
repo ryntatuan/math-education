@@ -48,8 +48,36 @@ const THEM = {
           mode: "numberTrain",
           kind: "ribbon",
           numbers: [
-            60, 61, 62, null, null, null, null, 67, 68, 69, 70, 71, 72, null, null,
-            null, null, 77, 78, 79, 80, 81, 82, null, null, null, null, 87, 88, 89,
+            60,
+            61,
+            62,
+            null,
+            null,
+            null,
+            null,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            null,
+            null,
+            null,
+            null,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            null,
+            null,
+            null,
+            null,
+            87,
+            88,
+            89,
           ],
           answers: [63, 64, 65, 66, 73, 74, 75, 76, 83, 84, 85, 86],
           options: [63, 64, 65, 66, 73, 74, 75, 76, 83, 84, 85, 86],
@@ -88,7 +116,8 @@ const THEM = {
           "Lớp 1A có 33 học sinh, lớp 1B có 30 học sinh. Lớp nào có nhiều học sinh hơn? (SGK tr.21)",
         options: ["Lớp 1A", "Lớp 1B", "Hai lớp bằng nhau"],
         answer: "Lớp 1A",
-        mascotHint: "33 và 30 cùng 3 chục; 3 đơn vị lớn hơn 0 đơn vị nên 33 > 30.",
+        mascotHint:
+          "33 và 30 cùng 3 chục; 3 đơn vị lớn hơn 0 đơn vị nên 33 > 30.",
       },
     },
     {
@@ -98,7 +127,8 @@ const THEM = {
           "Lớp 1B có 30 học sinh, lớp 1C có 35 học sinh. Lớp nào có ít học sinh hơn?",
         options: ["Lớp 1B", "Lớp 1C", "Hai lớp bằng nhau"],
         answer: "Lớp 1B",
-        mascotHint: "30 và 35 cùng 3 chục; 0 đơn vị bé hơn 5 đơn vị nên 30 < 35.",
+        mascotHint:
+          "30 và 35 cùng 3 chục; 0 đơn vị bé hơn 5 đơn vị nên 30 < 35.",
       },
     },
   ],
@@ -154,8 +184,26 @@ const THEM = {
           mode: "numberTrain",
           kind: "ribbon",
           numbers: [
-            51, 52, 53, null, 55, 56, null, 58, 59, 60, 71, null, 73, 74, 75, null,
-            null, 78, 79, 80,
+            51,
+            52,
+            53,
+            null,
+            55,
+            56,
+            null,
+            58,
+            59,
+            60,
+            71,
+            null,
+            73,
+            74,
+            75,
+            null,
+            null,
+            78,
+            79,
+            80,
           ],
           answers: [54, 57, 72, 76, 77],
           note: "Hai hàng của bảng số: mỗi hàng mười số liền nhau.",
@@ -219,7 +267,9 @@ for (const [idBai, dsSlide] of Object.entries(THEM)) {
   // Chèn TRƯỚC slide `summary` (slide cuối của bài).
   const iSummary = khoi.indexOf('          type: "summary",');
   if (iSummary < 0)
-    throw new Error(`Bài ${idBai} KHÔNG có slide summary — dừng, không ghi gì.`);
+    throw new Error(
+      `Bài ${idBai} KHÔNG có slide summary — dừng, không ghi gì.`,
+    );
   /**
    * 🔴 PHẢI lùi về dấu `{` MỞ ĐẦU của slide summary, không chèn ngay tại dòng `type:`.
    * Đã mắc thật: chèn tại dòng `type:` ⇒ slide mới nằm LỌT VÀO TRONG object summary
@@ -227,11 +277,17 @@ for (const [idBai, dsSlide] of Object.entries(THEM)) {
    */
   const iMoSlide = khoi.lastIndexOf("        {", iSummary);
   if (iMoSlide < 0)
-    throw new Error(`Bài ${idBai}: không tìm thấy dấu mở slide summary — dừng.`);
+    throw new Error(
+      `Bài ${idBai}: không tìm thấy dấu mở slide summary — dừng.`,
+    );
   const mocChèn = moc + iMoSlide;
 
   const chu = dsSlide
-    .map((s) => JSON.stringify(s, null, 2).split("\n").join("\n" + "        "))
+    .map((s) =>
+      JSON.stringify(s, null, 2)
+        .split("\n")
+        .join("\n" + "        "),
+    )
     .map((s) => `        ${s},\n`)
     .join("");
   nguon = nguon.slice(0, mocChèn) + chu + nguon.slice(mocChèn);

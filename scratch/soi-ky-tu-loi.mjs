@@ -27,7 +27,9 @@ function fileTrong(dir, duoi) {
 const muc = process.argv.slice(2);
 const files = muc.length
   ? muc.flatMap((m) =>
-      statSync(m).isDirectory() ? fileTrong(m, [".md", ".js", ".jsx", ".sql"]) : [m],
+      statSync(m).isDirectory()
+        ? fileTrong(m, [".md", ".js", ".jsx", ".sql"])
+        : [m],
     )
   : MAC_DINH;
 
@@ -39,7 +41,8 @@ for (const f of files) {
     const cp = t[i].codePointAt(0);
     let nhan = null;
     if (cp === 0xfffd) nhan = "U+FFFD";
-    else if (cp >= 0x300 && cp <= 0x36f) nhan = `dấu rời U+${cp.toString(16).toUpperCase()}`;
+    else if (cp >= 0x300 && cp <= 0x36f)
+      nhan = `dấu rời U+${cp.toString(16).toUpperCase()}`;
     else if (cp >= 0xd800 && cp <= 0xdbff) {
       const sau = t.charCodeAt(i + 1);
       if (!(sau >= 0xdc00 && sau <= 0xdfff)) nhan = "surrogate mồ côi";
@@ -47,7 +50,8 @@ for (const f of files) {
       const truoc = t.charCodeAt(i - 1);
       if (!(truoc >= 0xd800 && truoc <= 0xdbff)) nhan = "surrogate mồ côi";
     }
-    if (nhan) bad.push({ nhan, quanh: t.slice(i - 22, i + 22).replace(/\n/g, "⏎") });
+    if (nhan)
+      bad.push({ nhan, quanh: t.slice(i - 22, i + 22).replace(/\n/g, "⏎") });
   }
   if (bad.length) {
     tong += bad.length;

@@ -20,7 +20,7 @@ tiền lệ: bản kế hoạch đầu tiên ghi sai “Bài 16 = tr.101” tron
   ```
 - 🔴 **trang PDF = trang sách + 1** — đã kiểm chéo **4 mẫu**: tập 1: sách 2 = PDF 3, sách 4 = PDF 5;
   tập 2: sách 3 = PDF 4, sách 4 = PDF 5. Ví dụ: “Bài 4 (So sánh số), sách tr.24” ⇒ xem `part-1/page-0025.png`.
-- Quy mô app (sinh lại bằng `node scratch/in-cau-truc-lop.bundle.mjs 1`): **10 chương · 97 bài · 690 slide**.
+- Quy mô app (sinh lại bằng `node scratch/in-cau-truc-lop.bundle.mjs 1`): **10 chương · 97 bài · 691 slide**.
 - Cột **“Chắc chắn?”**: `✔` = mô tả bài trong app **đã ghi rõ trang SGK** (đọc từ `client/src/data/grade1/*.js`);
   `?` = tôi **suy theo nội dung** ⇒ khi rà chương đó **phải mở ảnh kiểm lại**, đừng tin cột này.
 

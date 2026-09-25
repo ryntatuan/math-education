@@ -36,6 +36,7 @@ import {
 } from "./GeometryVisuals";
 // Bảng có ô trống ĐIỀN ĐƯỢC — ở file riêng vì dùng hook `useFillSlots` (xem đầu file đó).
 import BangTinh from "./interactiveTable";
+import CotTinh from "./interactiveColumn";
 import {
   FractionBar,
   FractionCircle,
@@ -130,6 +131,10 @@ export default function VisualBlocks({ content }) {
   // BẢNG CÓ Ô TRỐNG BÉ ĐIỀN ĐƯỢC — không bao giờ để ô “?” là hình tĩnh.
   if (isObj(content.bangTinh))
     blocks.push(<BangTinh key="bangTinh" {...content.bangTinh} />);
+
+  // Đặt tính dọc (SGK dùng ở cả 5 lớp: “Đặt tính rồi tính”).
+  if (isObj(content.cotTinh))
+    blocks.push(<CotTinh key="cotTinh" {...content.cotTinh} />);
   if (isObj(content.spatialScene))
     blocks.push(<SpatialScene key="spatialScene" {...content.spatialScene} />);
   // Đếm – so sánh – tách gộp cho Lớp 1 Chủ đề 1 (SGK tr.6–45).

@@ -15,7 +15,9 @@ const co = (v) => v !== null && v !== undefined && v !== "";
 const dem = {};
 const dsBai = new Set();
 for (const [file, key, lop] of NGUON) {
-  const mod = await import(new URL(`../client/src/data/${file}`, import.meta.url));
+  const mod = await import(
+    new URL(`../client/src/data/${file}`, import.meta.url)
+  );
   for (const ch of mod[key].chapters ?? []) {
     for (const bai of ch.lessons ?? []) {
       for (const s of bai.slides ?? []) {
@@ -31,7 +33,9 @@ for (const [file, key, lop] of NGUON) {
   }
 }
 const tong = Object.values(dem).reduce((a, b) => a + b, 0);
-console.log(`Tổng lượt hình theo kiểu slide: ${tong} · số bài có hình: ${dsBai.size}\n`);
+console.log(
+  `Tổng lượt hình theo kiểu slide: ${tong} · số bài có hình: ${dsBai.size}\n`,
+);
 for (const [k, n] of Object.entries(dem).sort((a, b) => b[1] - a[1])) {
   console.log(`  ${k}: ${n}`);
 }

@@ -192,13 +192,13 @@ export const g3c8 = {
               headers: ["Nghìn", "Trăm", "Chục", "Đơn vị"],
               digits: [4, 0, 0, 5],
               label: "4 005 đọc là bốn nghìn không trăm linh năm",
-            }
+            },
           },
         },
         {
           type: "visual",
           content: {
-            text:"4 005 → bốn nghìn không trăm linh năm",
+            text: "4 005 → bốn nghìn không trăm linh năm",
             table: {
               headers: ["Số", "Đọc là"],
               rows: [
@@ -206,7 +206,7 @@ export const g3c8 = {
                 ["4 005", "bốn nghìn không trăm linh năm"],
               ],
               label: "Đọc và viết số có bốn chữ số",
-            }
+            },
           },
         },
         {
@@ -524,13 +524,13 @@ export const g3c8 = {
                 },
               ],
               label: "Làm tròn đến hàng chục: 24 → 20, 27 → 30",
-            }
+            },
           },
         },
         {
           type: "visual",
           content: {
-            text:"24 → 20   (hàng đơn vị 4 < 5: xuống)\n27 → 30   (hàng đơn vị 7 ≥ 5: lên)",
+            text: "24 → 20   (hàng đơn vị 4 < 5: xuống)\n27 → 30   (hàng đơn vị 7 ≥ 5: lên)",
             table: {
               headers: ["Số đã cho", "Làm tròn hàng chục"],
               rows: [
@@ -538,7 +538,7 @@ export const g3c8 = {
                 ["27", "30 (vì 7 ≥ 5: lên)"],
               ],
               label: "Làm tròn đến HÀNG CHỤC: nhìn chữ số hàng đơn vị",
-            }
+            },
           },
         },
         {
@@ -563,13 +563,13 @@ export const g3c8 = {
                 },
               ],
               label: "Làm tròn đến hàng trăm: 320 → 300, 360 → 400",
-            }
+            },
           },
         },
         {
           type: "visual",
           content: {
-            text:"320 → 300 (hàng chục 2 < 5: xuống)\n360 → 400 (hàng chục 6 ≥ 5: lên)",
+            text: "320 → 300 (hàng chục 2 < 5: xuống)\n360 → 400 (hàng chục 6 ≥ 5: lên)",
             table: {
               headers: ["Số đã cho", "Làm tròn hàng trăm"],
               rows: [
@@ -577,7 +577,7 @@ export const g3c8 = {
                 ["360", "400 (vì hàng chục 6 ≥ 5: lên)"],
               ],
               label: "Làm tròn đến HÀNG TRĂM: nhìn chữ số hàng chục",
-            }
+            },
           },
         },
         {
@@ -647,13 +647,13 @@ export const g3c8 = {
               headers: ["Nghìn", "Trăm", "Chục", "Đơn vị"],
               digits: [2, 4, 7, 5],
               label: "2 475 = 2 000 + 400 + 70 + 5",
-            }
+            },
           },
         },
         {
           type: "visual",
           content: {
-            text:"27 → 30",
+            text: "27 → 30",
             table: {
               headers: ["Làm tròn", "Được"],
               rows: [
@@ -661,7 +661,7 @@ export const g3c8 = {
                 ["24 300 đến hàng nghìn", "24 000"],
               ],
               label: "Luyện tập chung chủ đề 8",
-            }
+            },
           },
         },
         {

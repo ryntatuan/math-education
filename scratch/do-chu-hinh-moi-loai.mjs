@@ -15,7 +15,8 @@ import { chromium } from "playwright";
 const PORT = process.env.PORT ?? "5174";
 const BASE = `http://localhost:${PORT}`;
 const NGUONG_PX = 12;
-const { HINH_KEYS } = await import("../client/src/components/visuals/visualKeys.js");
+const { HINH_KEYS } =
+  await import("../client/src/components/visuals/visualKeys.js");
 
 const NGUON = [
   ["grade1Data.js", "grade1Data"],
@@ -28,7 +29,9 @@ const NGUON = [
 const KHOAS = [...HINH_KEYS, "items", "shape", "operation", "number"];
 const canDo = new Map(); // khoá -> [{bai, index}]
 for (const [file, key] of NGUON) {
-  const mod = await import(new URL(`../client/src/data/${file}`, import.meta.url));
+  const mod = await import(
+    new URL(`../client/src/data/${file}`, import.meta.url)
+  );
   for (const ch of mod[key].chapters ?? []) {
     for (const bai of ch.lessons ?? []) {
       (bai.slides ?? []).forEach((s, i) => {
@@ -51,7 +54,9 @@ const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
 const ketQua = [];
 for (const [khoa, ca] of canDo) {
   for (const c of ca) {
-    await page.goto(`${BASE}/lesson/${c.bai}`, { waitUntil: "domcontentloaded" });
+    await page.goto(`${BASE}/lesson/${c.bai}`, {
+      waitUntil: "domcontentloaded",
+    });
     await page.waitForTimeout(800);
     let toiNoi = c.index === 0;
     for (let i = 0; i < c.index && !toiNoi; i++) {
@@ -94,7 +99,9 @@ let loi = 0;
 console.log("khoá hình          bài        #slide  svg  rộng   chữ nhỏ nhất");
 for (const k of ketQua) {
   if (!k.co) {
-    console.log(`   ${k.khoa.padEnd(16)} ${k.bai} #${k.index + 1}  ⏭ không tới được (quiz chắn)`);
+    console.log(
+      `   ${k.khoa.padEnd(16)} ${k.bai} #${k.index + 1}  ⏭ không tới được (quiz chắn)`,
+    );
     continue;
   }
   const xau = (k.nhoNhat !== null && k.nhoNhat < NGUONG_PX) || k.tranNgang;

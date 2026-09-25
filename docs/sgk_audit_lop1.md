@@ -16,16 +16,45 @@
 
 ---
 
+## PHẦN F — “ĐẶT TÍNH RỒI TÍNH” NAY ĐIỀN ĐƯỢC (2026-09-25)
+
+**Phát hiện:** “Đặt tính rồi tính” là dạng bài **phổ biến nhất** của SGK Toán 1–5 (Lớp 1 tr.46–71
+và tr.88–105 gần như trang nào cũng có), mà app chỉ có **CÂU CHỮ** (“Đặt tính rồi tính: 32 + 14 = ?”)
++ một cột chữ in sẵn trong `text` kèm `operation` ⇒ **trẻ đọc luôn kết quả**, không phải đặt tính.
+Đây cũng là chỗ vi phạm luật “mọi dạng bài tập đều phải bấm được” mà người dùng đã nêu.
+
+**Đã làm:** khoá hình mới `cotTinh` (`client/src/components/visuals/interactiveColumn.jsx` +
+hàm thuần `columnMath.js`):
+
+- Vẽ đúng cột đặt tính: chữ số thẳng hàng, dấu +/− bên trái, gạch ngang, hàng “nhớ” khi cần.
+- Bé bấm ô “?” rồi chọn chữ số **0–9**; chấm ngay, có tiến độ, “Làm lại”, pháo giấy khi xong.
+- **Đáp án không khai trong dữ liệu** mà do hàm thuần tính từ `left`/`right`/`sign`
+  (hỗ trợ cả số thập phân: `15,82 + 9,35 = 25,17`) ⇒ **không thể có chuyện dữ liệu lệch đáp án**.
+- Không bấm được (slide câu hỏi/tóm tắt) thì **in luôn kết quả** — tuyệt đối không để ô “?” chết.
+
+**Đã dùng:** `g1-c8-l1` (tách thành bảng hàng + đặt tính 25 + 4) · `g1-c8-l2` (34 + 5).
+Bỏ luôn “cột in sẵn” trong `text` của hai slide này — nó chính là đáp án in sẵn.
+
+**Kiểm chứng:** cổng mới `scratch/kiem-tra-dat-tinh.mjs` **29/29 ca** (cộng có nhớ · trừ có mượn ·
+thập phân · số 0 · nhớ nhiều cấp · canary hai vế — và nó đã **bắt được một mong đợi SAI của tôi**:
+`105 + 8` nhớ đúng là `[1,0,0]`) · `kiem-tra-slide` 0 lỗi · `soat-o-trong` 0 ô trống tĩnh ·
+cổng tĩnh **32 PASS** · `build:web` exit 0 · đo trong app: chữ số cao **31–34 px**, 0 tràn ngang ·
+thử thật trong app: sai → ô xám, đúng → hiện số, **2/2 + “🎉 Bé làm đúng hết!” + pháo giấy**.
+
+**Còn lại:** các chương khác của 5 lớp vẫn còn cột đặt tính tĩnh — chuyển dần theo từng chương.
+
+---
+
 ## PHẦN E — ĐO “CHỮ TRONG HÌNH CÓ ĐỌC ĐƯỢC KHÔNG” (2026-09-25, người dùng báo)
 
-Người dùng gửi ảnh bài `g3-c8-l5` (Lớp 3, chữ số La Mã) và nói: *“các số la mã trong đồng hồ quá
-nhỏ, trẻ không thể thấy được”*. **Đúng, và nguyên nhân không nằm ở dữ liệu:**
+Người dùng gửi ảnh bài `g3-c8-l5` (Lớp 3, chữ số La Mã) và nói: _“các số la mã trong đồng hồ quá
+nhỏ, trẻ không thể thấy được”_. **Đúng, và nguyên nhân không nằm ở dữ liệu:**
 
-| Bước | Phát hiện |
-| :---- | :-------- |
-| Đọc mã + CSS | `@media (max-width: 640px)` ép `.clock-svg { width: 135px !important }` cho **MỌI cỡ** ⇒ mặt đồng hồ 220 đơn vị co còn **0,61** ⇒ chữ 11 đơn vị chỉ còn **~7 px** |
-| Bộ vẽ | `ClockGraphic` có `sm=120 · md=165 · lg=220`, nhưng CSS đè hết thành 135 ⇒ dữ liệu có xin cỡ nào cũng vô ích |
-| Họ lỗi tương tự | `.dialogue-focus-graphic .clock-svg` ép **125px** (slide hội thoại) ⇒ chữ ~5,5 px |
+| Bước                                | Phát hiện                                                                                                                                                                  |
+| :---------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Đọc mã + CSS                        | `@media (max-width: 640px)` ép `.clock-svg { width: 135px !important }` cho **MỌI cỡ** ⇒ mặt đồng hồ 220 đơn vị co còn **0,61** ⇒ chữ 11 đơn vị chỉ còn **~7 px**          |
+| Bộ vẽ                               | `ClockGraphic` có `sm=120 · md=165 · lg=220`, nhưng CSS đè hết thành 135 ⇒ dữ liệu có xin cỡ nào cũng vô ích                                                               |
+| Họ lỗi tương tự                     | `.dialogue-focus-graphic .clock-svg` ép **125px** (slide hội thoại) ⇒ chữ ~5,5 px                                                                                          |
 | Vì sao các bảng đo trước KHÔNG thấy | `scratch/visual-fit.jsx` đo hình theo `HINH_KEYS` — mà `clock`/`number`/`operation` **không** nằm trong đó, và trang đo cũng không chạy trong app nên không gặp CSS mobile |
 
 **Đã sửa:** cỡ đồng hồ trên điện thoại thành `min(180px, 52vw)` (và 170px cho slide hội thoại);
@@ -423,18 +452,19 @@ Quy mô: **2684 → 2690** (Lớp 1: 662 → 668) — phần tăng là 6 slide C
 Nhóm lỗi C (số liệu sai) là nhóm máy kiểm **chắc hơn mắt người**: viết công cụ mới
 `scratch/soat-phep-tinh.mjs` đọc thẳng dữ liệu 5 lớp và kiểm:
 
-| Nguồn | Đã kiểm | Kết quả |
-| :---- | ------: | :------ |
-| `operation` (`{left, sign, right, result}`) | **142** | 0 sai |
-| `comparison` (dạng object và dạng chuỗi) | **10** | 0 sai |
-| Mọi câu “a op b = c” trong **chữ** của slide (thầy thuật, giải thích, gợi ý, ô bảng…) | **1626** | 0 sai |
-| Câu hỏi “a op b = ?” so với `answer` | 9 | 0 sai |
+| Nguồn                                                                                 |  Đã kiểm | Kết quả |
+| :------------------------------------------------------------------------------------ | -------: | :------ |
+| `operation` (`{left, sign, right, result}`)                                           |  **142** | 0 sai   |
+| `comparison` (dạng object và dạng chuỗi)                                              |   **10** | 0 sai   |
+| Mọi câu “a op b = c” trong **chữ** của slide (thầy thuật, giải thích, gợi ý, ô bảng…) | **1626** | 0 sai   |
+| Câu hỏi “a op b = ?” so với `answer`                                                  |        9 | 0 sai   |
 
 **Kết luận CĐ8:** SGK chỉ có 3 loại bài (đặt tính rồi tính · tính nhẩm · trò chơi theo nhóm) và
 **không có bảng “Số ?”** nào ⇒ **không phải bổ sung dạng điền**; app đã có đủ 12 bài, khớp cấu trúc SGK.
 Vậy chương này **không phải sửa dữ liệu** — cái được là **bảo đảm số học toàn hệ thống**.
 
 > 🔴 **Ba nhóm BÁO OAN của công cụ đã sửa (ghi để lần sau viết luật là tránh ngay):**
+>
 > 1. **Cắt đôi số / cắt phép tính con:** `14 − 6  =  14 − 4 − 2  =  8` bị khớp thành `14 − 6 = 1`;
 >    `3 + 4 + 5 = 12` bị khớp thành `4 + 5 = 12`. Chữa: chốt `(?!\d)` sau kết quả + xét **vế trước**
 >    bằng mẫu “SỐ rồi TOÁN TỬ ở cuối”.
@@ -464,7 +494,7 @@ nhắc tới”. Lọc riêng CĐ9 Lớp 1 được **4 slide**, cả 4 đều k
 
 ### b) 🔴 DẠNG LỖI MỚI (F): hình ghi trong dữ liệu nhưng KHÔNG có chỗ vẽ
 
-SGK in **hình đồng hồ** cho trẻ đọc giờ. App có viết *“Đồng hồ chỉ mấy giờ?”* nhưng
+SGK in **hình đồng hồ** cho trẻ đọc giờ. App có viết _“Đồng hồ chỉ mấy giờ?”_ nhưng
 câu hỏi lại **mô tả kim bằng chữ**: “Kim ngắn chỉ số 7, kim dài chỉ số 12…” ⇒ lộ đáp án,
 trẻ không phải đọc đồng hồ, chỉ phải đọc chữ.
 
@@ -473,16 +503,16 @@ trẻ không phải đọc đồng hồ, chỉ phải đọc chữ.
 `VisualBlocks` vẽ theo `HINH_KEYS` (`visualKeys.js`), **KHÔNG có 4 khoá đó** ⇒ dữ liệu đặt
 `clock` lên slide câu hỏi thì **hình không bao giờ hiện**, im lặng, không lỗi, không cảnh báo.
 
-| Bước | Kết quả |
-| :---- | ----- |
-| Công cụ mới `scratch/soat-hinh-khong-hien.mjs` | **22 ca** mất hình (Lớp 2–4) — canary 6/6 |
-| Đọc mã để lập **bản đồ vẽ theo từng kiểu slide** | 2 ca đầu là **tôi báo oan** (`ConceptSlide` CÓ vẽ `clock`) ⇒ sửa công cụ thành bảng, canary 10/10 |
-| Thêm khối dùng chung `CalcFigures` (số · phép tính · đồng hồ · so sánh) cho `StorySlide` · `ConceptSlide` · `QuizSlide` | **23 hình hiện ra** (9 story · 11 quiz · 3 concept), đo lại = 0 ca mất hình |
+| Bước                                                                                                                    | Kết quả                                                                                           |
+| :---------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| Công cụ mới `scratch/soat-hinh-khong-hien.mjs`                                                                          | **22 ca** mất hình (Lớp 2–4) — canary 6/6                                                         |
+| Đọc mã để lập **bản đồ vẽ theo từng kiểu slide**                                                                        | 2 ca đầu là **tôi báo oan** (`ConceptSlide` CÓ vẽ `clock`) ⇒ sửa công cụ thành bảng, canary 10/10 |
+| Thêm khối dùng chung `CalcFigures` (số · phép tính · đồng hồ · so sánh) cho `StorySlide` · `ConceptSlide` · `QuizSlide` | **23 hình hiện ra** (9 story · 11 quiz · 3 concept), đo lại = 0 ca mất hình                       |
 
 ### c) Sửa cho khớp SGK
 
-- **4 câu hỏi Lớp 1 CĐ9**: bỏ mô tả kim trong đề → đề còn *“Đồng hồ chỉ mấy giờ?”* (hoặc
-  *“Xem đồng hồ rồi cho biết bé làm gì lúc đó?”*), **giữ lời giải thích ở `mascotHint`**.
+- **4 câu hỏi Lớp 1 CĐ9**: bỏ mô tả kim trong đề → đề còn _“Đồng hồ chỉ mấy giờ?”_ (hoặc
+  _“Xem đồng hồ rồi cho biết bé làm gì lúc đó?”_), **giữ lời giải thích ở `mascotHint`**.
 - **6 câu hỏi Lớp 2/3** (`g2-c6`, `g3-c13`): cũng bỏ phần “Kim ngắn chỉ số 3, kim dài chỉ số 6”
   khỏi đề — gợi ý xuống `mascotHint` (`g3` thêm luật “3 × 5 = 15 phút”).
 - **Mặt đồng hồ số La Mã** (`ClockGraphic` thêm `roman`): SGK Lớp 3 “Làm quen với chữ số La Mã”
@@ -506,11 +536,11 @@ Xem bằng trình duyệt thật: `g2-c6-l3` (đồng hồ 3:30 + đề ngắn) 
 
 **Đã xem ảnh:** tr.36 · tr.38 (và toàn bộ chữ tr.28–43 qua OCR tách theo trang).
 
-| # | Bài · trang SGK | Nhóm | Phát hiện | Xử lý |
-| :- | :-------------- | :--- | :-------- | :---- |
-| 1 | **Cao hơn, thấp hơn — tr.30–31** | **A (thiếu hoạt động)** | SGK có hẳn một phần “Cao hơn, thấp hơn” (Bài 25) mà app **không có bài nào** — chỉ có dài hơn/ngắn hơn | ✅ Thêm **bài mới** `g1-c7-l9`, chèn ở vị trí thứ 2, sau đó chạy `chuan-hoa-danh-so.mjs` để đánh lại số (nay là “Bài 2: Cao hơn, thấp hơn”): 1 kể chuyện · 1 khám phá · **biểu đồ cột** so chiều cao 3 cây · 3 câu hỏi (cao hơn · thấp hơn · hươu cao cổ vs ngựa) · 1 ghi nhớ |
-| 2 | “Chọn số đo độ dài phù hợp” — tr.36 | — | 5 đồ vật, mỗi đồ vật chọn giữa 2 số đo (bút mực 35 cm/12 cm · cốc nước 4 cm/3 gang tay · bút chì 30 cm/1 gang tay · bút sáp 20 cm/8 cm · hộp bút 5 gang tay/25 cm). Sách **tô màu sẵn** một ô ở mỗi dòng nên **không chắc đâu là đáp án** | ⏸ **CHƯA làm — cần bạn chốt** (nhìn ảnh không đủ để đoán; luật cũ: không đoán số) |
-| 3 | Đếm đồ chơi + trả lời — tr.38 | — | Đồ chơi vẽ trên lưới ô vuông kèm thước 0–14; hỏi “mỗi đồ chơi dài bao nhiêu cm”, “đồ chơi nào dài nhất”, “có bao nhiêu xe ngắn hơn xe khách”. Muốn đúng thì phải có ảnh đồ chơi + số đo chuẩn | ⏸ **CHƯA làm — cần bạn chốt số đo** |
+| #   | Bài · trang SGK                     | Nhóm                    | Phát hiện                                                                                                                                                                                                                                 | Xử lý                                                                                                                                                                                                                                                                         |
+| :-- | :---------------------------------- | :---------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | **Cao hơn, thấp hơn — tr.30–31**    | **A (thiếu hoạt động)** | SGK có hẳn một phần “Cao hơn, thấp hơn” (Bài 25) mà app **không có bài nào** — chỉ có dài hơn/ngắn hơn                                                                                                                                    | ✅ Thêm **bài mới** `g1-c7-l9`, chèn ở vị trí thứ 2, sau đó chạy `chuan-hoa-danh-so.mjs` để đánh lại số (nay là “Bài 2: Cao hơn, thấp hơn”): 1 kể chuyện · 1 khám phá · **biểu đồ cột** so chiều cao 3 cây · 3 câu hỏi (cao hơn · thấp hơn · hươu cao cổ vs ngựa) · 1 ghi nhớ |
+| 2   | “Chọn số đo độ dài phù hợp” — tr.36 | —                       | 5 đồ vật, mỗi đồ vật chọn giữa 2 số đo (bút mực 35 cm/12 cm · cốc nước 4 cm/3 gang tay · bút chì 30 cm/1 gang tay · bút sáp 20 cm/8 cm · hộp bút 5 gang tay/25 cm). Sách **tô màu sẵn** một ô ở mỗi dòng nên **không chắc đâu là đáp án** | ⏸ **CHƯA làm — cần bạn chốt** (nhìn ảnh không đủ để đoán; luật cũ: không đoán số)                                                                                                                                                                                             |
+| 3   | Đếm đồ chơi + trả lời — tr.38       | —                       | Đồ chơi vẽ trên lưới ô vuông kèm thước 0–14; hỏi “mỗi đồ chơi dài bao nhiêu cm”, “đồ chơi nào dài nhất”, “có bao nhiêu xe ngắn hơn xe khách”. Muốn đúng thì phải có ảnh đồ chơi + số đo chuẩn                                             | ⏸ **CHƯA làm — cần bạn chốt số đo**                                                                                                                                                                                                                                           |
 
 **Kiểm chứng:** cổng **32 PASS** · `kiem-tra-slide` 0 lỗi · `soat-o-trong` 0 ô trống tĩnh · build sạch.
 Quy mô: 5 · 51 · **460 bài** · **2712 slide** (Lớp 1: 98 bài · 690 slide).

@@ -37,7 +37,14 @@ const CHO_VE = {
 };
 
 // Khoá hình KHÔNG vẽ được ở đâu (ngoài VisualBlocks vốn đã vẽ theo HINH_KEYS).
-const KHOA_HINH_LE = ["number", "operation", "clock", "comparison", "shape", "items"];
+const KHOA_HINH_LE = [
+  "number",
+  "operation",
+  "clock",
+  "comparison",
+  "shape",
+  "items",
+];
 
 const co = (v) => v !== null && v !== undefined && v !== "";
 
@@ -57,7 +64,9 @@ for (const [file, key, lop] of NGUON) {
         const c = s.content ?? {};
         const veDuoc = CHO_VE[s.type];
         if (!veDuoc) continue;
-        const khoa = KHOA_HINH_LE.filter((k) => co(c[k]) && !veDuoc.includes(k));
+        const khoa = KHOA_HINH_LE.filter(
+          (k) => co(c[k]) && !veDuoc.includes(k),
+        );
         if (!khoa.length) continue;
         demTheoKieu[s.type] = (demTheoKieu[s.type] ?? 0) + khoa.length;
         findings.push({
@@ -83,24 +92,72 @@ for (const [kieu, n] of Object.entries(demTheoKieu)) {
 if (findings.length) {
   console.log("");
   for (const f of findings) {
-    console.log(
-      `L${f.lop} ${f.bai} [${f.kieu}] ${f.khoa} :: ${f.viDu}`,
-    );
+    console.log(`L${f.lop} ${f.bai} [${f.kieu}] ${f.khoa} :: ${f.viDu}`);
   }
 }
 
 // CANARY HAI VẾ: (1) bắt được ca giả, (2) KHÔNG bắt ca hợp lệ.
 const canary = [
-  { ten: "story có clock (vừa thêm chỗ vẽ) → KHÔNG báo", type: "story", content: { clock: { hour: 7 } }, phai: false },
-  { ten: "concept có clock → KHÔNG báo (ConceptSlide có vẽ)", type: "concept", content: { clock: { hour: 7 } }, phai: false },
-  { ten: "quiz có clock → KHÔNG báo (vừa thêm chỗ vẽ)", type: "quiz", content: { clock: { hour: 7 } }, phai: false },
-  { ten: "concept có operation → KHÔNG báo (vừa thêm chỗ vẽ)", type: "concept", content: { operation: { left: 1 } }, phai: false },
-  { ten: "dialogue có operation → BÁO (DialogueScene không vẽ)", type: "dialogue", content: { operation: { left: 1 } }, phai: true },
-  { ten: "dialogue có clock → KHÔNG báo (DialogueScene có vẽ)", type: "dialogue", content: { clock: { hour: 3 } }, phai: false },
-  { ten: "summary có shape → BÁO (SummarySlide không vẽ shape)", type: "summary", content: { shape: "square" }, phai: true },
-  { ten: "quiz có items → KHÔNG báo (QuizSlide có vẽ)", type: "quiz", content: { items: [{ emoji: "🍎", count: 3 }] }, phai: false },
-  { ten: "story chữ thường → KHÔNG báo", type: "story", content: { text: "3 giờ" }, phai: false },
-  { ten: "quiz number 0 → KHÔNG báo (0 + có vẽ)", type: "quiz", content: { number: 0 }, phai: false },
+  {
+    ten: "story có clock (vừa thêm chỗ vẽ) → KHÔNG báo",
+    type: "story",
+    content: { clock: { hour: 7 } },
+    phai: false,
+  },
+  {
+    ten: "concept có clock → KHÔNG báo (ConceptSlide có vẽ)",
+    type: "concept",
+    content: { clock: { hour: 7 } },
+    phai: false,
+  },
+  {
+    ten: "quiz có clock → KHÔNG báo (vừa thêm chỗ vẽ)",
+    type: "quiz",
+    content: { clock: { hour: 7 } },
+    phai: false,
+  },
+  {
+    ten: "concept có operation → KHÔNG báo (vừa thêm chỗ vẽ)",
+    type: "concept",
+    content: { operation: { left: 1 } },
+    phai: false,
+  },
+  {
+    ten: "dialogue có operation → BÁO (DialogueScene không vẽ)",
+    type: "dialogue",
+    content: { operation: { left: 1 } },
+    phai: true,
+  },
+  {
+    ten: "dialogue có clock → KHÔNG báo (DialogueScene có vẽ)",
+    type: "dialogue",
+    content: { clock: { hour: 3 } },
+    phai: false,
+  },
+  {
+    ten: "summary có shape → BÁO (SummarySlide không vẽ shape)",
+    type: "summary",
+    content: { shape: "square" },
+    phai: true,
+  },
+  {
+    ten: "quiz có items → KHÔNG báo (QuizSlide có vẽ)",
+    type: "quiz",
+    content: { items: [{ emoji: "🍎", count: 3 }] },
+    phai: false,
+  },
+  {
+    ten: "story chữ thường → KHÔNG báo",
+    type: "story",
+    content: { text: "3 giờ" },
+    phai: false,
+  },
+  {
+    ten: "quiz number 0 → KHÔNG báo (0 + có vẽ)",
+    type: "quiz",
+    content: { number: 0 },
+    phai: false,
+  },
 ];
 let canaryDung = 0;
 for (const c of canary) {

@@ -103,9 +103,11 @@ function loiTrongChu(chu) {
 
 function gomChuoi(v, duong = "", ra = []) {
   if (typeof v === "string") ra.push([duong, v]);
-  else if (Array.isArray(v)) v.forEach((x, i) => gomChuoi(x, `${duong}[${i}]`, ra));
+  else if (Array.isArray(v))
+    v.forEach((x, i) => gomChuoi(x, `${duong}[${i}]`, ra));
   else if (v && typeof v === "object")
-    for (const [k, x] of Object.entries(v)) gomChuoi(x, duong ? `${duong}.${k}` : k, ra);
+    for (const [k, x] of Object.entries(v))
+      gomChuoi(x, duong ? `${duong}.${k}` : k, ra);
   return ra;
 }
 
@@ -126,7 +128,9 @@ for (const [tenLop, data] of NGUON) {
             soLan.operation++;
             const dung = tinh(a, sign, b2);
             if (!khop(dung, r, sign))
-              loi.push(`[operation] ${viTri}: ${a} ${sign} ${b2} = ${dung} nhưng ghi ${r}`);
+              loi.push(
+                `[operation] ${viTri}: ${a} ${sign} ${b2} = ${dung} nhưng ghi ${r}`,
+              );
           }
         }
 
@@ -141,7 +145,9 @@ for (const [tenLop, data] of NGUON) {
               soLan.comparison++;
               const dung = a > b2 ? ">" : a < b2 ? "<" : "=";
               if (dung !== d)
-                loi.push(`[comparison] ${viTri}: chữ ghi ${a} ${d} ${b2} nhưng đúng phải là ${dung}`);
+                loi.push(
+                  `[comparison] ${viTri}: chữ ghi ${a} ${d} ${b2} nhưng đúng phải là ${dung}`,
+                );
             }
           } else if (typeof cp === "string") {
             const m = gonSo(cp).match(/(-?\d+)\s*(>|<|=)\s*(-?\d+)/);
@@ -151,7 +157,9 @@ for (const [tenLop, data] of NGUON) {
               const b2 = Number(m[3]);
               const dung = a > b2 ? ">" : a < b2 ? "<" : "=";
               if (dung !== m[2])
-                loi.push(`[comparison] ${viTri}: chuỗi “${cp}” SAI (đúng phải là ${dung})`);
+                loi.push(
+                  `[comparison] ${viTri}: chuỗi “${cp}” SAI (đúng phải là ${dung})`,
+                );
             }
           }
         }
@@ -175,7 +183,9 @@ for (const [tenLop, data] of NGUON) {
             /(?<![\d,/])(-?\d+)(?!,\d)\s*([+−\-×x:])\s*(\d+)(?!,\d)\s*=\s*(?:\?|…|\.\.\.)\s*$/,
           );
           /** Cùng luật với luật 3: bỏ qua nếu vế trước là số/ toán tử (biểu thức nhiều bước). */
-          const truocQ = m ? t.slice(0, m.index).replace(/\s+$/, "").slice(-1) : "";
+          const truocQ = m
+            ? t.slice(0, m.index).replace(/\s+$/, "").slice(-1)
+            : "";
           const ans = so(c.answer);
           if (m && ans !== null && !/[\d+\-−×x=,/]/.test(truocQ || " ")) {
             const dung = tinh(Number(m[1]), m[2], Number(m[3]));
@@ -199,9 +209,17 @@ const CANARY = [
   ["3 + 4 = 8", 1, "phép tính sai — phải bắt"],
   ["3 + 4 = 7", 0, "phép tính đúng — không được bắt"],
   ["3 + 4 + 5 = 12", 0, "biểu thức nhiều bước"],
-  ["45 + 9 = 36? Không! Phải là 45 + 9 = 54.", 0, "câu nêu điều sai cho bé phát hiện"],
+  [
+    "45 + 9 = 36? Không! Phải là 45 + 9 = 54.",
+    0,
+    "câu nêu điều sai cho bé phát hiện",
+  ],
   ["Số bé = 40 : 4 × 1 = 10!", 0, "biểu thức nối tiếp có phép chia"],
-  ["200 000 : 100 × 10 = 20 000 đồng.", 0, "số có dấu cách phân nghìn + nối tiếp"],
+  [
+    "200 000 : 100 × 10 = 20 000 đồng.",
+    0,
+    "số có dấu cách phân nghìn + nối tiếp",
+  ],
   ["Tính: 45 + 9 = 54", 0, "dấu hai chấm là dấu câu, không phải phép chia"],
   ["13 : 3 = 4 (dư 1)", 0, "thương của phép chia có dư"],
   ["3,45 × 10 = 34,5", 0, "số thập phân (dấu phẩy)"],
@@ -216,10 +234,13 @@ for (const [chu, mongDoi, ghiChu] of CANARY) {
   const n = loiTrongChu(chu).length;
   if (n !== mongDoi) {
     canaryHong++;
-    console.log(`❌ CANARY: “${chu}” → bắt ${n} lỗi, mong đợi ${mongDoi} (${ghiChu})`);
+    console.log(
+      `❌ CANARY: “${chu}” → bắt ${n} lỗi, mong đợi ${mongDoi} (${ghiChu})`,
+    );
   }
 }
-if (canaryHong === 0) console.log(`✅ Canary: ${CANARY.length}/${CANARY.length} ca đúng.`);
+if (canaryHong === 0)
+  console.log(`✅ Canary: ${CANARY.length}/${CANARY.length} ca đúng.`);
 
 console.log(
   `Đã kiểm: ${soLan.operation} operation · ${soLan.comparison} comparison · ` +

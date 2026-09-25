@@ -33,7 +33,9 @@ const NGUON = [
 // ---- 1. Gom các bài có mặt đồng hồ (và biết đáp án từng câu hỏi để đi qua quiz) ----
 const baiCoDongHo = [];
 for (const [file, key] of NGUON) {
-  const mod = await import(new URL(`../client/src/data/${file}`, import.meta.url));
+  const mod = await import(
+    new URL(`../client/src/data/${file}`, import.meta.url)
+  );
   for (const ch of mod[key].chapters ?? []) {
     for (const bai of ch.lessons ?? []) {
       const slides = bai.slides ?? [];
@@ -60,7 +62,9 @@ const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
 
 const ketQua = [];
 for (const bai of baiCoDongHo) {
-  await page.goto(`${BASE}/lesson/${bai.id}`, { waitUntil: "domcontentloaded" });
+  await page.goto(`${BASE}/lesson/${bai.id}`, {
+    waitUntil: "domcontentloaded",
+  });
   await page.waitForTimeout(900);
 
   for (let i = 0; i < bai.slides.length; i++) {
@@ -89,8 +93,7 @@ for (const bai of baiCoDongHo) {
           tranNgang: the.scrollWidth > the.clientWidth + 1,
         };
       });
-      if (doDuoc)
-        ketQua.push({ bai: bai.id, slide: i + 1, ...doDuoc });
+      if (doDuoc) ketQua.push({ bai: bai.id, slide: i + 1, ...doDuoc });
     }
 
     // Đi tiếp: quiz thì phải bấm đúng đáp án trước (nút "Tiếp tục" bị khoá).
