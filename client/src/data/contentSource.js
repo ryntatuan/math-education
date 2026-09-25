@@ -39,6 +39,31 @@ import { cayHopLe, demCay, dungCay } from "./dungCayNoiDung.js";
 const TINH = [grade1Data, grade2Data, grade3Data, grade4Data, grade5Data];
 const CACHE_KEY = "toan-vui-content";
 
+/**
+ * 🔴 CHẾ ĐỘ DEV — MÁY DEV LUÔN DÙNG DỮ LIỆU TRONG REPO (`npm run dev`).
+ *
+ * VÌ SAO CẦN: máy dev đang bật `content_source = "remote"` trong DB (bản các bé đang
+ * dùng), nên khi thử bài vừa sửa thì app **lấy cây từ DB (bản CŨ) và thay vào ngay sau
+ * khung hình đầu** — người sửa tưởng mã không ăn, hoặc tệ hơn là "sửa xong mà app không
+ * đổi". Muốn thử đúng thì phải đi chặn request + xoá cache bằng tay, rất dễ quên.
+ *
+ * NAY: ở `DEV`, nội dung LUÔN lấy từ file tĩnh trong repo ⇒ **sửa file là thấy ngay**.
+ * Muốn thử lại luồng tải từ DB ngay trên máy dev thì đặt cờ:
+ *     localStorage.setItem("toan-vui-nguon", "db")
+ * (xoá cờ ⇒ quay về file tĩnh).
+ *
+ * ⚠️ `import.meta.env.DEV` = `false` khi build production ⇒ **bản chạy thật của các bé
+ * KHÔNG bị ảnh hưởng gì** — đây là lý do phải ràng vào `DEV` chứ không phải cờ trong DB.
+ */
+const EP_DUNG_FILE_TINH = (() => {
+  try {
+    if (import.meta?.env?.DEV !== true) return false;
+    return localStorage.getItem("toan-vui-nguon") !== "db";
+  } catch {
+    return false;
+  }
+})();
+
 /** Cây đang dùng. Khởi đầu là file tĩnh. */
 let grades = TINH;
 /** `"static"` | `"db"` | `"cache"` — chỉ để chẩn đoán, không ảnh hưởng logic. */
@@ -123,7 +148,17 @@ function xoaCache() {
 // đúng ngay từ lần gọi đầu tiên, tức là từ khung hình đầu tiên. Đọc bất đồng bộ thì
 // màn hình đầu tiên luôn hiện file tĩnh rồi mới đổi sang nội dung đã cache — nhìn
 // như nội dung bị "nhảy".
-docCache();
+//
+// ⚠️ Ở chế độ dev (ép dùng file tĩnh) thì **KHÔNG** đọc cache: cache là cây tải từ DB,
+// đọc nó lên là lại thấy bản cũ ngay từ khung hình đầu — đúng cái bẫy vừa nói ở trên.
+if (!EP_DUNG_FILE_TINH) docCache();
+else if (import.meta?.env?.DEV) {
+  // eslint-disable-next-line no-console
+  console.info(
+    "[nội dung] CHẾ ĐỘ DEV: dùng file tĩnh trong repo ⇒ sửa dữ liệu là thấy ngay. " +
+      'Muốn thử luồng DB: localStorage.setItem("toan-vui-nguon", "db") rồi tải lại.',
+  );
+}
 
 /** Bóc giá trị thật khỏi JSONB của `app_config` (số trần, hoặc `{value: n}`). */
 function bocJsonb(raw) {
@@ -138,6 +173,18 @@ function bocJsonb(raw) {
  * @returns {Promise<"static"|"unchanged"|"db"|false>}
  */
 export function taiNoiDung({ force = false } = {}) {
+  // ── DEV: ép dùng file tĩnh, KHÔNG gọi DB ──────────────────────────────────
+  if (EP_DUNG_FILE_TINH) {
+    if (nguon !== "static") {
+      grades = TINH;
+      nguon = "static";
+      phienBan = null;
+      xoaCache();
+      phatThayDoi();
+    }
+    return Promise.resolve("static");
+  }
+
   if (!force && Date.now() - lastLoadedAt < MIN_REFRESH_MS)
     return Promise.resolve("unchanged");
   if (loadPromise) return loadPromise;
