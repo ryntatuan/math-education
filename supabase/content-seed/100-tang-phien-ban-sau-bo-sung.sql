@@ -12,6 +12,19 @@
 -- CHẠY LẠI NHIỀU LẦN: chỉ làm phiên bản tăng thêm 1 mỗi lần — vô hại (các bé tải
 --   lại nội dung thêm một lần), không sinh dòng trùng, không mất dữ liệu.
 --
+--   📐 **ĐẶT TÍNH CHIA ĐIỀN ĐƯỢC (cùng ngày, nốt dạng bài cuối):** `cotTinh` nhận thêm dấu `:`
+--      với bố cục riêng của phép chia: số bị chia ở trên · vạch dọc · số chia bên phải · dưới
+--      vạch ngang là các ô **thương** (bé điền **trái → phải** đúng thứ tự bé chia) · ô **số dư**
+--      có nhãn “dư” khi phép chia có dư. Đáp án KHÔNG khai trong dữ liệu — hàm `tinhChia()` tính
+--      thương + số dư, nên dữ liệu và đáp án không thể lệch nhau.
+--      Đã thêm: Lớp 3 — `g3-c4-l4` (12 : 3) · `l5` (13 : 3, dư 1) · `l6` (48 : 4) · `l9` (19 : 3, dư 1);
+--      Lớp 4 — `g4-c2-l12` (128 472 : 6) · `g4-c2-l13` (84 : 21).
+--      ✅ Cổng `scratch/kiem-tra-dat-tinh.mjs` nay **44 ca** (thêm 7 ca chia + canary).
+--      ✅ Cổng `scripts/test-admin-portal.mjs --static` nay **CHẶN** `cotTinh` chia số thập phân
+--         (Lớp 5 chưa vẽ được kiểu đặt tính cho số thập phân) và chia cho 0.
+--      ⚠️ Số slide KHÔNG đổi (2738) vì mỗi slide chỉ THAY một hình phép tính cũ bằng hình chia.
+--      ⚠️ LẦN NÀY CẦN DÁN: `04-bai-lop-3.sql`, `05-bai-lop-4.sql` rồi `100-...`.
+--
 --   📐 **THÊM BẢNG ĐIỀN + ĐẶT TÍNH CHO LỚP 4–5 (cùng ngày):** công cụ `scratch/dem-dang-bai-sgk.mjs`
 --      đếm dạng bài trong SGK ("số thích hợp", "đặt tính rồi tính", "nối"…) và số hình tương tác
 --      trong app theo từng lớp ⇒ phát hiện **Lớp 4 và Lớp 5 TRƯỚC ĐÓ KHÔNG CÓ HÌNH ĐIỀN NÀO**

@@ -60,7 +60,9 @@ export function CotTinh({
       ? "−"
       : sign === "*" || sign === "×"
         ? "×"
-        : "+";
+        : sign === ":" || sign === "÷"
+          ? ":"
+          : "+";
   const kq = tinhKetQua(left, right, dau);
   const a = tachSo(left);
   const b = tachSo(right);
@@ -104,12 +106,30 @@ export function CotTinh({
     oNho.reverse(); // bé làm từ phải sang trái
   }
 
-  const dapAn =
-    blanks === "none"
+  const laChia = dau === ":";
+  const kqChia = laChia ? tinhKetQua(left, right, ":") : null;
+  /**
+   * ĐÁP ÁN theo thứ tự bé điền:
+   *   • cộng/trừ/nhân: các chữ số hàng kết quả (phải → trái) rồi tới ô “nhớ”.
+   *   • chia: các chữ số của THƯƠNG (TRÁI → PHẢI, đúng thứ tự bé chia) rồi tới ô SỐ DƯ.
+   */
+  const dapAn = laChia
+    ? blanks === "none"
+      ? []
+      : [
+          ...[...kqChia.nguyen].map(Number),
+          ...(kqChia.du > 0 ? [kqChia.du] : []),
+        ]
+    : blanks === "none"
       ? []
       : [...viTriTrong.map((i) => Number(hangKQ[i])), ...oNho.map((o) => o.v)];
 
   const fill = useFillSlots(dapAn);
+  /** Bấm được hay không — tính TRƯỚC mọi nhánh bố cục (nhánh chia dùng tới). */
+  const laBamDuoc = interactive && dapAn.length > 0;
+  // ⚠️ Không bấm được (slide câu hỏi/tóm tắt chẳng hạn) thì IN LUÔN KẾT QUẢ — tuyệt đối
+  // không để ô “?” chết: đó đúng là lỗi “slide tĩnh mà có ô trống” người dùng đã báo.
+  const inSanKetQua = blanks === "none" || !laBamDuoc;
   const [reported, setReported] = useState(false);
   useEffect(() => {
     if (
@@ -123,6 +143,154 @@ export function CotTinh({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fill.done]);
+
+  // ---- BỐ CỤC RIÊNG CHO PHÉP CHIA: số bị chia | vạch dọc | số chia, dưới vạch ngang là THƯƠNG.
+  // Đúng cách SGK trình bày (48 : 4 viết 48 | 4 rồi thương 12 ở dưới). Bé điền các chữ số
+  // thương từ TRÁI sang PHẢI, sau cùng điền ô SỐ DƯ (nếu phép chia có dư).
+  if (laChia) {
+    const oRong = 44;
+    const oCao = 56;
+    const coChu = 34;
+    const a2 = tachSo(left);
+    const b2 = tachSo(right);
+    const thuong = [...kqChia.nguyen];
+    const soCotA = a2.nguyen.length;
+    const soCotPhai = Math.max(b2.nguyen.length, thuong.length, 1);
+    const W = Math.max(210, (soCotA + soCotPhai) * oRong + 56);
+    const xA = 14;
+    const xVach = xA + soCotA * oRong + 8;
+    const xPhai = xVach + 12;
+    const y1 = 10;
+    const y2 = y1 + oCao + 4;
+    const H_ = y2 + oCao + 12;
+    const xCell = (x0, i) => x0 + i * oRong;
+    const chuSo = (ch, x, y, mau = P.ink, co = coChu, k) => (
+      <text
+        key={k}
+        x={x + oRong / 2}
+        y={y + oCao / 2 + 12}
+        textAnchor="middle"
+        fontSize={String(co)}
+        fontWeight="800"
+        fill={mau}
+        fontFamily="var(--font-number, sans-serif)"
+      >
+        {ch}
+      </text>
+    );
+    let kc = -1; // đếm ô trống của phép chia (khớp thứ tự `dapAn`)
+    const oDien = (x, y, key) => {
+      kc += 1;
+      const o = kc;
+      const look = laBamDuoc
+        ? slotLook(fill, o)
+        : { fill: P.oTrong, stroke: "#f59e0b", color: "#b45309", dash: true };
+      const hien =
+        laBamDuoc && fill.picked[o] !== null ? String(fill.picked[o]) : "?";
+      return (
+        <g
+          key={key}
+          onClick={() => laBamDuoc && fill.setActive(o)}
+          style={{ cursor: laBamDuoc ? "pointer" : "default" }}
+        >
+          <rect
+            x={x + 2}
+            y={y + 4}
+            width={oRong - 4}
+            height={oCao - 8}
+            rx="8"
+            fill={look.fill}
+            stroke={look.stroke}
+            strokeWidth="2.4"
+            strokeDasharray={look.dash ? "6 4" : undefined}
+          />
+          {chuSo(hien, x, y, look.color)}
+        </g>
+      );
+    };
+    return (
+      <div style={card}>
+        <svg
+          viewBox={`0 0 ${W} ${H_}`}
+          {...svgFit(W)}
+          role="img"
+          aria-label={`Đặt tính chia ${left} : ${right}`}
+        >
+          <rect
+            x={xA - 8}
+            y={2}
+            width={W - 20}
+            height={H_ - 8}
+            rx="10"
+            fill={P.paper}
+          />
+          {/* số bị chia */}
+          {[...a2.nguyen].map((ch, i) =>
+            chuSo(ch, xCell(xA, i), y1, P.ink, coChu, `a-${i}`),
+          )}
+          {/* vạch dọc + số chia */}
+          <line
+            x1={xVach}
+            y1={y1 - 2}
+            x2={xVach}
+            y2={y2 + oCao - 10}
+            stroke={P.ink}
+            strokeWidth="2.4"
+          />
+          {[...b2.nguyen].map((ch, i) =>
+            chuSo(ch, xCell(xPhai, i), y1, P.violet, coChu, `b-${i}`),
+          )}
+          <line
+            x1={xPhai - 6}
+            y1={y1 + oCao - 6}
+            x2={xPhai + soCotPhai * oRong - 6}
+            y2={y1 + oCao - 6}
+            stroke={P.ink}
+            strokeWidth="2"
+          />
+          {/* thương: ô bé điền, TRÁI sang PHẢI */}
+          {thuong.map((ch, i) =>
+            inSanKetQua
+              ? chuSo(ch, xCell(xPhai, i), y2, P.ink, coChu, `q-${i}`)
+              : oDien(xCell(xPhai, i), y2, `th-${i}`),
+          )}
+          {/* số dư (nếu có) — nằm dưới số bị chia, có nhãn “dư” */}
+          {kqChia.du > 0 && (
+            <>
+              <text
+                x={xA - 6}
+                y={y2 + oCao / 2 + 8}
+                textAnchor="start"
+                fontSize="16"
+                fontWeight="800"
+                fill={P.soft}
+              >
+                dư
+              </text>
+              {inSanKetQua
+                ? chuSo(String(kqChia.du), xA + 30, y2, P.ink, coChu, "du")
+                : oDien(xA + 30, y2, "du")}
+            </>
+          )}
+        </svg>
+        {laBamDuoc ? (
+          <FillBar
+            fill={fill}
+            options={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]}
+            title={title}
+            hint={hint}
+          />
+        ) : (
+          label && <span style={{ ...caption, color: P.ink }}>{label}</span>
+        )}
+        {laBamDuoc && label && (
+          <span style={{ ...caption, color: P.soft, marginTop: 4 }}>
+            {ngatDong(label, 46)[0]}
+          </span>
+        )}
+      </div>
+    );
+  }
 
   // ---- hình học ----
   // 🔴 CỠ Ô + CỠ KHUNG (người dùng báo 2026-09-26: “danh sách số để chọn quá lớn, đề bài quá nhỏ”).
@@ -143,10 +311,6 @@ export function CotTinh({
   const yKQ = yKe + 6;
   const H = yKQ + oCao + 10;
 
-  const laBamDuoc = interactive && dapAn.length > 0;
-  // ⚠️ Không bấm được (slide câu hỏi/tóm tắt chẳng hạn) thì IN LUÔN KẾT QUẢ — tuyệt đối
-  // không để ô “?” chết: đó đúng là lỗi “slide tĩnh mà có ô trống” người dùng đã báo.
-  const inSanKetQua = blanks === "none" || !laBamDuoc;
   const xCell = (i) => x0 + i * oRong;
 
   const veChuSo = (ch, i, y) =>

@@ -16,16 +16,33 @@ export function tachSo(x) {
 }
 
 /**
- * Kết quả của `left sign right`, giữ ĐÚNG số chữ số thập phân của hai số hạng
- * (15,82 + 9,35 = 25,17; 4,2 − 1,35 = 2,85).
+ * Phép CHIA có dư (số nguyên) — dùng cho dạng đặt tính chia của SGK Lớp 3–4.
+ * Trả về thương (chuỗi) và số dư. Chia số thập phân KHÔNG dùng hàm này (bố cục khác).
+ */
+export function tinhChia(left, right) {
+  const a = Number(String(left).replace(",", "."));
+  const b = Number(String(right).replace(",", "."));
+  if (!Number.isFinite(a) || !Number.isFinite(b) || b === 0)
+    return { nguyen: "0", thap: "", cotThap: 0, du: 0 };
+  const thuong = Math.floor(a / b);
+  return {
+    nguyen: String(thuong),
+    thap: "",
+    cotThap: 0,
+    du: +(a - thuong * b).toFixed(6),
+  };
+}
+
+/**
+ * Kết quả của `left sign right`.
  *
- * 🔴 `"×"` CẦN ĐƯỜNG TÍNH RIÊNG: cộng/trừ quy về cùng một mẫu số thập phân, còn nhân thì
- * **số chữ số thập phân của tích = TỔNG số chữ số thập phân của hai thừa số** (SGK Lớp 5).
- * Dùng chung công thức của phép cộng cho phép nhân là sai (nhân đôi mẫu số).
+ * 🔴 Phép `×` cần đường tính RIÊNG (số chữ số thập phân của tích = TỔNG hai thừa số), và phép
+ * `:` cũng vậy (có THƯƠNG và SỐ DƯ) — dùng chung công thức của phép cộng cho hai phép này là sai.
  */
 export function tinhKetQua(left, right, sign) {
   const a = tachSo(left);
   const b = tachSo(right);
+  if (sign === ":" || sign === "÷") return tinhChia(left, right);
   if (sign === "×" || sign === "*") {
     const cot = a.thap.length + b.thap.length;
     const A = Number(a.nguyen + a.thap);

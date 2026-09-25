@@ -8,6 +8,7 @@ import {
   tinhKetQua,
   tinhNho,
   dapAnDatTinh,
+  tinhChia,
 } from "../client/src/components/visuals/columnMath.js";
 
 const chu = (o) => (o.thap ? `${o.nguyen},${o.thap}` : o.nguyen);
@@ -93,6 +94,32 @@ for (const [vao, mong] of caTach) {
 const am = tinhKetQua(31, 86, "−");
 if (chu(am) === "-55") dung += 1;
 else sai.push(`31 − 86 phải ra -55, đang ra ${chu(am)}`);
+
+// Phép CHIA (SGK Lớp 3–4: “đặt tính rồi tính” 48 : 4 = 12; 19 : 3 = 6 dư 1)
+const caChia = [
+  [48, 4, 12, 0],
+  [12, 3, 4, 0],
+  [13, 3, 4, 1],
+  [19, 3, 6, 1],
+  [39, 5, 7, 4],
+  [48240, 4, 12060, 0],
+  [96, 32, 3, 0],
+];
+for (const [a, b, mongThuong, mongDu] of caChia) {
+  const r = tinhChia(a, b);
+  if (Number(r.nguyen) === mongThuong && r.du === mongDu) dung += 1;
+  else
+    sai.push(
+      `${a} : ${b} = ${r.nguyen} dư ${r.du} (mong đợi ${mongThuong} dư ${mongDu})`,
+    );
+}
+// CANARY vế 2 cho phép chia: thương SAI phải khác thương đúng
+if (Number(tinhChia(19, 3).nguyen) === 5) sai.push("CANARY: 19 : 3 lại ra 5");
+else dung += 1;
+// chia cho 0 KHÔNG được vẽ (hàm phải trả 0 thương, không NaN)
+const chia0 = tinhChia(5, 0);
+if (Number.isFinite(Number(chia0.nguyen))) dung += 1;
+else sai.push("chia cho 0 phải trả thương hữu hạn, đang ra NaN");
 
 // CANARY DƯƠNG-TÍNH-GIẢ: nếu bỏ dấu trừ mà hàm vẫn ra 46 thì phép thử vô nghĩa.
 const lech = chu(tinhKetQua(32, 14, "+"));

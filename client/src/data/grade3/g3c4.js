@@ -293,12 +293,11 @@ export const g3c4 = {
         {
           type: "visual",
           content: {
-            text: "12 : 3 = 4  (không dư)\nThử lại: 4 × 3 = 12",
-            operation: {
+            text: "Đặt tính 12 : 3 rồi viết thương vào ô trống.\nThử lại: 4 × 3 = 12 (đúng, không dư)",
+            cotTinh: {
               left: 12,
-              sign: ":",
               right: 3,
-              result: 4,
+              sign: ":",
             },
             table: {
               headers: ["Phép chia", "Thử lại"],
@@ -370,12 +369,11 @@ export const g3c4 = {
         {
           type: "visual",
           content: {
-            text: "13 : 3 = 4 (dư 1)\nThử lại: 4 × 3 + 1 = 13",
-            operation: {
+            text: "Đặt tính 13 : 3 rồi viết thương và số dư vào ô trống.\nThử lại: 4 × 3 + 1 = 13",
+            cotTinh: {
               left: 13,
-              sign: ":",
               right: 3,
-              result: 4,
+              sign: ":",
             },
             table: {
               headers: ["Phép chia", "Thử lại"],
@@ -443,12 +441,11 @@ export const g3c4 = {
         {
           type: "visual",
           content: {
-            text: "48 : 4 = 12\n4 : 4 = 1;  8 : 4 = 2",
-            operation: {
+            text: "Đặt tính 48 : 4 — chia từng hàng từ trái sang phải, bé điền thương.",
+            cotTinh: {
               left: 48,
-              sign: ":",
               right: 4,
-              result: 12,
+              sign: ":",
             },
             placeValue: {
               headers: ["Chục", "Đơn vị"],
@@ -702,12 +699,11 @@ export const g3c4 = {
         {
           type: "visual",
           content: {
-            text: "19 : 3 = 6 (dư 1)\n3 × 6 = 18;  19 − 18 = 1",
-            operation: {
+            text: "Đặt tính 19 : 3 — bé viết thương rồi viết số dư vào ô trống.",
+            cotTinh: {
               left: 19,
-              sign: ":",
               right: 3,
-              result: 6,
+              sign: ":",
             },
             table: {
               headers: ["Bước", "Làm"],

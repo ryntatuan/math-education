@@ -35,8 +35,16 @@ chọn chữ số 0–9, chấm ngay, có hàng “nhớ”):
 - **Lớp 5**: `g5-c2-l4` (38,5 + 24,15) · `l5` (50 − 23,75) · `l6` (1,2 × 0,4) ·
   `g5-c5-l2` (12,5 × 3,2 · 15,82 + 9,35).
 - **Lớp 1**: `g1-c8-l1/l2/l3/l5/l6/l7` · `g1-c10-l4`.
-- ⚠️ **Chưa làm: đặt tính CHIA.** `cotTinh` mới có `+ − ×`; bố cục chia cột (dấu ngoặc, thương,
-  số dư) cần bộ vẽ riêng — các bài chia vẫn học qua câu hỏi trắc nghiệm nên không “chết”.
+- **Đặt tính CHIA (bổ sung sau, dùng luôn khoá `cotTinh` với `sign: ":"`)** — bố cục riêng:
+  số bị chia ở trên, vạch dọc, số chia bên phải, dưới vạch ngang là các ô **thương**
+  (bé điền **trái → phải**), kèm ô **số dư** có nhãn “dư” khi phép chia có dư:
+  - **Lớp 3**: `g3-c4-l4` (12 : 3) · `l5` (13 : 3, dư 1) · `l6` (48 : 4) · `l9` (19 : 3, dư 1).
+  - **Lớp 4**: `g4-c2-l12` (128 472 : 6) · `g4-c2-l13` (84 : 21).
+  - ✅ Đáp án **không hề khai trong dữ liệu** — `tinhChia()` tính thương + số dư, nên không thể
+    lệch giữa dữ liệu và đáp án. Cổng `kiem-tra-dat-tinh.mjs` canary 7 ca chia (44/44 tổng).
+  - ⚠️ Còn lại: **chia số thập phân** (Lớp 5, ví dụ 27,72 : 3,6) chưa vẽ được kiểu đặt tính vì
+    phải mô phỏng đúng thao tác “bỏ dấu phẩy → chia như số tự nhiên → đánh dấu phẩy”. Cổng
+    `kiem-tra-slide` **chặn** nếu ai khai `cotTinh` chia bằng số thập phân ⇒ không thể lọt lỗi âm thầm.
 
 ### 2.2 Bảng điền “số thích hợp” (`bangTinh`)
 

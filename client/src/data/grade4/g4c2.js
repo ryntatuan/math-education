@@ -974,12 +974,11 @@ export const g4c2 = {
         {
           "type": "visual",
           "content": {
-            "text": "Thực hiện phép tính: 128 472 : 6 = 21 412 (dư 0) 157 : 5 = 31 (dư 2, vì 2 < 5 nên phép chia đúng).",
-            "operation": {
+            "text": "Đặt tính 128 472 : 6 rồi chia lần lượt từ trái sang phải — bé điền các chữ số của thương. Kết quả đúng là 21 412.",
+            "cotTinh": {
               "left": 128472,
-              "sign": ":",
               "right": 6,
-              "result": 21412
+              "sign": ":"
             },
             "table": {
               "headers": [
@@ -1044,12 +1043,11 @@ export const g4c2 = {
         {
           "type": "visual",
           "content": {
-            "text": "Ví dụ: 84 : 21, nên Làm tròn 80 : 20 = 4. Thử: 21 × 4 = 84 (vừa đúng thương là 4). Nếu ở một lượt chia mà số bị chia bé hơn số chia thì ta phải viết chữ số 0 vào thương!",
-            "operation": {
+            "text": "Ví dụ: 84 : 21. Làm tròn 80 : 20 = 4. Thử 21 × 4 = 84 vừa đúng ⇒ thương là 4. Bé đặt tính rồi điền thương nhé!",
+            "cotTinh": {
               "left": 84,
-              "sign": ":",
               "right": 21,
-              "result": 4
+              "sign": ":"
             },
             "table": {
               "headers": [

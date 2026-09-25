@@ -271,14 +271,35 @@ for (const [file, key, soLopThutu] of NGUON) {
             ? "−"
             : ct.sign === "*" || ct.sign === "×"
               ? "×"
-              : "+";
-          if (!["+", "-", "−", "×", "*"].includes(ct.sign ?? "+"))
+              : ct.sign === ":" || ct.sign === "÷"
+                ? ":"
+                : "+";
+          if (!["+", "-", "−", "×", "*", ":", "÷"].includes(ct.sign ?? "+"))
             themLoi(
               file,
               bai.id,
               i,
-              `cotTinh có dấu “${ct.sign}” — chỉ nhận "+", "−" hoặc "×" (phép chia cột chưa có bộ vẽ)`,
+              `cotTinh có dấu “${ct.sign}” — chỉ nhận "+", "−", "×" hoặc ":"`,
             );
+          if (dauCt === ":") {
+            const soOkInt = (v) => /^\d+$/.test(String(v));
+            if (!soOkInt(ct.left) || !soOkInt(ct.right))
+              themLoi(
+                file,
+                bai.id,
+                i,
+                "cotTinh phép CHIA hiện chỉ vẽ được SỐ NGUYÊN (dạng chia số thập phân cần bố cục khác)",
+              );
+            else if (Number(ct.right) === 0)
+              themLoi(file, bai.id, i, "cotTinh phép chia có số chia = 0");
+            else if (Number(ct.left) < Number(ct.right))
+              themCanhBao(
+                file,
+                bai.id,
+                i,
+                `cotTinh chia ${ct.left} : ${ct.right} ⇒ thương 0 (SGK chỉ dạy khi số bị chia LỚN HƠN số chia) — kiểm lại`,
+              );
+          }
           if (
             dauCt === "−" &&
             Number(String(ct.left).replace(",", ".")) <
