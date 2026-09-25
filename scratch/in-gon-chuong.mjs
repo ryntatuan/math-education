@@ -27,8 +27,24 @@ const NGUON = [
   ["grade5Data.js", "grade5Data"],
 ];
 
-const KHOA = new Set([...HINH_KEYS, "planeShapes", "items", "shape", "clock", "operation", "comparison"]);
-const KHOA_CHU = new Set(["text", "question", "title", "rule", "explanation", "mascotHint", "badge"]);
+const KHOA = new Set([
+  ...HINH_KEYS,
+  "planeShapes",
+  "items",
+  "shape",
+  "clock",
+  "operation",
+  "comparison",
+]);
+const KHOA_CHU = new Set([
+  "text",
+  "question",
+  "title",
+  "rule",
+  "explanation",
+  "mascotHint",
+  "badge",
+]);
 
 const args = process.argv.slice(2);
 const canLop = args.includes("--lop");
@@ -36,10 +52,15 @@ const lopCan = canLop ? Number(args[args.indexOf("--lop") + 1]) : null;
 const raFile = args.includes("--ra") ? args[args.indexOf("--ra") + 1] : null;
 const chuongCan = args.filter((a) => /^g\d-c\d+$/.test(a));
 
-const rut = (s, n = 120) => String(s ?? "").replace(/\s+/g, " ").slice(0, n);
+const rut = (s, n = 120) =>
+  String(s ?? "")
+    .replace(/\s+/g, " ")
+    .slice(0, n);
 
 for (const [file, key] of NGUON) {
-  const mod = await import(new URL(`../client/src/data/${file}`, import.meta.url));
+  const mod = await import(
+    new URL(`../client/src/data/${file}`, import.meta.url)
+  );
   const g = mod[key];
   if (lopCan && Number(g.id.replace("grade", "")) !== lopCan) continue;
   for (const ch of g.chapters ?? []) {
@@ -51,23 +72,35 @@ for (const [file, key] of NGUON) {
       bai.slides.forEach((s, i) => {
         soSlide++;
         const c = s.content ?? {};
-        const chu = ["text", "question", "title", "rule", "explanation", "mascotHint"]
+        const chu = [
+          "text",
+          "question",
+          "title",
+          "rule",
+          "explanation",
+          "mascotHint",
+        ]
           .map((k) => c[k])
           .filter(Boolean)
           .join(" | ");
-        const khoaHinh = [...KHOA].filter((k) => c[k] !== undefined && c[k] !== null);
+        const khoaHinh = [...KHOA].filter(
+          (k) => c[k] !== undefined && c[k] !== null,
+        );
         // Mọi con số trong slide (kể cả số nằm trong hình) — để đối chiếu SGK
         const so = [
           ...new Set(
-            (JSON.stringify(c).match(/(?<![\w.])\d+(?:[.,]\d+)?(?![\w])/g) ?? []).filter(
-              (x) => x.length <= 6,
-            ),
+            (
+              JSON.stringify(c).match(/(?<![\w.])\d+(?:[.,]\d+)?(?![\w])/g) ??
+              []
+            ).filter((x) => x.length <= 6),
           ),
         ];
         const chon = Array.isArray(c.options)
           ? ` · chọn [${c.options.map((o) => String(o)).join(" / ")}] → ĐÚNG: ${c.answer}`
           : "";
-        const diem = Array.isArray(c.points) ? ` · gạch đầu dòng: ${c.points.length}` : "";
+        const diem = Array.isArray(c.points)
+          ? ` · gạch đầu dòng: ${c.points.length}`
+          : "";
         inRa(
           `  ${i + 1}. [${s.type}] ${rut(chu)}${chon}${diem}` +
             (khoaHinh.length ? ` · HÌNH: ${khoaHinh.join(",")}` : "") +

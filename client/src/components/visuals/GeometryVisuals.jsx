@@ -2116,7 +2116,9 @@ export function PatternRow({
             const daXong = bam && fill.solved[slot];
             const dangThu = bam && fill.picked[slot] !== null && !daXong;
             const hinhChon = bam ? fill.picked[slot] : null;
-            const [f2, s2] = hinhChon ? mauCua(hinhChon, colors[i]) : [null, null];
+            const [f2, s2] = hinhChon
+              ? mauCua(hinhChon, colors[i])
+              : [null, null];
             return (
               <g
                 key={i}

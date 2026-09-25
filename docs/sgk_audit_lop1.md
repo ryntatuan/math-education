@@ -267,21 +267,21 @@ trang đầu chương) = sách 102–105, 109, 111.
 
 ### Nhóm A — đã bổ sung 9 slide
 
-| # | SGK | Dạng bài | Đã thêm vào |
-| :-- | :-- | :-- | :-- |
-| 1 | tr.103 LT2 | **Đếm con vật trong tranh** (7 loại) + **“con vật nào ÍT NHẤT?”** | `l1`: 2 câu hỏi dùng cảnh nông trại có sẵn (`sceneCount` · farm) |
-| 2 | tr.105 bài 3 | **Suy luận thứ tự**: “rùa đỏ xen vào giữa thì rùa nâu thứ mấy?” → **thứ tư** | `l1`: 1 câu hỏi (đáp án “Thứ tư”) |
-| 3 | tr.105 bài 4 | **Chia nhóm có điều kiện**: 3 thỏ vào 2 chuồng, chuồng A nhiều hơn → A = 2 | `l1`: 1 câu hỏi (đáp án 2) |
-| 4 | tr.103 LT3 | **So sánh SỐ với BIỂU THỨC**: `9 ? 9 − 1` · `10 ? 8 + 2` · `5 + 1 ? 8` | `l2`: 3 câu hỏi (đáp án > · = · <) |
-| 5 | tr.111 bài 3 | **“Hình thích hợp đặt vào dấu ?”** — dãy tròn · tam giác · vuông lặp lại | `l4`: 1 slide hình + 1 câu hỏi (đáp án **hình tam giác**) |
+| #   | SGK          | Dạng bài                                                                     | Đã thêm vào                                                      |
+| :-- | :----------- | :--------------------------------------------------------------------------- | :--------------------------------------------------------------- |
+| 1   | tr.103 LT2   | **Đếm con vật trong tranh** (7 loại) + **“con vật nào ÍT NHẤT?”**            | `l1`: 2 câu hỏi dùng cảnh nông trại có sẵn (`sceneCount` · farm) |
+| 2   | tr.105 bài 3 | **Suy luận thứ tự**: “rùa đỏ xen vào giữa thì rùa nâu thứ mấy?” → **thứ tư** | `l1`: 1 câu hỏi (đáp án “Thứ tư”)                                |
+| 3   | tr.105 bài 4 | **Chia nhóm có điều kiện**: 3 thỏ vào 2 chuồng, chuồng A nhiều hơn → A = 2   | `l1`: 1 câu hỏi (đáp án 2)                                       |
+| 4   | tr.103 LT3   | **So sánh SỐ với BIỂU THỨC**: `9 ? 9 − 1` · `10 ? 8 + 2` · `5 + 1 ? 8`       | `l2`: 3 câu hỏi (đáp án > · = · <)                               |
+| 5   | tr.111 bài 3 | **“Hình thích hợp đặt vào dấu ?”** — dãy tròn · tam giác · vuông lặp lại     | `l4`: 1 slide hình + 1 câu hỏi (đáp án **hình tam giác**)        |
 
 ### Còn lại (cần vẽ mới / mở rộng bộ vẽ — ghi để không quên)
 
-| Dạng bài SGK | Trang | Vì sao chưa làm |
-| :----------- | :---- | :-------------- |
-| **Nối số lượng với SỐ và CHỮ** (bể cá → “3” → “ba”) | tr.102 | Cần dạng “nối” (mỗi quiz hiện chỉ có 1 đáp án đúng) |
-| **Ghép 4 tam giác thành mũi tên / tam giác lớn** | tr.111 bài 4 | `shapeJoin` mới có 2 hình đích; cần mở rộng (việc chung với CĐ2 tr.50–53) |
-| **Trò chơi “Bắt gà”** (bàn cờ có xúc xắc) | tr.109 | **Cố ý bỏ** theo quyết định 2026-09-24 của bạn (A13) |
+| Dạng bài SGK                                        | Trang        | Vì sao chưa làm                                                           |
+| :-------------------------------------------------- | :----------- | :------------------------------------------------------------------------ |
+| **Nối số lượng với SỐ và CHỮ** (bể cá → “3” → “ba”) | tr.102       | Cần dạng “nối” (mỗi quiz hiện chỉ có 1 đáp án đúng)                       |
+| **Ghép 4 tam giác thành mũi tên / tam giác lớn**    | tr.111 bài 4 | `shapeJoin` mới có 2 hình đích; cần mở rộng (việc chung với CĐ2 tr.50–53) |
+| **Trò chơi “Bắt gà”** (bàn cờ có xúc xắc)           | tr.109       | **Cố ý bỏ** theo quyết định 2026-09-24 của bạn (A13)                      |
 
 ### Bằng chứng
 
@@ -304,7 +304,7 @@ toàn hệ thống **2671 → 2684** (Lớp 1: 649 → 662).
 
 ### Việc CÒN LẠI của chương 2 (chưa làm, cần vẽ mới nhiều — chờ bạn chốt)
 
-SGK tr.46–55 có **16 hoạt động**, app hiện phản ánh trọn **11**. Còn thiếu: đếm hình trong tranh (tr.47 HĐ3 · tr.48 LT1 · tr.49 LT3 — có bảng điền số lượng), xếp **que tính** (tr.48 LT2 · tr.54 LT2), ghép hình 3–5 miếng ra *chữ nhật · hình thang · mũi tên · tam giác lớn* (tr.50–53 — cần mở rộng `shapeJoin`), 9 đồ vật quanh em (tr.54 LT1: ê-ke · con tem · đĩa DVD · cái bánh · khung cửa sổ · bảng lớp), đếm miếng bìa để ghép mũi tên (tr.55 LT4).
+SGK tr.46–55 có **16 hoạt động**, app hiện phản ánh trọn **11**. Còn thiếu: đếm hình trong tranh (tr.47 HĐ3 · tr.48 LT1 · tr.49 LT3 — có bảng điền số lượng), xếp **que tính** (tr.48 LT2 · tr.54 LT2), ghép hình 3–5 miếng ra _chữ nhật · hình thang · mũi tên · tam giác lớn_ (tr.50–53 — cần mở rộng `shapeJoin`), 9 đồ vật quanh em (tr.54 LT1: ê-ke · con tem · đĩa DVD · cái bánh · khung cửa sổ · bảng lớp), đếm miếng bìa để ghép mũi tên (tr.55 LT4).
 
 > ✅ **Đã bổ sung 2026-09-25:** **dãy hình lặp quy luật** tr.55 LT3 (cả hai bài: quy luật theo MÀU và quy luật theo HÌNH) — bằng khoá hình mới **`patternRow`** vẽ đúng như SGK: ô cần điền là **ô trống nét đứt có dấu `?`**, không vẽ sẵn hình.
 
@@ -312,28 +312,51 @@ SGK tr.46–55 có **16 hoạt động**, app hiện phản ánh trọn **11**. 
 
 ## ĐỢT “Ô TRỐNG PHẢI ĐIỀN ĐƯỢC” (yêu cầu người dùng 2026-09-25) — ✅ ĐÃ SỬA XONG
 
-**Yêu cầu (nguyên văn):** *“kiểm tra và đảm bảo tất cả các dạng bài có điền vào ô trống không được là
+**Yêu cầu (nguyên văn):** _“kiểm tra và đảm bảo tất cả các dạng bài có điền vào ô trống không được là
 slide tĩnh và đều có thể điền đáp án vào được; đảm bảo tất cả các dạng bài tập đều có đáp án để trẻ
-lựa chọn và tương tác”*.
+lựa chọn và tương tác”_.
 
 ### Bảng phát hiện (công cụ `node scratch/soat-o-trong.mjs`, soi 2690 slide của cả 5 lớp)
 
-| # | Bài · slide | Hình | Lỗi | Cách sửa |
-| :- | :---------- | :--- | :-- | :------- |
-| 1 | `g1-c3-l3` slide 4 | `table` | Bảng in cứng 4 ô `"?"` — bé chỉ nhìn | → **`bangTinh`**: đáp án `[9,9,9,9]`, chọn `6/7/8` |
-| 2 | `g1-c3-l4` slide 4 | `table` | y như trên (4 ô) | → `bangTinh`, đáp án `[7,7,7,7]` |
-| 3 | `g1-c3-l8` slide 4 | `table` | 4 ô `"?"` | → `bangTinh`, đáp án `[10,10,10,10]` |
-| 4 | `g1-c3-l9` slide 4 | `table` | 2 ô `"?"` (7 trừ dần) | → `bangTinh`, đáp án `[5,3]`, chọn `2/3/4/5` |
-| 5 | `g1-c3-l14` slide 4 | `table` | 4 ô `"?"` (quan hệ cộng–trừ) | → `bangTinh`, đáp án `[9,1,8,2]` |
-| 6 | `g3-c1-l4` slide 3 | `table` | 4 ô `"?"` trong câu phép tính | → `bangTinh`; **hàng 1 giữ làm MẪU** (`500 − ? = 260` → `240`), bé điền hàng 2 (`200`) |
-| 7 | `g3-c2-l9` slide 3 | `table` | 6 ô `"?"` (nhân–chia) | → `bangTinh`; hàng mẫu `? × 7 = 42` → `6`, bé điền `30` và `9` |
-| 8 | `g2-c13-l1` slide 3 | `table` | 2 ô `"?"` nhưng **không có số liệu nào để điền** | → bỏ ô `"?"`, đổi thành **ví dụ có số thật** (đỏ 7 bạn · xanh 4 bạn, khớp bài sau) |
-| 9 | `g1-c2-l8` slide 9 | `patternRow` | Ô `?` trong dãy hình quy luật **theo màu** — không bấm được | → nay **bé chọn HÌNH** để điền; ô hiện **hình tròn ĐỎ** đúng quy luật màu |
-| 10 | `g1-c2-l8` slide 11 | `patternRow` | Ô `?` quy luật **theo hình** | → chọn giữa tròn · tam giác · vuông; đáp án **tam giác** |
-| 11 | `g1-c5-l4` slide 6 | `patternRow` | Ô `?` (SGK tr.111) | → như trên; đáp án **tam giác** |
+| #   | Bài · slide         | Hình         | Lỗi                                                         | Cách sửa                                                                               |
+| :-- | :------------------ | :----------- | :---------------------------------------------------------- | :------------------------------------------------------------------------------------- |
+| 1   | `g1-c3-l3` slide 4  | `table`      | Bảng in cứng 4 ô `"?"` — bé chỉ nhìn                        | → **`bangTinh`**: đáp án `[9,9,9,9]`, chọn `6/7/8`                                     |
+| 2   | `g1-c3-l4` slide 4  | `table`      | y như trên (4 ô)                                            | → `bangTinh`, đáp án `[7,7,7,7]`                                                       |
+| 3   | `g1-c3-l8` slide 4  | `table`      | 4 ô `"?"`                                                   | → `bangTinh`, đáp án `[10,10,10,10]`                                                   |
+| 4   | `g1-c3-l9` slide 4  | `table`      | 2 ô `"?"` (7 trừ dần)                                       | → `bangTinh`, đáp án `[5,3]`, chọn `2/3/4/5`                                           |
+| 5   | `g1-c3-l14` slide 4 | `table`      | 4 ô `"?"` (quan hệ cộng–trừ)                                | → `bangTinh`, đáp án `[9,1,8,2]`                                                       |
+| 6   | `g3-c1-l4` slide 3  | `table`      | 4 ô `"?"` trong câu phép tính                               | → `bangTinh`; **hàng 1 giữ làm MẪU** (`500 − ? = 260` → `240`), bé điền hàng 2 (`200`) |
+| 7   | `g3-c2-l9` slide 3  | `table`      | 6 ô `"?"` (nhân–chia)                                       | → `bangTinh`; hàng mẫu `? × 7 = 42` → `6`, bé điền `30` và `9`                         |
+| 8   | `g2-c13-l1` slide 3 | `table`      | 2 ô `"?"` nhưng **không có số liệu nào để điền**            | → bỏ ô `"?"`, đổi thành **ví dụ có số thật** (đỏ 7 bạn · xanh 4 bạn, khớp bài sau)     |
+| 9   | `g1-c2-l8` slide 9  | `patternRow` | Ô `?` trong dãy hình quy luật **theo màu** — không bấm được | → nay **bé chọn HÌNH** để điền; ô hiện **hình tròn ĐỎ** đúng quy luật màu              |
+| 10  | `g1-c2-l8` slide 11 | `patternRow` | Ô `?` quy luật **theo hình**                                | → chọn giữa tròn · tam giác · vuông; đáp án **tam giác**                               |
+| 11  | `g1-c5-l4` slide 6  | `patternRow` | Ô `?` (SGK tr.111)                                          | → như trên; đáp án **tam giác**                                                        |
 
-*(5 slide dãy hình còn lại nằm trên slide CÂU HỎI — bé trả lời bằng các lựa chọn của câu hỏi nên
-hợp lệ, công cụ in ra khi chạy `--het`.)*
+_(5 slide dãy hình còn lại nằm trên slide CÂU HỎI — bé trả lời bằng các lựa chọn của câu hỏi nên
+hợp lệ, công cụ in ra khi chạy `--het`.)_
+
+**Vòng 2 (cùng ngày) — tìm thêm 2 ca sau khi SỬA THƯỚC ĐO:**
+
+| #   | Bài · slide        | Hình          | Lỗi (trẻ chỉ nhìn)                                                                              | Cách sửa                                                       |
+| :-- | :----------------- | :------------ | :---------------------------------------------------------------------------------------------- | :------------------------------------------------------------- |
+| 12  | `g1-c1-l4` slide 9 | `numberScene` | Dãy số 0 → 10 có **4 ô trống** chỉ vẽ nét đứt — chữ còn ghi “bé điền số còn thiếu” mà không bấm được | → **`TrainFill`**: bấm ô `?` rồi chọn số, chấm ngay — `answers: [2, 3, 7, 10]` |
+| 13  | `g1-c1-l11` slide 7 | `numberScene` | 6 ô `?` trong **6 toa tàu** (SGK tr.40) — cùng lỗi                                        | → như trên — `answers: [5, 4, 5, 8, 9, 1]`                      |
+
+> 🔴 **HAI LỖI THƯỚC ĐO ĐÃ MẮC Ở CHÍNH ĐỢT NÀY (ghi để không lặp):**
+>
+> 1. **Đoán danh sách `mode` tương tác ⇒ CỔNG XANH GIẢ.** Bản đầu tôi xếp 13 `mode` của
+>    `numberScene` vào nhóm “tự tương tác”; đọc mã thì `Grade1NumberVisuals.jsx` **chỉ có MỘT**
+>    `useInteractive()` và dùng ở **3 nhánh**: `numberMaze` · `dotCards` · `comparePairs`.
+>    Vì đoán nên công cụ **bỏ qua** đúng 2 ca dãy số (12, 13). ⇒ Danh sách “cái gì tương tác”
+>    **phải đọc mã**, không được đoán.
+> 2. **Luật `null` quá rộng ⇒ báo oan.** Khi thêm luật “`null` là ô trống”, công cụ tố 2 slide
+>    `g5-c4-l4`/`g5-c4-l5` với `motionDiagram.b = null` — thực ra là **“không có xe thứ hai”**,
+>    hình không hề có ô trống. Đã siết: **chỉ** đếm `null` trong `bangTinh` và `numberScene`.
+
+**Bộ vẽ mới cho dãy số:** `TrainFill` (`Grade1NumberVisuals.jsx`) — bản TĨNH và bản ĐIỀN ĐƯỢC
+**dùng chung một hàm vẽ** (toạ độ tách ra `oRibbon()` · `oWagons()`, đầu máy `DauMay()`), nên không
+còn hai bản công thức dễ lệch nhau; thiếu `answers` ⇒ tự về bản tĩnh (dùng cho slide câu hỏi).
+Chữ trong hình đổi thành **“Bé bấm ô “?” rồi chọn số còn thiếu”** cho khớp việc bé thật sự làm.
 
 ### Cách sửa — hai bộ vẽ
 
@@ -367,19 +390,19 @@ Quy mô: **2684 → 2690** (Lớp 1: 662 → 668) — phần tăng là 6 slide C
 
 ## ĐỢT CHỦ ĐỀ 6 — Các số đến 100 (Lớp 1, sách tập 2 tr.4–27) — 🔄 ĐANG LÀM
 
-Đã bổ sung **6 slide** theo **Bài 21 (số có hai chữ số, sách tr.4–15)** — bảng Viết/Đọc số lấy đúng mẫu tr.4; các câu hỏi theo nội dung đọc – viết – so sánh số có hai chữ số. *(Các trang cụ thể sẽ được chốt lại khi rà trọn CĐ6 theo quy trình §11.)*
+Đã bổ sung **6 slide** theo **Bài 21 (số có hai chữ số, sách tr.4–15)** — bảng Viết/Đọc số lấy đúng mẫu tr.4; các câu hỏi theo nội dung đọc – viết – so sánh số có hai chữ số. _(Các trang cụ thể sẽ được chốt lại khi rà trọn CĐ6 theo quy trình §11.)_
 
-| Slide | Nội dung | Ghi chú |
-| :---- | :------- | :------ |
-| `g1-c6-l2` slide 5 | Bảng **Viết số · Đọc số** 11 → 20 | Bảng **tra cứu** (mọi ô in sẵn) — không phải bài điền, nên **không** đặt ô `?` nào |
-| `g1-c6-l2` slide 6 | *“Số 18 đọc là gì?”* → **mười tám** | Lựa chọn: mười tám · mười bảy · tám mươi · mười chín |
-| `g1-c6-l3` slide 5 | *“100 gồm mấy chục?”* → **10 chục** | |
-| `g1-c6-l7` slide 5 | *“Số nào có hai chữ số giống nhau?”* → **44** | |
-| `g1-c6-l7` slide 6 | *“Số tròn chục lớn nhất mà bé hơn 100?”* → **90** | |
-| `g1-c6-l9` slide 4 | *“Trong bảng 100 số, số nào đứng ngay dưới số 45?”* → **55** | |
+| Slide              | Nội dung                                                     | Ghi chú                                                                            |
+| :----------------- | :----------------------------------------------------------- | :--------------------------------------------------------------------------------- |
+| `g1-c6-l2` slide 5 | Bảng **Viết số · Đọc số** 11 → 20                            | Bảng **tra cứu** (mọi ô in sẵn) — không phải bài điền, nên **không** đặt ô `?` nào |
+| `g1-c6-l2` slide 6 | _“Số 18 đọc là gì?”_ → **mười tám**                          | Lựa chọn: mười tám · mười bảy · tám mươi · mười chín                               |
+| `g1-c6-l3` slide 5 | _“100 gồm mấy chục?”_ → **10 chục**                          |                                                                                    |
+| `g1-c6-l7` slide 5 | _“Số nào có hai chữ số giống nhau?”_ → **44**                |                                                                                    |
+| `g1-c6-l7` slide 6 | _“Số tròn chục lớn nhất mà bé hơn 100?”_ → **90**            |                                                                                    |
+| `g1-c6-l9` slide 4 | _“Trong bảng 100 số, số nào đứng ngay dưới số 45?”_ → **55** |                                                                                    |
 
-*(Số slide nói trên là **số thứ tự trong bài**, đã đối chiếu lại bằng script đọc thẳng dữ liệu —
-không chép tay.)*
+_(Số slide nói trên là **số thứ tự trong bài**, đã đối chiếu lại bằng script đọc thẳng dữ liệu —
+không chép tay.)_
 
 **Còn lại của CĐ6:** rà 12 bài `g1-c6-l1` … `l12` theo ảnh SGK tập 2 (tr.4–27) bằng quy trình §11
 (bảng phát hiện nhóm A–E trước, rồi mới sửa). Khi thêm bảng/bài điền mới: **dùng `bangTinh`** —

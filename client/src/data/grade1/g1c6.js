@@ -549,7 +549,8 @@ export const g1c6 = {
             question: "Số tròn chục lớn nhất mà bé hơn 100 là số nào?",
             options: [80, 90, 99, 100],
             answer: 90,
-            mascotHint: "Các số tròn chục bé hơn 100 là 10, 20, …, 90. Lớn nhất là 90.",
+            mascotHint:
+              "Các số tròn chục bé hơn 100 là 10, 20, …, 90. Lớn nhất là 90.",
           },
         },
         {
@@ -693,8 +694,7 @@ export const g1c6 = {
         {
           type: "quiz",
           content: {
-            question:
-              "Trong bảng 100 số, số nào đứng ngay dưới số 45?",
+            question: "Trong bảng 100 số, số nào đứng ngay dưới số 45?",
             options: [46, 55, 54, 35],
             answer: 55,
             mascotHint: "Xuống một hàng là thêm 10: 45 thêm 10 được 55.",

@@ -660,14 +660,14 @@ Bạn gửi ảnh hình `groupScene` (`6 + 7 = 6 + 4 + 3`) và báo: _“diễn 
 **Bảng phát hiện + kết quả chi tiết:** `docs/sgk_audit_lop1.md` (mục “ĐỢT CHỦ ĐỀ 5”).
 **Ảnh dùng:** 6 trang (sách 102–105, 109, 111).
 
-| Hạng mục | Kết quả |
-| :------- | :------ |
-| Số liệu | Kiểm từng con số trong 6 bài: **không sai chỗ nào**. |
-| Bổ sung | **9 slide**: đếm con vật trong tranh + “con nào ít nhất” (tr.103) · suy luận thứ tự rùa (tr.105) · chia 3 thỏ vào 2 chuồng (tr.105) · so sánh **số với biểu thức** `9 ? 9 − 1`, `10 ? 8 + 2`, `5 + 1 ? 8` (tr.103) · dãy hình lặp quy luật (tr.111). |
-| 🔧 Bộ vẽ mới | **`patternRow`** — dãy hình lặp quy luật, ô cần điền vẽ bằng **nét đứt + dấu `?`** (không để hình vẽ sẵn vào chỗ trả lời — bài học §8d-quater). Dùng cho **cả CĐ2 tr.55 (2 bài: theo màu và theo hình)** lẫn CĐ5 tr.111. |
-| Đăng ký khoá | `visualKeys.js` (`HINH_KEYS`) + `VisualBlock.jsx` + **trang đo** `scratch/visual-fit.jsx` (thiếu bước này thì trang đo báo `thieuComponent: true` — đã mắc và sửa ngay). |
-| Bằng chứng | cổng **32 PASS** · build sạch · **6 ca `patternRow` vẽ được · 0 ca lỗi** · đo **375/360/320 px: 0 tràn thẻ · 0 tràn viewBox · 0 chữ chồng** · đã NHÌN ảnh chụp cả dãy hình và cảnh nông trại. |
-| Số liệu | CĐ5 **34 → 43** · CĐ2 **51 → 55** · hệ thống **2671 → 2684** · Lớp 1 **649 → 662**. |
+| Hạng mục     | Kết quả                                                                                                                                                                                                                                              |
+| :----------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Số liệu      | Kiểm từng con số trong 6 bài: **không sai chỗ nào**.                                                                                                                                                                                                 |
+| Bổ sung      | **9 slide**: đếm con vật trong tranh + “con nào ít nhất” (tr.103) · suy luận thứ tự rùa (tr.105) · chia 3 thỏ vào 2 chuồng (tr.105) · so sánh **số với biểu thức** `9 ? 9 − 1`, `10 ? 8 + 2`, `5 + 1 ? 8` (tr.103) · dãy hình lặp quy luật (tr.111). |
+| 🔧 Bộ vẽ mới | **`patternRow`** — dãy hình lặp quy luật, ô cần điền vẽ bằng **nét đứt + dấu `?`** (không để hình vẽ sẵn vào chỗ trả lời — bài học §8d-quater). Dùng cho **cả CĐ2 tr.55 (2 bài: theo màu và theo hình)** lẫn CĐ5 tr.111.                             |
+| Đăng ký khoá | `visualKeys.js` (`HINH_KEYS`) + `VisualBlock.jsx` + **trang đo** `scratch/visual-fit.jsx` (thiếu bước này thì trang đo báo `thieuComponent: true` — đã mắc và sửa ngay).                                                                             |
+| Bằng chứng   | cổng **32 PASS** · build sạch · **6 ca `patternRow` vẽ được · 0 ca lỗi** · đo **375/360/320 px: 0 tràn thẻ · 0 tràn viewBox · 0 chữ chồng** · đã NHÌN ảnh chụp cả dãy hình và cảnh nông trại.                                                        |
+| Số liệu      | CĐ5 **34 → 43** · CĐ2 **51 → 55** · hệ thống **2671 → 2684** · Lớp 1 **649 → 662**.                                                                                                                                                                  |
 
 > 🔴 **Lỗi công cụ đã gặp trong đợt này:** `npx esbuild` từ thư mục gốc **không phân giải được `react`**
 > (react nằm ở `client/node_modules`, gốc không có) ⇒ gói đo cũ im lặng được chạy lại và tôi suýt tin
@@ -678,9 +678,9 @@ Bạn gửi ảnh hình `groupScene` (`6 + 7 = 6 + 4 + 3`) và báo: _“diễn 
 
 ## 8o. Yêu cầu người dùng — **MỌI Ô TRỐNG PHẢI ĐIỀN ĐƯỢC** (2026-09-25)
 
-**Người dùng ghi chú:** *“kiểm tra và đảm bảo tất cả các dạng bài có điền vào ô trống không được
+**Người dùng ghi chú:** _“kiểm tra và đảm bảo tất cả các dạng bài có điền vào ô trống không được
 là slide tĩnh và đều có thể điền đáp án vào được; đảm bảo tất cả các dạng bài tập đều có đáp án
-để trẻ lựa chọn và tương tác”*.
+để trẻ lựa chọn và tương tác”_.
 
 **Cách kiểm (mới, chạy được lặp lại):** `node scratch/soat-o-trong.mjs` — soi **2690 slide / 1439
 slide cho bấm** trong cả 5 lớp, tìm mọi khoá DỮ LIỆU có ô `?` / `…` / ô `null`, rồi phân loại:
@@ -688,20 +688,20 @@ slide cho bấm** trong cả 5 lớp, tìm mọi khoá DỮ LIỆU có ô `?` / 
 (không bọc `InteractiveContext` ⇒ rơi về tĩnh, **im lặng**) · `[C]` sai hợp đồng dữ liệu (số đáp
 án ≠ số ô, thiếu `options`) · `[D]` hợp lệ (in ra khi thêm `--het`).
 
-| Hạng mục | Kết quả |
-| :------- | :------ |
-| Ca thật phải sửa | **10** (sau khi sửa 2 chỗ công cụ BÁO OAN — xem bài học bên dưới). |
-| Sửa ① — 5 bảng CĐ3 | `l3` tr.64 · `l4` tr.62 · `l8` tr.66 · `l9` tr.76 · `l14` tr.86: từ `table` **in cứng ô “?”** → **`bangTinh`** (bé bấm ô, chọn số, chấm ngay). |
-| Sửa ② — 2 bảng Lớp 3 | `g3-c1-l4` (tìm số bị trừ) và `g3-c2-l9` (nhân/chia): → `bangTinh`; **hàng đầu giữ làm MẪU in sẵn** để bé làm các hàng sau (dạy bằng ví dụ mẫu rồi bé tự làm — đúng cách SGK). |
-| Sửa ③ — 1 bảng Lớp 2 | `g2-c13-l1` (phân loại theo nhóm): bảng **không có số liệu nào để điền** ⇒ đổi thành **ví dụ có số thật** (màu đỏ 7 bạn · màu xanh 4 bạn — khớp đúng bài sau `g2-c13-l2`), không còn ô “?” nào. |
-| Sửa ④ — 3 dãy hình | `g1-c2-l8` (×2: quy luật theo MÀU và theo HÌNH) và `g1-c5-l4`: `patternRow` **nay bé điền được** — bấm ô `?`, chọn **HÌNH** từ dải nút (nút là hình vẽ), đúng thì ô hiện đúng hình đó. |
-| 🔧 Bộ vẽ mới | **`bangTinh`** (`client/src/components/visuals/interactiveTable.jsx`): bảng 2 cột, ô `null` = ô trống, `answers` = đáp án từng ô, `options` = số cho bé chọn; tự rơi về dạng tĩnh nếu đáp án lệch số ô (không sập). |
-| 🔧 Mở rộng | `PatternRow` nhận thêm `answers` / `options` / `onDone`; `FillBar` nhận `renderOption` + `tenOption` ⇒ **một bản** tiến độ · chúc mừng · “Làm lại” dùng chung cho cả nút chữ lẫn nút hình. |
-| Luật thường trực | Thêm vào `scratch/kiem-tra-slide.mjs`: bảng `table` **không được** in cứng ô `"?"`; `bangTinh` phải có số đáp án = số ô trống, `options` ≥ 2, và **chỉ** nằm trên slide `story/concept/visual`; `patternRow` có **> 1** ô `?` trên slide câu hỏi = lỗi. |
-| Kèm theo | **CĐ6 (Lớp 1) — 6 slide mới:** bảng **Viết số/Đọc số 11–20** (SGK tr.4–5, in sẵn — đây là bảng TRA CỨU nên không có ô trống) + 5 câu hỏi: *“Số 18 đọc là gì?”* · *“100 gồm mấy chục?”* · *“Số nào có hai chữ số giống nhau?”* · *“Số tròn chục lớn nhất bé hơn 100?”* · *“Số nào đứng ngay dưới 45 trong bảng 100 số?”* |
-| Đăng ký khoá | `visualKeys.js` (`HINH_KEYS`) + `VisualBlock.jsx` + **trang đo** `scratch/visual-fit.jsx` (đủ 3 chỗ, như `patternRow`). |
-| Số liệu | Hệ thống **2684 → 2690** · Lớp 1 **662 → 668**. |
-| Bằng chứng | cổng **32 PASS · 0 FAIL** · `node scratch/kiem-tra-slide.mjs` **0 lỗi** · `soat-o-trong.mjs` **0 ca cần sửa** (7 ca hợp lệ in ra khi `--het`) · build sạch · đo **707 ca: 0 lỗi vẽ · 0 tràn · 0 chữ chồng** ở 375/360/320 px · **kiểm THẬT trong app**: bấm sai → ô đỏ + hiện gợi ý, bấm đúng 4 ô → “🎉 Bé làm đúng hết!” `4/4`; dãy hình: chọn “hình tam giác” → ô thứ 8 hiện **tam giác xanh, viền xanh** `1/1` (đã xem ảnh chụp). |
+| Hạng mục             | Kết quả                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| :------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Ca thật phải sửa     | **10** (sau khi sửa 2 chỗ công cụ BÁO OAN — xem bài học bên dưới).                                                                                                                                                                                                                                                                                                                                                                   |
+| Sửa ① — 5 bảng CĐ3   | `l3` tr.64 · `l4` tr.62 · `l8` tr.66 · `l9` tr.76 · `l14` tr.86: từ `table` **in cứng ô “?”** → **`bangTinh`** (bé bấm ô, chọn số, chấm ngay).                                                                                                                                                                                                                                                                                       |
+| Sửa ② — 2 bảng Lớp 3 | `g3-c1-l4` (tìm số bị trừ) và `g3-c2-l9` (nhân/chia): → `bangTinh`; **hàng đầu giữ làm MẪU in sẵn** để bé làm các hàng sau (dạy bằng ví dụ mẫu rồi bé tự làm — đúng cách SGK).                                                                                                                                                                                                                                                       |
+| Sửa ③ — 1 bảng Lớp 2 | `g2-c13-l1` (phân loại theo nhóm): bảng **không có số liệu nào để điền** ⇒ đổi thành **ví dụ có số thật** (màu đỏ 7 bạn · màu xanh 4 bạn — khớp đúng bài sau `g2-c13-l2`), không còn ô “?” nào.                                                                                                                                                                                                                                      |
+| Sửa ④ — 3 dãy hình   | `g1-c2-l8` (×2: quy luật theo MÀU và theo HÌNH) và `g1-c5-l4`: `patternRow` **nay bé điền được** — bấm ô `?`, chọn **HÌNH** từ dải nút (nút là hình vẽ), đúng thì ô hiện đúng hình đó.                                                                                                                                                                                                                                               |
+| 🔧 Bộ vẽ mới         | **`bangTinh`** (`client/src/components/visuals/interactiveTable.jsx`): bảng 2 cột, ô `null` = ô trống, `answers` = đáp án từng ô, `options` = số cho bé chọn; tự rơi về dạng tĩnh nếu đáp án lệch số ô (không sập).                                                                                                                                                                                                                  |
+| 🔧 Mở rộng           | `PatternRow` nhận thêm `answers` / `options` / `onDone`; `FillBar` nhận `renderOption` + `tenOption` ⇒ **một bản** tiến độ · chúc mừng · “Làm lại” dùng chung cho cả nút chữ lẫn nút hình.                                                                                                                                                                                                                                           |
+| Luật thường trực     | Thêm vào `scratch/kiem-tra-slide.mjs`: bảng `table` **không được** in cứng ô `"?"`; `bangTinh` phải có số đáp án = số ô trống, `options` ≥ 2, và **chỉ** nằm trên slide `story/concept/visual`; `patternRow` có **> 1** ô `?` trên slide câu hỏi = lỗi.                                                                                                                                                                              |
+| Kèm theo             | **CĐ6 (Lớp 1) — 6 slide mới:** bảng **Viết số/Đọc số 11–20** (SGK tr.4–5, in sẵn — đây là bảng TRA CỨU nên không có ô trống) + 5 câu hỏi: _“Số 18 đọc là gì?”_ · _“100 gồm mấy chục?”_ · _“Số nào có hai chữ số giống nhau?”_ · _“Số tròn chục lớn nhất bé hơn 100?”_ · _“Số nào đứng ngay dưới 45 trong bảng 100 số?”_                                                                                                              |
+| Đăng ký khoá         | `visualKeys.js` (`HINH_KEYS`) + `VisualBlock.jsx` + **trang đo** `scratch/visual-fit.jsx` (đủ 3 chỗ, như `patternRow`).                                                                                                                                                                                                                                                                                                              |
+| Số liệu              | Hệ thống **2684 → 2690** · Lớp 1 **662 → 668**.                                                                                                                                                                                                                                                                                                                                                                                      |
+| Bằng chứng           | cổng **32 PASS · 0 FAIL** · `node scratch/kiem-tra-slide.mjs` **0 lỗi** · `soat-o-trong.mjs` **0 ca cần sửa** (7 ca hợp lệ in ra khi `--het`) · build sạch · đo **707 ca: 0 lỗi vẽ · 0 tràn · 0 chữ chồng** ở 375/360/320 px · **kiểm THẬT trong app**: bấm sai → ô đỏ + hiện gợi ý, bấm đúng 4 ô → “🎉 Bé làm đúng hết!” `4/4`; dãy hình: chọn “hình tam giác” → ô thứ 8 hiện **tam giác xanh, viền xanh** `1/1` (đã xem ảnh chụp). |
 
 > 🔴 **Bài học của đợt này (đều là lỗi tôi mắc thật, ghi để lần sau không lặp):**
 >
@@ -709,7 +709,7 @@ slide cho bấm** trong cả 5 lớp, tìm mọi khoá DỮ LIỆU có ô `?` / 
 >    `bangTinh` (đánh dấu bằng `null`) ⇒ bảng điền được đặt sai chỗ vẫn được báo “sạch”. Phải tự
 >    thêm ô `null` vào danh sách ô trống. **Số đo vô lý thì nghi cây thước trước.**
 > 2. **Báo oan do thước sai:** `table.headers[1] = “Bé làm gì?”` và `pointLine.formula = “Điểm nào
->    nằm giữa A và B?”` là **lời dẫn**, không phải ô trống ⇒ bỏ qua khoá chữ (`headers`, `formula`,
+nằm giữa A và B?”` là **lời dẫn**, không phải ô trống ⇒ bỏ qua khoá chữ (`headers`, `formula`,
 >    `options`, …). Thêm luật: chuỗi có dấu `=` / `→` là **CÂU phép tính** (`“500 − ? = 260”`), không
 >    phải ô điền — chỗ bé điền là ô `null` bên cạnh.
 > 3. **Lỗi che khuất biến (crash thật, chưa tới tay bé):** trong `PatternRow` tôi viết
@@ -718,6 +718,14 @@ slide cho bấm** trong cả 5 lớp, tìm mọi khoá DỮ LIỆU có ô `?` / 
 > 4. **Đừng tin “bấm được” khi chưa đo hình học:** Playwright báo nút chọn bị SVG “che” ⇒ tôi đo lại
 >    `getBoundingClientRect` của `<svg>` và nút: **không hề chồng nhau** (đáy SVG 241 px, đỉnh nút
 >    284 px) — nguyên nhân là slide đang chạy animation vào. **Đo trước, kết luận sau.**
+> 5. **Vòng 2 của cùng yêu cầu (2026-09-25) — đã tìm thêm 2 ca bằng cách SỬA THƯỚC:** hai slide dãy
+>    số Lớp 1 (`g1-c1-l4` dãy 0→10 · `g1-c1-l11` 6 đoàn tàu SGK tr.40) cũng là “ô trống để nhìn”.
+>    Lý do công cụ bỏ qua: tôi **đoán** danh sách `mode` tương tác của `numberScene`; đọc mã thì chỉ
+>    có MỘT `useInteractive()` dùng ở 3 nhánh (`numberMaze` · `dotCards` · `comparePairs`).
+>    Nay dãy số dùng **`TrainFill`** — bản tĩnh và bản điền được **chung một hàm vẽ**; cổng
+>    `kiem-tra-slide.mjs` thêm luật: `numberTrain` có ô trống ⇒ phải có `answers` khớp số ô.
+>    Đo sau khi sửa: **15 ca có nút chọn** trên trang đo (khớp đúng 15 ca hợp lệ của công cụ soát),
+>    bấm thật trong app: sai → ô đỏ, đúng → ô hiện số và tiến độ `1/6`.
 
 ---
 

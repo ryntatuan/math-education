@@ -12,6 +12,17 @@
 -- CHẠY LẠI NHIỀU LẦN: chỉ làm phiên bản tăng thêm 1 mỗi lần — vô hại (các bé tải
 --   lại nội dung thêm một lần), không sinh dòng trùng, không mất dữ liệu.
 --
+-- LƯU Ý LẦN 12 (2026-09-25): HAI DÃY SỐ LỚP 1 NAY **BÉ BẤM ĐIỀN ĐƯỢC** (vòng 2 của yêu cầu “ô trống phải điền được”).
+--   Phát hiện nhờ **sửa thước đo**: công cụ soát trước đó xếp nhầm 13 `mode` của `numberScene` vào nhóm
+--   “tự tương tác”, trong khi đọc mã thì chỉ có 3 nhánh thật sự tương tác (`numberMaze`, `dotCards`,
+--   `comparePairs`) ⇒ 2 slide này bị bỏ qua dù trẻ không bấm được gì.
+--     • `g1-c1-l4` slide 9 — dãy số 0 → 10, 4 ô trống (`answers: [2, 3, 7, 10]`).
+--     • `g1-c1-l11` slide 7 — 6 đoàn tàu (SGK tr.40), 6 ô `?` (`answers: [5, 4, 5, 8, 9, 1]`).
+--   Bộ vẽ: `TrainFill` (`Grade1NumberVisuals.jsx`) — bản tĩnh và bản điền được dùng CHUNG một hàm vẽ.
+--   Cổng mới trong `scratch/kiem-tra-slide.mjs`: `numberTrain` có ô trống ⇒ phải có `answers` khớp số ô.
+--   ⚠️ Số slide KHÔNG đổi (2690) — chỉ đổi DỮ LIỆU 2 slide.
+--   ⚠️ LẦN NÀY CẦN DÁN: `02-bai-lop-1.sql` rồi `100-...` (file này). Không cần dán các file lớp khác.
+--
 -- LƯU Ý LẦN 11 (2026-09-25): **MỌI Ô TRỐNG PHẢI ĐIỀN ĐƯỢC** (yêu cầu người dùng) + 6 slide CĐ6 Lớp 1.
 --   Yêu cầu: “tất cả các dạng bài có điền vào ô trống không được là slide tĩnh và đều có thể điền
 --   đáp án vào được; đảm bảo tất cả các dạng bài tập đều có đáp án để trẻ lựa chọn và tương tác”.

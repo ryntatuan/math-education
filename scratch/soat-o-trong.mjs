@@ -76,27 +76,47 @@ const KHOA_LOI = new Set([
   "kind",
   "id",
   "desc", // mô tả một bước giải (Lớp 5 `steps`) — chữ, không phải ô điền
+  "colors", // màu của từng ô (`patternRow`) — `null` = không đặt màu, KHÔNG phải ô trống
 ]);
+
+/**
+ * Chỉ hai khoá này mới dùng `null` / chuỗi rỗng để chỉ Ô TRỐNG:
+ *   • `bangTinh.rows` — ô bé điền.
+ *   • `numberScene`    — dãy số / số hạng còn thiếu (`numberTrain`, `numberBond`).
+ * ⚠️ Ngoài hai khoá này, `null` thường là “trường không dùng”: đã báo oan 2 ca
+ * `motionDiagram.b = null` (nghĩa là “không có xe thứ hai”, hình không hề có ô trống).
+ */
+const KHOA_CO_O_TRONG = new Set(["bangTinh", "numberScene"]);
 
 /** Hình TỰ TƯƠNG TÁC được (trẻ bấm điền ngay trong hình). */
 const HINH_CHO_BAM = new Set(["bangTinh"]);
 
-/** `numberScene` chỉ tương tác ở vài `mode` (đọc từ `Grade1NumberVisuals.jsx`). */
-const MODE_CHO_BAM = new Set([
-  "numberBond",
-  "dotCards",
-  "comparePairs",
-  "numberMaze",
-  "gridWalk",
-  "addToReach",
-  "countFiltered",
-  "sceneCount",
-  "matchEqual",
-  "manyGroups",
-  "fiveFriends",
-  "numberShow",
-  "numberTrain",
-]);
+/**
+ * Dãy số (`numberScene.mode = "numberTrain"`) nay ĐIỀN ĐƯỢC khi có `answers` khớp số ô trống
+ * (`TrainFill` trong `Grade1NumberVisuals.jsx`). Số ô trống đếm theo `numbers` hoặc `rows`.
+ */
+const laOTrongDay = (v) => v === null || v === "?" || v === "";
+function demOTrongDaySo(hinh) {
+  const ds =
+    hinh?.kind === "ribbon"
+      ? hinh?.numbers
+      : (hinh?.rows || []).flatMap((r) => (Array.isArray(r) ? r : []));
+  return Array.isArray(ds) ? ds.filter(laOTrongDay).length : 0;
+}
+
+/**
+ * `numberScene` chỉ tương tác ở vài `mode`.
+ *
+ * 🔴 ĐÃ KIỂM BẰNG CÁCH ĐỌC MÃ (2026-09-25), KHÔNG ĐOÁN: `Grade1NumberVisuals.jsx` chỉ có
+ * **MỘT** `useInteractive()` (dòng 412) và nó chỉ được dùng ở 3 nhánh:
+ *   `numberMaze` (dòng ~1503) · `dotCards` (~1723, khi thiếu dấu) · `comparePairs` (~1783).
+ * Hai bộ tương tác thật là `DotCardsCard` và `ComparePairsCard` (mỗi bộ gọi `useFillSlots`).
+ *
+ * ⚠️ Bản đầu của file này tôi **đoán** một danh sách dài (`numberBond`, `numberTrain`,
+ * `gridWalk`, `addToReach`…) ⇒ công cụ coi các ô “?” TĨNH đó là “đã tương tác” ⇒
+ * **cổng xanh giả**. Danh sách dưới đây là danh sách ĐÃ ĐỌC MÃ.
+ */
+const MODE_CHO_BAM = new Set(["numberMaze", "dotCards", "comparePairs"]);
 
 /** Dấu hiệu ô trống trong DỮ LIỆU hình. */
 const O_TRONG = /(\?|…|\.\.\.)/;
@@ -108,8 +128,15 @@ const O_TRONG = /(\?|…|\.\.\.)/;
  */
 const LA_PHEP_TINH = /[=→]/;
 
-function soi(v, path, out, botLoi) {
-  if (v === null || v === undefined) return;
+function soi(v, path, out, botLoi, demNull) {
+  if (v === undefined) return;
+  /**
+   * `null` là ô trống CHỈ trong các khoá `KHOA_CO_O_TRONG` (xem ghi chú ở hằng đó).
+   */
+  if (v === null) {
+    if (!botLoi && demNull) out.push(`${path} = ô trống (null)`);
+    return;
+  }
   if (typeof v === "string") {
     const s = v.trim();
     // “?” / “…” đứng một mình, hoặc “30, ?, 33”, hoặc “? ô trống”
@@ -119,12 +146,12 @@ function soi(v, path, out, botLoi) {
   }
   if (typeof v === "number" || typeof v === "boolean") return;
   if (Array.isArray(v)) {
-    v.forEach((x, i) => soi(x, `${path}[${i}]`, out, botLoi));
+    v.forEach((x, i) => soi(x, `${path}[${i}]`, out, botLoi, demNull));
     return;
   }
   for (const [k, x] of Object.entries(v)) {
     const laLoi = botLoi || KHOA_LOI.has(k);
-    soi(x, `${path}.${k}`, out, laLoi);
+    soi(x, `${path}.${k}`, out, laLoi, demNull);
   }
 }
 
@@ -172,28 +199,54 @@ for (const [tenLop, data] of NGUON) {
         for (const [key, hinh] of Object.entries(content)) {
           if (KHOA_LOI.has(key)) continue;
           if (hinh === undefined || hinh === null || hinh === false) continue;
+          const soOTDay = demOTrongDaySo(hinh);
           const tuBam =
             HINH_CHO_BAM.has(key) ||
-            (key === "patternRow" && demOTrongDay(hinh?.shapes) > 0 && coDuDapAn(hinh, demOTrongDay(hinh?.shapes))) ||
-            (key === "numberScene" && MODE_CHO_BAM.has(hinh?.mode));
+            (key === "patternRow" &&
+              demOTrongDay(hinh?.shapes) > 0 &&
+              coDuDapAn(hinh, demOTrongDay(hinh?.shapes))) ||
+            (key === "numberScene" && MODE_CHO_BAM.has(hinh?.mode)) ||
+            (key === "numberScene" &&
+              hinh?.mode === "numberTrain" &&
+              soOTDay > 0 &&
+              Array.isArray(hinh?.answers) &&
+              hinh.answers.length === soOTDay);
+
+          // [C] DÃY SỐ có ô “?” mà thiếu/ lệch đáp án ⇒ vẫn là hình tĩnh (im lặng)
+          if (key === "numberScene" && hinh?.mode === "numberTrain" && soOTDay > 0) {
+            const soDADay = Array.isArray(hinh?.answers)
+              ? hinh.answers.length
+              : -1;
+            if (soDADay !== soOTDay)
+              loi.push(
+                `[C] ${viTri}: numberTrain có ${soOTDay} ô trống nhưng ${soDADay} đáp án ⇒ ô không điền được.`,
+              );
+          }
 
           // [C] dãy hình có ô “?” mà đáp án lệch số ô ⇒ vẫn là hình tĩnh (im lặng)
           if (key === "patternRow") {
             const soOT = demOTrongDay(hinh?.shapes);
             if (soOT > 0) {
-              const soDA = Array.isArray(hinh?.answers) ? hinh.answers.length : -1;
+              const soDA = Array.isArray(hinh?.answers)
+                ? hinh.answers.length
+                : -1;
               if (soDA !== -1 && soDA !== soOT) {
                 loi.push(
                   `[C] ${viTri}: patternRow có ${soOT} ô “?” nhưng ${soDA} đáp án ⇒ ô không điền được.`,
                 );
-              } else if (soDA === soOT && (!Array.isArray(hinh?.options) || hinh.options.length < 2)) {
-                loi.push(`[C] ${viTri}: patternRow thiếu \`options\` (cần ≥2 hình cho trẻ bấm).`);
+              } else if (
+                soDA === soOT &&
+                (!Array.isArray(hinh?.options) || hinh.options.length < 2)
+              ) {
+                loi.push(
+                  `[C] ${viTri}: patternRow thiếu \`options\` (cần ≥2 hình cho trẻ bấm).`,
+                );
               }
             }
           }
 
           const coOT = [];
-          soi(hinh, key, coOT, false);
+          soi(hinh, key, coOT, false, KHOA_CO_O_TRONG.has(key));
           /**
            * ⚠️ Bảng điền được đánh dấu ô trống bằng `null` (KHÔNG phải chuỗi `?`) nên `soi()`
            * không thấy. Phải tự thêm vào danh sách, nếu không công cụ sẽ bỏ qua `bangTinh` hoàn
@@ -202,7 +255,8 @@ for (const [tenLop, data] of NGUON) {
            */
           if (key === "bangTinh") {
             const soOTBang = demOTrongBang(hinh?.rows);
-            if (soOTBang > 0) coOT.push(`${soOTBang} ô trống (null) trong rows`);
+            if (soOTBang > 0)
+              coOT.push(`${soOTBang} ô trống (null) trong rows`);
           }
 
           // [C] bảng điền được mà đáp án lệch số ô trống
@@ -212,13 +266,20 @@ for (const [tenLop, data] of NGUON) {
               ? hinh.answers.length
               : -1;
             if (soOT === 0) {
-              loi.push(`[C] ${viTri}: bangTinh KHÔNG có ô trống nào (rows toàn giá trị in sẵn) — dùng \`table\` mới đúng.`);
+              loi.push(
+                `[C] ${viTri}: bangTinh KHÔNG có ô trống nào (rows toàn giá trị in sẵn) — dùng \`table\` mới đúng.`,
+              );
             } else if (soDA !== soOT) {
               loi.push(
                 `[C] ${viTri}: bangTinh có ${soOT} ô trống nhưng ${soDA} đáp án ⇒ component tự rơi về dạng TĨNH, trẻ không bấm được.`,
               );
-            } else if (!Array.isArray(hinh?.options) || hinh.options.length < 2) {
-              loi.push(`[C] ${viTri}: bangTinh thiếu \`options\` (cần ≥2 lựa chọn cho trẻ bấm).`);
+            } else if (
+              !Array.isArray(hinh?.options) ||
+              hinh.options.length < 2
+            ) {
+              loi.push(
+                `[C] ${viTri}: bangTinh thiếu \`options\` (cần ≥2 lựa chọn cho trẻ bấm).`,
+              );
             }
           }
 
@@ -253,14 +314,18 @@ for (const [tenLop, data] of NGUON) {
   }
 }
 
-console.log(`Đã soi ${soSlide} slide (${soSlideChoBam} slide cho bấm) trong 5 lớp.\n`);
+console.log(
+  `Đã soi ${soSlide} slide (${soSlideChoBam} slide cho bấm) trong 5 lớp.\n`,
+);
 if (HET && hopLe.length) {
   console.log(`── HỢP LỆ (${hopLe.length}) ──`);
   hopLe.forEach((x) => console.log("  ✓ " + x));
   console.log("");
 }
 if (loi.length === 0) {
-  console.log("✅ KHÔNG có ô trống tĩnh nào. Mọi ô “?” đều nằm trong hình/slide tương tác.");
+  console.log(
+    "✅ KHÔNG có ô trống tĩnh nào. Mọi ô “?” đều nằm trong hình/slide tương tác.",
+  );
   process.exit(0);
 }
 console.log(`❌ ${loi.length} CA CẦN SỬA:`);

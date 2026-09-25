@@ -91,7 +91,8 @@ export const g1c5 = {
             },
             options: ["Con bò", "Con gà", "Con cá"],
             answer: "Con bò",
-            mascotHint: "Đếm từng loại: bò 2 con, gà 4 con, cá 6 con. Ít nhất là con bò.",
+            mascotHint:
+              "Đếm từng loại: bò 2 con, gà 4 con, cá 6 con. Ít nhất là con bò.",
           },
         },
         {
@@ -112,7 +113,8 @@ export const g1c5 = {
               "Có 3 bạn thỏ chạy vào hai chuồng A và B, biết rằng chuồng A có nhiều thỏ hơn chuồng B. Hỏi chuồng A có mấy bạn thỏ?",
             options: [1, 2, 3],
             answer: 2,
-            mascotHint: "Chia 3 thành 2 và 1 — chuồng A nhiều hơn nên có 2 bạn.",
+            mascotHint:
+              "Chia 3 thành 2 và 1 — chuồng A nhiều hơn nên có 2 bạn.",
           },
         },
         {

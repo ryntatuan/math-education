@@ -177,7 +177,12 @@ export function BangTinh({
                 const laODangLam = interactive && dungHopDong;
                 const look = laODangLam
                   ? slotLook(fill, oTrong)
-                  : { fill: "#fffbeb", stroke: "#f59e0b", color: "#b45309", dash: true };
+                  : {
+                      fill: "#fffbeb",
+                      stroke: "#f59e0b",
+                      color: "#b45309",
+                      dash: true,
+                    };
                 const hien =
                   laODangLam && fill.picked[oTrong] !== null
                     ? String(fill.picked[oTrong])

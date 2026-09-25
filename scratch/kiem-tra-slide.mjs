@@ -214,9 +214,7 @@ for (const [file, key, soLopThutu] of NGUON) {
             ? rows.reduce(
                 (a, r) =>
                   a +
-                  (Array.isArray(r)
-                    ? r.filter((x) => x === null).length
-                    : 0),
+                  (Array.isArray(r) ? r.filter((x) => x === null).length : 0),
                 0,
               )
             : 0;
@@ -240,8 +238,16 @@ for (const [file, key, soLopThutu] of NGUON) {
               i,
               `bangTinh có ${soOT} ô trống nhưng ${soDA} đáp án ⇒ ô KHÔNG điền được`,
             );
-          if (!Array.isArray(c.bangTinh.options) || c.bangTinh.options.length < 2)
-            themLoi(file, bai.id, i, "bangTinh thiếu `options` (cần ≥2 lựa chọn)");
+          if (
+            !Array.isArray(c.bangTinh.options) ||
+            c.bangTinh.options.length < 2
+          )
+            themLoi(
+              file,
+              bai.id,
+              i,
+              "bangTinh thiếu `options` (cần ≥2 lựa chọn)",
+            );
           if (!choBam)
             themLoi(
               file,
@@ -252,9 +258,8 @@ for (const [file, key, soLopThutu] of NGUON) {
         }
 
         if (c.patternRow) {
-          const soOT = (Array.isArray(c.patternRow.shapes)
-            ? c.patternRow.shapes
-            : []
+          const soOT = (
+            Array.isArray(c.patternRow.shapes) ? c.patternRow.shapes : []
           ).filter((x) => x === "?").length;
           if (soOT > 0) {
             const coDA = Array.isArray(c.patternRow.answers);
@@ -265,8 +270,17 @@ for (const [file, key, soLopThutu] of NGUON) {
                 i,
                 `patternRow có ${soOT} ô “?” nhưng ${c.patternRow.answers.length} đáp án ⇒ ô không điền được`,
               );
-            else if (coDA && (!Array.isArray(c.patternRow.options) || c.patternRow.options.length < 2))
-              themLoi(file, bai.id, i, "patternRow thiếu `options` (cần ≥2 hình cho trẻ bấm)");
+            else if (
+              coDA &&
+              (!Array.isArray(c.patternRow.options) ||
+                c.patternRow.options.length < 2)
+            )
+              themLoi(
+                file,
+                bai.id,
+                i,
+                "patternRow thiếu `options` (cần ≥2 hình cho trẻ bấm)",
+              );
             else if (!coDA && soOT > 1 && !choBam)
               themLoi(
                 file,
@@ -281,6 +295,39 @@ for (const [file, key, soLopThutu] of NGUON) {
                 slide: i,
                 msg: "patternRow 1 ô “?” trên slide câu hỏi — hợp lệ nếu câu hỏi hỏi đúng ô đó",
               });
+          }
+        }
+
+        // Dãy số / toa tàu (`numberScene.mode = "numberTrain"`) CÓ ô trống ⇒ phải có `answers`
+        // khớp số ô (nhờ đó bộ vẽ mới cho bé bấm — `TrainFill` trong `Grade1NumberVisuals.jsx`).
+        // Thiếu/lệch đáp án là ô trống TĨNH mà không có cổng nào khác bắt được.
+        if (c.numberScene?.mode === "numberTrain") {
+          const laOT = (v) => v === null || v === "?" || v === "";
+          const ds =
+            c.numberScene.kind === "ribbon"
+              ? c.numberScene.numbers
+              : (c.numberScene.rows || []).flatMap((r) =>
+                  Array.isArray(r) ? r : [],
+                );
+          const soOT = (Array.isArray(ds) ? ds : []).filter(laOT).length;
+          if (soOT > 0) {
+            const soDA = Array.isArray(c.numberScene.answers)
+              ? c.numberScene.answers.length
+              : -1;
+            if (soDA !== soOT)
+              themLoi(
+                file,
+                bai.id,
+                i,
+                `numberTrain có ${soOT} ô trống nhưng ${soDA} đáp án ⇒ ô KHÔNG điền được`,
+              );
+            else if (!choBam)
+              themLoi(
+                file,
+                bai.id,
+                i,
+                `numberTrain điền được nhưng đặt trên slide “${s.type}” ⇒ không bấm được`,
+              );
           }
         }
 
