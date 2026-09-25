@@ -127,13 +127,7 @@ export const g3c1 = {
         {
           type: "visual",
           content: {
-            text: "  356          534\n+ 127        − 268\n  483          266",
-            operation: {
-              left: 356,
-              sign: "+",
-              right: 127,
-              result: 483,
-            },
+            text: "Ôn tập cộng trừ trong phạm vi 1 000",
             table: {
               headers: ["Phép tính", "Kết quả"],
               rows: [
@@ -141,6 +135,29 @@ export const g3c1 = {
                 ["534 − 268", "266 (mượn hai lần)"],
               ],
               label: "Ôn tập cộng trừ trong phạm vi 1 000",
+            },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Bé đặt tính rồi cộng: 356 + 127",
+            cotTinh: {
+              left: 356,
+              right: 127,
+              sign: "+",
+              remember: true,
+            },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Bé đặt tính rồi trừ: 534 − 268",
+            cotTinh: {
+              left: 534,
+              right: 268,
+              sign: "−",
             },
           },
         },

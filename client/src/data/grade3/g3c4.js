@@ -38,17 +38,11 @@ export const g3c4 = {
         {
           type: "visual",
           content: {
-            text: "  32\n×  3\n  96",
-            operation: {
+            text: "Bé đặt tính rồi nhân: 32 × 3",
+            cotTinh: {
               left: 32,
-              sign: "×",
               right: 3,
-              result: 96,
-            },
-            placeValue: {
-              headers: ["Chục", "Đơn vị"],
-              digits: [3, 2],
-              label: "32 × 3: 2 × 3 = 6, viết 6; 3 × 3 = 9, viết 9",
+              sign: "×",
             },
           },
         },
@@ -114,17 +108,12 @@ export const g3c4 = {
         {
           type: "visual",
           content: {
-            text: "  26\n×  3\n  78\n6 × 3 = 18 → viết 8 nhớ 1\n2 × 3 + 1 = 7",
-            operation: {
+            text: "Bé đặt tính rồi nhân: 26 × 3 (nhớ 1)",
+            cotTinh: {
               left: 26,
-              sign: "×",
               right: 3,
-              result: 78,
-            },
-            placeValue: {
-              headers: ["Chục", "Đơn vị"],
-              digits: [2, 6],
-              label: "26 × 3: 6 × 3 = 18 viết 8 nhớ 1; 2 × 3 = 6 thêm 1 = 7",
+              sign: "×",
+              remember: true,
             },
           },
         },

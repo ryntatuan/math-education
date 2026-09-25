@@ -267,13 +267,17 @@ for (const [file, key, soLopThutu] of NGUON) {
               i,
               "cotTinh thiếu `left` hoặc `right` (đặt tính cần đủ hai số)",
             );
-          const dauCt = ct.sign === "-" || ct.sign === "−" ? "−" : "+";
-          if (!["+", "-", "−"].includes(ct.sign ?? "+"))
+          const dauCt = ct.sign === "-" || ct.sign === "−"
+            ? "−"
+            : ct.sign === "*" || ct.sign === "×"
+              ? "×"
+              : "+";
+          if (!["+", "-", "−", "×", "*"].includes(ct.sign ?? "+"))
             themLoi(
               file,
               bai.id,
               i,
-              `cotTinh có dấu “${ct.sign}” — chỉ nhận "+" hoặc "−"`,
+              `cotTinh có dấu “${ct.sign}” — chỉ nhận "+", "−" hoặc "×" (phép chia cột chưa có bộ vẽ)`,
             );
           if (
             dauCt === "−" &&
@@ -291,7 +295,7 @@ for (const [file, key, soLopThutu] of NGUON) {
               file,
               bai.id,
               i,
-              "cotTinh: `remember` (hàng nhớ) hiện chỉ vẽ cho phép CỘNG — bỏ đi nếu là phép trừ",
+              "cotTinh: `remember` (hàng nhớ) chỉ vẽ cho phép CỘNG và phép NHÂN một chữ số — bỏ đi nếu là phép trừ",
             );
           if (ct.blanks !== "none" && !choBam)
             themLoi(

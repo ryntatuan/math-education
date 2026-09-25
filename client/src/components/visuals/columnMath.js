@@ -18,10 +18,24 @@ export function tachSo(x) {
 /**
  * Kết quả của `left sign right`, giữ ĐÚNG số chữ số thập phân của hai số hạng
  * (15,82 + 9,35 = 25,17; 4,2 − 1,35 = 2,85).
+ *
+ * 🔴 `"×"` CẦN ĐƯỜNG TÍNH RIÊNG: cộng/trừ quy về cùng một mẫu số thập phân, còn nhân thì
+ * **số chữ số thập phân của tích = TỔNG số chữ số thập phân của hai thừa số** (SGK Lớp 5).
+ * Dùng chung công thức của phép cộng cho phép nhân là sai (nhân đôi mẫu số).
  */
 export function tinhKetQua(left, right, sign) {
   const a = tachSo(left);
   const b = tachSo(right);
+  if (sign === "×" || sign === "*") {
+    const cot = a.thap.length + b.thap.length;
+    const A = Number(a.nguyen + a.thap);
+    const B = Number(b.nguyen + b.thap);
+    const K = A * B;
+    const chu = String(K).padStart(cot + 1, "0");
+    const nguyen = cot ? chu.slice(0, chu.length - cot) : chu;
+    const thap = cot ? chu.slice(chu.length - cot) : "";
+    return { nguyen, thap, cotThap: cot };
+  }
   const cot = Math.max(a.thap.length, b.thap.length);
   const mu = 10 ** cot;
   const A = Math.round(Number(`${a.nguyen}.${a.thap || "0"}`) * mu);
@@ -38,13 +52,24 @@ export function tinhKetQua(left, right, sign) {
  * Chữ số “nhớ” của từng cột khi CỘNG — phần tử `[i]` là nhớ RA của cột i (đếm từ PHẢI),
  * SGK viết nó ở hàng trên, lệch sang TRÁI một cột.
  */
-export function tinhNho(left, right) {
+export function tinhNho(left, right, sign = "+") {
   const a = tachSo(left);
   const b = tachSo(right);
   const dayA = (a.nguyen + a.thap).split("").map(Number).reverse();
   const dayB = (b.nguyen + b.thap).split("").map(Number).reverse();
   const soCot = Math.max(dayA.length, dayB.length);
   const nho = [];
+  if (sign === "×" || sign === "*") {
+    // Chỉ vẽ hàng “nhớ” khi thừa số thứ hai có MỘT chữ số (dạng SGK Lớp 3–4 hay viết nhớ).
+    if (dayB.length !== 1) return dayA.map(() => 0);
+    let carry = 0;
+    for (let i = 0; i < dayA.length; i++) {
+      const t = dayA[i] * dayB[0] + carry;
+      carry = Math.floor(t / 10);
+      nho[i] = carry;
+    }
+    return nho;
+  }
   let carry = 0;
   for (let i = 0; i < soCot; i++) {
     const t = (dayA[i] ?? 0) + (dayB[i] ?? 0) + carry;

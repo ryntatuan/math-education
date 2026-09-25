@@ -35,7 +35,9 @@ const NGUON = [
 
 const canh = new Map();
 for (const [file, key] of NGUON) {
-  const mod = await import(new URL(`../client/src/data/${file}`, import.meta.url));
+  const mod = await import(
+    new URL(`../client/src/data/${file}`, import.meta.url)
+  );
   for (const ch of mod[key].chapters ?? []) {
     for (const bai of ch.lessons ?? []) {
       (bai.slides ?? []).forEach((s, i) => {
@@ -58,7 +60,9 @@ const ketQua = [];
 
 for (const [khoa, ca] of canh) {
   for (const c of ca) {
-    await page.goto(`${BASE}/lesson/${c.bai}`, { waitUntil: "domcontentloaded" });
+    await page.goto(`${BASE}/lesson/${c.bai}`, {
+      waitUntil: "domcontentloaded",
+    });
     await page.waitForTimeout(700);
     let toi = c.index === 0;
     for (let i = 0; i < c.index; i++) {
@@ -78,14 +82,15 @@ for (const [khoa, ca] of canh) {
       const svgs = [...the.querySelectorAll("svg")];
       const hinh = svgs.length
         ? svgs.reduce((a, b) =>
-            b.querySelectorAll("text").length > a.querySelectorAll("text").length
+            b.querySelectorAll("text").length >
+            a.querySelectorAll("text").length
               ? b
               : a,
           )
         : null;
       const chuDeBai = hinh
-        ? [...hinh.querySelectorAll("text")].map((t) =>
-            +t.getBoundingClientRect().height.toFixed(1),
+        ? [...hinh.querySelectorAll("text")].map(
+            (t) => +t.getBoundingClientRect().height.toFixed(1),
           )
         : [];
       // ô bấm được TRONG hình (rect có viền đứt = ô “?”)
@@ -105,16 +110,16 @@ for (const [khoa, ca] of canh) {
       return {
         soChu: chuDeBai.length,
         deBai: chuDeBai.length ? Math.max(...chuDeBai) : null,
-        caoHinh: hinh
-          ? +hinh.getBoundingClientRect().height.toFixed(1)
-          : null,
+        caoHinh: hinh ? +hinh.getBoundingClientRect().height.toFixed(1) : null,
         oTrong,
         nut,
         // khối nút = từ mép trên nút đầu đến mép dưới phần tử cuối trong hàng nút
         caoKhoiNut: nut.length
           ? (() => {
               const rs = [...the.parentElement.querySelectorAll("button")]
-                .filter((b) => /^Chọn /.test(b.getAttribute("aria-label") || ""))
+                .filter((b) =>
+                  /^Chọn /.test(b.getAttribute("aria-label") || ""),
+                )
                 .map((b) => b.getBoundingClientRect());
               const tren = Math.min(...rs.map((r) => r.top));
               const duoi = Math.max(...rs.map((r) => r.bottom));
@@ -134,7 +139,9 @@ console.log(
 );
 for (const k of ketQua) {
   if (!k.toi) {
-    console.log(`   ${k.khoa.padEnd(11)} ${k.bai} #${k.index + 1}  ⏭ không tới được`);
+    console.log(
+      `   ${k.khoa.padEnd(11)} ${k.bai} #${k.index + 1}  ⏭ không tới được`,
+    );
     continue;
   }
   const nutCao = k.nut.length ? Math.max(...k.nut.map((n) => n.h)) : null;
@@ -145,9 +152,7 @@ for (const k of ketQua) {
     ? Math.min(...k.oTrong.map((o) => Math.min(o.w, o.h)))
     : null;
   const tiLeKhoi =
-    k.caoHinh && k.caoKhoiNut
-      ? +(k.caoKhoiNut / k.caoHinh).toFixed(2)
-      : null;
+    k.caoHinh && k.caoKhoiNut ? +(k.caoKhoiNut / k.caoHinh).toFixed(2) : null;
   const vanDe = [];
   if (tiLeKhoi !== null && tiLeKhoi > NGUONG_CAO_HON)
     vanDe.push(`khối nút cao gấp ${tiLeKhoi}× hình`);

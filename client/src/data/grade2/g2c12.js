@@ -37,17 +37,11 @@ export const g2c12 = {
         {
           type: "visual",
           content: {
-            text: "  235\n+ 412\n  647",
-            operation: {
+            text: "Bé đặt tính rồi cộng: 235 + 412",
+            cotTinh: {
               left: 235,
-              sign: "+",
               right: 412,
-              result: 647,
-            },
-            placeValue: {
-              headers: ["Trăm", "Chục", "Đơn vị"],
-              digits: [2, 3, 5],
-              label: "235 + 412: cộng từng hàng một, không nhớ",
+              sign: "+",
             },
           },
         },
@@ -101,17 +95,12 @@ export const g2c12 = {
         {
           type: "visual",
           content: {
-            text: "  256\n+ 173\n  429\n5 + 7 = 12 → viết 2 nhớ 1",
-            operation: {
+            text: "Bé đặt tính rồi cộng: 256 + 173",
+            cotTinh: {
               left: 256,
-              sign: "+",
               right: 173,
-              result: 429,
-            },
-            placeValue: {
-              headers: ["Trăm", "Chục", "Đơn vị"],
-              digits: [2, 5, 6],
-              label: "256 + 173: 5 + 7 = 12, viết 2 nhớ 1",
+              sign: "+",
+              remember: true,
             },
           },
         },
@@ -184,12 +173,12 @@ export const g2c12 = {
         {
           type: "visual",
           content: {
-            text: "  265\n+ 148\n  413",
-            operation: {
+            text: "Bé đặt tính rồi cộng: 265 + 148",
+            cotTinh: {
               left: 265,
-              sign: "+",
               right: 148,
-              result: 413,
+              sign: "+",
+              remember: true,
             },
           },
         },
@@ -251,12 +240,11 @@ export const g2c12 = {
         {
           type: "visual",
           content: {
-            text: "  645\n− 213\n  432",
-            operation: {
+            text: "Bé đặt tính rồi trừ: 645 − 213",
+            cotTinh: {
               left: 645,
-              sign: "−",
               right: 213,
-              result: 432,
+              sign: "−",
             },
           },
         },
@@ -313,17 +301,11 @@ export const g2c12 = {
         {
           type: "visual",
           content: {
-            text: "  534\n− 268\n  266\n14 − 8 = 6;  12 − 6 = 6;  4 − 2 = 2",
-            operation: {
+            text: "Bé đặt tính rồi trừ: 534 − 268",
+            cotTinh: {
               left: 534,
-              sign: "−",
               right: 268,
-              result: 266,
-            },
-            placeValue: {
-              headers: ["Trăm", "Chục", "Đơn vị"],
-              digits: [5, 3, 4],
-              label: "534 − 268: mượn 1 chục rồi mượn 1 trăm",
+              sign: "−",
             },
           },
         },
@@ -379,12 +361,12 @@ export const g2c12 = {
         {
           type: "visual",
           content: {
-            text: "  420\n− 165\n  255",
-            operation: {
+            text: "Bé đặt tính rồi trừ: 420 − 165",
+            cotTinh: {
               left: 420,
-              sign: "−",
               right: 165,
-              result: 255,
+              sign: "−",
+              remember: false,
             },
           },
         },
@@ -443,12 +425,6 @@ export const g2c12 = {
           type: "visual",
           content: {
             text: "? + 145 = 320  →  ? = 320 − 145 = 175",
-            operation: {
-              left: 175,
-              sign: "+",
-              right: 145,
-              result: 320,
-            },
             numberLine: {
               from: 145,
               to: 320,
@@ -529,12 +505,6 @@ export const g2c12 = {
           type: "visual",
           content: {
             text: "Đội Một: 245 cây\nĐội Hai: 168 cây\nCả hai đội: 245 + 168 = 413 (cây)",
-            operation: {
-              left: 245,
-              sign: "+",
-              right: 168,
-              result: 413,
-            },
             barModel: {
               rows: [
                 {
@@ -613,13 +583,7 @@ export const g2c12 = {
         {
           type: "visual",
           content: {
-            text: "256 + 173 = 429\n429 − 173 = 256\n534 − 268 = 266",
-            operation: {
-              left: 534,
-              sign: "−",
-              right: 268,
-              result: 266,
-            },
+            text: "Ba phép tính bé đã làm ở chủ đề 12",
             table: {
               headers: ["Phép tính", "Kết quả"],
               rows: [
@@ -628,6 +592,29 @@ export const g2c12 = {
                 ["534 − 268", "266"],
               ],
               label: "Luyện tập chung chủ đề 12",
+            },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Bé đặt tính rồi cộng: 372 + 259",
+            cotTinh: {
+              left: 372,
+              right: 259,
+              sign: "+",
+              remember: true,
+            },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Bé đặt tính rồi trừ: 700 − 285",
+            cotTinh: {
+              left: 700,
+              right: 285,
+              sign: "−",
             },
           },
         },

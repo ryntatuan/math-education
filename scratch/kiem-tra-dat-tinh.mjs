@@ -30,6 +30,13 @@ const caPhep = [
   ["0,5", "0,25", "+", "0,75", "0,7"],
   ["12,3", "12,3", "−", "0,0", "0,1"],
   [100, 45, "−", "55", "65"],
+  // phép nhân (SGK Lớp 3–5) — thập phân: số chữ số thập phân của tích = TỔNG hai thừa số
+  [32, 3, "×", "96", "95"],
+  [26, 3, "×", "78", "68"],
+  [142, 3, "×", "426", "416"],
+  [12, 12, "×", "144", "143"],
+  ["1,2", 3, "×", "3,6", "3,5"],
+  ["0,5", "0,4", "×", "0,20", "0,9"],
 ];
 
 for (const [left, right, sign, mong, mongSai] of caPhep) {
@@ -47,8 +54,7 @@ const caNho = [
   [99, 1, [1, 1]],
   [32, 14, [0, 0]],
   [105, 8, [1, 0, 0]],
-];
-for (const [left, right, mong] of caNho) {
+];for (const [left, right, mong] of caNho) {
   const got = tinhNho(left, right);
   if (JSON.stringify(got) === JSON.stringify(mong)) dung += 1;
   else sai.push(`nhớ của ${left} + ${right} = [${got}] (mong đợi [${mong}])`);

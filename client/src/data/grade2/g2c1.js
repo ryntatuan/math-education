@@ -590,13 +590,7 @@ export const g2c1 = {
         {
           type: "visual",
           content: {
-            text: "  32        57\n+ 14      − 23\n  46        34",
-            operation: {
-              left: 32,
-              sign: "+",
-              right: 14,
-              result: 46,
-            },
+            text: "Đặt tính rồi tính — cộng trừ từng hàng, bắt đầu từ hàng đơn vị.",
             table: {
               headers: ["Phép tính", "Kết quả"],
               rows: [
@@ -605,6 +599,28 @@ export const g2c1 = {
               ],
               label:
                 "Đặt tính rồi tính: cộng trừ từng hàng, bắt đầu từ hàng đơn vị",
+            },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Bé đặt tính rồi cộng: 32 + 14",
+            cotTinh: {
+              left: 32,
+              right: 14,
+              sign: "+",
+            },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Bé đặt tính rồi trừ: 57 − 23",
+            cotTinh: {
+              left: 57,
+              right: 23,
+              sign: "−",
             },
           },
         },

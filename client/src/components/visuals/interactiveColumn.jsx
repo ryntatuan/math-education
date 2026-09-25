@@ -10,8 +10,9 @@
  * thuần tự tính từ `left`/`right`/`sign` ⇒ không thể có chuyện “dữ liệu lệch đáp án”, và
  * cũng không phải sửa hai chỗ khi muốn đổi số. Dữ liệu chỉ khai:
  *     `cotTinh: { left: 32, right: 14, sign: "+" }`
- *   `sign`: `"+"` hoặc `"−"` (nhận cả `"-"`). Số thập phân viết dạng chuỗi `"15,82"`.
- *   `remember: true` — thêm hàng “nhớ” (chỉ dùng cho phép cộng; xem `tinhNho`).
+ *   `sign`: `"+"` · `"−"` · `"×"` (nhận cả `"-"` và `"*"`). Số thập phân viết dạng chuỗi `"15,82"`.
+ *   `remember: true` — thêm hàng “nhớ” (cho phép cộng, và cho phép nhân khi thừa số thứ hai
+ *   có MỘT chữ số; xem `tinhNho`).
  *   `blanks: "none"` — in sẵn kết quả (dùng cho slide VÍ DỤ, không phải bài tập).
  *
  * ⚠️ LUẬT REACT: `useFillSlots` phải gọi ở ĐẦU component, không gọi trong nhánh `if`.
@@ -53,7 +54,13 @@ export function CotTinh({
   onDone,
 }) {
   const interactive = useInteractive();
-  const dau = sign === "-" || sign === "−" ? "−" : "+";
+  // Dấu hiển thị: nhận cả biến thể gõ khác nhau trong dữ liệu (`-` và `−`, `*` và `×`).
+  const dau =
+    sign === "-" || sign === "−"
+      ? "−"
+      : sign === "*" || sign === "×"
+        ? "×"
+        : "+";
   const kq = tinhKetQua(left, right, dau);
   const a = tachSo(left);
   const b = tachSo(right);
@@ -84,8 +91,8 @@ export function CotTinh({
   });
   viTriTrong.reverse();
 
-  const coNho = remember === true && dau === "+";
-  const nhoTheoCot = coNho ? tinhNho(left, right) : [];
+  const coNho = remember === true && (dau === "+" || dau === "×");
+  const nhoTheoCot = coNho ? tinhNho(left, right, dau) : [];
   // ô nhớ: nhớ RA của cột i được viết ở cột i+1 (tức lệch sang TRÁI một ô)
   const oNho = [];
   if (coNho) {

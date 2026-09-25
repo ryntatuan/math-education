@@ -12,6 +12,26 @@
 -- CHẠY LẠI NHIỀU LẦN: chỉ làm phiên bản tăng thêm 1 mỗi lần — vô hại (các bé tải
 --   lại nội dung thêm một lần), không sinh dòng trùng, không mất dữ liệu.
 --
+-- LƯU Ý LẦN 17 (2026-09-26): ĐẶT TÍNH ĐIỀN ĐƯỢC Ở **LỚP 2–4** + THÊM **PHÉP NHÂN** CHO `cotTinh`.
+--   Cùng họ việc với LẦN 16 (dạng “Đặt tính rồi tính” của SGK có ở gần như mọi chương 1–5):
+--   chuyển nốt các slide còn **in sẵn cả cột** (trẻ đọc luôn kết quả) sang `cotTinh`, và **bộ vẽ
+--   `cotTinh` nay nhận thêm dấu `×`** (hàng “nhớ” chỉ vẽ khi thừa số thứ hai có MỘT chữ số —
+--   đúng dạng SGK Lớp 3–4 hay viết nhớ). Số thập phân của phép nhân theo đúng quy tắc SGK Lớp 5:
+--   **số chữ số thập phân của tích = TỔNG hai thừa số** (`0,5 × 0,4 = 0,20`).
+--     • Lớp 2: `g2-c1-l8` (32 + 14 · 57 − 23) · `g2-c12-l1` (235 + 412) · `l2` (256 + 173,
+--       có HÀNG NHỚ) · `l3` (265 + 148) · `l4` (645 − 213) · `l5` (534 − 268) · `l6` (420 − 165) ·
+--       `l9` (372 + 259 · 700 − 285) · `g2-c14-l2` (46 + 38 · 83 − 47) · `l3` (256 + 173 · 534 − 268).
+--     • Lớp 3: `g3-c1-l2` (356 + 127 · 534 − 268) · `g3-c4-l1` (**32 × 3**) · `l2` (**26 × 3**, có nhớ).
+--     • Lớp 4: bỏ 2 hình phép tính thừa ở slide khái niệm `g4-c6-l1` và `g4-c6-l9` (slide đã có
+--       bảng số liệu + gạch đầu dòng, để thêm hình phép tính là hai hình một slide).
+--   ✅ Cổng toán `scratch/kiem-tra-dat-tinh.mjs` nay **35 ca** (thêm nhân: `32 × 3` · `142 × 3` ·
+--      `12 × 12` · `1,2 × 3 = 3,6` · `0,5 × 0,4 = 0,20` · canary hai vế).
+--   ✅ Đo lại trong app (390×844): hình **313–330 px**, chữ đề bài 76 px, ô “?” 64 px, nút 44 px →
+--      khối nút chỉ cao bằng ~nửa hình; 0 tràn ngang.
+--   ⚠️ Số slide ĐÃ ĐỔI: 2715 → **2725** (Lớp 2: 695 → **703** · Lớp 3: 742 → **744**; Lớp 1, 4, 5
+--      KHÔNG đổi). Số bài: 460 (không đổi).
+--   ⚠️ LẦN NÀY CẦN DÁN: `03-bai-lop-2.sql`, `04-bai-lop-3.sql`, `05-bai-lop-4.sql` rồi `100-...`.
+--
 -- LƯU Ý LẦN 16 (2026-09-25): **“ĐẶT TÍNH RỒI TÍNH” NAY ĐIỀN ĐƯỢC** (dạng bài phổ biến nhất của SGK 1–5).
 --   Trước: app chỉ in một cột CHỮ trong `text` kèm `operation` — trẻ đọc luôn kết quả, không có gì để làm.
 --   Nay có khoá hình mới **`cotTinh`**: vẽ đúng cột đặt tính (thẳng hàng theo chữ số, có gạch ngang,
@@ -76,7 +96,7 @@
 --     thay bằng hình ⚖️ (nếu để nguyên thì vừa rồi hình cái CÂN sẽ hoá thành ĐỒNG HỒ).
 --   ✅ Kiểm: `node scratch/soat-hinh-khong-hien.mjs` = 0 ca · `soat-o-trong` = 0 ô trống tĩnh ·
 --      `soat-phep-tinh` = 0 sai · cổng tĩnh **32 PASS** · `build:web` exit 0.
---   ⚠️ Số bài và số slide KHÔNG đổi: 5 lớp · 51 chương · **460 bài · 2715 slide**.
+--   ⚠️ Số bài và số slide KHÔNG đổi: 5 lớp · 51 chương · **460 bài · 2725 slide**.
 --   ⚠️ LẦN NÀY CẦN DÁN: `02-bai-lop-1.sql`, `03-bai-lop-2.sql`, `04-bai-lop-3.sql` rồi `100-...`.
 --      `01`, `05`, `06`, `99` KHÔNG đổi. `00` không cần (không bài nào bị bỏ).
 --
@@ -119,7 +139,7 @@
 -- LƯU Ý LẦN 11 (2026-09-25): **MỌI Ô TRỐNG PHẢI ĐIỀN ĐƯỢC** (yêu cầu người dùng) + 6 slide CĐ6 Lớp 1.
 --   Yêu cầu: “tất cả các dạng bài có điền vào ô trống không được là slide tĩnh và đều có thể điền
 --   đáp án vào được; đảm bảo tất cả các dạng bài tập đều có đáp án để trẻ lựa chọn và tương tác”.
---   Công cụ soát mới: `node scratch/soat-o-trong.mjs` (2715 slide / 1439 slide cho bấm của cả 5 lớp).
+--   Công cụ soát mới: `node scratch/soat-o-trong.mjs` (2725 slide / 1439 slide cho bấm của cả 5 lớp).
 --   Sửa 10 ca thật:
 --     • 5 bảng CĐ3 (`g1-c3-l3/l4/l8/l9/l14`) từ bảng IN CỨNG ô “?” → **`bangTinh`** (bé bấm ô, chọn số).
 --     • 2 bảng Lớp 3 (`g3-c1-l4` tìm số bị trừ · `g3-c2-l9` nhân–chia) → `bangTinh`, hàng đầu giữ làm MẪU.
@@ -156,7 +176,7 @@
 --       hình không in sẵn đáp án (`showShape: false`).
 --     • `l8`: thêm 3 câu hỏi kiểu SGK tr.47/49 (chọn nhiều hình A–E; “KHÔNG là hình vuông”).
 --   ⚠️ Số slide ĐÃ ĐỔI: 2656 → **2659** (8 bài CĐ2: 48 → 51 slide) ⇒
---      vẫn 5 lớp · 51 chương · 460 bài · **2715 slide**.
+--      vẫn 5 lớp · 51 chương · 460 bài · **2725 slide**.
 --   ⚠️ LẦN NÀY CẦN DÁN: `02-bai-lop-1.sql` · `03-bai-lop-2.sql` · `04-bai-lop-3.sql`
 --      rồi `100-...` (file này). `00`, `01`, `05`, `06`, `99` KHÔNG đổi.
 --

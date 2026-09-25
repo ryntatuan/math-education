@@ -20,8 +20,9 @@
 
 **Phát hiện:** “Đặt tính rồi tính” là dạng bài **phổ biến nhất** của SGK Toán 1–5 (Lớp 1 tr.46–71
 và tr.88–105 gần như trang nào cũng có), mà app chỉ có **CÂU CHỮ** (“Đặt tính rồi tính: 32 + 14 = ?”)
-+ một cột chữ in sẵn trong `text` kèm `operation` ⇒ **trẻ đọc luôn kết quả**, không phải đặt tính.
-Đây cũng là chỗ vi phạm luật “mọi dạng bài tập đều phải bấm được” mà người dùng đã nêu.
+
+- một cột chữ in sẵn trong `text` kèm `operation` ⇒ **trẻ đọc luôn kết quả**, không phải đặt tính.
+  Đây cũng là chỗ vi phạm luật “mọi dạng bài tập đều phải bấm được” mà người dùng đã nêu.
 
 **Đã làm:** khoá hình mới `cotTinh` (`client/src/components/visuals/interactiveColumn.jsx` +
 hàm thuần `columnMath.js`):
@@ -43,18 +44,18 @@ thử thật trong app: sai → ô xám, đúng → hiện số, **2/2 + “🎉
 
 **Kết quả đo (2026-09-26) — và BA LỖI LIÊN QUAN đã tìm ra rồi sửa:**
 
-Người dùng gửi ảnh slide đặt tính: *“danh sách số để chọn đang quá lớn, trong khi đề bài quá nhỏ,
-nhìn quá xấu và không cân đối… hãy đoán các lỗi liên quan có thể xảy ra để fix toàn bộ”*.
+Người dùng gửi ảnh slide đặt tính: _“danh sách số để chọn đang quá lớn, trong khi đề bài quá nhỏ,
+nhìn quá xấu và không cân đối… hãy đoán các lỗi liên quan có thể xảy ra để fix toàn bộ”_.
 Công cụ mới **`scratch/do-can-doi-hinh.mjs`** đo trong app thật ở 390 px: cỡ chữ trong hình ·
 chiều cao khối nút so với chiều cao hình · **mọi vùng chạm có đạt 44 px**.
 
-| Chỗ | Lỗi đo được | Đã sửa |
-| :---- | :---------- | :----- |
-| `FillBar` (dùng chung) | luôn vẽ nút `58×50` ⇒ bàn phím **0–9** to hơn cả đề bài | nút tự co theo số lựa chọn (≥5 ⇒ 44×44, vẫn đủ vùng chạm) |
-| `FillBar` bố cục | tiêu đề + nút + tiến độ + “Làm lại” chung một hàng ⇒ nút “10” rơi xuống hàng dưới, “0/4” chen cạnh nút cuối | tách **3 hàng**: tiêu đề · nút · tiến độ + “Làm lại” |
-| `cotTinh` (mới) | khung 340 ⇒ hình bị thu nhỏ, ô “?” 64 px nhưng đề bài bé | khung = đúng bề rộng khối số ⇒ **chữ đề bài 76 px**, ô “?” 64 px |
-| `bangTinh` | **ô “?” chỉ bấm được 18 px** (hàng cao 28 đơn vị), chữ bảng 18 px | hàng cao 56 ⇒ ô “?” **47 px**, chữ 30 px, khung 300 |
-| `patternRow` | ô chỉ **~25 px** | ô 44 đơn vị, tối đa 5 ô/hàng rồi **tự xuống hàng** ⇒ 47–58 px |
+| Chỗ                    | Lỗi đo được                                                                                                 | Đã sửa                                                           |
+| :--------------------- | :---------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------- |
+| `FillBar` (dùng chung) | luôn vẽ nút `58×50` ⇒ bàn phím **0–9** to hơn cả đề bài                                                     | nút tự co theo số lựa chọn (≥5 ⇒ 44×44, vẫn đủ vùng chạm)        |
+| `FillBar` bố cục       | tiêu đề + nút + tiến độ + “Làm lại” chung một hàng ⇒ nút “10” rơi xuống hàng dưới, “0/4” chen cạnh nút cuối | tách **3 hàng**: tiêu đề · nút · tiến độ + “Làm lại”             |
+| `cotTinh` (mới)        | khung 340 ⇒ hình bị thu nhỏ, ô “?” 64 px nhưng đề bài bé                                                    | khung = đúng bề rộng khối số ⇒ **chữ đề bài 76 px**, ô “?” 64 px |
+| `bangTinh`             | **ô “?” chỉ bấm được 18 px** (hàng cao 28 đơn vị), chữ bảng 18 px                                           | hàng cao 56 ⇒ ô “?” **47 px**, chữ 30 px, khung 300              |
+| `patternRow`           | ô chỉ **~25 px**                                                                                            | ô 44 đơn vị, tối đa 5 ô/hàng rồi **tự xuống hàng** ⇒ 47–58 px    |
 
 > ⚠️ **Thước đầu tiên của tôi SAI:** tôi so “cỡ nút ÷ cỡ chữ trong hình” và lấy ngưỡng 1,6 ⇒ báo oan
 > hàng loạt, vì nút 44–50 px là **sàn vùng chạm** chứ không phải “quá to”. Cái người dùng nhìn thấy là

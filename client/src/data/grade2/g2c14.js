@@ -109,13 +109,7 @@ export const g2c14 = {
         {
           type: "visual",
           content: {
-            text: "  46          83\n+ 38        − 47\n  84          36",
-            operation: {
-              left: 46,
-              sign: "+",
-              right: 38,
-              result: 84,
-            },
+            text: "Ôn tập cộng trừ có nhớ trong phạm vi 100",
             table: {
               headers: ["Phép tính", "Kết quả"],
               rows: [
@@ -123,6 +117,29 @@ export const g2c14 = {
                 ["83 − 47", "36"],
               ],
               label: "Ôn tập cộng trừ trong phạm vi 100",
+            },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Bé đặt tính rồi cộng: 46 + 38",
+            cotTinh: {
+              left: 46,
+              right: 38,
+              sign: "+",
+              remember: true,
+            },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Bé đặt tính rồi trừ: 83 − 47",
+            cotTinh: {
+              left: 83,
+              right: 47,
+              sign: "−",
             },
           },
         },
@@ -179,13 +196,7 @@ export const g2c14 = {
         {
           type: "visual",
           content: {
-            text: "  256          534\n+ 173        − 268\n  429          266",
-            operation: {
-              left: 256,
-              sign: "+",
-              right: 173,
-              result: 429,
-            },
+            text: "Ôn tập cộng trừ trong phạm vi 1 000",
             table: {
               headers: ["Phép tính", "Kết quả"],
               rows: [
@@ -194,6 +205,29 @@ export const g2c14 = {
                 ["534 − 268", "266 (có mượn)"],
               ],
               label: "Ôn tập cộng trừ trong phạm vi 1 000",
+            },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Bé đặt tính rồi cộng: 256 + 173",
+            cotTinh: {
+              left: 256,
+              right: 173,
+              sign: "+",
+              remember: true,
+            },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Bé đặt tính rồi trừ: 534 − 268",
+            cotTinh: {
+              left: 534,
+              right: 268,
+              sign: "−",
             },
           },
         },
