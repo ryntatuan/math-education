@@ -15,7 +15,7 @@ chỉ được dùng khi cấu hình `content_source = 'static'`. Muốn DB có 
 | Số lớp                    | 5       | 5               |
 | Số chương                 | 41      | **51**          |
 | Số bài                    | 461     | **460**         |
-| Số slide                  | 1966    | **2713**        |
+| Số slide                  | 1966    | **2715**        |
 | Bài mới cần thêm          | —       | **77**          |
 | Bài cần cập nhật nội dung | —       | **263**         |
 | Bài cũ cần xoá            | **79**  | —               |

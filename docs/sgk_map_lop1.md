@@ -20,7 +20,7 @@ tiền lệ: bản kế hoạch đầu tiên ghi sai “Bài 16 = tr.101” tron
   ```
 - 🔴 **trang PDF = trang sách + 1** — đã kiểm chéo **4 mẫu**: tập 1: sách 2 = PDF 3, sách 4 = PDF 5;
   tập 2: sách 3 = PDF 4, sách 4 = PDF 5. Ví dụ: “Bài 4 (So sánh số), sách tr.24” ⇒ xem `part-1/page-0025.png`.
-- Quy mô app (sinh lại bằng `node scratch/in-cau-truc-lop.bundle.mjs 1`): **10 chương · 97 bài · 691 slide**.
+- Quy mô app (sinh lại bằng `node scratch/in-cau-truc-lop.bundle.mjs 1`): **10 chương · 97 bài · 693 slide**.
 - Cột **“Chắc chắn?”**: `✔` = mô tả bài trong app **đã ghi rõ trang SGK** (đọc từ `client/src/data/grade1/*.js`);
   `?` = tôi **suy theo nội dung** ⇒ khi rà chương đó **phải mở ảnh kiểm lại**, đừng tin cột này.
 
@@ -199,7 +199,7 @@ Biểu tượng trong sách (trang “Hướng dẫn sử dụng sách”, sách
 | Bài 36 (Thực hành xem lịch và giờ) | 80–83      | `g1-c9-l7` · `l8` (tờ lịch · tìm ngày trong tháng)              | ?          |
 | Bài 37 (Luyện tập chung)           | 84–87      | `g1-c9-l9`                                                      | ?          |
 
-### Chủ đề 10 — Ôn tập cuối năm (**tập 2**, sách tr.88–105) · ⬜ **CHƯA RÀ**
+### Chủ đề 10 — Ôn tập cuối năm (**tập 2**, sách tr.88–105) · ✅ **ĐÃ RÀ 2026-09-26** — SGK gồm: ôn tập các số và phép tính (trong 10 · trong 100) · “Đặt tính rồi tính” · ôn tập hình học · ôn tập đo lường (độ dài, giờ–lịch) · luyện tập chung. App có đủ 9 bài (l9 “Luyện đề cuối năm Lớp 1” là bài bổ trợ CỐ Ý, không có trong SGK). **Đã sửa**: `g1-c10-l4` bỏ cột đặt tính in sẵn → tách thành 2 slide `cotTinh` (32 + 14 · 57 − 23) đúng dạng “Đặt tính rồi tính” của sách
 
 | SGK                                                   | Trang sách | Bài trong app                                                                     | Chắc chắn? |
 | :---------------------------------------------------- | :--------- | :-------------------------------------------------------------------------------- | :--------- |

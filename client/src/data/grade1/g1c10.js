@@ -268,13 +268,7 @@ export const g1c10 = {
         {
           type: "visual",
           content: {
-            text: "  32        57\n+ 14      − 23\n  46        34",
-            operation: {
-              left: 32,
-              sign: "+",
-              right: 14,
-              result: 46,
-            },
+            text: "Ba phép tính bé đã học trong chủ đề 8",
             table: {
               headers: ["Phép tính", "Kết quả"],
               rows: [
@@ -283,6 +277,28 @@ export const g1c10 = {
                 ["57 − 23", "34"],
               ],
               label: "Ôn tập cộng trừ trong phạm vi 100",
+            },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Bé đặt tính rồi cộng: 32 + 14",
+            cotTinh: {
+              left: 32,
+              right: 14,
+              sign: "+",
+            },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Bé đặt tính rồi trừ: 57 − 23",
+            cotTinh: {
+              left: 57,
+              right: 23,
+              sign: "−",
             },
           },
         },
