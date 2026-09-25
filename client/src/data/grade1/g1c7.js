@@ -265,7 +265,14 @@ export const g1c7 = {
           "type": "story",
           "content": {
             "mascotMood": "happy",
-            "text": "Rô-bốt có một cây thước có vạch số. Bé xem thước dùng để làm gì nhé! 📏"
+            "text": "Rô-bốt có một cây thước có vạch số. Bé xem thước dùng để làm gì nhé! 📏",
+            "ruler": {
+              "from": 0,
+              "to": 10,
+              "unit": "cm",
+              "markAt": [0, 5, 10],
+              "label": "Thước có vạch chia xăng-ti-mét"
+            }
           }
         },
         {

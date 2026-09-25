@@ -49,6 +49,29 @@ export const g4c2 = {
           }
         },
         {
+          "type": "visual",
+          "content": {
+            "text": "Bé đặt tính rồi cộng: 35 480 + 24 150",
+            "cotTinh": {
+              "left": 35480,
+              "right": 24150,
+              "sign": "+",
+              "remember": true
+            }
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "text": "Bé đặt tính rồi trừ: 70 000 − 15 000",
+            "cotTinh": {
+              "left": 70000,
+              "right": 15000,
+              "sign": "−"
+            }
+          }
+        },
+        {
           "type": "quiz",
           "content": {
             "question": "Tính: 35 480 + 24 150 = ?",
@@ -550,6 +573,18 @@ export const g4c2 = {
           }
         },
         {
+          "type": "visual",
+          "content": {
+            "text": "Bé đặt tính rồi nhân: 1 423 × 3",
+            "cotTinh": {
+              "left": 1423,
+              "right": 3,
+              "sign": "×",
+              "remember": true
+            }
+          }
+        },
+        {
           "type": "quiz",
           "content": {
             "question": "Tính nhanh: 5 × 39 × 2 = ?",
@@ -868,6 +903,17 @@ export const g4c2 = {
                 ]
               ],
               "label": "Mẹo nhân nhẩm với 11"
+            }
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "text": "Bé đặt tính rồi nhân: 245 × 12",
+            "cotTinh": {
+              "left": 245,
+              "right": 12,
+              "sign": "×"
             }
           }
         },

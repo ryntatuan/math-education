@@ -146,6 +146,28 @@ export const g5c5 = {
           }
         },
         {
+          "type": "visual",
+          "content": {
+            "text": "Bé đặt tính rồi nhân: 12,5 × 3,2",
+            "cotTinh": {
+              "left": "12,5",
+              "right": "3,2",
+              "sign": "×"
+            }
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "text": "Bé đặt tính rồi cộng: 15,82 + 9,35",
+            "cotTinh": {
+              "left": "15,82",
+              "right": "9,35",
+              "sign": "+"
+            }
+          }
+        },
+        {
           "type": "quiz",
           "content": {
             "question": "Tính thuận tiện: 3,7 × 4,5 + 3,7 × 5,5 = ?",

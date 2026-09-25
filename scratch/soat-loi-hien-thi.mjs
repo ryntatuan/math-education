@@ -20,38 +20,40 @@ const NGUON = [
   ["grade5Data.js", "grade5Data"],
 ];
 
+// Nguồn sự thật về “khoá nào là hình” — đọc từ MÃ, xem ghi chú dưới.
+const { HINH_KEYS } = await import(
+  "../client/src/components/visuals/visualKeys.js"
+);
+
 // Từ chỉ HÌNH ẢNH theo kiểu "chỉ tay" — tức câu hỏi bắt buộc phải có hình mới trả lời được.
 // ⚠️ Cố ý KHÔNG dùng từ "hình" trần: "Hình tam giác có mấy cạnh?" là câu hỏi kiến thức,
 // bé không cần hình. Dùng "hình" trần sẽ sinh hàng loạt báo động giả.
 const TRO_HINH =
   /(hình dưới đây|hình bên|hình vẽ|hình sau|trong hình|dưới đây có|quan sát|băng giấy|biểu đồ|sơ đồ|thước|dãy hình|bảng sau|tranh)/i;
 
+/**
+ * 🔴 DANH SÁCH KHOÁ HÌNH PHẢI **ĐỌC TỪ MÃ**, KHÔNG VIẾT CỨNG (đã mắc 2026-09-26).
+ * Bản cũ liệt tay 25 khoá và thiếu hết các bộ vẽ mới (`groupScene`, `spatialScene`,
+ * `shapePicture`, `shapeJoin`, `patternRow`, `bangTinh`, `cotTinh`, `numberScene`, `pointLine`,
+ * `planeShapes`) ⇒ nhóm D báo **124 slide “visual rỗng” trong khi slide CÓ hình** — toàn báo oan.
+ * `HINH_KEYS` là nguồn sự thật cho các bộ vẽ hiện đại; phần còn lại là khoá `LessonPage`
+ * tự vẽ (`number`/`operation`/`comparison`/`clock`/`shape`/`items`).
+ */
 const KHOA_HINH = [
+  ...HINH_KEYS,
+  "planeShapes",
+  "focusGraphic",
+  "number",
+  "operation",
+  "comparison",
+  "clock",
+  "shape",
   "items",
   "visual",
   "visualDisplay",
-  "shape",
   "shapeVisual",
-  "clock",
   "gallery",
   "activityGrid",
-  "baseTen",
-  "tenFrame",
-  "numberLine",
-  "placeValue",
-  "ruler",
-  "money",
-  "table",
-  "planeShape",
-  "angle",
-  "circleParts",
-  "solid",
-  "fractionBar",
-  "fractionCircle",
-  "barModel",
-  "motionDiagram",
-  "barChart",
-  "pieChart",
 ];
 
 const EM = /[\p{Extended_Pictographic}\uFE0F]/u;

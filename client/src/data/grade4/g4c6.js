@@ -48,6 +48,18 @@ export const g4c6 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            text: "Bé đặt tính rồi cộng: 483 526 + 254 138",
+            cotTinh: {
+              left: 483526,
+              right: 254138,
+              sign: "+",
+              remember: true,
+            },
+          },
+        },
+        {
           type: "quiz",
           content: {
             question: "Tính nhanh: 125 × 38 × 8 = ?",

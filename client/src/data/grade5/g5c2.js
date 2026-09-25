@@ -332,6 +332,17 @@ export const g5c2 = {
           }
         },
         {
+          "type": "visual",
+          "content": {
+            "text": "Bé đặt tính rồi cộng: 38,5 + 24,15",
+            "cotTinh": {
+              "left": "38,5",
+              "right": "24,15",
+              "sign": "+"
+            }
+          }
+        },
+        {
           "type": "quiz",
           "content": {
             "question": "Tính: 38,5 + 24,15 = ?",
@@ -391,6 +402,17 @@ export const g5c2 = {
                 ]
               ],
               "label": "Trừ số thập phân — thêm chữ số 0 cho đủ hàng rồi trừ"
+            }
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "text": "Bé đặt tính rồi trừ: 50 − 23,75",
+            "cotTinh": {
+              "left": 50,
+              "right": "23,75",
+              "sign": "−"
             }
           }
         },
@@ -473,6 +495,17 @@ export const g5c2 = {
             ],
             "answer": 34.5,
             "mascotHint": "Chuyển dấu phẩy sang bên phải một chữ số: 34,5!"
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "text": "Bé đặt tính rồi nhân: 1,2 × 0,4",
+            "cotTinh": {
+              "left": "1,2",
+              "right": "0,4",
+              "sign": "×"
+            }
           }
         },
         {

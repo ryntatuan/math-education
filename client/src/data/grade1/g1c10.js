@@ -439,6 +439,13 @@ export const g1c10 = {
           content: {
             mascotMood: "happy",
             text: "Bé lấy thước ra đo một vật bất kì xem nào! 📏",
+            ruler: {
+              from: 0,
+              to: 10,
+              unit: "cm",
+              markAt: [0, 5, 10],
+              label: "Thước có vạch chia xăng-ti-mét",
+            },
           },
         },
         {
