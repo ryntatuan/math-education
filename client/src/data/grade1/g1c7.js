@@ -4,7 +4,7 @@ export const g1c7 = {
   "description": "Dài hơn ngắn hơn; đơn vị đo độ dài xăng-ti-mét; thực hành ước lượng và đo",
   "icon": "📏",
   "color": "#ef476f",
-  "totalLessons": 8,
+  "totalLessons": 9,
   "lessons": [
     {
       "id": "g1-c7-l1",
@@ -75,8 +75,112 @@ export const g1c7 = {
       ]
     },
     {
+      "id": "g1-c7-l9",
+      "title": "Bài 2: Cao hơn, thấp hơn",
+      "type": "learn",
+      "description": "So sánh chiều cao của hai vật bằng cách đặt cùng một mặt phẳng",
+      "slides": [
+        {
+          "type": "story",
+          "content": {
+            "mascotMood": "curious",
+            "text": "Cây cau cao hơn cây chuối. Vậy cây nào thấp hơn nhỉ? Bé cùng Rô-bốt so chiều cao nhé! 🌴"
+          }
+        },
+        {
+          "type": "concept",
+          "content": {
+            "badge": "Khám Phá",
+            "title": "Cao hơn, thấp hơn",
+            "explanation": "Muốn biết vật nào cao hơn, bé để hai vật cùng đứng trên MỘT mặt phẳng rồi nhìn xem vật nào vươn cao hơn.",
+            "rule": "Vật vươn cao hơn là vật CAO HƠN. Vật vươn thấp hơn là vật THẤP HƠN.",
+            "points": [
+              "So chiều cao cũng giống so độ dài: hai vật phải cùng một mốc bắt đầu.",
+              "Cao hơn — thấp hơn dùng cho chiều cao; dài hơn — ngắn hơn dùng cho chiều dài.",
+              "Đứng lên ghế mà cao hơn thì đó không phải chiều cao thật của bạn ấy."
+            ]
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "text": "Chiều cao của ba cây trong vườn (mỗi vạch là 1 gang tay)",
+            "barChart": {
+              "title": "Chiều cao của ba cây",
+              "items": [
+                {
+                  "label": "Cây A",
+                  "value": 5
+                },
+                {
+                  "label": "Cây B",
+                  "value": 3
+                },
+                {
+                  "label": "Cây C",
+                  "value": 4
+                }
+              ],
+              "unit": "gang tay",
+              "highlight": 0
+            }
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Cây A cao 5 gang tay, cây B cao 3 gang tay. Cây nào cao hơn?",
+            "options": [
+              "Cây A",
+              "Cây B",
+              "Hai cây cao bằng nhau"
+            ],
+            "answer": "Cây A",
+            "mascotHint": "5 gang tay nhiều hơn 3 gang tay nên cây A cao hơn."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Cây B cao 3 gang tay, cây C cao 4 gang tay. Cây nào thấp hơn?",
+            "options": [
+              "Cây B",
+              "Cây C",
+              "Hai cây cao bằng nhau"
+            ],
+            "answer": "Cây B",
+            "mascotHint": "3 gang tay ít hơn 4 gang tay nên cây B thấp hơn."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Con vật nào cao hơn: hươu cao cổ hay ngựa?",
+            "options": [
+              "Hươu cao cổ",
+              "Ngựa",
+              "Cao bằng nhau"
+            ],
+            "answer": "Hươu cao cổ",
+            "mascotHint": "Hươu cao cổ vươn cổ lên rất cao nên cao hơn ngựa."
+          }
+        },
+        {
+          "type": "summary",
+          "content": {
+            "title": "Bé nhớ rất tốt:",
+            "points": [
+              "Cao hơn — thấp hơn: so chiều cao khi hai vật cùng đứng trên một mặt phẳng.",
+              "Trong ba cây, cây A cao 5 gang tay là cây cao nhất."
+            ],
+            "mascotMood": "proud"
+          }
+        }
+      ]
+    },
+    {
       "id": "g1-c7-l2",
-      "title": "Bài 2: So sánh độ dài gián tiếp qua vật trung gian",
+      "title": "Bài 3: So sánh độ dài gián tiếp qua vật trung gian",
       "type": "learn",
       "description": "So sánh độ dài khi không đặt được hai vật cạnh nhau",
       "slides": [
@@ -153,7 +257,7 @@ export const g1c7 = {
     },
     {
       "id": "g1-c7-l3",
-      "title": "Bài 3: Xăng-ti-mét — đơn vị đo độ dài",
+      "title": "Bài 4: Xăng-ti-mét — đơn vị đo độ dài",
       "type": "learn",
       "description": "Nhận biết đơn vị xăng-ti-mét và thước có vạch chia",
       "slides": [
@@ -221,7 +325,7 @@ export const g1c7 = {
     },
     {
       "id": "g1-c7-l4",
-      "title": "Bài 4: Dùng thước kẻ đo độ dài",
+      "title": "Bài 5: Dùng thước kẻ đo độ dài",
       "type": "learn",
       "description": "Đặt thước và đọc số đo độ dài của vật",
       "slides": [
@@ -315,7 +419,7 @@ export const g1c7 = {
     },
     {
       "id": "g1-c7-l5",
-      "title": "Bài 5: Vẽ đoạn thẳng có độ dài cho trước",
+      "title": "Bài 6: Vẽ đoạn thẳng có độ dài cho trước",
       "type": "learn",
       "description": "Dùng thước vẽ đoạn thẳng dài đúng số xăng-ti-mét",
       "slides": [
@@ -383,7 +487,7 @@ export const g1c7 = {
     },
     {
       "id": "g1-c7-l6",
-      "title": "Bài 6: Thực hành ước lượng và đo độ dài",
+      "title": "Bài 7: Thực hành ước lượng và đo độ dài",
       "type": "learn",
       "description": "Ước lượng độ dài trước rồi đo để kiểm tra",
       "slides": [
@@ -451,7 +555,7 @@ export const g1c7 = {
     },
     {
       "id": "g1-c7-l7",
-      "title": "Bài 7: Đo độ dài bằng gang tay, bước chân",
+      "title": "Bài 8: Đo độ dài bằng gang tay, bước chân",
       "type": "learn",
       "description": "Đo độ dài bằng các đơn vị không chính thức",
       "slides": [
@@ -528,7 +632,7 @@ export const g1c7 = {
     },
     {
       "id": "g1-c7-l8",
-      "title": "Bài 8: Luyện tập chung chủ đề 7",
+      "title": "Bài 9: Luyện tập chung chủ đề 7",
       "type": "learn",
       "description": "Ôn tập so sánh và đo độ dài",
       "slides": [

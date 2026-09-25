@@ -17,7 +17,7 @@ SELECT key, value FROM public.app_config
 WHERE key IN ('content_source', 'content_version') ORDER BY key;
 -- Mong đợi: content_source = "static" · content_version = 1
 
--- Đối chiếu số dòng (phải khớp 5 / 51 / 459):
+-- Đối chiếu số dòng (phải khớp 5 / 51 / 460):
 SELECT
   (SELECT COUNT(*) FROM public.content_grades)   AS so_lop,
   (SELECT COUNT(*) FROM public.content_chapters) AS so_chuong,

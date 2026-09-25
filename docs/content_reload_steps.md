@@ -14,8 +14,8 @@ chỉ được dùng khi cấu hình `content_source = 'static'`. Muốn DB có 
 | ------------------------- | ------- | --------------- |
 | Số lớp                    | 5       | 5               |
 | Số chương                 | 41      | **51**          |
-| Số bài                    | 461     | **459**         |
-| Số slide                  | 1966    | **2705**        |
+| Số bài                    | 461     | **460**         |
+| Số slide                  | 1966    | **2712**        |
 | Bài mới cần thêm          | —       | **77**          |
 | Bài cần cập nhật nội dung | —       | **263**         |
 | Bài cũ cần xoá            | **79**  | —               |
@@ -61,7 +61,7 @@ SELECT
   (SELECT COUNT(*) FROM public.content_lessons WHERE status = 'published') AS so_bai_da_xuat_ban;
 ```
 
-Mong đợi: `so_lop = 5` · `so_chuong = 51` · `so_bai = 459` · `so_bai_da_xuat_ban = 459`.
+Mong đợi: `so_lop = 5` · `so_chuong = 51` · `so_bai = 460` · `so_bai_da_xuat_ban = 460`.
 
 Trong VS Code, chạy lệnh này để đối chiếu chữ trong từng bài:
 

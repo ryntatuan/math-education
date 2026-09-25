@@ -388,7 +388,21 @@ Quy mô: **2684 → 2690** (Lớp 1: 662 → 668) — phần tăng là 6 slide C
 
 ---
 
-## ĐỢT CHỦ ĐỀ 6 — Các số đến 100 (Lớp 1, sách tập 2 tr.4–27) — 🔄 ĐANG LÀM
+## ĐỢT CHỦ ĐỀ 7 — Độ dài và đo độ dài (sách tr.28–43) — 🔄 ĐANG RÀ (đã thêm 1 bài)
+
+**Đã xem ảnh:** tr.36 · tr.38 (và toàn bộ chữ tr.28–43 qua OCR tách theo trang).
+
+| # | Bài · trang SGK | Nhóm | Phát hiện | Xử lý |
+| :- | :-------------- | :--- | :-------- | :---- |
+| 1 | **Cao hơn, thấp hơn — tr.30–31** | **A (thiếu hoạt động)** | SGK có hẳn một phần “Cao hơn, thấp hơn” (Bài 25) mà app **không có bài nào** — chỉ có dài hơn/ngắn hơn | ✅ Thêm **bài mới** `g1-c7-l9`, chèn ở vị trí thứ 2, sau đó chạy `chuan-hoa-danh-so.mjs` để đánh lại số (nay là “Bài 2: Cao hơn, thấp hơn”): 1 kể chuyện · 1 khám phá · **biểu đồ cột** so chiều cao 3 cây · 3 câu hỏi (cao hơn · thấp hơn · hươu cao cổ vs ngựa) · 1 ghi nhớ |
+| 2 | “Chọn số đo độ dài phù hợp” — tr.36 | — | 5 đồ vật, mỗi đồ vật chọn giữa 2 số đo (bút mực 35 cm/12 cm · cốc nước 4 cm/3 gang tay · bút chì 30 cm/1 gang tay · bút sáp 20 cm/8 cm · hộp bút 5 gang tay/25 cm). Sách **tô màu sẵn** một ô ở mỗi dòng nên **không chắc đâu là đáp án** | ⏸ **CHƯA làm — cần bạn chốt** (nhìn ảnh không đủ để đoán; luật cũ: không đoán số) |
+| 3 | Đếm đồ chơi + trả lời — tr.38 | — | Đồ chơi vẽ trên lưới ô vuông kèm thước 0–14; hỏi “mỗi đồ chơi dài bao nhiêu cm”, “đồ chơi nào dài nhất”, “có bao nhiêu xe ngắn hơn xe khách”. Muốn đúng thì phải có ảnh đồ chơi + số đo chuẩn | ⏸ **CHƯA làm — cần bạn chốt số đo** |
+
+**Kiểm chứng:** cổng **32 PASS** · `kiem-tra-slide` 0 lỗi · `soat-o-trong` 0 ô trống tĩnh · build sạch.
+Quy mô: 5 · 51 · **460 bài** · **2712 slide** (Lớp 1: 98 bài · 690 slide).
+
+_(Công cụ dùng để thêm bài: `scratch/them-bai-cd7.mjs` — có chốt chống chạy lặp, có ghi chú
+bài học: file `g1c7.js` dùng **khoá CÓ NHÁY** (`"id":`) nên mẫu tìm phải viết đúng thứ tự đó.)_
 
 Đã bổ sung **6 slide** theo **Bài 21 (số có hai chữ số, sách tr.4–15)** — bảng Viết/Đọc số lấy đúng mẫu tr.4; các câu hỏi theo nội dung đọc – viết – so sánh số có hai chữ số. _(Các trang cụ thể sẽ được chốt lại khi rà trọn CĐ6 theo quy trình §11.)_
 

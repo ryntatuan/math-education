@@ -20,7 +20,7 @@ tiền lệ: bản kế hoạch đầu tiên ghi sai “Bài 16 = tr.101” tron
   ```
 - 🔴 **trang PDF = trang sách + 1** — đã kiểm chéo **4 mẫu**: tập 1: sách 2 = PDF 3, sách 4 = PDF 5;
   tập 2: sách 3 = PDF 4, sách 4 = PDF 5. Ví dụ: “Bài 4 (So sánh số), sách tr.24” ⇒ xem `part-1/page-0025.png`.
-- Quy mô app (sinh lại bằng `node scratch/in-cau-truc-lop.bundle.mjs 1`): **10 chương · 97 bài · 683 slide**.
+- Quy mô app (sinh lại bằng `node scratch/in-cau-truc-lop.bundle.mjs 1`): **10 chương · 97 bài · 690 slide**.
 - Cột **“Chắc chắn?”**: `✔` = mô tả bài trong app **đã ghi rõ trang SGK** (đọc từ `client/src/data/grade1/*.js`);
   `?` = tôi **suy theo nội dung** ⇒ khi rà chương đó **phải mở ảnh kiểm lại**, đừng tin cột này.
 
@@ -171,7 +171,7 @@ Biểu tượng trong sách (trang “Hướng dẫn sử dụng sách”, sách
 | Bài 23 (Bảng các số từ 1 đến 100) | 22–23      | `g1-c6-l9` · `l10` · `l11` (bảng 100 số · đếm thêm/lùi · số còn thiếu) | ?          |
 | Bài 24 (Luyện tập chung)          | 24–27      | `g1-c6-l12`                                                            | ?          |
 
-### Chủ đề 7 — Độ dài và đo độ dài (**tập 2**, sách tr.28–43) · ⬜ **CHƯA RÀ**
+### Chủ đề 7 — Độ dài và đo độ dài (**tập 2**, sách tr.28–43) · 🔄 **ĐANG RÀ** — đã xem ảnh **tr.36, tr.38** (và OCR tr.28–43); đã **thêm bài còn thiếu “Cao hơn, thấp hơn”** (tr.30–31 — trước đó app KHÔNG có bài nào, nhóm lỗi A) với biểu đồ cột so chiều cao + 3 câu hỏi. **Còn lại (cần CHỐT với bạn vì sách in sẵn đáp án mờ/khó đo):** bài “Chọn số đo độ dài phù hợp” tr.36 (sách tô sẵn một số ô, không dám đoán) · bài đếm đồ chơi trên lưới ô vuông có thước 0–14 tr.38 · các bài tr.39–43
 
 | SGK                                       | Trang sách | Bài trong app                                                          | Chắc chắn? |
 | :---------------------------------------- | :--------- | :--------------------------------------------------------------------- | :--------- |

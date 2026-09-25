@@ -690,8 +690,8 @@ if (!ONLY_DB) {
 
       // Canary: con số đổi thì hoặc có nội dung mới (tốt — hãy cập nhật), hoặc bộ
       // đọc đã hỏng. Cả hai đều phải lộ ra, không được im lặng.
-      assert(soBai === 459, `Mong đợi 459 bài, đọc được ${soBai}`);
-      assert(soSlide === 2705, `Mong đợi 2705 slide, đọc được ${soSlide}`);
+      assert(soBai === 460, `Mong đợi 460 bài, đọc được ${soBai}`);
+      assert(soSlide === 2712, `Mong đợi 2712 slide, đọc được ${soSlide}`);
       assert(
         gapKieu.size === 6,
         `Mong đợi 6 kiểu slide, gặp ${gapKieu.size}: ${[...gapKieu].join(", ")}`,
@@ -1397,8 +1397,8 @@ if (!ONLY_DB) {
         }
       }
       assert(
-        soSlide === 2705,
-        `Mong đợi 2705 slide, đọc được ${soSlide} — bộ đọc dữ liệu tĩnh đã hỏng`,
+        soSlide === 2712,
+        `Mong đợi 2712 slide, đọc được ${soSlide} — bộ đọc dữ liệu tĩnh đã hỏng`,
       );
       assert(
         saiKieu.size === 0,
@@ -1673,8 +1673,8 @@ if (!ONLY_DB) {
 
       const d = demCay(cay);
       assert(
-        d.lop === 5 && d.chuong === 51 && d.bai === 459 && d.slide === 2705,
-        `Cây DB sai quy mô: ${d.lop}/${d.chuong}/${d.bai}/${d.slide} — mong đợi 5/51/459/2705`,
+        d.lop === 5 && d.chuong === 51 && d.bai === 460 && d.slide === 2712,
+        `Cây DB sai quy mô: ${d.lop}/${d.chuong}/${d.bai}/${d.slide} — mong đợi 5/51/460/2712`,
       );
 
       const lech = soSanh(goc, cay);

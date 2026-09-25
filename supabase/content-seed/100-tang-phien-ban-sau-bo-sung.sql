@@ -12,7 +12,17 @@
 -- CHẠY LẠI NHIỀU LẦN: chỉ làm phiên bản tăng thêm 1 mỗi lần — vô hại (các bé tải
 --   lại nội dung thêm một lần), không sinh dòng trùng, không mất dữ liệu.
 --
--- LƯU Ý LẦN 13 (2026-09-25): CHỦ ĐỀ 6 LỚP 1 — XONG PHẦN CÒN LẠI (thêm **13 slide** theo SGK tập 2).
+-- LƯU Ý LẦN 14 (2026-09-25): CHỦ ĐỀ 7 LỚP 1 — THÊM **BÀI CÒN THIẾU** “CAO HƠN, THẤP HƠN” (SGK tr.30–31).
+--   SGK có hẳn một phần “Cao hơn, thấp hơn” (Bài 25) mà app KHÔNG có bài nào (nhóm lỗi A).
+--   Bài mới: `g1-c7-l9` — chèn ở VỊ TRÍ THỨ 2 (giữ id mới để không mất tiến độ của bé), sau đó
+--   đánh số lại bằng `node scratch/chuan-hoa-danh-so.mjs client/src/data/grade1/g1c7.js` ⇒ nay là
+--   “Bài 2: Cao hơn, thấp hơn”: kể chuyện · khám phá · **biểu đồ cột** so chiều cao ba cây ·
+--   3 câu hỏi (cao hơn · thấp hơn · hươu cao cổ vs ngựa) · ghi nhớ ⇒ **7 slide**.
+--   ⏸ CHƯA làm (cần người dùng CHỐT, không đoán số): “Chọn số đo độ dài phù hợp” tr.36 và bài
+--   đếm đồ chơi trên lưới ô vuông tr.38 — sách in sẵn/tô sẵn, ảnh không đủ để chốt đáp án.
+--   ⚠️ Số slide ĐÃ ĐỔI: 2705 → **2712** · số bài: 459 → **460** (Lớp 1: 690 slide · 98 bài).
+--   ⚠️ LẦN NÀY CẦN DÁN: `02-bai-lop-1.sql` rồi `100-...` (file này).
+--
 --   Đã xem ảnh sách tr.5, 6, 14, 15, 23; phần chữ các trang khác lấy từ OCR (tách theo trang).
 --     • `g1-c6-l4`: bảng **“gồm mấy chục, mấy đơn vị”** → `bangTinh` (LT2 tr.14) · bảng số 0–99
 --       còn thiếu 12 ô → dãy số điền được (LT1 tr.14).
@@ -41,7 +51,7 @@
 -- LƯU Ý LẦN 11 (2026-09-25): **MỌI Ô TRỐNG PHẢI ĐIỀN ĐƯỢC** (yêu cầu người dùng) + 6 slide CĐ6 Lớp 1.
 --   Yêu cầu: “tất cả các dạng bài có điền vào ô trống không được là slide tĩnh và đều có thể điền
 --   đáp án vào được; đảm bảo tất cả các dạng bài tập đều có đáp án để trẻ lựa chọn và tương tác”.
---   Công cụ soát mới: `node scratch/soat-o-trong.mjs` (2705 slide / 1439 slide cho bấm của cả 5 lớp).
+--   Công cụ soát mới: `node scratch/soat-o-trong.mjs` (2712 slide / 1439 slide cho bấm của cả 5 lớp).
 --   Sửa 10 ca thật:
 --     • 5 bảng CĐ3 (`g1-c3-l3/l4/l8/l9/l14`) từ bảng IN CỨNG ô “?” → **`bangTinh`** (bé bấm ô, chọn số).
 --     • 2 bảng Lớp 3 (`g3-c1-l4` tìm số bị trừ · `g3-c2-l9` nhân–chia) → `bangTinh`, hàng đầu giữ làm MẪU.
@@ -78,7 +88,7 @@
 --       hình không in sẵn đáp án (`showShape: false`).
 --     • `l8`: thêm 3 câu hỏi kiểu SGK tr.47/49 (chọn nhiều hình A–E; “KHÔNG là hình vuông”).
 --   ⚠️ Số slide ĐÃ ĐỔI: 2656 → **2659** (8 bài CĐ2: 48 → 51 slide) ⇒
---      vẫn 5 lớp · 51 chương · 459 bài · **2705 slide**.
+--      vẫn 5 lớp · 51 chương · 460 bài · **2712 slide**.
 --   ⚠️ LẦN NÀY CẦN DÁN: `02-bai-lop-1.sql` · `03-bai-lop-2.sql` · `04-bai-lop-3.sql`
 --      rồi `100-...` (file này). `00`, `01`, `05`, `06`, `99` KHÔNG đổi.
 --
