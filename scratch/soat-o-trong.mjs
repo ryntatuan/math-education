@@ -213,7 +213,11 @@ for (const [tenLop, data] of NGUON) {
               hinh.answers.length === soOTDay);
 
           // [C] DÃY SỐ có ô “?” mà thiếu/ lệch đáp án ⇒ vẫn là hình tĩnh (im lặng)
-          if (key === "numberScene" && hinh?.mode === "numberTrain" && soOTDay > 0) {
+          if (
+            key === "numberScene" &&
+            hinh?.mode === "numberTrain" &&
+            soOTDay > 0
+          ) {
             const soDADay = Array.isArray(hinh?.answers)
               ? hinh.answers.length
               : -1;

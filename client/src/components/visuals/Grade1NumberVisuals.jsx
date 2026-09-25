@@ -1166,247 +1166,249 @@ export function NumberScene({
 
   /* ── 7. DÃY SỐ / TOA TÀU có ô trống (SGK tr.10, 16, 40) ──────────────────── */
 
-/**
- * Ô TRỐNG của dãy số — bộ vẽ nhận cả ba cách viết (`null`, `"?"`, chuỗi rỗng).
- * ⚠️ Bản đầu chỉ nhận `null` và `"?"`, nên dữ liệu ghi `""` sẽ vẽ ra **ô trống mà không có
- * dấu hỏi** ⇒ trẻ không biết đó là chỗ phải điền.
- */
-const laOTrong = (v) => v === null || v === "?" || v === "";
+  /**
+   * Ô TRỐNG của dãy số — bộ vẽ nhận cả ba cách viết (`null`, `"?"`, chuỗi rỗng).
+   * ⚠️ Bản đầu chỉ nhận `null` và `"?"`, nên dữ liệu ghi `""` sẽ vẽ ra **ô trống mà không có
+   * dấu hỏi** ⇒ trẻ không biết đó là chỗ phải điền.
+   */
+  const laOTrong = (v) => v === null || v === "?" || v === "";
 
-/**
- * Toạ độ ô của DÃY DỌC (`kind = "ribbon"`) — MỘT NGUỒN DUY NHẤT cho cả bản tĩnh lẫn bản bé
- * điền được. (Trước đây công thức nằm ngay trong JSX; viết bản tương tác mà chép lại công
- * thức là hai bản sẽ lệch nhau ở lần sửa sau.)
- *
- * 🔴 TỰ XUỐNG DÒNG: dãy dài (SGK tr.5 có dãy **1 → 20**) không vừa một hàng — 20 ô × 32 đơn vị
- * = 640 > 360 nên `startX` ra **số âm** và hình vẽ tràn ra ngoài khung. Nay chia thành nhiều
- * hàng, mỗi hàng tối đa `MAX_O` ô và **mỗi hàng tự canh giữa** (hàng cuối ngắn vẫn cân).
- */
-const MAX_O = 11;
-function oRibbon(ns) {
-  const hang = [];
-  for (let i = 0; i < ns.length; i += MAX_O) {
-    const phan = ns.slice(i, i + MAX_O);
-    const startX = 180 - ((phan.length - 1) * 32 + 28) / 2;
-    const y = 16 + hang.length * 44;
-    hang.push(
-      phan.map((v, j) => ({ v, x: startX + j * 32, y, w: 28, h: 34 })),
+  /**
+   * Toạ độ ô của DÃY DỌC (`kind = "ribbon"`) — MỘT NGUỒN DUY NHẤT cho cả bản tĩnh lẫn bản bé
+   * điền được. (Trước đây công thức nằm ngay trong JSX; viết bản tương tác mà chép lại công
+   * thức là hai bản sẽ lệch nhau ở lần sửa sau.)
+   *
+   * 🔴 TỰ XUỐNG DÒNG: dãy dài (SGK tr.5 có dãy **1 → 20**) không vừa một hàng — 20 ô × 32 đơn vị
+   * = 640 > 360 nên `startX` ra **số âm** và hình vẽ tràn ra ngoài khung. Nay chia thành nhiều
+   * hàng, mỗi hàng tối đa `MAX_O` ô và **mỗi hàng tự canh giữa** (hàng cuối ngắn vẫn cân).
+   */
+  const MAX_O = 11;
+  function oRibbon(ns) {
+    const hang = [];
+    for (let i = 0; i < ns.length; i += MAX_O) {
+      const phan = ns.slice(i, i + MAX_O);
+      const startX = 180 - ((phan.length - 1) * 32 + 28) / 2;
+      const y = 16 + hang.length * 44;
+      hang.push(
+        phan.map((v, j) => ({ v, x: startX + j * 32, y, w: 28, h: 34 })),
+      );
+    }
+    return hang;
+  }
+
+  /** Toạ độ ĐẦU MÁY + từng TOA (`kind = "wagons"`). */
+  function oWagons(rs) {
+    return rs.map((r, i) => {
+      const toa = Array.isArray(r) ? r : [];
+      const y = 8 + i * 40;
+      /** Canh giữa CẢ ĐOÀN theo số toa thật (bản cũ dồn đoàn 2 toa về trái — người dùng báo). */
+      const x0 = (360 - (94 + Math.max(0, toa.length - 1) * 60)) / 2;
+      return {
+        i,
+        x0,
+        y,
+        cells: toa.map((v, j) => ({
+          v,
+          x: x0 + 42 + j * 60,
+          y,
+          w: 52,
+          h: 30,
+        })),
+      };
+    });
+  }
+
+  /** Đầu máy tàu — dùng chung cho mọi cách vẽ. */
+  function DauMay({ x0, y }) {
+    return (
+      <>
+        <rect
+          x={x0}
+          y={y}
+          width="34"
+          height="30"
+          rx="6"
+          fill="#94a3b8"
+          stroke="#475569"
+          strokeWidth="1.6"
+        />
+        <circle cx={x0 + 10} cy={y + 33} r="4" fill="#475569" />
+        <circle cx={x0 + 24} cy={y + 33} r="4" fill="#475569" />
+      </>
     );
   }
-  return hang;
-}
-
-/** Toạ độ ĐẦU MÁY + từng TOA (`kind = "wagons"`). */
-function oWagons(rs) {
-  return rs.map((r, i) => {
-    const toa = Array.isArray(r) ? r : [];
-    const y = 8 + i * 40;
-    /** Canh giữa CẢ ĐOÀN theo số toa thật (bản cũ dồn đoàn 2 toa về trái — người dùng báo). */
-    const x0 = (360 - (94 + Math.max(0, toa.length - 1) * 60)) / 2;
-    return {
-      i,
-      x0,
-      y,
-      cells: toa.map((v, j) => ({
-        v,
-        x: x0 + 42 + j * 60,
-        y,
-        w: 52,
-        h: 30,
-      })),
-    };
-  });
-}
-
-/** Đầu máy tàu — dùng chung cho mọi cách vẽ. */
-function DauMay({ x0, y }) {
-  return (
-    <>
-      <rect
-        x={x0}
-        y={y}
-        width="34"
-        height="30"
-        rx="6"
-        fill="#94a3b8"
-        stroke="#475569"
-        strokeWidth="1.6"
-      />
-      <circle cx={x0 + 10} cy={y + 33} r="4" fill="#475569" />
-      <circle cx={x0 + 24} cy={y + 33} r="4" fill="#475569" />
-    </>
-  );
-}
-
-/**
- * DÃY SỐ / TOA TÀU — bản TĨNH và bản ĐIỀN ĐƯỢC dùng CHUNG một hàm vẽ.
- *
- * 🔴 VÌ SAO (yêu cầu người dùng 2026-09-25): “mọi ô trống phải điền được”. Trước đây dãy số
- * có ô `?` chỉ để NHÌN (chữ ghi “bé điền số còn thiếu” mà không có gì bấm được) — 2 slide
- * Lớp 1 (`g1-c1-l4`, `g1-c1-l11`) rơi đúng vào ca này và **không cổng nào bắt được**.
- *
- * `tinh` = true (hoặc thiếu `answers`) ⇒ giữ nguyên bản tĩnh: dùng cho slide CÂU HỎI, nơi bé
- * trả lời bằng các lựa chọn của câu hỏi chứ không bấm vào hình.
- */
-function TrainFill({
-  kind = "wagons",
-  numbers = [],
-  rows = [],
-  answers = [],
-  options = [],
-  note = "",
-  tinh = false,
-}) {
-  const laRibbon = kind === "ribbon";
-  const hangRibbon = laRibbon ? oRibbon(numbers) : [];
-  const hang = laRibbon ? [] : oWagons(rows);
-  const dsO = (laRibbon ? hangRibbon.flat() : hang.flatMap((r) => r.cells)).filter(
-    (o) => laOTrong(o.v),
-  );
-  const choBam = !tinh && dsO.length > 0 && answers.length === dsO.length;
-  const fill = useFillSlots(choBam ? answers : []);
-  /** Ô nào là ô trống thứ mấy, theo thứ tự đọc (trái → phải, trên → dưới). */
-  const viTri = new Map(dsO.map((o, i) => [o, i]));
 
   /**
-   * Nút chọn: dữ liệu cho `options` thì dùng; không thì lấy mỗi đáp án cùng hai số kề —
-   * đủ để bé phải đọc dãy số mới chọn đúng, mà thanh nút không dài vô tận. Bé bấm SAI thì
-   * ô đỏ và bé thử lại (xem `interactiveFill.jsx`).
+   * DÃY SỐ / TOA TÀU — bản TĨNH và bản ĐIỀN ĐƯỢC dùng CHUNG một hàm vẽ.
+   *
+   * 🔴 VÌ SAO (yêu cầu người dùng 2026-09-25): “mọi ô trống phải điền được”. Trước đây dãy số
+   * có ô `?` chỉ để NHÌN (chữ ghi “bé điền số còn thiếu” mà không có gì bấm được) — 2 slide
+   * Lớp 1 (`g1-c1-l4`, `g1-c1-l11`) rơi đúng vào ca này và **không cổng nào bắt được**.
+   *
+   * `tinh` = true (hoặc thiếu `answers`) ⇒ giữ nguyên bản tĩnh: dùng cho slide CÂU HỎI, nơi bé
+   * trả lời bằng các lựa chọn của câu hỏi chứ không bấm vào hình.
    */
-  const dsChon = options.length
-    ? options
-    : [
-        ...new Set(
-          answers.flatMap((a) => [Number(a) - 1, Number(a), Number(a) + 1]),
-        ),
-      ]
-        .filter((n) => Number.isFinite(n) && n >= 0)
-        .sort((a, b) => a - b);
+  function TrainFill({
+    kind = "wagons",
+    numbers = [],
+    rows = [],
+    answers = [],
+    options = [],
+    note = "",
+    tinh = false,
+  }) {
+    const laRibbon = kind === "ribbon";
+    const hangRibbon = laRibbon ? oRibbon(numbers) : [];
+    const hang = laRibbon ? [] : oWagons(rows);
+    const dsO = (
+      laRibbon ? hangRibbon.flat() : hang.flatMap((r) => r.cells)
+    ).filter((o) => laOTrong(o.v));
+    const choBam = !tinh && dsO.length > 0 && answers.length === dsO.length;
+    const fill = useFillSlots(choBam ? answers : []);
+    /** Ô nào là ô trống thứ mấy, theo thứ tự đọc (trái → phải, trên → dưới). */
+    const viTri = new Map(dsO.map((o, i) => [o, i]));
 
-  const veO = (o, key) => {
-    const slot = viTri.get(o);
-    const look = choBam
-      ? slotLook(fill, slot)
-      : { fill: "#f8fafc", stroke: P.blue, color: P.blue, dash: true };
-    const picked = choBam ? fill.picked[slot] : null;
-    return (
-      <g
-        key={key}
-        onClick={() => choBam && fill.setActive(slot)}
-        style={{ cursor: choBam ? "pointer" : "default" }}
-      >
-        <Tile
-          x={o.x}
-          y={o.y}
-          w={o.w}
-          h={o.h}
-          text={picked === null || picked === undefined ? "?" : String(picked)}
-          fs={laRibbon ? 16 : 17}
-          fill={look.fill}
-          stroke={look.stroke}
-          color={look.color}
-          dash={look.dash}
-        />
-      </g>
-    );
-  };
+    /**
+     * Nút chọn: dữ liệu cho `options` thì dùng; không thì lấy mỗi đáp án cùng hai số kề —
+     * đủ để bé phải đọc dãy số mới chọn đúng, mà thanh nút không dài vô tận. Bé bấm SAI thì
+     * ô đỏ và bé thử lại (xem `interactiveFill.jsx`).
+     */
+    const dsChon = options.length
+      ? options
+      : [
+          ...new Set(
+            answers.flatMap((a) => [Number(a) - 1, Number(a), Number(a) + 1]),
+          ),
+        ]
+          .filter((n) => Number.isFinite(n) && n >= 0)
+          .sort((a, b) => a - b);
 
-  /**
-   * Ô ĐÃ IN SẴN SỐ (không phải chỗ bé điền).
-   * ⚠️ Hai kiểu vẽ là CỐ Ý, giữ đúng dáng cũ của từng kiểu: dãy dọc dùng `Tile` (ô bo tròn),
-   * còn TOA TÀU dùng `Rect2` (thân toa viền đậm) — đổi hết sang `Tile` là mất dáng đoàn tàu.
-   * Ô TRỐNG thì luôn dùng `Tile` vì cần màu phản hồi (tím đang chọn / xanh đúng / đỏ sai).
-   */
-  const veTinh = (o, key) => {
-    if (laRibbon)
+    const veO = (o, key) => {
+      const slot = viTri.get(o);
+      const look = choBam
+        ? slotLook(fill, slot)
+        : { fill: "#f8fafc", stroke: P.blue, color: P.blue, dash: true };
+      const picked = choBam ? fill.picked[slot] : null;
       return (
-        <Tile
+        <g
           key={key}
-          x={o.x}
-          y={o.y}
-          w={o.w}
-          h={o.h}
-          text={String(num(o.v, 0))}
-          fs={16}
-          fill="#ffffff"
-          stroke={P.grid}
-          color={P.ink}
-          dash={false}
-        />
+          onClick={() => choBam && fill.setActive(slot)}
+          style={{ cursor: choBam ? "pointer" : "default" }}
+        >
+          <Tile
+            x={o.x}
+            y={o.y}
+            w={o.w}
+            h={o.h}
+            text={
+              picked === null || picked === undefined ? "?" : String(picked)
+            }
+            fs={laRibbon ? 16 : 17}
+            fill={look.fill}
+            stroke={look.stroke}
+            color={look.color}
+            dash={look.dash}
+          />
+        </g>
       );
+    };
+
+    /**
+     * Ô ĐÃ IN SẴN SỐ (không phải chỗ bé điền).
+     * ⚠️ Hai kiểu vẽ là CỐ Ý, giữ đúng dáng cũ của từng kiểu: dãy dọc dùng `Tile` (ô bo tròn),
+     * còn TOA TÀU dùng `Rect2` (thân toa viền đậm) — đổi hết sang `Tile` là mất dáng đoàn tàu.
+     * Ô TRỐNG thì luôn dùng `Tile` vì cần màu phản hồi (tím đang chọn / xanh đúng / đỏ sai).
+     */
+    const veTinh = (o, key) => {
+      if (laRibbon)
+        return (
+          <Tile
+            key={key}
+            x={o.x}
+            y={o.y}
+            w={o.w}
+            h={o.h}
+            text={String(num(o.v, 0))}
+            fs={16}
+            fill="#ffffff"
+            stroke={P.grid}
+            color={P.ink}
+            dash={false}
+          />
+        );
+      return (
+        <g key={key}>
+          <Rect2 x={o.x} y={o.y} w={o.w} h={o.h} />
+          <text
+            x={o.x + o.w / 2}
+            y={o.y + 22}
+            textAnchor="middle"
+            fontSize="17"
+            fontWeight="800"
+            fill={P.ink}
+          >
+            {String(num(o.v, 0))}
+          </text>
+        </g>
+      );
+    };
+
+    const H = laRibbon ? hangRibbon.length * 44 + 26 : hang.length * 40 + 14;
+
     return (
-      <g key={key}>
-        <Rect2 x={o.x} y={o.y} w={o.w} h={o.h} />
-        <text
-          x={o.x + o.w / 2}
-          y={o.y + 22}
-          textAnchor="middle"
-          fontSize="17"
-          fontWeight="800"
-          fill={P.ink}
+      <div style={card}>
+        <svg
+          viewBox={`0 0 360 ${H}`}
+          {...svgFit(360)}
+          role="img"
+          aria-label={
+            laRibbon ? "Dãy số có ô trống" : "Các đoàn tàu có ô số còn thiếu"
+          }
         >
-          {String(num(o.v, 0))}
-        </text>
-      </g>
+          {laRibbon &&
+            hangRibbon.map((r, i) => (
+              <g key={i}>
+                {r.map((o, j) =>
+                  laOTrong(o.v) ? veO(o, `${i}-${j}`) : veTinh(o, `${i}-${j}`),
+                )}
+              </g>
+            ))}
+          {!laRibbon &&
+            hang.map((r) => (
+              <g key={r.i}>
+                <DauMay x0={r.x0} y={r.y} />
+                {r.cells.map((o, j) =>
+                  laOTrong(o.v)
+                    ? veO(o, `${r.i}-${j}`)
+                    : veTinh(o, `${r.i}-${j}`),
+                )}
+              </g>
+            ))}
+          <text
+            x="180"
+            y={laRibbon ? H - 4 : H - 2}
+            textAnchor="middle"
+            fontSize="14"
+            fontWeight="700"
+            fill={P.soft}
+          >
+            Bé điền số còn thiếu vào ô có dấu ?
+          </text>
+        </svg>
+        {note && (
+          <span style={{ ...caption, color: P.ink, fontSize: 15 }}>{note}</span>
+        )}
+        {choBam && (
+          <FillBar
+            fill={fill}
+            options={dsChon}
+            title="Bé chọn số điền vào ô ?"
+            hint="Ô màu đỏ chưa đúng — bé đọc lại cả dãy số rồi chọn lại nhé."
+          />
+        )}
+      </div>
     );
-  };
-
-  const H = laRibbon ? hangRibbon.length * 44 + 26 : hang.length * 40 + 14;
-
-  return (
-    <div style={card}>
-      <svg
-        viewBox={`0 0 360 ${H}`}
-        {...svgFit(360)}
-        role="img"
-        aria-label={
-          laRibbon ? "Dãy số có ô trống" : "Các đoàn tàu có ô số còn thiếu"
-        }
-      >
-        {laRibbon &&
-          hangRibbon.map((r, i) => (
-            <g key={i}>
-              {r.map((o, j) =>
-                laOTrong(o.v) ? veO(o, `${i}-${j}`) : veTinh(o, `${i}-${j}`),
-              )}
-            </g>
-          ))}
-        {!laRibbon &&
-          hang.map((r) => (
-            <g key={r.i}>
-              <DauMay x0={r.x0} y={r.y} />
-              {r.cells.map((o, j) =>
-                laOTrong(o.v)
-                  ? veO(o, `${r.i}-${j}`)
-                  : veTinh(o, `${r.i}-${j}`),
-              )}
-            </g>
-          ))}
-        <text
-          x="180"
-          y={laRibbon ? H - 4 : H - 2}
-          textAnchor="middle"
-          fontSize="14"
-          fontWeight="700"
-          fill={P.soft}
-        >
-          Bé điền số còn thiếu vào ô có dấu ?
-        </text>
-      </svg>
-      {note && (
-        <span style={{ ...caption, color: P.ink, fontSize: 15 }}>{note}</span>
-      )}
-      {choBam && (
-        <FillBar
-          fill={fill}
-          options={dsChon}
-          title="Bé chọn số điền vào ô ?"
-          hint="Ô màu đỏ chưa đúng — bé đọc lại cả dãy số rồi chọn lại nhé."
-        />
-      )}
-    </div>
-  );
-}
+  }
 
   if (mode === "numberTrain") {
     return (
@@ -1426,7 +1428,9 @@ function TrainFill({
           !Array.isArray(answers) ||
           answers.length !==
             (kind === "ribbon"
-              ? (Array.isArray(numbers) ? numbers : [])
+              ? Array.isArray(numbers)
+                ? numbers
+                : []
               : (Array.isArray(rows) ? rows : []).flatMap((r) =>
                   Array.isArray(r) ? r : [],
                 )

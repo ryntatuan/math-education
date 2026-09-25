@@ -337,10 +337,10 @@ hợp lệ, công cụ in ra khi chạy `--het`.)_
 
 **Vòng 2 (cùng ngày) — tìm thêm 2 ca sau khi SỬA THƯỚC ĐO:**
 
-| #   | Bài · slide        | Hình          | Lỗi (trẻ chỉ nhìn)                                                                              | Cách sửa                                                       |
-| :-- | :----------------- | :------------ | :---------------------------------------------------------------------------------------------- | :------------------------------------------------------------- |
-| 12  | `g1-c1-l4` slide 9 | `numberScene` | Dãy số 0 → 10 có **4 ô trống** chỉ vẽ nét đứt — chữ còn ghi “bé điền số còn thiếu” mà không bấm được | → **`TrainFill`**: bấm ô `?` rồi chọn số, chấm ngay — `answers: [2, 3, 7, 10]` |
-| 13  | `g1-c1-l11` slide 7 | `numberScene` | 6 ô `?` trong **6 toa tàu** (SGK tr.40) — cùng lỗi                                        | → như trên — `answers: [5, 4, 5, 8, 9, 1]`                      |
+| #   | Bài · slide         | Hình          | Lỗi (trẻ chỉ nhìn)                                                                                   | Cách sửa                                                                       |
+| :-- | :------------------ | :------------ | :--------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------- |
+| 12  | `g1-c1-l4` slide 9  | `numberScene` | Dãy số 0 → 10 có **4 ô trống** chỉ vẽ nét đứt — chữ còn ghi “bé điền số còn thiếu” mà không bấm được | → **`TrainFill`**: bấm ô `?` rồi chọn số, chấm ngay — `answers: [2, 3, 7, 10]` |
+| 13  | `g1-c1-l11` slide 7 | `numberScene` | 6 ô `?` trong **6 toa tàu** (SGK tr.40) — cùng lỗi                                                   | → như trên — `answers: [5, 4, 5, 8, 9, 1]`                                     |
 
 > 🔴 **HAI LỖI THƯỚC ĐO ĐÃ MẮC Ở CHÍNH ĐỢT NÀY (ghi để không lặp):**
 >
@@ -392,16 +392,16 @@ Quy mô: **2684 → 2690** (Lớp 1: 662 → 668) — phần tăng là 6 slide C
 
 Đã bổ sung **6 slide** theo **Bài 21 (số có hai chữ số, sách tr.4–15)** — bảng Viết/Đọc số lấy đúng mẫu tr.4; các câu hỏi theo nội dung đọc – viết – so sánh số có hai chữ số. _(Các trang cụ thể sẽ được chốt lại khi rà trọn CĐ6 theo quy trình §11.)_
 
-| Slide              | Nội dung                                                     | Ghi chú                                                                            |
-| :----------------- | :----------------------------------------------------------- | :--------------------------------------------------------------------------------- |
-| `g1-c6-l2` slide 5 | Bảng **Viết số · Đọc số** 11 → 20                            | Bảng **tra cứu** (mọi ô in sẵn) — không phải bài điền, nên **không** đặt ô `?` nào |
-| `g1-c6-l2` slide 6 | _“Số 18 đọc là gì?”_ → **mười tám**                          | Lựa chọn: mười tám · mười bảy · tám mươi · mười chín                               |
-| `g1-c6-l2` slide 7 | **“Số ?” — dãy số 1 → 20** có 4 ô trống (SGK **tr.5** HĐ3) | Ô điền được (`TrainFill`); bộ vẽ **tự chia 2 hàng** vì 20 ô không vừa một hàng — đáp án `[4, 13, 14, 18]` |
-| `g1-c6-l2` slide 8 | **“Số ?” — 6 đoàn tàu** (SGK **tr.6** LT1)                | Đúng **6 hàng như sách**, 12 ô trống — đáp án `[13,14, 14,15, 14,15, 18,19, 13,15, 17,19]`                 |
-| `g1-c6-l3` slide 5 | _“100 gồm mấy chục?”_ → **10 chục**                          |                                                                                    |
-| `g1-c6-l7` slide 5 | _“Số nào có hai chữ số giống nhau?”_ → **44**                |                                                                                    |
-| `g1-c6-l7` slide 6 | _“Số tròn chục lớn nhất mà bé hơn 100?”_ → **90**            |                                                                                    |
-| `g1-c6-l9` slide 4 | _“Trong bảng 100 số, số nào đứng ngay dưới số 45?”_ → **55** |                                                                                    |
+| Slide              | Nội dung                                                     | Ghi chú                                                                                                   |
+| :----------------- | :----------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------- |
+| `g1-c6-l2` slide 5 | Bảng **Viết số · Đọc số** 11 → 20                            | Bảng **tra cứu** (mọi ô in sẵn) — không phải bài điền, nên **không** đặt ô `?` nào                        |
+| `g1-c6-l2` slide 6 | _“Số 18 đọc là gì?”_ → **mười tám**                          | Lựa chọn: mười tám · mười bảy · tám mươi · mười chín                                                      |
+| `g1-c6-l2` slide 7 | **“Số ?” — dãy số 1 → 20** có 4 ô trống (SGK **tr.5** HĐ3)   | Ô điền được (`TrainFill`); bộ vẽ **tự chia 2 hàng** vì 20 ô không vừa một hàng — đáp án `[4, 13, 14, 18]` |
+| `g1-c6-l2` slide 8 | **“Số ?” — 6 đoàn tàu** (SGK **tr.6** LT1)                   | Đúng **6 hàng như sách**, 12 ô trống — đáp án `[13,14, 14,15, 14,15, 18,19, 13,15, 17,19]`                |
+| `g1-c6-l3` slide 5 | _“100 gồm mấy chục?”_ → **10 chục**                          |                                                                                                           |
+| `g1-c6-l7` slide 5 | _“Số nào có hai chữ số giống nhau?”_ → **44**                |                                                                                                           |
+| `g1-c6-l7` slide 6 | _“Số tròn chục lớn nhất mà bé hơn 100?”_ → **90**            |                                                                                                           |
+| `g1-c6-l9` slide 4 | _“Trong bảng 100 số, số nào đứng ngay dưới số 45?”_ → **55** |                                                                                                           |
 
 _(Số slide nói trên là **số thứ tự trong bài**, đã đối chiếu lại bằng script đọc thẳng dữ liệu —
 không chép tay.)_
@@ -418,5 +418,5 @@ Khi thêm bảng/bài điền mới: **dùng `bangTinh`** (bảng) hoặc **`num
 > nên khi trang đang cuộn, nó **che mất hàng nút chọn dưới cùng** của những slide có nhiều nút
 > (12 ô trống ⇒ 9 nút). Nội dung vẫn cuộn tới được nên **không phải lỗi chặn**, nhưng nếu người
 > dùng thấy vướng thì cách chữa rẻ nhất là giảm số nút (`options`) hoặc chừa lề dưới cho slide.
-Khi thêm bảng/bài điền mới: **dùng `bangTinh`** (bảng) hoặc **`numberScene.mode = "numberTrain"`**
-(dãy số) — **không được in cứng ô `?`** (luật §8o).
+> Khi thêm bảng/bài điền mới: **dùng `bangTinh`** (bảng) hoặc **`numberScene.mode = "numberTrain"`**
+> (dãy số) — **không được in cứng ô `?`** (luật §8o).

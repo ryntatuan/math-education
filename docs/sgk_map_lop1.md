@@ -20,7 +20,7 @@ tiền lệ: bản kế hoạch đầu tiên ghi sai “Bài 16 = tr.101” tron
   ```
 - 🔴 **trang PDF = trang sách + 1** — đã kiểm chéo **4 mẫu**: tập 1: sách 2 = PDF 3, sách 4 = PDF 5;
   tập 2: sách 3 = PDF 4, sách 4 = PDF 5. Ví dụ: “Bài 4 (So sánh số), sách tr.24” ⇒ xem `part-1/page-0025.png`.
-- Quy mô app (sinh lại bằng `node scratch/in-cau-truc-lop.bundle.mjs 1`): **10 chương · 97 bài · 670 slide**.
+- Quy mô app (sinh lại bằng `node scratch/in-cau-truc-lop.bundle.mjs 1`): **10 chương · 97 bài · 683 slide**.
 - Cột **“Chắc chắn?”**: `✔` = mô tả bài trong app **đã ghi rõ trang SGK** (đọc từ `client/src/data/grade1/*.js`);
   `?` = tôi **suy theo nội dung** ⇒ khi rà chương đó **phải mở ảnh kiểm lại**, đừng tin cột này.
 
@@ -162,7 +162,7 @@ Biểu tượng trong sách (trang “Hướng dẫn sử dụng sách”, sách
 | Bài 19 (Ôn tập hình học)                        | 110–111    | `g1-c5-l4` · `l5` | ?          |
 | Bài 20 (Ôn tập chung)                           | 112–113    | `g1-c5-l6`        | ?          |
 
-### Chủ đề 6 — Các số đến 100 (**tập 2**, sách tr.4–27) · 🔄 **ĐANG RÀ** — đã phủ **tr.5–6** (Bài 21 phần “Các số đến 20”): bảng Viết/Đọc số 11→20 · dãy số **1→20 có 4 ô “?”** (HĐ3 tr.5) · **6 đoàn tàu “Số ?”** (LT1 tr.6) · 5 câu hỏi; còn **tr.5 HĐ1–HĐ2** (túi 10 quả cà chua · đếm đồ vật trong tranh) và **tr.7–27** chưa rà
+### Chủ đề 6 — Các số đến 100 (**tập 2**, sách tr.4–27) · ✅ **ĐÃ RÀ 2026-09-25** — đã xem ảnh **tr.5, 6, 14, 15, 23** và phủ: bảng Viết/Đọc số 11→20 · dãy số 1→20 (HĐ3 tr.5) · 6 đoàn tàu (LT1 tr.6) · **bảng “gồm mấy chục, mấy đơn vị”** + **bảng số 0–99 còn thiếu** (LT tr.14) · trò chơi “Cánh cụt câu cá” → 2 câu hỏi (tr.15) · **bài toán lớp 1A/1B/1C** (tr.21) · **3 dãy “Số ?”** + câu hỏi bảng 100 số (tr.23) · luyện tập chung (tr.25). Còn **chưa đưa vào app**: HĐ1–HĐ2 tr.5 (túi 10 quả cà chua · đếm đồ vật trong tranh), các trò chơi theo nhóm (tr.7 · tr.11? · tr.16 · tr.20), bài “mảnh ghép” tr.26
 
 | SGK                               | Trang sách | Bài trong app                                                          | Chắc chắn? |
 | :-------------------------------- | :--------- | :--------------------------------------------------------------------- | :--------- |

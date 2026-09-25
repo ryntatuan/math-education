@@ -383,6 +383,119 @@ export const g1c6 = {
           },
         },
         {
+          "type": "visual",
+          "content": {
+            "text": "Số ? — mỗi số gồm mấy chục và mấy đơn vị (SGK tr.14)",
+            "bangTinh": {
+              "headers": [
+                "Đọc chục và đơn vị",
+                "Viết số"
+              ],
+              "rows": [
+                [
+                  "Số gồm 3 chục và 7 đơn vị",
+                  null
+                ],
+                [
+                  "Số gồm 5 chục và 0 đơn vị",
+                  null
+                ],
+                [
+                  "Số gồm 8 chục và 4 đơn vị",
+                  null
+                ]
+              ],
+              "answers": [
+                37,
+                50,
+                84
+              ],
+              "options": [
+                37,
+                46,
+                50,
+                72,
+                84,
+                91
+              ],
+              "title": "Bé chọn số điền vào ô ?",
+              "hint": "3 chục là 30, thêm 7 đơn vị nữa là 37.",
+              "label": "Đọc số chục và số đơn vị rồi viết thành số có hai chữ số"
+            }
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "text": "Số ? — bảng các số từ 0 đến 99 còn thiếu số nào? (SGK tr.14)",
+            "numberScene": {
+              "mode": "numberTrain",
+              "kind": "ribbon",
+              "numbers": [
+                60,
+                61,
+                62,
+                null,
+                null,
+                null,
+                null,
+                67,
+                68,
+                69,
+                70,
+                71,
+                72,
+                null,
+                null,
+                null,
+                null,
+                77,
+                78,
+                79,
+                80,
+                81,
+                82,
+                null,
+                null,
+                null,
+                null,
+                87,
+                88,
+                89
+              ],
+              "answers": [
+                63,
+                64,
+                65,
+                66,
+                73,
+                74,
+                75,
+                76,
+                83,
+                84,
+                85,
+                86
+              ],
+              "options": [
+                63,
+                64,
+                65,
+                66,
+                73,
+                74,
+                75,
+                76,
+                83,
+                84,
+                85,
+                86
+              ],
+              "note": "Bảng số đi theo hàng: mỗi hàng mười số liền nhau. Bé tìm những số còn thiếu."
+            }
+          }
+        },
+        {
           type: "summary",
           content: {
             title: "Bé nhớ rất tốt:",
@@ -451,6 +564,34 @@ export const g1c6 = {
             answer: 51,
             mascotHint: "Năm mươi (5 chục) mốt (1 đơn vị) → 51.",
           },
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Con cá ghi “mười bốn” — đó là số nào? (SGK tr.15)",
+            "options": [
+              14,
+              42,
+              58,
+              76
+            ],
+            "answer": 14,
+            "mascotHint": "Mười bốn gồm 1 chục và 4 đơn vị nên viết là 14."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Con cá ghi “bảy mươi sáu” — đó là số nào?",
+            "options": [
+              76,
+              67,
+              93,
+              42
+            ],
+            "answer": 76,
+            "mascotHint": "Bảy mươi sáu gồm 7 chục và 6 đơn vị nên viết là 76."
+          }
         },
         {
           type: "summary",
@@ -623,6 +764,32 @@ export const g1c6 = {
             answer: 45,
             mascotHint: "45 có 4 chục — lớn nhất trong bốn số.",
           },
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Lớp 1A có 33 học sinh, lớp 1B có 30 học sinh. Lớp nào có nhiều học sinh hơn? (SGK tr.21)",
+            "options": [
+              "Lớp 1A",
+              "Lớp 1B",
+              "Hai lớp bằng nhau"
+            ],
+            "answer": "Lớp 1A",
+            "mascotHint": "33 và 30 cùng 3 chục; 3 đơn vị lớn hơn 0 đơn vị nên 33 > 30."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Lớp 1B có 30 học sinh, lớp 1C có 35 học sinh. Lớp nào có ít học sinh hơn?",
+            "options": [
+              "Lớp 1B",
+              "Lớp 1C",
+              "Hai lớp bằng nhau"
+            ],
+            "answer": "Lớp 1B",
+            "mascotHint": "30 và 35 cùng 3 chục; 0 đơn vị bé hơn 5 đơn vị nên 30 < 35."
+          }
         },
         {
           type: "summary",
@@ -835,6 +1002,90 @@ export const g1c6 = {
           },
         },
         {
+          "type": "visual",
+          "content": {
+            "text": "Số ? — đếm thêm 1 (SGK tr.23)",
+            "numberScene": {
+              "mode": "numberTrain",
+              "kind": "ribbon",
+              "numbers": [
+                30,
+                31,
+                32,
+                null,
+                34,
+                null,
+                null,
+                37,
+                null
+              ],
+              "answers": [
+                33,
+                35,
+                36,
+                38
+              ],
+              "note": "Mỗi số hơn số liền trước 1 đơn vị."
+            }
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "text": "Số ? — đếm thêm 2 (SGK tr.23)",
+            "numberScene": {
+              "mode": "numberTrain",
+              "kind": "ribbon",
+              "numbers": [
+                51,
+                53,
+                null,
+                57,
+                null,
+                null,
+                63,
+                65,
+                null
+              ],
+              "answers": [
+                55,
+                59,
+                61,
+                67
+              ],
+              "note": "Mỗi số hơn số liền trước 2 đơn vị."
+            }
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "text": "Số ? — đếm thêm 2, dãy số lớn (SGK tr.23)",
+            "numberScene": {
+              "mode": "numberTrain",
+              "kind": "ribbon",
+              "numbers": [
+                82,
+                84,
+                86,
+                null,
+                null,
+                92,
+                null,
+                96,
+                null
+              ],
+              "answers": [
+                88,
+                90,
+                94,
+                98
+              ],
+              "note": "Cả dãy đều cách nhau 2 đơn vị — bé đọc rồi điền số còn thiếu."
+            }
+          }
+        },
+        {
           type: "summary",
           content: {
             title: "Bé nhớ rất tốt:",
@@ -905,6 +1156,60 @@ export const g1c6 = {
             answer: 40,
             mascotHint: "Các số hơn kém nhau 10, nên số còn thiếu là 40.",
           },
+        },
+        {
+          "type": "visual",
+          "content": {
+            "text": "Số ? — hai hàng trong bảng các số từ 1 đến 100 (SGK tr.22)",
+            "numberScene": {
+              "mode": "numberTrain",
+              "kind": "ribbon",
+              "numbers": [
+                51,
+                52,
+                53,
+                null,
+                55,
+                56,
+                null,
+                58,
+                59,
+                60,
+                71,
+                null,
+                73,
+                74,
+                75,
+                null,
+                null,
+                78,
+                79,
+                80
+              ],
+              "answers": [
+                54,
+                57,
+                72,
+                76,
+                77
+              ],
+              "note": "Hai hàng của bảng số: mỗi hàng mười số liền nhau."
+            }
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Trong bảng các số từ 1 đến 100, số nào đứng ngay dưới số 23? (SGK tr.23)",
+            "options": [
+              23,
+              33,
+              43,
+              24
+            ],
+            "answer": 33,
+            "mascotHint": "Đi xuống một hàng là thêm 10: 23 + 10 = 33."
+          }
         },
         {
           type: "summary",
@@ -990,6 +1295,34 @@ export const g1c6 = {
             answer: 56,
             mascotHint: "5 chục bé hơn 6 chục nên 56 < 65.",
           },
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "“Sáu mươi hai” viết là số nào? (SGK tr.25)",
+            "options": [
+              26,
+              62,
+              60,
+              72
+            ],
+            "answer": 62,
+            "mascotHint": "Sáu mươi là 6 chục, thêm 2 đơn vị nên viết là 62."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Số gồm 5 chục và 1 đơn vị — viết là số nào?",
+            "options": [
+              15,
+              51,
+              50,
+              501
+            ],
+            "answer": 51,
+            "mascotHint": "5 chục là 50, thêm 1 đơn vị nữa là 51."
+          }
         },
         {
           type: "summary",

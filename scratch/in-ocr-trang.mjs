@@ -17,9 +17,16 @@ const khoi = tho.split(/\r?\n-{3,}\r?\n/);
 
 let ra = `Tập ${TAP} — ${khoi.length} khối (≈ PDF page)\n\n`;
 for (let i = TU - 1; i < Math.min(DEN, khoi.length); i++) {
-  const chu = khoi[i].replace(/[ \t]+/g, " ").replace(/\n{2,}/g, " | ").trim();
+  const chu = khoi[i]
+    .replace(/[ \t]+/g, " ")
+    .replace(/\n{2,}/g, " | ")
+    .trim();
   ra += `── khối ${i + 1} ──\n${chu.slice(0, 400)}\n\n`;
 }
 fs.writeFileSync("scratch/_ocr-trang.txt", ra, "utf8");
-console.log(`Đã ghi scratch/_ocr-trang.txt (khối ${TU}..${DEN}/${khoi.length})`);
-console.log(`Gợi ý: nếu khối 1 là bìa thì khối N ≈ trang PDF N; trang sách = PDF − 1.`);
+console.log(
+  `Đã ghi scratch/_ocr-trang.txt (khối ${TU}..${DEN}/${khoi.length})`,
+);
+console.log(
+  `Gợi ý: nếu khối 1 là bìa thì khối N ≈ trang PDF N; trang sách = PDF − 1.`,
+);
