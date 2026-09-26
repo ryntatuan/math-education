@@ -28,6 +28,11 @@ import useProgressStore from "../store/useProgressStore";
 import useAuthStore from "../store/useAuthStore";
 import GuestFeatureLock from "../components/auth/GuestFeatureLock";
 import curriculum, { demBaiDaHoc } from "../data/curriculum";
+// Tên chủ đề để nói cho phụ huynh biết NÊN ÔN GÌ (thẻ "tuần này").
+import {
+  TOPICS as PRACTICE_TOPICS,
+  PRACTICE_EXTRA_TOPICS,
+} from "../utils/exerciseGenerator";
 import soundManager from "../utils/soundManager";
 import KnowledgeRadarChart from "../components/charts/KnowledgeRadarChart";
 import "./ParentDashboard.css";
@@ -92,7 +97,7 @@ export default function ParentDashboard() {
     setGrade,
   } = useUserStore();
 
-  const { completedLessons, currentStreak, exerciseResults } =
+  const { completedLessons, currentStreak, exerciseResults, mistakesQueue } =
     useProgressStore();
 
   // PIN security check
@@ -362,6 +367,84 @@ export default function ParentDashboard() {
     return `Bé ${nickname} rất chăm chỉ học tập với chuỗi ${currentStreak} ngày liên tiếp. Hãy tiếp tục khuyến khích bé hoàn thành các bài tập để nhận thêm huy hiệu và sao thưởng nhé!`;
   }, [totalLessons, totalStars, currentStreak, nickname, skillsEvaluation]);
 
+  // ── THẺ "TUẦN NÀY" (đợt 5.4) ────────────────────────────────────────────
+  //
+  // Phụ huynh cần 3 điều, và cả ba đều đã có sẵn trong máy (không gọi thêm dịch vụ nào):
+  //   (1) tuần này bé học được bao nhiêu   -> `completedLessons[].completedAt`
+  //   (2) bé có học đều không              -> 7 chấm theo 7 ngày gần nhất
+  //   (3) NÊN ÔN GÌ                        -> `mistakesQueue` (sổ tay câu sai chưa thuộc)
+  //
+  // ⚠️ Bản ghi CŨ (trước khi có `completedAt`) không tính vào tuần — đúng ý: thà thiếu còn hơn
+  // đếm nhầm một bài học từ tháng trước thành "tuần này".
+  const tuanNay = useMemo(() => {
+    const HAN_MS = 7 * 24 * 60 * 60 * 1000;
+    // Thẻ này nói về "7 ngày gần nhất" nên BUỘC phải lấy mốc thời gian thật khi tính. Đây là
+    // báo cáo cho phụ huynh (không phải dữ liệu để React so sánh), và memo chỉ tính lại khi
+    // tiến độ đổi — đủ đúng cho mục đích này.
+    // eslint-disable-next-line react/purity -- mốc "bây giờ" là thứ cần đo, không phải trạng thái
+    const bayGio = Date.now();
+    const tenChuDe = new Map(
+      [
+        ...Object.values(PRACTICE_TOPICS),
+        ...Object.values(PRACTICE_EXTRA_TOPICS),
+      ]
+        .filter(Array.isArray)
+        .flat()
+        .map((t) => [t.id, t]),
+    );
+
+    const ds = Object.entries(completedLessons || {}).map(([id, v]) => ({
+      id,
+      stars: Number(v?.stars) || 0,
+      luc: v?.completedAt ? Date.parse(v.completedAt) : NaN,
+    }));
+    const trongTuan = ds.filter(
+      (x) => Number.isFinite(x.luc) && bayGio - x.luc <= HAN_MS,
+    );
+    const ngayHoc = new Set(
+      trongTuan.map((x) => new Date(x.luc).toDateString()),
+    ).size;
+
+    // Kỹ năng yếu = chủ đề có nhiều câu SAI còn nằm trong sổ tay ôn bài (chưa thuộc).
+    const dem = new Map();
+    for (const m of mistakesQueue || []) {
+      if (m?.mastered) continue;
+      const ma = String(m?.ref || "").replace(/^tmpl:/, "");
+      if (!ma) continue;
+      dem.set(ma, (dem.get(ma) || 0) + 1);
+    }
+    const yeu = [...dem.entries()]
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 3)
+      .map(([ma, soLan]) => ({
+        ma,
+        soLan,
+        ten: tenChuDe.get(ma)?.name || ma,
+        icon: tenChuDe.get(ma)?.icon || "",
+      }));
+
+    const bieuDo = [];
+    const NHAN = ["CN", "T2", "T3", "T4", "T5", "T6", "T7"];
+    for (let i = 6; i >= 0; i--) {
+      const ngay = new Date(bayGio - i * 24 * 60 * 60 * 1000);
+      bieuDo.push({
+        khoa: ngay.toDateString(),
+        nhan: NHAN[ngay.getDay()],
+        co: trongTuan.some(
+          (x) => new Date(x.luc).toDateString() === ngay.toDateString(),
+        ),
+      });
+    }
+
+    return {
+      soBai: trongTuan.length,
+      soSao: trongTuan.reduce((s, x) => s + x.stars, 0),
+      ngayHoc,
+      yeu,
+      bieuDo,
+    };
+  }, [completedLessons, mistakesQueue]);
+
   if (isGuest) {
     return (
       <GuestFeatureLock
@@ -596,6 +679,69 @@ export default function ParentDashboard() {
       {/* TAB 1: OVERVIEW */}
       {activeTab === "overview" && (
         <div className="tab-content-section">
+          {/* Thẻ "tuần này" — phụ huynh nhìn một lần là biết tuần qua thế nào. */}
+          <div className="parent-week-card">
+            <h3>
+              <TrendingUp size={18} />
+              <span>Tuần này của bé {nickname}</span>
+            </h3>
+            <div className="week-numbers">
+              <div className="week-num">
+                <span className="week-val number">{tuanNay.soBai}</span>
+                <span className="week-lbl">bài hoàn thành</span>
+              </div>
+              <div className="week-num">
+                <span className="week-val number">{tuanNay.soSao} ⭐</span>
+                <span className="week-lbl">sao nhận được</span>
+              </div>
+              <div className="week-num">
+                <span className="week-val number">{tuanNay.ngayHoc}/7</span>
+                <span className="week-lbl">ngày có học</span>
+              </div>
+              <div className="week-num">
+                <span className="week-val number">{currentStreak}</span>
+                <span className="week-lbl">ngày liên tiếp</span>
+              </div>
+            </div>
+            <div className="week-days">
+              {tuanNay.bieuDo.map((d) => (
+                <div
+                  key={d.khoa}
+                  className={`week-day ${d.co ? "co" : ""}`}
+                  title={d.co ? "Có học" : "Không học"}
+                >
+                  {d.nhan}
+                </div>
+              ))}
+            </div>
+            <div className="week-weak">
+              <span className="week-weak-title">Nên ôn thêm:</span>
+              {tuanNay.yeu.length === 0 ? (
+                <span className="week-weak-none">
+                  Chưa có câu sai nào cần ôn — bé đang làm rất tốt!
+                </span>
+              ) : (
+                <ul>
+                  {tuanNay.yeu.map((y) => (
+                    <li key={y.ma}>
+                      {y.icon ? y.icon + " " : ""}
+                      <b>{y.ten}</b>{" "}
+                      <span className="week-weak-count">
+                        ({y.soLan} câu sai còn trong sổ tay ôn bài)
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+            {tuanNay.soBai === 0 && (
+              <p className="week-note">
+                Tuần này bé chưa hoàn thành bài nào. Ba mẹ thử nhắc bé 10–15
+                phút mỗi ngày nhé!
+              </p>
+            )}
+          </div>
+
           <div className="parent-stats-grid">
             <div className="p-card stat-big">
               <div className="stat-icon-circle blue">

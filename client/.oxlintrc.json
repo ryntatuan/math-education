@@ -4,12 +4,17 @@
     "node": true,
     "es2024": true
   },
-  "plugins": [
-    "react"
-  ],
+  "plugins": ["react"],
   "rules": {
     "no-undef": "deny",
     "react/rules-of-hooks": "deny",
-    "react/jsx-no-undef": "deny"
+    "react/jsx-no-undef": "deny",
+    "no-unused-vars": [
+      "warn",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_"
+      }
+    ]
   }
 }

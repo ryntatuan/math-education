@@ -1,11 +1,18 @@
 // NHÁNH CỦA LỚP 1 trong bộ sinh bài Luyện tập.
 // TÁCH RA TỪ: exerciseGenerator.js · hàm buildQuestion (di chuyển mã nguyên khối).
 
-import { EMOJIS } from "./topics.js";
-import { generateOptions, randInt, renderShapeVisual, shuffle } from "./helpers.js";
+import {
+  EMOJIS,
+} from "./topics.js";
+import {
+  generateOptions,
+  randInt,
+  renderShapeVisual,
+  shuffle,
+} from "./helpers.js";
 
 /** Nhận đủ ngữ cảnh cũ để thân nhánh giữ nguyên từng chữ. Trả về null nếu không khớp. */
-export function nhanhLop1(topic, gNum, grade, depth, topicId, pickFromGrade) {
+export function nhanhLop1(topic, _gNum, _grade, _depth, _topicId, _pickFromGrade) {
 // ==========================================
 // --- GRADE 1 GENERATORS ---
 // ==========================================

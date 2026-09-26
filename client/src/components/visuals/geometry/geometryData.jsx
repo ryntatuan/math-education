@@ -2,19 +2,9 @@
 // TÁCH RA TỪ: GeometryVisuals.jsx
 // (di chuyển mã nguyên khối — không sửa nội dung)
 
-import { useEffect, useState } from "react";
-import {
-  useInteractive,
-  useFillSlots,
-  slotLook,
-  FillBar,
-} from ".././interactiveFill";
 import {
   CARD_STYLE,
   CAPTION_STYLE,
-  captionText,
-  svgFit,
-  ngatDong,
 } from ".././visualTheme";
 
 export const P = {

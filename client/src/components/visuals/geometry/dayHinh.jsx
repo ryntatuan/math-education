@@ -2,27 +2,40 @@
 // TÁCH RA TỪ: GeometryVisuals.jsx
 // (di chuyển mã nguyên khối — không sửa nội dung)
 
-import { useEffect, useState } from "react";
+import {
+  useEffect,
+  useState,
+} from "react";
 import {
   useInteractive,
   useFillSlots,
   slotLook,
   FillBar,
-} from ".././interactiveFill";
+} from "../interactiveFill";
 import {
-  CARD_STYLE,
-  CAPTION_STYLE,
-  captionText,
   svgFit,
-  ngatDong,
-} from ".././visualTheme";
-import { HinhNho } from "./hinhPhang.jsx";
-import { MAU_HINH } from "./geometryData.jsx";
-import { P } from "./geometryData.jsx";
-import { TEN_HINH } from "./geometryData.jsx";
-import { caption } from "./geometryData.jsx";
-import { card } from "./geometryData.jsx";
-import { mauCua } from "./geometryData.jsx";
+} from "../visualTheme";
+import {
+  HinhNho,
+} from "./hinhPhang.jsx";
+import {
+  MAU_HINH,
+} from "./geometryData.jsx";
+import {
+  P,
+} from "./geometryData.jsx";
+import {
+  TEN_HINH,
+} from "./geometryData.jsx";
+import {
+  caption,
+} from "./geometryData.jsx";
+import {
+  card,
+} from "./geometryData.jsx";
+import {
+  mauCua,
+} from "./geometryData.jsx";
 
 export function PatternRow({
   shapes = [],

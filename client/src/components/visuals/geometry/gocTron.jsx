@@ -2,26 +2,28 @@
 // TÁCH RA TỪ: GeometryVisuals.jsx
 // (di chuyển mã nguyên khối — không sửa nội dung)
 
-import { useEffect, useState } from "react";
 import {
-  useInteractive,
-  useFillSlots,
-  slotLook,
-  FillBar,
-} from ".././interactiveFill";
-import {
-  CARD_STYLE,
-  CAPTION_STYLE,
   captionText,
   svgFit,
-  ngatDong,
 } from ".././visualTheme";
-import { ANGLE_DEF } from "./geometryData.jsx";
-import { P } from "./geometryData.jsx";
-import { caption } from "./geometryData.jsx";
-import { card } from "./geometryData.jsx";
-import { clamp } from "./geometryData.jsx";
-import { num } from "./geometryData.jsx";
+import {
+  ANGLE_DEF,
+} from "./geometryData.jsx";
+import {
+  P,
+} from "./geometryData.jsx";
+import {
+  caption,
+} from "./geometryData.jsx";
+import {
+  card,
+} from "./geometryData.jsx";
+import {
+  clamp,
+} from "./geometryData.jsx";
+import {
+  num,
+} from "./geometryData.jsx";
 
 export function Angle({
   kind = "right",

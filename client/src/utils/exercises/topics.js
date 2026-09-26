@@ -2,8 +2,6 @@
 // TÁCH RA TỪ: exerciseGenerator.js
 // (di chuyển mã nguyên khối — không sửa nội dung)
 
-import React from "react";
-
 export const TOPICS = {
   GRADE_1: [
     {

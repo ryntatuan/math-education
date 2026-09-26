@@ -2,27 +2,30 @@
 // TÁCH RA TỪ: GeometryVisuals.jsx
 // (di chuyển mã nguyên khối — không sửa nội dung)
 
-import { useEffect, useState } from "react";
 import {
-  useInteractive,
-  useFillSlots,
-  slotLook,
-  FillBar,
-} from ".././interactiveFill";
-import {
-  CARD_STYLE,
-  CAPTION_STYLE,
-  captionText,
   svgFit,
-  ngatDong,
 } from ".././visualTheme";
-import { FILL } from "./geometryData.jsx";
-import { HUONG_CHU_DINH } from "./geometryData.jsx";
-import { P } from "./geometryData.jsx";
-import { PLANE } from "./geometryData.jsx";
-import { SHAPE_POINTS } from "./geometryData.jsx";
-import { caption } from "./geometryData.jsx";
-import { card } from "./geometryData.jsx";
+import {
+  FILL,
+} from "./geometryData.jsx";
+import {
+  HUONG_CHU_DINH,
+} from "./geometryData.jsx";
+import {
+  P,
+} from "./geometryData.jsx";
+import {
+  PLANE,
+} from "./geometryData.jsx";
+import {
+  SHAPE_POINTS,
+} from "./geometryData.jsx";
+import {
+  caption,
+} from "./geometryData.jsx";
+import {
+  card,
+} from "./geometryData.jsx";
 
 export function PlaneShape({
   kind = "rectangle",

@@ -262,7 +262,7 @@ export function withDistinctOptions(q) {
   return { ...q, options: shuffle(distinct) };
 }
 
-export const renderShapeVisual = (shapeType, params = {}) => {
+export const renderShapeVisual = (shapeType, _params = {}) => {
   if (shapeType === "circle") {
     return React.createElement(
       "svg",

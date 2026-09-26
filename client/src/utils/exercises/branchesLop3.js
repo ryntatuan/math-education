@@ -1,10 +1,15 @@
 // NHÁNH CỦA LỚP 3 trong bộ sinh bài Luyện tập.
 // TÁCH RA TỪ: exerciseGenerator.js · hàm buildQuestion (di chuyển mã nguyên khối).
 
-import { digitPlaceOptions, generateOptions, randInt, shuffle } from "./helpers.js";
+import {
+  digitPlaceOptions,
+  generateOptions,
+  randInt,
+  shuffle,
+} from "./helpers.js";
 
 /** Nhận đủ ngữ cảnh cũ để thân nhánh giữ nguyên từng chữ. Trả về null nếu không khớp. */
-export function nhanhLop3(topic, gNum, grade, depth, topicId, pickFromGrade) {
+export function nhanhLop3(topic, _gNum, _grade, depth, _topicId, pickFromGrade) {
 // ==========================================
 // --- GRADE 3 GENERATORS ---
 // ==========================================
