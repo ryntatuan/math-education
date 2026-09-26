@@ -160,8 +160,15 @@ math-education/
 
 ## 📱 Lộ Trình Phát Triển Mobile App (Android & iOS)
 
-Kế hoạch kỹ thuật chi tiết chuyển đổi và đóng gói ứng dụng Toán Vui sang Native Mobile App bằng **Capacitor** (tái sử dụng 95%+ code, hỗ trợ rung Haptics, tai thỏ Safe Area, nút Back Android, xuất file `.apk` / `.ipa`):
-👉 **Xem chi tiết tại:** [docs/MOBILE_APP_IMPLEMENTATION_PLAN.md](file:///d:/1.Jobs/6.PersonalProject/Education/docs/MOBILE_APP_IMPLEMENTATION_PLAN.md)
+Ứng dụng Toán Vui đã đóng gói cho mobile bằng **Capacitor** (tái sử dụng 95%+ code, hỗ trợ rung
+Haptics, tai thỏ Safe Area, nút Back Android, xuất file `.apk` / `.ipa`):
+
+- Mã nguồn phần mobile: `client/android/` · `client/ios/`
+- Quy trình tự động đóng gói APK trên GitHub Actions: `.github/workflows/build-mobile.yml`
+- Lệnh chạy trên máy: `npm --prefix client run mobile:sync` · `mobile:android` ·
+  `mobile:build:android`
+
+_(Ghi chú thiết kế/tiến độ mobile được giữ riêng trên máy, không đẩy lên GitHub.)_
 
 ---
 
