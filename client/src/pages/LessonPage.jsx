@@ -38,6 +38,11 @@ import { faceOf } from "../data/mascotFaces";
 import soundManager from "../utils/soundManager";
 import speechHelper from "../utils/speechHelper";
 import fireConfetti from "../utils/confettiHelper";
+import {
+  logLessonOpen,
+  logSlideReach,
+  logLessonDone,
+} from "../services/appEvents";
 import "./LessonPage.css";
 
 // Sáu kiểu slide mà màn hình này ĐỌC ĐƯỢC — khớp đúng 6 nhánh vẽ bên dưới và danh
@@ -117,6 +122,11 @@ export default function LessonPage() {
   const slideStartedAt = useRef(Date.now());
   useEffect(() => {
     slideStartedAt.current = Date.now();
+    // Đợt 5.1 — bé tới slide nào (biết bé dừng lại ở đâu). Không chặn giao diện.
+    logSlideReach(lessonId, currentSlide, found?.grade?.id);
+    // `found` khai báo ở dưới trong cùng phạm vi hàm: effect chạy SAU khi render xong
+    // nên giá trị đã sẵn sàng.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentSlide]);
   const [quizAnswers, setQuizAnswers] = useState({});
   const [showResult, setShowResult] = useState(false);
@@ -131,6 +141,11 @@ export default function LessonPage() {
 
   const lesson = found?.lesson;
   const _chapter = found?.chapter;
+
+  // Đợt 5.1 — bé mở bài nào (1 lần cho mỗi bài).
+  useEffect(() => {
+    logLessonOpen(lessonId, found?.grade?.id);
+  }, [lessonId, found?.grade?.id]);
   const slides = lesson?.slides || [];
   const slide = slides[currentSlide];
   const totalSlides = slides.length;
@@ -294,6 +309,8 @@ export default function LessonPage() {
 
       completeLesson(lessonId, stars);
       progressQuest("quest_lesson", 1);
+      // Đợt 5.1 — bé làm xong bài, kèm số sao (biết bài nào khó).
+      logLessonDone(lessonId, stars, found?.grade?.id);
 
       const reward = grantReward(rewardKey, lessonId);
       setEarnedReward(reward);
