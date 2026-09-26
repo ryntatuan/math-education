@@ -32,7 +32,7 @@ copy toàn bộ nội dung, dán vào ô truy vấn, bấm **Run**. Làm **đún
 | ---- | ---------------------------------------------------------- | ---------------------------------------------------- |
 | 1    | `supabase/content-seed/00-don-noi-dung-cu.sql`             | Xoá 79 bài + chương không còn trong chương trình mới |
 | 2    | `supabase/content-seed/01-lop-va-chuong.sql`               | Ghi 5 lớp và 51 chương                               |
-| 3    | `supabase/content-seed/02-bai-lop-1.sql`                   | Ghi 97 bài lớp 1                                     |
+| 3    | `supabase/content-seed/02-bai-lop-1.sql`                   | Ghi 98 bài lớp 1                                     |
 | 4    | `supabase/content-seed/03-bai-lop-2.sql`                   | Ghi 120 bài lớp 2                                    |
 | 5    | `supabase/content-seed/04-bai-lop-3.sql`                   | Ghi 123 bài lớp 3                                    |
 | 6    | `supabase/content-seed/05-bai-lop-4.sql`                   | Ghi 65 bài lớp 4                                     |

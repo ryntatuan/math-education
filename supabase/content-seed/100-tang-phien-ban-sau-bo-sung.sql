@@ -340,14 +340,15 @@ SELECT split_part(id, '-', 1) AS lop, COUNT(*) AS so_bai
 FROM public.content_lessons
 GROUP BY 1
 ORDER BY 1;
--- Mong đợi: g1 = 97 · g2 = 120 · g3 = 123 · g4 = 65 · g5 = 54 (tổng 459).
+-- Mong đợi: g1 = 98 · g2 = 120 · g3 = 123 · g4 = 65 · g5 = 54 (tổng 460).
+--   (Lớp 1 là 98 bài chứ KHÔNG phải 97 — con số 97 trong tài liệu cũ đã lỗi thời từ lần 14.)
 
 -- Tổng toàn hệ thống và số bài nháp (phải là 0 — seed luôn ghi `published`).
 SELECT
   (SELECT COUNT(*) FROM public.content_lessons) AS tong_bai,
   (SELECT COUNT(*) FROM public.content_lessons WHERE status = 'draft') AS so_nhap,
   (SELECT COUNT(*) FROM public.content_lesson_versions) AS so_phien_ban;
--- Mong đợi: tong_bai = 459 · so_nhap = 0 · so_phien_ban >= 459 (mỗi bài ít nhất một
+-- Mong đợi: tong_bai = 460 · so_nhap = 0 · so_phien_ban >= 460 (mỗi bài ít nhất một
 --   dòng v1; một số bài có thể có thêm v2, v3 … nếu admin từng publish).
 
 -- ── 2. Đẩy phiên bản ───────────────────────────────────────────────────────
@@ -383,7 +384,7 @@ WHERE key IN ('content_source', 'content_version') ORDER BY key;
 
 -- ── 4. Kiểm trên app của bé (không cần SQL) ────────────────────────────────
 -- Mở lại app (đúng tài khoản bé đã dùng trước đó) và xem log:
---   [nội dung] đọc từ DB: 5 lớp · 51 chương · 459 bài · 2545 slide · phiên bản N
+--   [nội dung] đọc từ DB: 5 lớp · 51 chương · 460 bài · 2774 slide · phiên bản N
 --
 -- Kiểm ĐÚNG những chỗ từng sai — đây là lỗi mà chủ app tự phát hiện:
 --   • Lớp 2 → chương về phép nhân CHỈ được có bảng nhân 2 và bảng nhân 5.
