@@ -44,6 +44,10 @@ supabase/.temp/
 
 # Documentation
 # (README.md is tracked)
+# Thư mục tài liệu nội bộ (kế hoạch, rà soát SGK, bản OCR, ghi chú nháp) — GIỮ TRÊN MÁY,
+# KHÔNG đẩy lên GitHub. Đã ngừng theo dõi ngày 2026-09-26 (`git rm -r --cached docs`).
+# ⚠️ Muốn đưa lại lên git: xoá dòng dưới rồi `git add -f docs/`.
+docs/
 
 
 # Output tạm của công cụ kiểm thử
