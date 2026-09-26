@@ -24,7 +24,8 @@ Math.random = () => {
 };
 
 const mod = await import("../client/src/utils/exerciseGenerator.js");
-const { TOPICS, PRACTICE_EXTRA_TOPICS, generateQuestion, generateCalculation } = mod;
+const { TOPICS, PRACTICE_EXTRA_TOPICS, generateQuestion, generateCalculation } =
+  mod;
 
 const goi = (fn) => {
   try {
@@ -47,7 +48,8 @@ for (const [khoa, arr] of Object.entries(TOPICS)) {
   const lop = Number(khoa.replace(/\D/g, ""));
   soLopTopic[khoa] = arr.length;
   for (const t of arr) {
-    for (let i = 0; i < SO_MAU; i++) them(`${khoa}|${t.id}|${i}`, () => generateQuestion(lop, t.id));
+    for (let i = 0; i < SO_MAU; i++)
+      them(`${khoa}|${t.id}|${i}`, () => generateQuestion(lop, t.id));
   }
 }
 
@@ -58,14 +60,17 @@ for (const [khoa, arr] of Object.entries(PRACTICE_EXTRA_TOPICS)) {
   soExtra[khoa] = arr.length;
   const lop = Number(khoa.replace(/\D/g, "")) || 1;
   for (const t of arr) {
-    for (let i = 0; i < SO_MAU; i++) them(`EXTRA|${t.id}|${i}`, () => generateQuestion(lop, t.id));
+    for (let i = 0; i < SO_MAU; i++)
+      them(`EXTRA|${t.id}|${i}`, () => generateQuestion(lop, t.id));
   }
 }
 
 // 3) Đường KHÔNG truyền topic
 for (let lop = 1; lop <= 5; lop++) {
-  for (let i = 0; i < 60; i++) them(`NGRADE${lop}|${i}`, () => generateQuestion(lop));
-  for (let i = 0; i < 60; i++) them(`CALC${lop}|${i}`, () => generateCalculation(lop));
+  for (let i = 0; i < 60; i++)
+    them(`NGRADE${lop}|${i}`, () => generateQuestion(lop));
+  for (let i = 0; i < 60; i++)
+    them(`CALC${lop}|${i}`, () => generateCalculation(lop));
 }
 
 const args = process.argv.slice(2);
@@ -94,12 +99,20 @@ if (iSo >= 0) {
   }
   const khac = [];
   for (let i = 0; i < kho.length; i++) {
-    const a = JSON.stringify(truoc[i]), b = JSON.stringify(kho[i]);
-    if (a !== b) khac.push({ nhan: kho[i].nhan, truoc: a.slice(0, 150), sau: b.slice(0, 150) });
+    const a = JSON.stringify(truoc[i]),
+      b = JSON.stringify(kho[i]);
+    if (a !== b)
+      khac.push({
+        nhan: kho[i].nhan,
+        truoc: a.slice(0, 150),
+        sau: b.slice(0, 150),
+      });
   }
   console.log(`So ${kho.length} mẫu: ${khac.length} khác`);
   for (const k of khac.slice(0, 10)) {
-    console.log(`  ✗ ${k.nhan}\n      trước: ${k.truoc}\n      sau  : ${k.sau}`);
+    console.log(
+      `  ✗ ${k.nhan}\n      trước: ${k.truoc}\n      sau  : ${k.sau}`,
+    );
   }
   process.exit(khac.length ? 1 : 0);
 }

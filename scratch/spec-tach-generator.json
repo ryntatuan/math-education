@@ -4,7 +4,13 @@
   "groups": [
     {
       "file": "topics.js",
-      "symbols": ["TOPICS", "PRACTICE_EXTRA_TOPICS", "MAZE_MAX", "EMOJIS", "CALC_OP"]
+      "symbols": [
+        "TOPICS",
+        "PRACTICE_EXTRA_TOPICS",
+        "MAZE_MAX",
+        "EMOJIS",
+        "CALC_OP"
+      ]
     },
     {
       "file": "helpers.js",

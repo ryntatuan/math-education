@@ -16,7 +16,13 @@
 //    (Điều kiện của các nhánh là mã topic RIÊNG THEO LỚP nên không chồng nhau.)
 //  • Thước kiểm: `scratch/chup-mau-cau-hoi.mjs --so scratch/mau-truoc.json` phải báo 0 khác.
 
-import { readFileSync, writeFileSync, mkdirSync, existsSync, copyFileSync } from "node:fs";
+import {
+  readFileSync,
+  writeFileSync,
+  mkdirSync,
+  existsSync,
+  copyFileSync,
+} from "node:fs";
 import { join } from "node:path";
 
 const FILE = "client/src/utils/exerciseGenerator.js";
@@ -26,22 +32,57 @@ const lines = readFileSync(FILE, "utf8").split(/\r?\n/);
 
 // ── Bộ quét ngoặc (bỏ qua chuỗi + chú thích) ────────────────────────────────
 function quetTu(start, { dungKhiDong = true } = {}) {
-  let depth = 0, batDau = false, str = null, cmt = false, blk = false, dauTien = null;
+  let depth = 0,
+    batDau = false,
+    str = null,
+    cmt = false,
+    blk = false,
+    dauTien = null;
   for (let k = start; k < lines.length; k++) {
     const s = lines[k];
     for (let c = 0; c < s.length; c++) {
-      const ch = s[c], nx = s[c + 1];
+      const ch = s[c],
+        nx = s[c + 1];
       if (cmt) break;
-      if (blk) { if (ch === "*" && nx === "/") { blk = false; c++; } continue; }
-      if (str) { if (ch === "\\") { c++; continue; } if (ch === str) str = null; continue; }
-      if (ch === "/" && nx === "/") { cmt = true; break; }
-      if (ch === "/" && nx === "*") { blk = true; c++; continue; }
-      if (ch === '"' || ch === "'" || ch === "`") { str = ch; continue; }
-      if ("{[(".includes(ch)) { depth++; batDau = true; if (dauTien === null) dauTien = k; }
-      else if ("}])".includes(ch)) { depth--; }
+      if (blk) {
+        if (ch === "*" && nx === "/") {
+          blk = false;
+          c++;
+        }
+        continue;
+      }
+      if (str) {
+        if (ch === "\\") {
+          c++;
+          continue;
+        }
+        if (ch === str) str = null;
+        continue;
+      }
+      if (ch === "/" && nx === "/") {
+        cmt = true;
+        break;
+      }
+      if (ch === "/" && nx === "*") {
+        blk = true;
+        c++;
+        continue;
+      }
+      if (ch === '"' || ch === "'" || ch === "`") {
+        str = ch;
+        continue;
+      }
+      if ("{[(".includes(ch)) {
+        depth++;
+        batDau = true;
+        if (dauTien === null) dauTien = k;
+      } else if ("}])".includes(ch)) {
+        depth--;
+      }
     }
     cmt = false;
-    if (batDau && depth === 0 && dungKhiDong) return { dau: dauTien ?? start, cuoi: k };
+    if (batDau && depth === 0 && dungKhiDong)
+      return { dau: dauTien ?? start, cuoi: k };
   }
   throw new Error("Không tìm thấy điểm đóng khối từ dòng " + (start + 1));
 }
@@ -59,8 +100,16 @@ let chuThich = [];
 while (k < iThanCuoi) {
   const l = lines[k];
   const trong = l.trim();
-  if (trong === "") { chuThich = []; k++; continue; }
-  if (trong.startsWith("//") || trong.startsWith("/*") || trong.startsWith("*")) {
+  if (trong === "") {
+    chuThich = [];
+    k++;
+    continue;
+  }
+  if (
+    trong.startsWith("//") ||
+    trong.startsWith("/*") ||
+    trong.startsWith("*")
+  ) {
     chuThich.push(k);
     k++;
     continue;
@@ -68,7 +117,11 @@ while (k < iThanCuoi) {
   const m = /^(\s*)if \(/.test(l);
   if (!m) {
     // Câu lệnh khác ở cấp thân hàm (khai báo biến, khối mê cung viết dạng khác…) -> báo
-    nhanh.push({ dau: chuThich.length ? chuThich[0] : k, cuoi: k, laNhanh: false });
+    nhanh.push({
+      dau: chuThich.length ? chuThich[0] : k,
+      cuoi: k,
+      laNhanh: false,
+    });
     chuThich = [];
     // nhảy qua khối nếu có ngoặc
     if (/[{[\(]/.test(l) && !/;\s*$/.test(l)) {
@@ -87,7 +140,9 @@ while (k < iThanCuoi) {
   // Nhánh phải có `return` Ở BẤT KỲ CẤP NÀO bên trong (nhiều nhánh viết
   // `if (Math.random() > 0.5) { return A } else { return B }` ⇒ không có `return` cấp ngoài).
   const le = (lines[k].match(/^\s*/) ?? [""])[0].length;
-  const coReturn = thanText.some((t) => new RegExp(`^\\s{${le + 2}}return\\b`).test(t));
+  const coReturn = thanText.some((t) =>
+    new RegExp(`^\\s{${le + 2}}return\\b`).test(t),
+  );
   const coReturnSau = thanText.some((t) => /^\s+return\b/.test(t));
   const lop = [...header.matchAll(/g(\d)[_"]/g)].map((x) => Number(x[1]));
   const lopDuyNhat = [...new Set(lop)];
@@ -109,8 +164,14 @@ const theoNhom = new Map(); // "lop1".."lop5" | null(chung) -> [nhánh]
 const khongTachDuoc = [];
 const thuTuLop = [];
 for (const n of nhanh) {
-  if (!n.laNhanh) { khongTachDuoc.push(n); continue; }
-  if (!n.coReturnSau || n.lop.length !== 1) { khongTachDuoc.push(n); continue; }
+  if (!n.laNhanh) {
+    khongTachDuoc.push(n);
+    continue;
+  }
+  if (!n.coReturnSau || n.lop.length !== 1) {
+    khongTachDuoc.push(n);
+    continue;
+  }
   const khoa = "lop" + n.lop[0];
   if (!theoNhom.has(khoa)) theoNhom.set(khoa, []);
   theoNhom.get(khoa).push(n);
@@ -118,12 +179,19 @@ for (const n of nhanh) {
 }
 
 console.log(`${FILE}: hàm buildQuestion ở dòng ${iHam + 1}-${iThanCuoi + 1}`);
-console.log(`  nhánh cắt được theo lớp: ` + [...theoNhom].map(([k, v]) => `${k}=${v.length}`).join(" · "));
+console.log(
+  `  nhánh cắt được theo lớp: ` +
+    [...theoNhom].map(([k, v]) => `${k}=${v.length}`).join(" · "),
+);
 console.log(`  nhánh GIỮ LẠI trong khung: ${khongTachDuoc.length}`);
 for (const n of khongTachDuoc.slice(0, 40)) {
-  console.log(`     · dòng ${n.dau + 1}: ${(lines[n.dau].trim() || lines[n.dau + 1]?.trim() || "").slice(0, 76)}`);
+  console.log(
+    `     · dòng ${n.dau + 1}: ${(lines[n.dau].trim() || lines[n.dau + 1]?.trim() || "").slice(0, 76)}`,
+  );
 }
-const tongDong = [...theoNhom.values()].flat().reduce((s, n) => s + (n.cuoi - n.dau + 1), 0);
+const tongDong = [...theoNhom.values()]
+  .flat()
+  .reduce((s, n) => s + (n.cuoi - n.dau + 1), 0);
 console.log(`  số dòng chuyển ra file lớp: ${tongDong}`);
 
 if (!GHI) {
@@ -137,7 +205,9 @@ copyFileSync(FILE, FILE + ".bak");
 const tenHam = (khoa) => "nhanh" + khoa[0].toUpperCase() + khoa.slice(1);
 const thanFileGoc = lines.slice(0, iHam).join("\n");
 const canImport = (text) => {
-  const co = new Set([...text.matchAll(/\b[A-Za-z_$][\w$]*\b/g)].map((x) => x[0]));
+  const co = new Set(
+    [...text.matchAll(/\b[A-Za-z_$][\w$]*\b/g)].map((x) => x[0]),
+  );
   return co;
 };
 
@@ -146,7 +216,9 @@ const helpersCo = new Set();
 const topicsCo = new Set();
 for (const f of ["helpers", "topics"]) {
   const t = readFileSync(join(OUT, f + ".js"), "utf8");
-  for (const m of t.matchAll(/^export (?:function|const) ([A-Za-z_$][\w$]*)/gm)) {
+  for (const m of t.matchAll(
+    /^export (?:function|const) ([A-Za-z_$][\w$]*)/gm,
+  )) {
     (f === "helpers" ? helpersCo : topicsCo).add(m[1]);
   }
 }
@@ -156,7 +228,12 @@ for (const [khoa, ds] of theoNhom) {
   const ten = "branchesLop" + khoa.replace("lop", "") + ".js";
   tenFileLop.set(khoa, ten);
   const than = ds
-    .map((n) => lines.slice(n.dau, n.cuoi + 1).map((t) => t.replace(/^ {2}/, "")).join("\n"))
+    .map((n) =>
+      lines
+        .slice(n.dau, n.cuoi + 1)
+        .map((t) => t.replace(/^ {2}/, ""))
+        .join("\n"),
+    )
     .join("\n");
   const co = canImport(than);
   const tHelpers = [...helpersCo].filter((x) => co.has(x)).sort();
@@ -166,10 +243,14 @@ for (const [khoa, ds] of theoNhom) {
     `// TÁCH RA TỪ: exerciseGenerator.js · hàm buildQuestion (di chuyển mã nguyên khối).`,
     ``,
   ];
-  if (tTopics.length) dong.push(`import { ${tTopics.join(", ")} } from "./topics.js";`);
-  if (tHelpers.length) dong.push(`import { ${tHelpers.join(", ")} } from "./helpers.js";`);
+  if (tTopics.length)
+    dong.push(`import { ${tTopics.join(", ")} } from "./topics.js";`);
+  if (tHelpers.length)
+    dong.push(`import { ${tHelpers.join(", ")} } from "./helpers.js";`);
   dong.push(``);
-  dong.push(`/** Nhận đủ ngữ cảnh cũ để thân nhánh giữ nguyên từng chữ. Trả về null nếu không khớp. */`);
+  dong.push(
+    `/** Nhận đủ ngữ cảnh cũ để thân nhánh giữ nguyên từng chữ. Trả về null nếu không khớp. */`,
+  );
   dong.push(
     `export function ${tenHam(khoa)}(topic, gNum, grade, depth, topicId, pickFromGrade) {`,
   );
@@ -210,14 +291,29 @@ const dongHam = [
   ...lines.slice(iThanCuoi + 1),
 ];
 // Import các hàm lớp vào khung (chèn ngay sau khối import hiện có)
-const viTriImport = lines.findIndex((l, idx) => idx > 0 && /^import .*;\s*$/.test(l) === false && idx > 0 && l.trim() !== "" && !l.startsWith("import") && !l.startsWith("//") && !l.startsWith("*") && !l.startsWith("/*"));
+const viTriImport = lines.findIndex(
+  (l, idx) =>
+    idx > 0 &&
+    /^import .*;\s*$/.test(l) === false &&
+    idx > 0 &&
+    l.trim() !== "" &&
+    !l.startsWith("import") &&
+    !l.startsWith("//") &&
+    !l.startsWith("*") &&
+    !l.startsWith("/*"),
+);
 const khung = dongHam.join("\n");
 const themImport = [...daGoiLop]
   .sort()
-  .map((khoa) => `import { ${tenHam(khoa)} } from "./exercises/${tenFileLop.get(khoa)}";`)
+  .map(
+    (khoa) =>
+      `import { ${tenHam(khoa)} } from "./exercises/${tenFileLop.get(khoa)}";`,
+  )
   .join("\n");
 const viTriChen = khung.indexOf("\n\n", khung.lastIndexOf("import "));
 const khungSau =
-  viTriChen > 0 ? khung.slice(0, viTriChen) + "\n" + themImport + khung.slice(viTriChen) : khung;
+  viTriChen > 0
+    ? khung.slice(0, viTriChen) + "\n" + themImport + khung.slice(viTriChen)
+    : khung;
 writeFileSync(FILE, khungSau, "utf8");
 console.log(`  ✓ ${FILE}  (còn ${khungSau.split("\n").length} dòng)`);

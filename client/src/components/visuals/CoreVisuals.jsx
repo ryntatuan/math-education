@@ -989,15 +989,25 @@ export function Money({ notes = [20000, 5000], label = "" }) {
 
   return (
     <div style={card}>
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: 10,
-          justifyContent: "center",
-        }}
-      >
-        {shown.map((n, i) => {
+      {shown.length === 0 ? (
+        /*
+         * KHÔNG BAO GIỜ ĐỂ KHUNG TRỐNG. Dữ liệu tiền hỏng (thiếu `notes`, mảng rỗng, toàn số âm)
+         * mà vẽ ra một thẻ không có chữ nào thì trông y như app hỏng — trẻ không biết chuyện gì.
+         * Phép thử `scratch/test-visuals-entry.jsx` coi "đầu ra rỗng" là LỖI (đúng như vậy), và
+         * đây là chỗ duy nhất trong bộ vẽ tiền còn lại lỗi đó.
+         * Chỉ hiện khi dữ liệu SAI — dữ liệu thật đã sửa hết từ trước (xem chú thích ở `shown`).
+         */
+        <span style={caption}>Chưa có tờ tiền nào để xem.</span>
+      ) : (
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: 10,
+            justifyContent: "center",
+          }}
+        >
+          {shown.map((n, i) => {
           const st = NOTE_STYLE[n] || { bg: "#f1f5f9", bd: PALETTE.line };
           return (
             <div
@@ -1033,8 +1043,9 @@ export function Money({ notes = [20000, 5000], label = "" }) {
               </div>
             </div>
           );
-        })}
-      </div>
+          })}
+        </div>
+      )}
       {shown.length > 0 && (
         <span style={caption}>
           {captionText(

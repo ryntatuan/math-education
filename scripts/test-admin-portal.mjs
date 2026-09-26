@@ -64,14 +64,14 @@ const read = (rel) => fs.readFileSync(path.join(ROOT, rel), "utf8");
 const readJson = (rel) => JSON.parse(read(rel).replace(/^\uFEFF/, ""));
 const exists = (rel) => fs.existsSync(path.join(ROOT, rel));
 
-  /**
-   * Mã của MÀN HÌNH BÀI HỌC = file khung + các file slide đã tách ra (đợt 3.1).
-   *
-   * 🔴 VÌ SAO PHẢI GỘP: các cổng dưới đây soi source theo CHUỖI (`faceOf`, chốt 0 slide…).
-   * Tách file là chuyển mã sang `client/src/pages/lesson/*.jsx` ⇒ nếu cổng chỉ đọc
-   * `LessonPage.jsx` thì nó **đỏ oan** dù mã vẫn đúng. Cổng phải đọc theo ĐƠN VỊ LOGIC,
-   * không theo tên file cố định — chính họ lỗi đã gặp ở cổng S-20 (`aside` bị cắt sai).
-   */
+/**
+ * Mã của MÀN HÌNH BÀI HỌC = file khung + các file slide đã tách ra (đợt 3.1).
+ *
+ * 🔴 VÌ SAO PHẢI GỘP: các cổng dưới đây soi source theo CHUỖI (`faceOf`, chốt 0 slide…).
+ * Tách file là chuyển mã sang `client/src/pages/lesson/*.jsx` ⇒ nếu cổng chỉ đọc
+ * `LessonPage.jsx` thì nó **đỏ oan** dù mã vẫn đúng. Cổng phải đọc theo ĐƠN VỊ LOGIC,
+ * không theo tên file cố định — chính họ lỗi đã gặp ở cổng S-20 (`aside` bị cắt sai).
+ */
 const LESSON_DIR = "client/src/pages/lesson";
 const readLessonPage = () => {
   const goc = read("client/src/pages/LessonPage.jsx");
