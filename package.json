@@ -9,6 +9,7 @@
     "dev:admin": "cd admin && npm run dev",
     "test:portal": "node scripts/test-admin-portal.mjs",
     "test:portal:static": "node scripts/test-admin-portal.mjs --static",
+    "test": "cd client && npm test",
     "build": "node scripts/build-apk.mjs",
     "version:bump": "node scripts/bump-version.mjs",
     "build:web": "cd client && npm run build:web",
