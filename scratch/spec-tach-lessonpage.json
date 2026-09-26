@@ -1,0 +1,23 @@
+{
+  "file": "client/src/pages/LessonPage.jsx",
+  "outDir": "client/src/pages/lesson",
+  "groups": [
+    { "file": "slideHead.jsx", "symbols": ["SlideHead"] },
+    { "file": "storySlide.jsx", "symbols": ["StorySlide"] },
+    { "file": "visualSlide.jsx", "symbols": ["VisualSlide"] },
+    {
+      "file": "lessonGraphics.jsx",
+      "symbols": [
+        "ClockGraphic",
+        "CalcFigures",
+        "ShapeGraphic",
+        "UniversalVisualGrid",
+        "MultiVisualGallery"
+      ]
+    },
+    { "file": "dialogueSlides.jsx", "symbols": ["DialogueScene", "DialogueSlide"] },
+    { "file": "conceptSlide.jsx", "symbols": ["ConceptSlide"] },
+    { "file": "quizSlide.jsx", "symbols": ["QuizSlide"] },
+    { "file": "summarySlide.jsx", "symbols": ["SummarySlide"] }
+  ]
+}

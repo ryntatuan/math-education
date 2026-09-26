@@ -64,6 +64,26 @@ const read = (rel) => fs.readFileSync(path.join(ROOT, rel), "utf8");
 const readJson = (rel) => JSON.parse(read(rel).replace(/^\uFEFF/, ""));
 const exists = (rel) => fs.existsSync(path.join(ROOT, rel));
 
+  /**
+   * Mã của MÀN HÌNH BÀI HỌC = file khung + các file slide đã tách ra (đợt 3.1).
+   *
+   * 🔴 VÌ SAO PHẢI GỘP: các cổng dưới đây soi source theo CHUỖI (`faceOf`, chốt 0 slide…).
+   * Tách file là chuyển mã sang `client/src/pages/lesson/*.jsx` ⇒ nếu cổng chỉ đọc
+   * `LessonPage.jsx` thì nó **đỏ oan** dù mã vẫn đúng. Cổng phải đọc theo ĐƠN VỊ LOGIC,
+   * không theo tên file cố định — chính họ lỗi đã gặp ở cổng S-20 (`aside` bị cắt sai).
+   */
+const LESSON_DIR = "client/src/pages/lesson";
+const readLessonPage = () => {
+  const goc = read("client/src/pages/LessonPage.jsx");
+  if (!exists(LESSON_DIR)) return goc;
+  const phan = fs
+    .readdirSync(path.join(ROOT, LESSON_DIR))
+    .filter((f) => f.endsWith(".jsx"))
+    .sort()
+    .map((f) => read(LESSON_DIR + "/" + f));
+  return [goc, ...phan].join("\n");
+};
+
 function walk(dir, exts) {
   const out = [];
   const full = path.join(ROOT, dir);
@@ -1747,7 +1767,7 @@ if (!ONLY_DB) {
       // slide 1 — nên phải kiểm cả hai chiều.
       const src = read("client/src/data/contentSource.js");
       const app = read("client/src/App.jsx");
-      const bai = read("client/src/pages/LessonPage.jsx");
+      const bai = readLessonPage();
 
       const coChan = (t) => /if \(dangTrongBaiHoc\) return;/.test(t);
       assert(
@@ -1871,7 +1891,7 @@ if (!ONLY_DB) {
         new URL("../client/src/data/mascotFaces.js", import.meta.url)
       );
       const page = read("admin/src/pages/ReferencePage.jsx");
-      const bai = read("client/src/pages/LessonPage.jsx");
+      const bai = readLessonPage();
 
       // ── (1) Bảng biểu cảm ở trang phải KHỚP từ vựng của app: CẢ danh sách giá trị
       //        LẪN mặt của từng giá trị. Một trong hai lệch là người dùng tra sai.
@@ -2131,7 +2151,7 @@ if (!ONLY_DB) {
       //   (3) Admin không coi "0 dòng" là lỗi kỹ thuật ⇒ người dùng hiểu chuyện gì
       //       vừa xảy ra thay vì đọc `PGRST116 … contains 0 rows`.
       const sql = read("supabase/migrations/0014_xoa_bai_hoc_trong_db.sql");
-      const baiHoc = read("client/src/pages/LessonPage.jsx");
+      const baiHoc = readLessonPage();
       const nha = read("client/src/pages/HomePage.jsx");
       const admin = read("admin/src/pages/ContentPage.jsx");
 

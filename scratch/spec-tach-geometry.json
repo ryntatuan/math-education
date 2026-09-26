@@ -1,0 +1,34 @@
+{
+  "file": "client/src/components/visuals/GeometryVisuals.jsx",
+  "outDir": "client/src/components/visuals/geometry",
+  "groups": [
+    {
+      "file": "geometryData.jsx",
+      "symbols": [
+        "P",
+        "card",
+        "caption",
+        "num",
+        "clamp",
+        "PLANE",
+        "SHAPE_POINTS",
+        "FILL",
+        "HUONG_CHU_DINH",
+        "ANGLE_DEF",
+        "SOLID_NAME",
+        "DO_VAT",
+        "MAU_HINH",
+        "TEN_HINH",
+        "mauCua"
+      ]
+    },
+    { "file": "hinhPhang.jsx", "symbols": ["PlaneShape", "HinhNho"] },
+    { "file": "gocTron.jsx", "symbols": ["Angle", "CircleParts"] },
+    { "file": "hinhKhoi.jsx", "symbols": ["Solid", "VeDoVat", "ShapePicture"] },
+    { "file": "dayHinh.jsx", "symbols": ["PatternRow", "ShapeJoin", "PointLine"] },
+    {
+      "file": "khongGian.jsx",
+      "symbols": ["Block3D", "LabelPill", "LetterBlocks", "SpatialScene"]
+    }
+  ]
+}
