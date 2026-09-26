@@ -1,0 +1,26 @@
+{
+  "file": "client/src/utils/exerciseGenerator.js",
+  "outDir": "client/src/utils/exercises",
+  "groups": [
+    {
+      "file": "topics.js",
+      "symbols": ["TOPICS", "PRACTICE_EXTRA_TOPICS", "MAZE_MAX", "EMOJIS", "CALC_OP"]
+    },
+    {
+      "file": "helpers.js",
+      "symbols": [
+        "randInt",
+        "shuffle",
+        "generateOptions",
+        "digitPlaceOptions",
+        "randomLongRoute",
+        "buildNumberMaze",
+        "mazeRule",
+        "mazeTopicId",
+        "withDistinctOptions",
+        "renderShapeVisual",
+        "buildCalculation"
+      ]
+    }
+  ]
+}
