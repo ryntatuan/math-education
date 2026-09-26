@@ -71,7 +71,28 @@ export const g3c15 = {
               "20 bạn"
             ],
             "answer": "4 bạn",
-            "mascotHint": "12 − 8 = 4 bạn."
+            "mascotHint": "12 − 8 = 4 bạn.",
+            "table": {
+              "headers": [
+                "Môn",
+                "Số bạn"
+              ],
+              "rows": [
+                [
+                  "Bóng đá",
+                  12
+                ],
+                [
+                  "Cầu lông",
+                  8
+                ],
+                [
+                  "Bơi",
+                  5
+                ]
+              ],
+              "label": "Bảng số liệu lớp 3A — môn được nhiều bạn thích nhất là bóng đá"
+            }
           }
         },
         {

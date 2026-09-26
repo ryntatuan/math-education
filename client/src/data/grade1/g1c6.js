@@ -927,6 +927,16 @@ export const g1c6 = {
             options: [46, 55, 54, 35],
             answer: 55,
             mascotHint: "Xuống một hàng là thêm 10: 45 thêm 10 được 55.",
+            table: {
+              headers: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+              rows: [
+                [11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+                [21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
+                [31, 32, 33, 34, 35, 36, 37, 38, 39, 40],
+                [41, 42, 43, 44, 45, 46, 47, 48, 49, 50],
+              ],
+              label: "Bảng các số từ 1 đến 100 (năm chục đầu)",
+            },
           },
         },
         {
@@ -937,6 +947,16 @@ export const g1c6 = {
             options: [1, 9, 10, 100],
             answer: 10,
             mascotHint: "Mỗi hàng có 10 số nên xuống một hàng là thêm 10.",
+            table: {
+              headers: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+              rows: [
+                [11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+                [21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
+                [31, 32, 33, 34, 35, 36, 37, 38, 39, 40],
+                [41, 42, 43, 44, 45, 46, 47, 48, 49, 50],
+              ],
+              label: "Bảng các số từ 1 đến 100 (năm chục đầu)",
+            },
           },
         },
         {
@@ -1208,7 +1228,41 @@ export const g1c6 = {
               24
             ],
             "answer": 33,
-            "mascotHint": "Đi xuống một hàng là thêm 10: 23 + 10 = 33."
+            "mascotHint": "Đi xuống một hàng là thêm 10: 23 + 10 = 33.",
+            "numberScene": {
+              "mode": "numberTrain",
+              "kind": "ribbon",
+              "numbers": [
+                51,
+                52,
+                53,
+                null,
+                55,
+                56,
+                null,
+                58,
+                59,
+                60,
+                71,
+                null,
+                73,
+                74,
+                75,
+                null,
+                null,
+                78,
+                79,
+                80
+              ],
+              "answers": [
+                54,
+                57,
+                72,
+                76,
+                77
+              ],
+              "note": "Hai hàng của bảng số: mỗi hàng mười số liền nhau."
+            }
           }
         },
         {

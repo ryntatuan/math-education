@@ -294,6 +294,11 @@ export const g1c4 = {
             answer: "Hình B và hình G",
             mascotHint:
               "Hình B cao hẹp, hình G dài — các mặt không đều nhau nên là khối hộp chữ nhật.",
+            spatialScene: {
+              mode: "solidSort",
+              round: 2,
+              note: "Hình B cao và hẹp, hình G dài — cả hai đều là khối hộp chữ nhật.",
+            },
           },
         },
         {

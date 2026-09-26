@@ -54,6 +54,12 @@ export const g1c9 = {
             options: [6, 10, 12, 24],
             answer: 12,
             mascotHint: "Mặt đồng hồ có 12 số, từ 1 đến 12.",
+            clock: {
+              hour: 3,
+              minute: 0,
+              timeText:
+                "Mặt đồng hồ có 12 số — kim ngắn chỉ giờ, kim dài chỉ phút",
+            },
           },
         },
         {
@@ -63,6 +69,12 @@ export const g1c9 = {
             options: ["Kim ngắn", "Kim dài", "Cả hai kim", "Không kim nào"],
             answer: "Kim ngắn",
             mascotHint: "Kim ngắn chỉ giờ, kim dài chỉ phút.",
+            clock: {
+              hour: 3,
+              minute: 0,
+              timeText:
+                "Mặt đồng hồ có 12 số — kim ngắn chỉ giờ, kim dài chỉ phút",
+            },
           },
         },
         {

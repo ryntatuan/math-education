@@ -143,7 +143,7 @@ export const g1c1 = {
         {
           type: "visual",
           content: {
-            text: "Đếm rồi chọn số thích hợp (SGK tr.9)",
+            text: "Quan sát tranh — bé đếm từng nhóm rồi trả lời câu hỏi bên dưới",
             numberScene: {
               mode: "manyGroups",
               groups: [
@@ -171,6 +171,11 @@ export const g1c1 = {
             options: [1, 2, 3, 4],
             answer: 3,
             mascotHint: "Bể thứ ba có 3 khối: một, hai, ba.",
+            numberScene: {
+              mode: "numberShow",
+              kind: "tank",
+              note: "Bể rỗng là 0. Bé vừa đếm vừa đọc: một, hai, ba, bốn, năm, không.",
+            },
           },
         },
         {
@@ -251,7 +256,7 @@ export const g1c1 = {
         {
           type: "visual",
           content: {
-            text: "Đếm số con vật rồi chọn số thích hợp (SGK tr.10)",
+            text: "Quan sát tranh — bé đếm từng nhóm rồi trả lời câu hỏi bên dưới",
             numberScene: {
               mode: "manyGroups",
               groups: [
@@ -562,7 +567,7 @@ export const g1c1 = {
         {
           type: "visual",
           content: {
-            text: "Chọn số thích hợp với số con vật (SGK tr.18)",
+            text: "Quan sát tranh — bé đếm từng nhóm rồi trả lời câu hỏi bên dưới",
             numberScene: {
               mode: "manyGroups",
               groups: [
@@ -582,6 +587,16 @@ export const g1c1 = {
             options: [5, 6, 7, 8],
             answer: 7,
             mascotHint: "Đếm từng con một: có 7 con chim.",
+            numberScene: {
+              mode: "manyGroups",
+              groups: [
+                {
+                  emoji: "🐦",
+                  n: 7,
+                },
+              ],
+              unit: "Bé đếm xem có mấy con chim",
+            },
           },
         },
         {
