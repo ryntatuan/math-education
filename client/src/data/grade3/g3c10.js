@@ -186,32 +186,26 @@ export const g3c10 = {
             ]
           }
         },
+                {
+          "type": "visual",
+          "content": {
+            "text": "Đặt tính rồi tính 2 768 + 1 456\nLuyện tập cộng, trừ trong phạm vi 10 000\n1) hàng đơn vị 8 + 6 = 14, viết 4 nhớ 1\n2) hàng chục 6 + 5 + 1 (nhớ) = 12, viết 2 nhớ 1\n3) hàng trăm 7 + 4 + 1 (nhớ) = 12, viết 2 nhớ 1\n4) hàng nghìn 2 + 1 + 1 (nhớ) = 4, viết 4\nVậy 2 768 + 1 456 = 4 224.",
+            "cotTinh": {
+              "left": 2768,
+              "right": 1456,
+              "sign": "+",
+              "remember": true
+            }
+          }
+        },
         {
           "type": "visual",
           "content": {
-            "text": "  2 768          5 002\n+ 1 456        − 1 345\n  4 224          3 657",
-            "operation": {
-              "left": 2768,
-              "sign": "+",
-              "right": 1456,
-              "result": 4224
-            },
-            "table": {
-              "headers": [
-                "Phép tính",
-                "Kết quả"
-              ],
-              "rows": [
-                [
-                  "2 768 + 1 456",
-                  "4 224"
-                ],
-                [
-                  "5 002 − 1 345",
-                  "3 657"
-                ]
-              ],
-              "label": "Luyện tập cộng, trừ trong phạm vi 10 000"
+            "text": "Đặt tính rồi tính 5 002 − 1 345\n1) hàng đơn vị 2 < 5 nên mượn 1: 12 − 5 = 7, viết 7\n2) hàng chục 0 < 5 nên mượn 1: 10 − 5 = 5, viết 5\n3) hàng trăm 0 < 4 nên mượn 1: 10 − 4 = 6, viết 6\n4) hàng nghìn 5 − 2 = 3, viết 3\nVậy 5 002 − 1 345 = 3 657.",
+            "cotTinh": {
+              "left": 5002,
+              "right": 1345,
+              "sign": "−"
             }
           }
         },

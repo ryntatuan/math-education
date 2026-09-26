@@ -222,32 +222,26 @@ export const g3c14 = {
             ]
           }
         },
+                {
+          "type": "visual",
+          "content": {
+            "text": "Đặt tính rồi tính 13 241 × 3\nLuyện tập nhân, chia trong phạm vi 100 000\n1) hàng đơn vị 1 × 3 = 3, viết 3\n2) hàng chục 4 × 3 = 12, viết 2 nhớ 1\n3) hàng trăm 2 × 3 + 1 (nhớ) = 7, viết 7\n4) hàng nghìn 3 × 3 = 9, viết 9\n5) hàng chục nghìn 1 × 3 = 3, viết 3\nVậy 13 241 × 3 = 39 723.",
+            "cotTinh": {
+              "left": 13241,
+              "right": 3,
+              "sign": "×",
+              "remember": true
+            }
+          }
+        },
         {
           "type": "visual",
           "content": {
-            "text": "13 241 × 3 = 39 723\n47 125 : 5 = 9 425",
-            "operation": {
-              "left": 13241,
-              "sign": "×",
-              "right": 3,
-              "result": 39723
-            },
-            "table": {
-              "headers": [
-                "Phép tính",
-                "Kết quả"
-              ],
-              "rows": [
-                [
-                  "13 241 × 3",
-                  "39 723"
-                ],
-                [
-                  "47 125 : 5",
-                  "9 425"
-                ]
-              ],
-              "label": "Luyện tập nhân, chia trong phạm vi 100 000"
+            "text": "Đặt tính rồi chia 47 125 : 5\n1) hạ 4: 4 chưa chia được cho 5, hạ tiếp chữ số sau\n2) hạ 7: 47 : 5 = 9, viết 9 (còn 2)\n3) hạ 1: 21 : 5 = 4, viết 4 (còn 1)\n4) hạ 2: 12 : 5 = 2, viết 2 (còn 2)\n5) hạ 5: 25 : 5 = 5, viết 5\nVậy 47 125 : 5 = 9 425.",
+            "cotTinh": {
+              "left": 47125,
+              "right": 5,
+              "sign": ":"
             }
           }
         },
@@ -397,32 +391,26 @@ export const g3c14 = {
             ]
           }
         },
+                {
+          "type": "visual",
+          "content": {
+            "text": "Đặt tính rồi tính 12 345 × 2\nLuyện tập chung chủ đề 14\n1) hàng đơn vị 5 × 2 = 10, viết 0 nhớ 1\n2) hàng chục 4 × 2 + 1 (nhớ) = 9, viết 9\n3) hàng trăm 3 × 2 = 6, viết 6\n4) hàng nghìn 2 × 2 = 4, viết 4\n5) hàng chục nghìn 1 × 2 = 2, viết 2\nVậy 12 345 × 2 = 24 690.",
+            "cotTinh": {
+              "left": 12345,
+              "right": 2,
+              "sign": "×",
+              "remember": true
+            }
+          }
+        },
         {
           "type": "visual",
           "content": {
-            "text": "12 345 × 2 = 24 690\n46 848 : 4 = 11 712",
-            "operation": {
-              "left": 12345,
-              "sign": "×",
-              "right": 2,
-              "result": 24690
-            },
-            "table": {
-              "headers": [
-                "Phép tính",
-                "Kết quả"
-              ],
-              "rows": [
-                [
-                  "12 345 × 2",
-                  "24 690"
-                ],
-                [
-                  "46 848 : 4",
-                  "11 712"
-                ]
-              ],
-              "label": "Luyện tập chung chủ đề 14"
+            "text": "Đặt tính rồi chia 46 848 : 4\n1) 4 : 4 = 1, viết 1\n2) hạ 6: 6 : 4 = 1, viết 1 (còn 2)\n3) hạ 8: 28 : 4 = 7, viết 7\n4) hạ 4: 4 : 4 = 1, viết 1\n5) hạ 8: 8 : 4 = 2, viết 2\nVậy 46 848 : 4 = 11 712.",
+            "cotTinh": {
+              "left": 46848,
+              "right": 4,
+              "sign": ":"
             }
           }
         },

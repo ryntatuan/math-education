@@ -604,20 +604,27 @@ export const g2c1 = {
             ],
           },
         },
+                {
+          "type": "visual",
+          "content": {
+            "text": "Đặt tính rồi tính: cộng trừ từng hàng, bắt đầu từ hàng đơn vị\n1) hàng đơn vị 2 + 4 = 6, viết 6\n2) hàng chục 3 + 1 = 4, viết 4\nVậy 32 + 14 = 46.",
+            "cotTinh": {
+              "left": 32,
+              "right": 14,
+              "sign": "+"
+            }
+          }
+        },
         {
-          type: "visual",
-          content: {
-            text: "Đặt tính rồi tính — cộng trừ từng hàng, bắt đầu từ hàng đơn vị.",
-            table: {
-              headers: ["Phép tính", "Kết quả"],
-              rows: [
-                ["32 + 14", "46"],
-                ["57 − 23", "34"],
-              ],
-              label:
-                "Đặt tính rồi tính: cộng trừ từng hàng, bắt đầu từ hàng đơn vị",
-            },
-          },
+          "type": "visual",
+          "content": {
+            "text": "Đặt tính rồi tính 57 − 23\n1) hàng đơn vị 7 − 3 = 4, viết 4\n2) hàng chục 5 − 2 = 3, viết 3\nVậy 57 − 23 = 34.",
+            "cotTinh": {
+              "left": 57,
+              "right": 23,
+              "sign": "−"
+            }
+          }
         },
         {
           type: "visual",

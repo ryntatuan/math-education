@@ -1,24 +1,24 @@
 # Rà soát SGK — **Lớp 2 · 3 · 4 · 5** (đợt 2026-09-26)
 
 **Trạng thái:** ✅ đã rà + sửa xong (chưa push; đã commit từng đợt).
-**Quy mô sau đợt:** 5 lớp · 51 chương · 460 bài · **2738 slide** (L1 693 · L2 704 · L3 744 · L4 324 · L5 271).
+**Quy mô sau đợt:** 5 lớp · 51 chương · 460 bài · **2774 slide** (L1 697 · L2 713 · L3 763 · L4 329 · L5 272).
 
 ## 1. Cách rà (dùng lại được, rẻ hơn mở ảnh từng trang)
 
-| Công cụ | Việc nó làm |
-| :------ | :---------- |
-| `scratch/kiem-tra-slide.mjs` | luật cấu trúc dữ liệu (0 lỗi) |
-| `scratch/soat-o-trong.mjs` | mọi ô “?” phải BẤM ĐƯỢC (0 ô trống tĩnh) |
-| `scratch/soat-hinh-khong-hien.mjs` | hình khai trong dữ liệu phải CÓ CHỖ VẼ (0 ca) |
-| `scratch/soat-phep-tinh.mjs` | số học: `operation` · `comparison` · mọi câu “a op b = c” trong chữ (0 sai) |
-| `scratch/soat-phuong-an-quiz.mjs` | 824 câu: đáp án ∈ lựa chọn · không trùng · ≥3 lựa chọn (0 lỗi) |
-| `scratch/soat-loi-hien-thi.mjs` | A câu nhắc hình mà thiếu hình · B chữ xuống dòng · C `tenFrame` bị kẹp · D slide `visual` rỗng |
-| `scratch/ra-hinh-nghi-ngo.mjs` | 13 luật “lời ↔ hình” + luật cấu trúc (mũi tên, mốc, hàng bảng) |
-| `scratch/soat-hinh-sai.mjs` | 8 họ lỗi hình (thước làm hình đoạn thẳng, chữ a/b/c trên khối…) |
-| `scratch/so-sanh-muc-luc.mjs <lớp>` | so MỤC LỤC SGK ↔ bài trong app (tìm bài thiếu) |
-| `scratch/dem-dang-bai-sgk.mjs` | đếm dạng bài SGK (“số thích hợp”, “đặt tính rồi tính”, “nối”…) ↔ số hình tương tác trong app |
-| `scratch/do-can-doi-hinh.mjs` · `do-chu-hinh.mjs` · `do-chu-hinh-moi-loai.mjs` | đo cỡ chữ/vùng chạm/cân đối TRONG APP THẬT (390 px) |
-| `scratch/chup-slide.mjs <bài> <slide>` | chụp đúng khổ điện thoại để NHÌN |
+| Công cụ                                                                        | Việc nó làm                                                                                    |
+| :----------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------- |
+| `scratch/kiem-tra-slide.mjs`                                                   | luật cấu trúc dữ liệu (0 lỗi)                                                                  |
+| `scratch/soat-o-trong.mjs`                                                     | mọi ô “?” phải BẤM ĐƯỢC (0 ô trống tĩnh)                                                       |
+| `scratch/soat-hinh-khong-hien.mjs`                                             | hình khai trong dữ liệu phải CÓ CHỖ VẼ (0 ca)                                                  |
+| `scratch/soat-phep-tinh.mjs`                                                   | số học: `operation` · `comparison` · mọi câu “a op b = c” trong chữ (0 sai)                    |
+| `scratch/soat-phuong-an-quiz.mjs`                                              | 824 câu: đáp án ∈ lựa chọn · không trùng · ≥3 lựa chọn (0 lỗi)                                 |
+| `scratch/soat-loi-hien-thi.mjs`                                                | A câu nhắc hình mà thiếu hình · B chữ xuống dòng · C `tenFrame` bị kẹp · D slide `visual` rỗng |
+| `scratch/ra-hinh-nghi-ngo.mjs`                                                 | 13 luật “lời ↔ hình” + luật cấu trúc (mũi tên, mốc, hàng bảng)                                 |
+| `scratch/soat-hinh-sai.mjs`                                                    | 8 họ lỗi hình (thước làm hình đoạn thẳng, chữ a/b/c trên khối…)                                |
+| `scratch/so-sanh-muc-luc.mjs <lớp>`                                            | so MỤC LỤC SGK ↔ bài trong app (tìm bài thiếu)                                                 |
+| `scratch/dem-dang-bai-sgk.mjs`                                                 | đếm dạng bài SGK (“số thích hợp”, “đặt tính rồi tính”, “nối”…) ↔ số hình tương tác trong app   |
+| `scratch/do-can-doi-hinh.mjs` · `do-chu-hinh.mjs` · `do-chu-hinh-moi-loai.mjs` | đo cỡ chữ/vùng chạm/cân đối TRONG APP THẬT (390 px)                                            |
+| `scratch/chup-slide.mjs <bài> <slide>`                                         | chụp đúng khổ điện thoại để NHÌN                                                               |
 
 ## 2. Phát hiện & đã sửa
 
@@ -91,3 +91,113 @@ seed sinh lại, dấu vân tay khớp.
 `03-bai-lop-2.sql` · `04-bai-lop-3.sql` · `05-bai-lop-4.sql` · `06-bai-lop-5.sql` · `02-bai-lop-1.sql`
 rồi `100-tang-phien-ban-sau-bo-sung.sql` (bắt buộc — seed chỉ GHI bài, không tăng phiên bản).
 Phần CỠ CHỮ/BỐ CỤC là **MÃ** ⇒ phải deploy web / build APK mới thấy.
+
+---
+
+## 5. Đợt 3 (cùng ngày): “SLIDE DỒN NHIỀU BÀI, KHÔNG DẠY CÁCH LÀM”
+
+**Người dùng báo** (kèm ảnh slide `g3-c7-l1`): _“các slide như này quá chung chung, không hướng dẫn
+cũng như chỉ cho bé thấy làm sao để ra kết quả; gộp nhiều phép tính vào 1 slide gây rối, tại sao
+không tách ra và giải thích từng bước cho trẻ hiểu?”_
+
+### 5.1 Đo trước khi sửa — 3 lần chỉnh phép đo (đều do BÁO OAN)
+
+| Lần | Phép đo                                                                                                             | Số ca   | Vì sao sai                                                                                                                  |
+| --- | ------------------------------------------------------------------------------------------------------------------- | ------- | --------------------------------------------------------------------------------------------------------------------------- |
+| 1   | ≥2 phép tính đã ra kết quả trong slide                                                                              | **457** | gom cả `mascotHint` (lời gợi ý TỪNG BƯỚC của Cú Mèo) ⇒ mọi câu hỏi bị báo                                                   |
+| 2   | bỏ `mascotHint`, gom “họ” phép tính                                                                                 | 105     | còn báo oan slide dạy bằng **mạch bằng nhau** (`9 + 4 = 9 + 1 + 3 = 10 + 3 = 13`) và mạch bước (`46 − 3 = 43; 43 − 6 = 37`) |
+| 3   | bỏ mạch bằng nhau (lookahead), gom **mạch dính nhau** (chung một con số), chỉ báo bảng ≥2 dòng **hoặc** ≥3 mạch rời | **32**  | —                                                                                                                           |
+
+🔴 **Bài học:** con số vô lý (457 ca = 17% kho bài) nghĩa là **thước hỏng**, không phải kho bài hỏng.
+Và **slide đang dạy rất tốt lại bị báo oan** nếu phép đo không hiểu “một mạch giải” khác “nhiều bài rời”.
+
+### 5.2 Cách sửa
+
+- **19 slide nhóm [C]** (bảng “Phép tính | Kết quả” nhiều dòng, mỗi dòng một bài khác nhau — đúng
+  ảnh người dùng gửi) ⇒ **tách thành 53 slide**, mỗi bài một slide: tiêu đề “Đặt tính rồi tính …”,
+  **lời giải từng hàng** (nhớ · mượn · hạ · tích riêng) và **hình cho bé tự điền** (`cotTinh`).
+  Slide không vẽ được cột (chia số thập phân) thì dùng `bangTinh` cho bé chọn kết quả.
+- Lời giải **sinh tự động** từ `client/src/components/visuals/columnSteps.js` (logic thuần) ⇒
+  không thể lệch với kết quả; cổng `scratch/kiem-tra-buoc-tinh.mjs` **33/33** (gồm canary hai vế:
+  phải bắt được lời giải sai, không được báo oan lời giải đúng).
+- Đúng cách dạy của SGK: nhân/chia với 10, 100, 1 000 dạy **mẹo thêm/bớt chữ số 0**, không dùng
+  tích riêng (bản đầu tôi làm sai — chính cổng kiểm bắt được).
+- **Sửa renderer:** `text` nhiều dòng của slide “Quan sát” trước đây bị vẽ **cả khối vào `<h2>`**
+  ⇒ lời giải dồn thành một dòng tiêu đề to. Nay **dòng đầu = tiêu đề**, phần còn lại là đoạn
+  `.slide-visual-steps` (chữ thường, căn trái, nền nhạt) — xem `LessonPage.jsx` + `LessonPage.css`.
+- **13 ca nhóm [D] đã soi tay và CỐ Ý GIỮ:** chúng là ví dụ mẫu có kèm lời giảng
+  (“6 + 7 = 13 viết 3 nhớ 1; …”) hoặc bảng tổng hợp dạng bài của tiết ôn tập — đúng cách dạy,
+  không phải dồn bài.
+
+### 5.3 Công cụ dùng lại được
+
+`scratch/soat-slide-don-phep-tinh.mjs` (soát, ghi `out-soat-don-phep-tinh.txt`) ·
+`scratch/tach-slide-don.mjs` (tách slide; chạy thử trước, `--ghi` mới ghi; **cắt đúng object slide
+bằng bộ quét ngoặc** chứ không khớp chuỗi) · `scratch/sua-loi-giai-tach.mjs` (sinh lại lời giải khi
+bộ sinh đổi) · `scratch/kiem-tra-buoc-tinh.mjs` (cổng lời giải) · `scratch/in-slide.mjs` (in nội
+dung một slide để soi).
+
+### 5.4 Kiểm chứng sau khi sửa
+
+`soat-slide-don-phep-tinh`: **[C] = 0** toàn 5 lớp · `kiem-tra-slide` 0 lỗi ·
+`soat-o-trong` 0 ô trống · `soat-phep-tinh` **0 sai** (1 630 câu, gồm mọi lời giải vừa sinh) ·
+`soat-hinh-khong-hien` 0 · `kiem-tra-dat-tinh` 44/44 · `kiem-tra-buoc-tinh` 33/33 ·
+`soat-loi-hien-thi` C=0 · D=0 · `do-can-doi-hinh` 0 ca cần sửa · cổng tĩnh **32 PASS** ·
+`build:web` exit 0 · thử THẬT trên app: `g3-c7-l1` (bài trong ảnh) nay có 9 slide, 4 slide đặt tính
+điền được — bấm 8 · 7 · 1 ⇒ `3/3` + “🎉 Bé làm đúng hết!”.
+**Quy mô: 2 774 slide** (L1 697 · L2 713 · L3 763 · L4 329 · L5 272) — số bài 460 không đổi.
+
+⚠️ **Lần này cần dán:** `02-bai-lop-1.sql` · `03-bai-lop-2.sql` · `04-bai-lop-3.sql` ·
+`05-bai-lop-4.sql` rồi `100-tang-phien-ban-sau-bo-sung.sql`.
+
+---
+
+## 6. Thứ tự ô điền (người dùng báo tiếp cùng ngày)
+
+**Người dùng báo:** _“phép cộng là từ phải qua trái, tại sao đáp án lại điền từ trái qua phải?
+Rà soát tất cả lại cho đúng thứ tự: cộng, trừ, nhân thì từ phải qua trái; chia thì từ trái qua phải.”_
+
+### 6.1 Lỗi thật (nặng hơn “hiển thị”)
+
+Trong `interactiveColumn.jsx`, ô trống của hàng kết quả được **đếm theo THỨ TỰ VẼ** (trái → phải),
+còn mảng đáp án `dapAn` lại xếp **PHẢI → TRÁI**. Hệ quả:
+
+- ô sáng đầu tiên là ô **hàng cao nhất** (đúng ra phải là hàng đơn vị);
+- 🔴 **bé điền đúng số nhưng vào SAI HÀNG vẫn được báo ĐÚNG** — sai về mặt dạy học, không chỉ xấu.
+
+Ngoài ra ô “nhớ” bị đẩy xuống **điền sau cùng**, trong khi lời giải nói “viết 8 nhớ 1” ngay ở hàng
+đơn vị ⇒ bé phải ghi nhớ ở đầu, điền ở cuối.
+
+### 6.2 Cách sửa
+
+- Thứ tự ô điền nay là **hàm thuần** `thuTuOTrong(left, right, sign, remember)` trong `columnMath.js`
+  — một nguồn sự thật cho cả giao diện lẫn cổng kiểm:
+  - **cộng · trừ · nhân**: PHẢI → TRÁI, và ô “nhớ” đi **ngay sau** hàng sinh ra nó;
+  - **chia**: TRÁI → PHẢI (chữ số thương), ô **số dư** ở cuối.
+- `dapAn` lấy thẳng từ hàm đó ⇒ không còn hai cách đánh số lệch nhau.
+- Cổng mới `scratch/kiem-tra-thu-tu-o-dien.mjs` — **18/18** ca, có **canary hai vế**: đảo ngược
+  phép cộng, đẩy ô nhớ xuống cuối, đảo ngược phép chia, đặt số dư trước thương ⇒ **cả 4 đều bị bắt**;
+  thứ tự đúng thì không báo oan. (Cổng tĩnh cũ KHÔNG bắt được lớp lỗi này.)
+
+### 6.3 Rà cả các hình khác có nhiều ô điền
+
+| Hình                          | Thứ tự điền                         | Kết luận                                          |
+| ----------------------------- | ----------------------------------- | ------------------------------------------------- |
+| `cotTinh` (cộng · trừ · nhân) | phải → trái, nhớ xen đúng lúc       | ✅ đã sửa                                         |
+| `cotTinh` (chia)              | trái → phải, số dư sau cùng         | ✅ đã đúng, có kiểm                               |
+| `bangTinh` (bảng điền)        | theo hàng: trái → phải, trên → dưới | ✅ đúng (bảng đọc theo hàng, không phải cột tính) |
+| `patternRow` (dãy hình)       | trái → phải                         | ✅ đúng (quy luật dãy đọc từ trái)                |
+
+### 6.4 Kiểm chứng (thử THẬT trên app, không chỉ đọc mã)
+
+| Bài                     | Mong đợi                            | Đo được                                                                          |
+| ----------------------- | ----------------------------------- | -------------------------------------------------------------------------------- |
+| `g2-c12-l9` · 256 + 173 | ô sáng đầu = hàng **đơn vị** (phải) | ô xa nhất bên phải ✓; điền 9 → 2 → 1 (nhớ) → 4 ⇒ **4/4** + “🎉 Bé làm đúng hết!” |
+| `g3-c7-l1` · 26 × 3     | 8 → nhớ 1 → 7                       | đúng ⇒ **3/3** ✓                                                                 |
+| `g3-c7-l1` · 639 : 3    | ô sáng đầu = thương **bên trái**    | ô xa nhất bên trái ✓; điền 2 → 1 → 3 ⇒ **3/3** ✓                                 |
+| `g3-c4-l5` · 13 : 3     | 4 rồi dư 1                          | **2/2** ✓                                                                        |
+| `g1-c8-l12` · 25 + 4    | 9 rồi 2                             | **2/2** ✓                                                                        |
+| `g2-c12-l9` · 534 − 268 | bấm ô **trăm** rồi điền 6           | ô hiện **đỏ** ✓ (trước đây bị coi là đúng)                                       |
+
+`kiem-tra-slide` 0 lỗi · `soat-o-trong` 0 · `kiem-tra-dat-tinh` 44/44 · cổng tĩnh **32 PASS** ·
+`build:web` exit 0. **Chỉ là MÃ** ⇒ deploy web / build APK lại là thấy (không cần dán lại seed).

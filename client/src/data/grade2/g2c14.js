@@ -106,19 +106,28 @@ export const g2c14 = {
             ],
           },
         },
+                {
+          "type": "visual",
+          "content": {
+            "text": "Đặt tính rồi tính 46 + 38\nÔn tập cộng trừ trong phạm vi 100\n1) hàng đơn vị 6 + 8 = 14, viết 4 nhớ 1\n2) hàng chục 4 + 3 + 1 (nhớ) = 8, viết 8\nVậy 46 + 38 = 84.",
+            "cotTinh": {
+              "left": 46,
+              "right": 38,
+              "sign": "+",
+              "remember": true
+            }
+          }
+        },
         {
-          type: "visual",
-          content: {
-            text: "Ôn tập cộng trừ có nhớ trong phạm vi 100",
-            table: {
-              headers: ["Phép tính", "Kết quả"],
-              rows: [
-                ["46 + 38", "84"],
-                ["83 − 47", "36"],
-              ],
-              label: "Ôn tập cộng trừ trong phạm vi 100",
-            },
-          },
+          "type": "visual",
+          "content": {
+            "text": "Đặt tính rồi tính 83 − 47\n1) hàng đơn vị 3 < 7 nên mượn 1: 13 − 7 = 6, viết 6\n2) hàng chục 8 − 5 = 3, viết 3\nVậy 83 − 47 = 36.",
+            "cotTinh": {
+              "left": 83,
+              "right": 47,
+              "sign": "−"
+            }
+          }
         },
         {
           type: "visual",

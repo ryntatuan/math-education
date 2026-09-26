@@ -225,23 +225,77 @@ export const g2c2 = {
             ],
           },
         },
+                {
+          "type": "visual",
+          "content": {
+            "text": "Đặt tính rồi tính 9 + 2\nBảng cộng (qua 10) trong phạm vi 20\n1) hàng đơn vị 9 + 2 = 11, viết 1 nhớ 1\n2) còn nhớ 1 ở hàng cao hơn, viết 1\nVậy 9 + 2 = 11.",
+            "cotTinh": {
+              "left": 9,
+              "right": 2,
+              "sign": "+",
+              "remember": true
+            }
+          }
+        },
         {
-          type: "visual",
-          content: {
-            text: "9+2=11 · 9+6=15 · 9+9=18\n8+3=11 · 8+8=16 · 7+7=14",
-            table: {
-              headers: ["Phép tính", "Kết quả"],
-              rows: [
-                ["9 + 2", "11"],
-                ["9 + 6", "15"],
-                ["9 + 9", "18"],
-                ["8 + 3", "11"],
-                ["8 + 8", "16"],
-                ["7 + 7", "14"],
-              ],
-              label: "Bảng cộng (qua 10) trong phạm vi 20",
-            },
-          },
+          "type": "visual",
+          "content": {
+            "text": "Đặt tính rồi tính 9 + 6\n1) hàng đơn vị 9 + 6 = 15, viết 5 nhớ 1\n2) còn nhớ 1 ở hàng cao hơn, viết 1\nVậy 9 + 6 = 15.",
+            "cotTinh": {
+              "left": 9,
+              "right": 6,
+              "sign": "+",
+              "remember": true
+            }
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "text": "Đặt tính rồi tính 9 + 9\n1) hàng đơn vị 9 + 9 = 18, viết 8 nhớ 1\n2) còn nhớ 1 ở hàng cao hơn, viết 1\nVậy 9 + 9 = 18.",
+            "cotTinh": {
+              "left": 9,
+              "right": 9,
+              "sign": "+",
+              "remember": true
+            }
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "text": "Đặt tính rồi tính 8 + 3\n1) hàng đơn vị 8 + 3 = 11, viết 1 nhớ 1\n2) còn nhớ 1 ở hàng cao hơn, viết 1\nVậy 8 + 3 = 11.",
+            "cotTinh": {
+              "left": 8,
+              "right": 3,
+              "sign": "+",
+              "remember": true
+            }
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "text": "Đặt tính rồi tính 8 + 8\n1) hàng đơn vị 8 + 8 = 16, viết 6 nhớ 1\n2) còn nhớ 1 ở hàng cao hơn, viết 1\nVậy 8 + 8 = 16.",
+            "cotTinh": {
+              "left": 8,
+              "right": 8,
+              "sign": "+",
+              "remember": true
+            }
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "text": "Đặt tính rồi tính 7 + 7\n1) hàng đơn vị 7 + 7 = 14, viết 4 nhớ 1\n2) còn nhớ 1 ở hàng cao hơn, viết 1\nVậy 7 + 7 = 14.",
+            "cotTinh": {
+              "left": 7,
+              "right": 7,
+              "sign": "+",
+              "remember": true
+            }
+          }
         },
         {
           type: "quiz",

@@ -937,27 +937,51 @@ export const g3c2 = {
             ],
           },
         },
+                {
+          "type": "visual",
+          "content": {
+            "text": "Đặt tính rồi tính 8 × 8\nLuyện tập chung chủ đề 2\n1) hàng đơn vị 8 × 8 = 64, viết 4 nhớ 6\n2) còn nhớ 6 ở hàng cao hơn, viết 6\nVậy 8 × 8 = 64.",
+            "cotTinh": {
+              "left": 8,
+              "right": 8,
+              "sign": "×",
+              "remember": true
+            }
+          }
+        },
         {
-          type: "visual",
-          content: {
-            text: "8 × 8 = 64    64 : 8 = 8\n9 × 7 = 63    63 : 9 = 7",
-            operation: {
-              left: 8,
-              sign: "×",
-              right: 8,
-              result: 64,
-            },
-            table: {
-              headers: ["Phép tính", "Kết quả"],
-              rows: [
-                ["8 × 8", "64"],
-                ["64 : 8", "8"],
-                ["9 × 7", "63"],
-                ["63 : 9", "7"],
-              ],
-              label: "Luyện tập chung chủ đề 2",
-            },
-          },
+          "type": "visual",
+          "content": {
+            "text": "Đặt tính rồi chia 64 : 8\n1) hạ 6: 6 chưa chia được cho 8, hạ tiếp chữ số sau\n2) hạ 4: 64 : 8 = 8, viết 8\nVậy 64 : 8 = 8.",
+            "cotTinh": {
+              "left": 64,
+              "right": 8,
+              "sign": ":"
+            }
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "text": "Đặt tính rồi tính 9 × 7\n1) hàng đơn vị 9 × 7 = 63, viết 3 nhớ 6\n2) còn nhớ 6 ở hàng cao hơn, viết 6\nVậy 9 × 7 = 63.",
+            "cotTinh": {
+              "left": 9,
+              "right": 7,
+              "sign": "×",
+              "remember": true
+            }
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "text": "Đặt tính rồi chia 63 : 9\n1) hạ 6: 6 chưa chia được cho 9, hạ tiếp chữ số sau\n2) hạ 3: 63 : 9 = 7, viết 7\nVậy 63 : 9 = 7.",
+            "cotTinh": {
+              "left": 63,
+              "right": 9,
+              "sign": ":"
+            }
+          }
         },
         {
           type: "quiz",

@@ -242,7 +242,7 @@ export const g4c6 = {
               kind: "parallelogram",
               labels: ["đáy a", "chiều cao h"],
               formula: "S = a × h",
-            }
+            },
           },
         },
         {
@@ -258,7 +258,7 @@ export const g4c6 = {
                 ["Hình thoi", "S = (m × n) : 2"],
               ],
               label: "Ôn tập hình học",
-            }
+            },
           },
         },
         {
@@ -443,7 +443,7 @@ export const g4c6 = {
               "Ví dụ Tổng - Tỉ: tổng 96, tỉ số 3 : 5 ⇒ một phần = 96 : 8 = 12 ⇒ hai số là 36 và 60.",
               "Ví dụ Hiệu - Tỉ: hiệu 24, tỉ số 1 : 4 ⇒ một phần = 24 : 3 = 8 ⇒ hai số là 8 và 32.",
             ],
-            rule: "Luôn kiểm tra lại tổng (hoặc hiệu) của hai số vừa tìm được."
+            rule: "Luôn kiểm tra lại tổng (hoặc hiệu) của hai số vừa tìm được.",
           },
         },
         {
@@ -458,7 +458,7 @@ export const g4c6 = {
                 ["Hiệu – Tỉ", "chia cho HIỆU số phần"],
               ],
               label: "Ôn tập toán Tổng – Tỉ và Hiệu – Tỉ",
-            }
+            },
           },
         },
         {
@@ -589,7 +589,7 @@ export const g4c6 = {
               "Dạng 2: Tìm hai số khi biết hiệu và tỉ số.",
               "Dạng 3: Hình học: diện tích hình bình hành, hình thoi.",
             ],
-            rule: "Viết ra nháp: tổng (hiệu) số phần ⇒ giá trị một phần ⇒ từng số."
+            rule: "Viết ra nháp: tổng (hiệu) số phần ⇒ giá trị một phần ⇒ từng số.",
           },
         },
         {
@@ -606,7 +606,7 @@ export const g4c6 = {
                 ["4", "tính từng số và kiểm tra lại"],
               ],
               label: "Luyện đề cuối năm Lớp 4 — Đề số 2",
-            }
+            },
           },
         },
         {

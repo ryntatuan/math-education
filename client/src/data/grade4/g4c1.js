@@ -422,7 +422,7 @@ export const g4c1 = {
               marks: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
               label:
                 "Số tự nhiên bé nhất là 0 · không có số tự nhiên lớn nhất · hai số liên tiếp hơn kém nhau 1",
-            }
+            },
           },
         },
         {
@@ -438,7 +438,7 @@ export const g4c1 = {
                 ["Chữ số dùng để viết", "0, 1, 2, 3, 4, 5, 6, 7, 8, 9"],
               ],
               label: "Dãy số tự nhiên và hệ thập phân",
-            }
+            },
           },
         },
         {
@@ -495,7 +495,7 @@ export const g4c1 = {
               headers: ["Nghìn", "Trăm", "Chục", "Đơn vị"],
               digits: [7, 2, 4, 5],
               label: "7 245 = 7 000 + 200 + 40 + 5",
-            }
+            },
           },
         },
         {
@@ -511,7 +511,7 @@ export const g4c1 = {
                 ["5", "5"],
               ],
               label: "Giá trị của mỗi chữ số phụ thuộc vào HÀNG của nó",
-            }
+            },
           },
         },
         {
@@ -804,7 +804,7 @@ export const g4c1 = {
               ],
               unit: "cây",
               highlight: 2,
-            }
+            },
           },
         },
         {
@@ -819,7 +819,7 @@ export const g4c1 = {
                 ["Cột càng cao", "số lượng càng nhiều"],
               ],
               label: "Đặc điểm biểu đồ cột",
-            }
+            },
           },
         },
         {

@@ -29,7 +29,13 @@ const DANG = [
   ["đúng ghi Đ, sai ghi S", /\bĐ\b.*\bS\b|đ[úu]ng\s*ghi/gi],
 ];
 
-const KHOAS_APP = ["bangTinh", "cotTinh", "numberScene", "patternRow", "groupScene"];
+const KHOAS_APP = [
+  "bangTinh",
+  "cotTinh",
+  "numberScene",
+  "patternRow",
+  "groupScene",
+];
 
 const chiLop = process.argv[2] ? [Number(process.argv[2])] : [1, 2, 3, 4, 5];
 
@@ -68,6 +74,16 @@ for (const lop of chiLop) {
   }
 
   console.log(`\n=== Lớp ${lop} (${Math.round(tong / 1024)} KB chữ OCR) ===`);
-  console.log("  SGK:  " + Object.entries(dem).map(([k, v]) => `${k}=${v}`).join(" · "));
-  console.log("  APP:  " + Object.entries(app).map(([k, v]) => `${k}=${v}`).join(" · "));
+  console.log(
+    "  SGK:  " +
+      Object.entries(dem)
+        .map(([k, v]) => `${k}=${v}`)
+        .join(" · "),
+  );
+  console.log(
+    "  APP:  " +
+      Object.entries(app)
+        .map(([k, v]) => `${k}=${v}`)
+        .join(" · "),
+  );
 }

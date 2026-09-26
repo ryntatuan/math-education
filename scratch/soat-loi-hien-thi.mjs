@@ -21,9 +21,8 @@ const NGUON = [
 ];
 
 // Nguồn sự thật về “khoá nào là hình” — đọc từ MÃ, xem ghi chú dưới.
-const { HINH_KEYS } = await import(
-  "../client/src/components/visuals/visualKeys.js"
-);
+const { HINH_KEYS } =
+  await import("../client/src/components/visuals/visualKeys.js");
 
 // Từ chỉ HÌNH ẢNH theo kiểu "chỉ tay" — tức câu hỏi bắt buộc phải có hình mới trả lời được.
 // ⚠️ Cố ý KHÔNG dùng từ "hình" trần: "Hình tam giác có mấy cạnh?" là câu hỏi kiến thức,

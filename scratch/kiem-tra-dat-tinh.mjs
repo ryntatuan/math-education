@@ -55,7 +55,8 @@ const caNho = [
   [99, 1, [1, 1]],
   [32, 14, [0, 0]],
   [105, 8, [1, 0, 0]],
-];for (const [left, right, mong] of caNho) {
+];
+for (const [left, right, mong] of caNho) {
   const got = tinhNho(left, right);
   if (JSON.stringify(got) === JSON.stringify(mong)) dung += 1;
   else sai.push(`nhớ của ${left} + ${right} = [${got}] (mong đợi [${mong}])`);

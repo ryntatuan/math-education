@@ -580,20 +580,39 @@ export const g2c12 = {
             ],
           },
         },
+                {
+          "type": "visual",
+          "content": {
+            "text": "Đặt tính rồi tính 256 + 173\nLuyện tập chung chủ đề 12\n1) hàng đơn vị 6 + 3 = 9, viết 9\n2) hàng chục 5 + 7 = 12, viết 2 nhớ 1\n3) hàng trăm 2 + 1 + 1 (nhớ) = 4, viết 4\nVậy 256 + 173 = 429.",
+            "cotTinh": {
+              "left": 256,
+              "right": 173,
+              "sign": "+",
+              "remember": true
+            }
+          }
+        },
         {
-          type: "visual",
-          content: {
-            text: "Ba phép tính bé đã làm ở chủ đề 12",
-            table: {
-              headers: ["Phép tính", "Kết quả"],
-              rows: [
-                ["256 + 173", "429"],
-                ["429 − 173", "256"],
-                ["534 − 268", "266"],
-              ],
-              label: "Luyện tập chung chủ đề 12",
-            },
-          },
+          "type": "visual",
+          "content": {
+            "text": "Đặt tính rồi tính 429 − 173\n1) hàng đơn vị 9 − 3 = 6, viết 6\n2) hàng chục 2 < 7 nên mượn 1: 12 − 7 = 5, viết 5\n3) hàng trăm 4 − 2 = 2, viết 2\nVậy 429 − 173 = 256.",
+            "cotTinh": {
+              "left": 429,
+              "right": 173,
+              "sign": "−"
+            }
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "text": "Đặt tính rồi tính 534 − 268\n1) hàng đơn vị 4 < 8 nên mượn 1: 14 − 8 = 6, viết 6\n2) hàng chục 3 < 7 nên mượn 1: 13 − 7 = 6, viết 6\n3) hàng trăm 5 − 3 = 2, viết 2\nVậy 534 − 268 = 266.",
+            "cotTinh": {
+              "left": 534,
+              "right": 268,
+              "sign": "−"
+            }
+          }
         },
         {
           type: "visual",

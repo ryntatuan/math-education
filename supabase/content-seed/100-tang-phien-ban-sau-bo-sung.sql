@@ -12,6 +12,29 @@
 -- CHẠY LẠI NHIỀU LẦN: chỉ làm phiên bản tăng thêm 1 mỗi lần — vô hại (các bé tải
 --   lại nội dung thêm một lần), không sinh dòng trùng, không mất dữ liệu.
 --
+-- LƯU Ý LẦN 20 (2026-09-26): **TÁCH “SLIDE DỒN NHIỀU BÀI” + LỜI GIẢI TỪNG BƯỚC**.
+--   Người dùng báo (kèm ảnh `g3-c7-l1`): *“slide quá chung chung, không hướng dẫn cũng như chỉ cho
+--   bé thấy làm sao để ra kết quả; gộp nhiều phép tính vào 1 slide gây rối, tại sao không tách ra
+--   và giải thích từng bước?”*
+--   • 19 slide kiểu “bảng Phép tính | Kết quả” (mỗi dòng một BÀI KHÁC NHAU) đã tách thành
+--     **53 slide** — mỗi bài một slide, có **lời giải từng hàng** (nhớ · mượn · hạ · tích riêng)
+--     và **hình cho bé tự điền** (`cotTinh`; bài không vẽ được cột thì dùng `bangTinh`).
+--   • Lời giải do `client/src/components/visuals/columnSteps.js` SINH TỰ ĐỘNG từ chính con số ⇒
+--     không thể lệch với kết quả; cổng `scratch/kiem-tra-buoc-tinh.mjs` 33/33 (canary hai vế).
+--   • Đúng cách dạy SGK: nhân/chia với 10, 100, 1 000 dạy MẸO thêm/bớt chữ số 0, không dùng tích riêng.
+--   • MÃ cũng đổi: slide “Quan sát” nay vẽ **dòng đầu của `text` là TIÊU ĐỀ**, phần còn lại là đoạn
+--     lời giải (`.slide-visual-steps`) — trước đây cả khối bị dồn vào `<h2>`.
+--   • 🔴 SỬA THỨ TỰ Ô ĐIỀN (người dùng báo tiếp): **cộng · trừ · nhân điền TỪ PHẢI SANG TRÁI**
+--     (ô “nhớ” điền NGAY SAU hàng sinh ra nó), **phép chia điền TỪ TRÁI SANG PHẢI** rồi tới số dư.
+--     Trước đây ô được đếm theo thứ tự vẽ nên bé điền ĐÚNG SỐ vào SAI HÀNG vẫn được báo đúng.
+--     Nay thứ tự là hàm thuần `thuTuOTrong()` trong `columnMath.js` + cổng kiểm
+--     `scratch/kiem-tra-thu-tu-o-dien.mjs` (18/18 ca, canary hai vế bắt được cả 4 kiểu sai).
+--     ⚠️ Đây là sửa MÃ — dán lại seed KHÔNG cần thiết, chỉ cần deploy web / build APK.
+--   ✅ Cổng tĩnh **32 PASS** · `soat-phep-tinh` 0 sai · `soat-o-trong` 0 · `build:web` exit 0.
+--   ⚠️ Quy mô: 2 738 → **2 774 slide** (L1 697 · L2 713 · L3 763 · L4 329 · L5 272); số bài 460 không đổi.
+--   ⚠️ LẦN NÀY CẦN DÁN: `02-bai-lop-1.sql`, `03-bai-lop-2.sql`, `04-bai-lop-3.sql`,
+--      `05-bai-lop-4.sql` rồi `100-...`.
+--
 --   📐 **ĐẶT TÍNH CHIA ĐIỀN ĐƯỢC (cùng ngày, nốt dạng bài cuối):** `cotTinh` nhận thêm dấu `:`
 --      với bố cục riêng của phép chia: số bị chia ở trên · vạch dọc · số chia bên phải · dưới
 --      vạch ngang là các ô **thương** (bé điền **trái → phải** đúng thứ tự bé chia) · ô **số dư**
@@ -121,7 +144,7 @@
 --     thay bằng hình ⚖️ (nếu để nguyên thì vừa rồi hình cái CÂN sẽ hoá thành ĐỒNG HỒ).
 --   ✅ Kiểm: `node scratch/soat-hinh-khong-hien.mjs` = 0 ca · `soat-o-trong` = 0 ô trống tĩnh ·
 --      `soat-phep-tinh` = 0 sai · cổng tĩnh **32 PASS** · `build:web` exit 0.
---   ⚠️ Số bài và số slide KHÔNG đổi: 5 lớp · 51 chương · **460 bài · 2738 slide**.
+--   ⚠️ Số bài và số slide KHÔNG đổi: 5 lớp · 51 chương · **460 bài · 2774 slide**.
 --   ⚠️ LẦN NÀY CẦN DÁN: `02-bai-lop-1.sql`, `03-bai-lop-2.sql`, `04-bai-lop-3.sql` rồi `100-...`.
 --      `01`, `05`, `06`, `99` KHÔNG đổi. `00` không cần (không bài nào bị bỏ).
 --
@@ -164,7 +187,7 @@
 -- LƯU Ý LẦN 11 (2026-09-25): **MỌI Ô TRỐNG PHẢI ĐIỀN ĐƯỢC** (yêu cầu người dùng) + 6 slide CĐ6 Lớp 1.
 --   Yêu cầu: “tất cả các dạng bài có điền vào ô trống không được là slide tĩnh và đều có thể điền
 --   đáp án vào được; đảm bảo tất cả các dạng bài tập đều có đáp án để trẻ lựa chọn và tương tác”.
---   Công cụ soát mới: `node scratch/soat-o-trong.mjs` (2738 slide / 1439 slide cho bấm của cả 5 lớp).
+--   Công cụ soát mới: `node scratch/soat-o-trong.mjs` (2774 slide / 1439 slide cho bấm của cả 5 lớp).
 --   Sửa 10 ca thật:
 --     • 5 bảng CĐ3 (`g1-c3-l3/l4/l8/l9/l14`) từ bảng IN CỨNG ô “?” → **`bangTinh`** (bé bấm ô, chọn số).
 --     • 2 bảng Lớp 3 (`g3-c1-l4` tìm số bị trừ · `g3-c2-l9` nhân–chia) → `bangTinh`, hàng đầu giữ làm MẪU.
@@ -201,7 +224,7 @@
 --       hình không in sẵn đáp án (`showShape: false`).
 --     • `l8`: thêm 3 câu hỏi kiểu SGK tr.47/49 (chọn nhiều hình A–E; “KHÔNG là hình vuông”).
 --   ⚠️ Số slide ĐÃ ĐỔI: 2656 → **2659** (8 bài CĐ2: 48 → 51 slide) ⇒
---      vẫn 5 lớp · 51 chương · 460 bài · **2738 slide**.
+--      vẫn 5 lớp · 51 chương · 460 bài · **2774 slide**.
 --   ⚠️ LẦN NÀY CẦN DÁN: `02-bai-lop-1.sql` · `03-bai-lop-2.sql` · `04-bai-lop-3.sql`
 --      rồi `100-...` (file này). `00`, `01`, `05`, `06`, `99` KHÔNG đổi.
 --

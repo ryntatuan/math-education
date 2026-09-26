@@ -700,36 +700,25 @@ export const g3c6 = {
             ]
           }
         },
+                {
+          "type": "visual",
+          "content": {
+            "text": "Đặt tính rồi tính 213 × 3\nLuyện tập chung chủ đề 6\n1) hàng đơn vị 3 × 3 = 9, viết 9\n2) hàng chục 1 × 3 = 3, viết 3\n3) hàng trăm 2 × 3 = 6, viết 6\nVậy 213 × 3 = 639.",
+            "cotTinh": {
+              "left": 213,
+              "right": 3,
+              "sign": "×"
+            }
+          }
+        },
         {
           "type": "visual",
           "content": {
-            "text": "213 × 3 = 639\n639 : 3 = 213\n12 + 5 × 2 = 22",
-            "operation": {
-              "left": 213,
-              "sign": "×",
+            "text": "Đặt tính rồi chia 639 : 3\n1) 6 : 3 = 2, viết 2\n2) hạ 3: 3 : 3 = 1, viết 1\n3) hạ 9: 9 : 3 = 3, viết 3\nVậy 639 : 3 = 213.",
+            "cotTinh": {
+              "left": 639,
               "right": 3,
-              "result": 639
-            },
-            "table": {
-              "headers": [
-                "Phép tính",
-                "Kết quả"
-              ],
-              "rows": [
-                [
-                  "213 × 3",
-                  "639"
-                ],
-                [
-                  "639 : 3",
-                  "213"
-                ],
-                [
-                  "12 + 5 × 2",
-                  "22"
-                ]
-              ],
-              "label": "Luyện tập chung chủ đề 6"
+              "sign": ":"
             }
           }
         },

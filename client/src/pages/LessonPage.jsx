@@ -806,6 +806,11 @@ function VisualSlide({ content }) {
     }
   };
 
+  // `text` nhiều dòng = DÒNG ĐẦU là tiêu đề, các dòng sau là LỜI GIẢI TỪNG BƯỚC.
+  // Trước đây cả khối được vẽ vào `<h2>` ⇒ lời giải từng bước bị dồn thành một dòng tiêu đề
+  // to đậm (người dùng góp ý 2026-09-26: “không chỉ cho bé thấy làm sao để ra kết quả”).
+  const [dongTieuDe, ...dongGiai] = String(content.text ?? "").split("\n");
+
   return (
     <div className="slide-visual-card">
       <SlideHead
@@ -815,7 +820,11 @@ function VisualSlide({ content }) {
         speakTitle="Nghe đọc nội dung"
       />
 
-      <h2 className="slide-visual-text">{content.text}</h2>
+      <h2 className="slide-visual-text">{dongTieuDe}</h2>
+
+      {dongGiai.length > 0 && (
+        <p className="slide-visual-steps">{dongGiai.join("\n")}</p>
+      )}
 
       {content.items && (
         <div className="visual-items">

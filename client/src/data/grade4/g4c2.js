@@ -19,32 +19,26 @@ export const g4c2 = {
             "text": "Quy tắc đặt tính: Các chữ số ở cùng một hàng phải đặt thẳng cột với nhau, cộng hoặc trừ lần lượt từ phải sang trái! ➕➖"
           }
         },
+                {
+          "type": "visual",
+          "content": {
+            "text": "Đặt tính rồi tính 483 526 + 254 138\nChú ý cộng thêm số nhớ vào hàng tiếp theo bên trái\n1) hàng đơn vị 6 + 8 = 14, viết 4 nhớ 1\n2) hàng chục 2 + 3 + 1 (nhớ) = 6, viết 6\n3) hàng trăm 5 + 1 = 6, viết 6\n4) hàng nghìn 3 + 4 = 7, viết 7\n5) hàng chục nghìn 8 + 5 = 13, viết 3 nhớ 1\n6) hàng trăm nghìn 4 + 2 + 1 (nhớ) = 7, viết 7\nVậy 483 526 + 254 138 = 737 664.",
+            "cotTinh": {
+              "left": 483526,
+              "right": 254138,
+              "sign": "+",
+              "remember": true
+            }
+          }
+        },
         {
           "type": "visual",
           "content": {
-            "text": "Ví dụ cộng: 483 526 + 254 138 = 737 664 Ví dụ trừ: 865 240 - 328 175 = 537 065 Chú ý: Nhớ cộng thêm số nhớ vào hàng tiếp theo bên trái!",
-            "operation": {
-              "left": 483526,
-              "sign": "+",
-              "right": 254138,
-              "result": 737664
-            },
-            "table": {
-              "headers": [
-                "Phép tính",
-                "Kết quả"
-              ],
-              "rows": [
-                [
-                  "483 526 + 254 138",
-                  "737 664"
-                ],
-                [
-                  "865 240 − 328 175",
-                  "537 065"
-                ]
-              ],
-              "label": "Chú ý cộng thêm số nhớ vào hàng tiếp theo bên trái"
+            "text": "Đặt tính rồi tính 865 240 − 328 175\n1) hàng đơn vị 0 < 5 nên mượn 1: 10 − 5 = 5, viết 5\n2) hàng chục 4 < 8 nên mượn 1: 14 − 8 = 6, viết 6\n3) hàng trăm 2 − 2 = 0, viết 0\n4) hàng nghìn 5 < 8 nên mượn 1: 15 − 8 = 7, viết 7\n5) hàng chục nghìn 6 − 3 = 3, viết 3\n6) hàng trăm nghìn 8 − 3 = 5, viết 5\nVậy 865 240 − 328 175 = 537 065.",
+            "cotTinh": {
+              "left": 865240,
+              "right": 328175,
+              "sign": "−"
             }
           }
         },
@@ -625,34 +619,47 @@ export const g4c2 = {
             "text": "Muốn nhân một số với 10, 100, 1000... ta chỉ việc viết thêm một, hai, ba... chữ số 0 vào bên phải số đó! Khi chia thì bớt đi! 🚀"
           }
         },
+                {
+          "type": "visual",
+          "content": {
+            "text": "Đặt tính rồi tính 35 × 10\nNhân với 10, 100, 1 000… chỉ việc thêm chữ số 0; chia thì bớt chữ số 0\n1) nhân với 10 chỉ việc thêm 1 chữ số 0 vào bên phải: 35 ⇒ 350\nVậy 35 × 10 = 350.",
+            "cotTinh": {
+              "left": 35,
+              "right": 10,
+              "sign": "×"
+            }
+          }
+        },
         {
           "type": "visual",
           "content": {
-            "text": "- 35 × 10 = 350 - 35 × 100 = 3 500 - 4 800 : 100 = 48 - 70 000 : 1 000 = 70",
-            "table": {
-              "headers": [
-                "Phép tính",
-                "Kết quả"
-              ],
-              "rows": [
-                [
-                  "35 × 10",
-                  "350"
-                ],
-                [
-                  "35 × 100",
-                  "3 500"
-                ],
-                [
-                  "4 800 : 100",
-                  "48"
-                ],
-                [
-                  "70 000 : 1 000",
-                  "70"
-                ]
-              ],
-              "label": "Nhân với 10, 100, 1 000… chỉ việc thêm chữ số 0; chia thì bớt chữ số 0"
+            "text": "Đặt tính rồi tính 35 × 100\n1) nhân với 100 chỉ việc thêm 2 chữ số 0 vào bên phải: 35 ⇒ 3 500\nVậy 35 × 100 = 3 500.",
+            "cotTinh": {
+              "left": 35,
+              "right": 100,
+              "sign": "×"
+            }
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "text": "Đặt tính rồi chia 4 800 : 100\n1) chia cho 100 chỉ việc bớt 2 chữ số 0 ở bên phải: 4 800 ⇒ 48\nVậy 4 800 : 100 = 48.",
+            "cotTinh": {
+              "left": 4800,
+              "right": 100,
+              "sign": ":"
+            }
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "text": "Đặt tính rồi chia 70 000 : 1 000\n1) chia cho 1 000 chỉ việc bớt 3 chữ số 0 ở bên phải: 70 000 ⇒ 70\nVậy 70 000 : 1 000 = 70.",
+            "cotTinh": {
+              "left": 70000,
+              "right": 1000,
+              "sign": ":"
             }
           }
         },

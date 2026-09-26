@@ -7,11 +7,33 @@
 import { readdirSync, readFileSync } from "node:fs";
 
 const HINH_KHAC = [
-  "table", "placeValue", "barModel", "comparison", "fractionBar", "fractionCircle",
-  "numberLine", "ruler", "money", "baseTen", "tenFrame", "planeShape", "solid",
-  "angle", "circleParts", "motionDiagram", "barChart", "pieChart", "groupScene",
-  "spatialScene", "pointLine", "shapePicture", "shapeJoin", "patternRow",
-  "bangTinh", "cotTinh", "numberScene",
+  "table",
+  "placeValue",
+  "barModel",
+  "comparison",
+  "fractionBar",
+  "fractionCircle",
+  "numberLine",
+  "ruler",
+  "money",
+  "baseTen",
+  "tenFrame",
+  "planeShape",
+  "solid",
+  "angle",
+  "circleParts",
+  "motionDiagram",
+  "barChart",
+  "pieChart",
+  "groupScene",
+  "spatialScene",
+  "pointLine",
+  "shapePicture",
+  "shapeJoin",
+  "patternRow",
+  "bangTinh",
+  "cotTinh",
+  "numberScene",
 ];
 
 const chiLop = process.argv[2] ? Number(process.argv[2]) : null;
@@ -23,10 +45,11 @@ for (const lop of lopCan) {
   const dir = `client/src/data/grade${lop}`;
   let files;
   try {
-    files = readdirSync(dir).filter((f) => /^g\d+c\d+\.js$/.test(f)).sort(
-      (a, b) =>
-        Number(a.match(/c(\d+)/)[1]) - Number(b.match(/c(\d+)/)[1]),
-    );
+    files = readdirSync(dir)
+      .filter((f) => /^g\d+c\d+\.js$/.test(f))
+      .sort(
+        (a, b) => Number(a.match(/c(\d+)/)[1]) - Number(b.match(/c(\d+)/)[1]),
+      );
   } catch {
     continue;
   }
@@ -53,8 +76,12 @@ for (const lop of lopCan) {
       const text = (khoi.match(/text:\s*"([\s\S]*?)",\r?\n/) ?? [])[1] ?? "";
       // id bài gần nhất phía trước
       const truoc = src.slice(0, m.index);
-      const idBai = (truoc.match(/"id":\s*"(g\d-c\d+-l\d+)"/g) ??
-        truoc.match(/id:\s*"(g\d-c\d+-l\d+)"/g) ?? []).pop() ?? "?";
+      const idBai =
+        (
+          truoc.match(/"id":\s*"(g\d-c\d+-l\d+)"/g) ??
+          truoc.match(/id:\s*"(g\d-c\d+-l\d+)"/g) ??
+          []
+        ).pop() ?? "?";
       tong += 1;
       theoLop[lop] = (theoLop[lop] ?? 0) + 1;
       console.log(
@@ -63,4 +90,8 @@ for (const lop of lopCan) {
     }
   }
 }
-console.log(`\nTổng: ${tong} slide  (${Object.entries(theoLop).map(([k, v]) => `L${k}: ${v}`).join(" · ")})`);
+console.log(
+  `\nTổng: ${tong} slide  (${Object.entries(theoLop)
+    .map(([k, v]) => `L${k}: ${v}`)
+    .join(" · ")})`,
+);

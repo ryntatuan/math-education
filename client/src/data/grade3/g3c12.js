@@ -165,32 +165,26 @@ export const g3c12 = {
             ]
           }
         },
+                {
+          "type": "visual",
+          "content": {
+            "text": "Đặt tính rồi tính 35 678 + 24 567\nLuyện tập cộng, trừ trong phạm vi 100 000\n1) hàng đơn vị 8 + 7 = 15, viết 5 nhớ 1\n2) hàng chục 7 + 6 + 1 (nhớ) = 14, viết 4 nhớ 1\n3) hàng trăm 6 + 5 + 1 (nhớ) = 12, viết 2 nhớ 1\n4) hàng nghìn 5 + 4 + 1 (nhớ) = 10, viết 0 nhớ 1\n5) hàng chục nghìn 3 + 2 + 1 (nhớ) = 6, viết 6\nVậy 35 678 + 24 567 = 60 245.",
+            "cotTinh": {
+              "left": 35678,
+              "right": 24567,
+              "sign": "+",
+              "remember": true
+            }
+          }
+        },
         {
           "type": "visual",
           "content": {
-            "text": "  35 678          50 000\n+ 24 567        − 12 345\n  60 245          37 655",
-            "operation": {
-              "left": 35678,
-              "sign": "+",
-              "right": 24567,
-              "result": 60245
-            },
-            "table": {
-              "headers": [
-                "Phép tính",
-                "Kết quả"
-              ],
-              "rows": [
-                [
-                  "35 678 + 24 567",
-                  "60 245"
-                ],
-                [
-                  "50 000 − 12 345",
-                  "37 655"
-                ]
-              ],
-              "label": "Luyện tập cộng, trừ trong phạm vi 100 000"
+            "text": "Đặt tính rồi tính 50 000 − 12 345\n1) hàng đơn vị 0 < 5 nên mượn 1: 10 − 5 = 5, viết 5\n2) hàng chục 0 < 5 nên mượn 1: 10 − 5 = 5, viết 5\n3) hàng trăm 0 < 4 nên mượn 1: 10 − 4 = 6, viết 6\n4) hàng nghìn 0 < 3 nên mượn 1: 10 − 3 = 7, viết 7\n5) hàng chục nghìn 5 − 2 = 3, viết 3\nVậy 50 000 − 12 345 = 37 655.",
+            "cotTinh": {
+              "left": 50000,
+              "right": 12345,
+              "sign": "−"
             }
           }
         },

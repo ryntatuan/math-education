@@ -394,21 +394,53 @@ export const g3c1 = {
             },
           },
         },
+                {
+          "type": "visual",
+          "content": {
+            "text": "Đặt tính rồi tính 2 × 7\nÔn tập bảng nhân 2 và bảng nhân 5\n1) hàng đơn vị 2 × 7 = 14, viết 4 nhớ 1\n2) còn nhớ 1 ở hàng cao hơn, viết 1\nVậy 2 × 7 = 14.",
+            "cotTinh": {
+              "left": 2,
+              "right": 7,
+              "sign": "×",
+              "remember": true
+            }
+          }
+        },
         {
-          type: "visual",
-          content: {
-            text: "2 × 9 = 18    5 × 8 = 40",
-            table: {
-              headers: ["Phép nhân", "Kết quả"],
-              rows: [
-                ["2 × 7", "14"],
-                ["2 × 9", "18"],
-                ["5 × 6", "30"],
-                ["5 × 8", "40"],
-              ],
-              label: "Ôn tập bảng nhân 2 và bảng nhân 5",
-            },
-          },
+          "type": "visual",
+          "content": {
+            "text": "Đặt tính rồi tính 2 × 9\n1) hàng đơn vị 2 × 9 = 18, viết 8 nhớ 1\n2) còn nhớ 1 ở hàng cao hơn, viết 1\nVậy 2 × 9 = 18.",
+            "cotTinh": {
+              "left": 2,
+              "right": 9,
+              "sign": "×",
+              "remember": true
+            }
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "text": "Đặt tính rồi tính 5 × 6\n1) hàng đơn vị 5 × 6 = 30, viết 0 nhớ 3\n2) còn nhớ 3 ở hàng cao hơn, viết 3\nVậy 5 × 6 = 30.",
+            "cotTinh": {
+              "left": 5,
+              "right": 6,
+              "sign": "×",
+              "remember": true
+            }
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "text": "Đặt tính rồi tính 5 × 8\n1) hàng đơn vị 5 × 8 = 40, viết 0 nhớ 4\n2) còn nhớ 4 ở hàng cao hơn, viết 4\nVậy 5 × 8 = 40.",
+            "cotTinh": {
+              "left": 5,
+              "right": 8,
+              "sign": "×",
+              "remember": true
+            }
+          }
         },
         {
           type: "quiz",
@@ -468,25 +500,27 @@ export const g3c1 = {
             ],
           },
         },
+                {
+          "type": "visual",
+          "content": {
+            "text": "Đặt tính rồi chia 14 : 2\nÔn tập bảng chia 2 và bảng chia 5\n1) hạ 1: 1 chưa chia được cho 2, hạ tiếp chữ số sau\n2) hạ 4: 14 : 2 = 7, viết 7\nVậy 14 : 2 = 7.",
+            "cotTinh": {
+              "left": 14,
+              "right": 2,
+              "sign": ":"
+            }
+          }
+        },
         {
-          type: "visual",
-          content: {
-            text: "14 : 2 = 7\n40 : 5 = 8",
-            operation: {
-              left: 40,
-              sign: ":",
-              right: 5,
-              result: 8,
-            },
-            table: {
-              headers: ["Phép chia", "Kết quả"],
-              rows: [
-                ["14 : 2", "7"],
-                ["40 : 5", "8"],
-              ],
-              label: "Ôn tập bảng chia 2 và bảng chia 5",
-            },
-          },
+          "type": "visual",
+          "content": {
+            "text": "Đặt tính rồi chia 40 : 5\n1) hạ 4: 4 chưa chia được cho 5, hạ tiếp chữ số sau\n2) hạ 0: 40 : 5 = 8, viết 8\nVậy 40 : 5 = 8.",
+            "cotTinh": {
+              "left": 40,
+              "right": 5,
+              "sign": ":"
+            }
+          }
         },
         {
           type: "quiz",

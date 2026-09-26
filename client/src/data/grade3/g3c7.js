@@ -33,40 +33,49 @@ export const g3c7 = {
             ]
           }
         },
+                {
+          "type": "visual",
+          "content": {
+            "text": "Đặt tính rồi tính 26 × 3\nÔn tập nhân chia trong phạm vi 100 và 1 000\n1) hàng đơn vị 6 × 3 = 18, viết 8 nhớ 1\n2) hàng chục 2 × 3 + 1 (nhớ) = 7, viết 7\nVậy 26 × 3 = 78.",
+            "cotTinh": {
+              "left": 26,
+              "right": 3,
+              "sign": "×",
+              "remember": true
+            }
+          }
+        },
         {
           "type": "visual",
           "content": {
-            "text": "216 × 3 = 648    648 : 3 = 216\n26 × 3 = 78       78 : 3 = 26",
-            "operation": {
+            "text": "Đặt tính rồi tính 216 × 3\n1) hàng đơn vị 6 × 3 = 18, viết 8 nhớ 1\n2) hàng chục 1 × 3 + 1 (nhớ) = 4, viết 4\n3) hàng trăm 2 × 3 = 6, viết 6\nVậy 216 × 3 = 648.",
+            "cotTinh": {
               "left": 216,
-              "sign": "×",
               "right": 3,
-              "result": 648
-            },
-            "table": {
-              "headers": [
-                "Phép tính",
-                "Kết quả"
-              ],
-              "rows": [
-                [
-                  "26 × 3",
-                  "78"
-                ],
-                [
-                  "216 × 3",
-                  "648"
-                ],
-                [
-                  "639 : 3",
-                  "213"
-                ],
-                [
-                  "48 : 4",
-                  "12"
-                ]
-              ],
-              "label": "Ôn tập nhân chia trong phạm vi 100 và 1 000"
+              "sign": "×",
+              "remember": true
+            }
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "text": "Đặt tính rồi chia 639 : 3\n1) 6 : 3 = 2, viết 2\n2) hạ 3: 3 : 3 = 1, viết 1\n3) hạ 9: 9 : 3 = 3, viết 3\nVậy 639 : 3 = 213.",
+            "cotTinh": {
+              "left": 639,
+              "right": 3,
+              "sign": ":"
+            }
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "text": "Đặt tính rồi chia 48 : 4\n1) 4 : 4 = 1, viết 1\n2) hạ 8: 8 : 4 = 2, viết 2\nVậy 48 : 4 = 12.",
+            "cotTinh": {
+              "left": 48,
+              "right": 4,
+              "sign": ":"
             }
           }
         },

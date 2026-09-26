@@ -70,11 +70,15 @@ const baiApp = [];
 for (const f of files) {
   const src = readFileSync(`${dir}/${f}`, "utf8");
   const chuong = (src.match(/name:\s*"([^"]+)"/) ?? [])[1] ?? f;
-  for (const m of src.matchAll(/"?id"?:\s*"(g\d-c\d+-l\d+)"[\s\S]{0,220}?"?title"?:\s*"([^"]+)"/g)) {
+  for (const m of src.matchAll(
+    /"?id"?:\s*"(g\d-c\d+-l\d+)"[\s\S]{0,220}?"?title"?:\s*"([^"]+)"/g,
+  )) {
     baiApp.push({ id: m[1], title: m[2], chuong, file: f });
   }
 }
-console.log(`Lớp ${lop}: SGK có ${mucLuc.length} dòng mục lục · app có ${baiApp.length} bài.\n`);
+console.log(
+  `Lớp ${lop}: SGK có ${mucLuc.length} dòng mục lục · app có ${baiApp.length} bài.\n`,
+);
 
 // ---- 3. So theo TỪ KHOÁ ----
 /** Từ khoá để soi: bỏ từ chung, giữ từ mang nội dung. */
@@ -89,7 +93,13 @@ const CHUNG = new Set(
 const khoaCua = (s) =>
   // ⚠️ Tách theo MỌI ký tự không phải chữ/số — ĐỪNG để dấu phẩy trong lớp ký tự, nếu không
   // từ khoá sẽ dính dấu phẩy ("truoc,") và `includes` không bao giờ khớp (đã mắc: báo oan 20 ca).
-  [...new Set(boDau(s).split(/[^a-z0-9]+/).filter((w) => w.length >= 3 && !CHUNG.has(w)))];
+  [
+    ...new Set(
+      boDau(s)
+        .split(/[^a-z0-9]+/)
+        .filter((w) => w.length >= 3 && !CHUNG.has(w)),
+    ),
+  ];
 
 const corpusApp = boDau(
   baiApp.map((b) => `${b.title} ${b.chuong}`).join(" | "),
@@ -105,13 +115,16 @@ const thieu = [];
 for (const s of mucLuc) {
   const kk = khoaCua(s.ten);
   if (!kk.length) continue;
-  const vang = kk.filter((k) => !corpusApp.includes(k.slice(0, Math.max(4, k.length - 2))));
+  const vang = kk.filter(
+    (k) => !corpusApp.includes(k.slice(0, Math.max(4, k.length - 2))),
+  );
   if (vang.length) thieu.push({ ...s, vang: vang.join(" ") });
 }
 
 if (het) {
   console.log("— Mục lục SGK (theo thứ tự) —");
-  for (const s of mucLuc) console.log(`  Bài ${String(s.so).padStart(2)}: ${s.ten}`);
+  for (const s of mucLuc)
+    console.log(`  Bài ${String(s.so).padStart(2)}: ${s.ten}`);
   console.log("\n— Bài trong app —");
   for (const b of baiApp) console.log(`  ${b.id} · ${b.title}`);
 }
@@ -120,4 +133,6 @@ console.log(
   `\n⚠️  ${thieu.length} dòng mục lục SGK có TỪ KHOÁ KHÔNG xuất hiện ở bất kỳ bài nào trong app:`,
 );
 for (const s of thieu)
-  console.log(`  Bài ${String(s.so).padStart(2)}: ${s.ten}   [thiếu khoá: ${s.vang}]`);
+  console.log(
+    `  Bài ${String(s.so).padStart(2)}: ${s.ten}   [thiếu khoá: ${s.vang}]`,
+  );

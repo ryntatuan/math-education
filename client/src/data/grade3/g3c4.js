@@ -775,26 +775,28 @@ export const g3c4 = {
             ],
           },
         },
+                {
+          "type": "visual",
+          "content": {
+            "text": "Đặt tính rồi tính 26 × 3\nLuyện tập chung chủ đề 4\n1) hàng đơn vị 6 × 3 = 18, viết 8 nhớ 1\n2) hàng chục 2 × 3 + 1 (nhớ) = 7, viết 7\nVậy 26 × 3 = 78.",
+            "cotTinh": {
+              "left": 26,
+              "right": 3,
+              "sign": "×",
+              "remember": true
+            }
+          }
+        },
         {
-          type: "visual",
-          content: {
-            text: "26 × 3 = 78\n48 : 4 = 12\n19 : 3 = 6 (dư 1)",
-            operation: {
-              left: 26,
-              sign: "×",
-              right: 3,
-              result: 78,
-            },
-            table: {
-              headers: ["Phép tính", "Kết quả"],
-              rows: [
-                ["26 × 3", "78"],
-                ["48 : 4", "12"],
-                ["19 : 3", "6 (dư 1)"],
-              ],
-              label: "Luyện tập chung chủ đề 4",
-            },
-          },
+          "type": "visual",
+          "content": {
+            "text": "Đặt tính rồi chia 48 : 4\n1) 4 : 4 = 1, viết 1\n2) hạ 8: 8 : 4 = 2, viết 2\nVậy 48 : 4 = 12.",
+            "cotTinh": {
+              "left": 48,
+              "right": 4,
+              "sign": ":"
+            }
+          }
         },
         {
           type: "quiz",

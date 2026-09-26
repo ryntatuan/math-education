@@ -129,40 +129,49 @@ export const g3c16 = {
             ]
           }
         },
+                {
+          "type": "visual",
+          "content": {
+            "text": "Đặt tính rồi tính 6 × 7\nÔn tập phép nhân, phép chia\n1) hàng đơn vị 6 × 7 = 42, viết 2 nhớ 4\n2) còn nhớ 4 ở hàng cao hơn, viết 4\nVậy 6 × 7 = 42.",
+            "cotTinh": {
+              "left": 6,
+              "right": 7,
+              "sign": "×",
+              "remember": true
+            }
+          }
+        },
         {
           "type": "visual",
           "content": {
-            "text": "6 × 7 = 42      42 : 6 = 7\n12 345 × 2 = 24 690\n46 848 : 4 = 11 712",
-            "operation": {
+            "text": "Đặt tính rồi chia 42 : 6\n1) hạ 4: 4 chưa chia được cho 6, hạ tiếp chữ số sau\n2) hạ 2: 42 : 6 = 7, viết 7\nVậy 42 : 6 = 7.",
+            "cotTinh": {
+              "left": 42,
+              "right": 6,
+              "sign": ":"
+            }
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "text": "Đặt tính rồi tính 12 345 × 2\n1) hàng đơn vị 5 × 2 = 10, viết 0 nhớ 1\n2) hàng chục 4 × 2 + 1 (nhớ) = 9, viết 9\n3) hàng trăm 3 × 2 = 6, viết 6\n4) hàng nghìn 2 × 2 = 4, viết 4\n5) hàng chục nghìn 1 × 2 = 2, viết 2\nVậy 12 345 × 2 = 24 690.",
+            "cotTinh": {
               "left": 12345,
-              "sign": "×",
               "right": 2,
-              "result": 24690
-            },
-            "table": {
-              "headers": [
-                "Phép tính",
-                "Kết quả"
-              ],
-              "rows": [
-                [
-                  "6 × 7",
-                  "42"
-                ],
-                [
-                  "42 : 6",
-                  "7"
-                ],
-                [
-                  "12 345 × 2",
-                  "24 690"
-                ],
-                [
-                  "46 848 : 4",
-                  "11 712"
-                ]
-              ],
-              "label": "Ôn tập phép nhân, phép chia"
+              "sign": "×",
+              "remember": true
+            }
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "text": "Đặt tính rồi chia 46 848 : 4\n1) 4 : 4 = 1, viết 1\n2) hạ 6: 6 : 4 = 1, viết 1 (còn 2)\n3) hạ 8: 28 : 4 = 7, viết 7\n4) hạ 4: 4 : 4 = 1, viết 1\n5) hạ 8: 8 : 4 = 2, viết 2\nVậy 46 848 : 4 = 11 712.",
+            "cotTinh": {
+              "left": 46848,
+              "right": 4,
+              "sign": ":"
             }
           }
         },

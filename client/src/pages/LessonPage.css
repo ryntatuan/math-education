@@ -1,6 +1,21 @@
 /* ========================================
    LESSON PAGE - MODERN HERO SIZING & RESPONSIVE
    ======================================== */
+/* Lời giải từng bước dưới tiêu đề slide “Quan sát”: chữ thường (KHÔNG đậm to như tiêu đề),
+   căn trái, giữ nguyên xuống dòng để trẻ đọc được từng bước một. */
+.slide-visual-steps {
+  margin: 6px 0 0;
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  color: #1e293b;
+  font-size: clamp(0.95rem, 1.3vw, 1.15rem);
+  font-weight: 600;
+  line-height: 1.65;
+  text-align: left;
+  white-space: pre-wrap;
+}
 .lesson-page {
   display: flex;
   flex-direction: column;

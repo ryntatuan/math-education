@@ -772,26 +772,38 @@ export const g1c8 = {
             ],
           },
         },
+                {
+          "type": "visual",
+          "content": {
+            "text": "Đặt tính rồi tính 25 + 4\nLuyện tập chung cộng trừ trong phạm vi 100\n1) hàng đơn vị 5 + 4 = 9, viết 9\n2) hàng chục 2 + 0 = 2, viết 2\nVậy 25 + 4 = 29.",
+            "cotTinh": {
+              "left": 25,
+              "right": 4,
+              "sign": "+"
+            }
+          }
+        },
         {
-          type: "visual",
-          content: {
-            text: "25 + 4 = 29\n32 + 14 = 46\n57 − 23 = 34",
-            operation: {
-              left: 32,
-              sign: "+",
-              right: 14,
-              result: 46,
-            },
-            table: {
-              headers: ["Phép tính", "Kết quả"],
-              rows: [
-                ["25 + 4", "29"],
-                ["32 + 14", "46"],
-                ["57 − 23", "34"],
-              ],
-              label: "Luyện tập chung cộng trừ trong phạm vi 100",
-            },
-          },
+          "type": "visual",
+          "content": {
+            "text": "Đặt tính rồi tính 32 + 14\n1) hàng đơn vị 2 + 4 = 6, viết 6\n2) hàng chục 3 + 1 = 4, viết 4\nVậy 32 + 14 = 46.",
+            "cotTinh": {
+              "left": 32,
+              "right": 14,
+              "sign": "+"
+            }
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "text": "Đặt tính rồi tính 57 − 23\n1) hàng đơn vị 7 − 3 = 4, viết 4\n2) hàng chục 5 − 2 = 3, viết 3\nVậy 57 − 23 = 34.",
+            "cotTinh": {
+              "left": 57,
+              "right": 23,
+              "sign": "−"
+            }
+          }
         },
         {
           type: "quiz",

@@ -21,8 +21,8 @@
 | :------------------------- | :------------------------------------------- | :-------------------------------- |
 | Cổng tĩnh                  | `32 PASS · 0 FAIL · 0 SKIP`, exit 0          | Cổng chạy được trở lại            |
 | Import `gradeNData.js`     | 51/51 dòng có đuôi `.js`                     | Node nạp được dữ liệu             |
-| Quy mô Lớp 1               | **10 chương · 97 bài · 693 slide**           | (Đợt 1.1: CĐ4 · Đợt 2: CĐ1 + CĐ2) |
-| Quy mô toàn hệ thống       | **5 lớp · 51 chương · 459 bài · 2738 slide** | Khớp `MONG_DOI` (sau đợt rà CĐ2)  |
+| Quy mô Lớp 1               | **10 chương · 97 bài · 697 slide**           | (Đợt 1.1: CĐ4 · Đợt 2: CĐ1 + CĐ2) |
+| Quy mô toàn hệ thống       | **5 lớp · 51 chương · 459 bài · 2774 slide** | Khớp `MONG_DOI` (sau đợt rà CĐ2)  |
 | Tập `id` Lớp 1             | 97/97, `Compare-Object` với HEAD rỗng        | Không đổi id ⇒ an toàn tiến độ    |
 | Chương `g1-c4` SAU Đợt 1.1 | **7 bài · 68 slide** (7+7+10+11+9+11+13)     | Từ 39 slide cũ                    |
 | Nội dung trong DB          | **chưa nạp** (mới chỉ có ở file tĩnh + seed) | Còn phải dán seed                 |
@@ -235,7 +235,7 @@ sequenceDiagram
 
 | Nội dung                                                                                                                                                | Nguồn                                                                                                     |
 | :------------------------------------------------------------------------------------------------------------------------------------------------------ | :-------------------------------------------------------------------------------------------------------- |
-| Cổng `32 PASS · 0 FAIL`; Lớp 1 = 97 bài / 693 slide; tổng 5 · 51 · 459 · 2738; `id` khớp HEAD 97/97                                                     | Đo trực tiếp ngày 2026-09-24 (cập nhật sau vòng tách hình — §8i)                                          |
+| Cổng `32 PASS · 0 FAIL`; Lớp 1 = 97 bài / 697 slide; tổng 5 · 51 · 460 · 2774; `id` khớp HEAD 97/97                                                     | Đo trực tiếp ngày 2026-09-24 (cập nhật sau vòng tách hình — §8i)                                          |
 | Hình bạn Mai: hàng nền **5 khối lập phương**, **2** khối hộp chữ nhật đỏ                                                                                | **Người dùng chốt 2026-09-24** (đối chiếu SGK tr.94)                                                      |
 | Chữ T = 5, H = 7, C = 5 → H nhiều nhất, T = C                                                                                                           | Đếm lại trên ảnh phóng to (trang sách 94)                                                                 |
 | Thứ tự **Mai – Nam – Rô-bốt**; đôi **Thỏ – Rùa**                                                                                                        | Chữ in trên SGK tr.98 (`scratch/kiem-tra-t98.png`)                                                        |
@@ -682,7 +682,7 @@ Bạn gửi ảnh hình `groupScene` (`6 + 7 = 6 + 4 + 3`) và báo: _“diễn 
 là slide tĩnh và đều có thể điền đáp án vào được; đảm bảo tất cả các dạng bài tập đều có đáp án
 để trẻ lựa chọn và tương tác”_.
 
-**Cách kiểm (mới, chạy được lặp lại):** `node scratch/soat-o-trong.mjs` — soi **2738 slide / 1439
+**Cách kiểm (mới, chạy được lặp lại):** `node scratch/soat-o-trong.mjs` — soi **2774 slide / 1439
 slide cho bấm** trong cả 5 lớp, tìm mọi khoá DỮ LIỆU có ô `?` / `…` / ô `null`, rồi phân loại:
 `[A]` hình không tự tương tác mà có ô trống · `[B]` hình điền được nhưng đặt trên slide câu hỏi
 (không bọc `InteractiveContext` ⇒ rơi về tĩnh, **im lặng**) · `[C]` sai hợp đồng dữ liệu (số đáp
@@ -735,7 +735,7 @@ nằm giữa A và B?”` là **lời dẫn**, không phải ô trống ⇒ bỏ
 
 | Hạng mục         | Số đo thật (2026-09-24)                                                                   |
 | :--------------- | :---------------------------------------------------------------------------------------- | --- |
-| Nội dung phải rà | Lớp 1: **10 chương · 97 bài · 693 slide** (CĐ1 + CĐ2 xong — §8b, §8l)                     |     |
+| Nội dung phải rà | Lớp 1: **10 chương · 97 bài · 697 slide** (CĐ1 + CĐ2 xong — §8b, §8l)                     |     |
 | Ảnh phải xem hết | `Math grade 1 part 1.pdf` **117 trang** + `part 2.pdf` **109 trang** = **226 trang**      |
 | Ngữ liệu chữ     | `.md` OCR của Lớp 1 rất mỏng (**22 KB** + **30 KB**) ⇒ **phải đọc ẢNH**, đừng dựa vào OCR |
 

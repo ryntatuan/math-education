@@ -267,13 +267,14 @@ for (const [file, key, soLopThutu] of NGUON) {
               i,
               "cotTinh thiếu `left` hoặc `right` (đặt tính cần đủ hai số)",
             );
-          const dauCt = ct.sign === "-" || ct.sign === "−"
-            ? "−"
-            : ct.sign === "*" || ct.sign === "×"
-              ? "×"
-              : ct.sign === ":" || ct.sign === "÷"
-                ? ":"
-                : "+";
+          const dauCt =
+            ct.sign === "-" || ct.sign === "−"
+              ? "−"
+              : ct.sign === "*" || ct.sign === "×"
+                ? "×"
+                : ct.sign === ":" || ct.sign === "÷"
+                  ? ":"
+                  : "+";
           if (!["+", "-", "−", "×", "*", ":", "÷"].includes(ct.sign ?? "+"))
             themLoi(
               file,
