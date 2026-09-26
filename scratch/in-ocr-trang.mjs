@@ -9,7 +9,7 @@ const TAP = process.argv[2] || "2";
 const TU = Number(process.argv[3] || 1);
 const DEN = Number(process.argv[4] || 20);
 
-const duong = `docs/Data Source/Grade 1/Math grade 1 part ${TAP}.md`;
+const duong = `docs/DataSource/Grade 1/Math grade 1 part ${TAP}.md`;
 const tho = fs.readFileSync(duong, "utf8");
 // ⚠️ File ghi bằng CRLF ⇒ mẫu BẮT BUỘC có `\r?`, nếu không thì tách ra đúng 1 khối
 // (đã mắc: regex `\n-{3,}\n` không khớp lần nào và công cụ báo "1 khối").

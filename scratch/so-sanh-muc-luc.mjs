@@ -3,14 +3,14 @@
  *
  * VÌ SAO: quy trình §11 của kế hoạch đòi bảng ánh xạ trang → bài, nhưng việc rà từng ảnh cho
  * 4 lớp là rất nặng. Bước rẻ mà bắt được lỗi NẶNG NHẤT (thiếu cả một bài) là so MỤC LỤC:
- *   • SGK: các dòng “Bài <số>. <tên bài>” trong file OCR (docs/Data Source/Grade N/*.md)
+ *   • SGK: các dòng “Bài <số>. <tên bài>” trong file OCR (docs/DataSource/Grade N/*.md)
  *   • App: tiêu đề từng bài trong `client/src/data/gradeN/gNcM.js`
  * rồi soi theo TỪ KHOÁ: bài SGK nào có từ khoá không xuất hiện ở tiêu đề/mô tả bài nào của app.
  *
  * ⚠️ OCR có thể sai dấu/chữ; kết quả chỉ để CHỈ ĐIỂM cần mở ảnh xem lại, không phải kết luận.
  * Chạy: `node scratch/so-sanh-muc-luc.mjs <lớp> [--het]`
  */
-import { readFileSync, readdirSync } from "node:fs";
+import { readFileSync, readdirSync, existsSync } from "node:fs";
 
 const lop = Number(process.argv[2] ?? 2);
 const het = process.argv.includes("--het");
@@ -32,9 +32,22 @@ const boDau = (s) =>
     .toLowerCase();
 
 // ---- 1. Mục lục SGK ----
+// ⚠️ Thư mục OCR đã từng đổi tên (`Data Source` → `DataSource`) ⇒ thử CẢ HAI tên. Bản cũ đọc
+// thẳng một đường dẫn nên khi thư mục đổi tên là công cụ chết/đọc rỗng mà không rõ lý do.
+const DUONG_OCR = ["docs/DataSource", "docs/Data Source"];
+const docOcr = (f) => {
+  for (const d of DUONG_OCR) {
+    const p = `${d}/Grade ${lop}/${f}`;
+    if (existsSync(p)) return readFileSync(p, "utf8");
+  }
+  return null;
+};
 const sgk = [];
+let soFileOcr = 0;
 for (const f of NGUON_SGK[lop] ?? []) {
-  const t = readFileSync(`docs/Data Source/Grade ${lop}/${f}`, "utf8");
+  const t = docOcr(f);
+  if (t === null) continue;
+  soFileOcr += 1;
   for (const l of t.split(/\r?\n/)) {
     const m = l.match(/b[aà]i\s*(\d{1,2})\s*[.:]\s*([^\n]{4,70})/i);
     if (!m) continue;
