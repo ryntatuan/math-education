@@ -34,6 +34,77 @@ export function tinhChia(left, right) {
 }
 
 /**
+ * THỨ TỰ Ô ĐIỀN của một cột dọc — NGUỒN SỰ THẬT duy nhất (giao diện và cổng kiểm dùng chung).
+ *
+ * 🔴 VÌ SAO CÓ HÀM NÀY (người dùng báo 2026-09-26: *“phép cộng là từ phải qua trái, tại sao đáp
+ * án lại điền từ trái qua phải?”*): bản đầu, giao diện đếm ô trống theo THỨ TỰ VẼ (trái → phải)
+ * còn đáp án lại xếp PHẢI → TRÁI ⇒ bé điền đúng số nhưng vào SAI HÀNG vẫn được báo đúng, và ô
+ * sáng đầu tiên là ô hàng cao nhất. Lỗi này cổng tĩnh KHÔNG bắt được, nên nay thứ tự là một hàm
+ * thuần để `scratch/kiem-tra-thu-tu-o-dien.mjs` kiểm được bằng Node.
+ *
+ *   • Cộng · trừ · nhân: TỪ PHẢI SANG TRÁI; ô “nhớ” điền NGAY SAU hàng sinh ra nó (đúng như lời
+ *     giải “hàng đơn vị 6 × 3 = 18, viết 8 nhớ 1” rồi mới sang hàng chục).
+ *   • Chia: TỪ TRÁI SANG PHẢI (các chữ số của thương), sau cùng là ô SỐ DƯ (nếu có).
+ *
+ * @returns {Array<{loai:"chuSo"|"nho"|"thuong"|"du", viTri?:number, v?:number}>}
+ */
+export function thuTuOTrong(left, right, sign, remember = false) {
+  const op =
+    sign === "-" || sign === "−"
+      ? "−"
+      : sign === "*" || sign === "×"
+        ? "×"
+        : sign === ":" || sign === "÷"
+          ? ":"
+          : "+";
+  if (op === ":") {
+    const { nguyen, du } = tinhChia(left, right);
+    // ĐI TRÁI → PHẢI (các chữ số của thương), sau cùng là ô SỐ DƯ.
+    return [
+      ...[...nguyen].map((ch, i) => ({
+        loai: "thuong",
+        viTri: i,
+        v: Number(ch),
+      })),
+      ...(du > 0 ? [{ loai: "du", v: du }] : []),
+    ];
+  }
+  const a = tachSo(left);
+  const b = tachSo(right);
+  const kq = tinhKetQua(left, right, op);
+  const cotNguyen = Math.max(
+    a.nguyen.length,
+    b.nguyen.length,
+    kq.nguyen.length,
+  );
+  const canPhai = (s, n) => " ".repeat(Math.max(0, n - s.length)) + s;
+  const hangKQ =
+    canPhai(kq.nguyen, cotNguyen) + (kq.cotThap ? `,${kq.thap}` : "");
+  const coNho = remember === true && (op === "+" || op === "×");
+  const oNho = [];
+  if (coNho) {
+    const soCot = hangKQ.length;
+    tinhNho(left, right, op).forEach((v, i) => {
+      const viTri = soCot - 1 - i - 1; // nhớ của cột i viết lệch sang TRÁI một ô
+      if (v > 0 && viTri >= 0) oNho.push({ viTri, v });
+    });
+  }
+  const viTriChuSo = [...hangKQ]
+    .map((ch, i) => (ch >= "0" && ch <= "9" ? i : -1))
+    .filter((i) => i >= 0);
+  const ra = [];
+  for (let k = 0; k < hangKQ.length; k++) {
+    const viTri = hangKQ.length - 1 - k; // PHẢI → TRÁI
+    if (viTriChuSo.includes(viTri))
+      ra.push({ loai: "chuSo", viTri, v: Number(hangKQ[viTri]) });
+    for (const o of oNho)
+      if (o.viTri === viTri - 1)
+        ra.push({ loai: "nho", viTri: o.viTri, v: o.v });
+  }
+  return ra;
+}
+
+/**
  * Kết quả của `left sign right`.
  *
  * 🔴 Phép `×` cần đường tính RIÊNG (số chữ số thập phân của tích = TỔNG hai thừa số), và phép

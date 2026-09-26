@@ -27,7 +27,7 @@ import {
   useInteractive,
 } from "./interactiveFill";
 import { CARD_STYLE, CAPTION_STYLE, svgFit, ngatDong } from "./visualTheme";
-import { tachSo, tinhKetQua, tinhNho } from "./columnMath";
+import { tachSo, tinhKetQua, tinhNho, thuTuOTrong } from "./columnMath";
 
 const P = {
   ink: "#1e293b",
@@ -113,16 +113,23 @@ export function CotTinh({
    *   • cộng/trừ/nhân: các chữ số hàng kết quả (phải → trái) rồi tới ô “nhớ”.
    *   • chia: các chữ số của THƯƠNG (TRÁI → PHẢI, đúng thứ tự bé chia) rồi tới ô SỐ DƯ.
    */
-  const dapAn = laChia
-    ? blanks === "none"
-      ? []
-      : [
-          ...[...kqChia.nguyen].map(Number),
-          ...(kqChia.du > 0 ? [kqChia.du] : []),
-        ]
-    : blanks === "none"
-      ? []
-      : [...viTriTrong.map((i) => Number(hangKQ[i])), ...oNho.map((o) => o.v)];
+  // THỨ TỰ ĐIỀN — lấy từ hàm THUẦN `thuTuOTrong` (nguồn sự thật chung với cổng kiểm):
+  // cộng/trừ/nhân đi PHẢI → TRÁI và ô “nhớ” điền ngay sau hàng sinh ra nó; chia đi TRÁI → PHẢI.
+  const thuTuO = thuTuOTrong(left, right, dau, remember === true);
+  const slotChuSo = new Map(
+    thuTuO
+      .map((x, s) => (x.loai === "chuSo" ? [x.viTri, s] : null))
+      .filter(Boolean),
+  );
+  const slotNho = new Map(
+    thuTuO
+      .map((x, s) => (x.loai === "nho" ? [x.viTri, s] : null))
+      .filter(Boolean),
+  );
+
+  // ĐÁP ÁN = giá trị từng ô theo ĐÚNG thứ tự điền — một nguồn duy nhất cho cả ba phép cột dọc
+  // và phép chia (chia: chữ số thương trái→phải rồi số dư; xem `thuTuOTrong`).
+  const dapAn = blanks === "none" ? [] : thuTuO.map((x) => x.v);
 
   const fill = useFillSlots(dapAn);
   /** Bấm được hay không — tính TRƯỚC mọi nhánh bố cục (nhánh chia dùng tới). */
@@ -329,10 +336,9 @@ export function CotTinh({
       </text>
     );
 
-  let k = -1; // đếm ô trống theo thứ tự điền
-  const veODien = (i, y, key) => {
-    k += 1;
-    const o = k;
+  // Ô nào là ô ĐIỀN THỨ MẤY — tra theo VỊ TRÍ CHỮ SỐ (`slotChuSo`), không theo thứ tự vẽ.
+  const veODien = (i, y, key, slot) => {
+    const o = slot;
     const look = laBamDuoc
       ? slotLook(fill, o)
       : { fill: P.oTrong, stroke: "#f59e0b", color: "#b45309", dash: true };
@@ -419,15 +425,14 @@ export function CotTinh({
           ? [...hangKQ].map((ch, i) => veChuSo(ch, i, yKQ))
           : [...hangKQ].map((ch, i) =>
               ch >= "0" && ch <= "9"
-                ? veODien(i, yKQ, `kq-${i}`)
+                ? veODien(i, yKQ, `kq-${i}`, slotChuSo.get(i))
                 : veChuSo(ch, i, yKQ),
             )}
 
-        {/* ô “nhớ” — vẽ sau cùng nhưng đếm theo thứ tự đã xếp ở `oNho` */}
+        {/* ô “nhớ” — số thứ tự điền đã tính sẵn trong `slotNho` */}
         {coNho &&
           oNho.map((o) => {
-            k += 1;
-            const idx = k;
+            const idx = slotNho.get(o.viTri);
             const look = laBamDuoc
               ? slotLook(fill, idx)
               : {
