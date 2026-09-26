@@ -5,6 +5,7 @@ import { grade3Data } from "./grade3Data.js";
 import { grade4Data } from "./grade4Data.js";
 import { grade5Data } from "./grade5Data.js";
 import { cayHopLe, demCay, dungCay } from "./dungCayNoiDung.js";
+import { stripTextbookRefsInTree } from "../utils/stripTextbookRefs.js";
 
 /**
  * Nguồn nội dung bài học — Giai đoạn 3, lát 3d.
@@ -79,7 +80,19 @@ let lastLoadedAt = 0;
  *  (rất nhẹ), còn tải cả cây chỉ xảy ra khi số phiên bản ĐÃ ĐỔI. */
 const MIN_REFRESH_MS = 5_000;
 
-export const layGrades = () => grades;
+// 🔴 `layGrades` là CHỐT DUY NHẤT mà mọi màn hình đọc cây nội dung (qua `curriculum.js`)
+// ⇒ lọc nhãn SGK ở đây là đủ cho cả app, không phải sửa 170 chuỗi trong file dữ liệu.
+// Kết quả được NHỚ theo chính đối tượng cây ⇒ mỗi cây chỉ duyệt một lần, không duyệt lại
+// ở mỗi lần render (bảng có 460 bài · 2774 slide).
+let cayGocDaSach = null;
+let cayDaSach = null;
+export const layGrades = () => {
+  if (cayGocDaSach !== grades) {
+    cayGocDaSach = grades;
+    cayDaSach = stripTextbookRefsInTree(grades);
+  }
+  return cayDaSach;
+};
 export const layNguon = () => nguon;
 export const layPhienBan = () => phienBan;
 

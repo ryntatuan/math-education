@@ -1,0 +1,79 @@
+[
+  {
+    "bai": "g1-c6-l11",
+    "slideQuiz": 6,
+    "slideNguon": 5,
+    "khoa": "numberScene",
+    "diemGiong": 4
+  },
+  {
+    "bai": "g2-c4-l9",
+    "slideQuiz": 3,
+    "slideNguon": 2,
+    "khoa": "table+operation",
+    "diemGiong": 2
+  },
+  {
+    "bai": "g2-c8-l15",
+    "slideQuiz": 3,
+    "slideNguon": 2,
+    "khoa": "table+operation",
+    "diemGiong": 1
+  },
+  {
+    "bai": "g2-c10-l3",
+    "slideQuiz": 3,
+    "slideNguon": 2,
+    "khoa": "numberLine",
+    "diemGiong": 0
+  },
+  {
+    "bai": "g2-c10-l4",
+    "slideQuiz": 4,
+    "slideNguon": 3,
+    "khoa": "placeValue",
+    "diemGiong": 1
+  },
+  {
+    "bai": "g3-c13-l7",
+    "slideQuiz": 4,
+    "slideNguon": 2,
+    "khoa": "table+clock",
+    "diemGiong": 1
+  },
+  {
+    "bai": "g3-c15-l1",
+    "slideQuiz": 3,
+    "slideNguon": 2,
+    "khoa": "table",
+    "diemGiong": 5
+  },
+  {
+    "bai": "g3-c15-l2",
+    "slideQuiz": 4,
+    "slideNguon": 2,
+    "khoa": "barChart",
+    "diemGiong": 2
+  },
+  {
+    "bai": "g3-c15-l4",
+    "slideQuiz": 4,
+    "slideNguon": 2,
+    "khoa": "barChart",
+    "diemGiong": 1
+  },
+  {
+    "bai": "g3-c15-l4",
+    "slideQuiz": 5,
+    "slideNguon": 3,
+    "khoa": "table",
+    "diemGiong": 1
+  },
+  {
+    "bai": "g3-c16-l5",
+    "slideQuiz": 3,
+    "slideNguon": 2,
+    "khoa": "barChart",
+    "diemGiong": 3
+  }
+]

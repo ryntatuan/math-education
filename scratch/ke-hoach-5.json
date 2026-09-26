@@ -1,0 +1,163 @@
+[
+  {
+    "bai": "g1-c1-l2",
+    "slideQuiz": 4,
+    "slideNguon": 2,
+    "khoa": "numberScene",
+    "diemGiong": 1
+  },
+  {
+    "bai": "g1-c1-l5",
+    "slideQuiz": 3,
+    "slideNguon": 2,
+    "khoa": "numberScene",
+    "diemGiong": 1
+  },
+  {
+    "bai": "g1-c1-l5",
+    "slideQuiz": 5,
+    "slideNguon": 4,
+    "khoa": "numberScene",
+    "diemGiong": 4
+  },
+  {
+    "bai": "g1-c1-l6",
+    "slideQuiz": 4,
+    "slideNguon": 3,
+    "khoa": "numberScene",
+    "diemGiong": 5
+  },
+  {
+    "bai": "g1-c1-l7",
+    "slideQuiz": 5,
+    "slideNguon": 4,
+    "khoa": "numberScene",
+    "diemGiong": 1
+  },
+  {
+    "bai": "g1-c1-l8",
+    "slideQuiz": 12,
+    "slideNguon": 11,
+    "khoa": "numberScene",
+    "diemGiong": 4
+  },
+  {
+    "bai": "g1-c1-l11",
+    "slideQuiz": 3,
+    "slideNguon": 2,
+    "khoa": "numberScene",
+    "diemGiong": 1
+  },
+  {
+    "bai": "g1-c4-l3",
+    "slideQuiz": 8,
+    "slideNguon": 5,
+    "khoa": "spatialScene",
+    "diemGiong": 4
+  },
+  {
+    "bai": "g1-c6-l3",
+    "slideQuiz": 3,
+    "slideNguon": 2,
+    "khoa": "numberLine",
+    "diemGiong": 0
+  },
+  {
+    "bai": "g1-c6-l9",
+    "slideQuiz": 3,
+    "slideNguon": 2,
+    "khoa": "table",
+    "diemGiong": 0
+  },
+  {
+    "bai": "g1-c6-l9",
+    "slideQuiz": 4,
+    "slideNguon": 2,
+    "khoa": "table",
+    "diemGiong": 0
+  },
+  {
+    "bai": "g1-c6-l11",
+    "slideQuiz": 6,
+    "slideNguon": 5,
+    "khoa": "numberScene",
+    "diemGiong": 4
+  },
+  {
+    "bai": "g1-c9-l1",
+    "slideQuiz": 3,
+    "slideNguon": 2,
+    "khoa": "clock",
+    "diemGiong": 2
+  },
+  {
+    "bai": "g1-c9-l1",
+    "slideQuiz": 4,
+    "slideNguon": 2,
+    "khoa": "clock",
+    "diemGiong": 3
+  },
+  {
+    "bai": "g2-c4-l9",
+    "slideQuiz": 3,
+    "slideNguon": 2,
+    "khoa": "table+operation",
+    "diemGiong": 2
+  },
+  {
+    "bai": "g2-c8-l15",
+    "slideQuiz": 3,
+    "slideNguon": 2,
+    "khoa": "table+operation",
+    "diemGiong": 1
+  },
+  {
+    "bai": "g2-c10-l3",
+    "slideQuiz": 3,
+    "slideNguon": 2,
+    "khoa": "numberLine",
+    "diemGiong": 0
+  },
+  {
+    "bai": "g2-c10-l4",
+    "slideQuiz": 4,
+    "slideNguon": 3,
+    "khoa": "placeValue",
+    "diemGiong": 1
+  },
+  {
+    "bai": "g2-c13-l2",
+    "slideQuiz": 3,
+    "slideNguon": 2,
+    "khoa": "table",
+    "diemGiong": 0
+  },
+  {
+    "bai": "g3-c13-l7",
+    "slideQuiz": 4,
+    "slideNguon": 2,
+    "khoa": "table+clock",
+    "diemGiong": 1
+  },
+  {
+    "bai": "g3-c15-l1",
+    "slideQuiz": 3,
+    "slideNguon": 2,
+    "khoa": "table",
+    "diemGiong": 5
+  },
+  {
+    "bai": "g3-c15-l4",
+    "slideQuiz": 4,
+    "slideNguon": 2,
+    "khoa": "barChart",
+    "diemGiong": 1
+  },
+  {
+    "bai": "g5-c5-l4",
+    "slideQuiz": 3,
+    "slideNguon": 2,
+    "khoa": "table",
+    "diemGiong": 0
+  }
+]

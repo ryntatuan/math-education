@@ -2,21 +2,11 @@
 // TÁCH RA TỪ: GeometryVisuals.jsx
 // (di chuyển mã nguyên khối — không sửa nội dung)
 
-import {
-  svgFit,
-} from ".././visualTheme";
-import {
-  P,
-} from "./geometryData.jsx";
-import {
-  caption,
-} from "./geometryData.jsx";
-import {
-  card,
-} from "./geometryData.jsx";
-import {
-  num,
-} from "./geometryData.jsx";
+import { svgFit } from ".././visualTheme";
+import { P } from "./geometryData.jsx";
+import { caption } from "./geometryData.jsx";
+import { card } from "./geometryData.jsx";
+import { num } from "./geometryData.jsx";
 
 export const Block3D = ({
   x = 0,
@@ -1695,8 +1685,9 @@ export function SpatialScene({
             fill={hair}
           />
         ) : (
+          /* TÓC HAI MÁI cho bé trai — đối xứng, không xéo một bên (người dùng báo 2026-09-26). */
           <path
-            d={`M9,46 q6,-24 34,-2 q-4,-14 -17,-14 q-13,0 -17,16 Z`}
+            d={`M9,48 C9,28 16,24 26,24 C36,24 43,28 43,48 C40,41 34,37 28,35.5 C27,35.2 25,35.2 24,35.5 C18,37 12,41 9,48 Z`}
             fill={hair}
           />
         )}
@@ -2263,7 +2254,7 @@ export function SpatialScene({
           strokeWidth="1.6"
         />
         <path
-          d={`M-13,2 q6,-16 26,-1 q-4,-10 -13,-10 q-9,0 -13,11 Z`}
+          d={`M-13,6 C-13,-6 -7,-9 0,-9 C7,-9 13,-6 13,6 C10.5,1.5 6,-0.5 2,-1.5 C1,-1.8 -1,-1.8 -2,-1.5 C-6,-0.5 -10.5,1.5 -13,6 Z`}
           fill={hair}
         />
       </g>

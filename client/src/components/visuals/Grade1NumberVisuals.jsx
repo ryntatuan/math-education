@@ -515,8 +515,11 @@ export function NumberScene({
                       fill={f.hair}
                     />
                   ) : (
+                    /* TÓC HAI MÁI cho bé trai: mũ tóc ĐỐI XỨNG, hai mái rủ xuống hai bên,
+                       chổ giữa cao hơn thành đường ngôi. KHÔNG vẽ tóc xéo một bên
+                       (người dùng báo 2026-09-26). */
                     <path
-                      d={`M${x - 14},66 q6,-17 28,-1 q-4,-11 -14,-11 q-10,0 -14,12 Z`}
+                      d={`M${x - 14},70 C${x - 14},54 ${x - 7},49 ${x},49 C${x + 7},49 ${x + 14},54 ${x + 14},70 C${x + 11},63 ${x + 6},60 ${x + 2},59 C${x + 1},58.6 ${x - 1},58.6 ${x - 2},59 C${x - 6},60 ${x - 11},63 ${x - 14},70 Z`}
                       fill={f.hair}
                     />
                   )}
