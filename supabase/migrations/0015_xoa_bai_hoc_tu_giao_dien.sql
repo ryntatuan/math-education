@@ -4,7 +4,7 @@
 -- 🔴 FILE NÀY ĐỔI MỘT QUYẾT ĐỊNH CŨ. `D4` (lát 3c) kết luận *"KHÔNG có chỗ xoá bài,
 --    dùng Rút bài thay thế"*. Người dùng đã yêu cầu ngược lại: cần xoá được, nhưng
 --    kèm một chốt chặn đủ mạnh để không bấm nhầm. Quyết định mới ở nhóm `F` trong
---    `docs/phase_3c_3d_decisions.md` — `D4` và `E2` đã được sửa lại cho khỏi mâu thuẫn.
+--    `D4` và `E2` đã được sửa lại cho khỏi mâu thuẫn.
 --    **Vẫn KHÔNG có đường xoá CHƯƠNG** — cố ý, và cổng `S-30` canh đúng điều đó.
 --
 -- ────────────────────────────────────────────────────────────────────────────

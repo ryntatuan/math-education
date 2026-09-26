@@ -26,7 +26,7 @@ export const supabase = isSupabaseConfigured()
   : null;
 
 // Chỉ ở chế độ dev: phơi client ra Console để test thủ công (xem
-// docs/admin_portal_test_cases.md). Vite thay `import.meta.env.DEV` bằng
+// scripts/test-admin-portal.mjs). Vite thay `import.meta.env.DEV` bằng
 // `false` khi build production nên nhánh này bị loại bỏ hoàn toàn khỏi
 // bundle phát hành — không có rủi ro lộ gì thêm (anon key vốn đã công khai).
 if (import.meta.env.DEV && supabase && typeof window !== "undefined") {

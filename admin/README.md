@@ -35,13 +35,13 @@ supabase/migrations/0016_vet_xoa_noi_dung_nguon.sql      ← vết xoá ghi đú
 > **gõ đúng cụm `delete this lesson`** thì nút `Xoá vĩnh viễn` mới bật. Việc xoá đi qua hàm SQL
 > `delete_lesson` (chỉ admin); `content_version` và vết `lesson.delete` do trigger `0014` lo.
 > **Vẫn KHÔNG có đường xoá CHƯƠNG** — cố ý; muốn giấu một bài khỏi mắt bé thì dùng **Rút bài**.
-> Muốn kiểm lại toàn bộ: `docs/admin_portal_test_cases.md` → `TC-3c.12`, `TC-3d.10`.
+> Muốn kiểm lại toàn bộ: chạy `node scripts/test-admin-portal.mjs --static` → `TC-3c.12`, `TC-3d.10`.
 
 Mọi file đều **an toàn khi chạy lại** (idempotent).
 
 > 🔴 **`0010` phải chạy TRƯỚC `0011`** — bật công tắc trước khi bù `age_range` thì phụ huynh sẽ thấy
 > `Lớp 1 ()`.
-> Danh sách đầy đủ + cách kiểm từng bước: `docs/admin_portal_test_cases.md` → **mục A.2**.
+> Danh sách đầy đủ + cách kiểm từng bước: xem các mã `TC-*` trong `scripts/test-admin-portal.mjs`.
 
 > ⚠️ **Từ nay KHÔNG chạy lại `supabase/schema.sql`.**
 > File đó chứa policy `leaderboard` lỗi (`USING (true) WITH CHECK (true)`) mà migration này vừa vá. Chạy lại là mở lại lỗ hổng cho phép bất kỳ ai ghi đè điểm của người khác.

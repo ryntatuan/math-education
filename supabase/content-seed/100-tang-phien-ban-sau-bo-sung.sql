@@ -250,7 +250,7 @@
 --   Yêu cầu người dùng: “bổ sung thêm trong plan là rà soát file scan của TẤT CẢ các trang tài liệu
 --   học của Lớp 1… sau khi xong Lớp 1 thì tới Lớp 2,3,4,5: tất cả các lớp đều phải rà soát hết
 --   tất cả file ảnh để đồng bộ và nâng cao chất lượng”.
---   Bảng phát hiện chi tiết: `docs/sgk_audit_lop1.md` (16 + 3 + 4 + 3 phát hiện).
+--   Bảng phát hiện chi tiết được giữ riêng trên máy (không đẩy lên GitHub).
 --   12 bài của Chủ đề 1 (`g1-c1-l1` … `g1-c1-l12`) viết lại theo ĐÚNG 7 bài của SGK:
 --   **67 slide cũ → 128 slide**, **47 lượt hình**.
 --   Đổi cho khớp sách: số 0 nay học CÙNG nhóm 0–3 (SGK tr.8) thay vì đứng riêng sau 6–10;

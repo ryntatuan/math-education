@@ -12,7 +12,7 @@
 --     B. Bé sai vì ĐOÁN BỪA hay vì KHÔNG HIỂU? (cần `ms`)
 --     C. KỸ NĂNG nào bé yếu thật sự?           (cần đúng/sai ở mức từng câu)
 --   Bảng này ghi lại mỗi lượt trả lời để trả lời được 3 câu đó.
---   Kế hoạch đầy đủ: `docs/phase_2b_plan.md`.
+--   Ghi chú thiết kế của phần này được giữ riêng trên máy (không đẩy lên GitHub).
 --
 -- ⚠️ KHÁC HẲN `support_tickets` — ĐÂY LÀ BẢNG GHI RẤT NHIỀU.
 --   `support_tickets` hiếm khi có dòng mới nên đã mở cho `anon` ghi. Bảng này

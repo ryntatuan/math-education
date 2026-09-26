@@ -1,6 +1,6 @@
 // Master Curriculum for Vietnam Primary School Math (Grade 1 to Grade 5)
 // 5 Grades. Số chương mỗi lớp: 10, 14, 16, 6, 5 = **51 tổng**.
-// (Lớp 1, Lớp 2 và Lớp 3 đã dựng lại theo đúng số chủ đề của SGK — xem `docs/curriculum_audit.md`.)
+// (Lớp 1, Lớp 2 và Lớp 3 đã dựng lại theo đúng số chủ đề của SGK.)
 // Đo bằng `node scratch/inspect_content_shape.mjs`.
 //
 // ══════════════════════════════════════════════════════════════════════════════

@@ -50,7 +50,7 @@ export const CARD_STYLE = {
  *     ⇒ ở iPhone 375 px chữ 15 đơn vị ≈ **11,2 px**, máy 360 px ≈ 10,6 px.
  *
  * ⚠️ Sửa một hình thì PHẢI đo lại: `scratch/visual-fit.jsx` dựng trang chứa mọi ca hình
- * có thật trong dữ liệu 5 lớp (555 ca), rồi đo bằng trình duyệt — xem `docs/lesson_visuals_plan.md`.
+ * có thật trong dữ liệu 5 lớp (555 ca), rồi đo bằng trình duyệt.
  */
 export const VUA_HINH = 380;
 

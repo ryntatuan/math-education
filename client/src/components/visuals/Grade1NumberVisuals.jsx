@@ -8,7 +8,7 @@
  * Khoá đăng ký: `numberScene` (xem `visualKeys.js` + `VisualBlock.jsx`).
  * Mọi kiểu đều nhận `mode`; các prop còn lại ghi ngay trên từng khối.
  *
- * ── QUY TẮC BẮT BUỘC (đã trả giá, xem `docs/lesson_visuals_plan.md` §3) ─────────────
+ * ── QUY TẮC BẮT BUỘC (đã trả giá — danh sách ngay dưới đây) ─────────────
  *  • viewBox rộng ≤ 380 (điện thoại 375 px chỉ cho hình ~283 px bề rộng).
  *  • Mọi chữ trong SVG ≥ 14 đơn vị viewBox (≈ 11 px trên màn 375 px).
  *  • KHÔNG `minWidth` (gây cuộn ngang).
@@ -16,8 +16,7 @@
  *    và hình vẽ sai mà KHÔNG hề báo lỗi cú pháp (đã mắc thật).
  *  • Đáp án KHÔNG được in lên hình (đếm là việc của bé).
  *
- * Nguồn số liệu của từng hình: xem bảng §7 của `docs/sgk_curriculum_standardization_plan.md`
- * và `docs/sgk_audit_lop1.md`.
+ * Nguồn số liệu của từng hình: lấy từ SGK, ghi rõ ở từng hình bên dưới.
  */
 
 import { CARD_STYLE, CAPTION_STYLE, svgFit } from "./visualTheme";

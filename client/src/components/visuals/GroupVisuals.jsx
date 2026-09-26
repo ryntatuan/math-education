@@ -13,7 +13,7 @@
  *     `equalGroups` (các nhóm BẰNG NHAU: khay, hộp, hoặc vật có nhiều phần: càng, cánh, bánh xe)
  *     `unknownGroups` (biết tổng + mỗi nhóm, tìm số nhóm).
  *
- * QUY TẮC CHUNG (giống các bộ vẽ khác — xem `docs/lesson_visuals_plan.md` §3):
+ * QUY TẮC CHUNG (giống các bộ vẽ khác — nguyên tắc ghi trong chú thích đầu `Grade1NumberVisuals.jsx`):
  *   • viewBox rộng ≤ 380 · chữ ≥ 14 đơn vị · KHÔNG `minWidth` · ép số bằng `num()`.
  *   • Đáp án KHÔNG in lên hình nếu câu hỏi bắt bé tự tìm (trừ khi đặt `showResult`).
  */

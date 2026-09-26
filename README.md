@@ -27,11 +27,13 @@
 ## ✨ Tính Năng Nổi Bật
 
 ### 1. 📚 Chương Trình Học Toàn Diện (Lớp 1 – 3)
+
 - **Lớp 1:** Nhận biết số 1–100, phép cộng trừ phạm vi 10 & 20, so sánh lớn bé bằng, hình học trực quan (hình tròn, vuông, tam giác, chữ nhật), xem đồng hồ và đo độ dài cơ bản.
 - **Lớp 2:** Bảng nhân & chia 2, 3, 4, 5; phép cộng trừ có nhớ phạm vi 100 & 1000; đo lường thực tế (mét, đề-xi-mét, xăng-ti-mét, ki-lô-gam, lít).
 - **Lớp 3:** Bảng nhân & chia 6, 7, 8, 9; phép chia có dư; làm quen phân số đơn giản ($1/2, 1/3, 1/4...$); chu vi hình chữ nhật, hình vuông; tiền Việt Nam.
 
 ### 2. 🏎️ Mini Games Học Tập Đỉnh Cao
+
 - **🏎️ Cuộc Đua Toán Học (Math Race):**
   - Bé đua xe cùng 3 đối thủ máy (Thỏ Tốc Độ, Rùa Chăm Chỉ, Mèo Vàng).
   - Trả lời đúng phép tính để nhấn ga tăng tốc về đích.
@@ -44,23 +46,27 @@
   - Rèn luyện trí nhớ không gian và phản xạ tính nhẩm bằng cách lật ghép cặp giữa phép tính và kết quả.
 
 ### 3. 🛍️ Cửa Hàng Phần Thưởng & Kinh Tế Game Bền Vững
+
 - Bé tích lũy **Xu Vàng** từ việc hoàn thành bài học, giải thử thách và chiến thắng cuộc đua.
-- Dùng xu mở khóa các nhân vật ngộ nghĩnh trong Cửa Hàng: *Cú Mèo Tri Thức 🦉, Siêu Nhân Toán Học 🦸, Kỳ Lân Cầu Vồng 🦄, Robot Tính Nhanh 🤖, Rồng Con May Mắn 🐲...*
+- Dùng xu mở khóa các nhân vật ngộ nghĩnh trong Cửa Hàng: _Cú Mèo Tri Thức 🦉, Siêu Nhân Toán Học 🦸, Kỳ Lân Cầu Vồng 🦄, Robot Tính Nhanh 🤖, Rồng Con May Mắn 🐲..._
 - Lưu trữ dữ liệu vĩnh viễn qua `LocalStorage` (`Zustand Persist`), không lo mất nhân vật khi F5 trang.
 
 ### 4. 🏆 Thử Thách Mỗi Ngày (Daily Challenge) & Chuỗi Học Streak
+
 - Mỗi ngày gồm 3 cấp độ thử thách: **Khởi động (Dễ)**, **Tăng tốc (Vừa)**, **Bứt phá (Khó)**.
 - Duy trì chuỗi ngày học liên tục (Streak 🔥) để hình thành thói quen kỷ luật.
 - Mở **Hộp Quà Bí Mật** nhận xu may mắn sau khi hoàn thành thử thách.
 - Cơ chế tự động làm mới câu hỏi khi trả lời sai, không gây ức chế hay đóng băng giao diện.
 
 ### 5. 👨‍👩‍👧 Bảng Điều Khiển Dành Cho Phụ Huynh (Parent Dashboard)
+
 - **Bảo mật mã PIN 4 số** ngăn trẻ tự ý thay đổi cài đặt.
 - **Cơ chế khôi phục PIN thông minh:** Giải bài toán dành cho người lớn để mở khóa khi quên mã.
 - **Biểu đồ đánh giá năng lực 5 trục:** Số học, Cộng trừ, Nhân chia, Hình học, Đo lường.
 - Báo cáo chi tiết: Số bài hoàn thành, thời gian học tập ước tính, tỷ lệ xuất sắc, lịch sử làm bài và gợi ý lộ trình ôn tập.
 
 ### 6. 🔊 Hệ Thống Âm Thanh Zero-Latency (Web Audio API)
+
 - Tự động tổng hợp âm thanh đa tần số tức thời (zero delay) không cần tải bất kỳ file MP3 nào từ bên ngoài:
   - Hợp âm vui tươi khi làm đúng (`playCorrect`).
   - Âm thanh nhẹ nhàng khi làm sai (`playWrong`).
@@ -72,33 +78,36 @@
 
 ## 🛠️ Công Nghệ Sử Dụng
 
-| Hạng mục | Công nghệ |
-| :--- | :--- |
-| **Frontend Framework** | React 18 + Vite 6 |
-| **Animation & Hiệu ứng** | Framer Motion + Canvas Confetti |
-| **Quản lý trạng thái** | Zustand (Persistent LocalStorage) |
-| **Biểu tượng (Icons)** | Lucide React |
-| **Hệ thống âm thanh** | Native Web Audio API (`AudioContext`) |
-| **Kiểu dáng (Styling)** | Pure Vanilla CSS (Design Tokens, HSL colors, responsive layouts) |
-| **Typography** | Google Fonts (Baloo 2, Nunito) tối ưu cho trẻ em Việt Nam |
+| Hạng mục                 | Công nghệ                                                        |
+| :----------------------- | :--------------------------------------------------------------- |
+| **Frontend Framework**   | React 18 + Vite 6                                                |
+| **Animation & Hiệu ứng** | Framer Motion + Canvas Confetti                                  |
+| **Quản lý trạng thái**   | Zustand (Persistent LocalStorage)                                |
+| **Biểu tượng (Icons)**   | Lucide React                                                     |
+| **Hệ thống âm thanh**    | Native Web Audio API (`AudioContext`)                            |
+| **Kiểu dáng (Styling)**  | Pure Vanilla CSS (Design Tokens, HSL colors, responsive layouts) |
+| **Typography**           | Google Fonts (Baloo 2, Nunito) tối ưu cho trẻ em Việt Nam        |
 
 ---
 
 ## 🚀 Hướng Dẫn Cài Đặt & Khởi Chạy
 
 ### Yêu cầu hệ thống:
+
 - **Node.js** phiên bản 18.0.0 trở lên.
 - **npm** hoặc **yarn / pnpm**.
 
 ### Các bước thực hiện:
 
 1. **Clone repository về máy:**
+
    ```bash
    git clone https://github.com/ryntatuan/math-education.git
    cd math-education
    ```
 
 2. **Cài đặt các gói phụ thuộc (Dependencies):**
+
    ```bash
    # Cài đặt cho client
    cd client
@@ -106,9 +115,11 @@
    ```
 
 3. **Khởi chạy môi trường phát triển (Development):**
+
    ```bash
    npm run dev
    ```
+
    Mở trình duyệt và truy cập: **`http://localhost:5173`**
 
 4. **Đóng gói sản phẩm (Production Build):**
@@ -175,6 +186,7 @@ _(Ghi chú thiết kế/tiến độ mobile được giữ riêng trên máy, kh
 ## 🤝 Đóng Góp Phát Triển (Contributing)
 
 Mọi đóng góp nhằm nâng cao chất lượng giáo dục và trải nghiệm của các bé đều được hoan nghênh:
+
 1. Fork dự án.
 2. Tạo branch mới (`git checkout -b feature/tinh-nang-moi`).
 3. Commit thay đổi (`git commit -m 'feat: thêm bài toán có lời văn lớp 3'`).
@@ -188,4 +200,3 @@ Mọi đóng góp nhằm nâng cao chất lượng giáo dục và trải nghi�
 Dự án được xây dựng phục vụ mục đích giáo dục phi lợi nhuận. Mọi ý kiến đóng góp xin gửi về qua mục Issues của GitHub.
 
 ⭐ **Nếu bạn thấy dự án hữu ích, hãy tặng cho repository 1 Star nhé!** ⭐
-

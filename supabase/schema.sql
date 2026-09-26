@@ -16,7 +16,7 @@
 -- ở migration sau là chuyện thường. Quyền của hàm, các bảng CMS (`content_*`), bảng nháp,
 -- và hàm tạo/xoá bài đều CHỈ nằm trong `migrations/`, không có trong file này.
 --
--- Dựng DB mới: chạy theo đúng thứ tự ở mục A.2 của `docs/admin_portal_test_cases.md`.
+-- Dựng DB mới: chạy các migration theo thứ tự số, rồi nạp seed trong `supabase/content-seed/`.
 -- ====================================================================
 
 -- ====================================================================

@@ -4,7 +4,7 @@ import { supabase } from "../lib/supabase";
 /**
  * Phân tích câu hỏi — Giai đoạn 2b, lát 2b-2.
  *
- * Màn hình này trả lời 3 câu (đúng 3 khối A/B/C trong `docs/phase_2b_plan.md`):
+ * Màn hình này trả lời 3 câu (đúng 3 khối A/B/C của bản thiết kế phân tích):
  *   A. Khuôn/câu hỏi nào SAI nhiều bất thường?
  *   B. Bé sai vì ĐOÁN BỪA (nhanh + sai) hay vì CHƯA HIỂU (chậm + sai)?
  *   C. Kỹ năng nào bé yếu thật sự?

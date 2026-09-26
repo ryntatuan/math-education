@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-OCR 8 file SGK trong `docs/Data Source/` (ban SCAN ANH, khong co lop chu) -> Markdown.
+OCR 8 file SGK trong `docs/DataSource/` (ban SCAN ANH, khong co lop chu) -> Markdown.
 
 Duong di:
     PDF -> PyMuPDF ket xuat tung trang thanh PNG (300 DPI)
@@ -12,8 +12,8 @@ Vi sao tach tung trang:
   - Trang nao loi thi chi trang do bi bo qua, cac trang khac van chay.
 
 Ket qua:
-  docs/Data Source/.ocr-pages/<slug>/page-0001.md   <- cache tung trang
-  docs/Data Source/<ten file>.md                    <- file gop
+  docs/DataSource/.ocr-pages/<slug>/page-0001.md   <- cache tung trang
+  docs/DataSource/<ten file>.md                    <- file gop
 
 Vi du:
   python scripts/ocr-textbook-pdfs.py --only "grade 1 part 1" --from-page 16 --max-pages 3
@@ -36,7 +36,7 @@ from pathlib import Path
 import pymupdf
 
 ROOT = Path(__file__).resolve().parent.parent
-SRC = ROOT / "docs" / "Data Source"
+SRC = ROOT / "docs" / "DataSource"
 CACHE = SRC / ".ocr-pages"
 TMP = Path(tempfile.gettempdir()) / "mocr"
 

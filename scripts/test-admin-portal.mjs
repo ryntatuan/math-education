@@ -15,7 +15,7 @@
  * tự động hoá — xem danh sách "CẦN TEST TAY" ở cuối. Lý do: Google chặn
  * đăng nhập từ trình duyệt điều khiển tự động.
  *
- * Mã test (TC-x.y) khớp với docs/admin_portal_test_cases.md
+ * Mã test (TC-x.y) đặt theo nhóm tính năng; mỗi mã là MỘT luật kiểm chạy được.
  */
 
 import fs from "node:fs";
@@ -3228,6 +3228,8 @@ console.log(
 );
 console.log("─".repeat(78));
 for (const [id, name] of MANUAL) console.log(`     ${pad(id, 8)} ${name}`);
-console.log("\n  Chi tiết từng bước: docs/admin_portal_test_cases.md\n");
+console.log(
+  "\n  Danh sách luật kiểm: xem chú thích + hàm kiểm trong chính file này.\n",
+);
 
 process.exit(fail > 0 ? 1 : 0);

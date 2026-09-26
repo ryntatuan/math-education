@@ -7,7 +7,7 @@ import useAuthStore from "../store/useAuthStore";
  * Vì sao có file này: `child_progress` chỉ biết điểm theo từng BUỔI, không biết
  * độ chính xác của từng CÂU. Không có dữ liệu mức từng câu thì không trả lời
  * được "khuôn nào hỏng", "bé đoán bừa hay không hiểu", "kỹ năng nào yếu".
- * Xem `docs/phase_2b_plan.md`.
+ * (Ghi chú thiết kế phần này được giữ riêng trên máy, không đẩy lên GitHub.)
  *
  * Cố ý KHÔNG nằm trong `useProgressStore`: store dùng cho state cục bộ (localStorage),
  * còn đây là ghi cloud thuần, không đụng state nào. Trộn vào store chỉ làm store phình ra.

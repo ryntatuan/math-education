@@ -66,7 +66,7 @@ export const supabase = isSupabaseConfigured()
   : null;
 
 // Chỉ ở chế độ dev: phơi client ra Console để test thủ công
-// (xem docs/admin_portal_test_cases.md). Cần thiết ở ĐÂY vì test quyền admin
+// (test kiểm ở scripts/test-admin-portal.mjs). Cần thiết ở ĐÂY vì test quyền admin
 // (`__sb.rpc('is_admin')`) phải chạy trong session admin — mà chỗ tự nhiên
 // nhất để có session admin chính là Admin Portal.
 // Vite thay `import.meta.env.DEV` bằng `false` lúc build production nên nhánh

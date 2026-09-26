@@ -20,8 +20,7 @@ import ReportQuestionButton from "../components/report/ReportQuestionButton";
 import { recordAttempt } from "../services/attemptService";
 import MascotIcon from "../components/common/MascotIcon";
 import CoinIcon from "../components/common/CoinIcon";
-// Bộ vẽ hình bổ sung (Giai đoạn 1 kế hoạch hình ảnh) — CHỈ THÊM, không thay khối cũ.
-// Xem `docs/lesson_visuals_plan.md`.
+// Bộ vẽ hình bổ sung — CHỈ THÊM, không thay khối cũ (xem chú thích trong `components/visuals/`).
 import VisualBlocks from "../components/visuals/VisualBlock";
 import { InteractiveContext } from "../components/visuals/interactiveFill";
 import useUserStore from "../store/useUserStore";

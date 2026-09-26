@@ -2,7 +2,7 @@
 -- 0014 — XOÁ BÀI HỌC THẲNG TRONG DB THÌ APP PHẢI TỰ LÀNH
 --
 -- 🔴 KHÔNG có file này để thêm một đường xoá từ giao diện. Admin vẫn chỉ có
---    **Rút bài** (về `draft`), cố ý — xem `docs/phase_3c_3d_decisions.md` mục `D4`.
+--    **Rút bài** (về `draft`), cố ý (quyết định `D4`).
 --    File này lo phần ngược lại: **khi ai đó xoá bằng SQL**, thì app của bé và
 --    trang Admin không được vỡ, và cũng không được "im lặng sai".
 --
