@@ -13,7 +13,9 @@ const DIST = "client/dist/assets";
 const MANIFEST = "client/dist/.vite/manifest.json";
 
 if (!existsSync(DIST)) {
-  console.error("✗ Chưa có " + DIST + " — chạy `npm --prefix client run build:web` trước.");
+  console.error(
+    "✗ Chưa có " + DIST + " — chạy `npm --prefix client run build:web` trước.",
+  );
   process.exit(1);
 }
 
@@ -43,7 +45,11 @@ console.log("Tổng JS: " + kb(total) + " trong " + rows.length + " mảnh\n");
 console.log("5 mảnh lớn nhất:");
 for (const r of rows.slice(0, 5)) {
   console.log(
-    "  " + kb(r.size) + "  " + r.name + (r.name === main ? "   ← MẢNH CHÍNH" : ""),
+    "  " +
+      kb(r.size) +
+      "  " +
+      r.name +
+      (r.name === main ? "   ← MẢNH CHÍNH" : ""),
   );
 }
 
@@ -54,5 +60,7 @@ console.log(
   "\nMảnh chính: " +
     kb(mainSize) +
     " / mục tiêu < 600 KB ⇒ " +
-    (mainSize < MUC_TIEU ? "ĐẠT" : "CHƯA ĐẠT (xem ghi chú trong kế hoạch: phần còn lại là dữ liệu 5 lớp)"),
+    (mainSize < MUC_TIEU
+      ? "ĐẠT"
+      : "CHƯA ĐẠT (xem ghi chú trong kế hoạch: phần còn lại là dữ liệu 5 lớp)"),
 );

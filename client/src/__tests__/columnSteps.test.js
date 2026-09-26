@@ -21,15 +21,18 @@ const CA = [
 ];
 
 describe("buocTinh — lời giải từng bước", () => {
-  it.each(CA)("%i %s %i: có bước, và số cuối cùng đúng bằng kết quả", (a, b, sign) => {
-    const { buoc, ketLuan } = buocTinh(a, b, sign);
-    const can = thanhChuoi(tinhKetQua(a, b, sign === "-" ? "−" : sign));
-    const toanBo = buoc.join(" ") + " " + ketLuan;
-    expect(buoc.length).toBeGreaterThan(0);
-    expect(ketLuan.length).toBeGreaterThan(0);
-    // Kết quả thật phải XUẤT HIỆN trong lời giải (bắt lỗi "nói một đằng tính một nẻo").
-    expect(toanBo.replace(/\s/g, "")).toContain(can.replace(/\s/g, ""));
-  });
+  it.each(CA)(
+    "%i %s %i: có bước, và số cuối cùng đúng bằng kết quả",
+    (a, b, sign) => {
+      const { buoc, ketLuan } = buocTinh(a, b, sign);
+      const can = thanhChuoi(tinhKetQua(a, b, sign === "-" ? "−" : sign));
+      const toanBo = buoc.join(" ") + " " + ketLuan;
+      expect(buoc.length).toBeGreaterThan(0);
+      expect(ketLuan.length).toBeGreaterThan(0);
+      // Kết quả thật phải XUẤT HIỆN trong lời giải (bắt lỗi "nói một đằng tính một nẻo").
+      expect(toanBo.replace(/\s/g, "")).toContain(can.replace(/\s/g, ""));
+    },
+  );
 
   it("trừ số lớn hơn không vỡ (trả rỗng thay vì số âm sai)", () => {
     const { buoc } = buocTinh(3, 8, "−");

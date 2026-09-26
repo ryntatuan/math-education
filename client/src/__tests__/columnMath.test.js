@@ -21,7 +21,12 @@ const dayO = (left, right, sign, remember = false) =>
 describe("thuTuOTrong — thứ tự ô điền (nguồn sự thật của giao diện)", () => {
   it("cộng 256 + 173: điền TỪ PHẢI SANG TRÁI, ô nhớ ngay sau hàng sinh ra nó", () => {
     // 6+3=9 (đơn vị) → 5+7=12 viết 2 nhớ 1 (chục) → 2+1+1=4 (trăm)
-    expect(dayO(256, 173, "+", true)).toEqual(["chuSo:9", "chuSo:2", "nho:1", "chuSo:4"]);
+    expect(dayO(256, 173, "+", true)).toEqual([
+      "chuSo:9",
+      "chuSo:2",
+      "nho:1",
+      "chuSo:4",
+    ]);
   });
 
   it("cộng không nhớ 25 + 4: ô đầu tiên vẫn là hàng đơn vị", () => {
@@ -33,7 +38,11 @@ describe("thuTuOTrong — thứ tự ô điền (nguồn sự thật của giao 
   });
 
   it("trừ 500 − 178: điền 2 → 2 (có mượn) → 3", () => {
-    expect(dayO(500, 178, "−", true)).toEqual(["chuSo:2", "chuSo:2", "chuSo:3"]);
+    expect(dayO(500, 178, "−", true)).toEqual([
+      "chuSo:2",
+      "chuSo:2",
+      "chuSo:3",
+    ]);
   });
 
   it("chia 639 : 3: điền TỪ TRÁI SANG PHẢI (2 → 1 → 3)", () => {
@@ -63,7 +72,10 @@ describe("tinhKetQua — kết quả số học", () => {
   });
 
   it("số thập phân: số chữ số thập phân của tích = tổng hai thừa số", () => {
-    expect(tinhKetQua("1,5", "2,25", "+")).toMatchObject({ nguyen: "3", thap: "75" });
+    expect(tinhKetQua("1,5", "2,25", "+")).toMatchObject({
+      nguyen: "3",
+      thap: "75",
+    });
     expect(tinhKetQua("2,5", "1,2", "×")).toMatchObject({ cotThap: 2 });
   });
 

@@ -13,8 +13,11 @@ const layLopDung = (p) => {
   const ra = new Set();
   // className="a b c" và className={`a ${x}`}
   for (const m of src.matchAll(/className=\{?["'`]([^"'`]+)["'`]/g))
-    for (const t of m[1].split(/[\s${}?:]+/)) if (/^[a-z][a-z0-9-]*$/i.test(t)) ra.add(t);
-  for (const m of src.matchAll(/classList\.(?:add|remove|toggle)\(["'`]([^"'`]+)/g))
+    for (const t of m[1].split(/[\s${}?:]+/))
+      if (/^[a-z][a-z0-9-]*$/i.test(t)) ra.add(t);
+  for (const m of src.matchAll(
+    /classList\.(?:add|remove|toggle)\(["'`]([^"'`]+)/g,
+  ))
     ra.add(m[1]);
   return ra;
 };
@@ -46,6 +49,14 @@ console.log(`PracticePage dùng ${dung.size} lớp.`);
 console.log(
   `\n① Lớp PracticePage DÙNG và CHỈ có định nghĩa trong HomePage.css (${chiCoOHome.length}):`,
 );
-console.log(chiCoOHome.length ? "  " + chiCoOHome.join(", ") : "  (không có) ⇒ bỏ import HomePage.css được");
-console.log(`\n② Lớp dùng mà không thấy định nghĩa ở đâu (${khongCoODau.length}):`);
-console.log(khongCoODau.length ? "  " + khongCoODau.join(", ") : "  (không có)");
+console.log(
+  chiCoOHome.length
+    ? "  " + chiCoOHome.join(", ")
+    : "  (không có) ⇒ bỏ import HomePage.css được",
+);
+console.log(
+  `\n② Lớp dùng mà không thấy định nghĩa ở đâu (${khongCoODau.length}):`,
+);
+console.log(
+  khongCoODau.length ? "  " + khongCoODau.join(", ") : "  (không có)",
+);

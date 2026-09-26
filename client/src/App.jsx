@@ -93,23 +93,23 @@ function AppLayout() {
           <Suspense fallback={<PageFallback />}>
             <Routes>
               <Route path="/" element={<HomePage />} />
-            <Route path="/learn" element={<Navigate to="/" replace />} />
-            <Route
-              path="/learn/:gradeId/:chapterId"
-              element={<ChapterPage />}
-            />
-            <Route path="/lesson/:lessonId" element={<LessonPage />} />
-            <Route path="/practice" element={<PracticePage />} />
-            <Route path="/games" element={<GamesPage />} />
-            <Route
-              path="/stories"
-              element={<Navigate to="/games?tab=stories" replace />}
-            />
-            <Route path="/leaderboard" element={<LeaderboardPage />} />
-            <Route path="/challenges" element={<ChallengePage />} />
-            <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/shop" element={<ShopPage />} />
-            <Route path="/parent" element={<ParentDashboard />} />
+              <Route path="/learn" element={<Navigate to="/" replace />} />
+              <Route
+                path="/learn/:gradeId/:chapterId"
+                element={<ChapterPage />}
+              />
+              <Route path="/lesson/:lessonId" element={<LessonPage />} />
+              <Route path="/practice" element={<PracticePage />} />
+              <Route path="/games" element={<GamesPage />} />
+              <Route
+                path="/stories"
+                element={<Navigate to="/games?tab=stories" replace />}
+              />
+              <Route path="/leaderboard" element={<LeaderboardPage />} />
+              <Route path="/challenges" element={<ChallengePage />} />
+              <Route path="/profile" element={<ProfilePage />} />
+              <Route path="/shop" element={<ShopPage />} />
+              <Route path="/parent" element={<ParentDashboard />} />
               <Route path="/auth/callback" element={<AuthCallbackPage />} />
             </Routes>
           </Suspense>

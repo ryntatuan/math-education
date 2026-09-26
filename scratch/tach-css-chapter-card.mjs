@@ -91,28 +91,47 @@ for (const k of khoi) {
     const chuyen = quyTac.filter((q) => thuoc(q.slice(0, q.indexOf("{"))));
     const giu = quyTac.filter((q) => !thuoc(q.slice(0, q.indexOf("{"))));
     if (chuyen.length)
-      chon.push({ text: `${sel} {\n${chuyen.map((q) => q.trim()).join("\n\n")}\n}` });
-    if (giu.length) conLai.push({ text: `${sel} {\n${giu.map((q) => q.trim()).join("\n\n")}\n}` });
+      chon.push({
+        text: `${sel} {\n${chuyen.map((q) => q.trim()).join("\n\n")}\n}`,
+      });
+    if (giu.length)
+      conLai.push({
+        text: `${sel} {\n${giu.map((q) => q.trim()).join("\n\n")}\n}`,
+      });
     continue;
   }
   if (thuoc(sel)) chon.push({ text: k.text });
   else conLai.push({ text: k.text });
 }
 
-console.log(`HomePage.css: ${khoi.length} khối · chuyển ${chon.length} khối sang ${DICH}`);
+console.log(
+  `HomePage.css: ${khoi.length} khối · chuyển ${chon.length} khối sang ${DICH}`,
+);
 console.log("Các selector được chuyển:");
-for (const k of chon) console.log("  · " + k.text.slice(0, k.text.indexOf("{")).trim().slice(0, 90));
+for (const k of chon)
+  console.log(
+    "  · " + k.text.slice(0, k.text.indexOf("{")).trim().slice(0, 90),
+  );
 console.log("\nCòn lại trong HomePage.css: " + conLai.length + " khối");
 
 if (GHI) {
-  if (!existsSync("client/src/styles")) mkdirSync("client/src/styles", { recursive: true });
+  if (!existsSync("client/src/styles"))
+    mkdirSync("client/src/styles", { recursive: true });
   const dau =
     "/* ============================================================\n" +
     "   THẺ CHƯƠNG — CSS DÙNG CHUNG cho HomePage & PracticePage\n" +
     "   Tách ra khỏi HomePage.css (H-5): PracticePage trước đây import\n" +
     "   HomePage.css nên dễ rò style sang nhau.\n" +
     "   ============================================================ */\n\n";
-  writeFileSync(DICH, dau + chon.map((k) => k.text.trim()).join("\n\n") + "\n", "utf8");
-  writeFileSync(NGUON, conLai.map((k) => k.text.trim()).join("\n\n") + "\n", "utf8");
+  writeFileSync(
+    DICH,
+    dau + chon.map((k) => k.text.trim()).join("\n\n") + "\n",
+    "utf8",
+  );
+  writeFileSync(
+    NGUON,
+    conLai.map((k) => k.text.trim()).join("\n\n") + "\n",
+    "utf8",
+  );
   console.log("\n✅ ĐÃ GHI 2 file.");
 }
