@@ -1008,41 +1008,41 @@ export function Money({ notes = [20000, 5000], label = "" }) {
           }}
         >
           {shown.map((n, i) => {
-          const st = NOTE_STYLE[n] || { bg: "#f1f5f9", bd: PALETTE.line };
-          return (
-            <div
-              key={i}
-              style={{
-                background: st.bg,
-                border: `2.5px solid ${st.bd}`,
-                borderRadius: 12,
-                padding: "12px 16px",
-                minWidth: 116,
-                textAlign: "center",
-              }}
-            >
+            const st = NOTE_STYLE[n] || { bg: "#f1f5f9", bd: PALETTE.line };
+            return (
               <div
+                key={i}
                 style={{
-                  fontSize: 17,
-                  fontWeight: 800,
-                  color: st.bd,
-                  whiteSpace: "nowrap",
+                  background: st.bg,
+                  border: `2.5px solid ${st.bd}`,
+                  borderRadius: 12,
+                  padding: "12px 16px",
+                  minWidth: 116,
+                  textAlign: "center",
                 }}
               >
-                {thousands(n)}
+                <div
+                  style={{
+                    fontSize: 17,
+                    fontWeight: 800,
+                    color: st.bd,
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  {thousands(n)}
+                </div>
+                <div
+                  style={{
+                    fontSize: 11,
+                    fontWeight: 700,
+                    color: st.bd,
+                    opacity: 0.85,
+                  }}
+                >
+                  đồng
+                </div>
               </div>
-              <div
-                style={{
-                  fontSize: 11,
-                  fontWeight: 700,
-                  color: st.bd,
-                  opacity: 0.85,
-                }}
-              >
-                đồng
-              </div>
-            </div>
-          );
+            );
           })}
         </div>
       )}
