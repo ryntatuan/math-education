@@ -19,6 +19,26 @@
 -- Dựng DB mới: chạy các migration theo thứ tự số, rồi nạp seed trong `supabase/content-seed/`.
 -- ====================================================================
 
+-- ── CHỐT AN TOÀN (thêm 2026-09-26) ──────────────────────────────────────────
+-- Cảnh báo bằng chữ ở trên là chưa đủ: dán nhầm cả file vào SQL Editor vẫn chạy và vẫn mở lại
+-- hai lỗ hổng đã vá. Chốt dưới đây chặn việc đó: nếu DB ĐÃ có schema (bảng `child_profiles`),
+-- file này DỪNG ngay; DB trống (cài mới từ đầu) thì vẫn chạy bình thường.
+-- Muốn bỏ qua chốt (chỉ khi thật sự cài mới trên DB còn sót bảng rác): xoá tạm khối này.
+DO $$
+BEGIN
+  IF EXISTS (
+    SELECT 1 FROM information_schema.tables
+    WHERE table_schema = 'public' AND table_name = 'child_profiles'
+  ) THEN
+    RAISE EXCEPTION
+      'schema.sql là FILE LỊCH SỬ — DB này đã có dữ liệu. Đừng chạy lại (sẽ mở lại lỗ hổng leaderboard + kiểu child_mistakes.answer). Dùng supabase/migrations/ theo thứ tự số.'
+      USING ERRCODE = 'feature_not_supported';
+  END IF;
+END
+$$;
+
+-- ====================================================================
+
 -- ====================================================================
 -- TOÁN VUI TIỂU HỌC - HỆ THỐNG CƠ SỞ DỮ LIỆU TOÀN DIỆN (SUPABASE SQL)
 -- Hướng dẫn: Mở Supabase Dashboard -> Vào mục "SQL Editor" -> Dán toàn bộ file này và bấm "Run"

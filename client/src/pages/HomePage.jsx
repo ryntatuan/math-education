@@ -29,6 +29,7 @@ import { APP_VERSION } from "../config/appVersion";
 import curriculum from "../data/curriculum";
 import soundManager from "../utils/soundManager";
 import "./HomePage.css";
+import "../styles/chapter-cards.css";
 
 // 5 Lớp Học Toàn Diện (Lớp 1 đến Lớp 5)
 const ALL_GRADES = [

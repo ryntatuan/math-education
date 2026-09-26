@@ -29,7 +29,7 @@ import soundManager from "../utils/soundManager";
 import speechHelper from "../utils/speechHelper";
 import fireConfetti from "../utils/confettiHelper";
 import RightSidebar from "../components/layout/RightSidebar";
-import "./HomePage.css";
+import "../styles/chapter-cards.css";
 import "./PracticePage.css";
 
 /**
