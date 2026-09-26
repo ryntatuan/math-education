@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, lazy, Suspense } from "react";
 import {
   BrowserRouter,
   Routes,
@@ -13,18 +13,41 @@ import AuthModal from "./components/auth/AuthModal";
 import DownloadAppModal from "./components/modals/DownloadAppModal";
 import BoosterTimer from "./components/layout/BoosterTimer";
 import HomePage from "./pages/HomePage";
-import GradePage, { ChapterPage } from "./pages/GradePage";
 import MascotBubble from "./components/mascot/MascotBubble";
-import LessonPage from "./pages/LessonPage";
-import PracticePage from "./pages/PracticePage";
-import GamesPage from "./pages/GamesPage";
-import ChallengePage from "./pages/ChallengePage";
-import ProfilePage from "./pages/ProfilePage";
-import ShopPage from "./pages/ShopPage";
-import ParentDashboard from "./pages/ParentDashboard";
-import StoriesPage from "./pages/StoriesPage";
-import LeaderboardPage from "./pages/LeaderboardPage";
-import AuthCallbackPage from "./pages/AuthCallbackPage";
+
+// ── TÁCH GÓI THEO TRANG (đo được: gói tải lần đầu trước đây **2 005 KB**) ─────────────────
+// Bé mở app là vào Trang chủ; các trang sau chỉ cần khi bé bấm tới ⇒ tải sau (lazy) để lần đầu
+// mở app nhanh hơn nhiều. `HomePage` cố ý KHÔNG lazy (đây là màn hình đầu tiên).
+function PageFallback() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        minHeight: "45vh",
+        color: "#0284c7",
+        fontWeight: 700,
+        fontSize: "1.05rem",
+      }}
+    >
+      Đang mở trang…
+    </div>
+  );
+}
+
+const ChapterPage = lazy(() =>
+  import("./pages/GradePage").then((m) => ({ default: m.ChapterPage })),
+);
+const LessonPage = lazy(() => import("./pages/LessonPage"));
+const PracticePage = lazy(() => import("./pages/PracticePage"));
+const GamesPage = lazy(() => import("./pages/GamesPage"));
+const ChallengePage = lazy(() => import("./pages/ChallengePage"));
+const ProfilePage = lazy(() => import("./pages/ProfilePage"));
+const ShopPage = lazy(() => import("./pages/ShopPage"));
+const ParentDashboard = lazy(() => import("./pages/ParentDashboard"));
+const LeaderboardPage = lazy(() => import("./pages/LeaderboardPage"));
+const AuthCallbackPage = lazy(() => import("./pages/AuthCallbackPage"));
 import useUserStore from "./store/useUserStore";
 import useAuthStore from "./store/useAuthStore";
 import { setupAutoSync } from "./services/syncService";
@@ -67,8 +90,9 @@ function AppLayout() {
         className={`page-wrapper ${isLessonRoute ? "page-wrapper-lesson" : ""}`}
       >
         <ErrorBoundary key={location.pathname}>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
+          <Suspense fallback={<PageFallback />}>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
             <Route path="/learn" element={<Navigate to="/" replace />} />
             <Route
               path="/learn/:gradeId/:chapterId"
@@ -86,8 +110,9 @@ function AppLayout() {
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/shop" element={<ShopPage />} />
             <Route path="/parent" element={<ParentDashboard />} />
-            <Route path="/auth/callback" element={<AuthCallbackPage />} />
-          </Routes>
+              <Route path="/auth/callback" element={<AuthCallbackPage />} />
+            </Routes>
+          </Suspense>
         </ErrorBoundary>
       </main>
       {!isLessonRoute && <BottomNav />}
