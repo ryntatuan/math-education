@@ -21,6 +21,7 @@
 
 import { CARD_STYLE, CAPTION_STYLE, svgFit } from "./visualTheme";
 
+import { CharacterFullBody } from "../common/CharacterGraphics";
 import {
   useFillSlots,
   slotLook,
@@ -480,91 +481,12 @@ export function NumberScene({
                 fill="#000000"
                 opacity="0.08"
               />
-              {f.hair ? (
-                <>
-                  {/* BÍM vẽ TRƯỚC đầu để nằm sau tóc */}
-                  {f.kind === "girl" && (
-                    <>
-                      <ellipse
-                        cx={x - 15}
-                        cy="76"
-                        rx="5"
-                        ry="9"
-                        fill={f.hair}
-                      />
-                      <ellipse
-                        cx={x + 15}
-                        cy="76"
-                        rx="5"
-                        ry="9"
-                        fill={f.hair}
-                      />
-                    </>
-                  )}
-                  <circle
-                    cx={x}
-                    cy="70"
-                    r="14"
-                    fill="#fcd5ce"
-                    stroke="#e07a5f"
-                    strokeWidth="1.6"
-                  />
-                  {f.kind === "girl" ? (
-                    <path
-                      d={`M${x - 14},70 q0,-20 14,-20 q14,0 14,20 q-6,-9 -14,-9 q-8,0 -14,9 Z`}
-                      fill={f.hair}
-                    />
-                  ) : (
-                    /* TÓC HAI MÁI cho bé trai: mũ tóc ĐỐI XỨNG, hai mái rủ xuống hai bên,
-                       chổ giữa cao hơn thành đường ngôi. KHÔNG vẽ tóc xéo một bên
-                       (người dùng báo 2026-09-26). */
-                    <path
-                      d={`M${x - 14},70 C${x - 14},54 ${x - 7},49 ${x},49 C${x + 7},49 ${x + 14},54 ${x + 14},70 C${x + 11},63 ${x + 6},60 ${x + 2},59 C${x + 1},58.6 ${x - 1},58.6 ${x - 2},59 C${x - 6},60 ${x - 11},63 ${x - 14},70 Z`}
-                      fill={f.hair}
-                    />
-                  )}
-                  {f.kind === "girl" && (
-                    <circle cx={x - 8} cy="58" r="3.2" fill="#ec4899" />
-                  )}
-                </>
-              ) : (
-                <>
-                  <rect
-                    x={x - 14}
-                    y="56"
-                    width="28"
-                    height="28"
-                    rx="6"
-                    fill="#e2e8f0"
-                    stroke="#475569"
-                    strokeWidth="1.8"
-                  />
-                  <line
-                    x1={x}
-                    y1="56"
-                    x2={x}
-                    y2="46"
-                    stroke="#475569"
-                    strokeWidth="2"
-                  />
-                  <circle cx={x} cy="43" r="4" fill="#ef4444" />
-                  <circle cx={x - 6} cy="68" r="3.4" fill="#1e293b" />
-                  <circle cx={x + 6} cy="68" r="3.4" fill="#1e293b" />
-                </>
-              )}
-              <rect
-                x={x - 16}
-                y="84"
-                width="32"
-                height="30"
-                rx="9"
-                fill={f.shirt}
-                stroke="#475569"
-                strokeWidth="1.6"
-              />
+              <g transform={`translate(${x - 30}, 30)`}>
+                <CharacterFullBody name={f.name} width={60} height={90} />
+              </g>
               <text
                 x={x}
-                y="134"
+                y={134}
                 textAnchor="middle"
                 fontSize="14"
                 fontWeight="800"

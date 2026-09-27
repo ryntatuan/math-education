@@ -21,6 +21,8 @@ import ".././LessonPage.css";
 import {
   ClockGraphic,
 } from "./lessonGraphics.jsx";
+import { CharacterAvatar } from "../../components/common/CharacterGraphics.jsx";
+import MascotIcon from "../../components/common/MascotIcon.jsx";
 
 export function DialogueScene({ content, onAnswerRecorded, isFullSlide = false }) {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -41,12 +43,12 @@ export function DialogueScene({ content, onAnswerRecorded, isFullSlide = false }
   }, [feedbackState]);
 
   const characters = {
-    nam: { name: "Bạn Nam", avatar: "👦" },
-    mai: { name: "Bạn Mai", avatar: "👧" },
-    robot: { name: "Bạn Rô-bốt", avatar: "🤖" },
-    viet: { name: "Bạn Việt", avatar: "👦" },
-    mi: { name: "Bạn Mi", avatar: "👧" },
-    owl: { name: "Cú Mèo", avatar: "🦉" },
+    nam: { name: "Bạn Nam" },
+    mai: { name: "Bạn Mai" },
+    robot: { name: "Bạn Rô-bốt" },
+    viet: { name: "Bạn Việt" },
+    mi: { name: "Bạn Mi" },
+    owl: { name: "Cú Mèo" },
   };
 
   const handleSpeakDialogue = () => {
@@ -152,7 +154,15 @@ export function DialogueScene({ content, onAnswerRecorded, isFullSlide = false }
               transition={{ delay: idx * 0.15, type: "spring", stiffness: 350, damping: 20 }}
             >
               <div className="dialogue-avatar-wrap">
-                <span className="dialogue-avatar">{char.avatar}</span>
+                <span className="dialogue-avatar" style={{ padding: 0, overflow: "hidden", display: "flex", alignItems: "flex-end", justifyContent: "center" }}>
+                  {item.character === "owl" ? (
+                    <MascotIcon size={38} />
+                  ) : item.character === "gv" ? (
+                    "👩‍🏫"
+                  ) : (
+                    <CharacterAvatar name={item.character} size={48} />
+                  )}
+                </span>
                 <span className="dialogue-char-name">
                   {item.name || char.name}
                 </span>

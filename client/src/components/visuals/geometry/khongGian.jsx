@@ -7,6 +7,7 @@ import { P } from "./geometryData.jsx";
 import { caption } from "./geometryData.jsx";
 import { card } from "./geometryData.jsx";
 import { num } from "./geometryData.jsx";
+import { CharacterFullBody } from "../../common/CharacterGraphics.jsx";
 
 export const Block3D = ({
   x = 0,
@@ -1619,89 +1620,6 @@ export function SpatialScene({
 
   /* ── Hàng ngang: Mai – Nam – Rô-bốt, từ trái sang phải (SGK tr.98) ──────────── */
   if (mode === "kidsLeftRight") {
-    /**
-     * 🔴 `kind` = "girl" thì vẽ BÍM + NƠ (Mai), "boy" thì tóc ngắn (Nam) — quy ước y hệt
-     * `fiveFriends` bên `Grade1NumberVisuals.jsx`. Bản cũ ba bạn dùng **cùng một kiểu tóc**
-     * nên trẻ không biết ai là bạn gái (người dùng báo 2026-09-24).
-     */
-    const kid = (x, y, shirt, pants, hair, kind = "boy") => (
-      <g transform={`translate(${x},${y})`}>
-        <ellipse
-          cx="26"
-          cy="122"
-          rx="24"
-          ry="5"
-          fill="#000000"
-          opacity="0.12"
-        />
-        <rect
-          x="14"
-          y="66"
-          width="24"
-          height="34"
-          rx="8"
-          fill={shirt}
-          stroke="#475569"
-          strokeWidth="1.8"
-        />
-        <line
-          x1="16"
-          y1="76"
-          x2="4"
-          y2="96"
-          stroke={shirt}
-          strokeWidth="5"
-          strokeLinecap="round"
-        />
-        <line
-          x1="36"
-          y1="76"
-          x2="48"
-          y2="96"
-          stroke={shirt}
-          strokeWidth="5"
-          strokeLinecap="round"
-        />
-        <rect x="16" y="100" width="9" height="20" rx="3" fill={pants} />
-        <rect x="27" y="100" width="9" height="20" rx="3" fill={pants} />
-        {/* BÍM vẽ TRƯỚC đầu để nằm sau tóc */}
-        {kind === "girl" && (
-          <>
-            <ellipse cx="9" cy="56" rx="6" ry="11" fill={hair} />
-            <ellipse cx="43" cy="56" rx="6" ry="11" fill={hair} />
-          </>
-        )}
-        <circle
-          cx="26"
-          cy="48"
-          r="17"
-          fill="#fcd5ce"
-          stroke="#e07a5f"
-          strokeWidth="1.8"
-        />
-        {kind === "girl" ? (
-          <path
-            d={`M9,48 q0,-24 17,-24 q17,0 17,24 q-7,-11 -17,-11 q-10,0 -17,11 Z`}
-            fill={hair}
-          />
-        ) : (
-          /* TÓC HAI MÁI cho bé trai — đối xứng, không xéo một bên (người dùng báo 2026-09-26). */
-          <path
-            d={`M9,48 C9,28 16,24 26,24 C36,24 43,28 43,48 C40,41 34,37 28,35.5 C27,35.2 25,35.2 24,35.5 C18,37 12,41 9,48 Z`}
-            fill={hair}
-          />
-        )}
-        {kind === "girl" && <circle cx="18" cy="34" r="3.6" fill="#ec4899" />}
-        <circle cx="20" cy="48" r="2" fill="#334155" />
-        <circle cx="32" cy="48" r="2" fill="#334155" />
-        <path
-          d="M21,55 q5,5 10,0"
-          fill="none"
-          stroke="#b45309"
-          strokeWidth="1.6"
-        />
-      </g>
-    );
     return (
       <div style={card}>
         <svg
@@ -1729,70 +1647,17 @@ export function SpatialScene({
             strokeWidth="4"
             strokeLinecap="round"
           />
-          {kid(24, 44, "#f472b6", "#be185d", "#78350f", "girl")}
-          {kid(148, 44, "#60a5fa", "#1e40af", "#1f2937")}
-          <g transform="translate(272,44)">
-            <ellipse
-              cx="26"
-              cy="122"
-              rx="26"
-              ry="5"
-              fill="#000000"
-              opacity="0.12"
-            />
-            <rect
-              x="12"
-              y="64"
-              width="30"
-              height="38"
-              rx="6"
-              fill="#94a3b8"
-              stroke="#475569"
-              strokeWidth="1.8"
-            />
-            <rect x="18" y="74" width="18" height="12" rx="2" fill="#e2e8f0" />
-            <line
-              x1="16"
-              y1="66"
-              x2="6"
-              y2="86"
-              stroke="#94a3b8"
-              strokeWidth="5"
-              strokeLinecap="round"
-            />
-            <line
-              x1="38"
-              y1="66"
-              x2="48"
-              y2="86"
-              stroke="#94a3b8"
-              strokeWidth="5"
-              strokeLinecap="round"
-            />
-            <rect x="14" y="102" width="10" height="18" rx="3" fill="#64748b" />
-            <rect x="30" y="102" width="10" height="18" rx="3" fill="#64748b" />
-            <rect
-              x="8"
-              y="26"
-              width="38"
-              height="32"
-              rx="6"
-              fill="#cbd5e1"
-              stroke="#475569"
-              strokeWidth="1.8"
-            />
-            <circle cx="20" cy="42" r="4" fill="#1d4ed8" />
-            <circle cx="34" cy="42" r="4" fill="#1d4ed8" />
-            <rect x="22" y="52" width="10" height="4" rx="2" fill="#475569" />
-            <line
-              x1="27"
-              y1="26"
-              x2="27"
-              y2="14"
-              stroke="#475569"
-              strokeWidth="2.5"
-            />
-            <circle cx="27" cy="12" r="4" fill="#ef4444" />
+          <g transform="translate(40, 80)">
+            <ellipse cx="30" cy="92" rx="20" ry="4" fill="#000000" opacity="0.08" />
+            <CharacterFullBody name="Mai" width={60} height={90} />
+          </g>
+          <g transform="translate(150, 80)">
+            <ellipse cx="30" cy="92" rx="20" ry="4" fill="#000000" opacity="0.08" />
+            <CharacterFullBody name="Nam" width={60} height={90} />
+          </g>
+          <g transform="translate(260, 80)">
+            <ellipse cx="30" cy="92" rx="20" ry="4" fill="#000000" opacity="0.08" />
+            <CharacterFullBody name="Robot" width={60} height={90} />
           </g>
           <LabelPill
             x={16}
