@@ -27,6 +27,8 @@ import {
 // Hình dạng ĐỒ VẬT (xe, bút, đồ vật, con vật…) cho bảng đo — Lớp 1 CĐ 7.
 import { ObjectShape } from "./ObjectShapes";
 import { heightForWidth, widthForHeight } from "./objectShapeRatio";
+// Luật bố cục bảng (căn lề theo cột · ngắt dòng · giãn khung) — hàm thuần, xem file đó.
+import { charsPerLine, columnAnchor, widenColumns } from "./tableAlignment";
 
 const PALETTE = {
   ink: "#1e293b",
@@ -1507,6 +1509,19 @@ export function Table({ headers = [], rows = [], label = "" }) {
     return clamp(Math.round(dai * RONG_KY_TU) + LOT_O * 2, COT_MIN, COT_MAX);
   });
 
+  /** Số ký tự của ô DÀI NHẤT từng cột — chặn trên khi ngắt dòng (xem `charsPerLine`). */
+  const daiNhatCot = Array.from({ length: soCot }, (_, c) => {
+    let dai = String(hs[c] ?? "").length;
+    for (const r of rs) {
+      const o = Array.isArray(r) ? r : [r];
+      dai = Math.max(dai, String(o[c] ?? "").length);
+    }
+    return dai;
+  });
+
+  /** Căn lề từng cột: cột GIÁ TRỊ (số, số La Mã, chữ cái) giữa · cột CHỮ trái. */
+  const leCot = Array.from({ length: soCot }, (_, c) => columnAnchor(rs, c));
+
   /**
    * 🔴 BẢNG 2–3 CỘT THÌ KHÔNG ĐƯỢC CẮT THÀNH NHIỀU KHỐI.
    * `chiaKhoi` cắt theo CỘT, mà cắt theo cột thì mất luôn quan hệ **HÀNG**: bảng
@@ -1522,7 +1537,14 @@ export function Table({ headers = [], rows = [], label = "" }) {
     while (tong() > NGAN_SACH && Math.max(...w) > COT_HEP_NHAT) {
       w[w.indexOf(Math.max(...w))] -= 4;
     }
-    return w;
+    // C. Còn chỗ thì GIÃN cho hết ngân sách — cột CHỮ nhận phần dư trước (cột số chỉ cần
+    //    đủ chỗ, rộng thêm chỉ làm con số lạc lõng giữa ô). Không giãn nếu vừa phải co lại.
+    return widenColumns(
+      w,
+      NGAN_SACH,
+      COT_MAX,
+      leCot.map((le, i) => (le === "start" ? i : -1)).filter((i) => i >= 0),
+    );
   })();
   const soCotMoiKhoi = soCot <= 3 ? soCot : chiaKhoi(beRongDung, NGAN_SACH);
   const KHE_KHOI = 22;
@@ -1541,7 +1563,7 @@ export function Table({ headers = [], rows = [], label = "" }) {
     }
 
     const gioiHan = cot.map((c) =>
-      Math.floor((beRongDung[c] - LOT_O * 2) / RONG_KY_TU),
+      charsPerLine(beRongDung[c], daiNhatCot[c], RONG_KY_TU, LOT_O),
     );
     const hang = [];
     hang.push({
@@ -1664,7 +1686,10 @@ export function Table({ headers = [], rows = [], label = "" }) {
                 h.o.map((dong, j) => {
                   const x = k.mocX[j];
                   const rong = beRongDung[k.cot[j]] - 4;
-                  const giua = x + rong / 2;
+                  // B. Căn lề THEO CỘT: cột chữ bắt đầu từ lề trái của ô (thẳng mốc với nhau),
+                  //    cột giá trị nằm giữa ô. Ô tiêu đề cột theo đúng cột của nó.
+                  const neo = leCot[k.cot[j]];
+                  const xChu = neo === "start" ? x + LOT_O : x + rong / 2;
                   const yDongDau =
                     k.y +
                     h.y +
@@ -1675,9 +1700,9 @@ export function Table({ headers = [], rows = [], label = "" }) {
                   return (
                     <text
                       key={`${ri}-${j}`}
-                      x={giua}
+                      x={xChu}
                       y={yDongDau}
-                      textAnchor="middle"
+                      textAnchor={neo}
                       fontSize="15"
                       fontWeight={h.dauBang || laCotDau ? 800 : 600}
                       fill={
@@ -1689,7 +1714,7 @@ export function Table({ headers = [], rows = [], label = "" }) {
                       }
                     >
                       {dong.map((ln, li) => (
-                        <tspan key={li} x={giua} dy={li === 0 ? 0 : CAO_DONG}>
+                        <tspan key={li} x={xChu} dy={li === 0 ? 0 : CAO_DONG}>
                           {ln}
                         </tspan>
                       ))}

@@ -3168,6 +3168,118 @@ if (!ONLY_STATIC) {
   }
 }
 
+// ── S-36 · LUẬT CĂN LỀ + LUẬT BỐ CỤC BẢNG CÒN NGUYÊN ──────────────────────────
+//
+// 🔴 VÌ SAO CẦN CỔNG NÀY: toàn bộ khối chữ trong thẻ slide từng thừa hưởng `text-align: center`
+// của thẻ cha, nên đoạn văn 2–3 dòng bị "thụt ra thụt vào" (người dùng gửi ảnh 2026-09-27).
+// Luật căn lề nay là QUYẾT ĐỊNH THIẾT KẾ có lý do, viết trong `pages/LessonPage.css`. Một cổng
+// kiểm là cách duy nhất để lần sau không ai "cho đồng bộ" mà đổi hết về căn giữa:
+// unit test kiểm HÀM, còn luật này nằm ở CSS nên test hàm không thấy được.
+await test(
+  "S-36",
+  "TC-0.10 — Luật căn lề theo vai trò + luật bố cục bảng",
+  async () => {
+    const css = read("client/src/pages/LessonPage.css");
+
+    /**
+     * Lấy MỌI khối luật của một selector (một selector có thể được khai báo nhiều lần).
+     * Cắt theo `}` đầu tiên sau dấu `{` — đủ chính xác cho file CSS này (không có `}` lồng nhau),
+     * và KHÁC cách "dò bằng regex tới thẻ đóng" từng báo oan ở cổng khác.
+     */
+    const khoiCua = (nguon, selector) => {
+      const out = [];
+      let from = 0;
+      for (;;) {
+        const i = nguon.indexOf(`${selector} {`, from);
+        if (i < 0) break;
+        const j = nguon.indexOf("}", i);
+        if (j < 0) break;
+        out.push(nguon.slice(i, j));
+        from = j;
+      }
+      return out;
+    };
+
+    // Canary HAI VẾ: hàm đọc khối phải (1) thấy khối, và (2) KHÔNG tự bịa ra luật không có.
+    const gia = ".concept-explanation {\n  text-align: center;\n}\n";
+    assert(
+      khoiCua(gia, ".concept-explanation").length === 1,
+      "canary: hàm đọc khối CSS không tìm thấy khối giả ⇒ mọi phép kiểm dưới đây vô nghĩa",
+    );
+    assert(
+      !khoiCua(gia, ".concept-explanation").some((b) =>
+        /text-align:\s*left/.test(b),
+      ),
+      "canary: khối giả căn GIỮA mà cổng báo là căn trái ⇒ cổng hỏng",
+    );
+
+    /** Đoạn văn xuôi + danh sách ⇒ CĂN TRÁI. */
+    const canTrai = [
+      ".concept-explanation",
+      ".concept-rule-body",
+      ".story-dialog-text",
+      ".dialogue-text",
+      ".visual-card-desc",
+      ".slide-visual-steps",
+    ];
+    for (const selector of canTrai) {
+      const khoi = khoiCua(css, selector);
+      assert(khoi.length > 0, `thiếu khối CSS ${selector}`);
+      assert(
+        khoi.some((b) => /text-align:\s*left/.test(b)),
+        `${selector} phải căn TRÁI (đoạn văn xuôi — xem "LUẬT CĂN LỀ" đầu LessonPage.css)`,
+      );
+    }
+
+    /** Tiêu đề · câu hỏi · phương án · nhãn ⇒ GIỮ CĂN GIỮA (cổng phải chặn được cả hai chiều). */
+    const giuGiua = [".concept-title", ".quiz-question", ".quiz-option"];
+    for (const selector of giuGiua) {
+      const khoi = khoiCua(css, selector);
+      assert(khoi.length > 0, `thiếu khối CSS ${selector}`);
+      assert(
+        !khoi.some((b) => /text-align:\s*left/.test(b)),
+        `${selector} phải GIỮ căn giữa (khối ngắn, đối xứng — đừng đổi hết sang trái)`,
+      );
+    }
+
+    /** Danh sách ⇒ biểu tượng canh theo DÒNG ĐẦU, không trôi xuống giữa câu 2 dòng. */
+    for (const selector of [".concept-point-item", ".summary-point"]) {
+      const khoi = khoiCua(css, selector);
+      assert(khoi.length > 0, `thiếu khối CSS ${selector}`);
+      assert(
+        khoi.some((b) => /align-items:\s*flex-start/.test(b)),
+        `${selector} phải align-items: flex-start (dấu ✔/⭐ canh theo dòng đầu)`,
+      );
+    }
+
+    /** Bảng: bộ vẽ phải DÙNG luật căn lề theo cột, không được quay về `textAnchor="middle"` cứng. */
+    const core = read("client/src/components/visuals/CoreVisuals.jsx");
+    assert(
+      /columnAnchor\s*\(/.test(core),
+      "CoreVisuals.jsx không còn gọi columnAnchor() ⇒ bảng quay về căn giữa mọi ô",
+    );
+    assert(
+      /charsPerLine\s*\(/.test(core),
+      "CoreVisuals.jsx không còn gọi charsPerLine() ⇒ ô bảng tự xuống dòng oan (hụt 1 ký tự)",
+    );
+    assert(
+      /widenColumns\s*\(/.test(core),
+      "CoreVisuals.jsx không còn gọi widenColumns() ⇒ khung bảng lại lọt thỏm giữa thẻ",
+    );
+
+    /** Bảng có Ô BẤM ĐƯỢC thì KHÔNG được giãn khung (sẽ hụt chuẩn vùng chạm 44 px). */
+    const bangTinh = read("client/src/components/visuals/interactiveTable.jsx");
+    assert(
+      !/widenColumns/.test(bangTinh),
+      "interactiveTable.jsx KHÔNG được giãn khung: hàng 56 đơn vị sẽ hụt dưới 44 px trên điện thoại",
+    );
+
+    return {
+      detail: `${canTrai.length} khối căn trái · ${giuGiua.length} khối giữ căn giữa · bảng theo cột ✓`,
+    };
+  },
+);
+
 // ═══════════════════════════ BÁO CÁO ═══════════════════════════
 
 const ICON = { PASS: "✅", FAIL: "❌", SKIP: "⏭️ ", MANUAL: "👤" };

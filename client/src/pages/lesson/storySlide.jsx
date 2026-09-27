@@ -2,28 +2,16 @@
 // TÁCH RA TỪ: LessonPage.jsx
 // (di chuyển mã nguyên khối — không sửa nội dung)
 
-import {
-  useState,
-} from "react";
-import {
-  motion,
-} from "framer-motion";
-import {
-  Sparkles,
-} from "lucide-react";
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Sparkles } from "lucide-react";
 import MascotIcon from "../../components/common/MascotIcon";
 import VisualBlocks from "../../components/visuals/VisualBlock";
-import {
-  faceOf,
-} from "../../data/mascotFaces";
+import { faceOf } from "../../data/mascotFaces";
 import speechHelper from "../../utils/speechHelper";
 import ".././LessonPage.css";
-import {
-  CalcFigures,
-} from "./lessonGraphics.jsx";
-import {
-  SlideHead,
-} from "./slideHead.jsx";
+import { CalcFigures } from "./lessonGraphics.jsx";
+import { SlideHead } from "./slideHead.jsx";
 
 export function StorySlide({ content }) {
   const [speaking, setSpeaking] = useState(false);
@@ -47,13 +35,14 @@ export function StorySlide({ content }) {
 
   // Mood-based gradient: mỗi tâm trạng của linh vật → một bảng màu riêng cho thẻ slide,
   // giúp bé nhận ra ngay cảm xúc từ MÀU NỀN trước khi đọc chữ (chuẩn edu quốc tế).
-  const moodClass = ({
-    happy: "mood-happy",
-    curious: "mood-curious",
-    thinking: "mood-thinking",
-    celebrate: "mood-celebrate",
-    surprised: "mood-surprised",
-  })[content.mascotMood] || "mood-happy";
+  const moodClass =
+    {
+      happy: "mood-happy",
+      curious: "mood-curious",
+      thinking: "mood-thinking",
+      celebrate: "mood-celebrate",
+      surprised: "mood-surprised",
+    }[content.mascotMood] || "mood-happy";
 
   return (
     <div className={`slide-story-card ${moodClass}`}>

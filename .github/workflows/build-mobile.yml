@@ -2,9 +2,9 @@ name: Release Mobile App (Android APK)
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [main, master]
   pull_request:
-    branches: [ main, master ]
+    branches: [main, master]
   workflow_dispatch:
 
 permissions:
@@ -23,7 +23,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: 'npm'
+          cache: "npm"
           cache-dependency-path: client/package-lock.json
 
       - name: Install dependencies & build web dist
@@ -35,8 +35,8 @@ jobs:
       - name: Set up Java 21
         uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
-          java-version: '21'
+          distribution: "temurin"
+          java-version: "21"
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
@@ -49,6 +49,19 @@ jobs:
         working-directory: ./client
         run: |
           npx cap sync android
+
+      # 🔴 BẮT BUỘC — giống hệt bước "stripApksFromDir" trong `scripts/build-apk.mjs`.
+      #    Trong repo có sẵn 2 file APK của bản trước (`client/public/ToanVui.apk` và
+      #    `client/public/downloads/ToanVui.apk`); Vite chép chúng vào `dist`, rồi
+      #    `cap sync` chép tiếp vào assets Android ⇒ Gradle ĐÓNG GÓI LẪN APK VÀO APK (đệ quy).
+      #    Bản 1.0.48: APK trên web 7,2 MB nhưng APK trên Releases phình lên 21,4 MB vì thiếu
+      #    bước này. Sửa ở một nơi thì phải sửa ở cả hai nơi.
+      - name: Strip embedded .apk files from Android assets
+        run: |
+          TARGET=./client/android/app/src/main/assets/public
+          COUNT=$(find "$TARGET" -name '*.apk' 2>/dev/null | wc -l)
+          find "$TARGET" -name '*.apk' -delete 2>/dev/null || true
+          echo "Đã xoá $COUNT file .apk khỏi assets Android (tránh đóng gói đệ quy)."
 
       - name: Build Android Release APK
         working-directory: ./client/android

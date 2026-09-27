@@ -2,40 +2,49 @@
 // TÁCH RA TỪ: LessonPage.jsx
 // (di chuyển mã nguyên khối — không sửa nội dung)
 
-import {
-  useState,
-} from "react";
-import {
-  motion,
-} from "framer-motion";
-import {
-  Lightbulb,
-} from "lucide-react";
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Lightbulb } from "lucide-react";
 import MascotIcon from "../../components/common/MascotIcon";
 import VisualBlocks from "../../components/visuals/VisualBlock";
 import speechHelper from "../../utils/speechHelper";
 import ".././LessonPage.css";
-import {
-  CalcFigures,
-} from "./lessonGraphics.jsx";
-import {
-  DialogueScene,
-} from "./dialogueSlides.jsx";
-import {
-  MultiVisualGallery,
-} from "./lessonGraphics.jsx";
-import {
-  ShapeGraphic,
-} from "./lessonGraphics.jsx";
-import {
-  SlideHead,
-} from "./slideHead.jsx";
-import {
-  UniversalVisualGrid,
-} from "./lessonGraphics.jsx";
+import { CalcFigures } from "./lessonGraphics.jsx";
+import { DialogueScene } from "./dialogueSlides.jsx";
+import { MultiVisualGallery } from "./lessonGraphics.jsx";
+import { ShapeGraphic } from "./lessonGraphics.jsx";
+import { SlideHead } from "./slideHead.jsx";
+import { UniversalVisualGrid } from "./lessonGraphics.jsx";
+import { coversAll } from "../../utils/textCompare";
 
 export function ConceptSlide({ content }) {
   const [speaking, setSpeaking] = useState(false);
+
+  /**
+   * 🔴 BỎ KHỐI CHỮ TRÙNG NỘI DUNG (người dùng gửi ảnh 2026-09-27, slide “Làm quen” Lớp 1 Bài 1):
+   * ô nhấn mạnh `rule` chỉ nhắc lại y hệt bốn dòng đã nằm trong `points` ⇒ bé đọc đúng một
+   * thông tin hai lần, và phần đọc thành tiếng cũng đọc hai lần.
+   *
+   * Luật: bỏ khối NGẮN khi khối DÀI đã chứa trọn nội dung của nó (`coversAll`). Chiều ngược
+   * lại thì KHÓA: bỏ khối dài vì khối ngắn nằm trong nó là mất thông tin.
+   * Dữ liệu KHÔNG bị sửa — đây là luật hiển thị, nên cả 5 lớp đồng bộ ngay, không phải dán lại seed.
+   */
+  const pointsText = Array.isArray(content.points)
+    ? content.points.join(" · ")
+    : "";
+  const stepsText = Array.isArray(content.steps)
+    ? content.steps.map((s) => `${s.title ?? ""} ${s.desc ?? ""}`).join(" · ")
+    : "";
+  const ruleText = String(content.rule ?? "");
+  const ruleLap = Boolean(
+    ruleText &&
+    ((pointsText && coversAll(pointsText, ruleText)) ||
+      (stepsText && coversAll(stepsText, ruleText))),
+  );
+  const showRule = Boolean(ruleText) && !ruleLap;
+  const showExplanation =
+    Boolean(content.explanation) &&
+    !(ruleText && coversAll(ruleText, content.explanation));
 
   const handleSpeak = () => {
     if (speaking) {
@@ -43,9 +52,9 @@ export function ConceptSlide({ content }) {
       setSpeaking(false);
     } else {
       const parts = [content.title];
-      if (content.explanation) parts.push(content.explanation);
-      if (content.rule && content.rule !== content.explanation)
-        parts.push(content.rule);
+      // Đọc đúng những gì ĐANG HIỆN — không đọc khối đã bị bỏ vì trùng nội dung.
+      if (showExplanation) parts.push(content.explanation);
+      if (showRule) parts.push(ruleText);
       if (content.points) parts.push(content.points.join(". "));
       if (content.activityGrid) {
         content.activityGrid.forEach((item) => {
@@ -74,11 +83,6 @@ export function ConceptSlide({ content }) {
       );
     }
   };
-
-  // Check if explanation and rule are identical or redundant
-  const showExplanation =
-    content.explanation &&
-    (!content.rule || content.explanation.trim() !== content.rule.trim());
 
   return (
     <div className="slide-concept-card">
@@ -174,12 +178,17 @@ export function ConceptSlide({ content }) {
       )}
 
       {/* 4. HIGHLIGHTED RULE PILL / BANNER */}
-      {content.rule && (
+      {showRule && (
         <motion.div
           className="concept-rule-box"
           initial={{ scale: 0.9, opacity: 0, y: 10 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, type: "spring", stiffness: 400, damping: 12 }}
+          transition={{
+            delay: 0.2,
+            type: "spring",
+            stiffness: 400,
+            damping: 12,
+          }}
         >
           <span className="concept-rule-icon">⭐</span>
           <p className="concept-rule-body">{content.rule}</p>

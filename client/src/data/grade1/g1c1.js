@@ -38,13 +38,11 @@ export const g1c1 = {
             title: "Trong sách Toán có những biểu tượng gì?",
             explanation:
               "Mỗi biểu tượng nhắc bé biết mình sắp làm gì: khám phá điều mới, làm bài tập, hay chơi trò chơi.",
+            // 🔴 KHÔNG thêm `points` ở đây nữa (người dùng gửi ảnh 2026-09-27: "nội dung khoanh đỏ
+            // bị trùng lặp"). Ô nhấn mạnh + bốn dòng gạch đầu dòng nói y hệt một điều, rồi slide
+            // ngay sau (`table` bốn biểu tượng) nói lần thứ ba. Nay slide này chỉ GIỚI THIỆU tên
+            // bốn biểu tượng, slide sau mới giải nghĩa từng biểu tượng — hai slide, hai việc.
             rule: "🔍 khám phá · 🤖 hoạt động · 📘 luyện tập · 🎲 trò chơi.",
-            points: [
-              "🔍 Khám phá: tìm hiểu kiến thức mới.",
-              "🤖 Hoạt động: làm bài tập thực hành.",
-              "📘 Luyện tập: ôn lại và làm bài.",
-              "🎲 Trò chơi: vừa học vừa chơi.",
-            ],
           },
         },
         {

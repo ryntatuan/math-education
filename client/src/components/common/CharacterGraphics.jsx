@@ -72,79 +72,49 @@ export const CharacterDefs = () => (
 // CÁC CHI TIẾT CHUNG TRÊN KHUÔN MẶT BÉ YÊU
 const CuteFace = () => (
   <g>
-    {/* Má hồng */}
-    <ellipse cx="-12" cy="5" rx="5" ry="3.5" fill={COLORS.cheeks} opacity="0.5" />
-    <ellipse cx="12" cy="5" rx="5" ry="3.5" fill={COLORS.cheeks} opacity="0.5" />
-    
-    {/* Mắt to tròn */}
-    <circle cx="-11" cy="-1" r="4.5" fill={COLORS.eye} />
-    <circle cx="11" cy="-1" r="4.5" fill={COLORS.eye} />
-    
-    {/* Đốm sáng trong mắt */}
-    <circle cx="-12.5" cy="-2.5" r="1.8" fill="#ffffff" />
-    <circle cx="-9.5" cy="0.5" r="0.8" fill="#ffffff" />
-    <circle cx="9.5" cy="-2.5" r="1.8" fill="#ffffff" />
-    <circle cx="12.5" cy="0.5" r="0.8" fill="#ffffff" />
-    
-    {/* Miệng cười tươi */}
-    <path
-      d="M -5 6 Q 0 12 5 6"
-      fill="none"
-      stroke={COLORS.mouth}
-      strokeWidth="2"
-      strokeLinecap="round"
-    />
-  </g>
-);
-
-const RobotFace = () => (
-  <g>
-    <rect x="-14" y="-4" width="10" height="7" rx="3.5" fill={COLORS.robot.eye} />
-    <rect x="4" y="-4" width="10" height="7" rx="3.5" fill={COLORS.robot.eye} />
-    <circle cx="-11" cy="-1.5" r="1.5" fill="#ffffff" opacity="0.8" />
-    <circle cx="7" cy="-1.5" r="1.5" fill="#ffffff" opacity="0.8" />
-    <path d="M -6 7 L 6 7" fill="none" stroke={COLORS.robot.accent} strokeWidth="2.5" strokeLinecap="round" />
+    <ellipse cx="-11" cy="4" rx="3.5" ry="2" fill={COLORS.cheeks} opacity="0.6" />
+    <ellipse cx="11" cy="4" rx="3.5" ry="2" fill={COLORS.cheeks} opacity="0.6" />
+    <circle cx="-6.5" cy="1" r="3" fill={COLORS.eye} />
+    <circle cx="6.5" cy="1" r="3" fill={COLORS.eye} />
+    <circle cx="-7.5" cy="0" r="1.2" fill="#ffffff" />
+    <circle cx="5.5" cy="0" r="1.2" fill="#ffffff" />
+    <path d="M -2.5 5 Q 0 8 2.5 5" fill="none" stroke={COLORS.mouth} strokeWidth="1.5" strokeLinecap="round" />
   </g>
 );
 
 export const NamGraphic = () => (
   <g className="char-nam">
     {/* Chân */}
-    <rect x="-10" y="30" width="7" height="18" rx="3.5" fill={COLORS.skinShadow} />
-    <rect x="3" y="30" width="7" height="18" rx="3.5" fill={COLORS.skinShadow} />
-    <path d="M -13 46 h 10 v 4 a 2 2 0 0 1 -2 2 h -6 a 2 2 0 0 1 -2 -2 z" fill={COLORS.nam.shoes} />
-    <path d="M 0 46 h 10 v 4 a 2 2 0 0 1 -2 2 h -6 a 2 2 0 0 1 -2 -2 z" fill={COLORS.nam.shoes} />
-    
-    {/* Quần ngắn */}
-    <path d="M -13 22 h 26 v 12 a 3 3 0 0 1 -3 3 h -7 a 2 2 0 0 1 -2 -2 v -5 h -2 v 5 a 2 2 0 0 1 -2 2 h -7 a 3 3 0 0 1 -3 -3 z" fill={COLORS.nam.pants} />
+    <rect x="-6" y="22" width="3.5" height="10" rx="1.5" fill={COLORS.skinShadow} />
+    <rect x="2.5" y="22" width="3.5" height="10" rx="1.5" fill={COLORS.skinShadow} />
+    <rect x="-7" y="30" width="6" height="4" rx="2" fill={COLORS.nam.shoes} />
+    <rect x="1" y="30" width="6" height="4" rx="2" fill={COLORS.nam.shoes} />
     
     {/* Tay (Sau) */}
-    <rect x="-16" y="6" width="6" height="16" rx="3" fill={COLORS.skinShadow} transform="rotate(15, -16, 6)" />
-    <rect x="10" y="6" width="6" height="16" rx="3" fill={COLORS.skinShadow} transform="rotate(-15, 10, 6)" />
+    <path d="M -8 5 Q -14 10 -11 17" fill="none" stroke={COLORS.skinShadow} strokeWidth="3.5" strokeLinecap="round" />
+    <path d="M 8 5 Q 14 10 11 17" fill="none" stroke={COLORS.skinShadow} strokeWidth="3.5" strokeLinecap="round" />
+    
+    {/* Quần */}
+    <path d="M -8.5 14 h 17 v 6 a 2 2 0 0 1 -2 2 h -3.5 v -3 h -3 v 3 h -3.5 a 2 2 0 0 1 -2 -2 z" fill={COLORS.nam.pants} />
     
     {/* Áo */}
-    <path d="M -12 2 h 24 c 2 0 4 2 4 4 v 18 c 0 2 -2 3 -4 3 h -24 c -2 0 -4 -1 -4 -3 v -18 c 0 -2 2 -4 4 -4 z" fill={COLORS.nam.shirt} />
-    <path d="M -5 2 Q 0 8 5 2" fill="none" stroke="#ffffff" strokeWidth="2" />
+    <rect x="-8.5" y="2" width="17" height="14" rx="3.5" fill={COLORS.nam.shirt} />
+    <path d="M -4 2 Q 0 6 4 2" fill="none" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round" />
     
     {/* Tay áo */}
-    <path d="M -16 2 h 6 v 8 a 3 3 0 0 1 -6 0 z" fill={COLORS.nam.shirt} transform="rotate(15, -16, 2)" />
-    <path d="M 10 2 h 6 v 8 a 3 3 0 0 1 -6 0 z" fill={COLORS.nam.shirt} transform="rotate(-15, 10, 2)" />
-    <circle cx="-17.5" cy="20" r="3" fill={COLORS.skin} />
-    <circle cx="17.5" cy="20" r="3" fill={COLORS.skin} />
+    <path d="M -8 2 Q -12 6 -10 9" fill="none" stroke={COLORS.nam.shirt} strokeWidth="4.5" strokeLinecap="round" />
+    <path d="M 8 2 Q 12 6 10 9" fill="none" stroke={COLORS.nam.shirt} strokeWidth="4.5" strokeLinecap="round" />
 
     {/* Đầu */}
-    <g transform="translate(0, -18)">
-      <circle cx="0" cy="-2" r="19" fill={COLORS.nam.hair} />
-      <path d="M -17 -2 a 17 17 0 0 0 34 0 a 17 18 0 0 1 -34 0" fill={COLORS.skin} />
-      <circle cx="0" cy="2" r="17" fill={COLORS.skin} />
-      <circle cx="-17" cy="3" r="3" fill={COLORS.skinShadow} />
-      <circle cx="17" cy="3" r="3" fill={COLORS.skinShadow} />
-      
+    <g transform="translate(0, -13)">
+      <circle cx="-14" cy="-2" r="3" fill={COLORS.skinShadow} />
+      <circle cx="14" cy="-2" r="3" fill={COLORS.skinShadow} />
+      <rect x="-14" y="-14" width="28" height="25" rx="12" fill={COLORS.skin} />
       <CuteFace />
       
-      <path d="M -19 -2 C -19 -20 0 -24 0 -24 C -6 -18 -8 -10 -8 -4 C -8 -4 -14 -6 -19 -2" fill={COLORS.nam.hair} />
-      <path d="M 19 -2 C 19 -20 0 -24 0 -24 C 8 -16 10 -10 10 -4 C 10 -4 15 -6 19 -2" fill={COLORS.nam.hair} />
-      <path d="M -8 -4 C -2 -14 10 -14 14 -3 C 8 -8 0 -8 -8 -4" fill={COLORS.nam.hair} />
+      {/* Tóc Nam */}
+      <path d="M -15 -2 C -18 -18 18 -18 15 -2 C 16 -12 10 -15 0 -15 C -10 -15 -16 -12 -15 -2 Z" fill={COLORS.nam.hair} />
+      <path d="M -14 0 C -18 -20 18 -20 14 0 C 14 -12 5 -12 0 -8 C -5 -4 -14 -4 -14 0 Z" fill={COLORS.nam.hair} />
     </g>
   </g>
 );
@@ -152,36 +122,36 @@ export const NamGraphic = () => (
 export const VietGraphic = () => (
   <g className="char-viet">
     {/* Chân */}
-    <rect x="-10" y="30" width="7" height="18" rx="3.5" fill={COLORS.skinShadow} />
-    <rect x="3" y="30" width="7" height="18" rx="3.5" fill={COLORS.skinShadow} />
-    <path d="M -13 46 h 10 v 4 a 2 2 0 0 1 -2 2 h -6 a 2 2 0 0 1 -2 -2 z" fill={COLORS.viet.shoes} />
-    <path d="M 0 46 h 10 v 4 a 2 2 0 0 1 -2 2 h -6 a 2 2 0 0 1 -2 -2 z" fill={COLORS.viet.shoes} />
+    <rect x="-6" y="22" width="3.5" height="10" rx="1.5" fill={COLORS.skinShadow} />
+    <rect x="2.5" y="22" width="3.5" height="10" rx="1.5" fill={COLORS.skinShadow} />
+    <rect x="-7" y="30" width="6" height="4" rx="2" fill={COLORS.viet.shoes} />
+    <rect x="1" y="30" width="6" height="4" rx="2" fill={COLORS.viet.shoes} />
     
-    {/* Quần ngắn */}
-    <path d="M -13 22 h 26 v 12 a 3 3 0 0 1 -3 3 h -7 a 2 2 0 0 1 -2 -2 v -5 h -2 v 5 a 2 2 0 0 1 -2 2 h -7 a 3 3 0 0 1 -3 -3 z" fill={COLORS.viet.pants} />
+    {/* Tay (Sau) */}
+    <path d="M -8 5 Q -14 10 -11 17" fill="none" stroke={COLORS.skinShadow} strokeWidth="3.5" strokeLinecap="round" />
+    <path d="M 8 5 Q 14 10 11 17" fill="none" stroke={COLORS.skinShadow} strokeWidth="3.5" strokeLinecap="round" />
     
-    {/* Áo thun */}
-    <path d="M -12 2 h 24 c 2 0 4 2 4 4 v 18 c 0 2 -2 3 -4 3 h -24 c -2 0 -4 -1 -4 -3 v -18 c 0 -2 2 -4 4 -4 z" fill={COLORS.viet.shirt} />
-    <rect x="-10" y="10" width="20" height="4" fill="#ffffff" opacity="0.5" />
+    {/* Quần */}
+    <path d="M -8.5 14 h 17 v 6 a 2 2 0 0 1 -2 2 h -3.5 v -3 h -3 v 3 h -3.5 a 2 2 0 0 1 -2 -2 z" fill={COLORS.viet.pants} />
     
-    {/* Tay áo & Cánh tay */}
-    <path d="M -16 2 h 6 v 8 a 3 3 0 0 1 -6 0 z" fill={COLORS.viet.shirt} transform="rotate(15, -16, 2)" />
-    <path d="M 10 2 h 6 v 8 a 3 3 0 0 1 -6 0 z" fill={COLORS.viet.shirt} transform="rotate(-15, 10, 2)" />
-    <rect x="-16" y="6" width="6" height="16" rx="3" fill={COLORS.skinShadow} transform="rotate(15, -16, 6)" />
-    <rect x="10" y="6" width="6" height="16" rx="3" fill={COLORS.skinShadow} transform="rotate(-15, 10, 6)" />
-    <circle cx="-17.5" cy="20" r="3" fill={COLORS.skin} />
-    <circle cx="17.5" cy="20" r="3" fill={COLORS.skin} />
+    {/* Áo */}
+    <rect x="-8.5" y="2" width="17" height="14" rx="3.5" fill={COLORS.viet.shirt} />
+    <rect x="-8.5" y="8" width="17" height="3" fill="#ffffff" opacity="0.4" />
+    
+    {/* Tay áo */}
+    <path d="M -8 2 Q -12 6 -10 9" fill="none" stroke={COLORS.viet.shirt} strokeWidth="4.5" strokeLinecap="round" />
+    <path d="M 8 2 Q 12 6 10 9" fill="none" stroke={COLORS.viet.shirt} strokeWidth="4.5" strokeLinecap="round" />
 
     {/* Đầu */}
-    <g transform="translate(0, -18)">
-      <circle cx="0" cy="-2" r="19" fill={COLORS.viet.hair} />
-      <circle cx="0" cy="2" r="17" fill={COLORS.skin} />
-      <circle cx="-17" cy="3" r="3" fill={COLORS.skinShadow} />
-      <circle cx="17" cy="3" r="3" fill={COLORS.skinShadow} />
+    <g transform="translate(0, -13)">
+      <circle cx="-14" cy="-2" r="3" fill={COLORS.skinShadow} />
+      <circle cx="14" cy="-2" r="3" fill={COLORS.skinShadow} />
+      <rect x="-14" y="-14" width="28" height="25" rx="12" fill={COLORS.skin} />
       <CuteFace />
-      <path d="M -18 -4 Q 0 -18 18 -4 Q 0 -22 -18 -4 Z" fill={COLORS.viet.hair} />
-      <path d="M -14 -6 L -10 2 L -6 -8 Z" fill={COLORS.viet.hair} />
-      <path d="M 14 -6 L 10 2 L 6 -8 Z" fill={COLORS.viet.hair} />
+      
+      {/* Tóc hai mái Việt */}
+      <path d="M -15 3 C -18 -18 0 -22 0 -12 C -5 -12 -12 -6 -15 3 Z" fill={COLORS.viet.hair} />
+      <path d="M 15 3 C 18 -18 0 -22 0 -12 C 5 -12 12 -6 15 3 Z" fill={COLORS.viet.hair} />
     </g>
   </g>
 );
@@ -189,41 +159,48 @@ export const VietGraphic = () => (
 export const MaiGraphic = () => (
   <g className="char-mai">
     {/* Chân */}
-    <rect x="-8" y="30" width="5" height="18" rx="2.5" fill={COLORS.skinShadow} />
-    <rect x="3" y="30" width="5" height="18" rx="2.5" fill={COLORS.skinShadow} />
-    <path d="M -11 46 h 9 v 3 a 2 2 0 0 1 -2 2 h -5 a 2 2 0 0 1 -2 -2 z" fill={COLORS.mai.shoes} />
-    <path d="M 2 46 h 9 v 3 a 2 2 0 0 1 -2 2 h -5 a 2 2 0 0 1 -2 -2 z" fill={COLORS.mai.shoes} />
+    <rect x="-5" y="22" width="3" height="10" rx="1.5" fill={COLORS.skinShadow} />
+    <rect x="2" y="22" width="3" height="10" rx="1.5" fill={COLORS.skinShadow} />
+    <rect x="-6" y="30" width="5" height="4" rx="2" fill={COLORS.mai.shoes} />
+    <rect x="1" y="30" width="5" height="4" rx="2" fill={COLORS.mai.shoes} />
+    
+    {/* Tay (Sau) */}
+    <path d="M -8 5 Q -14 10 -11 17" fill="none" stroke={COLORS.skinShadow} strokeWidth="3" strokeLinecap="round" />
+    <path d="M 8 5 Q 14 10 11 17" fill="none" stroke={COLORS.skinShadow} strokeWidth="3" strokeLinecap="round" />
     
     {/* Váy */}
-    <path d="M -14 28 C -16 34 16 34 14 28 Z" fill={COLORS.mai.pants} />
-    <path d="M -12 18 h 24 l 2 12 h -28 z" fill={COLORS.mai.pants} />
-    
-    {/* Cánh tay */}
-    <rect x="-15" y="6" width="5" height="15" rx="2.5" fill={COLORS.skinShadow} transform="rotate(20, -15, 6)" />
-    <rect x="10" y="6" width="5" height="15" rx="2.5" fill={COLORS.skinShadow} transform="rotate(-20, 10, 6)" />
+    <path d="M -9 12 h 18 l 2 8 h -22 z" fill={COLORS.mai.pants} />
     
     {/* Áo */}
-    <path d="M -11 2 h 22 c 2 0 3 2 3 4 v 14 h -28 v -14 c 0 -2 1 -4 3 -4 z" fill={COLORS.mai.shirt} />
-    <circle cx="-13" cy="6" r="5" fill={COLORS.mai.shirt} />
-    <circle cx="13" cy="6" r="5" fill={COLORS.mai.shirt} />
-    <circle cx="-17" cy="20" r="2.5" fill={COLORS.skin} />
-    <circle cx="17" cy="20" r="2.5" fill={COLORS.skin} />
+    <rect x="-8.5" y="2" width="17" height="11" rx="3" fill={COLORS.mai.shirt} />
+    <path d="M -4 2 Q 0 6 4 2" fill="none" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round" />
+    
+    {/* Tay áo */}
+    <path d="M -8 2 Q -12 6 -10 9" fill="none" stroke={COLORS.mai.shirt} strokeWidth="4" strokeLinecap="round" />
+    <path d="M 8 2 Q 12 6 10 9" fill="none" stroke={COLORS.mai.shirt} strokeWidth="4" strokeLinecap="round" />
 
     {/* Đầu */}
-    <g transform="translate(0, -18)">
-      <path d="M -16 0 C -24 5 -26 15 -20 22 C -18 24 -14 22 -15 15 C -15 8 -12 4 -16 0" fill={COLORS.mai.hair} />
-      <path d="M 16 0 C 24 5 26 15 20 22 C 18 24 14 22 15 15 C 15 8 12 4 16 0" fill={COLORS.mai.hair} />
+    <g transform="translate(0, -13)">
+      {/* Tóc sau */}
+      <path d="M -15 4 C -18 -20 18 -20 15 4 C 15 -10 10 -14 0 -14 C -10 -14 -15 -10 -15 4 Z" fill={COLORS.mai.hair} />
       
-      <circle cx="-16" cy="2" r="3" fill={COLORS.mai.bow} />
-      <path d="M -16 2 l -4 -3 v 6 z" fill={COLORS.mai.bow} />
-      <path d="M -16 2 l 4 -3 v 6 z" fill={COLORS.mai.bow} />
-      <circle cx="16" cy="2" r="3" fill={COLORS.mai.bow} />
-      <path d="M 16 2 l -4 -3 v 6 z" fill={COLORS.mai.bow} />
-      <path d="M 16 2 l 4 -3 v 6 z" fill={COLORS.mai.bow} />
+      {/* Tóc bím */}
+      <path d="M -14 2 Q -20 10 -16 18 Q -12 16 -12 2 Z" fill={COLORS.mai.hair} />
+      <path d="M 14 2 Q 20 10 16 18 Q 12 16 12 2 Z" fill={COLORS.mai.hair} />
+      
+      {/* Nơ bím */}
+      <circle cx="-14" cy="4" r="2" fill={COLORS.mai.bow} />
+      <path d="M -14 4 l -3 -2 v 4 z" fill={COLORS.mai.bow} />
+      <circle cx="14" cy="4" r="2" fill={COLORS.mai.bow} />
+      <path d="M 14 4 l 3 -2 v 4 z" fill={COLORS.mai.bow} />
 
-      <circle cx="0" cy="2" r="16" fill={COLORS.skin} />
+      <circle cx="-14" cy="-2" r="3" fill={COLORS.skinShadow} />
+      <circle cx="14" cy="-2" r="3" fill={COLORS.skinShadow} />
+      <rect x="-14" y="-14" width="28" height="25" rx="12" fill={COLORS.skin} />
       <CuteFace />
-      <path d="M -16 -4 C -16 -20 16 -20 16 -4 C 16 -12 8 -12 0 -10 C -8 -12 -16 -12 -16 -4" fill={COLORS.mai.hair} />
+      
+      {/* Mái */}
+      <path d="M -15 0 C -18 -20 18 -20 15 0 C 12 -8 4 -10 0 -10 C -4 -10 -12 -8 -15 0 Z" fill={COLORS.mai.hair} />
     </g>
   </g>
 );
@@ -231,71 +208,88 @@ export const MaiGraphic = () => (
 export const MiGraphic = () => (
   <g className="char-mi">
     {/* Chân */}
-    <rect x="-8" y="30" width="5" height="18" rx="2.5" fill={COLORS.skinShadow} />
-    <rect x="3" y="30" width="5" height="18" rx="2.5" fill={COLORS.skinShadow} />
-    <path d="M -11 46 h 9 v 3 a 2 2 0 0 1 -2 2 h -5 a 2 2 0 0 1 -2 -2 z" fill={COLORS.mi.shoes} />
-    <path d="M 2 46 h 9 v 3 a 2 2 0 0 1 -2 2 h -5 a 2 2 0 0 1 -2 -2 z" fill={COLORS.mi.shoes} />
+    <rect x="-5" y="22" width="3" height="10" rx="1.5" fill={COLORS.skinShadow} />
+    <rect x="2" y="22" width="3" height="10" rx="1.5" fill={COLORS.skinShadow} />
+    <rect x="-6" y="30" width="5" height="4" rx="2" fill={COLORS.mi.shoes} />
+    <rect x="1" y="30" width="5" height="4" rx="2" fill={COLORS.mi.shoes} />
     
-    {/* Quần yếm */}
-    <path d="M -13 22 h 26 v 10 a 3 3 0 0 1 -3 3 h -7 a 2 2 0 0 1 -2 -2 v -4 h -2 v 4 a 2 2 0 0 1 -2 2 h -7 a 3 3 0 0 1 -3 -3 z" fill={COLORS.mi.pants} />
-    <rect x="-9" y="12" width="18" height="12" rx="2" fill={COLORS.mi.pants} />
-    <rect x="-9" y="2" width="3" height="12" fill={COLORS.mi.pants} />
-    <rect x="6" y="2" width="3" height="12" fill={COLORS.mi.pants} />
-    <circle cx="-7.5" cy="14" r="2" fill={COLORS.mi.bow} />
-    <circle cx="7.5" cy="14" r="2" fill={COLORS.mi.bow} />
+    {/* Tay (Sau) */}
+    <path d="M -8 5 Q -14 10 -11 17" fill="none" stroke={COLORS.skinShadow} strokeWidth="3" strokeLinecap="round" />
+    <path d="M 8 5 Q 14 10 11 17" fill="none" stroke={COLORS.skinShadow} strokeWidth="3" strokeLinecap="round" />
     
-    <rect x="-15" y="6" width="5" height="15" rx="2.5" fill={COLORS.skinShadow} transform="rotate(20, -15, 6)" />
-    <rect x="10" y="6" width="5" height="15" rx="2.5" fill={COLORS.skinShadow} transform="rotate(-20, 10, 6)" />
-    <path d="M -11 2 h 22 c 2 0 3 2 3 4 v 16 h -28 v -16 c 0 -2 1 -4 3 -4 z" fill={COLORS.mi.shirt} />
+    {/* Yếm */}
+    <rect x="-8.5" y="2" width="17" height="12" rx="3.5" fill={COLORS.mi.shirt} />
+    <path d="M -8.5 12 h 17 v 8 a 2 2 0 0 1 -2 2 h -3.5 v -3 h -3 v 3 h -3.5 a 2 2 0 0 1 -2 -2 z" fill={COLORS.mi.pants} />
+    <rect x="-6" y="5" width="12" height="7" rx="1.5" fill={COLORS.mi.pants} />
+    <rect x="-6" y="2" width="2" height="5" fill={COLORS.mi.pants} />
+    <rect x="4" y="2" width="2" height="5" fill={COLORS.mi.pants} />
+    <circle cx="-5" cy="8" r="1.2" fill={COLORS.mi.bow} />
+    <circle cx="5" cy="8" r="1.2" fill={COLORS.mi.bow} />
     
-    <path d="M -15 2 h 5 v 8 a 2 2 0 0 1 -5 0 z" fill={COLORS.mi.shirt} transform="rotate(20, -15, 2)" />
-    <path d="M 10 2 h 5 v 8 a 2 2 0 0 1 -5 0 z" fill={COLORS.mi.shirt} transform="rotate(-20, 10, 2)" />
-    <circle cx="-17" cy="20" r="2.5" fill={COLORS.skin} />
-    <circle cx="17" cy="20" r="2.5" fill={COLORS.skin} />
+    {/* Tay áo */}
+    <path d="M -8 2 Q -12 6 -10 9" fill="none" stroke={COLORS.mi.shirt} strokeWidth="4" strokeLinecap="round" />
+    <path d="M 8 2 Q 12 6 10 9" fill="none" stroke={COLORS.mi.shirt} strokeWidth="4" strokeLinecap="round" />
 
     {/* Đầu */}
-    <g transform="translate(0, -18)">
-      <circle cx="0" cy="-2" r="18" fill={COLORS.mi.hair} />
-      <path d="M -18 -2 v 10 a 6 6 0 0 0 12 0 v -10 z" fill={COLORS.mi.hair} />
-      <path d="M 6 -2 v 10 a 6 6 0 0 0 12 0 v -10 z" fill={COLORS.mi.hair} />
+    <g transform="translate(0, -13)">
+      <circle cx="-14" cy="-2" r="3" fill={COLORS.skinShadow} />
+      <circle cx="14" cy="-2" r="3" fill={COLORS.skinShadow} />
       
-      <circle cx="0" cy="2" r="16" fill={COLORS.skin} />
+      {/* Tóc sau gáy ngang vai */}
+      <path d="M -15 8 C -20 -15 20 -15 15 8 C 15 -5 10 -12 0 -12 C -10 -12 -15 -5 -15 8 Z" fill={COLORS.mi.hair} />
+      
+      <rect x="-14" y="-14" width="28" height="25" rx="12" fill={COLORS.skin} />
       <CuteFace />
-      <path d="M -16 -4 C -16 -20 16 -20 16 -4 C 16 -10 4 -12 -16 -4" fill={COLORS.mi.hair} />
       
-      <circle cx="10" cy="-10" r="3" fill={COLORS.mi.bow} />
-      <path d="M 10 -10 l -4 -3 v 6 z" fill={COLORS.mi.bow} />
-      <path d="M 10 -10 l 4 -3 v 6 z" fill={COLORS.mi.bow} />
+      {/* Mái */}
+      <path d="M -15 2 C -20 -15 20 -15 15 2 C 12 -8 4 -10 0 -10 C -4 -10 -12 -8 -15 2 Z" fill={COLORS.mi.hair} />
+      
+      {/* Nơ kẹp tóc lệch */}
+      <circle cx="10" cy="-6" r="1.5" fill={COLORS.mi.bow} />
+      <path d="M 10 -6 l 2.5 -2 v 4 z" fill={COLORS.mi.bow} />
+      <path d="M 10 -6 l -2.5 -2 v 4 z" fill={COLORS.mi.bow} />
     </g>
   </g>
 );
 
 export const RobotGraphic = () => (
   <g className="char-robot">
-    <rect x="-8" y="30" width="5" height="12" rx="2" fill={COLORS.robot.dark} />
-    <rect x="3" y="30" width="5" height="12" rx="2" fill={COLORS.robot.dark} />
-    <path d="M -11 42 h 11 v 6 a 3 3 0 0 1 -11 0 z" fill={COLORS.robot.accent} />
-    <path d="M 0 42 h 11 v 6 a 3 3 0 0 1 -11 0 z" fill={COLORS.robot.accent} />
+    {/* Bánh xe / Chân */}
+    <rect x="-6" y="22" width="4" height="10" rx="1" fill={COLORS.robot.dark} />
+    <rect x="2" y="22" width="4" height="10" rx="1" fill={COLORS.robot.dark} />
+    <rect x="-8" y="28" width="8" height="5" rx="2" fill={COLORS.robot.accent} />
+    <rect x="0" y="28" width="8" height="5" rx="2" fill={COLORS.robot.accent} />
     
-    <rect x="-16" y="8" width="6" height="14" rx="3" fill={COLORS.robot.dark} transform="rotate(30, -16, 8)" />
-    <rect x="10" y="8" width="6" height="14" rx="3" fill={COLORS.robot.dark} transform="rotate(-30, 10, 8)" />
-    <path d="M -23 20 a 4 4 0 1 0 8 0 h -2 a 2 2 0 1 1 -4 0 z" fill={COLORS.robot.accent} />
-    <path d="M 15 20 a 4 4 0 1 1 8 0 h -2 a 2 2 0 1 0 -4 0 z" fill={COLORS.robot.accent} />
+    {/* Cánh tay */}
+    <path d="M -10 6 Q -15 10 -12 16" fill="none" stroke={COLORS.robot.dark} strokeWidth="3" strokeLinecap="round" />
+    <path d="M 10 6 Q 15 10 12 16" fill="none" stroke={COLORS.robot.dark} strokeWidth="3" strokeLinecap="round" />
+    <circle cx="-12" cy="17" r="2.5" fill={COLORS.robot.accent} />
+    <circle cx="12" cy="17" r="2.5" fill={COLORS.robot.accent} />
     
-    <rect x="-14" y="4" width="28" height="26" rx="6" fill={COLORS.robot.body} />
-    <rect x="-9" y="10" width="18" height="14" rx="3" fill={COLORS.robot.dark} />
-    <rect x="-7" y="12" width="14" height="10" rx="2" fill="#1e293b" />
-    <path d="M 0 18 C 0 18 -3 15 -3 13.5 A 1.5 1.5 0 0 1 0 13.5 A 1.5 1.5 0 0 1 3 13.5 C 3 15 0 18 0 18" fill="#f43f5e" />
+    {/* Thân máy */}
+    <rect x="-10" y="2" width="20" height="18" rx="4" fill={COLORS.robot.body} />
+    <rect x="-6" y="6" width="12" height="8" rx="2" fill={COLORS.robot.dark} />
+    <path d="M -2 10 Q 0 12 2 10" fill="none" stroke="#f43f5e" strokeWidth="2" strokeLinecap="round" />
     
-    <g transform="translate(0, -16)">
-      <rect x="-1.5" y="-24" width="3" height="8" fill={COLORS.robot.dark} />
-      <circle cx="0" cy="-24" r="3.5" fill={COLORS.robot.accent} />
-      <circle cx="0" cy="-24" r="1.5" fill="#ffffff" />
-      <rect x="-16" y="-16" width="32" height="24" rx="5" fill={COLORS.robot.body} />
-      <rect x="-19" y="-6" width="3" height="8" rx="1.5" fill={COLORS.robot.accent} />
-      <rect x="16" y="-6" width="3" height="8" rx="1.5" fill={COLORS.robot.accent} />
-      <rect x="-14" y="-13" width="28" height="18" rx="3" fill="#1e293b" />
-      <RobotFace />
+    {/* Đầu */}
+    <g transform="translate(0, -12)">
+      <rect x="-1" y="-18" width="2" height="6" fill={COLORS.robot.dark} />
+      <circle cx="0" cy="-18" r="2.5" fill={COLORS.robot.accent} />
+      
+      <rect x="-13" y="-12" width="26" height="20" rx="5" fill={COLORS.robot.body} />
+      <rect x="-10" y="-8" width="20" height="12" rx="3" fill="#1e293b" />
+      
+      {/* Khuôn mặt Robot */}
+      <rect x="-6.5" y="-5" width="4" height="4" rx="1.5" fill={COLORS.robot.eye} />
+      <rect x="2.5" y="-5" width="4" height="4" rx="1.5" fill={COLORS.robot.eye} />
+      <path d="M -2 0 Q 0 2 2 0" fill="none" stroke={COLORS.robot.eye} strokeWidth="1.5" strokeLinecap="round" />
+      
+      <ellipse cx="-8" cy="0" rx="1.5" ry="1" fill={COLORS.cheeks} opacity="0.8" />
+      <ellipse cx="8" cy="0" rx="1.5" ry="1" fill={COLORS.cheeks} opacity="0.8" />
+      
+      {/* Tai robot */}
+      <rect x="-15" y="-4" width="2" height="6" rx="1" fill={COLORS.robot.accent} />
+      <rect x="13" y="-4" width="2" height="6" rx="1" fill={COLORS.robot.accent} />
     </g>
   </g>
 );
@@ -305,14 +299,13 @@ export const RobotGraphic = () => (
    ───────────────────────────────────────────────────────────── */
 
 export function CharacterAvatar({ name, size = 48, className = "" }) {
-  // Normalize string for safety (e.g. "Rô-bốt" -> "robot")
   let charKey = (name || "nam").toLowerCase();
   if (charKey.includes("rô") || charKey.includes("robot")) charKey = "robot";
   else if (charKey.includes("nam")) charKey = "nam";
   else if (charKey.includes("việt") || charKey.includes("viet")) charKey = "viet";
   else if (charKey.includes("mai")) charKey = "mai";
   else if (charKey.includes("mi")) charKey = "mi";
-  else charKey = "nam"; // default fallback
+  else charKey = "nam";
 
   return (
     <svg 
@@ -324,17 +317,15 @@ export function CharacterAvatar({ name, size = 48, className = "" }) {
     >
       <CharacterDefs />
       
-      {/* Vòng tròn nền Avatar */}
       <circle cx="50" cy="50" r="48" fill="#f8fafc" stroke="#e2e8f0" strokeWidth="2" />
       
-      {/* Clip path để ẩn phần thân bị tràn khỏi vòng tròn */}
       <clipPath id={`clip-${charKey}-${size}`}>
         <circle cx="50" cy="50" r="48" />
       </clipPath>
       
-      {/* Vẽ nhân vật, scale to lên để lấy phần đầu + vai */}
       <g clipPath={`url(#clip-${charKey}-${size})`}>
-        <g transform="translate(50, 75) scale(1.6)">
+        {/* Scale 2.5x to focus perfectly on the face and upper shoulders */}
+        <g transform="translate(50, 76) scale(2.5)">
           {charKey === "nam" && <NamGraphic />}
           {charKey === "viet" && <VietGraphic />}
           {charKey === "mai" && <MaiGraphic />}
@@ -358,8 +349,8 @@ export function CharacterFullBody({ name, width = 60, height = 90 }) {
   return (
     <svg width={width} height={height} viewBox="0 0 60 90" className="character-full" style={{ overflow: "visible" }}>
       <CharacterDefs />
-      {/* Đặt tâm nhân vật vào giữa khung */}
-      <g transform="translate(30, 40)">
+      {/* Center in a 60x90 canvas. Height is roughly 60 units, so translate(30, 45) is optimal. */}
+      <g transform="translate(30, 45)">
         {charKey === "nam" && <NamGraphic />}
         {charKey === "viet" && <VietGraphic />}
         {charKey === "mai" && <MaiGraphic />}

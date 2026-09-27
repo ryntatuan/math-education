@@ -12,6 +12,51 @@
 -- CHẠY LẠI NHIỀU LẦN: chỉ làm phiên bản tăng thêm 1 mỗi lần — vô hại (các bé tải
 --   lại nội dung thêm một lần), không sinh dòng trùng, không mất dữ liệu.
 --
+-- LƯU Ý LẦN 21 (2026-09-27): CĂN LỀ THEO VAI TRÒ · BẢNG DÙNG HẾT KHUNG · BỎ CHỮ TRÙNG.
+--   Người dùng gửi 3 ảnh và yêu cầu rõ: *"hãy rà soát tất cả bài học ở 5 lớp chứ không phải chỉ 1 bài
+--   học mà tôi gửi ảnh, rà và điều chỉnh lại hết cho đồng bộ hệ thống"*.
+--     (1) Ảnh 1 — slide "Làm quen" Lớp 1 Bài 1: nội dung trong khung đỏ BỊ TRÙNG LẶP.
+--     (2) Ảnh 2 — slide "Quan sát": khung bảng còn trống hai bên mà chữ vẫn bị xuống dòng.
+--     (3) Yêu cầu chung: phân tích căn GIỮA hay căn TRÁI cho TỪNG loại khối, không áp một kiểu cho hết.
+--
+--   🔴 CĂN LỀ THEO VAI TRÒ (chốt trong `client/src/pages/LessonPage.css`, mục "LUẬT CĂN LỀ"):
+--      1. tiêu đề · câu hỏi · phương án · nhãn · chú thích hình  → căn GIỮA
+--      2. đoạn văn xuôi (câu giải thích · câu chốt · lời thoại linh vật · mô tả thẻ hình) → căn TRÁI
+--      3. danh sách (gạch đầu dòng, ô ghi nhớ) → căn TRÁI, biểu tượng canh theo DÒNG ĐẦU
+--      4. bảng → theo CỘT: cột giá trị (số, số La Mã) căn GIỮA · cột chữ căn TRÁI
+--      ⚠️ Đã thử "căn theo ĐỘ DÀI đoạn chữ" rồi BỎ: cùng 50 ký tự là một dòng trên máy tính nhưng hai
+--         dòng trên điện thoại ⇒ ngưỡng ký tự cho hai kiểu căn khác nhau tuỳ máy. Luật theo VAI TRÒ mới
+--         giống nhau ở mọi kích thước màn hình. Cổng tĩnh mới **S-36** canh đúng bốn dòng luật này.
+--
+--   🔴 BẢNG DÙNG HẾT KHUNG + KHÔNG TỰ XUỐNG DÒNG OAN (`components/visuals/tableAlignment.js`):
+--      • Cột rộng vừa đủ nội dung dài nhất nhưng số ký tự mỗi dòng tính bằng `floor()` **hụt đúng
+--        1 ký tự** ⇒ "Hoạt động" tự xuống dòng dù ô còn chỗ. Nay `charsPerLine()` = min(độ dài dài
+--        nhất, số suy từ bề rộng).
+--      • Bảng ≤ 3 cột nay GIÃN cho dùng hết ngân sách 368 đơn vị. Đo trong app: khung bảng lấp
+--        **93% bề rộng thẻ hình** (trước 76%) ⇒ hết cảnh khung lọt thỏm giữa thẻ.
+--      • Bảng ĐIỀN ĐƯỢC (`bangTinh`) CỐ Ý KHÔNG giãn: hàng 56 đơn vị mà giãn khung thì trên điện thoại
+--        ô bấm tụt dưới chuẩn 44 px. Cổng S-36 chặn việc "cho đồng bộ" này.
+--
+--   🔴 BỎ CHỮ ĐÃ BỊ NÓI LẠI — luật HIỂN THỊ, dữ liệu không bị sửa (`pages/lesson/slideDedupe.js`):
+--      • Slide khái niệm: bỏ ô nhấn mạnh khi danh sách bên dưới đã nói đủ (**21 ca**), bỏ câu giải
+--        thích khi ô nhấn mạnh đã nói đủ (**5 ca**). Lời đọc thành tiếng cũng chỉ đọc phần đang hiện.
+--      • Slide "Quan sát": bỏ dòng `text` mà HÌNH trên cùng slide đã chứa trọn (**115 ca**), và
+--        **177 ca** lấy NHÃN của hình làm tiêu đề rồi bỏ nhãn đó dưới hình (tiêu đề vẫn có, mà không
+--        nói hai lần). Nguyên nhân họ lỗi này: các lần "bổ sung hình minh hoạ" thêm bảng vào slide
+--        ĐÃ có bản chữ nhưng không xoá bản chữ cũ.
+--      ℹ️ Đây là luật hiển thị nên áp cho CẢ NĂM LỚP ngay sau khi deploy — không phải dán 5 file seed.
+--
+--   📌 PHẦN DỮ LIỆU CỦA LẦN NÀY RẤT NHỎ: chỉ `g1-c1-l1` slide 3 bỏ mảng `points` (bốn dòng lặp lại
+--      ô nhấn mạnh) — slide đó nay GIỚI THIỆU tên bốn biểu tượng, slide sau mới giải nghĩa từng cái.
+--      Chỉ cần dán `02-bai-lop-1.sql` rồi `100-...`.
+--   ⚠️ Quy mô KHÔNG ĐỔI: 5 lớp · 51 chương · **460 bài · 2814 slide**.
+--   ⚠️ Phần MÃ (`LessonPage.css`, `conceptSlide/storySlide/visualSlide`, `CoreVisuals`,
+--      `interactiveTable`, `textCompare`, `slideDedupe`) thì dán SQL KHÔNG thấy — phải deploy web /
+--      build APK lại.
+--   ✅ Kiểm: cổng tĩnh **34 PASS · 0 FAIL** · `npm test` **74/74** · `oxlint` sạch ·
+--      `kiem-tra-slide` 0 lỗi · `soat-o-trong` 0 ca · `ra-hinh-nghi-ngo` 0 ca.
+--
+
 -- LƯU Ý LẦN 20 (2026-09-26): **TÁCH “SLIDE DỒN NHIỀU BÀI” + LỜI GIẢI TỪNG BƯỚC**.
 --   Người dùng báo (kèm ảnh `g3-c7-l1`): *“slide quá chung chung, không hướng dẫn cũng như chỉ cho
 --   bé thấy làm sao để ra kết quả; gộp nhiều phép tính vào 1 slide gây rối, tại sao không tách ra

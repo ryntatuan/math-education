@@ -29,6 +29,8 @@ import {
   useInteractive,
 } from "./interactiveFill";
 import { CARD_STYLE, CAPTION_STYLE, svgFit, ngatDong } from "./visualTheme";
+// Dùng CHUNG luật căn lề cột với bảng tĩnh (`CoreVisuals.Table`) — một luật, hai bộ vẽ.
+import { columnAnchor } from "./tableAlignment";
 
 const P = {
   ink: "#1e293b",
@@ -79,15 +81,60 @@ export function BangTinh({
   // 🔴 ĐO ĐƯỢC (2026-09-26): khung 340 trong thẻ ~306 px ⇒ tỉ lệ 0,9 ⇒ hàng cao 28 đơn vị
   // chỉ còn ~18 px, ô “?” bấm không nổi và chữ bé hơn hẳn dãy nút (nút 44–50 px).
   // Nay khung hẹp lại (300) để tự phóng to + hàng cao 52 ⇒ ô “?” ≈ 45 px, chữ 19 đơn vị ≈ 19 px.
+  //
+  // ⚠️ ĐỪNG "cho đồng bộ" mà giãn khung như bảng TĨNH (`Table` nay giãn tới 368): bảng này
+  // có Ô BẤM ĐƯỢC, kích thước ô tính theo đơn vị viewBox rồi nhân tỉ lệ. Khung 368 làm tỉ lệ
+  // trên điện thoại tụt còn 283/368 = 0,77 ⇒ hàng 56 đơn vị chỉ còn ~43 px, HỤT chuẩn vùng
+  // chạm 44 px của trẻ. Giãn cho đẹp mà bấm không nổi là đánh đổi sai.
   const W = 300;
   const le = 12;
   const rongBang = W - le * 2;
   const rongCot0 = Math.round(rongBang * 0.58);
   const rongCot1 = rongBang - rongCot0;
-  const caoDau = 34;
+  // Cùng luật căn lề với bảng tĩnh: cột NHÃN là chữ thì căn trái, là giá trị thì căn giữa.
+  const leCot0 = columnAnchor(hang, 0);
+
+  /* ── NGẮT DÒNG NHÃN — SVG KHÔNG tự xuống dòng, mà cột nhãn chỉ rộng 174 đơn vị.
+     🔴 ĐÃ ĐO trên trang `scratch/visual-fit.html`:
+        • nhãn "Số gồm 3 chục và 7 đơn vị" rộng **234 đơn vị** ⇒ tràn sang cột đáp án
+          (3 cặp chữ chồng nhau ở `g1-c6-l4`);
+        • tiêu đề "Mấy chữ số ở phần thập phân" rộng **261 đơn vị** (1 cặp ở `g5-c2-l1`).
+     ⚠️ ĐỔI CĂN LỀ KHÔNG CHỮA ĐƯỢC lỗi này (đã thử: căn giữa thì hết chồng ở `g1-c6-l4` nhưng
+     vẫn chồng ở `g5-c2-l1`, và lại quay về kiểu "thụt ra thụt vào" người dùng đã báo).
+     Đúng cách là NGẮT DÒNG, và cột hẹp quá thì HẠ CỠ CHỮ tiêu đề. */
+  const soKyTuVua = (rong, coChu) =>
+    Math.max(6, Math.floor((rong - 14) / (coChu * 0.54)));
+
+  /**
+   * Một cỡ chữ cho CẢ HAI tiêu đề cột (hai cỡ khác nhau nhìn lệch). Thang cỡ chữ đi TỪNG bậc
+   * vì cột nhãn chỉ rộng 174 đơn vị mà tiêu đề thật hay sát ngưỡng: "Đọc chục và đơn vị" (18 ký tự)
+   * ở cỡ 18 cần 175 đơn vị — **hụt đúng 1 đơn vị** nên bị ngắt thành "vị" một dòng riêng; hạ xuống
+   * cỡ 16 thì vừa một dòng. Ưu tiên 1–2 dòng, chỉ nhận 3 dòng khi không còn cách nào.
+   */
+  const chonTieuDe = () => {
+    const thu = (co) => ({
+      co,
+      d0: ngatDong(headers[0], soKyTuVua(rongCot0, co)),
+      d1: ngatDong(headers[1] ?? "", soKyTuVua(rongCot1, co)),
+    });
+    const ung = [18, 17, 16, 15, 14, 13].map(thu);
+    const soDong = (x) => Math.max(x.d0.length, x.d1.length);
+    // Ít dòng nhất trước (một tiêu đề gãy làm đôi ở chữ "vị" trông rất vụn), rồi mới tới cỡ chữ LỚN nhất
+    // đạt được số dòng đó. Không bao giờ hạ cỡ chữ chỉ để được nhiều dòng hơn.
+    const itNhat = Math.min(...ung.map(soDong));
+    return ung.find((x) => soDong(x) === itNhat);
+  };
+  const { co: coChuDau, d0: dongDau0, d1: dongDau1 } = chonTieuDe();
+  const dongNhan = hang.map((r) =>
+    ngatDong(String(r[0] ?? ""), soKyTuVua(rongCot0, 19)),
+  );
+  const CAO_DONG = 20;
+  const soDongDau = Math.max(dongDau0.length, dongDau1.length);
+  const soDongNhan = Math.max(1, ...dongNhan.map((d) => d.length));
+  const caoDau = 12 + soDongDau * CAO_DONG; // 1 dòng ⇒ 32 đơn vị (bản cũ: 34)
   // 56 đơn vị ⇒ ô “?” cao 46 đơn vị ≈ **47 px** (đo bằng `scratch/do-can-doi-hinh.mjs`);
-  // để 52 thì chỉ được 42,8 px — dưới chuẩn vùng chạm 44 px của trẻ.
-  const caoHang = 56;
+  // để 52 thì chỉ được 42,8 px — dưới chuẩn vùng chạm 44 px của trẻ. Nhãn 2 dòng vẫn vừa 56.
+  const caoHang = Math.max(56, soDongNhan * CAO_DONG + 16);
   const H = caoDau + hang.length * caoHang + 10;
 
   let k = -1; // đếm ô trống theo thứ tự đọc
@@ -110,24 +157,40 @@ export function BangTinh({
           fill={P.headSoft}
         />
         <text
-          x={le + rongCot0 / 2}
-          y={4 + caoDau / 2 + 5}
-          textAnchor="middle"
-          fontSize="18"
+          x={leCot0 === "start" ? le + 10 : le + rongCot0 / 2}
+          y={4 + caoDau / 2 - ((dongDau0.length - 1) * CAO_DONG) / 2 + 6}
+          textAnchor={leCot0}
+          fontSize={coChuDau}
           fontWeight="800"
           fill={P.head}
         >
-          {headers[0]}
+          {dongDau0.map((dong, i) => (
+            <tspan
+              key={i}
+              x={leCot0 === "start" ? le + 10 : le + rongCot0 / 2}
+              dy={i === 0 ? 0 : CAO_DONG}
+            >
+              {dong}
+            </tspan>
+          ))}
         </text>
         <text
           x={le + rongCot0 + rongCot1 / 2}
-          y={4 + caoDau / 2 + 5}
+          y={4 + caoDau / 2 - ((dongDau1.length - 1) * CAO_DONG) / 2 + 6}
           textAnchor="middle"
-          fontSize="18"
+          fontSize={coChuDau}
           fontWeight="800"
           fill={P.head}
         >
-          {headers[1] ?? ""}
+          {dongDau1.map((dong, i) => (
+            <tspan
+              key={i}
+              x={le + rongCot0 + rongCot1 / 2}
+              dy={i === 0 ? 0 : CAO_DONG}
+            >
+              {dong}
+            </tspan>
+          ))}
         </text>
 
         {hang.map((r, i) => {
@@ -152,14 +215,27 @@ export function BangTinh({
                 strokeWidth="1"
               />
               <text
-                x={le + rongCot0 / 2}
-                y={y + caoHang / 2 + 6}
-                textAnchor="middle"
+                x={leCot0 === "start" ? le + 10 : le + rongCot0 / 2}
+                y={
+                  y +
+                  caoHang / 2 -
+                  ((dongNhan[i].length - 1) * CAO_DONG) / 2 +
+                  6
+                }
+                textAnchor={leCot0}
                 fontSize="19"
                 fontWeight="700"
                 fill={P.ink}
               >
-                {String(r[0] ?? "")}
+                {dongNhan[i].map((dong, li) => (
+                  <tspan
+                    key={li}
+                    x={leCot0 === "start" ? le + 10 : le + rongCot0 / 2}
+                    dy={li === 0 ? 0 : CAO_DONG}
+                  >
+                    {dong}
+                  </tspan>
+                ))}
               </text>
               {(() => {
                 const cell = r[1];

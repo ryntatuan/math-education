@@ -1,6 +1,30 @@
 /* ========================================
    LESSON PAGE - MODERN HERO SIZING & RESPONSIVE
    ======================================== */
+
+/* ─────────────────────────── LUẬT CĂN LỀ CỦA MỌI KHỐI CHỮ ───────────────────────────
+   Chốt 2026-09-27 theo yêu cầu người dùng: “phân tích cách thức căn giữa hay căn trái cho
+   từng box… không phải áp dụng 100% chỗ nào cũng giống chỗ nào”.
+
+   Trước đây MỌI khối đều thừa hưởng `text-align: center` của thẻ slide. Với tiêu đề thì
+   đúng, nhưng với đoạn văn 2–3 dòng thì thành “thụt ra thụt vào”: dòng nào cũng khác mốc,
+   mắt trẻ phải dò lại đầu câu (người dùng gọi đúng tên: “thông tin lộn xộn… nhìn rất xấu”).
+
+   LUẬT — theo VAI TRÒ, không theo sở thích, và không phụ thuộc cỡ màn hình:
+     1. TIÊU ĐỀ · CÂU HỎI · PHƯƠNG ÁN TRẮC NGHIỆM · NHÃN · CHÚ THÍCH HÌNH  → căn GIỮA.
+        Đây là những khối ngắn, đối xứng giữa khung là kiểu trình bày chuẩn.
+     2. ĐOẠN VĂN XUÔI (câu giải thích, câu chốt, lời thoại linh vật, mô tả thẻ hình)
+        → căn TRÁI. Mọi dòng bắt đầu cùng một mốc. KHÔNG dùng ngưỡng theo số ký tự: cùng
+        50 ký tự là một dòng trên máy tính nhưng hai dòng trên điện thoại, ngưỡng theo ký tự
+        sẽ cho hai kiểu căn khác nhau trên hai máy.
+     3. DANH SÁCH (gạch đầu dòng, ô ghi nhớ) → căn TRÁI, biểu tượng canh theo DÒNG ĐẦU.
+     4. BẢNG → theo CỘT: cột giá trị (số, số La Mã) căn GIỮA; cột chữ căn TRÁI.
+        Luật này nằm trong `components/visuals/tableAlignment.js` (hàm thuần, có test).
+
+   Cổng tĩnh `S-36` trong `scripts/test-admin-portal.mjs` canh đúng bốn dòng luật này, để
+   lần sau không ai “cho đồng bộ” mà đổi hết về căn giữa một lần nữa.
+   ───────────────────────────────────────────────────────────────────────────────── */
+
 /* Lời giải từng bước dưới tiêu đề slide “Quan sát”: chữ thường (KHÔNG đậm to như tiêu đề),
    căn trái, giữ nguyên xuống dòng để trẻ đọc được từng bước một. */
 .slide-visual-steps {
@@ -189,6 +213,8 @@
   color: #1e293b;
   line-height: 1.6;
   margin: 0;
+  /* Luật 2: lời thoại là ĐOẠN VĂN XUÔI ⇒ căn trái (thẻ slide vẫn căn giữa cho tiêu đề). */
+  text-align: left;
 }
 
 /* ========================================
@@ -648,7 +674,8 @@
   border-radius: 18px;
   padding: 14px 20px;
   display: flex;
-  align-items: center;
+  /* Cùng luật với `.concept-point-item`: biểu tượng canh theo DÒNG ĐẦU. */
+  align-items: flex-start;
   gap: 12px;
   text-align: left;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
@@ -657,6 +684,7 @@
 .point-bullet {
   font-size: 1.3rem;
   flex-shrink: 0;
+  line-height: 1.4;
 }
 
 .point-text {
@@ -1212,7 +1240,8 @@
   font-size: clamp(1.05rem, 1.4vw, 1.3rem);
   line-height: 1.65;
   color: #334155;
-  text-align: center;
+  /* Luật 2: câu giải thích là ĐOẠN VĂN XUÔI ⇒ căn trái. */
+  text-align: left;
   margin: 0;
   max-width: 720px;
   font-weight: 500;
@@ -1310,7 +1339,9 @@
   padding: 16px 18px;
   text-align: left;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .concept-step-badge {
@@ -1351,7 +1382,8 @@
   padding: 16px 24px;
   width: 100%;
   max-width: 680px;
-  box-shadow: 0 6px 20px rgba(234, 179, 8, 0.15),
+  box-shadow:
+    0 6px 20px rgba(234, 179, 8, 0.15),
     inset 0 1px 0 rgba(255, 255, 255, 0.8);
   margin: 4px 0;
   text-align: left;
@@ -1369,7 +1401,9 @@
   font-weight: 800;
   font-family: var(--font-heading);
   margin: 0;
-  text-align: center;
+  /* Luật 2: câu chốt là ĐOẠN VĂN XUÔI ⇒ căn trái. Nhìn cùng mốc với ⭐ bên trái, không
+     còn cảnh câu 2 dòng căn giữa lệch khỏi ngôi sao. */
+  text-align: left;
 }
 
 /* Worked Example Box - Warm Mascot Speech Card */
@@ -1420,7 +1454,7 @@
   font-weight: 600;
 }
 
-/* Bullet Points */
+/* Bullet Points — luật 3: danh sách căn TRÁI, biểu tượng canh theo DÒNG ĐẦU. */
 .concept-points-list {
   display: flex;
   flex-direction: column;
@@ -1432,7 +1466,9 @@
 
 .concept-point-item {
   display: flex;
-  align-items: center;
+  /* 🔴 `flex-start`, KHÔNG phải `center`: câu dài 2 dòng mà canh giữa thì dấu ✔ trôi
+     xuống khoảng giữa hai dòng, trông như lạc. Canh theo dòng ĐẦU mới đúng mắt đọc. */
+  align-items: flex-start;
   gap: 12px;
   font-size: clamp(0.95rem, 1.1vw, 1.08rem);
   font-weight: 700;
@@ -1449,6 +1485,7 @@
   font-weight: 900;
   font-size: 1.1rem;
   flex-shrink: 0;
+  line-height: 1.5;
 }
 
 /* ========================================================
@@ -1529,6 +1566,8 @@
   line-height: 1.45;
   margin: 6px 0 10px 0;
   flex-grow: 1;
+  /* Luật 2: mô tả là đoạn văn ⇒ căn trái (thẻ vẫn căn giữa cho nhãn + hình). */
+  text-align: left;
 }
 
 .visual-card-tap-hint {
@@ -1756,6 +1795,8 @@
   font-weight: 700;
   line-height: 1.5;
   margin: 0;
+  /* Luật 2: lời thoại trong bong bóng chat ⇒ căn trái. */
+  text-align: left;
 }
 
 .dialogue-interaction-box {
@@ -2312,7 +2353,9 @@
   border-radius: 20px;
   padding: 16px 20px;
   position: relative;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .visual-item-group:hover {
@@ -2454,4 +2497,3 @@
     font-size: 2.4rem;
   }
 }
-
