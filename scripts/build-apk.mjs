@@ -132,9 +132,14 @@ try {
     fs.mkdirSync(targetDownloadsDir, { recursive: true });
   }
 
-  // Copy sang public/downloads, public gốc và dist/downloads
+  // 🔴 CHỈ MỘT FILE APK TRÊN WEB: `/downloads/ToanVui.apk`.
+  //
+  // VÌ SAO BỎ CÁC BẢN COPY (người dùng yêu cầu 2026-09-28: *“tôi chỉ cần 1 file apk trên web để
+  // người dùng down”*): trước đây mỗi lần build còn chép APK ra `public/ToanVui.apk` và
+  // `dist/ToanVui.apk` ⇒ web phục vụ cùng một file ở BA đường dẫn, mỗi commit nặng thêm ~15 MB,
+  // và người dùng có thể tải nhầm bản cũ ở đường dẫn khác.
+  // Mọi chỗ trong app đều đã trỏ về `/downloads/ToanVui.apk` (`DownloadAppModal`, `ProfilePage`).
   fs.copyFileSync(finalApkPath, targetApk);
-  fs.copyFileSync(finalApkPath, path.resolve(clientDir, "public/ToanVui.apk"));
 
   const distDownloadsDir = path.resolve(clientDir, "dist/downloads");
   if (fs.existsSync(distDownloadsDir)) {
@@ -142,7 +147,6 @@ try {
       finalApkPath,
       path.resolve(distDownloadsDir, "ToanVui.apk"),
     );
-    fs.copyFileSync(finalApkPath, path.resolve(clientDir, "dist/ToanVui.apk"));
   }
 
   const stats = fs.statSync(targetApk);

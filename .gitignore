@@ -7,8 +7,10 @@ dist/
 dist-ssr/
 */dist/
 *.apk
+# Ngoại lệ DUY NHẤT: file APK phục vụ người dùng tải trên web (/downloads/ToanVui.apk).
+# Đừng thêm ngoại lệ thứ hai — đã từng có bản copy ở `client/public/ToanVui.apk` làm mỗi commit
+# nặng thêm ~7,5 MB và người dùng có thể tải nhầm bản cũ.
 !client/public/downloads/ToanVui.apk
-!client/public/ToanVui.apk
 
 # Logs
 logs

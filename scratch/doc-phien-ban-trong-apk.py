@@ -9,6 +9,7 @@ VÌ SAO KHÔNG SOI NHỊ PHÂN THÔ (bài học 2026-09-28): quét byte cả fil
 phiên bản app. Mã web nằm trong asset ĐÃ NÉN nên phép quét thô không thấy.
 ⇒ Phải giải nén: đọc `assets/public/downloads/version.json` và soi bundle JS sau khi giải nén.
 """
+import hashlib
 import re
 import sys
 import zipfile
@@ -43,3 +44,13 @@ with zipfile.ZipFile(apk) as z:
         except Exception:
             pass
     print(f'\n3. Tổng số chỗ có chuỗi "{phien_ban}" trong assets/public (đã giải nén): {tong}')
+
+    # 4. CHỮ KÝ + danh tính bản dựng — dùng để so HAI APK với nhau (ví dụ: bản build ở máy
+    #    với bản build trên GitHub Actions). Khác chữ ký ⇒ người dùng KHÔNG cài đè được
+    #    (Android báo "Ứng dụng chưa được cài đặt"), buộc phải gỡ app rồi cài lại.
+    print("\n4. Dấu hiệu nhận dạng bản dựng:")
+    for t in [x for x in ten if x.startswith("META-INF/") and re.search(r"\.(RSA|DSA|EC|SF)$", x)]:
+        print(f"   • {t}: sha256 {hashlib.sha256(z.read(t)).hexdigest()[:32]}…")
+    for t in [x for x in ten if re.search(r"public/assets/index-[\w-]+\.js$", x)]:
+        print(f"   • {t}: sha256 {hashlib.sha256(z.read(t)).hexdigest()[:32]}…")
+    print(f"   • sha256 cả file APK: {hashlib.sha256(open(apk, 'rb').read()).hexdigest()[:32]}…")
