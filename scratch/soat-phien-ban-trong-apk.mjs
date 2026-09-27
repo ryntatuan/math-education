@@ -7,7 +7,9 @@ import fs from "node:fs";
 
 const [file, ...chuoi] = process.argv.slice(2);
 if (!file || chuoi.length === 0) {
-  console.log("Dùng: node scratch/soat-phien-ban-trong-apk.mjs <file.apk> <chuoi…>");
+  console.log(
+    "Dùng: node scratch/soat-phien-ban-trong-apk.mjs <file.apk> <chuoi…>",
+  );
   process.exit(1);
 }
 
@@ -26,7 +28,9 @@ for (const c of chuoi) {
   for (const p of vitri) {
     const dau = Math.max(0, p - 45);
     console.log(
-      "   …" + s.slice(dau, p + c.length + 45).replace(/[^\x20-\x7E]/g, "·") + "…",
+      "   …" +
+        s.slice(dau, p + c.length + 45).replace(/[^\x20-\x7E]/g, "·") +
+        "…",
     );
   }
 }
