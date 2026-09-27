@@ -162,11 +162,16 @@ export default function DownloadAppModal() {
                       Bản v{apkMeta?.version || APP_VERSION} (.APK)
                     </span>
                     <span className="meta-badge-tag">Android 7.0+</span>
-                    <span className="meta-badge-size">
-                      {apkMeta?.fileSizeMB
-                        ? `Dung lượng: ${apkMeta.fileSizeMB}`
-                        : "Dung lượng: ~8.5 MB"}
-                    </span>
+                    {/* 🔴 Dung lượng/ngày CHỈ hiện khi lấy được thật (từ API bản phát hành).
+                        Trước đây khi không lấy được thì in cứng "~8.5 MB" — SAI (APK thật ~7,2 MB):
+                        thà không nói gì còn hơn nói sai. Không lấy được chỉ vì API GitHub giới hạn
+                        60 lượt/giờ cho mỗi IP (nhiều người dùng chung IP là hết) ⇒ chỉ mất phần
+                        phụ này, số phiên bản vẫn đúng vì lấy từ `APP_VERSION` của bản đang chạy. */}
+                    {apkMeta?.fileSizeMB && (
+                      <span className="meta-badge-size">
+                        Dung lượng: {apkMeta.fileSizeMB}
+                      </span>
+                    )}
                     {apkMeta?.buildDateFormatted && (
                       <span className="meta-badge-date">
                         Cập nhật: {apkMeta.buildDateFormatted}

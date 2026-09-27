@@ -90,6 +90,23 @@ jobs:
           if-no-files-found: error
           retention-days: 30
 
+      - name: Move version tag to this commit
+        if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+        run: |
+          TAG="v${{ steps.get_version.outputs.VERSION }}"
+          # 🔴 VÌ SAO PHẢI ĐẨY TAG BẰNG TAY: `action-gh-release` CHỈ dùng `target_commitish` khi
+          #    TẠO tag. Phát hành lại CÙNG một phiên bản (push thêm commit mà không tăng version —
+          #    chính là cách repo này giữ cho APK trên web luôn mới) thì tag cũ VẪN nằm ở commit cũ
+          #    trong khi file APK trong Release đã được thay bằng bản mới ⇒ tag và asset lệch nhau.
+          #    Đo thật 2026-09-28: tag `v1.1.1` trỏ `96b7b71` nhưng asset lại được build từ `02f8781`.
+          #    Ghim lại tag vào đúng commit đang chạy TRƯỚC khi tạo Release ⇒ tag luôn = nguồn của asset.
+          git tag -f "$TAG" "${{ github.sha }}"
+          if git push -f origin "refs/tags/$TAG"; then
+            echo "Đã ghim $TAG -> ${{ github.sha }}"
+          else
+            echo "Không đẩy được tag — bỏ qua, Release vẫn được tạo ở bước sau."
+          fi
+
       - name: Create GitHub Release
         if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
         uses: softprops/action-gh-release@v2

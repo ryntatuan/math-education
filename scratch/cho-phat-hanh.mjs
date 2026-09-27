@@ -38,7 +38,9 @@ const dau = async (url, redirect = "follow") => {
 
 /** Tag trỏ vào commit nào — bằng git, KHÔNG tốn hạn mức API. */
 const tagSha = (tag) => {
-  const out = execSync(`git ls-remote --tags origin refs/tags/${tag}`, { encoding: "utf8" });
+  const out = execSync(`git ls-remote --tags origin refs/tags/${tag}`, {
+    encoding: "utf8",
+  });
   return out.trim().split(/\s+/)[0] ?? null;
 };
 
@@ -59,23 +61,33 @@ for (;;) {
   if (moi) {
     const web = await dau(`${WEB}/downloads/ToanVui.apk`, "manual");
     const buf = Buffer.from(
-      await (await fetch(`${WEB}/downloads/ToanVui.apk?cb=${Date.now()}`)).arrayBuffer(),
+      await (
+        await fetch(`${WEB}/downloads/ToanVui.apk?cb=${Date.now()}`)
+      ).arrayBuffer(),
     );
     console.log(`\n✅ CÓ BẢN APK MỚI`);
-    console.log(`   tag v1.1.1 -> commit ${tagSha("v1.1.1")}  (git ls-remote, không tốn hạn mức API)`);
+    console.log(
+      `   tag v1.1.1 -> commit ${tagSha("v1.1.1")}  (git ls-remote, không tốn hạn mức API)`,
+    );
     console.log(`   GitHub: ${nay.size} byte · etag ${nay.etag}`);
     console.log(`   web chuyển tiếp: HTTP ${web.status} -> ${web.location}`);
     console.log(
       `   tải từ web: ${buf.length} byte · ${
-        buf.length === nay.size ? "TRÙNG bản trên GitHub ✓" : "LỆCH bản trên GitHub ✗"
+        buf.length === nay.size
+          ? "TRÙNG bản trên GitHub ✓"
+          : "LỆCH bản trên GitHub ✗"
       }`,
     );
-    console.log(`   (kiểm chữ ký: apksigner verify --print-certs <file tải về>)`);
+    console.log(
+      `   (kiểm chữ ký: apksigner verify --print-certs <file tải về>)`,
+    );
     break;
   }
 
   if (Date.now() > hetHan) {
-    console.log(`\n⏱ Hết ${phutToiDa} phút mà chưa thấy APK mới (chạy lại lệnh này để chờ tiếp).`);
+    console.log(
+      `\n⏱ Hết ${phutToiDa} phút mà chưa thấy APK mới (chạy lại lệnh này để chờ tiếp).`,
+    );
     process.exit(2);
   }
   await new Promise((r) => setTimeout(r, 60_000));
