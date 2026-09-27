@@ -44,6 +44,19 @@ export function SummarySlide({ content }) {
         speakTitle="Nghe đọc tổng kết"
       />
 
+      {/* Celebration header — visual reward for reaching the end */}
+      <div className="summary-trophy-hero">
+        <span className="summary-confetti-strip">🎊</span>
+        <motion.span
+          className="summary-trophy-icon"
+          animate={{ rotate: [0, -5, 5, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+        >
+          🏆
+        </motion.span>
+        <span className="summary-confetti-strip">🎊</span>
+      </div>
+
       <h2 className="summary-title">{content.title}</h2>
 
       <div className="summary-points">

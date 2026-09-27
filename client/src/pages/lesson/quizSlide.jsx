@@ -161,6 +161,7 @@ export function QuizSlide({
               whileHover={!feedback ? { scale: 1.03, y: -2 } : {}}
               whileTap={!feedback ? { scale: 0.97 } : {}}
             >
+              <span className="quiz-option-letter">{"ABCDEF"[index]}</span>
               <span className="quiz-option-text">{option}</span>
               {feedback && isCorrect && (
                 <CheckCircle2 size={24} className="quiz-icon-correct" />

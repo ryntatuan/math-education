@@ -177,9 +177,9 @@ export function ConceptSlide({ content }) {
       {content.rule && (
         <motion.div
           className="concept-rule-box"
-          initial={{ scale: 0.96, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ delay: 0.15 }}
+          initial={{ scale: 0.9, opacity: 0, y: 10 }}
+          animate={{ scale: 1, opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, type: "spring", stiffness: 400, damping: 12 }}
         >
           <span className="concept-rule-icon">⭐</span>
           <p className="concept-rule-body">{content.rule}</p>

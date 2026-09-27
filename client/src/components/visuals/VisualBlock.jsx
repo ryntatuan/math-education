@@ -20,6 +20,7 @@ import {
   BaseTenBlocks,
   PlaceValueTable,
   Ruler,
+  MeasureBoard,
   Money,
   Table,
 } from "./CoreVisuals";
@@ -69,6 +70,9 @@ export default function VisualBlocks({ content }) {
   // ── Đo lường ────────────────────────────────────────────────────────────
   if (isObj(content.ruler))
     blocks.push(<Ruler key="ruler" {...content.ruler} />);
+  // Vật đặt cạnh thước (Lớp 1 CĐ 7 — SGK tr.36–43): bé đọc số đo hoặc so sánh độ dài.
+  if (isObj(content.measureBoard))
+    blocks.push(<MeasureBoard key="measureBoard" {...content.measureBoard} />);
   if (isObj(content.money))
     blocks.push(<Money key="money" {...content.money} />);
   if (isObj(content.table))

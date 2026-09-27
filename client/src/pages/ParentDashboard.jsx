@@ -1,6 +1,18 @@
 import { useState, useMemo, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Lock, ShieldCheck, BarChart3, Clock, Flame, Award, BookOpen, Settings, Download, CheckCircle2, TrendingUp } from "lucide-react";
+import {
+  Lock,
+  ShieldCheck,
+  BarChart3,
+  Clock,
+  Flame,
+  Award,
+  BookOpen,
+  Settings,
+  Download,
+  CheckCircle2,
+  TrendingUp,
+} from "lucide-react";
 import Button from "../components/ui/Button";
 import ProgressBar from "../components/ui/ProgressBar";
 import MascotIcon from "../components/common/MascotIcon";
@@ -440,8 +452,7 @@ export default function ParentDashboard() {
         soCauDung += Math.min(Number(r?.score) || 0, tong);
       }
     }
-    const tyLeDung =
-      soCau > 0 ? Math.round((soCauDung / soCau) * 100) : null;
+    const tyLeDung = soCau > 0 ? Math.round((soCauDung / soCau) * 100) : null;
 
     return {
       soBai: trongTuan.length,

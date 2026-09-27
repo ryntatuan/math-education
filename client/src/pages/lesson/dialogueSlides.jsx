@@ -147,9 +147,9 @@ export function DialogueScene({ content, onAnswerRecorded, isFullSlide = false }
             <motion.div
               key={idx}
               className={`dialogue-item ${isLeft ? "align-left" : "align-right"}`}
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: idx * 0.15 }}
+              initial={{ opacity: 0, y: 15, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ delay: idx * 0.15, type: "spring", stiffness: 350, damping: 20 }}
             >
               <div className="dialogue-avatar-wrap">
                 <span className="dialogue-avatar">{char.avatar}</span>

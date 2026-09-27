@@ -90,6 +90,8 @@ const RULES = [
     text: /đo độ dài|xăng-ti-mét|đề-xi-mét|ki-lô-mét|dùng thước|đặt thước/i,
     ok: [
       "ruler",
+      // Bảng đo Lớp 1 CĐ 7: vật vẽ đúng tỉ lệ + thước vạch cm ⇒ CHÍNH LÀ hình đo.
+      "measureBoard",
       "numberLine",
       "motionDiagram",
       "table",
@@ -131,6 +133,9 @@ const RULES = [
       "planeShapes",
       "angle",
       "pointLine",
+      // Dãy hình lặp quy luật VẼ HÌNH THẬT (tròn/vuông/tam giác + màu) — câu hỏi
+      // “hình tròn ở dấu ? có màu gì?” là câu hỏi về HÌNH, patternRow là hình đúng.
+      "patternRow",
     ],
     why: "bài hình phẳng phải vẽ hình phẳng",
     /**

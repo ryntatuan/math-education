@@ -124,22 +124,57 @@ const Tray = ({ x, y, w, h, label = "", dash = false, fill = "#f8fafc" }) => (
   </g>
 );
 
-/** Một "vật có nhiều phần" — phần được vẽ RÕ để bé đếm được (càng, cánh, bánh xe, bút trong hộp). */
+/**
+ * Một "vật có nhiều phần" — THÂN vật phải RA DÁNG vật (con cua, con chim, xe ba bánh),
+ * còn PHẦN được vẽ rõ để bé đếm (càng, cánh, bánh xe, bút trong hộp).
+ *
+ * 🔴 Bản cũ vẽ thân của MỌI con vật bằng một ellipse xám trơn ⇒ bài "mỗi con chim có 2 cánh"
+ * hiện ra một cục xám có hai cái cánh. Người dùng đã trả lại đúng kiểu vẽ đó ở bộ bảng đo.
+ */
 const PartObject = ({ x, y, kind = "claw", k = 2, scale = 1 }) => {
   const s = scale;
-  const body = (
-    <ellipse
-      cx={x}
-      cy={y}
-      rx={13 * s}
-      ry={10 * s}
-      fill="#cbd5e1"
-      stroke="#475569"
-      strokeWidth="1.8"
-    />
-  );
   const parts = [];
+  let body = null;
   if (kind === "claw") {
+    /* CON CUA: mai + 2 mắt cuống + chân bò */
+    body = (
+      <g>
+        <ellipse
+          cx={x}
+          cy={y}
+          rx={15 * s}
+          ry={11 * s}
+          fill="#fb923c"
+          stroke="#c2410c"
+          strokeWidth="1.8"
+        />
+        <ellipse cx={x} cy={y - 3 * s} rx={9 * s} ry={5 * s} fill="#fdba74" />
+        <line
+          x1={x - 5 * s}
+          y1={y - 10 * s}
+          x2={x - 7 * s}
+          y2={y - 16 * s}
+          stroke="#c2410c"
+          strokeWidth="1.6"
+        />
+        <line
+          x1={x + 5 * s}
+          y1={y - 10 * s}
+          x2={x + 7 * s}
+          y2={y - 16 * s}
+          stroke="#c2410c"
+          strokeWidth="1.6"
+        />
+        <circle cx={x - 7 * s} cy={y - 18 * s} r={2.6 * s} fill="#1e293b" />
+        <circle cx={x + 7 * s} cy={y - 18 * s} r={2.6 * s} fill="#1e293b" />
+        <path
+          d={`M ${x - 14 * s} ${y + 6 * s} l ${-5 * s} ${6 * s} M ${x - 7 * s} ${y + 9 * s} l ${-3 * s} ${6 * s} M ${x + 14 * s} ${y + 6 * s} l ${5 * s} ${6 * s} M ${x + 7 * s} ${y + 9 * s} l ${3 * s} ${6 * s}`}
+          stroke="#c2410c"
+          strokeWidth="1.8"
+          fill="none"
+        />
+      </g>
+    );
     parts.push(
       <ellipse
         key="l"
@@ -164,6 +199,56 @@ const PartObject = ({ x, y, kind = "claw", k = 2, scale = 1 }) => {
       <circle key="a" cx={x} cy={y - 12 * s} r={3.5 * s} fill="#475569" />,
     );
   } else if (kind === "wing") {
+    /* CON CHIM: thân + đầu + mỏ + đuôi + chân */
+    body = (
+      <g>
+        <ellipse
+          cx={x}
+          cy={y + 1 * s}
+          rx={14 * s}
+          ry={10 * s}
+          fill="#fcd34d"
+          stroke="#b45309"
+          strokeWidth="1.6"
+        />
+        <circle
+          cx={x + 8 * s}
+          cy={y - 9 * s}
+          r={7 * s}
+          fill="#fcd34d"
+          stroke="#b45309"
+          strokeWidth="1.6"
+        />
+        <polygon
+          points={`${x + 14 * s},${y - 9 * s} ${x + 21 * s},${y - 6 * s} ${x + 14 * s},${y - 4 * s}`}
+          fill="#f97316"
+          stroke="#b45309"
+          strokeWidth="1.2"
+        />
+        <path
+          d={`M ${x - 13 * s} ${y - 2 * s} l ${-8 * s} ${-5 * s} l ${2 * s} ${8 * s} Z`}
+          fill="#fbbf24"
+          stroke="#b45309"
+          strokeWidth="1.2"
+        />
+        <line
+          x1={x - 3 * s}
+          y1={y + 10 * s}
+          x2={x - 5 * s}
+          y2={y + 17 * s}
+          stroke="#b45309"
+          strokeWidth="1.8"
+        />
+        <line
+          x1={x + 3 * s}
+          y1={y + 10 * s}
+          x2={x + 5 * s}
+          y2={y + 17 * s}
+          stroke="#b45309"
+          strokeWidth="1.8"
+        />
+      </g>
+    );
     parts.push(
       <ellipse
         key="l"
@@ -198,6 +283,41 @@ const PartObject = ({ x, y, kind = "claw", k = 2, scale = 1 }) => {
       />,
     );
   } else if (kind === "wheel") {
+    // XE BA BÁNH: khung xe + yên + tay lái (phần bé đếm là BÁNH).
+    body = (
+      <g>
+        <path
+          d={`M ${x - 14 * s} ${y + 2 * s} L ${x - 3 * s} ${y - 14 * s} L ${x + 12 * s} ${y + 2 * s} Z`}
+          fill="none"
+          stroke="#2563eb"
+          strokeWidth="2.6"
+        />
+        <line
+          x1={x - 14 * s}
+          y1={y + 2 * s}
+          x2={x + 12 * s}
+          y2={y + 2 * s}
+          stroke="#2563eb"
+          strokeWidth="2.6"
+        />
+        <rect
+          x={x + 1 * s}
+          y={y - 21 * s}
+          width={12 * s}
+          height={4.5 * s}
+          rx={2}
+          fill="#7f1d1d"
+        />
+        <line
+          x1={x - 3 * s}
+          y1={y - 14 * s}
+          x2={x + 7 * s}
+          y2={y - 20 * s}
+          stroke="#334155"
+          strokeWidth="2.4"
+        />
+      </g>
+    );
     // Vẽ ĐÚNG số bánh của xe (3 bánh: 1 trên + 2 dưới; 4 bánh: 2 trên + 2 dưới).
     const soBanh = Math.max(1, Math.min(num(k, 3), 8));
     const duoi = Math.ceil(soBanh / 2);
@@ -240,7 +360,7 @@ const PartObject = ({ x, y, kind = "claw", k = 2, scale = 1 }) => {
       ...row(tren, y - 14 * s, "t"),
     );
   } else {
-    // "box": hộp có k chiếc bút chì
+    // "box": hộp có k chiếc bút chì  (hộp vốn là hình chữ nhật ⇒ KHÔNG cần vẽ lại)
     parts.push(
       <rect
         key="b"

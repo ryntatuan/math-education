@@ -31,6 +31,7 @@ import {
   BaseTenBlocks,
   PlaceValueTable,
   Ruler,
+  MeasureBoard,
   Money,
   Table,
 } from "../client/src/components/visuals/CoreVisuals.jsx";
@@ -65,6 +66,7 @@ const COMP = {
   numberLine: NumberLine,
   placeValue: PlaceValueTable,
   ruler: Ruler,
+  measureBoard: MeasureBoard,
   money: Money,
   table: Table,
   planeShape: PlaneShape,

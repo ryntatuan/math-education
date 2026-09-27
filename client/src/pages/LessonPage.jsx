@@ -560,10 +560,10 @@ export default function LessonPage() {
         <motion.div
           key={currentSlide}
           className="lesson-slide"
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -50 }}
-          transition={{ duration: 0.3 }}
+          initial={{ opacity: 0, scale: 0.96, y: 15 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.98, y: -10 }}
+          transition={{ duration: 0.4, type: "spring", bounce: 0.25 }}
         >
           {slide.type === "story" && (
             <InteractiveContext.Provider value={true}>

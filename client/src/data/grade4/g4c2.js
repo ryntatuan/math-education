@@ -979,14 +979,20 @@ export const g4c2 = {
           }
         },
         {
-          "type": "visual",
-          "content": {
+          type: "visual",
+          content: {
             "text": "Đặt tính 128 472 : 6 rồi chia lần lượt từ trái sang phải — bé điền các chữ số của thương. Kết quả đúng là 21 412.",
             "cotTinh": {
               "left": 128472,
               "right": 6,
               "sign": ":"
-            },
+            }
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            "text": "Chia cho số có một chữ số — số dư luôn bé hơn số chia",
             "table": {
               "headers": [
                 "Phép tính",
@@ -1004,7 +1010,7 @@ export const g4c2 = {
               ],
               "label": "Chia cho số có một chữ số — số dư luôn bé hơn số chia"
             }
-          }
+          },
         },
         {
           "type": "quiz",
@@ -1048,14 +1054,20 @@ export const g4c2 = {
           }
         },
         {
-          "type": "visual",
-          "content": {
+          type: "visual",
+          content: {
             "text": "Ví dụ: 84 : 21. Làm tròn 80 : 20 = 4. Thử 21 × 4 = 84 vừa đúng ⇒ thương là 4. Bé đặt tính rồi điền thương nhé!",
             "cotTinh": {
               "left": 84,
               "right": 21,
               "sign": ":"
-            },
+            }
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            "text": "Chia cho số có hai, ba chữ số",
             "table": {
               "headers": [
                 "Bước",
@@ -1077,7 +1089,7 @@ export const g4c2 = {
               ],
               "label": "Chia cho số có hai, ba chữ số"
             }
-          }
+          },
         },
         {
           "type": "quiz",

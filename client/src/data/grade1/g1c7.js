@@ -524,6 +524,162 @@ export const g1c7 = {
           },
         },
         {
+          type: "concept",
+          content: {
+            badge: "Khám Phá",
+            title: "Chọn số đo phù hợp",
+            explanation:
+              "Mỗi đồ vật dài một khoảng khác nhau. Bé ước lượng rồi chọn số đo phù hợp với đồ vật đó.",
+            rule: "Hộp bút dài hơn bút chì rất nhiều, còn gang tay thì ngắn — số đo phải chọn cho khớp với đồ vật.",
+            points: [
+              "Bút máy dài khoảng 12 cm.",
+              "Cục tẩy dài khoảng 4 cm.",
+              "Bút chì dài khoảng 1 gang tay.",
+              "Bút vẽ màu dài khoảng 8 cm.",
+              "Hộp bút dài khoảng 25 cm.",
+            ],
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Đồ vật nào dài khoảng 25 cm?",
+            options: ["Hộp bút", "Cục tẩy", "Bút máy", "Bút chì"],
+            answer: "Hộp bút",
+            mascotHint:
+              "Cục tẩy chỉ 4 cm, bút máy 12 cm, còn hộp bút dài tới 25 cm.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Bút chì dài khoảng bao nhiêu?",
+            options: ["1 gang tay", "30 cm", "4 cm", "25 cm"],
+            answer: "1 gang tay",
+            mascotHint: "Bút chì chỉ dài bằng khoảng một gang tay của bé.",
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Đo ba đồ chơi bằng thước vạch xăng-ti-mét (SGK tr.38).",
+            measureBoard: {
+              rulerMax: 12,
+              orientation: "row",
+              objects: [
+                { name: "Đoàn tàu", kind: "train", cm: 11 },
+                { name: "Xe khách", kind: "bus", cm: 7 },
+                { name: "Xe trộn xi măng", kind: "mixerTruck", cm: 5 },
+              ],
+              label:
+                "Đặt một đầu đồ chơi vào vạch 0 rồi đọc số ở đầu kia của đồ chơi.",
+            },
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Trong ba đồ chơi vừa đo, đồ chơi nào dài nhất?",
+            options: ["Đoàn tàu", "Xe khách", "Xe trộn xi măng"],
+            answer: "Đoàn tàu",
+            mascotHint:
+              "Đoàn tàu dài 11 cm, dài hơn xe khách 7 cm và xe trộn xi măng 5 cm.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Trong ba đồ chơi vừa đo, đồ chơi nào ngắn nhất?",
+            options: ["Xe trộn xi măng", "Xe khách", "Đoàn tàu"],
+            answer: "Xe trộn xi măng",
+            mascotHint: "Xe trộn xi măng dài 5 cm, ngắn nhất trong ba đồ chơi.",
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Đo ba đồ chơi khác (SGK tr.38).",
+            measureBoard: {
+              rulerMax: 6,
+              orientation: "row",
+              objects: [
+                { name: "Xe lu", kind: "roller", cm: 4 },
+                { name: "Xe ô tô con", kind: "car", cm: 4 },
+                { name: "Xe cẩu", kind: "crane", cm: 5 },
+              ],
+              label:
+                "Cũng đặt vạch 0 vào một đầu đồ chơi rồi đọc số ở đầu kia.",
+            },
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Trong ba xe vừa đo, xe nào dài nhất?",
+            options: ["Xe cẩu", "Xe lu", "Xe ô tô con"],
+            answer: "Xe cẩu",
+            mascotHint: "Xe cẩu dài 5 cm; xe lu và xe ô tô con đều dài 4 cm.",
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Đo độ dài mỗi đồ vật (SGK tr.39).",
+            measureBoard: {
+              rulerMax: 10,
+              orientation: "row",
+              objects: [
+                { name: "Bản chải", kind: "toothbrush", cm: 7 },
+                { name: "Tua-vít", kind: "screwdriver", cm: 9 },
+                { name: "Điều khiển", kind: "gamepad", cm: 3 },
+              ],
+              label:
+                "Ba đồ vật cùng đặt ở vạch 0 — bé đọc số ở đầu kia của mỗi vật.",
+            },
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Trong ba đồ vật vừa đo, đồ vật nào dài nhất?",
+            options: ["Tua-vít", "Bản chải", "Điều khiển"],
+            answer: "Tua-vít",
+            mascotHint: "Tua-vít dài 9 cm, bản chải 7 cm, điều khiển 3 cm.",
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Đo độ dài ba bút chì (SGK tr.39).",
+            measureBoard: {
+              rulerMax: 13,
+              orientation: "row",
+              objects: [
+                { name: "Bút chì A", kind: "pencil", cm: 10 },
+                { name: "Bút chì B", kind: "pencil", cm: 8 },
+                { name: "Bút chì C", kind: "pencil", cm: 12 },
+              ],
+              label:
+                "Ba bút chì cùng đặt ở vạch 0 — bé đọc số ở đầu kia của mỗi bút.",
+            },
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Bút chì nào dài hơn 8 cm?",
+            options: [
+              "Bút chì A và bút chì C",
+              "Chỉ bút chì B",
+              "Cả ba bút chì",
+              "Không bút chì nào",
+            ],
+            answer: "Bút chì A và bút chì C",
+            mascotHint:
+              "Bút chì B dài đúng 8 cm, còn A dài 10 cm và C dài 12 cm.",
+          },
+        },
+        {
           type: "summary",
           content: {
             title: "Bé nhớ rất tốt:",
@@ -664,6 +820,288 @@ export const g1c7 = {
               label: "Đọc số ở đầu kia của đoạn thẳng: 9 cm",
             },
             mascotHint: "Đọc số ở đầu kia: 9 cm.",
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Đồ vật nào dài hơn? (SGK tr.40)",
+            measureBoard: {
+              rulerMax: 8,
+              orientation: "row",
+              showRuler: false,
+              objects: [
+                { name: "Bút chì", kind: "pencil", cm: 7.5 },
+                { name: "Bút bi", kind: "pen", cm: 4.2 },
+              ],
+              label: "Hai đồ vật đặt cạnh nhau — bé nhìn xem vật nào dài hơn.",
+            },
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Bút chì và bút bi, đồ vật nào dài hơn?",
+            options: ["Bút chì", "Bút bi", "Hai vật dài bằng nhau"],
+            answer: "Bút chì",
+            mascotHint: "Bút chì dài hơn bút bi.",
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Đồ vật nào dài hơn? (SGK tr.40)",
+            measureBoard: {
+              rulerMax: 3,
+              orientation: "row",
+              showRuler: false,
+              objects: [
+                { name: "Cục tẩy", kind: "eraser", cm: 2 },
+                { name: "Ghim kẹp giấy", kind: "paperclip", cm: 1.6 },
+              ],
+              label: "Hai đồ vật đặt cạnh nhau — bé nhìn xem vật nào dài hơn.",
+            },
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Cục tẩy và ghim kẹp giấy, đồ vật nào dài hơn?",
+            options: ["Cục tẩy", "Ghim kẹp giấy", "Hai vật dài bằng nhau"],
+            answer: "Cục tẩy",
+            mascotHint: "Cục tẩy dài hơn ghim kẹp giấy một chút.",
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Bốn bạn Nam, Mi, Việt, Mai đứng cạnh nhau (SGK tr.40).",
+            measureBoard: {
+              rulerMax: 4,
+              orientation: "column",
+              showRuler: false,
+              objects: [
+                { name: "Nam", kind: "kid", cm: 4 },
+                { name: "Mi", kind: "kid", girl: true, cm: 3 },
+                { name: "Việt", kind: "kid", cm: 3.6 },
+                { name: "Mai", kind: "kid", girl: true, cm: 3.3 },
+              ],
+              label:
+                "Mỗi cột màu là chiều cao của một bạn — bé so xem ai cao nhất, ai thấp nhất.",
+            },
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Bạn nào cao nhất và bạn nào thấp nhất?",
+            options: [
+              "Nam cao nhất, Mi thấp nhất",
+              "Mi cao nhất, Nam thấp nhất",
+              "Việt cao nhất, Mai thấp nhất",
+              "Mai cao nhất, Mi thấp nhất",
+            ],
+            answer: "Nam cao nhất, Mi thấp nhất",
+            mascotHint: "Nam cao nhất, Mi thấp nhất.",
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Con nào cao hơn: hươu cao cổ hay ngựa vằn? (SGK tr.40)",
+            measureBoard: {
+              rulerMax: 5,
+              orientation: "column",
+              showRuler: false,
+              objects: [
+                { name: "Hươu cao cổ", kind: "giraffe", cm: 5 },
+                { name: "Ngựa vằn", kind: "zebra", cm: 2.6 },
+              ],
+              label:
+                "Hai con vật đứng trên cùng một mặt đất — bé so chiều cao.",
+            },
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Con nào cao hơn?",
+            options: ["Hươu cao cổ", "Ngựa vằn", "Hai con cao bằng nhau"],
+            answer: "Hươu cao cổ",
+            mascotHint: "Hươu cao cổ cao hơn ngựa vằn.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question:
+              "Cây thước dài hơn quyển sách. Quyển sách dài hơn cây bút chì. Vậy cây thước hay cây bút chì dài hơn?",
+            options: ["Cây thước", "Cây bút chì", "Hai vật dài bằng nhau"],
+            answer: "Cây thước",
+            mascotHint:
+              "Thước dài hơn sách, sách dài hơn bút chì — nên thước dài hơn bút chì.",
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Đo chiều dài bút chì và bút sáp màu (SGK tr.41).",
+            measureBoard: {
+              rulerMax: 9,
+              orientation: "column",
+              objects: [
+                { name: "Bút chì", kind: "pencil", cm: 8 },
+                { name: "Bút sáp màu", kind: "crayon", cm: 6 },
+              ],
+              label:
+                "Hai đồ vật cùng đặt ở vạch 0 — bé đọc số đo của mỗi vật theo thước.",
+            },
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Bút sáp màu dài bao nhiêu xăng-ti-mét?",
+            options: ["5 cm", "6 cm", "7 cm", "8 cm"],
+            answer: "6 cm",
+            mascotHint: "Bút sáp màu dài 6 cm.",
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Đo chiều dài đồng hồ đeo tay và điện thoại (SGK tr.41).",
+            measureBoard: {
+              rulerMax: 13,
+              orientation: "column",
+              objects: [
+                { name: "Đồng hồ đeo tay", kind: "watch", cm: 12 },
+                { name: "Điện thoại", kind: "phone", cm: 10 },
+              ],
+              label:
+                "Bé đọc số ở đầu trên của mỗi vật theo vạch thước bên trái.",
+            },
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Đồng hồ đeo tay dài bao nhiêu xăng-ti-mét?",
+            options: ["10 cm", "11 cm", "12 cm", "13 cm"],
+            answer: "12 cm",
+            mascotHint: "Đồng hồ đeo tay dài 12 cm.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Điện thoại dài bao nhiêu xăng-ti-mét?",
+            options: ["6 cm", "8 cm", "10 cm", "12 cm"],
+            answer: "10 cm",
+            mascotHint: "Điện thoại dài 10 cm.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question:
+              "Bút chì dài 9 cm, cái thước dài 20 cm, cục tẩy dài 3 cm. Hộp bút dài 15 cm. Đồ vật nào cho được vào trong hộp bút?",
+            options: [
+              "Bút chì và cục tẩy",
+              "Chỉ có cái thước",
+              "Cả ba đồ vật",
+              "Không có đồ vật nào",
+            ],
+            answer: "Bút chì và cục tẩy",
+            mascotHint:
+              "Bút chì 9 cm và cục tẩy 3 cm đều ngắn hơn 15 cm; cái thước 20 cm thì không.",
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Thỏ, cáo và sóc chạy thi. Bạn về đích thứ nhất đứng ở bục cao nhất (SGK tr.42).",
+            measureBoard: {
+              rulerMax: 3,
+              orientation: "column",
+              showRuler: false,
+              objects: [
+                { name: "Thỏ", kind: "podium", animal: "rabbit", cm: 3 },
+                { name: "Cáo", kind: "podium", animal: "fox", cm: 2 },
+                { name: "Sóc", kind: "podium", animal: "squirrel", cm: 1 },
+              ],
+              label: "Bục càng cao thì bạn đứng trên đó về đích càng sớm.",
+            },
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Bạn nào về đích thứ nhất?",
+            options: ["Thỏ", "Cáo", "Sóc"],
+            answer: "Thỏ",
+            mascotHint: "Bục của thỏ cao nhất nên thỏ về đích thứ nhất.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question:
+              "Cáo cách thỏ 3 cây, còn cách sóc 6 cây. Cáo đứng gần bạn nào hơn?",
+            options: ["Thỏ", "Sóc", "Xa bằng nhau"],
+            answer: "Thỏ",
+            mascotHint: "3 cây gần hơn 6 cây, nên cáo gần thỏ hơn.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question:
+              "Sóc đi đường thứ nhất hết 8 bước chân. Đường thứ hai sóc đi 4 bước rồi đi thêm 6 bước nữa. Đường nào ngắn hơn?",
+            options: [
+              "Đường thứ nhất",
+              "Đường thứ hai",
+              "Hai đường dài bằng nhau",
+            ],
+            answer: "Đường thứ nhất",
+            mascotHint: "4 + 6 = 10 bước, mà 8 bước ngắn hơn 10 bước.",
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Đo độ dài mỗi bút chì (SGK tr.43).",
+            measureBoard: {
+              rulerMax: 10,
+              orientation: "row",
+              objects: [
+                { name: "Bút chì A", kind: "pencil", cm: 7 },
+                { name: "Bút chì B", kind: "pencil", cm: 8 },
+                { name: "Bút chì C", kind: "pencil", cm: 3 },
+                { name: "Bút chì D", kind: "pencil", cm: 5 },
+                { name: "Bút chì E", kind: "pencil", cm: 9 },
+              ],
+              label:
+                "Năm bút chì cùng đặt ở vạch 0 — bé đọc số ở đầu kia của mỗi bút.",
+            },
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Bút chì nào dài nhất?",
+            options: ["Bút chì A", "Bút chì B", "Bút chì D", "Bút chì E"],
+            answer: "Bút chì E",
+            mascotHint: "Bút chì E dài 9 cm, dài nhất trong năm bút.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Bút chì nào ngắn nhất?",
+            options: ["Bút chì A", "Bút chì C", "Bút chì D", "Bút chì E"],
+            answer: "Bút chì C",
+            mascotHint: "Bút chì C chỉ dài 3 cm, ngắn nhất.",
           },
         },
         {

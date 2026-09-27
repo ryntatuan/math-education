@@ -293,18 +293,24 @@ export const g3c4 = {
         {
           type: "visual",
           content: {
-            text: "Đặt tính 12 : 3 rồi viết thương vào ô trống.\nThử lại: 4 × 3 = 12 (đúng, không dư)",
+            text: "Đặt tính 12 : 3 rồi viết thương vào ô trống.",
             cotTinh: {
               left: 12,
               right: 3,
               sign: ":",
-            },
+            }
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text:"Thử lại: 4 × 3 = 12 (đúng, không dư)",
             table: {
               headers: ["Phép chia", "Thử lại"],
               rows: [["12 : 3 = 4 (không dư)", "4 × 3 = 12"]],
               label:
                 "Phép chia hết — mỗi bạn 4 chiếc kẹo, không thừa chiếc nào",
-            },
+            }
           },
         },
         {
@@ -369,17 +375,23 @@ export const g3c4 = {
         {
           type: "visual",
           content: {
-            text: "Đặt tính 13 : 3 rồi viết thương và số dư vào ô trống.\nThử lại: 4 × 3 + 1 = 13",
+            text: "Đặt tính 13 : 3 rồi viết thương và số dư vào ô trống.",
             cotTinh: {
               left: 13,
               right: 3,
               sign: ":",
-            },
+            }
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text:"Thử lại: 4 × 3 + 1 = 13",
             table: {
               headers: ["Phép chia", "Thử lại"],
               rows: [["13 : 3 = 4 (dư 1)", "4 × 3 + 1 = 13"]],
               label: "Phép chia có dư — mười ba chia ba bằng bốn, dư một",
-            },
+            }
           },
         },
         {
@@ -446,12 +458,18 @@ export const g3c4 = {
               left: 48,
               right: 4,
               sign: ":",
-            },
+            }
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "48 : 4: 4 : 4 = 1; 8 : 4 = 2 ⇒ 12",
             placeValue: {
               headers: ["Chục", "Đơn vị"],
               digits: [4, 8],
               label: "48 : 4: 4 : 4 = 1; 8 : 4 = 2 ⇒ 12",
-            },
+            }
           },
         },
         {
@@ -704,7 +722,13 @@ export const g3c4 = {
               left: 19,
               right: 3,
               sign: ":",
-            },
+            }
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Luyện tập phép chia có dư",
             table: {
               headers: ["Bước", "Làm"],
               rows: [
@@ -713,7 +737,7 @@ export const g3c4 = {
                 ["Kết quả", "19 : 3 = 6 (dư 1)"],
               ],
               label: "Luyện tập phép chia có dư",
-            },
+            }
           },
         },
         {

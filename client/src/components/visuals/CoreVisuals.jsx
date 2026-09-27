@@ -15,7 +15,18 @@
  *  3. Số liệu trên hình LẤY TỪ DỮ LIỆU, không viết cứng — để hình luôn khớp nội dung bài.
  */
 
-import { CARD_STYLE, CAPTION_STYLE, captionText, svgFit, VUA_HINH, ACCENT, ACCENT_TINT } from "./visualTheme";
+import {
+  CARD_STYLE,
+  CAPTION_STYLE,
+  captionText,
+  svgFit,
+  VUA_HINH,
+  ACCENT,
+  ACCENT_TINT,
+} from "./visualTheme";
+// Hình dạng ĐỒ VẬT (xe, bút, đồ vật, con vật…) cho bảng đo — Lớp 1 CĐ 7.
+import { ObjectShape } from "./ObjectShapes";
+import { heightForWidth, widthForHeight } from "./objectShapeRatio";
 
 const PALETTE = {
   ink: "#1e293b",
@@ -940,6 +951,341 @@ export function Ruler({
             </text>
           </g>
         )}
+      </svg>
+      {label && <span style={caption}>{label}</span>}
+    </div>
+  );
+}
+
+/* ───────────────────── BẢNG ĐO — VẬT ĐẶT CẠNH THƯỚC ─────────────────────
+ * Lớp 1 Chủ đề 7 (SGK tr.36–43): bé đọc số đo của từng vật bằng thước vạch xăng-ti-mét.
+ *
+ * 🔴 VẬT ĐƯỢC VẼ ĐÚNG TỈ LỆ VỚI THƯỚC. Đây là điểm khác `Ruler` (chỉ vẽ cái thước):
+ * có thước cùng tỉ lệ thì bé MỚI đọc/so sánh được bằng mắt, không cần số in sẵn.
+ *
+ *   measureBoard: {
+ *     rulerMax: 12,          // thước in ra dài bao nhiêu cm
+ *     orientation: "row",    // "row": vật nằm ngang, thước ở DƯỚI
+ *                            // "column": vật đứng, thước dọc bên TRÁI
+ *     showRuler: true,       // false: chỉ để SO SÁNH (đồ vật nào dài/cao hơn)
+ *     showValues: false,     // true: in số đo (slide lời giải) · false: ô "?"
+ *     objects: [{ name, kind, cm, color, animal }],
+ *     label: "…",
+ *   }
+ *
+ * 🔴 MỖI SLIDE CHỈ 2–3 VẬT. Vẽ 6 vật một lúc thì mỗi vật bé tí, bé không nhìn ra
+ * hình gì — chia thành nhiều slide (mỗi slide một cụm) thì hình mới to và rõ.
+ * `kind` là hình dạng thật (xem `ObjectShapes.jsx`), KHÔNG phải thanh màu.
+ * ⚠️ `cm` là số đo THẬT của vật. Mục nào không có `cm` thì bị bỏ.
+ */
+export function MeasureBoard({
+  rulerMax = 12,
+  orientation = "row",
+  showRuler = true,
+  showValues = false,
+  objects = [],
+  label = "",
+}) {
+  const list = (Array.isArray(objects) ? objects : [])
+    .filter((o) => o && typeof o === "object" && num(o.cm, 0) > 0)
+    .slice(0, 6);
+  if (!list.length) return null;
+
+  const cmMax = clamp(num(rulerMax, 12), 2, 30);
+  const nhanMoi = (px) => Math.max(1, Math.ceil(22 / px));
+  const chuSo = (o) => (showValues ? `${num(o.cm, 0)} cm` : "?");
+  const haiDong = (chu, dai = 8) => {
+    const tu = String(chu || "")
+      .trim()
+      .split(/\s+/);
+    if (tu.length < 2) return [String(chu || "")];
+    const d1 = [];
+    const d2 = [];
+    for (const t of tu) {
+      if (
+        d2.length === 0 &&
+        (d1.length === 0 || d1.join(" ").length + t.length <= dai)
+      )
+        d1.push(t);
+      else d2.push(t);
+    }
+    return [d1.join(" "), d2.join(" ")].filter(Boolean);
+  };
+
+  /* ── vật NẰM NGANG, thước ở DƯỚI ── */
+  if (orientation !== "column") {
+    const X0 = 30;
+    const chipW = showValues ? 52 : 30;
+    const pxPerCm = clamp((298 - X0 - chipW) / cmMax, 8, 34);
+    const items = list.map((o) => {
+      const w = num(o.cm, 1) * pxPerCm;
+      const h = Math.max(14, heightForWidth(o.kind, w));
+      return { o, w, h };
+    });
+    const rowH = Math.round(Math.max(...items.map((it) => it.h)) + 20);
+    const top = 2;
+    const W = Math.round(X0 + cmMax * pxPerCm + chipW + 12);
+    const yEnd = top + items.length * rowH;
+    const baseY = yEnd + 6;
+    const H = Math.round(showRuler ? baseY + 42 : yEnd + 2);
+    return (
+      <div style={card}>
+        <svg
+          viewBox={`0 0 ${W} ${H}`}
+          {...svgFit(W)}
+          role="img"
+          aria-label="Bảng đo độ dài của các đồ vật"
+        >
+          {items.map(({ o, w, h }, i) => {
+            const rowTop = top + i * rowH;
+            const bottom = rowTop + rowH - 2;
+            return (
+              <g key={i}>
+                <text
+                  x={X0}
+                  y={rowTop + 12}
+                  fontSize="13"
+                  fontWeight="700"
+                  fill={PALETTE.soft}
+                >
+                  {String(o.name || "").trim()}
+                </text>
+                <ObjectShape
+                  kind={o.kind}
+                  x={X0}
+                  y={bottom - h}
+                  w={w}
+                  h={h}
+                  color={o.color}
+                />
+                <rect
+                  x={X0 + w + 6}
+                  y={bottom - 21}
+                  width={chipW}
+                  height="20"
+                  rx="6"
+                  fill={showValues ? PALETTE.roseSoft : PALETTE.amberSoft}
+                  stroke={showValues ? PALETTE.rose : PALETTE.amber}
+                  strokeWidth="1.6"
+                />
+                <text
+                  x={X0 + w + 6 + chipW / 2}
+                  y={bottom - 7}
+                  textAnchor="middle"
+                  fontSize={showValues ? "12.5" : "15"}
+                  fontWeight="800"
+                  fill={showValues ? PALETTE.rose : PALETTE.amber}
+                >
+                  {chuSo(o)}
+                </text>
+              </g>
+            );
+          })}
+          {showRuler && (
+            <g>
+              <rect
+                x={X0 - 6}
+                y={baseY}
+                width={cmMax * pxPerCm + 12}
+                height="28"
+                rx="5"
+                fill="#fdf6e3"
+                stroke={PALETTE.amber}
+                strokeWidth="2"
+              />
+              {Array.from({ length: cmMax * 2 + 1 }).map((_, i) => {
+                const half = i % 2 === 1;
+                const cm = i / 2;
+                const X = X0 + cm * pxPerCm;
+                return (
+                  <g key={i}>
+                    <line
+                      x1={X}
+                      y1={baseY + 2}
+                      x2={X}
+                      y2={baseY + (half ? 8 : 14)}
+                      stroke={PALETTE.ink}
+                      strokeWidth={half ? 1 : 1.8}
+                    />
+                    {!half && (cm % nhanMoi(pxPerCm) === 0 || cm === cmMax) && (
+                      <text
+                        x={X}
+                        y={baseY + 26}
+                        textAnchor="middle"
+                        fontSize="12"
+                        fontWeight="700"
+                        fill={PALETTE.ink}
+                      >
+                        {cm}
+                      </text>
+                    )}
+                  </g>
+                );
+              })}
+              <text
+                x={X0 + cmMax * pxPerCm + 22}
+                y={baseY + 26}
+                textAnchor="middle"
+                fontSize="13"
+                fontWeight="800"
+                fill={PALETTE.amber}
+              >
+                cm
+              </text>
+            </g>
+          )}
+        </svg>
+        {label && <span style={caption}>{label}</span>}
+      </div>
+    );
+  }
+
+  /* ── vật ĐỨNG, thước dọc bên TRÁI (đo chiều cao) ── */
+  const n = list.length;
+  const step = clamp(278 / n, 48, 132);
+  let pxPerCm = 232 / cmMax;
+  for (const o of list) {
+    const wh = widthForHeight(o.kind, 1) || 0.5;
+    pxPerCm = Math.min(pxPerCm, (step - 12) / (num(o.cm, 1) * wh));
+  }
+  pxPerCm = clamp(pxPerCm, 6, 34);
+  const items = list.map((o) => {
+    const h = num(o.cm, 1) * pxPerCm;
+    const w = widthForHeight(o.kind, h);
+    const animalH = o.animal ? h * 0.5 : 0;
+    return { o, h, w, animalH };
+  });
+  const topSpace = Math.max(...items.map((it) => it.h + it.animalH));
+  const x0 = 50;
+  const yBase = Math.round(20 + topSpace);
+  const W = Math.round(x0 + n * step);
+  const H = Math.round(yBase + 40);
+  return (
+    <div style={card}>
+      <svg
+        viewBox={`0 0 ${W} ${H}`}
+        {...svgFit(W)}
+        role="img"
+        aria-label="Bảng so sánh chiều cao, độ dài đồ vật"
+      >
+        {showRuler && (
+          <g>
+            <rect
+              x="8"
+              y={yBase - cmMax * pxPerCm}
+              width="32"
+              height={cmMax * pxPerCm}
+              rx="4"
+              fill="#fdf6e3"
+              stroke={PALETTE.amber}
+              strokeWidth="2"
+            />
+            {Array.from({ length: cmMax * 2 + 1 }).map((_, i) => {
+              const half = i % 2 === 1;
+              const cm = i / 2;
+              const Y = yBase - cm * pxPerCm;
+              return (
+                <g key={i}>
+                  <line
+                    x1="40"
+                    y1={Y}
+                    x2={40 - (half ? 6 : 11)}
+                    y2={Y}
+                    stroke={PALETTE.ink}
+                    strokeWidth={half ? 1 : 1.8}
+                  />
+                  {!half && (cm % nhanMoi(pxPerCm) === 0 || cm === cmMax) && (
+                    <text
+                      x="21"
+                      y={Y + 4}
+                      textAnchor="middle"
+                      fontSize="11"
+                      fontWeight="700"
+                      fill={PALETTE.ink}
+                    >
+                      {cm}
+                    </text>
+                  )}
+                </g>
+              );
+            })}
+            <text
+              x="24"
+              y={yBase - cmMax * pxPerCm - 10}
+              textAnchor="middle"
+              fontSize="12"
+              fontWeight="800"
+              fill={PALETTE.amber}
+            >
+              cm
+            </text>
+          </g>
+        )}
+        {items.map(({ o, h, w, animalH }, i) => {
+          const cx = x0 + i * step + step / 2;
+          const topY = yBase - h - animalH;
+          const nhan = haiDong(o.name);
+          const aw = o.animal ? widthForHeight(o.animal, animalH) : 0;
+          return (
+            <g key={i}>
+              <ObjectShape
+                kind={o.kind}
+                x={cx - w / 2}
+                y={yBase - h}
+                w={w}
+                h={h}
+                color={o.color}
+                girl={o.girl}
+              />
+              {o.animal && animalH > 0 && (
+                <ObjectShape
+                  kind={o.animal}
+                  x={cx - aw / 2}
+                  y={yBase - h - animalH}
+                  w={aw}
+                  h={animalH}
+                />
+              )}
+              {o.kind !== "podium" && (
+                <>
+                  <rect
+                    x={cx - 15}
+                    y={topY - 24}
+                    width="30"
+                    height="20"
+                    rx="6"
+                    fill={showValues ? PALETTE.roseSoft : PALETTE.amberSoft}
+                    stroke={showValues ? PALETTE.rose : PALETTE.amber}
+                    strokeWidth="1.6"
+                  />
+                  <text
+                    x={cx}
+                    y={topY - 9}
+                    textAnchor="middle"
+                    fontSize={showValues ? "11.5" : "14"}
+                    fontWeight="800"
+                    fill={showValues ? PALETTE.rose : PALETTE.amber}
+                  >
+                    {chuSo(o)}
+                  </text>
+                </>
+              )}
+              {nhan.map((dong, k) => (
+                <text
+                  key={k}
+                  x={cx}
+                  y={yBase + 15 + k * 14}
+                  textAnchor="middle"
+                  fontSize="11.5"
+                  fontWeight="700"
+                  fill={PALETTE.soft}
+                >
+                  {dong}
+                </text>
+              ))}
+            </g>
+          );
+        })}
       </svg>
       {label && <span style={caption}>{label}</span>}
     </div>

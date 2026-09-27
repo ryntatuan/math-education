@@ -45,8 +45,27 @@ export function StorySlide({ content }) {
     }
   };
 
+  // Mood-based gradient: mỗi tâm trạng của linh vật → một bảng màu riêng cho thẻ slide,
+  // giúp bé nhận ra ngay cảm xúc từ MÀU NỀN trước khi đọc chữ (chuẩn edu quốc tế).
+  const moodClass = ({
+    happy: "mood-happy",
+    curious: "mood-curious",
+    thinking: "mood-thinking",
+    celebrate: "mood-celebrate",
+    surprised: "mood-surprised",
+  })[content.mascotMood] || "mood-happy";
+
   return (
-    <div className="slide-story-card">
+    <div className={`slide-story-card ${moodClass}`}>
+      {/* Scene decorations — floating shapes + twinkling stars (CSS-only animation) */}
+      <div className="story-scene-decor" aria-hidden="true">
+        <div className="decor-dot" />
+        <div className="decor-dot" />
+        <div className="decor-dot" />
+        <span className="decor-star">✦</span>
+        <span className="decor-star">✦</span>
+      </div>
+
       <SlideHead
         label="Bài học"
         icon={<Sparkles size={17} />}

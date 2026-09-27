@@ -589,29 +589,45 @@ export function NumberScene({
     const CUBE = ["#facc15", "#fb923c", "#f87171", "#4ade80", "#60a5fa"];
     const tank = (n) => (
       <g>
+        {/*
+         * BỂ CÁ (SGK tr.8) — phải RA DÁNG BỂ: thành bể + mặt nước, và “khối” phải là
+         * KHỐI LẬP PHƯƠNG (mặt trước + mặt trên), không phải ô màu phẳng.
+         */}
         <rect
           x="14"
           y="0"
           width="196"
           height="27"
           rx="7"
-          fill="#f8fafc"
+          fill="#e0f2fe"
           stroke="#94a3b8"
           strokeWidth="2"
         />
-        {Array.from({ length: n }, (_, i) => (
-          <rect
-            key={i}
-            x={22 + i * 34}
-            y="5"
-            width="26"
-            height="17"
-            rx="3"
-            fill={CUBE[i % 5]}
-            stroke="#475569"
-            strokeWidth="1.4"
-          />
-        ))}
+        <rect x="18" y="5" width="188" height="18" rx="4" fill="#bae6fd" />
+        <line x1="18" y1="5" x2="206" y2="5" stroke="#38bdf8" strokeWidth="2" />
+        {Array.from({ length: n }, (_, i) => {
+          const x = 22 + i * 34;
+          const c = CUBE[i % 5];
+          return (
+            <g key={i}>
+              <polygon
+                points={`${x},${9} ${x + 5},${5} ${x + 27},${5} ${x + 22},${9}`}
+                fill={c}
+                stroke="#475569"
+                strokeWidth="1.2"
+              />
+              <rect
+                x={x}
+                y="9"
+                width="22"
+                height="14"
+                fill={c}
+                stroke="#475569"
+                strokeWidth="1.4"
+              />
+            </g>
+          );
+        })}
       </g>
     );
     const rowsSpec =
@@ -1220,23 +1236,78 @@ export function NumberScene({
     });
   }
 
-  /** Đầu máy tàu — dùng chung cho mọi cách vẽ. */
+  /**
+   * ĐẦU MÁY TÀU — phải RA DÁNG ĐẦU MÁY: ống khói + khói, ca-bin có cửa sổ, đèn, bánh xe.
+   * Bản cũ chỉ là 1 hình chữ nhật xám + 2 chấm (người dùng đã trả lại kiểu vẽ đó).
+   */
   function DauMay({ x0, y }) {
     return (
-      <>
+      <g>
+        <rect
+          x={x0 + 20}
+          y={y}
+          width="14"
+          height="30"
+          rx="4"
+          fill="#3b82f6"
+          stroke="#475569"
+          strokeWidth="1.5"
+        />
+        <rect
+          x={x0 + 23}
+          y={y + 4}
+          width="8"
+          height="9"
+          rx="1.5"
+          fill="#dbeafe"
+          stroke="#475569"
+          strokeWidth="1"
+        />
         <rect
           x={x0}
-          y={y}
+          y={y + 12}
           width="34"
-          height="30"
-          rx="6"
-          fill="#94a3b8"
+          height="18"
+          rx="4"
+          fill="#ef4444"
           stroke="#475569"
-          strokeWidth="1.6"
+          strokeWidth="1.5"
         />
-        <circle cx={x0 + 10} cy={y + 33} r="4" fill="#475569" />
-        <circle cx={x0 + 24} cy={y + 33} r="4" fill="#475569" />
-      </>
+        <rect x={x0 + 5} y={y + 4} width="7" height="9" rx="2" fill="#334155" />
+        <circle cx={x0 + 8.5} cy={y + 2} r="3.4" fill="#e2e8f0" />
+        <circle
+          cx={x0 + 4}
+          cy={y + 20}
+          r="2.8"
+          fill="#fde68a"
+          stroke="#475569"
+          strokeWidth="1"
+        />
+        <line
+          x1={x0 + 34}
+          y1={y + 26}
+          x2={x0 + 42}
+          y2={y + 26}
+          stroke="#475569"
+          strokeWidth="2.4"
+        />
+        <circle
+          cx={x0 + 11}
+          cy={y + 31}
+          r="4.2"
+          fill="#334155"
+          stroke="#e2e8f0"
+          strokeWidth="1.2"
+        />
+        <circle
+          cx={x0 + 27}
+          cy={y + 31}
+          r="4.2"
+          fill="#334155"
+          stroke="#e2e8f0"
+          strokeWidth="1.2"
+        />
+      </g>
     );
   }
 
@@ -2044,18 +2115,51 @@ export function NumberScene({
   );
 }
 
-/** Thân toa tàu — tách riêng cho dễ đọc vòng lặp ở `numberTrain`. */
-const Rect2 = ({ x, y, w, h }) => (
-  <rect
-    x={num(x)}
-    y={num(y)}
-    width={num(w)}
-    height={num(h)}
-    rx="6"
-    fill="#ffffff"
-    stroke="#475569"
-    strokeWidth="1.8"
-  />
-);
+/**
+ * THÂN TOA TÀU — phải RA DÁNG TOA: thân trắng + 2 cửa sổ hai đầu + bánh xe bên dưới.
+ * Ô SỐ ở giữa vẫn do chỗ gọi vẽ (nên cửa sổ chỉ đặt ở hai góc, không đè chữ).
+ */
+const Rect2 = ({ x, y, w, h }) => {
+  const X = num(x);
+  const Y = num(y);
+  const W = num(w);
+  const H = num(h);
+  return (
+    <g>
+      <rect
+        x={X}
+        y={Y}
+        width={W}
+        height={H}
+        rx="5"
+        fill="#ffffff"
+        stroke="#475569"
+        strokeWidth="1.8"
+      />
+      <rect
+        x={X + 4}
+        y={Y + 3}
+        width="10"
+        height="8"
+        rx="2"
+        fill="#bae6fd"
+        stroke="#475569"
+        strokeWidth="1"
+      />
+      <rect
+        x={X + W - 14}
+        y={Y + 3}
+        width="10"
+        height="8"
+        rx="2"
+        fill="#bae6fd"
+        stroke="#475569"
+        strokeWidth="1"
+      />
+      <circle cx={X + 12} cy={Y + H + 3} r="3.4" fill="#334155" />
+      <circle cx={X + W - 12} cy={Y + H + 3} r="3.4" fill="#334155" />
+    </g>
+  );
+};
 
 export default NumberScene;

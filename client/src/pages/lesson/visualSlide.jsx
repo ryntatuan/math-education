@@ -58,6 +58,9 @@ export function VisualSlide({ content }) {
         <div className="visual-items">
           {content.items.map((item, i) => (
             <div key={i} className="visual-item-group">
+              {item.count > 0 && (
+                <span className="visual-count-badge">{item.count}</span>
+              )}
               {item.label && <span className="visual-label">{item.label}</span>}
               <div
                 className={`visual-emojis ${item.count <= 5 ? "single-row-emojis" : "ten-frame-emojis"}`}

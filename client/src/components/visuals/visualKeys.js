@@ -36,6 +36,8 @@ export const HINH_KEYS = [
   "ruler",
   "money",
   "table",
+  // Vật đặt cạnh thước, vẽ ĐÚNG TỈ LỆ (Lớp 1 CĐ 7: SGK tr.36–43) — bé tự đọc số đo
+  "measureBoard",
   // Hình học
   "planeShape",
   "angle",

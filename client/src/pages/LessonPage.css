@@ -115,6 +115,8 @@
   text-align: center;
   gap: clamp(16px, 2.5vw, 28px);
   position: relative;
+  overflow: hidden;
+  isolation: isolate;
 }
 
 .story-header-banner {
@@ -1303,21 +1305,25 @@
 .concept-step-card {
   background: white;
   border: 1.5px solid #e2e8f0;
+  border-left: 4px solid #3b82f6;
   border-radius: 18px;
   padding: 16px 18px;
   text-align: left;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .concept-step-badge {
   display: inline-block;
-  background: #3b82f6;
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
   color: white;
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   font-weight: 800;
-  padding: 3px 10px;
+  padding: 4px 14px;
   border-radius: 999px;
   margin-bottom: 8px;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.25);
+  letter-spacing: 0.3px;
 }
 
 .concept-step-title {
@@ -1338,16 +1344,17 @@
 .concept-rule-box {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 12px;
-  background: #fefce8;
-  border: 2px solid #facc15;
-  border-radius: 999px;
-  padding: 12px 28px;
-  width: auto;
-  max-width: 90%;
-  box-shadow: 0 4px 16px rgba(234, 179, 8, 0.15);
+  gap: 14px;
+  background: linear-gradient(135deg, #fefce8 0%, #fff7ed 100%);
+  border: 2.5px solid #fbbf24;
+  border-radius: 20px;
+  padding: 16px 24px;
+  width: 100%;
+  max-width: 680px;
+  box-shadow: 0 6px 20px rgba(234, 179, 8, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
   margin: 4px 0;
+  text-align: left;
 }
 
 .concept-rule-icon {
@@ -2096,3 +2103,355 @@
     border-radius: 14px;
   }
 }
+
+/* ========================================
+   PHASE 1: VISUAL UPGRADES — EDU APP PREMIUM
+   ======================================== */
+
+/* ── 1. Story Slide — Scene Decorations ────────────── */
+.story-scene-decor {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.story-scene-decor .decor-dot {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.story-scene-decor .decor-dot:nth-child(1) {
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, #facc15 0%, transparent 70%);
+  top: -30px;
+  left: -30px;
+  opacity: 0.12;
+  animation: float-gentle 8s ease-in-out infinite;
+}
+
+.story-scene-decor .decor-dot:nth-child(2) {
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, #38bdf8 0%, transparent 70%);
+  bottom: -10px;
+  right: -20px;
+  opacity: 0.1;
+  animation: float-gentle 6s ease-in-out infinite reverse;
+}
+
+.story-scene-decor .decor-dot:nth-child(3) {
+  width: 50px;
+  height: 50px;
+  background: radial-gradient(circle, #f472b6 0%, transparent 70%);
+  top: 35%;
+  right: -10px;
+  opacity: 0.08;
+  animation: float-gentle 7s ease-in-out infinite 1s;
+}
+
+.story-scene-decor .decor-star {
+  position: absolute;
+  font-size: 1.2rem;
+  opacity: 0.15;
+  animation: twinkle 3s ease-in-out infinite;
+  user-select: none;
+}
+
+.story-scene-decor .decor-star:nth-child(4) {
+  top: 10%;
+  right: 6%;
+}
+
+.story-scene-decor .decor-star:nth-child(5) {
+  bottom: 18%;
+  left: 4%;
+  animation-delay: 1.5s;
+}
+
+/* ── Story Mood Gradients ────────────── */
+.slide-story-card.mood-happy {
+  background: linear-gradient(
+    135deg,
+    #fffbeb 0%,
+    #fef3c7 30%,
+    #fff1f2 60%,
+    #fdf2f8 100%
+  );
+  border-color: #fbbf24;
+}
+
+.slide-story-card.mood-curious {
+  background: linear-gradient(
+    135deg,
+    #eff6ff 0%,
+    #e0f2fe 40%,
+    #faf5ff 70%,
+    #fdf4ff 100%
+  );
+  border-color: #60a5fa;
+}
+
+.slide-story-card.mood-thinking {
+  background: linear-gradient(
+    135deg,
+    #f5f3ff 0%,
+    #ede9fe 40%,
+    #fdf2f8 70%,
+    #fce7f3 100%
+  );
+  border-color: #a78bfa;
+}
+
+.slide-story-card.mood-celebrate {
+  background: linear-gradient(
+    135deg,
+    #fefce8 0%,
+    #dcfce7 40%,
+    #dbeafe 70%,
+    #fce7f3 100%
+  );
+  border-color: #34d399;
+}
+
+.slide-story-card.mood-surprised {
+  background: linear-gradient(
+    135deg,
+    #fff7ed 0%,
+    #ffedd5 40%,
+    #fef3c7 70%,
+    #ecfdf5 100%
+  );
+  border-color: #fb923c;
+}
+
+/* ── Enhanced Speech Bubble Glow ────────────── */
+.story-dialog-bubble::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(250, 204, 21, 0.12),
+    rgba(56, 189, 248, 0.08)
+  );
+  z-index: -1;
+  filter: blur(6px);
+}
+
+/* ── 2. Quiz — Letter Indicators ────────────── */
+.quiz-option-letter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #e0f2fe, #bae6fd);
+  color: #0369a1;
+  font-weight: 900;
+  font-size: 0.9rem;
+  font-family: var(--font-heading);
+  flex-shrink: 0;
+  border: 2px solid #7dd3fc;
+  transition: all 0.2s ease;
+}
+
+.quiz-option:hover:not(:disabled) .quiz-option-letter {
+  background: linear-gradient(135deg, #bae6fd, #7dd3fc);
+  transform: scale(1.1);
+}
+
+.quiz-option-correct .quiz-option-letter {
+  background: linear-gradient(135deg, #a7f3d0, #6ee7b7) !important;
+  color: #065f46 !important;
+  border-color: #34d399 !important;
+}
+
+.quiz-option-wrong .quiz-option-letter {
+  background: linear-gradient(135deg, #fecaca, #fca5a5) !important;
+  color: #991b1b !important;
+  border-color: #f87171 !important;
+}
+
+/* ── Enhanced Counting Tray ────────────── */
+.counting-items-tray {
+  background: linear-gradient(
+    135deg,
+    #fefce8 0%,
+    #f0fdf4 50%,
+    #eff6ff 100%
+  ) !important;
+  border-color: #86efac !important;
+}
+
+/* ── Enhanced Quiz Feedback ────────────── */
+.quiz-feedback-correct {
+  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%) !important;
+  border: 2px solid #6ee7b7 !important;
+}
+
+.quiz-feedback-wrong {
+  background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%) !important;
+  border: 2px solid #fdba74 !important;
+}
+
+/* ── 3. Concept — Enhanced Step Cards ────────────── */
+.concept-step-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
+  border-color: #bfdbfe;
+}
+
+/* ── 4. Visual — Enhanced Emoji Group Containers ────────────── */
+.visual-item-group {
+  background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+  border: 2px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 16px 20px;
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.visual-item-group:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+.visual-count-badge {
+  position: absolute;
+  top: -10px;
+  right: -6px;
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+  color: white;
+  font-size: 0.78rem;
+  font-weight: 900;
+  font-family: var(--font-number);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2.5px solid white;
+  box-shadow: 0 3px 8px rgba(59, 130, 246, 0.3);
+  z-index: 1;
+}
+
+/* ── 5. Summary — Celebration Header ────────────── */
+.summary-trophy-hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.summary-trophy-icon {
+  font-size: 3rem;
+  line-height: 1;
+  filter: drop-shadow(0 4px 12px rgba(234, 179, 8, 0.35));
+}
+
+.summary-confetti-strip {
+  font-size: 1.4rem;
+  opacity: 0.5;
+  animation: twinkle 2s ease-in-out infinite;
+}
+
+.summary-confetti-strip:last-child {
+  animation-delay: 0.7s;
+}
+
+.summary-point {
+  transition: transform 0.2s ease;
+}
+
+.summary-point:hover {
+  transform: translateX(4px);
+}
+
+/* ── 6. Dialogue — Enhanced Avatars ────────────── */
+.dialogue-avatar {
+  background: linear-gradient(135deg, #f0fdf4, #e0f2fe) !important;
+  border: 3px solid #86efac !important;
+  box-shadow:
+    0 0 0 2px rgba(134, 239, 172, 0.2),
+    0 4px 12px rgba(0, 0, 0, 0.06) !important;
+}
+
+.align-right .dialogue-avatar {
+  background: linear-gradient(135deg, #eff6ff, #faf5ff) !important;
+  border-color: #93c5fd !important;
+  box-shadow:
+    0 0 0 2px rgba(147, 197, 253, 0.2),
+    0 4px 12px rgba(0, 0, 0, 0.06) !important;
+}
+
+/* ── Shared Animations ────────────── */
+@keyframes float-gentle {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(8px, -12px) scale(1.05);
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.12;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(1.3);
+  }
+}
+
+@keyframes celebration-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* ── Phase 1 — Mobile Adjustments ────────────── */
+@media (max-width: 640px) {
+  .story-scene-decor .decor-dot {
+    opacity: 0.05 !important;
+  }
+  .story-scene-decor .decor-star {
+    display: none;
+  }
+
+  .quiz-option-letter {
+    width: 26px;
+    height: 26px;
+    font-size: 0.8rem;
+  }
+
+  .visual-item-group {
+    padding: 12px;
+    border-radius: 16px;
+  }
+
+  .visual-count-badge {
+    width: 24px;
+    height: 24px;
+    font-size: 0.72rem;
+    top: -8px;
+    right: -4px;
+  }
+
+  .summary-trophy-icon {
+    font-size: 2.4rem;
+  }
+}
+
