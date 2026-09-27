@@ -78,7 +78,7 @@ export default function ParentDashboard() {
     setGrade,
   } = useUserStore();
 
-  const { completedLessons, currentStreak, _exerciseResults, mistakesQueue } =
+  const { completedLessons, currentStreak, exerciseResults, mistakesQueue } =
     useProgressStore();
 
   // PIN security check
@@ -417,14 +417,42 @@ export default function ParentDashboard() {
       });
     }
 
+    // TỶ LỆ LÀM BÀI ĐÚNG trong 7 ngày gần nhất.
+    //
+    // 🔴 VÌ SAO THAY THẺ "SAO NHẬN ĐƯỢC" (người dùng báo 2026-09-27): sao chỉ có khi bé
+    // hoàn thành BÀI HỌC; bé luyện tập hoặc chơi trò chơi thì học vẫn tiến bộ mà không có
+    // sao — và bài đã học rồi thì bé ít học lại. Đếm sao vì thế làm phụ huynh hiểu sai là
+    // "tuần này bé không học gì". Tỷ lệ làm đúng mới nói lên mức độ nắm bài.
+    //
+    // Nguồn số: `exerciseResults` — mỗi lượt Luyện tập lưu `{ score, total, date }`
+    // (xem `PracticePage.addExerciseResult`). Cộng dồn theo câu để đúng trọng số: lượt 10 câu
+    // phải nặng hơn lượt 5 câu, không phải chia đều theo số lượt.
+    let soCauDung = 0;
+    let soCau = 0;
+    for (const ds of Object.values(exerciseResults || {})) {
+      for (const r of Array.isArray(ds) ? ds : []) {
+        const luc = r?.date ? Date.parse(r.date) : NaN;
+        if (!Number.isFinite(luc) || bayGio - luc > HAN_MS) continue;
+        const tong = Number(r?.total) || 0;
+        if (tong <= 0) continue;
+        soCau += tong;
+        // `score` không bao giờ lớn hơn `total`; `min` chỉ để dữ liệu hỏng không cho >100%.
+        soCauDung += Math.min(Number(r?.score) || 0, tong);
+      }
+    }
+    const tyLeDung =
+      soCau > 0 ? Math.round((soCauDung / soCau) * 100) : null;
+
     return {
       soBai: trongTuan.length,
-      soSao: trongTuan.reduce((s, x) => s + x.stars, 0),
       ngayHoc,
+      tyLeDung,
+      soCauDung,
+      soCau,
       yeu,
       bieuDo,
     };
-  }, [completedLessons, mistakesQueue]);
+  }, [completedLessons, mistakesQueue, exerciseResults]);
 
   if (isGuest) {
     return (
@@ -672,8 +700,14 @@ export default function ParentDashboard() {
                 <span className="week-lbl">bài hoàn thành</span>
               </div>
               <div className="week-num">
-                <span className="week-val number">{tuanNay.soSao} ⭐</span>
-                <span className="week-lbl">sao nhận được</span>
+                <span className="week-val number">
+                  {tuanNay.tyLeDung === null ? "—" : `${tuanNay.tyLeDung}%`}
+                </span>
+                <span className="week-lbl">
+                  {tuanNay.tyLeDung === null
+                    ? "chưa luyện tuần này"
+                    : `làm đúng ${tuanNay.soCauDung}/${tuanNay.soCau} câu`}
+                </span>
               </div>
               <div className="week-num">
                 <span className="week-val number">{tuanNay.ngayHoc}/7</span>
