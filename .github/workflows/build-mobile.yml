@@ -96,6 +96,12 @@ jobs:
         with:
           tag_name: v${{ steps.get_version.outputs.VERSION }}
           name: Toán Vui v${{ steps.get_version.outputs.VERSION }}
+          # 🔴 BẮT BUỘC: không có dòng này thì `action-gh-release` tạo tag tại **HEAD của nhánh
+          #    mặc định LÚC TẠO RELEASE**, không phải tại commit đã kích hoạt workflow. Đã xảy ra
+          #    thật ngày 2026-09-28: đẩy 7 phiên bản trong ~6 phút ⇒ các run xếp hàng và về đích
+          #    sau khi `main` đã đi tiếp, nên tag `v1.0.50` lại nằm ở commit "chore(release): 1.0.52"
+          #    (lệch 2 commit) — tag không còn chỉ đúng nguồn của bản phát hành đó.
+          target_commitish: ${{ github.sha }}
           draft: false
           prerelease: false
           generate_release_notes: true
