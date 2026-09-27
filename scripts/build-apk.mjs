@@ -129,7 +129,9 @@ try {
     : "./gradlew assembleRelease";
   execSync(gradlewCmd, { cwd: androidDir, stdio: "inherit" });
 
-  console.log("\n🚚 [4/4] Đang chép APK vào thư mục xem thử ở máy (client/dist)...");
+  console.log(
+    "\n🚚 [4/4] Đang chép APK vào thư mục xem thử ở máy (client/dist)...",
+  );
   const finalApkPath = fs.existsSync(builtApkPath)
     ? builtApkPath
     : fallbackDebugApkPath;
@@ -158,7 +160,9 @@ try {
   console.log(
     `👉 Push lên GitHub: Actions tự build APK và đường dẫn /downloads/ToanVui.apk trên web`,
   );
-  console.log(`   luôn lấy bản mới nhất — không phải cập nhật file APK trong repo nữa.`);
+  console.log(
+    `   luôn lấy bản mới nhất — không phải cập nhật file APK trong repo nữa.`,
+  );
   console.log("=".repeat(55) + "\n");
 } catch (error) {
   console.warn("\n⚠️ Cảnh báo trong quá trình build APK:", error.message);

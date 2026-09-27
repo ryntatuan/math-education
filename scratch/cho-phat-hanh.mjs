@@ -1,79 +1,82 @@
 /**
- * CHỜ PHÁT HÀNH XONG rồi in kết quả — dùng khi vừa push để Vercel + GitHub Actions làm việc.
+ * CHỜ BẢN PHÁT HÀNH APK MỚI rồi kiểm đúng đường dẫn người dùng tải.
  *
- * Chạy: `node scratch/cho-phat-hanh.mjs 1.1.1 [số-phút-tối-đa]`
+ * Chạy: `node scratch/cho-phat-hanh.mjs [số-phút-tối-đa]`
  *
- * In ra:
- *   • tag `v<phiên bản>` có chưa, và nó trỏ vào commit nào + commit đó có phải commit vừa push không
- *     (đây là phép kiểm cho bản vá `target_commitish` của workflow);
- *   • dung lượng asset APK trong Release;
- *   • bản web đã phục vụ phiên bản mới chưa (`/downloads/version.json`).
+ * 🔴 VÌ SAO KHÔNG DÙNG API GITHUB Ở ĐÂY (đã mắc thật 2026-09-28): API không đăng nhập chỉ cho
+ *    **60 lượt/giờ cho MỖI IP**. Bản cũ hỏi API mỗi 20 giây ⇒ hết hạn mức sau ~15 phút, và triệu
+ *    chứng nhìn thấy là `release.assets` trả về RỖNG (`asset: chưa có`) — trông y như "GitHub
+ *    đã xoá file APK", nhưng thật ra chỉ là bị chặn 403. Rất dễ kết luận sai.
+ *    ⇒ Dùng những đường KHÔNG tốn hạn mức:
+ *      • tải APK qua `releases/latest/download/ToanVui.apk` (đường CDN, không phải API);
+ *      • đọc tag bằng `git ls-remote` (git, không phải API);
+ *      • theo dõi thay đổi bằng `etag` / `content-length` của chính file đó.
+ *    Và hỏi thưa: mặc định 60 giây một lần.
+ *
+ * Kiểm ba thứ người dùng thật sự chạm vào:
+ *   1. APK trên GitHub đã ĐỔI chưa (so etag với lúc bắt đầu chờ);
+ *   2. `/downloads/ToanVui.apk` trên web có chuyển tiếp (307) sang GitHub không;
+ *   3. bản tải được từ web có trùng đúng byte với bản mới trên GitHub không.
  */
+import { execSync } from "node:child_process";
+
 const REPO = "ryntatuan/math-education";
-const VERCEL = "https://toanvuive.vercel.app";
-const phienBan = process.argv[2] ?? "1.1.1";
-const phutToiDa = Number(process.argv[3] ?? 8);
+const WEB = "https://toanvuive.vercel.app";
+const LATEST = `https://github.com/${REPO}/releases/latest/download/ToanVui.apk`;
+const phutToiDa = Number(process.argv[2] ?? 10);
 const hetHan = Date.now() + phutToiDa * 60_000;
 
-const doc = async (url) => {
-  const res = await fetch(url, {
-    headers: {
-      "User-Agent": "cho-phat-hanh",
-      Accept: "application/vnd.github+json",
-    },
-  });
-  return res.ok ? res.json() : null;
-};
-
-const git = async () => {
-  const tag = await doc(
-    `https://api.github.com/repos/${REPO}/git/ref/tags/v${phienBan}`,
-  );
-  if (!tag) return null;
-  // ⚠️ Tag NHẸ trỏ thẳng vào commit (`object.url` = commit) ⇒ object trả về có `sha` ở gốc;
-  //    tag CÓ CHÚ THÍCH trỏ vào tag object ⇒ phải đi thêm một lớp `object.sha`. Đọc thiếu vế
-  //    thứ hai thì script báo "chưa có" dù Release đã phát hành xong (đã mắc thật 2026-09-28).
-  const obj = await doc(tag.object.url);
-  return obj?.object?.sha ?? obj?.sha ?? null;
-};
-
-const web = async () => {
-  const res = await fetch(`${VERCEL}/downloads/version.json?cb=${Date.now()}`);
-  if (!res.ok) return null;
-  const meta = await res.json();
+const dau = async (url, redirect = "follow") => {
+  const res = await fetch(url, { method: "HEAD", redirect });
   return {
-    version: meta.version,
-    size: meta.fileSizeBytes,
-    luc: meta.buildDateFormatted,
+    status: res.status,
+    etag: res.headers.get("etag"),
+    size: Number(res.headers.get("content-length") ?? 0),
+    location: res.headers.get("location"),
   };
 };
 
+/** Tag trỏ vào commit nào — bằng git, KHÔNG tốn hạn mức API. */
+const tagSha = (tag) => {
+  const out = execSync(`git ls-remote --tags origin refs/tags/${tag}`, { encoding: "utf8" });
+  return out.trim().split(/\s+/)[0] ?? null;
+};
+
+const mocCu = await dau(LATEST);
+console.log(
+  `Bắt đầu chờ: APK mới nhất trên GitHub = ${mocCu.size} byte · etag ${mocCu.etag ?? "?"}`,
+);
+
 for (;;) {
-  const sha = await git();
-  const w = await web();
-  const xong = Boolean(sha) && w?.version === phienBan;
+  const nay = await dau(LATEST);
+  const moi = Boolean(nay.etag) && nay.etag !== mocCu.etag;
   console.log(
-    `[${new Date().toLocaleTimeString("vi-VN")}] release v${phienBan}: ${sha ? sha.slice(0, 7) : "chưa có"}` +
-      ` · web: ${w?.version ?? "?"} (${w?.size ?? "?"} byte, ${w?.luc ?? "?"})`,
+    `[${new Date().toLocaleTimeString("vi-VN")}] APK: ${nay.size} byte · etag ${nay.etag ?? "?"}${
+      moi ? " · MỚI" : ""
+    }`,
   );
-  if (xong) {
-    const rel = await doc(
-      `https://api.github.com/repos/${REPO}/releases/tags/v${phienBan}`,
+
+  if (moi) {
+    const web = await dau(`${WEB}/downloads/ToanVui.apk`, "manual");
+    const buf = Buffer.from(
+      await (await fetch(`${WEB}/downloads/ToanVui.apk?cb=${Date.now()}`)).arrayBuffer(),
     );
-    const apk = (rel?.assets ?? []).find((a) => a.name.endsWith(".apk"));
-    console.log(`\n✅ XONG v${phienBan}`);
-    console.log(`   tag v${phienBan} -> commit ${sha}`);
+    console.log(`\n✅ CÓ BẢN APK MỚI`);
+    console.log(`   tag v1.1.1 -> commit ${tagSha("v1.1.1")}  (git ls-remote, không tốn hạn mức API)`);
+    console.log(`   GitHub: ${nay.size} byte · etag ${nay.etag}`);
+    console.log(`   web chuyển tiếp: HTTP ${web.status} -> ${web.location}`);
     console.log(
-      `   APK trong Release: ${apk ? `${apk.name} = ${apk.size} byte` : "CHƯA THẤY"}`,
+      `   tải từ web: ${buf.length} byte · ${
+        buf.length === nay.size ? "TRÙNG bản trên GitHub ✓" : "LỆCH bản trên GitHub ✗"
+      }`,
     );
-    console.log(`   web: ${w.version} · ${w.size} byte · build lúc ${w.luc}`);
+    console.log(`   (kiểm chữ ký: apksigner verify --print-certs <file tải về>)`);
     break;
   }
+
   if (Date.now() > hetHan) {
-    console.log(
-      `\n⏱ Hết ${phutToiDa} phút — phát hành CHƯA xong (chạy lại lệnh này để chờ tiếp).`,
-    );
+    console.log(`\n⏱ Hết ${phutToiDa} phút mà chưa thấy APK mới (chạy lại lệnh này để chờ tiếp).`);
     process.exit(2);
   }
-  await new Promise((r) => setTimeout(r, 20_000));
+  await new Promise((r) => setTimeout(r, 60_000));
 }

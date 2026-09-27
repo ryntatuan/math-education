@@ -1,32 +1,39 @@
-import { useState, useEffect } from 'react'
-import { createPortal } from 'react-dom'
-import { motion, AnimatePresence } from 'framer-motion'
-import { X, Check, Copy, ShieldCheck, HelpCircle, ArrowDownToLine } from 'lucide-react';
-import { Capacitor } from '@capacitor/core'
-import soundManager from '../../utils/soundManager'
-import useDownloadModalStore from '../../store/useDownloadModalStore'
-import { isIOS } from '../../utils/deviceHelper';
-import { APP_VERSION } from '../../config/appVersion'
-import './DownloadAppModal.css'
+import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  X,
+  Check,
+  Copy,
+  ShieldCheck,
+  HelpCircle,
+  ArrowDownToLine,
+} from "lucide-react";
+import { Capacitor } from "@capacitor/core";
+import soundManager from "../../utils/soundManager";
+import useDownloadModalStore from "../../store/useDownloadModalStore";
+import { isIOS } from "../../utils/deviceHelper";
+import { APP_VERSION } from "../../config/appVersion";
+import "./DownloadAppModal.css";
 
 /**
  * Repo chứa APK phát hành. Đường dẫn tải trên web (`/downloads/ToanVui.apk`) CHUYỂN TIẾP về
  * APK của bản phát hành mới nhất trong repo này (khai trong `vercel.json`), nên phần hiển thị
  * thông tin cũng phải đọc từ đây cho khớp với file người dùng thật sự tải về.
  */
-const REPO_OWNER = 'ryntatuan'
-const REPO_NAME = 'math-education'
+const REPO_OWNER = "ryntatuan";
+const REPO_NAME = "math-education";
 
 export default function DownloadAppModal() {
-  const { isOpen, closeDownloadModal } = useDownloadModalStore()
-  const [copied, setCopied] = useState(false)
-  const [apkMeta, setApkMeta] = useState(null)
-  const [activeOS, setActiveOS] = useState('android')
+  const { isOpen, closeDownloadModal } = useDownloadModalStore();
+  const [copied, setCopied] = useState(false);
+  const [apkMeta, setApkMeta] = useState(null);
+  const [activeOS, setActiveOS] = useState("android");
 
   useEffect(() => {
-    if (!isOpen || Capacitor.isNativePlatform()) return
+    if (!isOpen || Capacitor.isNativePlatform()) return;
     // Auto-detect user OS on modal open
-    setActiveOS(isIOS() ? 'ios' : 'android')
+    setActiveOS(isIOS() ? "ios" : "android");
 
     // 🔴 Lấy thông tin APK từ BẢN PHÁT HÀNH MỚI NHẤT trên GitHub, KHÔNG đọc file trong repo.
     // VÌ SAO (2026-09-28): đường dẫn `/downloads/ToanVui.apk` nay là chuyển tiếp sang APK của
@@ -34,47 +41,51 @@ export default function DownloadAppModal() {
     // không còn file APK nào trong repo để đọc. Đọc file tĩnh cũ là hiển thị số liệu đã cũ.
     // Không lấy được (mất mạng / hết hạn mức API) thì modal vẫn hiện: số phiên bản lấy từ
     // `APP_VERSION` của chính bản đang chạy, dung lượng và ngày thì để trống.
-    fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/releases/latest`)
-      .then(res => res.ok ? res.json() : null)
-      .then(rel => {
-        if (!rel) return
-        const apk = (rel.assets || []).find(a => a.name === 'ToanVui.apk')
+    fetch(
+      `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/releases/latest`,
+    )
+      .then((res) => (res.ok ? res.json() : null))
+      .then((rel) => {
+        if (!rel) return;
+        const apk = (rel.assets || []).find((a) => a.name === "ToanVui.apk");
         setApkMeta({
-          version: String(rel.tag_name || '').replace(/^v/, '') || APP_VERSION,
-          fileSizeMB: apk ? `${(apk.size / (1024 * 1024)).toFixed(2)} MB` : undefined,
-          buildDateFormatted: rel.published_at
-            ? new Date(rel.published_at).toLocaleString('vi-VN')
+          version: String(rel.tag_name || "").replace(/^v/, "") || APP_VERSION,
+          fileSizeMB: apk
+            ? `${(apk.size / (1024 * 1024)).toFixed(2)} MB`
             : undefined,
-        })
+          buildDateFormatted: rel.published_at
+            ? new Date(rel.published_at).toLocaleString("vi-VN")
+            : undefined,
+        });
       })
-      .catch(() => {})
-  }, [isOpen])
+      .catch(() => {});
+  }, [isOpen]);
 
-  if (!isOpen || Capacitor.isNativePlatform()) return null
+  if (!isOpen || Capacitor.isNativePlatform()) return null;
 
   const handleClose = () => {
-    soundManager.playClick()
-    closeDownloadModal()
-  }
+    soundManager.playClick();
+    closeDownloadModal();
+  };
 
-  const apkDownloadUrl = `${window.location.origin}/downloads/ToanVui.apk`
-  const webAppUrl = window.location.origin
+  const apkDownloadUrl = `${window.location.origin}/downloads/ToanVui.apk`;
+  const webAppUrl = window.location.origin;
 
   const handleCopyLink = async (textToCopy) => {
-    soundManager.playClick()
+    soundManager.playClick();
     try {
-      await navigator.clipboard.writeText(textToCopy)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2500)
+      await navigator.clipboard.writeText(textToCopy);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
     } catch {
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2500)
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
     }
-  }
+  };
 
   const handleDownloadClick = () => {
-    soundManager.playClick()
-  }
+    soundManager.playClick();
+  };
 
   return createPortal(
     <AnimatePresence>
@@ -85,10 +96,14 @@ export default function DownloadAppModal() {
           initial={{ scale: 0.9, opacity: 0, y: 20 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}
           exit={{ scale: 0.9, opacity: 0, y: 20 }}
-          transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+          transition={{ type: "spring", damping: 25, stiffness: 300 }}
         >
           {/* Close button */}
-          <button className="download-modal-close" onClick={handleClose} aria-label="Đóng">
+          <button
+            className="download-modal-close"
+            onClick={handleClose}
+            aria-label="Đóng"
+          >
             <X size={20} />
           </button>
 
@@ -97,18 +112,18 @@ export default function DownloadAppModal() {
             <div className="download-app-badge-icon">
               <span className="app-owl-icon">🦉</span>
               <span className="android-robot-badge">
-                {activeOS === 'ios' ? '🍎' : '🤖'}
+                {activeOS === "ios" ? "🍎" : "🤖"}
               </span>
             </div>
             <h2>
-              {activeOS === 'ios'
-                ? 'Cài App Toán Vui Cho iPhone & iPad'
-                : 'Cài Đặt App Toán Vui Cho Điện Thoại'}
+              {activeOS === "ios"
+                ? "Cài App Toán Vui Cho iPhone & iPad"
+                : "Cài Đặt App Toán Vui Cho Điện Thoại"}
             </h2>
             <p className="download-modal-subtitle">
-              {activeOS === 'ios'
-                ? 'Cài đặt miễn phí trực tiếp lên Màn hình chính (PWA) • Không cần App Store'
-                : 'Ứng dụng học toán tương tác chuẩn Bộ Giáo Dục trên Android (APK)'}
+              {activeOS === "ios"
+                ? "Cài đặt miễn phí trực tiếp lên Màn hình chính (PWA) • Không cần App Store"
+                : "Ứng dụng học toán tương tác chuẩn Bộ Giáo Dục trên Android (APK)"}
             </p>
           </div>
 
@@ -116,20 +131,20 @@ export default function DownloadAppModal() {
           <div className="modal-os-tabs">
             <button
               type="button"
-              className={`os-tab-btn ${activeOS === 'android' ? 'active' : ''}`}
+              className={`os-tab-btn ${activeOS === "android" ? "active" : ""}`}
               onClick={() => {
-                soundManager.playClick()
-                setActiveOS('android')
+                soundManager.playClick();
+                setActiveOS("android");
               }}
             >
               <span>🤖 Android (.APK)</span>
             </button>
             <button
               type="button"
-              className={`os-tab-btn ${activeOS === 'ios' ? 'active' : ''}`}
+              className={`os-tab-btn ${activeOS === "ios" ? "active" : ""}`}
               onClick={() => {
-                soundManager.playClick()
-                setActiveOS('ios')
+                soundManager.playClick();
+                setActiveOS("ios");
               }}
             >
               <span>🍎 iPhone / iPad (iOS)</span>
@@ -137,19 +152,25 @@ export default function DownloadAppModal() {
           </div>
 
           {/* TAB 1: ANDROID (.APK) */}
-          {activeOS === 'android' && (
+          {activeOS === "android" && (
             <>
               {/* Main Download CTA Box */}
               <div className="download-cta-box">
                 <div className="cta-app-meta">
                   <div className="meta-row">
-                    <span className="meta-badge-version">Bản v{apkMeta?.version || APP_VERSION} (.APK)</span>
+                    <span className="meta-badge-version">
+                      Bản v{apkMeta?.version || APP_VERSION} (.APK)
+                    </span>
                     <span className="meta-badge-tag">Android 7.0+</span>
                     <span className="meta-badge-size">
-                      {apkMeta?.fileSizeMB ? `Dung lượng: ${apkMeta.fileSizeMB}` : 'Dung lượng: ~8.5 MB'}
+                      {apkMeta?.fileSizeMB
+                        ? `Dung lượng: ${apkMeta.fileSizeMB}`
+                        : "Dung lượng: ~8.5 MB"}
                     </span>
                     {apkMeta?.buildDateFormatted && (
-                      <span className="meta-badge-date">Cập nhật: {apkMeta.buildDateFormatted}</span>
+                      <span className="meta-badge-date">
+                        Cập nhật: {apkMeta.buildDateFormatted}
+                      </span>
                     )}
                   </div>
                 </div>
@@ -162,22 +183,30 @@ export default function DownloadAppModal() {
                 >
                   <ArrowDownToLine size={24} className="btn-dl-icon" />
                   <div className="btn-dl-text">
-                    <span className="btn-dl-title">Tải File Cài Đặt (.APK)</span>
-                    <span className="btn-dl-sub">Tải trực tiếp tốc độ cao • Miễn phí 100%</span>
+                    <span className="btn-dl-title">
+                      Tải File Cài Đặt (.APK)
+                    </span>
+                    <span className="btn-dl-sub">
+                      Tải trực tiếp tốc độ cao • Miễn phí 100%
+                    </span>
                   </div>
                 </a>
 
                 {/* Copy Link to send to phone via Zalo/Messenger */}
                 <div className="download-share-row">
-                  <span className="share-label">Chia sẻ link tải cho điện thoại khác:</span>
+                  <span className="share-label">
+                    Chia sẻ link tải cho điện thoại khác:
+                  </span>
                   <button
                     type="button"
-                    className={`btn-copy-link ${copied ? 'is-copied' : ''}`}
+                    className={`btn-copy-link ${copied ? "is-copied" : ""}`}
                     onClick={() => handleCopyLink(apkDownloadUrl)}
                     title="Sao chép link tải"
                   >
                     {copied ? <Check size={16} /> : <Copy size={16} />}
-                    <span>{copied ? 'Đã sao chép link!' : 'Copy Link Tải'}</span>
+                    <span>
+                      {copied ? "Đã sao chép link!" : "Copy Link Tải"}
+                    </span>
                   </button>
                 </div>
               </div>
@@ -194,7 +223,10 @@ export default function DownloadAppModal() {
                     <div className="step-num">1</div>
                     <div className="step-content">
                       <strong>Tải file về máy</strong>
-                      <p>Bấm nút màu xanh ở trên để tải file <code>ToanVui.apk</code>.</p>
+                      <p>
+                        Bấm nút màu xanh ở trên để tải file{" "}
+                        <code>ToanVui.apk</code>.
+                      </p>
                     </div>
                   </div>
 
@@ -202,7 +234,10 @@ export default function DownloadAppModal() {
                     <div className="step-num">2</div>
                     <div className="step-content">
                       <strong>Cho phép cài đặt</strong>
-                      <p>Mở file vừa tải. Nếu máy hỏi, chọn <strong>"Cho phép nguồn này"</strong>.</p>
+                      <p>
+                        Mở file vừa tải. Nếu máy hỏi, chọn{" "}
+                        <strong>"Cho phép nguồn này"</strong>.
+                      </p>
                     </div>
                   </div>
 
@@ -210,7 +245,10 @@ export default function DownloadAppModal() {
                     <div className="step-num">3</div>
                     <div className="step-content">
                       <strong>Cài đặt & Mở học</strong>
-                      <p>Bấm <strong>"Cài đặt"</strong> → Bắt đầu học với Toán Vui</p>
+                      <p>
+                        Bấm <strong>"Cài đặt"</strong> → Bắt đầu học với Toán
+                        Vui
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -219,12 +257,16 @@ export default function DownloadAppModal() {
           )}
 
           {/* TAB 2: iOS (IPHONE / IPAD) */}
-          {activeOS === 'ios' && (
+          {activeOS === "ios" && (
             <div className="ios-guide-box">
               <div className="ios-badge-intro">
-                <span className="ios-badge-pill">💡 Không cần tải file • Không cần tài khoản Apple Developer</span>
+                <span className="ios-badge-pill">
+                  💡 Không cần tải file • Không cần tài khoản Apple Developer
+                </span>
                 <p>
-                  Trên iPhone & iPad, bé có thể cài app trực tiếp về màn hình chính chỉ trong <strong>5 giây</strong> qua trình duyệt <strong>Safari</strong>:
+                  Trên iPhone & iPad, bé có thể cài app trực tiếp về màn hình
+                  chính chỉ trong <strong>5 giây</strong> qua trình duyệt{" "}
+                  <strong>Safari</strong>:
                 </p>
               </div>
 
@@ -236,7 +278,10 @@ export default function DownloadAppModal() {
                       <strong>Bấm nút Chia sẻ (Share 📤)</strong>
                     </div>
                     <p>
-                      Mở website bằng <strong>Safari</strong>, nhìn xuống thanh công cụ dưới đáy màn hình và bấm biểu tượng <strong>Chia sẻ 📤</strong> (hình vuông có mũi tên hướng lên).
+                      Mở website bằng <strong>Safari</strong>, nhìn xuống thanh
+                      công cụ dưới đáy màn hình và bấm biểu tượng{" "}
+                      <strong>Chia sẻ 📤</strong> (hình vuông có mũi tên hướng
+                      lên).
                     </p>
                   </div>
                 </div>
@@ -245,10 +290,14 @@ export default function DownloadAppModal() {
                   <div className="ios-step-badge">2</div>
                   <div className="ios-step-info">
                     <div className="ios-step-heading">
-                      <strong>Chọn "Thêm vào MH chính" (Add to Home Screen 📲)</strong>
+                      <strong>
+                        Chọn "Thêm vào MH chính" (Add to Home Screen 📲)
+                      </strong>
                     </div>
                     <p>
-                      Cuộn danh sách tùy chọn xuống dưới, bấm chọn <strong>"Thêm vào Màn hình chính"</strong>, sau đó bấm nút <strong>"Thêm" (Add)</strong> ở góc trên bên phải.
+                      Cuộn danh sách tùy chọn xuống dưới, bấm chọn{" "}
+                      <strong>"Thêm vào Màn hình chính"</strong>, sau đó bấm nút{" "}
+                      <strong>"Thêm" (Add)</strong> ở góc trên bên phải.
                     </p>
                   </div>
                 </div>
@@ -260,7 +309,9 @@ export default function DownloadAppModal() {
                       <strong>Bé mở học toàn màn hình! 🎉</strong>
                     </div>
                     <p>
-                      Icon app <strong>Toán Vui 🦉</strong> sẽ xuất hiện ngay trên màn hình iPhone/iPad. Mở lên sẽ chạy toàn màn hình (Fullscreen) mượt mà như app thật!
+                      Icon app <strong>Toán Vui 🦉</strong> sẽ xuất hiện ngay
+                      trên màn hình iPhone/iPad. Mở lên sẽ chạy toàn màn hình
+                      (Fullscreen) mượt mà như app thật!
                     </p>
                   </div>
                 </div>
@@ -268,14 +319,20 @@ export default function DownloadAppModal() {
 
               {/* Copy link to open in Safari */}
               <div className="ios-copy-row">
-                <span className="ios-copy-label">Đang xem trên trình duyệt khác?</span>
+                <span className="ios-copy-label">
+                  Đang xem trên trình duyệt khác?
+                </span>
                 <button
                   type="button"
-                  className={`btn-copy-link ${copied ? 'is-copied' : ''}`}
+                  className={`btn-copy-link ${copied ? "is-copied" : ""}`}
                   onClick={() => handleCopyLink(webAppUrl)}
                 >
                   {copied ? <Check size={16} /> : <Copy size={16} />}
-                  <span>{copied ? 'Đã sao chép link web!' : 'Copy Link để dán vào Safari'}</span>
+                  <span>
+                    {copied
+                      ? "Đã sao chép link web!"
+                      : "Copy Link để dán vào Safari"}
+                  </span>
                 </button>
               </div>
             </div>
@@ -284,12 +341,14 @@ export default function DownloadAppModal() {
           {/* Safety Guarantee */}
           <div className="download-safety-badge">
             <ShieldCheck size={17} className="safety-icon" />
-            <span>Cam kết an toàn 100%, không chứa mã độc, không thu thập dữ liệu riêng tư của bé.</span>
+            <span>
+              Cam kết an toàn 100%, không chứa mã độc, không thu thập dữ liệu
+              riêng tư của bé.
+            </span>
           </div>
-
         </motion.div>
       </div>
     </AnimatePresence>,
-    document.body
-  )
+    document.body,
+  );
 }

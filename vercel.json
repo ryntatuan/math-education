@@ -8,7 +8,11 @@
       "destination": "https://github.com/ryntatuan/math-education/releases/latest/download/ToanVui.apk",
       "permanent": false
     },
-    { "source": "/ToanVui.apk", "destination": "/downloads/ToanVui.apk", "permanent": false }
+    {
+      "source": "/ToanVui.apk",
+      "destination": "/downloads/ToanVui.apk",
+      "permanent": false
+    }
   ],
   "rewrites": [
     { "source": "/api/tts", "destination": "/api/tts" },
