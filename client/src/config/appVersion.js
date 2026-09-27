@@ -1,2 +1,2 @@
-export const APP_VERSION = '1.0.55'
+export const APP_VERSION = '1.1.0'
 export default APP_VERSION
