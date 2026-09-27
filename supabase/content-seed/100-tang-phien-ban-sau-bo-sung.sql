@@ -46,6 +46,17 @@
 --        ĐÃ có bản chữ nhưng không xoá bản chữ cũ.
 --      ℹ️ Đây là luật hiển thị nên áp cho CẢ NĂM LỚP ngay sau khi deploy — không phải dán 5 file seed.
 --
+--   THÊM (cùng ngày, sau khi người dùng CHỐT "hãy ẩn ô đó"): phần VẼ đã ẩn mà phần ĐỌC TỰ ĐỘNG
+--      (`autoSpeakLesson`) VẪN đọc ô nhấn mạnh và câu giải thích đã bị ẩn ⇒ trên màn hình không có
+--      chữ mà loa vẫn đọc, bé nghe đúng một thông tin hai lần; slide "Quan sát" cũng bị đọc cả dòng
+--      đã bỏ vì hình nói lại. Nay chỉ còn MỘT nguồn luật: `slideDedupe.planConceptText` (phần vẽ),
+--      chữ để đọc do hàm thuần `utils/slideSpeech.planSlideSpeech` quyết định, `LessonPage` chỉ gọi
+--      hàm đó — hết cảnh hai nơi tự quyết định rồi lệch nhau.
+--      Cổng tĩnh mới **S-37** canh đủ 3 mắt xích (canary HAI VẾ: vế 1 chứng minh cổng bắt được mã cũ
+--      đọc thẳng `s.content.rule`, vế 2 chứng minh không bắt oan mã mới).
+--      Dạy quy tắc để không tái phạm: **màn hình hiện chữ nào thì loa đọc chữ đó**.
+--      Quy mô KHÔNG đổi: 5 lớp · 51 chương · 460 bài · 2814 slide. Đây là phần MÃ.
+--
 --   📌 PHẦN DỮ LIỆU CỦA LẦN NÀY RẤT NHỎ: chỉ `g1-c1-l1` slide 3 bỏ mảng `points` (bốn dòng lặp lại
 --      ô nhấn mạnh) — slide đó nay GIỚI THIỆU tên bốn biểu tượng, slide sau mới giải nghĩa từng cái.
 --      Chỉ cần dán `02-bai-lop-1.sql` rồi `100-...`.
@@ -53,8 +64,9 @@
 --   ⚠️ Phần MÃ (`LessonPage.css`, `conceptSlide/storySlide/visualSlide`, `CoreVisuals`,
 --      `interactiveTable`, `textCompare`, `slideDedupe`) thì dán SQL KHÔNG thấy — phải deploy web /
 --      build APK lại.
---   ✅ Kiểm: cổng tĩnh **34 PASS · 0 FAIL** · `npm test` **74/74** · `oxlint` sạch ·
---      `kiem-tra-slide` 0 lỗi · `soat-o-trong` 0 ca · `ra-hinh-nghi-ngo` 0 ca.
+--   ✅ Kiểm: cổng tĩnh **35 PASS · 0 FAIL** · `npm test` **83/83** · `oxlint` sạch ·
+--      `kiem-tra-slide` 0 lỗi · `soat-o-trong` 0 ca · `ra-hinh-nghi-ngo` 0 ca ·
+--      `node scratch/soat-an-o-nhan-manh.mjs` 6/6 ca đo TRONG APP (4 ca phải ẩn + 2 ca phải hiện).
 --
 
 -- LƯU Ý LẦN 20 (2026-09-26): **TÁCH “SLIDE DỒN NHIỀU BÀI” + LỜI GIẢI TỪNG BƯỚC**.

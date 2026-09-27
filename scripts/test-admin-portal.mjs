@@ -3280,6 +3280,95 @@ await test(
   },
 );
 
+// ── S-37 · CHỮ ĐÃ ẨN THÌ KHÔNG ĐƯỢC ĐỌC (một nguồn luật cho cả VẼ và ĐỌC) ──────
+//
+// 🔴 VÌ SAO CẦN CỔNG NÀY (lỗi thật, 2026-09-28): luật "bỏ chữ trùng" từng được cài ở HAI nơi —
+//    `ConceptSlide`/`VisualSlide` (phần vẽ) và `LessonPage` (phần đọc tự động). Hai nơi tự quyết
+//    định nên lệch nhau: màn hình đã ẩn ô nhấn mạnh ⭐ và câu giải thích, nhưng đường đọc tự động
+//    VẪN đọc chúng (và với slide "Quan sát" thì đọc luôn cả dòng đã bị bỏ) ⇒ trên màn hình không
+//    có chữ mà loa vẫn đọc, bé nghe một thông tin HAI LẦN.
+//    Cách chữa: luật nằm ở `slideDedupe.js`, chữ để đọc do hàm thuần `slideSpeech.planSlideSpeech`
+//    quyết định, còn `LessonPage` chỉ gọi hàm đó. Cổng canh đúng ba mắt xích ấy.
+await test(
+  "S-37",
+  "TC-0.11 — Chữ đã ẩn thì không đọc: một nguồn luật cho cả vẽ và đọc",
+  async () => {
+    const dedupe = read("client/src/pages/lesson/slideDedupe.js");
+    assert(
+      /export function planConceptText\s*\(/.test(dedupe),
+      "slideDedupe.js thiếu `planConceptText` ⇒ hai nơi lại tự quyết định luật ẩn khối trùng",
+    );
+    assert(
+      /export function planVisualText\s*\(/.test(dedupe),
+      "slideDedupe.js thiếu `planVisualText`",
+    );
+
+    // Mắt xích 1 — phần VẼ: phải gọi hàm chung, KHÔNG được tự tính lại bằng `coversAll`.
+    const concept = read("client/src/pages/lesson/conceptSlide.jsx");
+    assert(
+      /planConceptText\s*\(/.test(concept),
+      "conceptSlide.jsx không gọi planConceptText() ⇒ phần vẽ lại tự quyết định luật ẩn",
+    );
+    assert(
+      !/coversAll\s*\(/.test(concept),
+      "conceptSlide.jsx tự tính lại bằng coversAll() ⇒ lệch với phần đọc tự động",
+    );
+
+    // Mắt xích 2 — hàm quyết định chữ để đọc: phải lấy luật từ CÙNG nguồn, và không được đọc
+    // thẳng `content.rule` / `content.text` của slide khái niệm hay slide quan sát.
+    const speech = read("client/src/utils/slideSpeech.js");
+    assert(
+      /export function planSlideSpeech\s*\(/.test(speech),
+      "utils/slideSpeech.js thiếu `planSlideSpeech`",
+    );
+    assert(
+      /planConceptText\s*\(/.test(speech) && /planVisualText\s*\(/.test(speech),
+      "slideSpeech.js không lấy luật từ slideDedupe ⇒ lại lệch với phần vẽ",
+    );
+    assert(
+      !/\bc\.rule\b|\bcontent\.rule\b/.test(speech),
+      "slideSpeech.js đọc thẳng `rule` ⇒ loa đọc cả ô ⭐ đã bị ẩn",
+    );
+    // Vế ngược lại: slide "Bài học" (`story`) PHẢI đọc nguyên `text` — phần vẽ cũng in nguyên
+    // `text`, nên bỏ đi là mất chữ bé đang thấy. (Ca "Quan sát" thì phải đi qua `planVisualText`.)
+    assert(
+      /slide\.type === "story"[\s\S]{0,60}c\.text/.test(speech),
+      "slideSpeech.js bỏ mất đường đọc nguyên `text` của slide `story`",
+    );
+
+    // Mắt xích 3 — nơi GỌI: `LessonPage` phải dùng hàm chung, không tự dựng chuỗi đọc.
+    const page = read("client/src/pages/LessonPage.jsx");
+    const moc = page.indexOf("Auto-speak slide content");
+    assert(
+      moc >= 0,
+      "không tìm thấy khối 'Auto-speak slide content' trong LessonPage.jsx ⇒ cổng này đang soi nhầm chỗ",
+    );
+    const het = page.indexOf("}, [currentSlide,", moc);
+    assert(het > moc, "không tìm thấy điểm kết thúc khối đọc tự động");
+    const khoi = page.slice(moc, het);
+
+    // Canary HAI VẾ: (1) bắt được mã cũ, (2) KHÔNG bắt nhầm mã mới.
+    const gia =
+      "if (s.content?.rule && s.content.rule !== s.content.explanation)\n  parts.push(s.content.rule);";
+    assert(
+      /s\.content\??\.rule\b/.test(gia),
+      "canary: cổng không nhận ra mã cũ đọc thẳng `s.content.rule` ⇒ cổng đang vô hiệu",
+    );
+    assert(
+      !/s\.content\??\.rule\b/.test(khoi),
+      "khối đọc tự động VẪN đọc thẳng `s.content.rule` ⇒ loa đọc cả ô ⭐ đã bị ẩn",
+    );
+    assert(
+      /planSlideSpeech\s*\(/.test(khoi),
+      "khối đọc tự động không dùng planSlideSpeech() ⇒ lại tự dựng chuỗi đọc, sẽ lệch với phần vẽ",
+    );
+
+    return {
+      detail: "1 nguồn luật · vẽ + đọc dùng chung · canary 2 vế ✓",
+    };
+  },
+);
+
 // ═══════════════════════════ BÁO CÁO ═══════════════════════════
 
 const ICON = { PASS: "✅", FAIL: "❌", SKIP: "⏭️ ", MANUAL: "👤" };

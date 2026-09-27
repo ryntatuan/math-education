@@ -35,6 +35,8 @@ import { QuizSlide } from "./lesson/quizSlide.jsx";
 import { StorySlide } from "./lesson/storySlide.jsx";
 import { SummarySlide } from "./lesson/summarySlide.jsx";
 import { VisualSlide } from "./lesson/visualSlide.jsx";
+// Chữ để đọc khi vào slide — hàm thuần, lấy CÙNG luật với phần vẽ (xem đầu file đó).
+import { planSlideSpeech } from "../utils/slideSpeech.js";
 
 // Sáu kiểu slide mà màn hình này ĐỌC ĐƯỢC — khớp đúng 6 nhánh vẽ bên dưới và danh
 // sách `SLIDE_TYPES` của Admin. Dùng để nhận ra slide lạ thay vì vẽ ra thẻ trống.
@@ -197,28 +199,10 @@ export default function LessonPage() {
       const s = slides[currentSlide];
       if (!s) return;
 
-      let textToRead = "";
-      if (s.type === "quiz") {
-        textToRead = s.content?.question || "";
-      } else if (s.type === "story" || s.type === "visual") {
-        textToRead = s.content?.text || "";
-      } else if (s.type === "concept") {
-        const parts = [s.content?.title];
-        if (s.content?.explanation) parts.push(s.content.explanation);
-        if (s.content?.rule && s.content.rule !== s.content.explanation)
-          parts.push(s.content.rule);
-        if (s.content?.points) parts.push(s.content.points.join(". "));
-        if (s.content?.example) {
-          const ex = s.content.example;
-          const exText =
-            ex.text ||
-            `${ex.question ? ex.question + ". " : ""}${ex.explanation || ""}`;
-          parts.push(`Ví dụ: ${exText}`);
-        }
-        textToRead = parts.filter(Boolean).join(". ");
-      } else if (s.type === "summary") {
-        textToRead = `${s.content?.title || ""}. ${s.content?.points ? s.content.points.join(". ") : ""}`;
-      }
+      // 🔴 LUẬT: màn hình hiện chữ nào thì loa đọc chữ đó. Mọi quyết định nằm trong hàm thuần
+      // `planSlideSpeech` (dùng CHUNG luật với `ConceptSlide`/`VisualSlide`) — KHÔNG tự dựng
+      // chuỗi ở đây, đã từng lệch nhau: ô ⭐ bị ẩn mà loa vẫn đọc, bé nghe hai lần.
+      const textToRead = planSlideSpeech(s);
 
       if (textToRead) {
         speechHelper.speak(textToRead);

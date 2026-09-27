@@ -72,6 +72,21 @@ try {
   stripApksFromDir(path.resolve(androidDir, 'app/src/main/assets/public'))
   console.log('🧹 Đã loại bỏ file APK trung gian khỏi assets Android để giữ dung lượng siêu gọn.')
 
+  // 🧹 Bỏ luôn thư mục `downloads/` khỏi asset của APK.
+  //
+  // 🔴 VÌ SAO (đo thật 2026-09-28): `downloads/version.json` được GHI SAU khi Gradle đóng gói
+  //    xong, nên bản version.json NẰM TRONG APK luôn là bản của LẦN BUILD TRƯỚC — số phiên bản
+  //    thì đúng (do bước bump ghi trước), nhưng `buildDate`/`fileSizeBytes` lệch một lần build.
+  //    Kiểm APK 1.1.1: bên trong ghi `buildDate 00:16:12` (của bản 1.1.0) ⇒ soi APK dễ tưởng
+  //    nhầm là bản cũ. Mà file này CHỈ dùng cho web: `DownloadAppModal` thoát ngay khi chạy trong
+  //    app (`Capacitor.isNativePlatform()` ⇒ không hề fetch). Giữ lại chỉ tổ gây nhầm.
+  //    (File APK trong cùng thư mục đã bị `stripApksFromDir` xoá từ trước.)
+  const downloadsInAssets = path.resolve(androidDir, 'app/src/main/assets/public/downloads')
+  if (fs.existsSync(downloadsInAssets)) {
+    fs.rmSync(downloadsInAssets, { recursive: true, force: true })
+    console.log('🧹 Đã bỏ downloads/ khỏi asset APK (chỉ dùng cho web, không đọc trong app).')
+  }
+
   console.log('\n📦 [3/4] Đang biên dịch file Android APK chính thức (Gradle assembleRelease)...')
   const isWindows = process.platform === 'win32'
   const gradlewCmd = isWindows ? 'cmd.exe /c "gradlew.bat assembleRelease"' : './gradlew assembleRelease'

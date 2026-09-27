@@ -15,7 +15,7 @@ import { MultiVisualGallery } from "./lessonGraphics.jsx";
 import { ShapeGraphic } from "./lessonGraphics.jsx";
 import { SlideHead } from "./slideHead.jsx";
 import { UniversalVisualGrid } from "./lessonGraphics.jsx";
-import { coversAll } from "../../utils/textCompare";
+import { planConceptText } from "./slideDedupe.js";
 
 export function ConceptSlide({ content }) {
   const [speaking, setSpeaking] = useState(false);
@@ -25,26 +25,11 @@ export function ConceptSlide({ content }) {
    * ô nhấn mạnh `rule` chỉ nhắc lại y hệt bốn dòng đã nằm trong `points` ⇒ bé đọc đúng một
    * thông tin hai lần, và phần đọc thành tiếng cũng đọc hai lần.
    *
-   * Luật: bỏ khối NGẮN khi khối DÀI đã chứa trọn nội dung của nó (`coversAll`). Chiều ngược
-   * lại thì KHÓA: bỏ khối dài vì khối ngắn nằm trong nó là mất thông tin.
+   * Luật nằm ở `slideDedupe.planConceptText` — dùng CHUNG với phần đọc tự động trong
+   * `LessonPage.jsx`, để loa không bao giờ đọc phần đã bị ẩn.
    * Dữ liệu KHÔNG bị sửa — đây là luật hiển thị, nên cả 5 lớp đồng bộ ngay, không phải dán lại seed.
    */
-  const pointsText = Array.isArray(content.points)
-    ? content.points.join(" · ")
-    : "";
-  const stepsText = Array.isArray(content.steps)
-    ? content.steps.map((s) => `${s.title ?? ""} ${s.desc ?? ""}`).join(" · ")
-    : "";
-  const ruleText = String(content.rule ?? "");
-  const ruleLap = Boolean(
-    ruleText &&
-    ((pointsText && coversAll(pointsText, ruleText)) ||
-      (stepsText && coversAll(stepsText, ruleText))),
-  );
-  const showRule = Boolean(ruleText) && !ruleLap;
-  const showExplanation =
-    Boolean(content.explanation) &&
-    !(ruleText && coversAll(ruleText, content.explanation));
+  const { ruleText, showRule, showExplanation } = planConceptText(content);
 
   const handleSpeak = () => {
     if (speaking) {

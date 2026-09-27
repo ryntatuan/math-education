@@ -17,7 +17,12 @@ import {
   isValueCell,
   widenColumns,
 } from "../components/visuals/tableAlignment.js";
-import { planVisualText, figureTextOf } from "../pages/lesson/slideDedupe.js";
+import {
+  planVisualText,
+  figureTextOf,
+  planConceptText,
+} from "../pages/lesson/slideDedupe.js";
+import { planSlideSpeech } from "../utils/slideSpeech.js";
 
 describe("contentWords / coversAll — bỏ dấu câu, giữ chữ số", () => {
   it("bỏ emoji và dấu câu, giữ từ có nghĩa", () => {
@@ -243,5 +248,132 @@ describe("planVisualText — không nói lại điều hình đã nói", () => {
     expect(plan.title).toBe("Tiêu đề");
     expect(plan.steps).toEqual(["Dòng một", "Dòng hai"]);
     expect(figureTextOf({ text: "Tiêu đề" })).toBe("");
+  });
+});
+
+describe("planConceptText — một nguồn luật cho phần VẼ và phần ĐỌC", () => {
+  it("danh sách bên dưới đã nói đủ ⇒ ẩn ô nhấn mạnh ⭐", () => {
+    const plan = planConceptText({
+      rule: "Hình vuông có 4 cạnh dài bằng nhau",
+      points: [
+        "🔍 Khám phá: Hình vuông có 4 cạnh dài bằng nhau",
+        "🤖 Hoạt động: kẻ hình vuông vào vở",
+      ],
+    });
+    expect(plan.showRule).toBe(false);
+    expect(plan.ruleText).toBe("Hình vuông có 4 cạnh dài bằng nhau");
+  });
+
+  it("ô ⭐ nói thêm điều danh sách KHÔNG có ⇒ vẫn hiện (canary chống ẩn bừa)", () => {
+    const plan = planConceptText({
+      rule: "Muốn cộng hai số, ta đặt tính thẳng cột rồi cộng từ phải sang trái",
+      points: ["6 sáu · 7 bảy · 8 tám"],
+    });
+    expect(plan.showRule).toBe(true);
+  });
+
+  it("ô ⭐ nói đủ nội dung câu giải thích ⇒ ẩn câu giải thích", () => {
+    const rule = "Trong phép cộng, đổi chỗ hai số hạng thì tổng không đổi";
+    const plan = planConceptText({
+      rule,
+      explanation: "Đổi chỗ hai số hạng trong phép cộng thì tổng không đổi",
+    });
+    expect(plan.showExplanation).toBe(false);
+    // Chiều ngược lại KHÓA: câu giải thích dài hơn ô ⭐ thì phải giữ (bỏ là mất thông tin).
+    const nguoc = planConceptText({
+      rule: "Tổng không đổi",
+      explanation:
+        "Khi đổi chỗ hai số hạng trong một phép cộng thì tổng của chúng vẫn không thay đổi",
+    });
+    expect(nguoc.showExplanation).toBe(true);
+  });
+
+  it("slide không có ô nhấn mạnh ⇒ không bao giờ hiện; khối `steps` cũng tính là nội dung dài", () => {
+    expect(planConceptText({ explanation: "abc" }).showRule).toBe(false);
+    const plan = planConceptText({
+      rule: "Tam giác có 3 cạnh, 3 đỉnh",
+      steps: [
+        {
+          title: "Vẽ ba điểm",
+          desc: "Tam giác có 3 cạnh, 3 đỉnh nên cần ba điểm",
+        },
+      ],
+    });
+    expect(plan.showRule).toBe(false);
+  });
+});
+
+describe("planSlideSpeech — màn hình hiện chữ nào thì loa đọc chữ đó", () => {
+  /** Đếm số lần một câu xuất hiện trong chuỗi được đọc. */
+  const demLan = (chuoi, cau) => chuoi.split(cau).length - 1;
+
+  it("ô ⭐ đã bị ẩn ⇒ đọc ĐÚNG MỘT LẦN (lỗi thật: loa đọc hai lần)", () => {
+    const cau = "Hình vuông có 4 cạnh dài bằng nhau";
+    const bai = {
+      type: "concept",
+      content: {
+        title: "Hình vuông",
+        rule: cau,
+        points: [`🔍 Khám phá: ${cau}`, "🤖 Hoạt động: kẻ hình vuông vào vở"],
+      },
+    };
+    // Vế 1: mã CŨ (đọc thẳng `rule` rồi đọc tiếp `points`) đọc câu đó HAI lần — chứng minh
+    // phép đo này thật sự phân biệt được hai phiên bản, không phải lúc nào cũng ra 1.
+    const cu = [
+      bai.content.title,
+      bai.content.rule,
+      bai.content.points.join(". "),
+    ]
+      .filter(Boolean)
+      .join(". ");
+    expect(demLan(cu, cau)).toBe(2);
+    // Vế 2: mã MỚI đọc đúng một lần.
+    expect(demLan(planSlideSpeech(bai), cau)).toBe(1);
+  });
+
+  it("ô ⭐ KHÔNG trùng ⇒ vẫn đọc (canary chống bỏ bừa)", () => {
+    const bai = {
+      type: "concept",
+      content: {
+        title: "Cộng hai số",
+        rule: "Cộng từ phải sang trái, nhớ sang hàng kế tiếp",
+        points: ["6 sáu · 7 bảy · 8 tám"],
+      },
+    };
+    expect(planSlideSpeech(bai)).toContain("Cộng từ phải sang trái");
+  });
+
+  it("slide Quan sát: không đọc dòng đã bị bỏ vì hình nói lại", () => {
+    const bai = {
+      type: "visual",
+      content: {
+        text: "Quan sát bảng dưới đây\nBóng đá 12 · Cầu lông 8 · Bơi 5",
+        table: {
+          headers: ["Môn", "Số bạn"],
+          rows: [
+            ["Bóng đá", 12],
+            ["Cầu lông", 8],
+            ["Bơi", 5],
+          ],
+        },
+      },
+    };
+    const doc = planSlideSpeech(bai);
+    expect(doc).toBe("Quan sát bảng dưới đây");
+    expect(doc).not.toContain("Bóng đá 12");
+  });
+
+  it("slide Bài học đọc NGUYÊN `text` (đừng bỏ chữ bé đang thấy)", () => {
+    const bai = {
+      type: "story",
+      content: { text: "Ngày xưa có một chú thỏ." },
+    };
+    expect(planSlideSpeech(bai)).toBe("Ngày xưa có một chú thỏ.");
+  });
+
+  it("slide tương tác / thiếu dữ liệu ⇒ không đọc, không lỗi", () => {
+    expect(planSlideSpeech(null)).toBe("");
+    expect(planSlideSpeech({ type: "interactive", content: {} })).toBe("");
+    expect(planSlideSpeech({ type: "concept" })).toBe("");
   });
 });

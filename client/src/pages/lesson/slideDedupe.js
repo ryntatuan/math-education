@@ -116,3 +116,39 @@ export function planVisualText(content) {
   // Không có nhãn để thay: giữ dòng đầu làm tiêu đề (thà lặp còn hơn mất tiêu đề).
   return { title: lines[0] ?? "", steps: kept, hideCaption: false };
 }
+
+/**
+ * Quyết định hiển thị cho slide KHÁI NIỆM (`concept`) — MỘT nguồn luật cho HAI nơi:
+ *   • `ConceptSlide` vẽ ô nhấn mạnh ⭐ và câu giải thích;
+ *   • `LessonPage` đọc bài tự động (`autoSpeakLesson`).
+ *
+ * 🔴 VÌ SAO PHẢI DÙNG CHUNG (lỗi thật, phát hiện 2026-09-28): `LessonPage` tự dựng lại chuỗi để
+ * đọc nên nó **vẫn đọc ô ⭐ đã bị ẩn** và câu giải thích đã bị ẩn ⇒ trên màn hình không có chữ
+ * mà loa vẫn đọc, bé nghe đúng một thông tin hai lần. Hai nơi cùng quyết định thì phải cùng một hàm.
+ *
+ * Luật: bỏ khối NGẮN khi khối DÀI đã chứa trọn nội dung của nó (`coversAll`). Chiều ngược lại
+ * KHÓA — bỏ khối dài vì khối ngắn nằm trong nó là MẤT thông tin. Dữ liệu không bị sửa.
+ */
+export function planConceptText(content) {
+  const pointsText = Array.isArray(content?.points)
+    ? content.points.join(" · ")
+    : "";
+  const stepsText = Array.isArray(content?.steps)
+    ? content.steps.map((s) => `${s.title ?? ""} ${s.desc ?? ""}`).join(" · ")
+    : "";
+  const ruleText = String(content?.rule ?? "");
+  const explanationText = String(content?.explanation ?? "");
+  const ruleLap = Boolean(
+    ruleText &&
+    ((pointsText && coversAll(pointsText, ruleText)) ||
+      (stepsText && coversAll(stepsText, ruleText))),
+  );
+  return {
+    ruleText,
+    explanationText,
+    showRule: Boolean(ruleText) && !ruleLap,
+    showExplanation:
+      Boolean(explanationText) &&
+      !(ruleText && coversAll(ruleText, explanationText)),
+  };
+}
