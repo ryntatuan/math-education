@@ -2,6 +2,14 @@
   "version": 2,
   "buildCommand": "cd client && npm install && npm run build",
   "outputDirectory": "client/dist",
+  "redirects": [
+    {
+      "source": "/downloads/ToanVui.apk",
+      "destination": "https://github.com/ryntatuan/math-education/releases/latest/download/ToanVui.apk",
+      "permanent": false
+    },
+    { "source": "/ToanVui.apk", "destination": "/downloads/ToanVui.apk", "permanent": false }
+  ],
   "rewrites": [
     { "source": "/api/tts", "destination": "/api/tts" },
     { "source": "/(.*)", "destination": "/index.html" }

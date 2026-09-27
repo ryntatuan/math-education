@@ -9,6 +9,14 @@ import { isIOS } from '../../utils/deviceHelper';
 import { APP_VERSION } from '../../config/appVersion'
 import './DownloadAppModal.css'
 
+/**
+ * Repo chứa APK phát hành. Đường dẫn tải trên web (`/downloads/ToanVui.apk`) CHUYỂN TIẾP về
+ * APK của bản phát hành mới nhất trong repo này (khai trong `vercel.json`), nên phần hiển thị
+ * thông tin cũng phải đọc từ đây cho khớp với file người dùng thật sự tải về.
+ */
+const REPO_OWNER = 'ryntatuan'
+const REPO_NAME = 'math-education'
+
 export default function DownloadAppModal() {
   const { isOpen, closeDownloadModal } = useDownloadModalStore()
   const [copied, setCopied] = useState(false)
@@ -20,10 +28,24 @@ export default function DownloadAppModal() {
     // Auto-detect user OS on modal open
     setActiveOS(isIOS() ? 'ios' : 'android')
 
-    fetch('/downloads/version.json')
+    // 🔴 Lấy thông tin APK từ BẢN PHÁT HÀNH MỚI NHẤT trên GitHub, KHÔNG đọc file trong repo.
+    // VÌ SAO (2026-09-28): đường dẫn `/downloads/ToanVui.apk` nay là chuyển tiếp sang APK của
+    // bản phát hành mới nhất (xem `vercel.json`) — GitHub Actions tự build mỗi lần push, nên
+    // không còn file APK nào trong repo để đọc. Đọc file tĩnh cũ là hiển thị số liệu đã cũ.
+    // Không lấy được (mất mạng / hết hạn mức API) thì modal vẫn hiện: số phiên bản lấy từ
+    // `APP_VERSION` của chính bản đang chạy, dung lượng và ngày thì để trống.
+    fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/releases/latest`)
       .then(res => res.ok ? res.json() : null)
-      .then(data => {
-        if (data) setApkMeta(data)
+      .then(rel => {
+        if (!rel) return
+        const apk = (rel.assets || []).find(a => a.name === 'ToanVui.apk')
+        setApkMeta({
+          version: String(rel.tag_name || '').replace(/^v/, '') || APP_VERSION,
+          fileSizeMB: apk ? `${(apk.size / (1024 * 1024)).toFixed(2)} MB` : undefined,
+          buildDateFormatted: rel.published_at
+            ? new Date(rel.published_at).toLocaleString('vi-VN')
+            : undefined,
+        })
       })
       .catch(() => {})
   }, [isOpen])

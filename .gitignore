@@ -6,11 +6,13 @@ node_modules/
 dist/
 dist-ssr/
 */dist/
+# KHÔNG commit APK vào repo.
+#
+# VÌ SAO (2026-09-28): file người dùng tải trên web KHÔNG còn lấy từ repo nữa — đường dẫn
+# `/downloads/ToanVui.apk` chuyển tiếp sang APK của bản phát hành MỚI NHẤT trên GitHub
+# (GitHub Actions tự build mỗi lần push). Trước đây mỗi lần phát hành phải commit APK ~7,5 MB
+# vào lịch sử git, mà file đó vẫn có thể lỗi thời nếu quên build ở máy.
 *.apk
-# Ngoại lệ DUY NHẤT: file APK phục vụ người dùng tải trên web (/downloads/ToanVui.apk).
-# Đừng thêm ngoại lệ thứ hai — đã từng có bản copy ở `client/public/ToanVui.apk` làm mỗi commit
-# nặng thêm ~7,5 MB và người dùng có thể tải nhầm bản cũ.
-!client/public/downloads/ToanVui.apk
 
 # Logs
 logs

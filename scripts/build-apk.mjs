@@ -17,9 +17,18 @@ const fallbackDebugApkPath = path.resolve(
   androidDir,
   "app/build/outputs/apk/debug/app-debug.apk",
 );
-const targetDownloadsDir = path.resolve(clientDir, "public/downloads");
+// 🔴 KHÔNG ghi APK vào `client/public/` nữa — APK KHÔNG nằm trong repo.
+//
+// VÌ SAO (người dùng chốt 2026-09-28: *“tôi chỉ cần 1 file apk trên web để người dùng down,
+// đảm bảo lúc nào cũng được update theo những sự thay đổi”*): file APK trên web nay là một
+// đường dẫn CHUYỂN TIẾP sang APK của bản phát hành mới nhất trên GitHub (xem `vercel.json`),
+// còn bản build ở đây chỉ để XEM THỬ ở máy (`client/dist/` — thư mục không commit).
+// Nhờ vậy: (1) file người dùng tải LUÔN là bản mới nhất, do GitHub Actions tự build mỗi lần
+// push; (2) mỗi lần phát hành không còn đẩy ~7,5 MB APK vào lịch sử git.
+// Hệ quả có chủ ý: KHÔNG chạy được đường dẫn tải khi mở `client/dist` bằng máy chủ tĩnh khác —
+// trên web thật thì `vercel.json` lo phần chuyển tiếp.
+const targetDownloadsDir = path.resolve(clientDir, "dist/downloads");
 const targetApk = path.resolve(targetDownloadsDir, "ToanVui.apk");
-const versionFile = path.resolve(targetDownloadsDir, "version.json");
 
 // Tự động tăng số cuối phiên bản (patch version) mỗi lần build, trừ khi có cờ --no-bump.
 //
@@ -120,7 +129,7 @@ try {
     : "./gradlew assembleRelease";
   execSync(gradlewCmd, { cwd: androidDir, stdio: "inherit" });
 
-  console.log("\n🚚 [4/4] Đang cập nhật file APK vào thư mục downloads...");
+  console.log("\n🚚 [4/4] Đang chép APK vào thư mục xem thử ở máy (client/dist)...");
   const finalApkPath = fs.existsSync(builtApkPath)
     ? builtApkPath
     : fallbackDebugApkPath;
@@ -132,47 +141,24 @@ try {
     fs.mkdirSync(targetDownloadsDir, { recursive: true });
   }
 
-  // 🔴 CHỈ MỘT FILE APK TRÊN WEB: `/downloads/ToanVui.apk`.
-  //
-  // VÌ SAO BỎ CÁC BẢN COPY (người dùng yêu cầu 2026-09-28: *“tôi chỉ cần 1 file apk trên web để
-  // người dùng down”*): trước đây mỗi lần build còn chép APK ra `public/ToanVui.apk` và
-  // `dist/ToanVui.apk` ⇒ web phục vụ cùng một file ở BA đường dẫn, mỗi commit nặng thêm ~15 MB,
-  // và người dùng có thể tải nhầm bản cũ ở đường dẫn khác.
-  // Mọi chỗ trong app đều đã trỏ về `/downloads/ToanVui.apk` (`DownloadAppModal`, `ProfilePage`).
+  // Chỉ một đường dẫn tải duy nhất cho người dùng: `/downloads/ToanVui.apk`
+  // (`DownloadAppModal` và `ProfilePage` đều trỏ về đó). Trên web thật, đường dẫn này do
+  // `vercel.json` chuyển tiếp sang APK của bản phát hành mới nhất — không có file trong repo.
   fs.copyFileSync(finalApkPath, targetApk);
-
-  const distDownloadsDir = path.resolve(clientDir, "dist/downloads");
-  if (fs.existsSync(distDownloadsDir)) {
-    fs.copyFileSync(
-      finalApkPath,
-      path.resolve(distDownloadsDir, "ToanVui.apk"),
-    );
-  }
 
   const stats = fs.statSync(targetApk);
   const sizeMB = (stats.size / (1024 * 1024)).toFixed(2);
   const now = new Date();
-  const currentVersion = getAppVersion();
-  const meta = {
-    appName: "Toán Vui",
-    version: currentVersion,
-    buildDate: now.toISOString(),
-    buildDateFormatted: now.toLocaleString("vi-VN"),
-    fileSizeBytes: stats.size,
-    fileSizeMB: `${sizeMB} MB`,
-    downloadUrl: "/downloads/ToanVui.apk",
-  };
-
-  fs.writeFileSync(versionFile, JSON.stringify(meta, null, 2), "utf-8");
 
   console.log("\n" + "=".repeat(55));
   console.log("🎉 BUILD HOÀN TẤT THÀNH CÔNG CẢ WEB & APK!");
-  console.log(`📁 File APK: client/public/downloads/ToanVui.apk`);
-  console.log(`📊 Dung lượng APK chuẩn: ${sizeMB} MB (gọn nhẹ)`);
+  console.log(`📁 APK xem thử ở máy: client/dist/downloads/ToanVui.apk`);
+  console.log(`📊 Dung lượng APK: ${sizeMB} MB`);
   console.log(`⏱️ Thời gian build: ${now.toLocaleString("vi-VN")}`);
   console.log(
-    `👉 Bạn chỉ cần: git commit & git push origin main là Vercel có ngay file download!`,
+    `👉 Push lên GitHub: Actions tự build APK và đường dẫn /downloads/ToanVui.apk trên web`,
   );
+  console.log(`   luôn lấy bản mới nhất — không phải cập nhật file APK trong repo nữa.`);
   console.log("=".repeat(55) + "\n");
 } catch (error) {
   console.warn("\n⚠️ Cảnh báo trong quá trình build APK:", error.message);

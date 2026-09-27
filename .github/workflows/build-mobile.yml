@@ -50,11 +50,12 @@ jobs:
         run: |
           npx cap sync android
 
-      # 🔴 BẮT BUỘC — giống hệt bước "stripApksFromDir" trong `scripts/build-apk.mjs`.
-      #    Trong repo có sẵn file APK của bản trước (`client/public/downloads/ToanVui.apk`);
-      #    Vite chép nó vào `dist`, rồi `cap sync` chép tiếp vào assets Android ⇒ Gradle
-      #    ĐÓNG GÓI LẪN APK VÀO APK (đệ quy). Bản 1.0.48: APK trên web 7,2 MB nhưng APK trên
-      #    Releases phình lên 21,4 MB vì thiếu bước này. Sửa ở một nơi thì phải sửa ở cả hai nơi.
+      # 🔴 LƯỚI AN TOÀN (giống bước "stripApksFromDir" trong `scripts/build-apk.mjs`).
+      #    Từ 2026-09-28 repo KHÔNG còn file APK nào, nên bước này thường không xoá gì — giữ lại
+      #    để nếu ai lỡ đặt APK vào `client/public/` thì Vite chép vào `dist`, `cap sync` chép vào
+      #    assets Android, và Gradle sẽ ĐÓNG GÓI LẪN APK VÀO APK (đệ quy). Bản 1.0.48: APK trên web
+      #    7,2 MB nhưng APK trên Releases phình lên 21,4 MB vì thiếu bước này.
+      #    Sửa ở một nơi thì phải sửa ở cả hai nơi.
       - name: Strip embedded .apk files from Android assets
         run: |
           TARGET=./client/android/app/src/main/assets/public

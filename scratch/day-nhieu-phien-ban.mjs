@@ -22,7 +22,9 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, "..");
 const appVersionFile = path.join(root, "client/src/config/appVersion.js");
 const gradleFile = path.join(root, "client/android/app/build.gradle");
-const apkFile = path.join(root, "client/public/downloads/ToanVui.apk");
+// APK để đo dung lượng: đọc bản vừa build trong `client/dist` (APK KHÔNG còn nằm trong repo —
+// đường dẫn tải trên web chuyển tiếp sang bản phát hành mới nhất trên GitHub).
+const apkFile = path.join(root, "client/dist/downloads/ToanVui.apk");
 
 const readFile = (p) => fs.readFileSync(p, "utf-8");
 const readVersion = () =>

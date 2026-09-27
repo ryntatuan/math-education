@@ -16,11 +16,31 @@ android {
             ignoreAssetsPattern '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
         }
     }
+    // 🔴 KHOA KÝ CỐ ĐỊNH — dùng cho CẢ bản build ở máy và trên GitHub Actions.
+    //
+    // VÌ SAO (đo thật 2026-09-28): trước đây khai `signingConfigs.debug`, tức là khoá debug do
+    // MỖI MÁY tự sinh. Đo được: APK của Release v1.1.0 ký `89d9e762…`, của v1.1.1 ký `229e952b…`
+    // — khác nhau ⇒ người dùng đã cài KHÔNG cài đè được bản mới (Android bắt gỡ app), và hai
+    // APK cùng một phiên bản lại không thay thế được cho nhau.
+    // Nay dùng đúng file khoá mà các bản phát hành trên web đang được ký ⇒ mọi bản về sau cùng
+    // một chữ ký, cài đè được lên nhau.
+    //
+    // ⚠️ Đây là khoá DEBUG (alias `androiddebugkey`, mật khẩu `android` — công khai theo quy ước
+    //    của Android, không phải bí mật). Ai có repo cũng ký được APK mang chữ ký này. Muốn chặt
+    //    hơn thì phải tạo khoá riêng, nhưng khi đó MỌI người dùng hiện tại phải gỡ app cài lại.
+    signingConfigs {
+        release {
+            storeFile file('toanvui.keystore')
+            storePassword 'android'
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
             shrinkResources false
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
