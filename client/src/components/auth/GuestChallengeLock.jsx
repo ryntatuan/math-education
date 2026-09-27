@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Trophy, Flame, Gift, Lock, ArrowRight, Sparkles, Star, Users, Award, ShieldCheck } from 'lucide-react'
+import { Trophy, Lock, ArrowRight, ShieldCheck } from 'lucide-react';
 import Button from '../ui/Button'
 import GoogleIcon from '../common/GoogleIcon'
 import useAuthStore from '../../store/useAuthStore'
@@ -37,7 +37,7 @@ export default function GuestChallengeLock({ title, subtitle }) {
     },
   ]
 
-  const sampleRivals = [
+  const _sampleRivals = [
     { rank: 1, name: 'Bảo Nam', avatar: '🚀', xp: '185 XP', badge: '🥇' },
     { rank: 2, name: 'Tuệ Lâm', avatar: '🦄', xp: '160 XP', badge: '🥈' },
     { rank: 3, name: 'Khánh Vy', avatar: '🍓', xp: '140 XP', badge: '🥉' },

@@ -307,7 +307,7 @@ const useProgressStore = create(
 
       // Mistakes / Spaced Repetition Actions
       recordMistake: (questionObj) => {
-        const today = new Date().toISOString().split("T")[0];
+        const _today = new Date().toISOString().split("T")[0];
         const state = get();
         const queue = state.mistakesQueue || [];
 

@@ -14,7 +14,7 @@ class SoundEngine {
       try {
         osc.stop()
         osc.disconnect()
-      } catch (e) {
+      } catch {
         // ignore
       }
     })

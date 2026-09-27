@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Home, PenTool, Gamepad2, Trophy, ShieldCheck, Volume2, VolumeX, Sparkles, Headphones } from 'lucide-react'
+import { Home, PenTool, Gamepad2, Trophy, ShieldCheck, Volume2, VolumeX, Headphones } from 'lucide-react';
 import MascotIcon from '../common/MascotIcon'
 import soundManager from '../../utils/soundManager'
 import useUserStore from '../../store/useUserStore'

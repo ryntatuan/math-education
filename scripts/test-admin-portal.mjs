@@ -3173,6 +3173,43 @@ if (!ONLY_STATIC) {
 const ICON = { PASS: "✅", FAIL: "❌", SKIP: "⏭️ ", MANUAL: "👤" };
 const pad = (s, n) => String(s).padEnd(n);
 
+// ── S-33 · NHÃN DẪN TRANG SGK KHÔNG ĐƯỢC LỘT RA GIAO DIỆN ──────────────────────
+//
+// 🔴 VÌ SAO CẦN CỔNG NÀY: nhãn `(SGK tr.6)` nằm trong chính chuỗi hiển thị nên bé thấy
+// trên slide (người dùng báo 2026-09-26). Việc ẩn nó KHÔNG sửa file dữ liệu mà nằm ở
+// **dây nối** trong `contentSource.layGrades()` — ai đó gỡ một dòng ở đó là nhãn hiện
+// lại ngay, mà unit test cho hàm thì vẫn xanh (nó kiểm hàm, không kiểm dây nối).
+await test(
+  "S-33",
+  "TC-0.9 — Nhãn SGK không lọt ra UI (dây nối còn nguyên)",
+  async () => {
+    const util = read("client/src/utils/stripTextbookRefs.js");
+    assert(
+      /export function stripTextbookRefs\b/.test(util),
+      "thiếu hàm stripTextbookRefs trong client/src/utils/stripTextbookRefs.js",
+    );
+    assert(
+      /stripTextbookRefsInTree\s*\(/.test(
+        read("client/src/data/contentSource.js"),
+      ),
+      "contentSource.js KHÔNG còn GỌI stripTextbookRefsInTree( ⇒ nhãn (SGK tr.x) sẽ hiện lại trên slide",
+    );
+    const { stripTextbookRefs } =
+      await import("../client/src/utils/stripTextbookRefs.js");
+    for (const mau of [
+      "Năm bạn cùng học Toán với bé (SGK tr.6)",
+      "SGK (tr.6–7): làm quen năm bạn",
+      "Viết số và đọc số — bảng như SGK tr.4",
+      "Bé đã hoàn thành chương trình Toán Lớp 1 theo đúng SGK.",
+    ]) {
+      assert(
+        !/SGK/i.test(stripTextbookRefs(mau)),
+        `còn nhãn SGK sau khi lọc: "${mau}"`,
+      );
+    }
+  },
+);
+
 console.log("\n" + "─".repeat(78));
 console.log("  AUTOMATION TEST — ADMIN PORTAL");
 console.log("─".repeat(78));

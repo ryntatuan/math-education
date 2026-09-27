@@ -380,7 +380,7 @@ const useLeagueStore = create(
         const end = new Date(get().weekEndDate);
 
         if (now >= end) {
-          const { currentTier, userWeeklyXp } = get();
+          const { currentTier, _userWeeklyXp } = get();
           const currentTierIdx = LEAGUE_TIERS.findIndex(
             (t) => t.id === currentTier,
           );
@@ -442,7 +442,7 @@ const useLeagueStore = create(
 
           try {
             useProgressStore.getState().setLeagueXp?.(newXp);
-          } catch (e) {}
+          } catch {}
 
           return { userWeeklyXp: newXp };
         });
@@ -496,7 +496,7 @@ const useLeagueStore = create(
             const userState = useUserStore.getState();
             userName = userState.nickname;
             userAvatar = userState.avatar;
-          } catch (e) {}
+          } catch {}
         }
 
         let effectiveUserId =

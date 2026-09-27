@@ -249,7 +249,7 @@ export const useAuthStore = create((set, get) => ({
       usePetStore.getState().resetPet?.();
       try {
         localStorage.removeItem("math_edu_active_child_id");
-      } catch (e) {}
+      } catch {}
     } catch (e) {
       console.error("Lỗi đăng xuất:", e);
     }

@@ -1,14 +1,5 @@
 import { useEffect } from "react";
-import { motion } from "framer-motion";
-import {
-  CheckCircle2,
-  Circle,
-  Gift,
-  Sparkles,
-  ArrowRight,
-  Lock,
-  LogIn,
-} from "lucide-react";
+import { CheckCircle2, Circle, Sparkles, Lock } from "lucide-react";
 import Button from "../ui/Button";
 import GoogleIcon from "../common/GoogleIcon";
 import ProgressBar from "../ui/ProgressBar";

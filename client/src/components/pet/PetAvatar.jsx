@@ -136,7 +136,7 @@ const EARS = {
     </>
   ),
   // Rồng: 2 sừng vàng
-  horns: (fur) => (
+  horns: (_fur) => (
     <>
       <path
         d="M36 30 q-8 -14 0 -20 q8 8 8 18 Z"

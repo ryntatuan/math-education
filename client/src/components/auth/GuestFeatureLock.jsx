@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
-import { Lock, ArrowRight, ArrowLeft, Sparkles, ShieldCheck, CheckCircle2 } from 'lucide-react'
+import { Lock, ArrowRight, ArrowLeft, Sparkles, ShieldCheck } from 'lucide-react';
 import Button from '../ui/Button'
 import CoinIcon from '../common/CoinIcon'
 import GoogleIcon from '../common/GoogleIcon'

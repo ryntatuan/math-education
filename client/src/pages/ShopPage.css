@@ -90,6 +90,24 @@
   border-color: var(--color-primary);
 }
 
+/* CHƯA ĐỦ XU — thẻ phải TRÔNG KHÁC HẲN thẻ mua được.
+   🔴 Người dùng báo 2026-09-27: "không đủ tiền mà vẫn sáng lên chỗ Rồng Nhỏ". Trước đây
+   mọi thẻ đều sáng như nhau, bé chỉ biết thiếu tiền SAU KHI bấm. Nay thẻ mờ + xám, nút đổi
+   thành nhãn "Chưa đủ Xu", giá ghi luôn số còn thiếu. Vẫn bấm được để bé đọc lời nhắc. */
+.shop-card.locked {
+  opacity: 0.55;
+  filter: grayscale(0.45);
+  box-shadow: none;
+}
+
+.shop-card.locked:hover {
+  transform: none;
+}
+
+.shop-card.locked .shop-price-tag {
+  color: #868e96;
+}
+
 .shop-item-emoji {
   font-size: 4rem;
   padding: var(--space-3) 0;

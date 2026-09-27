@@ -1,17 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import {
-  Lightbulb,
-  Sparkles,
-  HelpCircle,
-  Heart,
-  ArrowRight,
-  X,
-  BookOpen,
-  RefreshCw,
-  Coins,
-} from "lucide-react";
+import { Sparkles, ArrowRight, X, BookOpen, RefreshCw } from "lucide-react";
 import MascotIcon from "../common/MascotIcon";
 import CoinIcon from "../common/CoinIcon";
 import useUserStore from "../../store/useUserStore";
@@ -107,12 +97,12 @@ function generateMiniQuiz(grade) {
 }
 
 export default function MascotBubble({
-  text,
+  _text,
   mood = "happy",
   show = true,
   position = "bottom-right",
   size = "md",
-  onClose,
+  _onClose,
   className = "",
   interactive = undefined,
 }) {

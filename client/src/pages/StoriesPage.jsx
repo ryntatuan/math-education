@@ -1,18 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  ArrowLeft,
-  ArrowRight,
-  Sparkles,
-  Volume2,
-  CheckCircle2,
-  XCircle,
-  Award,
-  BookOpen,
-  RotateCcw,
-  Coins,
-  Star,
-} from "lucide-react";
+import { ArrowLeft, ArrowRight, Volume2, CheckCircle2, XCircle, RotateCcw, Coins, Star } from "lucide-react";
 import Button from "../components/ui/Button";
 import ProgressBar from "../components/ui/ProgressBar";
 import MATH_STORIES from "../data/storyData";

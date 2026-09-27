@@ -1,18 +1,10 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import {
-  ArrowLeft,
-  Lock,
-  CheckCircle2,
-  Play,
-  RotateCcw,
-  ArrowRight,
-} from "lucide-react";
+import { ArrowLeft, Lock, Play, RotateCcw, ArrowRight } from "lucide-react";
 import Card from "../components/ui/Card";
 import Button from "../components/ui/Button";
-import Badge from "../components/ui/Badge";
-import ProgressBar, { StarsDisplay } from "../components/ui/ProgressBar";
+import { StarsDisplay } from "../components/ui/ProgressBar";
 import useUserStore from "../store/useUserStore";
 import useProgressStore from "../store/useProgressStore";
 import curriculum, { getGrade, getChapter } from "../data/curriculum";
@@ -105,8 +97,8 @@ export default function GradePage() {
   );
 }
 
-function ChapterCard({ chapter, index, gradeId, onClick }) {
-  const { getChapterProgress, completedLessons } = useProgressStore();
+function ChapterCard({ chapter, index, _gradeId, onClick }) {
+  const { getChapterProgress, _completedLessons } = useProgressStore();
   // `??` chứ không `||`: chương bị xoá hết bài có `length === 0`, dễ bị ghi đè thành
   // một con số mặc định rồi hiện "0/12 bài" cho một chương trống.
   const totalLessonsCount =
@@ -253,7 +245,7 @@ export function ChapterPage() {
 
   const totalLessonsCount =
     chapter.lessons?.length ?? chapter.totalLessons ?? 0;
-  const progress = getChapterProgress(
+  const _progress = getChapterProgress(
     chapter.id,
     totalLessonsCount,
     (chapter.lessons ?? []).map((l) => l.id),

@@ -1,13 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import {
-  ShoppingBag,
-  Sparkles,
-  Check,
-  Coins,
-  Utensils,
-  Shirt,
-} from "lucide-react";
+import { Check, Coins, Utensils, Shirt } from "lucide-react";
 import Button from "../components/ui/Button";
 import CoinIcon from "../components/common/CoinIcon";
 import useUserStore from "../store/useUserStore";
@@ -208,11 +201,14 @@ export default function ShopPage() {
           {SHOP_AVATARS.map((item) => {
             const isOwned = ownedAvatars.includes(item.emoji);
             const isEquipped = avatar === item.emoji;
+            // 🔴 KHÔNG ĐỦ XU THÌ KHÔNG ĐƯỢC "SÁNG": trước đây thẻ nào cũng trông như mua
+            // được, bé bấm mới biết thiếu tiền (người dùng báo 2026-09-27).
+            const canAfford = isOwned || coins >= item.price;
 
             return (
               <motion.div
                 key={item.id}
-                className={`shop-card ${isEquipped ? "equipped" : isOwned ? "owned" : ""}`}
+                className={`shop-card ${isEquipped ? "equipped" : isOwned ? "owned" : ""} ${canAfford ? "" : "locked"}`}
                 whileHover={{ y: -6 }}
               >
                 <div className="shop-item-emoji">{item.emoji}</div>
@@ -221,13 +217,23 @@ export default function ShopPage() {
                   {!isOwned && (
                     <span className="shop-price-tag">
                       <CoinIcon size={14} />{" "}
-                      <span className="number">{item.price} Xu</span>
+                      <span className="number">
+                        {canAfford
+                          ? `${item.price} Xu`
+                          : `Thiếu ${item.price - coins} Xu`}
+                      </span>
                     </span>
                   )}
                 </div>
                 <Button
                   variant={
-                    isEquipped ? "ghost" : isOwned ? "primary" : "warning"
+                    isEquipped
+                      ? "ghost"
+                      : isOwned
+                        ? "primary"
+                        : canAfford
+                          ? "warning"
+                          : "ghost"
                   }
                   size="md"
                   className="shop-buy-btn"
@@ -239,8 +245,10 @@ export default function ShopPage() {
                     </>
                   ) : isOwned ? (
                     "Chọn dùng"
-                  ) : (
+                  ) : canAfford ? (
                     "Mua ngay"
+                  ) : (
+                    "Chưa đủ Xu"
                   )}
                 </Button>
               </motion.div>
@@ -256,11 +264,13 @@ export default function ShopPage() {
             {PET_TYPES.map((pet) => {
               const isOwned = ownedPets.includes(pet.id);
               const isEquipped = hasPet && petType === pet.id;
+              // Cùng luật với hình đại diện: chưa đủ Xu thì thẻ phải MỜ đi.
+              const canAfford = isOwned || coins >= pet.price;
 
               return (
                 <motion.div
                   key={pet.id}
-                  className={`shop-card ${isEquipped ? "equipped" : isOwned ? "owned" : ""}`}
+                  className={`shop-card ${isEquipped ? "equipped" : isOwned ? "owned" : ""} ${canAfford ? "" : "locked"}`}
                   whileHover={{ y: -6 }}
                 >
                   <div className="shop-item-emoji">
@@ -275,13 +285,23 @@ export default function ShopPage() {
                     {!isOwned && (
                       <span className="shop-price-tag">
                         <CoinIcon size={14} />{" "}
-                        <span className="number">{pet.price} Xu</span>
+                        <span className="number">
+                          {canAfford
+                            ? `${pet.price} Xu`
+                            : `Thiếu ${pet.price - coins} Xu`}
+                        </span>
                       </span>
                     )}
                   </div>
                   <Button
                     variant={
-                      isEquipped ? "ghost" : isOwned ? "primary" : "warning"
+                      isEquipped
+                        ? "ghost"
+                        : isOwned
+                          ? "primary"
+                          : canAfford
+                            ? "warning"
+                            : "ghost"
                     }
                     size="md"
                     className="shop-buy-btn"
@@ -293,8 +313,10 @@ export default function ShopPage() {
                       </>
                     ) : isOwned ? (
                       "Chọn"
-                    ) : (
+                    ) : canAfford ? (
                       "Nhận nuôi"
+                    ) : (
+                      "Chưa đủ Xu"
                     )}
                   </Button>
                 </motion.div>
@@ -306,10 +328,11 @@ export default function ShopPage() {
           <div className="shop-items-grid">
             {[...FOOD_TYPES, ...TOY_TYPES].map((item) => {
               const isToy = TOY_TYPES.some((t) => t.id === item.id);
+              const canAfford = coins >= item.price;
               return (
                 <motion.div
                   key={item.id}
-                  className="shop-card"
+                  className={`shop-card ${canAfford ? "" : "locked"}`}
                   whileHover={{ y: -6 }}
                 >
                   <div className="shop-item-emoji">{item.icon}</div>
@@ -321,16 +344,19 @@ export default function ShopPage() {
                         : `+${item.hungerGain} Độ No · +${item.expGain} XP`}
                     </p>
                     <span className="shop-price-tag number">
-                      <CoinIcon size={14} /> {item.price} Xu
+                      <CoinIcon size={14} />{" "}
+                      {canAfford
+                        ? `${item.price} Xu`
+                        : `Thiếu ${item.price - coins} Xu`}
                     </span>
                   </div>
                   <Button
-                    variant="warning"
+                    variant={canAfford ? "warning" : "ghost"}
                     size="md"
                     className="shop-buy-btn"
                     onClick={() => handleBuyItem(item, isToy)}
                   >
-                    Mua ngay
+                    {canAfford ? "Mua ngay" : "Chưa đủ Xu"}
                   </Button>
                 </motion.div>
               );

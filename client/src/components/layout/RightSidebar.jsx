@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { Download, Trophy } from 'lucide-react'
+import { Download } from 'lucide-react';
 import PetWidget from '../pet/PetWidget'
 import DailyQuestsCard from '../quests/DailyQuestsCard'
 import useLeagueStore, { LEAGUE_TIERS } from '../../store/useLeagueStore'

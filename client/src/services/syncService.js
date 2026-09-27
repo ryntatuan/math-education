@@ -30,7 +30,7 @@ function getLocalStoreData(key) {
     if (!raw) return null;
     const parsed = JSON.parse(raw);
     return parsed?.state || parsed;
-  } catch (e) {
+  } catch {
     return null;
   }
 }
@@ -195,7 +195,7 @@ export const syncService = {
                   .from("leaderboard")
                   .update({ name: googleDisplayName })
                   .eq("id", activeChild.id);
-              } catch (lbErr) {}
+              } catch {}
             }
           } catch (e) {
             console.warn("Không thể auto-update tên Google vào hồ sơ bé:", e);

@@ -204,7 +204,7 @@ export function CircleParts({
   const PL = pointLabels && typeof pointLabels === "object" ? pointLabels : {};
   const r = num(radius, null);
   const d = num(diameter, null);
-  const rr = r ?? (d ? d / 2 : 5);
+  const _rr = r ?? (d ? d / 2 : 5);
   const text =
     r !== null ? `Bán kính = ${r}` : d !== null ? `Đường kính = ${d}` : "";
   const cx = 170;

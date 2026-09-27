@@ -125,7 +125,7 @@ class SpeechEngine {
     // 1. Remove emojis, pictographs, and visual decor icons
     try {
       t = t.replace(/\p{Extended_Pictographic}/gu, '')
-    } catch (e) {
+    } catch {
       t = t.replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}\u{2B50}]/gu, '')
     }
 
@@ -396,7 +396,7 @@ class SpeechEngine {
       try {
         this.currentAudio.pause()
         this.currentAudio.currentTime = 0
-      } catch (e) {}
+      } catch {}
       this.currentAudio = null
     }
 

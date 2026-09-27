@@ -1,31 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import {
-  Sparkles,
-  Gamepad2,
-  BookOpen,
-  Trophy,
-  ArrowRight,
-  RotateCcw,
-  Play,
-  CheckCircle2,
-  Flame,
-  Star,
-  Download,
-  Smartphone,
-} from "lucide-react";
-import MascotBubble from "../components/mascot/MascotBubble";
-import PetWidget from "../components/pet/PetWidget";
-import DailyQuestsCard from "../components/quests/DailyQuestsCard";
+import { Gamepad2, BookOpen, Trophy, ArrowRight, RotateCcw, Play } from "lucide-react";
 import useUserStore from "../store/useUserStore";
 import useProgressStore from "../store/useProgressStore";
 import useLeagueStore, { LEAGUE_TIERS } from "../store/useLeagueStore";
 import useDownloadModalStore from "../store/useDownloadModalStore";
 import { Capacitor } from "@capacitor/core";
-import { detectDeviceOS, isIOS } from "../utils/deviceHelper";
 import RightSidebar from "../components/layout/RightSidebar";
-import { APP_VERSION } from "../config/appVersion";
 import curriculum from "../data/curriculum";
 import soundManager from "../utils/soundManager";
 import "./HomePage.css";
@@ -47,12 +29,12 @@ export default function HomePage() {
   const { currentTier } = useLeagueStore();
 
   const [semesterFilter, setSemesterFilter] = useState("all"); // 'all' | 'sem1' | 'sem2'
-  const { openDownloadModal } = useDownloadModalStore();
-  const isNative = Capacitor.isNativePlatform();
+  const { _openDownloadModal } = useDownloadModalStore();
+  const _isNative = Capacitor.isNativePlatform();
 
-  const currentGradeInfo =
+  const _currentGradeInfo =
     ALL_GRADES.find((g) => g.id === grade) || ALL_GRADES[0];
-  const currentTierInfo =
+  const _currentTierInfo =
     LEAGUE_TIERS.find((t) => t.id === currentTier) || LEAGUE_TIERS[0];
 
   // Dữ liệu chuẩn xác 10 chương từ curriculum.js cho mỗi lớp

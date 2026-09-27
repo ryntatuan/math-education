@@ -1,23 +1,11 @@
 import { useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import {
-  X,
-  Smartphone,
-  Download,
-  Check,
-  Copy,
-  ShieldCheck,
-  HelpCircle,
-  ArrowDownToLine,
-  Share2,
-  Sparkles,
-  ExternalLink
-} from 'lucide-react'
+import { X, Check, Copy, ShieldCheck, HelpCircle, ArrowDownToLine } from 'lucide-react';
 import { Capacitor } from '@capacitor/core'
 import soundManager from '../../utils/soundManager'
 import useDownloadModalStore from '../../store/useDownloadModalStore'
-import { detectDeviceOS, isIOS } from '../../utils/deviceHelper'
+import { isIOS } from '../../utils/deviceHelper';
 import { APP_VERSION } from '../../config/appVersion'
 import './DownloadAppModal.css'
 

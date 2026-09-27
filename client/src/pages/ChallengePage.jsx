@@ -2,23 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { recordAttempt } from "../services/attemptService";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  Flame,
-  Gift,
-  CheckCircle2,
-  ArrowRight,
-  Star,
-  Sparkles,
-  RotateCcw,
-  RefreshCw,
-  Clock,
-  ArrowUpCircle,
-  ArrowDownCircle,
-  Users,
-  Award,
-} from "lucide-react";
+import { Flame, CheckCircle2, ArrowRight, Sparkles, RotateCcw, RefreshCw, Clock, ArrowUpCircle, ArrowDownCircle } from "lucide-react";
 import Button from "../components/ui/Button";
-import Card from "../components/ui/Card";
 import ProgressBar from "../components/ui/ProgressBar";
 import useUserStore from "../store/useUserStore";
 import useProgressStore from "../store/useProgressStore";

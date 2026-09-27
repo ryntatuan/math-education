@@ -9,20 +9,6 @@
  * Nguyên tắc giống `CoreVisuals.jsx`: SVG nội tuyến + `viewBox` + `width="100%"`; mọi tham
  * số có mặc định; KHÔNG bao giờ để trắng khung vì một giá trị lạ.
  */
-import { useEffect, useState } from "react";
-import {
-  useInteractive,
-  useFillSlots,
-  slotLook,
-  FillBar,
-} from "./interactiveFill";
-import {
-  CARD_STYLE,
-  CAPTION_STYLE,
-  captionText,
-  svgFit,
-  ngatDong,
-} from "./visualTheme";
 export { PlaneShape } from "./geometry/hinhPhang.jsx";
 export { Angle, CircleParts } from "./geometry/gocTron.jsx";
 export { ShapePicture, Solid } from "./geometry/hinhKhoi.jsx";

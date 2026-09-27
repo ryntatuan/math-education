@@ -1,26 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import {
-  Award,
-  Star,
-  Flame,
-  Trophy,
-  Coins,
-  User,
-  Sparkles,
-  Check,
-  Edit2,
-  ShoppingBag,
-  LogIn,
-  LogOut,
-  ArrowRight,
-  BookOpen,
-  Download,
-  Smartphone,
-} from "lucide-react";
+import { Check, Edit2, ShoppingBag, LogOut, ArrowRight, BookOpen, Download, Smartphone } from "lucide-react";
 import Button from "../components/ui/Button";
-import Card from "../components/ui/Card";
 import ProgressBar from "../components/ui/ProgressBar";
 import CoinIcon from "../components/common/CoinIcon";
 import GoogleIcon from "../components/common/GoogleIcon";
@@ -31,7 +13,6 @@ import useAuthStore from "../store/useAuthStore";
 import soundManager from "../utils/soundManager";
 import { APP_VERSION } from "../config/appVersion";
 import { Capacitor } from "@capacitor/core";
-import { isAndroid } from "../utils/deviceHelper";
 import "./ProfilePage.css";
 
 const BADGES_DATA = [
@@ -137,7 +118,7 @@ export default function ProfilePage() {
     grade,
     setNickname,
     setAvatar,
-    setGrade,
+    _setGrade,
   } = useUserStore();
 
   const {

@@ -179,7 +179,7 @@ const useUserStore = create(
         // Also contribute to weekly league leaderboard
         try {
           useLeagueStore.getState().addLeagueXp(finalAmount);
-        } catch (e) {
+        } catch {
           // Ignore
         }
 

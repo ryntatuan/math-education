@@ -1,22 +1,10 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import {
-  Trophy,
-  Flame,
-  Clock,
-  ArrowUpCircle,
-  ArrowDownCircle,
-  Sparkles,
-  ShieldAlert,
-  ChevronRight,
-  Info,
-} from 'lucide-react'
-import Button from '../components/ui/Button'
+import { Clock, ArrowUpCircle, ArrowDownCircle } from 'lucide-react';
 import useLeagueStore, { LEAGUE_TIERS } from '../store/useLeagueStore'
 import useUserStore from '../store/useUserStore'
 import useAuthStore from '../store/useAuthStore'
 import GuestChallengeLock from '../components/auth/GuestChallengeLock'
-import soundManager from '../utils/soundManager'
 import './LeaderboardPage.css'
 
 export default function LeaderboardPage() {
@@ -28,7 +16,7 @@ export default function LeaderboardPage() {
     checkWeekReset,
     getStandings,
     fetchCloudLeaderboard,
-    isLoadingCloud,
+    _isLoadingCloud,
     lastPromotionStatus,
     dismissStatus,
   } = useLeagueStore()

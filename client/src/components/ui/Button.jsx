@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion';
 import './Button.css'
 
 export default function Button({
@@ -17,7 +17,7 @@ export default function Button({
   className = '',
   ...props
 }) {
-  const [isPressed, setIsPressed] = useState(false)
+  const [_isPressed, _setIsPressed] = useState(false)
 
   const classes = [
     'btn',

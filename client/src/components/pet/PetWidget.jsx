@@ -54,7 +54,7 @@ export default function PetWidget({ compact = false }) {
     renamePet,
   } = state;
 
-  const { progressQuest } = useProgressStore();
+  const { _progressQuest } = useProgressStore();
   // Xu để nhận nuôi thú có giá (Cú con miễn phí, 3 con còn lại phải trả Xu)
   const { coins, spendCoins } = useUserStore();
 
@@ -99,7 +99,7 @@ export default function PetWidget({ compact = false }) {
     Math.min(hasPet ? currentHunger : 100, hasPet ? currentHappiness : 100),
   );
 
-  const currentPetInfo =
+  const _currentPetInfo =
     PET_TYPES.find((p) => p.id === petType) || PET_TYPES[0];
   // Ngoại hình đang trưng: bé tự chọn được, mặc định theo cấp
   const evolution = getActiveEvolution(level, petEvolution);

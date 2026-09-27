@@ -3,15 +3,12 @@
 // Aligned 100% with Vietnam Primary Education Curriculum (SGK Chuan Bo Giao Duc)
 import React from "react";
 import { CALC_OP } from "./exercises/topics.js";
-import { EMOJIS } from "./exercises/topics.js";
 import { TOPICS } from "./exercises/topics.js";
 import { buildCalculation } from "./exercises/helpers.js";
 import { buildNumberMaze } from "./exercises/helpers.js";
-import { digitPlaceOptions } from "./exercises/helpers.js";
 import { generateOptions } from "./exercises/helpers.js";
 import { mazeRule } from "./exercises/helpers.js";
 import { randInt } from "./exercises/helpers.js";
-import { renderShapeVisual } from "./exercises/helpers.js";
 import { shuffle } from "./exercises/helpers.js";
 import { withDistinctOptions } from "./exercises/helpers.js";
 export { mazeTopicId, renderShapeVisual } from "./exercises/helpers.js";

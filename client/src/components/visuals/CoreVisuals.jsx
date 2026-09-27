@@ -15,16 +15,7 @@
  *  3. Số liệu trên hình LẤY TỪ DỮ LIỆU, không viết cứng — để hình luôn khớp nội dung bài.
  */
 
-import {
-  CARD_STYLE,
-  CAPTION_STYLE,
-  captionText,
-  svgFit,
-  VUA_HINH,
-  ACCENT,
-  ACCENT_SOFT,
-  ACCENT_TINT,
-} from "./visualTheme";
+import { CARD_STYLE, CAPTION_STYLE, captionText, svgFit, VUA_HINH, ACCENT, ACCENT_TINT } from "./visualTheme";
 
 const PALETTE = {
   ink: "#1e293b",

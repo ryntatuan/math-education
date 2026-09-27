@@ -1,19 +1,8 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useSearchParams } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
-import {
-  ArrowLeft,
-  Play,
-  RotateCcw,
-  Trophy,
-  Zap,
-  Clock,
-  Star,
-  Flame,
-} from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowLeft, Play, RotateCcw, Clock } from "lucide-react";
 import Button from "../components/ui/Button";
-import Card from "../components/ui/Card";
-import ProgressBar from "../components/ui/ProgressBar";
 import useUserStore from "../store/useUserStore";
 import useProgressStore from "../store/useProgressStore";
 import useAuthStore from "../store/useAuthStore";

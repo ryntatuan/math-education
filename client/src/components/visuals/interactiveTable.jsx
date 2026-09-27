@@ -42,7 +42,7 @@ const P = {
 
 const card = CARD_STYLE;
 const caption = CAPTION_STYLE;
-const num = (v, fb) => (Number.isFinite(Number(v)) ? Number(v) : fb);
+const _num = (v, fb) => (Number.isFinite(Number(v)) ? Number(v) : fb);
 
 export function BangTinh({
   headers = ["Phép tính", "Kết quả"],
@@ -75,7 +75,7 @@ export function BangTinh({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fill.done, dungHopDong]);
 
-  const soCot = Math.max(2, headers.length);
+  const _soCot = Math.max(2, headers.length);
   // 🔴 ĐO ĐƯỢC (2026-09-26): khung 340 trong thẻ ~306 px ⇒ tỉ lệ 0,9 ⇒ hàng cao 28 đơn vị
   // chỉ còn ~18 px, ô “?” bấm không nổi và chữ bé hơn hẳn dãy nút (nút 44–50 px).
   // Nay khung hẹp lại (300) để tự phóng to + hàng cao 52 ⇒ ô “?” ≈ 45 px, chữ 19 đơn vị ≈ 19 px.

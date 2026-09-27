@@ -72,8 +72,8 @@ if (topic === "g4_divisibility") {
   const base = randInt(12, 90) * 10;
   const addVal = [0, 2, 5, 8][randInt(0, 3)];
   const testNum = base + addVal;
-  const isDiv2 = testNum % 2 === 0;
-  const isDiv5 = testNum % 5 === 0;
+  const _isDiv2 = testNum % 2 === 0;
+  const _isDiv5 = testNum % 5 === 0;
   return {
     question: `Số ${testNum} có chia hết cho 5 không?`,
     options: shuffle([

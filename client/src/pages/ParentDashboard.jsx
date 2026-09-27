@@ -1,26 +1,7 @@
 import { useState, useMemo, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  Lock,
-  ShieldCheck,
-  BarChart3,
-  Clock,
-  Flame,
-  Award,
-  BookOpen,
-  Settings,
-  KeyRound,
-  Download,
-  RefreshCw,
-  CheckCircle2,
-  AlertCircle,
-  HelpCircle,
-  TrendingUp,
-  Sparkles,
-  ChevronRight,
-} from "lucide-react";
+import { Lock, ShieldCheck, BarChart3, Clock, Flame, Award, BookOpen, Settings, Download, CheckCircle2, TrendingUp } from "lucide-react";
 import Button from "../components/ui/Button";
-import Card from "../components/ui/Card";
 import ProgressBar from "../components/ui/ProgressBar";
 import MascotIcon from "../components/common/MascotIcon";
 import useUserStore from "../store/useUserStore";
@@ -87,9 +68,9 @@ export default function ParentDashboard() {
   const {
     nickname,
     grade,
-    coins,
-    xp,
-    level,
+    _coins,
+    _xp,
+    _level,
     soundEnabled,
     parentPin,
     setParentPin,
@@ -97,7 +78,7 @@ export default function ParentDashboard() {
     setGrade,
   } = useUserStore();
 
-  const { completedLessons, currentStreak, exerciseResults, mistakesQueue } =
+  const { completedLessons, currentStreak, _exerciseResults, mistakesQueue } =
     useProgressStore();
 
   // PIN security check
