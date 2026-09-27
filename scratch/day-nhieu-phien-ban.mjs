@@ -25,8 +25,10 @@ const gradleFile = path.join(root, "client/android/app/build.gradle");
 const apkFile = path.join(root, "client/public/downloads/ToanVui.apk");
 
 const readFile = (p) => fs.readFileSync(p, "utf-8");
-const readVersion = () => (readFile(appVersionFile).match(/'([^']+)'/) ?? [])[1] ?? "?";
-const readVersionCode = () => (readFile(gradleFile).match(/versionCode\s+(\d+)/) ?? [])[1] ?? "?";
+const readVersion = () =>
+  (readFile(appVersionFile).match(/'([^']+)'/) ?? [])[1] ?? "?";
+const readVersionCode = () =>
+  (readFile(gradleFile).match(/versionCode\s+(\d+)/) ?? [])[1] ?? "?";
 
 const run = (cmd) => execSync(cmd, { cwd: root, stdio: "inherit" });
 
@@ -68,4 +70,6 @@ for (const [i, target] of targets.entries()) {
   console.log(`✓ Đã commit + push ${ver}`);
 }
 
-console.log(`\n${"=".repeat(60)}\nXONG — phiên bản hiện tại: ${readVersion()}\n${"=".repeat(60)}`);
+console.log(
+  `\n${"=".repeat(60)}\nXONG — phiên bản hiện tại: ${readVersion()}\n${"=".repeat(60)}`,
+);
