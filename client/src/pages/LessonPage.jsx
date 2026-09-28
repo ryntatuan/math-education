@@ -35,10 +35,19 @@ import { QuizSlide } from "./lesson/quizSlide.jsx";
 import { StorySlide } from "./lesson/storySlide.jsx";
 import { SummarySlide } from "./lesson/summarySlide.jsx";
 import { VisualSlide } from "./lesson/visualSlide.jsx";
+// Ba dạng bài mới lấy ý từ Duolingo Math (2026-09-28): chọn nhiều đáp án, ghép thẻ thành
+// phép tính, nối cặp. Luật chấm nằm ở `lesson/answerLogic.js` (hàm thuần, có test).
+import { MultiQuizSlide } from "./lesson/multiQuizSlide.jsx";
+import { BuildExpressionSlide } from "./lesson/buildExpressionSlide.jsx";
+import { MatchPairsSlide } from "./lesson/matchPairsSlide.jsx";
+// Hai dạng “tự trả lời” (2026-09-28, ảnh Duolingo thứ hai): bé TỰ nhập kết quả bằng bàn phím số,
+// và KÉO con trỏ trên trục số. Luật chấm vẫn ở `lesson/answerLogic.js`.
+import { TypeAnswerSlide } from "./lesson/typeAnswerSlide.jsx";
+import { NumberLineAnswerSlide } from "./lesson/numberLineAnswerSlide.jsx";
 // Chữ để đọc khi vào slide — hàm thuần, lấy CÙNG luật với phần vẽ (xem đầu file đó).
 import { planSlideSpeech } from "../utils/slideSpeech.js";
 
-// Sáu kiểu slide mà màn hình này ĐỌC ĐƯỢC — khớp đúng 6 nhánh vẽ bên dưới và danh
+// Chín kiểu slide mà màn hình này ĐỌC ĐƯỢC — khớp đúng các nhánh vẽ bên dưới và danh
 // sách `SLIDE_TYPES` của Admin. Dùng để nhận ra slide lạ thay vì vẽ ra thẻ trống.
 const LOAI_SLIDE_HOP_LE = [
   "story",
@@ -47,7 +56,36 @@ const LOAI_SLIDE_HOP_LE = [
   "dialogue",
   "quiz",
   "summary",
+  // Ba kiểu mới (2026-09-28) — bé TRẢ LỜI bằng cách bấm, nên phải trả lời xong mới sang slide sau.
+  "multiQuiz",
+  "buildExpression",
+  "matchPairs",
+  "typeAnswer",
+  "numberLineAnswer",
 ];
+
+/**
+ * Kiểu slide BẮT BUỘC trả lời trước khi sang slide sau.
+ * ⚠️ `summary` KHÔNG nằm ở đây (nút cuối bài vẫn phải bấm được), và `story/concept/visual`
+ * cũng không — bé chỉ đọc.
+ *
+ * 🔴 LUẬT KHI THÊM MỘT KIỂU VÀO ĐÂY (suýt gây lỗi thật khi rà lần cuối 2026-09-28): kiểu nào nằm
+ * trong danh sách này thì nhánh vẽ của nó **BẮT BUỘC** phải báo “đã trả lời” bằng MỘT trong hai
+ * cách — `setAnswerFeedback(...)` (như `quiz`) hoặc `setInteractiveDone(true)` (như năm kiểu mới).
+ * Không báo thì `canGoNext` mãi là `false` ⇒ **nút “Tiếp tục” khoá vĩnh viễn, bé kẹt ở slide đó**
+ * mà không có lỗi nào bung ra. `dialogue` nằm trong danh sách này từ trước nhưng callback của nó
+ * KHÔNG set gì — dữ liệu hiện tại chưa có slide hội thoại nào nên chưa ai gặp, nhưng đây đúng là
+ * quả mìn chờ nổ. Nay đã chặn ở cả hai đầu (nhánh `dialogue` tự báo, xem bên dưới).
+ */
+const PHAI_TRA_LOI = new Set([
+  "quiz",
+  "dialogue",
+  "multiQuiz",
+  "buildExpression",
+  "matchPairs",
+  "typeAnswer",
+  "numberLineAnswer",
+]);
 
 // Find lesson across all grades/chapters
 function findLesson(lessonId) {
@@ -125,6 +163,15 @@ export default function LessonPage() {
   const [showResult, setShowResult] = useState(false);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [answerFeedback, setAnswerFeedback] = useState(null); // 'correct' | 'wrong' | null
+  /** Ba dạng bài mới (chọn nhiều đáp án · ghép thẻ · nối cặp) tự quản trạng thái của chúng
+   *  — trang chỉ cần biết “slide này đã trả lời xong chưa” để mở nút Tiếp tục. */
+  const [interactiveDone, setInteractiveDone] = useState(false);
+  /**
+   * COMBO LIÊN TIẾP — lấy ý từ Duolingo (ảnh người dùng gửi 2026-09-28, “COMBO x4”).
+   * Đúng liên tiếp thì đếm lên; sai một câu là về 0. Chỉ là ĐỘNG VIÊN, không đổi phần thưởng:
+   * xu/XP vẫn theo `reward_configs` để bố mẹ chỉnh được trên Admin (xem cổng S-1/S-9).
+   */
+  const [combo, setCombo] = useState(0);
 
   // Phần thưởng THỰC SỰ đã cấp, lưu lại để hiển thị ở màn hình kết quả.
   // Không thể tính lại từ `isRelearning` ở render sau: completeLesson() đã
@@ -295,6 +342,7 @@ export default function LessonPage() {
       setCurrentSlide((prev) => prev + 1);
       setSelectedAnswer(null);
       setAnswerFeedback(null);
+      setInteractiveDone(false);
       window.scrollTo({ top: 0, left: 0, behavior: "instant" });
       if (document.documentElement) document.documentElement.scrollTop = 0;
       if (document.body) document.body.scrollTop = 0;
@@ -308,6 +356,7 @@ export default function LessonPage() {
       setCurrentSlide((prev) => prev - 1);
       setSelectedAnswer(null);
       setAnswerFeedback(null);
+      setInteractiveDone(false);
       window.scrollTo({ top: 0, left: 0, behavior: "instant" });
       if (document.documentElement) document.documentElement.scrollTop = 0;
       if (document.body) document.body.scrollTop = 0;
@@ -322,6 +371,7 @@ export default function LessonPage() {
     const isCorrect = answer === slide.content.answer;
 
     setAnswerFeedback(isCorrect ? "correct" : "wrong");
+    setCombo((c) => (isCorrect ? c + 1 : 0));
     setQuizAnswers((prev) => ({
       ...prev,
       [currentSlide]: { answer, correct: isCorrect },
@@ -359,7 +409,57 @@ export default function LessonPage() {
     }
   };
 
-  const canGoNext = !isQuizSlide || answerFeedback !== null;
+  /**
+   * CHẤM CHUNG cho ba dạng bài mới (`multiQuiz` · `buildExpression` · `matchPairs`) — lấy ý từ
+   * Duolingo Math.
+   *
+   * VÌ SAO MỘT HÀM DÙNG CHUNG: cả ba đều báo “đã xong, đúng hay sai” qua `onDone`. Nếu mỗi
+   * component tự gọi `recordAttempt`/`recordMistake`/`grantReward` thì ba bản logic chép tay
+   * — sớm muộn lệch nhau (bản quên `recordMistake` ⇒ Sổ Tay Ôn Bài Sai thiếu câu mà không ai biết).
+   *
+   * `dapAn` truyền vào CHỈ ĐỂ GHI SỔ câu sai (hiển thị lại cho bé ôn) — luật chấm vẫn nằm ở
+   * `lesson/answerLogic.js`, không nằm ở đây.
+   */
+  const handleInteractiveAnswer = ({ isCorrect, dapAn }) => {
+    setInteractiveDone(true);
+    setCombo((c) => (isCorrect ? c + 1 : 0));
+
+    const questionRef = `lesson:${lessonId}:${currentSlide}`;
+    recordAttempt({
+      ref: questionRef,
+      source: "lesson",
+      lessonId,
+      grade: found?.grade?.id || 1,
+      isCorrect,
+      startedAt: slideStartedAt.current,
+    });
+
+    if (isCorrect) {
+      soundManager.playCorrect();
+      grantReward("lesson.quiz_correct", lessonId);
+      return;
+    }
+
+    soundManager.playWrong();
+    const c = slide.content || {};
+    recordMistake({
+      lessonId,
+      ref: questionRef,
+      question: c.question || "",
+      options: c.options || (c.tiles ? c.tiles : null),
+      answer: dapAn ?? c.answer ?? null,
+      explanation:
+        c.mascotHint ||
+        (dapAn ? `Đáp án đúng là: ${dapAn}` : "Xem lại gợi ý của Rô-bốt nhé!"),
+      grade: found?.grade?.id || 1,
+      chapterTitle: found?.chapter?.name || "Bài học",
+    });
+  };
+
+  const canGoNext =
+    !PHAI_TRA_LOI.has(slide?.type) ||
+    answerFeedback !== null ||
+    interactiveDone;
 
   // Result Screen
   const isRelearning = completedLessons[lessonId] !== undefined;
@@ -539,6 +639,19 @@ export default function LessonPage() {
         </div>
       </div>
 
+      {/* COMBO LIÊN TIẾP — động viên kiểu Duolingo. Hiện từ chuỗi 2 câu đúng liên tiếp;
+          sai một câu là biến mất (state về 0). KHÔNG đổi xu/XP — chỉ là lời khen. */}
+      {combo >= 2 && (
+        <motion.div
+          className="lesson-combo-badge"
+          initial={{ scale: 0.6, opacity: 0, y: -8 }}
+          animate={{ scale: 1, opacity: 1, y: 0 }}
+          transition={{ type: "spring", stiffness: 320, damping: 18 }}
+        >
+          🔥 COMBO x{combo} — bé làm đúng liên tiếp!
+        </motion.div>
+      )}
+
       {/* Slide Content */}
       <AnimatePresence mode="wait">
         <motion.div
@@ -584,6 +697,9 @@ export default function LessonPage() {
                   soundManager.playCorrect();
                   grantReward("lesson.quiz_correct", lessonId);
                 }
+                // 🔴 MỞ KHOÁ NÚT “TIẾP TỤC”: `dialogue` nằm trong `PHAI_TRA_LOI`, mà trước đây
+                // nhánh này không báo gì ⇒ trả lời xong bé vẫn bị kẹt. Báo đúng như năm kiểu mới.
+                setInteractiveDone(true);
               }}
             />
           )}
@@ -600,6 +716,79 @@ export default function LessonPage() {
           )}
 
           {slide.type === "summary" && <SummarySlide content={slide.content} />}
+
+          {/* ── Ba dạng bài mới (2026-09-28), lấy ý từ Duolingo Math ──
+              Mỗi dạng tự quản trạng thái của nó rồi báo kết quả qua `onDone`;
+              phần ghi sổ câu sai / thưởng / combo do `handleInteractiveAnswer` lo. */}
+          {slide.type === "multiQuiz" && (
+            <MultiQuizSlide
+              key={currentSlide}
+              content={slide.content}
+              onDone={({ isCorrect }) =>
+                handleInteractiveAnswer({
+                  isCorrect,
+                  dapAn: (slide.content.answers || []).join(" · "),
+                })
+              }
+            />
+          )}
+
+          {slide.type === "buildExpression" && (
+            <BuildExpressionSlide
+              key={currentSlide}
+              content={slide.content}
+              onDone={({ isCorrect, bieuThuc }) =>
+                handleInteractiveAnswer({
+                  isCorrect,
+                  dapAn:
+                    (slide.content.solutions || [])
+                      .map((s) => `${slide.content.target} = ${s.join(" ")}`)
+                      .join("  |  ") || bieuThuc?.join(" "),
+                })
+              }
+            />
+          )}
+
+          {slide.type === "matchPairs" && (
+            <MatchPairsSlide
+              key={currentSlide}
+              content={slide.content}
+              onDone={({ isCorrect }) =>
+                handleInteractiveAnswer({
+                  isCorrect,
+                  dapAn: (slide.content.pairs || [])
+                    .map((p) => `${p[0]} → ${p[1]}`)
+                    .join(" · "),
+                })
+              }
+            />
+          )}
+
+          {slide.type === "typeAnswer" && (
+            <TypeAnswerSlide
+              key={currentSlide}
+              content={slide.content}
+              onDone={({ isCorrect }) =>
+                handleInteractiveAnswer({
+                  isCorrect,
+                  dapAn: slide.content.answer,
+                })
+              }
+            />
+          )}
+
+          {slide.type === "numberLineAnswer" && (
+            <NumberLineAnswerSlide
+              key={currentSlide}
+              content={slide.content}
+              onDone={({ isCorrect }) =>
+                handleInteractiveAnswer({
+                  isCorrect,
+                  dapAn: slide.content.answer,
+                })
+              }
+            />
+          )}
 
           {/* 🔴 Slide có kiểu LẠ (dữ liệu bị sửa tay ngoài giao diện Admin, hoặc một
               kiểu mới mà bản app này chưa biết). Trước đây rơi vào đây là một thẻ

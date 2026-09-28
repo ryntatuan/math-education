@@ -49,6 +49,19 @@ export const NHAN_KHOA = {
   options: "Các lựa chọn (mỗi dòng một lựa chọn)",
   answer: "Đáp án đúng",
   correctAnswer: "Đáp án đúng",
+  // ba kiểu mới (2026-09-28) — lấy ý từ Duolingo Math
+  answers: "Các đáp án ĐÚNG (mỗi dòng một đáp án, phải có trong Các lựa chọn)",
+  target: "Kết quả cho trước",
+  slots: "Số ô cần điền",
+  tiles: "Thẻ trong khay (mỗi dòng một thẻ)",
+  solutions: "Các cách đúng (JSON — mỗi cách là một mảng thẻ)",
+  pairs: "Các cặp nối (JSON — mỗi cặp là [trái, phải])",
+  // hai kiểu “tự trả lời” (2026-09-28) — nhập kết quả và trục số
+  expression:
+    "Phép tính hiện to (viết tới dấu = hoặc dấu ×, KHÔNG kết thúc bằng chữ số)",
+  min: "Vạch nhỏ nhất",
+  max: "Vạch lớn nhất",
+  step: "Khoảng cách giữa hai vạch",
   // visual / dialogue
   number: "Con số",
   items: "Danh sách (JSON)",
@@ -261,13 +274,58 @@ export function boTruong(slide, khoa) {
   return { slide: { ...slide, content }, daBo: [...bo] };
 }
 
+/**
+ * Mẫu KHỞI ĐẦU cho vài kiểu slide có **luật riêng về số lượng**.
+ *
+ * 🔴 VÌ SAO CẦN: mặc định rỗng của `macDinh` (`""`/`[]`/`{}`) làm slide MỚI hỏng ngay
+ * khi bấm Lưu — `multiQuiz` cần ≥ 2 đáp án, `matchPairs` cần ≥ 2 cặp, `buildExpression`
+ * cần mỗi cách đúng dài ĐÚNG bằng số ô. Cổng S-23 bắt đúng ca này: “thêm slide mới mà
+ * Lưu là lỗi ngay” là trải nghiệm không dùng được.
+ *
+ * Điền sẵn một mẫu TỐI THIỂU hợp lệ vừa để Lưu được, vừa làm ví dụ về định dạng dữ liệu
+ * (nhất là hai khoá mảng-của-mảng sửa bằng JSON: `solutions`, `pairs`).
+ */
+const MAU_KHOI_DAU = {
+  multiQuiz: {
+    options: ["Phương án đúng 1", "Phương án đúng 2", "Phương án sai"],
+    answers: ["Phương án đúng 1", "Phương án đúng 2"],
+  },
+  buildExpression: {
+    // Thẻ TÁCH RỜI số và dấu — xem luật trong `contentSchema.js`. Mẫu này cũng là ví dụ định
+    // dạng: `2 + 8 = 10`, và còn cách khác đúng là `5 × 2`.
+    target: "10",
+    slots: 3,
+    tiles: ["2", "+", "8", "5", "×", ":"],
+    solutions: [["2", "+", "8"]],
+  },
+  matchPairs: {
+    pairs: [
+      ["2 + 3", "5"],
+      ["4 + 4", "8"],
+    ],
+  },
+  // Hai kiểu “tự trả lời”. Mẫu này cũng là ví dụ định dạng, và phải QUA ĐƯỢC cổng soạn bài
+  // (đáp án nằm đúng trên một vạch, phép tính không kết thúc bằng chữ số…).
+  typeAnswer: {
+    expression: "4 + 4 + 4 + 4 =",
+    answer: 16,
+  },
+  numberLineAnswer: {
+    expression: "2 + 2 + 2 = 3 ×",
+    answer: 6,
+    min: 0,
+    max: 10,
+    step: 2,
+  },
+};
+
 /** Slide mới, mọi khoá bắt buộc có giá trị mặc định hợp kiểu. */
 export function slideMoi(type) {
   const kieu = SLIDE_TYPES[type];
   if (!kieu) return null;
   const content = {};
   for (const [k, t] of Object.entries(kieu.batBuoc)) content[k] = macDinh(t);
-  return { type, content };
+  return { type, content: { ...content, ...(MAU_KHOI_DAU[type] ?? {}) } };
 }
 
 // ───────────────────────── thao tác trên cả bài ─────────────────────────

@@ -9,7 +9,8 @@ export const g5c9 = {
   lessons: [
     {
       id: "g5-c9-l1",
-      title: "Bài 49: Hình khai triển của hình lập phương, hình hộp chữ nhật và hình trụ",
+      title:
+        "Bài 49: Hình khai triển của hình lập phương, hình hộp chữ nhật và hình trụ",
       type: "learn",
       description:
         "Nhận biết hình khai triển của hình lập phương, hình hộp chữ nhật và hình trụ",
@@ -52,7 +53,12 @@ export const g5c9 = {
           type: "quiz",
           content: {
             question: "Hình khai triển của hình lập phương gồm mấy hình vuông?",
-            options: ["6 hình vuông", "4 hình vuông", "8 hình vuông", "12 hình vuông"],
+            options: [
+              "6 hình vuông",
+              "4 hình vuông",
+              "8 hình vuông",
+              "12 hình vuông",
+            ],
             answer: "6 hình vuông",
             mascotHint: "Hình lập phương có 6 mặt là 6 hình vuông bằng nhau.",
           },
@@ -68,7 +74,8 @@ export const g5c9 = {
               "Bốn mặt tam giác",
             ],
             answer: "Hai mặt tròn và một mặt cong",
-            mascotHint: "Hình trụ có hai đáy là hai hình tròn và mặt xung quanh là mặt cong.",
+            mascotHint:
+              "Hình trụ có hai đáy là hai hình tròn và mặt xung quanh là mặt cong.",
           },
         },
         {
@@ -87,7 +94,8 @@ export const g5c9 = {
     },
     {
       id: "g5-c9-l2",
-      title: "Bài 50: Diện tích xung quanh và diện tích toàn phần của hình hộp chữ nhật",
+      title:
+        "Bài 50: Diện tích xung quanh và diện tích toàn phần của hình hộp chữ nhật",
       type: "learn",
       description:
         "Tính diện tích xung quanh và diện tích toàn phần của hình hộp chữ nhật",
@@ -177,7 +185,8 @@ export const g5c9 = {
     },
     {
       id: "g5-c9-l3",
-      title: "Bài 51: Diện tích xung quanh và diện tích toàn phần của hình lập phương",
+      title:
+        "Bài 51: Diện tích xung quanh và diện tích toàn phần của hình lập phương",
       type: "learn",
       description:
         "Tính diện tích xung quanh và diện tích toàn phần của hình lập phương",
@@ -400,10 +409,10 @@ export const g5c9 = {
     },
     {
       id: "g5-c9-l6",
-      title: "Bài 54: Thực hành tính toán và ước lượng thể tích một số hình khối",
+      title:
+        "Bài 54: Thực hành tính toán và ước lượng thể tích một số hình khối",
       type: "learn",
-      description:
-        "Ứng dụng tính và ước lượng thể tích vào đồ vật quanh em",
+      description: "Ứng dụng tính và ước lượng thể tích vào đồ vật quanh em",
       slides: [
         {
           type: "story",
@@ -494,9 +503,19 @@ export const g5c9 = {
           content: {
             text: "Bảng tổng hợp công thức hình khối",
             table: {
-              headers: ["Hình", "Diện tích xung quanh", "Diện tích toàn phần", "Thể tích"],
+              headers: [
+                "Hình",
+                "Diện tích xung quanh",
+                "Diện tích toàn phần",
+                "Thể tích",
+              ],
               rows: [
-                ["Hình hộp chữ nhật", "(a + b) × 2 × c", "Sxq + a × b × 2", "a × b × c"],
+                [
+                  "Hình hộp chữ nhật",
+                  "(a + b) × 2 × c",
+                  "Sxq + a × b × 2",
+                  "a × b × c",
+                ],
                 ["Hình lập phương", "a × a × 4", "a × a × 6", "a × a × a"],
               ],
               label: "Ghi đúng đơn vị: cm² cho diện tích, cm³ cho thể tích",

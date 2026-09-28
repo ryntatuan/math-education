@@ -63,7 +63,8 @@ export const g4c13 = {
                 ["hàng chục nghìn", "96 210 000"],
                 ["hàng trăm nghìn", "96 200 000"],
               ],
-              label: "Nhìn chữ số liền sau hàng làm tròn: từ 5 trở lên thì thêm 1",
+              label:
+                "Nhìn chữ số liền sau hàng làm tròn: từ 5 trở lên thì thêm 1",
             },
           },
         },
@@ -84,7 +85,8 @@ export const g4c13 = {
         {
           type: "quiz",
           content: {
-            question: "Số học sinh bốn trường là 2 065; 1 892; 2 131; 1 868. Số học sinh được sắp xếp từ bé đến lớn là:",
+            question:
+              "Số học sinh bốn trường là 2 065; 1 892; 2 131; 1 868. Số học sinh được sắp xếp từ bé đến lớn là:",
             options: [
               "1 868; 1 892; 2 065; 2 131",
               "1 892; 1 868; 2 065; 2 131",
@@ -167,10 +169,12 @@ export const g4c13 = {
         {
           type: "quiz",
           content: {
-            question: "Hai xe chở tất cả 39 000 lít nước, xe thứ nhất chở nhiều hơn xe thứ hai 3 000 lít. Xe thứ nhất chở bao nhiêu lít?",
+            question:
+              "Hai xe chở tất cả 39 000 lít nước, xe thứ nhất chở nhiều hơn xe thứ hai 3 000 lít. Xe thứ nhất chở bao nhiêu lít?",
             options: ["21 000 lít", "18 000 lít", "36 000 lít", "19 500 lít"],
             answer: "21 000 lít",
-            mascotHint: "Số lớn = (tổng + hiệu) : 2 = (39 000 + 3 000) : 2 = 21 000 (lít).",
+            mascotHint:
+              "Số lớn = (tổng + hiệu) : 2 = (39 000 + 3 000) : 2 = 21 000 (lít).",
           },
         },
         {
@@ -178,9 +182,15 @@ export const g4c13 = {
           content: {
             question:
               "Chú Hùng đi 300 km, cứ 100 km hết 10 lít xăng, giá 1 lít 23 400 đồng. Số tiền mua xăng là:",
-            options: ["702 000 đồng", "70 200 đồng", "7 020 000 đồng", "234 000 đồng"],
+            options: [
+              "702 000 đồng",
+              "70 200 đồng",
+              "7 020 000 đồng",
+              "234 000 đồng",
+            ],
             answer: "702 000 đồng",
-            mascotHint: "300 km gấp 3 lần 100 km nên cần 30 lít; 30 × 23 400 = 702 000 (đồng).",
+            mascotHint:
+              "300 km gấp 3 lần 100 km nên cần 30 lít; 30 × 23 400 = 702 000 (đồng).",
           },
         },
         {
@@ -389,7 +399,10 @@ export const g4c13 = {
             table: {
               headers: ["Hình", "Đặc điểm chính"],
               rows: [
-                ["Hình chữ nhật", "4 góc vuông, hai cặp cạnh đối song song và bằng nhau"],
+                [
+                  "Hình chữ nhật",
+                  "4 góc vuông, hai cặp cạnh đối song song và bằng nhau",
+                ],
                 ["Hình bình hành", "hai cặp cạnh đối song song và bằng nhau"],
                 ["Hình thoi", "4 cạnh bằng nhau, hai đường chéo vuông góc"],
                 ["Đường thẳng song song", "không cắt nhau, cách đều nhau"],
@@ -409,16 +422,23 @@ export const g4c13 = {
               "Ba cạnh bằng nhau",
             ],
             answer: "Bốn cạnh bằng nhau",
-            mascotHint: "Hình thoi có 4 cạnh bằng nhau và hai đường chéo vuông góc với nhau.",
+            mascotHint:
+              "Hình thoi có 4 cạnh bằng nhau và hai đường chéo vuông góc với nhau.",
           },
         },
         {
           type: "quiz",
           content: {
             question: "Hai đường thẳng song song thì thế nào?",
-            options: ["Không bao giờ cắt nhau", "Cắt nhau tại 1 điểm", "Luôn vuông góc", "Tạo 4 góc vuông"],
+            options: [
+              "Không bao giờ cắt nhau",
+              "Cắt nhau tại 1 điểm",
+              "Luôn vuông góc",
+              "Tạo 4 góc vuông",
+            ],
             answer: "Không bao giờ cắt nhau",
-            mascotHint: "Hai đường thẳng song song kéo dài mãi cũng không cắt nhau.",
+            mascotHint:
+              "Hai đường thẳng song song kéo dài mãi cũng không cắt nhau.",
           },
         },
         {

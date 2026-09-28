@@ -1,15 +1,15 @@
-import { g5c1 } from './grade5/g5c1.js';
-import { g5c2 } from './grade5/g5c2.js';
-import { g5c3 } from './grade5/g5c3.js';
-import { g5c4 } from './grade5/g5c4.js';
-import { g5c5 } from './grade5/g5c5.js';
-import { g5c6 } from './grade5/g5c6.js';
-import { g5c7 } from './grade5/g5c7.js';
-import { g5c8 } from './grade5/g5c8.js';
-import { g5c9 } from './grade5/g5c9.js';
-import { g5c10 } from './grade5/g5c10.js';
-import { g5c11 } from './grade5/g5c11.js';
-import { g5c12 } from './grade5/g5c12.js';
+import { g5c1 } from "./grade5/g5c1.js";
+import { g5c2 } from "./grade5/g5c2.js";
+import { g5c3 } from "./grade5/g5c3.js";
+import { g5c4 } from "./grade5/g5c4.js";
+import { g5c5 } from "./grade5/g5c5.js";
+import { g5c6 } from "./grade5/g5c6.js";
+import { g5c7 } from "./grade5/g5c7.js";
+import { g5c8 } from "./grade5/g5c8.js";
+import { g5c9 } from "./grade5/g5c9.js";
+import { g5c10 } from "./grade5/g5c10.js";
+import { g5c11 } from "./grade5/g5c11.js";
+import { g5c12 } from "./grade5/g5c12.js";
 
 export const grade5Data = {
   id: 5,
@@ -31,6 +31,6 @@ export const grade5Data = {
     g5c9,
     g5c10,
     g5c11,
-    g5c12
-  ]
+    g5c12,
+  ],
 };

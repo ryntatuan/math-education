@@ -11,7 +11,7 @@
    mắt trẻ phải dò lại đầu câu (người dùng gọi đúng tên: “thông tin lộn xộn… nhìn rất xấu”).
 
    LUẬT — theo VAI TRÒ, không theo sở thích, và không phụ thuộc cỡ màn hình:
-     1. TIÊU ĐỀ · CÂU HỎI · PHƯƠNG ÁN TRẮC NGHIỆM · NHÃN · CHÚ THÍCH HÌNH  → căn GIỮA.
+     1. TIÊU ĐỀ · CÂU HỎI · NHÃN · CHÚ THÍCH HÌNH  → căn GIỮA.
         Đây là những khối ngắn, đối xứng giữa khung là kiểu trình bày chuẩn.
      2. ĐOẠN VĂN XUÔI (câu giải thích, câu chốt, lời thoại linh vật, mô tả thẻ hình)
         → căn TRÁI. Mọi dòng bắt đầu cùng một mốc. KHÔNG dùng ngưỡng theo số ký tự: cùng
@@ -20,8 +20,16 @@
      3. DANH SÁCH (gạch đầu dòng, ô ghi nhớ) → căn TRÁI, biểu tượng canh theo DÒNG ĐẦU.
      4. BẢNG → theo CỘT: cột giá trị (số, số La Mã) căn GIỮA; cột chữ căn TRÁI.
         Luật này nằm trong `components/visuals/tableAlignment.js` (hàm thuần, có test).
+     5. ĐÁP ÁN TRẮC NGHIỆM → căn TRÁI (bổ sung 2026-09-28, người dùng gửi ảnh: “câu trả lời căn
+        giữa quá xấu và không phù hợp”). Phương án là CÂU CHỮ canh giữa thì mỗi dòng một mốc,
+        mắt trẻ phải dò lại đầu câu; canh trái thì mọi phương án bắt đầu ở cùng một mốc (ngay sau
+        vòng tròn A/B/C/D) và ngọn cờ ✔/✗ được đẩy ra mép phải.
+        NGOẠI LỆ DUY NHẤT: hàng 3 ô chỉ chứa KÝ HIỆU rất ngắn (`>`, `<`, `=` — lớp `quiz-options-3`)
+        GIỮ căn giữa, vì đó là ký hiệu đối xứng, không phải câu để đọc.
+        Đáp án bên Luyện tập/Trò chơi: chỉ đáp án CÓ CHỮ mới căn trái, đáp án SỐ/KÝ HIỆU giữ căn
+        giữa — luật nằm ở `utils/answerAlignment.js` (hàm thuần `isTextAnswer`, có test).
 
-   Cổng tĩnh `S-36` trong `scripts/test-admin-portal.mjs` canh đúng bốn dòng luật này, để
+   Cổng tĩnh `S-36` trong `scripts/test-admin-portal.mjs` canh đúng năm dòng luật này, để
    lần sau không ai “cho đồng bộ” mà đổi hết về căn giữa một lần nữa.
    ───────────────────────────────────────────────────────────────────────────────── */
 
@@ -507,6 +515,11 @@
   line-height: 1.5;
   margin: 0;
   text-align: center;
+  /* CÂN HAI VẾ KHI XUỐNG DÒNG (Duolingo làm vậy ở mọi tiêu đề): câu
+     "Ghép các thẻ để được phép nhân có tích bằng 1 000" mà cắt kiểu mặc định thì dòng dưới chỉ
+     còn "bằng 1 000" — trông như lỗi. `balance` chia đều hai dòng nên câu vẫn đọc liền mạch.
+     Trình duyệt không hỗ trợ thì tự bỏ qua, không ảnh hưởng gì. */
+  text-wrap: balance;
 }
 
 .quiz-visual {
@@ -535,10 +548,27 @@
   justify-self: center;
 }
 
+/* NGOẠI LỆ: hàng 3 ô chỉ chứa KÝ HIỆU rất ngắn (>, <, =) — ký hiệu đối xứng nên GIỮ căn GIỮA.
+   Đây là ngoại lệ DUY NHẤT của luật “đáp án căn trái”: nó không phải câu chữ để đọc. */
+.quiz-options-3 .quiz-option {
+  justify-content: center;
+  text-align: center;
+}
+.quiz-options-3 .quiz-option-text {
+  flex: 0 1 auto;
+  text-align: center;
+}
+
+/* 🔴 ĐÁP ÁN CĂN TRÁI (người dùng báo bằng ảnh, 2026-09-28: “câu trả lời căn giữa quá xấu và
+   không phù hợp”). Phương án là CÂU CHỮ canh giữa thì ba dòng so le nhau, mắt trẻ phải dò
+   lại đầu mỗi dòng; canh trái thì mọi phương án bắt đầu ở cùng một mốc (sau vòng tròn A/B/C/D)
+   nên so sánh theo chiều dọc được ngay. Xem `utils/answerAlignment.js` để biết khi nào một
+   đáp án được coi là “chữ”. */
 .quiz-option {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  text-align: left;
   gap: 10px;
   padding: clamp(14px, 2vw, 20px) clamp(16px, 2.5vw, 24px);
   background: #f8fafc;
@@ -590,6 +620,544 @@
 
 .quiz-option-text {
   font-family: var(--font-heading);
+  /* `flex: 1` để ngọn cờ ✔/✗ đẩy ra mép phải, còn CHỮ vẫn bắt đầu ở cùng một mốc ⇒ căn trái. */
+  flex: 1 1 auto;
+  text-align: left;
+  /* Đoạn chữ DÀI trong ô hẹp: `min-width: 0` để flex cho phép xuống dòng (mặc định `auto` sẽ
+     đội ô rộng ra), `pretty` tránh dòng cuối chỉ còn một chữ, `anywhere` là lưới an toàn cho
+     từ dài hơn cả cái ô. */
+  min-width: 0;
+  text-wrap: pretty;
+  overflow-wrap: anywhere;
+}
+
+/* ─────────────────────────── COMBO LIÊN TIẾP (kiểu Duolingo) ───────────────────────────
+   Hiện từ chuỗi 2 câu đúng liên tiếp. KHÔNG đổi xu/XP (xem `reward_configs`) — chỉ động viên. */
+.lesson-combo-badge {
+  align-self: center;
+  padding: 6px 18px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  border: 2px solid #f59e0b;
+  color: #92400e;
+  font-weight: 900;
+  font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+  box-shadow: 0 4px 0 #d97706;
+}
+
+/* ─────────────────────────── DẠNG “CHỌN TẤT CẢ ĐÁP ÁN ĐÚNG” ───────────────────────────
+   (Duolingo: “Chọn tất cả các phương án thích hợp”.) Căn TRÁI như mọi ô đáp án khác —
+   xem “LUẬT CĂN LỀ” đầu file. */
+.multi-quiz-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(12px, 1.8vw, 18px);
+  width: 100%;
+}
+
+.multi-quiz-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: clamp(14px, 2vw, 18px) clamp(14px, 2vw, 20px);
+  background: #f8fafc;
+  border: 2.5px solid #cbd5e1;
+  border-radius: clamp(14px, 2vw, 20px);
+  font-size: clamp(1.1rem, 1.5vw, 1.45rem);
+  font-weight: 800;
+  color: #1e293b;
+  text-align: left;
+  cursor: pointer;
+  min-height: clamp(60px, 7vw, 76px);
+  box-shadow: 0 4px 0 #cbd5e1;
+  transition: all 0.16s ease;
+}
+
+.multi-quiz-option:disabled {
+  cursor: default;
+}
+
+.multi-quiz-option.is-chosen {
+  border-color: #38bdf8;
+  background: #f0f9ff;
+  box-shadow: 0 4px 0 #0284c7;
+}
+
+.multi-quiz-option.is-correct {
+  border-color: #10b981 !important;
+  background: #ecfdf5 !important;
+  color: #047857 !important;
+  box-shadow: 0 4px 0 #059669 !important;
+}
+
+.multi-quiz-option.is-wrong {
+  border-color: #ef4444 !important;
+  background: #fef2f2 !important;
+  color: #b91c1c !important;
+  box-shadow: 0 4px 0 #dc2626 !important;
+}
+
+.multi-quiz-option.is-missed {
+  border-style: dashed;
+  border-color: #f59e0b;
+  background: #fffbeb;
+}
+
+.multi-quiz-tick {
+  flex: 0 0 auto;
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  border: 2.5px solid #94a3b8;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  color: #fff;
+}
+
+.multi-quiz-tick.on {
+  background: #0ea5e9;
+  border-color: #0284c7;
+}
+
+.multi-quiz-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  text-align: left;
+  text-wrap: pretty;
+  overflow-wrap: anywhere;
+}
+
+/* Nút KIỂM TRA — dùng chung cho “chọn nhiều đáp án” và “ghép thẻ” (Duolingo đặt nút này dưới
+   cùng, mờ đi khi chưa điền đủ). */
+.quiz-check-btn {
+  align-self: center;
+  margin-top: 4px;
+  padding: 14px 30px;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #34d399, #10b981);
+  color: #fff;
+  font-weight: 900;
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  box-shadow: 0 5px 0 #059669;
+}
+
+.quiz-check-btn:disabled {
+  background: #e2e8f0;
+  color: #94a3b8;
+  box-shadow: 0 5px 0 #cbd5e1;
+  cursor: default;
+}
+
+/* ───────────────── KHUNG PHÉP TÍNH DÙNG CHUNG CHO BA DẠNG BÀI ─────────────────
+ * `buildExpression` · `typeAnswer` · `numberLineAnswer` dùng CHUNG khung này: số cho trước /
+ * phép tính, rồi MỘT HỘP ở cuối. Hộp là KHUNG MẪU — LUÔN ĐỂ TRỐNG, không bao giờ hiện dữ liệu
+ * bé chọn (người dùng đã nói rõ 2026-09-28: “ô đại diện chỉ để show mẫu, không cần phải điền dữ
+ * liệu sau khi chọn, bởi vì ở dưới đã có các ô tương ứng hiển thị số và ký tự được chọn”).
+ *
+ * Vì sao MỘT khối dùng chung: ba dạng bài cùng một kiểu “câu phép tính”, để mỗi dạng tự định
+ * nghĩa khung riêng thì sớm muộn lệch nhau (dạng thì hộp to, dạng thì chữ bị đẩy xuống dòng) —
+ * đúng loại lỗi đã xảy ra hai lần trong ngày.
+ *
+ * Hàng này chỉ có hai phần tử cố định + một hộp ⇒ KHÔNG BAO GIỜ VỠ, dù số cho trước dài.
+ */
+.expr-frame {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(6px, 2vw, 14px);
+  margin-top: 4px;
+  max-width: 100%;
+}
+
+.expr-text {
+  flex: 0 1 auto;
+  min-width: 0;
+  font-size: clamp(1.25rem, 6.2vw, 2.6rem);
+  font-weight: 900;
+  color: #0f172a;
+  white-space: nowrap;
+}
+
+.expr-box {
+  flex: 0 0 auto;
+  width: clamp(54px, 15vw, 96px);
+  min-height: clamp(50px, 13vw, 76px);
+  border: 3px solid #38bdf8;
+  border-radius: 16px;
+  background: #f0f9ff;
+}
+
+/* ─────────────────────────── DẠNG “GHÉP THẺ THÀNH PHÉP TÍNH ĐÚNG” ───────────────────────────
+ * BỐ CỤC THEO DUOLINGO — người dùng gửi ảnh thật (2026-09-28). Trước đó tôi đã hiểu SAI hai lần:
+ * lần 1 để dấu dính vào số (`"25 ×"`), lần 2 nhồi cả phép tính vào MỘT hàng rồi ép nó không
+ * được xuống dòng. Ảnh cho thấy Duolingo KHÔNG làm vậy:
+ *
+ *   (1) HÀNG ĐẠI DIỆN  —  `100 = [ hộp ]`     · MỘT hàng, MỘT hộp: khung MẪU của câu phép tính
+ *                                                 (luôn TRỐNG — không hiện dữ liệu bé chọn)
+ *   (2) HÀNG Ô TRỐNG   —  `[ ] [ ] [ ]`        · mỗi số/ký tự cần điền là MỘT ô riêng, nằm DƯỚI
+ *                                                 (đây mới là chỗ HIỆN số/ký tự bé đã chọn)
+ *   (3) KHAY THẺ       —  `[3] [×] [×] [20]`   · thẻ để bấm (thẻ đã dùng thành ô xám trống)
+ *   (4) Nút KIỂM TRA    —  dưới cùng
+ *
+ * 🔴 VÌ SAO TÁCH LÀM HAI HÀNG (đây là điều tôi hiểu sai): hàng (1) chỉ có hai thứ cố định (số cho
+ * trước và dấu `=`) cộng MỘT hộp ⇒ **không bao giờ vỡ**, dù số cho trước dài hay biểu thức bé
+ * ghép dài. Hàng (2) muốn bao nhiêu ô cũng được và tự xuống dòng thoải mái, vì mỗi ô là một đơn
+ * vị độc lập — không phải mảnh của một câu bị cắt giữa chừng.
+ */
+/* Hàng Ô TRỐNG: mỗi ô là một chỗ điền. Ô trống viền đứt; có thẻ rồi thì viền liền + nền xanh. */
+.build-expr-slots {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(8px, 2.4vw, 16px);
+  margin-top: clamp(14px, 3.5vw, 26px);
+  max-width: 100%;
+}
+
+.build-expr-slot {
+  /* Cùng một bề rộng tối thiểu (khay ô gọn như ô vuông của Duolingo); thẻ dài hơn tự nới ra. */
+  flex: 0 1 auto;
+  min-width: clamp(56px, 16vw, 84px);
+  min-height: clamp(52px, 14vw, 74px);
+  padding: 2px clamp(4px, 1.5vw, 10px);
+  border-radius: 14px;
+  border: 3px dashed #cbd5e1;
+  background: #f8fafc;
+  font-size: clamp(0.95rem, 4.4vw, 1.45rem);
+  font-weight: 900;
+  color: #0f172a;
+  white-space: nowrap;
+  cursor: default;
+}
+
+.build-expr-slot:not(.is-empty) {
+  border-style: solid;
+  border-color: #38bdf8;
+  background: #f0f9ff;
+  cursor: pointer;
+}
+
+.build-expr-slot.is-correct {
+  border-color: #10b981 !important;
+  background: #ecfdf5 !important;
+}
+
+.build-expr-slot.is-wrong {
+  border-color: #ef4444 !important;
+  background: #fef2f2 !important;
+}
+
+.build-expr-bank {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(6px, 2vw, 12px);
+  margin-top: clamp(10px, 2vw, 18px);
+  max-width: 100%;
+}
+
+.build-expr-tile {
+  /* Cùng một bề rộng tối thiểu cho mọi thẻ (khay gọn như ô vuông của Duolingo); thẻ dài hơn thì
+   * tự nới ra, không bao giờ nhỏ hơn 44 px. */
+  flex: 0 1 clamp(52px, 17vw, 88px);
+  min-width: 44px;
+  min-height: clamp(48px, 13vw, 62px);
+  padding: 8px clamp(8px, 2vw, 16px);
+  border-radius: 14px;
+  border: 2.5px solid #cbd5e1;
+  background: #fff;
+  font-size: clamp(0.95rem, 4.2vw, 1.3rem);
+  font-weight: 900;
+  color: #1e293b;
+  white-space: nowrap;
+  cursor: pointer;
+  box-shadow: 0 4px 0 #cbd5e1;
+}
+
+/* Thẻ ĐÃ DÙNG → Ô XÁM TRỐNG, giữ nguyên vị trí và kích thước (cách Duolingo làm).
+   Vì sao đổi từ “làm mờ thẻ” sang “ô xám trống”: khay giữ nguyên bố cục nên mắt bé không phải
+   dò lại sau mỗi lần bấm, và ô xám nói rõ “chỗ này đã tiêu rồi” — còn thẻ mờ vẫn đọc được số nên
+   dễ tưởng là bấm được. Chữ đã bỏ ở phía JSX, nên ở đây chỉ còn nền xám. */
+.build-expr-tile.is-used {
+  background: #e2e8f0;
+  border-color: transparent;
+  box-shadow: none;
+  cursor: default;
+}
+
+.build-expr-hint,
+.match-pairs-progress {
+  margin: 10px 0 0;
+  text-align: center;
+  font-size: clamp(0.85rem, 1.05vw, 0.95rem);
+  font-weight: 700;
+  color: #64748b;
+}
+
+/* Nút KIỂM TRA của khối ghép thẻ nằm dưới khay (như ảnh Duolingo), cách khay một khoảng rõ. */
+.build-expr-check {
+  margin-top: clamp(14px, 3vw, 22px);
+}
+
+/* ───────────────────── DẠNG “NHẬP CÂU TRẢ LỜI” (bàn phím số) ─────────────────────
+ * Ảnh Duolingo: `4 + 4 + 4 + 4 = ☐` ở trên, ô hiện số bé gõ ở giữa, bàn phím số 1–9 · 0 · ⌫ ở
+ * dưới, rồi nút KIỂM TRA. Bàn phím xếp 3 CỘT: hàng cuối để trống ô đầu, số 0 ở giữa, ⌫ bên phải
+ * (giống ảnh, và cũng là thói quen bàn phím số của điện thoại). */
+.type-answer-input {
+  display: flex;
+  align-items: center;
+  width: min(100%, 420px);
+  min-height: clamp(54px, 14vw, 76px);
+  margin: clamp(14px, 3.5vw, 24px) auto 0;
+  padding: 4px clamp(14px, 4vw, 22px);
+  border: 2.5px solid #cbd5e1;
+  border-radius: 16px;
+  background: #f8fafc;
+  font-size: clamp(1.3rem, 6vw, 2rem);
+  font-weight: 900;
+  color: #0f172a;
+  overflow-wrap: anywhere;
+}
+
+.type-answer-input.is-empty {
+  /* Chưa gõ gì: ô vẫn hiện để bé biết số sẽ hiện ở đây. */
+  min-height: clamp(54px, 14vw, 76px);
+}
+
+.type-answer-input.is-correct {
+  border-color: #10b981;
+  background: #ecfdf5;
+  color: #047857;
+}
+
+.type-answer-input.is-wrong {
+  border-color: #ef4444;
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+.type-answer-keypad {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(8px, 2.2vw, 14px);
+  width: min(100%, 420px);
+  margin: clamp(12px, 3vw, 18px) auto 0;
+}
+
+.type-answer-key {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: clamp(50px, 12vw, 64px);
+  border: 2.5px solid #cbd5e1;
+  border-radius: 14px;
+  background: #fff;
+  font-size: clamp(1.15rem, 5vw, 1.6rem);
+  font-weight: 900;
+  color: #1e293b;
+  cursor: pointer;
+  box-shadow: 0 4px 0 #cbd5e1;
+}
+
+.type-answer-key:disabled {
+  opacity: 0.5;
+  box-shadow: none;
+  cursor: default;
+}
+
+.type-answer-key.is-blank {
+  border: none;
+  background: none;
+  box-shadow: none;
+  pointer-events: none;
+}
+
+.type-answer-key.is-delete {
+  color: #475569;
+}
+
+.type-answer-check {
+  margin-top: clamp(14px, 3vw, 22px);
+}
+
+/* ───────────────────── DẠNG “TRẢ LỜI TRÊN TRỤC SỐ” ─────────────────────
+ * Ảnh Duolingo: `2 + 2 + 2 = 3 × ☐` ở trên, TRỤC SỐ bên dưới với nhãn số (0 · 2 · 4 · 6 · 8) và
+ * con trỏ hình cái nhà kéo được. Nhãn số vừa hiện vừa BẤM ĐƯỢC, vì trẻ nhỏ kéo không chính xác
+ * bằng bấm — hai đường vào cùng một đáp án.
+ *
+ * ⚠️ `touch-action: pan-y`: cho phép bé KÉO NGANG con trỏ mà vẫn cuộn dọc trang được. */
+.number-line {
+  position: relative;
+  width: min(100%, 520px);
+  margin: clamp(16px, 4vw, 28px) auto 0;
+  outline: none;
+  cursor: grab;
+  touch-action: pan-y;
+}
+
+.number-line.is-dragging {
+  cursor: grabbing;
+}
+
+.number-line:focus-visible {
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.35);
+  border-radius: 12px;
+}
+
+.number-line-labels {
+  display: flex;
+}
+
+.number-line-label {
+  flex: 1 1 0;
+  min-width: 0;
+  /* 🔴 ĐO ĐƯỢC LÀ SAI RỒI MỚI SỬA: bản đầu chỉ có `padding: 2px 0 6px` ⇒ nhãn cao **26 px**, dưới
+     ngưỡng bấm được 44 px của trẻ nhỏ. Nay nhãn là một ô bấm cao 44 px (chữ canh giữa), nên bấm
+     trúng dễ hơn hẳn — nhất là khi bé đang vội. */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* ⚠️ Đặt 46 px chứ không phải 44: đo thật ở 390 px thì `min-height: 44px` cho ra **43 px**
+     (làm tròn dưới pixel) — sát ngưỡng quá nên lấy dư hai pixel. */
+  min-height: 46px;
+  padding: 2px 0;
+  border: none;
+  background: none;
+  font-size: clamp(0.95rem, 3.8vw, 1.2rem);
+  font-weight: 900;
+  color: #64748b;
+  cursor: pointer;
+}
+
+.number-line-label.is-picked {
+  color: #0284c7;
+  transform: scale(1.15);
+}
+
+.number-line-label.is-correct {
+  color: #047857;
+}
+
+.number-line-label.is-wrong {
+  color: #b91c1c;
+}
+
+.number-line-label:disabled {
+  cursor: default;
+}
+
+.number-line-axis-wrap {
+  position: relative;
+  height: clamp(34px, 9vw, 44px);
+}
+
+.number-line-axis {
+  position: absolute;
+  top: 5px;
+  height: 3px;
+  border-radius: 2px;
+  background: #94a3b8;
+}
+
+.number-line-tick {
+  position: absolute;
+  top: 0;
+  width: 3px;
+  height: 14px;
+  margin-left: -1.5px;
+  border-radius: 2px;
+  background: #94a3b8;
+}
+
+.number-line-marker {
+  position: absolute;
+  top: 16px;
+  width: 26px;
+  height: 24px;
+  margin-left: -13px;
+  background: #38bdf8;
+  /* Hình “cái nhà” úp lên vạch — đúng dáng con trỏ trong ảnh Duolingo. */
+  clip-path: polygon(50% 0, 100% 36%, 100% 100%, 0 100%, 0 36%);
+}
+
+.number-line-marker.is-correct {
+  background: #10b981;
+}
+
+.number-line-marker.is-wrong {
+  background: #ef4444;
+}
+
+.number-line-check {
+  margin-top: clamp(14px, 3vw, 22px);
+}
+
+/* ─────────────────────────── DẠNG “NỐI CẶP” ─────────────────────────── */
+.match-pairs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(10px, 2vw, 20px);
+  width: 100%;
+}
+
+.match-col {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(8px, 1.4vw, 12px);
+}
+
+.match-item {
+  min-height: clamp(52px, 7vw, 64px);
+  padding: 8px 14px;
+  border-radius: 14px;
+  border: 2.5px solid #cbd5e1;
+  background: #f8fafc;
+  font-size: clamp(1.05rem, 1.5vw, 1.35rem);
+  font-weight: 800;
+  color: #1e293b;
+  cursor: pointer;
+  text-align: center;
+  box-shadow: 0 4px 0 #cbd5e1;
+  transition: all 0.15s ease;
+}
+
+.match-item.is-picked {
+  border-color: #0ea5e9;
+  background: #e0f2fe;
+  box-shadow: 0 4px 0 #0284c7;
+}
+
+.match-item.is-done {
+  border-color: #10b981;
+  background: #ecfdf5;
+  color: #047857;
+  box-shadow: 0 4px 0 #059669;
+  cursor: default;
+}
+
+.match-item.is-wrong {
+  border-color: #ef4444;
+  background: #fef2f2;
+  animation: match-shake 0.4s ease;
+}
+
+@keyframes match-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
 }
 
 .quiz-feedback {

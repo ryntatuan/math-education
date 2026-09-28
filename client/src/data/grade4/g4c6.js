@@ -56,8 +56,14 @@ export const g4c6 = {
             table: {
               headers: ["Bước", "Việc làm"],
               rows: [
-                ["Bước 1", "Đặt một cạnh góc vuông của ê-ke trùng với đường thẳng AB, cạnh góc vuông thứ hai gặp điểm H"],
-                ["Bước 2", "Vạch đường thẳng theo cạnh góc vuông thứ hai của ê-ke, ta được đường thẳng CD"],
+                [
+                  "Bước 1",
+                  "Đặt một cạnh góc vuông của ê-ke trùng với đường thẳng AB, cạnh góc vuông thứ hai gặp điểm H",
+                ],
+                [
+                  "Bước 2",
+                  "Vạch đường thẳng theo cạnh góc vuông thứ hai của ê-ke, ta được đường thẳng CD",
+                ],
               ],
               label: "Cách vẽ hai đường thẳng vuông góc bằng ê-ke",
             },
@@ -80,7 +86,8 @@ export const g4c6 = {
               "Hai đường thẳng OM và ON vuông góc với nhau tạo thành mấy góc vuông chung đỉnh O?",
             options: ["1 góc", "2 góc", "3 góc", "4 góc"],
             answer: "4 góc",
-            mascotHint: "Hai đường thẳng cắt nhau tạo bốn góc; cả bốn đều là góc vuông.",
+            mascotHint:
+              "Hai đường thẳng cắt nhau tạo bốn góc; cả bốn đều là góc vuông.",
           },
         },
         {
@@ -151,7 +158,8 @@ export const g4c6 = {
               "Luôn cắt nhau ở giữa",
             ],
             answer: "Không bao giờ cắt nhau",
-            mascotHint: "Dù kéo dài mãi, hai đường thẳng song song vẫn không gặp nhau.",
+            mascotHint:
+              "Dù kéo dài mãi, hai đường thẳng song song vẫn không gặp nhau.",
           },
         },
         {
@@ -252,7 +260,8 @@ export const g4c6 = {
               "Trùng nhau",
             ],
             answer: "Song song với nhau",
-            mascotHint: "Cùng vuông góc với một đường thẳng thì chúng song song.",
+            mascotHint:
+              "Cùng vuông góc với một đường thẳng thì chúng song song.",
           },
         },
         {
@@ -308,7 +317,8 @@ export const g4c6 = {
                 ["AB và DC", "song song và bằng nhau"],
                 ["AD và BC", "song song và bằng nhau"],
               ],
-              label: "Hình bình hành ABCD có hai cặp cạnh đối diện song song, bằng nhau",
+              label:
+                "Hình bình hành ABCD có hai cặp cạnh đối diện song song, bằng nhau",
             },
           },
         },
@@ -323,7 +333,8 @@ export const g4c6 = {
               "Không bằng nhau",
             ],
             answer: "Song song và bằng nhau",
-            mascotHint: "Hai cặp cạnh đối diện của hình bình hành song song và bằng nhau.",
+            mascotHint:
+              "Hai cặp cạnh đối diện của hình bình hành song song và bằng nhau.",
           },
         },
         {
@@ -420,7 +431,8 @@ export const g4c6 = {
               "Chỉ hai cạnh bằng nhau",
             ],
             answer: "Bốn cạnh bằng nhau",
-            mascotHint: "Hình thoi có bốn cạnh đều bằng nhau: AB = BC = CD = DA.",
+            mascotHint:
+              "Hình thoi có bốn cạnh đều bằng nhau: AB = BC = CD = DA.",
           },
         },
         {
@@ -434,7 +446,8 @@ export const g4c6 = {
               "Bằng nhau và song song",
             ],
             answer: "Vuông góc với nhau",
-            mascotHint: "Dùng ê-ke kiểm tra sẽ thấy hai đường chéo của hình thoi vuông góc.",
+            mascotHint:
+              "Dùng ê-ke kiểm tra sẽ thấy hai đường chéo của hình thoi vuông góc.",
           },
         },
         {
@@ -473,8 +486,14 @@ export const g4c6 = {
               headers: ["Hình", "Dấu hiệu nhận biết"],
               rows: [
                 ["Hình vuông", "4 góc vuông, 4 cạnh bằng nhau"],
-                ["Hình chữ nhật", "4 góc vuông, hai cặp cạnh đối diện bằng nhau"],
-                ["Hình bình hành", "hai cặp cạnh đối diện song song và bằng nhau"],
+                [
+                  "Hình chữ nhật",
+                  "4 góc vuông, hai cặp cạnh đối diện bằng nhau",
+                ],
+                [
+                  "Hình bình hành",
+                  "hai cặp cạnh đối diện song song và bằng nhau",
+                ],
                 ["Hình thoi", "bốn cạnh bằng nhau, hai đường chéo vuông góc"],
               ],
               label: "Đọc dấu hiệu rồi mới kết luận",

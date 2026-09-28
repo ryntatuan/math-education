@@ -23,6 +23,7 @@ import {
   planConceptText,
 } from "../pages/lesson/slideDedupe.js";
 import { planSlideSpeech } from "../utils/slideSpeech.js";
+import { isTextAnswer, TEXT_ANSWER_CLASS } from "../utils/answerAlignment.js";
 
 describe("contentWords / coversAll — bỏ dấu câu, giữ chữ số", () => {
   it("bỏ emoji và dấu câu, giữ từ có nghĩa", () => {
@@ -124,6 +125,42 @@ describe("columnAnchor — cột giá trị căn giữa, cột chữ căn trái"
     expect(isValueCell("VIII")).toBe(true);
     expect(isValueCell("Hà Nội")).toBe(false);
     expect(isValueCell("Khám phá")).toBe(false);
+  });
+});
+
+describe("isTextAnswer — đáp án nào phải căn TRÁI", () => {
+  /**
+   * Luật: đáp án CÓ CHỮ (câu, tên hàng) ⇒ căn trái; đáp án chỉ có SỐ/KÝ HIỆU ⇒ giữ căn giữa.
+   * Người dùng báo bằng ảnh 2026-09-28 với đúng ca đầu tiên dưới đây.
+   */
+  it("câu chữ ⇒ căn trái (ca trong ảnh người dùng gửi)", () => {
+    expect(isTextAnswer("Đọc gợi ý của Rô-bốt rồi thử lại")).toBe(true);
+    expect(isTextAnswer("Cả A và B đều đúng")).toBe(true);
+    expect(isTextAnswer("3 nghìn, 5 trăm, 1 chục, 7 đơn vị")).toBe(true);
+    expect(isTextAnswer("Đúng rồi 👍")).toBe(true);
+  });
+
+  it("số / ký hiệu ⇒ giữ căn giữa (KHÔNG bắt nhầm — vế 2 của canary)", () => {
+    expect(isTextAnswer(24)).toBe(false);
+    expect(isTextAnswer("0,5")).toBe(false);
+    expect(isTextAnswer("75%")).toBe(false);
+    expect(isTextAnswer(">")).toBe(false);
+    expect(isTextAnswer("=")).toBe(false);
+  });
+
+  it("đơn vị đo thuần ký hiệu thì vẫn giữ căn giữa", () => {
+    expect(isTextAnswer("2 500")).toBe(false);
+    expect(isTextAnswer("12,5")).toBe(false);
+  });
+
+  it("giá trị rỗng/rác không làm vỡ hàm", () => {
+    expect(isTextAnswer(null)).toBe(false);
+    expect(isTextAnswer(undefined)).toBe(false);
+    expect(isTextAnswer("")).toBe(false);
+  });
+
+  it("tên lớp CSS dùng chung là một hằng số", () => {
+    expect(TEXT_ANSWER_CLASS).toBe("is-text-answer");
   });
 });
 

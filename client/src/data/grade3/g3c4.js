@@ -136,6 +136,15 @@ export const g3c4 = {
           },
         },
         {
+          type: "typeAnswer",
+          content: {
+            question: "Đặt tính rồi tính kết quả",
+            expression: "24 × 3 =",
+            answer: 72,
+            mascotHint: "24 × 3 = (20 × 3) + (4 × 3) = 60 + 12 = 72.",
+          },
+        },
+        {
           type: "summary",
           content: {
             title: "Bé nhớ rất tốt:",
@@ -325,6 +334,16 @@ export const g3c4 = {
             ],
             answer: "Chia vừa đủ, không còn thừa",
             mascotHint: "Chia hết thì không có phần thừa ra.",
+          },
+        },
+        {
+          type: "multiQuiz",
+          content: {
+            question: "Chọn TẤT CẢ các phép chia HẾT (không dư)",
+            options: ["12 : 3", "15 : 4", "20 : 5", "13 : 2"],
+            answers: ["12 : 3", "20 : 5"],
+            mascotHint:
+              "12 : 3 = 4 và 20 : 5 = 4 — chia hết. Còn 15 : 4 và 13 : 2 đều còn dư.",
           },
         },
         {

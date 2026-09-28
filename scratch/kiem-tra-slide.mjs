@@ -15,6 +15,15 @@
  * Mã thoát: 0 = sạch, 1 = có lỗi (in rõ file · bài · số slide · lỗi).
  */
 import { HINH_KEYS } from "../client/src/components/visuals/visualKeys.js";
+// Luật chấm thẻ dùng LẠI chính hàm của app — chép lại phép tính ở đây là mở đường cho cổng
+// và app lệch nhau (cổng xanh mà bé vẫn bị chấm sai).
+import {
+  evaluateTokens,
+  isNumberToken,
+  isOperator,
+  parseNumber,
+  ticksOf,
+} from "../client/src/pages/lesson/answerLogic.js";
 
 const NGUON = [
   ["grade1Data.js", "grade1Data", 1],
@@ -46,6 +55,13 @@ const KIEU_SLIDE = new Set([
   "quiz",
   "summary",
   "dialogue",
+  // Ba kiểu mới (2026-09-28) — lấy ý từ Duolingo Math, xem `client/src/pages/lesson/answerLogic.js`.
+  "multiQuiz",
+  "buildExpression",
+  "matchPairs",
+  // Hai kiểu “tự trả lời” (2026-09-28): nhập kết quả bằng bàn phím số, và kéo con trỏ trên trục số.
+  "typeAnswer",
+  "numberLineAnswer",
 ]);
 
 /**
@@ -121,6 +137,267 @@ for (const [file, key, soLopThutu] of NGUON) {
         const c = s.content ?? {};
         if (!KIEU_SLIDE.has(s.type))
           themLoi(file, bai.id, i, `type lạ: ${JSON.stringify(s.type)}`);
+
+        /**
+         * LUẬT RIÊNG CỦA BA KIỂU MỚI (2026-09-28).
+         *
+         * 🔴 VÌ SAO PHẢI KIỂM Ở ĐÂY: ba dạng này chấm theo TẬP HỢP / THỨ TỰ THẺ / CẶP. Dữ liệu
+         * khai lệch một chút là câu hỏi trở thành **VÔ NGHIỆM** — bé làm đúng cách duy nhất có thể
+         * mà vẫn báo sai, không có lỗi nào bung ra. Đây đúng họ lỗi “im lặng” mà cổng này sinh ra
+         * để chặn (cùng lý do với luật `cotTinh` chia cho 0).
+         */
+        if (s.type === "multiQuiz") {
+          const opts = c.options;
+          const dap = c.answers;
+          if (!Array.isArray(opts) || opts.length < 3)
+            themLoi(
+              file,
+              bai.id,
+              i,
+              `multiQuiz cần ≥ 3 phương án, đang có ${opts?.length ?? 0}`,
+            );
+          if (!Array.isArray(dap) || dap.length < 2)
+            themLoi(
+              file,
+              bai.id,
+              i,
+              `multiQuiz cần ≥ 2 đáp án đúng, đang có ${dap?.length ?? 0}`,
+            );
+          if (Array.isArray(opts) && Array.isArray(dap)) {
+            const la = dap.filter((x) => !opts.includes(x));
+            if (la.length)
+              themLoi(
+                file,
+                bai.id,
+                i,
+                `multiQuiz có đáp án không nằm trong options: ${JSON.stringify(la)}`,
+              );
+            if (dap.length >= opts.length)
+              themLoi(
+                file,
+                bai.id,
+                i,
+                "multiQuiz mà MỌI phương án đều đúng — không còn gì để chọn",
+              );
+            if (new Set(opts).size !== opts.length)
+              themLoi(
+                file,
+                bai.id,
+                i,
+                "multiQuiz có phương án trùng nhau (chấm theo tập hợp nên sẽ lỗi)",
+              );
+          }
+        }
+
+        if (s.type === "buildExpression") {
+          const soO = Number(c.slots);
+          const tiles = c.tiles;
+          const cach = c.solutions;
+          if (!Number.isInteger(soO) || soO < 3 || soO % 2 === 0)
+            themLoi(
+              file,
+              bai.id,
+              i,
+              `buildExpression cần slots LẺ và ≥ 3 (tối thiểu “số – dấu – số”), đang là ${JSON.stringify(c.slots)}`,
+            );
+          if (!Array.isArray(tiles) || tiles.length < soO)
+            themLoi(
+              file,
+              bai.id,
+              i,
+              `buildExpression: khay có ${tiles?.length ?? 0} thẻ nhưng cần ${soO} ô`,
+            );
+          if (!Array.isArray(cach) || cach.length === 0)
+            themLoi(
+              file,
+              bai.id,
+              i,
+              "buildExpression thiếu `solutions` — bé điền đúng cũng không chấm được",
+            );
+          if (Array.isArray(cach)) {
+            for (const [k, môtCach] of cach.entries()) {
+              if (!Array.isArray(môtCach) || môtCach.length !== soO) {
+                themLoi(
+                  file,
+                  bai.id,
+                  i,
+                  `buildExpression: cách đúng thứ ${k + 1} phải có ${soO} thẻ`,
+                );
+                continue;
+              }
+              for (const the of môtCach)
+                if (!Array.isArray(tiles) || !tiles.includes(the))
+                  themLoi(
+                    file,
+                    bai.id,
+                    i,
+                    `buildExpression: thẻ ${JSON.stringify(the)} không có trong tiles`,
+                  );
+            }
+          }
+          if (c.target === undefined || c.target === null)
+            themLoi(
+              file,
+              bai.id,
+              i,
+              "buildExpression thiếu `target` (kết quả cho trước) — bé không biết ghép gì",
+            );
+
+          /**
+           * 🔴 THẺ KHÔNG ĐƯỢC TRỘN SỐ VỚI DẤU (người dùng báo lỗi 2026-09-28).
+           * Thẻ `"25 ×"` làm khay KHÔNG còn thẻ `"25"` rời, cũng không có `"×"` rời ⇒ bé không
+           * thể ghép `4 × 25`; bài chỉ còn đúng đường đi người soạn vạch sẵn. Đây là họ lỗi
+           * “im lặng”: không bung lỗi nào, chỉ âm thầm lấy mất tự do của bé.
+           */
+          if (Array.isArray(tiles)) {
+            const tron = tiles.filter(
+              (t) => !isNumberToken(t) && !isOperator(t),
+            );
+            if (tron.length)
+              themLoi(
+                file,
+                bai.id,
+                i,
+                `buildExpression có thẻ TRỘN số với dấu (hoặc lạ): ${JSON.stringify(tron)} — ` +
+                  `mỗi thẻ phải là MỘT số ("25") hoặc MỘT dấu ("×")`,
+              );
+            if (!tiles.some(isOperator))
+              themLoi(
+                file,
+                bai.id,
+                i,
+                "buildExpression: khay không có thẻ DẤU nào — bé không ghép được phép tính",
+              );
+          }
+
+          /**
+           * 🔴 CÁCH ĐÚNG PHẢI **CÓ NGHIỆM**: tính ra đúng `target`.
+           * Số sai một chữ là bài vô nghiệm (bé tính đúng mà vẫn báo sai). Dùng lại chính hàm
+           * chấm của app nên cổng không thể lệch khỏi luật thật.
+           */
+          const can = parseNumber(c.target);
+          if (can === null)
+            themLoi(
+              file,
+              bai.id,
+              i,
+              `buildExpression: \`target\` không đọc được thành số: ${JSON.stringify(c.target)}`,
+            );
+          if (Array.isArray(cach) && can !== null) {
+            cach.forEach((môtCach, k) => {
+              const ket = evaluateTokens(môtCach);
+              if (ket === null || Math.abs(ket - can) > 1e-9)
+                themLoi(
+                  file,
+                  bai.id,
+                  i,
+                  `buildExpression: cách đúng thứ ${k + 1} ${JSON.stringify(môtCach)} tính ra ${ket} nhưng target là ${can}`,
+                );
+            });
+          }
+        }
+
+        /**
+         * HAI KIỂU “TỰ TRẢ LỜI” (2026-09-28): `typeAnswer` (bé gõ số) và `numberLineAnswer`
+         * (bé kéo con trỏ trên trục số). Cùng họ “im lặng” với `buildExpression`: dữ liệu sai một
+         * chữ là bài VÔ NGHIỆM — bé làm đúng mà vẫn báo sai.
+         */
+        if (s.type === "typeAnswer" || s.type === "numberLineAnswer") {
+          const bieuThuc = String(c.expression ?? "").trim();
+          if (!bieuThuc || !/\d/.test(bieuThuc))
+            themLoi(
+              file,
+              bai.id,
+              i,
+              `${s.type}: \`expression\` phải là phép tính CÓ CHỮ SỐ`,
+            );
+          else if (/\d\s*$/.test(bieuThuc))
+            themLoi(
+              file,
+              bai.id,
+              i,
+              `${s.type}: \`expression\` kết thúc bằng CHỮ SỐ — hộp mẫu nối ngay sau nó nên đọc thành vô nghĩa`,
+            );
+          if (!Number.isInteger(c.answer) || c.answer < 0)
+            themLoi(
+              file,
+              bai.id,
+              i,
+              `${s.type}: \`answer\` phải là số tự nhiên (bàn phím 0–9 không gõ được dấu phẩy/dấu trừ)`,
+            );
+        }
+
+        if (s.type === "numberLineAnswer") {
+          const vach = ticksOf(c);
+          if (vach.length === 0)
+            themLoi(
+              file,
+              bai.id,
+              i,
+              `numberLineAnswer: min/max/step không dựng được trục số (min ${JSON.stringify(c.min)}, max ${JSON.stringify(c.max)}, step ${JSON.stringify(c.step)})`,
+            );
+          else {
+            /*
+             * 🔴 LUẬT QUAN TRỌNG NHẤT: đáp án phải NẰM TRÊN một vạch. Không thì bé kéo đúng cỡ
+             * nào cũng không chạm tới đáp án ⇒ bài vô nghiệm mà không có lỗi nào bung ra.
+             */
+            if (!vach.includes(c.answer))
+              themLoi(
+                file,
+                bai.id,
+                i,
+                `numberLineAnswer: đáp án ${JSON.stringify(c.answer)} KHÔNG nằm trên vạch nào của trục (${vach.join(" · ")}) ⇒ bài vô nghiệm`,
+              );
+            // Trần 7 vạch: mỗi nhãn là một ô bấm, nhiều vạch quá thì ngón tay trẻ bấm không trúng.
+            if (vach.length > 7)
+              themLoi(
+                file,
+                bai.id,
+                i,
+                `numberLineAnswer: ${vach.length} vạch — nhiều quá (tối đa 7) thì mỗi ô bấm nhỏ hơn ngón tay trẻ`,
+              );
+          }
+        }
+
+        if (s.type === "matchPairs") {
+          const cap = c.pairs;
+          if (!Array.isArray(cap) || cap.length < 2)
+            themLoi(
+              file,
+              bai.id,
+              i,
+              `matchPairs cần ≥ 2 cặp, đang có ${cap?.length ?? 0}`,
+            );
+          if (Array.isArray(cap)) {
+            cap.forEach((x, k) => {
+              if (!Array.isArray(x) || x.length !== 2)
+                themLoi(
+                  file,
+                  bai.id,
+                  i,
+                  `matchPairs: cặp thứ ${k + 1} phải là [trái, phải]`,
+                );
+            });
+            /** Hai vế PHẢI PHÂN BIỆT: trùng khoá thì React trùng `key` và bé nối xong một cặp
+             *  là cặp còn lại tự “xanh” theo — chấm sai mà không ai biết. */
+            const trai = cap.map((x) => String(x?.[0]));
+            const phai = cap.map((x) => String(x?.[1]));
+            if (new Set(trai).size !== trai.length)
+              themLoi(
+                file,
+                bai.id,
+                i,
+                "matchPairs có vế TRÁI trùng nhau — bé nối một cặp là cặp kia tự đúng",
+              );
+            if (new Set(phai).size !== phai.length)
+              themLoi(
+                file,
+                bai.id,
+                i,
+                "matchPairs có vế PHẢI trùng nhau — không phân biệt được cặp nào với cặp nào",
+              );
+          }
+        }
 
         // Đếm số hình VẼ của slide (chính sách §8i: đúng MỘT hình).
         const coHinh = KHOA_HINH.filter(

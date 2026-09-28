@@ -55,7 +55,8 @@ export const g5c7 = {
         {
           type: "quiz",
           content: {
-            question: "Trong bến có 3 ô tô điện và 4 ô tô chạy xăng. Tỉ số của số ô tô điện và số ô tô ở bến là:",
+            question:
+              "Trong bến có 3 ô tô điện và 4 ô tô chạy xăng. Tỉ số của số ô tô điện và số ô tô ở bến là:",
             options: ["3 : 7", "4 : 7", "3 : 4", "7 : 3"],
             answer: "3 : 7",
             mascotHint: "Số ô tô ở bến là 3 + 4 = 7 nên tỉ số là 3 : 7.",
@@ -88,8 +89,7 @@ export const g5c7 = {
       id: "g5-c7-l2",
       title: "Bài 37: Tỉ lệ bản đồ và ứng dụng",
       type: "learn",
-      description:
-        "Đọc tỉ lệ bản đồ và tính độ dài thật, độ dài thu nhỏ",
+      description: "Đọc tỉ lệ bản đồ và tính độ dài thật, độ dài thu nhỏ",
       slides: [
         {
           type: "story",
@@ -132,7 +132,8 @@ export const g5c7 = {
         {
           type: "quiz",
           content: {
-            question: "Bản đồ tỉ lệ 1 : 500, độ dài trên bản đồ 2 cm. Độ dài thực tế là:",
+            question:
+              "Bản đồ tỉ lệ 1 : 500, độ dài trên bản đồ 2 cm. Độ dài thực tế là:",
             options: ["10 m", "1 000 m", "10 cm", "1 m"],
             answer: "10 m",
             mascotHint: "2 × 500 = 1 000 cm = 10 m.",
@@ -141,7 +142,8 @@ export const g5c7 = {
         {
           type: "quiz",
           content: {
-            question: "Bản đồ tỉ lệ 1 : 1 000 000, độ dài thật 20 km thì độ dài trên bản đồ là:",
+            question:
+              "Bản đồ tỉ lệ 1 : 1 000 000, độ dài thật 20 km thì độ dài trên bản đồ là:",
             options: ["2 cm", "20 cm", "2 m", "200 cm"],
             answer: "2 cm",
             mascotHint: "20 km = 2 000 000 cm; 2 000 000 : 1 000 000 = 2 (cm).",
@@ -210,10 +212,17 @@ export const g5c7 = {
         {
           type: "quiz",
           content: {
-            question: "Hai bạn có tất cả 45 viên bi, tỉ số là 2/3. Số bi của hai bạn lần lượt là:",
-            options: ["18 viên và 27 viên", "15 viên và 30 viên", "20 viên và 25 viên", "9 viên và 36 viên"],
+            question:
+              "Hai bạn có tất cả 45 viên bi, tỉ số là 2/3. Số bi của hai bạn lần lượt là:",
+            options: [
+              "18 viên và 27 viên",
+              "15 viên và 30 viên",
+              "20 viên và 25 viên",
+              "9 viên và 36 viên",
+            ],
             answer: "18 viên và 27 viên",
-            mascotHint: "Tổng số phần 5 ⇒ một phần 9 ⇒ 9 × 2 = 18 và 9 × 3 = 27.",
+            mascotHint:
+              "Tổng số phần 5 ⇒ một phần 9 ⇒ 9 × 2 = 18 và 9 × 3 = 27.",
           },
         },
         {
@@ -223,7 +232,8 @@ export const g5c7 = {
               "Một lớp có 35 học sinh, số học sinh nữ bằng 3/4 số học sinh nam. Số học sinh nam là:",
             options: ["20 bạn", "15 bạn", "21 bạn", "14 bạn"],
             answer: "20 bạn",
-            mascotHint: "Tổng số phần 3 + 4 = 7 ⇒ một phần 5 ⇒ nam 4 × 5 = 20 (bạn).",
+            mascotHint:
+              "Tổng số phần 3 + 4 = 7 ⇒ một phần 5 ⇒ nam 4 × 5 = 20 (bạn).",
           },
         },
         {
@@ -291,7 +301,8 @@ export const g5c7 = {
             question: "Hiệu hai số là 12, tỉ số là 5/3. Hai số đó là:",
             options: ["18 và 30", "15 và 27", "12 và 24", "20 và 32"],
             answer: "18 và 30",
-            mascotHint: "Hiệu số phần 2 ⇒ một phần 6 ⇒ 6 × 3 = 18 và 6 × 5 = 30.",
+            mascotHint:
+              "Hiệu số phần 2 ⇒ một phần 6 ⇒ 6 × 3 = 18 và 6 × 5 = 30.",
           },
         },
         {
@@ -301,7 +312,8 @@ export const g5c7 = {
               "Mẹ hơn con 28 tuổi, tuổi mẹ gấp 5 lần tuổi con. Tuổi con là:",
             options: ["7 tuổi", "5 tuổi", "8 tuổi", "14 tuổi"],
             answer: "7 tuổi",
-            mascotHint: "Hiệu số phần 5 − 1 = 4 ⇒ một phần 7 ⇒ tuổi con 7 tuổi.",
+            mascotHint:
+              "Hiệu số phần 5 − 1 = 4 ⇒ một phần 7 ⇒ tuổi con 7 tuổi.",
           },
         },
         {
@@ -375,7 +387,8 @@ export const g5c7 = {
         {
           type: "quiz",
           content: {
-            question: "Lớp có 50 học sinh, trong đó 15 bạn đi xe đạp đến trường. Số bạn đi xe đạp chiếm:",
+            question:
+              "Lớp có 50 học sinh, trong đó 15 bạn đi xe đạp đến trường. Số bạn đi xe đạp chiếm:",
             options: ["30%", "25%", "35%", "15%"],
             answer: "30%",
             mascotHint: "15 : 50 × 100 = 30%.",
@@ -444,7 +457,12 @@ export const g5c7 = {
           type: "quiz",
           content: {
             question: "10% của 400 000 đồng là bao nhiêu?",
-            options: ["40 000 đồng", "4 000 đồng", "400 000 đồng", "10 000 đồng"],
+            options: [
+              "40 000 đồng",
+              "4 000 đồng",
+              "400 000 đồng",
+              "10 000 đồng",
+            ],
             answer: "40 000 đồng",
             mascotHint: "400 000 : 100 × 10 = 40 000 (đồng).",
           },
@@ -452,8 +470,14 @@ export const g5c7 = {
         {
           type: "quiz",
           content: {
-            question: "Chiếc áo 400 000 đồng giảm 10%. Giá phải trả sau khi giảm là:",
-            options: ["360 000 đồng", "390 000 đồng", "40 000 đồng", "300 000 đồng"],
+            question:
+              "Chiếc áo 400 000 đồng giảm 10%. Giá phải trả sau khi giảm là:",
+            options: [
+              "360 000 đồng",
+              "390 000 đồng",
+              "40 000 đồng",
+              "300 000 đồng",
+            ],
             answer: "360 000 đồng",
             mascotHint: "Giảm 40 000 đồng; 400 000 − 40 000 = 360 000 (đồng).",
           },
@@ -537,7 +561,8 @@ export const g5c7 = {
               "Bấm 3, dấu chấm, 7, 5 trên bàn phím chữ",
             ],
             answer: "Bấm 3, dấu phẩy, 7, 5",
-            mascotHint: "Dấu phẩy dùng để ngăn cách phần nguyên và phần thập phân.",
+            mascotHint:
+              "Dấu phẩy dùng để ngăn cách phần nguyên và phần thập phân.",
           },
         },
         {
@@ -602,8 +627,14 @@ export const g5c7 = {
         {
           type: "quiz",
           content: {
-            question: "Mua 5 quyển vở, mỗi quyển 9 000 đồng. Tổng số tiền phải trả là:",
-            options: ["45 000 đồng", "14 000 đồng", "54 000 đồng", "4 500 đồng"],
+            question:
+              "Mua 5 quyển vở, mỗi quyển 9 000 đồng. Tổng số tiền phải trả là:",
+            options: [
+              "45 000 đồng",
+              "14 000 đồng",
+              "54 000 đồng",
+              "4 500 đồng",
+            ],
             answer: "45 000 đồng",
             mascotHint: "5 × 9 000 = 45 000 (đồng).",
           },
@@ -613,9 +644,15 @@ export const g5c7 = {
           content: {
             question:
               "Một món hàng giá 200 000 đồng được giảm 20%. Số tiền phải trả là:",
-            options: ["160 000 đồng", "180 000 đồng", "20 000 đồng", "140 000 đồng"],
+            options: [
+              "160 000 đồng",
+              "180 000 đồng",
+              "20 000 đồng",
+              "140 000 đồng",
+            ],
             answer: "160 000 đồng",
-            mascotHint: "Giảm 200 000 : 100 × 20 = 40 000 đồng; 200 000 − 40 000 = 160 000 (đồng).",
+            mascotHint:
+              "Giảm 200 000 : 100 × 20 = 40 000 đồng; 200 000 − 40 000 = 160 000 (đồng).",
           },
         },
         {
@@ -675,8 +712,7 @@ export const g5c7 = {
         {
           type: "quiz",
           content: {
-            question:
-              "Tổng hai số là 60, tỉ số là 2/3. Số lớn là:",
+            question: "Tổng hai số là 60, tỉ số là 2/3. Số lớn là:",
             options: ["36", "24", "30", "40"],
             answer: "36",
             mascotHint: "Tổng số phần 5 ⇒ một phần 12 ⇒ số lớn 12 × 3 = 36.",

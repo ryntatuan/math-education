@@ -786,6 +786,15 @@ export const g1c3 = {
           },
         },
         {
+          type: "typeAnswer",
+          content: {
+            question: "Tính rồi viết kết quả",
+            expression: "10 − 6 =",
+            answer: 4,
+            mascotHint: "Từ 10 đếm lùi 6 bước: 9, 8, 7, 6, 5, 4. Vậy 10 − 6 = 4.",
+          },
+        },
+        {
           type: "summary",
           content: {
             title: "Bé nhớ rất tốt:",
@@ -1093,6 +1102,18 @@ export const g1c3 = {
             options: [2, 3, 4, 11],
             answer: 3,
             mascotHint: "Từ 7 đếm lùi 4 bước: 6, 5, 4, 3.",
+          },
+        },
+        {
+          type: "matchPairs",
+          content: {
+            question: "Nối mỗi phép tính với kết quả đúng của nó",
+            pairs: [
+              ["3 + 2", "5"],
+              ["4 + 4", "8"],
+              ["7 − 3", "4"],
+            ],
+            mascotHint: "Bé nhẩm từng phép tính rồi nối với kết quả nhé!",
           },
         },
         {

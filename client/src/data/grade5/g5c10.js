@@ -11,8 +11,7 @@ export const g5c10 = {
       id: "g5-c10-l1",
       title: "Bài 56: Các đơn vị đo thời gian",
       type: "learn",
-      description:
-        "Ôn tập quan hệ giữa các đơn vị đo thời gian",
+      description: "Ôn tập quan hệ giữa các đơn vị đo thời gian",
       slides: [
         {
           type: "story",
@@ -89,8 +88,7 @@ export const g5c10 = {
       id: "g5-c10-l2",
       title: "Bài 57: Cộng, trừ số đo thời gian",
       type: "learn",
-      description:
-        "Cộng, trừ số đo thời gian có hai đơn vị",
+      description: "Cộng, trừ số đo thời gian có hai đơn vị",
       slides: [
         {
           type: "story",
@@ -121,9 +119,21 @@ export const g5c10 = {
             table: {
               headers: ["Phép tính", "Cách làm", "Kết quả"],
               rows: [
-                ["3 giờ 15 phút + 2 giờ 35 phút", "cộng từng cột", "5 giờ 50 phút"],
-                ["2 giờ 20 phút + 1 giờ 45 phút", "65 phút = 1 giờ 5 phút", "4 giờ 5 phút"],
-                ["4 giờ 20 phút − 1 giờ 35 phút", "đổi: 3 giờ 80 phút", "2 giờ 45 phút"],
+                [
+                  "3 giờ 15 phút + 2 giờ 35 phút",
+                  "cộng từng cột",
+                  "5 giờ 50 phút",
+                ],
+                [
+                  "2 giờ 20 phút + 1 giờ 45 phút",
+                  "65 phút = 1 giờ 5 phút",
+                  "4 giờ 5 phút",
+                ],
+                [
+                  "4 giờ 20 phút − 1 giờ 35 phút",
+                  "đổi: 3 giờ 80 phút",
+                  "2 giờ 45 phút",
+                ],
               ],
               label: "Kiểm tra: kết quả phải đổi gọn nhất có thể",
             },
@@ -133,7 +143,12 @@ export const g5c10 = {
           type: "quiz",
           content: {
             question: "Tính: 3 giờ 15 phút + 2 giờ 35 phút = ?",
-            options: ["5 giờ 50 phút", "6 giờ 50 phút", "5 giờ 40 phút", "5 giờ 5 phút"],
+            options: [
+              "5 giờ 50 phút",
+              "6 giờ 50 phút",
+              "5 giờ 40 phút",
+              "5 giờ 5 phút",
+            ],
             answer: "5 giờ 50 phút",
             mascotHint: "15 phút + 35 phút = 50 phút; 3 giờ + 2 giờ = 5 giờ.",
           },
@@ -142,9 +157,15 @@ export const g5c10 = {
           type: "quiz",
           content: {
             question: "Tính: 4 giờ 20 phút − 1 giờ 35 phút = ?",
-            options: ["2 giờ 45 phút", "3 giờ 15 phút", "2 giờ 15 phút", "3 giờ 55 phút"],
+            options: [
+              "2 giờ 45 phút",
+              "3 giờ 15 phút",
+              "2 giờ 15 phút",
+              "3 giờ 55 phút",
+            ],
             answer: "2 giờ 45 phút",
-            mascotHint: "Đổi 4 giờ 20 phút = 3 giờ 80 phút; 80 − 35 = 45 phút; 3 − 1 = 2 giờ.",
+            mascotHint:
+              "Đổi 4 giờ 20 phút = 3 giờ 80 phút; 80 − 35 = 45 phút; 3 − 1 = 2 giờ.",
           },
         },
         {
@@ -165,8 +186,7 @@ export const g5c10 = {
       id: "g5-c10-l3",
       title: "Bài 58: Nhân, chia số đo thời gian với một số",
       type: "learn",
-      description:
-        "Nhân, chia số đo thời gian cho một số tự nhiên",
+      description: "Nhân, chia số đo thời gian cho một số tự nhiên",
       slides: [
         {
           type: "story",
@@ -199,7 +219,11 @@ export const g5c10 = {
               rows: [
                 ["1 giờ 15 phút × 3", "nhân từng đơn vị", "3 giờ 45 phút"],
                 ["35 phút × 3", "105 phút = 1 giờ 45 phút", "1 giờ 45 phút"],
-                ["7 giờ 12 phút : 4", "432 phút : 4 = 108 phút", "1 giờ 48 phút"],
+                [
+                  "7 giờ 12 phút : 4",
+                  "432 phút : 4 = 108 phút",
+                  "1 giờ 48 phút",
+                ],
               ],
               label: "Chia không hết thì đổi sang đơn vị bé hơn",
             },
@@ -209,7 +233,12 @@ export const g5c10 = {
           type: "quiz",
           content: {
             question: "Tính: 1 giờ 15 phút × 3 = ?",
-            options: ["3 giờ 45 phút", "3 giờ 15 phút", "4 giờ 15 phút", "3 giờ 5 phút"],
+            options: [
+              "3 giờ 45 phút",
+              "3 giờ 15 phút",
+              "4 giờ 15 phút",
+              "3 giờ 5 phút",
+            ],
             answer: "3 giờ 45 phút",
             mascotHint: "1 giờ × 3 = 3 giờ; 15 phút × 3 = 45 phút.",
           },
@@ -218,9 +247,15 @@ export const g5c10 = {
           type: "quiz",
           content: {
             question: "Tính: 4 giờ 30 phút : 3 = ?",
-            options: ["1 giờ 30 phút", "1 giờ 10 phút", "2 giờ 30 phút", "1 giờ 5 phút"],
+            options: [
+              "1 giờ 30 phút",
+              "1 giờ 10 phút",
+              "2 giờ 30 phút",
+              "1 giờ 5 phút",
+            ],
             answer: "1 giờ 30 phút",
-            mascotHint: "4 giờ 30 phút = 270 phút; 270 : 3 = 90 phút = 1 giờ 30 phút.",
+            mascotHint:
+              "4 giờ 30 phút = 270 phút; 270 : 3 = 90 phút = 1 giờ 30 phút.",
           },
         },
         {
@@ -241,8 +276,7 @@ export const g5c10 = {
       id: "g5-c10-l4",
       title: "Bài 59: Vận tốc của một chuyển động đều",
       type: "learn",
-      description:
-        "Tính vận tốc khi biết quãng đường và thời gian: v = s : t",
+      description: "Tính vận tốc khi biết quãng đường và thời gian: v = s : t",
       slides: [
         {
           type: "story",
@@ -294,7 +328,8 @@ export const g5c10 = {
         {
           type: "quiz",
           content: {
-            question: "Người đi bộ đi 6 km trong 1,5 giờ. Vận tốc của người đó là:",
+            question:
+              "Người đi bộ đi 6 km trong 1,5 giờ. Vận tốc của người đó là:",
             options: ["4 km/giờ", "9 km/giờ", "3 km/giờ", "6 km/giờ"],
             answer: "4 km/giờ",
             mascotHint: "v = 6 : 1,5 = 4 (km/giờ).",
@@ -318,8 +353,7 @@ export const g5c10 = {
       id: "g5-c10-l5",
       title: "Bài 60: Quãng đường, thời gian của một chuyển động đều",
       type: "learn",
-      description:
-        "Tính quãng đường s = v × t và thời gian t = s : v",
+      description: "Tính quãng đường s = v × t và thời gian t = s : v",
       slides: [
         {
           type: "story",
@@ -361,7 +395,8 @@ export const g5c10 = {
         {
           type: "quiz",
           content: {
-            question: "Xe máy đi 45 km/giờ trong 3 giờ. Quãng đường đi được là:",
+            question:
+              "Xe máy đi 45 km/giờ trong 3 giờ. Quãng đường đi được là:",
             options: ["135 km", "48 km", "15 km", "150 km"],
             answer: "135 km",
             mascotHint: "s = 45 × 3 = 135 (km).",
@@ -393,7 +428,8 @@ export const g5c10 = {
     },
     {
       id: "g5-c10-l6",
-      title: "Bài 61: Thực hành tính toán và ước lượng về vận tốc, quãng đường, thời gian trong chuyển động đều",
+      title:
+        "Bài 61: Thực hành tính toán và ước lượng về vận tốc, quãng đường, thời gian trong chuyển động đều",
       type: "learn",
       description:
         "Đổi đơn vị vận tốc và ước lượng kết quả trong bài toán chuyển động",
@@ -473,8 +509,7 @@ export const g5c10 = {
       id: "g5-c10-l7",
       title: "Bài 62: Luyện tập chung",
       type: "learn",
-      description:
-        "Luyện tập số đo thời gian và các bài toán chuyển động đều",
+      description: "Luyện tập số đo thời gian và các bài toán chuyển động đều",
       slides: [
         {
           type: "story",
@@ -505,7 +540,12 @@ export const g5c10 = {
           type: "quiz",
           content: {
             question: "Tính: 2 giờ 20 phút + 1 giờ 45 phút = ?",
-            options: ["4 giờ 5 phút", "3 giờ 65 phút", "4 giờ 15 phút", "3 giờ 5 phút"],
+            options: [
+              "4 giờ 5 phút",
+              "3 giờ 65 phút",
+              "4 giờ 15 phút",
+              "3 giờ 5 phút",
+            ],
             answer: "4 giờ 5 phút",
             mascotHint: "20 + 45 = 65 phút = 1 giờ 5 phút; 2 + 1 + 1 = 4 giờ.",
           },
@@ -515,9 +555,15 @@ export const g5c10 = {
           content: {
             question:
               "Hai xe cùng khởi hành, xe thứ nhất đi 3 giờ với vận tốc 40 km/giờ, xe thứ hai đi 2 giờ với vận tốc 55 km/giờ. Xe nào đi được quãng đường dài hơn?",
-            options: ["Xe thứ nhất", "Xe thứ hai", "Bằng nhau", "Không so sánh được"],
+            options: [
+              "Xe thứ nhất",
+              "Xe thứ hai",
+              "Bằng nhau",
+              "Không so sánh được",
+            ],
             answer: "Xe thứ nhất",
-            mascotHint: "Xe thứ nhất: 40 × 3 = 120 km; xe thứ hai: 55 × 2 = 110 km ⇒ xe thứ nhất đi dài hơn.",
+            mascotHint:
+              "Xe thứ nhất: 40 × 3 = 120 km; xe thứ hai: 55 × 2 = 110 km ⇒ xe thứ nhất đi dài hơn.",
           },
         },
         {

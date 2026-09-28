@@ -34,7 +34,6 @@
   margin: 0;
 }
 
-
 /* Topics Grid & Horizontal Sleek Cards */
 .topics-grid {
   display: flex;
@@ -107,7 +106,7 @@
   color: #1e293b;
   margin: 0;
   line-height: 1.35;
-  font-family: 'Quicksand', var(--font-heading), sans-serif;
+  font-family: "Quicksand", var(--font-heading), sans-serif;
 }
 
 .topic-meta {
@@ -142,7 +141,7 @@
   border-radius: 999px;
   font-weight: 700;
   font-size: 0.88rem;
-  font-family: 'Quicksand', var(--font-heading), sans-serif;
+  font-family: "Quicksand", var(--font-heading), sans-serif;
   cursor: pointer;
   white-space: nowrap;
   flex-shrink: 0;
@@ -510,6 +509,15 @@
   outline: none;
 }
 
+/* 🔴 ĐÁP ÁN DẠNG CHỮ ⇒ CĂN TRÁI (người dùng báo 2026-09-28: “câu trả lời căn giữa quá xấu”).
+   Đáp án nhiều dòng (“3 nghìn, 5 trăm, 1 chục, 7 đơn vị”) canh giữa thì mỗi dòng một mốc,
+   mắt trẻ phải dò lại đầu câu. Đáp án chỉ có SỐ/KÝ HIỆU vẫn giữ căn giữa (xem
+   `utils/answerAlignment.js` — luật theo VAI TRÒ, không theo độ dài ký tự). */
+.practice-opt-btn.is-text-answer {
+  align-items: flex-start;
+  text-align: left;
+}
+
 @media (hover: hover) and (pointer: fine) {
   .practice-opt-btn:hover:not(:disabled) {
     border-color: #4facfe;
@@ -557,14 +565,25 @@
   line-height: 1.2;
 }
 
+/* 🔴 PHẢI SỬA Ở CHÍNH KHỐI CHỮ, không chỉ ở nút: `.opt-val-text` tự khai `text-align: center`
+   nên nếu chỉ đặt `text-align: left` ở `.practice-opt-btn.is-text-answer` thì đáp án dài hai
+   dòng VẪN canh giữa (đã mắc đúng kiểu lỗi này ở slide câu hỏi — xem cổng S-36, vế thứ hai). */
+.practice-opt-btn.is-text-answer .opt-val-text {
+  text-align: left;
+}
+
 .icon-feedback {
   position: absolute;
   top: 10px;
   right: 10px;
 }
 
-.icon-feedback.success { color: #2b8a3e; }
-.icon-feedback.fail { color: #c92a2a; }
+.icon-feedback.success {
+  color: #2b8a3e;
+}
+.icon-feedback.fail {
+  color: #c92a2a;
+}
 
 /* Responsive */
 @media (max-width: 768px) {
@@ -713,7 +732,7 @@
   border-radius: 999px;
   border: none;
   background: transparent;
-  font-family: 'Quicksand', var(--font-heading), sans-serif;
+  font-family: "Quicksand", var(--font-heading), sans-serif;
   font-size: 0.92rem;
   font-weight: 700;
   color: #64748b;
@@ -807,8 +826,13 @@
 }
 
 @keyframes float-icon {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
 }
 
 .mistakes-empty-state h2 {
@@ -950,8 +974,12 @@
   right: 14px;
 }
 
-.feedback-icon.green { color: #16a34a; }
-.feedback-icon.red { color: #dc2626; }
+.feedback-icon.green {
+  color: #16a34a;
+}
+.feedback-icon.red {
+  color: #dc2626;
+}
 
 .mistake-feedback-box {
   display: flex;
@@ -979,8 +1007,12 @@
   margin-bottom: 4px;
 }
 
-.mistake-feedback-box.success strong { color: #15803d; }
-.mistake-feedback-box.wrong strong { color: #991b1b; }
+.mistake-feedback-box.success strong {
+  color: #15803d;
+}
+.mistake-feedback-box.wrong strong {
+  color: #991b1b;
+}
 
 .feedback-msg p {
   margin: 0;
@@ -1002,7 +1034,9 @@
   color: #d97706;
   font-weight: 700;
   cursor: pointer;
-  transition: transform 0.15s ease, background 0.15s ease;
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease;
   margin-top: 6px;
 }
 
@@ -1118,6 +1152,3 @@
     gap: 2px;
   }
 }
-
-
-

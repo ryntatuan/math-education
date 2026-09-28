@@ -87,8 +87,7 @@ export const g4c12 = {
       id: "g4-c12-l2",
       title: "Bài 64: Phép chia phân số",
       type: "learn",
-      description:
-        "Chia hai phân số bằng cách nhân với phân số đảo ngược",
+      description: "Chia hai phân số bằng cách nhân với phân số đảo ngược",
       slides: [
         {
           type: "story",
@@ -241,8 +240,7 @@ export const g4c12 = {
       id: "g4-c12-l4",
       title: "Bài 66: Luyện tập chung",
       type: "learn",
-      description:
-        "Ôn tập nhân, chia phân số và tìm phân số của một số",
+      description: "Ôn tập nhân, chia phân số và tìm phân số của một số",
       slides: [
         {
           type: "story",

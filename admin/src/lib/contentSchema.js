@@ -152,9 +152,81 @@ export const SLIDE_TYPES = {
     dapAnTrongOptions: "correctAnswer",
     mangObject: ["dialogueList"],
   },
+
+  /**
+   * BA KIỂU MỚI (2026-09-28) — lấy ý từ **Duolingo Math** (người dùng gửi ảnh:
+   * “Chọn tất cả các phương án thích hợp”, “ghép thẻ thành phép tính”, “nối cặp”).
+   * Mỗi kiểu có luật chấm riêng, nằm ở `client/src/pages/lesson/answerLogic.js`.
+   */
+  multiQuiz: {
+    batBuoc: {
+      question: "string",
+      options: "array",
+      answers: "array",
+      mascotHint: "string",
+    },
+    // Đáp án là MẢNG con của `options` — luật riêng `mangDapAnTrongOptions` bên dưới.
+    mangDapAnTrongOptions: "answers",
+  },
+
+  buildExpression: {
+    batBuoc: {
+      question: "string",
+      target: "any",
+      slots: "number",
+      tiles: "array",
+      solutions: "array",
+      mascotHint: "string",
+    },
+    // `solutions` là MẢNG CỦA MẢNG (mỗi cách đúng là một dãy thẻ) ⇒ sửa bằng JSON,
+    // không phải “mỗi dòng một ý”. Khai sai chiều này thì editor ghi ra mảng chuỗi
+    // và slide hỏng âm thầm — đúng họ lỗi mà khối ghi chú đầu file này cảnh báo.
+    mangObject: ["solutions"],
+  },
+
+  matchPairs: {
+    batBuoc: { question: "string", pairs: "array", mascotHint: "string" },
+    mangObject: ["pairs"],
+  },
+
+  /**
+   * HAI KIỂU “TỰ TRẢ LỜI” (2026-09-28, ảnh Duolingo thứ hai người dùng gửi):
+   *   • `typeAnswer`       — “Nhập câu trả lời”: bé bấm số trên bàn phím số.
+   *   • `numberLineAnswer` — “Trả lời trên trục số”: bé kéo con trỏ tới vạch đúng.
+   *
+   * Cả hai đều dùng CHUNG khung `expression` + hộp mẫu ở cuối, nên `expression` phải viết tới
+   * chỗ hộp nối tiếp — luật “không kết thúc bằng chữ số” ở dưới kiểm đúng điều đó.
+   */
+  typeAnswer: {
+    batBuoc: {
+      question: "string",
+      expression: "string",
+      answer: "number",
+      mascotHint: "string",
+    },
+  },
+
+  numberLineAnswer: {
+    batBuoc: {
+      question: "string",
+      expression: "string",
+      answer: "number",
+      min: "number",
+      max: "number",
+      step: "number",
+      mascotHint: "string",
+    },
+  },
 };
 
 export const SLIDE_TYPE_NAMES = Object.keys(SLIDE_TYPES);
+
+/**
+ * HÌNH DẠNG của một thẻ trong `buildExpression` (chỉ hình dạng, không phải phép tính).
+ * Một thẻ phải rơi vào ĐÚNG MỘT trong hai nhóm này — xem luật “không trộn số với dấu”.
+ */
+const LA_SO_THO = /^\s*\d[\d\s.,]*\s*$/;
+const TOAN_TU = new Set(["+", "−", "-", "×", "x", "*", ":", "÷", "/"]);
 
 /**
  * Kiểm MỘT slide. Trả về mảng thông báo lỗi — rỗng nghĩa là hợp lệ.
@@ -229,6 +301,210 @@ export function validateSlide(slide, viTri = "slide") {
           `${viTri} (${type}): \`${khoaDapAn}\` = ` +
             `${JSON.stringify(content[khoaDapAn])} KHÔNG nằm trong \`options\` ` +
             `${JSON.stringify(opts)}`,
+        );
+      }
+    }
+  }
+
+  /**
+   * NHIỀU ĐÁP ÁN cùng nằm trong `options` (`multiQuiz`).
+   * 🔴 VÌ SAO CẦN LUẬT RIÊNG: `multiQuiz` chấm đúng khi bé chọn ĐỦ mọi đáp án trong
+   * `answers`. Chỉ cần một phần tử của `answers` gõ sai (không có trong `options`) thì
+   * câu đó **KHÔNG BAO GIỜ chấm đúng** — bé bấm đúng hết vẫn báo sai, mà không có lỗi nào
+   * bung ra. Đúng họ lỗi “im lặng” của luật `dapAnTrongOptions`.
+   */
+  const khoaMangDapAn = kieu.mangDapAnTrongOptions;
+  if (khoaMangDapAn) {
+    const opts = content.options;
+    const ds = content[khoaMangDapAn];
+    if (Array.isArray(opts) && Array.isArray(ds)) {
+      if (ds.length < 2) {
+        loi.push(
+          `${viTri} (${type}): \`${khoaMangDapAn}\` phải có ÍT NHẤT 2 đáp án ` +
+            `(dạng “chọn tất cả đáp án đúng” mà chỉ 1 đáp án thì dùng kiểu \`quiz\`)`,
+        );
+      }
+      const la = ds.filter((x) => !opts.includes(x));
+      if (la.length) {
+        loi.push(
+          `${viTri} (${type}): ${la.length} đáp án KHÔNG nằm trong \`options\`: ` +
+            `${JSON.stringify(la)}`,
+        );
+      }
+    }
+  }
+
+  /**
+   * `buildExpression`: **MỖI THẺ CHỈ ĐƯỢC LÀ MỘT SỐ HOẶC MỘT DẤU**, khay đủ thẻ, và mỗi cách
+   * đúng phải điền ĐÚNG số ô.
+   *
+   * 🔴 VÌ SAO LUẬT “KHÔNG TRỘN SỐ VỚI DẤU” LÀ LUẬT QUAN TRỌNG NHẤT Ở ĐÂY:
+   * người dùng báo lỗi thật (2026-09-28). Bản đầu tôi soạn thẻ `"25 ×"` (dấu dính vào số). Với
+   * khay kiểu đó, bé **KHÔNG THỂ** ghép `4 × 25`: không có thẻ `"×"` rời, cũng không có thẻ
+   * `"25"` rời. Bài học vì thế chỉ có MỘT đường đi do người soạn vạch sẵn — đúng thứ “nhiều cách
+   * đúng” giả tạo. Thẻ trộn còn phá cả ghi chú “đổi chỗ hai thừa số” trong chính lời giải.
+   * Luật này bắt được ngay lúc soạn, không đợi tới lúc bé làm bài.
+   *
+   * Cách CHẤM (giá trị biểu thức có bằng `target` không) nằm ở `client/.../answerLogic.js` và
+   * được `scripts/migrate-content.mjs` + `scratch/kiem-tra-slide.mjs` gọi khi kiểm nội dung.
+   * Ở đây chỉ kiểm HÌNH DẠNG, đủ để trình sửa bài báo lỗi ngay khi admin bấm Lưu.
+   */
+  if (type === "buildExpression") {
+    const soO = content.slots;
+    const tiles = content.tiles;
+    const cachDung = content.solutions;
+    const laSo = (x) => LA_SO_THO.test(String(x ?? ""));
+    const laDau = (x) => TOAN_TU.has(String(x ?? "").trim());
+
+    if (!laSo(content.target)) {
+      loi.push(
+        `${viTri} (buildExpression): \`target\` phải là MỘT SỐ (đang là ${JSON.stringify(content.target)})`,
+      );
+    }
+
+    // Số ô phải LẺ và ≥ 3: một biểu thức hợp lệ tối thiểu là `số – dấu – số`. Khai 2 ô thì bé
+    // điền đủ kiểu gì cũng không thành biểu thức ⇒ bài vô nghiệm, và luật chấm trả `null` im lặng.
+    if (Number.isFinite(soO) && (soO < 3 || soO % 2 === 0)) {
+      loi.push(
+        `${viTri} (buildExpression): \`slots\` phải là số LẺ và ≥ 3 (tối thiểu “số – dấu – số”), đang là ${JSON.stringify(content.slots)}`,
+      );
+    }
+
+    if (Array.isArray(tiles)) {
+      const tron = tiles.filter((t) => !laSo(t) && !laDau(t));
+      if (tron.length) {
+        loi.push(
+          `${viTri} (buildExpression): thẻ TRỘN số với dấu hoặc lạ: ${JSON.stringify(tron)} — ` +
+            `mỗi thẻ chỉ được là MỘT số ("25") hoặc MỘT dấu ("×"); thẻ "25 ×" làm bé không thể ghép "4 × 25"`,
+        );
+      }
+      if (!tiles.some(laDau)) {
+        loi.push(
+          `${viTri} (buildExpression): khay không có thẻ DẤU nào — bé không ghép được phép tính`,
+        );
+      }
+      if (Number.isFinite(soO) && tiles.length < soO) {
+        loi.push(
+          `${viTri} (buildExpression): khay chỉ có ${tiles.length} thẻ nhưng cần điền ${soO} ô`,
+        );
+      }
+    }
+
+    if (Array.isArray(cachDung) && Number.isFinite(soO)) {
+      cachDung.forEach((cach, i) => {
+        if (!Array.isArray(cach) || cach.length !== soO) {
+          loi.push(
+            `${viTri} (buildExpression): cách đúng thứ ${i + 1} phải là mảng ${soO} thẻ ` +
+              `(đang là ${JSON.stringify(cach)})`,
+          );
+          return;
+        }
+        for (const the of cach) {
+          if (!Array.isArray(tiles) || !tiles.includes(the)) {
+            loi.push(
+              `${viTri} (buildExpression): thẻ ${JSON.stringify(the)} trong cách đúng ` +
+                `không có trong \`tiles\``,
+            );
+          }
+        }
+      });
+    }
+  }
+
+  /** `matchPairs`: mỗi cặp phải có đủ hai vế, và có ít nhất 2 cặp. */
+  if (type === "matchPairs" && Array.isArray(content.pairs)) {
+    if (content.pairs.length < 2) {
+      loi.push(`${viTri} (matchPairs): cần ít nhất 2 cặp để nối`);
+    }
+    content.pairs.forEach((cap, i) => {
+      if (!Array.isArray(cap) || cap.length !== 2) {
+        loi.push(
+          `${viTri} (matchPairs): cặp thứ ${i + 1} phải là mảng 2 phần tử [trái, phải]`,
+        );
+      }
+    });
+  }
+
+  /**
+   * HAI KIỂU “TỰ TRẢ LỜI”: `typeAnswer` (nhập số) và `numberLineAnswer` (kéo con trỏ trên trục số).
+   *
+   * 🔴 BÀI HỌC TỪ `buildExpression` (cùng ngày): lỗi ở đây cũng thuộc họ “IM LẶNG” — bé làm đúng
+   * mà vẫn báo sai, hoặc cả bài không có cách nào làm đúng:
+   *   • `expression` kết thúc bằng CHỮ SỐ thì hộp mẫu nối vào thành `4 + 4 = 16 ☐` — đọc vô nghĩa;
+   *   • `answer` là số thập phân / số âm thì bàn phím 0–9 của app KHÔNG gõ được ⇒ bài vô nghiệm;
+   *   • trục số có `step` không chia hết khoảng, hoặc `answer` KHÔNG nằm trên vạch nào ⇒ bé kéo
+   *     đúng cũng không bao giờ chạm tới đáp án.
+   */
+  if (type === "typeAnswer" || type === "numberLineAnswer") {
+    const bieuThuc = String(content.expression ?? "").trim();
+    if (!bieuThuc || !/\d/.test(bieuThuc)) {
+      loi.push(
+        `${viTri} (${type}): \`expression\` phải là phép tính CÓ CHỮ SỐ (đang là ${JSON.stringify(content.expression)})`,
+      );
+    } else if (/\d\s*$/.test(bieuThuc)) {
+      loi.push(
+        `${viTri} (${type}): \`expression\` KHÔNG được kết thúc bằng chữ số — hộp mẫu nối ngay sau ` +
+          `nó (viết "4 + 4 + 4 + 4 =" chứ đừng viết "4 + 4 + 4 + 4 = 16")`,
+      );
+    }
+
+    const dapAn = content.answer;
+    if (!Number.isInteger(dapAn) || dapAn < 0) {
+      loi.push(
+        `${viTri} (${type}): \`answer\` phải là số tự nhiên (bàn phím 0–9 không gõ được dấu phẩy ` +
+          `hay dấu trừ) — đang là ${JSON.stringify(dapAn)}`,
+      );
+    }
+  }
+
+  /** `numberLineAnswer`: các vạch phải chia đều khoảng, và đáp án PHẢI nằm trên một vạch. */
+  if (type === "numberLineAnswer") {
+    const { min, max, step, answer } = content;
+    const du =
+      Number.isFinite(min) && Number.isFinite(max) && Number.isFinite(step);
+    if (!du) {
+      loi.push(
+        `${viTri} (numberLineAnswer): \`min\`, \`max\`, \`step\` phải là số (đang là ${JSON.stringify({ min, max, step })})`,
+      );
+    } else if (step <= 0 || max <= min) {
+      loi.push(
+        `${viTri} (numberLineAnswer): cần step > 0 và max > min (đang là ${JSON.stringify({ min, max, step })})`,
+      );
+    } else if (
+      Math.abs((max - min) / step - Math.round((max - min) / step)) > 1e-9
+    ) {
+      loi.push(
+        `${viTri} (numberLineAnswer): \`step\` không chia hết khoảng ${min}→${max} — vạch cuối sẽ ` +
+          `lệch khỏi \`max\`, trục số vẽ sai`,
+      );
+    } else {
+      const soVach = Math.round((max - min) / step) + 1;
+      /*
+       * ⚠️ TRẦN 7 VẠCH: mỗi nhãn số là một ô bấm được. Trên máy 320 px, 8 vạch là mỗi ô ~40 px —
+       * dưới ngưỡng bấm được của trẻ nhỏ. Nhiều vạch hơn thì nên tách thành hai câu hỏi.
+       */
+      if (soVach < 2 || soVach > 7) {
+        loi.push(
+          `${viTri} (numberLineAnswer): số vạch phải từ 2 đến 7 (đang là ${soVach}) — nhiều vạch quá ` +
+            `thì mỗi ô bấm nhỏ hơn ngón tay trẻ`,
+        );
+      }
+      /*
+       * 🔴 BẪY ĐÃ MẮC THẬT (canary bắt được ngay lượt đầu): phép kiểm “nằm đúng trên vạch” phải
+       * là `|x − round(x)| < eps`. Tôi viết thiếu `Math.abs` ngoài cùng (`x − round(x) < eps`) nên
+       * MỌI giá trị nằm dưới vạch đều lọt (2,5 − 3 = −0,5 < eps = đúng) — luật tưởng có mà thực ra
+       * không chặn gì. Đây là lý do mỗi luật mới phải có canary HAI VẾ.
+       */
+      const trenVach =
+        Number.isFinite(answer) &&
+        Math.abs((answer - min) / step - Math.round((answer - min) / step)) <
+          1e-9 &&
+        answer >= min &&
+        answer <= max;
+      if (!trenVach) {
+        loi.push(
+          `${viTri} (numberLineAnswer): \`answer\` (${JSON.stringify(answer)}) KHÔNG nằm trên vạch nào ` +
+            `của trục ${min}→${max} bước ${step} ⇒ bài VÔ NGHIỆM, bé kéo đúng cũng không chạm tới`,
         );
       }
     }

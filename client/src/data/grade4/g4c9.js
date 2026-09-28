@@ -11,8 +11,7 @@ export const g4c9 = {
       id: "g4-c9-l1",
       title: "Bài 49: Dãy số liệu thống kê",
       type: "learn",
-      description:
-        "Đọc và nhận xét các số trong một dãy số liệu thống kê",
+      description: "Đọc và nhận xét các số trong một dãy số liệu thống kê",
       slides: [
         {
           type: "story",
@@ -41,9 +40,17 @@ export const g4c9 = {
           content: {
             text: "Dãy số liệu quãng đường Rô-bốt đạp xe",
             table: {
-              headers: ["Ngày", "Thứ Hai", "Thứ Ba", "Thứ Tư", "Thứ Năm", "Thứ Sáu"],
+              headers: [
+                "Ngày",
+                "Thứ Hai",
+                "Thứ Ba",
+                "Thứ Tư",
+                "Thứ Năm",
+                "Thứ Sáu",
+              ],
               rows: [["Quãng đường (km)", 1, 2, 2, 2, 3]],
-              label: "Dãy số liệu: 1; 2; 2; 2; 3 — nhiều nhất 3 km, ít nhất 1 km",
+              label:
+                "Dãy số liệu: 1; 2; 2; 2; 3 — nhiều nhất 3 km, ít nhất 1 km",
             },
           },
         },
@@ -116,7 +123,8 @@ export const g4c9 = {
             table: {
               headers: ["Môn thể thao", "Bóng đá", "Bóng rổ", "Bơi"],
               rows: [["Số bạn", 4, 6, 2]],
-              label: "Bóng rổ được nhiều bạn yêu thích nhất (6 bạn), bơi ít nhất (2 bạn)",
+              label:
+                "Bóng rổ được nhiều bạn yêu thích nhất (6 bạn), bơi ít nhất (2 bạn)",
             },
           },
         },
@@ -125,7 +133,14 @@ export const g4c9 = {
           content: {
             text: "Số học sinh đến thư viện mượn sách",
             table: {
-              headers: ["Ngày", "Thứ Hai", "Thứ Ba", "Thứ Tư", "Thứ Năm", "Thứ Sáu"],
+              headers: [
+                "Ngày",
+                "Thứ Hai",
+                "Thứ Ba",
+                "Thứ Tư",
+                "Thứ Năm",
+                "Thứ Sáu",
+              ],
               rows: [["Số học sinh", 35, 50, 50, 70, 115]],
               label: "Thứ Sáu có nhiều học sinh mượn sách nhất: 115 học sinh",
             },
@@ -146,9 +161,15 @@ export const g4c9 = {
           content: {
             question:
               "Số học sinh đến thư viện mượn sách trong 5 ngày là 35; 50; 50; 70; 115. Trung bình mỗi ngày có bao nhiêu học sinh?",
-            options: ["64 học sinh", "60 học sinh", "70 học sinh", "320 học sinh"],
+            options: [
+              "64 học sinh",
+              "60 học sinh",
+              "70 học sinh",
+              "320 học sinh",
+            ],
             answer: "64 học sinh",
-            mascotHint: "(35 + 50 + 50 + 70 + 115) : 5 = 320 : 5 = 64 (học sinh).",
+            mascotHint:
+              "(35 + 50 + 50 + 70 + 115) : 5 = 320 : 5 = 64 (học sinh).",
           },
         },
         {
@@ -215,7 +236,8 @@ export const g4c9 = {
               "Trong hộp có 3 bóng xanh, 1 bóng vàng. Lấy 1 quả bóng ra, có mấy sự kiện có thể xảy ra?",
             options: ["2 sự kiện", "1 sự kiện", "3 sự kiện", "4 sự kiện"],
             answer: "2 sự kiện",
-            mascotHint: "Hoặc lấy được bóng xanh, hoặc lấy được bóng vàng — 2 sự kiện.",
+            mascotHint:
+              "Hoặc lấy được bóng xanh, hoặc lấy được bóng vàng — 2 sự kiện.",
           },
         },
         {
@@ -262,7 +284,16 @@ export const g4c9 = {
             text: "Số tiền thu được mỗi ngày",
             table: {
               headers: ["Ngày", "1", "2", "3", "4", "5"],
-              rows: [["Số tiền (đồng)", "180 000", "70 000", "125 000", "80 000", "100 000"]],
+              rows: [
+                [
+                  "Số tiền (đồng)",
+                  "180 000",
+                  "70 000",
+                  "125 000",
+                  "80 000",
+                  "100 000",
+                ],
+              ],
               label: "Có 3 ngày thu được nhiều hơn 100 000 đồng",
             },
           },
@@ -283,8 +314,19 @@ export const g4c9 = {
           content: {
             text: "Số vé xem phim bán được trong tuần",
             table: {
-              headers: ["Ngày", "Thứ Hai", "Thứ Ba", "Thứ Tư", "Thứ Năm", "Thứ Sáu", "Thứ Bảy", "Chủ nhật"],
-              rows: [["Số vé", 285, 540, "2 150", 410, "1 105", "1 200", "1 610"]],
+              headers: [
+                "Ngày",
+                "Thứ Hai",
+                "Thứ Ba",
+                "Thứ Tư",
+                "Thứ Năm",
+                "Thứ Sáu",
+                "Thứ Bảy",
+                "Chủ nhật",
+              ],
+              rows: [
+                ["Số vé", 285, 540, "2 150", 410, "1 105", "1 200", "1 610"],
+              ],
               label: "Thứ Tư bán nhiều vé nhất (2 150 vé)",
             },
           },
@@ -296,7 +338,8 @@ export const g4c9 = {
               "Bảng số vé xem phim: 285; 540; 2 150; 410; 1 105; 1 200; 1 610. Ngày nào bán được nhiều vé nhất?",
             options: ["Thứ Tư", "Chủ nhật", "Thứ Bảy", "Thứ Sáu"],
             answer: "Thứ Tư",
-            mascotHint: "Số vé lớn nhất trong bảng là 2 150 vé, ứng với thứ Tư.",
+            mascotHint:
+              "Số vé lớn nhất trong bảng là 2 150 vé, ứng với thứ Tư.",
           },
         },
         {

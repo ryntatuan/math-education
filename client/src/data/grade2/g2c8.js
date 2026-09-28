@@ -47,7 +47,7 @@ export const g2c8 = {
               k: 2,
               emoji: "🍊",
               captionText: "3 khay, mỗi khay 2 quả cam: 2 × 3 = 6",
-            }
+            },
           },
         },
         {
@@ -63,7 +63,7 @@ export const g2c8 = {
                 ["Tổng", "2 × 3 = 6"],
               ],
               label: "Viết gọn 2 + 2 + 2 = 6 thành 2 × 3 = 6",
-            }
+            },
           },
         },
         {
@@ -165,7 +165,7 @@ export const g2c8 = {
                 },
               ],
               label: "2 được lấy 5 lần: 2 × 5 = 10",
-            }
+            },
           },
         },
         {
@@ -179,7 +179,7 @@ export const g2c8 = {
                 ["4 + 4 + 4", "4 × 3 = 12"],
               ],
               label: "Viết phép nhân từ tổng các số hạng bằng nhau",
-            }
+            },
           },
         },
         {
@@ -327,13 +327,13 @@ export const g2c8 = {
               step: 2,
               marks: [2, 4, 6, 8, 10],
               label: "Đếm thêm 2: 2 · 4 · 6 · 8 · 10",
-            }
+            },
           },
         },
         {
           type: "visual",
           content: {
-            text:"2×1  2×2  2×3  2×4  2×5",
+            text: "2×1  2×2  2×3  2×4  2×5",
             table: {
               headers: ["Phép nhân", "Kết quả"],
               rows: [
@@ -344,7 +344,7 @@ export const g2c8 = {
                 ["2 × 5", "10"],
               ],
               label: "Bảng nhân 2 (từ 2 × 1 đến 2 × 5)",
-            }
+            },
           },
         },
         {
@@ -354,6 +354,18 @@ export const g2c8 = {
             options: [6, 8, 10, 12],
             answer: 8,
             mascotHint: "Đếm thêm 2 từ 2: 2, 4, 6, 8. Vậy 2 × 4 = 8.",
+          },
+        },
+        {
+          type: "numberLineAnswer",
+          content: {
+            question: "Kéo con trỏ tới kết quả đúng",
+            expression: "2 + 2 + 2 = 3 ×",
+            answer: 6,
+            min: 0,
+            max: 10,
+            step: 2,
+            mascotHint: "2 + 2 + 2 = 6, mà 3 × 2 cũng bằng 6 — ba lần hai bằng sáu.",
           },
         },
         {
@@ -407,13 +419,13 @@ export const g2c8 = {
               step: 2,
               marks: [12, 14, 16, 18, 20],
               label: "Đếm thêm 2: 12 · 14 · 16 · 18 · 20",
-            }
+            },
           },
         },
         {
           type: "visual",
           content: {
-            text:"2×6  2×7  2×8  2×9  2×10",
+            text: "2×6  2×7  2×8  2×9  2×10",
             table: {
               headers: ["Phép nhân", "Kết quả"],
               rows: [
@@ -424,7 +436,7 @@ export const g2c8 = {
                 ["2 × 10", "20"],
               ],
               label: "Bảng nhân 2 (từ 2 × 6 đến 2 × 10)",
-            }
+            },
           },
         },
         {
@@ -525,6 +537,15 @@ export const g2c8 = {
           },
         },
         {
+          type: "typeAnswer",
+          content: {
+            question: "Tính rồi viết kết quả",
+            expression: "2 × 7 =",
+            answer: 14,
+            mascotHint: "2 × 7 nghĩa là 2 được lấy 7 lần: 2, 4, 6, 8, 10, 12, 14.",
+          },
+        },
+        {
           type: "summary",
           content: {
             title: "Bé nhớ rất tốt:",
@@ -575,13 +596,13 @@ export const g2c8 = {
               step: 5,
               marks: [5, 10, 15, 20, 25],
               label: "Đếm thêm 5: 5 · 10 · 15 · 20 · 25",
-            }
+            },
           },
         },
         {
           type: "visual",
           content: {
-            text:"5×1   5×2   5×3   5×4   5×5",
+            text: "5×1   5×2   5×3   5×4   5×5",
             table: {
               headers: ["Phép nhân", "Kết quả"],
               rows: [
@@ -592,7 +613,7 @@ export const g2c8 = {
                 ["5 × 5", "25"],
               ],
               label: "Bảng nhân 5 (từ 5 × 1 đến 5 × 5)",
-            }
+            },
           },
         },
         {
@@ -655,13 +676,13 @@ export const g2c8 = {
               step: 5,
               marks: [30, 35, 40, 45, 50],
               label: "Đếm thêm 5: 30 · 35 · 40 · 45 · 50",
-            }
+            },
           },
         },
         {
           type: "visual",
           content: {
-            text:"5×6  5×7  5×8  5×9  5×10",
+            text: "5×6  5×7  5×8  5×9  5×10",
             table: {
               headers: ["Phép nhân", "Kết quả"],
               rows: [
@@ -672,7 +693,7 @@ export const g2c8 = {
                 ["5 × 10", "50"],
               ],
               label: "Bảng nhân 5 (từ 5 × 6 đến 5 × 10)",
-            }
+            },
           },
         },
         {
@@ -1085,20 +1106,20 @@ export const g2c8 = {
                 ["20 : 2", "10"],
               ],
               label: "Bảng chia 2",
-            }
+            },
           },
         },
         {
           type: "visual",
           content: {
-            text:"Bảng chia 2:  2:2=1  4:2=2  6:2=3 ...",
+            text: "Bảng chia 2:  2:2=1  4:2=2  6:2=3 ...",
             numberLine: {
               from: 2,
               to: 20,
               step: 2,
               marks: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20],
               label: "Bảng chia 2 dựa vào bảng nhân 2",
-            }
+            },
           },
         },
         {
@@ -1307,6 +1328,31 @@ export const g2c8 = {
             options: [5, 10, 18, 22],
             answer: 10,
             mascotHint: "20 : 2 = 10 quả vải.",
+          },
+        },
+        {
+          type: "multiQuiz",
+          content: {
+            question: "Chọn TẤT CẢ các phép tính có kết quả bằng 10",
+            options: ["5 × 2", "2 × 5", "3 × 6", "20 : 2"],
+            answers: ["5 × 2", "2 × 5", "20 : 2"],
+            mascotHint:
+              "Tính từng phép tính: 5 × 2 = 10, 2 × 5 = 10, 20 : 2 = 10, còn 3 × 6 = 18.",
+          },
+        },
+        {
+          type: "buildExpression",
+          content: {
+            question: "Ghép phép nhân có tích bằng 100",
+            target: "100",
+            slots: 3,
+            tiles: ["25", "×", "4", "5", "20", "6"],
+            solutions: [
+              ["25", "×", "4"],
+              ["20", "×", "5"],
+            ],
+            mascotHint:
+              "25 × 4 = 100, 20 × 5 = 100, 4 × 25 cũng bằng 100 — đổi chỗ hai thừa số thì tích không đổi!",
           },
         },
         {

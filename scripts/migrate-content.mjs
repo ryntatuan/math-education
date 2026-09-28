@@ -59,6 +59,52 @@ const MUON_DOI_CHIEU = args.includes("--verify");
 const { validateLesson } = await import(
   new URL("../admin/src/lib/contentSchema.js", import.meta.url)
 );
+// Luật chấm nằm trong app (`answerLogic.js`) — dùng LẠI, không chép lại phép tính.
+const { evaluateTokens, parseNumber, ticksOf } = await import(
+  new URL("../client/src/pages/lesson/answerLogic.js", import.meta.url)
+);
+
+/**
+ * LUẬT “BÀI PHẢI CÓ NGHIỆM” (2026-09-28) cho hai dạng bài có LUẬT RIÊNG:
+ *   • `buildExpression` — mỗi cách đúng khai trong `solutions` phải TÍNH RA đúng `target`;
+ *   • `numberLineAnswer` — `min`/`max`/`step` phải dựng được trục số, và `answer` PHẢI nằm trên
+ *     một vạch (nếu không, bé kéo đúng cũng không bao giờ chạm tới đáp án).
+ *
+ * `contentSchema.js` chỉ kiểm được HÌNH DẠNG (nó không được với ra ngoài thư mục app nên không
+ * import được phép tính của app). Phần “có nghiệm” phải kiểm ở đây — ngay trên đường GHI.
+ */
+function kiemBieuThuc(bai) {
+  const loiBieuThuc = [];
+  for (const [i, s] of (bai.slides ?? []).entries()) {
+    if (s?.type === "numberLineAnswer") {
+      const vach = ticksOf(s.content ?? {});
+      if (vach.length === 0) {
+        loiBieuThuc.push(
+          `slide ${i + 1} (numberLineAnswer): min/max/step không dựng được trục số — bài VÔ NGHIỆM`,
+        );
+      } else if (!vach.includes(s.content.answer)) {
+        loiBieuThuc.push(
+          `slide ${i + 1} (numberLineAnswer): đáp án ${JSON.stringify(s.content.answer)} KHÔNG nằm trên vạch nào ` +
+            `của trục số ⇒ bài VÔ NGHIỆM`,
+        );
+      }
+    }
+
+    if (s?.type !== "buildExpression") continue;
+    const can = parseNumber(s.content?.target);
+    const cach = Array.isArray(s.content?.solutions) ? s.content.solutions : [];
+    for (const [k, motCach] of cach.entries()) {
+      const ket = evaluateTokens(motCach);
+      if (ket === null || can === null || Math.abs(ket - can) > 1e-9) {
+        loiBieuThuc.push(
+          `slide ${i + 1} (buildExpression): cách đúng thứ ${k + 1} ${JSON.stringify(motCach)} ` +
+            `tính ra ${ket} nhưng target là ${JSON.stringify(s.content?.target)} — bài vô nghiệm`,
+        );
+      }
+    }
+  }
+  return loiBieuThuc;
+}
 
 // ─────────────────────── Nạp biến môi trường ───────────────────────
 
@@ -130,6 +176,7 @@ for (const [file, key] of NGUON) {
     ch.lessons.forEach((l, iL) => {
       const canhBao = validateLesson(l);
       if (canhBao.length) loi.push(...canhBao.map((c) => `${l.id}: ${c}`));
+      for (const c of kiemBieuThuc(l)) loi.push(`${l.id}: ${c}`);
 
       lessons.push({
         id: l.id,
@@ -160,7 +207,7 @@ console.log(
 
 // Đối chiếu với con số đã đo bằng `scratch/inspect_content_shape.mjs`.
 // Lệch nghĩa là hoặc nội dung đã đổi (tốt — cập nhật số), hoặc bộ đọc đã hỏng.
-const MONG_DOI = { lop: 5, chuong: 65, bai: 489, slide: 3149 };
+const MONG_DOI = { lop: 5, chuong: 65, bai: 489, slide: 3163 };
 const lech =
   grades.length !== MONG_DOI.lop ||
   chapters.length !== MONG_DOI.chuong ||

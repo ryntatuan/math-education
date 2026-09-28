@@ -599,6 +599,18 @@ export const g3c8 = {
           },
         },
         {
+          type: "numberLineAnswer",
+          content: {
+            question: "Kéo con trỏ tới số làm tròn đúng",
+            expression: "47 ≈",
+            answer: 50,
+            min: 40,
+            max: 60,
+            step: 5,
+            mascotHint: "47 gần 50 hơn 40 (cách 3 so với 7), nên làm tròn đến hàng chục là 50.",
+          },
+        },
+        {
           type: "summary",
           content: {
             title: "Bé nhớ rất tốt:",

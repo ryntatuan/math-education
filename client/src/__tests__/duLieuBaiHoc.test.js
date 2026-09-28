@@ -53,6 +53,17 @@ const KHONG_PHAI_HINH = new Set([
   "answer",
   "correctAnswer",
   "answers",
+  // Ba dạng bài mới (2026-09-28): ghép thẻ thành phép tính + nối cặp.
+  "target",
+  "slots",
+  "tiles",
+  "solutions",
+  "pairs",
+  // Hai dạng “tự trả lời” (2026-09-28): nhập kết quả + trả lời trên trục số.
+  "expression",
+  "min",
+  "max",
+  "step",
   "questionType",
   "unit",
   "mascotMood",
@@ -137,7 +148,7 @@ describe("dữ liệu bài học — không có lỗi hỏng âm thầm", () => 
     const { bai, slide } = dem();
     expect(GRADES.length).toBe(5);
     expect(bai).toBeGreaterThanOrEqual(460);
-    expect(slide).toBeGreaterThanOrEqual(3149);
+    expect(slide).toBeGreaterThanOrEqual(3163);
   });
 
   it("mọi khoá trong slide đều là khoá đã biết (không gõ sai tên khoá hình)", () => {

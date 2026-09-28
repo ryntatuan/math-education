@@ -11,8 +11,7 @@ export const g4c11 = {
       id: "g4-c11-l1",
       title: "Bài 60: Phép cộng phân số",
       type: "learn",
-      description:
-        "Cộng hai phân số cùng mẫu số và khác mẫu số",
+      description: "Cộng hai phân số cùng mẫu số và khác mẫu số",
       slides: [
         {
           type: "story",
@@ -58,7 +57,8 @@ export const g4c11 = {
             question: "Tính: 2/7 + 3/7 = ?",
             options: ["5/7", "5/14", "6/7", "1/7"],
             answer: "5/7",
-            mascotHint: "Cùng mẫu số 7 nên cộng hai tử số: 2 + 3 = 5, giữ mẫu số 7.",
+            mascotHint:
+              "Cùng mẫu số 7 nên cộng hai tử số: 2 + 3 = 5, giữ mẫu số 7.",
           },
         },
         {
@@ -67,7 +67,8 @@ export const g4c11 = {
             question: "Tính: 1/2 + 1/3 = ?",
             options: ["5/6", "2/5", "2/6", "1/6"],
             answer: "5/6",
-            mascotHint: "Quy đồng mẫu số 6: 1/2 = 3/6; 1/3 = 2/6; 3/6 + 2/6 = 5/6.",
+            mascotHint:
+              "Quy đồng mẫu số 6: 1/2 = 3/6; 1/3 = 2/6; 3/6 + 2/6 = 5/6.",
           },
         },
         {
@@ -88,8 +89,7 @@ export const g4c11 = {
       id: "g4-c11-l2",
       title: "Bài 61: Phép trừ phân số",
       type: "learn",
-      description:
-        "Trừ hai phân số cùng mẫu số và khác mẫu số",
+      description: "Trừ hai phân số cùng mẫu số và khác mẫu số",
       slides: [
         {
           type: "story",
@@ -125,7 +125,8 @@ export const g4c11 = {
                 ["7/9 − 4/9", "cùng mẫu", "3/9 = 1/3"],
                 ["1 − 2/5", "1 = 5/5", "3/5"],
               ],
-              label: "Kiểm tra kết quả: kết quả cộng với số trừ phải bằng số bị trừ",
+              label:
+                "Kiểm tra kết quả: kết quả cộng với số trừ phải bằng số bị trừ",
             },
           },
         },

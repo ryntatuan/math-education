@@ -11,8 +11,7 @@ export const g5c12 = {
       id: "g5-c12-l1",
       title: "Bài 68: Ôn tập số tự nhiên, phân số, số thập phân",
       type: "learn",
-      description:
-        "Ôn tập đọc viết, so sánh các loại số đã học ở Tiểu học",
+      description: "Ôn tập đọc viết, so sánh các loại số đã học ở Tiểu học",
       slides: [
         {
           type: "story",
@@ -65,7 +64,12 @@ export const g5c12 = {
           type: "quiz",
           content: {
             question: "Sắp xếp 0,7; 3/4 và 2/3 theo thứ tự từ lớn đến bé:",
-            options: ["3/4; 0,7; 2/3", "0,7; 3/4; 2/3", "2/3; 0,7; 3/4", "3/4; 2/3; 0,7"],
+            options: [
+              "3/4; 0,7; 2/3",
+              "0,7; 3/4; 2/3",
+              "2/3; 0,7; 3/4",
+              "3/4; 2/3; 0,7",
+            ],
             answer: "3/4; 0,7; 2/3",
             mascotHint: "3/4 = 0,75 > 0,7 > 2/3 ≈ 0,667.",
           },
@@ -86,10 +90,10 @@ export const g5c12 = {
     },
     {
       id: "g5-c12-l2",
-      title: "Bài 69: Ôn tập các phép tính với số tự nhiên, phân số, số thập phân",
+      title:
+        "Bài 69: Ôn tập các phép tính với số tự nhiên, phân số, số thập phân",
       type: "learn",
-      description:
-        "Ôn tập bốn phép tính với cả ba loại số",
+      description: "Ôn tập bốn phép tính với cả ba loại số",
       slides: [
         {
           type: "story",
@@ -141,10 +145,12 @@ export const g5c12 = {
         {
           type: "quiz",
           content: {
-            question: "Cửa hàng có 1 200 kg gạo, đã bán 3/5 số gạo. Số gạo còn lại là:",
+            question:
+              "Cửa hàng có 1 200 kg gạo, đã bán 3/5 số gạo. Số gạo còn lại là:",
             options: ["480 kg", "720 kg", "400 kg", "600 kg"],
             answer: "480 kg",
-            mascotHint: "Đã bán: 1 200 : 5 × 3 = 720 kg; còn lại: 1 200 − 720 = 480 (kg).",
+            mascotHint:
+              "Đã bán: 1 200 : 5 × 3 = 720 kg; còn lại: 1 200 − 720 = 480 (kg).",
           },
         },
         {
@@ -165,8 +171,7 @@ export const g5c12 = {
       id: "g5-c12-l3",
       title: "Bài 70: Ôn tập tỉ số, tỉ số phần trăm",
       type: "learn",
-      description:
-        "Ôn tập tỉ số, tỉ số phần trăm và các bài toán liên quan",
+      description: "Ôn tập tỉ số, tỉ số phần trăm và các bài toán liên quan",
       slides: [
         {
           type: "story",
@@ -198,8 +203,16 @@ export const g5c12 = {
               headers: ["Dạng bài", "Cách làm", "Ví dụ"],
               rows: [
                 ["Tìm tỉ số phần trăm", "a : b × 100", "30 : 40 × 100 = 75%"],
-                ["Tìm giá trị phần trăm", "số : 100 × số %", "15% của 1 200 000 = 180 000"],
-                ["Tìm số khi biết %", "giá trị : số % × 100", "50 : 25 × 100 = 200"],
+                [
+                  "Tìm giá trị phần trăm",
+                  "số : 100 × số %",
+                  "15% của 1 200 000 = 180 000",
+                ],
+                [
+                  "Tìm số khi biết %",
+                  "giá trị : số % × 100",
+                  "50 : 25 × 100 = 200",
+                ],
               ],
               label: "Đọc kĩ đề để chọn đúng dạng bài",
             },
@@ -219,9 +232,15 @@ export const g5c12 = {
           content: {
             question:
               "Chiếc xe đạp giá 1 200 000 đồng được giảm 15%. Số tiền phải trả là:",
-            options: ["1 020 000 đồng", "1 180 000 đồng", "180 000 đồng", "1 000 000 đồng"],
+            options: [
+              "1 020 000 đồng",
+              "1 180 000 đồng",
+              "180 000 đồng",
+              "1 000 000 đồng",
+            ],
             answer: "1 020 000 đồng",
-            mascotHint: "Giảm 1 200 000 : 100 × 15 = 180 000 đồng; 1 200 000 − 180 000 = 1 020 000 (đồng).",
+            mascotHint:
+              "Giảm 1 200 000 : 100 × 15 = 180 000 đồng; 1 200 000 − 180 000 = 1 020 000 (đồng).",
           },
         },
         {
@@ -287,8 +306,7 @@ export const g5c12 = {
         {
           type: "quiz",
           content: {
-            question:
-              "Bể nước dài 2 m, rộng 1,5 m, cao 1 m. Thể tích bể là:",
+            question: "Bể nước dài 2 m, rộng 1,5 m, cao 1 m. Thể tích bể là:",
             options: ["3 m³", "4,5 m³", "2,5 m³", "30 m³"],
             answer: "3 m³",
             mascotHint: "V = 2 × 1,5 × 1 = 3 (m³).",
@@ -454,7 +472,8 @@ export const g5c12 = {
               "Hai xe cách nhau 60 km, đi ngược chiều với vận tốc 20 km/giờ và 30 km/giờ. Sau bao lâu hai xe gặp nhau?",
             options: ["1,2 giờ", "2 giờ", "1,5 giờ", "3 giờ"],
             answer: "1,2 giờ",
-            mascotHint: "Tổng vận tốc 20 + 30 = 50 km/giờ; thời gian = 60 : 50 = 1,2 (giờ) = 1 giờ 12 phút.",
+            mascotHint:
+              "Tổng vận tốc 20 + 30 = 50 km/giờ; thời gian = 60 : 50 = 1,2 (giờ) = 1 giờ 12 phút.",
           },
         },
         {
@@ -554,8 +573,7 @@ export const g5c12 = {
       id: "g5-c12-l8",
       title: "Bài 75: Ôn tập chung",
       type: "learn",
-      description:
-        "Ôn tập tổng hợp toàn bộ kiến thức Toán Lớp 5",
+      description: "Ôn tập tổng hợp toàn bộ kiến thức Toán Lớp 5",
       slides: [
         {
           type: "story",
@@ -571,7 +589,10 @@ export const g5c12 = {
             table: {
               headers: ["Chủ đề", "Điều cần nhớ"],
               rows: [
-                ["Số tự nhiên, phân số, số thập phân", "đọc, viết, so sánh, chuyển đổi"],
+                [
+                  "Số tự nhiên, phân số, số thập phân",
+                  "đọc, viết, so sánh, chuyển đổi",
+                ],
                 ["Bốn phép tính", "đặt tính, đặt dấu phẩy, thứ tự phép tính"],
                 ["Tỉ số, tỉ số phần trăm", "ba dạng bài phần trăm"],
                 ["Hình học", "công thức diện tích, chu vi, thể tích"],

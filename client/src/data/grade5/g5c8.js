@@ -54,10 +54,12 @@ export const g5c8 = {
         {
           type: "quiz",
           content: {
-            question: "Hình A gồm 8 khối lập phương nhỏ, hình B gồm 12 khối như thế. Hình nào có thể tích lớn hơn?",
+            question:
+              "Hình A gồm 8 khối lập phương nhỏ, hình B gồm 12 khối như thế. Hình nào có thể tích lớn hơn?",
             options: ["Hình B", "Hình A", "Bằng nhau", "Không so sánh được"],
             answer: "Hình B",
-            mascotHint: "12 khối nhiều hơn 8 khối nên hình B chiếm nhiều không gian hơn.",
+            mascotHint:
+              "12 khối nhiều hơn 8 khối nên hình B chiếm nhiều không gian hơn.",
           },
         },
         {
@@ -71,7 +73,8 @@ export const g5c8 = {
               "Số đỉnh của hình",
             ],
             answer: "Phần không gian mà hình đó chiếm chỗ",
-            mascotHint: "Thể tích nói về không gian hình chiếm, khác với chu vi, diện tích.",
+            mascotHint:
+              "Thể tích nói về không gian hình chiếm, khác với chu vi, diện tích.",
           },
         },
         {
@@ -138,7 +141,8 @@ export const g5c8 = {
             question: "1 dm³ bằng bao nhiêu xăng-ti-mét khối?",
             options: ["1 000 cm³", "100 cm³", "10 cm³", "10 000 cm³"],
             answer: "1 000 cm³",
-            mascotHint: "Mỗi đơn vị đo thể tích liền kề hơn kém nhau 1 000 lần.",
+            mascotHint:
+              "Mỗi đơn vị đo thể tích liền kề hơn kém nhau 1 000 lần.",
           },
         },
         {
@@ -168,8 +172,7 @@ export const g5c8 = {
       id: "g5-c8-l3",
       title: "Bài 47: Mét khối",
       type: "learn",
-      description:
-        "Nhận biết mét khối (m³) và quan hệ với dm³, cm³, lít",
+      description: "Nhận biết mét khối (m³) và quan hệ với dm³, cm³, lít",
       slides: [
         {
           type: "story",
@@ -215,13 +218,15 @@ export const g5c8 = {
             question: "1 m³ bằng bao nhiêu đề-xi-mét khối?",
             options: ["1 000 dm³", "100 dm³", "10 000 dm³", "10 dm³"],
             answer: "1 000 dm³",
-            mascotHint: "Hình lập phương cạnh 1 m chứa được 10 × 10 × 10 = 1 000 hình lập phương cạnh 1 dm.",
+            mascotHint:
+              "Hình lập phương cạnh 1 m chứa được 10 × 10 × 10 = 1 000 hình lập phương cạnh 1 dm.",
           },
         },
         {
           type: "quiz",
           content: {
-            question: "Bể bơi chứa 60 m³ nước. Số nước đó tương ứng bao nhiêu lít?",
+            question:
+              "Bể bơi chứa 60 m³ nước. Số nước đó tương ứng bao nhiêu lít?",
             options: ["60 000 lít", "6 000 lít", "600 lít", "600 000 lít"],
             answer: "60 000 lít",
             mascotHint: "1 m³ = 1 000 lít nên 60 m³ = 60 000 lít.",
@@ -245,8 +250,7 @@ export const g5c8 = {
       id: "g5-c8-l4",
       title: "Bài 48: Luyện tập chung",
       type: "learn",
-      description:
-        "Luyện tập đổi đơn vị đo thể tích và so sánh thể tích",
+      description: "Luyện tập đổi đơn vị đo thể tích và so sánh thể tích",
       slides: [
         {
           type: "story",
@@ -283,7 +287,8 @@ export const g5c8 = {
         {
           type: "quiz",
           content: {
-            question: "Sắp xếp các số đo 2 dm³; 500 cm³; 1 dm³ theo thứ tự từ bé đến lớn:",
+            question:
+              "Sắp xếp các số đo 2 dm³; 500 cm³; 1 dm³ theo thứ tự từ bé đến lớn:",
             options: [
               "500 cm³; 1 dm³; 2 dm³",
               "1 dm³; 500 cm³; 2 dm³",
@@ -291,7 +296,8 @@ export const g5c8 = {
               "500 cm³; 2 dm³; 1 dm³",
             ],
             answer: "500 cm³; 1 dm³; 2 dm³",
-            mascotHint: "Đổi về cùng đơn vị: 500 cm³ = 0,5 dm³ < 1 dm³ < 2 dm³.",
+            mascotHint:
+              "Đổi về cùng đơn vị: 500 cm³ = 0,5 dm³ < 1 dm³ < 2 dm³.",
           },
         },
         {

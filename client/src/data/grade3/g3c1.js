@@ -461,6 +461,18 @@ export const g3c1 = {
           },
         },
         {
+          type: "matchPairs",
+          content: {
+            question: "Nối mỗi phép nhân với kết quả đúng",
+            pairs: [
+              ["2 × 6", "12"],
+              ["5 × 4", "20"],
+              ["2 × 9", "18"],
+            ],
+            mascotHint: "Bé đọc lại bảng nhân 2 và bảng nhân 5 rồi nối nhé!",
+          },
+        },
+        {
           type: "summary",
           content: {
             title: "Bé nhớ rất tốt:",

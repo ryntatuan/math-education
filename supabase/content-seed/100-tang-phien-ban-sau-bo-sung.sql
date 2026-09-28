@@ -12,6 +12,130 @@
 -- CHẠY LẠI NHIỀU LẦN: chỉ làm phiên bản tăng thêm 1 mỗi lần — vô hại (các bé tải
 --   lại nội dung thêm một lần), không sinh dòng trùng, không mất dữ liệu.
 --
+-- LƯU Ý LẦN 25 (2026-09-28): **HAI DẠNG BÀI “TỰ TRẢ LỜI”** (ảnh Duolingo thứ hai).
+--   Người dùng gửi thêm hai ảnh Duolingo: (1) “Nhập câu trả lời” — `4 + 4 + 4 + 4 = ☐` kèm BÀN PHÍM
+--   SỐ để bé tự gõ; (2) “Trả lời trên trục số” — KÉO CON TRỎ trên tia số. Nay Toán Vui có cả hai.
+--
+--   QUY MÔ ĐỔI: **3157 → 3163 slide** (thêm 6 slide ở 6 bài; 5 lớp · 65 chương · 489 bài KHÔNG đổi).
+--     • `typeAnswer` (nhập kết quả): g1-c3-l9 (`10 − 6 =` → 4), g2-c8-l6 (`2 × 7 =` → 14),
+--       g3-c4-l2 (`24 × 3 =` → 72).
+--     • `numberLineAnswer` (trục số): g2-c8-l4 (`2 + 2 + 2 = 3 ×` → 6), g3-c8-l7 (`47 ≈` → 50),
+--       g4-c3-l4 (`4 600 ≈` → 5 000).
+--
+--   BỐ CỤC — giữ ĐÚNG luật đã rút ra ở LẦN 24: hàng trên là KHUNG MẪU (số cho trước / phép tính +
+--   MỘT hộp TRỐNG, không bao giờ hiện dữ liệu bé chọn); dữ liệu bé nhập hiện ở khu vực riêng dưới.
+--     • `typeAnswer`: ô hiện số bé gõ + bàn phím 1–9 · 0 · ⌫ + nút KIỂM TRA (mờ tới khi bé gõ).
+--     • `numberLineAnswer`: trục số có nhãn BẤM ĐƯỢC + con trỏ KÉO ĐƯỢC (bàn phím ← → cũng chạy)
+--       + nút KIỂM TRA (mờ tới khi bé chọn vạch).
+--   Ba dạng bài dùng CHUNG một khối CSS khung phép tính (`.expr-frame`) nên không thể lệch nhau.
+--
+--   🔴 LUẬT CHỐNG “BÀI VÔ NGHIỆM” (đúng họ lỗi im lặng của LẦN 24):
+--     • `expression` KHÔNG được kết thúc bằng chữ số (hộp mẫu nối ngay sau nó);
+--     • `answer` phải là số TỰ NHIÊN (bàn phím không có dấu phẩy / dấu trừ);
+--     • trục số: `step` phải chia hết khoảng, và **`answer` PHẢI nằm đúng trên một vạch** — không
+--       thì bé kéo đúng cỡ nào cũng không chạm tới đáp án; số vạch từ 2 đến 7 để mỗi ô bấm đủ lớn.
+--   ⇒ Chặn bằng ba lớp như LẦN 24: (a) form Admin báo lỗi ngay khi soạn; (b) `migrate-content.mjs`
+--     chặn lúc GHI (dùng lại chính `ticksOf` của app); (c) cổng `kiem-tra-slide.mjs` + unit test.
+--   ⚠️ Canary bắt được một lỗi THẬT ngay lượt đầu: luật “nằm đúng trên vạch” viết thiếu `Math.abs`
+--     nên MỌI giá trị nằm dưới vạch đều lọt — đã sửa và có test hai vế.
+--
+--   ✅ ĐÃ ĐO TRONG APP: 390 px và 320 px — 0 tràn ngang; bàn phím số mỗi ô 48–49 px; nhãn trục số
+--      cao 45 px (lần đo đầu chỉ 43 px nên đã nâng lên 46 px, đúng ngưỡng bấm của trẻ); kéo con trỏ
+--      bám đúng vạch gần nhất, bấm nhãn cũng chọn được; chấm đúng/sai đổi màu ô + con trỏ.
+--
+--   📌 PHẢI DÁN LẠI SEED — nội dung ĐÃ ĐỔI ở 4 lớp (1, 2, 3, 4):
+--      `02-bai-lop-1.sql` → `03-bai-lop-2.sql` → `04-bai-lop-3.sql` → `05-bai-lop-4.sql`
+--      → `06-bai-lop-5.sql` → rồi file NÀY (`100-...`) để đẩy `content_version`.
+--
+-- LƯU Ý LẦN 24 (2026-09-28): **BA DẠNG BÀI MỚI KIỂU DUOLINGO + SỬA LUẬT THẺ GHÉP**.
+--   Người dùng gửi ảnh Duolingo Math và nhờ "phân tích và áp dụng vào phần bài học, luyện tập,
+--   trò chơi". Đợt này THÊM 8 SLIDE mới vào 8 bài (lớp 1, 2, 3, 4, 5 đều có), nên QUY MÔ ĐỔI:
+--   **3149 → 3157 slide** (5 lớp · 65 chương · 489 bài GIỮ NGUYÊN).
+--
+--   BA DẠNG MỚI (luật chấm ở `client/src/pages/lesson/answerLogic.js`, có unit test riêng):
+--     • `multiQuiz`       — "Chọn TẤT CẢ các phương án thích hợp": bé bấm nhiều ô rồi KIỂM TRA.
+--       Đúng khi chọn ĐỦ và KHÔNG THỪA. Sai thì tô riêng từng ô (đỏ = chọn sai, viền đứt =
+--       bỏ sót), KHÔNG tô đỏ cả câu.
+--     • `buildExpression` — ghép thẻ thành phép tính đúng cho trước kết quả (`100 = ☐ ☐ ☐`).
+--     • `matchPairs`      — nối cặp (dạng "Nối theo mẫu" rất phổ biến trong SGK Lớp 1–3). Cột
+--       phải tự ĐẢO vòng để bé không chỉ việc nối hàng trên với hàng dưới.
+--   Kèm theo: huy hiệu **COMBO** khi bé làm đúng liên tiếp trong cùng một bài.
+--
+--   🔴 BÀI HỌC ĐẮT NHẤT CỦA ĐỢT NÀY — THẺ GHÉP KHÔNG ĐƯỢC TRỘN SỐ VỚI DẤU (người dùng bắt lỗi):
+--      Bản đầu tôi soạn khay `["25 ×", "4", "5", "20 ×", "6"]` — dấu DÍNH vào số. Người dùng hỏi
+--      thẳng: *"phép nhân phải để riêng thành 1 ô chứ sao lại kèm vào số? thế tôi muốn 4 × 25
+--      thay vì 25 × 4 thì sai à?"* — ĐÚNG CẢ HAI VẾ:
+--        1. Với khay đó bé **KHÔNG THỂ** ghép `4 × 25`: trong khay không có thẻ `"25"` rời, cũng
+--           không có thẻ `"×"` rời. Bài chỉ còn ĐÚNG một đường đi do người soạn vạch sẵn.
+--        2. Luật chấm cũ so CHUỖI với `solutions`, nên `4 × 25` bị báo SAI dù đúng toán học.
+--      ⇒ Nay mỗi thẻ là MỘT số (`"25"`, `"1 000"`, `"0,5"`) hoặc MỘT dấu (`"+"`, `"−"`, `"×"`, `":"`),
+--        và chấm theo GIÁ TRỊ (`matchesTarget`) — `25 × 4` và `4 × 25` đều đúng, KHÔNG phải kê
+--        từng hoán vị vào `solutions` (kê thiếu một hoán vị là bé làm đúng mà bị báo sai).
+--      ⇒ Chặn bằng BA lớp, không chỉ một:
+--        (a) `admin/src/lib/contentSchema.js` — báo lỗi NGAY khi soạn: thẻ phải là một số HOẶC
+--            một dấu, khay phải có thẻ dấu, `target` phải đọc được thành số;
+--        (b) `scripts/migrate-content.mjs` — chặn lúc GHI: mỗi cách trong `solutions` phải TÍNH
+--            RA đúng `target`, nếu không thì bài vô nghiệm (bé tính đúng vẫn báo sai);
+--        (c) `scratch/kiem-tra-slide.mjs` + canary HAI VẾ trong cổng S-23 (bắt được thẻ trộn,
+--            và KHÔNG báo oan khay thẻ tách rời).
+--      ⚠️ Mẫu slide mới trong trình soạn bài (`admin/src/lib/soanBai.js`) cũng đã đổi theo.
+--
+--   ✅ ĐÃ ĐO TRONG APP (390 px · 0 tràn ngang · ô bấm ≥ 44 px):
+--      • `g2-c8-l15` ghép `4 × 25` → 🎉 đúng (trước đây không thể ghép được);
+--      • `g4-c8-l11` ghép `8 × 125` → 🎉 đúng (trước đây báo sai) và `4 × 25` (=100 ≠ 1 000) → 😅;
+--      • `g1-c3-l13` nối cặp: nối sai thì nháy đỏ + không tăng tiến độ, xong 3/3 mới mở khoá;
+--      • COMBO x2 hiện đúng sau 2 câu trả lời đúng liên tiếp.
+--
+--   ✅ LẦN SỬA THỨ HAI CỦA CÙNG NGÀY — BỐ CỤC (người dùng gửi ảnh thật của Duolingo):
+--      Tôi đã hiểu SAI hai lần. Lần 1: để dấu dính vào số (`"25 ×"`) ⇒ bé không ghép được `4 × 25`.
+--      Lần 2: nhồi `1 000 = ☐ ☐ ☐` vào MỘT hàng rồi ÉP không cho xuống dòng ⇒ sai tiếp.
+--      Ảnh Duolingo cho thấy họ TÁCH HAI HÀNG. Nay `buildExpression` làm đúng vậy:
+--        (1) hàng ĐẠI DIỆN `1 000 = [ hộp ]` — hộp chỉ là KHUNG MẪU, LUÔN ĐỂ TRỐNG;
+--        (2) hàng Ô TRỐNG nằm DƯỚI, mỗi số/ký tự cần điền là MỘT ô — đây mới là chỗ hiện
+--            số/ký tự bé đã chọn;
+--        (3) khay thẻ — thẻ ĐÃ DÙNG thành Ô XÁM TRỐNG (giữ nguyên vị trí, khay không nhảy chỗ);
+--        (4) nút KIỂM TRA (mờ cho tới khi điền đủ ô — bỏ kiểu tự chấm khi vừa đủ ô).
+--      Vì sao đúng: hàng (1) chỉ có hai thứ cố định + một hộp nên KHÔNG BAO GIỜ vỡ; hàng (2) muốn
+--      bao nhiêu ô cũng được. Câu hỏi của hai bài ghép thẻ cũng được RÚT NGẮN
+--      ("Ghép phép nhân có tích bằng 100 / 1 000"). Đã đo ở 360/390/430 px: 0 tràn ngang.
+--      (Chỉ đổi MÃ + lời văn câu hỏi, không đổi luật chấm.)
+--
+--   📌 PHẢI DÁN LẠI SEED — nội dung ĐÃ ĐỔI ở CẢ 5 LỚP (mỗi lớp được thêm slide mới):
+--      `02-bai-lop-1.sql` → `03-bai-lop-2.sql` → `04-bai-lop-3.sql` → `05-bai-lop-4.sql`
+--      → `06-bai-lop-5.sql` → rồi file NÀY (`100-...`) để đẩy `content_version`.
+--      Dán thiếu file của lớp nào thì lớp đó KHÔNG có dạng bài mới (bài cũ vẫn hiện bình thường).
+--
+-- LƯU Ý LẦN 23 (2026-09-28): **ĐÁP ÁN TRẮC NGHIỆM CĂN TRÁI** (sửa lại luật của LẦN 21).
+--   Người dùng gửi ảnh một câu hỏi có 4 phương án là CÂU CHỮ và nói rõ: *"câu trả lời căn giữa
+--   quá xấu và không phù hợp"* + *"kiểm tra các câu trả lời phải căn trái, rà soát lại tất cả các
+--   bài học, luyện tập, trò chơi"*.
+--
+--   🔴 LUẬT 1 CỦA LẦN 21 ĐÃ SAI Ở CHỖ "PHƯƠNG ÁN" — nay tách thành hai vai trò khác nhau:
+--      • ĐÁP ÁN TRẮC NGHIỆM (`pages/LessonPage.css`) → **căn TRÁI**. Đoạn chữ canh giữa thì mỗi
+--        dòng một mốc, mắt trẻ phải dò lại đầu câu; canh trái thì MỌI phương án bắt đầu ở cùng
+--        một mốc (ngay sau vòng tròn A/B/C/D) và ngọn cờ ✔/✗ được đẩy ra mép phải.
+--      • NGOẠI LỆ DUY NHẤT: hàng **3 ô chỉ chứa ký hiệu** `>` `<` `=` (lớp `quiz-options-3`)
+--        GIỮ căn giữa — ký hiệu đối xứng, không phải câu để đọc.
+--      • ĐÁP ÁN bên **Luyện tập / Sổ Tay Ôn Bài Sai**: chỉ đáp án **CÓ CHỮ** mới căn trái
+--        ("3 nghìn, 5 trăm, 1 chục, 7 đơn vị"); đáp án SỐ/KÝ HIỆU giữ căn giữa. Luật nằm ở
+--        MỘT nguồn duy nhất: `client/src/utils/answerAlignment.js` (`isTextAnswer`), có unit test.
+--      • **Trò chơi / Thử thách / Truyện / Đố vui trong bong bóng linh vật**: đáp án là SỐ
+--        (mã laser, bóng bay, cân thăng bằng, vạch xuất phát) ⇒ KHÔNG đổi, vì căn trái một con số
+--        trong ô to sẽ lệch và xấu hơn. Đã rà: 0 chỗ nào có đáp án chữ.
+--      • Slide "hội thoại" (`dialogue`): dữ liệu hiện KHÔNG có slide nào kèm `options` ⇒ không đổi.
+--
+--   ✅ Cổng S-36 đã cập nhật theo luật mới: `.quiz-option` và `.quiz-option-text` phải căn TRÁI,
+--      `.quiz-options-3 .quiz-option` phải GIỮ căn giữa, `.practice-opt-btn.is-text-answer` VÀ
+--      khối chữ `.opt-val-text` bên trong nó cũng phải căn TRÁI, và cổng canh luôn sự tồn tại của
+--      `utils/answerAlignment.js` + việc `PracticePage.jsx` dùng nó (một nguồn luật, không chép tay).
+--      🔴 Vì sao phải kiểm CẢ KHỐI CHỮ: `.opt-val-text` tự khai `text-align: center`, nên chỉ đặt
+--      `text-align: left` ở cái nút là chưa đủ — đáp án dài hai dòng vẫn canh giữa. Đây đúng họ lỗi
+--      "hai vế" đã gặp ở slide câu hỏi, nên cổng kiểm cả hai vế cho cả hai màn hình.
+--   ✅ Đo TRONG APP ở 390 px: 4 đáp án chữ của `g1-c1-l1` slide 5 bắt đầu cùng mốc **x = 80 px**,
+--      `text-align: left`; quiz 3 dấu `>` `<` `=` vẫn `center`; **0 tràn ngang**.
+--   ⚠️ **KHÔNG cần dán seed lần này** — đây là phần **MÃ**. `content_version` không đổi.
+--      Muốn thấy trên máy các bé thì **deploy web** (Vercel) và **build APK** lại.
+--
 -- LƯU Ý LẦN 22 (2026-09-28): **DỰNG LẠI TOÀN BỘ LỚP 4 VÀ LỚP 5 THEO SÁCH KẾT NỐI TRI THỨC**.
 --   Người dùng yêu cầu: *"tôi cần bạn bỏ hết nội dung lớp 4 và lớp 5 hiện tại, thay đổi chuẩn hoá theo tài
 --   liệu mới nhất"* — bỏ HOÀN TOÀN nội dung sách cũ (bộ Đỗ Đình Hoan trước 2018) và viết lại theo bộ
@@ -430,15 +554,16 @@ SELECT split_part(id, '-', 1) AS lop, COUNT(*) AS so_bai
 FROM public.content_lessons
 GROUP BY 1
 ORDER BY 1;
--- Mong đợi: g1 = 98 · g2 = 120 · g3 = 123 · g4 = 65 · g5 = 54 (tổng 460).
+-- Mong đợi: g1 = 98 · g2 = 120 · g3 = 123 · g4 = 73 · g5 = 75 (tổng 489).
 --   (Lớp 1 là 98 bài chứ KHÔNG phải 97 — con số 97 trong tài liệu cũ đã lỗi thời từ lần 14.)
+--   (Lớp 4 – Lớp 5 nay theo sách Kết nối tri thức: 73 bài và 75 bài — xem LƯU Ý LẦN 22.)
 
 -- Tổng toàn hệ thống và số bài nháp (phải là 0 — seed luôn ghi `published`).
 SELECT
   (SELECT COUNT(*) FROM public.content_lessons) AS tong_bai,
   (SELECT COUNT(*) FROM public.content_lessons WHERE status = 'draft') AS so_nhap,
   (SELECT COUNT(*) FROM public.content_lesson_versions) AS so_phien_ban;
--- Mong đợi: tong_bai = 460 · so_nhap = 0 · so_phien_ban >= 460 (mỗi bài ít nhất một
+-- Mong đợi: tong_bai = 489 · so_nhap = 0 · so_phien_ban >= 489 (mỗi bài ít nhất một
 --   dòng v1; một số bài có thể có thêm v2, v3 … nếu admin từng publish).
 
 -- ── 2. Đẩy phiên bản ───────────────────────────────────────────────────────
@@ -474,7 +599,14 @@ WHERE key IN ('content_source', 'content_version') ORDER BY key;
 
 -- ── 4. Kiểm trên app của bé (không cần SQL) ────────────────────────────────
 -- Mở lại app (đúng tài khoản bé đã dùng trước đó) và xem log:
---   [nội dung] đọc từ DB: 5 lớp · 51 chương · 460 bài · 2814 slide · phiên bản N
+--   [nội dung] đọc từ DB: 5 lớp · 65 chương · 489 bài · 3149 slide · phiên bản N
+--
+-- ── 5. CÁCH KIỂM BẰNG MÁY (chạy trong repo, KHÔNG phải trong SQL Editor) ─────
+--   🔴 Chạy ĐÚNG tên script, nếu không Node báo "Cannot find module":
+--        npm run content:verify        ← dùng cái này (ngắn, không thể gõ sai)
+--        node scripts/migrate-content.mjs --verify
+--        ❌ SAI: node migrate-content.mjs --verify  (file nằm trong thư mục `scripts/`)
+--   Mong đợi: "✅ KHỚP HOÀN TOÀN — 489 bài, 3149 slide." và mã thoát 0.
 --
 -- Kiểm ĐÚNG những chỗ từng sai — đây là lỗi mà chủ app tự phát hiện:
 --   • Lớp 2 → chương về phép nhân CHỈ được có bảng nhân 2 và bảng nhân 5.

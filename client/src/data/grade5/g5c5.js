@@ -283,7 +283,8 @@ export const g5c5 = {
         {
           type: "quiz",
           content: {
-            question: "Muốn vẽ một đường tròn có bán kính 4 cm, em làm thế nào?",
+            question:
+              "Muốn vẽ một đường tròn có bán kính 4 cm, em làm thế nào?",
             options: [
               "Mở compa rộng 4 cm rồi quay quanh tâm",
               "Mở compa rộng 2 cm rồi quay quanh tâm",
@@ -301,7 +302,8 @@ export const g5c5 = {
               "Một tấm bìa hình chữ nhật dài 10 cm, rộng 6 cm được cắt thành hai hình tam giác bằng nhau. Diện tích mỗi hình tam giác là:",
             options: ["30 cm²", "60 cm²", "16 cm²", "15 cm²"],
             answer: "30 cm²",
-            mascotHint: "Diện tích tấm bìa 10 × 6 = 60 cm²; mỗi tam giác chiếm một nửa: 60 : 2 = 30 cm².",
+            mascotHint:
+              "Diện tích tấm bìa 10 × 6 = 60 cm²; mỗi tam giác chiếm một nửa: 60 : 2 = 30 cm².",
           },
         },
         {

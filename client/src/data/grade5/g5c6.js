@@ -63,7 +63,8 @@ export const g5c6 = {
               "7 chục, 3 đơn vị, 5 phần mười",
             ],
             answer: "7 đơn vị, 3 phần mười, 5 phần trăm",
-            mascotHint: "Chữ số đầu sau dấu phẩy là phần mười, tiếp theo là phần trăm.",
+            mascotHint:
+              "Chữ số đầu sau dấu phẩy là phần mười, tiếp theo là phần trăm.",
           },
         },
         {
@@ -146,8 +147,14 @@ export const g5c6 = {
         {
           type: "quiz",
           content: {
-            question: "3,5 kg táo giá 45 000 đồng một ki-lô-gam. Số tiền phải trả là:",
-            options: ["157 500 đồng", "157 000 đồng", "145 000 đồng", "1 575 000 đồng"],
+            question:
+              "3,5 kg táo giá 45 000 đồng một ki-lô-gam. Số tiền phải trả là:",
+            options: [
+              "157 500 đồng",
+              "157 000 đồng",
+              "145 000 đồng",
+              "1 575 000 đồng",
+            ],
             answer: "157 500 đồng",
             mascotHint: "3,5 × 45 000 = 157 500 (đồng).",
           },
@@ -217,7 +224,8 @@ export const g5c6 = {
               "Không có góc vuông",
             ],
             answer: "Có một góc vuông",
-            mascotHint: "Tam giác vuông có một góc vuông, hai cạnh góc vuông vuông góc với nhau.",
+            mascotHint:
+              "Tam giác vuông có một góc vuông, hai cạnh góc vuông vuông góc với nhau.",
           },
         },
         {
@@ -247,8 +255,7 @@ export const g5c6 = {
       id: "g5-c6-l4",
       title: "Bài 33: Ôn tập diện tích, chu vi một số hình phẳng",
       type: "learn",
-      description:
-        "Ôn tập công thức chu vi, diện tích các hình phẳng đã học",
+      description: "Ôn tập công thức chu vi, diện tích các hình phẳng đã học",
       slides: [
         {
           type: "story",
@@ -300,7 +307,8 @@ export const g5c6 = {
         {
           type: "quiz",
           content: {
-            question: "Sân hình chữ nhật dài 20 m, rộng 15 m. Diện tích sân là:",
+            question:
+              "Sân hình chữ nhật dài 20 m, rộng 15 m. Diện tích sân là:",
             options: ["300 m²", "70 m²", "35 m²", "600 m²"],
             answer: "300 m²",
             mascotHint: "20 × 15 = 300 (m²).",
@@ -380,7 +388,8 @@ export const g5c6 = {
             question: "1,5 giờ bằng bao nhiêu phút?",
             options: ["90 phút", "150 phút", "75 phút", "60 phút"],
             answer: "90 phút",
-            mascotHint: "1 giờ = 60 phút; 0,5 giờ = 30 phút nên 1,5 giờ = 90 phút.",
+            mascotHint:
+              "1 giờ = 60 phút; 0,5 giờ = 30 phút nên 1,5 giờ = 90 phút.",
           },
         },
         {

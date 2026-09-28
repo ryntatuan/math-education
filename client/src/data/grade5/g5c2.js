@@ -82,7 +82,8 @@ export const g5c2 = {
               "4 đơn vị, 6 phần mười",
             ],
             answer: "4 phần mười, 0 phần trăm, 6 phần nghìn",
-            mascotHint: "Đọc từng chữ số sau dấu phẩy theo hàng: phần mười, phần trăm, phần nghìn.",
+            mascotHint:
+              "Đọc từng chữ số sau dấu phẩy theo hàng: phần mười, phần trăm, phần nghìn.",
           },
         },
         {
@@ -135,12 +136,17 @@ export const g5c2 = {
             table: {
               headers: ["Hai số", "Cách so sánh", "Kết luận"],
               rows: [
-                ["1,5 và 1,45", "cùng phần nguyên 1, so hàng phần mười 5 > 4", "1,5 > 1,45"],
+                [
+                  "1,5 và 1,45",
+                  "cùng phần nguyên 1, so hàng phần mười 5 > 4",
+                  "1,5 > 1,45",
+                ],
                 ["3,08 và 3,8", "hàng phần mười 0 < 8", "3,08 < 3,8"],
                 ["12,5 và 20,1", "phần nguyên 12 < 20", "12,5 < 20,1"],
                 ["0,7 và 0,70", "0,7 = 0,70", "0,7 = 0,70"],
               ],
-              label: "Viết thêm (hoặc bỏ) chữ số 0 tận cùng bên phải không làm đổi giá trị",
+              label:
+                "Viết thêm (hoặc bỏ) chữ số 0 tận cùng bên phải không làm đổi giá trị",
             },
           },
         },
@@ -148,9 +154,15 @@ export const g5c2 = {
           type: "quiz",
           content: {
             question: "So sánh 1,5 và 1,45:",
-            options: ["1,5 > 1,45", "1,5 < 1,45", "1,5 = 1,45", "Không so sánh được"],
+            options: [
+              "1,5 > 1,45",
+              "1,5 < 1,45",
+              "1,5 = 1,45",
+              "Không so sánh được",
+            ],
             answer: "1,5 > 1,45",
-            mascotHint: "Cùng phần nguyên 1; hàng phần mười 5 > 4 nên 1,5 > 1,45.",
+            mascotHint:
+              "Cùng phần nguyên 1; hàng phần mười 5 > 4 nên 1,5 > 1,45.",
           },
         },
         {
@@ -164,7 +176,8 @@ export const g5c2 = {
               "2,45; 2,9; 2,5",
             ],
             answer: "2,45; 2,5; 2,9",
-            mascotHint: "Hàng phần mười lần lượt là 4; 5; 9 nên thứ tự là 2,45 < 2,5 < 2,9.",
+            mascotHint:
+              "Hàng phần mười lần lượt là 4; 5; 9 nên thứ tự là 2,45 < 2,5 < 2,9.",
           },
         },
         {
@@ -241,7 +254,8 @@ export const g5c2 = {
             question: "Viết 2 kg 45 g thành số thập phân với đơn vị ki-lô-gam:",
             options: ["2,045 kg", "2,45 kg", "2,405 kg", "20,45 kg"],
             answer: "2,045 kg",
-            mascotHint: "45 g = 45/1000 kg = 0,045 kg nên 2 kg 45 g = 2,045 kg.",
+            mascotHint:
+              "45 g = 45/1000 kg = 0,045 kg nên 2 kg 45 g = 2,045 kg.",
           },
         },
         {
@@ -309,7 +323,8 @@ export const g5c2 = {
             question: "Làm tròn số 3,46 đến hàng phần mười ta được:",
             options: ["3,5", "3,4", "3,46", "4"],
             answer: "3,5",
-            mascotHint: "Chữ số hàng phần trăm là 6 (từ 5 trở lên) nên 3,46 ≈ 3,5.",
+            mascotHint:
+              "Chữ số hàng phần trăm là 6 (từ 5 trở lên) nên 3,46 ≈ 3,5.",
           },
         },
         {
@@ -376,13 +391,15 @@ export const g5c2 = {
               "hai phẩy năm",
             ],
             answer: "không phẩy hai mươi lăm",
-            mascotHint: "Đọc phần nguyên rồi “phẩy” rồi đọc phần thập phân: không phẩy hai mươi lăm.",
+            mascotHint:
+              "Đọc phần nguyên rồi “phẩy” rồi đọc phần thập phân: không phẩy hai mươi lăm.",
           },
         },
         {
           type: "quiz",
           content: {
-            question: "Sắp xếp các số 0,9; 0,45; 0,5 theo thứ tự từ lớn đến bé:",
+            question:
+              "Sắp xếp các số 0,9; 0,45; 0,5 theo thứ tự từ lớn đến bé:",
             options: [
               "0,9; 0,5; 0,45",
               "0,45; 0,5; 0,9",
@@ -399,7 +416,20 @@ export const g5c2 = {
             question: "Làm tròn 5,87 đến hàng phần mười:",
             options: ["5,9", "5,8", "6", "5,87"],
             answer: "5,9",
-            mascotHint: "Chữ số hàng phần trăm là 7 (từ 5 trở lên) nên 5,87 ≈ 5,9.",
+            mascotHint:
+              "Chữ số hàng phần trăm là 7 (từ 5 trở lên) nên 5,87 ≈ 5,9.",
+          },
+        },
+        {
+          type: "matchPairs",
+          content: {
+            question: "Nối mỗi số thập phân với phân số bằng nó",
+            pairs: [
+              ["0,5", "1/2"],
+              ["0,25", "1/4"],
+              ["0,2", "1/5"],
+            ],
+            mascotHint: "0,5 = 5/10 = 1/2 · 0,25 = 25/100 = 1/4 · 0,2 = 2/10 = 1/5.",
           },
         },
         {

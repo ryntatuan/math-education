@@ -42,7 +42,17 @@ export const g4c7 = {
           content: {
             text: "Số 517 906 384 gồm những lớp nào?",
             placeValue: {
-              headers: ["Trăm triệu", "Chục triệu", "Triệu", "Trăm nghìn", "Chục nghìn", "Nghìn", "Trăm", "Chục", "Đơn vị"],
+              headers: [
+                "Trăm triệu",
+                "Chục triệu",
+                "Triệu",
+                "Trăm nghìn",
+                "Chục nghìn",
+                "Nghìn",
+                "Trăm",
+                "Chục",
+                "Đơn vị",
+              ],
               digits: [5, 1, 7, 9, 0, 6, 3, 8, 4],
               label: "Lớp triệu: 517 · lớp nghìn: 906 · lớp đơn vị: 384",
             },
@@ -242,8 +252,14 @@ export const g4c7 = {
               headers: ["Hình", "Dấu hiệu"],
               rows: [
                 ["Hình vuông", "4 cạnh bằng nhau, 4 góc vuông"],
-                ["Hình chữ nhật", "4 góc vuông, hai cặp cạnh đối diện bằng nhau"],
-                ["Hình bình hành", "hai cặp cạnh đối diện song song và bằng nhau"],
+                [
+                  "Hình chữ nhật",
+                  "4 góc vuông, hai cặp cạnh đối diện bằng nhau",
+                ],
+                [
+                  "Hình bình hành",
+                  "hai cặp cạnh đối diện song song và bằng nhau",
+                ],
                 ["Hình thoi", "4 cạnh bằng nhau, hai đường chéo vuông góc"],
               ],
               label: "Đọc dấu hiệu là nhận ra hình ngay",
@@ -269,9 +285,15 @@ export const g4c7 = {
           content: {
             question:
               "Hình nào có hai đường chéo vuông góc với nhau và bốn cạnh bằng nhau?",
-            options: ["Hình thoi", "Hình chữ nhật", "Hình bình hành", "Hình tròn"],
+            options: [
+              "Hình thoi",
+              "Hình chữ nhật",
+              "Hình bình hành",
+              "Hình tròn",
+            ],
             answer: "Hình thoi",
-            mascotHint: "Hình thoi có bốn cạnh bằng nhau và hai đường chéo vuông góc.",
+            mascotHint:
+              "Hình thoi có bốn cạnh bằng nhau và hai đường chéo vuông góc.",
           },
         },
         {

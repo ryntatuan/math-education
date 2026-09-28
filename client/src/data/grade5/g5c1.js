@@ -57,7 +57,8 @@ export const g5c1 = {
               "40 000 + 5 000 + 60 + 70 + 8",
             ],
             answer: "40 000 + 5 000 + 600 + 70 + 8",
-            mascotHint: "45 678 gồm 4 chục nghìn, 5 nghìn, 6 trăm, 7 chục và 8 đơn vị.",
+            mascotHint:
+              "45 678 gồm 4 chục nghìn, 5 nghìn, 6 trăm, 7 chục và 8 đơn vị.",
           },
         },
         {
@@ -144,7 +145,8 @@ export const g5c1 = {
               "Buổi sáng bán 1 250 hộp sữa, buổi chiều bán ít hơn 320 hộp. Cả hai buổi bán được bao nhiêu hộp?",
             options: ["2 180 hộp", "1 570 hộp", "930 hộp", "2 250 hộp"],
             answer: "2 180 hộp",
-            mascotHint: "Buổi chiều: 1 250 − 320 = 930 (hộp). Cả hai buổi: 1 250 + 930 = 2 180 (hộp).",
+            mascotHint:
+              "Buổi chiều: 1 250 − 320 = 930 (hộp). Cả hai buổi: 1 250 + 930 = 2 180 (hộp).",
           },
         },
         {
@@ -202,7 +204,8 @@ export const g5c1 = {
                 ["Quy đồng", "1/2 và 2/3 → 3/6 và 4/6"],
                 ["So sánh", "2/3 > 1/2"],
               ],
-              label: "Phân số tối giản: tử và mẫu không cùng chia hết cho số nào lớn hơn 1",
+              label:
+                "Phân số tối giản: tử và mẫu không cùng chia hết cho số nào lớn hơn 1",
             },
           },
         },
@@ -219,7 +222,12 @@ export const g5c1 = {
           type: "quiz",
           content: {
             question: "So sánh hai phân số 1/2 và 2/3:",
-            options: ["1/2 < 2/3", "1/2 > 2/3", "1/2 = 2/3", "Không so sánh được"],
+            options: [
+              "1/2 < 2/3",
+              "1/2 > 2/3",
+              "1/2 = 2/3",
+              "Không so sánh được",
+            ],
             answer: "1/2 < 2/3",
             mascotHint: "Quy đồng: 1/2 = 3/6; 2/3 = 4/6; 3/6 < 4/6.",
           },
@@ -242,8 +250,7 @@ export const g5c1 = {
       id: "g5-c1-l4",
       title: "Bài 4: Phân số thập phân",
       type: "learn",
-      description:
-        "Nhận biết phân số thập phân: mẫu số là 10, 100, 1 000…",
+      description: "Nhận biết phân số thập phân: mẫu số là 10, 100, 1 000…",
       slides: [
         {
           type: "story",
@@ -272,7 +279,11 @@ export const g5c1 = {
           content: {
             text: "Chuyển thành phân số thập phân",
             table: {
-              headers: ["Phân số", "Nhân cả tử và mẫu với", "Phân số thập phân"],
+              headers: [
+                "Phân số",
+                "Nhân cả tử và mẫu với",
+                "Phân số thập phân",
+              ],
               rows: [
                 ["1/2", 5, "5/10"],
                 ["2/5", 2, "4/10"],
@@ -450,7 +461,8 @@ export const g5c1 = {
         {
           type: "quiz",
           content: {
-            question: "Tấm vải dài 7/10 m, cắt đi 2/5 m. Còn lại bao nhiêu mét?",
+            question:
+              "Tấm vải dài 7/10 m, cắt đi 2/5 m. Còn lại bao nhiêu mét?",
             options: ["3/10 m", "5/10 m", "5/5 m", "9/10 m"],
             answer: "3/10 m",
             mascotHint: "2/5 = 4/10; 7/10 − 4/10 = 3/10 (m).",
@@ -599,7 +611,8 @@ export const g5c1 = {
         {
           type: "quiz",
           content: {
-            question: "Khu vườn hình chữ nhật dài 25 m, rộng 18 m. Chu vi khu vườn là:",
+            question:
+              "Khu vườn hình chữ nhật dài 25 m, rộng 18 m. Chu vi khu vườn là:",
             options: ["86 m", "43 m", "450 m", "172 m"],
             answer: "86 m",
             mascotHint: "(25 + 18) × 2 = 43 × 2 = 86 (m).",

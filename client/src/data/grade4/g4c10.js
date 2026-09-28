@@ -58,7 +58,8 @@ export const g4c10 = {
               "Chia một hình tròn thành 4 phần bằng nhau, tô màu 3 phần. Phân số chỉ số phần đã tô màu là:",
             options: ["3/4", "4/3", "1/4", "3/7"],
             answer: "3/4",
-            mascotHint: "Chia 4 phần ⇒ mẫu số 4; tô 3 phần ⇒ tử số 3, viết là 3/4.",
+            mascotHint:
+              "Chia 4 phần ⇒ mẫu số 4; tô 3 phần ⇒ tử số 3, viết là 3/4.",
           },
         },
         {
@@ -67,7 +68,8 @@ export const g4c10 = {
             question: "Trong phân số 2/5, mẫu số là số nào?",
             options: ["5", "2", "7", "3"],
             answer: "5",
-            mascotHint: "Mẫu số là số ở dưới gạch ngang, cho biết chia thành 5 phần bằng nhau.",
+            mascotHint:
+              "Mẫu số là số ở dưới gạch ngang, cho biết chia thành 5 phần bằng nhau.",
           },
         },
         {
@@ -88,8 +90,7 @@ export const g4c10 = {
       id: "g4-c10-l2",
       title: "Bài 54: Phân số và phép chia số tự nhiên",
       type: "learn",
-      description:
-        "Thương của phép chia số tự nhiên có thể viết thành phân số",
+      description: "Thương của phép chia số tự nhiên có thể viết thành phân số",
       slides: [
         {
           type: "story",
@@ -124,7 +125,8 @@ export const g4c10 = {
                 ["5 : 5", "5/5 = 1", "bằng 1"],
                 ["7 : 2", "7/2", "lớn hơn 1"],
               ],
-              label: "So sánh tử số với mẫu số để biết phân số lớn hơn, bằng hay bé hơn 1",
+              label:
+                "So sánh tử số với mẫu số để biết phân số lớn hơn, bằng hay bé hơn 1",
             },
           },
         },
@@ -216,7 +218,8 @@ export const g4c10 = {
         {
           type: "quiz",
           content: {
-            question: "Phép chia cả tử số và mẫu số cho 3 biến phân số 9/12 thành phân số nào?",
+            question:
+              "Phép chia cả tử số và mẫu số cho 3 biến phân số 9/12 thành phân số nào?",
             options: ["3/4", "3/12", "9/4", "6/9"],
             answer: "3/4",
             mascotHint: "(9 : 3)/(12 : 3) = 3/4.",
@@ -240,8 +243,7 @@ export const g4c10 = {
       id: "g4-c10-l4",
       title: "Bài 56: Rút gọn phân số",
       type: "learn",
-      description:
-        "Rút gọn phân số đến phân số tối giản",
+      description: "Rút gọn phân số đến phân số tối giản",
       slides: [
         {
           type: "story",
@@ -277,7 +279,8 @@ export const g4c10 = {
                 ["48/60", 12, "4/5"],
                 ["9/10", "không chia hết", "9/10 (đã tối giản)"],
               ],
-              label: "Kiểm tra: tử và mẫu không cùng chia hết cho số nào lớn hơn 1",
+              label:
+                "Kiểm tra: tử và mẫu không cùng chia hết cho số nào lớn hơn 1",
             },
           },
         },
@@ -296,7 +299,18 @@ export const g4c10 = {
             question: "Phân số nào dưới đây là phân số tối giản?",
             options: ["4/7", "6/8", "10/15", "9/12"],
             answer: "4/7",
-            mascotHint: "4 và 7 không cùng chia hết cho số nào lớn hơn 1, nên 4/7 tối giản.",
+            mascotHint:
+              "4 và 7 không cùng chia hết cho số nào lớn hơn 1, nên 4/7 tối giản.",
+          },
+        },
+        {
+          type: "multiQuiz",
+          content: {
+            question: "Chọn TẤT CẢ các phân số bằng 1/2",
+            options: ["2/4", "3/6", "2/3", "4/8"],
+            answers: ["2/4", "3/6", "4/8"],
+            mascotHint:
+              "Rút gọn từng phân số: 2/4 = 1/2, 3/6 = 1/2, 4/8 = 1/2, còn 2/3 đã tối giản và khác 1/2.",
           },
         },
         {
@@ -317,8 +331,7 @@ export const g4c10 = {
       id: "g4-c10-l5",
       title: "Bài 57: Quy đồng mẫu số các phân số",
       type: "learn",
-      description:
-        "Quy đồng mẫu số hai phân số bằng cách tìm mẫu số chung",
+      description: "Quy đồng mẫu số hai phân số bằng cách tìm mẫu số chung",
       slides: [
         {
           type: "story",
@@ -364,7 +377,8 @@ export const g4c10 = {
             question: "Quy đồng mẫu số hai phân số 1/4 và 3/8 ta được:",
             options: ["2/8 và 3/8", "1/8 và 3/8", "2/8 và 6/8", "1/4 và 3/4"],
             answer: "2/8 và 3/8",
-            mascotHint: "8 : 4 = 2 nên 1/4 = (1 × 2)/(4 × 2) = 2/8; giữ nguyên 3/8.",
+            mascotHint:
+              "8 : 4 = 2 nên 1/4 = (1 × 2)/(4 × 2) = 2/8; giữ nguyên 3/8.",
           },
         },
         {
@@ -439,7 +453,12 @@ export const g4c10 = {
           type: "quiz",
           content: {
             question: "So sánh 3/4 và 5/8:",
-            options: ["3/4 > 5/8", "3/4 < 5/8", "3/4 = 5/8", "Không so sánh được"],
+            options: [
+              "3/4 > 5/8",
+              "3/4 < 5/8",
+              "3/4 = 5/8",
+              "Không so sánh được",
+            ],
             answer: "3/4 > 5/8",
             mascotHint: "Quy đồng: 3/4 = 6/8; 6/8 > 5/8 nên 3/4 > 5/8.",
           },
@@ -490,7 +509,10 @@ export const g4c10 = {
               rows: [
                 ["Khái niệm phân số", "tử số trên, mẫu số dưới"],
                 ["Phép chia", "a : b = a/b"],
-                ["Tính chất cơ bản", "nhân (chia) cả tử và mẫu với cùng số khác 0"],
+                [
+                  "Tính chất cơ bản",
+                  "nhân (chia) cả tử và mẫu với cùng số khác 0",
+                ],
                 ["Rút gọn", "chia đến phân số tối giản"],
                 ["Quy đồng", "đưa về cùng mẫu số chung"],
                 ["So sánh", "cùng mẫu so tử số; khác mẫu quy đồng trước"],
@@ -505,16 +527,23 @@ export const g4c10 = {
             question: "Rút gọn phân số 48/60 ta được phân số tối giản là:",
             options: ["4/5", "2/3", "8/10", "24/30"],
             answer: "4/5",
-            mascotHint: "48 và 60 cùng chia hết cho 12: (48 : 12)/(60 : 12) = 4/5.",
+            mascotHint:
+              "48 và 60 cùng chia hết cho 12: (48 : 12)/(60 : 12) = 4/5.",
           },
         },
         {
           type: "quiz",
           content: {
             question: "So sánh hai phân số 5/6 và 7/9:",
-            options: ["5/6 > 7/9", "5/6 < 7/9", "5/6 = 7/9", "Không so sánh được"],
+            options: [
+              "5/6 > 7/9",
+              "5/6 < 7/9",
+              "5/6 = 7/9",
+              "Không so sánh được",
+            ],
             answer: "5/6 > 7/9",
-            mascotHint: "Mẫu số chung 18: 5/6 = 15/18; 7/9 = 14/18; 15/18 > 14/18.",
+            mascotHint:
+              "Mẫu số chung 18: 5/6 = 15/18; 7/9 = 14/18; 15/18 > 14/18.",
           },
         },
         {

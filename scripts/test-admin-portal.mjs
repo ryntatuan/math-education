@@ -711,10 +711,10 @@ if (!ONLY_DB) {
       // Canary: con số đổi thì hoặc có nội dung mới (tốt — hãy cập nhật), hoặc bộ
       // đọc đã hỏng. Cả hai đều phải lộ ra, không được im lặng.
       assert(soBai === 489, `Mong đợi 489 bài, đọc được ${soBai}`);
-      assert(soSlide === 3149, `Mong đợi 3149 slide, đọc được ${soSlide}`);
+      assert(soSlide === 3163, `Mong đợi 3163 slide, đọc được ${soSlide}`);
       assert(
-        gapKieu.size === 5,
-        `Mong đợi 5 kiểu slide, gặp ${gapKieu.size}: ${[...gapKieu].join(", ")}`,
+        gapKieu.size === 10,
+        `Mong đợi 10 kiểu slide, gặp ${gapKieu.size}: ${[...gapKieu].join(", ")}`,
       );
 
       assert(
@@ -1417,8 +1417,8 @@ if (!ONLY_DB) {
         }
       }
       assert(
-        soSlide === 3149,
-        `Mong đợi 3149 slide, đọc được ${soSlide} — bộ đọc dữ liệu tĩnh đã hỏng`,
+        soSlide === 3163,
+        `Mong đợi 3163 slide, đọc được ${soSlide} — bộ đọc dữ liệu tĩnh đã hỏng`,
       );
       assert(
         saiKieu.size === 0,
@@ -1545,6 +1545,63 @@ if (!ONLY_DB) {
       assert(
         sb.kiemTraBai(trong).length === 0,
         "Cảnh báo ô trống lại CHẶN lưu — sẽ khoá luôn việc sửa những chỗ khác của bài",
+      );
+
+      // ── (8) CANARY HAI VẾ: thẻ TRỘN số với dấu phải bị BẮT, thẻ tách rời phải ĐƯỢC ĐI ──
+      // Lỗi thật người dùng báo (2026-09-28): tôi soạn khay `["25 ×", "4", …]` ⇒ trong khay
+      // không có thẻ `"×"` rời cũng không có `"25"` rời, nên bé KHÔNG THỂ ghép `4 × 25`.
+      const khayTron = {
+        type: "buildExpression",
+        content: {
+          question: "Ghép các thẻ để được phép nhân có tích bằng 100",
+          target: "100",
+          slots: 2,
+          tiles: ["25 ×", "4", "20 ×", "5"],
+          solutions: [["25 ×", "4"]],
+          mascotHint: "25 × 4 = 100",
+        },
+      };
+      assert(
+        validateSlide(khayTron, "khay trộn").some((l) =>
+          /TRỘN số với dấu/.test(l),
+        ),
+        'Thẻ trộn số với dấu ("25 ×") LỌT qua cổng — bé sẽ không thể ghép "4 × 25"',
+      );
+      const khayRoi = {
+        type: "buildExpression",
+        content: {
+          question: "Ghép các thẻ để được phép nhân có tích bằng 100",
+          target: "100",
+          slots: 3,
+          tiles: ["25", "×", "4", "5", "20"],
+          solutions: [
+            ["25", "×", "4"],
+            ["20", "×", "5"],
+          ],
+          mascotHint: "25 × 4 = 100 và 4 × 25 cũng bằng 100",
+        },
+      };
+      const loiKhayRoi = validateSlide(khayRoi, "khay rời");
+      assert(
+        loiKhayRoi.length === 0,
+        `Khay thẻ TÁCH RỜI hợp lệ mà cổng báo lỗi (báo oan): ${loiKhayRoi.join(" · ")}`,
+      );
+
+      // Số ô CHẴN (2) thì không cách điền nào thành biểu thức `số – dấu – số` ⇒ bài vô nghiệm.
+      const khayChan = {
+        type: "buildExpression",
+        content: {
+          question: "Ghép các thẻ để được phép nhân có tích bằng 100",
+          target: "100",
+          slots: 2,
+          tiles: ["25", "×", "4"],
+          solutions: [["25", "×"]],
+          mascotHint: "25 × 4 = 100",
+        },
+      };
+      assert(
+        validateSlide(khayChan, "slots chẵn").some((l) => /slots/.test(l)),
+        "`slots` chẵn (2 ô) lọt qua cổng — bé điền đủ kiểu gì cũng không thành biểu thức",
       );
 
       return {
@@ -1693,8 +1750,8 @@ if (!ONLY_DB) {
 
       const d = demCay(cay);
       assert(
-        d.lop === 5 && d.chuong === 65 && d.bai === 489 && d.slide === 3149,
-        `Cây DB sai quy mô: ${d.lop}/${d.chuong}/${d.bai}/${d.slide} — mong đợi 5/65/489/3149`,
+        d.lop === 5 && d.chuong === 65 && d.bai === 489 && d.slide === 3163,
+        `Cây DB sai quy mô: ${d.lop}/${d.chuong}/${d.bai}/${d.slide} — mong đợi 5/65/489/3163`,
       );
 
       const lech = soSanh(goc, cay);
@@ -3213,7 +3270,7 @@ await test(
       "canary: khối giả căn GIỮA mà cổng báo là căn trái ⇒ cổng hỏng",
     );
 
-    /** Đoạn văn xuôi + danh sách ⇒ CĂN TRÁI. */
+    /** Đoạn văn xuôi + danh sách + ĐÁP ÁN ⇒ CĂN TRÁI. */
     const canTrai = [
       ".concept-explanation",
       ".concept-rule-body",
@@ -3221,6 +3278,8 @@ await test(
       ".dialogue-text",
       ".visual-card-desc",
       ".slide-visual-steps",
+      // Ô đáp án của “chọn nhiều đáp án đúng” (2026-09-28) — cùng luật với `.quiz-option`.
+      ".multi-quiz-option",
     ];
     for (const selector of canTrai) {
       const khoi = khoiCua(css, selector);
@@ -3231,8 +3290,89 @@ await test(
       );
     }
 
-    /** Tiêu đề · câu hỏi · phương án · nhãn ⇒ GIỮ CĂN GIỮA (cổng phải chặn được cả hai chiều). */
-    const giuGiua = [".concept-title", ".quiz-question", ".quiz-option"];
+    /**
+     * ĐÁP ÁN TRẮC NGHIỆM ⇒ CĂN TRÁI (người dùng báo bằng ảnh, 2026-09-28: “câu trả lời căn giữa
+     * quá xấu và không phù hợp”). Phương án là CÂU CHỮ canh giữa thì mỗi dòng một mốc, mắt trẻ
+     * phải dò lại đầu câu; canh trái thì mọi phương án bắt đầu cùng một mốc (sau vòng tròn A/B/C/D).
+     * Kiểm cả HAI vế: ô đáp án canh trái VÀ chữ bên trong cũng canh trái (thiếu vế thứ hai thì
+     * `justify-content: flex-start` vẫn cho chữ dài xuống dòng canh giữa ở một số trình duyệt).
+     */
+    for (const selector of [".quiz-option", ".quiz-option-text"]) {
+      const khoi = khoiCua(css, selector);
+      assert(khoi.length > 0, `thiếu khối CSS ${selector}`);
+      assert(
+        khoi.some((b) => /text-align:\s*left/.test(b)),
+        `${selector} phải căn TRÁI (đáp án trắc nghiệm — người dùng chốt 2026-09-28)`,
+      );
+    }
+    assert(
+      khoiCua(css, ".quiz-option").some((b) =>
+        /justify-content:\s*flex-start/.test(b),
+      ),
+      ".quiz-option phải `justify-content: flex-start` — nếu không, vòng tròn A/B/C/D và chữ vẫn bị đẩy ra giữa",
+    );
+
+    /** NGOẠI LỆ: hàng 3 ô chỉ chứa KÝ HIỆU ngắn (>, <, =) — ký hiệu đối xứng ⇒ GIỮ căn giữa. */
+    const khoi3 = khoiCua(css, ".quiz-options-3 .quiz-option");
+    assert(khoi3.length > 0, "thiếu khối CSS `.quiz-options-3 .quiz-option`");
+    assert(
+      khoi3.some(
+        (b) =>
+          /justify-content:\s*center/.test(b) && /text-align:\s*center/.test(b),
+      ),
+      ".quiz-options-3 .quiz-option phải GIỮ căn giữa (ô chỉ chứa ký hiệu >, <, =)",
+    );
+
+    /**
+     * MỘT NGUỒN LUẬT cho “đáp án nào là chữ”: hàm thuần `utils/answerAlignment.js`.
+     * Chép luật này ra hai nơi (lesson + luyện tập) là sớm muộn lệch nhau — đúng họ lỗi đã gặp
+     * ở `planConceptText`/`planSlideSpeech` (cổng S-37). Và luật phải dùng VAI TRÒ (có chữ cái
+     * hay không), KHÔNG dùng ngưỡng độ dài ký tự — ngưỡng ký tự cho hai kiểu căn khác nhau
+     * trên máy tính và điện thoại.
+     */
+    const alignment = read("client/src/utils/answerAlignment.js");
+    assert(
+      /export function isTextAnswer\s*\(/.test(alignment),
+      "utils/answerAlignment.js thiếu hàm `isTextAnswer` — cổng này canh nó tồn tại",
+    );
+    assert(
+      /export const TEXT_ANSWER_CLASS/.test(alignment),
+      "utils/answerAlignment.js thiếu hằng `TEXT_ANSWER_CLASS` (một nguồn cho tên lớp CSS)",
+    );
+    for (const f of [
+      "./utils/answerAlignment.js",
+      "./pages/PracticePage.jsx",
+    ]) {
+      const src = read(`client/src/${f.slice(2)}`);
+      assert(
+        /isTextAnswer|TEXT_ANSWER_CLASS/.test(src),
+        `${f} không dùng luật “đáp án là chữ” (utils/answerAlignment.js)`,
+      );
+    }
+
+    /**
+     * 🔴 PHẢI CĂN TRÁI Ở CHÍNH KHỐI CHỮ, KHÔNG CHỈ Ở NÚT.
+     * `.opt-val-text` tự khai `text-align: center` ⇒ đặt `text-align: left` ở nút là KHÔNG đủ:
+     * đáp án dài hai dòng (“3 nghìn, 5 trăm, 1 chục, 7 đơn vị”) vẫn canh giữa. Đúng họ lỗi hai vế
+     * của `.quiz-option` / `.quiz-option-text` ở trên.
+     */
+    const practiceCss = read("client/src/pages/PracticePage.css");
+    assert(
+      khoiCua(practiceCss, ".practice-opt-btn.is-text-answer").some((b) =>
+        /text-align:\s*left/.test(b),
+      ),
+      ".practice-opt-btn.is-text-answer phải căn TRÁI (đáp án chữ ở Luyện tập)",
+    );
+    assert(
+      khoiCua(
+        practiceCss,
+        ".practice-opt-btn.is-text-answer .opt-val-text",
+      ).some((b) => /text-align:\s*left/.test(b)),
+      "`.practice-opt-btn.is-text-answer .opt-val-text` phải căn TRÁI — thiếu vế này thì chữ vẫn canh giữa",
+    );
+
+    /** Tiêu đề · câu hỏi · nhãn ⇒ GIỮ CĂN GIỮA (cổng phải chặn được cả hai chiều). */
+    const giuGiua = [".concept-title", ".quiz-question"];
     for (const selector of giuGiua) {
       const khoi = khoiCua(css, selector);
       assert(khoi.length > 0, `thiếu khối CSS ${selector}`);
@@ -3275,7 +3415,7 @@ await test(
     );
 
     return {
-      detail: `${canTrai.length} khối căn trái · ${giuGiua.length} khối giữ căn giữa · bảng theo cột ✓`,
+      detail: `${canTrai.length + 2} khối căn trái (gồm đáp án trắc nghiệm) · ${giuGiua.length} khối giữ căn giữa · bảng theo cột ✓`,
     };
   },
 );

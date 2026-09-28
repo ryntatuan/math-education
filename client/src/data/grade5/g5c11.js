@@ -58,7 +58,12 @@ export const g5c11 = {
           content: {
             question:
               "Số liệu 12; 8; 6; 4 được sắp xếp theo thứ tự từ bé đến lớn là:",
-            options: ["4; 6; 8; 12", "12; 8; 6; 4", "6; 4; 8; 12", "4; 8; 6; 12"],
+            options: [
+              "4; 6; 8; 12",
+              "12; 8; 6; 4",
+              "6; 4; 8; 12",
+              "4; 8; 6; 12",
+            ],
             answer: "4; 6; 8; 12",
             mascotHint: "Sắp xếp từ bé đến lớn: 4 < 6 < 8 < 12.",
           },
@@ -91,8 +96,7 @@ export const g5c11 = {
       id: "g5-c11-l2",
       title: "Bài 64: Biểu đồ hình quạt tròn",
       type: "learn",
-      description:
-        "Đọc và nhận xét số liệu trên biểu đồ hình quạt tròn",
+      description: "Đọc và nhận xét số liệu trên biểu đồ hình quạt tròn",
       slides: [
         {
           type: "story",
@@ -166,7 +170,8 @@ export const g5c11 = {
     },
     {
       id: "g5-c11-l3",
-      title: "Bài 65: Tỉ số của số lần lặp lại một sự kiện so với tổng số lần thực hiện",
+      title:
+        "Bài 65: Tỉ số của số lần lặp lại một sự kiện so với tổng số lần thực hiện",
       type: "learn",
       description:
         "Ghi lại kết quả thực hiện nhiều lần và tính tỉ số của số lần một sự kiện lặp lại",
@@ -244,7 +249,8 @@ export const g5c11 = {
     },
     {
       id: "g5-c11-l4",
-      title: "Bài 66: Thực hành và trải nghiệm thu thập, phân tích, biểu diễn các số liệu thống kê",
+      title:
+        "Bài 66: Thực hành và trải nghiệm thu thập, phân tích, biểu diễn các số liệu thống kê",
       type: "learn",
       description:
         "Thực hiện một cuộc khảo sát nhỏ: thu thập, phân tích và biểu diễn số liệu",
@@ -354,7 +360,12 @@ export const g5c11 = {
           content: {
             question:
               "Biểu đồ quạt tròn ghi: truyện thiếu nhi 45%, sách khoa học 30%, sách khác 25%. Loại sách nào chiếm nhiều nhất?",
-            options: ["Truyện thiếu nhi", "Sách khoa học", "Sách khác", "Bằng nhau"],
+            options: [
+              "Truyện thiếu nhi",
+              "Sách khoa học",
+              "Sách khác",
+              "Bằng nhau",
+            ],
             answer: "Truyện thiếu nhi",
             mascotHint: "45% lớn nhất trong ba tỉ số phần trăm.",
           },
@@ -374,7 +385,12 @@ export const g5c11 = {
           content: {
             question:
               "Số liệu 45%; 30%; 25% được sắp xếp theo thứ tự từ lớn đến bé là:",
-            options: ["45%; 30%; 25%", "25%; 30%; 45%", "30%; 45%; 25%", "45%; 25%; 30%"],
+            options: [
+              "45%; 30%; 25%",
+              "25%; 30%; 45%",
+              "30%; 45%; 25%",
+              "45%; 25%; 30%",
+            ],
             answer: "45%; 30%; 25%",
             mascotHint: "Từ lớn đến bé: 45 > 30 > 25.",
           },

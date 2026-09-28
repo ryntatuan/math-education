@@ -58,7 +58,8 @@ export const g5c3 = {
             question: "1 km² bằng bao nhiêu héc-ta?",
             options: ["100 ha", "10 ha", "1 000 ha", "10 000 ha"],
             answer: "100 ha",
-            mascotHint: "1 km² = 1 000 000 m², mà 1 ha = 10 000 m² nên 1 km² = 100 ha.",
+            mascotHint:
+              "1 km² = 1 000 000 m², mà 1 ha = 10 000 m² nên 1 km² = 100 ha.",
           },
         },
         {
@@ -88,8 +89,7 @@ export const g5c3 = {
       id: "g5-c3-l2",
       title: "Bài 16: Các đơn vị đo diện tích",
       type: "learn",
-      description:
-        "Bảng đơn vị đo diện tích và cách đổi giữa các đơn vị",
+      description: "Bảng đơn vị đo diện tích và cách đổi giữa các đơn vị",
       slides: [
         {
           type: "story",
@@ -121,7 +121,11 @@ export const g5c3 = {
               headers: ["Lớn hơn mét vuông", "Mét vuông", "Bé hơn mét vuông"],
               rows: [
                 ["km² · hm² (ha) · dam²", "m²", "dm² · cm² · mm²"],
-                ["1 km² = 100 hm²", "1 m² = 100 dm²", "1 dm² = 100 cm² = 10 000 mm²"],
+                [
+                  "1 km² = 100 hm²",
+                  "1 m² = 100 dm²",
+                  "1 dm² = 100 cm² = 10 000 mm²",
+                ],
               ],
               label: "Từ lớn sang bé: nhân 100 mỗi bậc",
             },
@@ -133,7 +137,8 @@ export const g5c3 = {
             question: "1 m² bằng bao nhiêu xăng-ti-mét vuông?",
             options: ["10 000 cm²", "1 000 cm²", "100 cm²", "100 000 cm²"],
             answer: "10 000 cm²",
-            mascotHint: "1 m² = 100 dm² và 1 dm² = 100 cm² nên 1 m² = 100 × 100 = 10 000 cm².",
+            mascotHint:
+              "1 m² = 100 dm² và 1 dm² = 100 cm² nên 1 m² = 100 × 100 = 10 000 cm².",
           },
         },
         {
@@ -210,7 +215,8 @@ export const g5c3 = {
             question: "Mảnh đất rộng 1 200 m² bằng bao nhiêu héc-ta?",
             options: ["0,12 ha", "12 ha", "1,2 ha", "0,012 ha"],
             answer: "0,12 ha",
-            mascotHint: "1 ha = 10 000 m² nên 1 200 m² = 1 200 : 10 000 = 0,12 ha.",
+            mascotHint:
+              "1 ha = 10 000 m² nên 1 200 m² = 1 200 : 10 000 = 0,12 ha.",
           },
         },
         {
@@ -271,13 +277,15 @@ export const g5c3 = {
             question: "1 km² bằng bao nhiêu mét vuông?",
             options: ["1 000 000 m²", "100 000 m²", "10 000 m²", "1 000 m²"],
             answer: "1 000 000 m²",
-            mascotHint: "1 km² là diện tích hình vuông cạnh 1 km = 1 000 m, nên bằng 1 000 × 1 000 m².",
+            mascotHint:
+              "1 km² là diện tích hình vuông cạnh 1 km = 1 000 m, nên bằng 1 000 × 1 000 m².",
           },
         },
         {
           type: "quiz",
           content: {
-            question: "Khu vườn hình chữ nhật dài 40 m, rộng 25 m có diện tích là:",
+            question:
+              "Khu vườn hình chữ nhật dài 40 m, rộng 25 m có diện tích là:",
             options: ["1 000 m²", "130 m²", "650 m²", "100 m²"],
             answer: "1 000 m²",
             mascotHint: "40 × 25 = 1 000 (m²) = 0,1 ha.",

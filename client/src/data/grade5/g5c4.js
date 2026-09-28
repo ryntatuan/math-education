@@ -164,8 +164,7 @@ export const g5c4 = {
       id: "g5-c4-l3",
       title: "Bài 21: Phép nhân số thập phân",
       type: "learn",
-      description:
-        "Nhân số thập phân với số tự nhiên và nhân hai số thập phân",
+      description: "Nhân số thập phân với số tự nhiên và nhân hai số thập phân",
       slides: [
         {
           type: "story",
@@ -201,7 +200,8 @@ export const g5c4 = {
                 ["0,25 × 4", "25 × 4 = 100", 1],
                 ["3,6 × 2,5", "36 × 25 = 900", 9],
               ],
-              label: "Tổng số chữ số phần thập phân của hai thừa số = số chữ số ở tích",
+              label:
+                "Tổng số chữ số phần thập phân của hai thừa số = số chữ số ở tích",
             },
           },
         },
@@ -211,7 +211,8 @@ export const g5c4 = {
             question: "Tính: 1,2 × 4,5 = ?",
             options: ["5,4", "54", "0,54", "6,4"],
             answer: "5,4",
-            mascotHint: "12 × 45 = 540; hai thừa số có 2 chữ số phần thập phân ⇒ 5,40 = 5,4.",
+            mascotHint:
+              "12 × 45 = 540; hai thừa số có 2 chữ số phần thập phân ⇒ 5,40 = 5,4.",
           },
         },
         {
@@ -241,8 +242,7 @@ export const g5c4 = {
       id: "g5-c4-l4",
       title: "Bài 22: Phép chia số thập phân",
       type: "learn",
-      description:
-        "Chia số thập phân cho số tự nhiên và chia cho số thập phân",
+      description: "Chia số thập phân cho số tự nhiên và chia cho số thập phân",
       slides: [
         {
           type: "story",
@@ -278,7 +278,8 @@ export const g5c4 = {
                 ["12,5 : 0,5", "125 : 5", 25],
                 ["0,36 : 0,4", "3,6 : 4", "0,9"],
               ],
-              label: "Số chia có một chữ số phần thập phân ⇒ dịch dấu phẩy một chữ số",
+              label:
+                "Số chia có một chữ số phần thập phân ⇒ dịch dấu phẩy một chữ số",
             },
           },
         },
@@ -297,7 +298,8 @@ export const g5c4 = {
             question: "Tính: 12,5 : 0,5 = ?",
             options: ["25", "2,5", "250", "5"],
             answer: "25",
-            mascotHint: "Số chia 0,5 có 1 chữ số phần thập phân nên 12,5 : 0,5 = 125 : 5 = 25.",
+            mascotHint:
+              "Số chia 0,5 có 1 chữ số phần thập phân nên 12,5 : 0,5 = 125 : 5 = 25.",
           },
         },
         {
@@ -316,10 +318,10 @@ export const g5c4 = {
     },
     {
       id: "g5-c4-l5",
-      title: "Bài 23: Nhân, chia số thập phân với 10; 100; 1 000… hoặc với 0,1; 0,01; 0,001…",
+      title:
+        "Bài 23: Nhân, chia số thập phân với 10; 100; 1 000… hoặc với 0,1; 0,01; 0,001…",
       type: "learn",
-      description:
-        "Nhân, chia nhẩm bằng cách dịch chuyển dấu phẩy",
+      description: "Nhân, chia nhẩm bằng cách dịch chuyển dấu phẩy",
       slides: [
         {
           type: "story",
@@ -366,7 +368,8 @@ export const g5c4 = {
             question: "Tính nhẩm: 2,35 × 100 = ?",
             options: ["235", "23,5", "2 350", "0,0235"],
             answer: "235",
-            mascotHint: "Nhân 100 thì dịch dấu phẩy sang phải 2 chữ số: 2,35 → 235.",
+            mascotHint:
+              "Nhân 100 thì dịch dấu phẩy sang phải 2 chữ số: 2,35 → 235.",
           },
         },
         {
@@ -375,7 +378,8 @@ export const g5c4 = {
             question: "Tính nhẩm: 45,6 : 100 = ?",
             options: ["0,456", "4,56", "456", "0,0456"],
             answer: "0,456",
-            mascotHint: "Chia 100 thì dịch dấu phẩy sang trái 2 chữ số: 45,6 → 0,456.",
+            mascotHint:
+              "Chia 100 thì dịch dấu phẩy sang trái 2 chữ số: 45,6 → 0,456.",
           },
         },
         {
@@ -396,8 +400,7 @@ export const g5c4 = {
       id: "g5-c4-l6",
       title: "Bài 24: Luyện tập chung",
       type: "learn",
-      description:
-        "Luyện tập tổng hợp bốn phép tính với số thập phân",
+      description: "Luyện tập tổng hợp bốn phép tính với số thập phân",
       slides: [
         {
           type: "story",

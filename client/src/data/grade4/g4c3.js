@@ -345,6 +345,18 @@ export const g4c3 = {
           },
         },
         {
+          type: "numberLineAnswer",
+          content: {
+            question: "Kéo con trỏ tới số làm tròn đúng",
+            expression: "4 600 ≈",
+            answer: 5000,
+            min: 4000,
+            max: 6000,
+            step: 500,
+            mascotHint: "4 600 vượt qua mốc giữa 4 500 nên làm tròn đến hàng nghìn là 5 000.",
+          },
+        },
+        {
           type: "summary",
           content: {
             title: "Ghi nhớ bài học:",

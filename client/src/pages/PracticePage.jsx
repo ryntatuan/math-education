@@ -25,6 +25,7 @@ import {
   generateQuestion,
 } from "../utils/exerciseGenerator";
 import { recordAttempt } from "../services/attemptService";
+import { TEXT_ANSWER_CLASS, isTextAnswer } from "../utils/answerAlignment";
 import soundManager from "../utils/soundManager";
 import speechHelper from "../utils/speechHelper";
 import fireConfetti from "../utils/confettiHelper";
@@ -507,6 +508,10 @@ export default function PracticePage() {
                 <div className="practice-answers-column">
                   {currentQuestion?.options.map((option, idx) => {
                     let optClass = `practice-opt-btn opt-pos-${idx}`;
+                    // Đáp án dạng CHỮ (“3 nghìn, 5 trăm…”) phải căn TRÁI — xem
+                    // `utils/answerAlignment.js`. Đáp án số/ký hiệu vẫn căn giữa.
+                    if (isTextAnswer(option))
+                      optClass += ` ${TEXT_ANSWER_CLASS}`;
                     if (isAnswered) {
                       if (option === currentQuestion.answer)
                         optClass += " correct";
@@ -981,6 +986,8 @@ export default function PracticePage() {
                               {(currentMistake.options || []).map(
                                 (opt, idx) => {
                                   let optCls = `practice-opt-btn opt-pos-${idx}`;
+                                  if (isTextAnswer(opt))
+                                    optCls += ` ${TEXT_ANSWER_CLASS}`;
                                   if (mistakeAnswered) {
                                     if (opt === currentMistake.answer)
                                       optCls += " correct";

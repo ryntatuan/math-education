@@ -11,8 +11,7 @@ export const g4c8 = {
       id: "g4-c8-l1",
       title: "Bài 38: Nhân với số có một chữ số",
       type: "learn",
-      description:
-        "Đặt tính rồi nhân số có nhiều chữ số với số có một chữ số",
+      description: "Đặt tính rồi nhân số có nhiều chữ số với số có một chữ số",
       slides: [
         {
           type: "story",
@@ -156,7 +155,8 @@ export const g4c8 = {
         {
           type: "quiz",
           content: {
-            question: "Thực hiện phép chia 125 734 : 5 được thương và số dư là:",
+            question:
+              "Thực hiện phép chia 125 734 : 5 được thương và số dư là:",
             options: [
               "Thương 25 146, dư 4",
               "Thương 25 147, dư 0",
@@ -240,9 +240,15 @@ export const g4c8 = {
           type: "quiz",
           content: {
             question: "Kết quả của 12 × 5 và 5 × 12 có quan hệ gì?",
-            options: ["Bằng nhau", "12 × 5 lớn hơn", "5 × 12 lớn hơn", "Khác nhau 12"],
+            options: [
+              "Bằng nhau",
+              "12 × 5 lớn hơn",
+              "5 × 12 lớn hơn",
+              "Khác nhau 12",
+            ],
             answer: "Bằng nhau",
-            mascotHint: "Đổi chỗ hai thừa số thì tích không đổi: 12 × 5 = 5 × 12 = 60.",
+            mascotHint:
+              "Đổi chỗ hai thừa số thì tích không đổi: 12 × 5 = 5 × 12 = 60.",
           },
         },
         {
@@ -311,7 +317,8 @@ export const g4c8 = {
             question: "Tính nhẩm: 125 × 100 = ?",
             options: ["12 500", "1 250", "125 000", "1 025"],
             answer: "12 500",
-            mascotHint: "Nhân với 100 thì viết thêm hai chữ số 0: 125 → 12 500.",
+            mascotHint:
+              "Nhân với 100 thì viết thêm hai chữ số 0: 125 → 12 500.",
           },
         },
         {
@@ -473,7 +480,8 @@ export const g4c8 = {
             question: "Tính: 1 423 × 3 = ?",
             options: ["4 269", "4 279", "4 169", "3 269"],
             answer: "4 269",
-            mascotHint: "1 423 × 3: 3 × 3 = 9; 2 × 3 = 6; 4 × 3 = 12 viết 2 nhớ 1; 1 × 3 = 3 thêm 1 = 4.",
+            mascotHint:
+              "1 423 × 3: 3 × 3 = 9; 2 × 3 = 6; 4 × 3 = 12 viết 2 nhớ 1; 1 × 3 = 3 thêm 1 = 4.",
           },
         },
         {
@@ -626,7 +634,12 @@ export const g4c8 = {
           content: {
             question:
               "Kết quả ước lượng của 4 012 : 4 là khoảng 1 000. Nếu tính ra 1 003 thì kết quả đó có hợp lí không?",
-            options: ["Hợp lí", "Không hợp lí vì quá lớn", "Không hợp lí vì quá bé", "Không tính được"],
+            options: [
+              "Hợp lí",
+              "Không hợp lí vì quá lớn",
+              "Không hợp lí vì quá bé",
+              "Không tính được",
+            ],
             answer: "Hợp lí",
             mascotHint: "1 003 rất gần 1 000 nên kết quả hợp lí.",
           },
@@ -782,7 +795,8 @@ export const g4c8 = {
               "5 hộp xếp được 40 quyển sách. Hỏi có 64 quyển sách thì xếp được bao nhiêu hộp như thế?",
             options: ["8 hộp", "7 hộp", "9 hộp", "10 hộp"],
             answer: "8 hộp",
-            mascotHint: "Một hộp: 40 : 5 = 8 (quyển). 64 quyển xếp được: 64 : 8 = 8 (hộp).",
+            mascotHint:
+              "Một hộp: 40 : 5 = 8 (quyển). 64 quyển xếp được: 64 : 8 = 8 (hộp).",
           },
         },
         {
@@ -820,7 +834,10 @@ export const g4c8 = {
             table: {
               headers: ["Kiến thức", "Cách làm"],
               rows: [
-                ["Nhân, chia số lớn", "đặt tính, tính từ phải sang trái (chia từ trái sang phải)"],
+                [
+                  "Nhân, chia số lớn",
+                  "đặt tính, tính từ phải sang trái (chia từ trái sang phải)",
+                ],
                 ["Tính chất phép nhân", "giao hoán, kết hợp, phân phối"],
                 ["Nhân chia với 10, 100, 1000", "thêm hoặc bớt chữ số 0"],
                 ["Trung bình cộng", "tổng : số các số hạng"],
@@ -836,14 +853,14 @@ export const g4c8 = {
             question: "Tính: 48 102 × 5 = ?",
             options: ["240 510", "240 500", "245 010", "24 510"],
             answer: "240 510",
-            mascotHint: "48 102 × 5: 2 × 5 = 10 viết 0 nhớ 1; 0 × 5 = 0 thêm 1 = 1; 1 × 5 = 5; 8 × 5 = 40 viết 0 nhớ 4; 4 × 5 = 20 thêm 4 = 24.",
+            mascotHint:
+              "48 102 × 5: 2 × 5 = 10 viết 0 nhớ 1; 0 × 5 = 0 thêm 1 = 1; 1 × 5 = 5; 8 × 5 = 40 viết 0 nhớ 4; 4 × 5 = 20 thêm 4 = 24.",
           },
         },
         {
           type: "quiz",
           content: {
-            question:
-              "Trung bình cộng của 10; 20; 30 và 40 là bao nhiêu?",
+            question: "Trung bình cộng của 10; 20; 30 và 40 là bao nhiêu?",
             options: ["25", "30", "20", "100"],
             answer: "25",
             mascotHint: "(10 + 20 + 30 + 40) : 4 = 100 : 4 = 25.",
@@ -856,6 +873,21 @@ export const g4c8 = {
             options: ["21", "20", "25", "19"],
             answer: "21",
             mascotHint: "Thử 21 × 45 = 945 vừa đúng nên 945 : 45 = 21.",
+          },
+        },
+        {
+          type: "buildExpression",
+          content: {
+            question: "Ghép phép nhân có tích bằng 1 000",
+            target: "1 000",
+            slots: 3,
+            tiles: ["125", "×", "8", "4", "25", "40"],
+            solutions: [
+              ["125", "×", "8"],
+              ["25", "×", "40"],
+            ],
+            mascotHint:
+              "125 × 8 = 1 000, 25 × 40 = 1 000 và 8 × 125 cũng bằng 1 000 — đổi chỗ hai thừa số thì tích không đổi.",
           },
         },
         {
