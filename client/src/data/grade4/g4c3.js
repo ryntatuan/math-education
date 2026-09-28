@@ -1,852 +1,655 @@
 export const g4c3 = {
-  "id": "g4-c3",
-  "name": "Chương 3: Dấu hiệu chia hết & Hình bình hành",
-  "description": "Dấu hiệu chia hết cho 2, 5, 9, 3; đơn vị km²; hình bình hành và tính diện tích",
-  "icon": "📐",
-  "color": "#f59e0b",
-  "totalLessons": 10,
-  "lessons": [
+  id: "g4-c3",
+  name: "Chủ đề 3: Số có nhiều chữ số",
+  description:
+    "Số có sáu chữ số, số 1 000 000; hàng và lớp; các số trong phạm vi lớp triệu; làm tròn số đến hàng trăm nghìn; so sánh số có nhiều chữ số; dãy số tự nhiên",
+  icon: "🔢",
+  color: "#8b5cf6",
+  totalLessons: 7,
+  lessons: [
     {
-      "id": "g4-c3-l1",
-      "title": "Bài 1: Dấu hiệu chia hết cho 2 và cho 5",
-      "type": "learn",
-      "description": "Các số có tận cùng là 0, 2, 4, 6, 8 chia hết cho 2; tận cùng 0, 5 chia hết cho 5",
-      "slides": [
+      id: "g4-c3-l1",
+      title: "Bài 10: Số có sáu chữ số. Số 1 000 000",
+      type: "learn",
+      description:
+        "Đọc, viết số có sáu chữ số; làm quen số 1 000 000 (một triệu); tìm số liền trước, số liền sau",
+      slides: [
         {
-          "type": "story",
-          "content": {
-            "mascotMood": "excited",
-            "text": "Chỉ cần nhìn chữ số tận cùng là biết ngay số đó có chia hết cho 2 hay cho 5 không đấy! 🔍"
-          }
-        },
-        {
-          "type": "visual",
-          "content": {
-            "text": "- Chia hết cho 2: Chữ số tận cùng là 0, 2, 4, 6, 8 (số chẵn). - Chia hết cho 5: Chữ số tận cùng là 0 hoặc 5. - Số có chữ số tận cùng là 0 thì chia hết cho CẢ 2 VÀ 5!",
-            "table": {
-              "headers": [
-                "Chia hết cho",
-                "Chữ số tận cùng"
-              ],
-              "rows": [
-                [
-                  "2",
-                  "0, 2, 4, 6, 8 (số chẵn)"
-                ],
-                [
-                  "5",
-                  "0 hoặc 5"
-                ],
-                [
-                  "cả 2 và 5",
-                  "0"
-                ]
-              ],
-              "label": "Chỉ cần nhìn chữ số tận cùng"
-            }
-          }
-        },
-        {
-          "type": "quiz",
-          "content": {
-            "question": "Số nào sau đây chia hết cho cả 2 và 5?",
-            "options": [
-              450,
-              325,
-              482,
-              105
-            ],
-            "answer": 450,
-            "mascotHint": "Số chia hết cho cả 2 và 5 phải có chữ số tận cùng là 0, nên là 450!"
-          }
-        },
-        {
-          "type": "quiz",
-          "content": {
-            "question": "Trong các số: 35, 78, 90, 114, 215, có bao nhiêu số chia hết cho 2?",
-            "options": [
-              3,
-              2,
-              4,
-              1
-            ],
-            "answer": 3,
-            "mascotHint": "Có 3 số chẵn là 78, 90, 114!"
-          }
-        },
-        {
-          "type": "summary",
-          "content": {
-            "title": "Ghi nhớ:",
-            "points": [
-              "Tận cùng 0, 2, 4, 6, 8 chia hết cho 2.",
-              "Tận cùng 0, 5 chia hết cho 5.",
-              "Tận cùng 0 chia hết cho cả 2 và 5."
-            ],
-            "mascotMood": "celebrate"
-          }
-        }
-      ]
-    },
-    {
-      "id": "g4-c3-l2",
-      "title": "Bài 2: Dấu hiệu chia hết cho 9 và cho 3",
-      "type": "learn",
-      "description": "Tính tổng các chữ số: Tổng chia hết cho 9 thì chia hết cho 9; tổng chia hết cho 3 thì chia hết cho 3",
-      "slides": [
-        {
-          "type": "story",
-          "content": {
-            "mascotMood": "happy",
-            "text": "Khác với chia hết cho 2 và 5, dấu hiệu chia hết cho 3 và 9 phải dựa vào TỔNG CÁC CHỮ SỐ! 🧮"
-          }
-        },
-        {
-          "type": "visual",
-          "content": {
-            "text": "- Số có tổng các chữ số chia hết cho 9 thì chia hết cho 9. - Số có tổng các chữ số chia hết cho 3 thì chia hết cho 3. - Chú ý: Số chia hết cho 9 thì chắc chắn chia hết cho 3!",
-            "table": {
-              "headers": [
-                "Chia hết cho",
-                "Dấu hiệu"
-              ],
-              "rows": [
-                [
-                  "9",
-                  "tổng các chữ số chia hết cho 9"
-                ],
-                [
-                  "3",
-                  "tổng các chữ số chia hết cho 3"
-                ]
-              ],
-              "label": "Số chia hết cho 9 thì chắc chắn chia hết cho 3 (điều ngược lại chưa chắc)"
-            }
-          }
-        },
-        {
-          "type": "quiz",
-          "content": {
-            "question": "Số 252 có chia hết cho 9 không?",
-            "options": [
-              "Có, vì 2 + 5 + 2 = 9 chia hết cho 9",
-              "Không, vì số tận cùng là 2",
-              "Chỉ chia hết cho 2"
-            ],
-            "answer": "Có, vì 2 + 5 + 2 = 9 chia hết cho 9",
-            "mascotHint": "Tổng các chữ số = 2 + 5 + 2 = 9, 9 : 9 = 1 nên 252 chia hết cho 9!"
-          }
-        },
-        {
-          "type": "summary",
-          "content": {
-            "title": "Ghi nhớ:",
-            "points": [
-              "Chia hết cho 9: Tổng chữ số chia hết cho 9.",
-              "Chia hết cho 3: Tổng chữ số chia hết cho 3."
-            ],
-            "mascotMood": "proud"
-          }
-        }
-      ]
-    },
-    {
-      "id": "g4-c3-l3",
-      "title": "Bài 3: Ki-lô-mét vuông (km²)",
-      "type": "learn",
-      "description": "Đơn vị đo diện tích lớn (thành phố, khu rừng, quốc gia): 1 km² = 1 000 000 m²",
-      "slides": [
-        {
-          "type": "story",
-          "content": {
-            "mascotMood": "excited",
-            "text": "Để đo diện tích một khu rừng hay một tỉnh/thành phố, người ta dùng Ki-lô-mét vuông (km²)! 🌲🗺️"
-          }
-        },
-        {
-          type: "visual",
+          type: "story",
           content: {
-            "text": "Quy đổi: - Ki-lô-mét vuông là diện tích của hình vuông có cạnh dài 1 km. - 1 km² = 1 000 000 m² (gồm chữ số 1 và 6 chữ số 0).",
-            "planeShape": {
-              "kind": "square",
-              "labels": [
-                "1 km"
-              ],
-              "formula": "1 km² là diện tích hình vuông cạnh 1 km"
-            }
-          },
-        },
-        {
-          type: "visual",
-          content: {
-            "text": "Ki-lô-mét vuông",
-            "table": {
-              "headers": [
-                "Đổi",
-                "Bằng"
-              ],
-              "rows": [
-                [
-                  "1 km²",
-                  "1 000 000 m²"
-                ]
-              ],
-              "label": "Ki-lô-mét vuông"
-            }
-          },
-        },
-        {
-          "type": "quiz",
-          "content": {
-            "question": "5 km² bằng bao nhiêu mét vuông?",
-            "options": [
-              "5 000 000 m²",
-              "500 000 m²",
-              "50 000 m²",
-              "5 000 m²"
-            ],
-            "answer": "5 000 000 m²",
-            "mascotHint": "1 km² = 1 000 000 m² nên 5 km² = 5 000 000 m²!"
-          }
-        },
-        {
-          "type": "summary",
-          "content": {
-            "title": "Ghi nhớ:",
-            "points": [
-              "1 km² = 1 000 000 m².",
-              "Dùng đo các diện tích vùng đất rộng lớn."
-            ],
-            "mascotMood": "proud"
-          }
-        }
-      ]
-    },
-    {
-      "id": "g4-c3-l4",
-      "title": "Bài 4: Hình bình hành & Diện tích hình bình hành",
-      "type": "learn",
-      "description": "Hình có hai cặp cạnh đối diện song song và bằng nhau; Diện tích S = a × h",
-      "slides": [
-        {
-          "type": "story",
-          "content": {
-            "mascotMood": "happy",
-            "text": "Hình bình hành có hai cặp cạnh đối diện song song và bằng nhau! Diện tích hình bình hành bằng độ dài đáy nhân với chiều cao (cùng đơn vị đo)! 🔶"
-          }
-        },
-        {
-          "type": "visual",
-          "content": {
-            "text": "Công thức: Diện tích S = a × h Trong đó: a là độ dài đáy, h là chiều cao (cùng đơn vị đo).",
-            "planeShape": {
-              "kind": "parallelogram",
-              "labels": [
-                "đáy a",
-                "chiều cao h"
-              ],
-              "formula": "S = a × h (a và h cùng đơn vị đo)"
-            }
-          }
-        },
-        {
-          "type": "quiz",
-          "content": {
-            "question": "Một hình bình hành có độ dài đáy là 12 cm và chiều cao là 5 cm. Diện tích của hình bình hành là:",
-            "options": [
-              "60 cm²",
-              "34 cm²",
-              "30 cm²",
-              "17 cm²"
-            ],
-            "answer": "60 cm²",
-            "mascotHint": "S = a × h = 12 × 5 = 60 cm²!"
-          }
-        },
-        {
-          "type": "summary",
-          "content": {
-            "title": "Công thức cần nhớ:",
-            "points": [
-              "Hình bình hành có 2 cặp cạnh đối song song và bằng nhau.",
-              "Diện tích = Đáy × Chiều cao (S = a × h)."
-            ],
-            "mascotMood": "celebrate"
-          }
-        }
-      ]
-    },
-    {
-      "id": "g4-c3-l5",
-      "title": "Bài 5: Luyện tập dấu hiệu chia hết cho 2 và cho 5",
-      "type": "learn",
-      "description": "Luyện nhận biết số chia hết cho 2, cho 5 qua chữ số tận cùng",
-      "slides": [
-        {
-          "type": "story",
-          "content": {
-            "mascotMood": "happy",
-            "text": "Ôn luyện thật chắc dấu hiệu chia hết cho 2 và cho 5 nhé — chỉ cần nhìn chữ số tận cùng là biết ngay! ⚡"
-          }
-        },
-        {
-          "type": "concept",
-          "content": {
-            "table": {
-              "headers": [
-                "Số",
-                "Chia hết cho",
-                "Vì sao"
-              ],
-              "rows": [
-                [
-                  "1 250",
-                  "2 và 5",
-                  "tận cùng là 0"
-                ],
-                [
-                  "2 345",
-                  "5",
-                  "tận cùng là 5"
-                ],
-                [
-                  "3 478",
-                  "2",
-                  "tận cùng là 8"
-                ]
-              ],
-              "label": "Luyện tập dấu hiệu chia hết cho 2 và cho 5"
-            },
-            "badge": "Luyện Chia Hết 2 & 5",
-            "title": "Nhìn chữ số tận cùng",
-            "points": [
-              "Chia hết cho 2: chữ số tận cùng là 0, 2, 4, 6, 8 (số chẵn).",
-              "Chia hết cho 5: chữ số tận cùng là 0 hoặc 5.",
-              "Chia hết cho cả 2 và 5: chữ số tận cùng là 0."
-            ],
-            "rule": "Chỉ cần nhìn chữ số tận cùng, không cần đặt tính chia."
-          }
-        },
-        {
-          "type": "quiz",
-          "content": {
-            "question": "Trong các số 24, 35, 40, 53, số nào chia hết cho cả 2 và 5?",
-            "options": [
-              40,
-              24,
-              35,
-              53
-            ],
-            "answer": 40,
-            "mascotHint": "Số chia hết cho cả 2 và 5 phải có chữ số tận cùng là 0 ⇒ 40!"
-          }
-        },
-        {
-          "type": "quiz",
-          "content": {
-            "question": "Trong các số 15, 22, 37, 60, số nào chia hết cho 5 nhưng KHÔNG chia hết cho 2?",
-            "options": [
-              15,
-              22,
-              37,
-              60
-            ],
-            "answer": 15,
-            "mascotHint": "15 có tận cùng là 5 nên chia hết cho 5 mà không chia hết cho 2!"
-          }
-        },
-        {
-          "type": "summary",
-          "content": {
-            "title": "Ghi nhớ:",
-            "points": [
-              "Tận cùng 0, 2, 4, 6, 8 ⇒ chia hết cho 2",
-              "Tận cùng 0 hoặc 5 ⇒ chia hết cho 5"
-            ],
-            "mascotMood": "proud"
-          }
-        }
-      ]
-    },
-    {
-      "id": "g4-c3-l6",
-      "title": "Bài 6: Luyện tập dấu hiệu chia hết cho 9 và cho 3",
-      "type": "learn",
-      "description": "Luyện dấu hiệu chia hết cho 9, cho 3 qua tổng các chữ số",
-      "slides": [
-        {
-          "type": "story",
-          "content": {
-            "mascotMood": "happy",
-            "text": "Dấu hiệu chia hết cho 9 và cho 3 dùng TỔNG CÁC CHỮ SỐ — cùng luyện cho thành thạo nhé! ✨"
-          }
-        },
-        {
-          "type": "concept",
-          "content": {
-            "table": {
-              "headers": [
-                "Số",
-                "Tổng các chữ số",
-                "Chia hết cho"
-              ],
-              "rows": [
-                [
-                  "945",
-                  "9 + 4 + 5 = 18",
-                  "9 (và 3)"
-                ],
-                [
-                  "1 245",
-                  "1 + 2 + 4 + 5 = 12",
-                  "3"
-                ],
-                [
-                  "2 300",
-                  "2 + 3 + 0 + 0 = 5",
-                  "không chia hết cho 3, 9"
-                ]
-              ],
-              "label": "Luyện tập dấu hiệu chia hết cho 9 và cho 3"
-            },
-            "badge": "Luyện Chia Hết 9 & 3",
-            "title": "Tính tổng các chữ số",
-            "points": [
-              "Chia hết cho 9: tổng các chữ số chia hết cho 9.",
-              "Chia hết cho 3: tổng các chữ số chia hết cho 3.",
-              "Số chia hết cho 9 thì luôn chia hết cho 3, nhưng ngược lại thì KHÔNG."
-            ],
-            "rule": "Tính nhẩm tổng các chữ số rồi xét chia hết cho 9 hoặc cho 3."
-          }
-        },
-        {
-          "type": "quiz",
-          "content": {
-            "question": "Số 351 có chia hết cho 9 không?",
-            "options": [
-              "Có, vì 3 + 5 + 1 = 9",
-              "Không, vì 351 là số lẻ",
-              "Chỉ chia hết cho 2"
-            ],
-            "answer": "Có, vì 3 + 5 + 1 = 9",
-            "mascotHint": "3 + 5 + 1 = 9, mà 9 chia hết cho 9 ⇒ 351 chia hết cho 9!"
-          }
-        },
-        {
-          "type": "quiz",
-          "content": {
-            "question": "Trong các số 123, 234, 450, 927, số nào chia hết cho 3 nhưng KHÔNG chia hết cho 9?",
-            "options": [
-              123,
-              234,
-              450,
-              927
-            ],
-            "answer": 123,
-            "mascotHint": "123 có 1 + 2 + 3 = 6: chia hết cho 3 nhưng không chia hết cho 9. Còn 234, 450, 927 đều có tổng chữ số chia hết cho 9!"
-          }
-        },
-        {
-          "type": "summary",
-          "content": {
-            "title": "Ghi nhớ:",
-            "points": [
-              "Chia hết cho 9: tổng chữ số chia hết cho 9",
-              "Chia hết cho 3: tổng chữ số chia hết cho 3",
-              "Chia hết cho 9 thì chắc chắn chia hết cho 3"
-            ],
-            "mascotMood": "proud"
-          }
-        }
-      ]
-    },
-    {
-      "id": "g4-c3-l7",
-      "title": "Bài 7: Tìm chữ số thay thế để chia hết",
-      "type": "learn",
-      "description": "Dạng bài tìm chữ số còn thiếu thỏa mãn dấu hiệu chia hết",
-      "slides": [
-        {
-          "type": "story",
-          "content": {
-            "mascotMood": "thinking",
-            "text": "Dạng bài thú vị nhất: tìm chữ số còn thiếu để số chia hết cho 2, 5, 3 hoặc 9! 🕵️"
-          }
-        },
-        {
-          "type": "concept",
-          "content": {
-            "table": {
-              "headers": [
-                "Đề",
-                "Chọn chữ số"
-              ],
-              "rows": [
-                [
-                  "2□5 chia hết cho 9",
-                  "2 + 5 = 7, cần thêm 2 ⇒ □ = 2"
-                ],
-                [
-                  "4□0 chia hết cho cả 2 và 5",
-                  "tận cùng 0 ⇒ □ bất kỳ"
-                ],
-                [
-                  "□□ chia hết cho 3 và 9",
-                  "tổng các chữ số phải chia hết cho 9"
-                ]
-              ],
-              "label": "Tìm chữ số thay thế — phải thỏa mãn TẤT CẢ các dấu hiệu"
-            },
-            "badge": "Tìm Chữ Số Thay Thế",
-            "title": "Ba bước làm bài",
-            "steps": [
-              {
-                "title": "Bước 1: Chọn dấu hiệu",
-                "desc": "Xác định dùng dấu hiệu tận cùng (cho 2, 5) hay tổng các chữ số (cho 9, 3)."
-              },
-              {
-                "title": "Bước 2: Viết điều kiện",
-                "desc": "Viết điều kiện cho chữ số cần tìm."
-              },
-              {
-                "title": "Bước 3: Thử và chọn",
-                "desc": "Thử các chữ số từ 0 đến 9 để chọn chữ số thỏa mãn."
-              }
-            ],
-            "rule": "Nếu số phải chia hết cho nhiều số, chữ số tìm được phải thỏa mãn TẤT CẢ các dấu hiệu đó."
-          }
-        },
-        {
-          "type": "quiz",
-          "content": {
-            "question": "Điền chữ số vào ô trống để số 34□ chia hết cho 5. Chữ số thích hợp là:",
-            "options": [
-              0,
-              2,
-              4,
-              6
-            ],
-            "answer": 0,
-            "mascotHint": "34□ chia hết cho 5 thì □ phải là 0 (hoặc 5); trong các đáp án đã cho thì số 0 thỏa mãn!"
-          }
-        },
-        {
-          "type": "quiz",
-          "content": {
-            "question": "Điền chữ số vào ô trống để số 5□2 chia hết cho 9:",
-            "options": [
-              2,
-              1,
-              3,
-              5
-            ],
-            "answer": 2,
-            "mascotHint": "5 + □ + 2 = 7 + □; để chia hết cho 9 thì 7 + □ = 9 ⇒ □ = 2!"
-          }
-        },
-        {
-          "type": "summary",
-          "content": {
-            "title": "Ghi nhớ:",
-            "points": [
-              "Dùng chữ số tận cùng cho 2 và 5",
-              "Dùng tổng các chữ số cho 9 và 3",
-              "Thử lại sau khi điền để chắc chắn đúng"
-            ],
-            "mascotMood": "proud"
-          }
-        }
-      ]
-    },
-    {
-      "id": "g4-c3-l8",
-      "title": "Bài 8: Ki-lô-mét vuông: đổi đơn vị và bài toán",
-      "type": "learn",
-      "description": "Luyện đổi đơn vị km² và giải bài toán diện tích lớn",
-      "slides": [
-        {
-          "type": "story",
-          "content": {
-            "mascotMood": "happy",
-            "text": "1 ki-lô-mét vuông là diện tích hình vuông cạnh 1 km — rộng bằng cả một khu phố đấy! 🟩",
-            "planeShapes": [
-              {
-                "kind": "square",
-                "color": "#3b82f6"
-              }
-            ]
-          }
-        },
-        {
-          "type": "concept",
-          "content": {
-            "table": {
-              "headers": [
-                "Đổi",
-                "Bằng"
-              ],
-              "rows": [
-                [
-                  "1 km²",
-                  "1 000 000 m²"
-                ],
-                [
-                  "3 km²",
-                  "3 000 000 m²"
-                ],
-                [
-                  "500 000 m²",
-                  "0,5 km²"
-                ]
-              ],
-              "label": "Đổi về cùng một đơn vị đo rồi mới so sánh"
-            },
-            "badge": "Luyện Tập km²",
-            "title": "Quy đổi và so sánh",
-            "points": [
-              "1 km² = 1 000 000 m².",
-              "Ví dụ đổi: 5 km² = 5 000 000 m².",
-              "Ví dụ so sánh: 2 km² và 1 500 000 m² ⇒ 2 000 000 m² lớn hơn nên 2 km² > 1 500 000 m²."
-            ],
-            "rule": "Đổi về cùng một đơn vị đo rồi mới so sánh."
-          }
-        },
-        {
-          "type": "quiz",
-          "content": {
-            "question": "5 km² bằng bao nhiêu mét vuông?",
-            "options": [
-              5000000,
-              500000,
-              50000,
-              50000000
-            ],
-            "answer": 5000000,
-            "mascotHint": "1 km² = 1 000 000 m² nên 5 km² = 5 × 1 000 000 = 5 000 000 m²!"
-          }
-        },
-        {
-          "type": "quiz",
-          "content": {
-            "question": "Diện tích một khu rừng là 3 km². Hỏi khu rừng đó rộng bao nhiêu mét vuông?",
-            "options": [
-              3000000,
-              300000,
-              30000,
-              30000000
-            ],
-            "answer": 3000000,
-            "mascotHint": "3 × 1 000 000 = 3 000 000 m²!"
-          }
-        },
-        {
-          "type": "summary",
-          "content": {
-            "title": "Ghi nhớ km²:",
-            "points": [
-              "1 km² = 1 000 000 m²",
-              "Đổi đơn vị trước khi so sánh hoặc tính toán"
-            ],
-            "mascotMood": "proud"
-          }
-        }
-      ]
-    },
-    {
-      "id": "g4-c3-l9",
-      "title": "Bài 9: Luyện tập hình bình hành",
-      "type": "learn",
-      "description": "Luyện nhận biết hình bình hành và tính diện tích, chiều cao, đáy",
-      "slides": [
-        {
-          "type": "story",
-          "content": {
-            "mascotMood": "happy",
-            "text": "Cùng luyện thêm về hình bình hành: nhận biết đặc điểm và tính diện tích! 🔶"
-          }
-        },
-        {
-          "type": "concept",
-          "content": {
-            "planeShape": {
-              "kind": "parallelogram",
-              "labels": [
-                "đáy 9 cm",
-                "chiều cao 5 cm"
-              ],
-              "formula": "S = 9 × 5 = 45 cm²"
-            },
-            "operation": {
-              "left": 9,
-              "sign": "×",
-              "right": 5,
-              "result": 45
-            },
-            "badge": "Luyện Hình Bình Hành",
-            "title": "Hai dạng bài thường gặp",
-            "steps": [
-              {
-                "title": "Dạng 1: Nhận biết",
-                "desc": "Hình bình hành có hai cặp cạnh đối diện song song và bằng nhau."
-              },
-              {
-                "title": "Dạng 2: Tính diện tích",
-                "desc": "Diện tích = độ dài đáy × chiều cao (cùng đơn vị đo)."
-              },
-              {
-                "title": "Chú ý",
-                "desc": "Chiều cao phải vuông góc với đáy."
-              }
-            ],
-            "rule": "Độ dài đáy và chiều cao phải cùng đơn vị đo trước khi nhân."
-          }
-        },
-        {
-          "type": "quiz",
-          "content": {
-            "question": "Một hình bình hành có độ dài đáy 18 cm và chiều cao 7 cm. Diện tích là bao nhiêu?",
-            "options": [
-              "126 cm²",
-              "25 cm²",
-              "63 cm²",
-              "252 cm²"
-            ],
-            "answer": "126 cm²",
-            "mascotHint": "S = 18 × 7 = 126 cm²!"
-          }
-        },
-        {
-          "type": "quiz",
-          "content": {
-            "question": "Một hình bình hành có diện tích 48 cm² và độ dài đáy 8 cm. Chiều cao là bao nhiêu?",
-            "options": [
-              "6 cm",
-              "40 cm",
-              "56 cm",
-              "12 cm"
-            ],
-            "answer": "6 cm",
-            "mascotHint": "Chiều cao = Diện tích : Đáy = 48 : 8 = 6 cm!"
-          }
-        },
-        {
-          "type": "summary",
-          "content": {
-            "title": "Ghi nhớ:",
-            "points": [
-              "Diện tích = Đáy × Chiều cao",
-              "Chiều cao = Diện tích : Đáy"
-            ],
-            "mascotMood": "proud"
-          }
-        }
-      ]
-    },
-    {
-      "id": "g4-c3-l10",
-      "title": "Bài 10: Luyện tập chung chương 3",
-      "type": "learn",
-      "description": "Tổng hợp dấu hiệu chia hết, km² và hình bình hành",
-      "slides": [
-        {
-          "type": "story",
-          "content": {
-            "mascotMood": "proud",
-            "text": "Chặng ôn tập chung của chương 3! Bé hãy tổng hợp lại dấu hiệu chia hết, km² và hình bình hành nhé! 🧠"
-          }
-        },
-        {
-          type: "concept",
-          content: {
-            "planeShape": {
-              "kind": "parallelogram",
-              "labels": [
-                "đáy a",
-                "chiều cao h"
-              ],
-              "formula": "S = a × h"
-            },
-            "badge": "Ôn Tập Chương 3",
-            "title": "Ba mảng kiến thức",
-            "points": [
-              "Dấu hiệu chia hết cho 2, 5, 9, 3.",
-              "Ki-lô-mét vuông và cách đổi đơn vị (1 km² = 1 000 000 m²).",
-              "Hình bình hành: đặc điểm và diện tích S = a × h."
-            ],
-            "rule": "Đọc kỹ đề để biết bài thuộc mảng nào."
+            mascotMood: "curious",
+            text: "Cú Mèo đọc tin: dân số thành phố Cà Mau năm 2019 là 226 372 người. Số này có sáu chữ số — đọc thế nào nhỉ? 👀",
           },
         },
         {
           type: "concept",
           content: {
-            "badge": "Ôn Tập Chương 3",
-            title: "Luyện tập chung chương 3",
-            "table": {
-              "headers": [
-                "Dấu hiệu",
-                "Chữ số tận cùng / tổng chữ số"
-              ],
-              "rows": [
-                [
-                  "chia hết cho 2",
-                  "tận cùng 0, 2, 4, 6, 8"
-                ],
-                [
-                  "chia hết cho 5",
-                  "tận cùng 0 hoặc 5"
-                ],
-                [
-                  "chia hết cho 3",
-                  "tổng chữ số ⋮ 3"
-                ],
-                [
-                  "chia hết cho 9",
-                  "tổng chữ số ⋮ 9"
-                ]
-              ],
-              "label": "Luyện tập chung chương 3"
-            }
+            badge: "Khám Phá",
+            title: "Đọc số có sáu chữ số",
+            explanation:
+              "Số có sáu chữ số gồm hai lớp: lớp nghìn đứng trước, lớp đơn vị đứng sau. Ta đọc theo từng lớp từ trái sang phải, sau lớp nghìn đọc thêm chữ “nghìn”.",
+            points: [
+              "Các hàng từ trái sang phải: trăm nghìn · chục nghìn · nghìn · trăm · chục · đơn vị.",
+              "226 372 đọc là: hai trăm hai mươi sáu nghìn ba trăm bảy mươi hai.",
+              "Mười trăm nghìn hợp thành một triệu: 1 000 000.",
+              "Số liền sau của 999 999 là 1 000 000.",
+            ],
+            rule: "Đọc số theo từng lớp: lớp nghìn trước, rồi lớp đơn vị.",
           },
         },
         {
-          "type": "quiz",
-          "content": {
-            "question": "Trong các số 180, 243, 315, 402, số nào chia hết cho cả 2, 5 và 3?",
-            "options": [
-              180,
-              243,
-              315,
-              402
-            ],
-            "answer": 180,
-            "mascotHint": "180 có tận cùng là 0 (chia hết cho 2 và 5) và 1 + 8 + 0 = 9 (chia hết cho 3) ⇒ 180!"
-          }
+          type: "visual",
+          content: {
+            text: "Cấu tạo của số 226 372",
+            placeValue: {
+              headers: [
+                "Trăm nghìn",
+                "Chục nghìn",
+                "Nghìn",
+                "Trăm",
+                "Chục",
+                "Đơn vị",
+              ],
+              digits: [2, 2, 6, 3, 7, 2],
+              label: "226 372 = 200 000 + 20 000 + 6000 + 300 + 70 + 2",
+            },
+          },
         },
         {
-          "type": "quiz",
-          "content": {
-            "question": "Một hình bình hành có diện tích 72 m² và chiều cao 9 m. Độ dài đáy là bao nhiêu?",
-            "options": [
-              "8 m",
-              "63 m",
-              "81 m",
-              "6 m"
-            ],
-            "answer": "8 m",
-            "mascotHint": "Đáy = Diện tích : Chiều cao = 72 : 9 = 8 m!"
-          }
+          type: "quiz",
+          content: {
+            question: "Số 1 000 000 đọc là gì?",
+            options: ["Một trăm nghìn", "Một triệu", "Mười nghìn", "Một tỉ"],
+            answer: "Một triệu",
+            mascotHint: "1 000 000 đọc là một triệu — gồm mười trăm nghìn.",
+          },
         },
         {
-          "type": "summary",
-          "content": {
-            "title": "Chúc mừng bé:",
-            "points": [
-              "Bé đã hoàn thành chương 3: Dấu hiệu chia hết & Hình bình hành!"
+          type: "quiz",
+          content: {
+            question: "Số liền sau của số 999 999 là số nào?",
+            options: ["999 998", "1 000 000", "1 000 001", "999 990"],
+            answer: "1 000 000",
+            mascotHint: "999 999 thêm 1 được 1 000 000 — đọc là một triệu.",
+          },
+        },
+        {
+          type: "summary",
+          content: {
+            title: "Ghi nhớ bài học:",
+            points: [
+              "Số có sáu chữ số gồm lớp nghìn và lớp đơn vị.",
+              "1 000 000 là một triệu.",
+              "Số liền sau bằng số đã cho cộng thêm 1.",
             ],
-            "mascotMood": "celebrate"
-          }
-        }
-      ]
-    }
-  ]
+            mascotMood: "proud",
+          },
+        },
+      ],
+    },
+    {
+      id: "g4-c3-l2",
+      title: "Bài 11: Hàng và lớp",
+      type: "learn",
+      description:
+        "Nhận biết ba hàng của lớp nghìn và ba hàng của lớp đơn vị; nêu giá trị của chữ số theo hàng, lớp",
+      slides: [
+        {
+          type: "story",
+          content: {
+            mascotMood: "thinking",
+            text: "Cú Mèo chỉ vào số 514 293 rồi hỏi: ba chữ số 5, 1, 4 thuộc lớp nào nhỉ? Rô-bốt trả lời ngay: lớp nghìn! Còn ba chữ số 2, 9, 3 là lớp đơn vị. 🔎",
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Khám Phá",
+            title: "Lớp nghìn và lớp đơn vị",
+            explanation:
+              "Mỗi lớp gồm ba hàng. Từ phải sang trái, cứ ba hàng hợp thành một lớp: lớp đơn vị (trăm, chục, đơn vị) rồi đến lớp nghìn (nghìn, chục nghìn, trăm nghìn).",
+            points: [
+              "Lớp đơn vị: hàng trăm · hàng chục · hàng đơn vị.",
+              "Lớp nghìn: hàng nghìn · hàng chục nghìn · hàng trăm nghìn.",
+              "Số 514 293: các chữ số 5, 1, 4 thuộc lớp nghìn; 2, 9, 3 thuộc lớp đơn vị.",
+              "Giá trị của mỗi chữ số phụ thuộc vào hàng nó đứng.",
+            ],
+            rule: "Cứ ba hàng từ phải sang trái là một lớp: đơn vị → nghìn → triệu.",
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Chữ số thuộc hàng nào, lớp nào?",
+            table: {
+              headers: ["Số", "Chữ số được xét", "Hàng", "Lớp"],
+              rows: [
+                [362820, 3, "trăm nghìn", "nghìn"],
+                [810003, 1, "trăm nghìn", "nghìn"],
+                [738772, 8, "nghìn", "nghìn"],
+                [256837, 8, "chục", "đơn vị"],
+              ],
+              label: "Cùng tìm giá trị của chữ số theo hàng",
+            },
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Trong số 514 293, các chữ số 5, 1, 4 thuộc lớp nào?",
+            options: ["Lớp đơn vị", "Lớp nghìn", "Lớp triệu", "Lớp chục"],
+            answer: "Lớp nghìn",
+            mascotHint: "Ba chữ số đứng đầu (5, 1, 4) là lớp nghìn.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số 738 772 có chữ số 8 thuộc hàng nào?",
+            options: [
+              "Hàng trăm nghìn",
+              "Hàng chục nghìn",
+              "Hàng nghìn",
+              "Hàng trăm",
+            ],
+            answer: "Hàng nghìn",
+            mascotHint:
+              "Đếm từ phải sang trái: 2 (đơn vị), 7 (chục), 7 (trăm), 8 (nghìn) — hàng nghìn.",
+          },
+        },
+        {
+          type: "summary",
+          content: {
+            title: "Ghi nhớ bài học:",
+            points: [
+              "Mỗi lớp gồm ba hàng.",
+              "Lớp đơn vị: trăm · chục · đơn vị.",
+              "Lớp nghìn: nghìn · chục nghìn · trăm nghìn.",
+            ],
+            mascotMood: "proud",
+          },
+        },
+      ],
+    },
+    {
+      id: "g4-c3-l3",
+      title: "Bài 12: Các số trong phạm vi lớp triệu",
+      type: "learn",
+      description:
+        "Làm quen lớp triệu: hàng triệu, chục triệu, trăm triệu; đọc viết số đến 1 000 000 000",
+      slides: [
+        {
+          type: "story",
+          content: {
+            mascotMood: "surprised",
+            text: "Cú Mèo cho biết: dân số Việt Nam năm 2022 khoảng một trăm triệu người. Một trăm triệu viết là 100 000 000 — chín chữ số! 😮",
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Khám Phá",
+            title: "Lớp triệu",
+            explanation:
+              "Ba hàng triệu, chục triệu, trăm triệu hợp thành lớp triệu. Mười triệu còn gọi là một chục triệu; một trăm triệu viết là 100 000 000; một nghìn triệu là một tỉ: 1 000 000 000.",
+            points: [
+              "Mười triệu = một chục triệu = 10 000 000.",
+              "Một trăm triệu = 100 000 000.",
+              "Số liền sau của 999 999 999 là 1 000 000 000 — đọc là một tỉ.",
+              "Số có chín chữ số thì chữ số đầu tiên thuộc hàng trăm triệu.",
+            ],
+            rule: "Đọc số theo từng lớp: triệu → nghìn → đơn vị.",
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Khoảng cách Trái Đất – Mặt Trời: 149 597 876 km",
+            placeValue: {
+              headers: [
+                "Trăm triệu",
+                "Chục triệu",
+                "Triệu",
+                "Trăm nghìn",
+                "Chục nghìn",
+                "Nghìn",
+                "Trăm",
+                "Chục",
+                "Đơn vị",
+              ],
+              digits: [1, 4, 9, 5, 9, 7, 8, 7, 6],
+              label:
+                "149 597 876 = 100 000 000 + 40 000 000 + 9 000 000 + 500 000 + 90 000 + 7000 + 800 + 70 + 6",
+            },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Viết số thành tổng theo mẫu",
+            table: {
+              headers: ["Số", "Viết thành tổng"],
+              rows: [
+                ["27 000 900", "20 000 000 + 7 000 000 + 900"],
+                ["10 914 090", "10 000 000 + 900 000 + 10 000 + 4000 + 90"],
+                ["1 304 530", "1 000 000 + 300 000 + 4000 + 500 + 30"],
+              ],
+              label: "Mỗi số tách theo từng hàng",
+            },
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số 10 000 000 đọc là gì?",
+            options: [
+              "Một triệu",
+              "Mười triệu",
+              "Một trăm triệu",
+              "Mười nghìn",
+            ],
+            answer: "Mười triệu",
+            mascotHint:
+              "10 000 000 đọc là mười triệu, còn gọi là một chục triệu.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số 14 021 983 — chữ số 4 thuộc lớp nào?",
+            options: ["Lớp nghìn", "Lớp đơn vị", "Lớp triệu", "Lớp trăm"],
+            answer: "Lớp triệu",
+            mascotHint: "Hai chữ số 1 và 4 đứng đầu, thuộc lớp triệu.",
+          },
+        },
+        {
+          type: "summary",
+          content: {
+            title: "Ghi nhớ bài học:",
+            points: [
+              "Ba hàng triệu · chục triệu · trăm triệu hợp thành lớp triệu.",
+              "1 000 000 000 đọc là một tỉ.",
+              "Đọc, viết số lần lượt theo từng lớp.",
+            ],
+            mascotMood: "proud",
+          },
+        },
+      ],
+    },
+    {
+      id: "g4-c3-l4",
+      title: "Bài 13: Làm tròn số đến hàng trăm nghìn",
+      type: "learn",
+      description:
+        "Làm tròn số đến hàng trăm nghìn dựa vào chữ số hàng chục nghìn",
+      slides: [
+        {
+          type: "story",
+          content: {
+            mascotMood: "curious",
+            text: "Công ty A bán được 2 712 615 xe máy trong năm 2020. Báo chí viết “khoảng 2 700 000 xe”. Vì sao lại làm tròn như vậy nhỉ? 🛵",
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Khám Phá",
+            title: "Làm tròn đến hàng trăm nghìn",
+            explanation:
+              "Muốn làm tròn số đến hàng trăm nghìn, bé nhìn chữ số hàng chục nghìn: nếu chữ số đó bé hơn 5 thì làm tròn xuống, nếu từ 5 trở lên thì làm tròn lên.",
+            points: [
+              "Bước 1: xác định chữ số hàng chục nghìn.",
+              "Bước 2: so chữ số đó với 5.",
+              "Bước 3: làm tròn xuống hoặc lên rồi thay các hàng sau bằng 0.",
+              "Ví dụ: 2 712 615 có hàng chục nghìn là 1 (< 5) nên làm tròn thành 2 700 000.",
+            ],
+            rule: "Nhìn chữ số hàng chục nghìn: bé hơn 5 thì xuống, từ 5 trở lên thì lên.",
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Làm tròn số xe máy bán ra mỗi năm đến hàng trăm nghìn",
+            table: {
+              headers: ["Năm", "Số xe bán ra", "Làm tròn đến hàng trăm nghìn"],
+              rows: [
+                [2016, 3121023, 3100000],
+                [2017, 3272353, 3300000],
+                [2018, 3386097, 3400000],
+                [2019, 3254964, 3300000],
+              ],
+              label: "So chữ số hàng chục nghìn rồi làm tròn",
+            },
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question:
+              "Số nào dưới đây làm tròn đến hàng trăm nghìn thì được 200 000?",
+            options: ["149 000", "190 001", "250 001", "284 910"],
+            answer: "190 001",
+            mascotHint:
+              "190 001 có hàng chục nghìn là 9 (≥ 5) nên làm tròn lên: 200 000. Còn 149 000 → 100 000; 250 001 và 284 910 → 300 000.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question:
+              "Làm tròn số 3 365 200 đến hàng trăm nghìn ta được số nào?",
+            options: ["3 300 000", "3 400 000", "3 000 000", "3 500 000"],
+            answer: "3 400 000",
+            mascotHint:
+              "Hàng chục nghìn là 6 (≥ 5) nên làm tròn lên: 3 400 000.",
+          },
+        },
+        {
+          type: "summary",
+          content: {
+            title: "Ghi nhớ bài học:",
+            points: [
+              "Làm tròn đến hàng trăm nghìn: nhìn chữ số hàng chục nghìn.",
+              "Bé hơn 5: làm tròn xuống. Từ 5 trở lên: làm tròn lên.",
+              "Các hàng sau khi làm tròn đều thành 0.",
+            ],
+            mascotMood: "proud",
+          },
+        },
+      ],
+    },
+    {
+      id: "g4-c3-l5",
+      title: "Bài 14: So sánh các số có nhiều chữ số",
+      type: "learn",
+      description:
+        "So sánh hai số có nhiều chữ số: so số chữ số, rồi so từng hàng từ trái sang phải",
+      slides: [
+        {
+          type: "story",
+          content: {
+            mascotMood: "thinking",
+            text: "Việt nói: “37 003 847 và 23 938 399 có cùng số chữ số, mà 9 > 7 nên 23 938 399 lớn hơn!”. Bạn ấy nói sai ở đâu nhỉ? 🤔",
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Khám Phá",
+            title: "Cách so sánh hai số",
+            explanation:
+              "Muốn so sánh hai số, trước hết bé so số chữ số: số nào có nhiều chữ số hơn thì lớn hơn. Nếu hai số có cùng số chữ số, bé so từng cặp chữ số ở cùng một hàng, kể từ TRÁI sang PHẢI.",
+            points: [
+              "230 000 000 và 108 000 000 cùng chín chữ số: so hàng trăm triệu 2 > 1 nên 230 000 000 lớn hơn.",
+              "37 003 847 > 23 938 399 vì hàng chục triệu 3 > 2 — không được so chữ số tận cùng!",
+              "Có thể so một số với một tổng: 3 405 000 = 3 000 000 + 400 000 + 5 000.",
+            ],
+            rule: "So từ trái sang phải, hàng nào hơn thì số đó lớn hơn.",
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Điền dấu >, <, = thích hợp",
+            table: {
+              headers: ["So sánh", "Dấu", "Vì sao"],
+              rows: [
+                ["278 992 000 và 278 999", ">", "nhiều chữ số hơn"],
+                ["200 000 000 và 99 999 999", ">", "chín chữ số > tám chữ số"],
+                ["37 338 449 và 37 839 449", "<", "hàng trăm nghìn 3 < 8"],
+                [
+                  "3 405 000 và 3 000 000 + 400 000 + 5 000",
+                  "=",
+                  "tổng bằng đúng 3 405 000",
+                ],
+              ],
+              label: "So sánh từng cặp chữ số cùng hàng",
+            },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Số lượng gia súc ở Việt Nam (Niên giám thống kê 2020)",
+            table: {
+              headers: ["Loại", "Số con"],
+              rows: [
+                ["Trâu", 2332800],
+                ["Bò", 6230500],
+                ["Lợn", 22027900],
+              ],
+              label: "Lợn nhiều nhất (22 027 900), trâu ít nhất (2 332 800)",
+            },
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question:
+              "Trong ba loại gia súc trên, loại nào được nuôi nhiều nhất?",
+            options: ["Trâu", "Bò", "Lợn", "Bò nhiều bằng trâu"],
+            answer: "Lợn",
+            mascotHint:
+              "22 027 900 > 6 230 500 > 2 332 800 nên lợn nhiều nhất.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "So sánh 37 003 847 và 23 938 399, kết luận nào đúng?",
+            options: [
+              "37 003 847 > 23 938 399",
+              "37 003 847 < 23 938 399",
+              "Hai số bằng nhau",
+              "Không so sánh được",
+            ],
+            answer: "37 003 847 > 23 938 399",
+            mascotHint:
+              "So từ trái sang phải: hàng chục triệu 3 > 2 ⇒ 37 003 847 lớn hơn. Không được so chữ số tận cùng!",
+          },
+        },
+        {
+          type: "summary",
+          content: {
+            title: "Ghi nhớ bài học:",
+            points: [
+              "Số nào có nhiều chữ số hơn thì lớn hơn.",
+              "Cùng số chữ số: so từng hàng từ trái sang phải.",
+              "Đừng bao giờ so chữ số tận cùng để kết luận.",
+            ],
+            mascotMood: "proud",
+          },
+        },
+      ],
+    },
+    {
+      id: "g4-c3-l6",
+      title: "Bài 15: Làm quen với dãy số tự nhiên",
+      type: "learn",
+      description:
+        "Nhận biết dãy số tự nhiên; số tự nhiên bé nhất là 0; hai số tự nhiên liên tiếp hơn kém nhau 1 đơn vị",
+      slides: [
+        {
+          type: "story",
+          content: {
+            mascotMood: "curious",
+            text: "Cú Mèo đếm mãi: 0, 1, 2, 3,… rồi hỏi: có số tự nhiên nào lớn nhất không? Rô-bốt lắc đầu: không có đâu, cứ thêm 1 là lại có số mới! 🔢",
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Khám Phá",
+            title: "Dãy số tự nhiên",
+            explanation:
+              "Các số 0, 1, 2, 3,… là các số tự nhiên. Sắp xếp theo thứ tự từ bé đến lớn ta được dãy số tự nhiên. Số tự nhiên bé nhất là 0, và không có số tự nhiên lớn nhất.",
+            points: [
+              "Dãy số tự nhiên: 0, 1, 2, 3, 4, 5,…",
+              "Số tự nhiên bé nhất là 0; không có số tự nhiên lớn nhất.",
+              "Hai số tự nhiên liên tiếp hơn kém nhau 1 đơn vị.",
+              "Số liền trước bé hơn số đã cho 1 đơn vị; số liền sau lớn hơn 1 đơn vị.",
+            ],
+            rule: "Thêm 1 được số liền sau; bớt 1 được số liền trước.",
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Tìm số liền trước, số liền sau",
+            table: {
+              headers: ["Số đã cho", "Số liền trước", "Số liền sau"],
+              rows: [
+                [8, 7, 9],
+                [100, 99, 101],
+                [1000000, 999999, 1000001],
+              ],
+              label: "Liền trước: bớt 1 · Liền sau: thêm 1",
+            },
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số liền trước của 1 000 000 là số nào?",
+            options: ["999 999", "1 000 001", "999 990", "100 000"],
+            answer: "999 999",
+            mascotHint: "Bớt 1 đơn vị: 1 000 000 − 1 = 999 999.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question:
+              "Ba số tự nhiên liên tiếp: 98, …, 100. Số còn thiếu là số nào?",
+            options: ["97", "99", "101", "98"],
+            answer: "99",
+            mascotHint:
+              "Hai số tự nhiên liên tiếp hơn kém nhau 1 đơn vị nên số giữa là 99.",
+          },
+        },
+        {
+          type: "summary",
+          content: {
+            title: "Ghi nhớ bài học:",
+            points: [
+              "Dãy số tự nhiên: 0, 1, 2, 3,…",
+              "Số tự nhiên bé nhất là 0, không có số lớn nhất.",
+              "Hai số tự nhiên liên tiếp hơn kém nhau 1 đơn vị.",
+            ],
+            mascotMood: "proud",
+          },
+        },
+      ],
+    },
+    {
+      id: "g4-c3-l7",
+      title: "Bài 16: Luyện tập chung",
+      type: "learn",
+      description:
+        "Ôn tập tổng hợp: hàng và lớp, so sánh số, làm tròn số, dãy số tự nhiên",
+      slides: [
+        {
+          type: "story",
+          content: {
+            mascotMood: "excited",
+            text: "Hôm nay chúng mình ôn lại toàn bộ Chủ đề 3: hàng, lớp, so sánh số, làm tròn số và dãy số tự nhiên. Cùng làm thử thách của Rô-bốt nhé! 🤖",
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Hoàn thành bảng: giá trị của chữ số theo hàng",
+            table: {
+              headers: ["Số", "Chữ số", "Giá trị"],
+              rows: [
+                [182729119, 8, "80 000 000"],
+                [74810331, 4, "4 000 000"],
+                [3037933, 3, "3 000 000"],
+                [981381070, 9, "900 000 000"],
+              ],
+              label: "Giá trị = chữ số × giá trị của hàng",
+            },
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số nào lớn nhất trong các số sau?",
+            options: [
+              "738 829 192",
+              "391 130 031",
+              "250 030 000",
+              "222 222 222",
+            ],
+            answer: "738 829 192",
+            mascotHint:
+              "Cả bốn số đều chín chữ số, so hàng trăm triệu: 7 > 3 > 2 nên 738 829 192 lớn nhất.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Làm tròn số 451 900 đến hàng trăm nghìn ta được:",
+            options: ["400 000", "450 000", "500 000", "460 000"],
+            answer: "500 000",
+            mascotHint: "Hàng chục nghìn là 5 nên làm tròn lên: 500 000.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Trong các số sau, số nào có hai chữ số ở lớp nghìn?",
+            options: ["4 519", "100 000", "45 000", "115 806 715"],
+            answer: "45 000",
+            mascotHint:
+              "45 000 có lớp nghìn gồm hai chữ số 4 và 5 (đọc là bốn mươi lăm nghìn).",
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Số học sinh tiểu học tăng dần qua từng năm học",
+            table: {
+              headers: ["Năm học", "Số học sinh tiểu học"],
+              rows: [
+                ["2016 – 2017", 7801560],
+                ["2017 – 2018", 8041842],
+                ["2018 – 2019", 8541451],
+                ["2019 – 2020", 8741545],
+              ],
+              label: "Sắp xếp lại theo thứ tự tăng dần",
+            },
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question:
+              "Năm học nào có nhiều học sinh tiểu học nhất trong bảng trên?",
+            options: [
+              "2016 – 2017",
+              "2017 – 2018",
+              "2018 – 2019",
+              "2019 – 2020",
+            ],
+            answer: "2019 – 2020",
+            mascotHint:
+              "8 741 545 là số lớn nhất trong bảng, thuộc năm học 2019 – 2020.",
+          },
+        },
+        {
+          type: "summary",
+          content: {
+            title: "Ghi nhớ bài học:",
+            points: [
+              "Cứ ba hàng là một lớp: đơn vị · nghìn · triệu.",
+              "So sánh số: so từ hàng lớn nhất trở xuống.",
+              "Làm tròn và tìm số liền trước, liền sau thành thạo.",
+            ],
+            mascotMood: "proud",
+          },
+        },
+      ],
+    },
+  ],
 };

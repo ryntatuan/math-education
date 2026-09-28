@@ -83,7 +83,7 @@ const MIN_REFRESH_MS = 5_000;
 // 🔴 `layGrades` là CHỐT DUY NHẤT mà mọi màn hình đọc cây nội dung (qua `curriculum.js`)
 // ⇒ lọc nhãn SGK ở đây là đủ cho cả app, không phải sửa 170 chuỗi trong file dữ liệu.
 // Kết quả được NHỚ theo chính đối tượng cây ⇒ mỗi cây chỉ duyệt một lần, không duyệt lại
-// ở mỗi lần render (bảng có 460 bài · 2774 slide).
+// ở mỗi lần render (bảng có 489 bài · 3149 slide).
 let cayGocDaSach = null;
 let cayDaSach = null;
 export const layGrades = () => {

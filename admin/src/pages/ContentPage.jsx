@@ -5,7 +5,7 @@ import LessonEditor from "../components/LessonEditor";
 /**
  * Cây giáo trình Lớp → Chương → Bài — Giai đoạn 3, lát 3b. **CHỈ ĐỌC.**
  *
- * Không có cấp "Học Kỳ": dữ liệu thật chỉ có 5 lớp · 51 chương · 459 bài. Thêm một
+ * Không có cấp "Học Kỳ": dữ liệu thật chỉ có 5 lớp · 65 chương · 489 bài. Thêm một
  * cấp không tồn tại là bịa ra cấu trúc rồi phải tự điền vào chỗ trống.
  *
  * ⚠️ VÌ SAO ĐỌC TỪ DB CHỨ KHÔNG ĐỌC FILE TĨNH:

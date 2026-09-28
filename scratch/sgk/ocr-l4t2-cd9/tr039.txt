@@ -1,0 +1,42 @@
+Blogra
+
+l2
+®\
+¬ \
+=I -_
+& (Việt oùng bó trồng 5 chậu dâu tây. Bắt đầu từ Chủ nhật tuần trước,
+=. ngày nào Việt cũng hái dâu tây. Vào mỗi buỏi tối, Việt đều ghi lại tổng só
+® quả dâu tây hái được trong ngày và nhận được một dãy số liệu như sau:
+14 2.5:4.5/7:8, 10, 13.
+si Dựa vào dãy số liệu đó và trả lời câu hỏi.
+se a) Việt đã hái dâu tây trong bao nhiêu ngày?
+L„uÐời
+= b) Vào ngày nào, Việt hái được ít dâu tây nhất?
+= ©) Số lượng dâu tây mà Việt hái được trong các ngày đó là tăng hay giảm
+sau mỗi ngày?
+e4 gây
+xử @©vcno dãy số liệu về thời gian tập thể dục mỗi ngày của các thành viên
+=+ trong gia đình Mai như sau: 20 phút, 40 phút, 10 phút, 50 phút, 30 phút.
+ham. ej Ai
+® Hỏi: I
+= a) Gia đình Mai có bao nhiêu thành viên?
+© b) Trung bình mỗi thành viên trong gia đình Mai dành bao nhiêu phút một
+© ngày đẻ tập thẻ dục?
+BỊ [3) a) Hãy thực hiện một cuộc khảo sát vẻ số giờ ngủ trong một ngày của các
+>) bạn trong nhóm em và ghi lại kết quả thành dãy só liệu (theo mẫu).
+Eì Mẫu: Rô-bót tiền hành khảo sát và ghi lại kết quả thành dãy só liệu
+' như sau:
+S 10 giờ, 8 giờ, 11 giờ, 10 giờ, 9 giờ, 8 giờ, 7 giờ.
+LI
+>Ị b) Dựa vào dãy số liệu vừa thu thập được và trả lời câu hỏi.
+s s Có bao nhiêu bạn đã tham gia cuộc khảo sát của em?
+s Bạn ngủ ít nhất đã ngủ bao nhiêu giờ mỗi ngày?
+s Trong giai đoạn từ 6 tuổi
+đến 12 tuổi, mỗi người
+cần được ngủ đủ từ
+9 giờ đến 12 giờ mỗi
+ngày. Hỏi có bao nhiêu
+bạn ngủ đủ số giờ theo
+lứa tuôi?
+38
+

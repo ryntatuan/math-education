@@ -1,0 +1,41 @@
+1u” qoPg
+
+1) 9S E
+
+20U-PA-XEp/UI02'D9OIJIE]SO|Q
+
+gài 49 l
+
+9Ssơs
+
+36
+
+CAI LAM QUEN VỚI YẾU TỔ
+9 THÔNG KÊ, XÁC SUẤT
+
+DÃY SỐ LIỆU THỐNG KÊ
+
+Sáng nào chú cháu
+
+Mỗi buổi sáng trong tuần, Rô-bót đều đạp xe ưu ỨnH nhau
+
+quanh một công viên ở gàn nhà.
+
+Tuần này, Rô-bót đã làn lượt ghi chép độ dài quãng đường (đơn vị: km)
+mà bạn ấy đi được trong mỗi buổi tập từ thứ Hai đến thứ Sáu thành
+dãy số liệu như sau:1, 2,2,2, 3.
+Nhìn vào dãy số liệu trên, ta biết:
+
+s Số thứ nhất là 1, số thứ hai là 2, số thứ ba là 2, số thứ tư là 2, số thứ năm
+là3.
+
+s Dãy số liệu trên có 5 số.
+
+Nhận xét:
+
+s Quãng đường dài nhất mà Rô-bốt đi được trong một buổi tập là
+3 km và quãng đường ngắn nhất là 1 km.
+
+s Trung bình mỗi ngày độ dài quãng đường mà Rô-bót đi được trong
+một buổi tập là 2 km.
+

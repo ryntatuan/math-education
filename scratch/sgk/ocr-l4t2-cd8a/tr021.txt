@@ -1,0 +1,37 @@
+1u” qoPg
+
+1) 9S E
+
+20U-PA-XEp/UI02'D9OIJIE]SO|Q
+
+Mỗi ô tô chở 34 học sinh. 12 ô tô
+như thê chở bao nhiêu học sinh?
+
+li eai Ù Ù | ai `; Sài đu
+
+34x12=7
+
+Ta có thể tính như sau:
+
+34 x 12=34 x (10 + 2)
+
+=34x10+34x2
+= 340 + 68
+= 408.
+Thông thường, ta đặt s 2 nhân 4 bằng 8, viết 8; 2 nhân 3
+bằng 6, viết 6.
+1 nhân 4 bằng 4, viết 4 (dưới 8);
+[eC) 1 nhân 3 bằng 3, viết 3.
+34s Hạ8;6 cộng 4 bằng 10, viết 0
+“408 nhớ 1;3thêm 1 bằng 4, viết 4.
+
+Lưu ý:
+
+s 68 là tích riêng thứ nhất (68 đơn vị).
+
+s 34 là tích riêng thứ hai (34 chục hay 340 đơn vị).
+
+° Viết tích riêng thứ hai lùi sang trái một cột (so với tích riêng thứ nhất).
+
+20
+

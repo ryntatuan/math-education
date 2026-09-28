@@ -1,141 +1,178 @@
 export const g4c6 = {
   id: "g4-c6",
-  name: "Chương 6: Ôn tập cuối năm",
+  name: "Chủ đề 6: Đường thẳng vuông góc. Đường thẳng song song",
   description:
-    "Hệ thống hóa toàn bộ kiến thức Toán lớp 4: Số tự nhiên, 4 phép tính, phân số, hình học, các bài toán có lời văn điển hình",
-  icon: "🏆",
-  color: "#6366f1",
-  totalLessons: 10,
+    "Hai đường thẳng vuông góc, hai đường thẳng song song, cách vẽ bằng ê-ke; hình bình hành và hình thoi với các cạnh đối diện song song",
+  icon: "📏",
+  color: "#ef4444",
+  totalLessons: 6,
   lessons: [
     {
       id: "g4-c6-l1",
-      title: "Bài 1: Ôn tập về số tự nhiên & Phép tính số tự nhiên",
+      title: "Bài 27: Hai đường thẳng vuông góc",
       type: "learn",
       description:
-        "Ôn tập đọc viết số đến lớp triệu, tính nhanh và tính giá trị biểu thức",
+        "Nhận biết hai đường thẳng vuông góc; dùng ê-ke để kiểm tra và vẽ hai đường thẳng vuông góc",
       slides: [
         {
           type: "story",
           content: {
-            mascotMood: "proud",
-            text: "Chúc mừng các bạn đã bước vào chặng cuối cùng của lớp 4! Hãy cùng Cú Mèo ôn lại kiến thức số tự nhiên nhé! 🦉✨",
+            mascotMood: "curious",
+            text: "Cú Mèo đang buộc hai thanh tre vuông góc với nhau để làm con diều. Vì sao người ta phải đặt chúng vuông góc nhỉ? 🪁",
           },
         },
         {
           type: "concept",
           content: {
-            placeValue: {
-              headers: [
-                "Trăm nghìn",
-                "Chục nghìn",
-                "Nghìn",
-                "Trăm",
-                "Chục",
-                "Đơn vị",
-              ],
-              digits: [6, 8, 3, 5, 2, 0],
-              label: "Ôn tập số tự nhiên — 683 520",
-            },
-            badge: "Kiến Thức Trọng Tâm",
-            title: "Ôn tập về số tự nhiên & Phép tính số tự nhiên",
-            explanation: "Ôn lại số tự nhiên và bốn phép tính với số tự nhiên.",
+            badge: "Khám Phá",
+            title: "Thế nào là hai đường thẳng vuông góc?",
+            explanation:
+              "Kéo dài hai cạnh AB và AD của hình chữ nhật ABCD, ta được hai đường thẳng vuông góc với nhau. Hai đường thẳng vuông góc tạo thành bốn góc vuông có chung một đỉnh.",
             points: [
-              "Đọc, viết, so sánh số tự nhiên và nêu giá trị của từng chữ số theo hàng.",
-              "Bốn phép tính cộng, trừ, nhân, chia — đặt tính thẳng cột.",
-              "Tính chất giao hoán, kết hợp và nhân một số với một tổng.",
+              "Hai đường thẳng vuông góc tạo thành bốn góc vuông chung một đỉnh.",
+              "Ta thường dùng ê-ke để kiểm tra hoặc vẽ hai đường thẳng vuông góc.",
+              "Đặt một cạnh góc vuông của ê-ke trùng với đường thẳng đã cho, cạnh còn lại đi qua điểm cần vẽ.",
             ],
-            rule: "Thử lại kết quả bằng phép tính ngược trước khi kết luận.",
+            rule: "Ê-ke khớp đúng với góc tạo bởi hai đường thẳng thì hai đường thẳng đó vuông góc.",
           },
         },
         {
           type: "visual",
           content: {
-            text: "Bé đặt tính rồi cộng: 483 526 + 254 138",
-            cotTinh: {
-              left: 483526,
-              right: 254138,
-              sign: "+",
-              remember: true,
+            text: "Hai đường thẳng OM và ON vuông góc với nhau",
+            angle: {
+              kind: "right",
+              degrees: 90,
+              vertexLetter: "O",
+              armLetters: ["M", "N"],
+              label: "Bốn góc vuông chung đỉnh O",
+            },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Vẽ đường thẳng CD đi qua điểm H và vuông góc với AB",
+            table: {
+              headers: ["Bước", "Việc làm"],
+              rows: [
+                ["Bước 1", "Đặt một cạnh góc vuông của ê-ke trùng với đường thẳng AB, cạnh góc vuông thứ hai gặp điểm H"],
+                ["Bước 2", "Vạch đường thẳng theo cạnh góc vuông thứ hai của ê-ke, ta được đường thẳng CD"],
+              ],
+              label: "Cách vẽ hai đường thẳng vuông góc bằng ê-ke",
             },
           },
         },
         {
           type: "quiz",
           content: {
-            question: "Tính nhanh: 125 × 38 × 8 = ?",
-            options: ["38 000", "3 800", "380 000", "30 000"],
-            answer: "38 000",
-            mascotHint: "(125 × 8) × 38 = 1000 × 38 = 38 000!",
+            question:
+              "Dùng dụng cụ nào để kiểm tra hai đường thẳng có vuông góc với nhau hay không?",
+            options: ["Ê-ke", "Compa", "Thước dây", "Cân đồng hồ"],
+            answer: "Ê-ke",
+            mascotHint: "Ê-ke có một góc vuông nên dùng để kiểm tra góc vuông.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question:
+              "Hai đường thẳng OM và ON vuông góc với nhau tạo thành mấy góc vuông chung đỉnh O?",
+            options: ["1 góc", "2 góc", "3 góc", "4 góc"],
+            answer: "4 góc",
+            mascotHint: "Hai đường thẳng cắt nhau tạo bốn góc; cả bốn đều là góc vuông.",
           },
         },
         {
           type: "summary",
           content: {
-            title: "Ôn tập số tự nhiên:",
+            title: "Ghi nhớ bài học:",
             points: [
-              "Nắm chắc hàng và lớp.",
-              "Áp dụng giao hoán và kết hợp để tính nhanh.",
+              "Hai đường thẳng vuông góc tạo bốn góc vuông chung một đỉnh.",
+              "Dùng ê-ke để kiểm tra và để vẽ.",
+              "Đặt cạnh góc vuông của ê-ke trùng đường thẳng đã cho.",
             ],
-            mascotMood: "celebrate",
+            mascotMood: "proud",
           },
         },
       ],
     },
     {
       id: "g4-c6-l2",
-      title: "Bài 2: Ôn tập về đại lượng & Bảng khối lượng, thời gian",
+      title: "Bài 28: Hai đường thẳng song song",
       type: "learn",
       description:
-        "Chuyển đổi yến, tạ, tấn; dm², m², km²; giây, phút, giờ, thế kỉ",
+        "Nhận biết hai đường thẳng song song — không bao giờ cắt nhau dù kéo dài mãi",
       slides: [
         {
           type: "story",
           content: {
-            mascotMood: "happy",
-            text: "Thử thách trí nhớ với bảng đo khối lượng, diện tích và thế kỉ nào! ⏱️⚖️",
+            mascotMood: "thinking",
+            text: "Hai đường thẳng màu xanh trên hình như không bao giờ cắt nhau. Cú Mèo thử kéo dài mãi mà chúng vẫn không gặp nhau! 🛤️",
           },
         },
         {
           type: "concept",
           content: {
-            table: {
-              headers: ["Đổi", "Bằng"],
-              rows: [
-                ["1 tấn", "1 000 kg"],
-                ["1 tạ", "100 kg"],
-                ["1 thế kỉ", "100 năm"],
-                ["1 phút", "60 giây"],
-              ],
-              label: "Ôn tập đại lượng — đổi về cùng một đơn vị rồi mới tính",
-            },
-            badge: "Kiến Thức Trọng Tâm",
-            title: "Ôn tập về đại lượng & Bảng khối lượng, thời gian",
+            badge: "Khám Phá",
+            title: "Hai đường thẳng song song",
             explanation:
-              "Ôn lại các đơn vị đo khối lượng, độ dài, diện tích và thời gian.",
+              "Kéo dài hai cạnh AB và DC của hình chữ nhật ABCD, ta được hai đường thẳng song song với nhau. Hai đường thẳng song song thì không bao giờ cắt nhau, dù có kéo dài thêm bao xa.",
             points: [
-              "Khối lượng: 1 tấn = 10 tạ = 100 yến = 1000 kg.",
-              "Thời gian: 1 giờ = 60 phút; 1 phút = 60 giây; 1 thế kỉ = 100 năm.",
-              "Diện tích: 1 m² = 100 dm² = 10 000 cm².",
+              "Hai đường thẳng song song không bao giờ cắt nhau.",
+              "Trong hình chữ nhật: AB song song với DC; AD song song với BC.",
+              "Trong hình vuông MNPQ: MN song song với QP; MQ song song với NP.",
             ],
-            rule: "Đổi về cùng một đơn vị đo rồi mới tính.",
+            rule: "Song song = cùng hướng và cách nhau một khoảng không đổi.",
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Các cặp cạnh song song trong hình chữ nhật và hình vuông",
+            table: {
+              headers: ["Hình", "Cặp cạnh song song"],
+              rows: [
+                ["Hình chữ nhật ABCD", "AB // DC và AD // BC"],
+                ["Hình vuông MNPQ", "MN // QP và MQ // NP"],
+              ],
+              label: "Kí hiệu // nghĩa là song song",
+            },
           },
         },
         {
           type: "quiz",
           content: {
-            question: "Đổi: 2 tấn 5 tạ = ... kg",
-            options: ["2 500 kg", "250 kg", "20 500 kg", "2 050 kg"],
-            answer: "2 500 kg",
-            mascotHint: "2 tấn = 2 000 kg; 5 tạ = 500 kg, nên là 2 500 kg!",
+            question: "Hai đường thẳng song song thì thế nào?",
+            options: [
+              "Không bao giờ cắt nhau",
+              "Cắt nhau tại một điểm",
+              "Vuông góc với nhau",
+              "Luôn cắt nhau ở giữa",
+            ],
+            answer: "Không bao giờ cắt nhau",
+            mascotHint: "Dù kéo dài mãi, hai đường thẳng song song vẫn không gặp nhau.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question:
+              "Trong hình chữ nhật ABCD, cặp cạnh nào song song với nhau?",
+            options: ["AB và DC", "AB và BC", "AD và DC", "BC và CD"],
+            answer: "AB và DC",
+            mascotHint:
+              "Hai cạnh đối diện của hình chữ nhật song song với nhau: AB // DC, AD // BC.",
           },
         },
         {
           type: "summary",
           content: {
-            title: "Ôn tập đại lượng:",
+            title: "Ghi nhớ bài học:",
             points: [
-              "1 tấn = 1 000 kg; 1 tạ = 100 kg; 1 yến = 10 kg.",
-              "1 m² = 100 dm²; 1 km² = 1 000 000 m².",
+              "Hai đường thẳng song song không bao giờ cắt nhau.",
+              "Hình chữ nhật, hình vuông có hai cặp cạnh song song.",
+              "Kí hiệu // đọc là “song song”.",
             ],
             mascotMood: "proud",
           },
@@ -144,120 +181,46 @@ export const g4c6 = {
     },
     {
       id: "g4-c6-l3",
-      title: "Bài 3: Ôn tập về phân số & Các phép tính phân số",
+      title: "Bài 29: Thực hành vẽ hai đường thẳng vuông góc, song song",
       type: "learn",
-      description: "Rút gọn, quy đồng, cộng trừ nhân chia phân số",
+      description:
+        "Thực hành vẽ hai đường thẳng vuông góc và song song bằng ê-ke, thước kẻ",
       slides: [
         {
           type: "story",
           content: {
             mascotMood: "excited",
-            text: "Phân số là trọng tâm số một của học kì 2! Cùng làm bài kiểm tra phân số nhé! 🍰",
+            text: "Lớp 4A nhận dự án “Khung tranh kỉ niệm”: dùng các que gỗ vuông góc và song song để làm khung tranh. Việt còn vẽ cả đường chạy trên sân thể dục nữa! 📐",
           },
         },
         {
           type: "concept",
           content: {
-            fractionBar: {
-              rows: [
-                {
-                  parts: 6,
-                  shaded: 3,
-                  extra: 2,
-                  label: "1/2 + 1/3 = 3/6 (xanh) + 2/6 (hồng) = 5/6",
-                },
-                {
-                  parts: 12,
-                  shaded: 8,
-                  groups: 4,
-                  label: "8 ô nhỏ trong 12 ô nhỏ = 2 ô lớn trong 3 ô lớn",
-                },
-                {
-                  parts: 3,
-                  shaded: 2,
-                  label: "gộp 4 ô nhỏ thành 1 ô lớn ⇒ 8/12 = 2/3",
-                },
-              ],
-              label:
-                "Quy đồng mẫu số: 1/2 = 3/6 · 1/3 = 2/6 ⇒ 1/2 + 1/3 = 3/6 + 2/6 = 5/6; gộp 4 ô nhỏ thành 1 ô lớn thì 8/12 = 2/3",
-            },
-            badge: "Kiến Thức Trọng Tâm",
-            title: "Ôn tập về phân số & Các phép tính phân số",
-            explanation: "Ôn lại phân số và bốn phép tính với phân số.",
+            badge: "Thực Hành",
+            title: "Vẽ hai đường thẳng song song",
+            explanation:
+              "Muốn vẽ đường thẳng CD đi qua điểm H và song song với đường thẳng AB, ta làm hai bước: vẽ một đường thẳng đi qua H và vuông góc với AB, rồi vẽ đường thẳng đi qua H vuông góc với đường thẳng vừa vẽ.",
             points: [
-              "Rút gọn phân số: chia cả tử số và mẫu số cho cùng một số.",
-              "Cộng, trừ phân số cùng mẫu: cộng, trừ tử số rồi giữ nguyên mẫu số.",
-              "Nhân phân số: nhân tử số với tử số, mẫu số với mẫu số.",
+              "Bước 1: vẽ đường thẳng MN qua H vuông góc với AB.",
+              "Bước 2: vẽ đường thẳng CD qua H vuông góc với MN.",
+              "Vậy CD song song với AB. Dùng ê-ke và thước kẻ để vẽ chính xác.",
             ],
-            rule: "Khác mẫu số thì phải quy đồng mẫu số trước khi cộng hoặc trừ.",
-          },
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "Tính: 3/4 + 1/2 = ?",
-            options: ["5/4", "4/6", "1", "3/8"],
-            answer: "5/4",
-            mascotHint: "3/4 + 2/4 = 5/4!",
-          },
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "Tính: 2/5 × 10 = ?",
-            options: [4, 5, 20, 2],
-            answer: 4,
-            mascotHint: "(2 × 10) : 5 = 20 : 5 = 4!",
-          },
-        },
-        {
-          type: "summary",
-          content: {
-            title: "Ôn tập phân số:",
-            points: ["Nhớ rút gọn kết quả về phân số tối giản."],
-            mascotMood: "celebrate",
-          },
-        },
-      ],
-    },
-    {
-      id: "g4-c6-l4",
-      title: "Bài 4: Ôn tập về hình học",
-      type: "learn",
-      description:
-        "Chu vi và diện tích hình vuông, hình chữ nhật, hình bình hành, hình thoi",
-      slides: [
-        {
-          type: "story",
-          content: {
-            mascotMood: "happy",
-            text: "Tổng kết 4 công thức diện tích quan trọng nhất lớp 4! 📐",
+            rule: "Cùng vuông góc với một đường thẳng thì hai đường thẳng đó song song với nhau.",
           },
         },
         {
           type: "visual",
           content: {
-            text: "- Hình chữ nhật: S = a × b - Hình vuông: S = a × a - Hình bình hành: S = a × h - Hình thoi: S = (m × n) : 2",
-            planeShape: {
-              kind: "parallelogram",
-              labels: ["đáy a", "chiều cao h"],
-              formula: "S = a × h",
-            },
-          },
-        },
-        {
-          type: "visual",
-          content: {
-            text: "Ôn tập hình học",
+            text: "Bản thiết kế đường chạy của Việt",
             table: {
-              headers: ["Hình", "Công thức diện tích"],
+              headers: ["Bước", "Việc làm"],
               rows: [
-                ["Hình chữ nhật", "S = a × b"],
-                ["Hình vuông", "S = a × a"],
-                ["Hình bình hành", "S = a × h"],
-                ["Hình thoi", "S = (m × n) : 2"],
+                ["1", "Vẽ vạch xuất phát MN dài 2 cm, vẽ trung điểm H của MN"],
+                ["2", "Vẽ đoạn MP vuông góc với MN, MP = 10 cm"],
+                ["3", "Vẽ HK và NQ song song với MP, HK = NQ = 10 cm"],
+                ["4", "Nối P với Q ta được vạch đích"],
               ],
-              label: "Ôn tập hình học",
+              label: "Muốn song song thì cùng vuông góc với MN",
             },
           },
         },
@@ -265,19 +228,123 @@ export const g4c6 = {
           type: "quiz",
           content: {
             question:
-              "Một thửa ruộng hình bình hành có đáy 20 m và chiều cao 15 m. Diện tích thửa ruộng là:",
-            options: ["300 m²", "150 m²", "70 m²", "350 m²"],
-            answer: "300 m²",
-            mascotHint: "S = a × h = 20 × 15 = 300 m²!",
+              "Để vẽ đường thẳng song song với AB, bước đầu tiên bé cần vẽ đường thẳng nào?",
+            options: [
+              "Đường thẳng vuông góc với AB",
+              "Đường thẳng song song với AB",
+              "Đường thẳng cắt AB",
+              "Đường tròn",
+            ],
+            answer: "Đường thẳng vuông góc với AB",
+            mascotHint:
+              "Vẽ đường vuông góc với AB trước, rồi vẽ đường vuông góc với đường đó — ta được đường song song với AB.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question:
+              "Hai đường thẳng cùng vuông góc với một đường thẳng thứ ba thì chúng thế nào với nhau?",
+            options: [
+              "Song song với nhau",
+              "Vuông góc với nhau",
+              "Cắt nhau",
+              "Trùng nhau",
+            ],
+            answer: "Song song với nhau",
+            mascotHint: "Cùng vuông góc với một đường thẳng thì chúng song song.",
           },
         },
         {
           type: "summary",
           content: {
-            title: "Ghi nhớ công thức hình học:",
+            title: "Ghi nhớ bài học:",
             points: [
-              "Hình bình hành: S = đáy × cao.",
-              "Hình thoi: S = tích 2 đường chéo : 2.",
+              "Vẽ song song: vẽ hai lần vuông góc.",
+              "Dùng ê-ke đặt đúng cạnh góc vuông.",
+              "Kiểm tra lại bằng cách quan sát xem hai đường có cắt nhau không.",
+            ],
+            mascotMood: "proud",
+          },
+        },
+      ],
+    },
+    {
+      id: "g4-c6-l4",
+      title: "Bài 30: Hình bình hành",
+      type: "learn",
+      description:
+        "Nhận biết hình bình hành: hai cặp cạnh đối diện song song và bằng nhau",
+      slides: [
+        {
+          type: "story",
+          content: {
+            mascotMood: "curious",
+            text: "Cú Mèo ghép hình con gà từ các miếng bìa. Đuôi con gà có dạng một hình đặc biệt — đó là hình bình hành! 🐔",
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Khám Phá",
+            title: "Hình bình hành ABCD",
+            explanation:
+              "Hình bình hành có hai cặp cạnh đối diện song song với nhau và hai cặp cạnh đối diện bằng nhau. Trong hình bình hành ABCD: AB song song với DC, AD song song với BC, và AB = DC, AD = BC.",
+            points: [
+              "AB và DC là hai cạnh đối diện; AD và BC cũng là hai cạnh đối diện.",
+              "Cạnh AB song song với cạnh DC; cạnh AD song song với cạnh BC.",
+              "AB = DC và AD = BC.",
+            ],
+            rule: "Hình bình hành: hai cặp cạnh đối diện vừa SONG SONG vừa BẰNG NHAU.",
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Các cặp cạnh của hình bình hành ABCD",
+            table: {
+              headers: ["Cặp cạnh đối diện", "Quan hệ"],
+              rows: [
+                ["AB và DC", "song song và bằng nhau"],
+                ["AD và BC", "song song và bằng nhau"],
+              ],
+              label: "Hình bình hành ABCD có hai cặp cạnh đối diện song song, bằng nhau",
+            },
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Hình bình hành có đặc điểm gì về các cạnh đối diện?",
+            options: [
+              "Song song và bằng nhau",
+              "Cắt nhau",
+              "Vuông góc với nhau",
+              "Không bằng nhau",
+            ],
+            answer: "Song song và bằng nhau",
+            mascotHint: "Hai cặp cạnh đối diện của hình bình hành song song và bằng nhau.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question:
+              "Cho hai hình bình hành ABCD và CDEG, biết cạnh AB dài 3 dm. Độ dài cạnh EG là bao nhiêu?",
+            options: ["3 dm", "6 dm", "1,5 dm", "9 dm"],
+            mascotHint:
+              "AB = CD (cạnh đối diện hình bình hành ABCD) và CD = EG (cạnh đối diện hình bình hành CDEG) nên EG = 3 dm.",
+            answer: "3 dm",
+          },
+        },
+        {
+          type: "summary",
+          content: {
+            title: "Ghi nhớ bài học:",
+            points: [
+              "Hình bình hành có hai cặp cạnh đối diện song song.",
+              "Hai cặp cạnh đối diện đó cũng bằng nhau.",
+              "Nhìn thấy cặp cạnh song song và bằng nhau là nghĩ tới hình bình hành.",
             ],
             mascotMood: "proud",
           },
@@ -286,354 +353,99 @@ export const g4c6 = {
     },
     {
       id: "g4-c6-l5",
-      title: "Bài 5: Ôn tập giải toán có lời văn",
+      title: "Bài 31: Hình thoi",
       type: "learn",
-      description: "Tổng - Hiệu, Tổng - Tỉ, Hiệu - Tỉ, Tìm số trung bình cộng",
+      description:
+        "Nhận biết hình thoi: bốn cạnh bằng nhau, hai cặp cạnh đối diện song song; hai đường chéo vuông góc",
       slides: [
         {
           type: "story",
           content: {
-            mascotMood: "excited",
-            text: "Phân biệt 3 bài toán kinh điển: Tổng-Hiệu dùng cộng/trừ chia 2; Tổng-Tỉ dùng tổng số phần; Hiệu-Tỉ dùng hiệu số phần! 💡",
+            mascotMood: "surprised",
+            text: "Kim nam châm của la bàn có dạng hình thoi! Hình này có gì đặc biệt mà lại dùng làm la bàn nhỉ? 🧭",
           },
         },
         {
           type: "concept",
           content: {
-            barModel: {
-              rows: [
-                {
-                  label: "Số bé",
-                  parts: 2,
-                },
-                {
-                  label: "Số lớn",
-                  parts: 3,
-                },
-              ],
-              braceLabel: "Tóm tắt đề bằng sơ đồ đoạn thẳng trước khi giải",
-            },
-            badge: "Kiến Thức Trọng Tâm",
-            title: "Ôn tập giải toán có lời văn",
-            explanation: "Ôn lại các dạng toán có lời văn đã học ở Lớp 4.",
+            badge: "Khám Phá",
+            title: "Hình thoi ABCD",
+            explanation:
+              "Hình thoi có hai cặp cạnh đối diện song song với nhau và bốn cạnh đều bằng nhau. Trong hình thoi ABCD: AB song song với DC, AD song song với BC và AB = BC = CD = DA.",
             points: [
-              "Dạng tìm hai số khi biết tổng và hiệu của chúng.",
-              "Dạng tìm hai số khi biết tổng và tỉ, hoặc hiệu và tỉ.",
-              "Dạng toán trung bình cộng và dạng toán rút về đơn vị.",
+              "Bốn cạnh của hình thoi bằng nhau.",
+              "Hai cặp cạnh đối diện song song như hình bình hành.",
+              "Hai đường chéo của hình thoi vuông góc với nhau (kiểm tra bằng ê-ke).",
             ],
-            rule: "Tóm tắt đề bằng sơ đồ đoạn thẳng trước khi giải.",
+            rule: "Hình thoi = hình bình hành có bốn cạnh bằng nhau.",
           },
         },
         {
-          type: "quiz",
+          type: "visual",
           content: {
-            question:
-              "Hai thùng chứa 60 lít dầu, thùng thứ nhất gấp đôi thùng thứ hai. Hỏi thùng thứ hai chứa bao nhiêu lít?",
-            options: [20, 40, 30, 15],
-            answer: 20,
-            mascotHint:
-              "Tổng-Tỉ: Tỉ số là 2/1. Tổng số phần = 3. Thùng 2 = 60 : 3 × 1 = 20 lít!",
-          },
-        },
-        {
-          type: "summary",
-          content: {
-            title: "Ghi nhớ phương pháp giải:",
-            points: [
-              "Đọc kỹ đề bài xác định đúng dạng toán.",
-              "Luôn kiểm tra lại kết quả.",
-            ],
-            mascotMood: "celebrate",
-          },
-        },
-      ],
-    },
-    {
-      id: "g4-c6-l7",
-      title: "Bài 6: Ôn tập dấu hiệu chia hết và tìm thành phần chưa biết",
-      type: "learn",
-      description: "Tổng hợp dấu hiệu chia hết và dạng bài tìm số chưa biết",
-      slides: [
-        {
-          type: "story",
-          content: {
-            mascotMood: "happy",
-            text: "Ôn lại dấu hiệu chia hết và dạng bài tìm số chưa biết — hai dạng bài luôn có trong đề kiểm tra! 📝",
-          },
-        },
-        {
-          type: "concept",
-          content: {
+            text: "So sánh hình bình hành và hình thoi",
             table: {
-              headers: ["Cần tìm", "Cách làm"],
+              headers: ["Đặc điểm", "Hình bình hành", "Hình thoi"],
               rows: [
-                ["Số hạng chưa biết", "tổng − số hạng đã biết"],
-                ["Số bị trừ", "hiệu + số trừ"],
-                ["Số trừ", "số bị trừ − hiệu"],
+                ["Hai cặp cạnh đối diện song song", "có", "có"],
+                ["Cạnh đối diện bằng nhau", "có", "có"],
+                ["Bốn cạnh bằng nhau", "không", "có"],
+                ["Hai đường chéo vuông góc", "không", "có"],
               ],
-              label: "Ôn tập dấu hiệu chia hết và tìm thành phần chưa biết",
+              label: "Hình thoi là hình bình hành đặc biệt",
             },
-            badge: "Ôn Tập Chia Hết",
-            title: "Tổng hợp quy tắc",
-            points: [
-              "Chia hết cho 2: chữ số tận cùng là 0, 2, 4, 6, 8.",
-              "Chia hết cho 5: chữ số tận cùng là 0 hoặc 5.",
-              "Chia hết cho 3 hoặc 9: xét tổng các chữ số.",
-              "Tìm số chưa biết: dùng phép tính ngược lại.",
-            ],
-            rule: "Tìm số hạng thì lấy tổng trừ số hạng đã biết; tìm số bị trừ thì lấy hiệu cộng số trừ.",
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Hai đường chéo của hình thoi vuông góc với nhau",
+            angle: {
+              kind: "right",
+              degrees: 90,
+              vertexLetter: "O",
+              armLetters: ["A", "C"],
+              label: "AC vuông góc với BD tại O",
+            },
           },
         },
         {
           type: "quiz",
           content: {
-            question: "Tìm x, biết: x + 1 250 = 4 300",
-            options: [3050, 5550, 3005, 3550],
-            answer: 3050,
-            mascotHint: "x = 4 300 - 1 250 = 3 050!",
+            question: "Hình thoi có đặc điểm gì về độ dài bốn cạnh?",
+            options: [
+              "Bốn cạnh bằng nhau",
+              "Hai cạnh dài hơn hai cạnh kia",
+              "Bốn cạnh khác nhau",
+              "Chỉ hai cạnh bằng nhau",
+            ],
+            answer: "Bốn cạnh bằng nhau",
+            mascotHint: "Hình thoi có bốn cạnh đều bằng nhau: AB = BC = CD = DA.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Hai đường chéo của hình thoi có quan hệ gì?",
+            options: [
+              "Vuông góc với nhau",
+              "Song song với nhau",
+              "Không cắt nhau",
+              "Bằng nhau và song song",
+            ],
+            answer: "Vuông góc với nhau",
+            mascotHint: "Dùng ê-ke kiểm tra sẽ thấy hai đường chéo của hình thoi vuông góc.",
           },
         },
         {
           type: "summary",
           content: {
-            title: "Ghi nhớ:",
+            title: "Ghi nhớ bài học:",
             points: [
-              "Số hạng = Tổng - số hạng đã biết",
-              "Số bị trừ = Hiệu + số trừ",
+              "Hình thoi có bốn cạnh bằng nhau.",
+              "Hai cặp cạnh đối diện song song với nhau.",
+              "Hai đường chéo vuông góc với nhau.",
             ],
-            mascotMood: "proud",
-          },
-        },
-      ],
-    },
-    {
-      id: "g4-c6-l8",
-      title: "Bài 7: Ôn tập toán Tổng - Tỉ và Hiệu - Tỉ",
-      type: "learn",
-      description: "Ôn hai dạng toán điển hình của Lớp 4",
-      slides: [
-        {
-          type: "story",
-          content: {
-            mascotMood: "happy",
-            text: "Hai dạng toán 'ăn điểm' nhất trong đề kiểm tra cuối năm — cùng ôn thật chắc! 🎯",
-          },
-        },
-        {
-          type: "concept",
-          content: {
-            barModel: {
-              rows: [
-                {
-                  label: "Số bé",
-                  parts: 1,
-                },
-                {
-                  label: "Số lớn",
-                  parts: 4,
-                },
-              ],
-              braceLabel: "Hiệu 24 ⇒ 8 và 32 · kiểm tra lại 8 + 24 = 32",
-            },
-            badge: "Ôn Tập Hai Dạng",
-            title: "Cách phân biệt nhanh",
-            points: [
-              "Đề cho tổng ⇒ chia cho TỔNG số phần.",
-              "Đề cho hiệu ⇒ chia cho HIỆU số phần.",
-              "Ví dụ Tổng - Tỉ: tổng 96, tỉ số 3 : 5 ⇒ một phần = 96 : 8 = 12 ⇒ hai số là 36 và 60.",
-              "Ví dụ Hiệu - Tỉ: hiệu 24, tỉ số 1 : 4 ⇒ một phần = 24 : 3 = 8 ⇒ hai số là 8 và 32.",
-            ],
-            rule: "Luôn kiểm tra lại tổng (hoặc hiệu) của hai số vừa tìm được.",
-          },
-        },
-        {
-          type: "concept",
-          content: {
-            badge: "Ôn Tập Hai Dạng",
-            title: "Ôn tập toán Tổng – Tỉ và Hiệu – Tỉ",
-            table: {
-              headers: ["Dạng", "Công thức"],
-              rows: [
-                ["Tổng – Tỉ", "chia cho TỔNG số phần"],
-                ["Hiệu – Tỉ", "chia cho HIỆU số phần"],
-              ],
-              label: "Ôn tập toán Tổng – Tỉ và Hiệu – Tỉ",
-            },
-          },
-        },
-        {
-          type: "quiz",
-          content: {
-            question:
-              "Hiệu hai số là 24, tỉ số của hai số là 1 : 4. Số bé là bao nhiêu?",
-            options: [8, 32, 6, 12],
-            answer: 8,
-            mascotHint:
-              "Hiệu số phần = 4 - 1 = 3; giá trị một phần = 24 : 3 = 8 ⇒ số bé = 8!",
-          },
-        },
-        {
-          type: "summary",
-          content: {
-            title: "Ghi nhớ:",
-            points: ["Đề cho tổng ⇒ tổng số phần · Đề cho hiệu ⇒ hiệu số phần"],
-            mascotMood: "proud",
-          },
-        },
-      ],
-    },
-    {
-      id: "g4-c6-l9",
-      title: "Bài 8: Luyện đề cuối năm Lớp 4 - Đề số 1",
-      type: "learn",
-      description: "Luyện đề cuối năm Lớp 4 - Đề số 1",
-      slides: [
-        {
-          type: "story",
-          content: {
-            mascotMood: "excited",
-            text: "Đề luyện số 1 — bé hãy làm như thi thật nhé! 📝",
-          },
-        },
-        {
-          type: "concept",
-          content: {
-            table: {
-              headers: ["Nội dung", "Ví dụ"],
-              rows: [
-                [
-                  "Số tự nhiên",
-                  "432 516 = 400 000 + 30 000 + 2 000 + 500 + 10 + 6",
-                ],
-                ["Bốn phép tính", "128 472 : 6 = 21 412"],
-                ["Dấu hiệu chia hết", "1 250 chia hết cho 2 và 5"],
-                ["Phân số", "1/2 + 1/3 = 5/6"],
-                ["Hình học", "S hình thoi = (m × n) : 2"],
-              ],
-              label: "Luyện đề cuối năm Lớp 4 — Đề số 1",
-            },
-            badge: "Đề Số 1",
-            title: "Năm dạng bài hay gặp",
-            points: [
-              "Dạng 1: Số tự nhiên, so sánh số, dấu hiệu chia hết.",
-              "Dạng 2: Bốn phép tính và tìm thành phần chưa biết.",
-              "Dạng 3: Phân số và bốn phép tính phân số.",
-              "Dạng 4: Hình học: diện tích hình bình hành, hình thoi.",
-              "Dạng 5: Toán Tổng - Tỉ, Hiệu - Tỉ.",
-            ],
-            rule: "Làm câu dễ trước, kiểm tra lại trước khi hết giờ.",
-          },
-        },
-        {
-          type: "quiz",
-          content: {
-            question:
-              "Một hình bình hành có độ dài đáy 25 cm và chiều cao 12 cm. Diện tích hình bình hành là:",
-            options: ["300 cm²", "37 cm²", "150 cm²", "74 cm²"],
-            answer: "300 cm²",
-            mascotHint: "S = 25 × 12 = 300 cm²!",
-          },
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "Tính: 5/6 - 1/3 = ?",
-            options: ["1/2", "4/3", "1/3", "4/6"],
-            answer: "1/2",
-            mascotHint: "1/3 = 2/6; 5/6 - 2/6 = 3/6 = 1/2!",
-          },
-        },
-        {
-          type: "summary",
-          content: {
-            title: "Ghi nhớ:",
-            points: ["Kiểm tra lại từng bước tính trước khi kết luận"],
-            mascotMood: "proud",
-          },
-        },
-      ],
-    },
-    {
-      id: "g4-c6-l10",
-      title: "Bài 9: Luyện đề cuối năm Lớp 4 - Đề số 2",
-      type: "learn",
-      description: "Luyện đề cuối năm Lớp 4 - Đề số 2",
-      slides: [
-        {
-          type: "story",
-          content: {
-            mascotMood: "excited",
-            text: "Đề luyện số 2 có thêm toán Tổng - Tỉ và hình học. Bé đã sẵn sàng chưa? 🚀",
-          },
-        },
-        {
-          type: "concept",
-          content: {
-            barModel: {
-              rows: [
-                {
-                  label: "Số bé",
-                  parts: 2,
-                },
-                {
-                  label: "Số lớn",
-                  parts: 3,
-                },
-              ],
-              braceLabel: "Tổng (hiệu) số phần ⇒ giá trị một phần ⇒ từng số",
-            },
-            badge: "Đề Số 2",
-            title: "Ba dạng bài nâng cao",
-            points: [
-              "Dạng 1: Tìm hai số khi biết tổng và tỉ số.",
-              "Dạng 2: Tìm hai số khi biết hiệu và tỉ số.",
-              "Dạng 3: Hình học: diện tích hình bình hành, hình thoi.",
-            ],
-            rule: "Viết ra nháp: tổng (hiệu) số phần ⇒ giá trị một phần ⇒ từng số.",
-          },
-        },
-        {
-          type: "concept",
-          content: {
-            badge: "Đề Số 2",
-            title: "Luyện đề cuối năm Lớp 4 — Đề số 2",
-            table: {
-              headers: ["Bước", "Làm"],
-              rows: [
-                ["1", "vẽ sơ đồ đoạn thẳng"],
-                ["2", "tính tổng (hiệu) số phần"],
-                ["3", "tính giá trị một phần"],
-                ["4", "tính từng số và kiểm tra lại"],
-              ],
-              label: "Luyện đề cuối năm Lớp 4 — Đề số 2",
-            },
-          },
-        },
-        {
-          type: "quiz",
-          content: {
-            question:
-              "Tổng hai số là 150, tỉ số của hai số là 2 : 3. Số lớn là bao nhiêu?",
-            options: [90, 60, 30, 75],
-            answer: 90,
-            mascotHint: "2 + 3 = 5 phần; 150 : 5 = 30 ⇒ số lớn = 30 × 3 = 90!",
-          },
-        },
-        {
-          type: "quiz",
-          content: {
-            question:
-              "Một mảnh vườn hình bình hành có diện tích 96 m² và chiều cao 8 m. Độ dài đáy là bao nhiêu?",
-            options: ["12 m", "104 m", "88 m", "24 m"],
-            answer: "12 m",
-            mascotHint: "Đáy = Diện tích : Chiều cao = 96 : 8 = 12 m!",
-          },
-        },
-        {
-          type: "summary",
-          content: {
-            title: "Ghi nhớ:",
-            points: ["Làm bài cẩn thận và kiểm tra lại kết quả"],
             mascotMood: "proud",
           },
         },
@@ -641,70 +453,76 @@ export const g4c6 = {
     },
     {
       id: "g4-c6-l6",
-      title: "Bài 10: Thử thách Trạng Nguyên Toán Lớp 4",
+      title: "Bài 32: Luyện tập chung",
       type: "learn",
-      description: "Bài kiểm tra tổng hợp cuối năm vinh danh Trạng Nguyên",
+      description:
+        "Ôn tập đường thẳng vuông góc, song song, hình bình hành và hình thoi",
       slides: [
         {
           type: "story",
           content: {
-            mascotMood: "celebrate",
-            text: "Chào mừng bạn đến với thử thách Trạng Nguyên Toán 4! Hãy phát huy hết khả năng để giành huy chương Vàng nhé! 🏅🎓",
+            mascotMood: "excited",
+            text: "Hôm nay chúng mình ôn lại cả chủ đề: tìm đường thẳng song song, đường thẳng vuông góc và gọi tên hình bình hành, hình thoi nhé! 🔍",
           },
         },
         {
-          type: "concept",
+          type: "visual",
           content: {
+            text: "Nhận biết nhanh các hình đã học",
             table: {
-              headers: ["Dạng bài", "Ví dụ"],
+              headers: ["Hình", "Dấu hiệu nhận biết"],
               rows: [
-                ["Đọc số", "68 352"],
-                ["So sánh", "100 000 > 99 999"],
-                ["Tổng – Tỉ", "14 và 21"],
-                ["Hiệu – Tỉ", "8 và 32"],
-                ["Hình học", "S = a × h"],
+                ["Hình vuông", "4 góc vuông, 4 cạnh bằng nhau"],
+                ["Hình chữ nhật", "4 góc vuông, hai cặp cạnh đối diện bằng nhau"],
+                ["Hình bình hành", "hai cặp cạnh đối diện song song và bằng nhau"],
+                ["Hình thoi", "bốn cạnh bằng nhau, hai đường chéo vuông góc"],
               ],
-              label:
-                "Thử thách Trạng Nguyên Toán Lớp 4 — đọc kỹ đề, nhận dạng bài rồi mới giải",
+              label: "Đọc dấu hiệu rồi mới kết luận",
             },
-            badge: "Kiến Thức Trọng Tâm",
-            title: "Thử thách Trạng Nguyên Toán Lớp 4",
-            explanation:
-              "Bài cuối của Lớp 4: tổng hợp toàn bộ kiến thức đã học.",
-            points: [
-              "Số tự nhiên, phân số, dấu hiệu chia hết cho 2, 3, 5, 9.",
-              "Đại lượng và hình học: chu vi, diện tích, thể tích.",
-              "Giải toán có lời văn và toán về tỉ lệ bản đồ.",
-            ],
-            rule: "Đọc kỹ đề, nhận dạng bài rồi mới chọn cách giải.",
           },
         },
         {
           type: "quiz",
           content: {
             question:
-              "Một mảnh đất hình thoi có đường chéo thứ nhất là 14 m, đường chéo thứ hai bằng 1/2 đường chéo thứ nhất. Diện tích mảnh đất là:",
-            options: ["49 m²", "98 m²", "28 m²", "21 m²"],
-            answer: "49 m²",
-            mascotHint:
-              "Đường chéo 2 = 14 : 2 = 7 m. Diện tích = (14 × 7) : 2 = 49 m²!",
-            planeShapes: [
-              {
-                kind: "rhombus",
-                color: "#8b5cf6",
-              },
+              "Hình nào dưới đây vừa có cặp cạnh song song vừa có cặp cạnh vuông góc?",
+            options: [
+              "Hình chữ nhật",
+              "Hình thoi",
+              "Hình bình hành",
+              "Hình tam giác",
             ],
+            answer: "Hình chữ nhật",
+            mascotHint:
+              "Hình chữ nhật có hai cặp cạnh đối diện song song và bốn góc vuông (các cạnh kề vuông góc).",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question:
+              "Cho hai miếng ghép giống nhau là hai hình tam giác vuông bằng nhau. Bé có thể ghép được hình nào sau đây?",
+            options: [
+              "Hình bình hành",
+              "Hình tròn",
+              "Hình lục giác đều",
+              "Hình cầu",
+            ],
+            answer: "Hình bình hành",
+            mascotHint:
+              "Ghép hai tam giác vuông bằng nhau áp cạnh huyền vào nhau sẽ được hình bình hành hoặc hình chữ nhật.",
           },
         },
         {
           type: "summary",
           content: {
-            title: "Chúc mừng bạn đã hoàn thành xuất sắc Toán Lớp 4!",
+            title: "Ghi nhớ bài học:",
             points: [
-              "Bạn đã nắm vững toàn bộ kiến thức cốt lõi của Toán 4!",
-              "Sẵn sàng tự tin bước vào Toán Lớp 5! 🚀",
+              "Song song: hai đường không bao giờ cắt nhau.",
+              "Vuông góc: tạo bốn góc vuông chung một đỉnh.",
+              "Hình thoi là hình bình hành có bốn cạnh bằng nhau.",
             ],
-            mascotMood: "celebrate",
+            mascotMood: "proud",
           },
         },
       ],

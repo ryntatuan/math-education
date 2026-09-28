@@ -1,79 +1,109 @@
 export const g4c4 = {
   id: "g4-c4",
-  name: "Chương 4: Phân số, Bốn phép tính phân số & Hình thoi",
+  name: "Chủ đề 4: Một số đơn vị đo đại lượng",
   description:
-    "Khái niệm phân số, rút gọn, quy đồng; cộng, trừ, nhân, chia phân số; tìm phân số của một số; hình thoi và diện tích hình thoi",
-  icon: "🍰",
-  color: "#8b5cf6",
-  totalLessons: 10,
+    "Đơn vị đo khối lượng yến, tạ, tấn; đơn vị đo diện tích đề-xi-mét vuông, mét vuông, mi-li-mét vuông; giây và thế kỉ",
+  icon: "⚖️",
+  color: "#22c55e",
+  totalLessons: 5,
   lessons: [
     {
       id: "g4-c4-l1",
-      title: "Bài 1: Khái niệm phân số & Phép chia số tự nhiên",
+      title: "Bài 17: Yến, tạ, tấn",
       type: "learn",
       description:
-        "Tử số viết trên gạch ngang, mẫu số tự nhiên khác 0 viết dưới; thương phép chia a : b viết là a/b",
+        "Làm quen đơn vị đo khối lượng lớn: yến, tạ, tấn và cách đổi giữa các đơn vị",
       slides: [
         {
           type: "story",
           content: {
-            mascotMood: "happy",
-            text: "Chia cái bánh thành 4 phần bằng nhau, lấy 3 phần, ta được 3/4 cái bánh! 3 là tử số, 4 là mẫu số! Mẫu số luôn phải khác 0 nhé! 🎂",
+            mascotMood: "surprised",
+            text: "Cá voi xanh là loài vật nặng nhất thế giới, có con nặng tới 190 tấn! Rô-bốt thắc mắc: 190 tấn lớn hơn 190 kg không nhỉ? 🐋",
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Khám Phá",
+            title: "Ba đơn vị đo khối lượng lớn",
+            explanation:
+              "Để đo những vật nặng, người ta dùng yến, tạ, tấn. Mỗi đơn vị liền sau gấp 10 lần đơn vị liền trước: 1 yến = 10 kg, 1 tạ = 10 yến = 100 kg, 1 tấn = 10 tạ = 1000 kg.",
+            points: [
+              "1 yến = 10 kg; 1 tạ = 10 yến = 100 kg; 1 tấn = 10 tạ = 1000 kg.",
+              "Đổi từ đơn vị lớn sang bé thì nhân với 10 (hoặc 100, 1000).",
+              "Đổi từ đơn vị bé sang lớn thì chia cho 10 (hoặc 100, 1000).",
+              "190 tấn lớn hơn 190 kg rất nhiều: 190 tấn = 190 000 kg.",
+            ],
+            rule: "Yến → tạ → tấn: cứ lên một bậc thì gấp 10 lần.",
           },
         },
         {
           type: "visual",
           content: {
-            text: "Cấu tạo phân số a/b: - Tử số a: là số tự nhiên viết trên gạch ngang (chỉ số phần lấy đi). - Mẫu số b: là số tự nhiên khác 0 viết dưới gạch ngang (chỉ số phần bằng nhau được chia ra). Thương của phép chia a : b (b khác 0) có thể viết thành phân số a/b.",
-            fractionBar: {
-              parts: 4,
-              shaded: 3,
-              label:
-                "3/4 — tử số 3 là phần lấy đi, mẫu số 4 là số phần bằng nhau",
-            }
-          },
-        },
-        {
-          type: "visual",
-          content: {
-            text: "Thương của a : b cũng viết được thành phân số a/b",
+            text: "Đổi đơn vị đo khối lượng",
             table: {
-              headers: ["Thành phần", "Nghĩa"],
+              headers: ["Đơn vị lớn", "Đổi ra"],
               rows: [
-                ["Tử số a", "số phần lấy đi"],
-                ["Mẫu số b", "số phần bằng nhau được chia ra (b khác 0)"],
+                ["2 yến", "20 kg"],
+                ["3 tạ", "300 kg"],
+                ["4 tạ", "40 yến"],
+                ["2 tấn", "2000 kg"],
+                ["3 tấn", "30 tạ"],
               ],
-              label: "Thương của a : b cũng viết được thành phân số a/b",
-            }
+              label: "Mỗi bậc gấp 10 lần",
+            },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Thực hiện phép tính với đơn vị đo khối lượng",
+            table: {
+              headers: ["Phép tính", "Kết quả"],
+              rows: [
+                ["45 tấn − 18 tấn", "27 tấn"],
+                ["17 tạ + 36 tạ", "53 tạ"],
+                ["25 yến × 4", "100 yến"],
+                ["138 tấn : 3", "46 tấn"],
+              ],
+              label: "Cùng đơn vị đo thì tính như số bình thường",
+            },
           },
         },
         {
           type: "quiz",
           content: {
-            question: "Thương của phép chia 5 : 8 viết dưới dạng phân số là:",
-            options: ["5/8", "8/5", "5/3", "8/3"],
-            answer: "5/8",
-            mascotHint:
-              "Số bị chia viết ở tử số, số chia viết ở mẫu số, nên là 5/8!",
+            question:
+              "Chim cánh cụt bố và mẹ nặng tổng cộng 80 kg. Cả ba con chim (bố, mẹ và con) nặng 1 tạ. Chim cánh cụt con nặng bao nhiêu ki-lô-gam?",
+            options: ["20 kg", "30 kg", "10 kg", "18 kg"],
+            answer: "20 kg",
+            mascotHint: "1 tạ = 100 kg. Chim con: 100 − 80 = 20 (kg).",
           },
         },
         {
           type: "quiz",
           content: {
-            question: "Phân số nào có tử số bé hơn mẫu số thì:",
-            options: ["Bé hơn 1", "Lớn hơn 1", "Bằng 1", "Bằng 0"],
-            answer: "Bé hơn 1",
+            question:
+              "Xe tải chở được nhiều nhất 7 tạ hàng. Trên xe đã có 300 kg. Mỗi thùng na nặng 5 kg. Xe có chở thêm được 90 thùng na không?",
+            options: [
+              "Không, vì 450 kg > 400 kg",
+              "Có, vì 450 kg < 700 kg",
+              "Có, vì 90 thùng chỉ nặng 90 kg",
+              "Không, vì xe đã chở đủ",
+            ],
+            answer: "Không, vì 450 kg > 400 kg",
             mascotHint:
-              "Tử số < Mẫu số, nên Phân số < 1. Tử số = Mẫu số, nên Phân số = 1. Tử số > Mẫu số, nên Phân số > 1!",
+              "7 tạ = 700 kg. Xe còn chở được: 700 − 300 = 400 (kg). 90 thùng nặng: 90 × 5 = 450 (kg) > 400 kg ⇒ không chở thêm được.",
           },
         },
         {
           type: "summary",
           content: {
-            title: "Ghi nhớ:",
+            title: "Ghi nhớ bài học:",
             points: [
-              "Phân số gồm tử số và mẫu số (khác 0).",
-              "Mọi phép chia số tự nhiên a : b đều viết được thành phân số a/b.",
+              "1 yến = 10 kg · 1 tạ = 100 kg · 1 tấn = 1000 kg.",
+              "Đổi đơn vị: lên một bậc thì gấp 10 lần.",
+              "Tính toán phải đổi về cùng một đơn vị đo.",
             ],
             mascotMood: "proud",
           },
@@ -82,184 +112,196 @@ export const g4c4 = {
     },
     {
       id: "g4-c4-l2",
-      title: "Bài 2: Phân số bằng nhau, Rút gọn & Quy đồng mẫu số",
+      title: "Bài 18: Đề-xi-mét vuông, mét vuông, mi-li-mét vuông",
       type: "learn",
       description:
-        "Nhân/chia cả tử và mẫu với cùng 1 số tự nhiên khác 0; đưa về phân số tối giản và quy đồng mẫu số",
+        "Làm quen các đơn vị đo diện tích dm², m², mm² và đổi giữa các đơn vị đó",
       slides: [
         {
           type: "story",
           content: {
-            mascotMood: "excited",
-            text: "Tính chất cơ bản: Nếu nhân hoặc chia cả tử và mẫu của một phân số với cùng một số tự nhiên khác 0, ta được một phân số bằng phân số đã cho! 🔄",
+            mascotMood: "curious",
+            text: "Rô-bốt muốn lát nền ngôi nhà đồ chơi bằng 100 hình vuông cạnh 1 cm, và băn khoăn không biết dùng đơn vị nào cho vừa. Có đơn vị nào lớn hơn xăng-ti-mét vuông không nhỉ? 🏠",
           },
         },
         {
           type: "concept",
           content: {
-            fractionBar: {
-              rows: [
-                {
-                  parts: 2,
-                  shaded: 1,
-                  label: "1/2 — 1 trong 2 phần",
-                },
-                {
-                  parts: 4,
-                  shaded: 2,
-                  groups: 2,
-                  label: "2/4 — gộp 2 phần thành 1 ô lớn: 1 trong 2 ô lớn",
-                },
-                {
-                  parts: 6,
-                  shaded: 3,
-                  groups: 3,
-                  label: "3/6 — gộp 3 phần thành 1 ô lớn: 1 trong 2 ô lớn",
-                },
-                {
-                  parts: 12,
-                  shaded: 6,
-                  groups: 6,
-                  label: "6/12 — gộp 6 phần thành 1 ô lớn: 1 trong 2 ô lớn",
-                },
-              ],
-              label:
-                "1/2 = 2/4 = 3/6 — ba băng giấy dài bằng nhau, phần tô cũng dài bằng nhau",
-            },
-            badge: "Khái Niệm Phân Số Bằng Nhau",
-            title: "Tính chất cơ bản của phân số",
+            badge: "Khám Phá",
+            title: "Đơn vị đo diện tích: dm², m², mm²",
             explanation:
-              "Nếu nhân hoặc chia cả tử số và mẫu số của một phân số với cùng một số tự nhiên khác 0 thì được một phân số bằng phân số đã cho.",
-            rule: "1/2 cái bánh pizza cũng chính bằng 2/4 chiếc bánh pizza đó!",
+              "Đề-xi-mét vuông là diện tích hình vuông cạnh 1 dm. Mét vuông là diện tích hình vuông cạnh 1 m. Mi-li-mét vuông là diện tích hình vuông cạnh 1 mm — dùng cho vật rất nhỏ như nhãn vở, con tem.",
             points: [
-              "Rút gọn phân số: Chia cả tử và mẫu cho ước chung lớn hơn 1 (ví dụ: 6/8 = (6:2)/(8:2) = 3/4).",
-              "Quy đồng mẫu số: Nhân tử và mẫu với thừa số phụ để đưa về cùng một mẫu số chung.",
+              "1 dm² = 100 cm²; 1 m² = 100 dm²; 1 cm² = 100 mm².",
+              "Cứ xuống một bậc thì nhân 100; lên một bậc thì chia 100.",
+              "Chọn đơn vị cho hợp lí: mặt bàn dùng dm², nền nhà dùng m², nhãn vở dùng cm².",
             ],
+            rule: "Hai đơn vị đo diện tích liền nhau gấp (kém) nhau 100 lần.",
           },
         },
         {
-          type: "dialogue",
+          type: "visual",
           content: {
-            badge: "Giao Lưu Lớp Học",
-            title: "Tranh luận chia bánh: 1/2 và 2/4",
-            dialogueList: [
-              {
-                character: "mai",
-                name: "Bạn Mai 👧",
-                text: "Tớ có 1/2 cái bánh pizza, bạn Nam có 2/4 cái bánh cùng loại. Nam bảo Nam có nhiều bánh hơn tớ vì 2/4 có số 2 và 4 to hơn!",
-              },
-              {
-                character: "robot",
-                name: "Bạn Rô-bốt 🤖",
-                text: "Đúng rồi! Số 2 lớn hơn 1, số 4 lớn hơn 2 nên 2/4 cái bánh chắc chắn nhiều hơn 1/2 cái bánh chứ!",
-              },
-            ],
-            question: "Bạn Rô-bốt nói đúng hay sai?",
-            options: ["Đúng rồi 👍", "Sai rồi 👎"],
-            correctAnswer: "Sai rồi 👎",
-            explanation:
-              "Bạn Rô-bốt nhầm rồi! Khi một chiếc bánh chia 2 phần lấy 1 phần (1/2), thì diện tích bánh đúng bằng khi chia 4 phần lấy 2 phần (2/4). Vì vậy 1/2 = 2/4, hai bạn có phần bánh bằng nhau!",
+            text: "Đổi đơn vị đo diện tích",
+            table: {
+              headers: ["Đơn vị lớn", "Đổi ra"],
+              rows: [
+                ["3 dm²", "300 cm²"],
+                ["6 dm² 50 cm²", "650 cm²"],
+                ["5 m²", "500 dm²"],
+                ["3 m² 9 dm²", "309 dm²"],
+                ["2 cm²", "200 mm²"],
+              ],
+              label: "Mỗi bậc 100 lần",
+            },
           },
         },
         {
           type: "quiz",
           content: {
-            question: "Rút gọn phân số 15/25 về tối giản ta được:",
-            options: ["3/5", "5/3", "1/5", "3/10"],
-            answer: "3/5",
-            mascotHint:
-              "Cùng chia cả tử và mẫu cho 5: 15:5 = 3; 25:5 = 5, nên là 3/5!",
+            question: "Điền số thích hợp: 500 dm² = … m²",
+            options: ["5 m²", "50 m²", "5000 m²", "0,5 m²"],
+            answer: "5 m²",
+            mascotHint: "1 m² = 100 dm² nên 500 dm² = 500 : 100 = 5 (m²).",
           },
         },
         {
           type: "quiz",
           content: {
             question:
-              "Quy đồng mẫu số hai phân số 2/3 và 3/4 với mẫu số chung 12 được:",
-            options: [
-              "8/12 và 9/12",
-              "6/12 và 9/12",
-              "8/12 và 6/12",
-              "5/12 và 7/12",
-            ],
-            answer: "8/12 và 9/12",
-            mascotHint: "2/3 = (2×4)/(3×4) = 8/12; 3/4 = (3×3)/(4×3) = 9/12!",
+              "Chú Tư ghép hai tấm pin mặt trời hình vuông cạnh 1 m thành một tấm hình chữ nhật dài 2 m. Diện tích tấm pin đó là bao nhiêu?",
+            options: ["200 m²", "200 dm²", "200 cm²", "200 mm²"],
+            answer: "200 dm²",
+            mascotHint: "Diện tích tấm pin: 2 × 1 = 2 (m²). Mà 2 m² = 200 dm².",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question:
+              "Sàn phòng Nam hình vuông cạnh 3 m, bố lát bằng các tấm gỗ dài 5 dm, rộng 1 dm. Bố cần bao nhiêu tấm gỗ?",
+            options: ["180 tấm", "90 tấm", "18 tấm", "900 tấm"],
+            answer: "180 tấm",
+            mascotHint:
+              "Diện tích sàn: 3 × 3 = 9 (m²) = 900 (dm²). Mỗi tấm gỗ: 5 × 1 = 5 (dm²). Số tấm: 900 : 5 = 180 (tấm).",
           },
         },
         {
           type: "summary",
           content: {
-            title: "Ghi nhớ:",
+            title: "Ghi nhớ bài học:",
             points: [
-              "Nhân hoặc chia cả tử và mẫu cho cùng số khác 0 được phân số bằng nó.",
-              "Phân số tối giản không thể rút gọn được nữa.",
+              "1 dm² = 100 cm² · 1 m² = 100 dm² · 1 cm² = 100 mm².",
+              "Hai đơn vị diện tích liền nhau hơn kém nhau 100 lần.",
+              "Chọn đơn vị đo phù hợp với kích thước vật.",
             ],
-            mascotMood: "celebrate",
+            mascotMood: "proud",
           },
         },
       ],
     },
     {
       id: "g4-c4-l3",
-      title: "Bài 3: So sánh phân số",
+      title: "Bài 19: Giây, thế kỉ",
       type: "learn",
       description:
-        "So sánh hai phân số cùng mẫu số và khác mẫu số (quy đồng mẫu số để so sánh)",
+        "Làm quen đơn vị đo thời gian giây và thế kỉ; đổi đơn vị và xác định năm thuộc thế kỉ nào",
       slides: [
         {
           type: "story",
           content: {
-            mascotMood: "happy",
-            text: "Cùng mẫu số: Phân số nào có tử số lớn hơn thì lớn hơn! Khác mẫu số: Ta chỉ cần quy đồng mẫu số rồi so sánh tử số! ⚖️",
+            mascotMood: "excited",
+            text: "Cú Mèo khoe cháy được trong mười giây, còn Rô-bốt thì đã sống được một thế kỉ! Một thế kỉ dài bằng bao nhiêu năm nhỉ? ⏱️",
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Khám Phá",
+            title: "Giây và thế kỉ",
+            explanation:
+              "Kim giây trên đồng hồ đi được một vạch là một giây. Thế kỉ là đơn vị đo thời gian dài: 1 thế kỉ = 100 năm. Từ năm 1 đến năm 100 là thế kỉ I, từ 101 đến 200 là thế kỉ II, cứ như thế tiếp tục.",
+            points: [
+              "1 phút = 60 giây; 1 giờ = 60 phút.",
+              "1 tuần = 7 ngày; 1 ngày = 24 giờ.",
+              "1 thế kỉ = 100 năm. Thế kỉ XX là từ 1901 đến 2000; thế kỉ XXI từ 2001 đến 2100.",
+            ],
+            rule: "Đổi thời gian: 60 giây = 1 phút; 60 phút = 1 giờ; 100 năm = 1 thế kỉ.",
           },
         },
         {
           type: "visual",
           content: {
-            text: "- Cùng mẫu: 5/7 > 3/7 (vì 5 > 3) - Khác mẫu: So sánh 2/3 và 3/4, nên Quy đồng: 2/3 = 8/12; 3/4 = 9/12. Vì 8/12 < 9/12 nên 2/3 < 3/4.",
-            fractionBar: {
+            text: "Đổi đơn vị đo thời gian",
+            table: {
+              headers: ["Đơn vị", "Đổi ra"],
               rows: [
-                {
-                  parts: 7,
-                  shaded: 5,
-                  label: "5/7",
-                },
-                {
-                  parts: 7,
-                  shaded: 3,
-                  label: "3/7",
-                },
-                {
-                  parts: 12,
-                  shaded: 8,
-                  label: "8/12 (tức 2/3)",
-                },
-                {
-                  parts: 12,
-                  shaded: 9,
-                  label: "9/12 (tức 3/4)",
-                },
+                ["3 phút", "180 giây"],
+                ["2 giờ", "120 phút"],
+                ["2 phút 11 giây", "131 giây"],
+                ["4 thế kỉ", "400 năm"],
+                ["28 ngày", "4 tuần"],
               ],
-              label: "Cùng mẫu thì so tử số · khác mẫu thì quy đồng rồi so",
+              label: "Mỗi bậc: 60 hoặc 100 lần",
+            },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Mỗi năm thuộc thế kỉ nào?",
+            table: {
+              headers: ["Năm", "Thế kỉ"],
+              rows: [
+                ["1698", "XVII"],
+                ["1900", "XIX"],
+                ["1960", "XX"],
+                ["2004", "XXI"],
+              ],
+              label: "Thế kỉ XIX: 1801–1900 · thế kỉ XX: 1901–2000",
             },
           },
         },
         {
           type: "quiz",
           content: {
-            question: "Điền dấu thích hợp: 4/9 ... 7/9",
-            options: ["<", ">", "="],
-            answer: "<",
-            mascotHint: "Cùng mẫu số 9, vì tử số 4 < 7 nên 4/9 < 7/9!",
+            question:
+              "Lễ kỉ niệm 300 năm thành phố Sài Gòn được tổ chức năm 1998. Vậy thành phố được thành lập năm nào và năm đó thuộc thế kỉ nào?",
+            options: [
+              "Năm 1698 — thế kỉ XVII",
+              "Năm 1698 — thế kỉ XVIII",
+              "Năm 1798 — thế kỉ XVIII",
+              "Năm 1598 — thế kỉ XVI",
+            ],
+            answer: "Năm 1698 — thế kỉ XVII",
+            mascotHint:
+              "1998 − 300 = 1698. Từ năm 1601 đến 1700 là thế kỉ XVII.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question:
+              "Một chiếc máy bay thực hiện 25 chuyến mỗi tháng, hoạt động từ ngày 1 tháng 1 năm 1996 đến hết năm 2016. Máy bay đó thực hiện bao nhiêu chuyến bay?",
+            options: [
+              "6 300 chuyến",
+              "5 400 chuyến",
+              "300 chuyến",
+              "6 000 chuyến",
+            ],
+            answer: "6 300 chuyến",
+            mascotHint:
+              "Mỗi năm 25 × 12 = 300 (chuyến). Từ 1996 đến hết 2016 là 21 năm: 300 × 21 = 6 300 (chuyến).",
           },
         },
         {
           type: "summary",
           content: {
-            title: "Quy tắc so sánh phân số:",
+            title: "Ghi nhớ bài học:",
             points: [
-              "Cùng mẫu số: So sánh tử số.",
-              "Khác mẫu số: Quy đồng mẫu số rồi so sánh.",
+              "1 phút = 60 giây · 1 giờ = 60 phút.",
+              "1 thế kỉ = 100 năm.",
+              "Thế kỉ XXI tính từ năm 2001 đến năm 2100.",
             ],
             mascotMood: "proud",
           },
@@ -268,243 +310,136 @@ export const g4c4 = {
     },
     {
       id: "g4-c4-l4",
-      title: "Bài 4: Phép cộng và Phép trừ phân số",
+      title: "Bài 20: Thế kỉ",
       type: "learn",
       description:
-        "Cộng trừ phân số cùng mẫu (cộng trừ tử, giữ nguyên mẫu); cộng trừ phân số khác mẫu (quy đồng trước)",
+        "Xác định năm thuộc thế kỉ nào; làm quen năm nhuận và mốc thời gian lịch sử",
       slides: [
         {
           type: "story",
           content: {
-            mascotMood: "happy",
-            text: "Quy tắc cộng trừ phân số cùng mẫu: Cộng hoặc trừ các tử số với nhau và giữ nguyên mẫu số! Nếu khác mẫu: Quy đồng rồi tính nhé! ➕➖",
+            mascotMood: "thinking",
+            text: "Rô-bốt tìm hiểu về các nhân vật lịch sử: Trần Hưng Đạo sinh năm 1228, Đinh Bộ Lĩnh sinh năm 924. Mỗi năm đó thuộc thế kỉ nào nhỉ? 📜",
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Khám Phá",
+            title: "Cách xác định thế kỉ của một năm",
+            explanation:
+              "Một thế kỉ có 100 năm. Thế kỉ thứ nhất bắt đầu từ năm 1 đến năm 100; thế kỉ thứ hai từ 101 đến 200; cứ tiếp tục như vậy. Vậy năm 1228 thuộc thế kỉ XIII, còn năm 924 thuộc thế kỉ X.",
+            points: [
+              "Từ năm 1 đến 100: thế kỉ I; 101–200: thế kỉ II; 201–300: thế kỉ III.",
+              "Từ năm 1901 đến 2000: thế kỉ XX; 2001–2100: thế kỉ XXI.",
+              "Năm nhuận là năm tháng Hai có 29 ngày; thế kỉ XXI có 24 năm nhuận (2004, 2008, …, 2096).",
+            ],
+            rule: "Lấy năm chia cho 100 rồi làm tròn lên để tìm thế kỉ (trừ khi năm chia hết cho 100).",
           },
         },
         {
           type: "visual",
           content: {
-            text: "Cùng mẫu: 2/5 + 1/5 = (2+1)/5 = 3/5 Khác mẫu: 1/2 + 1/3 = 3/6 + 2/6 = 5/6 Phép trừ: 5/7 - 2/7 = (5-2)/7 = 3/7",
-            fractionBar: {
+            text: "Năm sinh của các nhân vật lịch sử",
+            table: {
+              headers: ["Nhân vật", "Năm sinh", "Thế kỉ"],
               rows: [
-                {
-                  parts: 5,
-                  shaded: 3,
-                  label: "2/5 + 1/5 = 3/5",
-                },
-                {
-                  parts: 6,
-                  shaded: 5,
-                  label: "1/2 + 1/3 = 5/6",
-                },
-                {
-                  parts: 7,
-                  shaded: 3,
-                  label: "5/7 − 2/7 = 3/7",
-                },
+                ["Đinh Bộ Lĩnh", 924, "X"],
+                ["Trần Hưng Đạo", 1228, "XIII"],
+                ["Nguyễn Trãi", 1380, "XIV"],
+                ["Nguyễn Huệ", 1753, "XVIII"],
               ],
-              label: "Cộng trừ phân số — khác mẫu thì quy đồng mẫu số trước",
+              label: "Năm 924 nằm trong khoảng 901–1000 ⇒ thế kỉ X",
             },
           },
         },
         {
           type: "quiz",
           content: {
-            question: "Tính: 3/8 + 2/8 = ?",
-            options: ["5/8", "5/16", "1/8", "6/8"],
-            answer: "5/8",
-            mascotHint: "Cộng tử số: 3 + 2 = 5, giữ nguyên mẫu 8, nên là 5/8!",
+            question: "Trần Hưng Đạo sinh năm 1228. Năm đó thuộc thế kỉ nào?",
+            options: ["Thế kỉ XI", "Thế kỉ XII", "Thế kỉ XIII", "Thế kỉ XIV"],
+            answer: "Thế kỉ XIII",
+            mascotHint:
+              "Năm 1228 nằm trong khoảng 1201–1300 nên thuộc thế kỉ XIII.",
           },
         },
         {
           type: "quiz",
           content: {
-            question: "Tính: 1/2 - 1/4 = ?",
-            options: ["1/4", "0", "1/2", "2/4"],
-            answer: "1/4",
-            mascotHint: "1/2 = 2/4. 2/4 - 1/4 = 1/4!",
+            question:
+              "Biết năm 1900 là năm Canh Tý. Cứ 60 năm lại có một năm Canh Tý. Năm Canh Tý tiếp theo thuộc thế kỉ nào?",
+            options: ["Thế kỉ XIX", "Thế kỉ XX", "Thế kỉ XXI", "Thế kỉ XVIII"],
+            answer: "Thế kỉ XX",
+            mascotHint:
+              "1900 + 60 = 1960. Năm 1960 nằm trong khoảng 1901–2000 ⇒ thế kỉ XX.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question:
+              "Năm cuối cùng của thế kỉ XX là một năm nhuận. Đó là năm nào?",
+            options: ["1999", "2000", "2004", "1900"],
+            answer: "2000",
+            mascotHint:
+              "Thế kỉ XX kết thúc năm 2000. Năm 2000 chia hết cho 400 nên là năm nhuận (tháng Hai có 29 ngày).",
           },
         },
         {
           type: "summary",
           content: {
-            title: "Ghi nhớ:",
+            title: "Ghi nhớ bài học:",
             points: [
-              "Cùng mẫu: Cộng/trừ tử, giữ nguyên mẫu.",
-              "Khác mẫu: Quy đồng mẫu số trước khi cộng/trừ.",
+              "Mỗi thế kỉ dài 100 năm.",
+              "Thế kỉ XXI: từ 2001 đến 2100.",
+              "Năm nhuận (tháng Hai 29 ngày) thường là năm chia hết cho 4.",
             ],
-            mascotMood: "celebrate",
+            mascotMood: "proud",
           },
         },
       ],
     },
     {
       id: "g4-c4-l5",
-      title: "Bài 5: Phép nhân phân số & Tìm phân số của một số",
+      title: "Bài 21: Luyện tập chung",
       type: "learn",
       description:
-        "Tử nhân tử, mẫu nhân mẫu; Muốn tìm phân số của một số ta lấy số đó nhân với phân số",
+        "Vận dụng đơn vị đo khối lượng, diện tích và thời gian vào các tình huống thực tế",
       slides: [
         {
           type: "story",
           content: {
             mascotMood: "excited",
-            text: "Phép nhân phân số cực kỳ đơn giản: Lấy tử số nhân với tử số, mẫu số nhân với mẫu số! Để tìm 2/3 của 12 ta lấy 12 × 2/3 = 8! ✖️",
+            text: "Khối lớp Bốn chuẩn bị Hội trại mùa Thu: chọn tấm gỗ làm biển tên trại, chọn vị trí dựng trại rộng nhất và chuẩn bị chai lọc nước cho buổi triển lãm khoa học. Cùng đọc kĩ để chọn cho đúng nhé! ⛺",
           },
         },
         {
-          type: "visual",
+          type: "concept",
           content: {
-            text: "Công thức nhân: (a/b) × (c/d) = (a × c) / (b × d) Ví dụ: 2/3 × 4/5 = (2×4) / (3×5) = 8/15 Tìm 3/4 của 20: 20 × 3/4 = (20×3)/4 = 60/4 = 15.",
-            fractionBar: {
-              rows: [
-                {
-                  parts: 15,
-                  shaded: 8,
-                  label: "2/3 × 4/5 = 8/15",
-                },
-                {
-                  parts: 20,
-                  shaded: 15,
-                  groups: 5,
-                  label: "3/4 của 20 = 15 (lấy 3 trong 4 nhóm)",
-                },
-              ],
-              label: "Nhân tử với tử, mẫu với mẫu",
-            },
-            operation: {
-              left: 20,
-              sign: "×",
-              right: 3,
-              result: 60,
-            },
-          },
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "Tính: 3/5 × 2/7 = ?",
-            options: ["6/35", "5/12", "6/12", "5/35"],
-            answer: "6/35",
-            mascotHint: "Tử = 3 × 2 = 6; Mẫu = 5 × 7 = 35, nên là 6/35!",
-          },
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "Tìm 2/5 của 30 quả cam:",
-            options: [12, 15, 10, 18],
-            answer: 12,
-            mascotHint: "30 × 2/5 = (30 × 2) : 5 = 60 : 5 = 12 quả cam!",
-            items: [
-              {
-                emoji: "🍊",
-                label: "Quả cam",
-                count: 1,
-              },
-            ],
-          },
-        },
-        {
-          type: "summary",
-          content: {
-            title: "Công thức ghi nhớ:",
+            badge: "Luyện Tập",
+            title: "Chọn đơn vị đo cho hợp lí",
+            explanation:
+              "Khi giải bài thực tế, bé cần ước lượng kích thước trước rồi mới chọn đơn vị đo: tấm biển tên trại không thể rộng vài mét vuông, cũng không thể chỉ vài mi-li-mét vuông.",
             points: [
-              "Nhân phân số: Tử nhân tử, mẫu nhân mẫu.",
-              "Tìm phân số của một số: Lấy số đó nhân với phân số.",
+              "Đổi về cùng một đơn vị rồi mới so sánh hoặc tính toán.",
+              "Ước lượng trước để loại những số đo vô lí.",
+              "Ghi rõ đơn vị đo trong câu trả lời.",
             ],
-            mascotMood: "proud",
-          },
-        },
-      ],
-    },
-    {
-      id: "g4-c4-l6",
-      title: "Bài 6: Phép chia phân số",
-      type: "learn",
-      description: "Lấy phân số thứ nhất nhân với phân số thứ hai đảo ngược",
-      slides: [
-        {
-          type: "story",
-          content: {
-            mascotMood: "happy",
-            text: "Phân số đảo ngược của 3/5 là 5/3 (đổi chỗ tử và mẫu)! Muốn chia hai phân số: Lấy phân số thứ nhất nhân với phân số thứ hai đảo ngược! ➗",
+            rule: "Ước lượng kích thước thật → chọn đơn vị → đổi cho cùng đơn vị → tính.",
           },
         },
         {
           type: "visual",
           content: {
-            text: "Công thức chia: (a/b) : (c/d) = (a/b) × (d/c) = (a × d) / (b × c) Ví dụ: 1/2 : 1/4 = 1/2 × 4/1 = 4/2 = 2",
+            text: "Thời gian lọc 500 ml nước của ba chai",
             table: {
-              headers: ["Bước", "Làm"],
+              headers: ["Chai", "Thời gian", "Đổi ra giây"],
               rows: [
-                ["Đảo ngược", "1/2 : 1/4 = 1/2 × 4/1"],
-                ["Nhân", "= (1 × 4) / (2 × 1) = 4/2"],
-                ["Kết quả", "= 2"],
+                ["Chai A", "250 giây", 250],
+                ["Chai B", "4 phút", 240],
+                ["Chai C", "3 phút 50 giây", 230],
               ],
-              label: "Chia phân số = nhân với phân số đảo ngược",
-            }
-          },
-        },
-        {
-          type: "visual",
-          content: {
-            text: "1/2 gồm 2 phần của 1/4",
-            fractionCircle: {
-              parts: 4,
-              shaded: 2,
-              label: "1/2 gồm 2 phần của 1/4",
-            }
-          },
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "Tính: 2/3 : 5/7 = ?",
-            options: ["14/15", "10/21", "15/14", "7/10"],
-            answer: "14/15",
-            mascotHint: "2/3 × 7/5 = (2×7) / (3×5) = 14/15!",
-          },
-        },
-        {
-          type: "summary",
-          content: {
-            title: "Ghi nhớ:",
-            points: [
-              "Chia phân số = Nhân với phân số đảo ngược.",
-              "(a/b) : (c/d) = (a × d) / (b × c).",
-            ],
-            mascotMood: "celebrate",
-          },
-        },
-      ],
-    },
-    {
-      id: "g4-c4-l7",
-      title: "Bài 7: Hình thoi & Diện tích hình thoi",
-      type: "learn",
-      description:
-        "Hình thoi có 4 cạnh bằng nhau, 2 đường chéo vuông góc; Diện tích S = (m × n) : 2",
-      slides: [
-        {
-          type: "story",
-          content: {
-            mascotMood: "excited",
-            text: "Hình thoi có 4 cạnh bằng nhau! Hai đường chéo vuông góc với nhau và cắt nhau tại trung điểm của mỗi đường! 🔷",
-            planeShape: {
-              kind: "rhombus",
-              labels: ["cạnh", "cạnh"],
-              formula: "4 cạnh bằng nhau · hai đường chéo vuông góc",
-            },
-          },
-        },
-        {
-          type: "visual",
-          content: {
-            text: "Công thức diện tích hình thoi: S = (m × n) : 2 Trong đó: m và n là độ dài của hai đường chéo (cùng đơn vị đo).",
-            planeShape: {
-              kind: "rhombus",
-              labels: ["chéo m", "chéo n"],
-              formula: "S = (m × n) : 2 (m và n cùng đơn vị đo)",
+              label: "Đổi hết về giây rồi so sánh",
             },
           },
         },
@@ -512,285 +447,44 @@ export const g4c4 = {
           type: "quiz",
           content: {
             question:
-              "Một hình thoi có độ dài hai đường chéo là 8 cm và 6 cm. Diện tích hình thoi đó là:",
-            options: ["24 cm²", "48 cm²", "14 cm²", "28 cm²"],
-            answer: "24 cm²",
-            mascotHint: "S = (8 × 6) : 2 = 48 : 2 = 24 cm²!",
-            planeShapes: [
-              {
-                kind: "rhombus",
-                color: "#8b5cf6",
-              },
-            ],
-          },
-        },
-        {
-          type: "summary",
-          content: {
-            title: "Ghi nhớ hình thoi:",
-            points: [
-              "Hình thoi có 4 cạnh bằng nhau.",
-              "Diện tích bằng tích độ dài hai đường chéo chia cho 2: S = (m × n) : 2.",
-            ],
-            mascotMood: "proud",
-          },
-        },
-      ],
-    },
-    {
-      id: "g4-c4-l8",
-      title: "Bài 8: Luyện tập rút gọn và quy đồng mẫu số",
-      type: "learn",
-      description: "Luyện hai kỹ năng nền tảng của phân số",
-      slides: [
-        {
-          type: "story",
-          content: {
-            mascotMood: "happy",
-            text: "Rút gọn và quy đồng là hai kỹ năng nền tảng của mọi phép tính phân số! ✂️",
-          },
-        },
-        {
-          type: "concept",
-          content: {
-            fractionBar: {
-              rows: [
-                {
-                  parts: 12,
-                  shaded: 8,
-                  label: "8/12",
-                },
-                {
-                  parts: 3,
-                  shaded: 2,
-                  label: "rút gọn = 2/3",
-                },
-              ],
-              label: "Rút gọn trước khi tính để số nhỏ, dễ tính hơn",
-            },
-            badge: "Luyện Rút Gọn - Quy Đồng",
-            title: "Hai kỹ năng, hai mục đích",
-            points: [
-              "Rút gọn: chia cả tử và mẫu cho cùng một số lớn nhất có thể. Ví dụ: 18/24 = 3/4.",
-              "Quy đồng: đưa hai phân số về cùng mẫu số. Ví dụ: 2/3 và 1/4 ⇒ 8/12 và 3/12.",
-              "Mẫu số chung bé nhất là số bé nhất chia hết cho cả hai mẫu.",
-            ],
-            rule: "Rút gọn trước khi tính để số nhỏ, dễ tính hơn.",
-          },
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "Rút gọn phân số 18/24 về phân số tối giản:",
-            options: ["3/4", "2/3", "9/12", "6/8"],
-            answer: "3/4",
+              "Trong ba chai lọc nước trên, chai nào lọc 500 ml nước nhanh nhất?",
+            options: ["Chai A", "Chai B", "Chai C", "Ba chai như nhau"],
+            answer: "Chai C",
             mascotHint:
-              "Chia cả tử và mẫu cho 6: 18 : 6 = 3 và 24 : 6 = 4 ⇒ 3/4!",
+              "Chai A: 250 giây; chai B: 4 phút = 240 giây; chai C: 3 phút 50 giây = 230 giây. Chai C ít thời gian nhất.",
           },
         },
         {
           type: "quiz",
           content: {
             question:
-              "Quy đồng mẫu số hai phân số 2/3 và 1/4 (chọn mẫu số chung là 12):",
-            options: [
-              "8/12 và 3/12",
-              "2/12 và 1/12",
-              "8/12 và 4/12",
-              "6/12 và 3/12",
-            ],
-            answer: "8/12 và 3/12",
-            mascotHint:
-              "2/3 = 8/12 (nhân cả tử và mẫu với 4); 1/4 = 3/12 (nhân với 3)!",
-          },
-        },
-        {
-          type: "summary",
-          content: {
-            title: "Ghi nhớ:",
-            points: [
-              "Rút gọn là chia, quy đồng là nhân",
-              "Chọn mẫu số chung bé nhất để tính cho gọn",
-            ],
-            mascotMood: "proud",
-          },
-        },
-      ],
-    },
-    {
-      id: "g4-c4-l9",
-      title: "Bài 9: Luyện tập bốn phép tính với phân số",
-      type: "learn",
-      description: "Luyện cộng, trừ, nhân, chia phân số",
-      slides: [
-        {
-          type: "story",
-          content: {
-            mascotMood: "happy",
-            text: "Cộng, trừ, nhân, chia phân số — cùng luyện thành thạo cả bốn phép! ⚡",
-          },
-        },
-        {
-          type: "concept",
-          content: {
-            fractionBar: {
-              rows: [
-                {
-                  parts: 6,
-                  shaded: 5,
-                  label: "1/2 + 1/3 = 5/6",
-                },
-                {
-                  parts: 6,
-                  shaded: 1,
-                  label: "1/2 − 1/3 = 1/6",
-                },
-                {
-                  parts: 6,
-                  shaded: 3,
-                  label: "1/2 × 1/3 = 1/6",
-                },
-                {
-                  parts: 6,
-                  shaded: 3,
-                  label: "1/2 : 1/3 = 3/2",
-                },
-              ],
-              label: "Bốn phép tính với phân số",
-            },
-            badge: "Luyện Bốn Phép Tính",
-            title: "Bốn quy tắc cốt lõi",
-            points: [
-              "Cộng, trừ: quy đồng mẫu số rồi cộng hoặc trừ tử số.",
-              "Nhân: tử nhân tử, mẫu nhân mẫu.",
-              "Chia: nhân với phân số đảo ngược.",
-              "Ví dụ: 3/8 + 1/4 = 3/8 + 2/8 = 5/8.",
-            ],
-            rule: "Nhớ rút gọn kết quả nếu có thể.",
-          },
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "Tính: 3/8 + 1/4 = ?",
-            options: ["5/8", "4/12", "5/12", "4/8"],
-            answer: "5/8",
-            mascotHint: "1/4 = 2/8; 3/8 + 2/8 = 5/8!",
-          },
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "Tính: 4/9 × 3/8 = ?",
-            options: ["1/6", "7/17", "1/3", "12/17"],
-            answer: "1/6",
-            mascotHint:
-              "4 × 3 = 12; 9 × 8 = 72 ⇒ 12/72; rút gọn cho 12 được 1/6!",
-          },
-        },
-        {
-          type: "summary",
-          content: {
-            title: "Ghi nhớ:",
-            points: [
-              "Cộng trừ: quy đồng · Nhân: tử × tử, mẫu × mẫu · Chia: đảo ngược rồi nhân",
-            ],
-            mascotMood: "proud",
-          },
-        },
-      ],
-    },
-    {
-      id: "g4-c4-l10",
-      title: "Bài 10: Luyện tập chung chương 4",
-      type: "learn",
-      description: "Tổng hợp phân số và hình thoi",
-      slides: [
-        {
-          type: "story",
-          content: {
-            mascotMood: "proud",
-            text: "Tổng kết chương 4: phân số, bốn phép tính phân số và hình thoi! 🍰",
-            planeShapes: [
-              {
-                kind: "rhombus",
-                color: "#8b5cf6",
-              },
-            ],
-          },
-        },
-        {
-          type: "concept",
-          content: {
-            planeShape: {
-              kind: "rhombus",
-              labels: ["chéo m", "chéo n"],
-              formula: "S = (m × n) : 2",
-            },
-            badge: "Ôn Tập Chương 4",
-            title: "Bốn mảng kiến thức",
-            points: [
-              "Khái niệm phân số và phép chia số tự nhiên.",
-              "Rút gọn, quy đồng, so sánh phân số.",
-              "Cộng trừ nhân chia phân số và tìm phân số của một số.",
-              "Hình thoi: diện tích S = (m × n) : 2.",
-            ],
-            rule: "Kiểm tra lại kết quả và rút gọn phân số ở cuối bài."
-          },
-        },
-        {
-          type: "concept",
-          content: {
-            badge: "Ôn Tập Chương 4",
-            title: "2/4",
-            fractionBar: {
-              rows: [
-                {
-                  parts: 4,
-                  shaded: 2,
-                  label: "2/4",
-                },
-                {
-                  parts: 2,
-                  shaded: 1,
-                  label: "rút gọn = 1/2",
-                },
-              ],
-              label: "Luyện tập chung chương 4",
-            }
-          },
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "Tìm 3/5 của 40 kg:",
-            options: [24, 25, 30, 15],
-            answer: 24,
-            mascotHint: "40 : 5 = 8; 8 × 3 = 24 kg!",
+              "Người ta đặt dưới mỗi chai lọc nước một tấm bìa hình vuông cạnh 3 dm. Diện tích mỗi tấm bìa là bao nhiêu?",
+            options: ["9 mm²", "9 cm²", "9 dm²", "9 m²"],
+            answer: "9 dm²",
+            mascotHint: "Diện tích hình vuông: 3 × 3 = 9 (dm²).",
           },
         },
         {
           type: "quiz",
           content: {
             question:
-              "Một hình thoi có hai đường chéo dài 10 cm và 8 cm. Diện tích hình thoi là bao nhiêu?",
-            options: ["40 cm²", "80 cm²", "18 cm²", "36 cm²"],
-            answer: "40 cm²",
-            mascotHint: "S = (10 × 8) : 2 = 80 : 2 = 40 cm²!",
-            planeShapes: [
-              {
-                kind: "rhombus",
-                color: "#8b5cf6",
-              },
-            ],
+              "Em cần một tấm gỗ làm biển tên trại của lớp. Nên chọn tấm gỗ có diện tích khoảng bao nhiêu?",
+            options: ["40 mm²", "4 m²", "40 dm²", "40 cm²"],
+            answer: "40 dm²",
+            mascotHint:
+              "40 dm² = 4000 cm², tức khoảng 60 cm × 65 cm — vừa đủ làm biển tên trại. 4 m² là cả một chiếc bàn lớn!",
           },
         },
         {
           type: "summary",
           content: {
-            title: "Chúc mừng bé:",
-            points: ["Bé đã hoàn thành chương 4: Phân số và Hình thoi!"],
-            mascotMood: "celebrate",
+            title: "Ghi nhớ bài học:",
+            points: [
+              "Đổi về cùng đơn vị trước khi so sánh.",
+              "Ước lượng kích thước thật để chọn đơn vị đo hợp lí.",
+              "1 tấn = 10 tạ = 100 yến = 1000 kg.",
+            ],
+            mascotMood: "proud",
           },
         },
       ],

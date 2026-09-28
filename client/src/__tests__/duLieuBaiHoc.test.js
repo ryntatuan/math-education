@@ -137,7 +137,7 @@ describe("dữ liệu bài học — không có lỗi hỏng âm thầm", () => 
     const { bai, slide } = dem();
     expect(GRADES.length).toBe(5);
     expect(bai).toBeGreaterThanOrEqual(460);
-    expect(slide).toBeGreaterThanOrEqual(2774);
+    expect(slide).toBeGreaterThanOrEqual(3149);
   });
 
   it("mọi khoá trong slide đều là khoá đã biết (không gõ sai tên khoá hình)", () => {

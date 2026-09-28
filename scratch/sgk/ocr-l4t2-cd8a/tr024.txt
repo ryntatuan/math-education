@@ -1,0 +1,26 @@
+1u” qoPg
+
+1) 9S E
+
+20U-PA-XEp/UI02'D9OIJIE]SO|Q
+
+a) Xếp đều 216 khách du lịch lên 12 thuyền. Hỏi mỗi thuyền có bao nhiêu
+khách du lịch?
+
+Ta có thể đặt tính rồi tính như sau:
+
+216 | 12 s 21 chia 12 được 1, viết 1.
+12. | 18 1 nhân 2 bằng 2, viết 2.
+ưng 1 nhân 1 bằng 1, viết 1.
+96
+96 21 trừ 12 bằng 9, viết 9.
+
+— s Hạ6, được 96; 96 chia 12 được 8, viết 8.
+0 8 nhân 2 bằng 18, viết 6 nhớ 1.
+8 nhân 1 bằng 8, thêm 1 bằng 9, viết 9.
+96 trừ 96 bằng 0, viết 0.
+
+| 216:12=18 |
+
+23
+

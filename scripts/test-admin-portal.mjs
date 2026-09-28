@@ -710,11 +710,11 @@ if (!ONLY_DB) {
 
       // Canary: con số đổi thì hoặc có nội dung mới (tốt — hãy cập nhật), hoặc bộ
       // đọc đã hỏng. Cả hai đều phải lộ ra, không được im lặng.
-      assert(soBai === 460, `Mong đợi 460 bài, đọc được ${soBai}`);
-      assert(soSlide === 2814, `Mong đợi 2814 slide, đọc được ${soSlide}`);
+      assert(soBai === 489, `Mong đợi 489 bài, đọc được ${soBai}`);
+      assert(soSlide === 3149, `Mong đợi 3149 slide, đọc được ${soSlide}`);
       assert(
-        gapKieu.size === 6,
-        `Mong đợi 6 kiểu slide, gặp ${gapKieu.size}: ${[...gapKieu].join(", ")}`,
+        gapKieu.size === 5,
+        `Mong đợi 5 kiểu slide, gặp ${gapKieu.size}: ${[...gapKieu].join(", ")}`,
       );
 
       assert(
@@ -1417,8 +1417,8 @@ if (!ONLY_DB) {
         }
       }
       assert(
-        soSlide === 2814,
-        `Mong đợi 2814 slide, đọc được ${soSlide} — bộ đọc dữ liệu tĩnh đã hỏng`,
+        soSlide === 3149,
+        `Mong đợi 3149 slide, đọc được ${soSlide} — bộ đọc dữ liệu tĩnh đã hỏng`,
       );
       assert(
         saiKieu.size === 0,
@@ -1693,8 +1693,8 @@ if (!ONLY_DB) {
 
       const d = demCay(cay);
       assert(
-        d.lop === 5 && d.chuong === 51 && d.bai === 460 && d.slide === 2814,
-        `Cây DB sai quy mô: ${d.lop}/${d.chuong}/${d.bai}/${d.slide} — mong đợi 5/51/460/2774`,
+        d.lop === 5 && d.chuong === 65 && d.bai === 489 && d.slide === 3149,
+        `Cây DB sai quy mô: ${d.lop}/${d.chuong}/${d.bai}/${d.slide} — mong đợi 5/65/489/3149`,
       );
 
       const lech = soSanh(goc, cay);
@@ -3101,7 +3101,7 @@ if (!ONLY_STATIC) {
           `HTTP ${g.status}/${c.status}/${l.status}`,
         );
 
-        // 🔴 Không đòi ĐÚNG 459 bài: rút một bài (TC-3c.8) là một TÍNH NĂNG, và nó
+        // 🔴 Không đòi ĐÚNG 489 bài: rút một bài (TC-3c.8) là một TÍNH NĂNG, và nó
         // làm số bài khách thấy giảm đi — đúng như thiết kế. Đòi cứng 459 là tự tạo
         // FAIL oan ngay khi ai đó dùng tính năng đó. Số lớp và số chương thì không
         // đổi theo trạng thái bài, nên giữ được phép kiểm chặt.
@@ -3110,8 +3110,8 @@ if (!ONLY_STATIC) {
           `Mong đợi 5 lớp, khách đọc được ${g.body.length}`,
         );
         assert(
-          c.body.length === 51,
-          `Mong đợi 51 chương, khách đọc được ${c.body.length}`,
+          c.body.length === 65,
+          `Mong đợi 65 chương, khách đọc được ${c.body.length}`,
         );
         assert(
           l.body.length >= 300,

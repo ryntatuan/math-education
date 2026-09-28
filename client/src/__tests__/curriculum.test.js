@@ -1,5 +1,5 @@
 /**
- * Kiểm tính toàn vẹn của cây nội dung (5 lớp, 51 chủ đề, 460 bài).
+ * Kiểm tính toàn vẹn của cây nội dung (5 lớp, 65 chủ đề, 489 bài).
  *
  * ⚠️ Con số ở đây là **quy mô đã chốt** của repo (xem `docs/`): đổi quy mô thì phải đổi
  * cả test này lẫn các chỗ ghi cứng khác (`node scratch/doi-quy-mo.mjs`). Test này tồn tại
@@ -17,8 +17,8 @@ import {
 } from "../data/curriculum.js";
 
 const SO_LOP = 5;
-const SO_CHU_DE = 51;
-const SO_BAI = 460;
+const SO_CHU_DE = 65;
+const SO_BAI = 489;
 
 /** `tapMaBaiHoc()` trả về **Set** (không phải mảng) — chuyển sang mảng cho dễ kiểm. */
 const danhSachMa = () => [...tapMaBaiHoc()];

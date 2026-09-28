@@ -1,0 +1,25 @@
+9S E19 U9PS
+
+ở)
+
+20U-PA-XEp/UI02'D9OIJIE]SO|Q
+
+@%:
+
+Sáu mươi triệu 60 000 000 Chín triệu ?
+Hai trăm triệu ? Chín trăm triệu ?
+
+(Giá tiền của mỗi món hàng được cho như hình dưới đây.
+
+K4
+
+1000 đồng 100 000 dòng:
+
+Mỗi giỏ quà có giá bao nhiều tiền?
+
+Hãy lập một số chẵn có sáu chữ số thoả mãn
+các điều kiện:
+
+— Lớp nghìn gồm các chữ só 0, 0, 3;
+— Lớp đơn vị gồm các chữ só 8, 1, 1.
+

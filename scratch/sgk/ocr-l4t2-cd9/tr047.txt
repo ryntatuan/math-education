@@ -1,0 +1,15 @@
+1u” qoPg
+
+1) 9S E
+
+20U-PA-XEp/UI02'D9OIJIE]SO|Q
+
+[317 11 chú rùa cùng nhau thi chạy. Mỗi chú rùa được đánh số từ 2 đến 12.
+
+Hãy giúp những chú rùa di chuyển bằng cách gieo hai xúc xắc rồi tính
+tổng số chắm ở các mặt trên của xúc xắc. Kết quả nhận được là số nào
+thì chú rùa mang áo ghi số đó được tiền thêm 1 ô.
+
+Thực hiện như vậy, hỏi ba chú rùa về đích đầu tiên theo thứ tự nhất,
+nhì, ba là những chú rùa nào? Khi đó, chú rùa nào tiền được ít ô nhất?
+

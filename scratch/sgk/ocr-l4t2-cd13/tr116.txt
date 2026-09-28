@@ -1,0 +1,31 @@
+1u” qoPg
+
+1) 9S E
+
+20U-PA-XEp/UI02'D9OIJIE]SO|Q
+
+Blogra
+
+@©rong một hộp có 3 quả bóng gồm 1 quả màu đỏ, 1 quả màu vàng và
+1 quả màu xanh. Không nhìn vào hộp, Rô-bốt lắy ra 1 quả bóng bất
+kì, ghi lại màu của quả bóng đó rồi trả lại vào hộp. Bóng màu đỏ ghi Ð,
+bóng màu xanh ghi X, bóng màu vàng ghi V.
+
+Z4 Ñ => um —
+
+Rô-bót đã thực hiện 30 lằn lầy bóng như trên và ghi được số lằn xuất hiện
+màu của mỗi quả bóng như bảng sau:
+
+Bóngmàuđỏ Ð ÐĐĐ ĐỊPĐĐ ĐỊĐĐ Đ
+Bóngmàuxanh XXXXXXXXXXXX
+Bóng màuvàng V.V.V. V
+
+Dựa vào só liệu ghi ở bảng, trả lời các câu hỏi.
+Trong 30 lằn Rô-bót lắy bóng:
+a) Mỗi loại bóng màu đỏ, màu xanh, màu vàng xuất hiện bao nhiêu làn?
+
+b) Bóng màu nào xuất hiện nhiều lằn nhất, bóng màu nào xuất hiện ít
+lằn nhát?
+
+115
+

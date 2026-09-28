@@ -1,0 +1,40 @@
+1u” qoPg
+
+1) 9S E
+
+20U-PA-XEp/UI02'D9OIJIE]SO|Q
+
+9 E Đề dễ tìm số nhà, người ta dùng các
+
+a) Í Tớ thấy một bên phố ghi các số nhà số chẵn (như 10, 12, 14, 16, 18...)
+
+10, 12, 14, 16, 18,... Bên kia thì ghi đề đánh số nhà ở một bên của dãy
+
+các số nhà 11, 13, 15, 17, 19.... phó. bên còn lại người ta dùng các
+Các số đó có đặc điểm gì nhi? só lẻ (như 11, 13, 15. 17, 19...).
+
+VỊ
+b) Số chẵn, số lẻ
+
+s Số chia hết cho 2 là số chăn.
+s Số không chia hết cho 2 là só lẻ.
+
+Có cách nào
+
+đề nhận biết | Nhận xét:
+
+nan 2| * Các SỐ có chữ số tận cùng 0, 2, 4, 6, 8 là
+: các số chẵn. Ví dụ: 40, 72, 214, 96, 2318...
+
+¿ s Các số có chữ số tận cùng 1, 3, 5, 7, 9 là
+
+: các só lẻ. Ví dụ: 31, 73, 615, 107, 1 909....
+ -
+
+9 Trong các số dưới đây, số nào là số chẵn, số nào là số lẻ?
+12 315 108 71 194
+
+656 649 z 0U 107
+
+12
+

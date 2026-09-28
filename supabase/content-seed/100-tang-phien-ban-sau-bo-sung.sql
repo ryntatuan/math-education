@@ -12,6 +12,39 @@
 -- CHẠY LẠI NHIỀU LẦN: chỉ làm phiên bản tăng thêm 1 mỗi lần — vô hại (các bé tải
 --   lại nội dung thêm một lần), không sinh dòng trùng, không mất dữ liệu.
 --
+-- LƯU Ý LẦN 22 (2026-09-28): **DỰNG LẠI TOÀN BỘ LỚP 4 VÀ LỚP 5 THEO SÁCH KẾT NỐI TRI THỨC**.
+--   Người dùng yêu cầu: *"tôi cần bạn bỏ hết nội dung lớp 4 và lớp 5 hiện tại, thay đổi chuẩn hoá theo tài
+--   liệu mới nhất"* — bỏ HOÀN TOÀN nội dung sách cũ (bộ Đỗ Đình Hoan trước 2018) và viết lại theo bộ
+--   **Kết nối tri thức với cuộc sống**, cả hai tập của mỗi lớp.
+--
+--   🔴 VÌ SAO PHẢI LÀM LẠI TỪ ĐẦU: nội dung Lớp 4–5 cũ bám sách cũ (6 chương Lớp 4, 5 chương Lớp 5) nên
+--      thứ tự bài, tên chủ đề, cách dạy đều KHÁC sách bé đang học trên lớp ⇒ bé mở app không tìm được bài
+--      cô giao. Nguồn mới: `docs/DataSource/Grade 4|5/Math grade 4|5 part 1|2.pdf`.
+--
+--   📌 QUY MÔ MỚI (đo bằng `node scratch/kiem-tra-slide.mjs`):
+--      • Cả hệ thống: 5 lớp · **65 chương** · **489 bài** · **3149 slide**.
+--      • Lớp 4: 13 chủ đề · 73 bài · 486 slide (trước: 6 chương · 37 bài).
+--      • Lớp 5: 12 chủ đề · 75 bài · 452 slide (trước: 5 chương · 54 bài).
+--      • Lớp 1–3 giữ nguyên (10/16/16 chương — 731/713/767 slide).
+--
+--   🔴 MÃ BÀI HỌC ĐỔI HẾT Ở LỚP 4–5 (`g4-c8-l1` … `g4-c13-l7`, `g5-c1-l1` … `g5-c12-l7`): người dùng đã
+--      chốt *"dùng mã bài hoàn toàn mới, chấp nhận mất tiến độ của các bé ở Lớp 4–5"*. Vì vậy:
+--        • phải chạy `00-don-noi-dung-cu.sql` TRƯỚC khi dán seed — nếu không, bài cũ (chủ đề sai) VẪN
+--          hiện trên app vì seed chỉ upsert, không xoá;
+--        • tiến độ/điểm của các bé ở bài Lớp 4–5 cũ không còn gắn với bài nào (đúng như đã chốt).
+--
+--   ⚠️ BÀI HỌC CỦA LẦN NÀY (đều là lỗi suýt lọt, đã có cổng chặn):
+--      1. Trong ô bảng, dấu ba chấm `…` bị hiểu là "ô trống cần điền" ⇒ cổng `soat-o-trong` báo đỏ:
+--         thay `278 992 000 … 278 999` bằng `278 992 000 và 278 999`.
+--      2. Viết chuỗi biểu thức nối tiếp (`7 200 : 40 = 720 : 4 = 180`) làm cổng `soat-phep-tinh` hiểu
+--         sai vế ⇒ nay viết thành từng bước đơn giản, mỗi bước một dấu bằng.
+--      3. Số đếm quy mô nằm rải rác ở 5 chỗ (`migrate-content.mjs` MONG_DOI, `test-admin-portal.mjs`
+--         S-15 ×2 + S-23 + S-24, hai file docs, chính file này) ⇒ đã cập nhật hết về 65/489/3149.
+--      4. Cổng S-15 canh "số KIỂU slide" — nội dung mới chỉ dùng 5 kiểu (story/visual/concept/quiz/
+--         summary) nên con số canh đã đổi từ 6 về 5.
+--
+--   Thứ tự dán (đúng như vậy, không đổi): `00` → `01` → `02` → `03` → `04` → `05` → `06` → `99` → file này.
+--
 -- LƯU Ý LẦN 21 (2026-09-27): CĂN LỀ THEO VAI TRÒ · BẢNG DÙNG HẾT KHUNG · BỎ CHỮ TRÙNG.
 --   Người dùng gửi 3 ảnh và yêu cầu rõ: *"hãy rà soát tất cả bài học ở 5 lớp chứ không phải chỉ 1 bài
 --   học mà tôi gửi ảnh, rà và điều chỉnh lại hết cho đồng bộ hệ thống"*.

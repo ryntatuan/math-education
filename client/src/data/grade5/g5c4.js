@@ -1,905 +1,468 @@
 export const g5c4 = {
-  "id": "g5-c4",
-  "name": "Chương 4: Số đo thời gian & Toán chuyển động đều",
-  "description": "Bảng đơn vị đo thời gian, phép tính thời gian; toán chuyển động đều: vận tốc, quãng đường, thời gian; hai chuyển động ngược chiều, cùng chiều",
-  "icon": "🏎️",
-  "color": "#ec4899",
-  "totalLessons": 10,
-  "lessons": [
+  id: "g5-c4",
+  name: "Chủ đề 4: Các phép tính với số thập phân",
+  description:
+    "Cộng, trừ, nhân, chia số thập phân; nhân chia với 10, 100, 1 000 và với 0,1; 0,01; 0,001",
+  icon: "🧮",
+  color: "#f59e0b",
+  totalLessons: 6,
+  lessons: [
     {
-      "id": "g5-c4-l1",
-      "title": "Bài 1: Bảng đơn vị đo thời gian & Cộng, trừ số đo thời gian",
-      "type": "learn",
-      "description": "Năm, tháng, ngày, giờ, phút, giây; Đặt tính cộng trừ số đo thời gian",
-      "slides": [
+      id: "g5-c4-l1",
+      title: "Bài 19: Phép cộng số thập phân",
+      type: "learn",
+      description:
+        "Cộng hai số thập phân: đặt tính thẳng hàng, cộng như số tự nhiên rồi đặt dấu phẩy",
+      slides: [
         {
-          "type": "story",
-          "content": {
-            "mascotMood": "happy",
-            "text": "1 năm = 12 tháng. 1 ngày = 24 giờ. 1 giờ = 60 phút. 1 phút = 60 giây! Khi cộng trừ thời gian, ta đặt thẳng cột theo từng đơn vị đo! ⏳"
-          }
+          type: "story",
+          content: {
+            mascotMood: "happy",
+            text: "Cú Mèo mua 3,4 kg gạo rồi mua thêm 2,75 kg nữa. Cả hai lần mua bao nhiêu ki-lô-gam? 🍚",
+          },
         },
         {
-          "type": "visual",
-          "content": {
-            "text": "Ví dụ cộng: 3 giờ 15 phút + 2 giờ 35 phút = 5 giờ 50 phút. Ví dụ trừ: 4 giờ 20 phút - 1 giờ 35 phút Đổi: 4 giờ 20 phút = 3 giờ 80 phút. Trừ: 3 giờ 80 phút - 1 giờ 35 phút = 2 giờ 45 phút!",
-            "clock": {
-              "hour": 3,
-              "minute": 15,
-              "timeText": "3 giờ 15 phút"
+          type: "concept",
+          content: {
+            badge: "Khám Phá",
+            title: "Cộng hai số thập phân",
+            explanation:
+              "Muốn cộng hai số thập phân, ta viết số hạng này dưới số hạng kia sao cho các chữ số ở cùng một hàng thẳng cột với nhau, cộng như cộng số tự nhiên, rồi đặt dấu phẩy ở tổng thẳng cột với dấu phẩy của các số hạng.",
+            points: [
+              "3,4 viết thành 3,40 để hai số cùng số chữ số ở phần thập phân.",
+              "3,4 + 2,75 = 3,40 + 2,75 = 6,15.",
+              "Dấu phẩy của tổng thẳng cột với dấu phẩy của các số hạng.",
+            ],
+            rule: "Các chữ số cùng hàng phải thẳng cột với nhau.",
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Cộng số thập phân",
+            table: {
+              headers: ["Phép tính", "Cách làm", "Kết quả"],
+              rows: [
+                ["3,4 + 2,75", "viết 3,4 = 3,40", "6,15"],
+                ["12,5 + 7,25", "thẳng hàng", "19,75"],
+                ["0,25 + 0,5", "viết 0,5 = 0,50", "0,75"],
+                ["4,8 + 12", "viết 12 = 12,0", "16,8"],
+              ],
+              label: "Có thể viết thêm chữ số 0 vào bên phải phần thập phân",
             },
-            "table": {
-              "headers": [
-                "Phép tính",
-                "Kết quả"
-              ],
-              "rows": [
-                [
-                  "3 giờ 15 phút + 2 giờ 35 phút",
-                  "5 giờ 50 phút"
-                ],
-                [
-                  "4 giờ 20 phút − 1 giờ 35 phút",
-                  "3 giờ 80 phút − 1 giờ 35 phút = 2 giờ 45 phút"
-                ],
-                [
-                  "1 ngày",
-                  "24 giờ"
-                ],
-                [
-                  "1 giờ",
-                  "60 phút"
-                ]
-              ],
-              "label": "Bảng đơn vị đo thời gian — hệ 60, đừng tính như số thập phân"
-            }
-          }
+          },
         },
         {
-          "type": "quiz",
-          "content": {
-            "question": "Tính: 2 giờ 30 phút + 1 giờ 45 phút = ?",
-            "options": [
-              "4 giờ 15 phút",
-              "3 giờ 75 phút",
-              "4 giờ 30 phút",
-              "3 giờ 15 phút"
-            ],
-            "answer": "4 giờ 15 phút",
-            "mascotHint": "3 giờ 75 phút đổi 60 phút thành 1 giờ, nên là 4 giờ 15 phút!"
-          }
+          type: "quiz",
+          content: {
+            question: "Tính: 3,4 + 2,75 = ?",
+            options: ["6,15", "5,15", "6,09", "6,5"],
+            answer: "6,15",
+            mascotHint: "3,40 + 2,75 = 6,15.",
+          },
         },
         {
-          "type": "summary",
-          "content": {
-            "title": "Ghi nhớ:",
-            "points": [
-              "Cộng trừ từ đơn vị nhỏ đến đơn vị lớn.",
-              "Nếu số phút/giây >= 60 thì đổi sang đơn vị lớn hơn."
+          type: "quiz",
+          content: {
+            question: "Tính: 4,8 + 12 = ?",
+            options: ["16,8", "12,48", "5,2", "16,08"],
+            answer: "16,8",
+            mascotHint: "12 = 12,0; 4,8 + 12,0 = 16,8.",
+          },
+        },
+        {
+          type: "summary",
+          content: {
+            title: "Ghi nhớ bài học:",
+            points: [
+              "Đặt tính cho các hàng thẳng cột.",
+              "Cộng như số tự nhiên.",
+              "Đặt dấu phẩy thẳng cột với các dấu phẩy trên.",
             ],
-            "mascotMood": "proud"
-          }
-        }
-      ]
+            mascotMood: "proud",
+          },
+        },
+      ],
     },
     {
-      "id": "g5-c4-l2",
-      "title": "Bài 2: Nhân, chia số đo thời gian với một số",
-      "type": "learn",
-      "description": "Nhân/chia từng đơn vị đo thời gian với số tự nhiên",
-      "slides": [
+      id: "g5-c4-l2",
+      title: "Bài 20: Phép trừ số thập phân",
+      type: "learn",
+      description: "Trừ hai số thập phân theo quy tắc đặt tính thẳng hàng",
+      slides: [
         {
-          "type": "story",
-          "content": {
-            "mascotMood": "happy",
-            "text": "Nhân hoặc chia từng loại đơn vị thời gian với số đó! Nếu có dư khi chia, ta đổi sang đơn vị bé hơn rồi chia tiếp! ⏱️"
-          }
-        },
-        {
-          "type": "visual",
-          "content": {
-            "text": "Ví dụ nhân: 1 giờ 25 phút × 3 = 3 giờ 75 phút = 4 giờ 15 phút. Ví dụ chia: 7 giờ 40 phút : 4 - 7 giờ : 4 = 1 giờ dư 3 giờ - Đổi 3 giờ = 180 phút. 180 + 40 = 220 phút. - 220 phút : 4 = 55 phút, vậy kết quả: 1 giờ 55 phút.",
-            "table": {
-              "headers": [
-                "Phép tính",
-                "Kết quả"
-              ],
-              "rows": [
-                [
-                  "1 giờ 25 phút × 3",
-                  "3 giờ 75 phút = 4 giờ 15 phút"
-                ],
-                [
-                  "7 giờ 40 phút : 4",
-                  "1 giờ 55 phút"
-                ]
-              ],
-              "label": "Nhân, chia số đo thời gian với một số"
-            }
-          }
-        },
-        {
-          "type": "quiz",
-          "content": {
-            "question": "Tính: (1 phút 15 giây) × 4 = ?",
-            "options": [
-              "5 phút",
-              "4 phút 60 giây",
-              "4 phút 15 giây",
-              "5 phút 15 giây"
-            ],
-            "answer": "5 phút",
-            "mascotHint": "4 phút 60 giây = 5 phút tròn!"
-          }
-        },
-        {
-          "type": "summary",
-          "content": {
-            "title": "Ghi nhớ:",
-            "points": [
-              "Nhân/chia từng đơn vị từ lớn đến bé.",
-              "Phần dư đổi sang đơn vị bé hơn rồi chia tiếp."
-            ],
-            "mascotMood": "celebrate"
-          }
-        }
-      ]
-    },
-    {
-      "id": "g5-c4-l3",
-      "title": "Bài 3: Vận tốc (v = s : t)",
-      "type": "learn",
-      "description": "Khái niệm vận tốc; Công thức: Vận tốc = Quãng đường : Thời gian (km/giờ, m/giây)",
-      "slides": [
-        {
-          "type": "story",
-          "content": {
-            "mascotMood": "excited",
-            "text": "Vận tốc cho biết mức độ chuyển động nhanh hay chậm của một vật! Đơn vị thường dùng là km/giờ hoặc m/giây! 🚗💨"
-          }
-        },
-        {
-          type: "visual",
+          type: "story",
           content: {
-            "text": "Công thức tính vận tốc: v = s : t Trong đó: - v là vận tốc - s là quãng đường - t là thời gian",
-            "motionDiagram": {
-              "mode": "toward",
-              "distance": 120,
-              "unit": "km",
-              "a": {
-                "name": "Xe máy",
-                "speed": 45
-              },
-              "b": {
-                "name": "Xe đạp",
-                "speed": 15
-              },
-              "note": "v = s : t — đơn vị vận tốc thường là km/giờ"
-            }
+            mascotMood: "curious",
+            text: "Một chai nước nặng 8,6 kg, vỏ chai nặng 2,45 kg. Nước trong chai nặng bao nhiêu? Phải trừ số thập phân! 🥤",
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Khám Phá",
+            title: "Trừ hai số thập phân",
+            explanation:
+              "Muốn trừ một số thập phân cho một số thập phân, ta viết số trừ dưới số bị trừ sao cho các chữ số ở cùng một hàng thẳng cột với nhau, trừ như trừ số tự nhiên, rồi đặt dấu phẩy ở hiệu thẳng cột với dấu phẩy của hai số.",
+            points: [
+              "8,6 − 2,45 = 8,60 − 2,45 = 6,15.",
+              "15 − 3,7 = 15,0 − 3,7 = 11,3.",
+              "Thử lại: hiệu + số trừ = số bị trừ.",
+            ],
+            rule: "Có thể viết thêm chữ số 0 để dễ trừ.",
           },
         },
         {
           type: "visual",
           content: {
-            "text": "Ba công thức chuyển động — nhớ một là suy ra được hai",
-            "table": {
-              "headers": [
-                "Đại lượng",
-                "Công thức"
+            text: "Trừ số thập phân",
+            table: {
+              headers: ["Phép tính", "Cách làm", "Kết quả"],
+              rows: [
+                ["8,6 − 2,45", "8,60 − 2,45", "6,15"],
+                ["15 − 3,7", "15,0 − 3,7", "11,3"],
+                ["9,5 − 4,25", "9,50 − 4,25", "5,25"],
+                ["7,2 − 0,8", "thẳng hàng", "6,4"],
               ],
-              "rows": [
-                [
-                  "Vận tốc",
-                  "v = s : t"
-                ],
-                [
-                  "Quãng đường",
-                  "s = v × t"
-                ],
-                [
-                  "Thời gian",
-                  "t = s : v"
-                ]
-              ],
-              "label": "Ba công thức chuyển động — nhớ một là suy ra được hai"
-            }
-          },
-        },
-        {
-          "type": "quiz",
-          "content": {
-            "question": "Một ô tô đi được quãng đường 120 km trong 3 giờ. Vận tốc của ô tô là:",
-            "options": [
-              "40 km/giờ",
-              "360 km/giờ",
-              "60 km/giờ",
-              "45 km/giờ"
-            ],
-            "answer": "40 km/giờ",
-            "mascotHint": "v = s : t = 120 : 3 = 40 km/giờ!",
-            "items": [
-              {
-                "emoji": "🚗",
-                "label": "Ô tô",
-                "count": 1
-              }
-            ]
-          }
-        },
-        {
-          "type": "summary",
-          "content": {
-            "title": "Công thức vàng:",
-            "points": [
-              "Vận tốc = Quãng đường : Thời gian (v = s : t)",
-              "Đơn vị vận tốc tương ứng: km/giờ (nếu s là km, t là giờ)."
-            ],
-            "mascotMood": "proud"
-          }
-        }
-      ]
-    },
-    {
-      "id": "g5-c4-l4",
-      "title": "Bài 4: Quãng đường (s = v × t)",
-      "type": "learn",
-      "description": "Muốn tính quãng đường ta lấy vận tốc nhân với thời gian",
-      "slides": [
-        {
-          "type": "story",
-          "content": {
-            "mascotMood": "excited",
-            "text": "Biết vận tốc và thời gian, ta tìm được quãng đường đã đi được bằng phép nhân: s = v × t! 🛣️"
-          }
-        },
-        {
-          type: "visual",
-          content: {
-            "text": "Công thức quãng đường: s = v × t Ví dụ: Một người đi xe đạp với vận tốc 15 km/giờ trong 2 giờ. Quãng đường đi được là: s = 15 × 2 = 30 km.",
-            "motionDiagram": {
-              "mode": "toward",
-              "distance": 30,
-              "unit": "km",
-              "a": {
-                "name": "Xe đạp",
-                "speed": 15
-              },
-              "b": null,
-              "note": "s = v × t = 15 × 2 = 30 km"
-            }
-          },
-        },
-        {
-          type: "visual",
-          content: {
-            "text": "Quãng đường s = v × t",
-            "table": {
-              "headers": [
-                "Cho",
-                "Tính"
-              ],
-              "rows": [
-                [
-                  "v = 15 km/giờ, t = 2 giờ",
-                  "s = 15 × 2 = 30 km"
-                ]
-              ],
-              "label": "Quãng đường s = v × t"
-            }
-          },
-        },
-        {
-          "type": "quiz",
-          "content": {
-            "question": "Một máy bay bay với vận tốc 800 km/giờ trong 2,5 giờ. Quãng đường máy bay đã bay là:",
-            "options": [
-              "2 000 km",
-              "1 600 km",
-              "2 400 km",
-              "1 800 km"
-            ],
-            "answer": "2 000 km",
-            "mascotHint": "s = v × t = 800 × 2,5 = 2 000 km!"
-          }
-        },
-        {
-          "type": "summary",
-          "content": {
-            "title": "Công thức:",
-            "points": [
-              "Quãng đường = Vận tốc × Thời gian (s = v × t).",
-              "Thời gian và vận tốc phải cùng hệ đơn vị đo."
-            ],
-            "mascotMood": "celebrate"
-          }
-        }
-      ]
-    },
-    {
-      "id": "g5-c4-l5",
-      "title": "Bài 5: Thời gian (t = s : v)",
-      "type": "learn",
-      "description": "Muốn tính thời gian ta lấy quãng đường chia cho vận tốc",
-      "slides": [
-        {
-          "type": "story",
-          "content": {
-            "mascotMood": "happy",
-            "text": "Muốn tính thời gian đi hết quãng đường: Lấy quãng đường chia cho vận tốc: t = s : v! ⏱️"
-          }
-        },
-        {
-          type: "visual",
-          content: {
-            "text": "Công thức thời gian: t = s : v Ví dụ: Quãng đường AB dài 90 km, xe máy đi với vận tốc 45 km/giờ. Thời gian đi là: t = 90 : 45 = 2 giờ.",
-            "motionDiagram": {
-              "mode": "toward",
-              "distance": 90,
-              "unit": "km",
-              "a": {
-                "name": "Xe máy",
-                "speed": 45
-              },
-              "b": null,
-              "note": "t = s : v = 90 : 45 = 2 giờ"
-            }
-          },
-        },
-        {
-          type: "visual",
-          content: {
-            "text": "Thời gian t = s : v",
-            "table": {
-              "headers": [
-                "Cho",
-                "Tính"
-              ],
-              "rows": [
-                [
-                  "s = 90 km, v = 45 km/giờ",
-                  "t = 90 : 45 = 2 giờ"
-                ]
-              ],
-              "label": "Thời gian t = s : v"
-            }
-          },
-        },
-        {
-          "type": "quiz",
-          "content": {
-            "question": "Một người chạy bộ quãng đường 800 m với vận tốc 4 m/giây. Thời gian người đó chạy là:",
-            "options": [
-              "200 giây",
-              "20 giây",
-              "3200 giây",
-              "400 giây"
-            ],
-            "answer": "200 giây",
-            "mascotHint": "t = s : v = 800 : 4 = 200 giây!"
-          }
-        },
-        {
-          "type": "summary",
-          "content": {
-            "title": "Bộ 3 công thức chuyển động:",
-            "points": [
-              "v = s : t",
-              "s = v × t",
-              "t = s : v"
-            ],
-            "mascotMood": "proud"
-          }
-        }
-      ]
-    },
-    {
-      "id": "g5-c4-l6",
-      "title": "Bài 6: Hai chuyển động cùng chiều & Ngược chiều",
-      "type": "learn",
-      "description": "Hai xe đi ngược chiều gặp nhau: t = s : (v1 + v2); Hai xe cùng chiều đuổi kịp: t = s : (v1 - v2)",
-      "slides": [
-        {
-          "type": "story",
-          "content": {
-            "mascotMood": "excited",
-            "text": "Bài toán hai chuyển động kinh điển: - Đi NGƯỢC CHIỀU gặp nhau: Mỗi giờ cả 2 xe đi được tổng vận tốc (v1 + v2). Thời gian gặp = s : (v1 + v2)! - Đi CÙNG CHIỀU đuổi kịp: Mỗi giờ xe sau rút ngắn được hiệu vận tốc (v1 - v2). Thời gian đuổi kịp = s : (v1 - v2)! 🚗🚙"
-          }
-        },
-        {
-          type: "visual",
-          content: {
-            "text": "1. Ngược chiều: Thời gian gặp nhau = Khoảng cách ban đầu : (v1 + v2) 2. Cùng chiều (xe sau nhanh hơn đuổi xe trước): Thời gian đuổi kịp = Khoảng cách ban đầu : (v1 - v2)",
-            "motionDiagram": {
-              "mode": "toward",
-              "distance": 150,
-              "unit": "km",
-              "a": {
-                "name": "Xe máy",
-                "speed": 45
-              },
-              "b": {
-                "name": "Ô tô",
-                "speed": 60
-              },
-              "note": "Ngược chiều: gặp nhau sau 150 : (45 + 60) giờ"
-            }
-          },
-        },
-        {
-          type: "visual",
-          content: {
-            "text": "Hai chuyển động cùng chiều & ngược chiều",
-            "table": {
-              "headers": [
-                "Trường hợp",
-                "Công thức thời gian"
-              ],
-              "rows": [
-                [
-                  "Ngược chiều",
-                  "khoảng cách ban đầu : (v1 + v2)"
-                ],
-                [
-                  "Cùng chiều (đuổi kịp)",
-                  "khoảng cách ban đầu : (v1 − v2)"
-                ]
-              ],
-              "label": "Hai chuyển động cùng chiều & ngược chiều"
-            }
-          },
-        },
-        {
-          "type": "quiz",
-          "content": {
-            "question": "Hai thành phố A và B cách nhau 150 km. Ô tô đi từ A với 60 km/h, xe máy đi từ B với 40 km/h khởi hành cùng lúc đi ngược chiều nhau. Sau bao lâu hai xe gặp nhau?",
-            "options": [
-              "1,5 giờ",
-              "2 giờ",
-              "1 giờ",
-              "2,5 giờ"
-            ],
-            "answer": "1,5 giờ",
-            "mascotHint": "Tổng vận tốc = 60 + 40 = 100 km/h. Thời gian gặp = 150 : 100 = 1,5 giờ!",
-            "items": [
-              {
-                "emoji": "🚗",
-                "label": "Ô tô",
-                "count": 1
-              }
-            ]
-          }
-        },
-        {
-          "type": "summary",
-          "content": {
-            "title": "Ghi nhớ công thức hai chuyển động:",
-            "points": [
-              "Ngược chiều gặp nhau: t = s : (v1 + v2)",
-              "Cùng chiều đuổi kịp: t = s : (v1 - v2)"
-            ],
-            "mascotMood": "celebrate"
-          }
-        }
-      ]
-    },
-    {
-      "id": "g5-c4-l7",
-      "title": "Bài 7: Luyện tập số đo thời gian",
-      "type": "learn",
-      "description": "Luyện cộng, trừ, nhân, chia số đo thời gian với hệ đếm 60",
-      "slides": [
-        {
-          "type": "story",
-          "content": {
-            "mascotMood": "happy",
-            "text": "Cộng trừ nhân chia số đo thời gian có một cái bẫy: 1 giờ = 60 phút, 1 phút = 60 giây (không phải 100)! ⏰"
-          }
-        },
-        {
-          "type": "concept",
-          "content": {
-            "table": {
-              "headers": [
-                "Phép tính",
-                "Kết quả"
-              ],
-              "rows": [
-                [
-                  "1 giờ 25 phút × 3",
-                  "4 giờ 15 phút"
-                ],
-                [
-                  "3 giờ 15 phút + 2 giờ 35 phút",
-                  "5 giờ 50 phút"
-                ],
-                [
-                  "1 thế kỉ",
-                  "100 năm"
-                ]
-              ],
-              "label": "Luyện tập số đo thời gian — đơn vị thời gian dùng hệ 60"
+              label: "Thử lại bằng phép cộng",
             },
-            "badge": "Luyện Số Đo Thời Gian",
-            "title": "Nhớ hệ đếm 60",
-            "points": [
-              "1 giờ = 60 phút; 1 phút = 60 giây; 1 ngày = 24 giờ.",
-              "Khi cộng vượt 60 thì đổi lên: 45 phút + 30 phút = 75 phút = 1 giờ 15 phút.",
-              "Khi trừ thiếu thì mượn: 1 giờ 10 phút - 45 phút ⇒ mượn 1 giờ = 60 phút ⇒ 70 - 45 = 25 phút."
-            ],
-            "rule": "Đơn vị thời gian dùng hệ 60 — đừng tính như số thập phân."
-          }
+          },
         },
         {
-          "type": "quiz",
-          "content": {
-            "question": "1 giờ 25 phút + 50 phút = ?",
-            "options": [
-              "2 giờ 15 phút",
-              "1 giờ 75 phút",
-              "2 giờ 5 phút",
-              "1 giờ 15 phút"
-            ],
-            "answer": "2 giờ 15 phút",
-            "mascotHint": "25 + 50 = 75 phút = 1 giờ 15 phút ⇒ 1 giờ + 1 giờ 15 phút = 2 giờ 15 phút!"
-          }
+          type: "quiz",
+          content: {
+            question: "Tính: 8,6 − 2,45 = ?",
+            options: ["6,15", "6,25", "5,15", "6,45"],
+            answer: "6,15",
+            mascotHint: "8,60 − 2,45 = 6,15.",
+          },
         },
         {
-          "type": "summary",
-          "content": {
-            "title": "Ghi nhớ:",
-            "points": [
-              "1 giờ = 60 phút · 1 phút = 60 giây",
-              "Vượt 60 thì đổi lên đơn vị lớn hơn"
+          type: "quiz",
+          content: {
+            question: "Tính: 15 − 3,7 = ?",
+            options: ["11,3", "12,3", "11,7", "18,7"],
+            answer: "11,3",
+            mascotHint: "15,0 − 3,7 = 11,3.",
+          },
+        },
+        {
+          type: "summary",
+          content: {
+            title: "Ghi nhớ bài học:",
+            points: [
+              "Đặt tính thẳng hàng như phép cộng.",
+              "Trừ như số tự nhiên rồi đặt dấu phẩy.",
+              "Thử lại bằng phép cộng.",
             ],
-            "mascotMood": "proud"
-          }
-        }
-      ]
+            mascotMood: "proud",
+          },
+        },
+      ],
     },
     {
-      "id": "g5-c4-l8",
-      "title": "Bài 8: Luyện tập ba bài toán chuyển động",
-      "type": "learn",
-      "description": "Luyện ba công thức vận tốc, quãng đường, thời gian",
-      "slides": [
+      id: "g5-c4-l3",
+      title: "Bài 21: Phép nhân số thập phân",
+      type: "learn",
+      description:
+        "Nhân số thập phân với số tự nhiên và nhân hai số thập phân",
+      slides: [
         {
-          "type": "story",
-          "content": {
-            "mascotMood": "happy",
-            "text": "Ba công thức vận tốc - quãng đường - thời gian là 'tam giác thần kỳ' của toán chuyển động! 🚗"
-          }
+          type: "story",
+          content: {
+            mascotMood: "thinking",
+            text: "Một mét dây nặng 0,25 kg. Vậy 4 mét dây nặng bao nhiêu? 0,25 × 4 = 1 kg. Đếm chữ số ở phần thập phân để đặt dấu phẩy! 🪢",
+          },
         },
         {
           type: "concept",
           content: {
-            "table": {
-              "headers": [
-                "Cần tìm",
-                "Công thức"
+            badge: "Khám Phá",
+            title: "Nhân số thập phân",
+            explanation:
+              "Muốn nhân một số thập phân với một số tự nhiên, ta nhân như nhân các số tự nhiên rồi đếm xem phần thập phân của số thập phân có bao nhiêu chữ số để dùng dấu phẩy tách ở tích bấy nhiêu chữ số kể từ phải sang trái. Nhân hai số thập phân cũng làm như vậy với tổng số chữ số ở phần thập phân của cả hai thừa số.",
+            points: [
+              "0,25 × 4 = 1,00 = 1 (phần thập phân có 2 chữ số).",
+              "2,5 × 3 = 7,5.",
+              "1,2 × 4,5: 12 × 45 = 540, hai thừa số có 2 chữ số ở phần thập phân ⇒ 5,4.",
+            ],
+            rule: "Đếm chữ số ở phần thập phân để đặt dấu phẩy trong tích.",
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Nhân số thập phân",
+            table: {
+              headers: ["Phép tính", "Nhân như số tự nhiên", "Kết quả"],
+              rows: [
+                ["2,5 × 3", "25 × 3 = 75", "7,5"],
+                ["1,2 × 4,5", "12 × 45 = 540", "5,4"],
+                ["0,25 × 4", "25 × 4 = 100", 1],
+                ["3,6 × 2,5", "36 × 25 = 900", 9],
               ],
-              "rows": [
-                [
-                  "Vận tốc",
-                  "v = s : t"
-                ],
-                [
-                  "Quãng đường",
-                  "s = v × t"
-                ],
-                [
-                  "Thời gian",
-                  "t = s : v"
-                ]
-              ],
-              "label": "Luyện tập ba bài toán chuyển động"
+              label: "Tổng số chữ số phần thập phân của hai thừa số = số chữ số ở tích",
             },
-            "badge": "Tam Giác Ba Công Thức",
-            "title": "v · s · t",
-            "points": [
-              "Vận tốc: v = s : t (thường là km/giờ).",
-              "Quãng đường: s = v × t (km).",
-              "Thời gian: t = s : v (giờ).",
-              "Ví dụ: v = 45 km/giờ, t = 3 giờ ⇒ s = 45 × 3 = 135 km."
-            ],
-            "rule": "Nhớ một công thức là suy ra được hai công thức còn lại."
           },
         },
         {
-          type: "concept",
+          type: "quiz",
           content: {
-            "badge": "Tam Giác Ba Công Thức",
-            title: "v · s · t",
-            "motionDiagram": {
-              "mode": "toward",
-              "distance": 90,
-              "unit": "km",
-              "a": {
-                "name": "Xe máy",
-                "speed": 45
-              },
-              "b": {
-                "name": "Xe đạp",
-                "speed": 15
-              },
-              "note": "Cùng quãng đường, vận tốc càng lớn thì thời gian càng nhỏ"
-            }
+            question: "Tính: 1,2 × 4,5 = ?",
+            options: ["5,4", "54", "0,54", "6,4"],
+            answer: "5,4",
+            mascotHint: "12 × 45 = 540; hai thừa số có 2 chữ số phần thập phân ⇒ 5,40 = 5,4.",
           },
         },
         {
-          "type": "quiz",
-          "content": {
-            "question": "Một ô tô đi với vận tốc 45 km/giờ trong 3 giờ. Quãng đường đi được là bao nhiêu?",
-            "options": [
-              "135 km",
-              "15 km",
-              "48 km",
-              "90 km"
-            ],
-            "answer": "135 km",
-            "mascotHint": "s = v × t = 45 × 3 = 135 km!",
-            "items": [
-              {
-                "emoji": "🚗",
-                "label": "Ô tô",
-                "count": 1
-              }
-            ]
-          }
+          type: "quiz",
+          content: {
+            question: "Tính: 3,6 × 2,5 = ?",
+            options: ["9", "90", "0,9", "8,5"],
+            answer: "9",
+            mascotHint: "36 × 25 = 900; hai chữ số phần thập phân ⇒ 9,00 = 9.",
+          },
         },
         {
-          "type": "quiz",
-          "content": {
-            "question": "Quãng đường dài 120 km, một ô tô đi hết 2,5 giờ. Vận tốc của ô tô là bao nhiêu?",
-            "options": [
-              "48 km/giờ",
-              "300 km/giờ",
-              "60 km/giờ",
-              "24 km/giờ"
+          type: "summary",
+          content: {
+            title: "Ghi nhớ bài học:",
+            points: [
+              "Nhân như số tự nhiên trước.",
+              "Đếm chữ số phần thập phân của các thừa số.",
+              "Tách ở tích đúng bấy nhiêu chữ số.",
             ],
-            "answer": "48 km/giờ",
-            "mascotHint": "v = s : t = 120 : 2,5 = 48 km/giờ!",
-            "items": [
-              {
-                "emoji": "🚗",
-                "label": "Ô tô",
-                "count": 1
-              }
-            ]
-          }
+            mascotMood: "proud",
+          },
         },
-        {
-          "type": "summary",
-          "content": {
-            "title": "Ghi nhớ:",
-            "points": [
-              "v = s : t · s = v × t · t = s : v"
-            ],
-            "mascotMood": "proud"
-          }
-        }
-      ]
+      ],
     },
     {
-      "id": "g5-c4-l9",
-      "title": "Bài 9: Luyện tập chung: Số đo thời gian và chuyển động đều",
-      "type": "learn",
-      "description": "Tổng hợp thời gian và toán chuyển động",
-      "slides": [
+      id: "g5-c4-l4",
+      title: "Bài 22: Phép chia số thập phân",
+      type: "learn",
+      description:
+        "Chia số thập phân cho số tự nhiên và chia cho số thập phân",
+      slides: [
         {
-          "type": "story",
-          "content": {
-            "mascotMood": "proud",
-            "text": "Chặng tổng kết chương 4 — bé hãy tổng hợp cả số đo thời gian và toán chuyển động nhé! 🧠"
-          }
+          type: "story",
+          content: {
+            mascotMood: "curious",
+            text: "4,8 lít nước chia đều vào 1,2 chai? Khoan — đề đúng là chia 4,8 lít vào các can 1,2 lít thì được mấy can. 4,8 : 1,2 = 4 can! 🧴",
+          },
         },
         {
           type: "concept",
           content: {
-            "motionDiagram": {
-              "mode": "chase",
-              "distance": 36,
-              "unit": "km",
-              "a": {
-                "name": "Xe máy",
-                "speed": 45
-              },
-              "b": {
-                "name": "Xe đạp",
-                "speed": 15
-              },
-              "note": "Cùng chiều: đuổi kịp sau 36 : (45 − 15) giờ"
+            badge: "Khám Phá",
+            title: "Chia số thập phân",
+            explanation:
+              "Chia số thập phân cho số tự nhiên: chia phần nguyên, đến lượt chia hàng nào thì đặt dấu phẩy ở thương ngay sau hàng đó rồi tiếp tục chia phần thập phân. Khi chia cho số thập phân, ta đếm xem phần thập phân của số chia có bao nhiêu chữ số thì chuyển dấu phẩy của số bị chia sang bên phải bấy nhiêu chữ số rồi bỏ dấu phẩy ở số chia và thực hiện phép chia.",
+            points: [
+              "7,5 : 3 = 2,5.",
+              "4,8 : 1,2 = 48 : 12 = 4.",
+              "12,5 : 0,5 = 125 : 5 = 25.",
+            ],
+            rule: "Chia cho số thập phân: chuyển dấu phẩy của số bị chia sang phải.",
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Chia số thập phân",
+            table: {
+              headers: ["Phép tính", "Đưa về phép chia mới", "Kết quả"],
+              rows: [
+                ["7,5 : 3", "chia phần nguyên, đặt dấu phẩy ở thương", "2,5"],
+                ["4,8 : 1,2", "48 : 12", 4],
+                ["12,5 : 0,5", "125 : 5", 25],
+                ["0,36 : 0,4", "3,6 : 4", "0,9"],
+              ],
+              label: "Số chia có một chữ số phần thập phân ⇒ dịch dấu phẩy một chữ số",
             },
-            "badge": "Ôn Tập Chương 4",
-            "title": "Bốn mảng kiến thức",
-            "points": [
-              "Bảng đơn vị đo thời gian và cách đổi.",
-              "Cộng, trừ, nhân, chia số đo thời gian (hệ đếm 60).",
-              "Ba công thức vận tốc - quãng đường - thời gian.",
-              "Hai chuyển động: ngược chiều t = s : (v1 + v2); cùng chiều t = s : (v1 - v2)."
-            ],
-            "rule": "Đọc kỹ đề để chọn đúng công thức."
           },
         },
         {
-          type: "concept",
+          type: "quiz",
           content: {
-            "badge": "Ôn Tập Chương 4",
-            title: "Luyện tập chung: số đo thời gian và chuyển động đều",
-            "table": {
-              "headers": [
-                "Trường hợp",
-                "Dùng phép"
-              ],
-              "rows": [
-                [
-                  "Ngược chiều",
-                  "cộng hai vận tốc"
-                ],
-                [
-                  "Cùng chiều",
-                  "trừ hai vận tốc"
-                ]
-              ],
-              "label": "Luyện tập chung: số đo thời gian và chuyển động đều"
-            }
+            question: "Tính: 4,8 : 1,2 = ?",
+            options: ["4", "0,4", "40", "5"],
+            answer: "4",
+            mascotHint: "Đưa về 48 : 12 = 4.",
           },
         },
         {
-          "type": "quiz",
-          "content": {
-            "question": "Hai người đi xe đạp ngược chiều nhau từ hai điểm cách nhau 60 km với vận tốc 14 km/giờ và 16 km/giờ. Hỏi sau bao lâu họ gặp nhau?",
-            "options": [
-              "2 giờ",
-              "4 giờ",
-              "3 giờ",
-              "1,5 giờ"
-            ],
-            "answer": "2 giờ",
-            "mascotHint": "Tổng vận tốc = 14 + 16 = 30 km/giờ; t = 60 : 30 = 2 giờ!",
-            "items": [
-              {
-                "emoji": "🚲",
-                "label": "Xe đạp",
-                "count": 1
-              }
-            ]
-          }
+          type: "quiz",
+          content: {
+            question: "Tính: 12,5 : 0,5 = ?",
+            options: ["25", "2,5", "250", "5"],
+            answer: "25",
+            mascotHint: "Số chia 0,5 có 1 chữ số phần thập phân nên 12,5 : 0,5 = 125 : 5 = 25.",
+          },
         },
         {
-          "type": "summary",
-          "content": {
-            "title": "Chúc mừng bé:",
-            "points": [
-              "Bé đã hoàn thành chương 4: Số đo thời gian & Toán chuyển động đều!"
+          type: "summary",
+          content: {
+            title: "Ghi nhớ bài học:",
+            points: [
+              "Chia cho số tự nhiên: đặt dấu phẩy đúng lúc ở thương.",
+              "Chia cho số thập phân: dời dấu phẩy của số bị chia.",
+              "Thử lại: thương × số chia = số bị chia.",
             ],
-            "mascotMood": "celebrate"
-          }
-        }
-      ]
+            mascotMood: "proud",
+          },
+        },
+      ],
     },
     {
-      "id": "g5-c4-l10",
-      "title": "Bài 10: Luyện đề: Toán chuyển động và tỉ số phần trăm",
-      "type": "learn",
-      "description": "Luyện đề tổng hợp chuyển động và phần trăm",
-      "slides": [
+      id: "g5-c4-l5",
+      title: "Bài 23: Nhân, chia số thập phân với 10; 100; 1 000… hoặc với 0,1; 0,01; 0,001…",
+      type: "learn",
+      description:
+        "Nhân, chia nhẩm bằng cách dịch chuyển dấu phẩy",
+      slides: [
         {
-          "type": "story",
-          "content": {
-            "mascotMood": "excited",
-            "text": "Dạng bài 'ăn điểm' trong đề thi: vừa chuyển động vừa phần trăm! Cùng luyện nhé! 🎯"
-          }
+          type: "story",
+          content: {
+            mascotMood: "excited",
+            text: "Nhân với 10, 100, 1 000 thì chỉ cần dời dấu phẩy sang phải! Còn nhân với 0,1; 0,01 thì dời sang trái. Nhanh như chớp mắt! ⚡",
+          },
         },
         {
           type: "concept",
           content: {
-            "table": {
-              "headers": [
-                "Dạng toán",
-                "Ghi nhớ"
+            badge: "Khám Phá",
+            title: "Nhân, chia nhẩm với 10; 100; 1 000… và 0,1; 0,01; 0,001…",
+            explanation:
+              "Nhân một số thập phân với 10, 100, 1 000… ta chỉ việc chuyển dấu phẩy của số đó lần lượt sang bên phải một, hai, ba… chữ số. Chia một số thập phân cho 10, 100, 1 000… ta chuyển dấu phẩy sang bên trái. Nhân với 0,1 chính là chia cho 10, nhân với 0,01 là chia cho 100…",
+            points: [
+              "2,35 × 10 = 23,5; 2,35 × 100 = 235.",
+              "45,6 : 10 = 4,56; 45,6 : 100 = 0,456.",
+              "24 × 0,1 = 2,4 (tức 24 : 10).",
+              "3,5 : 0,01 = 350 (tức 3,5 × 100).",
+            ],
+            rule: "Nhân 10, 100… thì dịch phải; chia 10, 100… thì dịch trái.",
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Nhân, chia nhẩm số thập phân",
+            table: {
+              headers: ["Phép tính", "Dịch dấu phẩy", "Kết quả"],
+              rows: [
+                ["2,35 × 100", "sang phải 2 chữ số", 235],
+                ["45,6 : 10", "sang trái 1 chữ số", "4,56"],
+                ["24 × 0,1", "sang trái 1 chữ số", "2,4"],
+                ["3,5 : 0,01", "sang phải 2 chữ số", 350],
               ],
-              "rows": [
-                [
-                  "Chuyển động",
-                  "v = s : t ; s = v × t ; t = s : v"
-                ],
-                [
-                  "Đổi đơn vị",
-                  "đề cho phút thì đổi ra giờ trước khi tính"
-                ],
-                [
-                  "Phần trăm",
-                  "a × b : 100"
-                ]
-              ],
-              "label": "Luyện đề: toán chuyển động và tỉ số phần trăm"
+              label: "Thiếu chữ số thì viết thêm chữ số 0",
             },
-            "badge": "Đề Luyện Tổng Hợp",
-            "title": "Ba bước làm bài",
-            "steps": [
-              {
-                "title": "Bước 1: Xác định yêu cầu",
-                "desc": "Đề hỏi vận tốc, quãng đường, thời gian hay tỉ số phần trăm?"
-              },
-              {
-                "title": "Bước 2: Viết công thức rồi thay số",
-                "desc": "Viết công thức ra nháp trước khi tính."
-              },
-              {
-                "title": "Bước 3: Kiểm tra",
-                "desc": "Kiểm tra đơn vị và tính lại một lần."
-              }
-            ],
-            "rule": "Đơn vị vận tốc thường là km/giờ — đổi thời gian ra giờ nếu đề cho phút."
           },
         },
         {
-          type: "concept",
+          type: "quiz",
           content: {
-            "badge": "Đề Luyện Tổng Hợp",
-            title: "Ba bước làm bài",
-            "motionDiagram": {
-              "mode": "toward",
-              "distance": 120,
-              "unit": "km",
-              "a": {
-                "name": "Xe máy",
-                "speed": 45
-              },
-              "b": {
-                "name": "Ô tô",
-                "speed": 60
-              },
-              "note": "Đơn vị vận tốc phải khớp đơn vị thời gian"
-            }
+            question: "Tính nhẩm: 2,35 × 100 = ?",
+            options: ["235", "23,5", "2 350", "0,0235"],
+            answer: "235",
+            mascotHint: "Nhân 100 thì dịch dấu phẩy sang phải 2 chữ số: 2,35 → 235.",
           },
         },
         {
-          "type": "quiz",
-          "content": {
-            "question": "Một cửa hàng bán chiếc xe đạp giá 1 200 000 đồng, giảm giá 10%. Hỏi giá sau khi giảm là bao nhiêu?",
-            "options": [
-              "1 080 000 đồng",
-              "1 200 000 đồng",
-              "1 100 000 đồng",
-              "120 000 đồng"
-            ],
-            "answer": "1 080 000 đồng",
-            "mascotHint": "Số tiền giảm = 1 200 000 × 10 : 100 = 120 000 đồng ⇒ giá mới = 1 080 000 đồng!",
-            "items": [
-              {
-                "emoji": "🚲",
-                "label": "Xe đạp",
-                "count": 1
-              }
-            ]
-          }
+          type: "quiz",
+          content: {
+            question: "Tính nhẩm: 45,6 : 100 = ?",
+            options: ["0,456", "4,56", "456", "0,0456"],
+            answer: "0,456",
+            mascotHint: "Chia 100 thì dịch dấu phẩy sang trái 2 chữ số: 45,6 → 0,456.",
+          },
         },
         {
-          "type": "quiz",
-          "content": {
-            "question": "Một người đi bộ với vận tốc 5 km/giờ trong 30 phút. Quãng đường đi được là bao nhiêu?",
-            "options": [
-              "2,5 km",
-              "150 km",
-              "15 km",
-              "10 km"
+          type: "summary",
+          content: {
+            title: "Ghi nhớ bài học:",
+            points: [
+              "× 10; 100; 1 000: dịch dấu phẩy sang phải.",
+              ": 10; 100; 1 000: dịch dấu phẩy sang trái.",
+              "× 0,1 = : 10; × 0,01 = : 100.",
             ],
-            "answer": "2,5 km",
-            "mascotHint": "30 phút = 0,5 giờ; s = 5 × 0,5 = 2,5 km!"
-          }
+            mascotMood: "proud",
+          },
+        },
+      ],
+    },
+    {
+      id: "g5-c4-l6",
+      title: "Bài 24: Luyện tập chung",
+      type: "learn",
+      description:
+        "Luyện tập tổng hợp bốn phép tính với số thập phân",
+      slides: [
+        {
+          type: "story",
+          content: {
+            mascotMood: "excited",
+            text: "Cùng luyện tập cả bốn phép tính với số thập phân để tính toán thành thạo như một “chiếc máy tính nhỏ”! 🤖",
+          },
         },
         {
-          "type": "summary",
-          "content": {
-            "title": "Ghi nhớ:",
-            "points": [
-              "Đổi đơn vị thời gian trước khi tính quãng đường"
+          type: "visual",
+          content: {
+            text: "Bảng tổng hợp bốn phép tính với số thập phân",
+            table: {
+              headers: ["Phép tính", "Ví dụ", "Kết quả"],
+              rows: [
+                ["Cộng", "3,4 + 2,75", "6,15"],
+                ["Trừ", "8,6 − 2,45", "6,15"],
+                ["Nhân", "1,2 × 4,5", "5,4"],
+                ["Chia", "4,8 : 1,2", 4],
+                ["Nhẩm", "2,35 × 100", 235],
+              ],
+              label: "Kiểm tra kết quả bằng phép tính ngược",
+            },
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Tính: 6,25 + 3,75 = ?",
+            options: ["10", "9", "10,5", "9,9"],
+            answer: "10",
+            mascotHint: "6,25 + 3,75 = 10,00 = 10.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Tính: 7,5 : 2,5 = ?",
+            options: ["3", "0,3", "30", "2,5"],
+            answer: "3",
+            mascotHint: "Đưa về 75 : 25 = 3.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Tính nhẩm: 3,5 : 0,01 = ?",
+            options: ["350", "0,35", "35", "3 500"],
+            answer: "350",
+            mascotHint: "Chia cho 0,01 tức nhân 100: 3,5 × 100 = 350.",
+          },
+        },
+        {
+          type: "summary",
+          content: {
+            title: "Ghi nhớ bài học:",
+            points: [
+              "Đặt dấu phẩy đúng vị trí trong mỗi phép tính.",
+              "Tính nhẩm bằng cách dịch dấu phẩy.",
+              "Kiểm tra lại bằng phép tính ngược.",
             ],
-            "mascotMood": "proud"
-          }
-        }
-      ]
-    }
-  ]
+            mascotMood: "proud",
+          },
+        },
+      ],
+    },
+  ],
 };

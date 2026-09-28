@@ -1,0 +1,31 @@
+9S E19 U9PS
+
+ở)
+
+20U-PA-XEp/UI02'D9OIJIE]SO|Q
+
+Đội Một trồng được 60 cây, Làm thế nào đề biết cả ba đội
+đội Hai hơn đội Một 20 cây, trồng được bao nhiêu cây?
+đội Ba ít hơn đội Hai 10 cây.
+
+Ta có thể làm theo ba bước tính:
+— Tìm số cây của đội Hai.
+
+— Tìm số cây của đội Ba.
+
+~— Tìm tông số cây của ba đội.
+
+Tóm tắt Bài giải.
+
+60 cây Số cây đội Hai trồng được là:
+'60 + 20 = 80 (cây)
+
+20 cây :
+Đ6i2: > 2 cây _ Số cây đội Ba trồng được là:
+
+10 cây
+
+80-—10=70 (cây)
+Só cây cả ba đội trồng được là:
+80+ 0
+

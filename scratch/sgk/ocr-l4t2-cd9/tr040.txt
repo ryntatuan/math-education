@@ -1,0 +1,47 @@
+1u” qoPg
+
+1) 9S E
+
+20U-PA-XEp/UI02'D9OIJIE]SO|Q
+
+Mai vừa thực hiện một cuộc khảo sát về môn thẻ thao yêu thích nhất của
+mỗi bạn trong nhóm và ghi lại kết quả vào bảng số liệu như sau:
+
+Mônthểthao Bóng đá Bóng rồ Bơi
+Kiểmđém = [ ] ƯìI L
+Số bạn 4 6 2
+
+Rô-bót vẽ biểu đồ cột biểu diễn số liệu mà Mai đã thu thập được.
+
+SÓ BẠN YÊU THÍCH MỖI MÔN THÉ THAO
+
+(Bạn)
+
+6 s Hàng dưới ghi tên của các
+
+' môn thẻ thao.
+
+H s Các số ghi ở bên trái của
+biểu đò chỉ số bạn.
+
+3 s Mối cột biểu diễn số bạn yêu
+
+2 thích môn thẻ thao đó.
+
+1 s Số ghi ở đỉnh cột chỉ số bạn
+
+0 biểu diễn ở cột đó.
+
+Bóng Bóng Bơi (Môn
+đá rổ thể thao)
+Biểu đỏ trên cho biết:
+
+s_ Ba môn thể thao được nêu tên trên biểu đỏ là: bóng đá, bóng rồ, bơi.
+
+° Số bạn yêu thích bóng đá là 4 bạn, bóng rỏ là 6 bạn và bơi là 2 bạn.
+
+s Cột cao hơn biểu diễn số bạn nhiều hơn, cột thắp hơn biểu diễn só
+bạn Ít hơn.
+
+39
+

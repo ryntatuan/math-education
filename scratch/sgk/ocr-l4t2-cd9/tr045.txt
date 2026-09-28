@@ -1,0 +1,28 @@
+1u” qoPg
+
+1) 9S E
+
+20U-PA-XEp/UI02'D9OIJIE]SO|Q
+
+Blogra
+
+b) Lấy 1 quả bóng ra khỏi hộp, quan sát màu, ghi lại kết quả vào bảng
+kiểm đếm rồi trả lại bóng vào hộp. Thực hiện 10 lằn như vậy.
+
+Bóng xanh 3
+Bóng vàng ?
+
+c) Dựa vào bảng kiểm đếm, trả lời câu hỏi.
+
+s Có bao nhiêu lằn lầy được bóng xanh? Có bao nhiêu làn lắy được
+bóng vàng?
+
+s Sự kiện nào xuất hiện nhiều làn hơn?
+
+@©Hay giúp thỏ di chuyển bằng cách gieo hai xúc xắc và tính tích số chám
+ở các mặt trên của xúc xắc.
+
+s Nếu kết quả nhận được là số chẵn thì thỏ Chẵn được tiền thêm 1 ô.
+s Nếu kết quả nhận được là số lẻ thì thỏ Lẻ được tiền thêm 1 ô.
+Thực hiện như vậy, hỏi chú thỏ nào đến đích trước?
+

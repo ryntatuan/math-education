@@ -3,7 +3,7 @@
  *
  * VÌ SAO CÓ FILE NÀY. Người dùng gửi ảnh slide "Làm quen" Lớp 1 Bài 1 (2026-09-27) và chỉ đúng
  * chỗ sai: ô nhấn mạnh chỉ nhắc lại y hệt danh sách ngay dưới nó, rồi slide sau nói lần thứ ba.
- * Lỗi này là một HỌ, rải khắp 5 lớp, mắt người không soi hết 2 814 slide được — nên phải so bằng máy.
+ * Lỗi này là một HỌ, rải khắp 5 lớp, mắt người không soi hết 3 149 slide được — nên phải so bằng máy.
  *
  * ⚠️ CĂN LỀ KHÔNG QUYẾT ĐỊNH Ở ĐÂY. Căn lề theo VAI TRÒ của khối, viết thẳng trong CSS
  * (`pages/LessonPage.css`, mục "LUẬT CĂN LỀ") và được cổng tĩnh canh. Trước đây tôi định cho

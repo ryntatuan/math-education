@@ -1,0 +1,25 @@
+1u” qoPg
+
+1) 9S E
+
+20U-PA-XEp/UI02'D9OIJIE]SO|Q
+
+Hình dưới đây có Í? góc nhọn, | ? ¡ góc vuông, (? góc tù, [? góc bẹt.
+A
+
+GIẢI KỮUIKHUNG[LONG]
+
+Cách chơi:
+* Chơi theo cặp đôi hoặc 2 đội chơi.
+
+* Người chơi xuất phát ở một ô có hình trứng khủng long. Khi đến lượt,
+người chơi gieo xúc xắc. Nếu nhận được mặt có số chấm là số lẻ
+thì tiến 1 ô; nếu nhận được mặt có số chấm là số chẵn thì tiền 2 ô.
+Dừng lại ở ô nào, người chơi đọc giờ rồi xác định góc được tạo bởi kim
+giờ và kim phút của đồng hồ ở ô đó là “góc nhọn”, "góc vuông”, “góc tù"
+hay "góc bẹt'. Nếu nêu đúng thì được ở lại, nếu nêu sai thì quay về ô
+xuất phát trước đó.
+
+* Trò chơi kết thúc khi có một người chơi đến được một trong hai ô
+màu xanh.
+
