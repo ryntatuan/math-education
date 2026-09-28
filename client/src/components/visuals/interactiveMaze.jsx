@@ -171,36 +171,6 @@ export function MazePath({
     setMsg("Bé đã bỏ ô cuối — nối lại nhé.");
   };
 
-  const reset = () => {
-    setPath([[0, 0]]);
-    setWrong(null);
-    setSolved(false);
-    setMsg(
-      "Bé bấm ô NGAY CẠNH 🏫 để bắt đầu nối đường về nhà. Bấm lại một ô xanh để bỏ từ ô đó về sau.",
-    );
-  };
-
-  const btn = (label, onClick, disabled) => (
-    <button
-      type="button"
-      onClick={onClick}
-      disabled={disabled}
-      style={{
-        minHeight: 44,
-        padding: "0 14px",
-        fontSize: 13,
-        fontWeight: 800,
-        borderRadius: 12,
-        border: "2px solid #7c3aed",
-        background: disabled ? "#f1f5f9" : "#ede9fe",
-        color: disabled ? "#94a3b8" : "#5b21b6",
-        cursor: disabled ? "default" : "pointer",
-      }}
-    >
-      {label}
-    </button>
-  );
-
   return (
     <div style={CARD_STYLE}>
       <svg
@@ -320,8 +290,51 @@ export function MazePath({
         <span style={{ fontWeight: 800, fontSize: 14, color: "#0369a1" }}>
           Đã nối: {path.length} ô
         </span>
-        {btn("Bỏ ô cuối", undo, path.length <= 1)}
-        {btn("Làm lại", reset, false)}
+        <span style={{ fontSize: 12.5, color: M.soft }}>
+          · bấm ô xanh để lùi
+        </span>
+        {/**
+         * MỘT nút duy nhất — “Bỏ ô cuối”. Người dùng yêu cầu 2026-09-29: nút “Làm lại” là THỪA
+         * (“bé chỉ cần bỏ ô cuối từ từ là sẽ về lại ô đầu tiên”) và hai nút to nằm cạnh nhau
+         * làm khối điều khiển nặng hơn cả hình.
+         * Muốn lùi NHIỀU bước thì bé bấm vào Ô XANH bất kỳ để lùi về ô đó (đã có từ 2026-09-25),
+         * nên không cần nút “Làm lại”: chính dòng gợi ý trên nhắc đúng thao tác đó.
+         */}
+        <button
+          type="button"
+          onClick={undo}
+          disabled={path.length <= 1}
+          title="Bỏ ô cuối"
+          aria-label="Bỏ ô cuối"
+          style={{
+            width: 40,
+            height: 40,
+            display: "inline-flex",
+            alignItems: "center",
+            justifyContent: "center",
+            borderRadius: 999,
+            border: "2px solid #7c3aed",
+            background: path.length <= 1 ? "#f1f5f9" : "#ede9fe",
+            color: path.length <= 1 ? "#94a3b8" : "#5b21b6",
+            cursor: path.length <= 1 ? "default" : "pointer",
+          }}
+        >
+          {/** Mũi tên lùi — vẽ NỘI TUYẾN cho khỏi kéo thêm thư viện icon vào mảnh hình này. */}
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M9 14 4 9l5-5" />
+            <path d="M4 9h10a6 6 0 0 1 0 12h-3" />
+          </svg>
+        </button>
       </div>
     </div>
   );

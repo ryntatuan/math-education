@@ -548,14 +548,22 @@
   justify-self: center;
 }
 
-/* NGOẠI LỆ: hàng 3 ô chỉ chứa KÝ HIỆU rất ngắn (>, <, =) — ký hiệu đối xứng nên GIỮ căn GIỮA.
-   Đây là ngoại lệ DUY NHẤT của luật “đáp án căn trái”: nó không phải câu chữ để đọc. */
+/* NGOẠI LỆ: hàng 3 ô chỉ chứa KÝ HIỆU rất ngắn (>, <, =) — ký hiệu đối xứng nên NỘI DUNG giữ
+   căn GIỮA. Đây là ngoại lệ DUY NHẤT của luật “đáp án căn trái”: nó không phải câu chữ để đọc.
+
+   🔴 NGOẠI LỆ CHỈ ÁP CHO NỘI DUNG, KHÔNG áp cho vòng tròn A/B/C/D. Bản cũ để
+   `justify-content: center` ở đây nên **cả cụm** (vòng tròn + ký hiệu) trôi vào giữa ô — người
+   dùng gửi ảnh báo 2026-09-29: *“phương án A, B, C, D chọn luôn căn trái, nội dung đáp án thì có
+   thể cân nhắc căn giữa, nếu phương án cũng căn giữa thì rất xấu”*. Nay vòng tròn nằm ở CỘT 1
+   (mép trái) vì `.quiz-option` là lưới ba cột, chỉ ký hiệu ở cột 2 là canh giữa.
+   ⚠️ Hàng này dùng HAI CỘT BÊN BẰNG NHAU (32px · 32px) — khác `.quiz-option` gốc (cột 3 `auto`)
+   — vì ký hiệu `>`, `<`, `=` phải canh giữa theo ĐÚNG bề rộng của ô: lệch một bên là bé thấy
+   ngay. Cột 1 vẫn giữ vòng tròn ở mép TRÁI. */
 .quiz-options-3 .quiz-option {
-  justify-content: center;
+  grid-template-columns: 32px minmax(0, 1fr) 32px;
   text-align: center;
 }
 .quiz-options-3 .quiz-option-text {
-  flex: 0 1 auto;
   text-align: center;
 }
 
@@ -565,11 +573,19 @@
    nên so sánh theo chiều dọc được ngay. Xem `utils/answerAlignment.js` để biết khi nào một
    đáp án được coi là “chữ”. */
 .quiz-option {
-  display: flex;
+  /* 🔴 LƯỚI BA CỘT: cột 1 = vòng tròn A/B/C/D ⇒ **LUÔN ở mép TRÁI**, cột 2 = nội dung, cột 3 = cờ
+     ✔/✗. Người dùng chốt 2026-09-29: “phương án A, B, C, D chọn luôn căn trái, nội dung đáp án
+     thì có thể cân nhắc căn giữa, nếu phương án cũng căn giữa thì rất xấu”.
+     ⚠️ Cột 3 để `auto` (KHÔNG phải 32px): đáp án CHỮ ở đây căn TRÁI, nên chừa sẵn 32px bên phải
+     là bó hẹp vô ích — ĐO ĐƯỢC (2026-09-29): đáp án “Có, vì 90 thùng chỉ nặng 90 kg” bị đẩy
+     xuống 2 dòng ở màn 390 px khi chừa 16 px trở lên, còn `auto` (0 px khi chưa có cờ) thì vẫn 1
+     dòng như trước. Hàng 3 ký hiệu (>, <, =) cần ĐỐI XỨNG thật thì xem ngoại lệ bên dưới. */
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr) auto;
   align-items: center;
   justify-content: flex-start;
   text-align: left;
-  gap: 10px;
+  column-gap: 10px;
   padding: clamp(14px, 2vw, 20px) clamp(16px, 2.5vw, 24px);
   background: #f8fafc;
   border: 2.5px solid #cbd5e1;
@@ -620,8 +636,8 @@
 
 .quiz-option-text {
   font-family: var(--font-heading);
-  /* `flex: 1` để ngọn cờ ✔/✗ đẩy ra mép phải, còn CHỮ vẫn bắt đầu ở cùng một mốc ⇒ căn trái. */
-  flex: 1 1 auto;
+  /* Cột giữa của lưới đã là `1fr` nên khối chữ tự giãn hết chỗ trống; ngọn cờ ✔/✗ nằm ở CỘT 3
+     (mép phải), còn CHỮ vẫn bắt đầu ở cùng một mốc (ngay sau vòng tròn) ⇒ căn trái. */
   text-align: left;
   /* Đoạn chữ DÀI trong ô hẹp: `min-width: 0` để flex cho phép xuống dòng (mặc định `auto` sẽ
      đội ô rộng ra), `pretty` tránh dòng cuối chỉ còn một chữ, `anywhere` là lưới an toàn cho

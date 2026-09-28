@@ -200,6 +200,75 @@
   border-color: var(--color-success-light);
 }
 
+/* ========================================
+   CHAPTER DETAIL PAGE — ĐIỆN THOẠI (≤ 640px)
+   ========================================
+   🔴 Người dùng báo 2026-09-29 (ảnh chụp màn hình điện thoại): danh sách bài học “quá xấu”.
+   Nguyên nhân ĐO ĐƯỢC ở màn 390 px: `.lesson-card-inner` là flex MỘT HÀNG nên khối chữ chỉ còn
+   **156,6 px** (44 % bề rộng thẻ) ⇒ tiêu đề 2 dòng, MÔ TẢ 4 DÒNG, còn nút “Bắt đầu” chiếm một
+   cột riêng 89 px bên phải. Nay: số thứ tự + tiêu đề + mô tả chiếm TRỌN bề rộng còn lại, nút
+   “Bắt đầu” xuống hàng dưới và GIÃN HẾT bề rộng ⇒ chữ thở được và nút cũng dễ bấm hơn.
+   Bản máy tính (> 640 px) KHÔNG đổi: vẫn một hàng, mọi số đo cũ giữ nguyên. */
+@media (max-width: 640px) {
+  .chapter-detail-page {
+    gap: var(--space-4);
+  }
+
+  .chapter-detail-title {
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .chapter-detail-icon {
+    width: 44px;
+    height: 44px;
+    font-size: 1.25rem;
+  }
+
+  .chapter-detail-title h1 {
+    font-size: 1.15rem;
+    line-height: 1.35;
+  }
+
+  .chapter-detail-title p {
+    font-size: 0.85rem;
+    line-height: 1.45;
+  }
+
+  .lessons-list {
+    gap: var(--space-2);
+  }
+
+  .lesson-card-inner {
+    display: grid;
+    grid-template-columns: 40px minmax(0, 1fr);
+    grid-template-areas:
+      "num  info"
+      "act  act";
+    column-gap: 12px;
+    row-gap: 10px;
+    align-items: start;
+    padding: 14px;
+  }
+
+  .lesson-number {
+    grid-area: num;
+  }
+
+  .lesson-info {
+    grid-area: info;
+  }
+
+  .lesson-action {
+    grid-area: act;
+  }
+
+  /* Nút “Bắt đầu / Học lại” giãn hết bề rộng thẻ: bấm dễ hơn hẳn so với ô 89×38 px cũ. */
+  .lesson-action button {
+    width: 100%;
+  }
+}
+
 /* Empty state */
 .page-empty {
   display: flex;
@@ -212,6 +281,7 @@
   color: var(--color-text-secondary);
 }
 
-.page-empty h2, .page-empty h3 {
+.page-empty h2,
+.page-empty h3 {
   color: var(--color-text);
 }

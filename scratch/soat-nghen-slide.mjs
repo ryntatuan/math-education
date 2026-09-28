@@ -31,11 +31,7 @@ const BAO_QUA_INTERACTIVE = new Set([
 /** Kiểu BÁO qua `answerFeedback`. */
 const BAO_QUA_FEEDBACK = new Set(["quiz"]);
 /** Kiểu `LessonPage` COI như phải trả lời (khớp hằng `PHAI_TRA_LOI`). */
-const PHAI_TRA_LOI = new Set([
-  "quiz",
-  "dialogue",
-  ...BAO_QUA_INTERACTIVE,
-]);
+const PHAI_TRA_LOI = new Set(["quiz", "dialogue", ...BAO_QUA_INTERACTIVE]);
 
 let soSlide = 0;
 const demKieu = new Map();

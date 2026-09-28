@@ -14,7 +14,9 @@ const daNap = new Map();
 const layDu = async (lop) => {
   if (daNap.has(lop)) return daNap.get(lop);
   const [file, key] = NGUON[lop];
-  const mod = await import(new URL(`../client/src/data/${file}`, import.meta.url));
+  const mod = await import(
+    new URL(`../client/src/data/${file}`, import.meta.url)
+  );
   daNap.set(lop, mod[key]);
   return mod[key];
 };

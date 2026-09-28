@@ -3305,22 +3305,74 @@ await test(
         `${selector} phải căn TRÁI (đáp án trắc nghiệm — người dùng chốt 2026-09-28)`,
       );
     }
+    /**
+     * 🔴 VÒNG TRÒN A/B/C/D **LUÔN Ở MÉP TRÁI** — chỉ NỘI DUNG mới được cân nhắc căn giữa.
+     * Người dùng báo bằng ảnh 2026-09-29: *“phương án A, B, C, D chọn luôn căn trái, nội dung đáp
+     * án thì có thể cân nhắc căn giữa, nếu phương án cũng căn giữa thì rất xấu”* — ảnh là hàng 3 ô
+     * `>`, `<`, `=` mà **cả cụm** (vòng tròn + ký hiệu) bị đẩy vào giữa ô.
+     * Cách làm: ô đáp án là LƯỚI BA CỘT, hai cột hai bên CÙNG bề rộng ⇒ cột 1 giữ vòng tròn ở mép
+     * trái, cột 2 là nội dung (canh giữa theo đúng bề rộng của ô), cột 3 dành cho cờ ✔/✗.
+     * Cùng luật ở trang Luyện tập để hai màn hình không lệch nhau.
+     */
+    const COT_DAU_CO_DINH =
+      /grid-template-columns:\s*\d+px\s+minmax\(0,\s*1fr\)/;
+    const DOI_XUNG =
+      /grid-template-columns:\s*(\d+)px\s+minmax\(0,\s*1fr\)\s+\1px/;
+
+    // Canary HAI VẾ: bản flex + `justify-content: center` (đúng mã đã gây lỗi) phải BỊ BẮT, còn
+    // bản lưới ba cột phải ĐƯỢC ĐI. Chỉ vế (1) thì một regex bắt-mọi-thứ vẫn xanh.
     assert(
-      khoiCua(css, ".quiz-option").some((b) =>
-        /justify-content:\s*flex-start/.test(b),
+      !COT_DAU_CO_DINH.test(
+        ".quiz-option {\n  display: flex;\n  justify-content: center;\n}\n",
       ),
-      ".quiz-option phải `justify-content: flex-start` — nếu không, vòng tròn A/B/C/D và chữ vẫn bị đẩy ra giữa",
+      "canary: khối giả dùng flex + căn giữa mà cổng vẫn cho qua ⇒ cổng đang vô hiệu",
+    );
+    assert(
+      COT_DAU_CO_DINH.test(
+        ".quiz-option {\n  display: grid;\n  grid-template-columns: 32px minmax(0, 1fr) auto;\n}\n",
+      ),
+      "canary: khối giả dùng lưới có cột đầu cố định mà cổng báo hỏng ⇒ cổng bắt nhầm",
+    );
+    assert(
+      !DOI_XUNG.test(
+        ".quiz-option {\n  grid-template-columns: 32px minmax(0, 1fr) auto;\n}\n",
+      ),
+      "canary: cột 3 `auto` mà cổng ĐỐI XỨNG cho qua ⇒ hai luật lẫn nhau",
+    );
+    assert(
+      DOI_XUNG.test(
+        ".quiz-options-3 .quiz-option {\n  grid-template-columns: 32px minmax(0, 1fr) 32px;\n}\n",
+      ),
+      "canary: khối đối xứng thật mà cổng báo hỏng ⇒ cổng bắt nhầm",
     );
 
-    /** NGOẠI LỆ: hàng 3 ô chỉ chứa KÝ HIỆU ngắn (>, <, =) — ký hiệu đối xứng ⇒ GIỮ căn giữa. */
+    const khoiQuizOption = khoiCua(css, ".quiz-option");
+    assert(
+      khoiQuizOption.some(
+        (b) => /display:\s*grid/.test(b) && COT_DAU_CO_DINH.test(b),
+      ),
+      ".quiz-option phải là LƯỚI với CỘT ĐẦU CỐ ĐỊNH (`display: grid` + `grid-template-columns: 32px minmax(0, 1fr) …`) — cột đầu giữ vòng tròn A/B/C/D ở mép TRÁI; nếu không, nhãn lại bị đẩy vào giữa cùng nội dung (lỗi người dùng báo 2026-09-29)",
+    );
+
+    /**
+     * NGOẠI LỆ: hàng 3 ô chỉ chứa KÝ HIỆU ngắn (>, <, =) — NỘI DUNG giữ căn giữa, và muốn canh
+     * giữa ĐÚNG thì hai cột hai bên phải BẰNG NHAU (cột 3 `auto` sẽ làm ký hiệu lệch phải ~21 px).
+     */
     const khoi3 = khoiCua(css, ".quiz-options-3 .quiz-option");
     assert(khoi3.length > 0, "thiếu khối CSS `.quiz-options-3 .quiz-option`");
     assert(
-      khoi3.some(
-        (b) =>
-          /justify-content:\s*center/.test(b) && /text-align:\s*center/.test(b),
+      !khoi3.some((b) => /justify-content:\s*center/.test(b)),
+      "`.quiz-options-3 .quiz-option` KHÔNG được `justify-content: center` — chính dòng đó đẩy vòng tròn A/B/C/D vào giữa ô (lỗi người dùng báo 2026-09-29)",
+    );
+    assert(
+      khoi3.some((b) => DOI_XUNG.test(b)),
+      "`.quiz-options-3 .quiz-option` phải có HAI CỘT HAI BÊN BẰNG NHAU (`32px minmax(0, 1fr) 32px`) — ký hiệu >, <, = mới canh giữa đúng được",
+    );
+    assert(
+      khoiCua(css, ".quiz-options-3 .quiz-option-text").some((b) =>
+        /text-align:\s*center/.test(b),
       ),
-      ".quiz-options-3 .quiz-option phải GIỮ căn giữa (ô chỉ chứa ký hiệu >, <, =)",
+      ".quiz-options-3 .quiz-option-text phải GIỮ căn giữa (ô chỉ chứa ký hiệu >, <, =)",
     );
 
     /**
@@ -3370,6 +3422,13 @@ await test(
       ).some((b) => /text-align:\s*left/.test(b)),
       "`.practice-opt-btn.is-text-answer .opt-val-text` phải căn TRÁI — thiếu vế này thì chữ vẫn canh giữa",
     );
+    /** Nhãn A/B/C/D ở Luyện tập cũng phải nằm ở mép TRÁI — cùng luật với `.quiz-option`. */
+    assert(
+      khoiCua(practiceCss, ".practice-opt-btn").some(
+        (b) => /display:\s*grid/.test(b) && COT_DAU_CO_DINH.test(b),
+      ),
+      ".practice-opt-btn phải là LƯỚI với CỘT ĐẦU CỐ ĐỊNH như `.quiz-option` — nhãn A/B/C/D ở Luyện tập cũng phải nằm ở mép TRÁI",
+    );
 
     /** Tiêu đề · câu hỏi · nhãn ⇒ GIỮ CĂN GIỮA (cổng phải chặn được cả hai chiều). */
     const giuGiua = [".concept-title", ".quiz-question"];
@@ -3415,7 +3474,7 @@ await test(
     );
 
     return {
-      detail: `${canTrai.length + 2} khối căn trái (gồm đáp án trắc nghiệm) · ${giuGiua.length} khối giữ căn giữa · bảng theo cột ✓`,
+      detail: `${canTrai.length + 2} khối căn trái (gồm đáp án trắc nghiệm) · ${giuGiua.length} khối giữ căn giữa · bảng theo cột ✓ · nhãn A/B/C/D ở mép trái (lưới 3 cột, canary 2 vế) · canary đọc khối CSS ✓`,
     };
   },
 );

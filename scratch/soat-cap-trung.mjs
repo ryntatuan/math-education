@@ -12,12 +12,17 @@ const NGUON = [
   ["grade5Data.js", "grade5Data"],
 ];
 
-const chuan = (v) => String(v ?? "").trim().replace(/\s+/g, " ");
+const chuan = (v) =>
+  String(v ?? "")
+    .trim()
+    .replace(/\s+/g, " ");
 let soBai = 0;
 let loi = 0;
 
 for (const [file, key] of NGUON) {
-  const mod = await import(new URL(`../client/src/data/${file}`, import.meta.url));
+  const mod = await import(
+    new URL(`../client/src/data/${file}`, import.meta.url)
+  );
   const g = mod[key];
   for (const ch of g.chapters ?? [])
     for (const b of ch.lessons ?? [])

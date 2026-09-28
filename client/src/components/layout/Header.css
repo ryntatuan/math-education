@@ -32,9 +32,9 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  font-family: 'Quicksand', var(--font-heading), sans-serif;
+  font-family: "Quicksand", var(--font-heading), sans-serif;
   font-size: 1.15rem;
-  color: #4A5568;
+  color: #4a5568;
 }
 
 .header-greeting-sparkle {
@@ -43,7 +43,7 @@
 }
 
 .header-greeting-text strong {
-  color: #10B981;
+  color: #10b981;
   font-weight: 800;
 }
 
@@ -96,7 +96,7 @@
   border-radius: 999px;
   font-weight: 700;
   font-size: 0.92rem;
-  font-family: 'Quicksand', var(--font-heading), sans-serif;
+  font-family: "Quicksand", var(--font-heading), sans-serif;
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   white-space: nowrap;
@@ -151,7 +151,7 @@
   border-radius: 999px;
   font-weight: 700;
   font-size: 0.88rem;
-  font-family: 'Quicksand', var(--font-heading), sans-serif;
+  font-family: "Quicksand", var(--font-heading), sans-serif;
   cursor: pointer;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
   transition: all 0.2s ease;
@@ -321,6 +321,17 @@
   }
 }
 
+@media (max-width: 640px) {
+  /* 🔴 BỎ HẲN CHIP “Khách” TRÊN ĐIỆN THOẠI (người dùng yêu cầu 2026-09-29):
+     *“vừa hiện Đăng nhập vừa hiện logo có chữ Khách làm tốn diện tích và khó nhìn, hãy bỏ chữ
+     Khách và chỉ giữ logo cùng nút Đăng nhập google”*.
+     Trên điện thoại hàng đầu trang chỉ còn LOGO + nút ĐĂNG NHẬP. Không mất đường vào Hồ sơ:
+     thanh điều hướng dưới cùng luôn có tab “Hồ sơ” (và ở máy tính bảng ≥ 641 px chip này vẫn
+     hiện vì còn đủ chỗ). */
+  .header-profile-pill.header-profile-guest {
+    display: none !important;
+  }
+}
 
 @media (max-width: 380px) {
   .header {
@@ -388,4 +399,3 @@
     font-size: 0.85rem;
   }
 }
-
