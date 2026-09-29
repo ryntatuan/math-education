@@ -66,6 +66,32 @@ export const g3c6 = {
           }
         },
         {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 3,
+              "right": 3,
+              "sign": "×",
+              "remember": true
+            },
+            "text": "Bé tự đặt tính: 3 × 3\nhàng đơn vị 3 × 3 = 9, viết 9\nVậy 3 × 3 = 9."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "2 × 2 bằng bao nhiêu?",
+            "options": [
+              3,
+              4,
+              5,
+              6
+            ],
+            "answer": 4,
+            "mascotHint": "hàng đơn vị 2 × 2 = 4, viết 4. Kết quả 4."
+          }
+        },
+        {
           "type": "quiz",
           "content": {
             "question": "213 × 3 bằng bao nhiêu?",
@@ -156,6 +182,32 @@ export const g3c6 = {
               ],
               "label": "216 × 3: 6 × 3 = 18 viết 8 nhớ 1; 1 × 3 = 3 thêm 1 = 4"
             }
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 6,
+              "right": 3,
+              "sign": "×",
+              "remember": true
+            },
+            "text": "Bé tự đặt tính: 6 × 3\nhàng đơn vị 6 × 3 = 18, viết 8 nhớ 1\ncòn nhớ 1 ở hàng cao hơn, viết 1\nVậy 6 × 3 = 18."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "4 × 3 bằng bao nhiêu?",
+            "options": [
+              2,
+              11,
+              12,
+              13
+            ],
+            "answer": 12,
+            "mascotHint": "hàng đơn vị 4 × 3 = 12, viết 2 nhớ 1. Kết quả 12."
           }
         },
         {
@@ -256,6 +308,60 @@ export const g3c6 = {
               ],
               "label": "639 : 3: 6 : 3 = 2; 3 : 3 = 1; 9 : 3 = 3"
             }
+          }
+        },
+        {
+          "type": "concept",
+          "content": {
+            "badge": "Cách Học",
+            "title": "Bốn bước làm một bài toán",
+            "explanation": "Mọi bài bài toán có lời văn đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            "points": [
+              "Bước 1 — Đọc kỹ đề, gạch dưới các SỐ và từ khoá (thêm, bớt, gấp, chia đều).",
+              "Bước 2 — Tóm tắt đề bằng hình hoặc bằng câu ngắn: đã có gì, cần tìm gì.",
+              "Bước 3 — Chọn phép tính: “thêm, gộp, tất cả” → cộng; “bớt, cho đi, còn lại” → trừ; “gấp mấy lần” → nhân.",
+              "Bước 4 — Đặt tính rồi tính, rồi VIẾT ĐÁP SỐ kèm đơn vị và thử lại bằng phép ngược."
+            ]
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "table": {
+              "headers": [
+                "Điều cần nhớ",
+                "Nội dung"
+              ],
+              "rows": [
+                [
+                  "Đơn vị",
+                  "đáp số luôn kèm đơn vị như con, quả, kg, cm"
+                ],
+                [
+                  "Kiểm tra",
+                  "cộng thì lấy kết quả trừ đi một số hạng"
+                ],
+                [
+                  "Câu trả lời",
+                  "viết đủ câu, không chỉ ghi số"
+                ]
+              ]
+            },
+            "text": "Bảng nhớ nhanh — bài toán có lời văn\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Giải một bài toán có lời văn, bé làm gì TRƯỚC TIÊN?",
+            "options": [
+              "Đọc kỹ đề và gạch dưới các số đã cho",
+              "Viết ngay đáp số",
+              "Đoán kết quả",
+              "Đặt tính trước khi đọc đề"
+            ],
+            "answer": "Đọc kỹ đề và gạch dưới các số đã cho",
+            "mascotHint": "Chưa đọc kỹ đề thì chưa biết đề cho gì, hỏi gì — mọi bước sau đều dễ sai."
           }
         },
         {
@@ -371,6 +477,60 @@ export const g3c6 = {
           }
         },
         {
+          "type": "concept",
+          "content": {
+            "badge": "Cách Học",
+            "title": "Bốn bước làm một bài toán",
+            "explanation": "Mọi bài bài toán có lời văn đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            "points": [
+              "Bước 1 — Đọc kỹ đề, gạch dưới các SỐ và từ khoá (thêm, bớt, gấp, chia đều).",
+              "Bước 2 — Tóm tắt đề bằng hình hoặc bằng câu ngắn: đã có gì, cần tìm gì.",
+              "Bước 3 — Chọn phép tính: “thêm, gộp, tất cả” → cộng; “bớt, cho đi, còn lại” → trừ; “gấp mấy lần” → nhân.",
+              "Bước 4 — Đặt tính rồi tính, rồi VIẾT ĐÁP SỐ kèm đơn vị và thử lại bằng phép ngược."
+            ]
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "table": {
+              "headers": [
+                "Điều cần nhớ",
+                "Nội dung"
+              ],
+              "rows": [
+                [
+                  "Đơn vị",
+                  "đáp số luôn kèm đơn vị như con, quả, kg, cm"
+                ],
+                [
+                  "Kiểm tra",
+                  "cộng thì lấy kết quả trừ đi một số hạng"
+                ],
+                [
+                  "Câu trả lời",
+                  "viết đủ câu, không chỉ ghi số"
+                ]
+              ]
+            },
+            "text": "Bảng nhớ nhanh — bài toán có lời văn\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Giải một bài toán có lời văn, bé làm gì TRƯỚC TIÊN?",
+            "options": [
+              "Đọc kỹ đề và gạch dưới các số đã cho",
+              "Viết ngay đáp số",
+              "Đoán kết quả",
+              "Đặt tính trước khi đọc đề"
+            ],
+            "answer": "Đọc kỹ đề và gạch dưới các số đã cho",
+            "mascotHint": "Chưa đọc kỹ đề thì chưa biết đề cho gì, hỏi gì — mọi bước sau đều dễ sai."
+          }
+        },
+        {
           "type": "quiz",
           "content": {
             "question": "640 : 3 bằng bao nhiêu?",
@@ -451,6 +611,64 @@ export const g3c6 = {
               ],
               "label": "Biểu thức số"
             }
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 12,
+              "right": 5,
+              "sign": "+",
+              "remember": true
+            },
+            "text": "Bé tự đặt tính: 12 + 5\nhàng đơn vị 2 + 5 = 7, viết 7\nhàng chục 1 + 0 = 1, viết 1\nVậy 12 + 5 = 17."
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "numberLine": {
+              "from": 12,
+              "to": 17,
+              "step": 1,
+              "hops": [
+                {
+                  "from": 12,
+                  "to": 17,
+                  "label": "+5"
+                }
+              ]
+            },
+            "text": "Cách nhẩm nhanh cho 12 + 5\nBé đếm thêm từng bước trên tia số theo các cung nhảy.\nĐếm thêm 5 bước từ 12.\nVậy 12 + 5 = 17."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "65 + 1 bằng bao nhiêu?",
+            "options": [
+              65,
+              66,
+              67,
+              76
+            ],
+            "answer": 66,
+            "mascotHint": "Bé đặt tính rồi tính từ hàng đơn vị. Kết quả 66."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "52 + 3 bằng bao nhiêu?",
+            "options": [
+              54,
+              55,
+              56,
+              57
+            ],
+            "answer": 55,
+            "mascotHint": "hàng đơn vị 2 + 3 = 5, viết 5. Kết quả 55."
           }
         },
         {
@@ -537,6 +755,32 @@ export const g3c6 = {
               ],
               "label": "Nhân chia trước, cộng trừ sau — có ngoặc thì làm trong ngoặc trước"
             }
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 5,
+              "right": 2,
+              "sign": "×",
+              "remember": true
+            },
+            "text": "Bé tự đặt tính: 5 × 2\nhàng đơn vị 5 × 2 = 10, viết 0 nhớ 1\ncòn nhớ 1 ở hàng cao hơn, viết 1\nVậy 5 × 2 = 10."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "3 × 4 bằng bao nhiêu?",
+            "options": [
+              2,
+              11,
+              12,
+              13
+            ],
+            "answer": 12,
+            "mascotHint": "hàng đơn vị 3 × 4 = 12, viết 2 nhớ 1. Kết quả 12."
           }
         },
         {
@@ -633,6 +877,60 @@ export const g3c6 = {
           }
         },
         {
+          "type": "concept",
+          "content": {
+            "badge": "Cách Học",
+            "title": "Bốn bước làm một bài toán",
+            "explanation": "Mọi bài so sánh số đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            "points": [
+              "Bước 1 — Đếm số CHỮ SỐ của từng số trước.",
+              "Bước 2 — Số nào nhiều chữ số hơn thì lớn hơn — xong, không cần so tiếp.",
+              "Bước 3 — Cùng số chữ số thì so từng hàng từ TRÁI sang phải, gặp hàng khác nhau thì dừng.",
+              "Bước 4 — Đọc lại kết quả và đặt đúng dấu (>, <, =)."
+            ]
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "table": {
+              "headers": [
+                "Điều cần nhớ",
+                "Nội dung"
+              ],
+              "rows": [
+                [
+                  "Nhiều chữ số hơn",
+                  "thì số đó lớn hơn"
+                ],
+                [
+                  "So từ trái",
+                  "hàng nghìn rồi mới tới trăm, chục, đơn vị"
+                ],
+                [
+                  "Dấu lớn mở về phía",
+                  "số lớn hơn"
+                ]
+              ]
+            },
+            "text": "Bảng nhớ nhanh — so sánh số\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Muốn so sánh hai số, bé bắt đầu bằng việc gì?",
+            "options": [
+              "Đếm xem số nào có nhiều chữ số hơn",
+              "So chữ số hàng đơn vị trước",
+              "Cộng hai số lại",
+              "Đọc từ phải sang trái"
+            ],
+            "answer": "Đếm xem số nào có nhiều chữ số hơn",
+            "mascotHint": "Số nhiều chữ số hơn chắc chắn lớn hơn, nên chỉ cần so từng hàng khi hai số bằng số chữ số."
+          }
+        },
+        {
           "type": "quiz",
           "content": {
             "question": "Đoạn AB dài 12 cm, đoạn CD dài 3 cm. Đoạn AB dài gấp mấy lần đoạn CD?",
@@ -720,6 +1018,32 @@ export const g3c6 = {
               "right": 3,
               "sign": ":"
             }
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 213,
+              "right": 3,
+              "sign": "×",
+              "remember": true
+            },
+            "text": "Bé tự đặt tính: 213 × 3\nhàng đơn vị 3 × 3 = 9, viết 9\nhàng chục 1 × 3 = 3, viết 3\nhàng trăm 2 × 3 = 6, viết 6\nVậy 213 × 3 = 639."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "173 × 3 bằng bao nhiêu?",
+            "options": [
+              319,
+              518,
+              519,
+              520
+            ],
+            "answer": 519,
+            "mascotHint": "hàng đơn vị 3 × 3 = 9, viết 9. Kết quả 519."
           }
         },
         {

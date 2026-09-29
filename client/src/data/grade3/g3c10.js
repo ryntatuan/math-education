@@ -53,6 +53,64 @@ export const g3c10 = {
           }
         },
         {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 5,
+              "right": 4,
+              "sign": "+",
+              "remember": true
+            },
+            "text": "Bé tự đặt tính: 5 + 4\nhàng đơn vị 5 + 4 = 9, viết 9\nVậy 5 + 4 = 9."
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "numberLine": {
+              "from": 5,
+              "to": 9,
+              "step": 1,
+              "hops": [
+                {
+                  "from": 5,
+                  "to": 9,
+                  "label": "+4"
+                }
+              ]
+            },
+            "text": "Cách nhẩm nhanh cho 5 + 4\nBé đếm thêm từng bước trên tia số theo các cung nhảy.\nĐếm thêm 4 bước từ 5.\nVậy 5 + 4 = 9."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "1 + 2 bằng bao nhiêu?",
+            "options": [
+              2,
+              3,
+              4,
+              13
+            ],
+            "answer": 3,
+            "mascotHint": "Bé đặt tính rồi tính từ hàng đơn vị. Kết quả 3."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "2 + 2 bằng bao nhiêu?",
+            "options": [
+              3,
+              4,
+              5,
+              6
+            ],
+            "answer": 4,
+            "mascotHint": "hàng đơn vị 2 + 2 = 4, viết 4. Kết quả 4."
+          }
+        },
+        {
           "type": "quiz",
           "content": {
             "question": "2 345 + 1 234 bằng bao nhiêu?",
@@ -116,6 +174,63 @@ export const g3c10 = {
               "right": 2345,
               "result": 2223
             }
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 8,
+              "right": 5,
+              "sign": "−"
+            },
+            "text": "Bé tự đặt tính: 8 − 5\nhàng đơn vị 8 − 5 = 3, viết 3\nVậy 8 − 5 = 3."
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "numberLine": {
+              "from": 5,
+              "to": 8,
+              "step": 1,
+              "hops": [
+                {
+                  "from": 5,
+                  "to": 8,
+                  "label": "+3"
+                }
+              ]
+            },
+            "text": "Cách 2 cho 8 − 5: đếm thêm từ số bé\nTừ 5 đếm thêm cho tới 8 là bao nhiêu bước?\nĐó chính là hiệu: 8 − 5 = 3."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "3 − 2 bằng bao nhiêu?",
+            "options": [
+              1,
+              2,
+              3,
+              11
+            ],
+            "answer": 1,
+            "mascotHint": "Bé đặt tính rồi tính từ hàng đơn vị. Kết quả 1."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "4 − 1 bằng bao nhiêu?",
+            "options": [
+              2,
+              3,
+              4,
+              5
+            ],
+            "answer": 3,
+            "mascotHint": "hàng đơn vị 4 − 1 = 3, viết 3. Kết quả 3."
           }
         },
         {
@@ -210,6 +325,45 @@ export const g3c10 = {
           }
         },
         {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 2768,
+              "right": 1456,
+              "sign": "+",
+              "remember": true
+            },
+            "text": "Bé tự đặt tính: 2768 + 1456\nhàng đơn vị 8 + 6 = 14, viết 4 nhớ 1\nhàng chục 6 + 5 + 1 (nhớ) = 12, viết 2 nhớ 1\nhàng trăm 7 + 4 + 1 (nhớ) = 12, viết 2 nhớ 1\nVậy 2 768 + 1 456 = 4 224."
+          }
+        },
+        {
+          "type": "concept",
+          "content": {
+            "badge": "Chú Ý",
+            "title": "Vì sao ra 3114 là sai?",
+            "explanation": "3114 là kết quả khi bé quên nhớ 1 ở hàng chục. Đây là lỗi hay gặp nhất của dạng cộng này.",
+            "points": [
+              "Lỗi — quên nhớ 1 ở hàng chục: hàng đơn vị 8 + 6 = 14, viết 4 nhớ 1. Kết quả đúng phải là 4224.",
+              "Cách tránh: làm xong một hàng thì ghi/xoá số nhớ NGAY, đừng để sang hàng sau mới nhớ.",
+              "Tự kiểm tra: 4224 − 2768 phải bằng 1456."
+            ]
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "1256 + 2178 bằng bao nhiêu?",
+            "options": [
+              3324,
+              3433,
+              3434,
+              3435
+            ],
+            "answer": 3434,
+            "mascotHint": "hàng đơn vị 6 + 8 = 14, viết 4 nhớ 1. Kết quả 3434."
+          }
+        },
+        {
           "type": "quiz",
           "content": {
             "question": "2 768 + 1 456 bằng bao nhiêu?",
@@ -273,6 +427,72 @@ export const g3c10 = {
               "right": 2,
               "result": 2468
             }
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 4,
+              "right": 2,
+              "sign": "×",
+              "remember": true
+            },
+            "text": "Bé tự đặt tính: 4 × 2\nhàng đơn vị 4 × 2 = 8, viết 8\nVậy 4 × 2 = 8."
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "table": {
+              "headers": [
+                "Bước",
+                "Việc bé làm"
+              ],
+              "rows": [
+                [
+                  "Bước 1 — Đơn vị",
+                  "viết kết quả luôn kèm đơn vị"
+                ],
+                [
+                  "Bước 2 — Bậc thang",
+                  "đi xuống thì nhân, đi lên thì chia"
+                ],
+                [
+                  "Bước 3 — Kiểm lại",
+                  "lấy kết quả đổi ngược lại xem có về số ban đầu"
+                ]
+              ]
+            },
+            "text": "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "5 × 3 bằng bao nhiêu?",
+            "options": [
+              14,
+              15,
+              16,
+              25
+            ],
+            "answer": 15,
+            "mascotHint": "Bé đặt tính rồi tính từ hàng đơn vị. Kết quả 15."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "3 × 2 bằng bao nhiêu?",
+            "options": [
+              5,
+              6,
+              7,
+              8
+            ],
+            "answer": 6,
+            "mascotHint": "hàng đơn vị 3 × 2 = 6, viết 6. Kết quả 6."
           }
         },
         {
@@ -368,6 +588,60 @@ export const g3c10 = {
               ],
               "label": "2 468 : 2 = 1 234"
             }
+          }
+        },
+        {
+          "type": "concept",
+          "content": {
+            "badge": "Cách Học",
+            "title": "Bốn bước làm một bài toán",
+            "explanation": "Mọi bài bài toán có lời văn đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            "points": [
+              "Bước 1 — Đọc kỹ đề, gạch dưới các SỐ và từ khoá (thêm, bớt, gấp, chia đều).",
+              "Bước 2 — Tóm tắt đề bằng hình hoặc bằng câu ngắn: đã có gì, cần tìm gì.",
+              "Bước 3 — Chọn phép tính: “thêm, gộp, tất cả” → cộng; “bớt, cho đi, còn lại” → trừ; “gấp mấy lần” → nhân.",
+              "Bước 4 — Đặt tính rồi tính, rồi VIẾT ĐÁP SỐ kèm đơn vị và thử lại bằng phép ngược."
+            ]
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "table": {
+              "headers": [
+                "Điều cần nhớ",
+                "Nội dung"
+              ],
+              "rows": [
+                [
+                  "Đơn vị",
+                  "đáp số luôn kèm đơn vị như con, quả, kg, cm"
+                ],
+                [
+                  "Kiểm tra",
+                  "cộng thì lấy kết quả trừ đi một số hạng"
+                ],
+                [
+                  "Câu trả lời",
+                  "viết đủ câu, không chỉ ghi số"
+                ]
+              ]
+            },
+            "text": "Bảng nhớ nhanh — bài toán có lời văn\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Giải một bài toán có lời văn, bé làm gì TRƯỚC TIÊN?",
+            "options": [
+              "Đọc kỹ đề và gạch dưới các số đã cho",
+              "Viết ngay đáp số",
+              "Đoán kết quả",
+              "Đặt tính trước khi đọc đề"
+            ],
+            "answer": "Đọc kỹ đề và gạch dưới các số đã cho",
+            "mascotHint": "Chưa đọc kỹ đề thì chưa biết đề cho gì, hỏi gì — mọi bước sau đều dễ sai."
           }
         },
         {
@@ -468,6 +742,45 @@ export const g3c10 = {
           }
         },
         {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 3215,
+              "right": 3,
+              "sign": "×",
+              "remember": true
+            },
+            "text": "Bé tự đặt tính: 3215 × 3\nhàng đơn vị 5 × 3 = 15, viết 5 nhớ 1\nhàng chục 1 × 3 + 1 (nhớ) = 4, viết 4\nhàng trăm 2 × 3 = 6, viết 6\nVậy 3 215 × 3 = 9 645."
+          }
+        },
+        {
+          "type": "concept",
+          "content": {
+            "badge": "Chú Ý",
+            "title": "Vì sao ra 9635 là sai?",
+            "explanation": "9635 là kết quả khi bé quên nhớ khi nhân từng hàng. Đây là lỗi hay gặp nhất của dạng nhân này.",
+            "points": [
+              "Lỗi — quên nhớ khi nhân từng hàng: hàng đơn vị 5 × 3 = 15, viết 5 nhớ 1. Kết quả đúng phải là 9645.",
+              "Cách tránh: làm xong một hàng thì ghi/xoá số nhớ NGAY, đừng để sang hàng sau mới nhớ.",
+              "Tự kiểm tra: 9645 : 3 phải bằng 3215."
+            ]
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "3085 × 3 bằng bao nhiêu?",
+            "options": [
+              9045,
+              9254,
+              9255,
+              9256
+            ],
+            "answer": 9255,
+            "mascotHint": "hàng đơn vị 5 × 3 = 15, viết 5 nhớ 1. Kết quả 9255."
+          }
+        },
+        {
           "type": "quiz",
           "content": {
             "question": "3 215 × 3 bằng bao nhiêu?",
@@ -561,6 +874,44 @@ export const g3c10 = {
           }
         },
         {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 10,
+              "right": 8,
+              "sign": "−"
+            },
+            "text": "Bé tự đặt tính: 10 − 8\nhàng đơn vị 0 < 8 nên mượn 1: 10 − 8 = 2, viết 2\nhàng chục 1 − 1 = 0, viết 0\nVậy 10 − 8 = 2."
+          }
+        },
+        {
+          "type": "concept",
+          "content": {
+            "badge": "Chú Ý",
+            "title": "Vì sao ra 12 là sai?",
+            "explanation": "12 là kết quả khi bé quên bớt 1 chục sau khi mượn. Đây là lỗi hay gặp nhất của dạng trừ này.",
+            "points": [
+              "Lỗi — quên bớt 1 chục sau khi mượn: hàng đơn vị 0 < 8 nên mượn 1: 10 − 8 = 2, viết 2. Kết quả đúng phải là 2.",
+              "Cách tránh: làm xong một hàng thì ghi/xoá số đã vay NGAY, đừng để sang hàng sau mới nhớ.",
+              "Tự kiểm tra: 2 + 8 phải bằng 10."
+            ]
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "14 − 5 bằng bao nhiêu?",
+            "options": [
+              8,
+              9,
+              10,
+              19
+            ],
+            "answer": 9,
+            "mascotHint": "hàng đơn vị 4 < 5 nên mượn 1: 14 − 5 = 9, viết 9. Kết quả 9."
+          }
+        },
+        {
           "type": "quiz",
           "content": {
             "question": "Cửa hàng có 3 250 kg gạo, đã bán 1 480 kg. Hỏi còn lại bao nhiêu ki-lô-gam gạo?",
@@ -645,6 +996,32 @@ export const g3c10 = {
               ],
               "label": "Luyện tập chung chủ đề 10"
             }
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 2345,
+              "right": 1234,
+              "sign": "+",
+              "remember": true
+            },
+            "text": "Bé tự đặt tính: 2345 + 1234\nhàng đơn vị 5 + 4 = 9, viết 9\nhàng chục 4 + 3 = 7, viết 7\nhàng trăm 3 + 2 = 5, viết 5\nVậy 2 345 + 1 234 = 3 579."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "2512 + 4194 bằng bao nhiêu?",
+            "options": [
+              6606,
+              6705,
+              6706,
+              6707
+            ],
+            "answer": 6706,
+            "mascotHint": "hàng đơn vị 2 + 4 = 6, viết 6. Kết quả 6706."
           }
         },
         {

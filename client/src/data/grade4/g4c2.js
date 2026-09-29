@@ -80,6 +80,75 @@ export const g4c2 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            planeShape: {
+              kind: "square",
+              vertices: true,
+              vertexLabel: "đỉnh"
+            },
+            text: "hình vuông bé học hôm nay có gì đặc biệt?\n· 4 cạnh dài bằng nhau\n· 4 góc vuông\nBé đếm cạnh, đếm đỉnh ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Ghi Nhớ",
+            title: "Đặc điểm của hình vuông",
+            explanation: "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của hình vuông.",
+            points: [
+              "hình vuông có 4 cạnh dài bằng nhau.",
+              "hình vuông có 4 góc vuông.",
+              "hình vuông có hai đường chéo bằng nhau.",
+              "Cách kiểm tra: bé đếm cạnh, đếm đỉnh; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                ["Bước 1 — Gọi tên", "nói đúng tên hình/khối trước khi làm gì tiếp"],
+                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học"],
+                [
+                  "Bước 3 — Kiểm tra",
+                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt"
+                ]
+              ]
+            },
+            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
+            options: [
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Nộp bài luôn cho nhanh",
+              "Đoán lại một lần nữa"
+            ],
+            answer: "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            mascotHint: "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Hình nào có 4 cạnh dài bằng nhau?",
+            options: [
+              "hình vuông",
+              "hình khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ"
+            ],
+            answer: "hình vuông",
+            mascotHint: "hình vuông: 4 cạnh dài bằng nhau · 4 góc vuông · hai đường chéo bằng nhau."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Đơn vị đo góc là gì?",
@@ -219,6 +288,90 @@ export const g4c2 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            angle: {
+              kind: "acute",
+              degrees: 40,
+              vertexLetter: "O",
+              armLetters: ["A", "B"]
+            },
+            text: "góc nhọn bé học hôm nay có gì đặc biệt?\n· bé hơn góc vuông\n· hai cạnh của góc là hai tia chung gốc\nBé đặt ê-ke sao cho một cạnh trùng với một cạnh của góc ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Ghi Nhớ",
+            title: "Đặc điểm của góc nhọn",
+            explanation: "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của góc nhọn.",
+            points: [
+              "góc nhọn có bé hơn góc vuông.",
+              "góc nhọn có hai cạnh của góc là hai tia chung gốc.",
+              "góc nhọn có đỉnh của góc là gốc chung đó.",
+              "Cách kiểm tra: bé đặt ê-ke sao cho một cạnh trùng với một cạnh của góc; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                ["Bước 1 — Gọi tên", "nói đúng tên hình/khối trước khi làm gì tiếp"],
+                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học"],
+                [
+                  "Bước 3 — Kiểm tra",
+                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt"
+                ]
+              ]
+            },
+            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
+            options: [
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Nộp bài luôn cho nhanh",
+              "Đoán lại một lần nữa"
+            ],
+            answer: "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            mascotHint: "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Hình nào có bé hơn góc vuông?",
+            options: [
+              "góc nhọn",
+              "hình khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ"
+            ],
+            answer: "góc nhọn",
+            mascotHint: "góc nhọn: bé hơn góc vuông · hai cạnh của góc là hai tia chung gốc · đỉnh của góc là gốc chung đó."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Trong bài hôm nay có hình góc nhọn và hình góc tù và hình góc bẹt và hình góc vuông. Hình nào có hai cạnh của góc là hai tia chung gốc?",
+            options: [
+              "góc nhọn",
+              "hình khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ"
+            ],
+            answer: "góc nhọn",
+            mascotHint: "Đáp án là góc nhọn: bé hơn góc vuông · hai cạnh của góc là hai tia chung gốc · đỉnh của góc là gốc chung đó."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Góc bẹt bằng mấy góc vuông?",
@@ -295,6 +448,87 @@ export const g4c2 = {
               label: "Mỗi góc một tên gọi khác nhau",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            planeShape: {
+              kind: "circle"
+            },
+            text: "hình tròn bé học hôm nay có gì đặc biệt?\n· không có cạnh, không có đỉnh\n· tâm là điểm chính giữa\nBé tìm tâm, đo bán kính ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Ghi Nhớ",
+            title: "Đặc điểm của hình tròn",
+            explanation: "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của hình tròn.",
+            points: [
+              "hình tròn không có cạnh, không có đỉnh.",
+              "hình tròn có tâm là điểm chính giữa.",
+              "hình tròn có đường kính gấp đôi bán kính.",
+              "Cách kiểm tra: bé tìm tâm, đo bán kính; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                ["Bước 1 — Gọi tên", "nói đúng tên hình/khối trước khi làm gì tiếp"],
+                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học"],
+                [
+                  "Bước 3 — Kiểm tra",
+                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt"
+                ]
+              ]
+            },
+            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
+            options: [
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Nộp bài luôn cho nhanh",
+              "Đoán lại một lần nữa"
+            ],
+            answer: "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            mascotHint: "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Hình nào không có cạnh, không có đỉnh?",
+            options: [
+              "hình tròn",
+              "hình khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ"
+            ],
+            answer: "hình tròn",
+            mascotHint: "hình tròn: không có cạnh, không có đỉnh · tâm là điểm chính giữa · đường kính gấp đôi bán kính."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Trong bài hôm nay có hình tròn và hình chữ nhật và hình góc nhọn và hình góc tù và hình góc bẹt và hình góc vuông. Hình nào có tâm là điểm chính giữa?",
+            options: [
+              "hình tròn",
+              "hình khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ"
+            ],
+            answer: "hình tròn",
+            mascotHint: "Đáp án là hình tròn: không có cạnh, không có đỉnh · tâm là điểm chính giữa · đường kính gấp đôi bán kính."
+          }
         },
         {
           type: "quiz",

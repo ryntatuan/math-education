@@ -47,6 +47,48 @@ export const g5c1 = {
           },
         },
         {
+          type: "concept",
+          content: {
+            badge: "Cách Học",
+            title: "Bốn bước làm một bài toán",
+            explanation: "Mọi bài so sánh số đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            points: [
+              "Bước 1 — Đếm số CHỮ SỐ của từng số trước.",
+              "Bước 2 — Số nào nhiều chữ số hơn thì lớn hơn — xong, không cần so tiếp.",
+              "Bước 3 — Cùng số chữ số thì so từng hàng từ TRÁI sang phải, gặp hàng khác nhau thì dừng.",
+              "Bước 4 — Đọc lại kết quả và đặt đúng dấu (>, <, =)."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Điều cần nhớ", "Nội dung"],
+              rows: [
+                ["Nhiều chữ số hơn", "thì số đó lớn hơn"],
+                ["So từ trái", "hàng nghìn rồi mới tới trăm, chục, đơn vị"],
+                ["Dấu lớn mở về phía", "số lớn hơn"]
+              ]
+            },
+            text: "Bảng nhớ nhanh — so sánh số\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Muốn so sánh hai số, bé bắt đầu bằng việc gì?",
+            options: [
+              "Đếm xem số nào có nhiều chữ số hơn",
+              "So chữ số hàng đơn vị trước",
+              "Cộng hai số lại",
+              "Đọc từ phải sang trái"
+            ],
+            answer: "Đếm xem số nào có nhiều chữ số hơn",
+            mascotHint: "Số nhiều chữ số hơn chắc chắn lớn hơn, nên chỉ cần so từng hàng khi hai số bằng số chữ số."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Viết số 45 678 thành tổng các hàng:",
@@ -130,6 +172,27 @@ export const g5c1 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 100,
+              right: 7,
+              sign: "×",
+              remember: true
+            },
+            text: "Bé tự đặt tính: 100 × 7\nhàng đơn vị 0 × 7 = 0, viết 0\nhàng chục 0 × 7 = 0, viết 0\nhàng trăm 1 × 7 = 7, viết 7\nVậy 100 × 7 = 700."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "262 × 3 bằng bao nhiêu?",
+            options: [686, 785, 786, 787],
+            answer: 786,
+            mascotHint: "hàng đơn vị 2 × 3 = 6, viết 6. Kết quả 786."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Tính bằng cách thuận tiện: 25 × 4 × 7 = ?",
@@ -208,6 +271,48 @@ export const g5c1 = {
                 "Phân số tối giản: tử và mẫu không cùng chia hết cho số nào lớn hơn 1",
             },
           },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Cách Học",
+            title: "Bốn bước làm một bài toán",
+            explanation: "Mọi bài so sánh số đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            points: [
+              "Bước 1 — Đếm số CHỮ SỐ của từng số trước.",
+              "Bước 2 — Số nào nhiều chữ số hơn thì lớn hơn — xong, không cần so tiếp.",
+              "Bước 3 — Cùng số chữ số thì so từng hàng từ TRÁI sang phải, gặp hàng khác nhau thì dừng.",
+              "Bước 4 — Đọc lại kết quả và đặt đúng dấu (>, <, =)."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Điều cần nhớ", "Nội dung"],
+              rows: [
+                ["Nhiều chữ số hơn", "thì số đó lớn hơn"],
+                ["So từ trái", "hàng nghìn rồi mới tới trăm, chục, đơn vị"],
+                ["Dấu lớn mở về phía", "số lớn hơn"]
+              ]
+            },
+            text: "Bảng nhớ nhanh — so sánh số\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Muốn so sánh hai số, bé bắt đầu bằng việc gì?",
+            options: [
+              "Đếm xem số nào có nhiều chữ số hơn",
+              "So chữ số hàng đơn vị trước",
+              "Cộng hai số lại",
+              "Đọc từ phải sang trái"
+            ],
+            answer: "Đếm xem số nào có nhiều chữ số hơn",
+            mascotHint: "Số nhiều chữ số hơn chắc chắn lớn hơn, nên chỉ cần so từng hàng khi hai số bằng số chữ số."
+          }
         },
         {
           type: "quiz",
@@ -295,6 +400,48 @@ export const g5c1 = {
           },
         },
         {
+          type: "concept",
+          content: {
+            badge: "Cách Học",
+            title: "Bốn bước làm một bài toán",
+            explanation: "Mọi bài bảng nhân – bảng chia – phân số đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            points: [
+              "Bước 1 — Xác định đề hỏi nhân hay chia (chia luôn tra ngược bảng nhân).",
+              "Bước 2 — Tách số thành hàng chục và hàng đơn vị rồi tính từng phần.",
+              "Bước 3 — Cộng các phần lại, nhớ cộng số nhớ khi có.",
+              "Bước 4 — Thử lại bằng phép ngược (nhân ↔ chia) hoặc bằng tổng."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Điều cần nhớ", "Nội dung"],
+              rows: [
+                ["Nhân với 10", "thêm một chữ số 0"],
+                ["Chia hết", "số dư bằng 0"],
+                ["Phân số", "mẫu số chia đều thành mấy phần, tử số lấy mấy phần"]
+              ]
+            },
+            text: "Bảng nhớ nhanh — bảng nhân – bảng chia – phân số\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Muốn tính 24 : 6, bé dựa vào đâu cho nhanh?",
+            options: [
+              "Tra ngược bảng nhân 6",
+              "Đếm lùi 24 lần",
+              "Cộng 6 vào 24",
+              "Bấm máy tính"
+            ],
+            answer: "Tra ngược bảng nhân 6",
+            mascotHint: "Vì 6 × 4 = 24 nên 24 : 6 = 4 — tra bảng nhân bao giờ cũng nhanh hơn đếm."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Phân số nào sau đây là phân số thập phân?",
@@ -371,6 +518,48 @@ export const g5c1 = {
               label: "Rút gọn kết quả về phân số tối giản",
             },
           },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Cách Học",
+            title: "Bốn bước làm một bài toán",
+            explanation: "Mọi bài bài toán có lời văn đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            points: [
+              "Bước 1 — Đọc kỹ đề, gạch dưới các SỐ và từ khoá (thêm, bớt, gấp, chia đều).",
+              "Bước 2 — Tóm tắt đề bằng hình hoặc bằng câu ngắn: đã có gì, cần tìm gì.",
+              "Bước 3 — Chọn phép tính: “thêm, gộp, tất cả” → cộng; “bớt, cho đi, còn lại” → trừ; “gấp mấy lần” → nhân.",
+              "Bước 4 — Đặt tính rồi tính, rồi VIẾT ĐÁP SỐ kèm đơn vị và thử lại bằng phép ngược."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Điều cần nhớ", "Nội dung"],
+              rows: [
+                ["Đơn vị", "đáp số luôn kèm đơn vị như con, quả, kg, cm"],
+                ["Kiểm tra", "cộng thì lấy kết quả trừ đi một số hạng"],
+                ["Câu trả lời", "viết đủ câu, không chỉ ghi số"]
+              ]
+            },
+            text: "Bảng nhớ nhanh — bài toán có lời văn\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Giải một bài toán có lời văn, bé làm gì TRƯỚC TIÊN?",
+            options: [
+              "Đọc kỹ đề và gạch dưới các số đã cho",
+              "Viết ngay đáp số",
+              "Đoán kết quả",
+              "Đặt tính trước khi đọc đề"
+            ],
+            answer: "Đọc kỹ đề và gạch dưới các số đã cho",
+            mascotHint: "Chưa đọc kỹ đề thì chưa biết đề cho gì, hỏi gì — mọi bước sau đều dễ sai."
+          }
         },
         {
           type: "quiz",
@@ -450,6 +639,48 @@ export const g5c1 = {
           },
         },
         {
+          type: "concept",
+          content: {
+            badge: "Cách Học",
+            title: "Bốn bước làm một bài toán",
+            explanation: "Mọi bài bài toán có lời văn đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            points: [
+              "Bước 1 — Đọc kỹ đề, gạch dưới các SỐ và từ khoá (thêm, bớt, gấp, chia đều).",
+              "Bước 2 — Tóm tắt đề bằng hình hoặc bằng câu ngắn: đã có gì, cần tìm gì.",
+              "Bước 3 — Chọn phép tính: “thêm, gộp, tất cả” → cộng; “bớt, cho đi, còn lại” → trừ; “gấp mấy lần” → nhân.",
+              "Bước 4 — Đặt tính rồi tính, rồi VIẾT ĐÁP SỐ kèm đơn vị và thử lại bằng phép ngược."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Điều cần nhớ", "Nội dung"],
+              rows: [
+                ["Đơn vị", "đáp số luôn kèm đơn vị như con, quả, kg, cm"],
+                ["Kiểm tra", "cộng thì lấy kết quả trừ đi một số hạng"],
+                ["Câu trả lời", "viết đủ câu, không chỉ ghi số"]
+              ]
+            },
+            text: "Bảng nhớ nhanh — bài toán có lời văn\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Giải một bài toán có lời văn, bé làm gì TRƯỚC TIÊN?",
+            options: [
+              "Đọc kỹ đề và gạch dưới các số đã cho",
+              "Viết ngay đáp số",
+              "Đoán kết quả",
+              "Đặt tính trước khi đọc đề"
+            ],
+            answer: "Đọc kỹ đề và gạch dưới các số đã cho",
+            mascotHint: "Chưa đọc kỹ đề thì chưa biết đề cho gì, hỏi gì — mọi bước sau đều dễ sai."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Tính: 2/3 + 1/4 = ?",
@@ -525,6 +756,48 @@ export const g5c1 = {
               label: "Phần phân số của hỗn số luôn bé hơn 1",
             },
           },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Cách Học",
+            title: "Bốn bước làm một bài toán",
+            explanation: "Mọi bài so sánh số đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            points: [
+              "Bước 1 — Đếm số CHỮ SỐ của từng số trước.",
+              "Bước 2 — Số nào nhiều chữ số hơn thì lớn hơn — xong, không cần so tiếp.",
+              "Bước 3 — Cùng số chữ số thì so từng hàng từ TRÁI sang phải, gặp hàng khác nhau thì dừng.",
+              "Bước 4 — Đọc lại kết quả và đặt đúng dấu (>, <, =)."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Điều cần nhớ", "Nội dung"],
+              rows: [
+                ["Nhiều chữ số hơn", "thì số đó lớn hơn"],
+                ["So từ trái", "hàng nghìn rồi mới tới trăm, chục, đơn vị"],
+                ["Dấu lớn mở về phía", "số lớn hơn"]
+              ]
+            },
+            text: "Bảng nhớ nhanh — so sánh số\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Muốn so sánh hai số, bé bắt đầu bằng việc gì?",
+            options: [
+              "Đếm xem số nào có nhiều chữ số hơn",
+              "So chữ số hàng đơn vị trước",
+              "Cộng hai số lại",
+              "Đọc từ phải sang trái"
+            ],
+            answer: "Đếm xem số nào có nhiều chữ số hơn",
+            mascotHint: "Số nhiều chữ số hơn chắc chắn lớn hơn, nên chỉ cần so từng hàng khi hai số bằng số chữ số."
+          }
         },
         {
           type: "quiz",
@@ -609,6 +882,27 @@ export const g5c1 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 43,
+              right: 2,
+              sign: "×",
+              remember: true
+            },
+            text: "Bé tự đặt tính: 43 × 2\nhàng đơn vị 3 × 2 = 6, viết 6\nhàng chục 4 × 2 = 8, viết 8\nVậy 43 × 2 = 86."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "21 × 4 bằng bao nhiêu?",
+            options: [83, 84, 85, 86],
+            answer: 84,
+            mascotHint: "hàng đơn vị 1 × 4 = 4, viết 4. Kết quả 84."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question:
@@ -671,6 +965,27 @@ export const g5c1 = {
               label: "Nắm chắc để học tốt số thập phân",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 12,
+              right: 4,
+              sign: "×",
+              remember: true
+            },
+            text: "Bé tự đặt tính: 12 × 4\nhàng đơn vị 2 × 4 = 8, viết 8\nhàng chục 1 × 4 = 4, viết 4\nVậy 12 × 4 = 48."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "32 × 2 bằng bao nhiêu?",
+            options: [63, 64, 65, 66],
+            answer: 64,
+            mascotHint: "hàng đơn vị 2 × 2 = 4, viết 4. Kết quả 64."
+          }
         },
         {
           type: "quiz",

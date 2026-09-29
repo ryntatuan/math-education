@@ -12,6 +12,80 @@
 -- CHẠY LẠI NHIỀU LẦN: chỉ làm phiên bản tăng thêm 1 mỗi lần — vô hại (các bé tải
 --   lại nội dung thêm một lần), không sinh dòng trùng, không mất dữ liệu.
 --
+-- LƯU Ý LẦN 26 (2026-09-29): **BỔ SUNG 1 847 SLIDE CHO CẢ 489 BÀI — KHÔNG CÒN BÀI DƯỚI KHUNG**.
+--   Người dùng gửi ảnh màn hình bài `g2-c4-l1` và báo: *“1 chủ đề quan trọng như bài 1 chủ đề 4 lớp 2
+--   mà phần học lại sơ sài vài slide, giải thích thì không rõ ràng”*. Đo cả 5 lớp thì đây là lỗi
+--   HỆ THỐNG: **469/489 bài** dưới khung tối thiểu (≥8 slide · ≥2 hình · ≥1 slide chỉ TỪNG BƯỚC ·
+--   ≥700 ký tự diễn giải). Công cụ đo: `scratch/soat-bai-mong.mjs`.
+--
+--   QUY MÔ ĐỔI: **3163 → 4987 slide** (5 lớp · 65 chương · 489 bài KHÔNG đổi). Số bài dưới khung:
+--     **469 → 0**. Dấu vân tay seed: `95a9ad9f8051ed80` → **`71b5da8ec6e9ea54`**.
+--     Lớp 1: 733→1115 · Lớp 2: 717→1141 · Lớp 3: 771→1223 · Lớp 4: 489→769 · Lớp 5: 453→739.
+--
+--   SỬA LỖI CHẤT LƯỢNG (người dùng gửi 3 ảnh bài “Tiết học đầu tiên”, cùng ngày) — 4 họ lỗi, đã sửa cả 4:
+--     • (A) **Dạy trước chương trình**: bài chưa học số nào mà đã có “Số nào LỚN NHẤT trong 1, 6, 7?”
+--       và “Số liền sau của số 1”. Nay bài định hướng được nhận diện và KHÔNG sinh nội dung số.
+--     • (B) **Ngoài phạm vi bài**: bài lịch bị gắn bảng giờ–phút–giây và nói SAI “1 tháng = 30 ngày”
+--       (thật ra tháng có 30 hoặc 31 ngày; tháng 2 có 28/29) ⇒ lịch và tiền chuyển sang BẢNG SỰ KIỆN.
+--     • (C) **Sai mức độ**: hai số MỘT chữ số mà dạy “đếm số chữ số” ⇒ số ≤ 10 dạy so sánh bằng ĐẾM.
+--     • (D) **Lỗi chữ**: “hình tròn có không có cạnh”, “đoạn thẳng có có hai đầu mút”, dấu “…” trong câu.
+--     • Thêm: **số trang sách** (“(SGK tr.14–17)”) bị đếm thành số của bài ⇒ đã lọc bỏ.
+--     • Công cụ soi mới: `scratch/soat-noi-dung-tu-sinh.mjs` (so với bản gốc trong git) ⇒ A = B = C = 0.
+--
+--   BỐN LƯỢT SINH (script chạy lại được, tự bỏ qua bài đã có — xem `scratch/bo-sung-*.mjs`):
+--     • Lượt 1 `bo-sung-tu-dong.mjs` — bài có phép tính: đặt tính tương tác (`cotTinh`, bé điền cả ô
+--       “nhớ”) + lời giải từng hàng SINH TỪ `buocTinh()` (không viết tay nên không thể lệch số) +
+--       slide “lỗi hay gặp” với con số sai TÍNH RA bằng thuật toán sai thật (quên nhớ 1 · quên trả
+--       1 chục · quên nhớ khi nhân) + câu luyện cùng dạng, đáp án nhiễu chính là kết quả làm sai đó.
+--     • Lượt 2 `bo-sung-khai-niem.mjs` — số (tách hàng bằng `baseTen`/`placeValue`), hình học (vẽ
+--       ĐÚNG hình của bài: hình phẳng có chấm đỉnh, khối, điểm–đoạn thẳng, góc), đo lường (bậc thang
+--       đơn vị với hệ số TỪNG BƯỚC), bảng nhân/chia, thống kê (bảng số liệu LẤY TỪ CHÍNH BÀI), phân số.
+--     • Lượt 3 `bo-sung-bai-on-tap.mjs` — “bốn bước làm một bài toán” + “bảng nhớ nhanh” + câu hỏi
+--       quy trình, cho nhóm bài khái niệm/ôn tập còn lại.
+--     • Lượt 4 `bo-sung-lap-khoang-trong.mjs` — tia số có cung nhảy (đếm thêm – làm tròn chục, hoặc
+--       đếm thêm để tìm hiệu) + bảng ba bước + câu luyện, cho 88 bài còn thiếu 1 slide/1 hình.
+--
+--   CHUẨN SƯ PHẠM ĐÃ TRA VÀ ÁP DỤNG (ghi ở `docs/ke-hoach-bo-sung-bai-hoc.md`): trình tự CPA
+--   (cụ thể → hình ảnh → trừu tượng: khối chục–đơn vị cho bé THẤY vì sao phải nhớ 1), chiến lược
+--   làm tròn chục / đếm thêm (Singapore Math, Eureka/EngageNY, chương trình Anh KS1–KS2), và dạy
+--   bằng phân tích lỗi (đáp án nhiễu chính là lỗi trẻ thật sự mắc).
+--
+--   ⚠️ Chữ thô kiểu “  27 / +  5 /  32” ở các slide cũ đã đổi thành tiêu đề + lời giải từng bước.
+--   ⚠️ Các slide `visual` cũ có `placeValue.label` TRÙNG với lời giải từng bước đã bỏ nhãn — luật
+--     `slideDedupe.planVisualText` sẽ BỎ dòng nào mà hình đã nói lại, nên giữ nhãn là mất lời giải.
+--
+--   CÔNG CỤ MỚI: `scratch/soat-bai-mong.mjs` (đo độ mỏng từng bài) · `scratch/ke-hoach-dot-bo-sung.mjs`
+--     (gom lên cấp chương) · `scratch/lib-chen-slide.mjs` (thư viện chèn slide dùng chung cho 4 lượt) ·
+--     `scratch/kiem-tra-ngoac.mjs` (soi lệch ngoặc theo độ thụt lề — một dấu `}` thừa làm `node` chỉ
+--     báo lỗi ĐẦU TIÊN, sửa xong mới lộ lỗi sau; công cụ này chỉ đúng ca gốc trong MỘT lượt).
+--   📌 CÒN LẠI (không phải “dưới khung”): `cotTinh` chưa vẽ dấu “mượn” cho phép trừ; nên soát bằng
+--     mắt vài bài mẫu mỗi nhóm trên điện thoại; nhóm hình học chưa có hoạt ảnh cắt ghép.
+--
+-- LƯU Ý LẦN 27 (2026-09-29): **APP THÀNH APP ĐỘC LẬP + BỎ “COMBO x N”**. Hai yêu cầu của người dùng:
+--   (1) *“bỏ phần hiện combo khi bé làm đúng liên tiếp”* — banner `🔥 COMBO x{combo}` ở đầu trang bài
+--       học đã bỏ hẳn (JSX + state + CSS), KHÔNG đụng phần thưởng xu/XP (vẫn theo `reward_configs`).
+--       *Lưu ý:* phần “Combo” trong **trò chơi bắn thiên thạch** (`GamesPage`) là luật TÍNH ĐIỂM của
+--       trò chơi đó, không phải banner động viên — vẫn giữ.
+--   (2) *“bỏ hết tất cả các text có đề cập đến sách giáo khoa… để trở thành 1 app độc lập”* — nhãn dẫn
+--       sách **xoá khỏi chính DỮ LIỆU**, không chỉ ẩn lúc hiển thị nữa:
+--         • 116 dòng trong 9 file dữ liệu: `(SGK tr.6)`, `SGK Bài 2 (tr.14–17): …`, `— bảng như SGK tr.4`,
+--           `(tr.10, tr.16)`, `theo đúng SGK.` ⇒ bỏ nhãn, giữ nguyên phần chữ có nghĩa.
+--         • Bài định hướng Lớp 1 viết lại theo CHÍNH APP: “Mỗi bài học thường có bốn phần nào?”
+--           (Khám Phá · Thực Hành · Luyện Tập · Trò Chơi) và “Bé học Toán như thế nào?” chỉ đúng
+--           giao diện thật (số trang ở góc trên bên phải · nút “Trước”/“Tiếp tục” · nút loa · gợi ý
+--           của Rô-bốt). Bản cũ nói về “mở sách đúng trang”, “sách Toán 1” — app không có sách giấy.
+--         • 81 dòng ghi chú mã nguồn trong 23 file: “cách SGK dạy” ⇒ “cách dạy”, “SGK Lớp 3–4” ⇒ “Lớp 3–4”…
+--         • Bộ lọc `client/src/utils/stripTextbookRefs.js` **VẪN GIỮ** làm lưới an toàn: cây cũ trong
+--           DB hoặc cache `localStorage` của máy bé còn nhãn thì vẫn không lộ ra giao diện (cổng S-33).
+--
+--   QUY MÔ: **4987 slide KHÔNG đổi** (5 lớp · 65 chương · 489 bài). Chỉ nội dung chữ đổi.
+--     Dấu vân tay seed: `71b5da8ec6e9ea54` → **`cfa96b289a8e0220`**.
+--
+--   ⚠️ BÀI HỌC CỦA CHÍNH LẦN NÀY: máy xoá nhãn áp luật `.*$` cho cụm “— bảng như SGK tr.4” nên ăn
+--     LUÔN dấu nháy đóng của chuỗi ⇒ `g1c6.js` hỏng cú pháp, mà phép kiểm lại ĐỒNG Ý vì bản “đích”
+--     cũng dựng bằng đúng luật sai đó (thước sai y như mã sai). Nay có thêm bước kiểm CÚ PHÁP thật
+--     (`import()` từng file dữ liệu) trong quy trình.
+--
 -- LƯU Ý LẦN 25 (2026-09-28): **HAI DẠNG BÀI “TỰ TRẢ LỜI”** (ảnh Duolingo thứ hai).
 --   Người dùng gửi thêm hai ảnh Duolingo: (1) “Nhập câu trả lời” — `4 + 4 + 4 + 4 = ☐` kèm BÀN PHÍM
 --   SỐ để bé tự gõ; (2) “Trả lời trên trục số” — KÉO CON TRỎ trên tia số. Nay Toán Vui có cả hai.

@@ -48,6 +48,75 @@ export const g5c5 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            planeShape: {
+              kind: "triangle",
+              vertices: true,
+              vertexLabel: "đỉnh"
+            },
+            text: "hình tam giác bé học hôm nay có gì đặc biệt?\n· 3 cạnh\n· 3 đỉnh\nBé đếm cạnh, đếm đỉnh ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Ghi Nhớ",
+            title: "Đặc điểm của hình tam giác",
+            explanation: "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của hình tam giác.",
+            points: [
+              "hình tam giác có 3 cạnh.",
+              "hình tam giác có 3 đỉnh.",
+              "hình tam giác có 3 góc.",
+              "Cách kiểm tra: bé đếm cạnh, đếm đỉnh; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                ["Bước 1 — Gọi tên", "nói đúng tên hình/khối trước khi làm gì tiếp"],
+                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học"],
+                [
+                  "Bước 3 — Kiểm tra",
+                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt"
+                ]
+              ]
+            },
+            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
+            options: [
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Nộp bài luôn cho nhanh",
+              "Đoán lại một lần nữa"
+            ],
+            answer: "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            mascotHint: "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Hình nào có 3 cạnh?",
+            options: [
+              "hình tam giác",
+              "hình khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ"
+            ],
+            answer: "hình tam giác",
+            mascotHint: "hình tam giác: 3 cạnh · 3 đỉnh · 3 góc."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question:
@@ -120,6 +189,89 @@ export const g5c5 = {
               formula: "S = (a + b) × h : 2",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            planeShape: {
+              kind: "trapezoid",
+              vertices: true,
+              vertexLabel: "đỉnh"
+            },
+            text: "hình thang bé học hôm nay có gì đặc biệt?\n· có một cặp cạnh song song\n· hai cạnh song song gọi là hai đáy\nBé đếm cạnh, tìm hai đáy ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Ghi Nhớ",
+            title: "Đặc điểm của hình thang",
+            explanation: "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của hình thang.",
+            points: [
+              "hình thang có một cặp cạnh song song.",
+              "hình thang có hai cạnh song song gọi là hai đáy.",
+              "hình thang có đường cao là khoảng cách giữa hai đáy.",
+              "Cách kiểm tra: bé đếm cạnh, tìm hai đáy; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                ["Bước 1 — Gọi tên", "nói đúng tên hình/khối trước khi làm gì tiếp"],
+                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học"],
+                [
+                  "Bước 3 — Kiểm tra",
+                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt"
+                ]
+              ]
+            },
+            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
+            options: [
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Nộp bài luôn cho nhanh",
+              "Đoán lại một lần nữa"
+            ],
+            answer: "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            mascotHint: "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Hình nào có một cặp cạnh song song?",
+            options: [
+              "hình thang",
+              "hình khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ"
+            ],
+            answer: "hình thang",
+            mascotHint: "hình thang: một cặp cạnh song song · hai cạnh song song gọi là hai đáy · đường cao là khoảng cách giữa hai đáy."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Trong bài hôm nay có hình thang và hình góc vuông. Hình nào có hai cạnh song song gọi là hai đáy?",
+            options: [
+              "hình thang",
+              "hình khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ"
+            ],
+            answer: "hình thang",
+            mascotHint: "Đáp án là hình thang: một cặp cạnh song song · hai cạnh song song gọi là hai đáy · đường cao là khoảng cách giữa hai đáy."
+          }
         },
         {
           type: "quiz",
@@ -204,6 +356,73 @@ export const g5c5 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            planeShape: {
+              kind: "circle"
+            },
+            text: "hình tròn bé học hôm nay có gì đặc biệt?\n· không có cạnh, không có đỉnh\n· tâm là điểm chính giữa\nBé tìm tâm, đo bán kính ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Ghi Nhớ",
+            title: "Đặc điểm của hình tròn",
+            explanation: "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của hình tròn.",
+            points: [
+              "hình tròn không có cạnh, không có đỉnh.",
+              "hình tròn có tâm là điểm chính giữa.",
+              "hình tròn có đường kính gấp đôi bán kính.",
+              "Cách kiểm tra: bé tìm tâm, đo bán kính; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                ["Bước 1 — Gọi tên", "nói đúng tên hình/khối trước khi làm gì tiếp"],
+                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học"],
+                [
+                  "Bước 3 — Kiểm tra",
+                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt"
+                ]
+              ]
+            },
+            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
+            options: [
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Nộp bài luôn cho nhanh",
+              "Đoán lại một lần nữa"
+            ],
+            answer: "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            mascotHint: "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Hình nào không có cạnh, không có đỉnh?",
+            options: [
+              "hình tròn",
+              "hình khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ"
+            ],
+            answer: "hình tròn",
+            mascotHint: "hình tròn: không có cạnh, không có đỉnh · tâm là điểm chính giữa · đường kính gấp đôi bán kính."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Hình tròn có bán kính 5 cm. Chu vi hình tròn là:",
@@ -281,6 +500,78 @@ export const g5c5 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 10,
+              right: 6,
+              sign: "×",
+              remember: true
+            },
+            text: "Bé tự đặt tính: 10 × 6\nhàng đơn vị 0 × 6 = 0, viết 0\nhàng chục 1 × 6 = 6, viết 6\nVậy 10 × 6 = 60."
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            planeShape: {
+              kind: "circle"
+            },
+            text: "hình tròn bé học hôm nay có gì đặc biệt?\n· không có cạnh, không có đỉnh\n· tâm là điểm chính giữa\nBé tìm tâm, đo bán kính ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Ghi Nhớ",
+            title: "Đặc điểm của hình tròn",
+            explanation: "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của hình tròn.",
+            points: [
+              "hình tròn không có cạnh, không có đỉnh.",
+              "hình tròn có tâm là điểm chính giữa.",
+              "hình tròn có đường kính gấp đôi bán kính.",
+              "Cách kiểm tra: bé tìm tâm, đo bán kính; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Hình nào không có cạnh, không có đỉnh?",
+            options: [
+              "hình tròn",
+              "hình khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ"
+            ],
+            answer: "hình tròn",
+            mascotHint: "hình tròn: không có cạnh, không có đỉnh · tâm là điểm chính giữa · đường kính gấp đôi bán kính."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Trong bài hôm nay có hình tròn và hình tam giác và hình chữ nhật và hình thang và hình góc vuông. Hình nào có tâm là điểm chính giữa?",
+            options: [
+              "hình tròn",
+              "hình khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ"
+            ],
+            answer: "hình tròn",
+            mascotHint: "Đáp án là hình tròn: không có cạnh, không có đỉnh · tâm là điểm chính giữa · đường kính gấp đôi bán kính."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "31 × 3 bằng bao nhiêu?",
+            options: [92, 93, 94, 95],
+            answer: 93,
+            mascotHint: "hàng đơn vị 1 × 3 = 3, viết 3. Kết quả 93."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question:
@@ -349,6 +640,87 @@ export const g5c5 = {
               label: "Nhớ đơn vị diện tích là cm², m²…",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            planeShape: {
+              kind: "circle"
+            },
+            text: "hình tròn bé học hôm nay có gì đặc biệt?\n· không có cạnh, không có đỉnh\n· tâm là điểm chính giữa\nBé tìm tâm, đo bán kính ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Ghi Nhớ",
+            title: "Đặc điểm của hình tròn",
+            explanation: "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của hình tròn.",
+            points: [
+              "hình tròn không có cạnh, không có đỉnh.",
+              "hình tròn có tâm là điểm chính giữa.",
+              "hình tròn có đường kính gấp đôi bán kính.",
+              "Cách kiểm tra: bé tìm tâm, đo bán kính; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                ["Bước 1 — Gọi tên", "nói đúng tên hình/khối trước khi làm gì tiếp"],
+                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học"],
+                [
+                  "Bước 3 — Kiểm tra",
+                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt"
+                ]
+              ]
+            },
+            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
+            options: [
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Nộp bài luôn cho nhanh",
+              "Đoán lại một lần nữa"
+            ],
+            answer: "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            mascotHint: "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Hình nào không có cạnh, không có đỉnh?",
+            options: [
+              "hình tròn",
+              "hình khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ"
+            ],
+            answer: "hình tròn",
+            mascotHint: "hình tròn: không có cạnh, không có đỉnh · tâm là điểm chính giữa · đường kính gấp đôi bán kính."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Trong bài hôm nay có hình tròn và hình tam giác và hình thang. Hình nào có tâm là điểm chính giữa?",
+            options: [
+              "hình tròn",
+              "hình khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ"
+            ],
+            answer: "hình tròn",
+            mascotHint: "Đáp án là hình tròn: không có cạnh, không có đỉnh · tâm là điểm chính giữa · đường kính gấp đôi bán kính."
+          }
         },
         {
           type: "quiz",

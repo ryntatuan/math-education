@@ -75,6 +75,26 @@ export const g4c7 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 2345,
+              right: 345,
+              sign: "−"
+            },
+            text: "Bé tự đặt tính: 2345 − 345\nhàng đơn vị 5 − 5 = 0, viết 0\nhàng chục 4 − 4 = 0, viết 0\nhàng trăm 3 − 3 = 0, viết 0\nVậy 2 345 − 345 = 2 000."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "2224 − 392 bằng bao nhiêu?",
+            options: [1831, 1832, 1833, 2932],
+            answer: 1832,
+            mascotHint: "hàng đơn vị 4 − 2 = 2, viết 2. Kết quả 1832."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Trong số 517 906 384, các chữ số thuộc lớp nghìn là:",
@@ -182,6 +202,48 @@ export const g4c7 = {
           },
         },
         {
+          type: "concept",
+          content: {
+            badge: "Cách Học",
+            title: "Bốn bước làm một bài toán",
+            explanation: "Mọi bài so sánh số đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            points: [
+              "Bước 1 — Đếm số CHỮ SỐ của từng số trước.",
+              "Bước 2 — Số nào nhiều chữ số hơn thì lớn hơn — xong, không cần so tiếp.",
+              "Bước 3 — Cùng số chữ số thì so từng hàng từ TRÁI sang phải, gặp hàng khác nhau thì dừng.",
+              "Bước 4 — Đọc lại kết quả và đặt đúng dấu (>, <, =)."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Điều cần nhớ", "Nội dung"],
+              rows: [
+                ["Nhiều chữ số hơn", "thì số đó lớn hơn"],
+                ["So từ trái", "hàng nghìn rồi mới tới trăm, chục, đơn vị"],
+                ["Dấu lớn mở về phía", "số lớn hơn"]
+              ]
+            },
+            text: "Bảng nhớ nhanh — so sánh số\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Muốn so sánh hai số, bé bắt đầu bằng việc gì?",
+            options: [
+              "Đếm xem số nào có nhiều chữ số hơn",
+              "So chữ số hàng đơn vị trước",
+              "Cộng hai số lại",
+              "Đọc từ phải sang trái"
+            ],
+            answer: "Đếm xem số nào có nhiều chữ số hơn",
+            mascotHint: "Số nhiều chữ số hơn chắc chắn lớn hơn, nên chỉ cần so từng hàng khi hai số bằng số chữ số."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Tính nhẩm: 160 000 − 90 000 = ?",
@@ -265,6 +327,43 @@ export const g4c7 = {
               label: "Đọc dấu hiệu là nhận ra hình ngay",
             },
           },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Cách Học",
+            title: "Bốn bước làm một bài toán",
+            explanation: "Mọi bài đo lường và đổi đơn vị đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            points: [
+              "Bước 1 — Đọc đơn vị đang có và đơn vị cần đổi.",
+              "Bước 2 — Viết bậc thang đơn vị ra giấy để thấy phải đi mấy bậc.",
+              "Bước 3 — Đi xuống (ra đơn vị bé hơn) thì NHÂN; đi lên (ra đơn vị lớn hơn) thì CHIA.",
+              "Bước 4 — Viết kết quả kèm đơn vị và kiểm tra lại bằng phép ngược."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Điều cần nhớ", "Nội dung"],
+              rows: [
+                ["1 m", "= 100 cm"],
+                ["1 kg", "= 1 000 g"],
+                ["1 l", "= 1 000 ml"]
+              ]
+            },
+            text: "Bảng nhớ nhanh — đo lường và đổi đơn vị\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Đổi số đo từ đơn vị lớn sang đơn vị bé hơn thì bé làm phép gì?",
+            options: ["Nhân", "Chia", "Cộng", "Trừ"],
+            answer: "Nhân",
+            mascotHint: "Đơn vị bé hơn thì số đo phải nhiều hơn: 1 m đổi ra cm được 100 cm — đó là phép nhân."
+          }
         },
         {
           type: "quiz",
@@ -358,6 +457,43 @@ export const g4c7 = {
           },
         },
         {
+          type: "concept",
+          content: {
+            badge: "Cách Học",
+            title: "Bốn bước làm một bài toán",
+            explanation: "Mọi bài đo lường và đổi đơn vị đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            points: [
+              "Bước 1 — Đọc đơn vị đang có và đơn vị cần đổi.",
+              "Bước 2 — Viết bậc thang đơn vị ra giấy để thấy phải đi mấy bậc.",
+              "Bước 3 — Đi xuống (ra đơn vị bé hơn) thì NHÂN; đi lên (ra đơn vị lớn hơn) thì CHIA.",
+              "Bước 4 — Viết kết quả kèm đơn vị và kiểm tra lại bằng phép ngược."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Điều cần nhớ", "Nội dung"],
+              rows: [
+                ["1 m", "= 100 cm"],
+                ["1 kg", "= 1 000 g"],
+                ["1 l", "= 1 000 ml"]
+              ]
+            },
+            text: "Bảng nhớ nhanh — đo lường và đổi đơn vị\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Đổi số đo từ đơn vị lớn sang đơn vị bé hơn thì bé làm phép gì?",
+            options: ["Nhân", "Chia", "Cộng", "Trừ"],
+            answer: "Nhân",
+            mascotHint: "Đơn vị bé hơn thì số đo phải nhiều hơn: 1 m đổi ra cm được 100 cm — đó là phép nhân."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Đổi: 4 m² = … dm²",
@@ -433,6 +569,48 @@ export const g4c7 = {
               label: "Ma-lai-xi-a nhiều nhất · Lào ít nhất",
             },
           },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Cách Học",
+            title: "Bốn bước làm một bài toán",
+            explanation: "Mọi bài bài toán có lời văn đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            points: [
+              "Bước 1 — Đọc kỹ đề, gạch dưới các SỐ và từ khoá (thêm, bớt, gấp, chia đều).",
+              "Bước 2 — Tóm tắt đề bằng hình hoặc bằng câu ngắn: đã có gì, cần tìm gì.",
+              "Bước 3 — Chọn phép tính: “thêm, gộp, tất cả” → cộng; “bớt, cho đi, còn lại” → trừ; “gấp mấy lần” → nhân.",
+              "Bước 4 — Đặt tính rồi tính, rồi VIẾT ĐÁP SỐ kèm đơn vị và thử lại bằng phép ngược."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Điều cần nhớ", "Nội dung"],
+              rows: [
+                ["Đơn vị", "đáp số luôn kèm đơn vị như con, quả, kg, cm"],
+                ["Kiểm tra", "cộng thì lấy kết quả trừ đi một số hạng"],
+                ["Câu trả lời", "viết đủ câu, không chỉ ghi số"]
+              ]
+            },
+            text: "Bảng nhớ nhanh — bài toán có lời văn\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Giải một bài toán có lời văn, bé làm gì TRƯỚC TIÊN?",
+            options: [
+              "Đọc kỹ đề và gạch dưới các số đã cho",
+              "Viết ngay đáp số",
+              "Đoán kết quả",
+              "Đặt tính trước khi đọc đề"
+            ],
+            answer: "Đọc kỹ đề và gạch dưới các số đã cho",
+            mascotHint: "Chưa đọc kỹ đề thì chưa biết đề cho gì, hỏi gì — mọi bước sau đều dễ sai."
+          }
         },
         {
           type: "quiz",

@@ -52,6 +52,71 @@ export const g4c11 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 2,
+              right: 3,
+              sign: "+",
+              remember: true
+            },
+            text: "Bé tự đặt tính: 2 + 3\nhàng đơn vị 2 + 3 = 5, viết 5\nVậy 2 + 3 = 5."
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            fractionBar: {
+              parts: 8,
+              shaded: 5,
+              label: "5/8",
+              unit: "băng giấy"
+            },
+            text: "Phân số 5/8: chia băng giấy thành 8 phần bằng nhau\ntô màu 5 phần trong số đó\nĐọc là “5 phần 8”."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Ghi Nhớ",
+            title: "Đọc và hiểu phân số",
+            explanation: "Mẫu số cho biết chia thành mấy phần BẰNG NHAU; tử số cho biết lấy mấy phần.",
+            points: [
+              "Mẫu số 8 — chia đều thành 8 phần.",
+              "Tử số 5 — lấy 5 phần trong số đó.",
+              "Mẫu số phải khác 0; chia thành 0 phần thì không có gì để lấy.",
+              "Hai phân số bằng nhau khi cùng biểu diễn một phần của cùng một vật: 5/8 = 10/16."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Trong phân số 5/8, mẫu số là số nào?",
+            options: [5, 7, 8, 9],
+            answer: 8,
+            mascotHint: "Mẫu số là số dưới dấu gạch: 8."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Trong phân số 5/8, tử số là số nào?",
+            options: [5, 6, 8, 9],
+            answer: 5,
+            mascotHint: "Tử số là số TRÊN dấu gạch: 5."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "5 + 1 bằng bao nhiêu?",
+            options: [5, 6, 7, 8],
+            answer: 6,
+            mascotHint: "hàng đơn vị 5 + 1 = 6, viết 6. Kết quả 6."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Tính: 2/7 + 3/7 = ?",
@@ -131,6 +196,50 @@ export const g4c11 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            fractionBar: {
+              parts: 6,
+              shaded: 5,
+              label: "5/6",
+              unit: "băng giấy"
+            },
+            text: "Phân số 5/6: chia băng giấy thành 6 phần bằng nhau\ntô màu 5 phần trong số đó\nĐọc là “5 phần 6”."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Ghi Nhớ",
+            title: "Đọc và hiểu phân số",
+            explanation: "Mẫu số cho biết chia thành mấy phần BẰNG NHAU; tử số cho biết lấy mấy phần.",
+            points: [
+              "Mẫu số 6 — chia đều thành 6 phần.",
+              "Tử số 5 — lấy 5 phần trong số đó.",
+              "Mẫu số phải khác 0; chia thành 0 phần thì không có gì để lấy.",
+              "Hai phân số bằng nhau khi cùng biểu diễn một phần của cùng một vật: 5/6 = 10/12."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Trong phân số 5/6, mẫu số là số nào?",
+            options: [5, 6, 7, 8],
+            answer: 6,
+            mascotHint: "Mẫu số là số dưới dấu gạch: 6."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Trong phân số 5/6, tử số là số nào?",
+            options: [4, 5, 6, 7],
+            answer: 5,
+            mascotHint: "Tử số là số TRÊN dấu gạch: 5."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Tính: 5/6 − 1/6 = ?",
@@ -191,6 +300,77 @@ export const g4c11 = {
               label: "Quy đồng mẫu số trước khi cộng hoặc trừ khác mẫu",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            fractionBar: {
+              parts: 5,
+              shaded: 2,
+              label: "2/5",
+              unit: "băng giấy"
+            },
+            text: "Phân số 2/5: chia băng giấy thành 5 phần bằng nhau\ntô màu 2 phần trong số đó\nĐọc là “2 phần 5”."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Ghi Nhớ",
+            title: "Đọc và hiểu phân số",
+            explanation: "Mẫu số cho biết chia thành mấy phần BẰNG NHAU; tử số cho biết lấy mấy phần.",
+            points: [
+              "Mẫu số 5 — chia đều thành 5 phần.",
+              "Tử số 2 — lấy 2 phần trong số đó.",
+              "Mẫu số phải khác 0; chia thành 0 phần thì không có gì để lấy.",
+              "Hai phân số bằng nhau khi cùng biểu diễn một phần của cùng một vật: 2/5 = 4/10."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                ["Bước 1 — Đơn vị", "viết kết quả luôn kèm đơn vị"],
+                ["Bước 2 — Bậc thang", "đi xuống thì nhân, đi lên thì chia"],
+                ["Bước 3 — Kiểm lại", "lấy kết quả đổi ngược lại xem có về số ban đầu"]
+              ]
+            },
+            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
+            options: [
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Nộp bài luôn cho nhanh",
+              "Đoán lại một lần nữa"
+            ],
+            answer: "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            mascotHint: "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Trong phân số 2/5, mẫu số là số nào?",
+            options: [2, 4, 5, 6],
+            answer: 5,
+            mascotHint: "Mẫu số là số dưới dấu gạch: 5."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Trong phân số 2/5, tử số là số nào?",
+            options: [2, 3, 5, 6],
+            answer: 2,
+            mascotHint: "Tử số là số TRÊN dấu gạch: 2."
+          }
         },
         {
           type: "quiz",

@@ -45,6 +45,63 @@ export const g1c6 = {
           },
         },
         {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "So sánh hai số bằng cách đếm",
+            explanation:
+              "Ở mức này, cách chắc chắn nhất là ĐẾM: số nào đếm đến sau thì số đó lớn hơn.",
+            points: [
+              "Đếm từ 1: “1, 2, 3, 4, 5…” — số đếm đến sau thì lớn hơn. Ví dụ 5 đến sau 2 nên 5 lớn hơn 2.",
+              "Trên tia số, số đứng bên PHẢI lớn hơn số đứng bên TRÁI.",
+              "Ba dấu cần nhớ: “>” đọc là lớn hơn, “<” đọc là bé hơn, “=” đọc là bằng nhau.",
+              "Với hai số của bài này: 1 < 10, đọc là “1 bé hơn 10”.",
+            ],
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                ["Bước 1 — Đơn vị", "viết kết quả luôn kèm đơn vị"],
+                ["Bước 2 — Bậc thang", "đi xuống thì nhân, đi lên thì chia"],
+                [
+                  "Bước 3 — Kiểm lại",
+                  "lấy kết quả đổi ngược lại xem có về số ban đầu",
+                ],
+              ],
+            },
+            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question:
+              "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
+            options: [
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Nộp bài luôn cho nhanh",
+              "Đoán lại một lần nữa",
+            ],
+            answer:
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            mascotHint:
+              "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số nào lớn hơn: 1 hay 10?",
+            options: [1, 9, 10, 11],
+            answer: 10,
+            mascotHint: "Đếm từ 1: số 10 đếm đến sau số 1, nên 10 lớn hơn 1.",
+          },
+        },
+        {
           type: "quiz",
           content: {
             question: "1 chục bằng bao nhiêu đơn vị?",
@@ -118,7 +175,7 @@ export const g1c6 = {
         {
           type: "visual",
           content: {
-            text: "Viết số và đọc số — bảng như SGK tr.4",
+            text: "Viết số và đọc số",
             table: {
               headers: ["Viết số", "Đọc số"],
               rows: [
@@ -139,12 +196,12 @@ export const g1c6 = {
         },
         {
           /**
-           * SGK tr.5 (hoạt động 3): dãy số 1 → 20 vòng quanh con chim cánh cụt, có 4 ô “?”.
+           * Dãy số 1 → 20 vòng quanh con chim cánh cụt, có 4 ô “?”.
            * Dãy 20 số KHÔNG vừa một hàng ⇒ bộ vẽ tự chia 2 hàng (xem `oRibbon`).
            */
           type: "visual",
           content: {
-            text: "Số ? — dãy số từ 1 đến 20 (SGK tr.5)",
+            text: "Số ? — dãy số từ 1 đến 20",
             numberScene: {
               mode: "numberTrain",
               kind: "ribbon",
@@ -177,12 +234,12 @@ export const g1c6 = {
         },
         {
           /**
-           * SGK tr.6 (luyện tập 1): 6 đoàn tàu, mỗi đoàn là một dãy số liền nhau còn thiếu số.
+           * 6 đoàn tàu, mỗi đoàn là một dãy số liền nhau còn thiếu số.
            * Đáp án đọc theo thứ tự trái → phải, trên → dưới.
            */
           type: "visual",
           content: {
-            text: "Số ? — các đoàn tàu (SGK tr.6)",
+            text: "Số ? — các đoàn tàu",
             numberScene: {
               mode: "numberTrain",
               kind: "wagons",
@@ -197,6 +254,50 @@ export const g1c6 = {
               answers: [13, 14, 14, 15, 14, 15, 18, 19, 13, 15, 17, 19],
               note: "Mỗi đoàn tàu là một dãy số liền nhau — bé điền các số còn thiếu.",
             },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            baseTen: {
+              tens: 0,
+              ones: 2,
+            },
+            text: "2 gồm mấy chục và mấy đơn vị?\nBé đếm khối: 0 thanh chục và 2 ô rời\nVậy 2 = 0 chục và 2 đơn vị",
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "So sánh hai số cho đúng",
+            explanation:
+              "Muốn biết số nào lớn hơn, bé làm hai bước sau — không cần đếm lại từ đầu.",
+            points: [
+              "Bước 1 — đếm số chữ số: số nào có ít chữ số hơn thì số đó BÉ hơn (ví dụ 9 < 10).",
+              "Bước 2 — hai số cùng số chữ số: so chữ số đầu tiên bên TRÁI trước; số nào có chữ số ấy lớn hơn thì số đó lớn hơn. Bằng nhau thì so chữ số tiếp theo.",
+              "Ví dụ: 11 có 2 chữ số, 2 có 1 chữ số — số nào có ít chữ số hơn thì bé hơn.",
+              "Số liền sau = số đó thêm 1; số liền trước = số đó bớt 1.",
+            ],
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số liền sau của số 2 là số nào?",
+            options: [2, 3, 4, 12],
+            answer: 3,
+            mascotHint: "Số liền sau hơn số đã cho 1 đơn vị: 2 + 1 = 3.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số nào LỚN NHẤT trong các số sau: 2, 11, 20, 1?",
+            options: ["1", "2", "11", "20"],
+            answer: "20",
+            mascotHint:
+              "Bé so chữ số đầu tiên bên trái của các số, bằng nhau thì so chữ số tiếp theo — số lớn nhất là 20.",
           },
         },
         {
@@ -280,6 +381,50 @@ export const g1c6 = {
               marks: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
               label: "Các số tròn chục",
             },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            baseTen: {
+              tens: 0,
+              ones: 3,
+            },
+            text: "3 gồm mấy chục và mấy đơn vị?\nBé đếm khối: 0 thanh chục và 3 ô rời\nVậy 3 = 0 chục và 3 đơn vị",
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "So sánh hai số cho đúng",
+            explanation:
+              "Muốn biết số nào lớn hơn, bé làm hai bước sau — không cần đếm lại từ đầu.",
+            points: [
+              "Bước 1 — đếm số chữ số: số nào có ít chữ số hơn thì số đó BÉ hơn (ví dụ 9 < 10).",
+              "Bước 2 — hai số cùng số chữ số: so chữ số đầu tiên bên TRÁI trước; số nào có chữ số ấy lớn hơn thì số đó lớn hơn. Bằng nhau thì so chữ số tiếp theo.",
+              "Ví dụ: 10 có 2 chữ số, 3 có 1 chữ số — số nào có ít chữ số hơn thì bé hơn.",
+              "Số liền sau = số đó thêm 1; số liền trước = số đó bớt 1.",
+            ],
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số liền sau của số 3 là số nào?",
+            options: [3, 4, 5, 13],
+            answer: 4,
+            mascotHint: "Số liền sau hơn số đã cho 1 đơn vị: 3 + 1 = 4.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số nào LỚN NHẤT trong các số sau: 3, 10, 100, 20?",
+            options: ["3", "10", "20", "100"],
+            answer: "100",
+            mascotHint:
+              "Bé so chữ số đầu tiên bên trái của các số, bằng nhau thì so chữ số tiếp theo — số lớn nhất là 100.",
           },
         },
         {
@@ -369,6 +514,50 @@ export const g1c6 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            baseTen: {
+              tens: 0,
+              ones: 4,
+            },
+            text: "4 gồm mấy chục và mấy đơn vị?\nBé đếm khối: 0 thanh chục và 4 ô rời\nVậy 4 = 0 chục và 4 đơn vị",
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "So sánh hai số cho đúng",
+            explanation:
+              "Muốn biết số nào lớn hơn, bé làm hai bước sau — không cần đếm lại từ đầu.",
+            points: [
+              "Bước 1 — đếm số chữ số: số nào có ít chữ số hơn thì số đó BÉ hơn (ví dụ 9 < 10).",
+              "Bước 2 — hai số cùng số chữ số: so chữ số đầu tiên bên TRÁI trước; số nào có chữ số ấy lớn hơn thì số đó lớn hơn. Bằng nhau thì so chữ số tiếp theo.",
+              "Ví dụ: 34 có 2 chữ số, 4 có 1 chữ số — số nào có ít chữ số hơn thì bé hơn.",
+              "Số liền sau = số đó thêm 1; số liền trước = số đó bớt 1.",
+            ],
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số liền sau của số 4 là số nào?",
+            options: [4, 5, 6, 14],
+            answer: 5,
+            mascotHint: "Số liền sau hơn số đã cho 1 đơn vị: 4 + 1 = 5.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số nào LỚN NHẤT trong các số sau: 4, 34, 3, 30?",
+            options: ["3", "4", "30", "34"],
+            answer: "34",
+            mascotHint:
+              "Bé so chữ số đầu tiên bên trái của các số, bằng nhau thì so chữ số tiếp theo — số lớn nhất là 34.",
+          },
+        },
+        {
           type: "quiz",
           content: {
             question: "Số 52 gồm mấy chục và mấy đơn vị?",
@@ -385,7 +574,7 @@ export const g1c6 = {
         {
           type: "visual",
           content: {
-            text: "Số ? — mỗi số gồm mấy chục và mấy đơn vị (SGK tr.14)",
+            text: "Số ? — mỗi số gồm mấy chục và mấy đơn vị",
             bangTinh: {
               headers: ["Đọc chục và đơn vị", "Viết số"],
               rows: [
@@ -404,7 +593,7 @@ export const g1c6 = {
         {
           type: "visual",
           content: {
-            text: "Số ? — bảng các số từ 0 đến 99 còn thiếu số nào? (SGK tr.14)",
+            text: "Số ? — bảng các số từ 0 đến 99 còn thiếu số nào?",
             numberScene: {
               mode: "numberTrain",
               kind: "ribbon",
@@ -499,6 +688,50 @@ export const g1c6 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            baseTen: {
+              tens: 0,
+              ones: 5,
+            },
+            text: "5 gồm mấy chục và mấy đơn vị?\nBé đếm khối: 0 thanh chục và 5 ô rời\nVậy 5 = 0 chục và 5 đơn vị",
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "So sánh hai số cho đúng",
+            explanation:
+              "Muốn biết số nào lớn hơn, bé làm hai bước sau — không cần đếm lại từ đầu.",
+            points: [
+              "Bước 1 — đếm số chữ số: số nào có ít chữ số hơn thì số đó BÉ hơn (ví dụ 9 < 10).",
+              "Bước 2 — hai số cùng số chữ số: so chữ số đầu tiên bên TRÁI trước; số nào có chữ số ấy lớn hơn thì số đó lớn hơn. Bằng nhau thì so chữ số tiếp theo.",
+              "Ví dụ: 45 có 2 chữ số, 5 có 1 chữ số — số nào có ít chữ số hơn thì bé hơn.",
+              "Số liền sau = số đó thêm 1; số liền trước = số đó bớt 1.",
+            ],
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số liền sau của số 5 là số nào?",
+            options: [5, 6, 7, 15],
+            answer: 6,
+            mascotHint: "Số liền sau hơn số đã cho 1 đơn vị: 5 + 1 = 6.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số nào LỚN NHẤT trong các số sau: 5, 45, 1, 51?",
+            options: ["1", "5", "45", "51"],
+            answer: "51",
+            mascotHint:
+              "Bé so chữ số đầu tiên bên trái của các số, bằng nhau thì so chữ số tiếp theo — số lớn nhất là 51.",
+          },
+        },
+        {
           type: "quiz",
           content: {
             question: "Số 45 đọc là gì?",
@@ -519,7 +752,7 @@ export const g1c6 = {
         {
           type: "quiz",
           content: {
-            question: "Con cá ghi “mười bốn” — đó là số nào? (SGK tr.15)",
+            question: "Con cá ghi “mười bốn” — đó là số nào?",
             options: [14, 42, 58, 76],
             answer: 14,
             mascotHint: "Mười bốn gồm 1 chục và 4 đơn vị nên viết là 14.",
@@ -593,6 +826,50 @@ export const g1c6 = {
               ],
               label: "So sánh số có hai chữ số: so hàng chục trước",
             },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            baseTen: {
+              tens: 0,
+              ones: 6,
+            },
+            text: "6 gồm mấy chục và mấy đơn vị?\nBé đếm khối: 0 thanh chục và 6 ô rời\nVậy 6 = 0 chục và 6 đơn vị",
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "So sánh hai số cho đúng",
+            explanation:
+              "Muốn biết số nào lớn hơn, bé làm hai bước sau — không cần đếm lại từ đầu.",
+            points: [
+              "Bước 1 — đếm số chữ số: số nào có ít chữ số hơn thì số đó BÉ hơn (ví dụ 9 < 10).",
+              "Bước 2 — hai số cùng số chữ số: so chữ số đầu tiên bên TRÁI trước; số nào có chữ số ấy lớn hơn thì số đó lớn hơn. Bằng nhau thì so chữ số tiếp theo.",
+              "Ví dụ: 34 có 2 chữ số, 6 có 1 chữ số — số nào có ít chữ số hơn thì bé hơn.",
+              "Số liền sau = số đó thêm 1; số liền trước = số đó bớt 1.",
+            ],
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số liền sau của số 6 là số nào?",
+            options: [6, 7, 8, 16],
+            answer: 7,
+            mascotHint: "Số liền sau hơn số đã cho 1 đơn vị: 6 + 1 = 7.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số nào LỚN NHẤT trong các số sau: 6, 34, 43, 3?",
+            options: ["3", "6", "34", "43"],
+            answer: "43",
+            mascotHint:
+              "Bé so chữ số đầu tiên bên trái của các số, bằng nhau thì so chữ số tiếp theo — số lớn nhất là 43.",
           },
         },
         {
@@ -670,6 +947,50 @@ export const g1c6 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            baseTen: {
+              tens: 0,
+              ones: 7,
+            },
+            text: "7 gồm mấy chục và mấy đơn vị?\nBé đếm khối: 0 thanh chục và 7 ô rời\nVậy 7 = 0 chục và 7 đơn vị",
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "So sánh hai số cho đúng",
+            explanation:
+              "Muốn biết số nào lớn hơn, bé làm hai bước sau — không cần đếm lại từ đầu.",
+            points: [
+              "Bước 1 — đếm số chữ số: số nào có ít chữ số hơn thì số đó BÉ hơn (ví dụ 9 < 10).",
+              "Bước 2 — hai số cùng số chữ số: so chữ số đầu tiên bên TRÁI trước; số nào có chữ số ấy lớn hơn thì số đó lớn hơn. Bằng nhau thì so chữ số tiếp theo.",
+              "Ví dụ: 12 có 2 chữ số, 7 có 1 chữ số — số nào có ít chữ số hơn thì bé hơn.",
+              "Số liền sau = số đó thêm 1; số liền trước = số đó bớt 1.",
+            ],
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số liền sau của số 7 là số nào?",
+            options: [7, 8, 9, 17],
+            answer: 8,
+            mascotHint: "Số liền sau hơn số đã cho 1 đơn vị: 7 + 1 = 8.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số nào LỚN NHẤT trong các số sau: 7, 12, 45, 30?",
+            options: ["7", "12", "30", "45"],
+            answer: "45",
+            mascotHint:
+              "Bé so chữ số đầu tiên bên trái của các số, bằng nhau thì so chữ số tiếp theo — số lớn nhất là 45.",
+          },
+        },
+        {
           type: "quiz",
           content: {
             question: "Số lớn nhất có hai chữ số là số nào?",
@@ -710,7 +1031,7 @@ export const g1c6 = {
           type: "quiz",
           content: {
             question:
-              "Lớp 1A có 33 học sinh, lớp 1B có 30 học sinh. Lớp nào có nhiều học sinh hơn? (SGK tr.21)",
+              "Lớp 1A có 33 học sinh, lớp 1B có 30 học sinh. Lớp nào có nhiều học sinh hơn?",
             options: ["Lớp 1A", "Lớp 1B", "Hai lớp bằng nhau"],
             answer: "Lớp 1A",
             mascotHint:
@@ -780,6 +1101,50 @@ export const g1c6 = {
               marks: [33, 34, 35],
               label: "33 là số liền trước của 34 · 35 là số liền sau của 34",
             },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            baseTen: {
+              tens: 0,
+              ones: 8,
+            },
+            text: "8 gồm mấy chục và mấy đơn vị?\nBé đếm khối: 0 thanh chục và 8 ô rời\nVậy 8 = 0 chục và 8 đơn vị",
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "So sánh hai số cho đúng",
+            explanation:
+              "Muốn biết số nào lớn hơn, bé làm hai bước sau — không cần đếm lại từ đầu.",
+            points: [
+              "Bước 1 — đếm số chữ số: số nào có ít chữ số hơn thì số đó BÉ hơn (ví dụ 9 < 10).",
+              "Bước 2 — hai số cùng số chữ số: so chữ số đầu tiên bên TRÁI trước; số nào có chữ số ấy lớn hơn thì số đó lớn hơn. Bằng nhau thì so chữ số tiếp theo.",
+              "Ví dụ: 34 có 2 chữ số, 8 có 1 chữ số — số nào có ít chữ số hơn thì bé hơn.",
+              "Số liền sau = số đó thêm 1; số liền trước = số đó bớt 1.",
+            ],
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số liền sau của số 8 là số nào?",
+            options: [8, 9, 10, 18],
+            answer: 9,
+            mascotHint: "Số liền sau hơn số đã cho 1 đơn vị: 8 + 1 = 9.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số nào LỚN NHẤT trong các số sau: 8, 34, 1, 33?",
+            options: ["1", "8", "33", "34"],
+            answer: "34",
+            mascotHint:
+              "Bé so chữ số đầu tiên bên trái của các số, bằng nhau thì so chữ số tiếp theo — số lớn nhất là 34.",
           },
         },
         {
@@ -855,6 +1220,50 @@ export const g1c6 = {
               ],
               label: "Bảng các số từ 1 đến 100 (năm chục đầu)",
             },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            baseTen: {
+              tens: 0,
+              ones: 9,
+            },
+            text: "9 gồm mấy chục và mấy đơn vị?\nBé đếm khối: 0 thanh chục và 9 ô rời\nVậy 9 = 0 chục và 9 đơn vị",
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "So sánh hai số cho đúng",
+            explanation:
+              "Muốn biết số nào lớn hơn, bé làm hai bước sau — không cần đếm lại từ đầu.",
+            points: [
+              "Bước 1 — đếm số chữ số: số nào có ít chữ số hơn thì số đó BÉ hơn (ví dụ 9 < 10).",
+              "Bước 2 — hai số cùng số chữ số: so chữ số đầu tiên bên TRÁI trước; số nào có chữ số ấy lớn hơn thì số đó lớn hơn. Bằng nhau thì so chữ số tiếp theo.",
+              "Ví dụ: hai số đều có 1 chữ số, bé so từ trái sang phải — đến hàng đơn vị thì 1 < 9, nên 1 < 9.",
+              "Số liền sau = số đó thêm 1; số liền trước = số đó bớt 1.",
+            ],
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số liền sau của số 9 là số nào?",
+            options: [9, 10, 11, 19],
+            answer: 10,
+            mascotHint: "Số liền sau hơn số đã cho 1 đơn vị: 9 + 1 = 10.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số nào LỚN NHẤT trong các số sau: 9, 1, 100, 10?",
+            options: ["1", "9", "10", "100"],
+            answer: "100",
+            mascotHint:
+              "Bé so chữ số đầu tiên bên trái của các số, bằng nhau thì so chữ số tiếp theo — số lớn nhất là 100.",
           },
         },
         {
@@ -949,6 +1358,50 @@ export const g1c6 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            baseTen: {
+              tens: 1,
+              ones: 0,
+            },
+            text: "10 gồm mấy chục và mấy đơn vị?\nBé đếm khối: 1 thanh chục và 0 ô rời\nVậy 10 = 1 chục và 0 đơn vị",
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "So sánh hai số cho đúng",
+            explanation:
+              "Muốn biết số nào lớn hơn, bé làm hai bước sau — không cần đếm lại từ đầu.",
+            points: [
+              "Bước 1 — đếm số chữ số: số nào có ít chữ số hơn thì số đó BÉ hơn (ví dụ 9 < 10).",
+              "Bước 2 — hai số cùng số chữ số: so chữ số đầu tiên bên TRÁI trước; số nào có chữ số ấy lớn hơn thì số đó lớn hơn. Bằng nhau thì so chữ số tiếp theo.",
+              "Ví dụ: 100 có 3 chữ số, 10 có 2 chữ số — số nào có ít chữ số hơn thì bé hơn.",
+              "Số liền sau = số đó thêm 1; số liền trước = số đó bớt 1.",
+            ],
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số liền sau của số 10 là số nào?",
+            options: [10, 11, 12, 20],
+            answer: 11,
+            mascotHint: "Số liền sau hơn số đã cho 1 đơn vị: 10 + 1 = 11.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số nào LỚN NHẤT trong các số sau: 10, 100, 1, 25?",
+            options: ["1", "10", "25", "100"],
+            answer: "100",
+            mascotHint:
+              "Bé so chữ số đầu tiên bên trái của các số, bằng nhau thì so chữ số tiếp theo — số lớn nhất là 100.",
+          },
+        },
+        {
           type: "quiz",
           content: {
             question: "25 thêm 10 bằng bao nhiêu?",
@@ -961,7 +1414,7 @@ export const g1c6 = {
         {
           type: "visual",
           content: {
-            text: "Số ? — đếm thêm 1 (SGK tr.23)",
+            text: "Số ? — đếm thêm 1",
             numberScene: {
               mode: "numberTrain",
               kind: "ribbon",
@@ -974,7 +1427,7 @@ export const g1c6 = {
         {
           type: "visual",
           content: {
-            text: "Số ? — đếm thêm 2 (SGK tr.23)",
+            text: "Số ? — đếm thêm 2",
             numberScene: {
               mode: "numberTrain",
               kind: "ribbon",
@@ -987,7 +1440,7 @@ export const g1c6 = {
         {
           type: "visual",
           content: {
-            text: "Số ? — đếm thêm 2, dãy số lớn (SGK tr.23)",
+            text: "Số ? — đếm thêm 2, dãy số lớn",
             numberScene: {
               mode: "numberTrain",
               kind: "ribbon",
@@ -1052,6 +1505,71 @@ export const g1c6 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 23,
+              right: 10,
+              sign: "+",
+              remember: true,
+            },
+            text: "Bé tự đặt tính: 23 + 10\nhàng đơn vị 3 + 0 = 3, viết 3\nhàng chục 2 + 1 = 3, viết 3\nVậy 23 + 10 = 33.",
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            baseTen: {
+              tens: 1,
+              ones: 1,
+            },
+            text: "11 gồm mấy chục và mấy đơn vị?\nBé đếm khối: 1 thanh chục và 1 ô rời\nVậy 11 = 1 chục và 1 đơn vị",
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "So sánh hai số cho đúng",
+            explanation:
+              "Muốn biết số nào lớn hơn, bé làm hai bước sau — không cần đếm lại từ đầu.",
+            points: [
+              "Bước 1 — đếm số chữ số: số nào có ít chữ số hơn thì số đó BÉ hơn (ví dụ 9 < 10).",
+              "Bước 2 — hai số cùng số chữ số: so chữ số đầu tiên bên TRÁI trước; số nào có chữ số ấy lớn hơn thì số đó lớn hơn. Bằng nhau thì so chữ số tiếp theo.",
+              "Ví dụ: hai số đều có 2 chữ số, bé so từ trái sang phải — đến hàng chục thì 1 < 3, nên 11 < 30.",
+              "Số liền sau = số đó thêm 1; số liền trước = số đó bớt 1.",
+            ],
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số liền sau của số 11 là số nào?",
+            options: [11, 12, 13, 21],
+            answer: 12,
+            mascotHint: "Số liền sau hơn số đã cho 1 đơn vị: 11 + 1 = 12.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số nào LỚN NHẤT trong các số sau: 11, 30, 31, 33?",
+            options: ["11", "30", "31", "33"],
+            answer: "33",
+            mascotHint:
+              "Bé so chữ số đầu tiên bên trái của các số, bằng nhau thì so chữ số tiếp theo — số lớn nhất là 33.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "21 + 53 bằng bao nhiêu?",
+            options: [73, 74, 75, 76],
+            answer: 74,
+            mascotHint: "hàng đơn vị 1 + 3 = 4, viết 4. Kết quả 74.",
+          },
+        },
+        {
           type: "quiz",
           content: {
             question: "Điền số còn thiếu: 30, 31, ?, 33",
@@ -1072,7 +1590,7 @@ export const g1c6 = {
         {
           type: "visual",
           content: {
-            text: "Số ? — hai hàng trong bảng các số từ 1 đến 100 (SGK tr.22)",
+            text: "Số ? — hai hàng trong bảng các số từ 1 đến 100",
             numberScene: {
               mode: "numberTrain",
               kind: "ribbon",
@@ -1107,7 +1625,7 @@ export const g1c6 = {
           type: "quiz",
           content: {
             question:
-              "Trong bảng các số từ 1 đến 100, số nào đứng ngay dưới số 23? (SGK tr.23)",
+              "Trong bảng các số từ 1 đến 100, số nào đứng ngay dưới số 23?",
             options: [23, 33, 43, 24],
             answer: 33,
             mascotHint: "Đi xuống một hàng là thêm 10: 23 + 10 = 33.",
@@ -1176,6 +1694,50 @@ export const g1c6 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            baseTen: {
+              tens: 1,
+              ones: 2,
+            },
+            text: "12 gồm mấy chục và mấy đơn vị?\nBé đếm khối: 1 thanh chục và 2 ô rời\nVậy 12 = 1 chục và 2 đơn vị",
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "So sánh hai số cho đúng",
+            explanation:
+              "Muốn biết số nào lớn hơn, bé làm hai bước sau — không cần đếm lại từ đầu.",
+            points: [
+              "Bước 1 — đếm số chữ số: số nào có ít chữ số hơn thì số đó BÉ hơn (ví dụ 9 < 10).",
+              "Bước 2 — hai số cùng số chữ số: so chữ số đầu tiên bên TRÁI trước; số nào có chữ số ấy lớn hơn thì số đó lớn hơn. Bằng nhau thì so chữ số tiếp theo.",
+              "Ví dụ: 12 có 2 chữ số, 6 có 1 chữ số — số nào có ít chữ số hơn thì bé hơn.",
+              "Số liền sau = số đó thêm 1; số liền trước = số đó bớt 1.",
+            ],
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số liền sau của số 12 là số nào?",
+            options: [12, 13, 14, 22],
+            answer: 13,
+            mascotHint: "Số liền sau hơn số đã cho 1 đơn vị: 12 + 1 = 13.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số nào LỚN NHẤT trong các số sau: 12, 6, 100, 1?",
+            options: ["1", "6", "12", "100"],
+            answer: "100",
+            mascotHint:
+              "Bé so chữ số đầu tiên bên trái của các số, bằng nhau thì so chữ số tiếp theo — số lớn nhất là 100.",
+          },
+        },
+        {
           type: "quiz",
           content: {
             question: "Số 78 gồm mấy chục và mấy đơn vị?",
@@ -1201,7 +1763,7 @@ export const g1c6 = {
         {
           type: "quiz",
           content: {
-            question: "“Sáu mươi hai” viết là số nào? (SGK tr.25)",
+            question: "“Sáu mươi hai” viết là số nào?",
             options: [26, 62, 60, 72],
             answer: 62,
             mascotHint: "Sáu mươi là 6 chục, thêm 2 đơn vị nên viết là 62.",

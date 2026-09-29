@@ -56,6 +56,56 @@ export const g4c3 = {
           },
         },
         {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "So sánh hai số bằng cách đếm",
+            explanation: "Ở mức này, cách chắc chắn nhất là ĐẾM: số nào đếm đến sau thì số đó lớn hơn.",
+            points: [
+              "Đếm từ 1: “1, 2, 3, 4, 5…” — số đếm đến sau thì lớn hơn. Ví dụ 5 đến sau 2 nên 5 lớn hơn 2.",
+              "Trên tia số, số đứng bên PHẢI lớn hơn số đứng bên TRÁI.",
+              "Ba dấu cần nhớ: “>” đọc là lớn hơn, “<” đọc là bé hơn, “=” đọc là bằng nhau.",
+              "Với hai số của bài này: 10 < 1000000, đọc là “10 bé hơn 1000000”."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                ["Bước 1 — Đơn vị", "viết kết quả luôn kèm đơn vị"],
+                ["Bước 2 — Bậc thang", "đi xuống thì nhân, đi lên thì chia"],
+                ["Bước 3 — Kiểm lại", "lấy kết quả đổi ngược lại xem có về số ban đầu"]
+              ]
+            },
+            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
+            options: [
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Nộp bài luôn cho nhanh",
+              "Đoán lại một lần nữa"
+            ],
+            answer: "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            mascotHint: "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số nào lớn hơn: 10 hay 1000000?",
+            options: [10, 2019, 226372, 1000000],
+            answer: 1000000,
+            mascotHint: "Đếm từ 1: số 1000000 đếm đến sau số 10, nên 1000000 lớn hơn 10."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Số 1 000 000 đọc là gì?",
@@ -132,6 +182,48 @@ export const g4c3 = {
               label: "Cùng tìm giá trị của chữ số theo hàng",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            baseTen: {
+              tens: 1,
+              ones: 1
+            },
+            text: "11 gồm mấy chục và mấy đơn vị?\nBé đếm khối: 1 thanh chục và 1 ô rời\nVậy 11 = 1 chục và 1 đơn vị"
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "So sánh hai số cho đúng",
+            explanation: "Muốn biết số nào lớn hơn, bé làm hai bước sau — không cần đếm lại từ đầu.",
+            points: [
+              "Bước 1 — đếm số chữ số: số nào có ít chữ số hơn thì số đó BÉ hơn (ví dụ 9 < 10).",
+              "Bước 2 — hai số cùng số chữ số: so chữ số đầu tiên bên TRÁI trước; số nào có chữ số ấy lớn hơn thì số đó lớn hơn. Bằng nhau thì so chữ số tiếp theo.",
+              "Ví dụ: 514293 có 6 chữ số, 11 có 2 chữ số — số nào có ít chữ số hơn thì bé hơn.",
+              "Số liền sau = số đó thêm 1; số liền trước = số đó bớt 1."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số liền sau của số 11 là số nào?",
+            options: [11, 12, 13, 21],
+            answer: 12,
+            mascotHint: "Số liền sau hơn số đã cho 1 đơn vị: 11 + 1 = 12."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số nào LỚN NHẤT trong các số sau: 11, 514293, 5, 1?",
+            options: ["1", "5", "11", "514293"],
+            answer: "514293",
+            mascotHint: "Bé so chữ số đầu tiên bên trái của các số, bằng nhau thì so chữ số tiếp theo — số lớn nhất là 514293."
+          }
         },
         {
           type: "quiz",
@@ -239,6 +331,29 @@ export const g4c3 = {
           },
         },
         {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "So sánh hai số bằng cách đếm",
+            explanation: "Ở mức này, cách chắc chắn nhất là ĐẾM: số nào đếm đến sau thì số đó lớn hơn.",
+            points: [
+              "Đếm từ 1: “1, 2, 3, 4, 5…” — số đếm đến sau thì lớn hơn. Ví dụ 5 đến sau 2 nên 5 lớn hơn 2.",
+              "Trên tia số, số đứng bên PHẢI lớn hơn số đứng bên TRÁI.",
+              "Ba dấu cần nhớ: “>” đọc là lớn hơn, “<” đọc là bé hơn, “=” đọc là bằng nhau.",
+              "Với hai số của bài này: 12 < 2022, đọc là “12 bé hơn 2022”."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số nào lớn hơn: 12 hay 2022?",
+            options: [12, 2022, 90000, 500000],
+            answer: 2022,
+            mascotHint: "Đếm từ 1: số 2022 đếm đến sau số 12, nên 2022 lớn hơn 12."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Số 10 000 000 đọc là gì?",
@@ -321,6 +436,48 @@ export const g4c3 = {
               label: "So chữ số hàng chục nghìn rồi làm tròn",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            baseTen: {
+              tens: 1,
+              ones: 3
+            },
+            text: "13 gồm mấy chục và mấy đơn vị?\nBé đếm khối: 1 thanh chục và 3 ô rời\nVậy 13 = 1 chục và 3 đơn vị"
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "So sánh hai số cho đúng",
+            explanation: "Muốn biết số nào lớn hơn, bé làm hai bước sau — không cần đếm lại từ đầu.",
+            points: [
+              "Bước 1 — đếm số chữ số: số nào có ít chữ số hơn thì số đó BÉ hơn (ví dụ 9 < 10).",
+              "Bước 2 — hai số cùng số chữ số: so chữ số đầu tiên bên TRÁI trước; số nào có chữ số ấy lớn hơn thì số đó lớn hơn. Bằng nhau thì so chữ số tiếp theo.",
+              "Ví dụ: 2020 có 4 chữ số, 13 có 2 chữ số — số nào có ít chữ số hơn thì bé hơn.",
+              "Số liền sau = số đó thêm 1; số liền trước = số đó bớt 1."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số liền sau của số 13 là số nào?",
+            options: [13, 14, 15, 23],
+            answer: 14,
+            mascotHint: "Số liền sau hơn số đã cho 1 đơn vị: 13 + 1 = 14."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số nào LỚN NHẤT trong các số sau: 13, 2020, 5, 1?",
+            options: ["1", "5", "13", "2020"],
+            answer: "2020",
+            mascotHint: "Bé so chữ số đầu tiên bên trái của các số, bằng nhau thì so chữ số tiếp theo — số lớn nhất là 2020."
+          }
         },
         {
           type: "quiz",
@@ -435,6 +592,48 @@ export const g4c3 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            baseTen: {
+              tens: 1,
+              ones: 4
+            },
+            text: "14 gồm mấy chục và mấy đơn vị?\nBé đếm khối: 1 thanh chục và 4 ô rời\nVậy 14 = 1 chục và 4 đơn vị"
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "So sánh hai số cho đúng",
+            explanation: "Muốn biết số nào lớn hơn, bé làm hai bước sau — không cần đếm lại từ đầu.",
+            points: [
+              "Bước 1 — đếm số chữ số: số nào có ít chữ số hơn thì số đó BÉ hơn (ví dụ 9 < 10).",
+              "Bước 2 — hai số cùng số chữ số: so chữ số đầu tiên bên TRÁI trước; số nào có chữ số ấy lớn hơn thì số đó lớn hơn. Bằng nhau thì so chữ số tiếp theo.",
+              "Ví dụ: 14 có 2 chữ số, 9 có 1 chữ số — số nào có ít chữ số hơn thì bé hơn.",
+              "Số liền sau = số đó thêm 1; số liền trước = số đó bớt 1."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số liền sau của số 14 là số nào?",
+            options: [14, 15, 16, 24],
+            answer: 15,
+            mascotHint: "Số liền sau hơn số đã cho 1 đơn vị: 14 + 1 = 15."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số nào LỚN NHẤT trong các số sau: 14, 9, 7, 2?",
+            options: ["2", "7", "9", "14"],
+            answer: "14",
+            mascotHint: "Bé so chữ số đầu tiên bên trái của các số, bằng nhau thì so chữ số tiếp theo — số lớn nhất là 14."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question:
@@ -520,6 +719,56 @@ export const g4c3 = {
           },
         },
         {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "So sánh hai số bằng cách đếm",
+            explanation: "Ở mức này, cách chắc chắn nhất là ĐẾM: số nào đếm đến sau thì số đó lớn hơn.",
+            points: [
+              "Đếm từ 1: “1, 2, 3, 4, 5…” — số đếm đến sau thì lớn hơn. Ví dụ 5 đến sau 2 nên 5 lớn hơn 2.",
+              "Trên tia số, số đứng bên PHẢI lớn hơn số đứng bên TRÁI.",
+              "Ba dấu cần nhớ: “>” đọc là lớn hơn, “<” đọc là bé hơn, “=” đọc là bằng nhau.",
+              "Với hai số của bài này: 1 < 15, đọc là “1 bé hơn 15”."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                ["Bước 1 — Đơn vị", "viết kết quả luôn kèm đơn vị"],
+                ["Bước 2 — Bậc thang", "đi xuống thì nhân, đi lên thì chia"],
+                ["Bước 3 — Kiểm lại", "lấy kết quả đổi ngược lại xem có về số ban đầu"]
+              ]
+            },
+            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
+            options: [
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Nộp bài luôn cho nhanh",
+              "Đoán lại một lần nữa"
+            ],
+            answer: "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            mascotHint: "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số nào lớn hơn: 15 hay 1?",
+            options: [1, 2, 3, 15],
+            answer: 15,
+            mascotHint: "Đếm từ 1: số 15 đếm đến sau số 1, nên 15 lớn hơn 1."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Số liền trước của 1 000 000 là số nào?",
@@ -582,6 +831,48 @@ export const g4c3 = {
               label: "Giá trị = chữ số × giá trị của hàng",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            baseTen: {
+              tens: 1,
+              ones: 6
+            },
+            text: "16 gồm mấy chục và mấy đơn vị?\nBé đếm khối: 1 thanh chục và 6 ô rời\nVậy 16 = 1 chục và 6 đơn vị"
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "So sánh hai số cho đúng",
+            explanation: "Muốn biết số nào lớn hơn, bé làm hai bước sau — không cần đếm lại từ đầu.",
+            points: [
+              "Bước 1 — đếm số chữ số: số nào có ít chữ số hơn thì số đó BÉ hơn (ví dụ 9 < 10).",
+              "Bước 2 — hai số cùng số chữ số: so chữ số đầu tiên bên TRÁI trước; số nào có chữ số ấy lớn hơn thì số đó lớn hơn. Bằng nhau thì so chữ số tiếp theo.",
+              "Ví dụ: 16 có 2 chữ số, 3 có 1 chữ số — số nào có ít chữ số hơn thì bé hơn.",
+              "Số liền sau = số đó thêm 1; số liền trước = số đó bớt 1."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số liền sau của số 16 là số nào?",
+            options: [16, 17, 18, 26],
+            answer: 17,
+            mascotHint: "Số liền sau hơn số đã cho 1 đơn vị: 16 + 1 = 17."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số nào LỚN NHẤT trong các số sau: 16, 3, 7, 2?",
+            options: ["2", "3", "7", "16"],
+            answer: "16",
+            mascotHint: "Bé so chữ số đầu tiên bên trái của các số, bằng nhau thì so chữ số tiếp theo — số lớn nhất là 16."
+          }
         },
         {
           type: "quiz",

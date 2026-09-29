@@ -2,7 +2,7 @@
  * DẠNG BÀI “CHỌN TẤT CẢ PHƯƠNG ÁN ĐÚNG” — lấy ý từ Duolingo Math (ảnh người dùng gửi 2026-09-28:
  * “Chọn tất cả các phương án thích hợp”).
  *
- * VÌ SAO CẦN: dạng cũ (`quiz`) chỉ có MỘT đáp án, nên không dạy được những câu SGK rất hay gặp:
+ * VÌ SAO CẦN: dạng cũ (`quiz`) chỉ có MỘT đáp án, nên không dạy được những câu rất hay gặp:
  *   • “Chọn tất cả các phép tính có kết quả bằng 10”
  *   • “Những số nào chia hết cho 5?”  • “Những hình nào là hình bình hành?”
  *   • “Đúng ghi Đ, sai ghi S” (nhiều mệnh đề cùng lúc)

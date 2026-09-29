@@ -128,7 +128,7 @@ export function QuizSlide({
 
       {/* Hình minh hoạ câu hỏi — dùng CHUNG bộ vẽ với slide "hình ảnh" (thước, sơ đồ
           đoạn thẳng, biểu đồ…). Trước đây slide câu hỏi không vẽ gì, nên câu hỏi nhắc
-          tới hình là bó không có gì để nhìn. Mặt đồng hồ cũng vậy: SGK in đồng hồ cho
+          tới hình là bó không có gì để nhìn. Mặt đồng hồ cũng vậy: chương trình in đồng hồ cho
           trẻ đọc giờ, nên câu hỏi "Đồng hồ chỉ mấy giờ?" phải có đồng hồ mới đúng bài. */}
       <CalcFigures content={content} />
       <VisualBlocks content={content} />

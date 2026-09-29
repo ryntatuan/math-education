@@ -61,6 +61,113 @@ export const g3c15 = {
           }
         },
         {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 12,
+              "right": 8,
+              "sign": "−"
+            },
+            "text": "Bé tự đặt tính: 12 − 8\nhàng đơn vị 2 < 8 nên mượn 1: 12 − 8 = 4, viết 4\nhàng chục 1 − 1 = 0, viết 0\nVậy 12 − 8 = 4."
+          }
+        },
+        {
+          "type": "concept",
+          "content": {
+            "badge": "Chú Ý",
+            "title": "Vì sao ra 14 là sai?",
+            "explanation": "14 là kết quả khi bé quên bớt 1 chục sau khi mượn. Đây là lỗi hay gặp nhất của dạng trừ này.",
+            "points": [
+              "Lỗi — quên bớt 1 chục sau khi mượn: hàng đơn vị 2 < 8 nên mượn 1: 12 − 8 = 4, viết 4. Kết quả đúng phải là 4.",
+              "Cách tránh: làm xong một hàng thì ghi/xoá số đã vay NGAY, đừng để sang hàng sau mới nhớ.",
+              "Tự kiểm tra: 4 + 8 phải bằng 12."
+            ]
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "table": {
+              "headers": [
+                "Môn",
+                "Số bạn"
+              ],
+              "rows": [
+                [
+                  "Bóng đá",
+                  12
+                ],
+                [
+                  "Cầu lông",
+                  8
+                ],
+                [
+                  "Bơi",
+                  5
+                ]
+              ],
+              "label": "Bảng số liệu lớp 3A — môn được nhiều bạn thích nhất là bóng đá"
+            },
+            "text": "Bảng số liệu của bài — bé đọc theo HÀNG, không đọc theo cột\nMuốn biết “tất cả”, “nhiều nhất”, “ít nhất” thì phải cộng hoặc so các con số.\nVí dụ: 12 + 8 + 5 = 25."
+          }
+        },
+        {
+          "type": "concept",
+          "content": {
+            "badge": "Mẹo Nhớ",
+            "title": "Cách đọc bảng số liệu",
+            "explanation": "Bảng số liệu là một bức tranh bằng số: mỗi hàng là một đối tượng, mỗi cột là một thông tin.",
+            "points": [
+              "Bước 1 — đọc tên hàng (hoặc cột đầu) để biết đang nói về cái gì.",
+              "Bước 2 — đọc con số ở cột tương ứng với đối tượng đó.",
+              "Bước 3 — muốn biết “tất cả”, “nhiều nhất”, “ít nhất” thì phải CỘNG hoặc SO các con số, không đọc lại một ô.",
+              "Kiểm tra lại: tổng vừa tính phải LỚN HƠN từng con số trong bảng."
+            ]
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Trong bảng trên, số lượng nào LỚN NHẤT?",
+            "options": [
+              5,
+              12,
+              13,
+              25
+            ],
+            "answer": 12,
+            "mascotHint": "Bé so các con số 12, 8, 5 — số lớn nhất là 12."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Cộng các con số trong bảng lại thì được bao nhiêu?",
+            "options": [
+              12,
+              24,
+              25,
+              26
+            ],
+            "answer": 25,
+            "mascotHint": "Lấy các con số cộng lại: 12 + 8 + 5 = 25."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "16 − 7 bằng bao nhiêu?",
+            "options": [
+              8,
+              9,
+              10,
+              19
+            ],
+            "answer": 9,
+            "mascotHint": "hàng đơn vị 6 < 7 nên mượn 1: 16 − 7 = 9, viết 9. Kết quả 9."
+          }
+        },
+        {
           "type": "quiz",
           "content": {
             "question": "Trong bảng trên (bóng đá 12, cầu lông 8, bơi 5), số bạn thích bóng đá hơn số bạn thích cầu lông là bao nhiêu?",
@@ -179,6 +286,32 @@ export const g3c15 = {
           },
         },
         {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 4,
+              "right": 5,
+              "sign": "×",
+              "remember": true
+            },
+            "text": "Bé tự đặt tính: 4 × 5\nhàng đơn vị 4 × 5 = 20, viết 0 nhớ 2\ncòn nhớ 2 ở hàng cao hơn, viết 2\nVậy 4 × 5 = 20."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "5 × 5 bằng bao nhiêu?",
+            "options": [
+              5,
+              24,
+              25,
+              26
+            ],
+            "answer": 25,
+            "mascotHint": "hàng đơn vị 5 × 5 = 25, viết 5 nhớ 2. Kết quả 25."
+          }
+        },
+        {
           "type": "quiz",
           "content": {
             "question": "Biểu đồ có 4 ký hiệu, mỗi ký hiệu đại diện 5 bạn. Có tất cả bao nhiêu bạn?",
@@ -263,6 +396,60 @@ export const g3c15 = {
               ],
               "label": "Khả năng xảy ra của một sự kiện"
             }
+          }
+        },
+        {
+          "type": "concept",
+          "content": {
+            "badge": "Cách Học",
+            "title": "Bốn bước làm một bài toán",
+            "explanation": "Mọi bài đo lường và đổi đơn vị đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            "points": [
+              "Bước 1 — Đọc đơn vị đang có và đơn vị cần đổi.",
+              "Bước 2 — Viết bậc thang đơn vị ra giấy để thấy phải đi mấy bậc.",
+              "Bước 3 — Đi xuống (ra đơn vị bé hơn) thì NHÂN; đi lên (ra đơn vị lớn hơn) thì CHIA.",
+              "Bước 4 — Viết kết quả kèm đơn vị và kiểm tra lại bằng phép ngược."
+            ]
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "table": {
+              "headers": [
+                "Điều cần nhớ",
+                "Nội dung"
+              ],
+              "rows": [
+                [
+                  "1 m",
+                  "= 100 cm"
+                ],
+                [
+                  "1 kg",
+                  "= 1 000 g"
+                ],
+                [
+                  "1 l",
+                  "= 1 000 ml"
+                ]
+              ]
+            },
+            "text": "Bảng nhớ nhanh — đo lường và đổi đơn vị\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Đổi số đo từ đơn vị lớn sang đơn vị bé hơn thì bé làm phép gì?",
+            "options": [
+              "Nhân",
+              "Chia",
+              "Cộng",
+              "Trừ"
+            ],
+            "answer": "Nhân",
+            "mascotHint": "Đơn vị bé hơn thì số đo phải nhiều hơn: 1 m đổi ra cm được 100 cm — đó là phép nhân."
           }
         },
         {
@@ -397,6 +584,32 @@ export const g3c15 = {
               "label": "Luyện tập chung chủ đề 15"
             }
           },
+        },
+        {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 4,
+              "right": 5,
+              "sign": "×",
+              "remember": true
+            },
+            "text": "Bé tự đặt tính: 4 × 5\nhàng đơn vị 4 × 5 = 20, viết 0 nhớ 2\ncòn nhớ 2 ở hàng cao hơn, viết 2\nVậy 4 × 5 = 20."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "2 × 5 bằng bao nhiêu?",
+            "options": [
+              9,
+              10,
+              11,
+              12
+            ],
+            "answer": 10,
+            "mascotHint": "hàng đơn vị 2 × 5 = 10, viết 0 nhớ 1. Kết quả 10."
+          }
         },
         {
           "type": "quiz",

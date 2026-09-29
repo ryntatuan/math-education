@@ -63,6 +63,54 @@ export const g1c3 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 3,
+              right: 2,
+              sign: "+",
+              remember: true
+            },
+            text: "Bé tự đặt tính: 3 + 2\nhàng đơn vị 3 + 2 = 5, viết 5\nVậy 3 + 2 = 5."
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            numberLine: {
+              from: 3,
+              to: 5,
+              step: 1,
+              hops: [
+                {
+                  from: 3,
+                  to: 5,
+                  label: "+2"
+                }
+              ]
+            },
+            text: "Cách nhẩm nhanh cho 3 + 2\nBé đếm thêm từng bước trên tia số theo các cung nhảy.\nĐếm thêm 2 bước từ 3.\nVậy 3 + 2 = 5."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "4 + 4 bằng bao nhiêu?",
+            options: [7, 8, 9, 18],
+            answer: 8,
+            mascotHint: "Bé đặt tính rồi tính từ hàng đơn vị. Kết quả 8."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "2 + 4 bằng bao nhiêu?",
+            options: [5, 6, 7, 8],
+            answer: 6,
+            mascotHint: "hàng đơn vị 2 + 4 = 6, viết 6. Kết quả 6."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "3 + 2 bằng bao nhiêu?",
@@ -128,6 +176,68 @@ export const g1c3 = {
               label: "4 + 3: đếm tiếp 4 → 5 → 6 → 7",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 4,
+              right: 3,
+              sign: "+",
+              remember: true
+            },
+            text: "Bé tự đặt tính: 4 + 3\nhàng đơn vị 4 + 3 = 7, viết 7\nVậy 4 + 3 = 7."
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            numberLine: {
+              from: 4,
+              to: 7,
+              step: 1,
+              hops: [
+                {
+                  from: 4,
+                  to: 7,
+                  label: "+3"
+                }
+              ]
+            },
+            text: "Cách nhẩm nhanh cho 4 + 3\nBé đếm thêm từng bước trên tia số theo các cung nhảy.\nĐếm thêm 3 bước từ 4.\nVậy 4 + 3 = 7."
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                ["Bước 1 — Đơn vị", "viết kết quả luôn kèm đơn vị"],
+                ["Bước 2 — Bậc thang", "đi xuống thì nhân, đi lên thì chia"],
+                ["Bước 3 — Kiểm lại", "lấy kết quả đổi ngược lại xem có về số ban đầu"]
+              ]
+            },
+            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "8 + 8 bằng bao nhiêu?",
+            options: [15, 16, 17, 26],
+            answer: 16,
+            mascotHint: "Bé đặt tính rồi tính từ hàng đơn vị. Kết quả 16."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "7 + 1 bằng bao nhiêu?",
+            options: [7, 8, 9, 10],
+            answer: 8,
+            mascotHint: "hàng đơn vị 7 + 1 = 8, viết 8. Kết quả 8."
+          }
         },
         {
           type: "quiz",
@@ -199,7 +309,7 @@ export const g1c3 = {
         {
           type: "visual",
           content: {
-            text: "Điền kết quả còn thiếu (SGK tr.64)",
+            text: "Điền kết quả còn thiếu",
             bangTinh: {
               headers: ["Phép tính", "Kết quả"],
               rows: [
@@ -216,6 +326,27 @@ export const g1c3 = {
               label: "Các phép cộng trong bảng đều có kết quả bằng 9",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 2,
+              right: 5,
+              sign: "+",
+              remember: true
+            },
+            text: "Bé tự đặt tính: 2 + 5\nhàng đơn vị 2 + 5 = 7, viết 7\nVậy 2 + 5 = 7."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "4 + 5 bằng bao nhiêu?",
+            options: [8, 9, 10, 11],
+            answer: 9,
+            mascotHint: "hàng đơn vị 4 + 5 = 9, viết 9. Kết quả 9."
+          }
         },
         {
           type: "quiz",
@@ -299,7 +430,7 @@ export const g1c3 = {
         {
           type: "visual",
           content: {
-            text: "Điền kết quả còn thiếu (SGK tr.62)",
+            text: "Điền kết quả còn thiếu",
             bangTinh: {
               headers: ["Phép tính", "Kết quả"],
               rows: [
@@ -318,6 +449,27 @@ export const g1c3 = {
               label: "Mọi phép cộng trong bảng đều có kết quả bằng 7",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 3,
+              right: 1,
+              sign: "+",
+              remember: true
+            },
+            text: "Bé tự đặt tính: 3 + 1\nhàng đơn vị 3 + 1 = 4, viết 4\nVậy 3 + 1 = 4."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "7 + 1 bằng bao nhiêu?",
+            options: [7, 8, 9, 10],
+            answer: 8,
+            mascotHint: "hàng đơn vị 7 + 1 = 8, viết 8. Kết quả 8."
+          }
         },
         {
           type: "quiz",
@@ -339,7 +491,7 @@ export const g1c3 = {
                 ["2", "4 + 2 = 6"],
               ],
               label:
-                "3 + 1 + 2 = 6 — làm lần lượt từ trái sang phải (SGK tr.66)",
+                "3 + 1 + 2 = 6 — làm lần lượt từ trái sang phải",
             },
           },
         },
@@ -419,6 +571,53 @@ export const g1c3 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 6,
+              right: 2,
+              sign: "−"
+            },
+            text: "Bé tự đặt tính: 6 − 2\nhàng đơn vị 6 − 2 = 4, viết 4\nVậy 6 − 2 = 4."
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            numberLine: {
+              from: 2,
+              to: 6,
+              step: 1,
+              hops: [
+                {
+                  from: 2,
+                  to: 6,
+                  label: "+4"
+                }
+              ]
+            },
+            text: "Cách 2 cho 6 − 2: đếm thêm từ số bé\nTừ 2 đếm thêm cho tới 6 là bao nhiêu bước?\nĐó chính là hiệu: 6 − 2 = 4."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "4 − 1 bằng bao nhiêu?",
+            options: [2, 3, 4, 13],
+            answer: 3,
+            mascotHint: "Bé đặt tính rồi tính từ hàng đơn vị. Kết quả 3."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "4 − 2 bằng bao nhiêu?",
+            options: [1, 2, 3, 4],
+            answer: 2,
+            mascotHint: "hàng đơn vị 4 − 2 = 2, viết 2. Kết quả 2."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "6 − 2 bằng bao nhiêu?",
@@ -486,6 +685,67 @@ export const g1c3 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 9,
+              right: 3,
+              sign: "−"
+            },
+            text: "Bé tự đặt tính: 9 − 3\nhàng đơn vị 9 − 3 = 6, viết 6\nVậy 9 − 3 = 6."
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            numberLine: {
+              from: 3,
+              to: 9,
+              step: 1,
+              hops: [
+                {
+                  from: 3,
+                  to: 9,
+                  label: "+6"
+                }
+              ]
+            },
+            text: "Cách 2 cho 9 − 3: đếm thêm từ số bé\nTừ 3 đếm thêm cho tới 9 là bao nhiêu bước?\nĐó chính là hiệu: 9 − 3 = 6."
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                ["Bước 1 — Đơn vị", "viết kết quả luôn kèm đơn vị"],
+                ["Bước 2 — Bậc thang", "đi xuống thì nhân, đi lên thì chia"],
+                ["Bước 3 — Kiểm lại", "lấy kết quả đổi ngược lại xem có về số ban đầu"]
+              ]
+            },
+            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "8 − 1 bằng bao nhiêu?",
+            options: [6, 7, 8, 17],
+            answer: 7,
+            mascotHint: "Bé đặt tính rồi tính từ hàng đơn vị. Kết quả 7."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "5 − 4 bằng bao nhiêu?",
+            options: [1, 2, 3],
+            answer: 1,
+            mascotHint: "hàng đơn vị 5 − 4 = 1, viết 1. Kết quả 1."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "8 − 2 bằng bao nhiêu? Đếm lùi từ 8 nào!",
@@ -551,6 +811,48 @@ export const g1c3 = {
               label: "Trừ 0 thì giữ nguyên · trừ hết thì bằng 0",
             },
           },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Cách Học",
+            title: "Bốn bước làm một bài toán",
+            explanation: "Mọi bài bài toán có lời văn đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            points: [
+              "Bước 1 — Đọc kỹ đề, gạch dưới các SỐ và từ khoá (thêm, bớt, gấp, chia đều).",
+              "Bước 2 — Tóm tắt đề bằng hình hoặc bằng câu ngắn: đã có gì, cần tìm gì.",
+              "Bước 3 — Chọn phép tính: “thêm, gộp, tất cả” → cộng; “bớt, cho đi, còn lại” → trừ; “gấp mấy lần” → nhân.",
+              "Bước 4 — Đặt tính rồi tính, rồi VIẾT ĐÁP SỐ kèm đơn vị và thử lại bằng phép ngược."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Điều cần nhớ", "Nội dung"],
+              rows: [
+                ["Đơn vị", "đáp số luôn kèm đơn vị như con, quả, kg, cm"],
+                ["Kiểm tra", "cộng thì lấy kết quả trừ đi một số hạng"],
+                ["Câu trả lời", "viết đủ câu, không chỉ ghi số"]
+              ]
+            },
+            text: "Bảng nhớ nhanh — bài toán có lời văn\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Giải một bài toán có lời văn, bé làm gì TRƯỚC TIÊN?",
+            options: [
+              "Đọc kỹ đề và gạch dưới các số đã cho",
+              "Viết ngay đáp số",
+              "Đoán kết quả",
+              "Đặt tính trước khi đọc đề"
+            ],
+            answer: "Đọc kỹ đề và gạch dưới các số đã cho",
+            mascotHint: "Chưa đọc kỹ đề thì chưa biết đề cho gì, hỏi gì — mọi bước sau đều dễ sai."
+          }
         },
         {
           type: "quiz",
@@ -632,7 +934,7 @@ export const g1c3 = {
         {
           type: "visual",
           content: {
-            text: "Điền kết quả còn thiếu (SGK tr.66)",
+            text: "Điền kết quả còn thiếu",
             bangTinh: {
               headers: ["Phép tính", "Kết quả"],
               rows: [
@@ -649,6 +951,27 @@ export const g1c3 = {
               label: "Các phép cộng trong bảng đều có kết quả bằng 10",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 1,
+              right: 1,
+              sign: "+",
+              remember: true
+            },
+            text: "Bé tự đặt tính: 1 + 1\nhàng đơn vị 1 + 1 = 2, viết 2\nVậy 1 + 1 = 2."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "4 + 2 bằng bao nhiêu?",
+            options: [5, 6, 7, 8],
+            answer: 6,
+            mascotHint: "hàng đơn vị 4 + 2 = 6, viết 6. Kết quả 6."
+          }
         },
         {
           type: "quiz",
@@ -739,7 +1062,7 @@ export const g1c3 = {
         {
           type: "visual",
           content: {
-            text: "Điền kết quả còn thiếu (SGK tr.76)",
+            text: "Điền kết quả còn thiếu",
             bangTinh: {
               headers: ["Phép tính", "Kết quả"],
               rows: [
@@ -757,6 +1080,27 @@ export const g1c3 = {
               label: "Lấy 7 trừ 0, 1, 2, 3 … 7 — xem kết quả nhỏ dần",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 5,
+              right: 4,
+              sign: "+",
+              remember: true
+            },
+            text: "Bé tự đặt tính: 5 + 4\nhàng đơn vị 5 + 4 = 9, viết 9\nVậy 5 + 4 = 9."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "4 + 3 bằng bao nhiêu?",
+            options: [6, 7, 8, 9],
+            answer: 7,
+            mascotHint: "hàng đơn vị 4 + 3 = 7, viết 7. Kết quả 7."
+          }
         },
         {
           type: "quiz",
@@ -857,6 +1201,54 @@ export const g1c3 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 5,
+              right: 3,
+              sign: "+",
+              remember: true
+            },
+            text: "Bé tự đặt tính: 5 + 3\nhàng đơn vị 5 + 3 = 8, viết 8\nVậy 5 + 3 = 8."
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            numberLine: {
+              from: 5,
+              to: 8,
+              step: 1,
+              hops: [
+                {
+                  from: 5,
+                  to: 8,
+                  label: "+3"
+                }
+              ]
+            },
+            text: "Cách nhẩm nhanh cho 5 + 3\nBé đếm thêm từng bước trên tia số theo các cung nhảy.\nĐếm thêm 3 bước từ 5.\nVậy 5 + 3 = 8."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "4 + 8 bằng bao nhiêu?",
+            options: [11, 12, 13, 22],
+            answer: 12,
+            mascotHint: "Bé đặt tính rồi tính từ hàng đơn vị. Kết quả 12."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "4 + 4 bằng bao nhiêu?",
+            options: [7, 8, 9, 10],
+            answer: 8,
+            mascotHint: "hàng đơn vị 4 + 4 = 8, viết 8. Kết quả 8."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "6 + 2 = 8. Vậy 8 − 2 bằng bao nhiêu?",
@@ -925,6 +1317,27 @@ export const g1c3 = {
               label: "3 + ? = 7 — đếm từ 3 đến 7 được 4 bước",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 4,
+              right: 2,
+              sign: "+",
+              remember: true
+            },
+            text: "Bé tự đặt tính: 4 + 2\nhàng đơn vị 4 + 2 = 6, viết 6\nVậy 4 + 2 = 6."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "8 + 1 bằng bao nhiêu?",
+            options: [8, 9, 10, 11],
+            answer: 9,
+            mascotHint: "hàng đơn vị 8 + 1 = 9, viết 9. Kết quả 9."
+          }
         },
         {
           type: "quiz",
@@ -1008,6 +1421,27 @@ export const g1c3 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 5,
+              right: 2,
+              sign: "+",
+              remember: true
+            },
+            text: "Bé tự đặt tính: 5 + 2\nhàng đơn vị 5 + 2 = 7, viết 7\nVậy 5 + 2 = 7."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "1 + 1 bằng bao nhiêu?",
+            options: [1, 2, 3, 4],
+            answer: 2,
+            mascotHint: "hàng đơn vị 1 + 1 = 2, viết 2. Kết quả 2."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question:
@@ -1085,6 +1519,27 @@ export const g1c3 = {
               label: "Đếm tiếp từ 6 thêm 3 bước được 9",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 6,
+              right: 3,
+              sign: "+",
+              remember: true
+            },
+            text: "Bé tự đặt tính: 6 + 3\nhàng đơn vị 6 + 3 = 9, viết 9\nVậy 6 + 3 = 9."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "1 + 8 bằng bao nhiêu?",
+            options: [8, 9, 10, 11],
+            answer: 9,
+            mascotHint: "hàng đơn vị 1 + 8 = 9, viết 9. Kết quả 9."
+          }
         },
         {
           type: "quiz",
@@ -1180,7 +1635,7 @@ export const g1c3 = {
         {
           type: "visual",
           content: {
-            text: "Từ phép cộng suy ra phép trừ (SGK tr.86)",
+            text: "Từ phép cộng suy ra phép trừ",
             bangTinh: {
               headers: ["Phép tính", "Kết quả"],
               rows: [
@@ -1198,6 +1653,27 @@ export const g1c3 = {
               label: "Bảng quan hệ giữa phép cộng và phép trừ trong phạm vi 10",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 4,
+              right: 6,
+              sign: "+",
+              remember: true
+            },
+            text: "Bé tự đặt tính: 4 + 6\nhàng đơn vị 4 + 6 = 10, viết 0 nhớ 1\ncòn nhớ 1 ở hàng cao hơn, viết 1\nVậy 4 + 6 = 10."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "5 + 7 bằng bao nhiêu?",
+            options: [2, 11, 12, 13],
+            answer: 12,
+            mascotHint: "hàng đơn vị 5 + 7 = 12, viết 2 nhớ 1. Kết quả 12."
+          }
         },
         {
           type: "quiz",

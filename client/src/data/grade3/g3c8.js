@@ -54,6 +54,48 @@ export const g3c8 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            baseTen: {
+              tens: 0,
+              ones: 1
+            },
+            text: "1 gồm mấy chục và mấy đơn vị?\nBé đếm khối: 0 thanh chục và 1 ô rời\nVậy 1 = 0 chục và 1 đơn vị"
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "So sánh hai số cho đúng",
+            explanation: "Muốn biết số nào lớn hơn, bé làm hai bước sau — không cần đếm lại từ đầu.",
+            points: [
+              "Bước 1 — đếm số chữ số: số nào có ít chữ số hơn thì số đó BÉ hơn (ví dụ 9 < 10).",
+              "Bước 2 — hai số cùng số chữ số: so chữ số đầu tiên bên TRÁI trước; số nào có chữ số ấy lớn hơn thì số đó lớn hơn. Bằng nhau thì so chữ số tiếp theo.",
+              "Ví dụ: 2475 có 4 chữ số, 1 có 1 chữ số — số nào có ít chữ số hơn thì bé hơn.",
+              "Số liền sau = số đó thêm 1; số liền trước = số đó bớt 1."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số liền sau của số 1 là số nào?",
+            options: [1, 2, 3, 11],
+            answer: 2,
+            mascotHint: "Số liền sau hơn số đã cho 1 đơn vị: 1 + 1 = 2."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số nào LỚN NHẤT trong các số sau: 1, 2475, 2, 4?",
+            options: ["1", "2", "4", "2475"],
+            answer: "2475",
+            mascotHint: "Bé so chữ số đầu tiên bên trái của các số, bằng nhau thì so chữ số tiếp theo — số lớn nhất là 2475."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Số 3 582 gồm mấy nghìn, mấy trăm, mấy chục, mấy đơn vị?",
@@ -119,6 +161,56 @@ export const g3c8 = {
               label: "10 000 = 1 chục nghìn — đọc là mười nghìn",
             },
           },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "So sánh hai số bằng cách đếm",
+            explanation: "Ở mức này, cách chắc chắn nhất là ĐẾM: số nào đếm đến sau thì số đó lớn hơn.",
+            points: [
+              "Đếm từ 1: “1, 2, 3, 4, 5…” — số đếm đến sau thì lớn hơn. Ví dụ 5 đến sau 2 nên 5 lớn hơn 2.",
+              "Trên tia số, số đứng bên PHẢI lớn hơn số đứng bên TRÁI.",
+              "Ba dấu cần nhớ: “>” đọc là lớn hơn, “<” đọc là bé hơn, “=” đọc là bằng nhau.",
+              "Với hai số của bài này: 2 < 10000, đọc là “2 bé hơn 10000”."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                ["Bước 1 — Đơn vị", "viết kết quả luôn kèm đơn vị"],
+                ["Bước 2 — Bậc thang", "đi xuống thì nhân, đi lên thì chia"],
+                ["Bước 3 — Kiểm lại", "lấy kết quả đổi ngược lại xem có về số ban đầu"]
+              ]
+            },
+            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
+            options: [
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Nộp bài luôn cho nhanh",
+              "Đoán lại một lần nữa"
+            ],
+            answer: "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            mascotHint: "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số nào lớn hơn: 2 hay 10000?",
+            options: [2, 10, 9999, 10000],
+            answer: 10000,
+            mascotHint: "Đếm từ 1: số 10000 đếm đến sau số 2, nên 10000 lớn hơn 2."
+          }
         },
         {
           type: "quiz",
@@ -210,6 +302,29 @@ export const g3c8 = {
           },
         },
         {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "So sánh hai số bằng cách đếm",
+            explanation: "Ở mức này, cách chắc chắn nhất là ĐẾM: số nào đếm đến sau thì số đó lớn hơn.",
+            points: [
+              "Đếm từ 1: “1, 2, 3, 4, 5…” — số đếm đến sau thì lớn hơn. Ví dụ 5 đến sau 2 nên 5 lớn hơn 2.",
+              "Trên tia số, số đứng bên PHẢI lớn hơn số đứng bên TRÁI.",
+              "Ba dấu cần nhớ: “>” đọc là lớn hơn, “<” đọc là bé hơn, “=” đọc là bằng nhau.",
+              "Với hai số của bài này: 3 < 4005, đọc là “3 bé hơn 4005”."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số nào lớn hơn: 3 hay 4005?",
+            options: [3, 2475, 4005, 4050],
+            answer: 4005,
+            mascotHint: "Đếm từ 1: số 4005 đếm đến sau số 3, nên 4005 lớn hơn 3."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Số 3 060 đọc là gì?",
@@ -283,6 +398,56 @@ export const g3c8 = {
               label: "3 456 < 3 465 vì hàng chục 5 < 6",
             },
           },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "So sánh hai số bằng cách đếm",
+            explanation: "Ở mức này, cách chắc chắn nhất là ĐẾM: số nào đếm đến sau thì số đó lớn hơn.",
+            points: [
+              "Đếm từ 1: “1, 2, 3, 4, 5…” — số đếm đến sau thì lớn hơn. Ví dụ 5 đến sau 2 nên 5 lớn hơn 2.",
+              "Trên tia số, số đứng bên PHẢI lớn hơn số đứng bên TRÁI.",
+              "Ba dấu cần nhớ: “>” đọc là lớn hơn, “<” đọc là bé hơn, “=” đọc là bằng nhau.",
+              "Với hai số của bài này: 4 < 10000, đọc là “4 bé hơn 10000”."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                ["Bước 1 — Đơn vị", "viết kết quả luôn kèm đơn vị"],
+                ["Bước 2 — Bậc thang", "đi xuống thì nhân, đi lên thì chia"],
+                ["Bước 3 — Kiểm lại", "lấy kết quả đổi ngược lại xem có về số ban đầu"]
+              ]
+            },
+            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
+            options: [
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Nộp bài luôn cho nhanh",
+              "Đoán lại một lần nữa"
+            ],
+            answer: "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            mascotHint: "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số nào lớn hơn: 4 hay 10000?",
+            options: [4, 3456, 3465, 10000],
+            answer: 10000,
+            mascotHint: "Đếm từ 1: số 10000 đếm đến sau số 4, nên 10000 lớn hơn 4."
+          }
         },
         {
           type: "quiz",
@@ -365,6 +530,48 @@ export const g3c8 = {
           },
         },
         {
+          type: "concept",
+          content: {
+            badge: "Cách Học",
+            title: "Bốn bước làm một bài toán",
+            explanation: "Mọi bài bài toán có lời văn đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            points: [
+              "Bước 1 — Đọc kỹ đề, gạch dưới các SỐ và từ khoá (thêm, bớt, gấp, chia đều).",
+              "Bước 2 — Tóm tắt đề bằng hình hoặc bằng câu ngắn: đã có gì, cần tìm gì.",
+              "Bước 3 — Chọn phép tính: “thêm, gộp, tất cả” → cộng; “bớt, cho đi, còn lại” → trừ; “gấp mấy lần” → nhân.",
+              "Bước 4 — Đặt tính rồi tính, rồi VIẾT ĐÁP SỐ kèm đơn vị và thử lại bằng phép ngược."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Điều cần nhớ", "Nội dung"],
+              rows: [
+                ["Đơn vị", "đáp số luôn kèm đơn vị như con, quả, kg, cm"],
+                ["Kiểm tra", "cộng thì lấy kết quả trừ đi một số hạng"],
+                ["Câu trả lời", "viết đủ câu, không chỉ ghi số"]
+              ]
+            },
+            text: "Bảng nhớ nhanh — bài toán có lời văn\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Giải một bài toán có lời văn, bé làm gì TRƯỚC TIÊN?",
+            options: [
+              "Đọc kỹ đề và gạch dưới các số đã cho",
+              "Viết ngay đáp số",
+              "Đoán kết quả",
+              "Đặt tính trước khi đọc đề"
+            ],
+            answer: "Đọc kỹ đề và gạch dưới các số đã cho",
+            mascotHint: "Chưa đọc kỹ đề thì chưa biết đề cho gì, hỏi gì — mọi bước sau đều dễ sai."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Chữ số La Mã V có giá trị là bao nhiêu?",
@@ -442,6 +649,26 @@ export const g3c8 = {
               label: "Chữ số La Mã từ I đến XII — dùng để ghi giờ và số thứ tự",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 5,
+              right: 1,
+              sign: "−"
+            },
+            text: "Bé tự đặt tính: 5 − 1\nhàng đơn vị 5 − 1 = 4, viết 4\nVậy 5 − 1 = 4."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "6 − 1 bằng bao nhiêu?",
+            options: [4, 5, 6, 7],
+            answer: 5,
+            mascotHint: "hàng đơn vị 6 − 1 = 5, viết 5. Kết quả 5."
+          }
         },
         {
           type: "quiz",
@@ -581,6 +808,48 @@ export const g3c8 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            baseTen: {
+              tens: 0,
+              ones: 7
+            },
+            text: "7 gồm mấy chục và mấy đơn vị?\nBé đếm khối: 0 thanh chục và 7 ô rời\nVậy 7 = 0 chục và 7 đơn vị"
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "So sánh hai số cho đúng",
+            explanation: "Muốn biết số nào lớn hơn, bé làm hai bước sau — không cần đếm lại từ đầu.",
+            points: [
+              "Bước 1 — đếm số chữ số: số nào có ít chữ số hơn thì số đó BÉ hơn (ví dụ 9 < 10).",
+              "Bước 2 — hai số cùng số chữ số: so chữ số đầu tiên bên TRÁI trước; số nào có chữ số ấy lớn hơn thì số đó lớn hơn. Bằng nhau thì so chữ số tiếp theo.",
+              "Ví dụ: 24 có 2 chữ số, 7 có 1 chữ số — số nào có ít chữ số hơn thì bé hơn.",
+              "Số liền sau = số đó thêm 1; số liền trước = số đó bớt 1."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số liền sau của số 7 là số nào?",
+            options: [7, 8, 9, 17],
+            answer: 8,
+            mascotHint: "Số liền sau hơn số đã cho 1 đơn vị: 7 + 1 = 8."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số nào LỚN NHẤT trong các số sau: 7, 24, 20, 30?",
+            options: ["7", "20", "24", "30"],
+            answer: "30",
+            mascotHint: "Bé so chữ số đầu tiên bên trái của các số, bằng nhau thì so chữ số tiếp theo — số lớn nhất là 30."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Làm tròn số 24 đến hàng chục ta được số nào?",
@@ -675,6 +944,48 @@ export const g3c8 = {
               label: "Luyện tập chung chủ đề 8",
             },
           },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Cách Học",
+            title: "Bốn bước làm một bài toán",
+            explanation: "Mọi bài tính toán đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            points: [
+              "Bước 1 — Đọc đề và xác định phép tính cần làm.",
+              "Bước 2 — Đặt tính thẳng cột: hàng đơn vị dưới hàng đơn vị, hàng chục dưới hàng chục.",
+              "Bước 3 — Tính từ PHẢI sang TRÁI; nhớ ghi hoặc xoá số nhớ ngay khi làm xong một hàng.",
+              "Bước 4 — Thử lại bằng phép ngược hoặc bằng ước lượng xem kết quả có hợp lý không."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Điều cần nhớ", "Nội dung"],
+              rows: [
+                ["Cộng", "lấy kết quả trừ đi một số hạng để kiểm tra"],
+                ["Trừ", "lấy hiệu cộng số trừ phải được số bị trừ"],
+                ["Thứ tự", "luôn làm từ hàng đơn vị trước"]
+              ]
+            },
+            text: "Bảng nhớ nhanh — tính toán\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Khi đặt tính rồi tính, bé bắt đầu từ hàng nào?",
+            options: [
+              "Hàng đơn vị (từ phải sang trái)",
+              "Hàng cao nhất (trái sang phải)",
+              "Hàng nào cũng được",
+              "Hàng chục trước"
+            ],
+            answer: "Hàng đơn vị (từ phải sang trái)",
+            mascotHint: "Tính từ phải sang trái thì số nhớ mới kịp cộng vào hàng bên trái."
+          }
         },
         {
           type: "quiz",

@@ -55,6 +55,31 @@ export const g3c16 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 23456,
+              right: 12345,
+              sign: "+",
+              remember: true
+            },
+            text: "Bé tự đặt tính: 23456 + 12345\nhàng đơn vị 6 + 5 = 11, viết 1 nhớ 1\nhàng chục 5 + 4 + 1 (nhớ) = 10, viết 0 nhớ 1\nhàng trăm 4 + 3 + 1 (nhớ) = 8, viết 8\nVậy 23 456 + 12 345 = 35 801."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Chú Ý",
+            title: "Vì sao ra 35791 là sai?",
+            explanation: "35791 là kết quả khi bé quên nhớ 1 ở hàng chục. Đây là lỗi hay gặp nhất của dạng cộng này.",
+            points: [
+              "Lỗi — quên nhớ 1 ở hàng chục: hàng đơn vị 6 + 5 = 11, viết 1 nhớ 1. Kết quả đúng phải là 35801.",
+              "Cách tránh: làm xong một hàng thì ghi/xoá số nhớ NGAY, đừng để sang hàng sau mới nhớ.",
+              "Tự kiểm tra: 35801 − 23456 phải bằng 12345."
+            ]
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Số 68 457 gồm mấy chục nghìn và mấy nghìn?",
@@ -165,6 +190,27 @@ export const g3c16 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 6,
+              right: 7,
+              sign: "×",
+              remember: true
+            },
+            text: "Bé tự đặt tính: 6 × 7\nhàng đơn vị 6 × 7 = 42, viết 2 nhớ 4\ncòn nhớ 4 ở hàng cao hơn, viết 4\nVậy 6 × 7 = 42."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "7 × 6 bằng bao nhiêu?",
+            options: [2, 41, 42, 43],
+            answer: 42,
+            mascotHint: "hàng đơn vị 7 × 6 = 42, viết 2 nhớ 4. Kết quả 42."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "6 × 7 bằng bao nhiêu?",
@@ -249,6 +295,27 @@ export const g3c16 = {
               label: "Ôn tập hình học — chu vi và diện tích",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 5,
+              right: 4,
+              sign: "×",
+              remember: true
+            },
+            text: "Bé tự đặt tính: 5 × 4\nhàng đơn vị 5 × 4 = 20, viết 0 nhớ 2\ncòn nhớ 2 ở hàng cao hơn, viết 2\nVậy 5 × 4 = 20."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "6 × 9 bằng bao nhiêu?",
+            options: [4, 53, 54, 55],
+            answer: 54,
+            mascotHint: "hàng đơn vị 6 × 9 = 54, viết 4 nhớ 5. Kết quả 54."
+          }
         },
         {
           type: "quiz",
@@ -338,6 +405,48 @@ export const g3c16 = {
           },
         },
         {
+          type: "concept",
+          content: {
+            badge: "Cách Học",
+            title: "Bốn bước làm một bài toán",
+            explanation: "Mọi bài bài toán có lời văn đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            points: [
+              "Bước 1 — Đọc kỹ đề, gạch dưới các SỐ và từ khoá (thêm, bớt, gấp, chia đều).",
+              "Bước 2 — Tóm tắt đề bằng hình hoặc bằng câu ngắn: đã có gì, cần tìm gì.",
+              "Bước 3 — Chọn phép tính: “thêm, gộp, tất cả” → cộng; “bớt, cho đi, còn lại” → trừ; “gấp mấy lần” → nhân.",
+              "Bước 4 — Đặt tính rồi tính, rồi VIẾT ĐÁP SỐ kèm đơn vị và thử lại bằng phép ngược."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Điều cần nhớ", "Nội dung"],
+              rows: [
+                ["Đơn vị", "đáp số luôn kèm đơn vị như con, quả, kg, cm"],
+                ["Kiểm tra", "cộng thì lấy kết quả trừ đi một số hạng"],
+                ["Câu trả lời", "viết đủ câu, không chỉ ghi số"]
+              ]
+            },
+            text: "Bảng nhớ nhanh — bài toán có lời văn\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Giải một bài toán có lời văn, bé làm gì TRƯỚC TIÊN?",
+            options: [
+              "Đọc kỹ đề và gạch dưới các số đã cho",
+              "Viết ngay đáp số",
+              "Đoán kết quả",
+              "Đặt tính trước khi đọc đề"
+            ],
+            answer: "Đọc kỹ đề và gạch dưới các số đã cho",
+            mascotHint: "Chưa đọc kỹ đề thì chưa biết đề cho gì, hỏi gì — mọi bước sau đều dễ sai."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "1 kg bằng bao nhiêu gam?",
@@ -419,6 +528,27 @@ export const g3c16 = {
               highlight: 2,
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 5,
+              right: 5,
+              sign: "×",
+              remember: true
+            },
+            text: "Bé tự đặt tính: 5 × 5\nhàng đơn vị 5 × 5 = 25, viết 5 nhớ 2\ncòn nhớ 2 ở hàng cao hơn, viết 2\nVậy 5 × 5 = 25."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "7 × 2 bằng bao nhiêu?",
+            options: [4, 13, 14, 15],
+            answer: 14,
+            mascotHint: "hàng đơn vị 7 × 2 = 14, viết 4 nhớ 1. Kết quả 14."
+          }
         },
         {
           type: "quiz",
@@ -517,6 +647,48 @@ export const g3c16 = {
           },
         },
         {
+          type: "concept",
+          content: {
+            badge: "Cách Học",
+            title: "Bốn bước làm một bài toán",
+            explanation: "Mọi bài bài toán có lời văn đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            points: [
+              "Bước 1 — Đọc kỹ đề, gạch dưới các SỐ và từ khoá (thêm, bớt, gấp, chia đều).",
+              "Bước 2 — Tóm tắt đề bằng hình hoặc bằng câu ngắn: đã có gì, cần tìm gì.",
+              "Bước 3 — Chọn phép tính: “thêm, gộp, tất cả” → cộng; “bớt, cho đi, còn lại” → trừ; “gấp mấy lần” → nhân.",
+              "Bước 4 — Đặt tính rồi tính, rồi VIẾT ĐÁP SỐ kèm đơn vị và thử lại bằng phép ngược."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Điều cần nhớ", "Nội dung"],
+              rows: [
+                ["Đơn vị", "đáp số luôn kèm đơn vị như con, quả, kg, cm"],
+                ["Kiểm tra", "cộng thì lấy kết quả trừ đi một số hạng"],
+                ["Câu trả lời", "viết đủ câu, không chỉ ghi số"]
+              ]
+            },
+            text: "Bảng nhớ nhanh — bài toán có lời văn\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Giải một bài toán có lời văn, bé làm gì TRƯỚC TIÊN?",
+            options: [
+              "Đọc kỹ đề và gạch dưới các số đã cho",
+              "Viết ngay đáp số",
+              "Đoán kết quả",
+              "Đặt tính trước khi đọc đề"
+            ],
+            answer: "Đọc kỹ đề và gạch dưới các số đã cho",
+            mascotHint: "Chưa đọc kỹ đề thì chưa biết đề cho gì, hỏi gì — mọi bước sau đều dễ sai."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question:
@@ -583,6 +755,27 @@ export const g3c16 = {
               label: "Luyện tập tổng hợp cuối năm",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 8,
+              right: 6,
+              sign: "×",
+              remember: true
+            },
+            text: "Bé tự đặt tính: 8 × 6\nhàng đơn vị 8 × 6 = 48, viết 8 nhớ 4\ncòn nhớ 4 ở hàng cao hơn, viết 4\nVậy 8 × 6 = 48."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "3 × 4 bằng bao nhiêu?",
+            options: [2, 11, 12, 13],
+            answer: 12,
+            mascotHint: "hàng đơn vị 3 × 4 = 12, viết 2 nhớ 1. Kết quả 12."
+          }
         },
         {
           type: "quiz",
@@ -699,6 +892,48 @@ export const g3c16 = {
               label: "Lễ tốt nghiệp lớp 3",
             },
           },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Cách Học",
+            title: "Bốn bước làm một bài toán",
+            explanation: "Mọi bài so sánh số đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            points: [
+              "Bước 1 — Đếm số CHỮ SỐ của từng số trước.",
+              "Bước 2 — Số nào nhiều chữ số hơn thì lớn hơn — xong, không cần so tiếp.",
+              "Bước 3 — Cùng số chữ số thì so từng hàng từ TRÁI sang phải, gặp hàng khác nhau thì dừng.",
+              "Bước 4 — Đọc lại kết quả và đặt đúng dấu (>, <, =)."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Điều cần nhớ", "Nội dung"],
+              rows: [
+                ["Nhiều chữ số hơn", "thì số đó lớn hơn"],
+                ["So từ trái", "hàng nghìn rồi mới tới trăm, chục, đơn vị"],
+                ["Dấu lớn mở về phía", "số lớn hơn"]
+              ]
+            },
+            text: "Bảng nhớ nhanh — so sánh số\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Muốn so sánh hai số, bé bắt đầu bằng việc gì?",
+            options: [
+              "Đếm xem số nào có nhiều chữ số hơn",
+              "So chữ số hàng đơn vị trước",
+              "Cộng hai số lại",
+              "Đọc từ phải sang trái"
+            ],
+            answer: "Đếm xem số nào có nhiều chữ số hơn",
+            mascotHint: "Số nhiều chữ số hơn chắc chắn lớn hơn, nên chỉ cần so từng hàng khi hai số bằng số chữ số."
+          }
         },
         {
           type: "quiz",

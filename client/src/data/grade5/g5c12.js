@@ -52,6 +52,48 @@ export const g5c12 = {
           },
         },
         {
+          type: "concept",
+          content: {
+            badge: "Cách Học",
+            title: "Bốn bước làm một bài toán",
+            explanation: "Mọi bài so sánh số đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            points: [
+              "Bước 1 — Đếm số CHỮ SỐ của từng số trước.",
+              "Bước 2 — Số nào nhiều chữ số hơn thì lớn hơn — xong, không cần so tiếp.",
+              "Bước 3 — Cùng số chữ số thì so từng hàng từ TRÁI sang phải, gặp hàng khác nhau thì dừng.",
+              "Bước 4 — Đọc lại kết quả và đặt đúng dấu (>, <, =)."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Điều cần nhớ", "Nội dung"],
+              rows: [
+                ["Nhiều chữ số hơn", "thì số đó lớn hơn"],
+                ["So từ trái", "hàng nghìn rồi mới tới trăm, chục, đơn vị"],
+                ["Dấu lớn mở về phía", "số lớn hơn"]
+              ]
+            },
+            text: "Bảng nhớ nhanh — so sánh số\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Muốn so sánh hai số, bé bắt đầu bằng việc gì?",
+            options: [
+              "Đếm xem số nào có nhiều chữ số hơn",
+              "So chữ số hàng đơn vị trước",
+              "Cộng hai số lại",
+              "Đọc từ phải sang trái"
+            ],
+            answer: "Đếm xem số nào có nhiều chữ số hơn",
+            mascotHint: "Số nhiều chữ số hơn chắc chắn lớn hơn, nên chỉ cần so từng hàng khi hai số bằng số chữ số."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Viết 3/4 thành số thập phân:",
@@ -132,6 +174,48 @@ export const g5c12 = {
               label: "Kết quả phân số cần rút gọn",
             },
           },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Cách Học",
+            title: "Bốn bước làm một bài toán",
+            explanation: "Mọi bài bài toán có lời văn đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            points: [
+              "Bước 1 — Đọc kỹ đề, gạch dưới các SỐ và từ khoá (thêm, bớt, gấp, chia đều).",
+              "Bước 2 — Tóm tắt đề bằng hình hoặc bằng câu ngắn: đã có gì, cần tìm gì.",
+              "Bước 3 — Chọn phép tính: “thêm, gộp, tất cả” → cộng; “bớt, cho đi, còn lại” → trừ; “gấp mấy lần” → nhân.",
+              "Bước 4 — Đặt tính rồi tính, rồi VIẾT ĐÁP SỐ kèm đơn vị và thử lại bằng phép ngược."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Điều cần nhớ", "Nội dung"],
+              rows: [
+                ["Đơn vị", "đáp số luôn kèm đơn vị như con, quả, kg, cm"],
+                ["Kiểm tra", "cộng thì lấy kết quả trừ đi một số hạng"],
+                ["Câu trả lời", "viết đủ câu, không chỉ ghi số"]
+              ]
+            },
+            text: "Bảng nhớ nhanh — bài toán có lời văn\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Giải một bài toán có lời văn, bé làm gì TRƯỚC TIÊN?",
+            options: [
+              "Đọc kỹ đề và gạch dưới các số đã cho",
+              "Viết ngay đáp số",
+              "Đoán kết quả",
+              "Đặt tính trước khi đọc đề"
+            ],
+            answer: "Đọc kỹ đề và gạch dưới các số đã cho",
+            mascotHint: "Chưa đọc kỹ đề thì chưa biết đề cho gì, hỏi gì — mọi bước sau đều dễ sai."
+          }
         },
         {
           type: "quiz",
@@ -219,6 +303,48 @@ export const g5c12 = {
           },
         },
         {
+          type: "concept",
+          content: {
+            badge: "Cách Học",
+            title: "Bốn bước làm một bài toán",
+            explanation: "Mọi bài bài toán có lời văn đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            points: [
+              "Bước 1 — Đọc kỹ đề, gạch dưới các SỐ và từ khoá (thêm, bớt, gấp, chia đều).",
+              "Bước 2 — Tóm tắt đề bằng hình hoặc bằng câu ngắn: đã có gì, cần tìm gì.",
+              "Bước 3 — Chọn phép tính: “thêm, gộp, tất cả” → cộng; “bớt, cho đi, còn lại” → trừ; “gấp mấy lần” → nhân.",
+              "Bước 4 — Đặt tính rồi tính, rồi VIẾT ĐÁP SỐ kèm đơn vị và thử lại bằng phép ngược."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Điều cần nhớ", "Nội dung"],
+              rows: [
+                ["Đơn vị", "đáp số luôn kèm đơn vị như con, quả, kg, cm"],
+                ["Kiểm tra", "cộng thì lấy kết quả trừ đi một số hạng"],
+                ["Câu trả lời", "viết đủ câu, không chỉ ghi số"]
+              ]
+            },
+            text: "Bảng nhớ nhanh — bài toán có lời văn\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Giải một bài toán có lời văn, bé làm gì TRƯỚC TIÊN?",
+            options: [
+              "Đọc kỹ đề và gạch dưới các số đã cho",
+              "Viết ngay đáp số",
+              "Đoán kết quả",
+              "Đặt tính trước khi đọc đề"
+            ],
+            answer: "Đọc kỹ đề và gạch dưới các số đã cho",
+            mascotHint: "Chưa đọc kỹ đề thì chưa biết đề cho gì, hỏi gì — mọi bước sau đều dễ sai."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Tìm tỉ số phần trăm của 30 và 40:",
@@ -304,6 +430,43 @@ export const g5c12 = {
           },
         },
         {
+          type: "concept",
+          content: {
+            badge: "Cách Học",
+            title: "Bốn bước làm một bài toán",
+            explanation: "Mọi bài đo lường và đổi đơn vị đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            points: [
+              "Bước 1 — Đọc đơn vị đang có và đơn vị cần đổi.",
+              "Bước 2 — Viết bậc thang đơn vị ra giấy để thấy phải đi mấy bậc.",
+              "Bước 3 — Đi xuống (ra đơn vị bé hơn) thì NHÂN; đi lên (ra đơn vị lớn hơn) thì CHIA.",
+              "Bước 4 — Viết kết quả kèm đơn vị và kiểm tra lại bằng phép ngược."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Điều cần nhớ", "Nội dung"],
+              rows: [
+                ["1 m", "= 100 cm"],
+                ["1 kg", "= 1 000 g"],
+                ["1 l", "= 1 000 ml"]
+              ]
+            },
+            text: "Bảng nhớ nhanh — đo lường và đổi đơn vị\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Đổi số đo từ đơn vị lớn sang đơn vị bé hơn thì bé làm phép gì?",
+            options: ["Nhân", "Chia", "Cộng", "Trừ"],
+            answer: "Nhân",
+            mascotHint: "Đơn vị bé hơn thì số đo phải nhiều hơn: 1 m đổi ra cm được 100 cm — đó là phép nhân."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Bể nước dài 2 m, rộng 1,5 m, cao 1 m. Thể tích bể là:",
@@ -381,6 +544,27 @@ export const g5c12 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 120,
+              right: 15,
+              sign: "+",
+              remember: true
+            },
+            text: "Bé tự đặt tính: 120 + 15\nhàng đơn vị 0 + 5 = 5, viết 5\nhàng chục 2 + 1 = 3, viết 3\nhàng trăm 1 + 0 = 1, viết 1\nVậy 120 + 15 = 135."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "815 + 54 bằng bao nhiêu?",
+            options: [868, 869, 870, 871],
+            answer: 869,
+            mascotHint: "hàng đơn vị 5 + 4 = 9, viết 9. Kết quả 869."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "3 m 25 cm bằng bao nhiêu mét?",
@@ -455,6 +639,48 @@ export const g5c12 = {
               label: "Xác định đề hỏi đại lượng nào trước khi tính",
             },
           },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Cách Học",
+            title: "Bốn bước làm một bài toán",
+            explanation: "Mọi bài bài toán có lời văn đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            points: [
+              "Bước 1 — Đọc kỹ đề, gạch dưới các SỐ và từ khoá (thêm, bớt, gấp, chia đều).",
+              "Bước 2 — Tóm tắt đề bằng hình hoặc bằng câu ngắn: đã có gì, cần tìm gì.",
+              "Bước 3 — Chọn phép tính: “thêm, gộp, tất cả” → cộng; “bớt, cho đi, còn lại” → trừ; “gấp mấy lần” → nhân.",
+              "Bước 4 — Đặt tính rồi tính, rồi VIẾT ĐÁP SỐ kèm đơn vị và thử lại bằng phép ngược."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Điều cần nhớ", "Nội dung"],
+              rows: [
+                ["Đơn vị", "đáp số luôn kèm đơn vị như con, quả, kg, cm"],
+                ["Kiểm tra", "cộng thì lấy kết quả trừ đi một số hạng"],
+                ["Câu trả lời", "viết đủ câu, không chỉ ghi số"]
+              ]
+            },
+            text: "Bảng nhớ nhanh — bài toán có lời văn\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Giải một bài toán có lời văn, bé làm gì TRƯỚC TIÊN?",
+            options: [
+              "Đọc kỹ đề và gạch dưới các số đã cho",
+              "Viết ngay đáp số",
+              "Đoán kết quả",
+              "Đặt tính trước khi đọc đề"
+            ],
+            answer: "Đọc kỹ đề và gạch dưới các số đã cho",
+            mascotHint: "Chưa đọc kỹ đề thì chưa biết đề cho gì, hỏi gì — mọi bước sau đều dễ sai."
+          }
         },
         {
           type: "quiz",
@@ -537,6 +763,48 @@ export const g5c12 = {
           },
         },
         {
+          type: "concept",
+          content: {
+            badge: "Cách Học",
+            title: "Bốn bước làm một bài toán",
+            explanation: "Mọi bài so sánh số đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            points: [
+              "Bước 1 — Đếm số CHỮ SỐ của từng số trước.",
+              "Bước 2 — Số nào nhiều chữ số hơn thì lớn hơn — xong, không cần so tiếp.",
+              "Bước 3 — Cùng số chữ số thì so từng hàng từ TRÁI sang phải, gặp hàng khác nhau thì dừng.",
+              "Bước 4 — Đọc lại kết quả và đặt đúng dấu (>, <, =)."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Điều cần nhớ", "Nội dung"],
+              rows: [
+                ["Nhiều chữ số hơn", "thì số đó lớn hơn"],
+                ["So từ trái", "hàng nghìn rồi mới tới trăm, chục, đơn vị"],
+                ["Dấu lớn mở về phía", "số lớn hơn"]
+              ]
+            },
+            text: "Bảng nhớ nhanh — so sánh số\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Muốn so sánh hai số, bé bắt đầu bằng việc gì?",
+            options: [
+              "Đếm xem số nào có nhiều chữ số hơn",
+              "So chữ số hàng đơn vị trước",
+              "Cộng hai số lại",
+              "Đọc từ phải sang trái"
+            ],
+            answer: "Đếm xem số nào có nhiều chữ số hơn",
+            mascotHint: "Số nhiều chữ số hơn chắc chắn lớn hơn, nên chỉ cần so từng hàng khi hai số bằng số chữ số."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Lớp nào trồng được nhiều cây nhất?",
@@ -602,6 +870,40 @@ export const g5c12 = {
               label: "Ôn kĩ phần đặt tính và bài toán có lời văn",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 25,
+              right: 4,
+              sign: "×",
+              remember: true
+            },
+            text: "Bé tự đặt tính: 25 × 4\nhàng đơn vị 5 × 4 = 20, viết 0 nhớ 2\nhàng chục 2 × 4 + 2 (nhớ) = 10, viết 0 nhớ 1\ncòn nhớ 1 ở hàng cao hơn, viết 1\nVậy 25 × 4 = 100."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Chú Ý",
+            title: "Vì sao ra 80 là sai?",
+            explanation: "80 là kết quả khi bé quên nhớ khi nhân từng hàng. Đây là lỗi hay gặp nhất của dạng nhân này.",
+            points: [
+              "Lỗi — quên nhớ khi nhân từng hàng: hàng đơn vị 5 × 4 = 20, viết 0 nhớ 2. Kết quả đúng phải là 100.",
+              "Cách tránh: làm xong một hàng thì ghi/xoá số nhớ NGAY, đừng để sang hàng sau mới nhớ.",
+              "Tự kiểm tra: 100 : 4 phải bằng 25."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "43 × 9 bằng bao nhiêu?",
+            options: [67, 386, 387, 388],
+            answer: 387,
+            mascotHint: "hàng đơn vị 3 × 9 = 27, viết 7 nhớ 2. Kết quả 387."
+          }
         },
         {
           type: "quiz",

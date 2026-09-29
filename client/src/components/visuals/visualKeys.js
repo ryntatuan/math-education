@@ -36,7 +36,7 @@ export const HINH_KEYS = [
   "ruler",
   "money",
   "table",
-  // Vật đặt cạnh thước, vẽ ĐÚNG TỈ LỆ (Lớp 1 CĐ 7: SGK tr.36–43) — bé tự đọc số đo
+  // Vật đặt cạnh thước, vẽ ĐÚNG TỈ LỆ (Lớp 1 CĐ 7) — bé tự đọc số đo
   "measureBoard",
   // Hình học
   "planeShape",
@@ -47,7 +47,7 @@ export const HINH_KEYS = [
   "shapePicture",
   "shapeJoin",
   "spatialScene",
-  // Dãy hình lặp quy luật — “hình thích hợp đặt vào dấu ?” (Lớp 1: SGK tr.55 và tr.111)
+  // Dãy hình lặp quy luật — “hình thích hợp đặt vào dấu ?” (Lớp 1)
   "patternRow",
   // Bảng có Ô TRỐNG bé điền được (ô `null` trong `rows` + đáp án ở `answers`)
   "bangTinh",

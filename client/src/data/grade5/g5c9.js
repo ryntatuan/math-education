@@ -50,6 +50,87 @@ export const g5c9 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            solid: {
+              kind: "cube"
+            },
+            text: "khối lập phương bé học hôm nay có gì đặc biệt?\n· 6 mặt đều là hình vuông bằng nhau\n· 8 đỉnh\nBé đếm mặt, đếm đỉnh, đếm cạnh ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Ghi Nhớ",
+            title: "Đặc điểm của khối lập phương",
+            explanation: "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của khối lập phương.",
+            points: [
+              "khối lập phương có 6 mặt đều là hình vuông bằng nhau.",
+              "khối lập phương có 8 đỉnh.",
+              "khối lập phương có 12 cạnh bằng nhau.",
+              "Cách kiểm tra: bé đếm mặt, đếm đỉnh, đếm cạnh; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                ["Bước 1 — Gọi tên", "nói đúng tên hình/khối trước khi làm gì tiếp"],
+                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học"],
+                [
+                  "Bước 3 — Kiểm tra",
+                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt"
+                ]
+              ]
+            },
+            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
+            options: [
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Nộp bài luôn cho nhanh",
+              "Đoán lại một lần nữa"
+            ],
+            answer: "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            mascotHint: "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Hình nào có 6 mặt đều là hình vuông bằng nhau?",
+            options: [
+              "khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ",
+              "hình khối cầu"
+            ],
+            answer: "khối lập phương",
+            mascotHint: "khối lập phương: 6 mặt đều là hình vuông bằng nhau · 8 đỉnh · 12 cạnh bằng nhau."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Trong bài hôm nay có hình khối lập phương và hình khối hộp chữ nhật và hình khối trụ và hình vuông và hình tròn và hình tam giác và hình chữ nhật. Hình nào có 8 đỉnh?",
+            options: [
+              "khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ",
+              "hình khối cầu"
+            ],
+            answer: "khối lập phương",
+            mascotHint: "Đáp án là khối lập phương: 6 mặt đều là hình vuông bằng nhau · 8 đỉnh · 12 cạnh bằng nhau."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Hình khai triển của hình lập phương gồm mấy hình vuông?",
@@ -151,6 +232,87 @@ export const g5c9 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            solid: {
+              kind: "cuboid"
+            },
+            text: "khối hộp chữ nhật bé học hôm nay có gì đặc biệt?\n· 6 mặt, mỗi mặt là hình chữ nhật\n· 8 đỉnh\nBé đếm mặt, đếm đỉnh, đếm cạnh ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Ghi Nhớ",
+            title: "Đặc điểm của khối hộp chữ nhật",
+            explanation: "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của khối hộp chữ nhật.",
+            points: [
+              "khối hộp chữ nhật có 6 mặt, mỗi mặt là hình chữ nhật.",
+              "khối hộp chữ nhật có 8 đỉnh.",
+              "khối hộp chữ nhật có 12 cạnh.",
+              "Cách kiểm tra: bé đếm mặt, đếm đỉnh, đếm cạnh; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                ["Bước 1 — Gọi tên", "nói đúng tên hình/khối trước khi làm gì tiếp"],
+                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học"],
+                [
+                  "Bước 3 — Kiểm tra",
+                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt"
+                ]
+              ]
+            },
+            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
+            options: [
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Nộp bài luôn cho nhanh",
+              "Đoán lại một lần nữa"
+            ],
+            answer: "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            mascotHint: "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Hình nào có 6 mặt, mỗi mặt là hình chữ nhật?",
+            options: [
+              "khối hộp chữ nhật",
+              "hình khối lập phương",
+              "hình khối trụ",
+              "hình khối cầu"
+            ],
+            answer: "khối hộp chữ nhật",
+            mascotHint: "khối hộp chữ nhật: 6 mặt, mỗi mặt là hình chữ nhật · 8 đỉnh · 12 cạnh."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Trong bài hôm nay có hình khối hộp chữ nhật và hình chữ nhật. Hình nào có 8 đỉnh?",
+            options: [
+              "khối hộp chữ nhật",
+              "hình khối lập phương",
+              "hình khối trụ",
+              "hình khối cầu"
+            ],
+            answer: "khối hộp chữ nhật",
+            mascotHint: "Đáp án là khối hộp chữ nhật: 6 mặt, mỗi mặt là hình chữ nhật · 8 đỉnh · 12 cạnh."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question:
@@ -226,6 +388,87 @@ export const g5c9 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            solid: {
+              kind: "cube"
+            },
+            text: "khối lập phương bé học hôm nay có gì đặc biệt?\n· 6 mặt đều là hình vuông bằng nhau\n· 8 đỉnh\nBé đếm mặt, đếm đỉnh, đếm cạnh ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Ghi Nhớ",
+            title: "Đặc điểm của khối lập phương",
+            explanation: "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của khối lập phương.",
+            points: [
+              "khối lập phương có 6 mặt đều là hình vuông bằng nhau.",
+              "khối lập phương có 8 đỉnh.",
+              "khối lập phương có 12 cạnh bằng nhau.",
+              "Cách kiểm tra: bé đếm mặt, đếm đỉnh, đếm cạnh; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                ["Bước 1 — Gọi tên", "nói đúng tên hình/khối trước khi làm gì tiếp"],
+                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học"],
+                [
+                  "Bước 3 — Kiểm tra",
+                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt"
+                ]
+              ]
+            },
+            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
+            options: [
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Nộp bài luôn cho nhanh",
+              "Đoán lại một lần nữa"
+            ],
+            answer: "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            mascotHint: "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Hình nào có 6 mặt đều là hình vuông bằng nhau?",
+            options: [
+              "khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ",
+              "hình khối cầu"
+            ],
+            answer: "khối lập phương",
+            mascotHint: "khối lập phương: 6 mặt đều là hình vuông bằng nhau · 8 đỉnh · 12 cạnh bằng nhau."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Trong bài hôm nay có hình khối lập phương và hình vuông. Hình nào có 8 đỉnh?",
+            options: [
+              "khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ",
+              "hình khối cầu"
+            ],
+            answer: "khối lập phương",
+            mascotHint: "Đáp án là khối lập phương: 6 mặt đều là hình vuông bằng nhau · 8 đỉnh · 12 cạnh bằng nhau."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Hình lập phương cạnh 3 cm có diện tích xung quanh là:",
@@ -296,6 +539,87 @@ export const g5c9 = {
               formula: "V = 5 × 4 × 3 = 60 cm³",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            solid: {
+              kind: "cube"
+            },
+            text: "khối lập phương bé học hôm nay có gì đặc biệt?\n· 6 mặt đều là hình vuông bằng nhau\n· 8 đỉnh\nBé đếm mặt, đếm đỉnh, đếm cạnh ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Ghi Nhớ",
+            title: "Đặc điểm của khối lập phương",
+            explanation: "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của khối lập phương.",
+            points: [
+              "khối lập phương có 6 mặt đều là hình vuông bằng nhau.",
+              "khối lập phương có 8 đỉnh.",
+              "khối lập phương có 12 cạnh bằng nhau.",
+              "Cách kiểm tra: bé đếm mặt, đếm đỉnh, đếm cạnh; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                ["Bước 1 — Gọi tên", "nói đúng tên hình/khối trước khi làm gì tiếp"],
+                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học"],
+                [
+                  "Bước 3 — Kiểm tra",
+                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt"
+                ]
+              ]
+            },
+            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
+            options: [
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Nộp bài luôn cho nhanh",
+              "Đoán lại một lần nữa"
+            ],
+            answer: "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            mascotHint: "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Hình nào có 6 mặt đều là hình vuông bằng nhau?",
+            options: [
+              "khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ",
+              "hình khối cầu"
+            ],
+            answer: "khối lập phương",
+            mascotHint: "khối lập phương: 6 mặt đều là hình vuông bằng nhau · 8 đỉnh · 12 cạnh bằng nhau."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Trong bài hôm nay có hình khối lập phương và hình khối hộp chữ nhật và hình chữ nhật. Hình nào có 8 đỉnh?",
+            options: [
+              "khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ",
+              "hình khối cầu"
+            ],
+            answer: "khối lập phương",
+            mascotHint: "Đáp án là khối lập phương: 6 mặt đều là hình vuông bằng nhau · 8 đỉnh · 12 cạnh bằng nhau."
+          }
         },
         {
           type: "quiz",
@@ -376,6 +700,73 @@ export const g5c9 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            solid: {
+              kind: "cube"
+            },
+            text: "khối lập phương bé học hôm nay có gì đặc biệt?\n· 6 mặt đều là hình vuông bằng nhau\n· 8 đỉnh\nBé đếm mặt, đếm đỉnh, đếm cạnh ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Ghi Nhớ",
+            title: "Đặc điểm của khối lập phương",
+            explanation: "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của khối lập phương.",
+            points: [
+              "khối lập phương có 6 mặt đều là hình vuông bằng nhau.",
+              "khối lập phương có 8 đỉnh.",
+              "khối lập phương có 12 cạnh bằng nhau.",
+              "Cách kiểm tra: bé đếm mặt, đếm đỉnh, đếm cạnh; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                ["Bước 1 — Gọi tên", "nói đúng tên hình/khối trước khi làm gì tiếp"],
+                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học"],
+                [
+                  "Bước 3 — Kiểm tra",
+                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt"
+                ]
+              ]
+            },
+            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
+            options: [
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Nộp bài luôn cho nhanh",
+              "Đoán lại một lần nữa"
+            ],
+            answer: "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            mascotHint: "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Hình nào có 6 mặt đều là hình vuông bằng nhau?",
+            options: [
+              "khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ",
+              "hình khối cầu"
+            ],
+            answer: "khối lập phương",
+            mascotHint: "khối lập phương: 6 mặt đều là hình vuông bằng nhau · 8 đỉnh · 12 cạnh bằng nhau."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Hình lập phương cạnh 3 cm có thể tích là:",
@@ -452,6 +843,43 @@ export const g5c9 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            solid: {
+              kind: "cuboid"
+            },
+            text: "khối hộp chữ nhật bé học hôm nay có gì đặc biệt?\n· 6 mặt, mỗi mặt là hình chữ nhật\n· 8 đỉnh\nBé đếm mặt, đếm đỉnh, đếm cạnh ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Ghi Nhớ",
+            title: "Đặc điểm của khối hộp chữ nhật",
+            explanation: "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của khối hộp chữ nhật.",
+            points: [
+              "khối hộp chữ nhật có 6 mặt, mỗi mặt là hình chữ nhật.",
+              "khối hộp chữ nhật có 8 đỉnh.",
+              "khối hộp chữ nhật có 12 cạnh.",
+              "Cách kiểm tra: bé đếm mặt, đếm đỉnh, đếm cạnh; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Hình nào có 6 mặt, mỗi mặt là hình chữ nhật?",
+            options: [
+              "khối hộp chữ nhật",
+              "hình khối lập phương",
+              "hình khối trụ",
+              "hình khối cầu"
+            ],
+            answer: "khối hộp chữ nhật",
+            mascotHint: "khối hộp chữ nhật: 6 mặt, mỗi mặt là hình chữ nhật · 8 đỉnh · 12 cạnh."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question:
@@ -521,6 +949,87 @@ export const g5c9 = {
               label: "Ghi đúng đơn vị: cm² cho diện tích, cm³ cho thể tích",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            solid: {
+              kind: "cube"
+            },
+            text: "khối lập phương bé học hôm nay có gì đặc biệt?\n· 6 mặt đều là hình vuông bằng nhau\n· 8 đỉnh\nBé đếm mặt, đếm đỉnh, đếm cạnh ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Ghi Nhớ",
+            title: "Đặc điểm của khối lập phương",
+            explanation: "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của khối lập phương.",
+            points: [
+              "khối lập phương có 6 mặt đều là hình vuông bằng nhau.",
+              "khối lập phương có 8 đỉnh.",
+              "khối lập phương có 12 cạnh bằng nhau.",
+              "Cách kiểm tra: bé đếm mặt, đếm đỉnh, đếm cạnh; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                ["Bước 1 — Gọi tên", "nói đúng tên hình/khối trước khi làm gì tiếp"],
+                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học"],
+                [
+                  "Bước 3 — Kiểm tra",
+                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt"
+                ]
+              ]
+            },
+            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
+            options: [
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Nộp bài luôn cho nhanh",
+              "Đoán lại một lần nữa"
+            ],
+            answer: "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            mascotHint: "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Hình nào có 6 mặt đều là hình vuông bằng nhau?",
+            options: [
+              "khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ",
+              "hình khối cầu"
+            ],
+            answer: "khối lập phương",
+            mascotHint: "khối lập phương: 6 mặt đều là hình vuông bằng nhau · 8 đỉnh · 12 cạnh bằng nhau."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Trong bài hôm nay có hình khối lập phương và hình khối hộp chữ nhật và hình chữ nhật. Hình nào có 8 đỉnh?",
+            options: [
+              "khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ",
+              "hình khối cầu"
+            ],
+            answer: "khối lập phương",
+            mascotHint: "Đáp án là khối lập phương: 6 mặt đều là hình vuông bằng nhau · 8 đỉnh · 12 cạnh bằng nhau."
+          }
         },
         {
           type: "quiz",

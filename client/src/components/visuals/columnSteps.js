@@ -6,7 +6,7 @@
  * bài đều kèm lời giải từng hàng, SINH TỰ ĐỘNG từ chính con số ⇒ không thể lệch với kết quả
  * (cùng nguyên tắc với `columnMath.js`: đáp án không bao giờ khai bằng tay).
  *
- * Cách nói theo đúng SGK tiểu học:
+ * Cách nói theo đúng chương trình tiểu học:
  *   +  : “hàng đơn vị 6 + 8 = 14, viết 4 nhớ 1”
  *   −  : “hàng đơn vị 3 < 5 nên mượn 1: 13 − 5 = 8, viết 8”
  *   ×  : “hàng đơn vị 6 × 3 = 18, viết 8 nhớ 1” (nhân nhiều chữ số ⇒ hai tích riêng)
@@ -55,7 +55,7 @@ function buocCong(a, b) {
   return ra;
 }
 
-/** Lời giải của phép TRỪ (SGK: không dạy kết quả âm). */
+/** Lời giải của phép TRỪ (tiểu học không dạy kết quả âm). */
 function buocTru(a, b) {
   const A = chuSoCua(a).reverse();
   const B = chuSoCua(b).reverse();
@@ -99,14 +99,14 @@ function buocNhan(a, b) {
   const B = chuSoCua(b);
   const soA = soCua(a);
   const soB = soCua(b);
-  // SGK Lớp 3–4: nhân với 10, 100, 1 000… KHÔNG dùng tích riêng — chỉ thêm chữ số 0.
+  // Lớp 3–4: nhân với 10, 100, 1 000… KHÔNG dùng tích riêng — chỉ thêm chữ số 0.
   const dem0 = soChuSo0(soB);
   if (dem0 > 0)
     return [
       `nhân với ${vietSo(soB)} chỉ việc thêm ${dem0} chữ số 0 vào bên phải: ${vietSo(soA)} ⇒ ${vietSo(soA * soB)}`,
     ];
   if (B.length > 1) {
-    // SGK Lớp 4-5: nhân với số có nhiều chữ số = hai tích riêng rồi cộng lại.
+    // Lớp 4-5: nhân với số có nhiều chữ số = hai tích riêng rồi cộng lại.
     const tich1 = soA * Number(B[B.length - 1]);
     const tich2 = soA * Number(B[0]) * 10;
     return [
@@ -133,14 +133,14 @@ function buocNhan(a, b) {
   return ra;
 }
 
-/** Lời giải phép CHIA số nguyên (SGK Lớp 3–4: lần lượt hạ từng chữ số từ trái sang phải). */
+/** Lời giải phép CHIA số nguyên (hạ lần lượt từng chữ số từ trái sang phải). */
 function buocChia(a, b) {
   const soA = soCua(a);
   const soB = soCua(b);
   const A = chuSoCua(a).map(Number);
   const { nguyen, du } = tinhChia(soA, soB);
   const ra = [];
-  // SGK: chia cho 10, 100, 1 000… chỉ việc bớt chữ số 0 ở bên phải.
+  // Quy tắc: chia cho 10, 100, 1 000… chỉ việc bớt chữ số 0 ở bên phải.
   const dem0 = soChuSo0(soB);
   if (dem0 > 0 && soA % soB === 0)
     return [

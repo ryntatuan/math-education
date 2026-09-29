@@ -57,6 +57,60 @@ export const g2c1 = {
           },
         },
         {
+          "type": "concept",
+          "content": {
+            "badge": "Cách Học",
+            "title": "Bốn bước làm một bài toán",
+            "explanation": "Mọi bài tính toán đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            "points": [
+              "Bước 1 — Đọc đề và xác định phép tính cần làm.",
+              "Bước 2 — Đặt tính thẳng cột: hàng đơn vị dưới hàng đơn vị, hàng chục dưới hàng chục.",
+              "Bước 3 — Tính từ PHẢI sang TRÁI; nhớ ghi hoặc xoá số nhớ ngay khi làm xong một hàng.",
+              "Bước 4 — Thử lại bằng phép ngược hoặc bằng ước lượng xem kết quả có hợp lý không."
+            ]
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "table": {
+              "headers": [
+                "Điều cần nhớ",
+                "Nội dung"
+              ],
+              "rows": [
+                [
+                  "Cộng",
+                  "lấy kết quả trừ đi một số hạng để kiểm tra"
+                ],
+                [
+                  "Trừ",
+                  "lấy hiệu cộng số trừ phải được số bị trừ"
+                ],
+                [
+                  "Thứ tự",
+                  "luôn làm từ hàng đơn vị trước"
+                ]
+              ]
+            },
+            "text": "Bảng nhớ nhanh — tính toán\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Khi đặt tính rồi tính, bé bắt đầu từ hàng nào?",
+            "options": [
+              "Hàng đơn vị (từ phải sang trái)",
+              "Hàng cao nhất (trái sang phải)",
+              "Hàng nào cũng được",
+              "Hàng chục trước"
+            ],
+            "answer": "Hàng đơn vị (từ phải sang trái)",
+            "mascotHint": "Tính từ phải sang trái thì số nhớ mới kịp cộng vào hàng bên trái."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Số 63 gồm mấy chục và mấy đơn vị?",
@@ -132,6 +186,60 @@ export const g2c1 = {
           },
         },
         {
+          "type": "concept",
+          "content": {
+            "badge": "Cách Học",
+            "title": "Bốn bước làm một bài toán",
+            "explanation": "Mọi bài so sánh số đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            "points": [
+              "Bước 1 — Đếm số CHỮ SỐ của từng số trước.",
+              "Bước 2 — Số nào nhiều chữ số hơn thì lớn hơn — xong, không cần so tiếp.",
+              "Bước 3 — Cùng số chữ số thì so từng hàng từ TRÁI sang phải, gặp hàng khác nhau thì dừng.",
+              "Bước 4 — Đọc lại kết quả và đặt đúng dấu (>, <, =)."
+            ]
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "table": {
+              "headers": [
+                "Điều cần nhớ",
+                "Nội dung"
+              ],
+              "rows": [
+                [
+                  "Nhiều chữ số hơn",
+                  "thì số đó lớn hơn"
+                ],
+                [
+                  "So từ trái",
+                  "hàng nghìn rồi mới tới trăm, chục, đơn vị"
+                ],
+                [
+                  "Dấu lớn mở về phía",
+                  "số lớn hơn"
+                ]
+              ]
+            },
+            "text": "Bảng nhớ nhanh — so sánh số\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Muốn so sánh hai số, bé bắt đầu bằng việc gì?",
+            "options": [
+              "Đếm xem số nào có nhiều chữ số hơn",
+              "So chữ số hàng đơn vị trước",
+              "Cộng hai số lại",
+              "Đọc từ phải sang trái"
+            ],
+            "answer": "Đếm xem số nào có nhiều chữ số hơn",
+            "mascotHint": "Số nhiều chữ số hơn chắc chắn lớn hơn, nên chỉ cần so từng hàng khi hai số bằng số chữ số."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Trong hai số 72 và 27, số nào lớn hơn?",
@@ -200,6 +308,64 @@ export const g2c1 = {
               label: "Tia số — đi sang phải số tăng, đi sang trái số giảm",
             },
           },
+        },
+        {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 25,
+              "right": 1,
+              "sign": "+",
+              "remember": true
+            },
+            "text": "Bé tự đặt tính: 25 + 1\nhàng đơn vị 5 + 1 = 6, viết 6\nhàng chục 2 + 0 = 2, viết 2\nVậy 25 + 1 = 26."
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "numberLine": {
+              "from": 25,
+              "to": 26,
+              "step": 1,
+              "hops": [
+                {
+                  "from": 25,
+                  "to": 26,
+                  "label": "+1"
+                }
+              ]
+            },
+            "text": "Cách nhẩm nhanh cho 25 + 1\nBé đếm thêm từng bước trên tia số theo các cung nhảy.\nĐếm thêm 1 bước từ 25.\nVậy 25 + 1 = 26."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "45 + 7 bằng bao nhiêu?",
+            "options": [
+              51,
+              52,
+              53,
+              62
+            ],
+            "answer": 52,
+            "mascotHint": "Bé đặt tính rồi tính từ hàng đơn vị. Kết quả 52."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "41 + 1 bằng bao nhiêu?",
+            "options": [
+              41,
+              42,
+              43,
+              44
+            ],
+            "answer": 42,
+            "mascotHint": "hàng đơn vị 1 + 1 = 2, viết 2. Kết quả 42."
+          }
         },
         {
           type: "quiz",
@@ -282,6 +448,60 @@ export const g2c1 = {
           },
         },
         {
+          "type": "concept",
+          "content": {
+            "badge": "Cách Học",
+            "title": "Bốn bước làm một bài toán",
+            "explanation": "Mọi bài so sánh số đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            "points": [
+              "Bước 1 — Đếm số CHỮ SỐ của từng số trước.",
+              "Bước 2 — Số nào nhiều chữ số hơn thì lớn hơn — xong, không cần so tiếp.",
+              "Bước 3 — Cùng số chữ số thì so từng hàng từ TRÁI sang phải, gặp hàng khác nhau thì dừng.",
+              "Bước 4 — Đọc lại kết quả và đặt đúng dấu (>, <, =)."
+            ]
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "table": {
+              "headers": [
+                "Điều cần nhớ",
+                "Nội dung"
+              ],
+              "rows": [
+                [
+                  "Nhiều chữ số hơn",
+                  "thì số đó lớn hơn"
+                ],
+                [
+                  "So từ trái",
+                  "hàng nghìn rồi mới tới trăm, chục, đơn vị"
+                ],
+                [
+                  "Dấu lớn mở về phía",
+                  "số lớn hơn"
+                ]
+              ]
+            },
+            "text": "Bảng nhớ nhanh — so sánh số\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Muốn so sánh hai số, bé bắt đầu bằng việc gì?",
+            "options": [
+              "Đếm xem số nào có nhiều chữ số hơn",
+              "So chữ số hàng đơn vị trước",
+              "Cộng hai số lại",
+              "Đọc từ phải sang trái"
+            ],
+            "answer": "Đếm xem số nào có nhiều chữ số hơn",
+            "mascotHint": "Số nhiều chữ số hơn chắc chắn lớn hơn, nên chỉ cần so từng hàng khi hai số bằng số chữ số."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Số liền sau của 69 là số nào?",
@@ -358,6 +578,69 @@ export const g2c1 = {
           },
         },
         {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 35,
+              "right": 24,
+              "sign": "+",
+              "remember": true
+            },
+            "text": "Bé tự đặt tính: 35 + 24\nhàng đơn vị 5 + 4 = 9, viết 9\nhàng chục 3 + 2 = 5, viết 5\nVậy 35 + 24 = 59."
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "numberLine": {
+              "from": 35,
+              "to": 59,
+              "step": 1,
+              "hops": [
+                {
+                  "from": 35,
+                  "to": 40,
+                  "label": "+5"
+                },
+                {
+                  "from": 40,
+                  "to": 59,
+                  "label": "+19"
+                }
+              ]
+            },
+            "text": "Cách nhẩm nhanh cho 35 + 24\nBé đếm thêm từng bước trên tia số theo các cung nhảy.\nĐếm thêm 5 để được 40 (tròn chục), rồi thêm 19 nữa.\nVậy 35 + 24 = 59."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "48 + 42 bằng bao nhiêu?",
+            "options": [
+              89,
+              90,
+              91,
+              100
+            ],
+            "answer": 90,
+            "mascotHint": "Bé đặt tính rồi tính từ hàng đơn vị. Kết quả 90."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "72 + 27 bằng bao nhiêu?",
+            "options": [
+              98,
+              99,
+              100,
+              101
+            ],
+            "answer": 99,
+            "mascotHint": "hàng đơn vị 2 + 7 = 9, viết 9. Kết quả 99."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Trong phép cộng 35 + 24 = 59, số 59 gọi là gì?",
@@ -423,6 +706,31 @@ export const g2c1 = {
               label: "Thành phần của phép trừ",
             },
           },
+        },
+        {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 57,
+              "right": 23,
+              "sign": "−"
+            },
+            "text": "Bé tự đặt tính: 57 − 23\nhàng đơn vị 7 − 3 = 4, viết 4\nhàng chục 5 − 2 = 3, viết 3\nVậy 57 − 23 = 34."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "47 − 31 bằng bao nhiêu?",
+            "options": [
+              15,
+              16,
+              17,
+              18
+            ],
+            "answer": 16,
+            "mascotHint": "hàng đơn vị 7 − 1 = 6, viết 6. Kết quả 16."
+          }
         },
         {
           type: "quiz",
@@ -521,6 +829,44 @@ export const g2c1 = {
               braceLabel: "Mai hơn Lan 4 cái kẹo",
             },
           },
+        },
+        {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 12,
+              "right": 8,
+              "sign": "−"
+            },
+            "text": "Bé tự đặt tính: 12 − 8\nhàng đơn vị 2 < 8 nên mượn 1: 12 − 8 = 4, viết 4\nhàng chục 1 − 1 = 0, viết 0\nVậy 12 − 8 = 4."
+          }
+        },
+        {
+          "type": "concept",
+          "content": {
+            "badge": "Chú Ý",
+            "title": "Vì sao ra 14 là sai?",
+            "explanation": "14 là kết quả khi bé quên bớt 1 chục sau khi mượn. Đây là lỗi hay gặp nhất của dạng trừ này.",
+            "points": [
+              "Lỗi — quên bớt 1 chục sau khi mượn: hàng đơn vị 2 < 8 nên mượn 1: 12 − 8 = 4, viết 4. Kết quả đúng phải là 4.",
+              "Cách tránh: làm xong một hàng thì ghi/xoá số đã vay NGAY, đừng để sang hàng sau mới nhớ.",
+              "Tự kiểm tra: 4 + 8 phải bằng 12."
+            ]
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "11 − 2 bằng bao nhiêu?",
+            "options": [
+              8,
+              9,
+              10,
+              19
+            ],
+            "answer": 9,
+            "mascotHint": "hàng đơn vị 1 < 2 nên mượn 1: 11 − 2 = 9, viết 9. Kết quả 9."
+          }
         },
         {
           type: "quiz",
@@ -649,6 +995,32 @@ export const g2c1 = {
           },
         },
         {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 2,
+              "right": 4,
+              "sign": "+",
+              "remember": true
+            },
+            "text": "Bé tự đặt tính: 2 + 4\nhàng đơn vị 2 + 4 = 6, viết 6\nVậy 2 + 4 = 6."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "2 + 7 bằng bao nhiêu?",
+            "options": [
+              8,
+              9,
+              10,
+              11
+            ],
+            "answer": 9,
+            "mascotHint": "hàng đơn vị 2 + 7 = 9, viết 9. Kết quả 9."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "32 + 14 bằng bao nhiêu?",
@@ -720,6 +1092,44 @@ export const g2c1 = {
                 "98 liền trước · 99 là số lớn nhất có hai chữ số · 100 là số có ba chữ số",
             },
           },
+        },
+        {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 20,
+              "right": 17,
+              "sign": "−"
+            },
+            "text": "Bé tự đặt tính: 20 − 17\nhàng đơn vị 0 < 7 nên mượn 1: 10 − 7 = 3, viết 3\nhàng chục 2 − 2 = 0, viết 0\nVậy 20 − 17 = 3."
+          }
+        },
+        {
+          "type": "concept",
+          "content": {
+            "badge": "Chú Ý",
+            "title": "Vì sao ra 13 là sai?",
+            "explanation": "13 là kết quả khi bé quên bớt 1 chục sau khi mượn. Đây là lỗi hay gặp nhất của dạng trừ này.",
+            "points": [
+              "Lỗi — quên bớt 1 chục sau khi mượn: hàng đơn vị 0 < 7 nên mượn 1: 10 − 7 = 3, viết 3. Kết quả đúng phải là 3.",
+              "Cách tránh: làm xong một hàng thì ghi/xoá số đã vay NGAY, đừng để sang hàng sau mới nhớ.",
+              "Tự kiểm tra: 3 + 17 phải bằng 20."
+            ]
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "23 − 18 bằng bao nhiêu?",
+            "options": [
+              4,
+              5,
+              6,
+              15
+            ],
+            "answer": 5,
+            "mascotHint": "hàng đơn vị 3 < 8 nên mượn 1: 13 − 8 = 5, viết 5. Kết quả 5."
+          }
         },
         {
           type: "quiz",

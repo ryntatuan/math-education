@@ -1,5 +1,5 @@
 /**
- * HÌNH DẠNG ĐỒ VẬT vẽ bằng hình học cơ bản — dùng cho `measureBoard` (Lớp 1 CĐ 7, SGK tr.36–43).
+ * HÌNH DẠNG ĐỒ VẬT vẽ bằng hình học cơ bản — dùng cho `measureBoard` (Lớp 1 CĐ 7).
  *
  * 🔴 VÌ SAO PHẢI VẼ HÌNH THẬT, KHÔNG DÙNG THANH MÀU: bài học là "ĐO ĐỘ DÀI ĐỒ VẬT".
  * Một thanh chữ nhật ghi "Đoàn tàu" không cho bé biết đó là cái gì, cũng không dạy được

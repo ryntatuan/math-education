@@ -70,7 +70,7 @@ export default function VisualBlocks({ content }) {
   // ── Đo lường ────────────────────────────────────────────────────────────
   if (isObj(content.ruler))
     blocks.push(<Ruler key="ruler" {...content.ruler} />);
-  // Vật đặt cạnh thước (Lớp 1 CĐ 7 — SGK tr.36–43): bé đọc số đo hoặc so sánh độ dài.
+  // Vật đặt cạnh thước (Lớp 1 CĐ 7): bé đọc số đo hoặc so sánh độ dài.
   if (isObj(content.measureBoard))
     blocks.push(<MeasureBoard key="measureBoard" {...content.measureBoard} />);
   if (isObj(content.money))
@@ -129,19 +129,19 @@ export default function VisualBlocks({ content }) {
     blocks.push(<ShapePicture key="shapePicture" {...content.shapePicture} />);
   if (isObj(content.shapeJoin))
     blocks.push(<ShapeJoin key="shapeJoin" {...content.shapeJoin} />);
-  // Dãy hình lặp quy luật — “hình thích hợp đặt vào dấu ?” (Lớp 1 SGK tr.55 · tr.111).
+  // Dãy hình lặp quy luật — “hình thích hợp đặt vào dấu ?” (Lớp 1).
   if (isObj(content.patternRow))
     blocks.push(<PatternRow key="patternRow" {...content.patternRow} />);
   // BẢNG CÓ Ô TRỐNG BÉ ĐIỀN ĐƯỢC — không bao giờ để ô “?” là hình tĩnh.
   if (isObj(content.bangTinh))
     blocks.push(<BangTinh key="bangTinh" {...content.bangTinh} />);
 
-  // Đặt tính dọc (SGK dùng ở cả 5 lớp: “Đặt tính rồi tính”).
+  // Đặt tính dọc — dạng bài có ở cả 5 lớp.
   if (isObj(content.cotTinh))
     blocks.push(<CotTinh key="cotTinh" {...content.cotTinh} />);
   if (isObj(content.spatialScene))
     blocks.push(<SpatialScene key="spatialScene" {...content.spatialScene} />);
-  // Đếm – so sánh – tách gộp cho Lớp 1 Chủ đề 1 (SGK tr.6–45).
+  // Đếm – so sánh – tách gộp cho Lớp 1 Chủ đề 1.
   if (isObj(content.numberScene))
     blocks.push(<NumberScene key="numberScene" {...content.numberScene} />);
   // Nhóm – phần – gộp/bớt (Lớp 1–4). Dùng THAY `tenFrame` ở mọi ca "mỗi ... có ...",

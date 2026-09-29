@@ -1,5 +1,5 @@
 /**
- * MÊ CUNG SỐ — BÉ TỰ NỐI ĐƯỜNG (SGK Lớp 1 tr.25).
+ * MÊ CUNG SỐ — BÉ TỰ NỐI ĐƯỜNG.
  *
  * 🔴 VÌ SAO CÓ FILE NÀY. Trước đây hình vẽ SẴN đường đúng (do máy tìm bằng BFS) ⇒ bé chỉ
  * ngồi nhìn, không phải làm gì. Người dùng yêu cầu (2026-09-25): “đây là 1 dạng luyện tập,

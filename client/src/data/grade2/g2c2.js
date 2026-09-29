@@ -77,6 +77,32 @@ export const g2c2 = {
           },
         },
         {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 9,
+              "right": 1,
+              "sign": "+",
+              "remember": true
+            },
+            "text": "Bé tự đặt tính: 9 + 1\nhàng đơn vị 9 + 1 = 10, viết 0 nhớ 1\ncòn nhớ 1 ở hàng cao hơn, viết 1\nVậy 9 + 1 = 10."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "2 + 8 bằng bao nhiêu?",
+            "options": [
+              9,
+              10,
+              11,
+              12
+            ],
+            "answer": 10,
+            "mascotHint": "hàng đơn vị 2 + 8 = 10, viết 0 nhớ 1. Kết quả 10."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "9 + 4 bằng bao nhiêu?",
@@ -164,6 +190,32 @@ export const g2c2 = {
               label: "8 + 5: tách 5 = 2 + 3, đi qua mốc 10",
             },
           },
+        },
+        {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 8,
+              "right": 2,
+              "sign": "+",
+              "remember": true
+            },
+            "text": "Bé tự đặt tính: 8 + 2\nhàng đơn vị 8 + 2 = 10, viết 0 nhớ 1\ncòn nhớ 1 ở hàng cao hơn, viết 1\nVậy 8 + 2 = 10."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "7 + 4 bằng bao nhiêu?",
+            "options": [
+              1,
+              10,
+              11,
+              12
+            ],
+            "answer": 11,
+            "mascotHint": "hàng đơn vị 7 + 4 = 11, viết 1 nhớ 1. Kết quả 11."
+          }
         },
         {
           type: "quiz",
@@ -298,6 +350,32 @@ export const g2c2 = {
           }
         },
         {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 9,
+              "right": 2,
+              "sign": "+",
+              "remember": true
+            },
+            "text": "Bé tự đặt tính: 9 + 2\nhàng đơn vị 9 + 2 = 11, viết 1 nhớ 1\ncòn nhớ 1 ở hàng cao hơn, viết 1\nVậy 9 + 2 = 11."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "7 + 5 bằng bao nhiêu?",
+            "options": [
+              2,
+              11,
+              12,
+              13
+            ],
+            "answer": 12,
+            "mascotHint": "hàng đơn vị 7 + 5 = 12, viết 2 nhớ 1. Kết quả 12."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "9 + 6 bằng bao nhiêu?",
@@ -374,6 +452,32 @@ export const g2c2 = {
               note: "6 ô xanh là số đã có · 4 ô cam là phần thêm cho đủ 10 · còn lại 3 ô.",
             },
           },
+        },
+        {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 6,
+              "right": 7,
+              "sign": "+",
+              "remember": true
+            },
+            "text": "Bé tự đặt tính: 6 + 7\nhàng đơn vị 6 + 7 = 13, viết 3 nhớ 1\ncòn nhớ 1 ở hàng cao hơn, viết 1\nVậy 6 + 7 = 13."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "8 + 6 bằng bao nhiêu?",
+            "options": [
+              4,
+              13,
+              14,
+              15
+            ],
+            "answer": 14,
+            "mascotHint": "hàng đơn vị 8 + 6 = 14, viết 4 nhớ 1. Kết quả 14."
+          }
         },
         {
           type: "quiz",
@@ -483,6 +587,69 @@ export const g2c2 = {
           },
         },
         {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 7,
+              "right": 5,
+              "sign": "+",
+              "remember": true
+            },
+            "text": "Bé tự đặt tính: 7 + 5\nhàng đơn vị 7 + 5 = 12, viết 2 nhớ 1\ncòn nhớ 1 ở hàng cao hơn, viết 1\nVậy 7 + 5 = 12."
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "numberLine": {
+              "from": 7,
+              "to": 12,
+              "step": 1,
+              "hops": [
+                {
+                  "from": 7,
+                  "to": 10,
+                  "label": "+3"
+                },
+                {
+                  "from": 10,
+                  "to": 12,
+                  "label": "+2"
+                }
+              ]
+            },
+            "text": "Cách nhẩm nhanh cho 7 + 5\nBé đếm thêm từng bước trên tia số theo các cung nhảy.\nĐếm thêm 3 để được 10 (tròn chục), rồi thêm 2 nữa.\nVậy 7 + 5 = 12."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "8 + 1 bằng bao nhiêu?",
+            "options": [
+              8,
+              9,
+              10,
+              19
+            ],
+            "answer": 9,
+            "mascotHint": "Bé đặt tính rồi tính từ hàng đơn vị. Kết quả 9."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "4 + 7 bằng bao nhiêu?",
+            "options": [
+              1,
+              10,
+              11,
+              12
+            ],
+            "answer": 11,
+            "mascotHint": "hàng đơn vị 4 + 7 = 11, viết 1 nhớ 1. Kết quả 11."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question:
@@ -580,6 +747,44 @@ export const g2c2 = {
           },
         },
         {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 14,
+              "right": 6,
+              "sign": "−"
+            },
+            "text": "Bé tự đặt tính: 14 − 6\nhàng đơn vị 4 < 6 nên mượn 1: 14 − 6 = 8, viết 8\nhàng chục 1 − 1 = 0, viết 0\nVậy 14 − 6 = 8."
+          }
+        },
+        {
+          "type": "concept",
+          "content": {
+            "badge": "Chú Ý",
+            "title": "Vì sao ra 18 là sai?",
+            "explanation": "18 là kết quả khi bé quên bớt 1 chục sau khi mượn. Đây là lỗi hay gặp nhất của dạng trừ này.",
+            "points": [
+              "Lỗi — quên bớt 1 chục sau khi mượn: hàng đơn vị 4 < 6 nên mượn 1: 14 − 6 = 8, viết 8. Kết quả đúng phải là 8.",
+              "Cách tránh: làm xong một hàng thì ghi/xoá số đã vay NGAY, đừng để sang hàng sau mới nhớ.",
+              "Tự kiểm tra: 8 + 6 phải bằng 14."
+            ]
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "11 − 3 bằng bao nhiêu?",
+            "options": [
+              7,
+              8,
+              9,
+              18
+            ],
+            "answer": 8,
+            "mascotHint": "hàng đơn vị 1 < 3 nên mượn 1: 11 − 3 = 8, viết 8. Kết quả 8."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question:
@@ -675,6 +880,32 @@ export const g2c2 = {
           },
         },
         {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 8,
+              "right": 5,
+              "sign": "+",
+              "remember": true
+            },
+            "text": "Bé tự đặt tính: 8 + 5\nhàng đơn vị 8 + 5 = 13, viết 3 nhớ 1\ncòn nhớ 1 ở hàng cao hơn, viết 1\nVậy 8 + 5 = 13."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "2 + 8 bằng bao nhiêu?",
+            "options": [
+              9,
+              10,
+              11,
+              12
+            ],
+            "answer": 10,
+            "mascotHint": "hàng đơn vị 2 + 8 = 10, viết 0 nhớ 1. Kết quả 10."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "13 − 5 bằng bao nhiêu?",
@@ -764,6 +995,31 @@ export const g2c2 = {
           },
         },
         {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 13,
+              "right": 3,
+              "sign": "−"
+            },
+            "text": "Bé tự đặt tính: 13 − 3\nhàng đơn vị 3 − 3 = 0, viết 0\nhàng chục 1 − 0 = 1, viết 1\nVậy 13 − 3 = 10."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "13 − 3 bằng bao nhiêu?",
+            "options": [
+              9,
+              10,
+              11,
+              12
+            ],
+            "answer": 10,
+            "mascotHint": "hàng đơn vị 3 − 3 = 0, viết 0. Kết quả 10."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "13 − 5 bằng bao nhiêu?",
@@ -839,6 +1095,44 @@ export const g2c2 = {
               label: "Bảng trừ (qua 10)",
             },
           },
+        },
+        {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 11,
+              "right": 2,
+              "sign": "−"
+            },
+            "text": "Bé tự đặt tính: 11 − 2\nhàng đơn vị 1 < 2 nên mượn 1: 11 − 2 = 9, viết 9\nhàng chục 1 − 1 = 0, viết 0\nVậy 11 − 2 = 9."
+          }
+        },
+        {
+          "type": "concept",
+          "content": {
+            "badge": "Chú Ý",
+            "title": "Vì sao ra 19 là sai?",
+            "explanation": "19 là kết quả khi bé quên bớt 1 chục sau khi mượn. Đây là lỗi hay gặp nhất của dạng trừ này.",
+            "points": [
+              "Lỗi — quên bớt 1 chục sau khi mượn: hàng đơn vị 1 < 2 nên mượn 1: 11 − 2 = 9, viết 9. Kết quả đúng phải là 9.",
+              "Cách tránh: làm xong một hàng thì ghi/xoá số đã vay NGAY, đừng để sang hàng sau mới nhớ.",
+              "Tự kiểm tra: 9 + 2 phải bằng 11."
+            ]
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "13 − 7 bằng bao nhiêu?",
+            "options": [
+              5,
+              6,
+              7,
+              16
+            ],
+            "answer": 6,
+            "mascotHint": "hàng đơn vị 3 < 7 nên mượn 1: 13 − 7 = 6, viết 6. Kết quả 6."
+          }
         },
         {
           type: "quiz",
@@ -925,6 +1219,44 @@ export const g2c2 = {
           },
         },
         {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 14,
+              "right": 6,
+              "sign": "−"
+            },
+            "text": "Bé tự đặt tính: 14 − 6\nhàng đơn vị 4 < 6 nên mượn 1: 14 − 6 = 8, viết 8\nhàng chục 1 − 1 = 0, viết 0\nVậy 14 − 6 = 8."
+          }
+        },
+        {
+          "type": "concept",
+          "content": {
+            "badge": "Chú Ý",
+            "title": "Vì sao ra 18 là sai?",
+            "explanation": "18 là kết quả khi bé quên bớt 1 chục sau khi mượn. Đây là lỗi hay gặp nhất của dạng trừ này.",
+            "points": [
+              "Lỗi — quên bớt 1 chục sau khi mượn: hàng đơn vị 4 < 6 nên mượn 1: 14 − 6 = 8, viết 8. Kết quả đúng phải là 8.",
+              "Cách tránh: làm xong một hàng thì ghi/xoá số đã vay NGAY, đừng để sang hàng sau mới nhớ.",
+              "Tự kiểm tra: 8 + 6 phải bằng 14."
+            ]
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "12 − 5 bằng bao nhiêu?",
+            "options": [
+              6,
+              7,
+              8,
+              17
+            ],
+            "answer": 7,
+            "mascotHint": "hàng đơn vị 2 < 5 nên mượn 1: 12 − 5 = 7, viết 7. Kết quả 7."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "17 − 9 bằng bao nhiêu?",
@@ -1009,6 +1341,30 @@ export const g2c2 = {
           },
         },
         {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 9,
+              "right": 5,
+              "sign": "−"
+            },
+            "text": "Bé tự đặt tính: 9 − 5\nhàng đơn vị 9 − 5 = 4, viết 4\nVậy 9 − 5 = 4."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "7 − 6 bằng bao nhiêu?",
+            "options": [
+              1,
+              2,
+              3
+            ],
+            "answer": 1,
+            "mascotHint": "hàng đơn vị 7 − 6 = 1, viết 1. Kết quả 1."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question:
@@ -1088,6 +1444,32 @@ export const g2c2 = {
               label: "Luyện tập chung chủ đề 2",
             },
           },
+        },
+        {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 9,
+              "right": 5,
+              "sign": "+",
+              "remember": true
+            },
+            "text": "Bé tự đặt tính: 9 + 5\nhàng đơn vị 9 + 5 = 14, viết 4 nhớ 1\ncòn nhớ 1 ở hàng cao hơn, viết 1\nVậy 9 + 5 = 14."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "6 + 4 bằng bao nhiêu?",
+            "options": [
+              9,
+              10,
+              11,
+              12
+            ],
+            "answer": 10,
+            "mascotHint": "hàng đơn vị 6 + 4 = 10, viết 0 nhớ 1. Kết quả 10."
+          }
         },
         {
           type: "quiz",

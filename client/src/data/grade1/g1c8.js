@@ -58,6 +58,32 @@ export const g1c8 = {
           },
         },
         {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 5,
+              "right": 4,
+              "sign": "+",
+              "remember": true
+            },
+            "text": "Bé tự đặt tính: 5 + 4\nhàng đơn vị 5 + 4 = 9, viết 9\nVậy 5 + 4 = 9."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "3 + 5 bằng bao nhiêu?",
+            "options": [
+              7,
+              8,
+              9,
+              10
+            ],
+            "answer": 8,
+            "mascotHint": "hàng đơn vị 3 + 5 = 8, viết 8. Kết quả 8."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "25 + 4 bằng bao nhiêu?",
@@ -117,6 +143,64 @@ export const g1c8 = {
               sign: "+",
             },
           },
+        },
+        {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 4,
+              "right": 5,
+              "sign": "+",
+              "remember": true
+            },
+            "text": "Bé tự đặt tính: 4 + 5\nhàng đơn vị 4 + 5 = 9, viết 9\nVậy 4 + 5 = 9."
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "numberLine": {
+              "from": 4,
+              "to": 9,
+              "step": 1,
+              "hops": [
+                {
+                  "from": 4,
+                  "to": 9,
+                  "label": "+5"
+                }
+              ]
+            },
+            "text": "Cách nhẩm nhanh cho 4 + 5\nBé đếm thêm từng bước trên tia số theo các cung nhảy.\nĐếm thêm 5 bước từ 4.\nVậy 4 + 5 = 9."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "5 + 4 bằng bao nhiêu?",
+            "options": [
+              8,
+              9,
+              10,
+              19
+            ],
+            "answer": 9,
+            "mascotHint": "Bé đặt tính rồi tính từ hàng đơn vị. Kết quả 9."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "3 + 6 bằng bao nhiêu?",
+            "options": [
+              8,
+              9,
+              10,
+              11
+            ],
+            "answer": 9,
+            "mascotHint": "hàng đơn vị 3 + 6 = 9, viết 9. Kết quả 9."
+          }
         },
         {
           type: "quiz",
@@ -185,6 +269,32 @@ export const g1c8 = {
               result: 46,
             },
           },
+        },
+        {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 2,
+              "right": 4,
+              "sign": "+",
+              "remember": true
+            },
+            "text": "Bé tự đặt tính: 2 + 4\nhàng đơn vị 2 + 4 = 6, viết 6\nVậy 2 + 4 = 6."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "3 + 2 bằng bao nhiêu?",
+            "options": [
+              4,
+              5,
+              6,
+              7
+            ],
+            "answer": 5,
+            "mascotHint": "hàng đơn vị 3 + 2 = 5, viết 5. Kết quả 5."
+          }
         },
         {
           type: "quiz",
@@ -256,6 +366,90 @@ export const g1c8 = {
           },
         },
         {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 4,
+              "right": 5,
+              "sign": "+",
+              "remember": true
+            },
+            "text": "Bé tự đặt tính: 4 + 5\nhàng đơn vị 4 + 5 = 9, viết 9\nVậy 4 + 5 = 9."
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "numberLine": {
+              "from": 4,
+              "to": 9,
+              "step": 1,
+              "hops": [
+                {
+                  "from": 4,
+                  "to": 9,
+                  "label": "+5"
+                }
+              ]
+            },
+            "text": "Cách nhẩm nhanh cho 4 + 5\nBé đếm thêm từng bước trên tia số theo các cung nhảy.\nĐếm thêm 5 bước từ 4.\nVậy 4 + 5 = 9."
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "table": {
+              "headers": [
+                "Bước",
+                "Việc bé làm"
+              ],
+              "rows": [
+                [
+                  "Bước 1 — Đơn vị",
+                  "viết kết quả luôn kèm đơn vị"
+                ],
+                [
+                  "Bước 2 — Bậc thang",
+                  "đi xuống thì nhân, đi lên thì chia"
+                ],
+                [
+                  "Bước 3 — Kiểm lại",
+                  "lấy kết quả đổi ngược lại xem có về số ban đầu"
+                ]
+              ]
+            },
+            "text": "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "6 + 8 bằng bao nhiêu?",
+            "options": [
+              13,
+              14,
+              15,
+              24
+            ],
+            "answer": 14,
+            "mascotHint": "Bé đặt tính rồi tính từ hàng đơn vị. Kết quả 14."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "7 + 2 bằng bao nhiêu?",
+            "options": [
+              8,
+              9,
+              10,
+              11
+            ],
+            "answer": 9,
+            "mascotHint": "hàng đơn vị 7 + 2 = 9, viết 9. Kết quả 9."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question:
@@ -313,6 +507,89 @@ export const g1c8 = {
               sign: "−",
             },
           },
+        },
+        {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 9,
+              "right": 5,
+              "sign": "−"
+            },
+            "text": "Bé tự đặt tính: 9 − 5\nhàng đơn vị 9 − 5 = 4, viết 4\nVậy 9 − 5 = 4."
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "numberLine": {
+              "from": 5,
+              "to": 9,
+              "step": 1,
+              "hops": [
+                {
+                  "from": 5,
+                  "to": 9,
+                  "label": "+4"
+                }
+              ]
+            },
+            "text": "Cách 2 cho 9 − 5: đếm thêm từ số bé\nTừ 5 đếm thêm cho tới 9 là bao nhiêu bước?\nĐó chính là hiệu: 9 − 5 = 4."
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "table": {
+              "headers": [
+                "Bước",
+                "Việc bé làm"
+              ],
+              "rows": [
+                [
+                  "Bước 1 — Đơn vị",
+                  "viết kết quả luôn kèm đơn vị"
+                ],
+                [
+                  "Bước 2 — Bậc thang",
+                  "đi xuống thì nhân, đi lên thì chia"
+                ],
+                [
+                  "Bước 3 — Kiểm lại",
+                  "lấy kết quả đổi ngược lại xem có về số ban đầu"
+                ]
+              ]
+            },
+            "text": "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "6 − 5 bằng bao nhiêu?",
+            "options": [
+              1,
+              2,
+              3,
+              11
+            ],
+            "answer": 1,
+            "mascotHint": "Bé đặt tính rồi tính từ hàng đơn vị. Kết quả 1."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "6 − 2 bằng bao nhiêu?",
+            "options": [
+              3,
+              4,
+              5,
+              6
+            ],
+            "answer": 4,
+            "mascotHint": "hàng đơn vị 6 − 2 = 4, viết 4. Kết quả 4."
+          }
         },
         {
           type: "quiz",
@@ -376,6 +653,88 @@ export const g1c8 = {
           },
         },
         {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 8,
+              "right": 6,
+              "sign": "−"
+            },
+            "text": "Bé tự đặt tính: 8 − 6\nhàng đơn vị 8 − 6 = 2, viết 2\nVậy 8 − 6 = 2."
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "numberLine": {
+              "from": 6,
+              "to": 8,
+              "step": 1,
+              "hops": [
+                {
+                  "from": 6,
+                  "to": 8,
+                  "label": "+2"
+                }
+              ]
+            },
+            "text": "Cách 2 cho 8 − 6: đếm thêm từ số bé\nTừ 6 đếm thêm cho tới 8 là bao nhiêu bước?\nĐó chính là hiệu: 8 − 6 = 2."
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "table": {
+              "headers": [
+                "Bước",
+                "Việc bé làm"
+              ],
+              "rows": [
+                [
+                  "Bước 1 — Đơn vị",
+                  "viết kết quả luôn kèm đơn vị"
+                ],
+                [
+                  "Bước 2 — Bậc thang",
+                  "đi xuống thì nhân, đi lên thì chia"
+                ],
+                [
+                  "Bước 3 — Kiểm lại",
+                  "lấy kết quả đổi ngược lại xem có về số ban đầu"
+                ]
+              ]
+            },
+            "text": "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "7 − 2 bằng bao nhiêu?",
+            "options": [
+              4,
+              5,
+              6,
+              15
+            ],
+            "answer": 5,
+            "mascotHint": "Bé đặt tính rồi tính từ hàng đơn vị. Kết quả 5."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "4 − 3 bằng bao nhiêu?",
+            "options": [
+              1,
+              2,
+              3
+            ],
+            "answer": 1,
+            "mascotHint": "hàng đơn vị 4 − 3 = 1, viết 1. Kết quả 1."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question:
@@ -432,6 +791,71 @@ export const g1c8 = {
               sign: "−",
             },
           },
+        },
+        {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 7,
+              "right": 3,
+              "sign": "−"
+            },
+            "text": "Bé tự đặt tính: 7 − 3\nhàng đơn vị 7 − 3 = 4, viết 4\nVậy 7 − 3 = 4."
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "table": {
+              "headers": [
+                "Bước",
+                "Việc bé làm"
+              ],
+              "rows": [
+                [
+                  "Bước 1 — Đơn vị",
+                  "viết kết quả luôn kèm đơn vị"
+                ],
+                [
+                  "Bước 2 — Bậc thang",
+                  "đi xuống thì nhân, đi lên thì chia"
+                ],
+                [
+                  "Bước 3 — Kiểm lại",
+                  "lấy kết quả đổi ngược lại xem có về số ban đầu"
+                ]
+              ]
+            },
+            "text": "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "2 − 1 bằng bao nhiêu?",
+            "options": [
+              1,
+              2,
+              3,
+              11
+            ],
+            "answer": 1,
+            "mascotHint": "Bé đặt tính rồi tính từ hàng đơn vị. Kết quả 1."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "8 − 2 bằng bao nhiêu?",
+            "options": [
+              5,
+              6,
+              7,
+              8
+            ],
+            "answer": 6,
+            "mascotHint": "hàng đơn vị 8 − 2 = 6, viết 6. Kết quả 6."
+          }
         },
         {
           type: "quiz",
@@ -505,6 +929,89 @@ export const g1c8 = {
           },
         },
         {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 6,
+              "right": 4,
+              "sign": "−"
+            },
+            "text": "Bé tự đặt tính: 6 − 4\nhàng đơn vị 6 − 4 = 2, viết 2\nVậy 6 − 4 = 2."
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "numberLine": {
+              "from": 4,
+              "to": 6,
+              "step": 1,
+              "hops": [
+                {
+                  "from": 4,
+                  "to": 6,
+                  "label": "+2"
+                }
+              ]
+            },
+            "text": "Cách 2 cho 6 − 4: đếm thêm từ số bé\nTừ 4 đếm thêm cho tới 6 là bao nhiêu bước?\nĐó chính là hiệu: 6 − 4 = 2."
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "table": {
+              "headers": [
+                "Bước",
+                "Việc bé làm"
+              ],
+              "rows": [
+                [
+                  "Bước 1 — Đơn vị",
+                  "viết kết quả luôn kèm đơn vị"
+                ],
+                [
+                  "Bước 2 — Bậc thang",
+                  "đi xuống thì nhân, đi lên thì chia"
+                ],
+                [
+                  "Bước 3 — Kiểm lại",
+                  "lấy kết quả đổi ngược lại xem có về số ban đầu"
+                ]
+              ]
+            },
+            "text": "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "6 − 3 bằng bao nhiêu?",
+            "options": [
+              2,
+              3,
+              4,
+              13
+            ],
+            "answer": 3,
+            "mascotHint": "Bé đặt tính rồi tính từ hàng đơn vị. Kết quả 3."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "6 − 4 bằng bao nhiêu?",
+            "options": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "answer": 2,
+            "mascotHint": "hàng đơn vị 6 − 4 = 2, viết 2. Kết quả 2."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question:
@@ -567,6 +1074,32 @@ export const g1c8 = {
               result: 50,
             },
           },
+        },
+        {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 30,
+              "right": 20,
+              "sign": "+",
+              "remember": true
+            },
+            "text": "Bé tự đặt tính: 30 + 20\nhàng đơn vị 0 + 0 = 0, viết 0\nhàng chục 3 + 2 = 5, viết 5\nVậy 30 + 20 = 50."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "75 + 22 bằng bao nhiêu?",
+            "options": [
+              96,
+              97,
+              98,
+              99
+            ],
+            "answer": 97,
+            "mascotHint": "hàng đơn vị 5 + 2 = 7, viết 7. Kết quả 97."
+          }
         },
         {
           type: "quiz",
@@ -653,6 +1186,90 @@ export const g1c8 = {
           },
         },
         {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 3,
+              "right": 5,
+              "sign": "+",
+              "remember": true
+            },
+            "text": "Bé tự đặt tính: 3 + 5\nhàng đơn vị 3 + 5 = 8, viết 8\nVậy 3 + 5 = 8."
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "numberLine": {
+              "from": 3,
+              "to": 8,
+              "step": 1,
+              "hops": [
+                {
+                  "from": 3,
+                  "to": 8,
+                  "label": "+5"
+                }
+              ]
+            },
+            "text": "Cách nhẩm nhanh cho 3 + 5\nBé đếm thêm từng bước trên tia số theo các cung nhảy.\nĐếm thêm 5 bước từ 3.\nVậy 3 + 5 = 8."
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "table": {
+              "headers": [
+                "Bước",
+                "Việc bé làm"
+              ],
+              "rows": [
+                [
+                  "Bước 1 — Đơn vị",
+                  "viết kết quả luôn kèm đơn vị"
+                ],
+                [
+                  "Bước 2 — Bậc thang",
+                  "đi xuống thì nhân, đi lên thì chia"
+                ],
+                [
+                  "Bước 3 — Kiểm lại",
+                  "lấy kết quả đổi ngược lại xem có về số ban đầu"
+                ]
+              ]
+            },
+            "text": "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "8 + 3 bằng bao nhiêu?",
+            "options": [
+              10,
+              11,
+              12,
+              21
+            ],
+            "answer": 11,
+            "mascotHint": "Bé đặt tính rồi tính từ hàng đơn vị. Kết quả 11."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "3 + 1 bằng bao nhiêu?",
+            "options": [
+              3,
+              4,
+              5,
+              6
+            ],
+            "answer": 4,
+            "mascotHint": "hàng đơn vị 3 + 1 = 4, viết 4. Kết quả 4."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question:
@@ -724,6 +1341,89 @@ export const g1c8 = {
               braceLabel: "41 hộp sữa",
             },
           },
+        },
+        {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 5,
+              "right": 4,
+              "sign": "−"
+            },
+            "text": "Bé tự đặt tính: 5 − 4\nhàng đơn vị 5 − 4 = 1, viết 1\nVậy 5 − 4 = 1."
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "numberLine": {
+              "from": 4,
+              "to": 5,
+              "step": 1,
+              "hops": [
+                {
+                  "from": 4,
+                  "to": 5,
+                  "label": "+1"
+                }
+              ]
+            },
+            "text": "Cách 2 cho 5 − 4: đếm thêm từ số bé\nTừ 4 đếm thêm cho tới 5 là bao nhiêu bước?\nĐó chính là hiệu: 5 − 4 = 1."
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "table": {
+              "headers": [
+                "Bước",
+                "Việc bé làm"
+              ],
+              "rows": [
+                [
+                  "Bước 1 — Đơn vị",
+                  "viết kết quả luôn kèm đơn vị"
+                ],
+                [
+                  "Bước 2 — Bậc thang",
+                  "đi xuống thì nhân, đi lên thì chia"
+                ],
+                [
+                  "Bước 3 — Kiểm lại",
+                  "lấy kết quả đổi ngược lại xem có về số ban đầu"
+                ]
+              ]
+            },
+            "text": "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "2 − 1 bằng bao nhiêu?",
+            "options": [
+              1,
+              2,
+              3,
+              11
+            ],
+            "answer": 1,
+            "mascotHint": "Bé đặt tính rồi tính từ hàng đơn vị. Kết quả 1."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "6 − 4 bằng bao nhiêu?",
+            "options": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "answer": 2,
+            "mascotHint": "hàng đơn vị 6 − 4 = 2, viết 2. Kết quả 2."
+          }
         },
         {
           type: "quiz",
@@ -803,6 +1503,32 @@ export const g1c8 = {
               "right": 23,
               "sign": "−"
             }
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 25,
+              "right": 4,
+              "sign": "+",
+              "remember": true
+            },
+            "text": "Bé tự đặt tính: 25 + 4\nhàng đơn vị 5 + 4 = 9, viết 9\nhàng chục 2 + 0 = 2, viết 2\nVậy 25 + 4 = 29."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "41 + 3 bằng bao nhiêu?",
+            "options": [
+              43,
+              44,
+              45,
+              46
+            ],
+            "answer": 44,
+            "mascotHint": "hàng đơn vị 1 + 3 = 4, viết 4. Kết quả 44."
           }
         },
         {

@@ -1,6 +1,6 @@
 // File này là PHẦN KHUNG (shell) — các slide/hình đã tách sang thư mục cùng tên.
 // Dynamic Exercise Generator for Grades 1, 2, 3, 4, 5
-// Aligned 100% with Vietnam Primary Education Curriculum (SGK Chuan Bo Giao Duc)
+// Aligned 100% with Vietnam Primary Education Curriculum
 import React from "react";
 import { CALC_OP } from "./exercises/topics.js";
 import { TOPICS } from "./exercises/topics.js";
@@ -239,7 +239,7 @@ function buildQuestion(grade = 1, topicId = null, depth = 0) {
 
   // ── Lớp 1 (tiếp) ────────────────────────────────────────────────────────
   if (topic === "g1_position") {
-    // Mỗi câu có HÌNH (SGK tr.96–98) hoặc là tình huống đời thường của bé.
+    // Mỗi câu có HÌNH hoặc là tình huống đời thường của bé.
     // `visualDisplay` = descriptor gọn — xem ghi chú ở `g1_shapes_3d`.
     const scene = (mode, params) => ({ kind: "spatialScene", mode, params });
     const tinhHuong = [

@@ -16,7 +16,7 @@ export function tachSo(x) {
 }
 
 /**
- * Phép CHIA có dư (số nguyên) — dùng cho dạng đặt tính chia của SGK Lớp 3–4.
+ * Phép CHIA có dư (số nguyên) — dùng cho dạng đặt tính chia của Lớp 3–4.
  * Trả về thương (chuỗi) và số dư. Chia số thập phân KHÔNG dùng hàm này (bố cục khác).
  */
 export function tinhChia(left, right) {
@@ -138,7 +138,7 @@ export function tinhKetQua(left, right, sign) {
 
 /**
  * Chữ số “nhớ” của từng cột khi CỘNG — phần tử `[i]` là nhớ RA của cột i (đếm từ PHẢI),
- * SGK viết nó ở hàng trên, lệch sang TRÁI một cột.
+ * Quy ước trình bày: viết nó ở hàng trên, lệch sang TRÁI một cột.
  */
 export function tinhNho(left, right, sign = "+") {
   const a = tachSo(left);
@@ -148,7 +148,7 @@ export function tinhNho(left, right, sign = "+") {
   const soCot = Math.max(dayA.length, dayB.length);
   const nho = [];
   if (sign === "×" || sign === "*") {
-    // Chỉ vẽ hàng “nhớ” khi thừa số thứ hai có MỘT chữ số (dạng SGK Lớp 3–4 hay viết nhớ).
+    // Chỉ vẽ hàng “nhớ” khi thừa số thứ hai có MỘT chữ số (dạng Lớp 3–4 hay viết nhớ).
     if (dayB.length !== 1) return dayA.map(() => 0);
     let carry = 0;
     for (let i = 0; i < dayA.length; i++) {

@@ -52,6 +52,52 @@ export const g5c8 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Đơn vị", "Bằng bao nhiêu đơn vị liền sau"],
+              rows: [
+                ["1 m", "10 dm"],
+                ["1 dm", "10 cm"],
+                ["1 cm", "10 mm"]
+              ]
+            },
+            text: "Bậc thang đơn vị đo độ dài\n· m\n· dm\n· cm\n· mm\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "Cách đổi đơn vị đo độ dài",
+            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            points: [
+              "1 m = 10 dm.",
+              "Đi xuống hai bậc thì nhân hai lần: 1 m = 10 × 10 = 100 cm.",
+              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 m = 20 dm.",
+              "Đổi số bé ra số lớn: CHIA. Ví dụ 30 dm = 3 m."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "1 m bằng bao nhiêu dm?",
+            options: [1, 10, 11, 100],
+            answer: 10,
+            mascotHint: "Hai đơn vị liền nhau: 1 m = 10 dm."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "3 m bằng bao nhiêu dm?",
+            options: [10, 30, 40, 300],
+            answer: 30,
+            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 10 = 30."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question:
@@ -136,6 +182,52 @@ export const g5c8 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Đơn vị", "Bằng bao nhiêu đơn vị liền sau"],
+              rows: [
+                ["1 m", "10 dm"],
+                ["1 dm", "10 cm"],
+                ["1 cm", "10 mm"]
+              ]
+            },
+            text: "Bậc thang đơn vị đo độ dài\n· m\n· dm\n· cm\n· mm\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "Cách đổi đơn vị đo độ dài",
+            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            points: [
+              "1 m = 10 dm.",
+              "Đi xuống hai bậc thì nhân hai lần: 1 m = 10 × 10 = 100 cm.",
+              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 m = 20 dm.",
+              "Đổi số bé ra số lớn: CHIA. Ví dụ 30 dm = 3 m."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "1 m bằng bao nhiêu dm?",
+            options: [1, 10, 11, 100],
+            answer: 10,
+            mascotHint: "Hai đơn vị liền nhau: 1 m = 10 dm."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "3 m bằng bao nhiêu dm?",
+            options: [10, 30, 40, 300],
+            answer: 30,
+            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 10 = 30."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "1 dm³ bằng bao nhiêu xăng-ti-mét khối?",
@@ -213,6 +305,51 @@ export const g5c8 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Đơn vị", "Bằng bao nhiêu đơn vị liền sau"],
+              rows: [
+                ["1 m³", "1000 dm³"],
+                ["1 dm³", "1000 cm³"]
+              ]
+            },
+            text: "Bậc thang đơn vị đo thể tích\n· m³\n· dm³\n· cm³\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "Cách đổi đơn vị đo thể tích",
+            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            points: [
+              "1 m³ = 1000 dm³.",
+              "Đi xuống hai bậc thì nhân hai lần: 1 m³ = 1000 × 1000 = 1000000 cm³.",
+              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 m³ = 2000 dm³.",
+              "Đổi số bé ra số lớn: CHIA. Ví dụ 3000 dm³ = 3 m³."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "1 m³ bằng bao nhiêu dm³?",
+            options: [100, 1000, 10000, 1000000],
+            answer: 1000,
+            mascotHint: "Hai đơn vị liền nhau: 1 m³ = 1000 dm³."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "3 m³ bằng bao nhiêu dm³?",
+            options: [1000, 3000, 4000, 30000],
+            answer: 3000,
+            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 1000 = 3000."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "1 m³ bằng bao nhiêu đề-xi-mét khối?",
@@ -274,6 +411,51 @@ export const g5c8 = {
               label: "Đổi từ lớn sang bé thì nhân 1 000",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Đơn vị", "Bằng bao nhiêu đơn vị liền sau"],
+              rows: [
+                ["1 m³", "1000 dm³"],
+                ["1 dm³", "1000 cm³"]
+              ]
+            },
+            text: "Bậc thang đơn vị đo thể tích\n· m³\n· dm³\n· cm³\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "Cách đổi đơn vị đo thể tích",
+            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            points: [
+              "1 m³ = 1000 dm³.",
+              "Đi xuống hai bậc thì nhân hai lần: 1 m³ = 1000 × 1000 = 1000000 cm³.",
+              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 m³ = 2000 dm³.",
+              "Đổi số bé ra số lớn: CHIA. Ví dụ 3000 dm³ = 3 m³."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "1 m³ bằng bao nhiêu dm³?",
+            options: [100, 1000, 10000, 1000000],
+            answer: 1000,
+            mascotHint: "Hai đơn vị liền nhau: 1 m³ = 1000 dm³."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "3 m³ bằng bao nhiêu dm³?",
+            options: [1000, 3000, 4000, 30000],
+            answer: 3000,
+            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 1000 = 3000."
+          }
         },
         {
           type: "quiz",

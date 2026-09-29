@@ -78,6 +78,74 @@ export const g3c5 = {
           },
         },
         {
+          "type": "visual",
+          "content": {
+            "table": {
+              "headers": [
+                "Đơn vị",
+                "Bằng bao nhiêu đơn vị liền sau"
+              ],
+              "rows": [
+                [
+                  "1 m",
+                  "10 dm"
+                ],
+                [
+                  "1 dm",
+                  "10 cm"
+                ],
+                [
+                  "1 cm",
+                  "10 mm"
+                ]
+              ]
+            },
+            "text": "Bậc thang đơn vị đo độ dài\n· m\n· dm\n· cm\n· mm\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
+          }
+        },
+        {
+          "type": "concept",
+          "content": {
+            "badge": "Mẹo Nhớ",
+            "title": "Cách đổi đơn vị đo độ dài",
+            "explanation": "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            "points": [
+              "1 m = 10 dm.",
+              "Đi xuống hai bậc thì nhân hai lần: 1 m = 10 × 10 = 100 cm.",
+              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 m = 20 dm.",
+              "Đổi số bé ra số lớn: CHIA. Ví dụ 30 dm = 3 m."
+            ]
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "1 m bằng bao nhiêu dm?",
+            "options": [
+              1,
+              10,
+              11,
+              100
+            ],
+            "answer": 10,
+            "mascotHint": "Hai đơn vị liền nhau: 1 m = 10 dm."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "3 m bằng bao nhiêu dm?",
+            "options": [
+              10,
+              30,
+              40,
+              300
+            ],
+            "answer": 30,
+            "mascotHint": "Đổi số lớn ra số bé thì nhân: 3 × 10 = 30."
+          }
+        },
+        {
           "type": "quiz",
           "content": {
             "question": "1 cm bằng bao nhiêu mi-li-mét?",
@@ -166,6 +234,78 @@ export const g3c5 = {
               ],
               "label": "Gam (g) — đơn vị đo khối lượng"
             }
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "table": {
+              "headers": [
+                "Đơn vị",
+                "Bằng bao nhiêu đơn vị liền sau"
+              ],
+              "rows": [
+                [
+                  "1 tấn",
+                  "10 tạ"
+                ],
+                [
+                  "1 tạ",
+                  "10 yến"
+                ],
+                [
+                  "1 yến",
+                  "10 kg"
+                ],
+                [
+                  "1 kg",
+                  "1000 g"
+                ]
+              ]
+            },
+            "text": "Bậc thang đơn vị đo khối lượng\n· tấn\n· tạ\n· yến\n· kg\n· g\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
+          }
+        },
+        {
+          "type": "concept",
+          "content": {
+            "badge": "Mẹo Nhớ",
+            "title": "Cách đổi đơn vị đo khối lượng",
+            "explanation": "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            "points": [
+              "1 tấn = 10 tạ.",
+              "Đi xuống hai bậc thì nhân hai lần: 1 tấn = 10 × 10 = 100 yến.",
+              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 tấn = 20 tạ.",
+              "Đổi số bé ra số lớn: CHIA. Ví dụ 30 tạ = 3 tấn."
+            ]
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "1 tấn bằng bao nhiêu tạ?",
+            "options": [
+              1,
+              10,
+              11,
+              100
+            ],
+            "answer": 10,
+            "mascotHint": "Hai đơn vị liền nhau: 1 tấn = 10 tạ."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "3 tấn bằng bao nhiêu tạ?",
+            "options": [
+              10,
+              30,
+              40,
+              300
+            ],
+            "answer": 30,
+            "mascotHint": "Đổi số lớn ra số bé thì nhân: 3 × 10 = 30."
           }
         },
         {
@@ -260,6 +400,66 @@ export const g3c5 = {
           }
         },
         {
+          "type": "visual",
+          "content": {
+            "table": {
+              "headers": [
+                "Đơn vị",
+                "Bằng bao nhiêu đơn vị liền sau"
+              ],
+              "rows": [
+                [
+                  "1 l",
+                  "1000 ml"
+                ]
+              ]
+            },
+            "text": "Bậc thang đơn vị đo dung tích\n· l\n· ml\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
+          }
+        },
+        {
+          "type": "concept",
+          "content": {
+            "badge": "Mẹo Nhớ",
+            "title": "Cách đổi đơn vị đo dung tích",
+            "explanation": "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            "points": [
+              "1 l = 1000 ml.",
+              "Thang này chỉ có hai đơn vị, nên chỉ có một phép đổi: 1 l = 1000 ml.",
+              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 l = 2000 ml.",
+              "Đổi số bé ra số lớn: CHIA. Ví dụ 3000 ml = 3 l."
+            ]
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "1 l bằng bao nhiêu ml?",
+            "options": [
+              100,
+              1000,
+              1001,
+              10000
+            ],
+            "answer": 1000,
+            "mascotHint": "Hai đơn vị liền nhau: 1 l = 1000 ml."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "3 l bằng bao nhiêu ml?",
+            "options": [
+              1000,
+              3000,
+              4000,
+              30000
+            ],
+            "answer": 3000,
+            "mascotHint": "Đổi số lớn ra số bé thì nhân: 3 × 1000 = 3000."
+          }
+        },
+        {
           "type": "quiz",
           "content": {
             "question": "1 lít bằng bao nhiêu mi-li-lít?",
@@ -338,6 +538,74 @@ export const g3c5 = {
               ],
               "label": "Nhiệt độ và đơn vị đo nhiệt độ (độ C)"
             }
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "table": {
+              "headers": [
+                "Đơn vị",
+                "Bằng bao nhiêu đơn vị liền sau"
+              ],
+              "rows": [
+                [
+                  "1 m",
+                  "10 dm"
+                ],
+                [
+                  "1 dm",
+                  "10 cm"
+                ],
+                [
+                  "1 cm",
+                  "10 mm"
+                ]
+              ]
+            },
+            "text": "Bậc thang đơn vị đo độ dài\n· m\n· dm\n· cm\n· mm\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
+          }
+        },
+        {
+          "type": "concept",
+          "content": {
+            "badge": "Mẹo Nhớ",
+            "title": "Cách đổi đơn vị đo độ dài",
+            "explanation": "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            "points": [
+              "1 m = 10 dm.",
+              "Đi xuống hai bậc thì nhân hai lần: 1 m = 10 × 10 = 100 cm.",
+              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 m = 20 dm.",
+              "Đổi số bé ra số lớn: CHIA. Ví dụ 30 dm = 3 m."
+            ]
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "1 m bằng bao nhiêu dm?",
+            "options": [
+              1,
+              10,
+              11,
+              100
+            ],
+            "answer": 10,
+            "mascotHint": "Hai đơn vị liền nhau: 1 m = 10 dm."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "3 m bằng bao nhiêu dm?",
+            "options": [
+              10,
+              30,
+              40,
+              300
+            ],
+            "answer": 30,
+            "mascotHint": "Đổi số lớn ra số bé thì nhân: 3 × 10 = 30."
           }
         },
         {
@@ -433,6 +701,74 @@ export const g3c5 = {
               ],
               "label": "Đọc nhiệt kế — 1 °C = 1 độ C"
             }
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "table": {
+              "headers": [
+                "Đơn vị",
+                "Bằng bao nhiêu đơn vị liền sau"
+              ],
+              "rows": [
+                [
+                  "1 m",
+                  "10 dm"
+                ],
+                [
+                  "1 dm",
+                  "10 cm"
+                ],
+                [
+                  "1 cm",
+                  "10 mm"
+                ]
+              ]
+            },
+            "text": "Bậc thang đơn vị đo độ dài\n· m\n· dm\n· cm\n· mm\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
+          }
+        },
+        {
+          "type": "concept",
+          "content": {
+            "badge": "Mẹo Nhớ",
+            "title": "Cách đổi đơn vị đo độ dài",
+            "explanation": "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            "points": [
+              "1 m = 10 dm.",
+              "Đi xuống hai bậc thì nhân hai lần: 1 m = 10 × 10 = 100 cm.",
+              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 m = 20 dm.",
+              "Đổi số bé ra số lớn: CHIA. Ví dụ 30 dm = 3 m."
+            ]
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "1 m bằng bao nhiêu dm?",
+            "options": [
+              1,
+              10,
+              11,
+              100
+            ],
+            "answer": 10,
+            "mascotHint": "Hai đơn vị liền nhau: 1 m = 10 dm."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "3 m bằng bao nhiêu dm?",
+            "options": [
+              10,
+              30,
+              40,
+              300
+            ],
+            "answer": 30,
+            "mascotHint": "Đổi số lớn ra số bé thì nhân: 3 × 10 = 30."
           }
         },
         {
@@ -540,6 +876,74 @@ export const g3c5 = {
               "label": "Thực hành với mm, g, ml, °C"
             }
           },
+        },
+        {
+          "type": "visual",
+          "content": {
+            "table": {
+              "headers": [
+                "Đơn vị",
+                "Bằng bao nhiêu đơn vị liền sau"
+              ],
+              "rows": [
+                [
+                  "1 m",
+                  "10 dm"
+                ],
+                [
+                  "1 dm",
+                  "10 cm"
+                ],
+                [
+                  "1 cm",
+                  "10 mm"
+                ]
+              ]
+            },
+            "text": "Bậc thang đơn vị đo độ dài\n· m\n· dm\n· cm\n· mm\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
+          }
+        },
+        {
+          "type": "concept",
+          "content": {
+            "badge": "Mẹo Nhớ",
+            "title": "Cách đổi đơn vị đo độ dài",
+            "explanation": "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            "points": [
+              "1 m = 10 dm.",
+              "Đi xuống hai bậc thì nhân hai lần: 1 m = 10 × 10 = 100 cm.",
+              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 m = 20 dm.",
+              "Đổi số bé ra số lớn: CHIA. Ví dụ 30 dm = 3 m."
+            ]
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "1 m bằng bao nhiêu dm?",
+            "options": [
+              1,
+              10,
+              11,
+              100
+            ],
+            "answer": 10,
+            "mascotHint": "Hai đơn vị liền nhau: 1 m = 10 dm."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "3 m bằng bao nhiêu dm?",
+            "options": [
+              10,
+              30,
+              40,
+              300
+            ],
+            "answer": 30,
+            "mascotHint": "Đổi số lớn ra số bé thì nhân: 3 × 10 = 30."
+          }
         },
         {
           "type": "quiz",
@@ -652,6 +1056,74 @@ export const g3c5 = {
           }
         },
         {
+          "type": "visual",
+          "content": {
+            "table": {
+              "headers": [
+                "Đơn vị",
+                "Bằng bao nhiêu đơn vị liền sau"
+              ],
+              "rows": [
+                [
+                  "1 m",
+                  "10 dm"
+                ],
+                [
+                  "1 dm",
+                  "10 cm"
+                ],
+                [
+                  "1 cm",
+                  "10 mm"
+                ]
+              ]
+            },
+            "text": "Bậc thang đơn vị đo độ dài\n· m\n· dm\n· cm\n· mm\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
+          }
+        },
+        {
+          "type": "concept",
+          "content": {
+            "badge": "Mẹo Nhớ",
+            "title": "Cách đổi đơn vị đo độ dài",
+            "explanation": "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            "points": [
+              "1 m = 10 dm.",
+              "Đi xuống hai bậc thì nhân hai lần: 1 m = 10 × 10 = 100 cm.",
+              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 m = 20 dm.",
+              "Đổi số bé ra số lớn: CHIA. Ví dụ 30 dm = 3 m."
+            ]
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "1 m bằng bao nhiêu dm?",
+            "options": [
+              1,
+              10,
+              11,
+              100
+            ],
+            "answer": 10,
+            "mascotHint": "Hai đơn vị liền nhau: 1 m = 10 dm."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "3 m bằng bao nhiêu dm?",
+            "options": [
+              10,
+              30,
+              40,
+              300
+            ],
+            "answer": 30,
+            "mascotHint": "Đổi số lớn ra số bé thì nhân: 3 × 10 = 30."
+          }
+        },
+        {
           "type": "quiz",
           "content": {
             "question": "3 m bằng bao nhiêu xăng-ti-mét?",
@@ -747,6 +1219,74 @@ export const g3c5 = {
               ],
               "label": "Luyện tập chung chủ đề 5"
             }
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "table": {
+              "headers": [
+                "Đơn vị",
+                "Bằng bao nhiêu đơn vị liền sau"
+              ],
+              "rows": [
+                [
+                  "1 m",
+                  "10 dm"
+                ],
+                [
+                  "1 dm",
+                  "10 cm"
+                ],
+                [
+                  "1 cm",
+                  "10 mm"
+                ]
+              ]
+            },
+            "text": "Bậc thang đơn vị đo độ dài\n· m\n· dm\n· cm\n· mm\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
+          }
+        },
+        {
+          "type": "concept",
+          "content": {
+            "badge": "Mẹo Nhớ",
+            "title": "Cách đổi đơn vị đo độ dài",
+            "explanation": "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            "points": [
+              "1 m = 10 dm.",
+              "Đi xuống hai bậc thì nhân hai lần: 1 m = 10 × 10 = 100 cm.",
+              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 m = 20 dm.",
+              "Đổi số bé ra số lớn: CHIA. Ví dụ 30 dm = 3 m."
+            ]
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "1 m bằng bao nhiêu dm?",
+            "options": [
+              1,
+              10,
+              11,
+              100
+            ],
+            "answer": 10,
+            "mascotHint": "Hai đơn vị liền nhau: 1 m = 10 dm."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "3 m bằng bao nhiêu dm?",
+            "options": [
+              10,
+              30,
+              40,
+              300
+            ],
+            "answer": 30,
+            "mascotHint": "Đổi số lớn ra số bé thì nhân: 3 × 10 = 30."
           }
         },
         {

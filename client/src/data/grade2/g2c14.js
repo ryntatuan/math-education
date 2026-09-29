@@ -51,6 +51,50 @@ export const g2c14 = {
           },
         },
         {
+          type: "concept",
+          content: {
+            badge: "Cách Học",
+            title: "Bốn bước làm một bài toán",
+            explanation:
+              "Mọi bài so sánh số đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            points: [
+              "Bước 1 — Đếm số CHỮ SỐ của từng số trước.",
+              "Bước 2 — Số nào nhiều chữ số hơn thì lớn hơn — xong, không cần so tiếp.",
+              "Bước 3 — Cùng số chữ số thì so từng hàng từ TRÁI sang phải, gặp hàng khác nhau thì dừng.",
+              "Bước 4 — Đọc lại kết quả và đặt đúng dấu (>, <, =).",
+            ],
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Điều cần nhớ", "Nội dung"],
+              rows: [
+                ["Nhiều chữ số hơn", "thì số đó lớn hơn"],
+                ["So từ trái", "hàng nghìn rồi mới tới trăm, chục, đơn vị"],
+                ["Dấu lớn mở về phía", "số lớn hơn"],
+              ],
+            },
+            text: "Bảng nhớ nhanh — so sánh số\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Muốn so sánh hai số, bé bắt đầu bằng việc gì?",
+            options: [
+              "Đếm xem số nào có nhiều chữ số hơn",
+              "So chữ số hàng đơn vị trước",
+              "Cộng hai số lại",
+              "Đọc từ phải sang trái",
+            ],
+            answer: "Đếm xem số nào có nhiều chữ số hơn",
+            mascotHint:
+              "Số nhiều chữ số hơn chắc chắn lớn hơn, nên chỉ cần so từng hàng khi hai số bằng số chữ số.",
+          },
+        },
+        {
           type: "quiz",
           content: {
             question: "Số 386 gồm mấy trăm, mấy chục, mấy đơn vị?",
@@ -106,28 +150,28 @@ export const g2c14 = {
             ],
           },
         },
-                {
-          "type": "visual",
-          "content": {
-            "text": "Đặt tính rồi tính 46 + 38\nÔn tập cộng trừ trong phạm vi 100\n1) hàng đơn vị 6 + 8 = 14, viết 4 nhớ 1\n2) hàng chục 4 + 3 + 1 (nhớ) = 8, viết 8\nVậy 46 + 38 = 84.",
-            "cotTinh": {
-              "left": 46,
-              "right": 38,
-              "sign": "+",
-              "remember": true
-            }
-          }
+        {
+          type: "visual",
+          content: {
+            text: "Đặt tính rồi tính 46 + 38\nÔn tập cộng trừ trong phạm vi 100\n1) hàng đơn vị 6 + 8 = 14, viết 4 nhớ 1\n2) hàng chục 4 + 3 + 1 (nhớ) = 8, viết 8\nVậy 46 + 38 = 84.",
+            cotTinh: {
+              left: 46,
+              right: 38,
+              sign: "+",
+              remember: true,
+            },
+          },
         },
         {
-          "type": "visual",
-          "content": {
-            "text": "Đặt tính rồi tính 83 − 47\n1) hàng đơn vị 3 < 7 nên mượn 1: 13 − 7 = 6, viết 6\n2) hàng chục 8 − 5 = 3, viết 3\nVậy 83 − 47 = 36.",
-            "cotTinh": {
-              "left": 83,
-              "right": 47,
-              "sign": "−"
-            }
-          }
+          type: "visual",
+          content: {
+            text: "Đặt tính rồi tính 83 − 47\n1) hàng đơn vị 3 < 7 nên mượn 1: 13 − 7 = 6, viết 6\n2) hàng chục 8 − 5 = 3, viết 3\nVậy 83 − 47 = 36.",
+            cotTinh: {
+              left: 83,
+              right: 47,
+              sign: "−",
+            },
+          },
         },
         {
           type: "visual",
@@ -150,6 +194,41 @@ export const g2c14 = {
               right: 47,
               sign: "−",
             },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 46,
+              right: 38,
+              sign: "+",
+              remember: true,
+            },
+            text: "Bé tự đặt tính: 46 + 38\nhàng đơn vị 6 + 8 = 14, viết 4 nhớ 1\nhàng chục 4 + 3 + 1 (nhớ) = 8, viết 8\nVậy 46 + 38 = 84.",
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Chú Ý",
+            title: "Vì sao ra 74 là sai?",
+            explanation:
+              "74 là kết quả khi bé quên nhớ 1 ở hàng chục. Đây là lỗi hay gặp nhất của dạng cộng này.",
+            points: [
+              "Lỗi — quên nhớ 1 ở hàng chục: hàng đơn vị 6 + 8 = 14, viết 4 nhớ 1. Kết quả đúng phải là 84.",
+              "Cách tránh: làm xong một hàng thì ghi/xoá số nhớ NGAY, đừng để sang hàng sau mới nhớ.",
+              "Tự kiểm tra: 84 − 46 phải bằng 38.",
+            ],
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "17 + 78 bằng bao nhiêu?",
+            options: [85, 94, 95, 96],
+            answer: 95,
+            mascotHint: "hàng đơn vị 7 + 8 = 15, viết 5 nhớ 1. Kết quả 95.",
           },
         },
         {
@@ -241,6 +320,27 @@ export const g2c14 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 235,
+              right: 412,
+              sign: "+",
+              remember: true,
+            },
+            text: "Bé tự đặt tính: 235 + 412\nhàng đơn vị 5 + 2 = 7, viết 7\nhàng chục 3 + 1 = 4, viết 4\nhàng trăm 2 + 4 = 6, viết 6\nVậy 235 + 412 = 647.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "152 + 166 bằng bao nhiêu?",
+            options: [218, 317, 318, 319],
+            answer: 318,
+            mascotHint: "hàng đơn vị 2 + 6 = 8, viết 8. Kết quả 318.",
+          },
+        },
+        {
           type: "quiz",
           content: {
             question: "425 + 138 bằng bao nhiêu?",
@@ -309,6 +409,27 @@ export const g2c14 = {
               ],
               label: "Ôn tập phép nhân, phép chia",
             },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 2,
+              right: 8,
+              sign: "×",
+              remember: true,
+            },
+            text: "Bé tự đặt tính: 2 × 8\nhàng đơn vị 2 × 8 = 16, viết 6 nhớ 1\ncòn nhớ 1 ở hàng cao hơn, viết 1\nVậy 2 × 8 = 16.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "6 × 5 bằng bao nhiêu?",
+            options: [29, 30, 31, 32],
+            answer: 30,
+            mascotHint: "hàng đơn vị 6 × 5 = 30, viết 0 nhớ 3. Kết quả 30.",
           },
         },
         {
@@ -410,6 +531,50 @@ export const g2c14 = {
           },
         },
         {
+          type: "concept",
+          content: {
+            badge: "Cách Học",
+            title: "Bốn bước làm một bài toán",
+            explanation:
+              "Mọi bài bài toán có lời văn đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            points: [
+              "Bước 1 — Đọc kỹ đề, gạch dưới các SỐ và từ khoá (thêm, bớt, gấp, chia đều).",
+              "Bước 2 — Tóm tắt đề bằng hình hoặc bằng câu ngắn: đã có gì, cần tìm gì.",
+              "Bước 3 — Chọn phép tính: “thêm, gộp, tất cả” → cộng; “bớt, cho đi, còn lại” → trừ; “gấp mấy lần” → nhân.",
+              "Bước 4 — Đặt tính rồi tính, rồi VIẾT ĐÁP SỐ kèm đơn vị và thử lại bằng phép ngược.",
+            ],
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Điều cần nhớ", "Nội dung"],
+              rows: [
+                ["Đơn vị", "đáp số luôn kèm đơn vị như con, quả, kg, cm"],
+                ["Kiểm tra", "cộng thì lấy kết quả trừ đi một số hạng"],
+                ["Câu trả lời", "viết đủ câu, không chỉ ghi số"],
+              ],
+            },
+            text: "Bảng nhớ nhanh — bài toán có lời văn\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Giải một bài toán có lời văn, bé làm gì TRƯỚC TIÊN?",
+            options: [
+              "Đọc kỹ đề và gạch dưới các số đã cho",
+              "Viết ngay đáp số",
+              "Đoán kết quả",
+              "Đặt tính trước khi đọc đề",
+            ],
+            answer: "Đọc kỹ đề và gạch dưới các số đã cho",
+            mascotHint:
+              "Chưa đọc kỹ đề thì chưa biết đề cho gì, hỏi gì — mọi bước sau đều dễ sai.",
+          },
+        },
+        {
           type: "quiz",
           content: {
             question:
@@ -475,6 +640,50 @@ export const g2c14 = {
               ],
               label: "Ôn tập đo lường",
             },
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Cách Học",
+            title: "Bốn bước làm một bài toán",
+            explanation:
+              "Mọi bài bài toán có lời văn đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            points: [
+              "Bước 1 — Đọc kỹ đề, gạch dưới các SỐ và từ khoá (thêm, bớt, gấp, chia đều).",
+              "Bước 2 — Tóm tắt đề bằng hình hoặc bằng câu ngắn: đã có gì, cần tìm gì.",
+              "Bước 3 — Chọn phép tính: “thêm, gộp, tất cả” → cộng; “bớt, cho đi, còn lại” → trừ; “gấp mấy lần” → nhân.",
+              "Bước 4 — Đặt tính rồi tính, rồi VIẾT ĐÁP SỐ kèm đơn vị và thử lại bằng phép ngược.",
+            ],
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Điều cần nhớ", "Nội dung"],
+              rows: [
+                ["Đơn vị", "đáp số luôn kèm đơn vị như con, quả, kg, cm"],
+                ["Kiểm tra", "cộng thì lấy kết quả trừ đi một số hạng"],
+                ["Câu trả lời", "viết đủ câu, không chỉ ghi số"],
+              ],
+            },
+            text: "Bảng nhớ nhanh — bài toán có lời văn\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Giải một bài toán có lời văn, bé làm gì TRƯỚC TIÊN?",
+            options: [
+              "Đọc kỹ đề và gạch dưới các số đã cho",
+              "Viết ngay đáp số",
+              "Đoán kết quả",
+              "Đặt tính trước khi đọc đề",
+            ],
+            answer: "Đọc kỹ đề và gạch dưới các số đã cho",
+            mascotHint:
+              "Chưa đọc kỹ đề thì chưa biết đề cho gì, hỏi gì — mọi bước sau đều dễ sai.",
           },
         },
         {
@@ -562,6 +771,59 @@ export const g2c14 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 3,
+              right: 4,
+              sign: "×",
+              remember: true,
+            },
+            text: "Bé tự đặt tính: 3 × 4\nhàng đơn vị 3 × 4 = 12, viết 2 nhớ 1\ncòn nhớ 1 ở hàng cao hơn, viết 1\nVậy 3 × 4 = 12.",
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                [
+                  "Bước 1 — Gọi tên",
+                  "nói đúng tên hình/khối trước khi làm gì tiếp",
+                ],
+                [
+                  "Bước 2 — Đếm",
+                  "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học",
+                ],
+                [
+                  "Bước 3 — Kiểm tra",
+                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt",
+                ],
+              ],
+            },
+            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "7 × 3 bằng bao nhiêu?",
+            options: [20, 21, 22, 31],
+            answer: 21,
+            mascotHint: "Bé đặt tính rồi tính từ hàng đơn vị. Kết quả 21.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "6 × 9 bằng bao nhiêu?",
+            options: [4, 53, 54, 55],
+            answer: 54,
+            mascotHint: "hàng đơn vị 6 × 9 = 54, viết 4 nhớ 5. Kết quả 54.",
+          },
+        },
+        {
           type: "quiz",
           content: {
             question:
@@ -633,6 +895,41 @@ export const g2c14 = {
               ],
               label: "Ôn tập chung cuối năm",
             },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 250,
+              right: 135,
+              sign: "−",
+            },
+            text: "Bé tự đặt tính: 250 − 135\nhàng đơn vị 0 < 5 nên mượn 1: 10 − 5 = 5, viết 5\nhàng chục 5 − 4 = 1, viết 1\nhàng trăm 2 − 1 = 1, viết 1\nVậy 250 − 135 = 115.",
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Chú Ý",
+            title: "Vì sao ra 125 là sai?",
+            explanation:
+              "125 là kết quả khi bé quên bớt 1 chục sau khi mượn. Đây là lỗi hay gặp nhất của dạng trừ này.",
+            points: [
+              "Lỗi — quên bớt 1 chục sau khi mượn: hàng đơn vị 0 < 5 nên mượn 1: 10 − 5 = 5, viết 5. Kết quả đúng phải là 115.",
+              "Cách tránh: làm xong một hàng thì ghi/xoá số đã vay NGAY, đừng để sang hàng sau mới nhớ.",
+              "Tự kiểm tra: 115 + 135 phải bằng 250.",
+            ],
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "986 − 368 bằng bao nhiêu?",
+            options: [617, 618, 619, 628],
+            answer: 618,
+            mascotHint:
+              "hàng đơn vị 6 < 8 nên mượn 1: 16 − 8 = 8, viết 8. Kết quả 618.",
           },
         },
         {
@@ -730,6 +1027,26 @@ export const g2c14 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 700,
+              right: 350,
+              sign: "−",
+            },
+            text: "Bé tự đặt tính: 700 − 350\nhàng đơn vị 0 − 0 = 0, viết 0\nhàng chục 0 < 5 nên mượn 1: 10 − 5 = 5, viết 5\nhàng trăm 7 − 4 = 3, viết 3\nVậy 700 − 350 = 350.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "597 − 504 bằng bao nhiêu?",
+            options: [92, 93, 94, 95],
+            answer: 93,
+            mascotHint: "hàng đơn vị 7 − 4 = 3, viết 3. Kết quả 93.",
+          },
+        },
+        {
           type: "quiz",
           content: {
             question: "Tìm số còn thiếu: 700 − ? = 350",
@@ -759,7 +1076,7 @@ export const g2c14 = {
           content: {
             title: "Bé giỏi lắm:",
             points: [
-              "Bé đã hoàn thành chương trình Toán Lớp 2 theo đúng SGK.",
+              "Bé đã hoàn thành chương trình Toán Lớp 2.",
               "Chúc mừng bé lên Lớp 3!",
             ],
             mascotMood: "celebrate",

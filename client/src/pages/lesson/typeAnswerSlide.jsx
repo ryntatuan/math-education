@@ -3,7 +3,7 @@
  * Lấy từ ảnh Duolingo Math người dùng gửi (2026-09-28): `4 + 4 + 4 + 4 = ☐` với ô nhập và bàn
  * phím số 1–9, 0, xoá, rồi nút `KIỂM TRA`.
  *
- * VÌ SAO CẦN: SGK có rất nhiều câu “Tính rồi viết kết quả vào chỗ chấm” — hiện app chỉ có trắc
+ * VÌ SAO CẦN: bài học có rất nhiều câu “Tính rồi viết kết quả vào chỗ chấm” — hiện app chỉ có trắc
  * nghiệm 4 lựa chọn, tức là bé có thể ĐOÁN. Tự bấm số thì bé phải tính thật.
  *
  * BỐ CỤC theo ảnh (và theo đúng bài học của đợt trước):
@@ -23,7 +23,7 @@ import { Delete, RotateCcw, Volume2 } from "lucide-react";
 import speechHelper from "../../utils/speechHelper";
 import { matchesNumber } from "./answerLogic.js";
 
-/** Số chữ số tối đa — đủ cho mọi bài trong SGK (lớn nhất là số có 6 chữ số). */
+/** Số chữ số tối đa — đủ cho mọi bài trong chương trình (lớn nhất là số có 6 chữ số). */
 const TOI_DA_CHU_SO = 6;
 
 export function TypeAnswerSlide({ content, onDone }) {

@@ -32,7 +32,7 @@ export function ClockGraphic({
   const cy = 110;
   const r = 88;
 
-  // Mặt đồng hồ số La Mã — SGK Lớp 3 “Làm quen với chữ số La Mã” in mặt đồng hồ cổ
+  // Mặt đồng hồ số La Mã — Lớp 3 “Làm quen với chữ số La Mã” in mặt đồng hồ cổ
   // ghi I…XII, mà 12 số La Mã dài hơn số thường nên phải hạ cỡ chữ cho khỏi chồn vạch.
   const VI_TRI = [12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
   const LA_MA = [

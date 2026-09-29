@@ -196,7 +196,7 @@ if (topic === "g1_numbers_20") {
   };
 }
 if (topic === "g1_shapes_3d") {
-  // Câu hỏi bám ĐÚNG hình của SGK Lớp 1 (tr.94 · tr.100 · tr.101), mỗi câu kèm hình.
+  // Câu hỏi bám ĐÚNG hình của Lớp 1, mỗi câu kèm hình.
   // 🔴 `visualDisplay` là DESCRIPTOR gọn ({ kind, mode, params }) chứ KHÔNG phải cây JSX:
   //    cây JSX khi zustand ghi vào localStorage sẽ bị JSON.stringify thành object thường
   //    rồi React ném "Objects are not valid as a React child" khi tải lại trang.

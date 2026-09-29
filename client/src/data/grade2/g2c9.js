@@ -53,6 +53,96 @@ export const g2c9 = {
           }
         },
         {
+          "type": "visual",
+          "content": {
+            "solid": {
+              "kind": "cuboid"
+            },
+            "text": "khối hộp chữ nhật bé học hôm nay có gì đặc biệt?\n· 6 mặt, mỗi mặt là hình chữ nhật\n· 8 đỉnh\nBé đếm mặt, đếm đỉnh, đếm cạnh ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé."
+          }
+        },
+        {
+          "type": "concept",
+          "content": {
+            "badge": "Ghi Nhớ",
+            "title": "Đặc điểm của khối hộp chữ nhật",
+            "explanation": "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của khối hộp chữ nhật.",
+            "points": [
+              "khối hộp chữ nhật có 6 mặt, mỗi mặt là hình chữ nhật.",
+              "khối hộp chữ nhật có 8 đỉnh.",
+              "khối hộp chữ nhật có 12 cạnh.",
+              "Cách kiểm tra: bé đếm mặt, đếm đỉnh, đếm cạnh; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình."
+            ]
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "table": {
+              "headers": [
+                "Bước",
+                "Việc bé làm"
+              ],
+              "rows": [
+                [
+                  "Bước 1 — Gọi tên",
+                  "nói đúng tên hình/khối trước khi làm gì tiếp"
+                ],
+                [
+                  "Bước 2 — Đếm",
+                  "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học"
+                ],
+                [
+                  "Bước 3 — Kiểm tra",
+                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt"
+                ]
+              ]
+            },
+            "text": "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
+            "options": [
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Nộp bài luôn cho nhanh",
+              "Đoán lại một lần nữa"
+            ],
+            "answer": "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            "mascotHint": "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Hình nào có 6 mặt, mỗi mặt là hình chữ nhật?",
+            "options": [
+              "khối hộp chữ nhật",
+              "hình khối lập phương",
+              "hình khối trụ",
+              "hình khối cầu"
+            ],
+            "answer": "khối hộp chữ nhật",
+            "mascotHint": "khối hộp chữ nhật: 6 mặt, mỗi mặt là hình chữ nhật · 8 đỉnh · 12 cạnh."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Trong bài hôm nay có hình khối hộp chữ nhật và hình khối trụ và hình khối cầu và hình tròn. Hình nào có 8 đỉnh?",
+            "options": [
+              "khối hộp chữ nhật",
+              "hình khối lập phương",
+              "hình khối trụ",
+              "hình khối cầu"
+            ],
+            "answer": "khối hộp chữ nhật",
+            "mascotHint": "Đáp án là khối hộp chữ nhật: 6 mặt, mỗi mặt là hình chữ nhật · 8 đỉnh · 12 cạnh."
+          }
+        },
+        {
           "type": "quiz",
           "content": {
             "question": "Vật nào có dạng khối trụ?",
@@ -133,6 +223,82 @@ export const g2c9 = {
               "label": "Khối cầu",
               "formula": "Tròn đều, không có mặt phẳng"
             }
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "solid": {
+              "kind": "sphere"
+            },
+            "text": "khối cầu bé học hôm nay có gì đặc biệt?\n· không có đỉnh, không có cạnh\n· lăn được theo mọi hướng\nBé đếm mặt, đếm đỉnh ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé."
+          }
+        },
+        {
+          "type": "concept",
+          "content": {
+            "badge": "Ghi Nhớ",
+            "title": "Đặc điểm của khối cầu",
+            "explanation": "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của khối cầu.",
+            "points": [
+              "khối cầu không có đỉnh, không có cạnh.",
+              "khối cầu có lăn được theo mọi hướng.",
+              "khối cầu có mặt ngoài là mặt cong.",
+              "Cách kiểm tra: bé đếm mặt, đếm đỉnh; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình."
+            ]
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "table": {
+              "headers": [
+                "Bước",
+                "Việc bé làm"
+              ],
+              "rows": [
+                [
+                  "Bước 1 — Gọi tên",
+                  "nói đúng tên hình/khối trước khi làm gì tiếp"
+                ],
+                [
+                  "Bước 2 — Đếm",
+                  "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học"
+                ],
+                [
+                  "Bước 3 — Kiểm tra",
+                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt"
+                ]
+              ]
+            },
+            "text": "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
+            "options": [
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Nộp bài luôn cho nhanh",
+              "Đoán lại một lần nữa"
+            ],
+            "answer": "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            "mascotHint": "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Hình nào không có đỉnh, không có cạnh?",
+            "options": [
+              "khối cầu",
+              "hình khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ"
+            ],
+            "answer": "khối cầu",
+            "mascotHint": "khối cầu: không có đỉnh, không có cạnh · lăn được theo mọi hướng · mặt ngoài là mặt cong."
           }
         },
         {
@@ -245,6 +411,96 @@ export const g2c9 = {
           },
         },
         {
+          "type": "visual",
+          "content": {
+            "solid": {
+              "kind": "cuboid"
+            },
+            "text": "khối hộp chữ nhật bé học hôm nay có gì đặc biệt?\n· 6 mặt, mỗi mặt là hình chữ nhật\n· 8 đỉnh\nBé đếm mặt, đếm đỉnh, đếm cạnh ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé."
+          }
+        },
+        {
+          "type": "concept",
+          "content": {
+            "badge": "Ghi Nhớ",
+            "title": "Đặc điểm của khối hộp chữ nhật",
+            "explanation": "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của khối hộp chữ nhật.",
+            "points": [
+              "khối hộp chữ nhật có 6 mặt, mỗi mặt là hình chữ nhật.",
+              "khối hộp chữ nhật có 8 đỉnh.",
+              "khối hộp chữ nhật có 12 cạnh.",
+              "Cách kiểm tra: bé đếm mặt, đếm đỉnh, đếm cạnh; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình."
+            ]
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "table": {
+              "headers": [
+                "Bước",
+                "Việc bé làm"
+              ],
+              "rows": [
+                [
+                  "Bước 1 — Gọi tên",
+                  "nói đúng tên hình/khối trước khi làm gì tiếp"
+                ],
+                [
+                  "Bước 2 — Đếm",
+                  "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học"
+                ],
+                [
+                  "Bước 3 — Kiểm tra",
+                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt"
+                ]
+              ]
+            },
+            "text": "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
+            "options": [
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Nộp bài luôn cho nhanh",
+              "Đoán lại một lần nữa"
+            ],
+            "answer": "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            "mascotHint": "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Hình nào có 6 mặt, mỗi mặt là hình chữ nhật?",
+            "options": [
+              "khối hộp chữ nhật",
+              "hình khối lập phương",
+              "hình khối trụ",
+              "hình khối cầu"
+            ],
+            "answer": "khối hộp chữ nhật",
+            "mascotHint": "khối hộp chữ nhật: 6 mặt, mỗi mặt là hình chữ nhật · 8 đỉnh · 12 cạnh."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Trong bài hôm nay có hình khối hộp chữ nhật và hình khối trụ và hình khối cầu. Hình nào có 8 đỉnh?",
+            "options": [
+              "khối hộp chữ nhật",
+              "hình khối lập phương",
+              "hình khối trụ",
+              "hình khối cầu"
+            ],
+            "answer": "khối hộp chữ nhật",
+            "mascotHint": "Đáp án là khối hộp chữ nhật: 6 mặt, mỗi mặt là hình chữ nhật · 8 đỉnh · 12 cạnh."
+          }
+        },
+        {
           "type": "quiz",
           "content": {
             "question": "Khối nào xếp chồng lên nhau được?",
@@ -326,6 +582,96 @@ export const g2c9 = {
               ],
               "label": "Luyện tập chung chủ đề 9"
             }
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "solid": {
+              "kind": "cuboid"
+            },
+            "text": "khối hộp chữ nhật bé học hôm nay có gì đặc biệt?\n· 6 mặt, mỗi mặt là hình chữ nhật\n· 8 đỉnh\nBé đếm mặt, đếm đỉnh, đếm cạnh ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé."
+          }
+        },
+        {
+          "type": "concept",
+          "content": {
+            "badge": "Ghi Nhớ",
+            "title": "Đặc điểm của khối hộp chữ nhật",
+            "explanation": "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của khối hộp chữ nhật.",
+            "points": [
+              "khối hộp chữ nhật có 6 mặt, mỗi mặt là hình chữ nhật.",
+              "khối hộp chữ nhật có 8 đỉnh.",
+              "khối hộp chữ nhật có 12 cạnh.",
+              "Cách kiểm tra: bé đếm mặt, đếm đỉnh, đếm cạnh; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình."
+            ]
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "table": {
+              "headers": [
+                "Bước",
+                "Việc bé làm"
+              ],
+              "rows": [
+                [
+                  "Bước 1 — Gọi tên",
+                  "nói đúng tên hình/khối trước khi làm gì tiếp"
+                ],
+                [
+                  "Bước 2 — Đếm",
+                  "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học"
+                ],
+                [
+                  "Bước 3 — Kiểm tra",
+                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt"
+                ]
+              ]
+            },
+            "text": "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
+            "options": [
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Nộp bài luôn cho nhanh",
+              "Đoán lại một lần nữa"
+            ],
+            "answer": "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            "mascotHint": "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Hình nào có 6 mặt, mỗi mặt là hình chữ nhật?",
+            "options": [
+              "khối hộp chữ nhật",
+              "hình khối lập phương",
+              "hình khối trụ",
+              "hình khối cầu"
+            ],
+            "answer": "khối hộp chữ nhật",
+            "mascotHint": "khối hộp chữ nhật: 6 mặt, mỗi mặt là hình chữ nhật · 8 đỉnh · 12 cạnh."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Trong bài hôm nay có hình khối hộp chữ nhật và hình khối trụ và hình khối cầu. Hình nào có 8 đỉnh?",
+            "options": [
+              "khối hộp chữ nhật",
+              "hình khối lập phương",
+              "hình khối trụ",
+              "hình khối cầu"
+            ],
+            "answer": "khối hộp chữ nhật",
+            "mascotHint": "Đáp án là khối hộp chữ nhật: 6 mặt, mỗi mặt là hình chữ nhật · 8 đỉnh · 12 cạnh."
           }
         },
         {

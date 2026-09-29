@@ -70,6 +70,59 @@ export const g4c6 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            planeShape: {
+              kind: "rectangle",
+              vertices: true,
+              vertexLabel: "đỉnh"
+            },
+            text: "hình chữ nhật bé học hôm nay có gì đặc biệt?\n· 4 góc vuông\n· hai cặp cạnh dài bằng nhau\nBé đếm cạnh, đếm đỉnh ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Ghi Nhớ",
+            title: "Đặc điểm của hình chữ nhật",
+            explanation: "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của hình chữ nhật.",
+            points: [
+              "hình chữ nhật có 4 góc vuông.",
+              "hình chữ nhật có hai cặp cạnh dài bằng nhau.",
+              "hình chữ nhật có cạnh dài là chiều dài, cạnh ngắn là chiều rộng.",
+              "Cách kiểm tra: bé đếm cạnh, đếm đỉnh; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Hình nào có 4 góc vuông?",
+            options: [
+              "hình chữ nhật",
+              "hình khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ"
+            ],
+            answer: "hình chữ nhật",
+            mascotHint: "hình chữ nhật: 4 góc vuông · hai cặp cạnh dài bằng nhau · cạnh dài là chiều dài, cạnh ngắn là chiều rộng."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Trong bài hôm nay có hình chữ nhật và hình góc vuông và hình đường thẳng. Hình nào có hai cặp cạnh dài bằng nhau?",
+            options: [
+              "hình chữ nhật",
+              "hình khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ"
+            ],
+            answer: "hình chữ nhật",
+            mascotHint: "Đáp án là hình chữ nhật: 4 góc vuông · hai cặp cạnh dài bằng nhau · cạnh dài là chiều dài, cạnh ngắn là chiều rộng."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question:
@@ -146,6 +199,89 @@ export const g4c6 = {
               label: "Kí hiệu // nghĩa là song song",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            planeShape: {
+              kind: "square",
+              vertices: true,
+              vertexLabel: "đỉnh"
+            },
+            text: "hình vuông bé học hôm nay có gì đặc biệt?\n· 4 cạnh dài bằng nhau\n· 4 góc vuông\nBé đếm cạnh, đếm đỉnh ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Ghi Nhớ",
+            title: "Đặc điểm của hình vuông",
+            explanation: "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của hình vuông.",
+            points: [
+              "hình vuông có 4 cạnh dài bằng nhau.",
+              "hình vuông có 4 góc vuông.",
+              "hình vuông có hai đường chéo bằng nhau.",
+              "Cách kiểm tra: bé đếm cạnh, đếm đỉnh; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                ["Bước 1 — Gọi tên", "nói đúng tên hình/khối trước khi làm gì tiếp"],
+                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học"],
+                [
+                  "Bước 3 — Kiểm tra",
+                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt"
+                ]
+              ]
+            },
+            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
+            options: [
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Nộp bài luôn cho nhanh",
+              "Đoán lại một lần nữa"
+            ],
+            answer: "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            mascotHint: "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Hình nào có 4 cạnh dài bằng nhau?",
+            options: [
+              "hình vuông",
+              "hình khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ"
+            ],
+            answer: "hình vuông",
+            mascotHint: "hình vuông: 4 cạnh dài bằng nhau · 4 góc vuông · hai đường chéo bằng nhau."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Trong bài hôm nay có hình vuông và hình chữ nhật và hình đường thẳng. Hình nào có 4 góc vuông?",
+            options: [
+              "hình vuông",
+              "hình khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ"
+            ],
+            answer: "hình vuông",
+            mascotHint: "Đáp án là hình vuông: 4 cạnh dài bằng nhau · 4 góc vuông · hai đường chéo bằng nhau."
+          }
         },
         {
           type: "quiz",
@@ -231,6 +367,59 @@ export const g4c6 = {
               label: "Muốn song song thì cùng vuông góc với MN",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            angle: {
+              kind: "right",
+              degrees: 90,
+              vertexLetter: "O",
+              armLetters: ["A", "B"]
+            },
+            text: "góc vuông bé học hôm nay có gì đặc biệt?\n· đúng bằng góc của ê-ke\n· hai cạnh của góc vuông góc với nhau\nBé đặt ê-ke vào góc, nếu trùng khít là góc vuông ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Ghi Nhớ",
+            title: "Đặc điểm của góc vuông",
+            explanation: "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của góc vuông.",
+            points: [
+              "góc vuông có đúng bằng góc của ê-ke.",
+              "góc vuông có hai cạnh của góc vuông góc với nhau.",
+              "Cách kiểm tra: bé đặt ê-ke vào góc, nếu trùng khít là góc vuông; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Hình nào có đúng bằng góc của ê-ke?",
+            options: [
+              "góc vuông",
+              "hình khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ"
+            ],
+            answer: "góc vuông",
+            mascotHint: "góc vuông: đúng bằng góc của ê-ke · hai cạnh của góc vuông góc với nhau."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Trong bài hôm nay có hình góc vuông và hình đường thẳng. Hình nào có hai cạnh của góc vuông góc với nhau?",
+            options: [
+              "góc vuông",
+              "hình khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ"
+            ],
+            answer: "góc vuông",
+            mascotHint: "Đáp án là góc vuông: đúng bằng góc của ê-ke · hai cạnh của góc vuông góc với nhau."
+          }
         },
         {
           type: "quiz",
@@ -321,6 +510,48 @@ export const g4c6 = {
                 "Hình bình hành ABCD có hai cặp cạnh đối diện song song, bằng nhau",
             },
           },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Cách Học",
+            title: "Bốn bước làm một bài toán",
+            explanation: "Mọi bài bài toán có lời văn đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            points: [
+              "Bước 1 — Đọc kỹ đề, gạch dưới các SỐ và từ khoá (thêm, bớt, gấp, chia đều).",
+              "Bước 2 — Tóm tắt đề bằng hình hoặc bằng câu ngắn: đã có gì, cần tìm gì.",
+              "Bước 3 — Chọn phép tính: “thêm, gộp, tất cả” → cộng; “bớt, cho đi, còn lại” → trừ; “gấp mấy lần” → nhân.",
+              "Bước 4 — Đặt tính rồi tính, rồi VIẾT ĐÁP SỐ kèm đơn vị và thử lại bằng phép ngược."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Điều cần nhớ", "Nội dung"],
+              rows: [
+                ["Đơn vị", "đáp số luôn kèm đơn vị như con, quả, kg, cm"],
+                ["Kiểm tra", "cộng thì lấy kết quả trừ đi một số hạng"],
+                ["Câu trả lời", "viết đủ câu, không chỉ ghi số"]
+              ]
+            },
+            text: "Bảng nhớ nhanh — bài toán có lời văn\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Giải một bài toán có lời văn, bé làm gì TRƯỚC TIÊN?",
+            options: [
+              "Đọc kỹ đề và gạch dưới các số đã cho",
+              "Viết ngay đáp số",
+              "Đoán kết quả",
+              "Đặt tính trước khi đọc đề"
+            ],
+            answer: "Đọc kỹ đề và gạch dưới các số đã cho",
+            mascotHint: "Chưa đọc kỹ đề thì chưa biết đề cho gì, hỏi gì — mọi bước sau đều dễ sai."
+          }
         },
         {
           type: "quiz",
@@ -421,6 +652,48 @@ export const g4c6 = {
           },
         },
         {
+          type: "concept",
+          content: {
+            badge: "Cách Học",
+            title: "Bốn bước làm một bài toán",
+            explanation: "Mọi bài so sánh số đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            points: [
+              "Bước 1 — Đếm số CHỮ SỐ của từng số trước.",
+              "Bước 2 — Số nào nhiều chữ số hơn thì lớn hơn — xong, không cần so tiếp.",
+              "Bước 3 — Cùng số chữ số thì so từng hàng từ TRÁI sang phải, gặp hàng khác nhau thì dừng.",
+              "Bước 4 — Đọc lại kết quả và đặt đúng dấu (>, <, =)."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Điều cần nhớ", "Nội dung"],
+              rows: [
+                ["Nhiều chữ số hơn", "thì số đó lớn hơn"],
+                ["So từ trái", "hàng nghìn rồi mới tới trăm, chục, đơn vị"],
+                ["Dấu lớn mở về phía", "số lớn hơn"]
+              ]
+            },
+            text: "Bảng nhớ nhanh — so sánh số\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Muốn so sánh hai số, bé bắt đầu bằng việc gì?",
+            options: [
+              "Đếm xem số nào có nhiều chữ số hơn",
+              "So chữ số hàng đơn vị trước",
+              "Cộng hai số lại",
+              "Đọc từ phải sang trái"
+            ],
+            answer: "Đếm xem số nào có nhiều chữ số hơn",
+            mascotHint: "Số nhiều chữ số hơn chắc chắn lớn hơn, nên chỉ cần so từng hàng khi hai số bằng số chữ số."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Hình thoi có đặc điểm gì về độ dài bốn cạnh?",
@@ -499,6 +772,89 @@ export const g4c6 = {
               label: "Đọc dấu hiệu rồi mới kết luận",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            planeShape: {
+              kind: "square",
+              vertices: true,
+              vertexLabel: "đỉnh"
+            },
+            text: "hình vuông bé học hôm nay có gì đặc biệt?\n· 4 cạnh dài bằng nhau\n· 4 góc vuông\nBé đếm cạnh, đếm đỉnh ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Ghi Nhớ",
+            title: "Đặc điểm của hình vuông",
+            explanation: "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của hình vuông.",
+            points: [
+              "hình vuông có 4 cạnh dài bằng nhau.",
+              "hình vuông có 4 góc vuông.",
+              "hình vuông có hai đường chéo bằng nhau.",
+              "Cách kiểm tra: bé đếm cạnh, đếm đỉnh; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                ["Bước 1 — Gọi tên", "nói đúng tên hình/khối trước khi làm gì tiếp"],
+                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học"],
+                [
+                  "Bước 3 — Kiểm tra",
+                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt"
+                ]
+              ]
+            },
+            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
+            options: [
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Nộp bài luôn cho nhanh",
+              "Đoán lại một lần nữa"
+            ],
+            answer: "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            mascotHint: "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Hình nào có 4 cạnh dài bằng nhau?",
+            options: [
+              "hình vuông",
+              "hình khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ"
+            ],
+            answer: "hình vuông",
+            mascotHint: "hình vuông: 4 cạnh dài bằng nhau · 4 góc vuông · hai đường chéo bằng nhau."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Trong bài hôm nay có hình vuông và hình tròn và hình tam giác và hình chữ nhật và hình góc vuông và hình đường thẳng. Hình nào có 4 góc vuông?",
+            options: [
+              "hình vuông",
+              "hình khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ"
+            ],
+            answer: "hình vuông",
+            mascotHint: "Đáp án là hình vuông: 4 cạnh dài bằng nhau · 4 góc vuông · hai đường chéo bằng nhau."
+          }
         },
         {
           type: "quiz",

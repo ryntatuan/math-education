@@ -100,7 +100,7 @@ describe("phuongAnChonSai / phuongAnBoSot — tô đỏ đúng chỗ đã chọn
 });
 
 describe("buildExpression — thẻ phải TÁCH RỜI số và dấu", () => {
-  it("thẻ số đọc được nhiều kiểu viết của SGK", () => {
+  it("thẻ số đọc được nhiều kiểu viết khác nhau", () => {
     expect(parseNumber("25")).toBe(25);
     expect(parseNumber("1 000")).toBe(1000); // dấu cách phân cách nghìn
     expect(parseNumber("1.000")).toBe(1000); // dấu chấm phân cách nghìn
@@ -115,7 +115,7 @@ describe("buildExpression — thẻ phải TÁCH RỜI số và dấu", () => {
     expect(isNumberToken("abc")).toBe(false);
   });
 
-  it("thẻ DẤU: nhận mọi cách viết dấu của SGK, KHÔNG nhận số", () => {
+  it("thẻ DẤU: nhận mọi cách viết dấu, KHÔNG nhận số", () => {
     for (const d of ["+", "−", "-", "×", "x", ":", "÷"])
       expect(isOperator(d)).toBe(true);
     expect(isOperator("25")).toBe(false);

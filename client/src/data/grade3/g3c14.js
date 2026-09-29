@@ -46,6 +46,72 @@ export const g3c14 = {
           }
         },
         {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 5,
+              "right": 2,
+              "sign": "×",
+              "remember": true
+            },
+            "text": "Bé tự đặt tính: 5 × 2\nhàng đơn vị 5 × 2 = 10, viết 0 nhớ 1\ncòn nhớ 1 ở hàng cao hơn, viết 1\nVậy 5 × 2 = 10."
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "table": {
+              "headers": [
+                "Bước",
+                "Việc bé làm"
+              ],
+              "rows": [
+                [
+                  "Bước 1 — Đơn vị",
+                  "viết kết quả luôn kèm đơn vị"
+                ],
+                [
+                  "Bước 2 — Bậc thang",
+                  "đi xuống thì nhân, đi lên thì chia"
+                ],
+                [
+                  "Bước 3 — Kiểm lại",
+                  "lấy kết quả đổi ngược lại xem có về số ban đầu"
+                ]
+              ]
+            },
+            "text": "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "2 × 6 bằng bao nhiêu?",
+            "options": [
+              11,
+              12,
+              13,
+              22
+            ],
+            "answer": 12,
+            "mascotHint": "Bé đặt tính rồi tính từ hàng đơn vị. Kết quả 12."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "3 × 5 bằng bao nhiêu?",
+            "options": [
+              5,
+              14,
+              15,
+              16
+            ],
+            "answer": 15,
+            "mascotHint": "hàng đơn vị 3 × 5 = 15, viết 5 nhớ 1. Kết quả 15."
+          }
+        },
+        {
           "type": "quiz",
           "content": {
             "question": "12 345 × 2 bằng bao nhiêu?",
@@ -155,6 +221,60 @@ export const g3c14 = {
           }
         },
         {
+          "type": "concept",
+          "content": {
+            "badge": "Cách Học",
+            "title": "Bốn bước làm một bài toán",
+            "explanation": "Mọi bài bài toán có lời văn đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            "points": [
+              "Bước 1 — Đọc kỹ đề, gạch dưới các SỐ và từ khoá (thêm, bớt, gấp, chia đều).",
+              "Bước 2 — Tóm tắt đề bằng hình hoặc bằng câu ngắn: đã có gì, cần tìm gì.",
+              "Bước 3 — Chọn phép tính: “thêm, gộp, tất cả” → cộng; “bớt, cho đi, còn lại” → trừ; “gấp mấy lần” → nhân.",
+              "Bước 4 — Đặt tính rồi tính, rồi VIẾT ĐÁP SỐ kèm đơn vị và thử lại bằng phép ngược."
+            ]
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "table": {
+              "headers": [
+                "Điều cần nhớ",
+                "Nội dung"
+              ],
+              "rows": [
+                [
+                  "Đơn vị",
+                  "đáp số luôn kèm đơn vị như con, quả, kg, cm"
+                ],
+                [
+                  "Kiểm tra",
+                  "cộng thì lấy kết quả trừ đi một số hạng"
+                ],
+                [
+                  "Câu trả lời",
+                  "viết đủ câu, không chỉ ghi số"
+                ]
+              ]
+            },
+            "text": "Bảng nhớ nhanh — bài toán có lời văn\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Giải một bài toán có lời văn, bé làm gì TRƯỚC TIÊN?",
+            "options": [
+              "Đọc kỹ đề và gạch dưới các số đã cho",
+              "Viết ngay đáp số",
+              "Đoán kết quả",
+              "Đặt tính trước khi đọc đề"
+            ],
+            "answer": "Đọc kỹ đề và gạch dưới các số đã cho",
+            "mascotHint": "Chưa đọc kỹ đề thì chưa biết đề cho gì, hỏi gì — mọi bước sau đều dễ sai."
+          }
+        },
+        {
           "type": "quiz",
           "content": {
             "question": "46 848 : 4 bằng bao nhiêu?",
@@ -243,6 +363,60 @@ export const g3c14 = {
               "right": 5,
               "sign": ":"
             }
+          }
+        },
+        {
+          "type": "concept",
+          "content": {
+            "badge": "Cách Học",
+            "title": "Bốn bước làm một bài toán",
+            "explanation": "Mọi bài bài toán có lời văn đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            "points": [
+              "Bước 1 — Đọc kỹ đề, gạch dưới các SỐ và từ khoá (thêm, bớt, gấp, chia đều).",
+              "Bước 2 — Tóm tắt đề bằng hình hoặc bằng câu ngắn: đã có gì, cần tìm gì.",
+              "Bước 3 — Chọn phép tính: “thêm, gộp, tất cả” → cộng; “bớt, cho đi, còn lại” → trừ; “gấp mấy lần” → nhân.",
+              "Bước 4 — Đặt tính rồi tính, rồi VIẾT ĐÁP SỐ kèm đơn vị và thử lại bằng phép ngược."
+            ]
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "table": {
+              "headers": [
+                "Điều cần nhớ",
+                "Nội dung"
+              ],
+              "rows": [
+                [
+                  "Đơn vị",
+                  "đáp số luôn kèm đơn vị như con, quả, kg, cm"
+                ],
+                [
+                  "Kiểm tra",
+                  "cộng thì lấy kết quả trừ đi một số hạng"
+                ],
+                [
+                  "Câu trả lời",
+                  "viết đủ câu, không chỉ ghi số"
+                ]
+              ]
+            },
+            "text": "Bảng nhớ nhanh — bài toán có lời văn\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Giải một bài toán có lời văn, bé làm gì TRƯỚC TIÊN?",
+            "options": [
+              "Đọc kỹ đề và gạch dưới các số đã cho",
+              "Viết ngay đáp số",
+              "Đoán kết quả",
+              "Đặt tính trước khi đọc đề"
+            ],
+            "answer": "Đọc kỹ đề và gạch dưới các số đã cho",
+            "mascotHint": "Chưa đọc kỹ đề thì chưa biết đề cho gì, hỏi gì — mọi bước sau đều dễ sai."
           }
         },
         {
@@ -339,6 +513,60 @@ export const g3c14 = {
           }
         },
         {
+          "type": "concept",
+          "content": {
+            "badge": "Cách Học",
+            "title": "Bốn bước làm một bài toán",
+            "explanation": "Mọi bài bài toán có lời văn đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            "points": [
+              "Bước 1 — Đọc kỹ đề, gạch dưới các SỐ và từ khoá (thêm, bớt, gấp, chia đều).",
+              "Bước 2 — Tóm tắt đề bằng hình hoặc bằng câu ngắn: đã có gì, cần tìm gì.",
+              "Bước 3 — Chọn phép tính: “thêm, gộp, tất cả” → cộng; “bớt, cho đi, còn lại” → trừ; “gấp mấy lần” → nhân.",
+              "Bước 4 — Đặt tính rồi tính, rồi VIẾT ĐÁP SỐ kèm đơn vị và thử lại bằng phép ngược."
+            ]
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "table": {
+              "headers": [
+                "Điều cần nhớ",
+                "Nội dung"
+              ],
+              "rows": [
+                [
+                  "Đơn vị",
+                  "đáp số luôn kèm đơn vị như con, quả, kg, cm"
+                ],
+                [
+                  "Kiểm tra",
+                  "cộng thì lấy kết quả trừ đi một số hạng"
+                ],
+                [
+                  "Câu trả lời",
+                  "viết đủ câu, không chỉ ghi số"
+                ]
+              ]
+            },
+            "text": "Bảng nhớ nhanh — bài toán có lời văn\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Giải một bài toán có lời văn, bé làm gì TRƯỚC TIÊN?",
+            "options": [
+              "Đọc kỹ đề và gạch dưới các số đã cho",
+              "Viết ngay đáp số",
+              "Đoán kết quả",
+              "Đặt tính trước khi đọc đề"
+            ],
+            "answer": "Đọc kỹ đề và gạch dưới các số đã cho",
+            "mascotHint": "Chưa đọc kỹ đề thì chưa biết đề cho gì, hỏi gì — mọi bước sau đều dễ sai."
+          }
+        },
+        {
           "type": "quiz",
           "content": {
             "question": "Một cửa hàng có 5 thùng, mỗi thùng 12 450 cái bánh. Hỏi cửa hàng có bao nhiêu cái bánh?",
@@ -412,6 +640,31 @@ export const g3c14 = {
               "right": 4,
               "sign": ":"
             }
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 12345,
+              "right": 2,
+              "sign": "×",
+              "remember": true
+            },
+            "text": "Bé tự đặt tính: 12345 × 2\nhàng đơn vị 5 × 2 = 10, viết 0 nhớ 1\nhàng chục 4 × 2 + 1 (nhớ) = 9, viết 9\nhàng trăm 3 × 2 = 6, viết 6\nVậy 12 345 × 2 = 24 690."
+          }
+        },
+        {
+          "type": "concept",
+          "content": {
+            "badge": "Chú Ý",
+            "title": "Vì sao ra 24680 là sai?",
+            "explanation": "24680 là kết quả khi bé quên nhớ khi nhân từng hàng. Đây là lỗi hay gặp nhất của dạng nhân này.",
+            "points": [
+              "Lỗi — quên nhớ khi nhân từng hàng: hàng đơn vị 5 × 2 = 10, viết 0 nhớ 1. Kết quả đúng phải là 24690.",
+              "Cách tránh: làm xong một hàng thì ghi/xoá số nhớ NGAY, đừng để sang hàng sau mới nhớ.",
+              "Tự kiểm tra: 24690 : 2 phải bằng 12345."
+            ]
           }
         },
         {

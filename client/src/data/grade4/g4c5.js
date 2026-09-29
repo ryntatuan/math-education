@@ -58,6 +58,31 @@ export const g4c5 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 327456,
+              right: 190835,
+              sign: "+",
+              remember: true
+            },
+            text: "Bé tự đặt tính: 327456 + 190835\nhàng đơn vị 6 + 5 = 11, viết 1 nhớ 1\nhàng chục 5 + 3 + 1 (nhớ) = 9, viết 9\nhàng trăm 4 + 8 = 12, viết 2 nhớ 1\nVậy 327 456 + 190 835 = 518 291."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Chú Ý",
+            title: "Vì sao ra 417281 là sai?",
+            explanation: "417281 là kết quả khi bé quên nhớ 1 ở hàng chục. Đây là lỗi hay gặp nhất của dạng cộng này.",
+            points: [
+              "Lỗi — quên nhớ 1 ở hàng chục: hàng đơn vị 6 + 5 = 11, viết 1 nhớ 1. Kết quả đúng phải là 518291.",
+              "Cách tránh: làm xong một hàng thì ghi/xoá số nhớ NGAY, đừng để sang hàng sau mới nhớ.",
+              "Tự kiểm tra: 518291 − 327456 phải bằng 190835."
+            ]
+          }
+        },
+        {
           type: "quiz",
           content: {
             question:
@@ -141,6 +166,30 @@ export const g4c5 = {
               label: "Trừ từ phải sang trái, nhớ khi mượn",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 648390,
+              right: 382547,
+              sign: "−"
+            },
+            text: "Bé tự đặt tính: 648390 − 382547\nhàng đơn vị 0 < 7 nên mượn 1: 10 − 7 = 3, viết 3\nhàng chục 9 − 5 = 4, viết 4\nhàng trăm 3 < 5 nên mượn 1: 13 − 5 = 8, viết 8\nVậy 648 390 − 382 547 = 265 843."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Chú Ý",
+            title: "Vì sao ra 366853 là sai?",
+            explanation: "366853 là kết quả khi bé quên bớt 1 chục sau khi mượn. Đây là lỗi hay gặp nhất của dạng trừ này.",
+            points: [
+              "Lỗi — quên bớt 1 chục sau khi mượn: hàng đơn vị 0 < 7 nên mượn 1: 10 − 7 = 3, viết 3. Kết quả đúng phải là 265843.",
+              "Cách tránh: làm xong một hàng thì ghi/xoá số đã vay NGAY, đừng để sang hàng sau mới nhớ.",
+              "Tự kiểm tra: 265843 + 382547 phải bằng 648390."
+            ]
+          }
         },
         {
           type: "quiz",
@@ -253,6 +302,27 @@ export const g4c5 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 100,
+              right: 192,
+              sign: "+",
+              remember: true
+            },
+            text: "Bé tự đặt tính: 100 + 192\nhàng đơn vị 0 + 2 = 2, viết 2\nhàng chục 0 + 9 = 9, viết 9\nhàng trăm 1 + 1 = 2, viết 2\nVậy 100 + 192 = 292."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "492 + 391 bằng bao nhiêu?",
+            options: [783, 882, 883, 884],
+            answer: 883,
+            mascotHint: "hàng đơn vị 2 + 1 = 3, viết 3. Kết quả 883."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Tính bằng cách thuận tiện: 30 + 192 + 70 = ?",
@@ -328,6 +398,48 @@ export const g4c5 = {
               label: "Thử lại: 10 + 15 = 25 và 15 − 10 = 5 ✓",
             },
           },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Cách Học",
+            title: "Bốn bước làm một bài toán",
+            explanation: "Mọi bài bài toán có lời văn đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            points: [
+              "Bước 1 — Đọc kỹ đề, gạch dưới các SỐ và từ khoá (thêm, bớt, gấp, chia đều).",
+              "Bước 2 — Tóm tắt đề bằng hình hoặc bằng câu ngắn: đã có gì, cần tìm gì.",
+              "Bước 3 — Chọn phép tính: “thêm, gộp, tất cả” → cộng; “bớt, cho đi, còn lại” → trừ; “gấp mấy lần” → nhân.",
+              "Bước 4 — Đặt tính rồi tính, rồi VIẾT ĐÁP SỐ kèm đơn vị và thử lại bằng phép ngược."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Điều cần nhớ", "Nội dung"],
+              rows: [
+                ["Đơn vị", "đáp số luôn kèm đơn vị như con, quả, kg, cm"],
+                ["Kiểm tra", "cộng thì lấy kết quả trừ đi một số hạng"],
+                ["Câu trả lời", "viết đủ câu, không chỉ ghi số"]
+              ]
+            },
+            text: "Bảng nhớ nhanh — bài toán có lời văn\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Giải một bài toán có lời văn, bé làm gì TRƯỚC TIÊN?",
+            options: [
+              "Đọc kỹ đề và gạch dưới các số đã cho",
+              "Viết ngay đáp số",
+              "Đoán kết quả",
+              "Đặt tính trước khi đọc đề"
+            ],
+            answer: "Đọc kỹ đề và gạch dưới các số đã cho",
+            mascotHint: "Chưa đọc kỹ đề thì chưa biết đề cho gì, hỏi gì — mọi bước sau đều dễ sai."
+          }
         },
         {
           type: "quiz",
@@ -416,6 +528,39 @@ export const g4c5 = {
               label: "Cộng thì thử lại bằng trừ, trừ thì thử lại bằng cộng",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 90,
+              right: 53,
+              sign: "−"
+            },
+            text: "Bé tự đặt tính: 90 − 53\nhàng đơn vị 0 < 3 nên mượn 1: 10 − 3 = 7, viết 7\nhàng chục 9 − 6 = 3, viết 3\nVậy 90 − 53 = 37."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Chú Ý",
+            title: "Vì sao ra 47 là sai?",
+            explanation: "47 là kết quả khi bé quên bớt 1 chục sau khi mượn. Đây là lỗi hay gặp nhất của dạng trừ này.",
+            points: [
+              "Lỗi — quên bớt 1 chục sau khi mượn: hàng đơn vị 0 < 3 nên mượn 1: 10 − 3 = 7, viết 7. Kết quả đúng phải là 37.",
+              "Cách tránh: làm xong một hàng thì ghi/xoá số đã vay NGAY, đừng để sang hàng sau mới nhớ.",
+              "Tự kiểm tra: 37 + 53 phải bằng 90."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "83 − 66 bằng bao nhiêu?",
+            options: [16, 17, 18, 27],
+            answer: 17,
+            mascotHint: "hàng đơn vị 3 < 6 nên mượn 1: 13 − 6 = 7, viết 7. Kết quả 17."
+          }
         },
         {
           type: "quiz",

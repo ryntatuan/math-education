@@ -3,7 +3,7 @@
  * Lấy từ ảnh Duolingo Math người dùng gửi (2026-09-28): `2 + 2 + 2 = 3 × ☐` rồi một TRỤC SỐ
  * bên dưới với các vạch 0 · 2 · 4 · 6 · 8 và con trỏ hình cái nhà để bé kéo.
  *
- * VÌ SAO CẦN: “tia số / trục số” là cách SGK Lớp 2–4 dạy đếm thêm, gấp lên, làm tròn. Kéo con trỏ
+ * VÌ SAO CẦN: “tia số / trục số” là cách Lớp 2–4 dạy đếm thêm, gấp lên, làm tròn. Kéo con trỏ
  * bắt bé ĐỌC VẠCH và ƯỚC LƯỢNG VỊ TRÍ — khác hẳn bấm một đáp án cho sẵn.
  *
  * BỐ CỤC theo ảnh: (1) hàng phép tính `2 + 2 + 2 = 3 × [ hộp ]` — hộp là KHUNG MẪU, luôn trống;

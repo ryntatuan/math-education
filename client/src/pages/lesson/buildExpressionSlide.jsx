@@ -2,7 +2,7 @@
  * DẠNG BÀI “GHÉP THẺ THÀNH PHÉP TÍNH ĐÚNG” — lấy ý từ Duolingo Math (ảnh người dùng gửi
  * 2026-09-28: `100 = ☐ ☐` với các thẻ “×”, “25”, “4”, “5”, “20”).
  *
- * VÌ SAO CẦN: đây là dạng “điền số/dấu vào ô trống” của SGK nhưng KHÁC hẳn `bangTinh`/`cotTinh`:
+ * VÌ SAO CẦN: đây là dạng “điền số/dấu vào ô trống” của chương trình nhưng KHÁC hẳn `bangTinh`/`cotTinh`:
  *   • bé không bị ép điền một số đúng duy nhất — bé TỰ CHỌN các thẻ để tạo ra một biểu thức đúng;
  *   • MỘT SỐ HOẶC MỘT DẤU MỘT THẺ (`"25"`, `"×"`), không bao giờ dính nhau kiểu `"25 ×"` —
  *     dính nhau thì bé hết đường ghép `4 × 25`, tức là “nhiều cách đúng” chỉ còn trên giấy;

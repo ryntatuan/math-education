@@ -1,10 +1,10 @@
 /**
  * ĐẶT TÍNH DỌC — BÉ TỰ ĐIỀN KẾT QUẢ TỪNG HÀNG.
  *
- * 🔴 VÌ SAO CÓ FILE NÀY: “Đặt tính rồi tính” là dạng bài **phổ biến nhất** trong SGK Toán
- * 1–5 (Lớp 1 tr.46–71 và tr.88–105 gần như trang nào cũng có). Trước đây app chỉ có CÂU CHỮ
+ * 🔴 VÌ SAO CÓ FILE NÀY: “Đặt tính rồi tính” là dạng bài **phổ biến nhất** trong chương trình
+ * 1–5 (Lớp 1 gần như trang nào cũng có). Trước đây app chỉ có CÂU CHỮ
  * (“Đặt tính rồi tính: 32 + 14 = ?”) — trẻ **không nhìn thấy cột**, mà cả bài học “đặt tính
- * thẳng cột” nằm ở chỗ nhìn thấy cột. Nay bé bấm từng ô kết quả và chọn chữ số, đúng như SGK.
+ * thẳng cột” nằm ở chỗ nhìn thấy cột. Nay bé bấm từng ô kết quả và chọn chữ số, đúng cách trình bày chuẩn.
  *
  * ⚠️ KHÁC `bangTinh` Ở MỘT ĐIỂM QUAN TRỌNG: đáp án **không khai trong dữ liệu** mà do hàm
  * thuần tự tính từ `left`/`right`/`sign` ⇒ không thể có chuyện “dữ liệu lệch đáp án”, và
@@ -152,7 +152,7 @@ export function CotTinh({
   }, [fill.done]);
 
   // ---- BỐ CỤC RIÊNG CHO PHÉP CHIA: số bị chia | vạch dọc | số chia, dưới vạch ngang là THƯƠNG.
-  // Đúng cách SGK trình bày (48 : 4 viết 48 | 4 rồi thương 12 ở dưới). Bé điền các chữ số
+  // Đúng cách trình bày (48 : 4 viết 48 | 4 rồi thương 12 ở dưới). Bé điền các chữ số
   // thương từ TRÁI sang PHẢI, sau cùng điền ô SỐ DƯ (nếu phép chia có dư).
   if (laChia) {
     const oRong = 44;

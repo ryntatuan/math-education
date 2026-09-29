@@ -647,20 +647,6 @@
   overflow-wrap: anywhere;
 }
 
-/* ─────────────────────────── COMBO LIÊN TIẾP (kiểu Duolingo) ───────────────────────────
-   Hiện từ chuỗi 2 câu đúng liên tiếp. KHÔNG đổi xu/XP (xem `reward_configs`) — chỉ động viên. */
-.lesson-combo-badge {
-  align-self: center;
-  padding: 6px 18px;
-  border-radius: 999px;
-  background: linear-gradient(135deg, #fef3c7, #fde68a);
-  border: 2px solid #f59e0b;
-  color: #92400e;
-  font-weight: 900;
-  font-size: clamp(0.95rem, 1.2vw, 1.1rem);
-  box-shadow: 0 4px 0 #d97706;
-}
-
 /* ─────────────────────────── DẠNG “CHỌN TẤT CẢ ĐÁP ÁN ĐÚNG” ───────────────────────────
    (Duolingo: “Chọn tất cả các phương án thích hợp”.) Căn TRÁI như mọi ô đáp án khác —
    xem “LUẬT CĂN LỀ” đầu file. */

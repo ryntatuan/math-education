@@ -52,6 +52,71 @@ export const g4c12 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 2,
+              right: 4,
+              sign: "×",
+              remember: true
+            },
+            text: "Bé tự đặt tính: 2 × 4\nhàng đơn vị 2 × 4 = 8, viết 8\nVậy 2 × 4 = 8."
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            fractionBar: {
+              parts: 3,
+              shaded: 2,
+              label: "2/3",
+              unit: "băng giấy"
+            },
+            text: "Phân số 2/3: chia băng giấy thành 3 phần bằng nhau\ntô màu 2 phần trong số đó\nĐọc là “2 phần 3”."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Ghi Nhớ",
+            title: "Đọc và hiểu phân số",
+            explanation: "Mẫu số cho biết chia thành mấy phần BẰNG NHAU; tử số cho biết lấy mấy phần.",
+            points: [
+              "Mẫu số 3 — chia đều thành 3 phần.",
+              "Tử số 2 — lấy 2 phần trong số đó.",
+              "Mẫu số phải khác 0; chia thành 0 phần thì không có gì để lấy.",
+              "Hai phân số bằng nhau khi cùng biểu diễn một phần của cùng một vật: 2/3 = 4/6."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Trong phân số 2/3, mẫu số là số nào?",
+            options: [2, 3, 4, 5],
+            answer: 3,
+            mascotHint: "Mẫu số là số dưới dấu gạch: 3."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Trong phân số 2/3, tử số là số nào?",
+            options: [1, 2, 3, 4],
+            answer: 2,
+            mascotHint: "Tử số là số TRÊN dấu gạch: 2."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "3 × 3 bằng bao nhiêu?",
+            options: [8, 9, 10, 11],
+            answer: 9,
+            mascotHint: "hàng đơn vị 3 × 3 = 9, viết 9. Kết quả 9."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Tính: 2/3 × 4/5 = ?",
@@ -126,6 +191,80 @@ export const g4c12 = {
               label: "Phân số nhân với phân số đảo ngược của nó luôn bằng 1",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            fractionBar: {
+              parts: 4,
+              shaded: 3,
+              label: "3/4",
+              unit: "băng giấy"
+            },
+            text: "Phân số 3/4: chia băng giấy thành 4 phần bằng nhau\ntô màu 3 phần trong số đó\nĐọc là “3 phần 4”."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Ghi Nhớ",
+            title: "Đọc và hiểu phân số",
+            explanation: "Mẫu số cho biết chia thành mấy phần BẰNG NHAU; tử số cho biết lấy mấy phần.",
+            points: [
+              "Mẫu số 4 — chia đều thành 4 phần.",
+              "Tử số 3 — lấy 3 phần trong số đó.",
+              "Mẫu số phải khác 0; chia thành 0 phần thì không có gì để lấy.",
+              "Hai phân số bằng nhau khi cùng biểu diễn một phần của cùng một vật: 3/4 = 6/8."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                ["Bước 1 — Số chữ số", "nhiều chữ số hơn thì số đó lớn hơn"],
+                [
+                  "Bước 2 — So từ trái",
+                  "so từng hàng từ trái sang phải, khác nhau thì dừng"
+                ],
+                ["Bước 3 — Đọc số", "đọc từ trái sang phải, hết mỗi lớp ba chữ số"]
+              ]
+            },
+            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
+            options: [
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Nộp bài luôn cho nhanh",
+              "Đoán lại một lần nữa"
+            ],
+            answer: "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            mascotHint: "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Trong phân số 3/4, mẫu số là số nào?",
+            options: [3, 4, 5, 6],
+            answer: 4,
+            mascotHint: "Mẫu số là số dưới dấu gạch: 4."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Trong phân số 3/4, tử số là số nào?",
+            options: [2, 3, 4, 5],
+            answer: 3,
+            mascotHint: "Tử số là số TRÊN dấu gạch: 3."
+          }
         },
         {
           type: "quiz",
@@ -205,6 +344,73 @@ export const g4c12 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            fractionBar: {
+              parts: 3,
+              shaded: 2,
+              label: "2/3",
+              unit: "băng giấy"
+            },
+            text: "Phân số 2/3: chia băng giấy thành 3 phần bằng nhau\ntô màu 2 phần trong số đó\nĐọc là “2 phần 3”."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Ghi Nhớ",
+            title: "Đọc và hiểu phân số",
+            explanation: "Mẫu số cho biết chia thành mấy phần BẰNG NHAU; tử số cho biết lấy mấy phần.",
+            points: [
+              "Mẫu số 3 — chia đều thành 3 phần.",
+              "Tử số 2 — lấy 2 phần trong số đó.",
+              "Mẫu số phải khác 0; chia thành 0 phần thì không có gì để lấy.",
+              "Hai phân số bằng nhau khi cùng biểu diễn một phần của cùng một vật: 2/3 = 4/6."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                ["Bước 1 — Đơn vị", "viết kết quả luôn kèm đơn vị"],
+                ["Bước 2 — Bậc thang", "đi xuống thì nhân, đi lên thì chia"],
+                ["Bước 3 — Kiểm lại", "lấy kết quả đổi ngược lại xem có về số ban đầu"]
+              ]
+            },
+            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "2 × 6 bằng bao nhiêu?",
+            options: [11, 12, 13, 22],
+            answer: 12,
+            mascotHint: "Bé đặt tính rồi tính từ hàng đơn vị. Kết quả 12."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Trong phân số 2/3, mẫu số là số nào?",
+            options: [2, 3, 4, 5],
+            answer: 3,
+            mascotHint: "Mẫu số là số dưới dấu gạch: 3."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Trong phân số 2/3, tử số là số nào?",
+            options: [1, 2, 3, 4],
+            answer: 2,
+            mascotHint: "Tử số là số TRÊN dấu gạch: 2."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "2/3 của 9 quả cam là bao nhiêu quả?",
@@ -264,6 +470,76 @@ export const g4c12 = {
               label: "Tìm phân số của một số: chia mẫu rồi nhân tử",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            fractionBar: {
+              parts: 4,
+              shaded: 3,
+              label: "3/4",
+              unit: "băng giấy"
+            },
+            text: "Phân số 3/4: chia băng giấy thành 4 phần bằng nhau\ntô màu 3 phần trong số đó\nĐọc là “3 phần 4”."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Ghi Nhớ",
+            title: "Đọc và hiểu phân số",
+            explanation: "Mẫu số cho biết chia thành mấy phần BẰNG NHAU; tử số cho biết lấy mấy phần.",
+            points: [
+              "Mẫu số 4 — chia đều thành 4 phần.",
+              "Tử số 3 — lấy 3 phần trong số đó.",
+              "Mẫu số phải khác 0; chia thành 0 phần thì không có gì để lấy.",
+              "Hai phân số bằng nhau khi cùng biểu diễn một phần của cùng một vật: 3/4 = 6/8."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                ["Bước 1 — Gọi tên", "nói đúng tên hình/khối trước khi làm gì tiếp"],
+                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học"],
+                [
+                  "Bước 3 — Kiểm tra",
+                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt"
+                ]
+              ]
+            },
+            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "71 × 2 bằng bao nhiêu?",
+            options: [141, 142, 143, 152],
+            answer: 142,
+            mascotHint: "Bé đặt tính rồi tính từ hàng đơn vị. Kết quả 142."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Trong phân số 3/4, mẫu số là số nào?",
+            options: [3, 4, 5, 6],
+            answer: 4,
+            mascotHint: "Mẫu số là số dưới dấu gạch: 4."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Trong phân số 3/4, tử số là số nào?",
+            options: [2, 3, 4, 5],
+            answer: 3,
+            mascotHint: "Tử số là số TRÊN dấu gạch: 3."
+          }
         },
         {
           type: "quiz",

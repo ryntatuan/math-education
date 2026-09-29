@@ -1,6 +1,6 @@
 /**
  * DẠNG BÀI “NỐI CẶP” — dạng “tap the pairs” của Duolingo, và cũng là dạng **“Nối theo mẫu”**
- * xuất hiện rất nhiều trong SGK Toán Lớp 1–3 (nối phép tính với kết quả, nối số với cách đọc,
+ * xuất hiện rất nhiều trong chương trình Lớp 1–3 (nối phép tính với kết quả, nối số với cách đọc,
  * nối đơn vị đo với số đo tương ứng).
  *
  * Luật chấm: bấm một thẻ bên TRÁI rồi một thẻ bên PHẢI. Đúng cặp thì cả hai khoá lại và xanh;

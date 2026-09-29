@@ -55,6 +55,51 @@ export const g2c6 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Đơn vị", "Bằng bao nhiêu đơn vị liền sau"],
+              rows: [
+                ["1 giờ", "60 phút"],
+                ["1 phút", "60 giây"]
+              ]
+            },
+            text: "Bậc thang đơn vị đo thời gian\n· giờ\n· phút\n· giây\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "Cách đổi đơn vị đo thời gian",
+            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            points: [
+              "1 giờ = 60 phút.",
+              "Đi xuống hai bậc thì nhân hai lần: 1 giờ = 60 × 60 = 3600 giây.",
+              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 giờ = 120 phút.",
+              "Đổi số bé ra số lớn: CHIA. Ví dụ 180 phút = 3 giờ."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "1 giờ bằng bao nhiêu phút?",
+            options: [6, 60, 600, 3600],
+            answer: 60,
+            mascotHint: "Hai đơn vị liền nhau: 1 giờ = 60 phút."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "3 giờ bằng bao nhiêu phút?",
+            options: [60, 180, 240, 1800],
+            answer: 180,
+            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 60 = 180."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Một ngày có bao nhiêu giờ?",
@@ -131,6 +176,51 @@ export const g2c6 = {
               label: "Giờ và phút",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Đơn vị", "Bằng bao nhiêu đơn vị liền sau"],
+              rows: [
+                ["1 giờ", "60 phút"],
+                ["1 phút", "60 giây"]
+              ]
+            },
+            text: "Bậc thang đơn vị đo thời gian\n· giờ\n· phút\n· giây\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "Cách đổi đơn vị đo thời gian",
+            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            points: [
+              "1 giờ = 60 phút.",
+              "Đi xuống hai bậc thì nhân hai lần: 1 giờ = 60 × 60 = 3600 giây.",
+              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 giờ = 120 phút.",
+              "Đổi số bé ra số lớn: CHIA. Ví dụ 180 phút = 3 giờ."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "1 giờ bằng bao nhiêu phút?",
+            options: [6, 60, 600, 3600],
+            answer: 60,
+            mascotHint: "Hai đơn vị liền nhau: 1 giờ = 60 phút."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "3 giờ bằng bao nhiêu phút?",
+            options: [60, 180, 240, 1800],
+            answer: 180,
+            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 60 = 180."
+          }
         },
         {
           type: "quiz",
@@ -217,6 +307,51 @@ export const g2c6 = {
               label: "Xem đồng hồ chỉ giờ và phút",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Đơn vị", "Bằng bao nhiêu đơn vị liền sau"],
+              rows: [
+                ["1 giờ", "60 phút"],
+                ["1 phút", "60 giây"]
+              ]
+            },
+            text: "Bậc thang đơn vị đo thời gian\n· giờ\n· phút\n· giây\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "Cách đổi đơn vị đo thời gian",
+            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            points: [
+              "1 giờ = 60 phút.",
+              "Đi xuống hai bậc thì nhân hai lần: 1 giờ = 60 × 60 = 3600 giây.",
+              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 giờ = 120 phút.",
+              "Đổi số bé ra số lớn: CHIA. Ví dụ 180 phút = 3 giờ."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "1 giờ bằng bao nhiêu phút?",
+            options: [6, 60, 600, 3600],
+            answer: 60,
+            mascotHint: "Hai đơn vị liền nhau: 1 giờ = 60 phút."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "3 giờ bằng bao nhiêu phút?",
+            options: [60, 180, 240, 1800],
+            answer: 180,
+            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 60 = 180."
+          }
         },
         {
           type: "quiz",
@@ -311,6 +446,52 @@ export const g2c6 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Đơn vị", "Bằng bao nhiêu đơn vị liền sau"],
+              rows: [
+                ["1 m", "10 dm"],
+                ["1 dm", "10 cm"],
+                ["1 cm", "10 mm"]
+              ]
+            },
+            text: "Bậc thang đơn vị đo độ dài\n· m\n· dm\n· cm\n· mm\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "Cách đổi đơn vị đo độ dài",
+            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            points: [
+              "1 m = 10 dm.",
+              "Đi xuống hai bậc thì nhân hai lần: 1 m = 10 × 10 = 100 cm.",
+              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 m = 20 dm.",
+              "Đổi số bé ra số lớn: CHIA. Ví dụ 30 dm = 3 m."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "1 m bằng bao nhiêu dm?",
+            options: [1, 10, 11, 100],
+            answer: 10,
+            mascotHint: "Hai đơn vị liền nhau: 1 m = 10 dm."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "3 m bằng bao nhiêu dm?",
+            options: [10, 30, 40, 300],
+            answer: 30,
+            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 10 = 30."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Một năm có bao nhiêu tháng?",
@@ -379,6 +560,52 @@ export const g2c6 = {
               label: "Ngày 15 nằm ở cột Thứ Ba thì ngày 15 là thứ Ba",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Đơn vị", "Bằng bao nhiêu đơn vị liền sau"],
+              rows: [
+                ["1 m", "10 dm"],
+                ["1 dm", "10 cm"],
+                ["1 cm", "10 mm"]
+              ]
+            },
+            text: "Bậc thang đơn vị đo độ dài\n· m\n· dm\n· cm\n· mm\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "Cách đổi đơn vị đo độ dài",
+            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            points: [
+              "1 m = 10 dm.",
+              "Đi xuống hai bậc thì nhân hai lần: 1 m = 10 × 10 = 100 cm.",
+              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 m = 20 dm.",
+              "Đổi số bé ra số lớn: CHIA. Ví dụ 30 dm = 3 m."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "1 m bằng bao nhiêu dm?",
+            options: [1, 10, 11, 100],
+            answer: 10,
+            mascotHint: "Hai đơn vị liền nhau: 1 m = 10 dm."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "3 m bằng bao nhiêu dm?",
+            options: [10, 30, 40, 300],
+            answer: 30,
+            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 10 = 30."
+          }
         },
         {
           type: "quiz",
@@ -454,6 +681,71 @@ export const g2c6 = {
               label: "Thực hành xem đồng hồ",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 8,
+              right: 7,
+              sign: "−"
+            },
+            text: "Bé tự đặt tính: 8 − 7\nhàng đơn vị 8 − 7 = 1, viết 1\nVậy 8 − 7 = 1."
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Đơn vị", "Bằng bao nhiêu đơn vị liền sau"],
+              rows: [
+                ["1 giờ", "60 phút"],
+                ["1 phút", "60 giây"]
+              ]
+            },
+            text: "Bậc thang đơn vị đo thời gian\n· giờ\n· phút\n· giây\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "Cách đổi đơn vị đo thời gian",
+            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            points: [
+              "1 giờ = 60 phút.",
+              "Đi xuống hai bậc thì nhân hai lần: 1 giờ = 60 × 60 = 3600 giây.",
+              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 giờ = 120 phút.",
+              "Đổi số bé ra số lớn: CHIA. Ví dụ 180 phút = 3 giờ."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "1 giờ bằng bao nhiêu phút?",
+            options: [6, 60, 600, 3600],
+            answer: 60,
+            mascotHint: "Hai đơn vị liền nhau: 1 giờ = 60 phút."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "3 giờ bằng bao nhiêu phút?",
+            options: [60, 180, 240, 1800],
+            answer: 180,
+            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 60 = 180."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "7 − 6 bằng bao nhiêu?",
+            options: [1, 2, 3],
+            answer: 1,
+            mascotHint: "hàng đơn vị 7 − 6 = 1, viết 1. Kết quả 1."
+          }
         },
         {
           type: "quiz",
@@ -533,6 +825,51 @@ export const g2c6 = {
               label: "Luyện tập chung chủ đề 6",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Đơn vị", "Bằng bao nhiêu đơn vị liền sau"],
+              rows: [
+                ["1 giờ", "60 phút"],
+                ["1 phút", "60 giây"]
+              ]
+            },
+            text: "Bậc thang đơn vị đo thời gian\n· giờ\n· phút\n· giây\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "Cách đổi đơn vị đo thời gian",
+            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            points: [
+              "1 giờ = 60 phút.",
+              "Đi xuống hai bậc thì nhân hai lần: 1 giờ = 60 × 60 = 3600 giây.",
+              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 giờ = 120 phút.",
+              "Đổi số bé ra số lớn: CHIA. Ví dụ 180 phút = 3 giờ."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "1 giờ bằng bao nhiêu phút?",
+            options: [6, 60, 600, 3600],
+            answer: 60,
+            mascotHint: "Hai đơn vị liền nhau: 1 giờ = 60 phút."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "3 giờ bằng bao nhiêu phút?",
+            options: [60, 180, 240, 1800],
+            answer: 180,
+            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 60 = 180."
+          }
         },
         {
           type: "quiz",

@@ -95,7 +95,7 @@ export const SHAPE_POINTS = {
   /**
    * TỨ GIÁC THƯỜNG — cố ý KHÔNG vuông, KHÔNG đều, bốn cạnh dài ngắn khác nhau.
    * 🔴 VÌ SAO CẦN: bài Lớp 2 `g2-c5-l6` dạy "hình TỨ GIÁC ABCD" mà lấy hình chữ nhật
-   * làm minh hoạ thì trẻ dễ hiểu sai thành "tứ giác = hình chữ nhật". Sách giáo khoa
+   * làm minh hoạ thì trẻ dễ hiểu sai thành "tứ giác = hình chữ nhật". Chương trình
    * cũng vẽ một tứ giác chung rồi mới nói "hình vuông, hình chữ nhật CŨNG LÀ hình tứ giác".
    */
   quad: [

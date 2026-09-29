@@ -51,6 +51,52 @@ export const g2c13 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Nhóm", "Số bạn"],
+              rows: [
+                ["Thích màu đỏ", "7 bạn"],
+                ["Thích màu xanh", "4 bạn"]
+              ],
+              label: "Ví dụ: hỏi các bạn trong lớp rồi xếp vào hai nhóm — mỗi bạn chỉ ở một nhóm"
+            },
+            text: "Bảng số liệu của bài — bé đọc theo HÀNG, không đọc theo cột\nMuốn biết “tất cả”, “nhiều nhất”, “ít nhất” thì phải cộng hoặc so các con số.\nVí dụ: 7 + 4 = 11."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "Cách đọc bảng số liệu",
+            explanation: "Bảng số liệu là một bức tranh bằng số: mỗi hàng là một đối tượng, mỗi cột là một thông tin.",
+            points: [
+              "Bước 1 — đọc tên hàng (hoặc cột đầu) để biết đang nói về cái gì.",
+              "Bước 2 — đọc con số ở cột tương ứng với đối tượng đó.",
+              "Bước 3 — muốn biết “tất cả”, “nhiều nhất”, “ít nhất” thì phải CỘNG hoặc SO các con số, không đọc lại một ô.",
+              "Kiểm tra lại: tổng vừa tính phải LỚN HƠN từng con số trong bảng."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Trong bảng trên, số lượng nào LỚN NHẤT?",
+            options: [4, 7, 8, 11],
+            answer: 7,
+            mascotHint: "Bé so các con số 7, 4 — số lớn nhất là 7."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Cộng các con số trong bảng lại thì được bao nhiêu?",
+            options: [7, 11, 12, 14],
+            answer: 11,
+            mascotHint: "Lấy các con số cộng lại: 7 + 4 = 11."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Phân loại các loại quả theo tiêu chí nào là hợp lí?",
@@ -118,6 +164,72 @@ export const g2c13 = {
               label: "Kiểm đếm bằng vạch: cứ 5 vạch thì gạch chéo một lần",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 7,
+              right: 4,
+              sign: "−"
+            },
+            text: "Bé tự đặt tính: 7 − 4\nhàng đơn vị 7 − 4 = 3, viết 3\nVậy 7 − 4 = 3."
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Màu", "Số bạn"],
+              rows: [
+                ["Màu đỏ", 7],
+                ["Màu xanh", 4]
+              ],
+              label: "Kiểm đếm bằng vạch: cứ 5 vạch thì gạch chéo một lần"
+            },
+            text: "Bảng số liệu của bài — bé đọc theo HÀNG, không đọc theo cột\nMuốn biết “tất cả”, “nhiều nhất”, “ít nhất” thì phải cộng hoặc so các con số.\nVí dụ: 7 + 4 = 11."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "Cách đọc bảng số liệu",
+            explanation: "Bảng số liệu là một bức tranh bằng số: mỗi hàng là một đối tượng, mỗi cột là một thông tin.",
+            points: [
+              "Bước 1 — đọc tên hàng (hoặc cột đầu) để biết đang nói về cái gì.",
+              "Bước 2 — đọc con số ở cột tương ứng với đối tượng đó.",
+              "Bước 3 — muốn biết “tất cả”, “nhiều nhất”, “ít nhất” thì phải CỘNG hoặc SO các con số, không đọc lại một ô.",
+              "Kiểm tra lại: tổng vừa tính phải LỚN HƠN từng con số trong bảng."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Trong bảng trên, số lượng nào LỚN NHẤT?",
+            options: [4, 7, 8, 11],
+            answer: 7,
+            mascotHint: "Bé so các con số 7, 4 — số lớn nhất là 7."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Cộng các con số trong bảng lại thì được bao nhiêu?",
+            options: [7, 11, 12, 14],
+            answer: 11,
+            mascotHint: "Lấy các con số cộng lại: 7 + 4 = 11."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "8 − 5 bằng bao nhiêu?",
+            options: [2, 3, 4, 5],
+            answer: 3,
+            mascotHint: "hàng đơn vị 8 − 5 = 3, viết 3. Kết quả 3."
+          }
         },
         {
           type: "quiz",
@@ -211,6 +323,48 @@ export const g2c13 = {
           },
         },
         {
+          type: "concept",
+          content: {
+            badge: "Cách Học",
+            title: "Bốn bước làm một bài toán",
+            explanation: "Mọi bài bài toán có lời văn đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            points: [
+              "Bước 1 — Đọc kỹ đề, gạch dưới các SỐ và từ khoá (thêm, bớt, gấp, chia đều).",
+              "Bước 2 — Tóm tắt đề bằng hình hoặc bằng câu ngắn: đã có gì, cần tìm gì.",
+              "Bước 3 — Chọn phép tính: “thêm, gộp, tất cả” → cộng; “bớt, cho đi, còn lại” → trừ; “gấp mấy lần” → nhân.",
+              "Bước 4 — Đặt tính rồi tính, rồi VIẾT ĐÁP SỐ kèm đơn vị và thử lại bằng phép ngược."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Điều cần nhớ", "Nội dung"],
+              rows: [
+                ["Đơn vị", "đáp số luôn kèm đơn vị như con, quả, kg, cm"],
+                ["Kiểm tra", "cộng thì lấy kết quả trừ đi một số hạng"],
+                ["Câu trả lời", "viết đủ câu, không chỉ ghi số"]
+              ]
+            },
+            text: "Bảng nhớ nhanh — bài toán có lời văn\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Giải một bài toán có lời văn, bé làm gì TRƯỚC TIÊN?",
+            options: [
+              "Đọc kỹ đề và gạch dưới các số đã cho",
+              "Viết ngay đáp số",
+              "Đoán kết quả",
+              "Đặt tính trước khi đọc đề"
+            ],
+            answer: "Đọc kỹ đề và gạch dưới các số đã cho",
+            mascotHint: "Chưa đọc kỹ đề thì chưa biết đề cho gì, hỏi gì — mọi bước sau đều dễ sai."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question:
@@ -287,6 +441,27 @@ export const g2c13 = {
               highlight: 0,
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 3,
+              right: 2,
+              sign: "×",
+              remember: true
+            },
+            text: "Bé tự đặt tính: 3 × 2\nhàng đơn vị 3 × 2 = 6, viết 6\nVậy 3 × 2 = 6."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "1 × 7 bằng bao nhiêu?",
+            options: [6, 7, 8, 9],
+            answer: 7,
+            mascotHint: "hàng đơn vị 1 × 7 = 7, viết 7. Kết quả 7."
+          }
         },
         {
           type: "quiz",
@@ -386,6 +561,43 @@ export const g2c13 = {
           },
         },
         {
+          type: "concept",
+          content: {
+            badge: "Cách Học",
+            title: "Bốn bước làm một bài toán",
+            explanation: "Mọi bài đo lường và đổi đơn vị đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            points: [
+              "Bước 1 — Đọc đơn vị đang có và đơn vị cần đổi.",
+              "Bước 2 — Viết bậc thang đơn vị ra giấy để thấy phải đi mấy bậc.",
+              "Bước 3 — Đi xuống (ra đơn vị bé hơn) thì NHÂN; đi lên (ra đơn vị lớn hơn) thì CHIA.",
+              "Bước 4 — Viết kết quả kèm đơn vị và kiểm tra lại bằng phép ngược."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Điều cần nhớ", "Nội dung"],
+              rows: [
+                ["1 m", "= 100 cm"],
+                ["1 kg", "= 1 000 g"],
+                ["1 l", "= 1 000 ml"]
+              ]
+            },
+            text: "Bảng nhớ nhanh — đo lường và đổi đơn vị\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Đổi số đo từ đơn vị lớn sang đơn vị bé hơn thì bé làm phép gì?",
+            options: ["Nhân", "Chia", "Cộng", "Trừ"],
+            answer: "Nhân",
+            mascotHint: "Đơn vị bé hơn thì số đo phải nhiều hơn: 1 m đổi ra cm được 100 cm — đó là phép nhân."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question:
@@ -470,6 +682,75 @@ export const g2c13 = {
               label: "Luyện tập chung chủ đề 13",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 4,
+              right: 5,
+              sign: "×",
+              remember: true
+            },
+            text: "Bé tự đặt tính: 4 × 5\nhàng đơn vị 4 × 5 = 20, viết 0 nhớ 2\ncòn nhớ 2 ở hàng cao hơn, viết 2\nVậy 4 × 5 = 20."
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc làm"],
+              rows: [
+                ["1", "Thu thập số liệu"],
+                ["2", "Phân loại"],
+                ["3", "Kiểm đếm"],
+                ["4", "Vẽ biểu đồ tranh"]
+              ],
+              label: "Luyện tập chung chủ đề 13"
+            },
+            text: "Bảng số liệu của bài — bé đọc theo HÀNG, không đọc theo cột\nMuốn biết “tất cả”, “nhiều nhất”, “ít nhất” thì phải cộng hoặc so các con số.\nVí dụ: 1 + 2 + 3 = 6."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "Cách đọc bảng số liệu",
+            explanation: "Bảng số liệu là một bức tranh bằng số: mỗi hàng là một đối tượng, mỗi cột là một thông tin.",
+            points: [
+              "Bước 1 — đọc tên hàng (hoặc cột đầu) để biết đang nói về cái gì.",
+              "Bước 2 — đọc con số ở cột tương ứng với đối tượng đó.",
+              "Bước 3 — muốn biết “tất cả”, “nhiều nhất”, “ít nhất” thì phải CỘNG hoặc SO các con số, không đọc lại một ô.",
+              "Kiểm tra lại: tổng vừa tính phải LỚN HƠN từng con số trong bảng."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Trong bảng trên, số lượng nào LỚN NHẤT?",
+            options: [1, 3, 4, 6],
+            answer: 3,
+            mascotHint: "Bé so các con số 1, 2, 3 — số lớn nhất là 3."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Cộng các con số trong bảng lại thì được bao nhiêu?",
+            options: [3, 5, 6, 7],
+            answer: 6,
+            mascotHint: "Lấy các con số cộng lại: 1 + 2 + 3 = 6."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "4 × 4 bằng bao nhiêu?",
+            options: [6, 15, 16, 17],
+            answer: 16,
+            mascotHint: "hàng đơn vị 4 × 4 = 16, viết 6 nhớ 1. Kết quả 16."
+          }
         },
         {
           type: "quiz",

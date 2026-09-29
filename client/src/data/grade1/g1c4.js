@@ -11,8 +11,7 @@ export const g1c4 = {
       id: "g1-c4-l1",
       title: "Bài 1: Khối lập phương",
       type: "learn",
-      description:
-        "SGK Bài 14 (tr.92–93): nhận biết khối lập phương — hộp quà, con xúc xắc",
+      description: "nhận biết khối lập phương — hộp quà, con xúc xắc",
       slides: [
         {
           type: "story",
@@ -61,6 +60,100 @@ export const g1c4 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            solid: {
+              kind: "cube",
+            },
+            text: "khối lập phương bé học hôm nay có gì đặc biệt?\n· 6 mặt đều là hình vuông bằng nhau\n· 8 đỉnh\nBé đếm mặt, đếm đỉnh, đếm cạnh ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé.",
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Ghi Nhớ",
+            title: "Đặc điểm của khối lập phương",
+            explanation:
+              "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của khối lập phương.",
+            points: [
+              "khối lập phương có 6 mặt đều là hình vuông bằng nhau.",
+              "khối lập phương có 8 đỉnh.",
+              "khối lập phương có 12 cạnh bằng nhau.",
+              "Cách kiểm tra: bé đếm mặt, đếm đỉnh, đếm cạnh; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình.",
+            ],
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                [
+                  "Bước 1 — Gọi tên",
+                  "nói đúng tên hình/khối trước khi làm gì tiếp",
+                ],
+                [
+                  "Bước 2 — Đếm",
+                  "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học",
+                ],
+                [
+                  "Bước 3 — Kiểm tra",
+                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt",
+                ],
+              ],
+            },
+            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question:
+              "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
+            options: [
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Nộp bài luôn cho nhanh",
+              "Đoán lại một lần nữa",
+            ],
+            answer:
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            mascotHint:
+              "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Hình nào có 6 mặt đều là hình vuông bằng nhau?",
+            options: [
+              "khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ",
+              "hình khối cầu",
+            ],
+            answer: "khối lập phương",
+            mascotHint:
+              "khối lập phương: 6 mặt đều là hình vuông bằng nhau · 8 đỉnh · 12 cạnh bằng nhau.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question:
+              "Trong bài hôm nay có hình khối lập phương và hình khối hộp chữ nhật và hình khối cầu và hình vuông. Hình nào có 8 đỉnh?",
+            options: [
+              "khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ",
+              "hình khối cầu",
+            ],
+            answer: "khối lập phương",
+            mascotHint:
+              "Đáp án là khối lập phương: 6 mặt đều là hình vuông bằng nhau · 8 đỉnh · 12 cạnh bằng nhau.",
+          },
+        },
+        {
           type: "quiz",
           content: {
             question: "Khối lập phương có mấy mặt?",
@@ -96,7 +189,7 @@ export const g1c4 = {
       title: "Bài 2: Khối hộp chữ nhật",
       type: "learn",
       description:
-        "SGK Bài 14 (tr.92–93): nhận biết khối hộp chữ nhật — hộp bánh, viên gạch, bao diêm",
+        "nhận biết khối hộp chữ nhật — hộp bánh, viên gạch, bao diêm",
       slides: [
         {
           type: "story",
@@ -153,6 +246,100 @@ export const g1c4 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            solid: {
+              kind: "cube",
+            },
+            text: "khối lập phương bé học hôm nay có gì đặc biệt?\n· 6 mặt đều là hình vuông bằng nhau\n· 8 đỉnh\nBé đếm mặt, đếm đỉnh, đếm cạnh ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé.",
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Ghi Nhớ",
+            title: "Đặc điểm của khối lập phương",
+            explanation:
+              "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của khối lập phương.",
+            points: [
+              "khối lập phương có 6 mặt đều là hình vuông bằng nhau.",
+              "khối lập phương có 8 đỉnh.",
+              "khối lập phương có 12 cạnh bằng nhau.",
+              "Cách kiểm tra: bé đếm mặt, đếm đỉnh, đếm cạnh; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình.",
+            ],
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                [
+                  "Bước 1 — Gọi tên",
+                  "nói đúng tên hình/khối trước khi làm gì tiếp",
+                ],
+                [
+                  "Bước 2 — Đếm",
+                  "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học",
+                ],
+                [
+                  "Bước 3 — Kiểm tra",
+                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt",
+                ],
+              ],
+            },
+            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question:
+              "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
+            options: [
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Nộp bài luôn cho nhanh",
+              "Đoán lại một lần nữa",
+            ],
+            answer:
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            mascotHint:
+              "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Hình nào có 6 mặt đều là hình vuông bằng nhau?",
+            options: [
+              "khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ",
+              "hình khối cầu",
+            ],
+            answer: "khối lập phương",
+            mascotHint:
+              "khối lập phương: 6 mặt đều là hình vuông bằng nhau · 8 đỉnh · 12 cạnh bằng nhau.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question:
+              "Trong bài hôm nay có hình khối lập phương và hình khối hộp chữ nhật và hình khối cầu và hình chữ nhật. Hình nào có 8 đỉnh?",
+            options: [
+              "khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ",
+              "hình khối cầu",
+            ],
+            answer: "khối lập phương",
+            mascotHint:
+              "Đáp án là khối lập phương: 6 mặt đều là hình vuông bằng nhau · 8 đỉnh · 12 cạnh bằng nhau.",
+          },
+        },
+        {
           type: "quiz",
           content: {
             question: "Khối hộp chữ nhật khác khối lập phương ở điểm nào?",
@@ -195,7 +382,7 @@ export const g1c4 = {
       title: "Bài 3: Phân biệt hai khối",
       type: "learn",
       description:
-        "SGK Bài 14 (tr.94–95): phân biệt khối lập phương và khối hộp chữ nhật — lâu đài bạn Mai, chữ T–H–C",
+        "phân biệt khối lập phương và khối hộp chữ nhật — lâu đài bạn Mai, chữ T–H–C",
       slides: [
         {
           type: "story",
@@ -222,7 +409,7 @@ export const g1c4 = {
         {
           type: "visual",
           content: {
-            text: "🏰 Lâu đài bạn Mai (SGK tr.94) — hàng nền có mấy khối lập phương?",
+            text: "🏰 Lâu đài bạn Mai — hàng nền có mấy khối lập phương?",
             spatialScene: {
               mode: "maisCastle",
               note: "Hàng nền là các khối lập phương; mái và hai thanh đỏ là khối hộp chữ nhật.",
@@ -232,7 +419,7 @@ export const g1c4 = {
         {
           type: "visual",
           content: {
-            text: "🔤 Ba chữ T, H, C xếp bằng khối lập phương nhỏ (SGK tr.94)",
+            text: "🔤 Ba chữ T, H, C xếp bằng khối lập phương nhỏ",
             spatialScene: {
               mode: "lettersTHC",
               note: "Mỗi ô vuông nhỏ là một khối lập phương. Chữ H dùng nhiều khối nhất.",
@@ -242,7 +429,7 @@ export const g1c4 = {
         {
           type: "visual",
           content: {
-            text: "Những hình nào là khối lập phương? (SGK tr.100)",
+            text: "Những hình nào là khối lập phương?",
             spatialScene: {
               mode: "solidSort",
               round: 1,
@@ -253,12 +440,106 @@ export const g1c4 = {
         {
           type: "visual",
           content: {
-            text: "Còn những hình nào là khối hộp chữ nhật? (SGK tr.100)",
+            text: "Còn những hình nào là khối hộp chữ nhật?",
             spatialScene: {
               mode: "solidSort",
               round: 2,
               note: "Hình B cao và hẹp, hình G dài — cả hai đều là khối hộp chữ nhật.",
             },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            solid: {
+              kind: "cube",
+            },
+            text: "khối lập phương bé học hôm nay có gì đặc biệt?\n· 6 mặt đều là hình vuông bằng nhau\n· 8 đỉnh\nBé đếm mặt, đếm đỉnh, đếm cạnh ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé.",
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Ghi Nhớ",
+            title: "Đặc điểm của khối lập phương",
+            explanation:
+              "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của khối lập phương.",
+            points: [
+              "khối lập phương có 6 mặt đều là hình vuông bằng nhau.",
+              "khối lập phương có 8 đỉnh.",
+              "khối lập phương có 12 cạnh bằng nhau.",
+              "Cách kiểm tra: bé đếm mặt, đếm đỉnh, đếm cạnh; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình.",
+            ],
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                [
+                  "Bước 1 — Gọi tên",
+                  "nói đúng tên hình/khối trước khi làm gì tiếp",
+                ],
+                [
+                  "Bước 2 — Đếm",
+                  "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học",
+                ],
+                [
+                  "Bước 3 — Kiểm tra",
+                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt",
+                ],
+              ],
+            },
+            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question:
+              "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
+            options: [
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Nộp bài luôn cho nhanh",
+              "Đoán lại một lần nữa",
+            ],
+            answer:
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            mascotHint:
+              "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Hình nào có 6 mặt đều là hình vuông bằng nhau?",
+            options: [
+              "khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ",
+              "hình khối cầu",
+            ],
+            answer: "khối lập phương",
+            mascotHint:
+              "khối lập phương: 6 mặt đều là hình vuông bằng nhau · 8 đỉnh · 12 cạnh bằng nhau.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question:
+              "Trong bài hôm nay có hình khối lập phương và hình khối hộp chữ nhật và hình khối trụ và hình chữ nhật. Hình nào có 8 đỉnh?",
+            options: [
+              "khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ",
+              "hình khối cầu",
+            ],
+            answer: "khối lập phương",
+            mascotHint:
+              "Đáp án là khối lập phương: 6 mặt đều là hình vuông bằng nhau · 8 đỉnh · 12 cạnh bằng nhau.",
           },
         },
         {
@@ -320,7 +601,7 @@ export const g1c4 = {
       title: "Bài 4: Vị trí — trên, dưới, trước, sau",
       type: "learn",
       description:
-        "SGK Bài 15 (tr.96–97): vị trí trên – dưới – trước – sau; búp bê & mèo, ba chú thỏ, đoàn tàu, đèn giao thông",
+        "vị trí trên – dưới – trước – sau; búp bê & mèo, ba chú thỏ, đoàn tàu, đèn giao thông",
       slides: [
         {
           type: "story",
@@ -347,7 +628,7 @@ export const g1c4 = {
         {
           type: "visual",
           content: {
-            text: "🪑 Búp bê ở trên bàn, mèo ở dưới gầm bàn (SGK tr.96)",
+            text: "🪑 Búp bê ở trên bàn, mèo ở dưới gầm bàn",
             spatialScene: {
               mode: "dollCatTable",
             },
@@ -356,7 +637,7 @@ export const g1c4 = {
         {
           type: "visual",
           content: {
-            text: "🐰 Ba chú thỏ chạy về phía củ cà rốt — ai trước, ai giữa, ai sau? (SGK tr.96)",
+            text: "🐰 Ba chú thỏ chạy về phía củ cà rốt — ai trước, ai giữa, ai sau?",
             spatialScene: {
               mode: "rabbitQueue",
             },
@@ -365,7 +646,7 @@ export const g1c4 = {
         {
           type: "visual",
           content: {
-            text: "🚂 Đoàn tàu: đầu máy ở phía trước, rồi đến toa 1 · 2 · 3 · 4 (SGK tr.96)",
+            text: "🚂 Đoàn tàu: đầu máy ở phía trước, rồi đến toa 1 · 2 · 3 · 4",
             spatialScene: {
               mode: "trainCars",
             },
@@ -374,10 +655,54 @@ export const g1c4 = {
         {
           type: "visual",
           content: {
-            text: "🚦 Cột đèn giao thông: đèn nào ở trên cùng, ở giữa, dưới cùng? (SGK tr.96)",
+            text: "🚦 Cột đèn giao thông: đèn nào ở trên cùng, ở giữa, dưới cùng?",
             spatialScene: {
               mode: "trafficLight",
             },
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Cách Học",
+            title: "Bốn bước làm một bài toán",
+            explanation:
+              "Mọi bài tính toán đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            points: [
+              "Bước 1 — Đọc đề và xác định phép tính cần làm.",
+              "Bước 2 — Đặt tính thẳng cột: hàng đơn vị dưới hàng đơn vị, hàng chục dưới hàng chục.",
+              "Bước 3 — Tính từ PHẢI sang TRÁI; nhớ ghi hoặc xoá số nhớ ngay khi làm xong một hàng.",
+              "Bước 4 — Thử lại bằng phép ngược hoặc bằng ước lượng xem kết quả có hợp lý không.",
+            ],
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Điều cần nhớ", "Nội dung"],
+              rows: [
+                ["Cộng", "lấy kết quả trừ đi một số hạng để kiểm tra"],
+                ["Trừ", "lấy hiệu cộng số trừ phải được số bị trừ"],
+                ["Thứ tự", "luôn làm từ hàng đơn vị trước"],
+              ],
+            },
+            text: "Bảng nhớ nhanh — tính toán\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Khi đặt tính rồi tính, bé bắt đầu từ hàng nào?",
+            options: [
+              "Hàng đơn vị (từ phải sang trái)",
+              "Hàng cao nhất (trái sang phải)",
+              "Hàng nào cũng được",
+              "Hàng chục trước",
+            ],
+            answer: "Hàng đơn vị (từ phải sang trái)",
+            mascotHint:
+              "Tính từ phải sang trái thì số nhớ mới kịp cộng vào hàng bên trái.",
           },
         },
         {
@@ -436,7 +761,7 @@ export const g1c4 = {
       title: "Bài 5: Vị trí — trái, phải",
       type: "learn",
       description:
-        "SGK Bài 15 (tr.98): vị trí TRÁI – PHẢI; thỏ & rùa, hàng Mai – Nam – Rô-bốt; tay trái, tay phải",
+        "vị trí TRÁI – PHẢI; thỏ & rùa, hàng Mai – Nam – Rô-bốt; tay trái, tay phải",
       slides: [
         {
           type: "story",
@@ -463,7 +788,7 @@ export const g1c4 = {
         {
           type: "visual",
           content: {
-            text: "🐰 Bên trái là thỏ, bên phải là rùa 🐢 (SGK tr.98)",
+            text: "🐰 Bên trái là thỏ, bên phải là rùa 🐢",
             spatialScene: {
               mode: "rabbitTurtleLeftRight",
             },
@@ -472,7 +797,7 @@ export const g1c4 = {
         {
           type: "visual",
           content: {
-            text: "Mai — Nam — Rô-bốt: ai ở bên trái, ai ở bên phải? (SGK tr.98)",
+            text: "Mai — Nam — Rô-bốt: ai ở bên trái, ai ở bên phải?",
             spatialScene: {
               mode: "kidsLeftRight",
             },
@@ -481,17 +806,113 @@ export const g1c4 = {
         {
           type: "visual",
           content: {
-            text: "Từ TRÁI sang PHẢI: hình tam giác, hình vuông, hình tròn, hình chữ nhật (SGK tr.99)",
+            text: "Từ TRÁI sang PHẢI: hình tam giác, hình vuông, hình tròn, hình chữ nhật",
             /**
              * 🔴 HÌNH PHẢI VẼ RA, KHÔNG CHỈ LIỆT KÊ TÊN. Bản cũ là một **bảng chữ**
              * “thứ 1 (trái cùng) … thứ 4 (phải cùng)” ⇒ trẻ không thấy hình nào với hình nào
-             * (người dùng báo 2026-09-24). SGK tr.99 in đúng hàng ngang 4 hình: tam giác,
-             * vuông, tròn, chữ nhật — nay vẽ đúng như sách.
+             * (người dùng báo 2026-09-24). Hàng ngang in đúng 4 hình theo thứ tự: tam giác,
+             * vuông, tròn, chữ nhật — hình vẽ phải khớp đúng thứ tự ấy.
              */
             spatialScene: {
               mode: "shapeRow",
               note: "Bốn hình xếp theo thứ tự từ trái sang phải — bé đọc tên từng hình.",
             },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            planeShape: {
+              kind: "square",
+              vertices: true,
+              vertexLabel: "đỉnh",
+            },
+            text: "hình vuông bé học hôm nay có gì đặc biệt?\n· 4 cạnh dài bằng nhau\n· 4 góc vuông\nBé đếm cạnh, đếm đỉnh ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé.",
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Ghi Nhớ",
+            title: "Đặc điểm của hình vuông",
+            explanation:
+              "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của hình vuông.",
+            points: [
+              "hình vuông có 4 cạnh dài bằng nhau.",
+              "hình vuông có 4 góc vuông.",
+              "hình vuông có hai đường chéo bằng nhau.",
+              "Cách kiểm tra: bé đếm cạnh, đếm đỉnh; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình.",
+            ],
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                [
+                  "Bước 1 — Gọi tên",
+                  "nói đúng tên hình/khối trước khi làm gì tiếp",
+                ],
+                [
+                  "Bước 2 — Đếm",
+                  "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học",
+                ],
+                [
+                  "Bước 3 — Kiểm tra",
+                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt",
+                ],
+              ],
+            },
+            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question:
+              "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
+            options: [
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Nộp bài luôn cho nhanh",
+              "Đoán lại một lần nữa",
+            ],
+            answer:
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            mascotHint:
+              "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Hình nào có 4 cạnh dài bằng nhau?",
+            options: [
+              "hình vuông",
+              "hình khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ",
+            ],
+            answer: "hình vuông",
+            mascotHint:
+              "hình vuông: 4 cạnh dài bằng nhau · 4 góc vuông · hai đường chéo bằng nhau.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question:
+              "Trong bài hôm nay có hình vuông và hình tròn và hình tam giác và hình chữ nhật. Hình nào có 4 góc vuông?",
+            options: [
+              "hình vuông",
+              "hình khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ",
+            ],
+            answer: "hình vuông",
+            mascotHint:
+              "Đáp án là hình vuông: 4 cạnh dài bằng nhau · 4 góc vuông · hai đường chéo bằng nhau.",
           },
         },
         {
@@ -546,8 +967,7 @@ export const g1c4 = {
       id: "g1-c4-l6",
       title: "Bài 6: Định hướng trong không gian",
       type: "learn",
-      description:
-        "SGK Bài 15 (tr.96–99): mô tả vị trí đồ vật; phần luyện tập tr.97 và tr.99",
+      description: "mô tả vị trí đồ vật; phần luyện tập",
       slides: [
         {
           type: "story",
@@ -592,7 +1012,7 @@ export const g1c4 = {
         {
           type: "visual",
           content: {
-            text: "Hai hàng bạn cùng quay về phía ti vi: hàng sau và hàng trước (SGK tr.97)",
+            text: "Hai hàng bạn cùng quay về phía ti vi: hàng sau và hàng trước",
             spatialScene: {
               mode: "movieRows",
               front: 4,
@@ -604,10 +1024,104 @@ export const g1c4 = {
         {
           type: "visual",
           content: {
-            text: "Ba hàng gạch: trên cùng, ở giữa, dưới cùng (SGK tr.97)",
+            text: "Ba hàng gạch: trên cùng, ở giữa, dưới cùng",
             spatialScene: {
               mode: "brickRows",
             },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            solid: {
+              kind: "cube",
+            },
+            text: "khối lập phương bé học hôm nay có gì đặc biệt?\n· 6 mặt đều là hình vuông bằng nhau\n· 8 đỉnh\nBé đếm mặt, đếm đỉnh, đếm cạnh ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé.",
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Ghi Nhớ",
+            title: "Đặc điểm của khối lập phương",
+            explanation:
+              "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của khối lập phương.",
+            points: [
+              "khối lập phương có 6 mặt đều là hình vuông bằng nhau.",
+              "khối lập phương có 8 đỉnh.",
+              "khối lập phương có 12 cạnh bằng nhau.",
+              "Cách kiểm tra: bé đếm mặt, đếm đỉnh, đếm cạnh; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình.",
+            ],
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                [
+                  "Bước 1 — Gọi tên",
+                  "nói đúng tên hình/khối trước khi làm gì tiếp",
+                ],
+                [
+                  "Bước 2 — Đếm",
+                  "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học",
+                ],
+                [
+                  "Bước 3 — Kiểm tra",
+                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt",
+                ],
+              ],
+            },
+            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question:
+              "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
+            options: [
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Nộp bài luôn cho nhanh",
+              "Đoán lại một lần nữa",
+            ],
+            answer:
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            mascotHint:
+              "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Hình nào có 6 mặt đều là hình vuông bằng nhau?",
+            options: [
+              "khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ",
+              "hình khối cầu",
+            ],
+            answer: "khối lập phương",
+            mascotHint:
+              "khối lập phương: 6 mặt đều là hình vuông bằng nhau · 8 đỉnh · 12 cạnh bằng nhau.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question:
+              "Trong bài hôm nay có hình khối lập phương và hình khối hộp chữ nhật và hình khối cầu. Hình nào có 8 đỉnh?",
+            options: [
+              "khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ",
+              "hình khối cầu",
+            ],
+            answer: "khối lập phương",
+            mascotHint:
+              "Đáp án là khối lập phương: 6 mặt đều là hình vuông bằng nhau · 8 đỉnh · 12 cạnh bằng nhau.",
           },
         },
         {
@@ -650,7 +1164,7 @@ export const g1c4 = {
           type: "quiz",
           content: {
             question:
-              "Khối lập phương A có mặt trước màu đỏ, mặt trên màu xanh, mặt bên phải màu vàng. Khối B giống hệt A nhưng quay lại. Mặt bên phải của khối B màu gì? (SGK tr.99)",
+              "Khối lập phương A có mặt trước màu đỏ, mặt trên màu xanh, mặt bên phải màu vàng. Khối B giống hệt A nhưng quay lại. Mặt bên phải của khối B màu gì?",
             options: ["Màu đỏ", "Màu xanh", "Màu vàng", "Màu trắng"],
             answer: "Màu đỏ",
             mascotHint:
@@ -675,14 +1189,13 @@ export const g1c4 = {
       id: "g1-c4-l7",
       title: "Bài 7: Luyện tập chung chủ đề 4",
       type: "learn",
-      description:
-        "SGK Bài 16 (tr.100–101): luyện tập chung — 4 hoạt động của sách",
+      description: "luyện tập chung — 4 hoạt động ôn tập",
       slides: [
         {
           type: "story",
           content: {
             mascotMood: "happy",
-            text: "Hôm nay bé ôn lại hai khối và các vị trí nhé. Cùng Rô-bốt làm 4 hoạt động của SGK tr.100–101!",
+            text: "Hôm nay bé ôn lại hai khối và các vị trí nhé. Cùng Rô-bốt làm 4 hoạt động!",
           },
         },
         {
@@ -702,7 +1215,7 @@ export const g1c4 = {
         {
           type: "visual",
           content: {
-            text: "Hoạt động 1: Những hình nào là khối lập phương? (SGK tr.100)",
+            text: "Hoạt động 1: Những hình nào là khối lập phương?",
             spatialScene: {
               mode: "solidSort",
               round: 1,
@@ -713,7 +1226,7 @@ export const g1c4 = {
         {
           type: "visual",
           content: {
-            text: "Còn những hình nào là khối hộp chữ nhật? (SGK tr.100)",
+            text: "Còn những hình nào là khối hộp chữ nhật?",
             spatialScene: {
               mode: "solidSort",
               round: 2,
@@ -724,10 +1237,86 @@ export const g1c4 = {
         {
           type: "visual",
           content: {
-            text: "Hoạt động 2: Con xúc xắc có mấy chấm ở mỗi mặt? (SGK tr.100)",
+            text: "Hoạt động 2: Con xúc xắc có mấy chấm ở mỗi mặt?",
             spatialScene: {
               mode: "diceFaces",
             },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 4,
+              right: 2,
+              sign: "×",
+              remember: true,
+            },
+            text: "Bé tự đặt tính: 4 × 2\nhàng đơn vị 4 × 2 = 8, viết 8\nVậy 4 × 2 = 8.",
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            solid: {
+              kind: "cube",
+            },
+            text: "khối lập phương bé học hôm nay có gì đặc biệt?\n· 6 mặt đều là hình vuông bằng nhau\n· 8 đỉnh\nBé đếm mặt, đếm đỉnh, đếm cạnh ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé.",
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Ghi Nhớ",
+            title: "Đặc điểm của khối lập phương",
+            explanation:
+              "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của khối lập phương.",
+            points: [
+              "khối lập phương có 6 mặt đều là hình vuông bằng nhau.",
+              "khối lập phương có 8 đỉnh.",
+              "khối lập phương có 12 cạnh bằng nhau.",
+              "Cách kiểm tra: bé đếm mặt, đếm đỉnh, đếm cạnh; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình.",
+            ],
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Hình nào có 6 mặt đều là hình vuông bằng nhau?",
+            options: [
+              "khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ",
+              "hình khối cầu",
+            ],
+            answer: "khối lập phương",
+            mascotHint:
+              "khối lập phương: 6 mặt đều là hình vuông bằng nhau · 8 đỉnh · 12 cạnh bằng nhau.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question:
+              "Trong bài hôm nay có hình khối lập phương và hình khối hộp chữ nhật và hình khối trụ và hình vuông và hình chữ nhật. Hình nào có 8 đỉnh?",
+            options: [
+              "khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ",
+              "hình khối cầu",
+            ],
+            answer: "khối lập phương",
+            mascotHint:
+              "Đáp án là khối lập phương: 6 mặt đều là hình vuông bằng nhau · 8 đỉnh · 12 cạnh bằng nhau.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "1 × 6 bằng bao nhiêu?",
+            options: [5, 6, 7, 8],
+            answer: 6,
+            mascotHint: "hàng đơn vị 1 × 6 = 6, viết 6. Kết quả 6.",
           },
         },
         {
@@ -761,7 +1350,7 @@ export const g1c4 = {
         {
           type: "visual",
           content: {
-            text: "Hoạt động 3: Câu nào đúng? (SGK tr.101)",
+            text: "Hoạt động 3: Câu nào đúng?",
             spatialScene: {
               mode: "cubeWalls",
               note: "Bé đếm số khối nhỏ của từng hình rồi so sánh.",
@@ -787,7 +1376,7 @@ export const g1c4 = {
         {
           type: "visual",
           content: {
-            text: "Hoạt động 4: Từ 8 khối lập phương nhỏ, xếp thành một khối lập phương lớn (SGK tr.101)",
+            text: "Hoạt động 4: Từ 8 khối lập phương nhỏ, xếp thành một khối lập phương lớn",
             spatialScene: {
               mode: "cubeComposite2x2",
             },

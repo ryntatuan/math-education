@@ -11,8 +11,7 @@ export const g1c1 = {
       id: "g1-c1-l1",
       title: "Bài 1: Tiết học đầu tiên",
       type: "learn",
-      description:
-        "SGK (tr.6–7): làm quen năm bạn, sách Toán và các biểu tượng chỉ dẫn trong sách",
+      description: "làm quen năm bạn học cùng bé và bốn phần trong mỗi bài học",
       slides: [
         {
           type: "story",
@@ -24,7 +23,7 @@ export const g1c1 = {
         {
           type: "visual",
           content: {
-            text: "Năm bạn cùng học Toán với bé (SGK tr.6)",
+            text: "Năm bạn cùng học Toán với bé",
             numberScene: {
               mode: "fiveFriends",
               note: "Nam, Mai, Rô-bốt, Việt và Mi — các bạn ấy sẽ học cùng bé suốt năm học.",
@@ -35,30 +34,69 @@ export const g1c1 = {
           type: "concept",
           content: {
             badge: "Làm Quen",
-            title: "Trong sách Toán có những biểu tượng gì?",
+            title: "Mỗi bài học thường có bốn phần nào?",
             explanation:
-              "Mỗi biểu tượng nhắc bé biết mình sắp làm gì: khám phá điều mới, làm bài tập, hay chơi trò chơi.",
+              "Mỗi bài đều đi theo bốn phần quen thuộc, giúp bé vừa hiểu bài vừa nhớ lâu.",
             // 🔴 KHÔNG thêm `points` ở đây nữa (người dùng gửi ảnh 2026-09-27: "nội dung khoanh đỏ
             // bị trùng lặp"). Ô nhấn mạnh + bốn dòng gạch đầu dòng nói y hệt một điều, rồi slide
-            // ngay sau (`table` bốn biểu tượng) nói lần thứ ba. Nay slide này chỉ GIỚI THIỆU tên
-            // bốn biểu tượng, slide sau mới giải nghĩa từng biểu tượng — hai slide, hai việc.
-            rule: "🔍 khám phá · 🤖 hoạt động · 📘 luyện tập · 🎲 trò chơi.",
+            // ngay sau (`table` bốn nhãn) nói lần thứ ba. Nay slide này chỉ GIỚI THIỆU tên
+            // bốn phần, slide sau mới giải nghĩa từng phần — hai slide, hai việc.
+            rule: "🔍 Khám phá · 🤖 Thực hành · 📘 Luyện tập · 🎲 Trò chơi.",
           },
         },
         {
           type: "visual",
           content: {
-            text: "Bốn biểu tượng bé sẽ gặp trong sách (SGK tr.6)",
+            text: "Bốn phần bé sẽ gặp trong mỗi bài",
             table: {
-              headers: ["Biểu tượng", "Bé làm gì?"],
+              headers: ["Phần học", "Bé làm gì?"],
               rows: [
-                ["🔍 Khám phá", "Tìm hiểu kiến thức mới"],
-                ["🤖 Hoạt động", "Làm bài tập thực hành"],
-                ["📘 Luyện tập", "Ôn lại và làm bài"],
-                ["🎲 Trò chơi", "Vừa học vừa chơi"],
+                ["🔍 Khám Phá", "Tìm hiểu kiến thức mới"],
+                ["🤖 Thực Hành", "Làm bài tập thực hành"],
+                ["📘 Luyện Tập", "Ôn lại và làm bài"],
+                ["🎲 Trò Chơi", "Vừa học vừa chơi"],
               ],
-              label: "Bốn biểu tượng chỉ dẫn trong sách Toán 1",
+              label: "Bốn phần của một bài học",
             },
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Cách Học",
+            title: "Bé học Toán như thế nào?",
+            explanation:
+              "Buổi đầu tiên bé chưa học số nào: việc cần làm là biết cách học trong app và cách dùng các nút bên dưới.",
+            points: [
+              "Bước 1 — Mỗi bài gồm nhiều trang: số trang hiện ở góc trên bên phải. Học xong một trang, bé bấm “Tiếp tục” để sang trang sau, muốn xem lại thì bấm “Trước”.",
+              "Bước 2 — Đọc nhãn nhỏ ở đầu trang để biết sắp làm gì: Khám Phá, Thực Hành, Luyện Tập hay Trò Chơi.",
+              "Bước 3 — Bấm nút loa 🔈 để nghe cô đọc, nếu chưa hiểu thì nghe lại.",
+              "Bước 4 — Làm sai thì đọc kỹ gợi ý của Rô-bốt hiện ra rồi thử lại — sai là chuyện bình thường.",
+            ],
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Điều cần nhớ", "Nội dung"],
+              rows: [
+                ["Khám phá", "cô giảng bài mới"],
+                ["Luyện tập", "bé tự làm bài"],
+                ["Trò chơi", "vừa chơi vừa học"],
+              ],
+            },
+            text: "Bảng nhớ nhanh — buổi học Toán đầu tiên\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Nhãn “Trò chơi” 🎲 cho biết bé sắp làm gì?",
+            options: ["Chơi trò chơi", "Đọc số", "Đo độ dài", "Tô màu"],
+            answer: "Chơi trò chơi",
+            mascotHint:
+              "Xúc xắc là nhãn của phần Trò Chơi — bé vừa chơi vừa học.",
           },
         },
         {
@@ -103,7 +141,7 @@ export const g1c1 = {
       id: "g1-c1-l2",
       title: "Bài 2: Các số 0, 1, 2, 3",
       type: "learn",
-      description: "SGK Bài 1 (tr.8–10): đếm, đọc, viết các số 0, 1, 2, 3",
+      description: "đếm, đọc, viết các số 0, 1, 2, 3",
       slides: [
         {
           type: "story",
@@ -130,7 +168,7 @@ export const g1c1 = {
         {
           type: "visual",
           content: {
-            text: "Khám phá: đếm khối trong bể (SGK tr.8)",
+            text: "Khám phá: đếm khối trong bể",
             numberScene: {
               mode: "numberShow",
               kind: "tank",
@@ -160,6 +198,69 @@ export const g1c1 = {
               ],
               unit: "Mỗi hàng là một nhóm — bé đếm từng nhóm",
             },
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "So sánh hai số bằng cách đếm",
+            explanation:
+              "Ở mức này, cách chắc chắn nhất là ĐẾM: số nào đếm đến sau thì số đó lớn hơn.",
+            points: [
+              "Đếm từ 1: “1, 2, 3, 4, 5…” — số đếm đến sau thì lớn hơn. Ví dụ 5 đến sau 2 nên 5 lớn hơn 2.",
+              "Trên tia số, số đứng bên PHẢI lớn hơn số đứng bên TRÁI.",
+              "Ba dấu cần nhớ: “>” đọc là lớn hơn, “<” đọc là bé hơn, “=” đọc là bằng nhau.",
+              "Với hai số của bài này: 1 < 2, đọc là “1 bé hơn 2”.",
+            ],
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                [
+                  "Bước 1 — Gọi tên",
+                  "nói đúng tên hình/khối trước khi làm gì tiếp",
+                ],
+                [
+                  "Bước 2 — Đếm",
+                  "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học",
+                ],
+                [
+                  "Bước 3 — Kiểm tra",
+                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt",
+                ],
+              ],
+            },
+            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question:
+              "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
+            options: [
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Nộp bài luôn cho nhanh",
+              "Đoán lại một lần nữa",
+            ],
+            answer:
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            mascotHint:
+              "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số nào lớn hơn: 2 hay 1?",
+            options: [1, 2, 3, 4],
+            answer: 2,
+            mascotHint: "Đếm từ 1: số 2 đếm đến sau số 1, nên 2 lớn hơn 1.",
           },
         },
         {
@@ -216,8 +317,7 @@ export const g1c1 = {
       id: "g1-c1-l3",
       title: "Bài 3: Các số 4, 5",
       type: "learn",
-      description:
-        "SGK Bài 1 (tr.10–13): đếm, đọc, viết các số 4 và 5; đếm theo điều kiện (tr.11)",
+      description: "đếm, đọc, viết các số 4 và 5; đếm theo điều kiện",
       slides: [
         {
           type: "story",
@@ -243,7 +343,7 @@ export const g1c1 = {
         {
           type: "visual",
           content: {
-            text: "Khám phá: bể có 4 khối và 5 khối (SGK tr.8)",
+            text: "Khám phá: bể có 4 khối và 5 khối",
             numberScene: {
               mode: "numberShow",
               kind: "tank",
@@ -276,6 +376,69 @@ export const g1c1 = {
           },
         },
         {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "So sánh hai số bằng cách đếm",
+            explanation:
+              "Ở mức này, cách chắc chắn nhất là ĐẾM: số nào đếm đến sau thì số đó lớn hơn.",
+            points: [
+              "Đếm từ 1: “1, 2, 3, 4, 5…” — số đếm đến sau thì lớn hơn. Ví dụ 5 đến sau 2 nên 5 lớn hơn 2.",
+              "Trên tia số, số đứng bên PHẢI lớn hơn số đứng bên TRÁI.",
+              "Ba dấu cần nhớ: “>” đọc là lớn hơn, “<” đọc là bé hơn, “=” đọc là bằng nhau.",
+              "Với hai số của bài này: 3 < 4, đọc là “3 bé hơn 4”.",
+            ],
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                [
+                  "Bước 1 — Gọi tên",
+                  "nói đúng tên hình/khối trước khi làm gì tiếp",
+                ],
+                [
+                  "Bước 2 — Đếm",
+                  "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học",
+                ],
+                [
+                  "Bước 3 — Kiểm tra",
+                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt",
+                ],
+              ],
+            },
+            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question:
+              "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
+            options: [
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Nộp bài luôn cho nhanh",
+              "Đoán lại một lần nữa",
+            ],
+            answer:
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            mascotHint:
+              "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số nào lớn hơn: 3 hay 4?",
+            options: [1, 3, 4, 5],
+            answer: 4,
+            mascotHint: "Đếm từ 1: số 4 đếm đến sau số 3, nên 4 lớn hơn 3.",
+          },
+        },
+        {
           type: "quiz",
           content: {
             question: "Hàng cá 🐟 có mấy con?",
@@ -287,7 +450,7 @@ export const g1c1 = {
         {
           type: "visual",
           content: {
-            text: "Đếm cà rốt ĐÃ TÔ MÀU (SGK tr.11)",
+            text: "Đếm cà rốt ĐÃ TÔ MÀU",
             numberScene: {
               mode: "countFiltered",
               kind: "colored",
@@ -309,7 +472,7 @@ export const g1c1 = {
         {
           type: "visual",
           content: {
-            text: "Đếm xem có mấy con ghi số 2 (SGK tr.11)",
+            text: "Đếm xem có mấy con ghi số 2",
             numberScene: {
               mode: "countFiltered",
               kind: "labeled",
@@ -355,7 +518,7 @@ export const g1c1 = {
       title: "Bài 4: Các số 6, 7, 8, 9, 10",
       type: "learn",
       description:
-        "SGK Bài 2 (tr.14–17): đếm, đọc, viết các số 6, 7, 8, 9, 10; đếm trong tranh; đếm con vật 6 chân",
+        "đếm, đọc, viết các số 6, 7, 8, 9, 10; đếm trong tranh; đếm con vật 6 chân",
       slides: [
         {
           type: "story",
@@ -382,7 +545,7 @@ export const g1c1 = {
         {
           type: "visual",
           content: {
-            text: "Khám phá: ong · chim · hoa · sao biển · bọ rùa (SGK tr.14)",
+            text: "Khám phá: ong · chim · hoa · sao biển · bọ rùa",
             numberScene: {
               mode: "numberShow",
               kind: "living",
@@ -393,7 +556,7 @@ export const g1c1 = {
         {
           type: "visual",
           content: {
-            text: "Đếm trong tranh nông trại (SGK tr.13)",
+            text: "Đếm trong tranh nông trại",
             numberScene: {
               mode: "sceneCount",
               kind: "farm",
@@ -422,6 +585,66 @@ export const g1c1 = {
           },
         },
         {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "So sánh hai số bằng cách đếm",
+            explanation:
+              "Ở mức này, cách chắc chắn nhất là ĐẾM: số nào đếm đến sau thì số đó lớn hơn.",
+            points: [
+              "Đếm từ 1: “1, 2, 3, 4, 5…” — số đếm đến sau thì lớn hơn. Ví dụ 5 đến sau 2 nên 5 lớn hơn 2.",
+              "Trên tia số, số đứng bên PHẢI lớn hơn số đứng bên TRÁI.",
+              "Ba dấu cần nhớ: “>” đọc là lớn hơn, “<” đọc là bé hơn, “=” đọc là bằng nhau.",
+              "Với hai số của bài này: 4 < 6, đọc là “4 bé hơn 6”.",
+            ],
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                ["Bước 1 — Số chữ số", "nhiều chữ số hơn thì số đó lớn hơn"],
+                [
+                  "Bước 2 — So từ trái",
+                  "so từng hàng từ trái sang phải, khác nhau thì dừng",
+                ],
+                [
+                  "Bước 3 — Đọc số",
+                  "đọc từ trái sang phải, hết mỗi lớp ba chữ số",
+                ],
+              ],
+            },
+            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question:
+              "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
+            options: [
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Nộp bài luôn cho nhanh",
+              "Đoán lại một lần nữa",
+            ],
+            answer:
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            mascotHint:
+              "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số nào lớn hơn: 4 hay 6?",
+            options: [4, 6, 7, 8],
+            answer: 6,
+            mascotHint: "Đếm từ 1: số 6 đếm đến sau số 4, nên 6 lớn hơn 4.",
+          },
+        },
+        {
           type: "quiz",
           content: {
             question: "Trong tranh nông trại có mấy con bò 🐄?",
@@ -442,7 +665,7 @@ export const g1c1 = {
         {
           type: "visual",
           content: {
-            text: "Đếm chân để tìm con vật có 6 chân (SGK tr.17)",
+            text: "Đếm chân để tìm con vật có 6 chân",
             numberScene: {
               mode: "countFiltered",
               kind: "legs",
@@ -464,7 +687,7 @@ export const g1c1 = {
         {
           type: "visual",
           content: {
-            text: "Dãy số 0 → 10 có ô trống (SGK tr.10, tr.16)",
+            text: "Dãy số 0 → 10 có ô trống",
             numberScene: {
               mode: "numberTrain",
               kind: "ribbon",
@@ -487,7 +710,7 @@ export const g1c1 = {
         {
           type: "visual",
           content: {
-            text: "Đếm trong ao (SGK tr.17)",
+            text: "Đếm trong ao",
             numberScene: {
               mode: "sceneCount",
               kind: "pond",
@@ -538,8 +761,7 @@ export const g1c1 = {
       id: "g1-c1-l5",
       title: "Bài 5: Luyện tập — chọn số và cho thêm cho đủ",
       type: "learn",
-      description:
-        "SGK Bài 2, phần Luyện tập (tr.18): chọn số thích hợp với số con vật; cho thêm để đủ số lượng",
+      description: "chọn số thích hợp với số con vật; cho thêm để đủ số lượng",
       slides: [
         {
           type: "story",
@@ -579,6 +801,69 @@ export const g1c1 = {
           },
         },
         {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "So sánh hai số bằng cách đếm",
+            explanation:
+              "Ở mức này, cách chắc chắn nhất là ĐẾM: số nào đếm đến sau thì số đó lớn hơn.",
+            points: [
+              "Đếm từ 1: “1, 2, 3, 4, 5…” — số đếm đến sau thì lớn hơn. Ví dụ 5 đến sau 2 nên 5 lớn hơn 2.",
+              "Trên tia số, số đứng bên PHẢI lớn hơn số đứng bên TRÁI.",
+              "Ba dấu cần nhớ: “>” đọc là lớn hơn, “<” đọc là bé hơn, “=” đọc là bằng nhau.",
+              "Với hai số của bài này: 2 < 5, đọc là “2 bé hơn 5”.",
+            ],
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                [
+                  "Bước 1 — Gọi tên",
+                  "nói đúng tên hình/khối trước khi làm gì tiếp",
+                ],
+                [
+                  "Bước 2 — Đếm",
+                  "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học",
+                ],
+                [
+                  "Bước 3 — Kiểm tra",
+                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt",
+                ],
+              ],
+            },
+            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question:
+              "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
+            options: [
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Nộp bài luôn cho nhanh",
+              "Đoán lại một lần nữa",
+            ],
+            answer:
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            mascotHint:
+              "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số nào lớn hơn: 5 hay 2?",
+            options: [1, 2, 5, 10],
+            answer: 5,
+            mascotHint: "Đếm từ 1: số 5 đếm đến sau số 2, nên 5 lớn hơn 2.",
+          },
+        },
+        {
           type: "quiz",
           content: {
             question: "Có mấy con chim 🐦 trong hình?",
@@ -600,7 +885,7 @@ export const g1c1 = {
         {
           type: "visual",
           content: {
-            text: "Cho thêm trứng để khay có 8 quả (SGK tr.18)",
+            text: "Cho thêm trứng để khay có 8 quả",
             numberScene: {
               mode: "addToReach",
               have: 5,
@@ -630,7 +915,7 @@ export const g1c1 = {
         {
           type: "visual",
           content: {
-            text: "Cho thêm thùng để trên xe có 3 thùng (SGK tr.12)",
+            text: "Cho thêm thùng để trên xe có 3 thùng",
             numberScene: {
               mode: "addToReach",
               have: 1,
@@ -684,8 +969,7 @@ export const g1c1 = {
       id: "g1-c1-l6",
       title: "Bài 6: Nhiều hơn, ít hơn",
       type: "learn",
-      description:
-        "SGK Bài 3 (tr.20–21): so sánh số lượng bằng cách ghép đôi — nhiều hơn, ít hơn",
+      description: "so sánh số lượng bằng cách ghép đôi — nhiều hơn, ít hơn",
       slides: [
         {
           type: "story",
@@ -712,7 +996,7 @@ export const g1c1 = {
         {
           type: "visual",
           content: {
-            text: "3 con ếch và 2 chiếc lá (SGK tr.20)",
+            text: "3 con ếch và 2 chiếc lá",
             numberScene: {
               mode: "manyGroups",
               groups: [
@@ -755,6 +1039,66 @@ export const g1c1 = {
           },
         },
         {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "So sánh hai số bằng cách đếm",
+            explanation:
+              "Ở mức này, cách chắc chắn nhất là ĐẾM: số nào đếm đến sau thì số đó lớn hơn.",
+            points: [
+              "Đếm từ 1: “1, 2, 3, 4, 5…” — số đếm đến sau thì lớn hơn. Ví dụ 5 đến sau 2 nên 5 lớn hơn 2.",
+              "Trên tia số, số đứng bên PHẢI lớn hơn số đứng bên TRÁI.",
+              "Ba dấu cần nhớ: “>” đọc là lớn hơn, “<” đọc là bé hơn, “=” đọc là bằng nhau.",
+              "Với hai số của bài này: 3 < 6, đọc là “3 bé hơn 6”.",
+            ],
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                ["Bước 1 — Số chữ số", "nhiều chữ số hơn thì số đó lớn hơn"],
+                [
+                  "Bước 2 — So từ trái",
+                  "so từng hàng từ trái sang phải, khác nhau thì dừng",
+                ],
+                [
+                  "Bước 3 — Đọc số",
+                  "đọc từ trái sang phải, hết mỗi lớp ba chữ số",
+                ],
+              ],
+            },
+            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question:
+              "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
+            options: [
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Nộp bài luôn cho nhanh",
+              "Đoán lại một lần nữa",
+            ],
+            answer:
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            mascotHint:
+              "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số nào lớn hơn: 6 hay 3?",
+            options: [2, 3, 5, 6],
+            answer: 6,
+            mascotHint: "Đếm từ 1: số 6 đếm đến sau số 3, nên 6 lớn hơn 3.",
+          },
+        },
+        {
           type: "quiz",
           content: {
             question:
@@ -785,7 +1129,7 @@ export const g1c1 = {
         {
           type: "visual",
           content: {
-            text: "5 ổ cắm và 4 đồ vật (SGK tr.21)",
+            text: "5 ổ cắm và 4 đồ vật",
             numberScene: {
               mode: "manyGroups",
               groups: [
@@ -849,7 +1193,7 @@ export const g1c1 = {
       title: "Bài 7: Bằng nhau",
       type: "learn",
       description:
-        "SGK Bài 3 (tr.22–23, 28): nhận biết hai nhóm có số lượng bằng nhau; nối hai nhóm bằng nhau",
+        "nhận biết hai nhóm có số lượng bằng nhau; nối hai nhóm bằng nhau",
       slides: [
         {
           type: "story",
@@ -897,6 +1241,50 @@ export const g1c1 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            baseTen: {
+              tens: 0,
+              ones: 7,
+            },
+            text: "7 gồm mấy chục và mấy đơn vị?\nBé đếm khối: 0 thanh chục và 7 ô rời\nVậy 7 = 0 chục và 7 đơn vị",
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "So sánh hai số cho đúng",
+            explanation:
+              "Muốn biết số nào lớn hơn, bé làm hai bước sau — không cần đếm lại từ đầu.",
+            points: [
+              "Bước 1 — đếm số chữ số: số nào có ít chữ số hơn thì số đó BÉ hơn (ví dụ 9 < 10).",
+              "Bước 2 — hai số cùng số chữ số: so chữ số đầu tiên bên TRÁI trước; số nào có chữ số ấy lớn hơn thì số đó lớn hơn. Bằng nhau thì so chữ số tiếp theo.",
+              "Ví dụ: hai số đều có 1 chữ số, bé so từ trái sang phải — đến hàng đơn vị thì 3 < 7, nên 3 < 7.",
+              "Số liền sau = số đó thêm 1; số liền trước = số đó bớt 1.",
+            ],
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số liền sau của số 7 là số nào?",
+            options: [7, 8, 9, 17],
+            answer: 8,
+            mascotHint: "Số liền sau hơn số đã cho 1 đơn vị: 7 + 1 = 8.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số nào LỚN NHẤT trong các số sau: 7, 3, 28, 4?",
+            options: ["3", "4", "7", "28"],
+            answer: "28",
+            mascotHint:
+              "Bé so chữ số đầu tiên bên trái của các số, bằng nhau thì so chữ số tiếp theo — số lớn nhất là 28.",
+          },
+        },
+        {
           type: "quiz",
           content: {
             question: "Ghép đôi 4 cái bút với 4 quyển vở thì thế nào?",
@@ -914,7 +1302,7 @@ export const g1c1 = {
         {
           type: "visual",
           content: {
-            text: "Nối hai nhóm có số lượng bằng nhau (SGK tr.28)",
+            text: "Nối hai nhóm có số lượng bằng nhau",
             numberScene: {
               mode: "matchEqual",
               pairs: [
@@ -981,7 +1369,7 @@ export const g1c1 = {
         {
           type: "visual",
           content: {
-            text: "Cho thêm cà rốt để số cà rốt BẰNG số bắp cải (SGK tr.23)",
+            text: "Cho thêm cà rốt để số cà rốt BẰNG số bắp cải",
             numberScene: {
               mode: "addToReach",
               have: 2,
@@ -1027,7 +1415,7 @@ export const g1c1 = {
       title: "Bài 8: So sánh số — dấu >, <, =",
       type: "learn",
       description:
-        "SGK Bài 4 (tr.24–31): dấu lớn hơn, bé hơn, bằng nhau; so sánh theo mẫu; mê cung số",
+        "dấu lớn hơn, bé hơn, bằng nhau; so sánh theo mẫu; mê cung số",
       slides: [
         {
           type: "story",
@@ -1054,7 +1442,7 @@ export const g1c1 = {
         {
           type: "visual",
           content: {
-            text: "4 con vịt nhiều hơn 3 con vịt: 4 > 3 (SGK tr.24)",
+            text: "4 con vịt nhiều hơn 3 con vịt: 4 > 3",
             numberScene: {
               mode: "manyGroups",
               groups: [
@@ -1076,7 +1464,7 @@ export const g1c1 = {
         {
           type: "visual",
           content: {
-            text: "2 con chim ít hơn 3 con chim: 2 < 3 (SGK tr.26)",
+            text: "2 con chim ít hơn 3 con chim: 2 < 3",
             numberScene: {
               mode: "manyGroups",
               groups: [
@@ -1098,7 +1486,7 @@ export const g1c1 = {
         {
           type: "visual",
           content: {
-            text: "4 cái xẻng bằng 4 cái cào: 4 = 4 (SGK tr.28)",
+            text: "4 cái xẻng bằng 4 cái cào: 4 = 4",
             numberScene: {
               mode: "manyGroups",
               groups: [
@@ -1120,7 +1508,7 @@ export const g1c1 = {
         {
           type: "visual",
           content: {
-            text: "Thẻ chấm: 5 = 5 (mẫu SGK tr.30)",
+            text: "Thẻ chấm: 5 = 5",
             numberScene: {
               mode: "dotCards",
               left: 5,
@@ -1133,13 +1521,73 @@ export const g1c1 = {
         {
           type: "visual",
           content: {
-            text: "Thẻ chấm: 3 ? 5 (SGK tr.30)",
+            text: "Thẻ chấm: 3 ? 5",
             numberScene: {
               mode: "dotCards",
               left: 3,
               right: 5,
               note: "Bé đếm chấm rồi điền dấu vào ô giữa.",
             },
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "So sánh hai số bằng cách đếm",
+            explanation:
+              "Ở mức này, cách chắc chắn nhất là ĐẾM: số nào đếm đến sau thì số đó lớn hơn.",
+            points: [
+              "Đếm từ 1: “1, 2, 3, 4, 5…” — số đếm đến sau thì lớn hơn. Ví dụ 5 đến sau 2 nên 5 lớn hơn 2.",
+              "Trên tia số, số đứng bên PHẢI lớn hơn số đứng bên TRÁI.",
+              "Ba dấu cần nhớ: “>” đọc là lớn hơn, “<” đọc là bé hơn, “=” đọc là bằng nhau.",
+              "Với hai số của bài này: 4 < 8, đọc là “4 bé hơn 8”.",
+            ],
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                ["Bước 1 — Số chữ số", "nhiều chữ số hơn thì số đó lớn hơn"],
+                [
+                  "Bước 2 — So từ trái",
+                  "so từng hàng từ trái sang phải, khác nhau thì dừng",
+                ],
+                [
+                  "Bước 3 — Đọc số",
+                  "đọc từ trái sang phải, hết mỗi lớp ba chữ số",
+                ],
+              ],
+            },
+            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question:
+              "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
+            options: [
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Nộp bài luôn cho nhanh",
+              "Đoán lại một lần nữa",
+            ],
+            answer:
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            mascotHint:
+              "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số nào lớn hơn: 8 hay 4?",
+            options: [2, 4, 5, 8],
+            answer: 8,
+            mascotHint: "Đếm từ 1: số 8 đếm đến sau số 4, nên 8 lớn hơn 4.",
           },
         },
         {
@@ -1154,7 +1602,7 @@ export const g1c1 = {
         {
           type: "visual",
           content: {
-            text: "So sánh theo mẫu (SGK tr.42)",
+            text: "So sánh theo mẫu",
             numberScene: {
               mode: "comparePairs",
               pairs: [
@@ -1189,7 +1637,7 @@ export const g1c1 = {
         {
           type: "visual",
           content: {
-            text: "Mê cung số: đường Mai về nhà qua ô có số lớn hơn 4 (SGK tr.25)",
+            text: "Mê cung số: đường Mai về nhà qua ô có số lớn hơn 4",
             numberScene: {
               mode: "numberMaze",
               grid: [
@@ -1232,8 +1680,7 @@ export const g1c1 = {
       id: "g1-c1-l9",
       title: "Bài 9: Mấy và mấy",
       type: "learn",
-      description:
-        "SGK Bài 5 (tr.32–35): gộp hai nhóm lại; tách một số thành hai phần",
+      description: "gộp hai nhóm lại; tách một số thành hai phần",
       slides: [
         {
           type: "story",
@@ -1260,7 +1707,7 @@ export const g1c1 = {
         {
           type: "visual",
           content: {
-            text: "Mai có 3 con cá, Nam có 2 con cá (SGK tr.32)",
+            text: "Mai có 3 con cá, Nam có 2 con cá",
             numberScene: {
               mode: "manyGroups",
               groups: [
@@ -1282,7 +1729,7 @@ export const g1c1 = {
         {
           type: "visual",
           content: {
-            text: "5 gồm 2 và mấy? (SGK tr.32)",
+            text: "5 gồm 2 và mấy?",
             numberScene: {
               mode: "numberBond",
               kind: "bond",
@@ -1290,6 +1737,66 @@ export const g1c1 = {
               left: 2,
               note: "Một phần là 2, phần kia là mấy? Bé đếm rồi điền.",
             },
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "So sánh hai số bằng cách đếm",
+            explanation:
+              "Ở mức này, cách chắc chắn nhất là ĐẾM: số nào đếm đến sau thì số đó lớn hơn.",
+            points: [
+              "Đếm từ 1: “1, 2, 3, 4, 5…” — số đếm đến sau thì lớn hơn. Ví dụ 5 đến sau 2 nên 5 lớn hơn 2.",
+              "Trên tia số, số đứng bên PHẢI lớn hơn số đứng bên TRÁI.",
+              "Ba dấu cần nhớ: “>” đọc là lớn hơn, “<” đọc là bé hơn, “=” đọc là bằng nhau.",
+              "Với hai số của bài này: 5 < 9, đọc là “5 bé hơn 9”.",
+            ],
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                ["Bước 1 — Số chữ số", "nhiều chữ số hơn thì số đó lớn hơn"],
+                [
+                  "Bước 2 — So từ trái",
+                  "so từng hàng từ trái sang phải, khác nhau thì dừng",
+                ],
+                [
+                  "Bước 3 — Đọc số",
+                  "đọc từ trái sang phải, hết mỗi lớp ba chữ số",
+                ],
+              ],
+            },
+            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question:
+              "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
+            options: [
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Nộp bài luôn cho nhanh",
+              "Đoán lại một lần nữa",
+            ],
+            answer:
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            mascotHint:
+              "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số nào lớn hơn: 9 hay 5?",
+            options: [2, 3, 5, 9],
+            answer: 9,
+            mascotHint: "Đếm từ 1: số 9 đếm đến sau số 5, nên 9 lớn hơn 5.",
           },
         },
         {
@@ -1304,7 +1811,7 @@ export const g1c1 = {
         {
           type: "visual",
           content: {
-            text: "Tách 6 thành hai nhóm (SGK tr.35)",
+            text: "Tách 6 thành hai nhóm",
             numberScene: {
               mode: "numberBond",
               kind: "bond",
@@ -1325,7 +1832,7 @@ export const g1c1 = {
         {
           type: "visual",
           content: {
-            text: "Cho thêm bánh để trên đĩa có 6 cái bánh (SGK tr.15)",
+            text: "Cho thêm bánh để trên đĩa có 6 cái bánh",
             numberScene: {
               mode: "addToReach",
               have: 4,
@@ -1370,8 +1877,7 @@ export const g1c1 = {
       id: "g1-c1-l10",
       title: "Bài 10: Mấy và mấy trong phạm vi 10",
       type: "learn",
-      description:
-        "SGK Bài 5 (tr.36–37, 45): bảng tách số 6 và 9; tách – gộp trong phạm vi 10",
+      description: "bảng tách số 6 và 9; tách – gộp trong phạm vi 10",
       slides: [
         {
           type: "story",
@@ -1398,7 +1904,7 @@ export const g1c1 = {
         {
           type: "visual",
           content: {
-            text: "Bảng tách số 6 (SGK tr.45)",
+            text: "Bảng tách số 6",
             numberScene: {
               mode: "numberBond",
               kind: "table",
@@ -1411,7 +1917,7 @@ export const g1c1 = {
         {
           type: "visual",
           content: {
-            text: "Bảng tách số 9 (SGK tr.45)",
+            text: "Bảng tách số 9",
             numberScene: {
               mode: "numberBond",
               kind: "table",
@@ -1419,6 +1925,50 @@ export const g1c1 = {
               parts: [1, 2, 3],
               note: "9 gồm 1 và 8; 9 gồm 2 và 7; 9 gồm 3 và 6.",
             },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            baseTen: {
+              tens: 1,
+              ones: 0,
+            },
+            text: "10 gồm mấy chục và mấy đơn vị?\nBé đếm khối: 1 thanh chục và 0 ô rời\nVậy 10 = 1 chục và 0 đơn vị",
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "So sánh hai số cho đúng",
+            explanation:
+              "Muốn biết số nào lớn hơn, bé làm hai bước sau — không cần đếm lại từ đầu.",
+            points: [
+              "Bước 1 — đếm số chữ số: số nào có ít chữ số hơn thì số đó BÉ hơn (ví dụ 9 < 10).",
+              "Bước 2 — hai số cùng số chữ số: so chữ số đầu tiên bên TRÁI trước; số nào có chữ số ấy lớn hơn thì số đó lớn hơn. Bằng nhau thì so chữ số tiếp theo.",
+              "Ví dụ: 10 có 2 chữ số, 5 có 1 chữ số — số nào có ít chữ số hơn thì bé hơn.",
+              "Số liền sau = số đó thêm 1; số liền trước = số đó bớt 1.",
+            ],
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số liền sau của số 10 là số nào?",
+            options: [10, 11, 12, 20],
+            answer: 11,
+            mascotHint: "Số liền sau hơn số đã cho 1 đơn vị: 10 + 1 = 11.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số nào LỚN NHẤT trong các số sau: 10, 5, 45, 6?",
+            options: ["5", "6", "10", "45"],
+            answer: "45",
+            mascotHint:
+              "Bé so chữ số đầu tiên bên trái của các số, bằng nhau thì so chữ số tiếp theo — số lớn nhất là 45.",
           },
         },
         {
@@ -1442,7 +1992,7 @@ export const g1c1 = {
         {
           type: "visual",
           content: {
-            text: "10 viên kẹo gồm 6 viên xanh và 4 viên cam (SGK tr.37)",
+            text: "10 viên kẹo gồm 6 viên xanh và 4 viên cam",
             numberScene: {
               mode: "manyGroups",
               groups: [
@@ -1490,7 +2040,7 @@ export const g1c1 = {
       title: "Bài 11: Luyện tập chung",
       type: "learn",
       description:
-        "SGK Bài 6 (tr.38–41): đếm trong tranh, tìm chậu hoa thích hợp, điền số còn thiếu, so sánh số lượng",
+        "đếm trong tranh, tìm chậu hoa thích hợp, điền số còn thiếu, so sánh số lượng",
       slides: [
         {
           type: "story",
@@ -1516,7 +2066,7 @@ export const g1c1 = {
         {
           type: "visual",
           content: {
-            text: "Trong mỗi bể có bao nhiêu con cá? (SGK tr.38)",
+            text: "Trong mỗi bể có bao nhiêu con cá?",
             numberScene: {
               mode: "manyGroups",
               groups: [
@@ -1541,6 +2091,66 @@ export const g1c1 = {
           },
         },
         {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "So sánh hai số bằng cách đếm",
+            explanation:
+              "Ở mức này, cách chắc chắn nhất là ĐẾM: số nào đếm đến sau thì số đó lớn hơn.",
+            points: [
+              "Đếm từ 1: “1, 2, 3, 4, 5…” — số đếm đến sau thì lớn hơn. Ví dụ 5 đến sau 2 nên 5 lớn hơn 2.",
+              "Trên tia số, số đứng bên PHẢI lớn hơn số đứng bên TRÁI.",
+              "Ba dấu cần nhớ: “>” đọc là lớn hơn, “<” đọc là bé hơn, “=” đọc là bằng nhau.",
+              "Với hai số của bài này: 6 < 11, đọc là “6 bé hơn 11”.",
+            ],
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                ["Bước 1 — Số chữ số", "nhiều chữ số hơn thì số đó lớn hơn"],
+                [
+                  "Bước 2 — So từ trái",
+                  "so từng hàng từ trái sang phải, khác nhau thì dừng",
+                ],
+                [
+                  "Bước 3 — Đọc số",
+                  "đọc từ trái sang phải, hết mỗi lớp ba chữ số",
+                ],
+              ],
+            },
+            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question:
+              "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
+            options: [
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Nộp bài luôn cho nhanh",
+              "Đoán lại một lần nữa",
+            ],
+            answer:
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            mascotHint:
+              "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số nào lớn hơn: 11 hay 6?",
+            options: [1, 6, 10, 11],
+            answer: 11,
+            mascotHint: "Đếm từ 1: số 11 đếm đến sau số 6, nên 11 lớn hơn 6.",
+          },
+        },
+        {
           type: "quiz",
           content: {
             question: "Bể C không có con cá nào. Vậy bể C có mấy con cá?",
@@ -1552,7 +2162,7 @@ export const g1c1 = {
         {
           type: "visual",
           content: {
-            text: "Tìm chậu hoa thích hợp: 1 bông và 4 bông (SGK tr.39)",
+            text: "Tìm chậu hoa thích hợp: 1 bông và 4 bông",
             numberScene: {
               mode: "manyGroups",
               groups: [
@@ -1583,7 +2193,7 @@ export const g1c1 = {
         {
           type: "visual",
           content: {
-            text: "Điền số còn thiếu vào các toa tàu (SGK tr.40)",
+            text: "Điền số còn thiếu vào các toa tàu",
             numberScene: {
               mode: "numberTrain",
               kind: "wagons",
@@ -1612,7 +2222,7 @@ export const g1c1 = {
         {
           type: "visual",
           content: {
-            text: "Đếm trong tranh bến sông (SGK tr.39)",
+            text: "Đếm trong tranh bến sông",
             numberScene: {
               mode: "sceneCount",
               kind: "river",
@@ -1646,7 +2256,7 @@ export const g1c1 = {
         {
           type: "visual",
           content: {
-            text: "Cốc nào có nhiều hạt sen nhất? (SGK tr.41)",
+            text: "Cốc nào có nhiều hạt sen nhất?",
             numberScene: {
               mode: "manyGroups",
               groups: [
@@ -1703,7 +2313,7 @@ export const g1c1 = {
       title: "Bài 12: Luyện tập chung (tiếp theo)",
       type: "learn",
       description:
-        "SGK Bài 6 (tr.42–45): điền dấu, so sánh theo mẫu, đếm trong tranh cánh đồng, tách số 6 và 9",
+        "điền dấu, so sánh theo mẫu, đếm trong tranh cánh đồng, tách số 6 và 9",
       slides: [
         {
           type: "story",
@@ -1729,7 +2339,7 @@ export const g1c1 = {
         {
           type: "visual",
           content: {
-            text: "So sánh rồi nói dấu vào ô trống (SGK tr.42)",
+            text: "So sánh rồi nói dấu vào ô trống",
             numberScene: {
               mode: "comparePairs",
               pairs: [
@@ -1743,6 +2353,30 @@ export const g1c1 = {
               model: "<",
               note: "Hàng đầu là mẫu: 1 < 2. Năm hàng sau bé so sánh rồi NÓI dấu (>, < hoặc =).",
             },
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "So sánh hai số bằng cách đếm",
+            explanation:
+              "Ở mức này, cách chắc chắn nhất là ĐẾM: số nào đếm đến sau thì số đó lớn hơn.",
+            points: [
+              "Đếm từ 1: “1, 2, 3, 4, 5…” — số đếm đến sau thì lớn hơn. Ví dụ 5 đến sau 2 nên 5 lớn hơn 2.",
+              "Trên tia số, số đứng bên PHẢI lớn hơn số đứng bên TRÁI.",
+              "Ba dấu cần nhớ: “>” đọc là lớn hơn, “<” đọc là bé hơn, “=” đọc là bằng nhau.",
+              "Với hai số của bài này: 6 < 12, đọc là “6 bé hơn 12”.",
+            ],
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Số nào lớn hơn: 12 hay 6?",
+            options: [1, 6, 9, 12],
+            answer: 12,
+            mascotHint: "Đếm từ 1: số 12 đếm đến sau số 6, nên 12 lớn hơn 6.",
           },
         },
         {
@@ -1766,7 +2400,7 @@ export const g1c1 = {
         {
           type: "visual",
           content: {
-            text: "Đếm trong tranh cánh đồng (SGK tr.40)",
+            text: "Đếm trong tranh cánh đồng",
             numberScene: {
               mode: "sceneCount",
               kind: "field",
@@ -1803,7 +2437,7 @@ export const g1c1 = {
         {
           type: "visual",
           content: {
-            text: "Hàng nào có nhiều đồ chơi hơn? (SGK tr.44)",
+            text: "Hàng nào có nhiều đồ chơi hơn?",
             numberScene: {
               mode: "manyGroups",
               groups: [
@@ -1840,7 +2474,7 @@ export const g1c1 = {
         {
           type: "visual",
           content: {
-            text: "Đếm ở sân bay: 5 máy bay và 4 xe (SGK tr.44)",
+            text: "Đếm ở sân bay: 5 máy bay và 4 xe",
             numberScene: {
               mode: "manyGroups",
               groups: [
@@ -1875,7 +2509,7 @@ export const g1c1 = {
         {
           type: "visual",
           content: {
-            text: "Tách số: 6 gồm 4 và mấy? 6 gồm 5 và mấy? (SGK tr.45)",
+            text: "Tách số: 6 gồm 4 và mấy? 6 gồm 5 và mấy?",
             numberScene: {
               mode: "numberBond",
               kind: "table",

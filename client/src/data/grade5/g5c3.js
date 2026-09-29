@@ -53,6 +53,51 @@ export const g5c3 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Đơn vị", "Bằng bao nhiêu đơn vị liền sau"],
+              rows: [
+                ["1 m²", "100 dm²"],
+                ["1 dm²", "100 cm²"]
+              ]
+            },
+            text: "Bậc thang đơn vị đo diện tích\n· m²\n· dm²\n· cm²\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "Cách đổi đơn vị đo diện tích",
+            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            points: [
+              "1 m² = 100 dm².",
+              "Đi xuống hai bậc thì nhân hai lần: 1 m² = 100 × 100 = 10000 cm².",
+              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 m² = 200 dm².",
+              "Đổi số bé ra số lớn: CHIA. Ví dụ 300 dm² = 3 m²."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "1 m² bằng bao nhiêu dm²?",
+            options: [10, 100, 1000, 10000],
+            answer: 100,
+            mascotHint: "Hai đơn vị liền nhau: 1 m² = 100 dm²."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "3 m² bằng bao nhiêu dm²?",
+            options: [100, 300, 400, 3000],
+            answer: 300,
+            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 100 = 300."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "1 km² bằng bao nhiêu héc-ta?",
@@ -130,6 +175,51 @@ export const g5c3 = {
               label: "Từ lớn sang bé: nhân 100 mỗi bậc",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Đơn vị", "Bằng bao nhiêu đơn vị liền sau"],
+              rows: [
+                ["1 m²", "100 dm²"],
+                ["1 dm²", "100 cm²"]
+              ]
+            },
+            text: "Bậc thang đơn vị đo diện tích\n· m²\n· dm²\n· cm²\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "Cách đổi đơn vị đo diện tích",
+            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            points: [
+              "1 m² = 100 dm².",
+              "Đi xuống hai bậc thì nhân hai lần: 1 m² = 100 × 100 = 10000 cm².",
+              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 m² = 200 dm².",
+              "Đổi số bé ra số lớn: CHIA. Ví dụ 300 dm² = 3 m²."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "1 m² bằng bao nhiêu dm²?",
+            options: [10, 100, 1000, 10000],
+            answer: 100,
+            mascotHint: "Hai đơn vị liền nhau: 1 m² = 100 dm²."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "3 m² bằng bao nhiêu dm²?",
+            options: [100, 300, 400, 3000],
+            answer: 300,
+            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 100 = 300."
+          }
         },
         {
           type: "quiz",
@@ -210,6 +300,53 @@ export const g5c3 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Đơn vị", "Bằng bao nhiêu đơn vị liền sau"],
+              rows: [
+                ["1 tấn", "10 tạ"],
+                ["1 tạ", "10 yến"],
+                ["1 yến", "10 kg"],
+                ["1 kg", "1000 g"]
+              ]
+            },
+            text: "Bậc thang đơn vị đo khối lượng\n· tấn\n· tạ\n· yến\n· kg\n· g\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "Cách đổi đơn vị đo khối lượng",
+            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            points: [
+              "1 tấn = 10 tạ.",
+              "Đi xuống hai bậc thì nhân hai lần: 1 tấn = 10 × 10 = 100 yến.",
+              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 tấn = 20 tạ.",
+              "Đổi số bé ra số lớn: CHIA. Ví dụ 30 tạ = 3 tấn."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "1 tấn bằng bao nhiêu tạ?",
+            options: [1, 10, 11, 100],
+            answer: 10,
+            mascotHint: "Hai đơn vị liền nhau: 1 tấn = 10 tạ."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "3 tấn bằng bao nhiêu tạ?",
+            options: [10, 30, 40, 300],
+            answer: 30,
+            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 10 = 30."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Mảnh đất rộng 1 200 m² bằng bao nhiêu héc-ta?",
@@ -270,6 +407,51 @@ export const g5c3 = {
               label: "Nhớ: mỗi bậc đổi 100 lần",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Đơn vị", "Bằng bao nhiêu đơn vị liền sau"],
+              rows: [
+                ["1 m²", "100 dm²"],
+                ["1 dm²", "100 cm²"]
+              ]
+            },
+            text: "Bậc thang đơn vị đo diện tích\n· m²\n· dm²\n· cm²\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "Cách đổi đơn vị đo diện tích",
+            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            points: [
+              "1 m² = 100 dm².",
+              "Đi xuống hai bậc thì nhân hai lần: 1 m² = 100 × 100 = 10000 cm².",
+              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 m² = 200 dm².",
+              "Đổi số bé ra số lớn: CHIA. Ví dụ 300 dm² = 3 m²."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "1 m² bằng bao nhiêu dm²?",
+            options: [10, 100, 1000, 10000],
+            answer: 100,
+            mascotHint: "Hai đơn vị liền nhau: 1 m² = 100 dm²."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "3 m² bằng bao nhiêu dm²?",
+            options: [100, 300, 400, 3000],
+            answer: 300,
+            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 100 = 300."
+          }
         },
         {
           type: "quiz",

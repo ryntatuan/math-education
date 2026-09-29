@@ -67,6 +67,27 @@ export const g2c8 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 5,
+              right: 5,
+              sign: "+",
+              remember: true
+            },
+            text: "Bé tự đặt tính: 5 + 5\nhàng đơn vị 5 + 5 = 10, viết 0 nhớ 1\ncòn nhớ 1 ở hàng cao hơn, viết 1\nVậy 5 + 5 = 10."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "4 + 7 bằng bao nhiêu?",
+            options: [1, 10, 11, 12],
+            answer: 11,
+            mascotHint: "hàng đơn vị 4 + 7 = 11, viết 1 nhớ 1. Kết quả 11."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question:
@@ -183,6 +204,27 @@ export const g2c8 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 4,
+              right: 3,
+              sign: "×",
+              remember: true
+            },
+            text: "Bé tự đặt tính: 4 × 3\nhàng đơn vị 4 × 3 = 12, viết 2 nhớ 1\ncòn nhớ 1 ở hàng cao hơn, viết 1\nVậy 4 × 3 = 12."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "6 × 3 bằng bao nhiêu?",
+            options: [8, 17, 18, 19],
+            answer: 18,
+            mascotHint: "hàng đơn vị 6 × 3 = 18, viết 8 nhớ 1. Kết quả 18."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "3 + 3 + 3 + 3 viết thành phép nhân nào?",
@@ -248,6 +290,27 @@ export const g2c8 = {
               label: "Thừa số và Tích",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 2,
+              right: 3,
+              sign: "×",
+              remember: true
+            },
+            text: "Bé tự đặt tính: 2 × 3\nhàng đơn vị 2 × 3 = 6, viết 6\nVậy 2 × 3 = 6."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "2 × 3 bằng bao nhiêu?",
+            options: [5, 6, 7, 8],
+            answer: 6,
+            mascotHint: "hàng đơn vị 2 × 3 = 6, viết 6. Kết quả 6."
+          }
         },
         {
           type: "quiz",
@@ -348,6 +411,27 @@ export const g2c8 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 2,
+              right: 1,
+              sign: "×",
+              remember: true
+            },
+            text: "Bé tự đặt tính: 2 × 1\nhàng đơn vị 2 × 1 = 2, viết 2\nVậy 2 × 1 = 2."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "2 × 3 bằng bao nhiêu?",
+            options: [5, 6, 7, 8],
+            answer: 6,
+            mascotHint: "hàng đơn vị 2 × 3 = 6, viết 6. Kết quả 6."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "2 × 4 bằng bao nhiêu?",
@@ -440,6 +524,27 @@ export const g2c8 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 2,
+              right: 5,
+              sign: "×",
+              remember: true
+            },
+            text: "Bé tự đặt tính: 2 × 5\nhàng đơn vị 2 × 5 = 10, viết 0 nhớ 1\ncòn nhớ 1 ở hàng cao hơn, viết 1\nVậy 2 × 5 = 10."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "7 × 5 bằng bao nhiêu?",
+            options: [5, 34, 35, 36],
+            answer: 35,
+            mascotHint: "hàng đơn vị 7 × 5 = 35, viết 5 nhớ 3. Kết quả 35."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "2 × 8 bằng bao nhiêu?",
@@ -516,6 +621,27 @@ export const g2c8 = {
               captionText: "7 con cua, mỗi con 2 càng: 2 × 7 = 14",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 2,
+              right: 7,
+              sign: "×",
+              remember: true
+            },
+            text: "Bé tự đặt tính: 2 × 7\nhàng đơn vị 2 × 7 = 14, viết 4 nhớ 1\ncòn nhớ 1 ở hàng cao hơn, viết 1\nVậy 2 × 7 = 14."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "7 × 9 bằng bao nhiêu?",
+            options: [3, 62, 63, 64],
+            answer: 63,
+            mascotHint: "hàng đơn vị 7 × 9 = 63, viết 3 nhớ 6. Kết quả 63."
+          }
         },
         {
           type: "quiz",
@@ -617,6 +743,27 @@ export const g2c8 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 5,
+              right: 1,
+              sign: "×",
+              remember: true
+            },
+            text: "Bé tự đặt tính: 5 × 1\nhàng đơn vị 5 × 1 = 5, viết 5\nVậy 5 × 1 = 5."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "1 × 2 bằng bao nhiêu?",
+            options: [1, 2, 3, 4],
+            answer: 2,
+            mascotHint: "hàng đơn vị 1 × 2 = 2, viết 2. Kết quả 2."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "5 × 4 bằng bao nhiêu?",
@@ -697,6 +844,27 @@ export const g2c8 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 5,
+              right: 5,
+              sign: "×",
+              remember: true
+            },
+            text: "Bé tự đặt tính: 5 × 5\nhàng đơn vị 5 × 5 = 25, viết 5 nhớ 2\ncòn nhớ 2 ở hàng cao hơn, viết 2\nVậy 5 × 5 = 25."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "7 × 2 bằng bao nhiêu?",
+            options: [4, 13, 14, 15],
+            answer: 14,
+            mascotHint: "hàng đơn vị 7 × 2 = 14, viết 4 nhớ 1. Kết quả 14."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "5 × 8 bằng bao nhiêu?",
@@ -765,6 +933,27 @@ export const g2c8 = {
               label: "Đổi chỗ hai thừa số thì tích không đổi",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 5,
+              right: 3,
+              sign: "×",
+              remember: true
+            },
+            text: "Bé tự đặt tính: 5 × 3\nhàng đơn vị 5 × 3 = 15, viết 5 nhớ 1\ncòn nhớ 1 ở hàng cao hơn, viết 1\nVậy 5 × 3 = 15."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "7 × 2 bằng bao nhiêu?",
+            options: [4, 13, 14, 15],
+            answer: 14,
+            mascotHint: "hàng đơn vị 7 × 2 = 14, viết 4 nhớ 1. Kết quả 14."
+          }
         },
         {
           type: "quiz",
@@ -874,6 +1063,48 @@ export const g2c8 = {
           },
         },
         {
+          type: "concept",
+          content: {
+            badge: "Cách Học",
+            title: "Bốn bước làm một bài toán",
+            explanation: "Mọi bài bảng nhân – bảng chia – phân số đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            points: [
+              "Bước 1 — Xác định đề hỏi nhân hay chia (chia luôn tra ngược bảng nhân).",
+              "Bước 2 — Tách số thành hàng chục và hàng đơn vị rồi tính từng phần.",
+              "Bước 3 — Cộng các phần lại, nhớ cộng số nhớ khi có.",
+              "Bước 4 — Thử lại bằng phép ngược (nhân ↔ chia) hoặc bằng tổng."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Điều cần nhớ", "Nội dung"],
+              rows: [
+                ["Nhân với 10", "thêm một chữ số 0"],
+                ["Chia hết", "số dư bằng 0"],
+                ["Phân số", "mẫu số chia đều thành mấy phần, tử số lấy mấy phần"]
+              ]
+            },
+            text: "Bảng nhớ nhanh — bảng nhân – bảng chia – phân số\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Muốn tính 24 : 6, bé dựa vào đâu cho nhanh?",
+            options: [
+              "Tra ngược bảng nhân 6",
+              "Đếm lùi 24 lần",
+              "Cộng 6 vào 24",
+              "Bấm máy tính"
+            ],
+            answer: "Tra ngược bảng nhân 6",
+            mascotHint: "Vì 6 × 4 = 24 nên 24 : 6 = 4 — tra bảng nhân bao giờ cũng nhanh hơn đếm."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question:
@@ -950,6 +1181,48 @@ export const g2c8 = {
               label: "Số bị chia – Số chia – Thương",
             },
           },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Cách Học",
+            title: "Bốn bước làm một bài toán",
+            explanation: "Mọi bài so sánh số đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            points: [
+              "Bước 1 — Đếm số CHỮ SỐ của từng số trước.",
+              "Bước 2 — Số nào nhiều chữ số hơn thì lớn hơn — xong, không cần so tiếp.",
+              "Bước 3 — Cùng số chữ số thì so từng hàng từ TRÁI sang phải, gặp hàng khác nhau thì dừng.",
+              "Bước 4 — Đọc lại kết quả và đặt đúng dấu (>, <, =)."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Điều cần nhớ", "Nội dung"],
+              rows: [
+                ["Nhiều chữ số hơn", "thì số đó lớn hơn"],
+                ["So từ trái", "hàng nghìn rồi mới tới trăm, chục, đơn vị"],
+                ["Dấu lớn mở về phía", "số lớn hơn"]
+              ]
+            },
+            text: "Bảng nhớ nhanh — so sánh số\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Muốn so sánh hai số, bé bắt đầu bằng việc gì?",
+            options: [
+              "Đếm xem số nào có nhiều chữ số hơn",
+              "So chữ số hàng đơn vị trước",
+              "Cộng hai số lại",
+              "Đọc từ phải sang trái"
+            ],
+            answer: "Đếm xem số nào có nhiều chữ số hơn",
+            mascotHint: "Số nhiều chữ số hơn chắc chắn lớn hơn, nên chỉ cần so từng hàng khi hai số bằng số chữ số."
+          }
         },
         {
           type: "quiz",
@@ -1030,6 +1303,50 @@ export const g2c8 = {
               label: "Từ một phép nhân viết được hai phép chia",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 2,
+              right: 3,
+              sign: "×",
+              remember: true
+            },
+            text: "Bé tự đặt tính: 2 × 3\nhàng đơn vị 2 × 3 = 6, viết 6\nVậy 2 × 3 = 6."
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                ["Bước 1 — Đơn vị", "viết kết quả luôn kèm đơn vị"],
+                ["Bước 2 — Bậc thang", "đi xuống thì nhân, đi lên thì chia"],
+                ["Bước 3 — Kiểm lại", "lấy kết quả đổi ngược lại xem có về số ban đầu"]
+              ]
+            },
+            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "1 × 1 bằng bao nhiêu?",
+            options: [1, 2, 3, 11],
+            answer: 1,
+            mascotHint: "Bé đặt tính rồi tính từ hàng đơn vị. Kết quả 1."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "2 × 4 bằng bao nhiêu?",
+            options: [7, 8, 9, 10],
+            answer: 8,
+            mascotHint: "hàng đơn vị 2 × 4 = 8, viết 8. Kết quả 8."
+          }
         },
         {
           type: "quiz",
@@ -1121,6 +1438,48 @@ export const g2c8 = {
               label: "Bảng chia 2 dựa vào bảng nhân 2",
             },
           },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Cách Học",
+            title: "Bốn bước làm một bài toán",
+            explanation: "Mọi bài bài toán có lời văn đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            points: [
+              "Bước 1 — Đọc kỹ đề, gạch dưới các SỐ và từ khoá (thêm, bớt, gấp, chia đều).",
+              "Bước 2 — Tóm tắt đề bằng hình hoặc bằng câu ngắn: đã có gì, cần tìm gì.",
+              "Bước 3 — Chọn phép tính: “thêm, gộp, tất cả” → cộng; “bớt, cho đi, còn lại” → trừ; “gấp mấy lần” → nhân.",
+              "Bước 4 — Đặt tính rồi tính, rồi VIẾT ĐÁP SỐ kèm đơn vị và thử lại bằng phép ngược."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Điều cần nhớ", "Nội dung"],
+              rows: [
+                ["Đơn vị", "đáp số luôn kèm đơn vị như con, quả, kg, cm"],
+                ["Kiểm tra", "cộng thì lấy kết quả trừ đi một số hạng"],
+                ["Câu trả lời", "viết đủ câu, không chỉ ghi số"]
+              ]
+            },
+            text: "Bảng nhớ nhanh — bài toán có lời văn\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Giải một bài toán có lời văn, bé làm gì TRƯỚC TIÊN?",
+            options: [
+              "Đọc kỹ đề và gạch dưới các số đã cho",
+              "Viết ngay đáp số",
+              "Đoán kết quả",
+              "Đặt tính trước khi đọc đề"
+            ],
+            answer: "Đọc kỹ đề và gạch dưới các số đã cho",
+            mascotHint: "Chưa đọc kỹ đề thì chưa biết đề cho gì, hỏi gì — mọi bước sau đều dễ sai."
+          }
         },
         {
           type: "quiz",
@@ -1225,6 +1584,48 @@ export const g2c8 = {
           },
         },
         {
+          type: "concept",
+          content: {
+            badge: "Cách Học",
+            title: "Bốn bước làm một bài toán",
+            explanation: "Mọi bài bài toán có lời văn đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            points: [
+              "Bước 1 — Đọc kỹ đề, gạch dưới các SỐ và từ khoá (thêm, bớt, gấp, chia đều).",
+              "Bước 2 — Tóm tắt đề bằng hình hoặc bằng câu ngắn: đã có gì, cần tìm gì.",
+              "Bước 3 — Chọn phép tính: “thêm, gộp, tất cả” → cộng; “bớt, cho đi, còn lại” → trừ; “gấp mấy lần” → nhân.",
+              "Bước 4 — Đặt tính rồi tính, rồi VIẾT ĐÁP SỐ kèm đơn vị và thử lại bằng phép ngược."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Điều cần nhớ", "Nội dung"],
+              rows: [
+                ["Đơn vị", "đáp số luôn kèm đơn vị như con, quả, kg, cm"],
+                ["Kiểm tra", "cộng thì lấy kết quả trừ đi một số hạng"],
+                ["Câu trả lời", "viết đủ câu, không chỉ ghi số"]
+              ]
+            },
+            text: "Bảng nhớ nhanh — bài toán có lời văn\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Giải một bài toán có lời văn, bé làm gì TRƯỚC TIÊN?",
+            options: [
+              "Đọc kỹ đề và gạch dưới các số đã cho",
+              "Viết ngay đáp số",
+              "Đoán kết quả",
+              "Đặt tính trước khi đọc đề"
+            ],
+            answer: "Đọc kỹ đề và gạch dưới các số đã cho",
+            mascotHint: "Chưa đọc kỹ đề thì chưa biết đề cho gì, hỏi gì — mọi bước sau đều dễ sai."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "30 : 5 bằng bao nhiêu?",
@@ -1309,6 +1710,43 @@ export const g2c8 = {
               label: "Ô ăn quan: 10 ô, mỗi ô 5 viên sỏi",
             },
           },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Cách Học",
+            title: "Bốn bước làm một bài toán",
+            explanation: "Mọi bài đo lường và đổi đơn vị đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            points: [
+              "Bước 1 — Đọc đơn vị đang có và đơn vị cần đổi.",
+              "Bước 2 — Viết bậc thang đơn vị ra giấy để thấy phải đi mấy bậc.",
+              "Bước 3 — Đi xuống (ra đơn vị bé hơn) thì NHÂN; đi lên (ra đơn vị lớn hơn) thì CHIA.",
+              "Bước 4 — Viết kết quả kèm đơn vị và kiểm tra lại bằng phép ngược."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Điều cần nhớ", "Nội dung"],
+              rows: [
+                ["1 m", "= 100 cm"],
+                ["1 kg", "= 1 000 g"],
+                ["1 l", "= 1 000 ml"]
+              ]
+            },
+            text: "Bảng nhớ nhanh — đo lường và đổi đơn vị\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Đổi số đo từ đơn vị lớn sang đơn vị bé hơn thì bé làm phép gì?",
+            options: ["Nhân", "Chia", "Cộng", "Trừ"],
+            answer: "Nhân",
+            mascotHint: "Đơn vị bé hơn thì số đo phải nhiều hơn: 1 m đổi ra cm được 100 cm — đó là phép nhân."
+          }
         },
         {
           type: "quiz",
@@ -1412,6 +1850,27 @@ export const g2c8 = {
                 "Trò chơi xúc xắc: gieo được mấy chấm thì tìm phép tính có kết quả bằng số đó",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 2,
+              right: 3,
+              sign: "×",
+              remember: true
+            },
+            text: "Bé tự đặt tính: 2 × 3\nhàng đơn vị 2 × 3 = 6, viết 6\nVậy 2 × 3 = 6."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "3 × 3 bằng bao nhiêu?",
+            options: [8, 9, 10, 11],
+            answer: 9,
+            mascotHint: "hàng đơn vị 3 × 3 = 9, viết 9. Kết quả 9."
+          }
         },
         {
           type: "quiz",

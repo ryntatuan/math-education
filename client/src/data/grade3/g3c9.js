@@ -61,6 +61,71 @@ export const g3c9 = {
           }
         },
         {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 7,
+              "right": 5,
+              "sign": "+",
+              "remember": true
+            },
+            "text": "Bé tự đặt tính: 7 + 5\nhàng đơn vị 7 + 5 = 12, viết 2 nhớ 1\ncòn nhớ 1 ở hàng cao hơn, viết 1\nVậy 7 + 5 = 12."
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "planeShape": {
+              "kind": "triangle",
+              "vertices": true,
+              "vertexLabel": "đỉnh"
+            },
+            "text": "hình tam giác bé học hôm nay có gì đặc biệt?\n· 3 cạnh\n· 3 đỉnh\nBé đếm cạnh, đếm đỉnh ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé."
+          }
+        },
+        {
+          "type": "concept",
+          "content": {
+            "badge": "Ghi Nhớ",
+            "title": "Đặc điểm của hình tam giác",
+            "explanation": "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của hình tam giác.",
+            "points": [
+              "hình tam giác có 3 cạnh.",
+              "hình tam giác có 3 đỉnh.",
+              "hình tam giác có 3 góc.",
+              "Cách kiểm tra: bé đếm cạnh, đếm đỉnh; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình."
+            ]
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Hình nào có 3 cạnh?",
+            "options": [
+              "hình tam giác",
+              "hình khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ"
+            ],
+            "answer": "hình tam giác",
+            "mascotHint": "hình tam giác: 3 cạnh · 3 đỉnh · 3 góc."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "8 + 4 bằng bao nhiêu?",
+            "options": [
+              2,
+              11,
+              12,
+              13
+            ],
+            "answer": 12,
+            "mascotHint": "hàng đơn vị 8 + 4 = 12, viết 2 nhớ 1. Kết quả 12."
+          }
+        },
+        {
           "type": "quiz",
           "content": {
             "question": "Hình tam giác có ba cạnh dài 3 cm, 4 cm, 5 cm. Chu vi là bao nhiêu?",
@@ -173,6 +238,71 @@ export const g3c9 = {
           }
         },
         {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 8,
+              "right": 2,
+              "sign": "×",
+              "remember": true
+            },
+            "text": "Bé tự đặt tính: 8 × 2\nhàng đơn vị 8 × 2 = 16, viết 6 nhớ 1\ncòn nhớ 1 ở hàng cao hơn, viết 1\nVậy 8 × 2 = 16."
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "planeShape": {
+              "kind": "rectangle",
+              "vertices": true,
+              "vertexLabel": "đỉnh"
+            },
+            "text": "hình chữ nhật bé học hôm nay có gì đặc biệt?\n· 4 góc vuông\n· hai cặp cạnh dài bằng nhau\nBé đếm cạnh, đếm đỉnh ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé."
+          }
+        },
+        {
+          "type": "concept",
+          "content": {
+            "badge": "Ghi Nhớ",
+            "title": "Đặc điểm của hình chữ nhật",
+            "explanation": "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của hình chữ nhật.",
+            "points": [
+              "hình chữ nhật có 4 góc vuông.",
+              "hình chữ nhật có hai cặp cạnh dài bằng nhau.",
+              "hình chữ nhật có cạnh dài là chiều dài, cạnh ngắn là chiều rộng.",
+              "Cách kiểm tra: bé đếm cạnh, đếm đỉnh; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình."
+            ]
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Hình nào có 4 góc vuông?",
+            "options": [
+              "hình chữ nhật",
+              "hình khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ"
+            ],
+            "answer": "hình chữ nhật",
+            "mascotHint": "hình chữ nhật: 4 góc vuông · hai cặp cạnh dài bằng nhau · cạnh dài là chiều dài, cạnh ngắn là chiều rộng."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "8 × 2 bằng bao nhiêu?",
+            "options": [
+              6,
+              15,
+              16,
+              17
+            ],
+            "answer": 16,
+            "mascotHint": "hàng đơn vị 8 × 2 = 16, viết 6 nhớ 1. Kết quả 16."
+          }
+        },
+        {
           "type": "quiz",
           "content": {
             "question": "Hình chữ nhật dài 5 cm, rộng 3 cm. Chu vi là bao nhiêu?",
@@ -281,6 +411,71 @@ export const g3c9 = {
               "right": 4,
               "result": 16
             }
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 4,
+              "right": 4,
+              "sign": "×",
+              "remember": true
+            },
+            "text": "Bé tự đặt tính: 4 × 4\nhàng đơn vị 4 × 4 = 16, viết 6 nhớ 1\ncòn nhớ 1 ở hàng cao hơn, viết 1\nVậy 4 × 4 = 16."
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "planeShape": {
+              "kind": "square",
+              "vertices": true,
+              "vertexLabel": "đỉnh"
+            },
+            "text": "hình vuông bé học hôm nay có gì đặc biệt?\n· 4 cạnh dài bằng nhau\n· 4 góc vuông\nBé đếm cạnh, đếm đỉnh ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé."
+          }
+        },
+        {
+          "type": "concept",
+          "content": {
+            "badge": "Ghi Nhớ",
+            "title": "Đặc điểm của hình vuông",
+            "explanation": "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của hình vuông.",
+            "points": [
+              "hình vuông có 4 cạnh dài bằng nhau.",
+              "hình vuông có 4 góc vuông.",
+              "hình vuông có hai đường chéo bằng nhau.",
+              "Cách kiểm tra: bé đếm cạnh, đếm đỉnh; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình."
+            ]
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Hình nào có 4 cạnh dài bằng nhau?",
+            "options": [
+              "hình vuông",
+              "hình khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ"
+            ],
+            "answer": "hình vuông",
+            "mascotHint": "hình vuông: 4 cạnh dài bằng nhau · 4 góc vuông · hai đường chéo bằng nhau."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "5 × 3 bằng bao nhiêu?",
+            "options": [
+              5,
+              14,
+              15,
+              16
+            ],
+            "answer": 15,
+            "mascotHint": "hàng đơn vị 5 × 3 = 15, viết 5 nhớ 1. Kết quả 15."
           }
         },
         {
@@ -401,6 +596,82 @@ export const g3c9 = {
           }
         },
         {
+          "type": "visual",
+          "content": {
+            "solid": {
+              "kind": "cuboid"
+            },
+            "text": "khối hộp chữ nhật bé học hôm nay có gì đặc biệt?\n· 6 mặt, mỗi mặt là hình chữ nhật\n· 8 đỉnh\nBé đếm mặt, đếm đỉnh, đếm cạnh ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé."
+          }
+        },
+        {
+          "type": "concept",
+          "content": {
+            "badge": "Ghi Nhớ",
+            "title": "Đặc điểm của khối hộp chữ nhật",
+            "explanation": "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của khối hộp chữ nhật.",
+            "points": [
+              "khối hộp chữ nhật có 6 mặt, mỗi mặt là hình chữ nhật.",
+              "khối hộp chữ nhật có 8 đỉnh.",
+              "khối hộp chữ nhật có 12 cạnh.",
+              "Cách kiểm tra: bé đếm mặt, đếm đỉnh, đếm cạnh; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình."
+            ]
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "table": {
+              "headers": [
+                "Bước",
+                "Việc bé làm"
+              ],
+              "rows": [
+                [
+                  "Bước 1 — Gọi tên",
+                  "nói đúng tên hình/khối trước khi làm gì tiếp"
+                ],
+                [
+                  "Bước 2 — Đếm",
+                  "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học"
+                ],
+                [
+                  "Bước 3 — Kiểm tra",
+                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt"
+                ]
+              ]
+            },
+            "text": "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
+            "options": [
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Nộp bài luôn cho nhanh",
+              "Đoán lại một lần nữa"
+            ],
+            "answer": "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            "mascotHint": "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Hình nào có 6 mặt, mỗi mặt là hình chữ nhật?",
+            "options": [
+              "khối hộp chữ nhật",
+              "hình khối lập phương",
+              "hình khối trụ",
+              "hình khối cầu"
+            ],
+            "answer": "khối hộp chữ nhật",
+            "mascotHint": "khối hộp chữ nhật: 6 mặt, mỗi mặt là hình chữ nhật · 8 đỉnh · 12 cạnh."
+          }
+        },
+        {
           "type": "quiz",
           "content": {
             "question": "Muốn so sánh diện tích hai hình, bé có thể làm gì?",
@@ -497,6 +768,98 @@ export const g3c9 = {
           },
         },
         {
+          "type": "visual",
+          "content": {
+            "planeShape": {
+              "kind": "square",
+              "vertices": true,
+              "vertexLabel": "đỉnh"
+            },
+            "text": "hình vuông bé học hôm nay có gì đặc biệt?\n· 4 cạnh dài bằng nhau\n· 4 góc vuông\nBé đếm cạnh, đếm đỉnh ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé."
+          }
+        },
+        {
+          "type": "concept",
+          "content": {
+            "badge": "Ghi Nhớ",
+            "title": "Đặc điểm của hình vuông",
+            "explanation": "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của hình vuông.",
+            "points": [
+              "hình vuông có 4 cạnh dài bằng nhau.",
+              "hình vuông có 4 góc vuông.",
+              "hình vuông có hai đường chéo bằng nhau.",
+              "Cách kiểm tra: bé đếm cạnh, đếm đỉnh; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình."
+            ]
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "table": {
+              "headers": [
+                "Bước",
+                "Việc bé làm"
+              ],
+              "rows": [
+                [
+                  "Bước 1 — Gọi tên",
+                  "nói đúng tên hình/khối trước khi làm gì tiếp"
+                ],
+                [
+                  "Bước 2 — Đếm",
+                  "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học"
+                ],
+                [
+                  "Bước 3 — Kiểm tra",
+                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt"
+                ]
+              ]
+            },
+            "text": "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
+            "options": [
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Nộp bài luôn cho nhanh",
+              "Đoán lại một lần nữa"
+            ],
+            "answer": "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            "mascotHint": "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Hình nào có 4 cạnh dài bằng nhau?",
+            "options": [
+              "hình vuông",
+              "hình khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ"
+            ],
+            "answer": "hình vuông",
+            "mascotHint": "hình vuông: 4 cạnh dài bằng nhau · 4 góc vuông · hai đường chéo bằng nhau."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Trong bài hôm nay có hình vuông và hình tròn và hình đoạn thẳng. Hình nào có 4 góc vuông?",
+            "options": [
+              "hình vuông",
+              "hình khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ"
+            ],
+            "answer": "hình vuông",
+            "mascotHint": "Đáp án là hình vuông: 4 cạnh dài bằng nhau · 4 góc vuông · hai đường chéo bằng nhau."
+          }
+        },
+        {
           "type": "quiz",
           "content": {
             "question": "1 cm² là diện tích của hình nào?",
@@ -586,6 +949,71 @@ export const g3c9 = {
               "right": 3,
               "result": 15
             }
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 5,
+              "right": 3,
+              "sign": "×",
+              "remember": true
+            },
+            "text": "Bé tự đặt tính: 5 × 3\nhàng đơn vị 5 × 3 = 15, viết 5 nhớ 1\ncòn nhớ 1 ở hàng cao hơn, viết 1\nVậy 5 × 3 = 15."
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "planeShape": {
+              "kind": "rectangle",
+              "vertices": true,
+              "vertexLabel": "đỉnh"
+            },
+            "text": "hình chữ nhật bé học hôm nay có gì đặc biệt?\n· 4 góc vuông\n· hai cặp cạnh dài bằng nhau\nBé đếm cạnh, đếm đỉnh ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé."
+          }
+        },
+        {
+          "type": "concept",
+          "content": {
+            "badge": "Ghi Nhớ",
+            "title": "Đặc điểm của hình chữ nhật",
+            "explanation": "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của hình chữ nhật.",
+            "points": [
+              "hình chữ nhật có 4 góc vuông.",
+              "hình chữ nhật có hai cặp cạnh dài bằng nhau.",
+              "hình chữ nhật có cạnh dài là chiều dài, cạnh ngắn là chiều rộng.",
+              "Cách kiểm tra: bé đếm cạnh, đếm đỉnh; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình."
+            ]
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Hình nào có 4 góc vuông?",
+            "options": [
+              "hình chữ nhật",
+              "hình khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ"
+            ],
+            "answer": "hình chữ nhật",
+            "mascotHint": "hình chữ nhật: 4 góc vuông · hai cặp cạnh dài bằng nhau · cạnh dài là chiều dài, cạnh ngắn là chiều rộng."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "2 × 5 bằng bao nhiêu?",
+            "options": [
+              9,
+              10,
+              11,
+              12
+            ],
+            "answer": 10,
+            "mascotHint": "hàng đơn vị 2 × 5 = 10, viết 0 nhớ 1. Kết quả 10."
           }
         },
         {
@@ -697,6 +1125,71 @@ export const g3c9 = {
               "right": 4,
               "result": 16
             }
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 4,
+              "right": 4,
+              "sign": "×",
+              "remember": true
+            },
+            "text": "Bé tự đặt tính: 4 × 4\nhàng đơn vị 4 × 4 = 16, viết 6 nhớ 1\ncòn nhớ 1 ở hàng cao hơn, viết 1\nVậy 4 × 4 = 16."
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "planeShape": {
+              "kind": "square",
+              "vertices": true,
+              "vertexLabel": "đỉnh"
+            },
+            "text": "hình vuông bé học hôm nay có gì đặc biệt?\n· 4 cạnh dài bằng nhau\n· 4 góc vuông\nBé đếm cạnh, đếm đỉnh ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé."
+          }
+        },
+        {
+          "type": "concept",
+          "content": {
+            "badge": "Ghi Nhớ",
+            "title": "Đặc điểm của hình vuông",
+            "explanation": "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của hình vuông.",
+            "points": [
+              "hình vuông có 4 cạnh dài bằng nhau.",
+              "hình vuông có 4 góc vuông.",
+              "hình vuông có hai đường chéo bằng nhau.",
+              "Cách kiểm tra: bé đếm cạnh, đếm đỉnh; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình."
+            ]
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Hình nào có 4 cạnh dài bằng nhau?",
+            "options": [
+              "hình vuông",
+              "hình khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ"
+            ],
+            "answer": "hình vuông",
+            "mascotHint": "hình vuông: 4 cạnh dài bằng nhau · 4 góc vuông · hai đường chéo bằng nhau."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "8 × 2 bằng bao nhiêu?",
+            "options": [
+              6,
+              15,
+              16,
+              17
+            ],
+            "answer": 16,
+            "mascotHint": "hàng đơn vị 8 × 2 = 16, viết 6 nhớ 1. Kết quả 16."
           }
         },
         {
@@ -818,6 +1311,85 @@ export const g3c9 = {
               "label": "Luyện tập chung chủ đề 9"
             }
           },
+        },
+        {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 4,
+              "right": 4,
+              "sign": "×",
+              "remember": true
+            },
+            "text": "Bé tự đặt tính: 4 × 4\nhàng đơn vị 4 × 4 = 16, viết 6 nhớ 1\ncòn nhớ 1 ở hàng cao hơn, viết 1\nVậy 4 × 4 = 16."
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "planeShape": {
+              "kind": "square",
+              "vertices": true,
+              "vertexLabel": "đỉnh"
+            },
+            "text": "hình vuông bé học hôm nay có gì đặc biệt?\n· 4 cạnh dài bằng nhau\n· 4 góc vuông\nBé đếm cạnh, đếm đỉnh ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé."
+          }
+        },
+        {
+          "type": "concept",
+          "content": {
+            "badge": "Ghi Nhớ",
+            "title": "Đặc điểm của hình vuông",
+            "explanation": "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của hình vuông.",
+            "points": [
+              "hình vuông có 4 cạnh dài bằng nhau.",
+              "hình vuông có 4 góc vuông.",
+              "hình vuông có hai đường chéo bằng nhau.",
+              "Cách kiểm tra: bé đếm cạnh, đếm đỉnh; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình."
+            ]
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Hình nào có 4 cạnh dài bằng nhau?",
+            "options": [
+              "hình vuông",
+              "hình khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ"
+            ],
+            "answer": "hình vuông",
+            "mascotHint": "hình vuông: 4 cạnh dài bằng nhau · 4 góc vuông · hai đường chéo bằng nhau."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Trong bài hôm nay có hình vuông và hình chữ nhật. Hình nào có 4 góc vuông?",
+            "options": [
+              "hình vuông",
+              "hình khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ"
+            ],
+            "answer": "hình vuông",
+            "mascotHint": "Đáp án là hình vuông: 4 cạnh dài bằng nhau · 4 góc vuông · hai đường chéo bằng nhau."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "6 × 4 bằng bao nhiêu?",
+            "options": [
+              4,
+              23,
+              24,
+              25
+            ],
+            "answer": 24,
+            "mascotHint": "hàng đơn vị 6 × 4 = 24, viết 4 nhớ 2. Kết quả 24."
+          }
         },
         {
           "type": "quiz",

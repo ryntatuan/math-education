@@ -52,6 +52,45 @@ export const g2c5 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            pointLine: {
+              kind: "segment",
+              points: ["A", "B"],
+              formula: "đoạn thẳng AB"
+            },
+            text: "đoạn thẳng bé học hôm nay có gì đặc biệt?\n· hai đầu mút, thường gọi là A và B\n· đo được độ dài\nBé đặt thước đúng vạch 0 rồi đọc số ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Ghi Nhớ",
+            title: "Đặc điểm của đoạn thẳng",
+            explanation: "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của đoạn thẳng.",
+            points: [
+              "đoạn thẳng có hai đầu mút, thường gọi là A và B.",
+              "đoạn thẳng có đo được độ dài.",
+              "đoạn thẳng có đoạn thẳng ngắn nhất nối hai điểm đó.",
+              "Cách kiểm tra: bé đặt thước đúng vạch 0 rồi đọc số; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Hình nào có hai đầu mút, thường gọi là A và B?",
+            options: [
+              "đoạn thẳng",
+              "hình khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ"
+            ],
+            answer: "đoạn thẳng",
+            mascotHint: "đoạn thẳng: hai đầu mút, thường gọi là A và B · đo được độ dài · đoạn thẳng ngắn nhất nối hai điểm đó."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Nối hai điểm A và B ta được hình gì?",
@@ -159,6 +198,59 @@ export const g2c5 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            pointLine: {
+              kind: "segment",
+              points: ["A", "B"],
+              formula: "đoạn thẳng AB"
+            },
+            text: "đoạn thẳng bé học hôm nay có gì đặc biệt?\n· hai đầu mút, thường gọi là A và B\n· đo được độ dài\nBé đặt thước đúng vạch 0 rồi đọc số ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Ghi Nhớ",
+            title: "Đặc điểm của đoạn thẳng",
+            explanation: "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của đoạn thẳng.",
+            points: [
+              "đoạn thẳng có hai đầu mút, thường gọi là A và B.",
+              "đoạn thẳng có đo được độ dài.",
+              "đoạn thẳng có đoạn thẳng ngắn nhất nối hai điểm đó.",
+              "Cách kiểm tra: bé đặt thước đúng vạch 0 rồi đọc số; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Hình nào có hai đầu mút, thường gọi là A và B?",
+            options: [
+              "đoạn thẳng",
+              "hình khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ"
+            ],
+            answer: "đoạn thẳng",
+            mascotHint: "đoạn thẳng: hai đầu mút, thường gọi là A và B · đo được độ dài · đoạn thẳng ngắn nhất nối hai điểm đó."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Trong bài hôm nay có hình đoạn thẳng và hình đường thẳng. Hình nào có đo được độ dài?",
+            options: [
+              "đoạn thẳng",
+              "hình khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ"
+            ],
+            answer: "đoạn thẳng",
+            mascotHint: "Đáp án là đoạn thẳng: hai đầu mút, thường gọi là A và B · đo được độ dài · đoạn thẳng ngắn nhất nối hai điểm đó."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Đường thẳng khác đoạn thẳng ở điểm nào?",
@@ -258,6 +350,75 @@ export const g2c5 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            pointLine: {
+              kind: "line",
+              points: ["A", "B"],
+              formula: "đường thẳng AB"
+            },
+            text: "đường thẳng bé học hôm nay có gì đặc biệt?\n· kéo dài mãi về hai phía\n· không đo được độ dài\nBé dùng thước thẳng kéo dài hai phía ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Ghi Nhớ",
+            title: "Đặc điểm của đường thẳng",
+            explanation: "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của đường thẳng.",
+            points: [
+              "đường thẳng có kéo dài mãi về hai phía.",
+              "đường thẳng không đo được độ dài.",
+              "đường thẳng có qua hai điểm vẽ được một đường thẳng.",
+              "Cách kiểm tra: bé dùng thước thẳng kéo dài hai phía; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                ["Bước 1 — Gọi tên", "nói đúng tên hình/khối trước khi làm gì tiếp"],
+                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học"],
+                [
+                  "Bước 3 — Kiểm tra",
+                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt"
+                ]
+              ]
+            },
+            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
+            options: [
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Nộp bài luôn cho nhanh",
+              "Đoán lại một lần nữa"
+            ],
+            answer: "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            mascotHint: "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Hình nào có kéo dài mãi về hai phía?",
+            options: [
+              "đường thẳng",
+              "hình khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ"
+            ],
+            answer: "đường thẳng",
+            mascotHint: "đường thẳng: kéo dài mãi về hai phía · không có không đo được độ dài · qua hai điểm vẽ được một đường thẳng."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Khi nào ba điểm được gọi là thẳng hàng?",
@@ -335,6 +496,59 @@ export const g2c5 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            pointLine: {
+              kind: "segment",
+              points: ["A", "B"],
+              formula: "đoạn thẳng AB"
+            },
+            text: "đoạn thẳng bé học hôm nay có gì đặc biệt?\n· hai đầu mút, thường gọi là A và B\n· đo được độ dài\nBé đặt thước đúng vạch 0 rồi đọc số ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Ghi Nhớ",
+            title: "Đặc điểm của đoạn thẳng",
+            explanation: "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của đoạn thẳng.",
+            points: [
+              "đoạn thẳng có hai đầu mút, thường gọi là A và B.",
+              "đoạn thẳng có đo được độ dài.",
+              "đoạn thẳng có đoạn thẳng ngắn nhất nối hai điểm đó.",
+              "Cách kiểm tra: bé đặt thước đúng vạch 0 rồi đọc số; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Hình nào có hai đầu mút, thường gọi là A và B?",
+            options: [
+              "đoạn thẳng",
+              "hình khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ"
+            ],
+            answer: "đoạn thẳng",
+            mascotHint: "đoạn thẳng: hai đầu mút, thường gọi là A và B · đo được độ dài · đoạn thẳng ngắn nhất nối hai điểm đó."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Trong bài hôm nay có hình đoạn thẳng và hình đường thẳng. Hình nào có đo được độ dài?",
+            options: [
+              "đoạn thẳng",
+              "hình khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ"
+            ],
+            answer: "đoạn thẳng",
+            mascotHint: "Đáp án là đoạn thẳng: hai đầu mút, thường gọi là A và B · đo được độ dài · đoạn thẳng ngắn nhất nối hai điểm đó."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Đường gấp khúc ABCD gồm bao nhiêu đoạn thẳng?",
@@ -410,6 +624,66 @@ export const g2c5 = {
               label: "Độ dài đường gấp khúc bằng tổng độ dài các đoạn",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 7,
+              right: 5,
+              sign: "+",
+              remember: true
+            },
+            text: "Bé tự đặt tính: 7 + 5\nhàng đơn vị 7 + 5 = 12, viết 2 nhớ 1\ncòn nhớ 1 ở hàng cao hơn, viết 1\nVậy 7 + 5 = 12."
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            pointLine: {
+              kind: "segment",
+              points: ["A", "B"],
+              formula: "đoạn thẳng AB"
+            },
+            text: "đoạn thẳng bé học hôm nay có gì đặc biệt?\n· hai đầu mút, thường gọi là A và B\n· đo được độ dài\nBé đặt thước đúng vạch 0 rồi đọc số ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Ghi Nhớ",
+            title: "Đặc điểm của đoạn thẳng",
+            explanation: "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của đoạn thẳng.",
+            points: [
+              "đoạn thẳng có hai đầu mút, thường gọi là A và B.",
+              "đoạn thẳng có đo được độ dài.",
+              "đoạn thẳng có đoạn thẳng ngắn nhất nối hai điểm đó.",
+              "Cách kiểm tra: bé đặt thước đúng vạch 0 rồi đọc số; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Hình nào có hai đầu mút, thường gọi là A và B?",
+            options: [
+              "đoạn thẳng",
+              "hình khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ"
+            ],
+            answer: "đoạn thẳng",
+            mascotHint: "đoạn thẳng: hai đầu mút, thường gọi là A và B · đo được độ dài · đoạn thẳng ngắn nhất nối hai điểm đó."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "8 + 3 bằng bao nhiêu?",
+            options: [1, 10, 11, 12],
+            answer: 11,
+            mascotHint: "hàng đơn vị 8 + 3 = 11, viết 1 nhớ 1. Kết quả 11."
+          }
         },
         {
           type: "quiz",
@@ -497,6 +771,87 @@ export const g2c5 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            solid: {
+              kind: "cuboid"
+            },
+            text: "khối hộp chữ nhật bé học hôm nay có gì đặc biệt?\n· 6 mặt, mỗi mặt là hình chữ nhật\n· 8 đỉnh\nBé đếm mặt, đếm đỉnh, đếm cạnh ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Ghi Nhớ",
+            title: "Đặc điểm của khối hộp chữ nhật",
+            explanation: "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của khối hộp chữ nhật.",
+            points: [
+              "khối hộp chữ nhật có 6 mặt, mỗi mặt là hình chữ nhật.",
+              "khối hộp chữ nhật có 8 đỉnh.",
+              "khối hộp chữ nhật có 12 cạnh.",
+              "Cách kiểm tra: bé đếm mặt, đếm đỉnh, đếm cạnh; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                ["Bước 1 — Gọi tên", "nói đúng tên hình/khối trước khi làm gì tiếp"],
+                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học"],
+                [
+                  "Bước 3 — Kiểm tra",
+                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt"
+                ]
+              ]
+            },
+            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
+            options: [
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Nộp bài luôn cho nhanh",
+              "Đoán lại một lần nữa"
+            ],
+            answer: "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            mascotHint: "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Hình nào có 6 mặt, mỗi mặt là hình chữ nhật?",
+            options: [
+              "khối hộp chữ nhật",
+              "hình khối lập phương",
+              "hình khối trụ",
+              "hình khối cầu"
+            ],
+            answer: "khối hộp chữ nhật",
+            mascotHint: "khối hộp chữ nhật: 6 mặt, mỗi mặt là hình chữ nhật · 8 đỉnh · 12 cạnh."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Trong bài hôm nay có hình khối hộp chữ nhật và hình vuông và hình chữ nhật. Hình nào có 8 đỉnh?",
+            options: [
+              "khối hộp chữ nhật",
+              "hình khối lập phương",
+              "hình khối trụ",
+              "hình khối cầu"
+            ],
+            answer: "khối hộp chữ nhật",
+            mascotHint: "Đáp án là khối hộp chữ nhật: 6 mặt, mỗi mặt là hình chữ nhật · 8 đỉnh · 12 cạnh."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Hình tứ giác có mấy cạnh và mấy đỉnh?",
@@ -576,6 +931,45 @@ export const g2c5 = {
                 "Vẽ đoạn thẳng AB dài 4 cm: đặt vạch 0 tại A, chấm B ở vạch 4",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            pointLine: {
+              kind: "segment",
+              points: ["A", "B"],
+              formula: "đoạn thẳng AB"
+            },
+            text: "đoạn thẳng bé học hôm nay có gì đặc biệt?\n· hai đầu mút, thường gọi là A và B\n· đo được độ dài\nBé đặt thước đúng vạch 0 rồi đọc số ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Ghi Nhớ",
+            title: "Đặc điểm của đoạn thẳng",
+            explanation: "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của đoạn thẳng.",
+            points: [
+              "đoạn thẳng có hai đầu mút, thường gọi là A và B.",
+              "đoạn thẳng có đo được độ dài.",
+              "đoạn thẳng có đoạn thẳng ngắn nhất nối hai điểm đó.",
+              "Cách kiểm tra: bé đặt thước đúng vạch 0 rồi đọc số; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Hình nào có hai đầu mút, thường gọi là A và B?",
+            options: [
+              "đoạn thẳng",
+              "hình khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ"
+            ],
+            answer: "đoạn thẳng",
+            mascotHint: "đoạn thẳng: hai đầu mút, thường gọi là A và B · đo được độ dài · đoạn thẳng ngắn nhất nối hai điểm đó."
+          }
         },
         {
           type: "quiz",
@@ -666,6 +1060,89 @@ export const g2c5 = {
               label: "Đường gấp khúc: cộng độ dài các đoạn lại",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            planeShape: {
+              kind: "square",
+              vertices: true,
+              vertexLabel: "đỉnh"
+            },
+            text: "hình vuông bé học hôm nay có gì đặc biệt?\n· 4 cạnh dài bằng nhau\n· 4 góc vuông\nBé đếm cạnh, đếm đỉnh ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Ghi Nhớ",
+            title: "Đặc điểm của hình vuông",
+            explanation: "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của hình vuông.",
+            points: [
+              "hình vuông có 4 cạnh dài bằng nhau.",
+              "hình vuông có 4 góc vuông.",
+              "hình vuông có hai đường chéo bằng nhau.",
+              "Cách kiểm tra: bé đếm cạnh, đếm đỉnh; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                ["Bước 1 — Gọi tên", "nói đúng tên hình/khối trước khi làm gì tiếp"],
+                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học"],
+                [
+                  "Bước 3 — Kiểm tra",
+                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt"
+                ]
+              ]
+            },
+            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
+            options: [
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Nộp bài luôn cho nhanh",
+              "Đoán lại một lần nữa"
+            ],
+            answer: "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            mascotHint: "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Hình nào có 4 cạnh dài bằng nhau?",
+            options: [
+              "hình vuông",
+              "hình khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ"
+            ],
+            answer: "hình vuông",
+            mascotHint: "hình vuông: 4 cạnh dài bằng nhau · 4 góc vuông · hai đường chéo bằng nhau."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Trong bài hôm nay có hình vuông và hình tam giác và hình chữ nhật và hình thang và hình đoạn thẳng và hình đường thẳng. Hình nào có 4 góc vuông?",
+            options: [
+              "hình vuông",
+              "hình khối lập phương",
+              "hình khối hộp chữ nhật",
+              "hình khối trụ"
+            ],
+            answer: "hình vuông",
+            mascotHint: "Đáp án là hình vuông: 4 cạnh dài bằng nhau · 4 góc vuông · hai đường chéo bằng nhau."
+          }
         },
         {
           type: "quiz",

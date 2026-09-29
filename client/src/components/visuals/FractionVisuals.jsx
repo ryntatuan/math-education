@@ -4,7 +4,7 @@
  *
  * Đây là nhóm chỗ trẻ cần hình NHẤT mà app trước đây không có cách vẽ nào:
  *   • Phân số (lớp 4 CĐ 4, lớp 5 CĐ 1): băng giấy chia phần và hình tròn chia phần.
- *   • Toán Tổng – Tỉ / Hiệu – Tỉ (lớp 4 CĐ 5): SƠ ĐỒ ĐOẠN THẲNG — sách giáo khoa chỉ dạy
+ * • Toán Tổng – Tỉ / Hiệu – Tỉ (lớp 4 CĐ 5): SƠ ĐỒ ĐOẠN THẲNG — chương trình chỉ dạy
  *     dạng toán này BẰNG sơ đồ; dạy bằng chữ thì trẻ không hình dung được.
  *   • Chuyển động đều (lớp 5 CĐ 4): hai xe trên một trục.
  *   • Biểu đồ cột (lớp 3–4) và biểu đồ hình quạt (lớp 5 CĐ 3).
@@ -124,7 +124,7 @@ export function FractionBar({
                 );
               })}
               {/**
-               * 🔴 Ô LỚN — cách SGK quốc tế (fraction strips + regrouping) dạy “vì sao bằng nhau”:
+               * 🔴 Ô LỚN — cách quốc tế (fraction strips + regrouping) dạy “vì sao bằng nhau”:
                * gộp 4 ô nhỏ thành 1 Ô LỚN (khung đậm, đánh số 1·2·3 ở trên) ⇒ trẻ thấy
                * “12 ô nhỏ = 3 ô lớn; 8 ô nhỏ = 2 ô lớn” = `8/12 = 2/3` (người dùng yêu cầu
                * 2026-09-24: “để trẻ nhận biết 8 hình nhỏ/12 = 2 hình lớn/3”).
@@ -246,7 +246,7 @@ export function FractionCircle({ parts = 4, shaded = 1, label = "" }) {
  *   braceLabel: "Tổng: 96",
  *   note: "..."
  * }
- * Mỗi hàng là một đoạn thẳng chia thành `parts` phần bằng nhau — đúng cách sách giáo khoa
+ * Mỗi hàng là một đoạn thẳng chia thành `parts` phần bằng nhau — đúng cách chương trình
  * biểu diễn dạng toán này. Hàng đầu tiên được coi là "1 phần" quy chiếu.
  */
 export function BarModel({

@@ -64,6 +64,58 @@ export const g3c11 = {
           }
         },
         {
+          "type": "visual",
+          "content": {
+            "baseTen": {
+              "tens": 0,
+              "ones": 1
+            },
+            "text": "1 gồm mấy chục và mấy đơn vị?\nBé đếm khối: 0 thanh chục và 1 ô rời\nVậy 1 = 0 chục và 1 đơn vị"
+          }
+        },
+        {
+          "type": "concept",
+          "content": {
+            "badge": "Mẹo Nhớ",
+            "title": "So sánh hai số cho đúng",
+            "explanation": "Muốn biết số nào lớn hơn, bé làm hai bước sau — không cần đếm lại từ đầu.",
+            "points": [
+              "Bước 1 — đếm số chữ số: số nào có ít chữ số hơn thì số đó BÉ hơn (ví dụ 9 < 10).",
+              "Bước 2 — hai số cùng số chữ số: so chữ số đầu tiên bên TRÁI trước; số nào có chữ số ấy lớn hơn thì số đó lớn hơn. Bằng nhau thì so chữ số tiếp theo.",
+              "Ví dụ: 24568 có 5 chữ số, 1 có 1 chữ số — số nào có ít chữ số hơn thì bé hơn.",
+              "Số liền sau = số đó thêm 1; số liền trước = số đó bớt 1."
+            ]
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Số liền sau của số 1 là số nào?",
+            "options": [
+              1,
+              2,
+              3,
+              11
+            ],
+            "answer": 2,
+            "mascotHint": "Số liền sau hơn số đã cho 1 đơn vị: 1 + 1 = 2."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Số nào LỚN NHẤT trong các số sau: 1, 24568, 2, 4?",
+            "options": [
+              "1",
+              "2",
+              "4",
+              "24568"
+            ],
+            "answer": "24568",
+            "mascotHint": "Bé so chữ số đầu tiên bên trái của các số, bằng nhau thì so chữ số tiếp theo — số lớn nhất là 24568."
+          }
+        },
+        {
           "type": "quiz",
           "content": {
             "question": "Số 35 472 gồm mấy chục nghìn và mấy nghìn?",
@@ -140,6 +192,58 @@ export const g3c11 = {
               ],
               "label": "100 000 = 10 chục nghìn = 1 trăm nghìn"
             }
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "baseTen": {
+              "tens": 0,
+              "ones": 2
+            },
+            "text": "2 gồm mấy chục và mấy đơn vị?\nBé đếm khối: 0 thanh chục và 2 ô rời\nVậy 2 = 0 chục và 2 đơn vị"
+          }
+        },
+        {
+          "type": "concept",
+          "content": {
+            "badge": "Mẹo Nhớ",
+            "title": "So sánh hai số cho đúng",
+            "explanation": "Muốn biết số nào lớn hơn, bé làm hai bước sau — không cần đếm lại từ đầu.",
+            "points": [
+              "Bước 1 — đếm số chữ số: số nào có ít chữ số hơn thì số đó BÉ hơn (ví dụ 9 < 10).",
+              "Bước 2 — hai số cùng số chữ số: so chữ số đầu tiên bên TRÁI trước; số nào có chữ số ấy lớn hơn thì số đó lớn hơn. Bằng nhau thì so chữ số tiếp theo.",
+              "Ví dụ: 100000 có 6 chữ số, 2 có 1 chữ số — số nào có ít chữ số hơn thì bé hơn.",
+              "Số liền sau = số đó thêm 1; số liền trước = số đó bớt 1."
+            ]
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Số liền sau của số 2 là số nào?",
+            "options": [
+              2,
+              3,
+              4,
+              12
+            ],
+            "answer": 3,
+            "mascotHint": "Số liền sau hơn số đã cho 1 đơn vị: 2 + 1 = 3."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Số nào LỚN NHẤT trong các số sau: 2, 100000, 10, 99999?",
+            "options": [
+              "2",
+              "10",
+              "99999",
+              "100000"
+            ],
+            "answer": "100000",
+            "mascotHint": "Bé so chữ số đầu tiên bên trái của các số, bằng nhau thì so chữ số tiếp theo — số lớn nhất là 100000."
           }
         },
         {
@@ -257,6 +361,73 @@ export const g3c11 = {
           },
         },
         {
+          "type": "concept",
+          "content": {
+            "badge": "Mẹo Nhớ",
+            "title": "So sánh hai số bằng cách đếm",
+            "explanation": "Ở mức này, cách chắc chắn nhất là ĐẾM: số nào đếm đến sau thì số đó lớn hơn.",
+            "points": [
+              "Đếm từ 1: “1, 2, 3, 4, 5…” — số đếm đến sau thì lớn hơn. Ví dụ 5 đến sau 2 nên 5 lớn hơn 2.",
+              "Trên tia số, số đứng bên PHẢI lớn hơn số đứng bên TRÁI.",
+              "Ba dấu cần nhớ: “>” đọc là lớn hơn, “<” đọc là bé hơn, “=” đọc là bằng nhau.",
+              "Với hai số của bài này: 3 < 30405, đọc là “3 bé hơn 30405”."
+            ]
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "table": {
+              "headers": [
+                "Bước",
+                "Việc bé làm"
+              ],
+              "rows": [
+                [
+                  "Bước 1 — Đơn vị",
+                  "viết kết quả luôn kèm đơn vị"
+                ],
+                [
+                  "Bước 2 — Bậc thang",
+                  "đi xuống thì nhân, đi lên thì chia"
+                ],
+                [
+                  "Bước 3 — Kiểm lại",
+                  "lấy kết quả đổi ngược lại xem có về số ban đầu"
+                ]
+              ]
+            },
+            "text": "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
+            "options": [
+              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Nộp bài luôn cho nhanh",
+              "Đoán lại một lần nữa"
+            ],
+            "answer": "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            "mascotHint": "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Số nào lớn hơn: 3 hay 30405?",
+            "options": [
+              3,
+              4,
+              24568,
+              30405
+            ],
+            "answer": 30405,
+            "mascotHint": "Đếm từ 1: số 30405 đếm đến sau số 3, nên 30405 lớn hơn 3."
+          }
+        },
+        {
           "type": "quiz",
           "content": {
             "question": "Số 50 000 đọc là gì?",
@@ -344,6 +515,58 @@ export const g3c11 = {
               ],
               "label": "24 568 < 24 586 vì hàng chục 6 < 8"
             }
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "baseTen": {
+              "tens": 0,
+              "ones": 4
+            },
+            "text": "4 gồm mấy chục và mấy đơn vị?\nBé đếm khối: 0 thanh chục và 4 ô rời\nVậy 4 = 0 chục và 4 đơn vị"
+          }
+        },
+        {
+          "type": "concept",
+          "content": {
+            "badge": "Mẹo Nhớ",
+            "title": "So sánh hai số cho đúng",
+            "explanation": "Muốn biết số nào lớn hơn, bé làm hai bước sau — không cần đếm lại từ đầu.",
+            "points": [
+              "Bước 1 — đếm số chữ số: số nào có ít chữ số hơn thì số đó BÉ hơn (ví dụ 9 < 10).",
+              "Bước 2 — hai số cùng số chữ số: so chữ số đầu tiên bên TRÁI trước; số nào có chữ số ấy lớn hơn thì số đó lớn hơn. Bằng nhau thì so chữ số tiếp theo.",
+              "Ví dụ: 100000 có 6 chữ số, 4 có 1 chữ số — số nào có ít chữ số hơn thì bé hơn.",
+              "Số liền sau = số đó thêm 1; số liền trước = số đó bớt 1."
+            ]
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Số liền sau của số 4 là số nào?",
+            "options": [
+              4,
+              5,
+              6,
+              14
+            ],
+            "answer": 5,
+            "mascotHint": "Số liền sau hơn số đã cho 1 đơn vị: 4 + 1 = 5."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Số nào LỚN NHẤT trong các số sau: 4, 100000, 24568, 24586?",
+            "options": [
+              "4",
+              "24568",
+              "24586",
+              "100000"
+            ],
+            "answer": "100000",
+            "mascotHint": "Bé so chữ số đầu tiên bên trái của các số, bằng nhau thì so chữ số tiếp theo — số lớn nhất là 100000."
           }
         },
         {
@@ -452,6 +675,58 @@ export const g3c11 = {
               "label": "24 300 gần 24 000 · 24 800 gần 25 000"
             }
           },
+        },
+        {
+          "type": "visual",
+          "content": {
+            "baseTen": {
+              "tens": 0,
+              "ones": 5
+            },
+            "text": "5 gồm mấy chục và mấy đơn vị?\nBé đếm khối: 0 thanh chục và 5 ô rời\nVậy 5 = 0 chục và 5 đơn vị"
+          }
+        },
+        {
+          "type": "concept",
+          "content": {
+            "badge": "Mẹo Nhớ",
+            "title": "So sánh hai số cho đúng",
+            "explanation": "Muốn biết số nào lớn hơn, bé làm hai bước sau — không cần đếm lại từ đầu.",
+            "points": [
+              "Bước 1 — đếm số chữ số: số nào có ít chữ số hơn thì số đó BÉ hơn (ví dụ 9 < 10).",
+              "Bước 2 — hai số cùng số chữ số: so chữ số đầu tiên bên TRÁI trước; số nào có chữ số ấy lớn hơn thì số đó lớn hơn. Bằng nhau thì so chữ số tiếp theo.",
+              "Ví dụ: 24300 có 5 chữ số, 5 có 1 chữ số — số nào có ít chữ số hơn thì bé hơn.",
+              "Số liền sau = số đó thêm 1; số liền trước = số đó bớt 1."
+            ]
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Số liền sau của số 5 là số nào?",
+            "options": [
+              5,
+              6,
+              7,
+              15
+            ],
+            "answer": 6,
+            "mascotHint": "Số liền sau hơn số đã cho 1 đơn vị: 5 + 1 = 6."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Số nào LỚN NHẤT trong các số sau: 5, 24300, 24800, 25000?",
+            "options": [
+              "5",
+              "24300",
+              "24800",
+              "25000"
+            ],
+            "answer": "25000",
+            "mascotHint": "Bé so chữ số đầu tiên bên trái của các số, bằng nhau thì so chữ số tiếp theo — số lớn nhất là 25000."
+          }
         },
         {
           "type": "quiz",
@@ -566,6 +841,58 @@ export const g3c11 = {
               "label": "Luyện tập chung chủ đề 11"
             }
           },
+        },
+        {
+          "type": "visual",
+          "content": {
+            "baseTen": {
+              "tens": 0,
+              "ones": 6
+            },
+            "text": "6 gồm mấy chục và mấy đơn vị?\nBé đếm khối: 0 thanh chục và 6 ô rời\nVậy 6 = 0 chục và 6 đơn vị"
+          }
+        },
+        {
+          "type": "concept",
+          "content": {
+            "badge": "Mẹo Nhớ",
+            "title": "So sánh hai số cho đúng",
+            "explanation": "Muốn biết số nào lớn hơn, bé làm hai bước sau — không cần đếm lại từ đầu.",
+            "points": [
+              "Bước 1 — đếm số chữ số: số nào có ít chữ số hơn thì số đó BÉ hơn (ví dụ 9 < 10).",
+              "Bước 2 — hai số cùng số chữ số: so chữ số đầu tiên bên TRÁI trước; số nào có chữ số ấy lớn hơn thì số đó lớn hơn. Bằng nhau thì so chữ số tiếp theo.",
+              "Ví dụ: 11 có 2 chữ số, 6 có 1 chữ số — số nào có ít chữ số hơn thì bé hơn.",
+              "Số liền sau = số đó thêm 1; số liền trước = số đó bớt 1."
+            ]
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Số liền sau của số 6 là số nào?",
+            "options": [
+              6,
+              7,
+              8,
+              16
+            ],
+            "answer": 7,
+            "mascotHint": "Số liền sau hơn số đã cho 1 đơn vị: 6 + 1 = 7."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Số nào LỚN NHẤT trong các số sau: 6, 11, 100000, 24568?",
+            "options": [
+              "6",
+              "11",
+              "24568",
+              "100000"
+            ],
+            "answer": "100000",
+            "mascotHint": "Bé so chữ số đầu tiên bên trái của các số, bằng nhau thì so chữ số tiếp theo — số lớn nhất là 100000."
+          }
         },
         {
           "type": "quiz",

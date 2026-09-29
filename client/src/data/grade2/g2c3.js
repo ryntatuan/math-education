@@ -64,6 +64,53 @@ export const g2c3 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Đơn vị", "Bằng bao nhiêu đơn vị liền sau"],
+              rows: [
+                ["1 tấn", "10 tạ"],
+                ["1 tạ", "10 yến"],
+                ["1 yến", "10 kg"],
+                ["1 kg", "1000 g"]
+              ]
+            },
+            text: "Bậc thang đơn vị đo khối lượng\n· tấn\n· tạ\n· yến\n· kg\n· g\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "Cách đổi đơn vị đo khối lượng",
+            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            points: [
+              "1 tấn = 10 tạ.",
+              "Đi xuống hai bậc thì nhân hai lần: 1 tấn = 10 × 10 = 100 yến.",
+              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 tấn = 20 tạ.",
+              "Đổi số bé ra số lớn: CHIA. Ví dụ 30 tạ = 3 tấn."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "1 tấn bằng bao nhiêu tạ?",
+            options: [1, 10, 11, 100],
+            answer: 10,
+            mascotHint: "Hai đơn vị liền nhau: 1 tấn = 10 tạ."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "3 tấn bằng bao nhiêu tạ?",
+            options: [10, 30, 40, 300],
+            answer: 30,
+            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 10 = 30."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Đơn vị ki-lô-gam viết tắt là gì?",
@@ -146,6 +193,53 @@ export const g2c3 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Đơn vị", "Bằng bao nhiêu đơn vị liền sau"],
+              rows: [
+                ["1 tấn", "10 tạ"],
+                ["1 tạ", "10 yến"],
+                ["1 yến", "10 kg"],
+                ["1 kg", "1000 g"]
+              ]
+            },
+            text: "Bậc thang đơn vị đo khối lượng\n· tấn\n· tạ\n· yến\n· kg\n· g\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "Cách đổi đơn vị đo khối lượng",
+            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            points: [
+              "1 tấn = 10 tạ.",
+              "Đi xuống hai bậc thì nhân hai lần: 1 tấn = 10 × 10 = 100 yến.",
+              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 tấn = 20 tạ.",
+              "Đổi số bé ra số lớn: CHIA. Ví dụ 30 tạ = 3 tấn."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "1 tấn bằng bao nhiêu tạ?",
+            options: [1, 10, 11, 100],
+            answer: 10,
+            mascotHint: "Hai đơn vị liền nhau: 1 tấn = 10 tạ."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "3 tấn bằng bao nhiêu tạ?",
+            options: [10, 30, 40, 300],
+            answer: 30,
+            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 10 = 30."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Kim cân chỉ vào vạch số 7. Vật đó nặng bao nhiêu?",
@@ -210,6 +304,50 @@ export const g2c3 = {
               label: "Đơn vị đo dung tích là lít (l)",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Đơn vị", "Bằng bao nhiêu đơn vị liền sau"],
+              rows: [
+                ["1 l", "1000 ml"]
+              ]
+            },
+            text: "Bậc thang đơn vị đo dung tích\n· l\n· ml\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "Cách đổi đơn vị đo dung tích",
+            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            points: [
+              "1 l = 1000 ml.",
+              "Thang này chỉ có hai đơn vị, nên chỉ có một phép đổi: 1 l = 1000 ml.",
+              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 l = 2000 ml.",
+              "Đổi số bé ra số lớn: CHIA. Ví dụ 3000 ml = 3 l."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "1 l bằng bao nhiêu ml?",
+            options: [100, 1000, 1001, 10000],
+            answer: 1000,
+            mascotHint: "Hai đơn vị liền nhau: 1 l = 1000 ml."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "3 l bằng bao nhiêu ml?",
+            options: [1000, 3000, 4000, 30000],
+            answer: 3000,
+            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 1000 = 3000."
+          }
         },
         {
           type: "quiz",
@@ -296,6 +434,50 @@ export const g2c3 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Đơn vị", "Bằng bao nhiêu đơn vị liền sau"],
+              rows: [
+                ["1 l", "1000 ml"]
+              ]
+            },
+            text: "Bậc thang đơn vị đo dung tích\n· l\n· ml\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "Cách đổi đơn vị đo dung tích",
+            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            points: [
+              "1 l = 1000 ml.",
+              "Thang này chỉ có hai đơn vị, nên chỉ có một phép đổi: 1 l = 1000 ml.",
+              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 l = 2000 ml.",
+              "Đổi số bé ra số lớn: CHIA. Ví dụ 3000 ml = 3 l."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "1 l bằng bao nhiêu ml?",
+            options: [100, 1000, 1001, 10000],
+            answer: 1000,
+            mascotHint: "Hai đơn vị liền nhau: 1 l = 1000 ml."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "3 l bằng bao nhiêu ml?",
+            options: [1000, 3000, 4000, 30000],
+            answer: 3000,
+            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 1000 = 3000."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Trong hai số đo 4 l và 6 l, số nào lớn hơn?",
@@ -366,6 +548,74 @@ export const g2c3 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 2,
+              right: 3,
+              sign: "+",
+              remember: true
+            },
+            text: "Bé tự đặt tính: 2 + 3\nhàng đơn vị 2 + 3 = 5, viết 5\nVậy 2 + 3 = 5."
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Đơn vị", "Bằng bao nhiêu đơn vị liền sau"],
+              rows: [
+                ["1 tấn", "10 tạ"],
+                ["1 tạ", "10 yến"],
+                ["1 yến", "10 kg"],
+                ["1 kg", "1000 g"]
+              ]
+            },
+            text: "Bậc thang đơn vị đo khối lượng\n· tấn\n· tạ\n· yến\n· kg\n· g\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "Cách đổi đơn vị đo khối lượng",
+            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            points: [
+              "1 tấn = 10 tạ.",
+              "Đi xuống hai bậc thì nhân hai lần: 1 tấn = 10 × 10 = 100 yến.",
+              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 tấn = 20 tạ.",
+              "Đổi số bé ra số lớn: CHIA. Ví dụ 30 tạ = 3 tấn."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "1 tấn bằng bao nhiêu tạ?",
+            options: [1, 10, 11, 100],
+            answer: 10,
+            mascotHint: "Hai đơn vị liền nhau: 1 tấn = 10 tạ."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "3 tấn bằng bao nhiêu tạ?",
+            options: [10, 30, 40, 300],
+            answer: 30,
+            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 10 = 30."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "1 + 1 bằng bao nhiêu?",
+            options: [1, 2, 3, 4],
+            answer: 2,
+            mascotHint: "hàng đơn vị 1 + 1 = 2, viết 2. Kết quả 2."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question:
@@ -432,6 +682,73 @@ export const g2c3 = {
               "Phép tính có đơn vị thì kết quả giữ nguyên đơn vị đó.",
             ],
           },
+        },
+        {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 4,
+              right: 1,
+              sign: "−"
+            },
+            text: "Bé tự đặt tính: 4 − 1\nhàng đơn vị 4 − 1 = 3, viết 3\nVậy 4 − 1 = 3."
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Đơn vị", "Bằng bao nhiêu đơn vị liền sau"],
+              rows: [
+                ["1 tấn", "10 tạ"],
+                ["1 tạ", "10 yến"],
+                ["1 yến", "10 kg"],
+                ["1 kg", "1000 g"]
+              ]
+            },
+            text: "Bậc thang đơn vị đo khối lượng\n· tấn\n· tạ\n· yến\n· kg\n· g\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "Cách đổi đơn vị đo khối lượng",
+            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            points: [
+              "1 tấn = 10 tạ.",
+              "Đi xuống hai bậc thì nhân hai lần: 1 tấn = 10 × 10 = 100 yến.",
+              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 tấn = 20 tạ.",
+              "Đổi số bé ra số lớn: CHIA. Ví dụ 30 tạ = 3 tấn."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "1 tấn bằng bao nhiêu tạ?",
+            options: [1, 10, 11, 100],
+            answer: 10,
+            mascotHint: "Hai đơn vị liền nhau: 1 tấn = 10 tạ."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "3 tấn bằng bao nhiêu tạ?",
+            options: [10, 30, 40, 300],
+            answer: 30,
+            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 10 = 30."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "6 − 5 bằng bao nhiêu?",
+            options: [1, 2, 3],
+            answer: 1,
+            mascotHint: "hàng đơn vị 6 − 5 = 1, viết 1. Kết quả 1."
+          }
         },
         {
           type: "quiz",

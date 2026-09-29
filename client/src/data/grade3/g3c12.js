@@ -46,6 +46,69 @@ export const g3c12 = {
           }
         },
         {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 6,
+              "right": 5,
+              "sign": "+",
+              "remember": true
+            },
+            "text": "Bé tự đặt tính: 6 + 5\nhàng đơn vị 6 + 5 = 11, viết 1 nhớ 1\ncòn nhớ 1 ở hàng cao hơn, viết 1\nVậy 6 + 5 = 11."
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "numberLine": {
+              "from": 6,
+              "to": 11,
+              "step": 1,
+              "hops": [
+                {
+                  "from": 6,
+                  "to": 10,
+                  "label": "+4"
+                },
+                {
+                  "from": 10,
+                  "to": 11,
+                  "label": "+1"
+                }
+              ]
+            },
+            "text": "Cách nhẩm nhanh cho 6 + 5\nBé đếm thêm từng bước trên tia số theo các cung nhảy.\nĐếm thêm 4 để được 10 (tròn chục), rồi thêm 1 nữa.\nVậy 6 + 5 = 11."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "2 + 6 bằng bao nhiêu?",
+            "options": [
+              7,
+              8,
+              9,
+              18
+            ],
+            "answer": 8,
+            "mascotHint": "Bé đặt tính rồi tính từ hàng đơn vị. Kết quả 8."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "8 + 4 bằng bao nhiêu?",
+            "options": [
+              2,
+              11,
+              12,
+              13
+            ],
+            "answer": 12,
+            "mascotHint": "hàng đơn vị 8 + 4 = 12, viết 2 nhớ 1. Kết quả 12."
+          }
+        },
+        {
           "type": "quiz",
           "content": {
             "question": "23 456 + 12 345 bằng bao nhiêu?",
@@ -109,6 +172,63 @@ export const g3c12 = {
               "right": 23456,
               "result": 22222
             }
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 8,
+              "right": 6,
+              "sign": "−"
+            },
+            "text": "Bé tự đặt tính: 8 − 6\nhàng đơn vị 8 − 6 = 2, viết 2\nVậy 8 − 6 = 2."
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "numberLine": {
+              "from": 6,
+              "to": 8,
+              "step": 1,
+              "hops": [
+                {
+                  "from": 6,
+                  "to": 8,
+                  "label": "+2"
+                }
+              ]
+            },
+            "text": "Cách 2 cho 8 − 6: đếm thêm từ số bé\nTừ 6 đếm thêm cho tới 8 là bao nhiêu bước?\nĐó chính là hiệu: 8 − 6 = 2."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "7 − 2 bằng bao nhiêu?",
+            "options": [
+              4,
+              5,
+              6,
+              15
+            ],
+            "answer": 5,
+            "mascotHint": "Bé đặt tính rồi tính từ hàng đơn vị. Kết quả 5."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "8 − 1 bằng bao nhiêu?",
+            "options": [
+              6,
+              7,
+              8,
+              9
+            ],
+            "answer": 7,
+            "mascotHint": "hàng đơn vị 8 − 1 = 7, viết 7. Kết quả 7."
           }
         },
         {
@@ -189,6 +309,31 @@ export const g3c12 = {
           }
         },
         {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 35678,
+              "right": 24567,
+              "sign": "+",
+              "remember": true
+            },
+            "text": "Bé tự đặt tính: 35678 + 24567\nhàng đơn vị 8 + 7 = 15, viết 5 nhớ 1\nhàng chục 7 + 6 + 1 (nhớ) = 14, viết 4 nhớ 1\nhàng trăm 6 + 5 + 1 (nhớ) = 12, viết 2 nhớ 1\nVậy 35 678 + 24 567 = 60 245."
+          }
+        },
+        {
+          "type": "concept",
+          "content": {
+            "badge": "Chú Ý",
+            "title": "Vì sao ra 59135 là sai?",
+            "explanation": "59135 là kết quả khi bé quên nhớ 1 ở hàng chục. Đây là lỗi hay gặp nhất của dạng cộng này.",
+            "points": [
+              "Lỗi — quên nhớ 1 ở hàng chục: hàng đơn vị 8 + 7 = 15, viết 5 nhớ 1. Kết quả đúng phải là 60245.",
+              "Cách tránh: làm xong một hàng thì ghi/xoá số nhớ NGAY, đừng để sang hàng sau mới nhớ.",
+              "Tự kiểm tra: 60245 − 35678 phải bằng 24567."
+            ]
+          }
+        },
+        {
           "type": "quiz",
           "content": {
             "question": "35 678 + 24 567 bằng bao nhiêu?",
@@ -265,6 +410,60 @@ export const g3c12 = {
               ],
               "braceLabel": "Cả hai tháng 59 990 cái áo · hơn kém 9 130"
             }
+          }
+        },
+        {
+          "type": "concept",
+          "content": {
+            "badge": "Cách Học",
+            "title": "Bốn bước làm một bài toán",
+            "explanation": "Mọi bài bài toán có lời văn đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            "points": [
+              "Bước 1 — Đọc kỹ đề, gạch dưới các SỐ và từ khoá (thêm, bớt, gấp, chia đều).",
+              "Bước 2 — Tóm tắt đề bằng hình hoặc bằng câu ngắn: đã có gì, cần tìm gì.",
+              "Bước 3 — Chọn phép tính: “thêm, gộp, tất cả” → cộng; “bớt, cho đi, còn lại” → trừ; “gấp mấy lần” → nhân.",
+              "Bước 4 — Đặt tính rồi tính, rồi VIẾT ĐÁP SỐ kèm đơn vị và thử lại bằng phép ngược."
+            ]
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "table": {
+              "headers": [
+                "Điều cần nhớ",
+                "Nội dung"
+              ],
+              "rows": [
+                [
+                  "Đơn vị",
+                  "đáp số luôn kèm đơn vị như con, quả, kg, cm"
+                ],
+                [
+                  "Kiểm tra",
+                  "cộng thì lấy kết quả trừ đi một số hạng"
+                ],
+                [
+                  "Câu trả lời",
+                  "viết đủ câu, không chỉ ghi số"
+                ]
+              ]
+            },
+            "text": "Bảng nhớ nhanh — bài toán có lời văn\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "Giải một bài toán có lời văn, bé làm gì TRƯỚC TIÊN?",
+            "options": [
+              "Đọc kỹ đề và gạch dưới các số đã cho",
+              "Viết ngay đáp số",
+              "Đoán kết quả",
+              "Đặt tính trước khi đọc đề"
+            ],
+            "answer": "Đọc kỹ đề và gạch dưới các số đã cho",
+            "mascotHint": "Chưa đọc kỹ đề thì chưa biết đề cho gì, hỏi gì — mọi bước sau đều dễ sai."
           }
         },
         {
@@ -361,6 +560,31 @@ export const g3c12 = {
               ],
               "label": "Luyện tập chung chủ đề 12"
             }
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 23456,
+              "right": 12345,
+              "sign": "+",
+              "remember": true
+            },
+            "text": "Bé tự đặt tính: 23456 + 12345\nhàng đơn vị 6 + 5 = 11, viết 1 nhớ 1\nhàng chục 5 + 4 + 1 (nhớ) = 10, viết 0 nhớ 1\nhàng trăm 4 + 3 + 1 (nhớ) = 8, viết 8\nVậy 23 456 + 12 345 = 35 801."
+          }
+        },
+        {
+          "type": "concept",
+          "content": {
+            "badge": "Chú Ý",
+            "title": "Vì sao ra 35791 là sai?",
+            "explanation": "35791 là kết quả khi bé quên nhớ 1 ở hàng chục. Đây là lỗi hay gặp nhất của dạng cộng này.",
+            "points": [
+              "Lỗi — quên nhớ 1 ở hàng chục: hàng đơn vị 6 + 5 = 11, viết 1 nhớ 1. Kết quả đúng phải là 35801.",
+              "Cách tránh: làm xong một hàng thì ghi/xoá số nhớ NGAY, đừng để sang hàng sau mới nhớ.",
+              "Tự kiểm tra: 35801 − 23456 phải bằng 12345."
+            ]
           }
         },
         {

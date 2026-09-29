@@ -49,6 +49,27 @@ export const g1c10 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 6,
+              right: 4,
+              sign: "+",
+              remember: true,
+            },
+            text: "Bé tự đặt tính: 6 + 4\nhàng đơn vị 6 + 4 = 10, viết 0 nhớ 1\ncòn nhớ 1 ở hàng cao hơn, viết 1\nVậy 6 + 4 = 10.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "7 + 7 bằng bao nhiêu?",
+            options: [4, 13, 14, 15],
+            answer: 14,
+            mascotHint: "hàng đơn vị 7 + 7 = 14, viết 4 nhớ 1. Kết quả 14.",
+          },
+        },
+        {
           type: "quiz",
           content: {
             question: "Số liền sau của 9 là số nào?",
@@ -127,6 +148,27 @@ export const g1c10 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 6,
+              right: 4,
+              sign: "+",
+              remember: true,
+            },
+            text: "Bé tự đặt tính: 6 + 4\nhàng đơn vị 6 + 4 = 10, viết 0 nhớ 1\ncòn nhớ 1 ở hàng cao hơn, viết 1\nVậy 6 + 4 = 10.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "7 + 6 bằng bao nhiêu?",
+            options: [3, 12, 13, 14],
+            answer: 13,
+            mascotHint: "hàng đơn vị 7 + 6 = 13, viết 3 nhớ 1. Kết quả 13.",
+          },
+        },
+        {
           type: "quiz",
           content: {
             question: "9 − 4 bằng bao nhiêu?",
@@ -202,6 +244,50 @@ export const g1c10 = {
           },
         },
         {
+          type: "concept",
+          content: {
+            badge: "Cách Học",
+            title: "Bốn bước làm một bài toán",
+            explanation:
+              "Mọi bài so sánh số đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            points: [
+              "Bước 1 — Đếm số CHỮ SỐ của từng số trước.",
+              "Bước 2 — Số nào nhiều chữ số hơn thì lớn hơn — xong, không cần so tiếp.",
+              "Bước 3 — Cùng số chữ số thì so từng hàng từ TRÁI sang phải, gặp hàng khác nhau thì dừng.",
+              "Bước 4 — Đọc lại kết quả và đặt đúng dấu (>, <, =).",
+            ],
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Điều cần nhớ", "Nội dung"],
+              rows: [
+                ["Nhiều chữ số hơn", "thì số đó lớn hơn"],
+                ["So từ trái", "hàng nghìn rồi mới tới trăm, chục, đơn vị"],
+                ["Dấu lớn mở về phía", "số lớn hơn"],
+              ],
+            },
+            text: "Bảng nhớ nhanh — so sánh số\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Muốn so sánh hai số, bé bắt đầu bằng việc gì?",
+            options: [
+              "Đếm xem số nào có nhiều chữ số hơn",
+              "So chữ số hàng đơn vị trước",
+              "Cộng hai số lại",
+              "Đọc từ phải sang trái",
+            ],
+            answer: "Đếm xem số nào có nhiều chữ số hơn",
+            mascotHint:
+              "Số nhiều chữ số hơn chắc chắn lớn hơn, nên chỉ cần so từng hàng khi hai số bằng số chữ số.",
+          },
+        },
+        {
           type: "quiz",
           content: {
             question: "Số 47 gồm mấy chục và mấy đơn vị?",
@@ -265,38 +351,38 @@ export const g1c10 = {
             ],
           },
         },
-                {
-          "type": "visual",
-          "content": {
-            "text": "Đặt tính rồi tính 25 + 4\nÔn tập cộng trừ trong phạm vi 100\n1) hàng đơn vị 5 + 4 = 9, viết 9\n2) hàng chục 2 + 0 = 2, viết 2\nVậy 25 + 4 = 29.",
-            "cotTinh": {
-              "left": 25,
-              "right": 4,
-              "sign": "+"
-            }
-          }
+        {
+          type: "visual",
+          content: {
+            text: "Đặt tính rồi tính 25 + 4\nÔn tập cộng trừ trong phạm vi 100\n1) hàng đơn vị 5 + 4 = 9, viết 9\n2) hàng chục 2 + 0 = 2, viết 2\nVậy 25 + 4 = 29.",
+            cotTinh: {
+              left: 25,
+              right: 4,
+              sign: "+",
+            },
+          },
         },
         {
-          "type": "visual",
-          "content": {
-            "text": "Đặt tính rồi tính 32 + 14\n1) hàng đơn vị 2 + 4 = 6, viết 6\n2) hàng chục 3 + 1 = 4, viết 4\nVậy 32 + 14 = 46.",
-            "cotTinh": {
-              "left": 32,
-              "right": 14,
-              "sign": "+"
-            }
-          }
+          type: "visual",
+          content: {
+            text: "Đặt tính rồi tính 32 + 14\n1) hàng đơn vị 2 + 4 = 6, viết 6\n2) hàng chục 3 + 1 = 4, viết 4\nVậy 32 + 14 = 46.",
+            cotTinh: {
+              left: 32,
+              right: 14,
+              sign: "+",
+            },
+          },
         },
         {
-          "type": "visual",
-          "content": {
-            "text": "Đặt tính rồi tính 57 − 23\n1) hàng đơn vị 7 − 3 = 4, viết 4\n2) hàng chục 5 − 2 = 3, viết 3\nVậy 57 − 23 = 34.",
-            "cotTinh": {
-              "left": 57,
-              "right": 23,
-              "sign": "−"
-            }
-          }
+          type: "visual",
+          content: {
+            text: "Đặt tính rồi tính 57 − 23\n1) hàng đơn vị 7 − 3 = 4, viết 4\n2) hàng chục 5 − 2 = 3, viết 3\nVậy 57 − 23 = 34.",
+            cotTinh: {
+              left: 57,
+              right: 23,
+              sign: "−",
+            },
+          },
         },
         {
           type: "visual",
@@ -318,6 +404,27 @@ export const g1c10 = {
               right: 23,
               sign: "−",
             },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 25,
+              right: 4,
+              sign: "+",
+              remember: true,
+            },
+            text: "Bé tự đặt tính: 25 + 4\nhàng đơn vị 5 + 4 = 9, viết 9\nhàng chục 2 + 0 = 2, viết 2\nVậy 25 + 4 = 29.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "55 + 4 bằng bao nhiêu?",
+            options: [58, 59, 60, 61],
+            answer: 59,
+            mascotHint: "hàng đơn vị 5 + 4 = 9, viết 9. Kết quả 59.",
           },
         },
         {
@@ -403,6 +510,50 @@ export const g1c10 = {
               label: "Khối lập phương",
               formula: "6 mặt đều là hình vuông bằng nhau",
             },
+          },
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Cách Học",
+            title: "Bốn bước làm một bài toán",
+            explanation:
+              "Mọi bài hình học đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            points: [
+              "Bước 1 — Gọi đúng tên hình trước (hình gì, khối gì).",
+              "Bước 2 — Kể các đặc điểm: số cạnh, số đỉnh, số mặt, cạnh nào bằng nhau.",
+              "Bước 3 — Dùng ê-ke hoặc thước để KIỂM TRA đặc điểm vừa kể trên hình vẽ.",
+              "Bước 4 — Nếu đề hỏi chu vi / diện tích thì viết công thức ra, thay số rồi mới tính.",
+            ],
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Điều cần nhớ", "Nội dung"],
+              rows: [
+                ["Chu vi", "cộng độ dài các cạnh bao quanh"],
+                ["Diện tích hình chữ nhật", "dài × rộng (cùng đơn vị)"],
+                ["Chu vi hình vuông", "cạnh × 4"],
+              ],
+            },
+            text: "Bảng nhớ nhanh — hình học\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Nhìn một hình, bé làm gì để biết đó là hình gì?",
+            options: [
+              "Đếm cạnh và đếm đỉnh rồi so với đặc điểm từng hình",
+              "Đoán bằng mắt",
+              "Đo diện tích",
+              "Tính chu vi trước",
+            ],
+            answer: "Đếm cạnh và đếm đỉnh rồi so với đặc điểm từng hình",
+            mascotHint:
+              "Số cạnh và số đỉnh là đặc điểm phân biệt các hình — đoán bằng mắt thì dễ nhầm hình chữ nhật với hình vuông.",
           },
         },
         {
@@ -496,6 +647,50 @@ export const g1c10 = {
           },
         },
         {
+          type: "concept",
+          content: {
+            badge: "Cách Học",
+            title: "Bốn bước làm một bài toán",
+            explanation:
+              "Mọi bài bài toán có lời văn đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            points: [
+              "Bước 1 — Đọc kỹ đề, gạch dưới các SỐ và từ khoá (thêm, bớt, gấp, chia đều).",
+              "Bước 2 — Tóm tắt đề bằng hình hoặc bằng câu ngắn: đã có gì, cần tìm gì.",
+              "Bước 3 — Chọn phép tính: “thêm, gộp, tất cả” → cộng; “bớt, cho đi, còn lại” → trừ; “gấp mấy lần” → nhân.",
+              "Bước 4 — Đặt tính rồi tính, rồi VIẾT ĐÁP SỐ kèm đơn vị và thử lại bằng phép ngược.",
+            ],
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Điều cần nhớ", "Nội dung"],
+              rows: [
+                ["Đơn vị", "đáp số luôn kèm đơn vị như con, quả, kg, cm"],
+                ["Kiểm tra", "cộng thì lấy kết quả trừ đi một số hạng"],
+                ["Câu trả lời", "viết đủ câu, không chỉ ghi số"],
+              ],
+            },
+            text: "Bảng nhớ nhanh — bài toán có lời văn\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Giải một bài toán có lời văn, bé làm gì TRƯỚC TIÊN?",
+            options: [
+              "Đọc kỹ đề và gạch dưới các số đã cho",
+              "Viết ngay đáp số",
+              "Đoán kết quả",
+              "Đặt tính trước khi đọc đề",
+            ],
+            answer: "Đọc kỹ đề và gạch dưới các số đã cho",
+            mascotHint:
+              "Chưa đọc kỹ đề thì chưa biết đề cho gì, hỏi gì — mọi bước sau đều dễ sai.",
+          },
+        },
+        {
           type: "quiz",
           content: {
             question:
@@ -566,6 +761,50 @@ export const g1c10 = {
           },
         },
         {
+          type: "concept",
+          content: {
+            badge: "Cách Học",
+            title: "Bốn bước làm một bài toán",
+            explanation:
+              "Mọi bài bài toán có lời văn đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            points: [
+              "Bước 1 — Đọc kỹ đề, gạch dưới các SỐ và từ khoá (thêm, bớt, gấp, chia đều).",
+              "Bước 2 — Tóm tắt đề bằng hình hoặc bằng câu ngắn: đã có gì, cần tìm gì.",
+              "Bước 3 — Chọn phép tính: “thêm, gộp, tất cả” → cộng; “bớt, cho đi, còn lại” → trừ; “gấp mấy lần” → nhân.",
+              "Bước 4 — Đặt tính rồi tính, rồi VIẾT ĐÁP SỐ kèm đơn vị và thử lại bằng phép ngược.",
+            ],
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Điều cần nhớ", "Nội dung"],
+              rows: [
+                ["Đơn vị", "đáp số luôn kèm đơn vị như con, quả, kg, cm"],
+                ["Kiểm tra", "cộng thì lấy kết quả trừ đi một số hạng"],
+                ["Câu trả lời", "viết đủ câu, không chỉ ghi số"],
+              ],
+            },
+            text: "Bảng nhớ nhanh — bài toán có lời văn\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Giải một bài toán có lời văn, bé làm gì TRƯỚC TIÊN?",
+            options: [
+              "Đọc kỹ đề và gạch dưới các số đã cho",
+              "Viết ngay đáp số",
+              "Đoán kết quả",
+              "Đặt tính trước khi đọc đề",
+            ],
+            answer: "Đọc kỹ đề và gạch dưới các số đã cho",
+            mascotHint:
+              "Chưa đọc kỹ đề thì chưa biết đề cho gì, hỏi gì — mọi bước sau đều dễ sai.",
+          },
+        },
+        {
           type: "quiz",
           content: {
             question: "Một tuần lễ có bao nhiêu ngày?",
@@ -627,6 +866,27 @@ export const g1c10 = {
               ],
               label: "Ôn tập chung cuối năm",
             },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 26,
+              right: 12,
+              sign: "+",
+              remember: true,
+            },
+            text: "Bé tự đặt tính: 26 + 12\nhàng đơn vị 6 + 2 = 8, viết 8\nhàng chục 2 + 1 = 3, viết 3\nVậy 26 + 12 = 38.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "41 + 28 bằng bao nhiêu?",
+            options: [68, 69, 70, 71],
+            answer: 69,
+            mascotHint: "hàng đơn vị 1 + 8 = 9, viết 9. Kết quả 69.",
           },
         },
         {
@@ -707,6 +967,50 @@ export const g1c10 = {
           },
         },
         {
+          type: "concept",
+          content: {
+            badge: "Cách Học",
+            title: "Bốn bước làm một bài toán",
+            explanation:
+              "Mọi bài bài toán có lời văn đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            points: [
+              "Bước 1 — Đọc kỹ đề, gạch dưới các SỐ và từ khoá (thêm, bớt, gấp, chia đều).",
+              "Bước 2 — Tóm tắt đề bằng hình hoặc bằng câu ngắn: đã có gì, cần tìm gì.",
+              "Bước 3 — Chọn phép tính: “thêm, gộp, tất cả” → cộng; “bớt, cho đi, còn lại” → trừ; “gấp mấy lần” → nhân.",
+              "Bước 4 — Đặt tính rồi tính, rồi VIẾT ĐÁP SỐ kèm đơn vị và thử lại bằng phép ngược.",
+            ],
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Điều cần nhớ", "Nội dung"],
+              rows: [
+                ["Đơn vị", "đáp số luôn kèm đơn vị như con, quả, kg, cm"],
+                ["Kiểm tra", "cộng thì lấy kết quả trừ đi một số hạng"],
+                ["Câu trả lời", "viết đủ câu, không chỉ ghi số"],
+              ],
+            },
+            text: "Bảng nhớ nhanh — bài toán có lời văn\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Giải một bài toán có lời văn, bé làm gì TRƯỚC TIÊN?",
+            options: [
+              "Đọc kỹ đề và gạch dưới các số đã cho",
+              "Viết ngay đáp số",
+              "Đoán kết quả",
+              "Đặt tính trước khi đọc đề",
+            ],
+            answer: "Đọc kỹ đề và gạch dưới các số đã cho",
+            mascotHint:
+              "Chưa đọc kỹ đề thì chưa biết đề cho gì, hỏi gì — mọi bước sau đều dễ sai.",
+          },
+        },
+        {
           type: "quiz",
           content: {
             question: "Điền dấu thích hợp: 63 ? 36",
@@ -730,7 +1034,7 @@ export const g1c10 = {
           content: {
             title: "Bé giỏi lắm:",
             points: [
-              "Bé đã hoàn thành chương trình Toán Lớp 1 theo đúng SGK.",
+              "Bé đã hoàn thành chương trình Toán Lớp 1.",
               "Chúc mừng bé lên Lớp 2!",
             ],
             mascotMood: "celebrate",

@@ -59,7 +59,7 @@ const num = (v, fallback) =>
 /* ─────────────────────────────── TRỤC SỐ (TIA SỐ) ───────────────────────────────
  * Dùng ở lớp 1–3: so sánh số, đếm thêm, cộng trừ trên tia, làm tròn số.
  *   numberLine: { from, to, step, marks: [..], hops: [{from, to, label}], label }
- * `hops` vẽ một vòng cung nhảy từ mốc này sang mốc khác — đúng cách SGK dạy "đếm thêm".
+ * `hops` vẽ một vòng cung nhảy từ mốc này sang mốc khác — đúng cách dạy "đếm thêm".
  */
 export function NumberLine({
   from = 0,
@@ -276,7 +276,7 @@ export function NumberLine({
 }
 
 /* ─────────────────────────────── KHUNG 10 Ô ───────────────────────────────
- * Cách SGK dạy "đếm thêm cho đủ 10" và "cộng qua 10". Bày sẵn từng ô vuông.
+ * Cách chương trình dạy "đếm thêm cho đủ 10" và "cộng qua 10". Bày sẵn từng ô vuông.
  *   tenFrame: { filled, total = 10, emoji = "🔴", extra = 0, label }
  * `extra` = số ô ĐƯỢC THÊM vào. Phần bù cho đủ khung vẽ trong khung (xanh lá),
  * phần dư vẽ thành nhóm riêng bên phải, có dấu "+" ở giữa ⇒ đọc thẳng thành "10 + 3".
@@ -669,7 +669,7 @@ export function PlaceValueTable({
     y += cao + KHE_KHOI;
   }
 
-  /** Số đọc liền: nhóm 3 chữ số từ phải sang (cách viết chuẩn của SGK). */
+  /** Số đọc liền: nhóm 3 chữ số từ phải sang (cách viết chuẩn của chương trình). */
   const soLien = ds
     .map((d) => String(d))
     .join("")
@@ -766,7 +766,7 @@ export function PlaceValueTable({
          * Người dùng phản ánh: số 345 000 000 nằm trên hai dòng nên trẻ không biết đang đọc
          * "345000000" hay là hai số "34500" và "0000" (2026-09-24). Nay vẽ thêm
          * (1) mũi tên "đọc tiếp" từ cuối khối trên xuống đầu khối dưới, và
-         * (2) một dòng ghi SỐ ĐỌC LIỀN theo cách nhóm 3 chữ số của SGK.
+         * (2) một dòng ghi SỐ ĐỌC LIỀN theo cách nhóm 3 chữ số của chương trình.
          */}
         {coNhieuKhoi &&
           khoi.slice(0, -1).map((k, ki) => {
@@ -960,7 +960,7 @@ export function Ruler({
 }
 
 /* ───────────────────── BẢNG ĐO — VẬT ĐẶT CẠNH THƯỚC ─────────────────────
- * Lớp 1 Chủ đề 7 (SGK tr.36–43): bé đọc số đo của từng vật bằng thước vạch xăng-ti-mét.
+ * Lớp 1 Chủ đề 7: bé đọc số đo của từng vật bằng thước vạch xăng-ti-mét.
  *
  * 🔴 VẬT ĐƯỢC VẼ ĐÚNG TỈ LỆ VỚI THƯỚC. Đây là điểm khác `Ruler` (chỉ vẽ cái thước):
  * có thước cùng tỉ lệ thì bé MỚI đọc/so sánh được bằng mắt, không cần số in sẵn.

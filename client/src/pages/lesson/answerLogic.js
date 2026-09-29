@@ -58,7 +58,7 @@ export function phuongAnBoSot(daChon, dapAn) {
 
 export const OPERATORS = {
   "+": "+",
-  "−": "-", // U+2212 dấu trừ SGK dùng
+  "−": "-", // U+2212 dấu trừ (kiểu viết khác của phép trừ)
   "-": "-",
   "×": "*",
   x: "*",
@@ -75,7 +75,7 @@ export function isOperator(the) {
 
 /**
  * Đọc một thẻ số thành giá trị. Trả `null` nếu không phải số.
- * Chịu được cách viết trong SGK: `"1 000"` (cách nghìn), `"1.000"`, số thập phân `"0,5"`.
+ * Chịu được nhiều cách viết: `"1 000"` (cách nghìn), `"1.000"`, số thập phân `"0,5"`.
  */
 export function parseNumber(the) {
   let s = chuanHoa(the).replace(/\s/g, "");
@@ -150,7 +150,7 @@ export function evaluateTokens(tokens) {
  * GHÉP THẺ THÀNH BIỂU THỨC: đúng khi điền đủ ô **và** biểu thức tính ra ĐÚNG `target`.
  *
  * So theo GIÁ TRỊ, không so chuỗi: `25 × 4` và `4 × 25` đều đúng (đổi chỗ hai thừa số thì tích
- * không đổi — chính là điều SGK dạy). Đây là lý do `solutions` không còn dùng để chấm.
+ * không đổi — chính là điều chương trình dạy). Đây là lý do `solutions` không còn dùng để chấm.
  */
 export function matchesTarget(tokensDaDien, target) {
   const o = tokensDaDien || [];

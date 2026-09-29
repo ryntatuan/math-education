@@ -648,7 +648,7 @@ export function SpatialScene({
     );
   }
 
-  /* ── Lâu đài khối gỗ của bạn Mai (SGK tr.94) ────────────────────────────────
+  /* ── Lâu đài khối gỗ của bạn Mai ────────────────────────────────
    * 🔴 ĐÁP ÁN ĐÚNG (người dùng chốt 2026-09-24): hàng nền có **5 khối lập phương**;
    * hàng giữa có **2 khối hộp chữ nhật màu đỏ**.
    * ⚠️ Vì vậy 5 khối hàng nền PHẢI vuông ở mặt trước (`w === h`), còn khối đỏ và khối
@@ -749,7 +749,7 @@ export function SpatialScene({
     );
   }
 
-  /* ── Chữ T, H, C xếp bằng khối lập phương nhỏ (SGK tr.94) ────────────────────
+  /* ── Chữ T, H, C xếp bằng khối lập phương nhỏ ────────────────────
    * Đáp án (đếm trên ảnh phóng to): T = 5 khối · H = 7 khối · C = 5 khối
    * ⇒ chữ H nhiều khối nhất; T và C bằng nhau. */
   if (mode === "lettersTHC") {
@@ -817,7 +817,7 @@ export function SpatialScene({
     );
   }
 
-  /* ── Từ 8 khối lập phương nhỏ xếp thành khối lập phương lớn (SGK tr.100–101) ── */
+  /* ── Từ 8 khối lập phương nhỏ xếp thành khối lập phương lớn ── */
   if (mode === "cubeComposite2x2") {
     const S = 24;
     const loose = [
@@ -911,10 +911,10 @@ export function SpatialScene({
     );
   }
 
-  /* ── MỘT HÀNG HÌNH PHẲNG theo thứ tự TRÁI → PHẢI (SGK tr.99, bài Phải – Trái) ──
+  /* ── MỘT HÀNG HÌNH PHẲNG theo thứ tự TRÁI → PHẢI ──
    * 🔴 VÌ SAO CẦN: slide cũ chỉ có **BẢNG CHỮ** “thứ 1… thứ 4” mà không có hình ⇒ trẻ không
    * biết đang nói tới cách xếp nào (người dùng báo 2026-09-24: “hình không mô tả cụ thể”).
-   * Đối chiếu ẢNH SGK tr.99 (`scratch/t99.png`): hàng ngang gồm **tam giác (xanh) · vuông
+   * Đối chiếu ẢNH (`scratch/t99.png`): hàng ngang gồm **tam giác (xanh) · vuông
    * (vàng) · tròn (cam) · chữ nhật (đỏ)**, và câu hỏi “hình nào ở giữa tam giác và tròn?”.
    */
   if (mode === "shapeRow") {
@@ -1030,7 +1030,7 @@ export function SpatialScene({
     );
   }
 
-  /* ── Chuỗi quy luật — HOẠT ĐỘNG BỔ SUNG (không thuộc SGK tr.101) ──────────────
+  /* ── Chuỗi quy luật — HOẠT ĐỘNG BỔ SUNG ──────────────
    * kind = "shape" → hộp chữ nhật, lập phương, hộp chữ nhật, lập phương, hộp chữ nhật, [?]
    *                   ⇒ đáp án: khối LẬP PHƯƠNG
    * kind = "color" → đỏ, vàng, xanh, đỏ, vàng, [?] ⇒ đáp án: màu XANH */
@@ -1107,7 +1107,7 @@ export function SpatialScene({
     );
   }
 
-  /* ── Búp bê ở TRÊN bàn, mèo ở DƯỚI gầm bàn (SGK tr.96) ─────────────────────── */
+  /* ── Búp bê ở TRÊN bàn, mèo ở DƯỚI gầm bàn ─────────────────────── */
   if (mode === "dollCatTable") {
     return (
       <div style={card}>
@@ -1329,7 +1329,7 @@ export function SpatialScene({
     );
   }
 
-  /* ── Ba chú thỏ: nâu TRƯỚC, khoang GIỮA, xám SAU — cà rốt ở phía trước (SGK tr.96) ── */
+  /* ── Ba chú thỏ: nâu TRƯỚC, khoang GIỮA, xám SAU — cà rốt ở phía trước ── */
   if (mode === "rabbitQueue" || mode === "rabbitTurtleLeftRight") {
     const rabbit = (x, y, s, fill, stroke, earFill, patch) => (
       <g transform={`translate(${x},${y}) scale(${s})`}>
@@ -1618,7 +1618,7 @@ export function SpatialScene({
     );
   }
 
-  /* ── Hàng ngang: Mai – Nam – Rô-bốt, từ trái sang phải (SGK tr.98) ──────────── */
+  /* ── Hàng ngang: Mai – Nam – Rô-bốt, từ trái sang phải ──────────── */
   if (mode === "kidsLeftRight") {
     return (
       <div style={card}>
@@ -1648,15 +1648,36 @@ export function SpatialScene({
             strokeLinecap="round"
           />
           <g transform="translate(40, 80)">
-            <ellipse cx="30" cy="92" rx="20" ry="4" fill="#000000" opacity="0.08" />
+            <ellipse
+              cx="30"
+              cy="92"
+              rx="20"
+              ry="4"
+              fill="#000000"
+              opacity="0.08"
+            />
             <CharacterFullBody name="Mai" width={60} height={90} />
           </g>
           <g transform="translate(150, 80)">
-            <ellipse cx="30" cy="92" rx="20" ry="4" fill="#000000" opacity="0.08" />
+            <ellipse
+              cx="30"
+              cy="92"
+              rx="20"
+              ry="4"
+              fill="#000000"
+              opacity="0.08"
+            />
             <CharacterFullBody name="Nam" width={60} height={90} />
           </g>
           <g transform="translate(260, 80)">
-            <ellipse cx="30" cy="92" rx="20" ry="4" fill="#000000" opacity="0.08" />
+            <ellipse
+              cx="30"
+              cy="92"
+              rx="20"
+              ry="4"
+              fill="#000000"
+              opacity="0.08"
+            />
             <CharacterFullBody name="Robot" width={60} height={90} />
           </g>
           <LabelPill
@@ -1686,7 +1707,7 @@ export function SpatialScene({
     );
   }
 
-  /* ── Đoàn tàu: đầu máy + 4 toa đánh số 1–4 (SGK tr.96) ─────────────────────── */
+  /* ── Đoàn tàu: đầu máy + 4 toa đánh số 1–4 ─────────────────────── */
   if (mode === "trainCars") {
     const cars = [
       { n: 1, fill: "#60a5fa", stroke: "#1d4ed8" },
@@ -1812,7 +1833,7 @@ export function SpatialScene({
     );
   }
 
-  /* ── Cột đèn giao thông ba màu (SGK tr.96) ───────────────────────────────────
+  /* ── Cột đèn giao thông ba màu ───────────────────────────────────
    * 🔴 Canh giữa bằng cách dịch KHUNG NHÌN (`viewBox`), không đụng toạ độ hình vẽ.
    * Đo 2026-09-25: nội dung chiếm x = 72 → 298,2 trong khung 340 ⇒ lệch 30,2 đơn vị
    * (dư bên trái 72, bên phải 41,8). Dịch khung nhìn sang phải 15 ⇒ hai bên đều ~57. */
@@ -1918,10 +1939,10 @@ export function SpatialScene({
     );
   }
 
-  /* ── Bộ bốn hình A, B, C, D để bé CHỌN khối (SGK tr.93) ───────────────────────
+  /* ── Bộ bốn hình A, B, C, D để bé CHỌN khối ───────────────────────
    * `round: 1` → "Những hình nào là KHỐI LẬP PHƯƠNG?"  (đáp án: A, C, E)
    * `round: 2` → "Những hình nào là KHỐI HỘP CHỮ NHẬT?" (đáp án: B, G)
-   * Đây CHÍNH LÀ hình của SGK tr.100 (Bài 16, hoạt động 1) — đo lại mặt trước bằng
+   * Đây CHÍNH LÀ hình của hoạt động 1 — đo lại mặt trước bằng
    * `scratch/in-khoi-abcg.py` trên ảnh 300 DPI: A 105×105, C vuông nhỏ, E 168×159 ⇒ VUÔNG
    * ⇒ ba khối lập phương; B rộng 114 mà cao ≥ 148, G dài theo chiều sâu ⇒ khối hộp chữ nhật;
    * D là khối TRỤ nên không thuộc hai loại trên (cố ý để bé phải loại trừ).
@@ -2087,10 +2108,10 @@ export function SpatialScene({
     );
   }
 
-  /* ── Hai hàng bạn ngồi xem phim hoạt hình (SGK tr.97) ─────────────────────────
+  /* ── Hai hàng bạn ngồi xem phim hoạt hình ─────────────────────────
    * `front` / `back` = số bạn mỗi hàng ⇒ **6 bạn hàng SAU và 4 bạn hàng TRƯỚC** (tổng 10).
-   * Người dùng đếm lại trên SÁCH GIẤY ngày 2026-09-24 và xác nhận — ảnh quét tr.97 quá mờ,
-   * nên đừng "đếm lại bằng mắt" trên bản scan rồi sửa số này thành khác.
+   * Người dùng đếm lại trên hình in ngày 2026-09-24 và xác nhận — hình minh hoạ trên màn
+   * hình quá mờ để đếm, nên đừng "đếm lại bằng mắt" rồi sửa số này thành khác.
    * ⚠️ KHÔNG in số lượng lên hình — đây là câu hỏi ĐẾM. */
   if (mode === "movieRows") {
     // ⚠️ Đừng đặt tên `front`/`back` cho biến cục bộ — nó CHE CHÍNH tham số cùng tên và
@@ -2219,7 +2240,7 @@ export function SpatialScene({
     );
   }
 
-  /* ── Viên gạch xếp ba hàng (SGK tr.97) ────────────────────────────────────────
+  /* ── Viên gạch xếp ba hàng ────────────────────────────────────────
    * Hàng trên cùng 2 · hàng giữa 3 · hàng dưới cùng 4 ⇒ cả ba hàng 9 viên.
    * ⚠️ Vẽ đúng số đó và KHÔNG in chữ nào ghi số lượng. */
   if (mode === "brickRows") {
@@ -2298,8 +2319,8 @@ export function SpatialScene({
     );
   }
 
-  /* ── Con xúc xắc: đếm chấm ở ba mặt nhìn thấy (SGK tr.100, Bài 16 hoạt động 2) ───
-   * ĐO từ ảnh SGK 300 DPI (`scratch/crop-xucxac.png`): mặt TRƯỚC 5 chấm,
+  /* ── Con xúc xắc: đếm chấm ở ba mặt nhìn thấy ───
+   * ĐO từ ảnh mẫu 300 DPI (`scratch/crop-xucxac.png`): mặt TRƯỚC 5 chấm,
    * mặt TRÊN 3 chấm, mặt BÊN PHẢI 6 chấm. Cũng đúng quy luật xúc xắc thật
    * (5+2 = 3+4 = 6+1 = 7) nên số đo tự nó đã là bằng chứng chéo.
    * ⚠️ Xúc xắc PHẢI có 3 mặt nhìn thấy được — nhìn một mặt thì không hỏi được câu (b), (c).
@@ -2429,8 +2450,8 @@ export function SpatialScene({
     );
   }
 
-  /* ── So sánh số khối của hai hình (SGK tr.101, Bài 16 hoạt động 3) ───────────────
-   * Đếm trên ảnh SGK 300 DPI: hình bên TRÁI = 2+2+2 (cột 2×3) + 2 khối bậc = 8 khối;
+  /* ── So sánh số khối của hai hình ───────────────
+   * Đếm trên ảnh mẫu 300 DPI: hình bên TRÁI = 2+2+2 (cột 2×3) + 2 khối bậc = 8 khối;
    * hình bên PHẢI = 4 cột × 2 tầng = 8 khối ⇒ "Hai hình có số khối bằng nhau" (đáp án b).
    * ⚠️ KHÔNG in số 8 lên hình — bé phải tự đếm; in số là cho luôn đáp án.
    * ⚠️ Khe hở bằng `pitch - size` (2 đơn vị) để bé nhìn ra TỪNG khối mà đếm. */

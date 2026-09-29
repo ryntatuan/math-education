@@ -71,6 +71,73 @@ export const g4c4 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 100,
+              right: 80,
+              sign: "−"
+            },
+            text: "Bé tự đặt tính: 100 − 80\nhàng đơn vị 0 − 0 = 0, viết 0\nhàng chục 0 < 8 nên mượn 1: 10 − 8 = 2, viết 2\nhàng trăm 1 − 1 = 0, viết 0\nVậy 100 − 80 = 20."
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Đơn vị", "Bằng bao nhiêu đơn vị liền sau"],
+              rows: [
+                ["1 tấn", "10 tạ"],
+                ["1 tạ", "10 yến"],
+                ["1 yến", "10 kg"],
+                ["1 kg", "1000 g"]
+              ]
+            },
+            text: "Bậc thang đơn vị đo khối lượng\n· tấn\n· tạ\n· yến\n· kg\n· g\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "Cách đổi đơn vị đo khối lượng",
+            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            points: [
+              "1 tấn = 10 tạ.",
+              "Đi xuống hai bậc thì nhân hai lần: 1 tấn = 10 × 10 = 100 yến.",
+              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 tấn = 20 tạ.",
+              "Đổi số bé ra số lớn: CHIA. Ví dụ 30 tạ = 3 tấn."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "1 tấn bằng bao nhiêu tạ?",
+            options: [1, 10, 11, 100],
+            answer: 10,
+            mascotHint: "Hai đơn vị liền nhau: 1 tấn = 10 tạ."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "3 tấn bằng bao nhiêu tạ?",
+            options: [10, 30, 40, 300],
+            answer: 30,
+            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 10 = 30."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "126 − 72 bằng bao nhiêu?",
+            options: [53, 54, 55, 154],
+            answer: 54,
+            mascotHint: "hàng đơn vị 6 − 2 = 4, viết 4. Kết quả 54."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question:
@@ -155,6 +222,51 @@ export const g4c4 = {
               label: "Mỗi bậc 100 lần",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Đơn vị", "Bằng bao nhiêu đơn vị liền sau"],
+              rows: [
+                ["1 m²", "100 dm²"],
+                ["1 dm²", "100 cm²"]
+              ]
+            },
+            text: "Bậc thang đơn vị đo diện tích\n· m²\n· dm²\n· cm²\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "Cách đổi đơn vị đo diện tích",
+            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            points: [
+              "1 m² = 100 dm².",
+              "Đi xuống hai bậc thì nhân hai lần: 1 m² = 100 × 100 = 10000 cm².",
+              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 m² = 200 dm².",
+              "Đổi số bé ra số lớn: CHIA. Ví dụ 300 dm² = 3 m²."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "1 m² bằng bao nhiêu dm²?",
+            options: [10, 100, 1000, 10000],
+            answer: 100,
+            mascotHint: "Hai đơn vị liền nhau: 1 m² = 100 dm²."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "3 m² bằng bao nhiêu dm²?",
+            options: [100, 300, 400, 3000],
+            answer: 300,
+            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 100 = 300."
+          }
         },
         {
           type: "quiz",
@@ -263,6 +375,71 @@ export const g4c4 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 1998,
+              right: 300,
+              sign: "−"
+            },
+            text: "Bé tự đặt tính: 1998 − 300\nhàng đơn vị 8 − 0 = 8, viết 8\nhàng chục 9 − 0 = 9, viết 9\nhàng trăm 9 − 3 = 6, viết 6\nVậy 1 998 − 300 = 1 698."
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Đơn vị", "Bằng bao nhiêu đơn vị liền sau"],
+              rows: [
+                ["1 giờ", "60 phút"],
+                ["1 phút", "60 giây"]
+              ]
+            },
+            text: "Bậc thang đơn vị đo thời gian\n· giờ\n· phút\n· giây\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "Cách đổi đơn vị đo thời gian",
+            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            points: [
+              "1 giờ = 60 phút.",
+              "Đi xuống hai bậc thì nhân hai lần: 1 giờ = 60 × 60 = 3600 giây.",
+              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 giờ = 120 phút.",
+              "Đổi số bé ra số lớn: CHIA. Ví dụ 180 phút = 3 giờ."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "1 giờ bằng bao nhiêu phút?",
+            options: [6, 60, 600, 3600],
+            answer: 60,
+            mascotHint: "Hai đơn vị liền nhau: 1 giờ = 60 phút."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "3 giờ bằng bao nhiêu phút?",
+            options: [60, 180, 240, 1800],
+            answer: 180,
+            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 60 = 180."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "9068 − 513 bằng bao nhiêu?",
+            options: [8554, 8555, 8556, 9555],
+            answer: 8555,
+            mascotHint: "hàng đơn vị 8 − 3 = 5, viết 5. Kết quả 8555."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question:
@@ -354,6 +531,73 @@ export const g4c4 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 1900,
+              right: 60,
+              sign: "+",
+              remember: true
+            },
+            text: "Bé tự đặt tính: 1900 + 60\nhàng đơn vị 0 + 0 = 0, viết 0\nhàng chục 0 + 6 = 6, viết 6\nhàng trăm 9 + 0 = 9, viết 9\nVậy 1 900 + 60 = 1 960."
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Đơn vị", "Bằng bao nhiêu đơn vị liền sau"],
+              rows: [
+                ["1 m", "10 dm"],
+                ["1 dm", "10 cm"],
+                ["1 cm", "10 mm"]
+              ]
+            },
+            text: "Bậc thang đơn vị đo độ dài\n· m\n· dm\n· cm\n· mm\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "Cách đổi đơn vị đo độ dài",
+            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            points: [
+              "1 m = 10 dm.",
+              "Đi xuống hai bậc thì nhân hai lần: 1 m = 10 × 10 = 100 cm.",
+              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 m = 20 dm.",
+              "Đổi số bé ra số lớn: CHIA. Ví dụ 30 dm = 3 m."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "1 m bằng bao nhiêu dm?",
+            options: [1, 10, 11, 100],
+            answer: 10,
+            mascotHint: "Hai đơn vị liền nhau: 1 m = 10 dm."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "3 m bằng bao nhiêu dm?",
+            options: [10, 30, 40, 300],
+            answer: 30,
+            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 10 = 30."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "3753 + 53 bằng bao nhiêu?",
+            options: [3706, 3805, 3806, 3807],
+            answer: 3806,
+            mascotHint: "hàng đơn vị 3 + 3 = 6, viết 6. Kết quả 3806."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Trần Hưng Đạo sinh năm 1228. Năm đó thuộc thế kỉ nào?",
@@ -442,6 +686,73 @@ export const g4c4 = {
               label: "Đổi hết về giây rồi so sánh",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            cotTinh: {
+              left: 3,
+              right: 3,
+              sign: "×",
+              remember: true
+            },
+            text: "Bé tự đặt tính: 3 × 3\nhàng đơn vị 3 × 3 = 9, viết 9\nVậy 3 × 3 = 9."
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Đơn vị", "Bằng bao nhiêu đơn vị liền sau"],
+              rows: [
+                ["1 m", "10 dm"],
+                ["1 dm", "10 cm"],
+                ["1 cm", "10 mm"]
+              ]
+            },
+            text: "Bậc thang đơn vị đo độ dài\n· m\n· dm\n· cm\n· mm\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Mẹo Nhớ",
+            title: "Cách đổi đơn vị đo độ dài",
+            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            points: [
+              "1 m = 10 dm.",
+              "Đi xuống hai bậc thì nhân hai lần: 1 m = 10 × 10 = 100 cm.",
+              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 m = 20 dm.",
+              "Đổi số bé ra số lớn: CHIA. Ví dụ 30 dm = 3 m."
+            ]
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "1 m bằng bao nhiêu dm?",
+            options: [1, 10, 11, 100],
+            answer: 10,
+            mascotHint: "Hai đơn vị liền nhau: 1 m = 10 dm."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "3 m bằng bao nhiêu dm?",
+            options: [10, 30, 40, 300],
+            answer: 30,
+            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 10 = 30."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "1 × 2 bằng bao nhiêu?",
+            options: [1, 2, 3, 4],
+            answer: 2,
+            mascotHint: "hàng đơn vị 1 × 2 = 2, viết 2. Kết quả 2."
+          }
         },
         {
           type: "quiz",

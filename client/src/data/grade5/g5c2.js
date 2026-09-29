@@ -63,6 +63,85 @@ export const g5c2 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Phần", "Gồm những chữ số nào"],
+              rows: [
+                ["Phần nguyên (trước dấu phẩy)", "0"],
+                ["Dấu phẩy", ","],
+                ["Phần thập phân (sau dấu phẩy)", "1"]
+              ]
+            },
+            text: "Số 0,1 gồm phần nguyên và phần thập phân\nphần nguyên 0; sau dấu phẩy là 1\nĐọc: “0 phẩy 1”."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Ghi Nhớ",
+            title: "Cấu tạo số thập phân",
+            explanation: "Dấu phẩy ngăn phần nguyên và phần thập phân; mỗi chữ số sau dấu phẩy có một hàng riêng.",
+            points: [
+              "Chữ số đầu sau dấu phẩy là hàng PHẦN MƯỜI: 0,1 có 1 phần mười.",
+              "Chữ số thứ hai là hàng PHẦN TRĂM: 0,1 có 0 phần trăm.",
+              "Hai số thập phân bằng nhau nếu viết thêm (hoặc bỏ) chữ số 0 tận cùng bên phải phần thập phân.",
+              "So sánh số thập phân: so phần nguyên trước, bằng nhau thì so từng hàng sau dấu phẩy."
+            ]
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Cách Học",
+            title: "Bốn bước làm một bài toán",
+            explanation: "Mọi bài so sánh số đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            points: [
+              "Bước 1 — Đếm số CHỮ SỐ của từng số trước.",
+              "Bước 2 — Số nào nhiều chữ số hơn thì lớn hơn — xong, không cần so tiếp.",
+              "Bước 3 — Cùng số chữ số thì so từng hàng từ TRÁI sang phải, gặp hàng khác nhau thì dừng.",
+              "Bước 4 — Đọc lại kết quả và đặt đúng dấu (>, <, =)."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Điều cần nhớ", "Nội dung"],
+              rows: [
+                ["Nhiều chữ số hơn", "thì số đó lớn hơn"],
+                ["So từ trái", "hàng nghìn rồi mới tới trăm, chục, đơn vị"],
+                ["Dấu lớn mở về phía", "số lớn hơn"]
+              ]
+            },
+            text: "Bảng nhớ nhanh — so sánh số\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Muốn so sánh hai số, bé bắt đầu bằng việc gì?",
+            options: [
+              "Đếm xem số nào có nhiều chữ số hơn",
+              "So chữ số hàng đơn vị trước",
+              "Cộng hai số lại",
+              "Đọc từ phải sang trái"
+            ],
+            answer: "Đếm xem số nào có nhiều chữ số hơn",
+            mascotHint: "Số nhiều chữ số hơn chắc chắn lớn hơn, nên chỉ cần so từng hàng khi hai số bằng số chữ số."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Trong số 0,1, phần nguyên là số nào?",
+            options: [0, 1, 2],
+            answer: 0,
+            mascotHint: "Phần nguyên là các chữ số trước dấu phẩy: 0."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Viết 3/10 thành số thập phân:",
@@ -149,6 +228,85 @@ export const g5c2 = {
                 "Viết thêm (hoặc bỏ) chữ số 0 tận cùng bên phải không làm đổi giá trị",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Phần", "Gồm những chữ số nào"],
+              rows: [
+                ["Phần nguyên (trước dấu phẩy)", "1"],
+                ["Dấu phẩy", ","],
+                ["Phần thập phân (sau dấu phẩy)", "45"]
+              ]
+            },
+            text: "Số 1,45 gồm phần nguyên và phần thập phân\nphần nguyên 1; sau dấu phẩy là 45\nĐọc: “1 phẩy 45”."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Ghi Nhớ",
+            title: "Cấu tạo số thập phân",
+            explanation: "Dấu phẩy ngăn phần nguyên và phần thập phân; mỗi chữ số sau dấu phẩy có một hàng riêng.",
+            points: [
+              "Chữ số đầu sau dấu phẩy là hàng PHẦN MƯỜI: 1,45 có 4 phần mười.",
+              "Chữ số thứ hai là hàng PHẦN TRĂM: 1,45 có 5 phần trăm.",
+              "Hai số thập phân bằng nhau nếu viết thêm (hoặc bỏ) chữ số 0 tận cùng bên phải phần thập phân.",
+              "So sánh số thập phân: so phần nguyên trước, bằng nhau thì so từng hàng sau dấu phẩy."
+            ]
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Cách Học",
+            title: "Bốn bước làm một bài toán",
+            explanation: "Mọi bài so sánh số đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            points: [
+              "Bước 1 — Đếm số CHỮ SỐ của từng số trước.",
+              "Bước 2 — Số nào nhiều chữ số hơn thì lớn hơn — xong, không cần so tiếp.",
+              "Bước 3 — Cùng số chữ số thì so từng hàng từ TRÁI sang phải, gặp hàng khác nhau thì dừng.",
+              "Bước 4 — Đọc lại kết quả và đặt đúng dấu (>, <, =)."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Điều cần nhớ", "Nội dung"],
+              rows: [
+                ["Nhiều chữ số hơn", "thì số đó lớn hơn"],
+                ["So từ trái", "hàng nghìn rồi mới tới trăm, chục, đơn vị"],
+                ["Dấu lớn mở về phía", "số lớn hơn"]
+              ]
+            },
+            text: "Bảng nhớ nhanh — so sánh số\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Muốn so sánh hai số, bé bắt đầu bằng việc gì?",
+            options: [
+              "Đếm xem số nào có nhiều chữ số hơn",
+              "So chữ số hàng đơn vị trước",
+              "Cộng hai số lại",
+              "Đọc từ phải sang trái"
+            ],
+            answer: "Đếm xem số nào có nhiều chữ số hơn",
+            mascotHint: "Số nhiều chữ số hơn chắc chắn lớn hơn, nên chỉ cần so từng hàng khi hai số bằng số chữ số."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Trong số 1,45, phần nguyên là số nào?",
+            options: [1, 2, 45, 46],
+            answer: 1,
+            mascotHint: "Phần nguyên là các chữ số trước dấu phẩy: 1."
+          }
         },
         {
           type: "quiz",
@@ -240,6 +398,85 @@ export const g5c2 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Phần", "Gồm những chữ số nào"],
+              rows: [
+                ["Phần nguyên (trước dấu phẩy)", "1"],
+                ["Dấu phẩy", ","],
+                ["Phần thập phân (sau dấu phẩy)", "45"]
+              ]
+            },
+            text: "Số 1,45 gồm phần nguyên và phần thập phân\nphần nguyên 1; sau dấu phẩy là 45\nĐọc: “1 phẩy 45”."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Ghi Nhớ",
+            title: "Cấu tạo số thập phân",
+            explanation: "Dấu phẩy ngăn phần nguyên và phần thập phân; mỗi chữ số sau dấu phẩy có một hàng riêng.",
+            points: [
+              "Chữ số đầu sau dấu phẩy là hàng PHẦN MƯỜI: 1,45 có 4 phần mười.",
+              "Chữ số thứ hai là hàng PHẦN TRĂM: 1,45 có 5 phần trăm.",
+              "Hai số thập phân bằng nhau nếu viết thêm (hoặc bỏ) chữ số 0 tận cùng bên phải phần thập phân.",
+              "So sánh số thập phân: so phần nguyên trước, bằng nhau thì so từng hàng sau dấu phẩy."
+            ]
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Cách Học",
+            title: "Bốn bước làm một bài toán",
+            explanation: "Mọi bài so sánh số đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            points: [
+              "Bước 1 — Đếm số CHỮ SỐ của từng số trước.",
+              "Bước 2 — Số nào nhiều chữ số hơn thì lớn hơn — xong, không cần so tiếp.",
+              "Bước 3 — Cùng số chữ số thì so từng hàng từ TRÁI sang phải, gặp hàng khác nhau thì dừng.",
+              "Bước 4 — Đọc lại kết quả và đặt đúng dấu (>, <, =)."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Điều cần nhớ", "Nội dung"],
+              rows: [
+                ["Nhiều chữ số hơn", "thì số đó lớn hơn"],
+                ["So từ trái", "hàng nghìn rồi mới tới trăm, chục, đơn vị"],
+                ["Dấu lớn mở về phía", "số lớn hơn"]
+              ]
+            },
+            text: "Bảng nhớ nhanh — so sánh số\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Muốn so sánh hai số, bé bắt đầu bằng việc gì?",
+            options: [
+              "Đếm xem số nào có nhiều chữ số hơn",
+              "So chữ số hàng đơn vị trước",
+              "Cộng hai số lại",
+              "Đọc từ phải sang trái"
+            ],
+            answer: "Đếm xem số nào có nhiều chữ số hơn",
+            mascotHint: "Số nhiều chữ số hơn chắc chắn lớn hơn, nên chỉ cần so từng hàng khi hai số bằng số chữ số."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Trong số 1,45, phần nguyên là số nào?",
+            options: [1, 2, 45, 46],
+            answer: 1,
+            mascotHint: "Phần nguyên là các chữ số trước dấu phẩy: 1."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Viết 1 m 45 cm thành số thập phân với đơn vị mét:",
@@ -318,6 +555,85 @@ export const g5c2 = {
           },
         },
         {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Phần", "Gồm những chữ số nào"],
+              rows: [
+                ["Phần nguyên (trước dấu phẩy)", "3"],
+                ["Dấu phẩy", ","],
+                ["Phần thập phân (sau dấu phẩy)", "46"]
+              ]
+            },
+            text: "Số 3,46 gồm phần nguyên và phần thập phân\nphần nguyên 3; sau dấu phẩy là 46\nĐọc: “3 phẩy 46”."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Ghi Nhớ",
+            title: "Cấu tạo số thập phân",
+            explanation: "Dấu phẩy ngăn phần nguyên và phần thập phân; mỗi chữ số sau dấu phẩy có một hàng riêng.",
+            points: [
+              "Chữ số đầu sau dấu phẩy là hàng PHẦN MƯỜI: 3,46 có 4 phần mười.",
+              "Chữ số thứ hai là hàng PHẦN TRĂM: 3,46 có 6 phần trăm.",
+              "Hai số thập phân bằng nhau nếu viết thêm (hoặc bỏ) chữ số 0 tận cùng bên phải phần thập phân.",
+              "So sánh số thập phân: so phần nguyên trước, bằng nhau thì so từng hàng sau dấu phẩy."
+            ]
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Cách Học",
+            title: "Bốn bước làm một bài toán",
+            explanation: "Mọi bài so sánh số đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            points: [
+              "Bước 1 — Đếm số CHỮ SỐ của từng số trước.",
+              "Bước 2 — Số nào nhiều chữ số hơn thì lớn hơn — xong, không cần so tiếp.",
+              "Bước 3 — Cùng số chữ số thì so từng hàng từ TRÁI sang phải, gặp hàng khác nhau thì dừng.",
+              "Bước 4 — Đọc lại kết quả và đặt đúng dấu (>, <, =)."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Điều cần nhớ", "Nội dung"],
+              rows: [
+                ["Nhiều chữ số hơn", "thì số đó lớn hơn"],
+                ["So từ trái", "hàng nghìn rồi mới tới trăm, chục, đơn vị"],
+                ["Dấu lớn mở về phía", "số lớn hơn"]
+              ]
+            },
+            text: "Bảng nhớ nhanh — so sánh số\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Muốn so sánh hai số, bé bắt đầu bằng việc gì?",
+            options: [
+              "Đếm xem số nào có nhiều chữ số hơn",
+              "So chữ số hàng đơn vị trước",
+              "Cộng hai số lại",
+              "Đọc từ phải sang trái"
+            ],
+            answer: "Đếm xem số nào có nhiều chữ số hơn",
+            mascotHint: "Số nhiều chữ số hơn chắc chắn lớn hơn, nên chỉ cần so từng hàng khi hai số bằng số chữ số."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Trong số 3,46, phần nguyên là số nào?",
+            options: [3, 4, 46, 47],
+            answer: 3,
+            mascotHint: "Phần nguyên là các chữ số trước dấu phẩy: 3."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "Làm tròn số 3,46 đến hàng phần mười ta được:",
@@ -379,6 +695,85 @@ export const g5c2 = {
               label: "Luyện đọc số thập phân thành thạo",
             },
           },
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Phần", "Gồm những chữ số nào"],
+              rows: [
+                ["Phần nguyên (trước dấu phẩy)", "0"],
+                ["Dấu phẩy", ","],
+                ["Phần thập phân (sau dấu phẩy)", "25"]
+              ]
+            },
+            text: "Số 0,25 gồm phần nguyên và phần thập phân\nphần nguyên 0; sau dấu phẩy là 25\nĐọc: “0 phẩy 25”."
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Ghi Nhớ",
+            title: "Cấu tạo số thập phân",
+            explanation: "Dấu phẩy ngăn phần nguyên và phần thập phân; mỗi chữ số sau dấu phẩy có một hàng riêng.",
+            points: [
+              "Chữ số đầu sau dấu phẩy là hàng PHẦN MƯỜI: 0,25 có 2 phần mười.",
+              "Chữ số thứ hai là hàng PHẦN TRĂM: 0,25 có 5 phần trăm.",
+              "Hai số thập phân bằng nhau nếu viết thêm (hoặc bỏ) chữ số 0 tận cùng bên phải phần thập phân.",
+              "So sánh số thập phân: so phần nguyên trước, bằng nhau thì so từng hàng sau dấu phẩy."
+            ]
+          }
+        },
+        {
+          type: "concept",
+          content: {
+            badge: "Cách Học",
+            title: "Bốn bước làm một bài toán",
+            explanation: "Mọi bài so sánh số đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            points: [
+              "Bước 1 — Đếm số CHỮ SỐ của từng số trước.",
+              "Bước 2 — Số nào nhiều chữ số hơn thì lớn hơn — xong, không cần so tiếp.",
+              "Bước 3 — Cùng số chữ số thì so từng hàng từ TRÁI sang phải, gặp hàng khác nhau thì dừng.",
+              "Bước 4 — Đọc lại kết quả và đặt đúng dấu (>, <, =)."
+            ]
+          }
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Điều cần nhớ", "Nội dung"],
+              rows: [
+                ["Nhiều chữ số hơn", "thì số đó lớn hơn"],
+                ["So từ trái", "hàng nghìn rồi mới tới trăm, chục, đơn vị"],
+                ["Dấu lớn mở về phía", "số lớn hơn"]
+              ]
+            },
+            text: "Bảng nhớ nhanh — so sánh số\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Muốn so sánh hai số, bé bắt đầu bằng việc gì?",
+            options: [
+              "Đếm xem số nào có nhiều chữ số hơn",
+              "So chữ số hàng đơn vị trước",
+              "Cộng hai số lại",
+              "Đọc từ phải sang trái"
+            ],
+            answer: "Đếm xem số nào có nhiều chữ số hơn",
+            mascotHint: "Số nhiều chữ số hơn chắc chắn lớn hơn, nên chỉ cần so từng hàng khi hai số bằng số chữ số."
+          }
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Trong số 0,25, phần nguyên là số nào?",
+            options: [0, 1, 25, 26],
+            answer: 0,
+            mascotHint: "Phần nguyên là các chữ số trước dấu phẩy: 0."
+          }
         },
         {
           type: "quiz",

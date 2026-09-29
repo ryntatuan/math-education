@@ -1,5 +1,5 @@
 /**
- * BỘ HÌNH CHO LỚP 1 — CHỦ ĐỀ 1 (Các số từ 0 đến 10), SGK tr.6–45.
+ * BỘ HÌNH CHO LỚP 1 — CHỦ ĐỀ 1 (Các số từ 0 đến 10).
  *
  * Vì sao tách khỏi `GeometryVisuals.jsx`: chủ đề này KHÔNG phải hình học — nó là ĐẾM,
  * SO SÁNH, TÁCH – GỘP. Trộn vào file hình học sẽ làm file đó phình thêm ~700 dòng mà
@@ -16,7 +16,7 @@
  *    và hình vẽ sai mà KHÔNG hề báo lỗi cú pháp (đã mắc thật).
  *  • Đáp án KHÔNG được in lên hình (đếm là việc của bé).
  *
- * Nguồn số liệu của từng hình: lấy từ SGK, ghi rõ ở từng hình bên dưới.
+ * Nguồn số liệu của từng hình: lấy từ nội dung bài học, ghi rõ ở từng hình bên dưới.
  */
 
 import { CARD_STYLE, CAPTION_STYLE, svgFit } from "./visualTheme";
@@ -53,7 +53,7 @@ const num = (v, fb) => (Number.isFinite(Number(v)) ? Number(v) : fb);
 
 /** Vị trí chấm kiểu XÚC XẮC (toạ độ chuẩn hoá 0..1 trên một ô 3×3).
  *  Dùng chấm kiểu xúc xắc chứ không phải hàng–cột đều: bé lớp 1 đã quen mặt xúc xắc,
- *  nhìn là nhận ra số lượng ngay mà không phải đếm từng chấm (SGK cũng dùng thẻ chấm kiểu này). */
+ * nhìn là nhận ra số lượng ngay mà không phải đếm từng chấm. */
 const PIP_SPOTS = {
   1: [[0.5, 0.5]],
   2: [
@@ -433,7 +433,7 @@ export function NumberScene({
     </div>
   );
 
-  /* ── 1. Năm bạn của bé (SGK tr.6) ─────────────────────────────────────────── */
+  /* ── 1. Năm bạn của bé ─────────────────────────────────────────── */
   if (mode === "fiveFriends") {
     /**
      * 🔴 GIỚI TÍNH PHẢI NHÌN RA ĐƯỢC. Bản cũ vẽ **cùng một kiểu tóc** cho cả 5 bạn (chỉ khác
@@ -504,15 +504,15 @@ export function NumberScene({
     );
   }
 
-  /* ── 2. Bảng KHÁM PHÁ (SGK tr.8 và tr.14) ─────────────────────────────────── */
-  // kind="tank"  : 0 → 5, bể cá + khối lập phương màu  (tr.8)
-  // kind="living": 6 → 10, nhóm con vật / hoa           (tr.14)
+  /* ── 2. Bảng KHÁM PHÁ ─────────────────────────────────── */
+  // kind="tank" : 0 → 5, bể cá + khối lập phương màu
+  // kind="living": 6 → 10, nhóm con vật / hoa
   if (mode === "numberShow") {
     const CUBE = ["#facc15", "#fb923c", "#f87171", "#4ade80", "#60a5fa"];
     const tank = (n) => (
       <g>
         {/*
-         * BỂ CÁ (SGK tr.8) — phải RA DÁNG BỂ: thành bể + mặt nước, và “khối” phải là
+         * BỂ CÁ — phải RA DÁNG BỂ: thành bể + mặt nước, và “khối” phải là
          * KHỐI LẬP PHƯƠNG (mặt trước + mặt trên), không phải ô màu phẳng.
          */}
         <rect
@@ -616,7 +616,7 @@ export function NumberScene({
     );
   }
 
-  /* ── 3. Nhiều NHÓM để so sánh / ghép đôi (SGK tr.20–23, 41, 44) ───────────── */
+  /* ── 3. Nhiều NHÓM để so sánh / ghép đôi ───────────── */
   if (mode === "manyGroups") {
     const gs = groups.map((g) => ({
       ch: g.emoji || "🐟",
@@ -698,7 +698,7 @@ export function NumberScene({
     );
   }
 
-  /* ── 4. CHO THÊM để đạt số lượng cho trước (SGK tr.12, 15, 18, 23) ────────── */
+  /* ── 4. CHO THÊM để đạt số lượng cho trước ────────── */
   if (mode === "addToReach") {
     const haveN = Math.max(0, num(have, 0));
     const aN = Math.max(0, num(a, 0));
@@ -798,7 +798,7 @@ export function NumberScene({
     );
   }
 
-  /* ── 5. ĐẾM THEO ĐIỀU KIỆN (SGK tr.11, 17) ───────────────────────────────── */
+  /* ── 5. ĐẾM THEO ĐIỀU KIỆN ───────────────────────────────── */
   // type="colored": cà rốt đã tô màu   |  type="labeled": con vật ghi số
   // type="legs"  : con vật có 6 chân
   if (mode === "countFiltered") {
@@ -944,7 +944,7 @@ export function NumberScene({
     );
   }
 
-  /* ── 6. ĐẾM TRONG TRANH CẢNH (SGK tr.13, 17, 39, 40) ─────────────────────── */
+  /* ── 6. ĐẾM TRONG TRANH CẢNH ─────────────────────── */
   // Số lượng từng loại là DO MÌNH CHỌN (ảnh quét không đủ rõ) — đã ghi ở bảng nguồn §7.
   if (mode === "sceneCount") {
     const SCENE = {
@@ -1104,7 +1104,7 @@ export function NumberScene({
     );
   }
 
-  /* ── 7. DÃY SỐ / TOA TÀU có ô trống (SGK tr.10, 16, 40) ──────────────────── */
+  /* ── 7. DÃY SỐ / TOA TÀU có ô trống ──────────────────── */
 
   /**
    * Ô TRỐNG của dãy số — bộ vẽ nhận cả ba cách viết (`null`, `"?"`, chuỗi rỗng).
@@ -1118,7 +1118,7 @@ export function NumberScene({
    * điền được. (Trước đây công thức nằm ngay trong JSX; viết bản tương tác mà chép lại công
    * thức là hai bản sẽ lệch nhau ở lần sửa sau.)
    *
-   * 🔴 TỰ XUỐNG DÒNG: dãy dài (SGK tr.5 có dãy **1 → 20**) không vừa một hàng — 20 ô × 32 đơn vị
+   * 🔴 TỰ XUỐNG DÒNG: dãy dài không vừa một hàng — 20 ô × 32 đơn vị
    * = 640 > 360 nên `startX` ra **số âm** và hình vẽ tràn ra ngoài khung. Nay chia thành nhiều
    * hàng, mỗi hàng tối đa `MAX_O` ô và **mỗi hàng tự canh giữa** (hàng cuối ngắn vẫn cân).
    */
@@ -1434,7 +1434,7 @@ export function NumberScene({
       />
     );
   }
-  /* ── 8. TÁCH – GỘP: sơ đồ nhánh và bảng (SGK tr.33, 35, 37, 45) ──────────── */
+  /* ── 8. TÁCH – GỘP: sơ đồ nhánh và bảng ──────────── */
   if (mode === "numberBond") {
     if (kind === "table") {
       const ps = Array.isArray(parts) ? parts : [];
@@ -1594,7 +1594,7 @@ export function NumberScene({
     );
   }
 
-  /* ── 9. NỐI HAI NHÓM BẰNG NHAU (SGK tr.28, 39) ───────────────────────────── */
+  /* ── 9. NỐI HAI NHÓM BẰNG NHAU ───────────────────────────── */
   if (mode === "matchEqual") {
     const ps = Array.isArray(pairs) ? pairs : [];
     const H = ps.length * 56 + 16;
@@ -1672,7 +1672,7 @@ export function NumberScene({
     );
   }
 
-  /* ── 10. MÊ CUNG SỐ (SGK tr.25) ──────────────────────────────────────────── */
+  /* ── 10. MÊ CUNG SỐ ──────────────────────────────────────────── */
   if (mode === "numberMaze" && interactive) {
     /**
      * BÉ TỰ NỐI ĐƯỜNG — người dùng yêu cầu 2026-09-25: “hãy để cho trẻ tự nối, nếu ô được
@@ -1888,7 +1888,7 @@ export function NumberScene({
     );
   }
 
-  /* ── 11. THẺ CHẤM để so sánh (SGK tr.30, 31) ─────────────────────────────── */
+  /* ── 11. THẺ CHẤM để so sánh ─────────────────────────────── */
   if (mode === "dotCards") {
     const l = num(left, 0);
     const r3 = num(right, 0);
@@ -1949,7 +1949,7 @@ export function NumberScene({
     );
   }
 
-  /* ── 12. SO SÁNH THEO MẪU (SGK tr.25, 27, 42) ────────────────────────────── */
+  /* ── 12. SO SÁNH THEO MẪU ────────────────────────────── */
   if (mode === "comparePairs") {
     const ps = Array.isArray(pairs) ? pairs : [];
     /** Slide bài học ⇒ dùng bản TƯƠNG TÁC (bé bấm ô “?” rồi chọn dấu). */

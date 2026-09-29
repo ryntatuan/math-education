@@ -1,13 +1,13 @@
 /**
- * ẨN NHÃN DẪN TRANG SGK KHỎI GIAO DIỆN (giữ nguyên trong dữ liệu để đối chiếu).
+ * LỌC NHÃN DẪN SÁCH KHỎI GIAO DIỆN — LƯỚI AN TOÀN CHO CÂY NỘI DUNG CŨ.
  *
- * 🔴 VÌ SAO: nhãn `(SGK tr.6)` nằm trong chính chuỗi hiển thị nên bé thấy nó trên slide
- * ("Năm bạn cùng học Toán với bé (SGK tr.6)") — vô nghĩa với trẻ và làm bẩn giao diện
- * (người dùng báo 2026-09-26). Nhưng nhãn này CÓ ÍCH cho người soạn bài khi đối chiếu
- * sách giấy, nên KHÔNG xoá khỏi file dữ liệu — chỉ lọc bỏ ở tầng hiển thị.
+ * 🔴 TÌNH HÌNH (2026-09-29): file dữ liệu trong repo ĐÃ SẠCH nhãn (app là app độc lập, không
+ * nhắc tới sách giáo khoa nữa — yêu cầu người dùng). Nhưng cây nội dung mà app đang đọc có
+ * thể là bản CŨ trong DB, hoặc bản đã cache trong `localStorage` của máy bé, vẫn còn nhãn
+ * `(SGK tr.6)`. Bộ lọc này chặn chúng ở tầng hiển thị cho tới khi bản mới được nạp.
  *
  * Vì vậy hàm ở đây chạy lúc ĐỌC cây nội dung (`contentSource.layGrades`), không sửa file.
- * Đổi lại: cổng kiểm và công cụ đọc thẳng file dữ liệu vẫn thấy nhãn y như cũ.
+ * Cổng `TC-0.9` (S-33) canh đúng dây nối này — xem `scripts/test-admin-portal.mjs`.
  *
  * ⚠️ Chuỗi trong dữ liệu có thể có XUỐNG DÒNG (nhãn bảng, `text` nhiều dòng), nên phải lọc
  * theo TỪNG DÒNG rồi mới nối lại — gộp khoảng trắng toàn cục sẽ làm mất dấu xuống dòng.

@@ -166,12 +166,6 @@ export default function LessonPage() {
   /** Ba dạng bài mới (chọn nhiều đáp án · ghép thẻ · nối cặp) tự quản trạng thái của chúng
    *  — trang chỉ cần biết “slide này đã trả lời xong chưa” để mở nút Tiếp tục. */
   const [interactiveDone, setInteractiveDone] = useState(false);
-  /**
-   * COMBO LIÊN TIẾP — lấy ý từ Duolingo (ảnh người dùng gửi 2026-09-28, “COMBO x4”).
-   * Đúng liên tiếp thì đếm lên; sai một câu là về 0. Chỉ là ĐỘNG VIÊN, không đổi phần thưởng:
-   * xu/XP vẫn theo `reward_configs` để bố mẹ chỉnh được trên Admin (xem cổng S-1/S-9).
-   */
-  const [combo, setCombo] = useState(0);
 
   // Phần thưởng THỰC SỰ đã cấp, lưu lại để hiển thị ở màn hình kết quả.
   // Không thể tính lại từ `isRelearning` ở render sau: completeLesson() đã
@@ -371,7 +365,6 @@ export default function LessonPage() {
     const isCorrect = answer === slide.content.answer;
 
     setAnswerFeedback(isCorrect ? "correct" : "wrong");
-    setCombo((c) => (isCorrect ? c + 1 : 0));
     setQuizAnswers((prev) => ({
       ...prev,
       [currentSlide]: { answer, correct: isCorrect },
@@ -422,7 +415,6 @@ export default function LessonPage() {
    */
   const handleInteractiveAnswer = ({ isCorrect, dapAn }) => {
     setInteractiveDone(true);
-    setCombo((c) => (isCorrect ? c + 1 : 0));
 
     const questionRef = `lesson:${lessonId}:${currentSlide}`;
     recordAttempt({
@@ -638,19 +630,6 @@ export default function LessonPage() {
           </span>
         </div>
       </div>
-
-      {/* COMBO LIÊN TIẾP — động viên kiểu Duolingo. Hiện từ chuỗi 2 câu đúng liên tiếp;
-          sai một câu là biến mất (state về 0). KHÔNG đổi xu/XP — chỉ là lời khen. */}
-      {combo >= 2 && (
-        <motion.div
-          className="lesson-combo-badge"
-          initial={{ scale: 0.6, opacity: 0, y: -8 }}
-          animate={{ scale: 1, opacity: 1, y: 0 }}
-          transition={{ type: "spring", stiffness: 320, damping: 18 }}
-        >
-          🔥 COMBO x{combo} — bé làm đúng liên tiếp!
-        </motion.div>
-      )}
 
       {/* Slide Content */}
       <AnimatePresence mode="wait">

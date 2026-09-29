@@ -46,6 +46,64 @@ export const g2c12 = {
           },
         },
         {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 5,
+              "right": 2,
+              "sign": "+",
+              "remember": true
+            },
+            "text": "Bé tự đặt tính: 5 + 2\nhàng đơn vị 5 + 2 = 7, viết 7\nVậy 5 + 2 = 7."
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "numberLine": {
+              "from": 5,
+              "to": 7,
+              "step": 1,
+              "hops": [
+                {
+                  "from": 5,
+                  "to": 7,
+                  "label": "+2"
+                }
+              ]
+            },
+            "text": "Cách nhẩm nhanh cho 5 + 2\nBé đếm thêm từng bước trên tia số theo các cung nhảy.\nĐếm thêm 2 bước từ 5.\nVậy 5 + 2 = 7."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "6 + 4 bằng bao nhiêu?",
+            "options": [
+              9,
+              10,
+              11,
+              20
+            ],
+            "answer": 10,
+            "mascotHint": "Bé đặt tính rồi tính từ hàng đơn vị. Kết quả 10."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "4 + 1 bằng bao nhiêu?",
+            "options": [
+              4,
+              5,
+              6,
+              7
+            ],
+            "answer": 5,
+            "mascotHint": "hàng đơn vị 4 + 1 = 5, viết 5. Kết quả 5."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "235 + 412 bằng bao nhiêu?",
@@ -103,6 +161,32 @@ export const g2c12 = {
               remember: true,
             },
           },
+        },
+        {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 5,
+              "right": 7,
+              "sign": "+",
+              "remember": true
+            },
+            "text": "Bé tự đặt tính: 5 + 7\nhàng đơn vị 5 + 7 = 12, viết 2 nhớ 1\ncòn nhớ 1 ở hàng cao hơn, viết 1\nVậy 5 + 7 = 12."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "6 + 5 bằng bao nhiêu?",
+            "options": [
+              1,
+              10,
+              11,
+              12
+            ],
+            "answer": 11,
+            "mascotHint": "hàng đơn vị 6 + 5 = 11, viết 1 nhớ 1. Kết quả 11."
+          }
         },
         {
           type: "quiz",
@@ -183,6 +267,69 @@ export const g2c12 = {
           },
         },
         {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 5,
+              "right": 8,
+              "sign": "+",
+              "remember": true
+            },
+            "text": "Bé tự đặt tính: 5 + 8\nhàng đơn vị 5 + 8 = 13, viết 3 nhớ 1\ncòn nhớ 1 ở hàng cao hơn, viết 1\nVậy 5 + 8 = 13."
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "numberLine": {
+              "from": 5,
+              "to": 13,
+              "step": 1,
+              "hops": [
+                {
+                  "from": 5,
+                  "to": 10,
+                  "label": "+5"
+                },
+                {
+                  "from": 10,
+                  "to": 13,
+                  "label": "+3"
+                }
+              ]
+            },
+            "text": "Cách nhẩm nhanh cho 5 + 8\nBé đếm thêm từng bước trên tia số theo các cung nhảy.\nĐếm thêm 5 để được 10 (tròn chục), rồi thêm 3 nữa.\nVậy 5 + 8 = 13."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "6 + 5 bằng bao nhiêu?",
+            "options": [
+              10,
+              11,
+              12,
+              21
+            ],
+            "answer": 11,
+            "mascotHint": "Bé đặt tính rồi tính từ hàng đơn vị. Kết quả 11."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "5 + 6 bằng bao nhiêu?",
+            "options": [
+              1,
+              10,
+              11,
+              12
+            ],
+            "answer": 11,
+            "mascotHint": "hàng đơn vị 5 + 6 = 11, viết 1 nhớ 1. Kết quả 11."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question:
@@ -249,6 +396,89 @@ export const g2c12 = {
           },
         },
         {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 5,
+              "right": 3,
+              "sign": "−"
+            },
+            "text": "Bé tự đặt tính: 5 − 3\nhàng đơn vị 5 − 3 = 2, viết 2\nVậy 5 − 3 = 2."
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "numberLine": {
+              "from": 3,
+              "to": 5,
+              "step": 1,
+              "hops": [
+                {
+                  "from": 3,
+                  "to": 5,
+                  "label": "+2"
+                }
+              ]
+            },
+            "text": "Cách 2 cho 5 − 3: đếm thêm từ số bé\nTừ 3 đếm thêm cho tới 5 là bao nhiêu bước?\nĐó chính là hiệu: 5 − 3 = 2."
+          }
+        },
+        {
+          "type": "visual",
+          "content": {
+            "table": {
+              "headers": [
+                "Bước",
+                "Việc bé làm"
+              ],
+              "rows": [
+                [
+                  "Bước 1 — Đơn vị",
+                  "viết kết quả luôn kèm đơn vị"
+                ],
+                [
+                  "Bước 2 — Bậc thang",
+                  "đi xuống thì nhân, đi lên thì chia"
+                ],
+                [
+                  "Bước 3 — Kiểm lại",
+                  "lấy kết quả đổi ngược lại xem có về số ban đầu"
+                ]
+              ]
+            },
+            "text": "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "6 − 5 bằng bao nhiêu?",
+            "options": [
+              1,
+              2,
+              3,
+              11
+            ],
+            "answer": 1,
+            "mascotHint": "Bé đặt tính rồi tính từ hàng đơn vị. Kết quả 1."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "8 − 6 bằng bao nhiêu?",
+            "options": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "answer": 2,
+            "mascotHint": "hàng đơn vị 8 − 6 = 2, viết 2. Kết quả 2."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "645 − 213 bằng bao nhiêu?",
@@ -310,6 +540,44 @@ export const g2c12 = {
           },
         },
         {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 14,
+              "right": 8,
+              "sign": "−"
+            },
+            "text": "Bé tự đặt tính: 14 − 8\nhàng đơn vị 4 < 8 nên mượn 1: 14 − 8 = 6, viết 6\nhàng chục 1 − 1 = 0, viết 0\nVậy 14 − 8 = 6."
+          }
+        },
+        {
+          "type": "concept",
+          "content": {
+            "badge": "Chú Ý",
+            "title": "Vì sao ra 16 là sai?",
+            "explanation": "16 là kết quả khi bé quên bớt 1 chục sau khi mượn. Đây là lỗi hay gặp nhất của dạng trừ này.",
+            "points": [
+              "Lỗi — quên bớt 1 chục sau khi mượn: hàng đơn vị 4 < 8 nên mượn 1: 14 − 8 = 6, viết 6. Kết quả đúng phải là 6.",
+              "Cách tránh: làm xong một hàng thì ghi/xoá số đã vay NGAY, đừng để sang hàng sau mới nhớ.",
+              "Tự kiểm tra: 6 + 8 phải bằng 14."
+            ]
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "16 − 8 bằng bao nhiêu?",
+            "options": [
+              7,
+              8,
+              9,
+              18
+            ],
+            "answer": 8,
+            "mascotHint": "hàng đơn vị 6 < 8 nên mượn 1: 16 − 8 = 8, viết 8. Kết quả 8."
+          }
+        },
+        {
           type: "quiz",
           content: {
             question: "534 − 268 bằng bao nhiêu?",
@@ -369,6 +637,44 @@ export const g2c12 = {
               remember: false,
             },
           },
+        },
+        {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 10,
+              "right": 5,
+              "sign": "−"
+            },
+            "text": "Bé tự đặt tính: 10 − 5\nhàng đơn vị 0 < 5 nên mượn 1: 10 − 5 = 5, viết 5\nhàng chục 1 − 1 = 0, viết 0\nVậy 10 − 5 = 5."
+          }
+        },
+        {
+          "type": "concept",
+          "content": {
+            "badge": "Chú Ý",
+            "title": "Vì sao ra 15 là sai?",
+            "explanation": "15 là kết quả khi bé quên bớt 1 chục sau khi mượn. Đây là lỗi hay gặp nhất của dạng trừ này.",
+            "points": [
+              "Lỗi — quên bớt 1 chục sau khi mượn: hàng đơn vị 0 < 5 nên mượn 1: 10 − 5 = 5, viết 5. Kết quả đúng phải là 5.",
+              "Cách tránh: làm xong một hàng thì ghi/xoá số đã vay NGAY, đừng để sang hàng sau mới nhớ.",
+              "Tự kiểm tra: 5 + 5 phải bằng 10."
+            ]
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "12 − 6 bằng bao nhiêu?",
+            "options": [
+              5,
+              6,
+              7,
+              16
+            ],
+            "answer": 6,
+            "mascotHint": "hàng đơn vị 2 < 6 nên mượn 1: 12 − 6 = 6, viết 6. Kết quả 6."
+          }
         },
         {
           type: "quiz",
@@ -440,6 +746,44 @@ export const g2c12 = {
               label: "? + 145 = 320 ⇒ ? = 320 − 145 = 175",
             },
           },
+        },
+        {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 320,
+              "right": 145,
+              "sign": "−"
+            },
+            "text": "Bé tự đặt tính: 320 − 145\nhàng đơn vị 0 < 5 nên mượn 1: 10 − 5 = 5, viết 5\nhàng chục 2 < 5 nên mượn 1: 12 − 5 = 7, viết 7\nhàng trăm 3 − 2 = 1, viết 1\nVậy 320 − 145 = 175."
+          }
+        },
+        {
+          "type": "concept",
+          "content": {
+            "badge": "Chú Ý",
+            "title": "Vì sao ra 285 là sai?",
+            "explanation": "285 là kết quả khi bé quên bớt 1 chục sau khi mượn. Đây là lỗi hay gặp nhất của dạng trừ này.",
+            "points": [
+              "Lỗi — quên bớt 1 chục sau khi mượn: hàng đơn vị 0 < 5 nên mượn 1: 10 − 5 = 5, viết 5. Kết quả đúng phải là 175.",
+              "Cách tránh: làm xong một hàng thì ghi/xoá số đã vay NGAY, đừng để sang hàng sau mới nhớ.",
+              "Tự kiểm tra: 175 + 145 phải bằng 320."
+            ]
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "857 − 638 bằng bao nhiêu?",
+            "options": [
+              218,
+              219,
+              220,
+              229
+            ],
+            "answer": 219,
+            "mascotHint": "hàng đơn vị 7 < 8 nên mượn 1: 17 − 8 = 9, viết 9. Kết quả 219."
+          }
         },
         {
           type: "quiz",
@@ -519,6 +863,45 @@ export const g2c12 = {
               braceLabel: "Cả hai đội: 245 + 168 = 413 cây",
             },
           },
+        },
+        {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 245,
+              "right": 168,
+              "sign": "+",
+              "remember": true
+            },
+            "text": "Bé tự đặt tính: 245 + 168\nhàng đơn vị 5 + 8 = 13, viết 3 nhớ 1\nhàng chục 4 + 6 + 1 (nhớ) = 11, viết 1 nhớ 1\nhàng trăm 2 + 1 + 1 (nhớ) = 4, viết 4\nVậy 245 + 168 = 413."
+          }
+        },
+        {
+          "type": "concept",
+          "content": {
+            "badge": "Chú Ý",
+            "title": "Vì sao ra 303 là sai?",
+            "explanation": "303 là kết quả khi bé quên nhớ 1 ở hàng chục. Đây là lỗi hay gặp nhất của dạng cộng này.",
+            "points": [
+              "Lỗi — quên nhớ 1 ở hàng chục: hàng đơn vị 5 + 8 = 13, viết 3 nhớ 1. Kết quả đúng phải là 413.",
+              "Cách tránh: làm xong một hàng thì ghi/xoá số nhớ NGAY, đừng để sang hàng sau mới nhớ.",
+              "Tự kiểm tra: 413 − 245 phải bằng 168."
+            ]
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "283 + 517 bằng bao nhiêu?",
+            "options": [
+              790,
+              799,
+              800,
+              801
+            ],
+            "answer": 800,
+            "mascotHint": "hàng đơn vị 3 + 7 = 10, viết 0 nhớ 1. Kết quả 800."
+          }
         },
         {
           type: "quiz",
@@ -636,6 +1019,32 @@ export const g2c12 = {
               sign: "−",
             },
           },
+        },
+        {
+          "type": "visual",
+          "content": {
+            "cotTinh": {
+              "left": 256,
+              "right": 173,
+              "sign": "+",
+              "remember": true
+            },
+            "text": "Bé tự đặt tính: 256 + 173\nhàng đơn vị 6 + 3 = 9, viết 9\nhàng chục 5 + 7 = 12, viết 2 nhớ 1\nhàng trăm 2 + 1 + 1 (nhớ) = 4, viết 4\nVậy 256 + 173 = 429."
+          }
+        },
+        {
+          "type": "quiz",
+          "content": {
+            "question": "342 + 161 bằng bao nhiêu?",
+            "options": [
+              403,
+              502,
+              503,
+              504
+            ],
+            "answer": 503,
+            "mascotHint": "hàng đơn vị 2 + 1 = 3, viết 3. Kết quả 503."
+          }
         },
         {
           type: "quiz",
