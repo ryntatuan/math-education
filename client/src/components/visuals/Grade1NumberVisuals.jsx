@@ -151,7 +151,7 @@ const Item = ({ x, y, ch = "🐟", s = 18, opacity = 1 }) => (
     textAnchor="middle"
     fontSize={s}
     opacity={opacity}
-    style={{ userSelect: "none" }}
+    style={{ userSelect: "none", filter: "drop-shadow(0px 3px 5px rgba(0,0,0,0.12))" }}
   >
     {ch}
   </text>
@@ -432,8 +432,8 @@ export function NumberScene({
       >
         {dx ? <g transform={`translate(${dx},0)`}>{children}</g> : children}
       </svg>
-      {note && (
-        <span style={{ ...caption, color: P.ink, fontSize: 15 }}>{note}</span>
+      {(note || (mode === "manyGroups" && unit)) && (
+        <span style={{ ...caption, color: P.ink, fontSize: 15 }}>{note || unit}</span>
       )}
     </div>
   );
@@ -945,9 +945,8 @@ export function NumberScene({
       label: g.label || "",
     }));
     const rowH = 42;
-    // +32: chừa một dải riêng cho dòng chú thích. Không chừa thì chú thích đè lên
-    // emoji của hàng cuối khi chỉ có 1 hàng (đo trên ca dữ liệu thật, 375 px).
-    const H = gs.length * rowH + 32;
+    // +16: Lề dưới cho khung chứa nhóm đồ vật
+    const H = gs.length * rowH + 16;
     return box(
       <>
         {gs.map((g, i) => {
@@ -1000,18 +999,6 @@ export function NumberScene({
               strokeDasharray="4 4"
             />
           ))}
-        {unit !== "" && (
-          <text
-            x="180"
-            y={H - 8}
-            textAnchor="middle"
-            fontSize="14"
-            fontWeight="700"
-            fill={P.soft}
-          >
-            {unit}
-          </text>
-        )}
       </>,
       360,
       H,

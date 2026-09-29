@@ -13,16 +13,15 @@
  * co về vừa nội dung. Thiếu `width: 100%` là hình bị bó hẹp một góc.
  */
 export const CARD_STYLE = {
-  background: "#ffffff",
-  border: "2px solid #e2e8f0",
-  borderRadius: 18,
-  // 12 (thay vì 16) hai bên: trên điện thoại mỗi đơn vị lề đều quý — xem `svgFit`.
-  padding: "12px 12px",
-  margin: "14px auto",
+  background: "linear-gradient(145deg, #ffffff, #f8fafc)",
+  border: "1px solid rgba(226, 232, 240, 0.8)",
+  borderRadius: 24,
+  padding: "16px 16px",
+  margin: "16px auto",
   width: "100%",
   maxWidth: 680,
   boxSizing: "border-box",
-  boxShadow: "0 2px 10px rgba(15,23,42,.06)",
+  boxShadow: "0 10px 25px rgba(59, 130, 246, 0.08), 0 4px 10px rgba(59, 130, 246, 0.04)",
   // LƯỚI AN TOÀN, không phải cách hiển thị: mọi hình nay đã vừa thẻ (đo 555 ca thật,
   // xem `svgFit`), nên thanh cuộn này không bao giờ mọc. Giữ lại để nếu một ngày dữ liệu
   // sinh ra hình quá khổ thì thẻ vẫn cuộn được, chứ không tràn chữ ra ngoài khung.
@@ -125,15 +124,16 @@ export const ACCENT_LINE =
 export const CAPTION_STYLE = {
   display: "block",
   textAlign: "center",
-  marginTop: 10,
-  fontSize: 14.5,
+  marginTop: 16,
+  fontSize: 15,
   fontWeight: 700,
-  lineHeight: 1.35,
-  color: "#1e293b",
-  background: ACCENT_SOFT,
-  border: `1.5px solid ${ACCENT_LINE}`,
-  borderRadius: 12,
-  padding: "7px 10px",
+  lineHeight: 1.4,
+  color: "#334155",
+  background: ACCENT_TINT,
+  border: "none",
+  borderRadius: 16,
+  padding: "10px 14px",
+  boxShadow: "0 2px 8px rgba(0,0,0,0.04)",
 };
 
 /**

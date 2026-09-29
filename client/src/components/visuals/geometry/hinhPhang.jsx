@@ -138,6 +138,12 @@ export function PlaneShape({
         role="img"
         aria-label={PLANE[k]}
       >
+        <defs>
+          <filter id="shape-premium-shadow" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="8" stdDeviation="12" floodOpacity="0.15" floodColor={stroke} />
+            <feDropShadow dx="0" dy="2" stdDeviation="4" floodOpacity="0.1" />
+          </filter>
+        </defs>
         {/**
          * 🔴 CANH GIỮA THEO NỘI DUNG THẬT. Nhãn đỉnh (A, B, C, D…) và nhãn cạnh vươn ra
          * hai bên KHÔNG đều nhau ⇒ đo được **12+ ca lệch phải 27–39 đơn vị** và 2 ca lệch
@@ -153,7 +159,8 @@ export function PlaneShape({
                 r="78"
                 fill={fill}
                 stroke={stroke}
-                strokeWidth="3"
+                strokeWidth="4"
+                filter="url(#shape-premium-shadow)"
               />
               <circle cx="160" cy="115" r="3.5" fill={stroke} />
               {(radiusLabel || lb[0]) && (
@@ -185,8 +192,9 @@ export function PlaneShape({
               points={pts.map((p) => p.join(",")).join(" ")}
               fill={fill}
               stroke={stroke}
-              strokeWidth="3"
+              strokeWidth="4"
               strokeLinejoin="round"
+              filter="url(#shape-premium-shadow)"
             />
           )}
 

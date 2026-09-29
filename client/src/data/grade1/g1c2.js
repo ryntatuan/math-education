@@ -41,7 +41,7 @@ export const g1c2 = {
         {
           type: "visual",
           content: {
-            text: "▢\n4 cạnh dài bằng nhau · 4 đỉnh",
+            text: "Hình vuông: 4 cạnh dài bằng nhau · 4 đỉnh",
             planeShape: {
               kind: "square",
               labels: ["cạnh"],
@@ -50,84 +50,7 @@ export const g1c2 = {
             },
           },
         },
-        {
-          type: "visual",
-          content: {
-            solid: {
-              kind: "cuboid"
-            },
-            text: "khối hộp chữ nhật bé học hôm nay có gì đặc biệt?\n· 6 mặt, mỗi mặt là hình chữ nhật\n· 8 đỉnh\nBé đếm mặt, đếm đỉnh, đếm cạnh ngay trên hình vẽ rồi đọc lại đặc điểm trên nhé."
-          }
-        },
-        {
-          type: "concept",
-          content: {
-            badge: "Ghi Nhớ",
-            title: "Đặc điểm của khối hộp chữ nhật",
-            explanation: "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của khối hộp chữ nhật.",
-            points: [
-              "khối hộp chữ nhật có 6 mặt, mỗi mặt là hình chữ nhật.",
-              "khối hộp chữ nhật có 8 đỉnh.",
-              "khối hộp chữ nhật có 12 cạnh.",
-              "Cách kiểm tra: bé đếm mặt, đếm đỉnh, đếm cạnh; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình."
-            ]
-          }
-        },
-        {
-          type: "visual",
-          content: {
-            table: {
-              headers: ["Bước", "Việc bé làm"],
-              rows: [
-                ["Bước 1 — Gọi tên", "nhìn hình rồi nói đúng tên hình (hoặc khối)"],
-                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi đọc lại hai đặc điểm của hình"],
-                ["Bước 3 — Kiểm lại", "đếm lại lần nữa bằng mắt, không đoán"],
-              ]
-            },
-            text: "Ba bước làm bài hình — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
-          }
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
-            options: [
-              "Kiểm lại một lần nữa theo điều cần nhớ",
-              "Nộp bài luôn cho nhanh",
-              "Đoán lại một lần nữa"
-            ],
-            answer: "Kiểm lại một lần nữa theo điều cần nhớ",
-            mascotHint: "Kiểm lại một lần nữa rồi mới nộp bài — kiểm lại là thói quen của người học giỏi."
-          }
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "Hình nào có 6 mặt, mỗi mặt là hình chữ nhật?",
-            options: [
-              "khối hộp chữ nhật",
-              "hình khối lập phương",
-              "hình khối trụ",
-              "hình khối cầu"
-            ],
-            answer: "khối hộp chữ nhật",
-            mascotHint: "khối hộp chữ nhật: 6 mặt, mỗi mặt là hình chữ nhật · 8 đỉnh · 12 cạnh."
-          }
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "Trong bài hôm nay có hình khối hộp chữ nhật và hình vuông. Hình nào có 8 đỉnh?",
-            options: [
-              "khối hộp chữ nhật",
-              "hình khối lập phương",
-              "hình khối trụ",
-              "hình khối cầu"
-            ],
-            answer: "khối hộp chữ nhật",
-            mascotHint: "Đáp án là khối hộp chữ nhật: 6 mặt, mỗi mặt là hình chữ nhật · 8 đỉnh · 12 cạnh."
-          }
-        },
+
         {
           type: "quiz",
           content: {
@@ -200,7 +123,7 @@ export const g1c2 = {
         {
           type: "visual",
           content: {
-            text: "⭕\nĐường bao cong, không cạnh, không đỉnh",
+            text: "Hình tròn: Đường bao cong, không cạnh, không đỉnh",
             planeShape: {
               kind: "circle",
               formula: "Đường bao cong · không có cạnh, không có đỉnh",
@@ -265,9 +188,9 @@ export const g1c2 = {
             question: "Hình nào có 4 cạnh dài bằng nhau?",
             options: [
               "hình vuông",
-              "hình khối lập phương",
-              "hình khối hộp chữ nhật",
-              "hình khối trụ"
+              "hình tròn",
+              "hình tam giác",
+              "hình chữ nhật"
             ],
             answer: "hình vuông",
             mascotHint: "hình vuông: 4 cạnh dài bằng nhau · 4 đỉnh."
@@ -279,9 +202,9 @@ export const g1c2 = {
             question: "Trong bài hôm nay có hình vuông và hình tròn. Hình nào có 4 cạnh dài bằng nhau?",
             options: [
               "hình vuông",
-              "hình khối lập phương",
-              "hình khối hộp chữ nhật",
-              "hình khối trụ"
+              "hình tròn",
+              "hình tam giác",
+              "hình chữ nhật"
             ],
             answer: "hình vuông",
             mascotHint: "Đáp án là hình vuông: 4 cạnh dài bằng nhau · 4 đỉnh."
@@ -344,7 +267,7 @@ export const g1c2 = {
         {
           type: "visual",
           content: {
-            text: "🔺\n3 cạnh · 3 đỉnh",
+            text: "Hình tam giác: 3 cạnh · 3 đỉnh",
             planeShape: {
               kind: "triangle",
               labels: ["cạnh"],
@@ -410,10 +333,10 @@ export const g1c2 = {
           content: {
             question: "Hình nào có 3 cạnh?",
             options: [
+              "hình vuông",
+              "hình tròn",
               "hình tam giác",
-              "hình khối lập phương",
-              "hình khối hộp chữ nhật",
-              "hình khối trụ"
+              "hình chữ nhật"
             ],
             answer: "hình tam giác",
             mascotHint: "hình tam giác: 3 cạnh · 3 đỉnh · 3 góc."
@@ -469,7 +392,7 @@ export const g1c2 = {
             rule: "Hình chữ nhật có 4 cạnh, 4 đỉnh. Hai cạnh dài bằng nhau, hai cạnh ngắn bằng nhau.",
             points: [
               "Quyển sách, cửa ra vào, mặt bàn có dạng hình chữ nhật.",
-              "Hình chữ nhật khác hình vuông: 4 cạnh KHÔNG bằng nhau.",
+              "Hình chữ nhật khác hình vuông: 2 cạnh dài bằng nhau, 2 cạnh ngắn bằng nhau.",
               "Cả hai đều có 4 cạnh, 4 đỉnh.",
             ],
           },
@@ -477,7 +400,7 @@ export const g1c2 = {
         {
           type: "visual",
           content: {
-            text: "▭\n2 cạnh dài bằng nhau · 2 cạnh ngắn bằng nhau",
+            text: "Hình chữ nhật: 2 cạnh dài bằng nhau · 2 cạnh ngắn bằng nhau",
             planeShape: {
               kind: "rectangle",
               labels: ["chiều dài", "chiều rộng"],
@@ -485,97 +408,20 @@ export const g1c2 = {
             },
           },
         },
-        {
-          type: "visual",
-          content: {
-            solid: {
-              kind: "cuboid"
-            },
-            text: "khối hộp chữ nhật bé học hôm nay có gì đặc biệt?\n· 6 mặt, mỗi mặt là hình chữ nhật\n· 8 đỉnh\nBé đếm mặt, đếm đỉnh, đếm cạnh ngay trên hình vẽ rồi đọc lại đặc điểm trên nhé."
-          }
-        },
-        {
-          type: "concept",
-          content: {
-            badge: "Ghi Nhớ",
-            title: "Đặc điểm của khối hộp chữ nhật",
-            explanation: "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của khối hộp chữ nhật.",
-            points: [
-              "khối hộp chữ nhật có 6 mặt, mỗi mặt là hình chữ nhật.",
-              "khối hộp chữ nhật có 8 đỉnh.",
-              "khối hộp chữ nhật có 12 cạnh.",
-              "Cách kiểm tra: bé đếm mặt, đếm đỉnh, đếm cạnh; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình."
-            ]
-          }
-        },
-        {
-          type: "visual",
-          content: {
-            table: {
-              headers: ["Bước", "Việc bé làm"],
-              rows: [
-                ["Bước 1 — Gọi tên", "nhìn hình rồi nói đúng tên hình (hoặc khối)"],
-                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi đọc lại hai đặc điểm của hình"],
-                ["Bước 3 — Kiểm lại", "đếm lại lần nữa bằng mắt, không đoán"],
-              ]
-            },
-            text: "Ba bước làm bài hình — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
-          }
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
-            options: [
-              "Kiểm lại một lần nữa theo điều cần nhớ",
-              "Nộp bài luôn cho nhanh",
-              "Đoán lại một lần nữa"
-            ],
-            answer: "Kiểm lại một lần nữa theo điều cần nhớ",
-            mascotHint: "Kiểm lại một lần nữa rồi mới nộp bài — kiểm lại là thói quen của người học giỏi."
-          }
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "Hình nào có 6 mặt, mỗi mặt là hình chữ nhật?",
-            options: [
-              "khối hộp chữ nhật",
-              "hình khối lập phương",
-              "hình khối trụ",
-              "hình khối cầu"
-            ],
-            answer: "khối hộp chữ nhật",
-            mascotHint: "khối hộp chữ nhật: 6 mặt, mỗi mặt là hình chữ nhật · 8 đỉnh · 12 cạnh."
-          }
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "Trong bài hôm nay có hình khối hộp chữ nhật và hình vuông và hình chữ nhật. Hình nào có 8 đỉnh?",
-            options: [
-              "khối hộp chữ nhật",
-              "hình khối lập phương",
-              "hình khối trụ",
-              "hình khối cầu"
-            ],
-            answer: "khối hộp chữ nhật",
-            mascotHint: "Đáp án là khối hộp chữ nhật: 6 mặt, mỗi mặt là hình chữ nhật · 8 đỉnh · 12 cạnh."
-          }
-        },
+
         {
           type: "quiz",
           content: {
             question: "Hình chữ nhật khác hình vuông ở điểm nào?",
             planeShapes: [{ kind: "square" }, { kind: "rectangle" }],
             options: [
-              "Bốn cạnh không bằng nhau, chỉ hai dài bằng nhau và hai ngắn bằng nhau",
+              "Chỉ hai cạnh dài bằng nhau và hai cạnh ngắn bằng nhau",
               "Có ba cạnh",
               "Không có đỉnh",
               "Có đường bao cong",
             ],
             answer:
-              "Bốn cạnh không bằng nhau, chỉ hai dài bằng nhau và hai ngắn bằng nhau",
+              "Chỉ hai cạnh dài bằng nhau và hai cạnh ngắn bằng nhau",
             mascotHint:
               "Hình vuông có 4 cạnh bằng nhau; hình chữ nhật thì không.",
           },
@@ -622,84 +468,7 @@ export const g1c2 = {
             ],
           },
         },
-        {
-          type: "visual",
-          content: {
-            solid: {
-              kind: "cuboid"
-            },
-            text: "khối hộp chữ nhật bé học hôm nay có gì đặc biệt?\n· 6 mặt, mỗi mặt là hình chữ nhật\n· 8 đỉnh\nBé đếm mặt, đếm đỉnh, đếm cạnh ngay trên hình vẽ rồi đọc lại đặc điểm trên nhé."
-          }
-        },
-        {
-          type: "concept",
-          content: {
-            badge: "Ghi Nhớ",
-            title: "Đặc điểm của khối hộp chữ nhật",
-            explanation: "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của khối hộp chữ nhật.",
-            points: [
-              "khối hộp chữ nhật có 6 mặt, mỗi mặt là hình chữ nhật.",
-              "khối hộp chữ nhật có 8 đỉnh.",
-              "khối hộp chữ nhật có 12 cạnh.",
-              "Cách kiểm tra: bé đếm mặt, đếm đỉnh, đếm cạnh; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình."
-            ]
-          }
-        },
-        {
-          type: "visual",
-          content: {
-            table: {
-              headers: ["Bước", "Việc bé làm"],
-              rows: [
-                ["Bước 1 — Gọi tên", "nhìn hình rồi nói đúng tên hình (hoặc khối)"],
-                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi đọc lại hai đặc điểm của hình"],
-                ["Bước 3 — Kiểm lại", "đếm lại lần nữa bằng mắt, không đoán"],
-              ]
-            },
-            text: "Ba bước làm bài hình — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
-          }
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
-            options: [
-              "Kiểm lại một lần nữa theo điều cần nhớ",
-              "Nộp bài luôn cho nhanh",
-              "Đoán lại một lần nữa"
-            ],
-            answer: "Kiểm lại một lần nữa theo điều cần nhớ",
-            mascotHint: "Kiểm lại một lần nữa rồi mới nộp bài — kiểm lại là thói quen của người học giỏi."
-          }
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "Hình nào có 6 mặt, mỗi mặt là hình chữ nhật?",
-            options: [
-              "khối hộp chữ nhật",
-              "hình khối lập phương",
-              "hình khối trụ",
-              "hình khối cầu"
-            ],
-            answer: "khối hộp chữ nhật",
-            mascotHint: "khối hộp chữ nhật: 6 mặt, mỗi mặt là hình chữ nhật · 8 đỉnh · 12 cạnh."
-          }
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "Trong bài hôm nay có hình khối hộp chữ nhật và hình vuông và hình tròn và hình tam giác và hình chữ nhật. Hình nào có 8 đỉnh?",
-            options: [
-              "khối hộp chữ nhật",
-              "hình khối lập phương",
-              "hình khối trụ",
-              "hình khối cầu"
-            ],
-            answer: "khối hộp chữ nhật",
-            mascotHint: "Đáp án là khối hộp chữ nhật: 6 mặt, mỗi mặt là hình chữ nhật · 8 đỉnh · 12 cạnh."
-          }
-        },
+
         {
           type: "quiz",
           content: {
@@ -945,9 +714,9 @@ export const g1c2 = {
             question: "Hình nào có 4 cạnh dài bằng nhau?",
             options: [
               "hình vuông",
-              "hình khối lập phương",
-              "hình khối hộp chữ nhật",
-              "hình khối trụ"
+              "hình tròn",
+              "hình tam giác",
+              "hình chữ nhật"
             ],
             answer: "hình vuông",
             mascotHint: "hình vuông: 4 cạnh dài bằng nhau · 4 đỉnh."
@@ -959,9 +728,9 @@ export const g1c2 = {
             question: "Trong bài hôm nay có hình vuông và hình tròn và hình tam giác. Hình nào có 4 cạnh dài bằng nhau?",
             options: [
               "hình vuông",
-              "hình khối lập phương",
-              "hình khối hộp chữ nhật",
-              "hình khối trụ"
+              "hình tròn",
+              "hình tam giác",
+              "hình chữ nhật"
             ],
             answer: "hình vuông",
             mascotHint: "Đáp án là hình vuông: 4 cạnh dài bằng nhau · 4 đỉnh."
@@ -1108,9 +877,9 @@ export const g1c2 = {
             question: "Hình nào có 4 cạnh dài bằng nhau?",
             options: [
               "hình vuông",
-              "hình khối lập phương",
-              "hình khối hộp chữ nhật",
-              "hình khối trụ"
+              "hình tròn",
+              "hình tam giác",
+              "hình chữ nhật"
             ],
             answer: "hình vuông",
             mascotHint: "hình vuông: 4 cạnh dài bằng nhau · 4 đỉnh."
@@ -1122,9 +891,9 @@ export const g1c2 = {
             question: "Trong bài hôm nay có hình vuông và hình tam giác và hình chữ nhật. Hình nào có 4 cạnh dài bằng nhau?",
             options: [
               "hình vuông",
-              "hình khối lập phương",
-              "hình khối hộp chữ nhật",
-              "hình khối trụ"
+              "hình tròn",
+              "hình tam giác",
+              "hình chữ nhật"
             ],
             answer: "hình vuông",
             mascotHint: "Đáp án là hình vuông: 4 cạnh dài bằng nhau · 4 đỉnh."
@@ -1260,9 +1029,9 @@ export const g1c2 = {
             question: "Hình nào có 4 cạnh dài bằng nhau?",
             options: [
               "hình vuông",
-              "hình khối lập phương",
-              "hình khối hộp chữ nhật",
-              "hình khối trụ"
+              "hình tròn",
+              "hình tam giác",
+              "hình chữ nhật"
             ],
             answer: "hình vuông",
             mascotHint: "hình vuông: 4 cạnh dài bằng nhau · 4 đỉnh."
@@ -1274,9 +1043,9 @@ export const g1c2 = {
             question: "Trong bài hôm nay có hình vuông và hình tròn và hình tam giác và hình chữ nhật. Hình nào có 4 cạnh dài bằng nhau?",
             options: [
               "hình vuông",
-              "hình khối lập phương",
-              "hình khối hộp chữ nhật",
-              "hình khối trụ"
+              "hình tròn",
+              "hình tam giác",
+              "hình chữ nhật"
             ],
             answer: "hình vuông",
             mascotHint: "Đáp án là hình vuông: 4 cạnh dài bằng nhau · 4 đỉnh."
