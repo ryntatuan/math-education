@@ -91,7 +91,7 @@ export const g2c4 = {
                 },
               ],
             },
-            text: "Bước 3: cách nhẩm nhanh — làm tròn chục\nTách 5 thành 3 và 2 (vì 7 + 3 = 10)\n27 + 3 = 30\n30 + 2 = 32\nVậy 27 + 5 = 32.",
+            text: "Bước 3: cách nhẩm nhanh — tách cho đủ một chục\nTách 5 thành 3 và 2 (vì 7 + 3 = 10)\n27 + 3 = 30\n30 + 2 = 32\nVậy 27 + 5 = 32.",
           },
         },
         {
@@ -177,7 +177,7 @@ export const g2c4 = {
             title: "Bé nhớ rất tốt:",
             points: [
               "Cộng hàng đơn vị trước; được từ 10 trở lên thì viết chữ số hàng đơn vị và nhớ 1 sang hàng chục.",
-              "Cách nhẩm nhanh: làm tròn chục rồi cộng tiếp. 27 + 5: tách 5 = 3 + 2, được 27 + 3 = 30, rồi 30 + 2 = 32.",
+              "Cách nhẩm nhanh: tách cho đủ một chục rồi cộng tiếp. 27 + 5: tách 5 = 3 + 2, được 27 + 3 = 30, rồi 30 + 2 = 32.",
               "Tự kiểm tra: 32 − 5 phải bằng 27. Đúng thì kết quả chắc chắn.",
             ],
             mascotMood: "proud",
@@ -257,7 +257,7 @@ export const g2c4 = {
                 },
               ],
             },
-            text: "Cách nhẩm: làm tròn chục trước\nTách 8 thành 4 và 4 (vì 6 + 4 = 10)\n36 + 4 = 40\n40 + 4 = 44\nVậy 36 + 8 = 44.",
+            text: "Cách nhẩm: tách cho đủ một chục trước\nTách 8 thành 4 và 4 (vì 6 + 4 = 10)\n36 + 4 = 40\n40 + 4 = 44\nVậy 36 + 8 = 44.",
           },
         },
         {
@@ -390,7 +390,7 @@ export const g2c4 = {
                 },
               ],
             },
-            text: "Cách nhẩm: làm tròn chục trước\nTách 25 thành 2 và 23 (vì 8 + 2 = 10)\n38 + 2 = 40\n40 + 23 = 63\nVậy 38 + 25 = 63.",
+            text: "Cách nhẩm: tách cho đủ một chục trước\nTách 25 thành 2 và 23 (vì 8 + 2 = 10)\n38 + 2 = 40\n40 + 23 = 63\nVậy 38 + 25 = 63.",
           },
         },
         {

@@ -516,15 +516,12 @@ export const g3c3 = {
             table: {
               headers: ["Bước", "Việc bé làm"],
               rows: [
-                ["Bước 1 — Gọi tên", "nói đúng tên hình/khối trước khi làm gì tiếp"],
-                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học"],
-                [
-                  "Bước 3 — Kiểm tra",
-                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt"
-                ]
+                ["Bước 1 — Gọi tên", "nhìn hình rồi nói đúng tên hình (hoặc khối)"],
+                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi đọc lại hai đặc điểm của hình"],
+                ["Bước 3 — Kiểm lại", "đếm lại lần nữa bằng mắt, không đoán"],
               ]
             },
-            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+            text: "Ba bước làm bài hình — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
           }
         },
         {
@@ -674,15 +671,12 @@ export const g3c3 = {
             table: {
               headers: ["Bước", "Việc bé làm"],
               rows: [
-                ["Bước 1 — Gọi tên", "nói đúng tên hình/khối trước khi làm gì tiếp"],
-                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học"],
-                [
-                  "Bước 3 — Kiểm tra",
-                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt"
-                ]
+                ["Bước 1 — Gọi tên", "nhìn hình rồi nói đúng tên hình (hoặc khối)"],
+                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi đọc lại hai đặc điểm của hình"],
+                ["Bước 3 — Kiểm lại", "đếm lại lần nữa bằng mắt, không đoán"],
               ]
             },
-            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+            text: "Ba bước làm bài hình — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
           }
         },
         {
@@ -774,7 +768,7 @@ export const g3c3 = {
             title: "Hình tam giác và hình tứ giác",
             explanation:
               "HÌNH TAM GIÁC có 3 cạnh, 3 đỉnh và 3 góc. HÌNH TỨ GIÁC có 4 cạnh, 4 đỉnh và 4 góc.",
-            rule: "Hình tam giác: 3 cạnh, 3 đỉnh, 3 góc. Hình tứ giác: 4 cạnh, 4 đỉnh, 4 góc.",
+            rule: "Tứ giác có nhiều hơn tam giác đúng một cạnh.",
             points: [
               "Hình tam giác là hình có ít cạnh nhất trong hai hình này.",
               "Hình vuông và hình chữ nhật cũng là hình tứ giác.",
@@ -845,15 +839,12 @@ export const g3c3 = {
             table: {
               headers: ["Bước", "Việc bé làm"],
               rows: [
-                ["Bước 1 — Gọi tên", "nói đúng tên hình/khối trước khi làm gì tiếp"],
-                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học"],
-                [
-                  "Bước 3 — Kiểm tra",
-                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt"
-                ]
+                ["Bước 1 — Gọi tên", "nhìn hình rồi nói đúng tên hình (hoặc khối)"],
+                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi đọc lại hai đặc điểm của hình"],
+                ["Bước 3 — Kiểm lại", "đếm lại lần nữa bằng mắt, không đoán"],
               ]
             },
-            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+            text: "Ba bước làm bài hình — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
           }
         },
         {
@@ -1039,15 +1030,12 @@ export const g3c3 = {
             table: {
               headers: ["Bước", "Việc bé làm"],
               rows: [
-                ["Bước 1 — Gọi tên", "nói đúng tên hình/khối trước khi làm gì tiếp"],
-                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học"],
-                [
-                  "Bước 3 — Kiểm tra",
-                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt"
-                ]
+                ["Bước 1 — Gọi tên", "nhìn hình rồi nói đúng tên hình (hoặc khối)"],
+                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi đọc lại hai đặc điểm của hình"],
+                ["Bước 3 — Kiểm lại", "đếm lại lần nữa bằng mắt, không đoán"],
               ]
             },
-            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+            text: "Ba bước làm bài hình — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
           }
         },
         {
@@ -1226,15 +1214,12 @@ export const g3c3 = {
             table: {
               headers: ["Bước", "Việc bé làm"],
               rows: [
-                ["Bước 1 — Gọi tên", "nói đúng tên hình/khối trước khi làm gì tiếp"],
-                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học"],
-                [
-                  "Bước 3 — Kiểm tra",
-                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt"
-                ]
+                ["Bước 1 — Gọi tên", "nhìn hình rồi nói đúng tên hình (hoặc khối)"],
+                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi đọc lại hai đặc điểm của hình"],
+                ["Bước 3 — Kiểm lại", "đếm lại lần nữa bằng mắt, không đoán"],
               ]
             },
-            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+            text: "Ba bước làm bài hình — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
           }
         },
         {
@@ -1389,15 +1374,12 @@ export const g3c3 = {
             table: {
               headers: ["Bước", "Việc bé làm"],
               rows: [
-                ["Bước 1 — Gọi tên", "nói đúng tên hình/khối trước khi làm gì tiếp"],
-                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học"],
-                [
-                  "Bước 3 — Kiểm tra",
-                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt"
-                ]
+                ["Bước 1 — Gọi tên", "nhìn hình rồi nói đúng tên hình (hoặc khối)"],
+                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi đọc lại hai đặc điểm của hình"],
+                ["Bước 3 — Kiểm lại", "đếm lại lần nữa bằng mắt, không đoán"],
               ]
             },
-            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+            text: "Ba bước làm bài hình — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
           }
         },
         {
@@ -1555,15 +1537,12 @@ export const g3c3 = {
             table: {
               headers: ["Bước", "Việc bé làm"],
               rows: [
-                ["Bước 1 — Gọi tên", "nói đúng tên hình/khối trước khi làm gì tiếp"],
-                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học"],
-                [
-                  "Bước 3 — Kiểm tra",
-                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt"
-                ]
+                ["Bước 1 — Gọi tên", "nhìn hình rồi nói đúng tên hình (hoặc khối)"],
+                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi đọc lại hai đặc điểm của hình"],
+                ["Bước 3 — Kiểm lại", "đếm lại lần nữa bằng mắt, không đoán"],
               ]
             },
-            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+            text: "Ba bước làm bài hình — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
           }
         },
         {

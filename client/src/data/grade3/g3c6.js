@@ -834,7 +834,7 @@ export const g3c6 = {
           "type": "story",
           "content": {
             "mascotMood": "curious",
-            "text": "Đoạn thẳng AB dài 12 cm, đoạn CD dài 3 cm. AB gấp mấy lần CD? 📏"
+            "text": "Sợi dây thứ nhất dài 12 cm, sợi dây thứ hai dài 3 cm. Sợi dây thứ nhất gấp mấy lần sợi dây thứ hai? 📏"
           }
         },
         {
@@ -843,7 +843,7 @@ export const g3c6 = {
             "badge": "Mẹo Nhớ",
             "title": "Muốn biết gấp mấy lần thì chia",
             "explanation": "Muốn biết số lớn gấp mấy lần số bé, ta lấy SỐ LỚN chia cho SỐ BÉ.",
-            "rule": "12 : 3 = 4. Vậy đoạn AB dài gấp 4 lần đoạn CD.",
+            "rule": "12 : 3 = 4. Vậy số lớn gấp 4 lần số bé.",
             "points": [
               "'Gấp mấy lần' thì dùng phép chia.",
               "12 gấp 4 lần 3.",
@@ -933,7 +933,7 @@ export const g3c6 = {
         {
           "type": "quiz",
           "content": {
-            "question": "Đoạn AB dài 12 cm, đoạn CD dài 3 cm. Đoạn AB dài gấp mấy lần đoạn CD?",
+            "question": "Sợi dây thứ nhất dài 12 cm, sợi dây thứ hai dài 3 cm. Sợi dây thứ nhất dài gấp mấy lần sợi dây thứ hai?",
             "options": [
               "3 lần",
               "4 lần",

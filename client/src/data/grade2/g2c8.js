@@ -1067,7 +1067,7 @@ export const g2c8 = {
           content: {
             badge: "Cách Học",
             title: "Bốn bước làm một bài toán",
-            explanation: "Mọi bài bảng nhân – bảng chia – phân số đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            explanation: "Mọi bài bảng nhân – bảng chia đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
             points: [
               "Bước 1 — Xác định đề hỏi nhân hay chia (chia luôn tra ngược bảng nhân).",
               "Bước 2 — Tách số thành hàng chục và hàng đơn vị rồi tính từng phần.",
@@ -1084,10 +1084,10 @@ export const g2c8 = {
               rows: [
                 ["Nhân với 10", "thêm một chữ số 0"],
                 ["Chia hết", "số dư bằng 0"],
-                ["Phân số", "mẫu số chia đều thành mấy phần, tử số lấy mấy phần"]
+                ["Chia có dư", "số dư luôn nhỏ hơn số chia"]
               ]
             },
-            text: "Bảng nhớ nhanh — bảng nhân – bảng chia – phân số\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+            text: "Bảng nhớ nhanh — bảng nhân – bảng chia\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
           }
         },
         {
@@ -1732,8 +1732,8 @@ export const g2c8 = {
               headers: ["Điều cần nhớ", "Nội dung"],
               rows: [
                 ["1 m", "= 100 cm"],
-                ["1 kg", "= 1 000 g"],
-                ["1 l", "= 1 000 ml"]
+                ["1 dm", "= 10 cm"],
+                ["1 km", "= 1 000 m"],
               ]
             },
             text: "Bảng nhớ nhanh — đo lường và đổi đơn vị\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"

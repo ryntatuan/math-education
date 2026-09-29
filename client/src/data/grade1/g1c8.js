@@ -171,7 +171,7 @@ export const g1c8 = {
                 }
               ]
             },
-            "text": "Cách nhẩm nhanh cho 4 + 5\nBé đếm thêm từng bước trên tia số theo các cung nhảy.\nĐếm thêm 5 bước từ 4.\nVậy 4 + 5 = 9."
+            "text": "Cách nhẩm nhanh cho 4 + 5\nBé đếm thêm từng bước theo các cung nhảy.\nĐếm thêm 5 bước từ 4.\nVậy 4 + 5 = 9."
           }
         },
         {
@@ -346,7 +346,7 @@ export const g1c8 = {
             badge: "Luyện Tập",
             title: "Cộng trong bài toán",
             explanation: "Bài toán 'cả hai', 'tất cả' thì dùng phép cộng.",
-            rule: "24 + 15: 4 + 5 = 9; 2 + 1 = 3. Kết quả 39 (cây).",
+            rule: "Bé đọc kĩ đề để biết cộng hay trừ trước khi đặt tính.",
             points: [
               "Đặt tính thẳng cột trước khi tính.",
               "24 + 15 = 39 cây.",
@@ -392,7 +392,7 @@ export const g1c8 = {
                 }
               ]
             },
-            "text": "Cách nhẩm nhanh cho 4 + 5\nBé đếm thêm từng bước trên tia số theo các cung nhảy.\nĐếm thêm 5 bước từ 4.\nVậy 4 + 5 = 9."
+            "text": "Cách nhẩm nhanh cho 4 + 5\nBé đếm thêm từng bước theo các cung nhảy.\nĐếm thêm 5 bước từ 4.\nVậy 4 + 5 = 9."
           }
         },
         {
@@ -403,19 +403,10 @@ export const g1c8 = {
                 "Bước",
                 "Việc bé làm"
               ],
-              "rows": [
-                [
-                  "Bước 1 — Đơn vị",
-                  "viết kết quả luôn kèm đơn vị"
-                ],
-                [
-                  "Bước 2 — Bậc thang",
-                  "đi xuống thì nhân, đi lên thì chia"
-                ],
-                [
-                  "Bước 3 — Kiểm lại",
-                  "lấy kết quả đổi ngược lại xem có về số ban đầu"
-                ]
+              rows: [
+                ["Bước 1 — Đặt tính", "viết các số thẳng cột với nhau"],
+                ["Bước 2 — Tính", "tính lần lượt từ phải sang trái"],
+                ["Bước 3 — Thử lại", "kiểm lại bằng cách tính ngược lại một lần nữa"],
               ]
             },
             "text": "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
@@ -545,19 +536,10 @@ export const g1c8 = {
                 "Bước",
                 "Việc bé làm"
               ],
-              "rows": [
-                [
-                  "Bước 1 — Đơn vị",
-                  "viết kết quả luôn kèm đơn vị"
-                ],
-                [
-                  "Bước 2 — Bậc thang",
-                  "đi xuống thì nhân, đi lên thì chia"
-                ],
-                [
-                  "Bước 3 — Kiểm lại",
-                  "lấy kết quả đổi ngược lại xem có về số ban đầu"
-                ]
+              rows: [
+                ["Bước 1 — Đặt tính", "viết các số thẳng cột với nhau"],
+                ["Bước 2 — Tính", "tính lần lượt từ phải sang trái"],
+                ["Bước 3 — Thử lại", "kiểm lại bằng cách tính ngược lại một lần nữa"],
               ]
             },
             "text": "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
@@ -689,19 +671,10 @@ export const g1c8 = {
                 "Bước",
                 "Việc bé làm"
               ],
-              "rows": [
-                [
-                  "Bước 1 — Đơn vị",
-                  "viết kết quả luôn kèm đơn vị"
-                ],
-                [
-                  "Bước 2 — Bậc thang",
-                  "đi xuống thì nhân, đi lên thì chia"
-                ],
-                [
-                  "Bước 3 — Kiểm lại",
-                  "lấy kết quả đổi ngược lại xem có về số ban đầu"
-                ]
+              rows: [
+                ["Bước 1 — Đặt tính", "viết các số thẳng cột với nhau"],
+                ["Bước 2 — Tính", "tính lần lượt từ phải sang trái"],
+                ["Bước 3 — Thử lại", "kiểm lại bằng cách tính ngược lại một lần nữa"],
               ]
             },
             "text": "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
@@ -811,19 +784,10 @@ export const g1c8 = {
                 "Bước",
                 "Việc bé làm"
               ],
-              "rows": [
-                [
-                  "Bước 1 — Đơn vị",
-                  "viết kết quả luôn kèm đơn vị"
-                ],
-                [
-                  "Bước 2 — Bậc thang",
-                  "đi xuống thì nhân, đi lên thì chia"
-                ],
-                [
-                  "Bước 3 — Kiểm lại",
-                  "lấy kết quả đổi ngược lại xem có về số ban đầu"
-                ]
+              rows: [
+                ["Bước 1 — Đặt tính", "viết các số thẳng cột với nhau"],
+                ["Bước 2 — Tính", "tính lần lượt từ phải sang trái"],
+                ["Bước 3 — Thử lại", "kiểm lại bằng cách tính ngược lại một lần nữa"],
               ]
             },
             "text": "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
@@ -965,19 +929,10 @@ export const g1c8 = {
                 "Bước",
                 "Việc bé làm"
               ],
-              "rows": [
-                [
-                  "Bước 1 — Đơn vị",
-                  "viết kết quả luôn kèm đơn vị"
-                ],
-                [
-                  "Bước 2 — Bậc thang",
-                  "đi xuống thì nhân, đi lên thì chia"
-                ],
-                [
-                  "Bước 3 — Kiểm lại",
-                  "lấy kết quả đổi ngược lại xem có về số ban đầu"
-                ]
+              rows: [
+                ["Bước 1 — Đặt tính", "viết các số thẳng cột với nhau"],
+                ["Bước 2 — Tính", "tính lần lượt từ phải sang trái"],
+                ["Bước 3 — Thử lại", "kiểm lại bằng cách tính ngược lại một lần nữa"],
               ]
             },
             "text": "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
@@ -1152,7 +1107,7 @@ export const g1c8 = {
             title: "Bốn bước giải toán",
             explanation:
               "Bé làm bốn bước: đọc đề, tìm từ khóa, đặt tính, ghi đáp số.",
-            rule: "23 + 15: 3 + 5 = 8; 2 + 1 = 3. Kết quả 38 (quả trứng).",
+            rule: "Bỏ bước nào là bài dễ sai ở đúng bước đó.",
             points: [
               "Từ khóa 'cả', 'tất cả' → phép cộng.",
               "23 + 15 = 38 quả trứng.",
@@ -1212,7 +1167,7 @@ export const g1c8 = {
                 }
               ]
             },
-            "text": "Cách nhẩm nhanh cho 3 + 5\nBé đếm thêm từng bước trên tia số theo các cung nhảy.\nĐếm thêm 5 bước từ 3.\nVậy 3 + 5 = 8."
+            "text": "Cách nhẩm nhanh cho 3 + 5\nBé đếm thêm từng bước theo các cung nhảy.\nĐếm thêm 5 bước từ 3.\nVậy 3 + 5 = 8."
           }
         },
         {
@@ -1223,19 +1178,10 @@ export const g1c8 = {
                 "Bước",
                 "Việc bé làm"
               ],
-              "rows": [
-                [
-                  "Bước 1 — Đơn vị",
-                  "viết kết quả luôn kèm đơn vị"
-                ],
-                [
-                  "Bước 2 — Bậc thang",
-                  "đi xuống thì nhân, đi lên thì chia"
-                ],
-                [
-                  "Bước 3 — Kiểm lại",
-                  "lấy kết quả đổi ngược lại xem có về số ban đầu"
-                ]
+              rows: [
+                ["Bước 1 — Đặt tính", "viết các số thẳng cột với nhau"],
+                ["Bước 2 — Tính", "tính lần lượt từ phải sang trái"],
+                ["Bước 3 — Thử lại", "kiểm lại bằng cách tính ngược lại một lần nữa"],
               ]
             },
             "text": "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
@@ -1379,19 +1325,10 @@ export const g1c8 = {
                 "Bước",
                 "Việc bé làm"
               ],
-              "rows": [
-                [
-                  "Bước 1 — Đơn vị",
-                  "viết kết quả luôn kèm đơn vị"
-                ],
-                [
-                  "Bước 2 — Bậc thang",
-                  "đi xuống thì nhân, đi lên thì chia"
-                ],
-                [
-                  "Bước 3 — Kiểm lại",
-                  "lấy kết quả đổi ngược lại xem có về số ban đầu"
-                ]
+              rows: [
+                ["Bước 1 — Đặt tính", "viết các số thẳng cột với nhau"],
+                ["Bước 2 — Tính", "tính lần lượt từ phải sang trái"],
+                ["Bước 3 — Thử lại", "kiểm lại bằng cách tính ngược lại một lần nữa"],
               ]
             },
             "text": "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."

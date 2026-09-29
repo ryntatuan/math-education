@@ -65,7 +65,7 @@ export const g1c4 = {
             solid: {
               kind: "cube",
             },
-            text: "khối lập phương bé học hôm nay có gì đặc biệt?\n· 6 mặt đều là hình vuông bằng nhau\n· 8 đỉnh\nBé đếm mặt, đếm đỉnh, đếm cạnh ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé.",
+            text: "khối lập phương bé học hôm nay có gì đặc biệt?\n· 6 mặt đều là hình vuông bằng nhau\n· 8 đỉnh\nBé đếm mặt, đếm đỉnh, đếm cạnh ngay trên hình vẽ rồi đọc lại đặc điểm trên nhé.",
           },
         },
         {
@@ -91,19 +91,16 @@ export const g1c4 = {
               rows: [
                 [
                   "Bước 1 — Gọi tên",
-                  "nói đúng tên hình/khối trước khi làm gì tiếp",
+                  "nhìn hình rồi nói đúng tên hình (hoặc khối)",
                 ],
                 [
                   "Bước 2 — Đếm",
-                  "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học",
+                  "đếm cạnh, đếm đỉnh rồi đọc lại hai đặc điểm của hình",
                 ],
-                [
-                  "Bước 3 — Kiểm tra",
-                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt",
-                ],
+                ["Bước 3 — Kiểm lại", "đếm lại lần nữa bằng mắt, không đoán"],
               ],
             },
-            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai.",
+            text: "Ba bước làm bài hình — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai.",
           },
         },
         {
@@ -112,14 +109,13 @@ export const g1c4 = {
             question:
               "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
             options: [
-              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Kiểm lại một lần nữa theo điều cần nhớ",
               "Nộp bài luôn cho nhanh",
               "Đoán lại một lần nữa",
             ],
-            answer:
-              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            answer: "Kiểm lại một lần nữa theo điều cần nhớ",
             mascotHint:
-              "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng.",
+              "Kiểm lại một lần nữa rồi mới nộp bài — kiểm lại là thói quen của người học giỏi.",
           },
         },
         {
@@ -251,7 +247,7 @@ export const g1c4 = {
             solid: {
               kind: "cube",
             },
-            text: "khối lập phương bé học hôm nay có gì đặc biệt?\n· 6 mặt đều là hình vuông bằng nhau\n· 8 đỉnh\nBé đếm mặt, đếm đỉnh, đếm cạnh ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé.",
+            text: "khối lập phương bé học hôm nay có gì đặc biệt?\n· 6 mặt đều là hình vuông bằng nhau\n· 8 đỉnh\nBé đếm mặt, đếm đỉnh, đếm cạnh ngay trên hình vẽ rồi đọc lại đặc điểm trên nhé.",
           },
         },
         {
@@ -277,19 +273,16 @@ export const g1c4 = {
               rows: [
                 [
                   "Bước 1 — Gọi tên",
-                  "nói đúng tên hình/khối trước khi làm gì tiếp",
+                  "nhìn hình rồi nói đúng tên hình (hoặc khối)",
                 ],
                 [
                   "Bước 2 — Đếm",
-                  "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học",
+                  "đếm cạnh, đếm đỉnh rồi đọc lại hai đặc điểm của hình",
                 ],
-                [
-                  "Bước 3 — Kiểm tra",
-                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt",
-                ],
+                ["Bước 3 — Kiểm lại", "đếm lại lần nữa bằng mắt, không đoán"],
               ],
             },
-            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai.",
+            text: "Ba bước làm bài hình — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai.",
           },
         },
         {
@@ -298,14 +291,13 @@ export const g1c4 = {
             question:
               "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
             options: [
-              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Kiểm lại một lần nữa theo điều cần nhớ",
               "Nộp bài luôn cho nhanh",
               "Đoán lại một lần nữa",
             ],
-            answer:
-              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            answer: "Kiểm lại một lần nữa theo điều cần nhớ",
             mascotHint:
-              "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng.",
+              "Kiểm lại một lần nữa rồi mới nộp bài — kiểm lại là thói quen của người học giỏi.",
           },
         },
         {
@@ -454,7 +446,7 @@ export const g1c4 = {
             solid: {
               kind: "cube",
             },
-            text: "khối lập phương bé học hôm nay có gì đặc biệt?\n· 6 mặt đều là hình vuông bằng nhau\n· 8 đỉnh\nBé đếm mặt, đếm đỉnh, đếm cạnh ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé.",
+            text: "khối lập phương bé học hôm nay có gì đặc biệt?\n· 6 mặt đều là hình vuông bằng nhau\n· 8 đỉnh\nBé đếm mặt, đếm đỉnh, đếm cạnh ngay trên hình vẽ rồi đọc lại đặc điểm trên nhé.",
           },
         },
         {
@@ -480,19 +472,16 @@ export const g1c4 = {
               rows: [
                 [
                   "Bước 1 — Gọi tên",
-                  "nói đúng tên hình/khối trước khi làm gì tiếp",
+                  "nhìn hình rồi nói đúng tên hình (hoặc khối)",
                 ],
                 [
                   "Bước 2 — Đếm",
-                  "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học",
+                  "đếm cạnh, đếm đỉnh rồi đọc lại hai đặc điểm của hình",
                 ],
-                [
-                  "Bước 3 — Kiểm tra",
-                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt",
-                ],
+                ["Bước 3 — Kiểm lại", "đếm lại lần nữa bằng mắt, không đoán"],
               ],
             },
-            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai.",
+            text: "Ba bước làm bài hình — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai.",
           },
         },
         {
@@ -501,14 +490,13 @@ export const g1c4 = {
             question:
               "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
             options: [
-              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Kiểm lại một lần nữa theo điều cần nhớ",
               "Nộp bài luôn cho nhanh",
               "Đoán lại một lần nữa",
             ],
-            answer:
-              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            answer: "Kiểm lại một lần nữa theo điều cần nhớ",
             mascotHint:
-              "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng.",
+              "Kiểm lại một lần nữa rồi mới nộp bài — kiểm lại là thói quen của người học giỏi.",
           },
         },
         {
@@ -665,14 +653,13 @@ export const g1c4 = {
           type: "concept",
           content: {
             badge: "Cách Học",
-            title: "Bốn bước làm một bài toán",
+            title: "Ba bước quan sát vị trí",
             explanation:
-              "Mọi bài tính toán đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+              "Mọi bài về vị trí đều đi theo cùng một đường. Bé làm đúng thứ tự thì không nói sai.",
             points: [
-              "Bước 1 — Đọc đề và xác định phép tính cần làm.",
-              "Bước 2 — Đặt tính thẳng cột: hàng đơn vị dưới hàng đơn vị, hàng chục dưới hàng chục.",
-              "Bước 3 — Tính từ PHẢI sang TRÁI; nhớ ghi hoặc xoá số nhớ ngay khi làm xong một hàng.",
-              "Bước 4 — Thử lại bằng phép ngược hoặc bằng ước lượng xem kết quả có hợp lý không.",
+              "Bước 1 — Xác định vật nào được hỏi trong tranh.",
+              "Bước 2 — Nói vị trí của vật đó so với vật mốc: trên / dưới, trái / phải, trước / sau.",
+              "Bước 3 — Nói lại cả câu cho đủ ý rồi mới trả lời.",
             ],
           },
         },
@@ -682,27 +669,12 @@ export const g1c4 = {
             table: {
               headers: ["Điều cần nhớ", "Nội dung"],
               rows: [
-                ["Cộng", "lấy kết quả trừ đi một số hạng để kiểm tra"],
-                ["Trừ", "lấy hiệu cộng số trừ phải được số bị trừ"],
-                ["Thứ tự", "luôn làm từ hàng đơn vị trước"],
+                ["Trên – dưới", "nói vật nào ở phía trên, vật nào ở phía dưới"],
+                ["Trái – phải", "nói theo hướng bé đang nhìn"],
+                ["Trước – sau", "nói vật nào ở phía trước mặt bé"],
               ],
             },
-            text: "Bảng nhớ nhanh — tính toán\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?",
-          },
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "Khi đặt tính rồi tính, bé bắt đầu từ hàng nào?",
-            options: [
-              "Hàng đơn vị (từ phải sang trái)",
-              "Hàng cao nhất (trái sang phải)",
-              "Hàng nào cũng được",
-              "Hàng chục trước",
-            ],
-            answer: "Hàng đơn vị (từ phải sang trái)",
-            mascotHint:
-              "Tính từ phải sang trái thì số nhớ mới kịp cộng vào hàng bên trái.",
+            text: "Bảng nhớ nhanh — vị trí\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?",
           },
         },
         {
@@ -827,7 +799,7 @@ export const g1c4 = {
               vertices: true,
               vertexLabel: "đỉnh",
             },
-            text: "hình vuông bé học hôm nay có gì đặc biệt?\n· 4 cạnh dài bằng nhau\n· 4 góc vuông\nBé đếm cạnh, đếm đỉnh ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé.",
+            text: "hình vuông bé học hôm nay có gì đặc biệt?\n· 4 cạnh dài bằng nhau\nBé đếm cạnh, đếm đỉnh ngay trên hình vẽ rồi đọc lại đặc điểm trên nhé.",
           },
         },
         {
@@ -839,8 +811,8 @@ export const g1c4 = {
               "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của hình vuông.",
             points: [
               "hình vuông có 4 cạnh dài bằng nhau.",
-              "hình vuông có 4 góc vuông.",
-              "hình vuông có hai đường chéo bằng nhau.",
+              "hình vuông có 4 cạnh dài bằng nhau.",
+              "hình vuông có 4 đỉnh.",
               "Cách kiểm tra: bé đếm cạnh, đếm đỉnh; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình.",
             ],
           },
@@ -853,19 +825,16 @@ export const g1c4 = {
               rows: [
                 [
                   "Bước 1 — Gọi tên",
-                  "nói đúng tên hình/khối trước khi làm gì tiếp",
+                  "nhìn hình rồi nói đúng tên hình (hoặc khối)",
                 ],
                 [
                   "Bước 2 — Đếm",
-                  "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học",
+                  "đếm cạnh, đếm đỉnh rồi đọc lại hai đặc điểm của hình",
                 ],
-                [
-                  "Bước 3 — Kiểm tra",
-                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt",
-                ],
+                ["Bước 3 — Kiểm lại", "đếm lại lần nữa bằng mắt, không đoán"],
               ],
             },
-            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai.",
+            text: "Ba bước làm bài hình — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai.",
           },
         },
         {
@@ -874,14 +843,13 @@ export const g1c4 = {
             question:
               "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
             options: [
-              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Kiểm lại một lần nữa theo điều cần nhớ",
               "Nộp bài luôn cho nhanh",
               "Đoán lại một lần nữa",
             ],
-            answer:
-              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            answer: "Kiểm lại một lần nữa theo điều cần nhớ",
             mascotHint:
-              "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng.",
+              "Kiểm lại một lần nữa rồi mới nộp bài — kiểm lại là thói quen của người học giỏi.",
           },
         },
         {
@@ -895,15 +863,14 @@ export const g1c4 = {
               "hình khối trụ",
             ],
             answer: "hình vuông",
-            mascotHint:
-              "hình vuông: 4 cạnh dài bằng nhau · 4 góc vuông · hai đường chéo bằng nhau.",
+            mascotHint: "hình vuông: 4 cạnh dài bằng nhau · 4 đỉnh.",
           },
         },
         {
           type: "quiz",
           content: {
             question:
-              "Trong bài hôm nay có hình vuông và hình tròn và hình tam giác và hình chữ nhật. Hình nào có 4 góc vuông?",
+              "Trong bài hôm nay có hình vuông và hình tròn và hình tam giác và hình chữ nhật. Hình nào có 4 cạnh dài bằng nhau?",
             options: [
               "hình vuông",
               "hình khối lập phương",
@@ -911,8 +878,7 @@ export const g1c4 = {
               "hình khối trụ",
             ],
             answer: "hình vuông",
-            mascotHint:
-              "Đáp án là hình vuông: 4 cạnh dài bằng nhau · 4 góc vuông · hai đường chéo bằng nhau.",
+            mascotHint: "Đáp án là hình vuông: 4 cạnh dài bằng nhau · 4 đỉnh.",
           },
         },
         {
@@ -1036,7 +1002,7 @@ export const g1c4 = {
             solid: {
               kind: "cube",
             },
-            text: "khối lập phương bé học hôm nay có gì đặc biệt?\n· 6 mặt đều là hình vuông bằng nhau\n· 8 đỉnh\nBé đếm mặt, đếm đỉnh, đếm cạnh ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé.",
+            text: "khối lập phương bé học hôm nay có gì đặc biệt?\n· 6 mặt đều là hình vuông bằng nhau\n· 8 đỉnh\nBé đếm mặt, đếm đỉnh, đếm cạnh ngay trên hình vẽ rồi đọc lại đặc điểm trên nhé.",
           },
         },
         {
@@ -1062,19 +1028,16 @@ export const g1c4 = {
               rows: [
                 [
                   "Bước 1 — Gọi tên",
-                  "nói đúng tên hình/khối trước khi làm gì tiếp",
+                  "nhìn hình rồi nói đúng tên hình (hoặc khối)",
                 ],
                 [
                   "Bước 2 — Đếm",
-                  "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học",
+                  "đếm cạnh, đếm đỉnh rồi đọc lại hai đặc điểm của hình",
                 ],
-                [
-                  "Bước 3 — Kiểm tra",
-                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt",
-                ],
+                ["Bước 3 — Kiểm lại", "đếm lại lần nữa bằng mắt, không đoán"],
               ],
             },
-            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai.",
+            text: "Ba bước làm bài hình — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai.",
           },
         },
         {
@@ -1083,14 +1046,13 @@ export const g1c4 = {
             question:
               "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
             options: [
-              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Kiểm lại một lần nữa theo điều cần nhớ",
               "Nộp bài luôn cho nhanh",
               "Đoán lại một lần nữa",
             ],
-            answer:
-              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            answer: "Kiểm lại một lần nữa theo điều cần nhớ",
             mascotHint:
-              "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng.",
+              "Kiểm lại một lần nữa rồi mới nộp bài — kiểm lại là thói quen của người học giỏi.",
           },
         },
         {
@@ -1246,13 +1208,10 @@ export const g1c4 = {
         {
           type: "visual",
           content: {
-            cotTinh: {
-              left: 4,
-              right: 2,
-              sign: "×",
-              remember: true,
+            text: "Con xúc xắc có 6 mặt, mỗi mặt có từ 1 đến 6 chấm\nBé đếm số chấm ở từng mặt rồi đọc số.",
+            spatialScene: {
+              mode: "diceFaces",
             },
-            text: "Bé tự đặt tính: 4 × 2\nhàng đơn vị 4 × 2 = 8, viết 8\nVậy 4 × 2 = 8.",
           },
         },
         {
@@ -1261,7 +1220,7 @@ export const g1c4 = {
             solid: {
               kind: "cube",
             },
-            text: "khối lập phương bé học hôm nay có gì đặc biệt?\n· 6 mặt đều là hình vuông bằng nhau\n· 8 đỉnh\nBé đếm mặt, đếm đỉnh, đếm cạnh ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé.",
+            text: "khối lập phương bé học hôm nay có gì đặc biệt?\n· 6 mặt đều là hình vuông bằng nhau\n· 8 đỉnh\nBé đếm mặt, đếm đỉnh, đếm cạnh ngay trên hình vẽ rồi đọc lại đặc điểm trên nhé.",
           },
         },
         {
@@ -1308,15 +1267,6 @@ export const g1c4 = {
             answer: "khối lập phương",
             mascotHint:
               "Đáp án là khối lập phương: 6 mặt đều là hình vuông bằng nhau · 8 đỉnh · 12 cạnh bằng nhau.",
-          },
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "1 × 6 bằng bao nhiêu?",
-            options: [5, 6, 7, 8],
-            answer: 6,
-            mascotHint: "hàng đơn vị 1 × 6 = 6, viết 6. Kết quả 6.",
           },
         },
         {
@@ -1370,7 +1320,7 @@ export const g1c4 = {
             ],
             answer: "Hai hình có số khối bằng nhau",
             mascotHint:
-              "Hình bên trái có 8 khối, hình bên phải có 4 × 2 = 8 khối — bằng nhau.",
+              "Hình bên trái có 8 khối; hình bên phải xếp 2 hàng, mỗi hàng 4 khối — 4 + 4 = 8 khối, bằng nhau.",
           },
         },
         {
@@ -1404,6 +1354,26 @@ export const g1c4 = {
               "Bé đã hoàn thành chủ đề 4.",
             ],
             mascotMood: "celebrate",
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                [
+                  "Bước 1 — Gọi tên",
+                  "nhìn hình rồi nói đúng tên hình (hoặc khối)",
+                ],
+                [
+                  "Bước 2 — Đếm",
+                  "đếm cạnh, đếm đỉnh rồi đọc lại hai đặc điểm của hình",
+                ],
+                ["Bước 3 — Kiểm lại", "đếm lại lần nữa bằng mắt, không đoán"],
+              ],
+            },
+            text: "Ba bước quan sát hình — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.",
           },
         },
       ],

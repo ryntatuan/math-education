@@ -679,8 +679,8 @@ export const g3c5 = {
         {
           "type": "visual",
           "content": {
-            "text": "🌡️ 36 °C → bình thường\n🌡️ 39 °C → có thể bị sốt",
-            "table": {
+           "text": "Bé đọc nhiệt kế rồi cho biết bạn nào cần nghỉ ngơi.",
+           "table": {
               "headers": [
                 "Nhiệt kế chỉ",
                 "Nghĩa là"

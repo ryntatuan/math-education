@@ -1167,6 +1167,54 @@ function drawFox(w, h) {
   );
 }
 
+function drawBook(w, h) {
+  return (
+    <>
+      <rect
+        x={0}
+        y={h * 0.1}
+        width={w}
+        height={h * 0.8}
+        rx={h * 0.08}
+        fill="#7c3aed"
+        stroke={S}
+        strokeWidth={h * 0.035}
+      />
+      <rect
+        x={0}
+        y={h * 0.1}
+        width={w * 0.16}
+        height={h * 0.8}
+        fill="#5b21b6"
+      />
+      <line
+        x1={w * 0.32}
+        y1={h * 0.34}
+        x2={w * 0.86}
+        y2={h * 0.34}
+        stroke="#ede9fe"
+        strokeWidth={h * 0.055}
+      />
+      <line
+        x1={w * 0.32}
+        y1={h * 0.55}
+        x2={w * 0.86}
+        y2={h * 0.55}
+        stroke="#ede9fe"
+        strokeWidth={h * 0.055}
+      />
+      <line
+        x1={w * 0.32}
+        y1={h * 0.76}
+        x2={w * 0.68}
+        y2={h * 0.76}
+        stroke="#ede9fe"
+        strokeWidth={h * 0.055}
+      />
+    </>
+  );
+}
+
 function drawSquirrel(w, h) {
   return (
     <>
@@ -1220,6 +1268,7 @@ const DRAW = {
   watch: drawWatch,
   phone: drawPhone,
   pencilCase: drawPencilCase,
+  book: drawBook,
   ruler: drawRuler,
   eraser: drawEraser,
   paperclip: drawPaperclip,

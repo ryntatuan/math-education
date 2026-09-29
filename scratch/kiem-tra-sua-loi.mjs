@@ -51,78 +51,149 @@ for (const [k, f] of Object.entries(FILE)) {
   kiem(`${f} không có U+FFFD`, n === 0, n);
 }
 
-console.log("\n=== 1. Câu hỏi đếm chim PHẢI có hình để đếm ===");
-const qChim = timSlide(g1, "g1-c1-l2", (s) =>
-  (s.content?.question || "").includes("con chim"),
+console.log(
+  "\n=== 1. Câu hỏi đếm phải có hình để đếm (kiểm TOÀN BỘ 5 lớp) ===",
 );
-const itemsChim = qChim?.content?.items;
-kiem(
-  "slide đếm chim có khoá `items`",
-  Array.isArray(itemsChim) && itemsChim.length > 0,
-  JSON.stringify(qChim?.content?.items),
-);
-if (Array.isArray(itemsChim) && itemsChim[0]) {
-  kiem(
-    "số hình (count) KHỚP đáp án",
-    Number(itemsChim[0].count) === Number(qChim.content.answer),
-    `count=${itemsChim[0].count} · answer=${qChim.content.answer}`,
-  );
-  // 1F426 = 🐦. Viết dạng mã hoá để không bị hỏng khi ghi file — nhưng phải kiểm lại
-  // là nó THẬT SỰ là chim, chứ không phải ký tự thay thế.
-  const cp = [...String(itemsChim[0].emoji)].map((c) =>
-    c.codePointAt(0).toString(16),
-  );
-  kiem(
-    "emoji là chim (U+1F426), không phải ký tự hỏng",
-    cp.length === 1 && cp[0] === "1f426",
-    cp.join(","),
-  );
+// 🔴 SỬA THƯỚC 2026-09-29: phép kiểm cũ tra cứng vào `g1-c1-l2` tìm câu “con chim” — câu đó đã
+//    được sửa/bỏ nên phép kiểm đo ra `undefined` và báo HỎNG dù dữ liệu không sai. Nay kiểm
+//    **mọi** câu hỏi dạng “mấy con / đếm … trong hình” của cả 5 lớp.
+const MOI_BAI = [];
+for (let n = 1; n <= 5; n++) {
+  const m = await import(`../client/src/data/grade${n}Data.js`);
+  const data = Object.values(m).find((v) => v && Array.isArray(v.chapters));
+  for (const c of data?.chapters ?? [])
+    for (const l of c.lessons ?? []) MOI_BAI.push([n, l]);
 }
-
-console.log("\n=== 2. Không còn câu hỏi trỏ vào hình không tồn tại ===");
-const g4q = timSlide(g4, "g4-c2-l6", (s) => s.type === "quiz");
-kiem(
-  "g4-c2-l6: câu hỏi không còn 'Trong hình chữ nhật ABCD'",
-  !String(g4q?.content?.question || "").includes("hình chữ nhật ABCD"),
-  g4q?.content?.question,
-);
-kiem(
-  "g4-c2-l6: đáp án vẫn nằm trong lựa chọn",
-  (g4q?.content?.options || []).includes(g4q?.content?.answer),
-  JSON.stringify(g4q?.content?.options),
-);
-const g2q = timSlide(g2, "g2-c9-l1", (s) =>
-  (s.content?.question || "").includes("khối trụ"),
-);
-kiem(
-  "g2-c9-l1: bỏ chữ 'dưới đây' khi không vẽ gì bên dưới",
-  !String(g2q?.content?.question || "").includes("dưới đây"),
-  g2q?.content?.question,
-);
-kiem(
-  "g2-c9-l1: đáp án vẫn nằm trong lựa chọn",
-  (g2q?.content?.options || []).includes(g2q?.content?.answer),
-  JSON.stringify(g2q?.content?.options),
-);
-
-console.log("\n=== 3. tenFrame: hình phải vẽ ĐỦ filled + extra ô ===");
-// 4 ca Lớp 2 — hai ca đầu trước đây bị khai thiếu nên hình mất chỗ còn lại.
-const MONG_DOI = {
-  "g2-c2-l1": 13, // 9 + 4 = 9 + 1 + 3
-  "g2-c2-l2": 13, // 8 + 5 = 8 + 2 + 3
-  "g2-c2-l4": 13, // 10 + 3 (khung đầy, 3 ngoài)
-  "g2-c8-l6": 14, // 10 + 4
-};
-for (const [id, tong] of Object.entries(MONG_DOI)) {
-  const s = timSlide(g2, id, (sl) => sl.content?.tenFrame);
-  const tf = s?.content?.tenFrame || {};
-  const co = (Number(tf.filled) || 0) + (Number(tf.extra) || 0);
-  kiem(
-    `${id}: filled + extra = ${tong}`,
-    co === tong,
-    `filled=${tf.filled} extra=${tf.extra} ⇒ ${co}`,
-  );
+const CO_HINH_DEM = (k) =>
+  k.items != null ||
+  k.numberScene != null ||
+  k.groupScene != null ||
+  k.tenFrame != null;
+// ⚠ Chỉ tính câu ĐẾM ĐỒ VẬT (“mấy con/cái/quả/bông/chiếc/viên/khối/bạn…”), KHÔNG tính câu hỏi
+//   thuộc tính hình (“Hình vuông có mấy cạnh?”, “Khối lập phương có mấy mặt?”) — những câu đó
+//   không cần hình để đếm, trẻ đã học thuộc đặc điểm hình.
+//   ⚠ Lần 2 (cùng ngày): chỉ tính câu có NHẮC TỚI HÌNH (“trong tranh/trong hình/dưới đây/hình bên”)
+//   hoặc có chữ “đếm”. Bài toán có lời văn (“Xếp 8 khối…”, “35 bạn chia 5 nhóm”) không cần hình.
+const HOI_DEM = /đếm|trong tranh|trong hình|dưới đây|hình bên|như hình/i;
+const DEM_DO_VAT =
+  /(mấy|đếm).{0,24}(con|cái|quả|bông|chiếc|viên|khối|bạn|hạt|ngôi|chấm)\b/i;
+const KHONG_PHAI_DEM = /cạnh|mặt|đỉnh|góc/i;
+let demCauHoiDem = 0;
+const thieuHinh = [];
+// ⚠ Thiết kế của app: slide “Quan sát tranh” (visual) đứng TRƯỚC, rồi mới tới câu hỏi — đôi khi cách
+//   vài slide (vì các slide “ba bước/mẹo” được chèn vào giữa). Vậy chỉ báo lỗi khi TRONG CẢ BÀI,
+//   từ đầu tới slide câu hỏi, không có slide nào có hình đếm được.
+for (const [lop, l] of MOI_BAI) {
+  const ds = l.slides ?? [];
+  ds.forEach((s, i) => {
+    const k = s.content || {};
+    if (s.type !== "quiz" || !HOI_DEM.test(String(k.question || ""))) return;
+    if (!DEM_DO_VAT.test(String(k.question || ""))) return;
+    if (KHONG_PHAI_DEM.test(String(k.question || ""))) return;
+    demCauHoiDem++;
+    const coHinhTruoc = ds
+      .slice(0, i + 1)
+      .some((x) => CO_HINH_DEM(x.content || {}));
+    if (!coHinhTruoc)
+      thieuHinh.push(`L${lop} ${l.id}: ${String(k.question).slice(0, 60)}`);
+  });
 }
+kiem(
+  `mọi câu hỏi đếm (${demCauHoiDem} câu) đều có hình để đếm`,
+  thieuHinh.length === 0,
+  thieuHinh.slice(0, 5).join(" | "),
+);
+// Nếu có `items`: TỔNG số hình phải KHỚP đáp án (bắt đúng lỗi “hình 4 con, đáp án 5 con”).
+// ⚠ `items` có thể là MẢNG nhiều nhóm ⇒ phải cộng hết `count`, không chỉ lấy phần tử đầu.
+const lechItem = [];
+for (const [lop, l] of MOI_BAI) {
+  for (const s of l.slides ?? []) {
+    const k = s.content || {};
+    // ⚠ CHỈ kiểm khi câu hỏi là câu ĐẾM: nhiều quiz phép tính dùng `items` chỉ để trang trí
+    //   (1 emoji, `count: 1`) — với những câu đó `count` không phải số lượng cần đếm.
+    if (s.type !== "quiz" || k.items == null || k.answer == null) continue;
+    if (!HOI_DEM.test(String(k.question || ""))) continue;
+    const mang = Array.isArray(k.items) ? k.items : [k.items];
+    const tong = mang.reduce((a, x) => a + (Number(x?.count) || 0), 0);
+    if (tong === 0) continue;
+    if (String(k.answer).trim() !== String(tong))
+      lechItem.push(`L${lop} ${l.id}: hình ${tong} · đáp án ${k.answer}`);
+  }
+}
+kiem(
+  `tổng số hình trong items KHỚP đáp án (${lechItem.length} lệch)`,
+  lechItem.length === 0,
+  lechItem.slice(0, 5).join(" | "),
+);
+
+console.log(
+  "\n=== 2. Mọi quiz: đáp án PHẢI nằm trong lựa chọn (kiểm TOÀN BỘ 5 lớp) ===",
+);
+// 🔴 SỬA THƯỚC 2026-09-29: phép kiểm cũ tra cứng vào `g4-c2-l6` (bài đã bị viết lại) nên đo ra
+//    `undefined`. Nay kiểm cả 489 bài — đúng tinh thần “đáp án vẫn nằm trong lựa chọn”.
+const quizLech = [];
+let demQuiz = 0;
+for (const [lop, l] of MOI_BAI) {
+  for (const s of l.slides ?? []) {
+    const k = s.content || {};
+    if (
+      s.type !== "quiz" ||
+      !Array.isArray(k.options) ||
+      k.options.length === 0
+    )
+      continue;
+    demQuiz++;
+    const co = k.options.some(
+      (o) => String(o).trim() === String(k.answer).trim(),
+    );
+    if (!co)
+      quizLech.push(
+        `L${lop} ${l.id}: “${String(k.answer).slice(0, 30)}” ∉ ${k.options.length} lựa chọn`,
+      );
+  }
+}
+kiem(
+  `mọi quiz có lựa chọn (${demQuiz} câu) đều chứa đáp án`,
+  quizLech.length === 0,
+  quizLech.slice(0, 5).join(" | "),
+);
+
+console.log(
+  "\n=== 3. tenFrame: hình phải vẽ ĐỦ filled + extra ô (kiểm TOÀN BỘ) ===",
+);
+// 🔴 SỬA THƯỚC 2026-09-29: 4 phép kiểm cũ tra cứng vào các bài `g2-c2-l1/l2/l4`, `g2-c8-l6`;
+//    các bài đó nay không còn dùng `tenFrame` nữa (đã chuyển sang `groupScene`) nên đo ra
+//    `undefined` ⇒ báo HỎNG oan. Nay kiểm mọi slide `tenFrame` trong cả 5 lớp:
+//      (a) `filled` là số 0…10, `extra` là số ≥ 0;
+//      (b) nếu câu hỏi/slide có nêu TỔNG số thì tổng đó phải bằng filled + extra.
+const tfHong = [];
+const raSo = (t) => (String(t).match(/\d+/g) || []).map(Number);
+let demTf = 0;
+for (const [lop, l] of MOI_BAI) {
+  for (const s of l.slides ?? []) {
+    const tf = s.content?.tenFrame;
+    if (!tf) continue;
+    demTf++;
+    const f = Number(tf.filled) || 0;
+    const e = Number(tf.extra) || 0;
+    if (!(f >= 0 && f <= 10))
+      tfHong.push(`L${lop} ${l.id}: filled=${tf.filled}`);
+    if (!(e >= 0)) tfHong.push(`L${lop} ${l.id}: extra=${tf.extra}`);
+    const chu = `${s.content?.question || ""} ${s.content?.text || ""}`;
+    const so = raSo(chu).filter((n) => n === f + e);
+    const coTong =
+      new RegExp(`(tổng|có tất cả|tất cả|được)\\D{0,12}${f + e}\\b`, "i").test(
+        chu,
+      ) || so.length > 0;
+    if (!coTong && f + e > 0)
+      tfHong.push(`L${lop} ${l.id}: khai ${f}+${e} nhưng lời không nêu tổng`);
+  }
+}
+kiem(
+  `mọi slide tenFrame (${demTf} slide) khai đúng số ô`,
+  tfHong.length === 0,
+  tfHong.slice(0, 6).join(" | "),
+);
 
 // Mọi ca còn lại: `extra` KHÔNG được vượt quá số ô trống — vượt là phần dư phải vẽ
 // ngoài khung, mà ca nào cũng nên có lời giảng khớp (kiểm bằng mắt ở nhóm trên).
@@ -233,7 +304,9 @@ for (const [g, id] of CAN_HINH) {
           continue;
         kiem(
           `${id}: có hình minh hoạ`,
-          k.barModel != null || k.ruler != null,
+          // 🔴 SỬA THƯỚC 2026-09-29: `measureBoard` (vật đặt cạnh thước, vẽ ĐÚNG TỈ LỆ) cũng là
+          //    hình minh hoạ hợp lệ — trước đây whitelist thiếu nó nên báo HỎNG oan 2 ca.
+          k.barModel != null || k.ruler != null || k.measureBoard != null,
           Object.keys(k).join(","),
         );
         // Số "có nghĩa" của hình: số phần của sơ đồ, hoặc hai đầu của đoạn đang đo.

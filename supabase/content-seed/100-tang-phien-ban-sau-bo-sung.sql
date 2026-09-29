@@ -12,6 +12,84 @@
 -- CHẠY LẠI NHIỀU LẦN: chỉ làm phiên bản tăng thêm 1 mỗi lần — vô hại (các bé tải
 --   lại nội dung thêm một lần), không sinh dòng trùng, không mất dữ liệu.
 --
+-- LƯU Ý LẦN 30 (2026-09-29): **DỌN HỌ “Ô ⭐ NÓI LẠI DANH SÁCH” + NÂNG LUẬT CỔNG TRÙNG LẶP**.
+--   Người dùng hỏi “399 ca trùng lặp là ca gì?”. Trả lời bằng SỐ ĐO thì thấy: phần lớn KHÔNG phải lỗi
+--   trẻ nhìn thấy, mà là hệ quả của cách cổng đo (so tập từ trên DỮ LIỆU THÔ). Đã làm 3 việc:
+--
+--   1. SỬA THẬT 22 CA còn nhìn thấy được:
+--      • 21 ca `rule ↔ points` (ô ⭐ nhắc lại danh sách MÀ app vẫn hiện) + 11 ca lộ ra sau khi cổng
+--        biết áp luật hiển thị ⇒ **viết lại ô ⭐ thành mẹo riêng** (không mất thông tin), 2 ca thì cắt
+--        đúng phần trùng, 1 ca sửa ở danh sách. Ví dụ: `g1-c7-l2` ô ⭐ từ “Bàn dài 3 gang tay, cửa sổ
+--        dài 2 gang tay…” ⇒ “Muốn so hai vật, bé cần một đơn vị đo chung.”
+--      • 3 ca chữ dưới hình nhắc lại ĐÚNG bảng (`g1-c2-l8`, `g1-c9-l2`, `g3-c5-l5`).
+--      • 1 ca `points ↔ table` (`g2-c3-l2`).
+--   2. PHÁT HIỆN VÀ SỬA MỘT LỖI NỘI DUNG THẬT: `g5-c11-l3` slide 4 viết **“Ví dụ: 1 + 3 + 320 = 324.”**
+--      trong khi bảng chỉ có 3, 5, 4 ⇒ bài đang DẠY TRẺ MỘT PHÉP TÍNH SAI. Nay là “Ví dụ: 3 + 5 + 4 = 12.”
+--      Kèm **cổng mới** `scratch/soat-phep-tinh-sai.mjs`: tự tính lại **1 240 chuỗi đẳng thức** trong
+--      5 lớp (nhận số thập phân dấu phẩy, dấu cách nghìn, thứ tự phép tính; miễn trừ slide quiz, phép
+--      chia có dư “còn N”, và ví dụ cố ý sai) ⇒ **0 ca nghi sai**.
+--   3. NÂNG LUẬT `scratch/soat-trung-lap-noi-dung.mjs` — **399 ca → 0 ca cần sửa**:
+--      • CHỈ SO CHỮ TRẺ THẬT SỰ THẤY: gọi chính `planVisualText` + `planConceptText` của app (dòng hình
+--        đã nói lại thì không tính; ô ⭐ đã bị ẩn thì không tính).
+--      • KHÔNG so cặp có `title` (tiêu đề nằm gọn trong danh sách là chuyện đương nhiên — **92 ca báo oan**).
+--      • Cặp hai DÒNG phải LẶP NGUYÊN VĂN, không so tập từ — trước đây bước “1) … 2) … 3) …” bị coi là
+--        trùng nhau chỉ vì chung từ vựng (**16 ca báo oan** ở Lớp 1 và Lớp 3).
+--      • Nhóm “hai slide liền nhau” đo bằng **NHẮC LẠI NGUYÊN DÒNG**; ca lặp MỘT dòng là **CẢNH BÁO**
+--        (33 ca, không tính vào mã thoát) vì đo thật cho thấy chúng là khuôn luyện tập dùng lại cùng
+--        dòng thủ tục, tiêu đề dùng lại, hoặc câu kết cùng một phép tính — không phải hai slide trùng nhau.
+--      • Cổng có **CANARY hai vế** (ca lặp cố ý phải bị bắt · ca chỉ chung từ vựng không được bắt) và
+--        mã thoát 2 nếu canary hỏng ⇒ không thể “xanh giả”.
+--   4. VÁ LUÔN CÂY THƯỚC CỦA 2 CỔNG ĐO TRONG APP: `soat-an-o-nhan-manh.mjs` và `do-can-doi-hinh.mjs`
+--      nay CHỜ TRANG ĐỨNG YÊN (đo hai lần liên tiếp, chỉ nhận khi giống nhau) và bấm nút bằng JS —
+--      lần đầu chạy trong ngày cổng ô ⭐ báo “1 lỗi” rồi 3 lần sau sạch, đúng kiểu đo trúng lúc hoạt
+--      ảnh vào slide còn chạy.
+--
+--   QUY MÔ: **4944 slide KHÔNG đổi** (5 lớp · 65 chương · 489 bài). Dấu vân tay seed:
+--     `8a3429ffe5090699` → **`18bb9181301c43e0`**.
+--
+--   ⚠️ MỘT LỖI DO CHÍNH TÔI GÂY RA VÀ ĐÃ SỬA: để bỏ chữ trùng bảng, tôi **xoá hẳn khoá `text`** ở 2
+--     slide “Quan sát” ⇒ script sinh seed CHẶN lại (“thiếu khoá bắt buộc `text`”) nên seed KHÔNG được
+--     ghi mà tôi tưởng đã ghi (dấu vân tay vẫn là bản cũ). Đã trả lại `text` bằng câu KHÁC (không lặp
+--     bảng). Bài học: xoá hẳn một khoá là việc của schema, không phải của người dọn chữ — và luôn kiểm
+--     dấu vân tay đổi chưa.
+--
+-- LƯU Ý LẦN 29 (2026-09-29): **VÁ NỐT CÁC CỔNG ĐỎ CÒN LẠI + SỬA 3 CÂY THƯỚC ĐO SAI**.
+--   Sau khi người dùng chất vấn “kiểm lần nào cũng xanh?”, tôi chạy TOÀN BỘ cổng trong `scratch/` rồi
+--   so với mốc HEAD (`scratch/chay-het-cong.mjs` + `scratch/so-sanh-cong.mjs`): **0 cổng mới đỏ**,
+--   **13 cổng đỏ → xanh**. Trong đó: 5 cổng đỏ có sẵn + 2 lỗi do chính tôi gây ra ở lượt trước.
+--     • `soat-ten-diem.mjs` — chữ gọi tên điểm (A, B, C, D…) mà HÌNH không ghi tên: **15 ca → 0**.
+--       Sửa đúng cách người dùng từng đòi (“mô tả hình chữ nhật có cạnh AB… mà không ghi A, B, C, D
+--       lên hình thì sao trẻ hiểu”): thêm hình CÓ NHÃN (`pointLine.points`, `planeShape.vertexLabels`,
+--       `angle.vertexLetter/armLetters`) hoặc viết lại lời để không gọi tên điểm (bài toán lời văn).
+--     • `kiem-tra-me-cung.mjs` — 2/2000 bảng mê cung KHÔNG có ngõ cụt ⇒ vá NGAY TẦNG SINH BẢNG
+--       (`buildNumberMaze` trong `client/src/utils/exercises/helpers.js`): thêm `hasDeadEnd()` rồi
+--       sinh lại tối đa 30 lần (tỉ lệ hỏng ~0,1%). Đo lại 2000 bảng/lớp: **0 lỗi**.
+--     • `do-can-doi-hinh.mjs` — cổng báo 3 nút “43px < 44px” nhưng **CÂY THƯỚC SAI, không phải mã sai**:
+--       cổng đo NGAY LÚC hoạt ảnh vào slide (`lesson-slide`) còn chạy nên nút bị thu nhỏ còn **43,09 px**;
+--       đo lúc trang đứng yên thì **đúng 44 px**. Nay cổng CHỜ trang đứng yên (đo 2 lần liên tiếp phải
+--       GIỐNG NHAU) và bấm “Tiếp tục” bằng JS (nút có hoạt ảnh vô hạn `pulse-glow` ⇒ Playwright có thể
+--       timeout oan). Kèm canary `NGUONG_CHAM=46` để chứng minh cổng KHÔNG bị làm câm.
+--     • `soat-an-o-nhan-manh.mjs` — đỏ chỉ vì thiếu máy chủ dev ở `localhost:5174`; chạy đúng cách: 0 lỗi.
+--     • `soat-trung-lap-noi-dung.mjs` — **399 ca, y hệt mốc HEAD** (265 trong cùng slide + 134 giữa hai
+--       slide liền nhau) ⇒ KHÔNG do đợt này sinh ra; vẫn là việc tồn đọng, cần người dùng quyết trước.
+--
+--   QUY MÔ: **4937 → 4944 slide** (5 lớp · 65 chương · 489 bài KHÔNG đổi). 7 slide chênh lệch phát sinh
+--     khi tôi khôi phục 2 file Lớp 4 (`g4c2.js`, `g4c6.js`) về mốc HEAD rồi chạy lại
+--     `scratch/sua-kien-thuc-chua-hoc.mjs`: **bộ sửa cho kết quả KHÁC nếu NỀN khác** (lượt đầu chạy trên
+--     nền đã bị các script khác sửa trước). Đã kiểm lại trạng thái mới: bộ sửa ở **điểm bất động
+--     (0 chỗ sửa)**, **0 bài dưới khung tối thiểu**, **0 slide trùng khít trong cùng bài**,
+--     **0 ca dạy trước chương trình** ⇒ cập nhật số ghim 4937 → 4944 (`scripts/test-admin-portal.mjs`,
+--     `scripts/migrate-content.mjs`).
+--     Dấu vân tay seed: `486e370001f146d1` → **`8a3429ffe5090699`**.
+--
+--   BA BÀI HỌC (đã ghi vào `/memories/repo/education-gotchas.md`):
+--     1. Cổng ĐO TRONG APP phải chờ trang đứng yên — hoạt ảnh làm số đo sai (43,09 thay vì 44) và
+--        cổng báo đỏ oan. Cách đúng: đo 2 lần liên tiếp, chỉ nhận khi hai lần GIỐNG NHAU.
+--     2. Bộ sửa mã KHÔNG bất biến theo nền: `git checkout --` khôi phục file rồi chạy lại cho kết quả
+--        khác lượt đầu ⇒ sau mọi lần khôi phục phải kiểm lại SỐ LƯỢNG ghim (cổng S-15/S-23/S-24).
+--     3. Cổng phải có CANARY (đặt ngưỡng sai để chứng minh cổng còn bắt được lỗi) — nếu không, một
+--        cổng “xanh” có thể chỉ là cổng đã bị làm câm.
+--
 -- LƯU Ý LẦN 26 (2026-09-29): **BỔ SUNG 1 847 SLIDE CHO CẢ 489 BÀI — KHÔNG CÒN BÀI DƯỚI KHUNG**.
 --   Người dùng gửi ảnh màn hình bài `g2-c4-l1` và báo: *“1 chủ đề quan trọng như bài 1 chủ đề 4 lớp 2
 --   mà phần học lại sơ sài vài slide, giải thích thì không rõ ràng”*. Đo cả 5 lớp thì đây là lỗi
@@ -60,6 +138,75 @@
 --     báo lỗi ĐẦU TIÊN, sửa xong mới lộ lỗi sau; công cụ này chỉ đúng ca gốc trong MỘT lượt).
 --   📌 CÒN LẠI (không phải “dưới khung”): `cotTinh` chưa vẽ dấu “mượn” cho phép trừ; nên soát bằng
 --     mắt vài bài mẫu mỗi nhóm trên điện thoại; nhóm hình học chưa có hoạt ảnh cắt ghép.
+--
+-- LƯU Ý LẦN 28 (2026-09-29): **KHÔNG BÀI NÀO ĐƯỢC NÓI ĐẾN KIẾN THỨC HỌC Ở CHỦ ĐỀ SAU**.
+--
+--   ⚠️ LƯỢT 2 (sau khi người dùng phản hồi *“kiểm tra lần nào cũng pass và sạch nhưng khi kiểm tra
+--      lại thì luôn có lỗi?”*): **đúng — kiểm tra của tôi trước đó chỉ chạy MỘT PHẦN cổng.** Chạy hết
+--      157 script trong `scratch/` thì thấy **2 lỗi do chính đợt sửa này gây ra**, đã sửa:
+--        • 5 slide tôi thêm có dấu `…` trong ô bảng — app coi `…` là **Ô TRỐNG cần điền**, mà slide
+--          này chỉ để đọc ⇒ cổng `soat-o-trong` đỏ 5 ca (`g1-c9-l3`, `g1-c9-l4`, `g2-c6-l2`, `g2-c6-l3`,
+--          `g2-c6-l5`). Nay đã bỏ hết `…` trong slide tôi thêm: cổng xanh lại (exit 0).
+--        • 7 ca **lặp nội dung**: lời của slide tôi thêm lặp y nguyên bảng của chính nó (5 slide đồng hồ
+--          có `text` trùng `timeText`, 2 bảng có lời trùng nội dung bảng, 1 mẹo có `title` nằm gọn trong
+--          `points`). Cổng `soat-trung-lap-noi-dung` ở HEAD = 399 ca, sau đợt sửa thành 405 ⇒ nay **bằng
+--          đúng bản HEAD** (so từng dòng: 0 dòng mới, 0 dòng mất).
+--      Công cụ mới để KHÔNG lặp lại lỗi này: `scratch/chay-het-cong.mjs` (chạy hết mọi script kiểm, in mã
+--      thoát thật) + `scratch/so-sanh-cong.mjs` (so với bản HEAD dựng bằng `git worktree`) ⇒ kết luận có
+--      số: **cổng hỏng thêm = 0**; 37 cổng đỏ còn lại là **công cụ cần tham số** hoặc **đỏ sẵn từ trước**
+--      (5 cổng đỏ sẵn: `kiem-tra-me-cung`, `kiem-tra-sua-loi`, `soat-ten-diem`, `soat-trung-lap-noi-dung`,
+--      cùng nhóm công cụ `doi-*`/`viet-lai-*`/`them-*`).
+--   Người dùng gửi 4 ảnh bài `g1-c1-l2` (Các số 0, 1, 2, 3) và báo:
+--     • “Ảnh 1: kêu bé đếm rồi trả lời câu hỏi ở dưới nhưng không có câu hỏi nào?”
+--     • “Ảnh 2, 3, 4: bé mới làm quen với số 0, 1, 2, 3, tại sao lại dạy so sánh với dấu so sánh,
+--       trong khi kiến thức này bài sau mới học? Phần mẹo nhỏ của bài 2 cũng đang chỉ mẹo so sánh.”
+--     • “Rà soát lại tất cả nội dung bài học, không được phép nói đến kiến thức mới mà ở những
+--       chủ đề sau đó bé mới được học.”
+--
+--   NGUYÊN NHÂN GỐC: 4 lượt sinh nội dung trước (xem LẦN 26) nhét **cùng một khuôn chung** vào MỌI bài,
+--   không xét bài đó đã học gì ⇒ slide “Ba bước làm bài” (có `dùng ê-ke` — dụng cụ Lớp 3), “Mẹo Nhớ:
+--   so sánh hai số bằng cách đếm” (dấu so sánh học ở `g1-c1-l8`), “thử lại bằng phép tính ngược”
+--   (chưa học cộng trừ), **bậc thang đơn vị** kèm “đi xuống thì nhân” (phép nhân học ở `g2-c8-l1`),
+--   quiz “1 tấn bằng bao nhiêu tạ?” (tấn/tạ/yến là Lớp 4)… xuất hiện cả ở Lớp 1.
+--
+--   CÁCH SỬA — hai công cụ mới trong `scratch/`:
+--     • `soat-kien-thuc-chua-hoc.mjs` — ĐO: với 19 khái niệm (dấu so sánh, số liền trước/sau, chục–đơn vị,
+--       tia số, cộng, trừ, nhân, chia, góc, tứ giác, chu vi, diện tích, phân số, số thập phân, làm tròn,
+--       trung bình cộng, tỉ số phần trăm, số La Mã, đơn vị đo, giờ–phút–giây, tấn–tạ–yến, gam–ml), nó tìm
+--       **bài dạy đầu tiên** làm mốc rồi cờ mọi bài TRƯỚC mốc có nhắc khái niệm đó. Kết quả đầu: **164 ca**.
+--     • `sua-kien-thuc-chua-hoc.mjs` — SỬA theo TỪNG BÀI (chia file theo mốc `id`, chọn khuôn theo chính
+--       tiêu đề bài), 8 đợt, mỗi phép sửa có **đếm số chỗ khớp** — lệch là DỪNG, không ghi. Chạy lại ra 0 chỗ
+--       (tự kiểm tính lặp).
+--
+--   QUY MÔ ĐỔI: **4987 → 4937 slide** (5 lớp · 65 chương · 489 bài KHÔNG đổi). Số bài dưới khung tối thiểu
+--     vẫn **0** (đã bù slide/quiz ĐÚNG phạm vi cho 17 bài bị hụt sau khi bỏ nội dung sai).
+--     Số ca dạy trước chương trình: **164 → 0**. Dấu vân tay seed: `cfa96b289a8e0220` → **`486e370001f146d1`**.
+--
+--   GỒM NHỮNG VIỆC CỤ THỂ:
+--     • Lớp 1: đổi “Ba bước làm bài” sang bước ĐÚNG dạng bài (đếm / đo / xem giờ / hình / tính / so sánh) —
+--       bỏ ê-ke; bỏ mẹo so sánh ở bài 3–5 và đổi bài 6–7 thành “ghép đôi”; quiz so sánh đổi thành câu hỏi ĐẾM;
+--       bỏ “số liền trước/liền sau” ở mọi bài trước `g1-c6-l8` (đổi cách nói sang đếm tiếp / đếm lùi);
+--       “gồm mấy chục và mấy đơn vị” → “gồm mấy và mấy” (chục–đơn vị học ở CĐ6); bỏ “trên tia số” (Lớp 2);
+--       bỏ “4 góc vuông”, “hai đường chéo” (Lớp 3–4); bỏ bảng bậc thang độ dài/thời gian và mẹo “nhân hệ số”;
+--       bỏ quiz “1 m = ? dm”, “1 giờ = ? phút” (Lớp 2); bỏ “4 × 2” và quiz “1 × 6” trong bài hình;
+--       bỏ “chu vi / diện tích”; bỏ quiz “đặt tính từ hàng nào” trong bài VỊ TRÍ (nội dung CĐ6).
+--     • Lớp 2: bỏ quiz “1 tấn = ? tạ”, “1 l = ? ml”, “1 km = ? hm” (tấn/tạ/yến Lớp 4 · ml Lớp 3 · hm/dam Lớp 3);
+--       bỏ hm/dam khỏi bậc thang độ dài, bỏ mm (Lớp 3), trục thời gian chỉ còn ngày–giờ–phút (bỏ giây);
+--       bảng nhớ đổi “= 1 000 g / = 1 000 ml” sang quan hệ trong chương trình Lớp 2;
+--       bỏ “gấp mấy lần → nhân”, “chia đều” khỏi các bước làm bài (phép nhân học ở `g2-c8-l1`);
+--       “làm tròn chục” → “tách cho đủ một chục”; bỏ “hình tứ giác” khỏi phương án trước `g2-c5-l6`;
+--       quiz “chu vi hình vuông” → “bốn cạnh dài tất cả bao nhiêu xăng-ti-mét”; bỏ chữ “phân số” (học ở `g3-c2-l10`).
+--     • Lớp 3: bỏ dòng “Phân số” ở bảng nhớ trước `g3-c2-l10`.
+--
+--   SỬA CẢ CÁI THƯỚC (bài học đắt nhất của lần này — 4 lỗi do CHÍNH công cụ sửa gây ra, đều đã chặn bằng tự kiểm):
+--     1. Regex thay mảng `rows` dừng ở `]` của PHẦN TỬ đầu ⇒ để lại dòng cũ, **hỏng cú pháp** 3 file
+--        (`g1c4`, `g1c5`, `g1c10`). Nay thay theo THỤT LỀ của dòng `rows: [` (`thayRows`).
+--     2. Chèn xuống dòng THẬT vào giữa chuỗi ⇒ **hỏng cú pháp** `g2c6.js` (trong dữ liệu, xuống dòng là 2 ký tự `\`+`n`).
+--     3. Xoá slide dừng ở `},` sâu hơn ⇒ để lại dòng `},` thừa; chốt nay bám đúng thụt lề dòng mở.
+--     4. Tách bài chỉ nhận `id:` không nháy ⇒ **bỏ qua CẢ file** viết kiểu `"id":` (đã sót g2c9, g2c11, g2c3…).
+--     ⚠️ File dữ liệu dùng **LẪN CRLF và LF** ⇒ phép tách/ghép phải giữ nguyên `\r` của từng dòng, không chuẩn hoá.
+--     ⚠️ Cổng `S-15 / S-23 / S-24` và test client ghim con số slide ⇒ đã cập nhật **4987 → 4937**
+--        (`scripts/test-admin-portal.mjs`, `scripts/migrate-content.mjs`; ngưỡng test client 4987 → 4900).
 --
 -- LƯU Ý LẦN 27 (2026-09-29): **APP THÀNH APP ĐỘC LẬP + BỎ “COMBO x N”**. Hai yêu cầu của người dùng:
 --   (1) *“bỏ phần hiện combo khi bé làm đúng liên tiếp”* — banner `🔥 COMBO x{combo}` ở đầu trang bài

@@ -788,21 +788,12 @@ export const g2c14 = {
             table: {
               headers: ["Bước", "Việc bé làm"],
               rows: [
-                [
-                  "Bước 1 — Gọi tên",
-                  "nói đúng tên hình/khối trước khi làm gì tiếp",
-                ],
-                [
-                  "Bước 2 — Đếm",
-                  "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học",
-                ],
-                [
-                  "Bước 3 — Kiểm tra",
-                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt",
-                ],
+                ["Bước 1 — Nhìn kỹ", "nhìn hết cả hình, xem có mấy nhóm đồ vật"],
+                ["Bước 2 — Đếm", "đếm từng nhóm, lần lượt từ trái sang phải"],
+                ["Bước 3 — Kiểm lại", "đếm lại lần nữa rồi mới đọc số"],
               ],
             },
-            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai.",
+            text: "Ba bước đếm cho đúng — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai.",
           },
         },
         {
@@ -1058,17 +1049,10 @@ export const g2c14 = {
         {
           type: "quiz",
           content: {
-            question:
-              "Một hình vuông có cạnh dài 4 cm. Chu vi hình vuông là bao nhiêu?",
+            question: "Một hình vuông có bốn cạnh, mỗi cạnh dài 4 cm. Bốn cạnh dài tất cả bao nhiêu xăng-ti-mét?",
             options: ["8 cm", "12 cm", "16 cm", "44 cm"],
             answer: "16 cm",
-            mascotHint: "Chu vi hình vuông = 4 × 4 = 16 cm.",
-            planeShapes: [
-              {
-                kind: "square",
-                color: "#3b82f6",
-              },
-            ],
+            mascotHint: "Bốn cạnh, mỗi cạnh 4 cm: 4 + 4 + 4 + 4 = 16 (cm).",
           },
         },
         {

@@ -160,7 +160,7 @@ export const g1c1 = {
             points: [
               "Đếm: một, hai, ba.",
               "Không có gì thì là 0 — đọc là “không”.",
-              "Số 0 bé nhất trong các số bé đã học.",
+              "Đếm xong thì đọc số vừa đếm được.",
               "Bé viết: 0, 1, 2, 3.",
             ],
           },
@@ -179,7 +179,7 @@ export const g1c1 = {
         {
           type: "visual",
           content: {
-            text: "Quan sát tranh — bé đếm từng nhóm rồi trả lời câu hỏi bên dưới",
+            text: "Quan sát tranh — bé đếm từng nhóm",
             numberScene: {
               mode: "manyGroups",
               groups: [
@@ -204,14 +204,14 @@ export const g1c1 = {
           type: "concept",
           content: {
             badge: "Mẹo Nhớ",
-            title: "So sánh hai số bằng cách đếm",
+            title: "Đếm cho đúng",
             explanation:
-              "Ở mức này, cách chắc chắn nhất là ĐẾM: số nào đếm đến sau thì số đó lớn hơn.",
+              "Đếm là việc đầu tiên của mọi bài. Đếm đúng thì mọi thứ sau đó mới đúng.",
             points: [
-              "Đếm từ 1: “1, 2, 3, 4, 5…” — số đếm đến sau thì lớn hơn. Ví dụ 5 đến sau 2 nên 5 lớn hơn 2.",
-              "Trên tia số, số đứng bên PHẢI lớn hơn số đứng bên TRÁI.",
-              "Ba dấu cần nhớ: “>” đọc là lớn hơn, “<” đọc là bé hơn, “=” đọc là bằng nhau.",
-              "Với hai số của bài này: 1 < 2, đọc là “1 bé hơn 2”.",
+              "Mỗi đồ vật chỉ đếm MỘT lần — không bỏ sót, không đếm lại.",
+              "Đếm lần lượt: từ trái sang phải, từ trên xuống dưới.",
+              "Đếm xong thì đọc số: một, hai, ba.",
+              "Không có đồ vật nào thì viết số 0.",
             ],
           },
         },
@@ -222,45 +222,37 @@ export const g1c1 = {
               headers: ["Bước", "Việc bé làm"],
               rows: [
                 [
-                  "Bước 1 — Gọi tên",
-                  "nói đúng tên hình/khối trước khi làm gì tiếp",
+                  "Bước 1 — Nhìn kỹ",
+                  "nhìn hết cả hình, xem có mấy nhóm đồ vật",
                 ],
-                [
-                  "Bước 2 — Đếm",
-                  "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học",
-                ],
-                [
-                  "Bước 3 — Kiểm tra",
-                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt",
-                ],
+                ["Bước 2 — Đếm", "đếm từng nhóm, lần lượt từ trái sang phải"],
+                ["Bước 3 — Kiểm lại", "đếm lại lần nữa rồi mới đọc số"],
               ],
             },
-            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai.",
+            text: "Ba bước đếm cho đúng — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai.",
           },
         },
         {
           type: "quiz",
           content: {
             question:
-              "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
+              "Đếm xong một nhóm đồ vật, bé nên làm gì để chắc chắn đúng?",
             options: [
-              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
-              "Nộp bài luôn cho nhanh",
-              "Đoán lại một lần nữa",
+              "Đếm lại một lần nữa rồi mới đọc số",
+              "Đọc số luôn cho nhanh",
+              "Đoán một số bất kì",
             ],
-            answer:
-              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
-            mascotHint:
-              "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng.",
+            answer: "Đếm lại một lần nữa rồi mới đọc số",
+            mascotHint: "Đếm lại là cách kiểm tra chắc chắn nhất.",
           },
         },
         {
           type: "quiz",
           content: {
-            question: "Số nào lớn hơn: 2 hay 1?",
+            question: "Trong tranh, nhóm con chó 🐶 có mấy con?",
             options: [1, 2, 3, 4],
             answer: 2,
-            mascotHint: "Đếm từ 1: số 2 đếm đến sau số 1, nên 2 lớn hơn 1.",
+            mascotHint: "Bé đếm: một, hai — nhóm con chó có 2 con.",
           },
         },
         {
@@ -280,10 +272,10 @@ export const g1c1 = {
         {
           type: "quiz",
           content: {
-            question: "Số nào bé nhất trong các số 0, 1, 2, 3?",
+            question: "Số nào chỉ “không có gì”?",
             options: [0, 1, 2, 3],
             answer: 0,
-            mascotHint: "0 là số bé nhất — 0 nghĩa là không có gì.",
+            mascotHint: "0 nghĩa là không có gì — bé viết số 0.",
           },
         },
         {
@@ -376,41 +368,20 @@ export const g1c1 = {
           },
         },
         {
-          type: "concept",
-          content: {
-            badge: "Mẹo Nhớ",
-            title: "So sánh hai số bằng cách đếm",
-            explanation:
-              "Ở mức này, cách chắc chắn nhất là ĐẾM: số nào đếm đến sau thì số đó lớn hơn.",
-            points: [
-              "Đếm từ 1: “1, 2, 3, 4, 5…” — số đếm đến sau thì lớn hơn. Ví dụ 5 đến sau 2 nên 5 lớn hơn 2.",
-              "Trên tia số, số đứng bên PHẢI lớn hơn số đứng bên TRÁI.",
-              "Ba dấu cần nhớ: “>” đọc là lớn hơn, “<” đọc là bé hơn, “=” đọc là bằng nhau.",
-              "Với hai số của bài này: 3 < 4, đọc là “3 bé hơn 4”.",
-            ],
-          },
-        },
-        {
           type: "visual",
           content: {
             table: {
               headers: ["Bước", "Việc bé làm"],
               rows: [
                 [
-                  "Bước 1 — Gọi tên",
-                  "nói đúng tên hình/khối trước khi làm gì tiếp",
+                  "Bước 1 — Nhìn kỹ",
+                  "nhìn hết cả hình, xem có mấy nhóm đồ vật",
                 ],
-                [
-                  "Bước 2 — Đếm",
-                  "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học",
-                ],
-                [
-                  "Bước 3 — Kiểm tra",
-                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt",
-                ],
+                ["Bước 2 — Đếm", "đếm từng nhóm, lần lượt từ trái sang phải"],
+                ["Bước 3 — Kiểm lại", "đếm lại lần nữa rồi mới đọc số"],
               ],
             },
-            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai.",
+            text: "Ba bước đếm cho đúng — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai.",
           },
         },
         {
@@ -419,23 +390,22 @@ export const g1c1 = {
             question:
               "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
             options: [
-              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Kiểm lại một lần nữa theo điều cần nhớ",
               "Nộp bài luôn cho nhanh",
               "Đoán lại một lần nữa",
             ],
-            answer:
-              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            answer: "Kiểm lại một lần nữa theo điều cần nhớ",
             mascotHint:
-              "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng.",
+              "Kiểm lại một lần nữa rồi mới nộp bài — kiểm lại là thói quen của người học giỏi.",
           },
         },
         {
           type: "quiz",
           content: {
-            question: "Số nào lớn hơn: 3 hay 4?",
+            question: "Bé đếm từ 1: số nào đếm đến sau — 3 hay 4?",
             options: [1, 3, 4, 5],
             answer: 4,
-            mascotHint: "Đếm từ 1: số 4 đếm đến sau số 3, nên 4 lớn hơn 3.",
+            mascotHint: "Đếm từ 1: số 4 đếm đến sau số 3.",
           },
         },
         {
@@ -585,38 +555,20 @@ export const g1c1 = {
           },
         },
         {
-          type: "concept",
-          content: {
-            badge: "Mẹo Nhớ",
-            title: "So sánh hai số bằng cách đếm",
-            explanation:
-              "Ở mức này, cách chắc chắn nhất là ĐẾM: số nào đếm đến sau thì số đó lớn hơn.",
-            points: [
-              "Đếm từ 1: “1, 2, 3, 4, 5…” — số đếm đến sau thì lớn hơn. Ví dụ 5 đến sau 2 nên 5 lớn hơn 2.",
-              "Trên tia số, số đứng bên PHẢI lớn hơn số đứng bên TRÁI.",
-              "Ba dấu cần nhớ: “>” đọc là lớn hơn, “<” đọc là bé hơn, “=” đọc là bằng nhau.",
-              "Với hai số của bài này: 4 < 6, đọc là “4 bé hơn 6”.",
-            ],
-          },
-        },
-        {
           type: "visual",
           content: {
             table: {
               headers: ["Bước", "Việc bé làm"],
               rows: [
-                ["Bước 1 — Số chữ số", "nhiều chữ số hơn thì số đó lớn hơn"],
                 [
-                  "Bước 2 — So từ trái",
-                  "so từng hàng từ trái sang phải, khác nhau thì dừng",
+                  "Bước 1 — Nhìn kỹ",
+                  "nhìn hết cả hình, xem có mấy nhóm đồ vật",
                 ],
-                [
-                  "Bước 3 — Đọc số",
-                  "đọc từ trái sang phải, hết mỗi lớp ba chữ số",
-                ],
+                ["Bước 2 — Đếm", "đếm từng nhóm, lần lượt từ trái sang phải"],
+                ["Bước 3 — Kiểm lại", "đếm lại lần nữa rồi mới đọc số"],
               ],
             },
-            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai.",
+            text: "Ba bước đếm cho đúng — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai.",
           },
         },
         {
@@ -625,23 +577,22 @@ export const g1c1 = {
             question:
               "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
             options: [
-              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Kiểm lại một lần nữa theo điều cần nhớ",
               "Nộp bài luôn cho nhanh",
               "Đoán lại một lần nữa",
             ],
-            answer:
-              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            answer: "Kiểm lại một lần nữa theo điều cần nhớ",
             mascotHint:
-              "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng.",
+              "Kiểm lại một lần nữa rồi mới nộp bài — kiểm lại là thói quen của người học giỏi.",
           },
         },
         {
           type: "quiz",
           content: {
-            question: "Số nào lớn hơn: 4 hay 6?",
+            question: "Bé đếm từ 1: số nào đếm đến sau — 4 hay 6?",
             options: [4, 6, 7, 8],
             answer: 6,
-            mascotHint: "Đếm từ 1: số 6 đếm đến sau số 4, nên 6 lớn hơn 4.",
+            mascotHint: "Đếm từ 1: số 6 đếm đến sau số 4.",
           },
         },
         {
@@ -801,41 +752,20 @@ export const g1c1 = {
           },
         },
         {
-          type: "concept",
-          content: {
-            badge: "Mẹo Nhớ",
-            title: "So sánh hai số bằng cách đếm",
-            explanation:
-              "Ở mức này, cách chắc chắn nhất là ĐẾM: số nào đếm đến sau thì số đó lớn hơn.",
-            points: [
-              "Đếm từ 1: “1, 2, 3, 4, 5…” — số đếm đến sau thì lớn hơn. Ví dụ 5 đến sau 2 nên 5 lớn hơn 2.",
-              "Trên tia số, số đứng bên PHẢI lớn hơn số đứng bên TRÁI.",
-              "Ba dấu cần nhớ: “>” đọc là lớn hơn, “<” đọc là bé hơn, “=” đọc là bằng nhau.",
-              "Với hai số của bài này: 2 < 5, đọc là “2 bé hơn 5”.",
-            ],
-          },
-        },
-        {
           type: "visual",
           content: {
             table: {
               headers: ["Bước", "Việc bé làm"],
               rows: [
                 [
-                  "Bước 1 — Gọi tên",
-                  "nói đúng tên hình/khối trước khi làm gì tiếp",
+                  "Bước 1 — Nhìn kỹ",
+                  "nhìn hết cả hình, xem có mấy nhóm đồ vật",
                 ],
-                [
-                  "Bước 2 — Đếm",
-                  "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học",
-                ],
-                [
-                  "Bước 3 — Kiểm tra",
-                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt",
-                ],
+                ["Bước 2 — Đếm", "đếm từng nhóm, lần lượt từ trái sang phải"],
+                ["Bước 3 — Kiểm lại", "đếm lại lần nữa rồi mới đọc số"],
               ],
             },
-            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai.",
+            text: "Ba bước đếm cho đúng — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai.",
           },
         },
         {
@@ -844,23 +774,22 @@ export const g1c1 = {
             question:
               "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
             options: [
-              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Kiểm lại một lần nữa theo điều cần nhớ",
               "Nộp bài luôn cho nhanh",
               "Đoán lại một lần nữa",
             ],
-            answer:
-              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            answer: "Kiểm lại một lần nữa theo điều cần nhớ",
             mascotHint:
-              "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng.",
+              "Kiểm lại một lần nữa rồi mới nộp bài — kiểm lại là thói quen của người học giỏi.",
           },
         },
         {
           type: "quiz",
           content: {
-            question: "Số nào lớn hơn: 5 hay 2?",
+            question: "Bé đếm từ 1: số nào đếm đến sau — 5 hay 2?",
             options: [1, 2, 5, 10],
             answer: 5,
-            mascotHint: "Đếm từ 1: số 5 đếm đến sau số 2, nên 5 lớn hơn 2.",
+            mascotHint: "Đếm từ 1: số 5 đếm đến sau số 2.",
           },
         },
         {
@@ -957,7 +886,7 @@ export const g1c1 = {
             title: "Bé nhớ rất tốt:",
             points: [
               "Đếm kĩ rồi mới chọn số.",
-              "Cho thêm đồ vật để đủ số lượng: đếm rồi cộng thêm.",
+              "Cho thêm đồ vật để đủ số lượng: đếm rồi thêm vào cho đủ.",
               "Dãy số 0 → 10 bé đã thuộc.",
             ],
             mascotMood: "proud",
@@ -1042,14 +971,14 @@ export const g1c1 = {
           type: "concept",
           content: {
             badge: "Mẹo Nhớ",
-            title: "So sánh hai số bằng cách đếm",
+            title: "Ghép đôi",
             explanation:
-              "Ở mức này, cách chắc chắn nhất là ĐẾM: số nào đếm đến sau thì số đó lớn hơn.",
+              "Chưa cần dấu so sánh: bé chỉ cần GHÉP ĐÔI rồi xem bên nào thừa ra.",
             points: [
-              "Đếm từ 1: “1, 2, 3, 4, 5…” — số đếm đến sau thì lớn hơn. Ví dụ 5 đến sau 2 nên 5 lớn hơn 2.",
-              "Trên tia số, số đứng bên PHẢI lớn hơn số đứng bên TRÁI.",
-              "Ba dấu cần nhớ: “>” đọc là lớn hơn, “<” đọc là bé hơn, “=” đọc là bằng nhau.",
-              "Với hai số của bài này: 3 < 6, đọc là “3 bé hơn 6”.",
+              "Ghép đôi là cách so sánh dễ nhất: xếp mỗi đồ vật của nhóm này với một đồ vật của nhóm kia.",
+              "Ghép xong, nhóm nào còn thừa ra thì nhóm đó NHIỀU HƠN.",
+              "Ghép hết mà không nhóm nào thừa thì hai nhóm BẰNG NHAU.",
+              "Ví dụ: 3 con ếch và 2 chiếc lá — ghép đôi thì thừa ra 1 con ếch, vậy ếch nhiều hơn lá.",
             ],
           },
         },
@@ -1059,18 +988,21 @@ export const g1c1 = {
             table: {
               headers: ["Bước", "Việc bé làm"],
               rows: [
-                ["Bước 1 — Số chữ số", "nhiều chữ số hơn thì số đó lớn hơn"],
                 [
-                  "Bước 2 — So từ trái",
-                  "so từng hàng từ trái sang phải, khác nhau thì dừng",
+                  "Bước 1 — Đếm",
+                  "đếm số lượng của mỗi bên (hoặc đọc hai số đã cho)",
                 ],
                 [
-                  "Bước 3 — Đọc số",
-                  "đọc từ trái sang phải, hết mỗi lớp ba chữ số",
+                  "Bước 2 — Ghép đôi",
+                  "ghép từng cặp một để thấy bên nào thừa ra",
+                ],
+                [
+                  "Bước 3 — Nói kết quả",
+                  "nói lại một lần nữa: nhiều hơn, ít hơn hay bằng nhau",
                 ],
               ],
             },
-            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai.",
+            text: "Ba bước so sánh — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai.",
           },
         },
         {
@@ -1079,14 +1011,13 @@ export const g1c1 = {
             question:
               "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
             options: [
-              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Kiểm lại một lần nữa theo điều cần nhớ",
               "Nộp bài luôn cho nhanh",
               "Đoán lại một lần nữa",
             ],
-            answer:
-              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            answer: "Kiểm lại một lần nữa theo điều cần nhớ",
             mascotHint:
-              "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng.",
+              "Kiểm lại một lần nữa rồi mới nộp bài — kiểm lại là thói quen của người học giỏi.",
           },
         },
         {
@@ -1247,7 +1178,7 @@ export const g1c1 = {
               tens: 0,
               ones: 7,
             },
-            text: "7 gồm mấy chục và mấy đơn vị?\nBé đếm khối: 0 thanh chục và 7 ô rời\nVậy 7 = 0 chục và 7 đơn vị",
+            text: "7 gồm mấy và mấy?\nBé đếm khối: một bên có 0 khối, một bên có 7 khối\nVậy 7 gồm 0 và 7",
           },
         },
         {
@@ -1261,17 +1192,16 @@ export const g1c1 = {
               "Bước 1 — đếm số chữ số: số nào có ít chữ số hơn thì số đó BÉ hơn (ví dụ 9 < 10).",
               "Bước 2 — hai số cùng số chữ số: so chữ số đầu tiên bên TRÁI trước; số nào có chữ số ấy lớn hơn thì số đó lớn hơn. Bằng nhau thì so chữ số tiếp theo.",
               "Ví dụ: hai số đều có 1 chữ số, bé so từ trái sang phải — đến hàng đơn vị thì 3 < 7, nên 3 < 7.",
-              "Số liền sau = số đó thêm 1; số liền trước = số đó bớt 1.",
             ],
           },
         },
         {
           type: "quiz",
           content: {
-            question: "Số liền sau của số 7 là số nào?",
+            question: "Bé đếm tiếp: ngay sau số 7 thì đến số nào?",
             options: [7, 8, 9, 17],
             answer: 8,
-            mascotHint: "Số liền sau hơn số đã cho 1 đơn vị: 7 + 1 = 8.",
+            mascotHint: "Đếm tiếp một bước từ số đã cho thì được số đó.",
           },
         },
         {
@@ -1539,7 +1469,7 @@ export const g1c1 = {
               "Ở mức này, cách chắc chắn nhất là ĐẾM: số nào đếm đến sau thì số đó lớn hơn.",
             points: [
               "Đếm từ 1: “1, 2, 3, 4, 5…” — số đếm đến sau thì lớn hơn. Ví dụ 5 đến sau 2 nên 5 lớn hơn 2.",
-              "Trên tia số, số đứng bên PHẢI lớn hơn số đứng bên TRÁI.",
+              "Đếm từ 1: số nào đếm đến sau thì số đó lớn hơn.",
               "Ba dấu cần nhớ: “>” đọc là lớn hơn, “<” đọc là bé hơn, “=” đọc là bằng nhau.",
               "Với hai số của bài này: 4 < 8, đọc là “4 bé hơn 8”.",
             ],
@@ -1551,18 +1481,21 @@ export const g1c1 = {
             table: {
               headers: ["Bước", "Việc bé làm"],
               rows: [
-                ["Bước 1 — Số chữ số", "nhiều chữ số hơn thì số đó lớn hơn"],
                 [
-                  "Bước 2 — So từ trái",
-                  "so từng hàng từ trái sang phải, khác nhau thì dừng",
+                  "Bước 1 — Đếm",
+                  "đếm số lượng của mỗi bên (hoặc đọc hai số đã cho)",
                 ],
                 [
-                  "Bước 3 — Đọc số",
-                  "đọc từ trái sang phải, hết mỗi lớp ba chữ số",
+                  "Bước 2 — Ghép đôi",
+                  "ghép từng cặp một để thấy bên nào thừa ra",
+                ],
+                [
+                  "Bước 3 — Nói kết quả",
+                  "nói lại một lần nữa: nhiều hơn, ít hơn hay bằng nhau",
                 ],
               ],
             },
-            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai.",
+            text: "Ba bước so sánh — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai.",
           },
         },
         {
@@ -1571,14 +1504,13 @@ export const g1c1 = {
             question:
               "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
             options: [
-              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Kiểm lại một lần nữa theo điều cần nhớ",
               "Nộp bài luôn cho nhanh",
               "Đoán lại một lần nữa",
             ],
-            answer:
-              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            answer: "Kiểm lại một lần nữa theo điều cần nhớ",
             mascotHint:
-              "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng.",
+              "Kiểm lại một lần nữa rồi mới nộp bài — kiểm lại là thói quen của người học giỏi.",
           },
         },
         {
@@ -1748,7 +1680,7 @@ export const g1c1 = {
               "Ở mức này, cách chắc chắn nhất là ĐẾM: số nào đếm đến sau thì số đó lớn hơn.",
             points: [
               "Đếm từ 1: “1, 2, 3, 4, 5…” — số đếm đến sau thì lớn hơn. Ví dụ 5 đến sau 2 nên 5 lớn hơn 2.",
-              "Trên tia số, số đứng bên PHẢI lớn hơn số đứng bên TRÁI.",
+              "Đếm từ 1: số nào đếm đến sau thì số đó lớn hơn.",
               "Ba dấu cần nhớ: “>” đọc là lớn hơn, “<” đọc là bé hơn, “=” đọc là bằng nhau.",
               "Với hai số của bài này: 5 < 9, đọc là “5 bé hơn 9”.",
             ],
@@ -1760,18 +1692,15 @@ export const g1c1 = {
             table: {
               headers: ["Bước", "Việc bé làm"],
               rows: [
-                ["Bước 1 — Số chữ số", "nhiều chữ số hơn thì số đó lớn hơn"],
                 [
-                  "Bước 2 — So từ trái",
-                  "so từng hàng từ trái sang phải, khác nhau thì dừng",
+                  "Bước 1 — Nhìn kỹ",
+                  "nhìn hết cả hình, xem có mấy nhóm đồ vật",
                 ],
-                [
-                  "Bước 3 — Đọc số",
-                  "đọc từ trái sang phải, hết mỗi lớp ba chữ số",
-                ],
+                ["Bước 2 — Đếm", "đếm từng nhóm, lần lượt từ trái sang phải"],
+                ["Bước 3 — Kiểm lại", "đếm lại lần nữa rồi mới đọc số"],
               ],
             },
-            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai.",
+            text: "Ba bước đếm cho đúng — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai.",
           },
         },
         {
@@ -1780,14 +1709,13 @@ export const g1c1 = {
             question:
               "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
             options: [
-              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Kiểm lại một lần nữa theo điều cần nhớ",
               "Nộp bài luôn cho nhanh",
               "Đoán lại một lần nữa",
             ],
-            answer:
-              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            answer: "Kiểm lại một lần nữa theo điều cần nhớ",
             mascotHint:
-              "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng.",
+              "Kiểm lại một lần nữa rồi mới nộp bài — kiểm lại là thói quen của người học giỏi.",
           },
         },
         {
@@ -1883,7 +1811,7 @@ export const g1c1 = {
           type: "story",
           content: {
             mascotMood: "happy",
-            text: "Rô-bốt có 10 viên kẹo 🍬 Bé chia 10 viên thành hai phần nhé!",
+            text: "Rô-bốt có 10 viên kẹo 🍬 Bé tách 10 viên thành hai phần nhé!",
           },
         },
         {
@@ -1934,7 +1862,7 @@ export const g1c1 = {
               tens: 1,
               ones: 0,
             },
-            text: "10 gồm mấy chục và mấy đơn vị?\nBé đếm khối: 1 thanh chục và 0 ô rời\nVậy 10 = 1 chục và 0 đơn vị",
+            text: "10 gồm mấy và mấy?\nBé đếm khối: một bên có 1 khối, một bên có 0 khối\nVậy 10 gồm 1 và 0",
           },
         },
         {
@@ -1948,17 +1876,16 @@ export const g1c1 = {
               "Bước 1 — đếm số chữ số: số nào có ít chữ số hơn thì số đó BÉ hơn (ví dụ 9 < 10).",
               "Bước 2 — hai số cùng số chữ số: so chữ số đầu tiên bên TRÁI trước; số nào có chữ số ấy lớn hơn thì số đó lớn hơn. Bằng nhau thì so chữ số tiếp theo.",
               "Ví dụ: 10 có 2 chữ số, 5 có 1 chữ số — số nào có ít chữ số hơn thì bé hơn.",
-              "Số liền sau = số đó thêm 1; số liền trước = số đó bớt 1.",
             ],
           },
         },
         {
           type: "quiz",
           content: {
-            question: "Số liền sau của số 10 là số nào?",
+            question: "Bé đếm tiếp: ngay sau số 10 thì đến số nào?",
             options: [10, 11, 12, 20],
             answer: 11,
-            mascotHint: "Số liền sau hơn số đã cho 1 đơn vị: 10 + 1 = 11.",
+            mascotHint: "Đếm tiếp một bước từ số đã cho thì được số đó.",
           },
         },
         {
@@ -2099,7 +2026,7 @@ export const g1c1 = {
               "Ở mức này, cách chắc chắn nhất là ĐẾM: số nào đếm đến sau thì số đó lớn hơn.",
             points: [
               "Đếm từ 1: “1, 2, 3, 4, 5…” — số đếm đến sau thì lớn hơn. Ví dụ 5 đến sau 2 nên 5 lớn hơn 2.",
-              "Trên tia số, số đứng bên PHẢI lớn hơn số đứng bên TRÁI.",
+              "Đếm từ 1: số nào đếm đến sau thì số đó lớn hơn.",
               "Ba dấu cần nhớ: “>” đọc là lớn hơn, “<” đọc là bé hơn, “=” đọc là bằng nhau.",
               "Với hai số của bài này: 6 < 11, đọc là “6 bé hơn 11”.",
             ],
@@ -2111,18 +2038,21 @@ export const g1c1 = {
             table: {
               headers: ["Bước", "Việc bé làm"],
               rows: [
-                ["Bước 1 — Số chữ số", "nhiều chữ số hơn thì số đó lớn hơn"],
                 [
-                  "Bước 2 — So từ trái",
-                  "so từng hàng từ trái sang phải, khác nhau thì dừng",
+                  "Bước 1 — Đếm",
+                  "đếm số lượng của mỗi bên (hoặc đọc hai số đã cho)",
                 ],
                 [
-                  "Bước 3 — Đọc số",
-                  "đọc từ trái sang phải, hết mỗi lớp ba chữ số",
+                  "Bước 2 — Ghép đôi",
+                  "ghép từng cặp một để thấy bên nào thừa ra",
+                ],
+                [
+                  "Bước 3 — Nói kết quả",
+                  "nói lại một lần nữa: nhiều hơn, ít hơn hay bằng nhau",
                 ],
               ],
             },
-            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai.",
+            text: "Ba bước so sánh — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai.",
           },
         },
         {
@@ -2131,14 +2061,13 @@ export const g1c1 = {
             question:
               "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
             options: [
-              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Kiểm lại một lần nữa theo điều cần nhớ",
               "Nộp bài luôn cho nhanh",
               "Đoán lại một lần nữa",
             ],
-            answer:
-              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+            answer: "Kiểm lại một lần nữa theo điều cần nhớ",
             mascotHint:
-              "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng.",
+              "Kiểm lại một lần nữa rồi mới nộp bài — kiểm lại là thói quen của người học giỏi.",
           },
         },
         {
@@ -2364,7 +2293,7 @@ export const g1c1 = {
               "Ở mức này, cách chắc chắn nhất là ĐẾM: số nào đếm đến sau thì số đó lớn hơn.",
             points: [
               "Đếm từ 1: “1, 2, 3, 4, 5…” — số đếm đến sau thì lớn hơn. Ví dụ 5 đến sau 2 nên 5 lớn hơn 2.",
-              "Trên tia số, số đứng bên PHẢI lớn hơn số đứng bên TRÁI.",
+              "Đếm từ 1: số nào đếm đến sau thì số đó lớn hơn.",
               "Ba dấu cần nhớ: “>” đọc là lớn hơn, “<” đọc là bé hơn, “=” đọc là bằng nhau.",
               "Với hai số của bài này: 6 < 12, đọc là “6 bé hơn 12”.",
             ],

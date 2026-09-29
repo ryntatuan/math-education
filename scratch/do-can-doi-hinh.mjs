@@ -21,7 +21,11 @@ import { chromium } from "playwright";
 
 const PORT = process.env.PORT ?? "5174";
 const BASE = `http://localhost:${PORT}`;
-const NGUONG_CHAM = 44; // px — vùng chạm tối thiểu cho trẻ
+/**
+ * Ngưỡng vùng chạm (px). Cho phép đổi bằng biến môi trường để **chạy canary**: đặt
+ * `NGUONG_CHAM=46` thì 3 slide `cotTinh` phải bị bắt lại ⇒ chứng minh cổng KHÔNG bị làm câm.
+ */
+const NGUONG_CHAM = Number(process.env.NGUONG_CHAM ?? 44);
 const NGUONG_CAO_HON = 1.15; // khối nút cao hơn hình quá mức ⇒ mất cân đối
 
 const KHOAS = ["cotTinh", "bangTinh", "patternRow", "numberScene"];
@@ -58,6 +62,95 @@ const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
 const ketQua = [];
 
+/**
+ * ĐO TRONG TRANG — tách ra thành hàm riêng để gọi được NHIỀU LẦN (xem `doOnDinh`).
+ */
+function doTrongTrang() {
+  const the = document.querySelector(".slide-visual-card") ?? document.body;
+  // hình chính = svg nhiều <text> nhất
+  const svgs = [...the.querySelectorAll("svg")];
+  const hinh = svgs.length
+    ? svgs.reduce((a, b) =>
+        b.querySelectorAll("text").length > a.querySelectorAll("text").length
+          ? b
+          : a,
+      )
+    : null;
+  const chuDeBai = hinh
+    ? [...hinh.querySelectorAll("text")].map(
+        (t) => +t.getBoundingClientRect().height.toFixed(1),
+      )
+    : [];
+  // ô bấm được TRONG hình (rect có viền đứt = ô “?”)
+  const oTrong = hinh
+    ? [...hinh.querySelectorAll("rect[stroke-dasharray]")].map((r) => {
+        const b = r.getBoundingClientRect();
+        return { w: +b.width.toFixed(1), h: +b.height.toFixed(1) };
+      })
+    : [];
+  // nút chọn của FillBar
+  const nut = [...the.parentElement.querySelectorAll("button")]
+    .filter((b) => /^Chọn /.test(b.getAttribute("aria-label") || ""))
+    .map((b) => {
+      const r = b.getBoundingClientRect();
+      return { w: +r.width.toFixed(1), h: +r.height.toFixed(1) };
+    });
+  return {
+    soChu: chuDeBai.length,
+    deBai: chuDeBai.length ? Math.max(...chuDeBai) : null,
+    caoHinh: hinh ? +hinh.getBoundingClientRect().height.toFixed(1) : null,
+    oTrong,
+    nut,
+    // khối nút = từ mép trên nút đầu đến mép dưới phần tử cuối trong hàng nút
+    caoKhoiNut: nut.length
+      ? (() => {
+          const rs = [...the.parentElement.querySelectorAll("button")]
+            .filter((b) => /^Chọn /.test(b.getAttribute("aria-label") || ""))
+            .map((b) => b.getBoundingClientRect());
+          const tren = Math.min(...rs.map((r) => r.top));
+          const duoi = Math.max(...rs.map((r) => r.bottom));
+          // cộng cả dòng tiến độ / “Làm lại” nằm cạnh nút
+          return +(duoi - tren).toFixed(1) + 60;
+        })()
+      : 0,
+  };
+}
+
+/**
+ * CHỜ TRANG ĐỨNG YÊN RỒI MỚI ĐO.
+ *
+ * 🔴 VÌ SAO (đã mắc thật 2026-09-29). Bản cũ chờ cứng 450 ms sau khi bấm “Tiếp tục” rồi đo
+ * ngay ⇒ đo TRÚNG lúc hoạt ảnh vào slide (`lesson-slide`) còn đang chạy, nút bị thu nhỏ còn
+ * **43,09 px** ⇒ cổng báo đỏ OAN 3 slide `cotTinh` (g1-c3-l1, g1-c3-l2, g1-c3-l3). Đo lại
+ * sau khi hoạt ảnh xong: **đúng 44 px**. Nay đo hai lần liên tiếp, chỉ nhận khi hai lần
+ * GIỐNG NHAU — bỏ hẳn việc phụ thuộc vào con số “450 ms” đoán mò.
+ */
+async function doOnDinh() {
+  let truoc = await page.evaluate(doTrongTrang);
+  for (let lan = 0; lan < 8; lan++) {
+    await page.waitForTimeout(300);
+    const sau = await page.evaluate(doTrongTrang);
+    if (JSON.stringify(sau) === JSON.stringify(truoc)) return sau;
+    truoc = sau;
+  }
+  return truoc;
+}
+
+/**
+ * Bấm “Tiếp tục” bằng JS trong trang. KHÔNG dùng `locator.click()`: nút có hoạt ảnh vô hạn
+ * (`pulse-glow`) nên Playwright có thể timeout vì nút “không bao giờ actionable”.
+ */
+async function bamTiepTuc() {
+  return page.evaluate(() => {
+    const b = [...document.querySelectorAll("button")].find((x) =>
+      (x.textContent || "").includes("Tiếp tục"),
+    );
+    if (!b || b.disabled) return false;
+    b.click();
+    return true;
+  });
+}
+
 for (const [khoa, ca] of canh) {
   for (const c of ca) {
     await page.goto(`${BASE}/lesson/${c.bai}`, {
@@ -66,69 +159,21 @@ for (const [khoa, ca] of canh) {
     await page.waitForTimeout(700);
     let toi = c.index === 0;
     for (let i = 0; i < c.index; i++) {
-      const next = await page.$('button:has-text("Tiếp tục")');
-      if (!next || (await next.isDisabled())) break;
-      await next.click();
-      await page.waitForTimeout(450);
+      let bam = await bamTiepTuc();
+      // Nút có thể đang bị khoá trong lúc chuyển slide ⇒ thử lại vài nhịp.
+      for (let lan = 0; lan < 5 && !bam; lan++) {
+        await page.waitForTimeout(400);
+        bam = await bamTiepTuc();
+      }
+      if (!bam) break;
+      await page.waitForTimeout(250);
       if (i + 1 === c.index) toi = true;
     }
     if (!toi) {
       ketQua.push({ khoa, ...c, toi: false });
       continue;
     }
-    const doDuoc = await page.evaluate(() => {
-      const the = document.querySelector(".slide-visual-card") ?? document.body;
-      // hình chính = svg nhiều <text> nhất
-      const svgs = [...the.querySelectorAll("svg")];
-      const hinh = svgs.length
-        ? svgs.reduce((a, b) =>
-            b.querySelectorAll("text").length >
-            a.querySelectorAll("text").length
-              ? b
-              : a,
-          )
-        : null;
-      const chuDeBai = hinh
-        ? [...hinh.querySelectorAll("text")].map(
-            (t) => +t.getBoundingClientRect().height.toFixed(1),
-          )
-        : [];
-      // ô bấm được TRONG hình (rect có viền đứt = ô “?”)
-      const oTrong = hinh
-        ? [...hinh.querySelectorAll("rect[stroke-dasharray]")].map((r) => {
-            const b = r.getBoundingClientRect();
-            return { w: +b.width.toFixed(1), h: +b.height.toFixed(1) };
-          })
-        : [];
-      // nút chọn của FillBar
-      const nut = [...the.parentElement.querySelectorAll("button")]
-        .filter((b) => /^Chọn /.test(b.getAttribute("aria-label") || ""))
-        .map((b) => {
-          const r = b.getBoundingClientRect();
-          return { w: +r.width.toFixed(1), h: +r.height.toFixed(1) };
-        });
-      return {
-        soChu: chuDeBai.length,
-        deBai: chuDeBai.length ? Math.max(...chuDeBai) : null,
-        caoHinh: hinh ? +hinh.getBoundingClientRect().height.toFixed(1) : null,
-        oTrong,
-        nut,
-        // khối nút = từ mép trên nút đầu đến mép dưới phần tử cuối trong hàng nút
-        caoKhoiNut: nut.length
-          ? (() => {
-              const rs = [...the.parentElement.querySelectorAll("button")]
-                .filter((b) =>
-                  /^Chọn /.test(b.getAttribute("aria-label") || ""),
-                )
-                .map((b) => b.getBoundingClientRect());
-              const tren = Math.min(...rs.map((r) => r.top));
-              const duoi = Math.max(...rs.map((r) => r.bottom));
-              // cộng cả dòng tiến độ / “Làm lại” nằm cạnh nút
-              return +(duoi - tren).toFixed(1) + 60;
-            })()
-          : 0,
-      };
-    });
+    const doDuoc = await doOnDinh();
     ketQua.push({ khoa, ...c, toi: true, ...doDuoc });
   }
 }

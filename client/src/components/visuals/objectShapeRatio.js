@@ -24,6 +24,7 @@ export const WIDE_RATIO = {
   eraser: 0.42,
   paperclip: 0.5,
   pencilCase: 0.44,
+  book: 0.72,
   giraffe: 0.5,
   zebra: 0.9,
   rabbit: 0.62,
@@ -45,6 +46,7 @@ export const TALL_RATIO = {
   fox: 0.9,
   squirrel: 0.8,
   pencil: 0.24,
+  book: 0.72,
 };
 
 const MAC_DINH_HW = 0.5;

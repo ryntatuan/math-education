@@ -376,7 +376,7 @@ export const g5c1 = {
               "1/2 = 5/10 (nhân cả tử và mẫu với 5).",
               "2/5 = 4/10; 1/4 = 25/100.",
             ],
-            rule: "Mẫu số của phân số thập phân là 10, 100, 1 000…",
+            rule: "Bé chỉ cần nhìn MẪU SỐ là biết phân số thập phân.",
           },
         },
         {

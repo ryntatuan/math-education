@@ -522,8 +522,8 @@ export const g1c10 = {
             points: [
               "Bước 1 — Gọi đúng tên hình trước (hình gì, khối gì).",
               "Bước 2 — Kể các đặc điểm: số cạnh, số đỉnh, số mặt, cạnh nào bằng nhau.",
-              "Bước 3 — Dùng ê-ke hoặc thước để KIỂM TRA đặc điểm vừa kể trên hình vẽ.",
-              "Bước 4 — Nếu đề hỏi chu vi / diện tích thì viết công thức ra, thay số rồi mới tính.",
+              "Bước 3 — Đếm lại cạnh, đếm lại đỉnh rồi so lại với đặc điểm vừa kể.",
+              "Bước 4 — Nếu đề hỏi độ dài các cạnh thì cộng lại đúng theo số cạnh rồi mới trả lời.",
             ],
           },
         },
@@ -533,9 +533,9 @@ export const g1c10 = {
             table: {
               headers: ["Điều cần nhớ", "Nội dung"],
               rows: [
-                ["Chu vi", "cộng độ dài các cạnh bao quanh"],
-                ["Diện tích hình chữ nhật", "dài × rộng (cùng đơn vị)"],
-                ["Chu vi hình vuông", "cạnh × 4"],
+                ["Đếm cạnh", "đếm đủ số cạnh của hình rồi mới gọi tên hình"],
+                ["Hình tam giác", "3 cạnh, 3 đỉnh"],
+                ["Hình vuông", "4 cạnh dài bằng nhau, 4 đỉnh"],
               ],
             },
             text: "Bảng nhớ nhanh — hình học\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?",
@@ -548,8 +548,8 @@ export const g1c10 = {
             options: [
               "Đếm cạnh và đếm đỉnh rồi so với đặc điểm từng hình",
               "Đoán bằng mắt",
-              "Đo diện tích",
-              "Tính chu vi trước",
+              "Đo độ dài các cạnh",
+              "Đếm số cạnh trước",
             ],
             answer: "Đếm cạnh và đếm đỉnh rồi so với đặc điểm từng hình",
             mascotHint:
@@ -654,9 +654,9 @@ export const g1c10 = {
             explanation:
               "Mọi bài bài toán có lời văn đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
             points: [
-              "Bước 1 — Đọc kỹ đề, gạch dưới các SỐ và từ khoá (thêm, bớt, gấp, chia đều).",
+              "Bước 1 — Đọc kỹ đề, gạch dưới các SỐ và từ khoá (thêm, gộp, bớt, cho đi).",
               "Bước 2 — Tóm tắt đề bằng hình hoặc bằng câu ngắn: đã có gì, cần tìm gì.",
-              "Bước 3 — Chọn phép tính: “thêm, gộp, tất cả” → cộng; “bớt, cho đi, còn lại” → trừ; “gấp mấy lần” → nhân.",
+              "Bước 3 — Chọn phép tính: “thêm, gộp, tất cả” → cộng; “bớt, cho đi, còn lại” → trừ.",
               "Bước 4 — Đặt tính rồi tính, rồi VIẾT ĐÁP SỐ kèm đơn vị và thử lại bằng phép ngược.",
             ],
           },
@@ -768,9 +768,9 @@ export const g1c10 = {
             explanation:
               "Mọi bài bài toán có lời văn đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
             points: [
-              "Bước 1 — Đọc kỹ đề, gạch dưới các SỐ và từ khoá (thêm, bớt, gấp, chia đều).",
+              "Bước 1 — Đọc kỹ đề, gạch dưới các SỐ và từ khoá (thêm, gộp, bớt, cho đi).",
               "Bước 2 — Tóm tắt đề bằng hình hoặc bằng câu ngắn: đã có gì, cần tìm gì.",
-              "Bước 3 — Chọn phép tính: “thêm, gộp, tất cả” → cộng; “bớt, cho đi, còn lại” → trừ; “gấp mấy lần” → nhân.",
+              "Bước 3 — Chọn phép tính: “thêm, gộp, tất cả” → cộng; “bớt, cho đi, còn lại” → trừ.",
               "Bước 4 — Đặt tính rồi tính, rồi VIẾT ĐÁP SỐ kèm đơn vị và thử lại bằng phép ngược.",
             ],
           },
@@ -974,9 +974,9 @@ export const g1c10 = {
             explanation:
               "Mọi bài bài toán có lời văn đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
             points: [
-              "Bước 1 — Đọc kỹ đề, gạch dưới các SỐ và từ khoá (thêm, bớt, gấp, chia đều).",
+              "Bước 1 — Đọc kỹ đề, gạch dưới các SỐ và từ khoá (thêm, gộp, bớt, cho đi).",
               "Bước 2 — Tóm tắt đề bằng hình hoặc bằng câu ngắn: đã có gì, cần tìm gì.",
-              "Bước 3 — Chọn phép tính: “thêm, gộp, tất cả” → cộng; “bớt, cho đi, còn lại” → trừ; “gấp mấy lần” → nhân.",
+              "Bước 3 — Chọn phép tính: “thêm, gộp, tất cả” → cộng; “bớt, cho đi, còn lại” → trừ.",
               "Bước 4 — Đặt tính rồi tính, rồi VIẾT ĐÁP SỐ kèm đơn vị và thử lại bằng phép ngược.",
             ],
           },

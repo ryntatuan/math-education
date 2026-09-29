@@ -503,15 +503,12 @@ export const g4c12 = {
             table: {
               headers: ["Bước", "Việc bé làm"],
               rows: [
-                ["Bước 1 — Gọi tên", "nói đúng tên hình/khối trước khi làm gì tiếp"],
-                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học"],
-                [
-                  "Bước 3 — Kiểm tra",
-                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt"
-                ]
+                ["Bước 1 — Nhìn kỹ", "nhìn hết cả hình, xem có mấy nhóm đồ vật"],
+                ["Bước 2 — Đếm", "đếm từng nhóm, lần lượt từ trái sang phải"],
+                ["Bước 3 — Kiểm lại", "đếm lại lần nữa rồi mới đọc số"],
               ]
             },
-            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+            text: "Ba bước đếm cho đúng — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
           }
         },
         {

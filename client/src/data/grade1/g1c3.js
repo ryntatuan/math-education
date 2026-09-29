@@ -89,7 +89,7 @@ export const g1c3 = {
                 }
               ]
             },
-            text: "Cách nhẩm nhanh cho 3 + 2\nBé đếm thêm từng bước trên tia số theo các cung nhảy.\nĐếm thêm 2 bước từ 3.\nVậy 3 + 2 = 5."
+            text: "Cách nhẩm nhanh cho 3 + 2\nBé đếm thêm từng bước theo các cung nhảy.\nĐếm thêm 2 bước từ 3.\nVậy 3 + 2 = 5."
           }
         },
         {
@@ -149,7 +149,7 @@ export const g1c3 = {
             title: "Đếm tiếp",
             explanation:
               "Bé bắt đầu từ số thứ nhất, rồi đếm thêm đúng số lần bằng số thứ hai.",
-            rule: "4 + 3: bắt đầu từ 4, đếm tiếp 5, 6, 7. Vậy 4 + 3 = 7.",
+            rule: "Mẹo nhớ: bé giữ nguyên số lớn rồi nhích thêm từng bước.",
             points: [
               "Đếm tiếp 3 bước từ 4: 5, 6, 7.",
               "Không cần đếm lại từ đầu.",
@@ -204,7 +204,7 @@ export const g1c3 = {
                 }
               ]
             },
-            text: "Cách nhẩm nhanh cho 4 + 3\nBé đếm thêm từng bước trên tia số theo các cung nhảy.\nĐếm thêm 3 bước từ 4.\nVậy 4 + 3 = 7."
+            text: "Cách nhẩm nhanh cho 4 + 3\nBé đếm thêm từng bước theo các cung nhảy.\nĐếm thêm 3 bước từ 4.\nVậy 4 + 3 = 7."
           }
         },
         {
@@ -213,9 +213,9 @@ export const g1c3 = {
             table: {
               headers: ["Bước", "Việc bé làm"],
               rows: [
-                ["Bước 1 — Đơn vị", "viết kết quả luôn kèm đơn vị"],
-                ["Bước 2 — Bậc thang", "đi xuống thì nhân, đi lên thì chia"],
-                ["Bước 3 — Kiểm lại", "lấy kết quả đổi ngược lại xem có về số ban đầu"]
+                ["Bước 1 — Đặt tính", "viết các số thẳng cột với nhau"],
+                ["Bước 2 — Tính", "tính lần lượt từ phải sang trái"],
+                ["Bước 3 — Thử lại", "kiểm lại bằng cách tính ngược lại một lần nữa"],
               ]
             },
             text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
@@ -719,9 +719,9 @@ export const g1c3 = {
             table: {
               headers: ["Bước", "Việc bé làm"],
               rows: [
-                ["Bước 1 — Đơn vị", "viết kết quả luôn kèm đơn vị"],
-                ["Bước 2 — Bậc thang", "đi xuống thì nhân, đi lên thì chia"],
-                ["Bước 3 — Kiểm lại", "lấy kết quả đổi ngược lại xem có về số ban đầu"]
+                ["Bước 1 — Đặt tính", "viết các số thẳng cột với nhau"],
+                ["Bước 2 — Tính", "tính lần lượt từ phải sang trái"],
+                ["Bước 3 — Thử lại", "kiểm lại bằng cách tính ngược lại một lần nữa"],
               ]
             },
             text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
@@ -819,9 +819,9 @@ export const g1c3 = {
             title: "Bốn bước làm một bài toán",
             explanation: "Mọi bài bài toán có lời văn đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
             points: [
-              "Bước 1 — Đọc kỹ đề, gạch dưới các SỐ và từ khoá (thêm, bớt, gấp, chia đều).",
+              "Bước 1 — Đọc kỹ đề, gạch dưới các SỐ và từ khoá (thêm, gộp, bớt, cho đi).",
               "Bước 2 — Tóm tắt đề bằng hình hoặc bằng câu ngắn: đã có gì, cần tìm gì.",
-              "Bước 3 — Chọn phép tính: “thêm, gộp, tất cả” → cộng; “bớt, cho đi, còn lại” → trừ; “gấp mấy lần” → nhân.",
+              "Bước 3 — Chọn phép tính: “thêm, gộp, tất cả” → cộng; “bớt, cho đi, còn lại” → trừ.",
               "Bước 4 — Đặt tính rồi tính, rồi VIẾT ĐÁP SỐ kèm đơn vị và thử lại bằng phép ngược."
             ]
           }
@@ -1227,7 +1227,7 @@ export const g1c3 = {
                 }
               ]
             },
-            text: "Cách nhẩm nhanh cho 5 + 3\nBé đếm thêm từng bước trên tia số theo các cung nhảy.\nĐếm thêm 3 bước từ 5.\nVậy 5 + 3 = 8."
+            text: "Cách nhẩm nhanh cho 5 + 3\nBé đếm thêm từng bước theo các cung nhảy.\nĐếm thêm 3 bước từ 5.\nVậy 5 + 3 = 8."
           }
         },
         {
@@ -1290,7 +1290,7 @@ export const g1c3 = {
             title: "Tìm số còn thiếu",
             explanation:
               "Bé đếm từ số đã biết lên đến kết quả xem cần thêm mấy bước.",
-            rule: "3 + ? = 7: từ 3 đếm tiếp 4, 5, 6, 7 — thêm 4 bước. Vậy số còn thiếu là 4.",
+            rule: "Ô trống chính là khoảng cách giữa hai số đã cho.",
             points: [
               "Đếm tiếp từ số đã biết đến kết quả.",
               "Số bước đếm được chính là số còn thiếu.",

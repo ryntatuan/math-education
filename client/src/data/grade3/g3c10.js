@@ -704,7 +704,7 @@ export const g3c10 = {
             "badge": "Luyện Tập",
             "title": "Nhân chia bốn chữ số",
             "explanation": "Nhân từ phải sang trái, chia từ trái sang phải. Số dư luôn bé hơn số chia.",
-            "rule": "3 215 × 3 = 9 645. 8 425 : 4 = 2 106 (dư 1).",
+            "rule": "3 215 × 3 và 8 425 : 4 — bé đặt tính rồi làm từng bước, đừng nhẩm tắt.",
             "points": [
               "5×3=15 viết 5 nhớ 1; 1×3+1=4; 2×3=6; 3×3=9. Kết quả 9 645.",
               "8 425 : 4 = 2 106 dư 1 vì 2 106 × 4 = 8 424.",

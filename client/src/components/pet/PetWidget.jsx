@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Sparkles,
@@ -116,6 +116,36 @@ export default function PetWidget({ compact = false }) {
     setTimeout(() => setLocalMsg({ text: "", type: "" }), 3500);
   };
 
+  const cardRef = useRef(null);
+
+  /**
+   * BẮN PHÁO NGAY TẠI THẺ THÚ CƯNG — không bắn giữa màn hình.
+   *
+   * 🔴 LÝ DO (người dùng báo 2026-09-29): *“phần pháo hoa ở giữa màn hình trong khi box thú ở góc
+   * nhìn rất kỳ, nó chỉ phù hợp với màn hình mobile, còn màn hình laptop thì bị lệch không đẹp”*.
+   * Nguyên nhân: hàm dùng chung `fireConfetti` để `origin: { y: 0.6 }` = giữa–dưới KHUNG NHÌN; trên
+   * laptop thẻ thú nằm ở CỘT PHẢI nên pháo nổ cách xa thẻ. Nay lấy TÂM THẺ theo tỉ lệ khung nhìn
+   * (`canvas-confetti` nhận `origin` theo tỉ lệ 0..1) ⇒ pháo nổ đúng chỗ, cả mobile lẫn laptop.
+   *
+   * Toả độ được KẸP trong 0,02…0,98 để thẻ sát mép màn hình vẫn không bắn ra ngoài khung.
+   */
+  const fireFromPet = (options = {}) => {
+    const el = cardRef.current;
+    if (!el || typeof window === "undefined") return fireConfetti(options);
+    const box = el.getBoundingClientRect();
+    const clamp = (v) => Math.min(Math.max(v, 0.02), 0.98);
+    return fireConfetti({
+      ...options,
+      origin: {
+        x: clamp((box.left + box.width / 2) / window.innerWidth),
+        y: clamp((box.top + box.height / 2) / window.innerHeight),
+      },
+      // Bắn tại chỗ nên bay chậm và hẹp hơn: pháo gọn trong thẻ thay vì phun khắp trang.
+      startVelocity: 30,
+      spread: Math.max(38, Math.round((options.spread ?? 60) * 0.75)),
+    });
+  };
+
   const handleFeed = (foodId) => {
     const res = feedPet(foodId);
     if (res.error) {
@@ -123,7 +153,7 @@ export default function PetWidget({ compact = false }) {
       showMessage(`❌ ${res.error}`, "error");
     } else {
       soundManager.playCoin();
-      fireConfetti({ particleCount: 35, spread: 50 });
+      fireFromPet({ particleCount: 35, spread: 50 });
       showMessage(
         res.levelUp
           ? `Lên cấp ${level + 1}! +${res.expGained} XP`
@@ -139,7 +169,7 @@ export default function PetWidget({ compact = false }) {
       showMessage(`❌ ${res.error}`, "error");
     } else {
       soundManager.playFanfare();
-      fireConfetti({ particleCount: 50, spread: 60 });
+      fireFromPet({ particleCount: 50, spread: 60 });
       showMessage(
         res.levelUp
           ? `Lên cấp ${level + 1}! +${res.expGained} XP`
@@ -155,7 +185,7 @@ export default function PetWidget({ compact = false }) {
       showMessage(`❌ ${res.error}`, "error");
     } else {
       soundManager.playFanfare();
-      fireConfetti({ particleCount: 100, spread: 80 });
+      fireFromPet({ particleCount: 100, spread: 80 });
       // Hiện MODAL giữa màn hình để bé thấy rõ vừa nhận được phần thưởng gì
       setGiftModal({ multiplier: res.multiplier, duration: res.duration });
     }
@@ -182,7 +212,7 @@ export default function PetWidget({ compact = false }) {
     setShowAdoptModal(false);
     setAdoptError("");
     soundManager.playFanfare();
-    fireConfetti({ particleCount: 80, spread: 70 });
+    fireFromPet({ particleCount: 80, spread: 70 });
   };
 
   const handleStartRename = () => {
@@ -206,6 +236,7 @@ export default function PetWidget({ compact = false }) {
   if (!hasPet || isGuest) {
     return (
       <div
+        ref={cardRef}
         className={`pet-widget-card adopt-teaser ${compact ? "compact-teaser" : ""}`}
       >
         {/* Animated background stars */}
@@ -461,6 +492,7 @@ export default function PetWidget({ compact = false }) {
   // Pet already adopted: Interactive Companion Widget
   return (
     <div
+      ref={cardRef}
       className={`pet-widget-card active-pet ${compact ? "compact-pet" : ""}`}
     >
       {localMsg.text && (

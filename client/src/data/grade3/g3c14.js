@@ -334,7 +334,7 @@ export const g3c14 = {
             "badge": "Luyện Tập",
             "title": "Nhân chia năm chữ số",
             "explanation": "Nhân từ phải sang trái, chia từ trái sang phải. Số dư luôn bé hơn số chia.",
-            "rule": "13 241 × 3 = 39 723. 47 125 : 5 = 9 425.",
+            "rule": "13 241 × 3 và 47 125 : 5 — bé thử lại kết quả trước khi ghi đáp số.",
             "points": [
               "4×3=12 viết 2 nhớ 1; 1×3+1=4; ... Kết quả 39 723.",
               "47 125 : 5 = 9 425 (chia hết).",

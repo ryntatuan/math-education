@@ -159,7 +159,7 @@ export const g5c11 = {
               "Phần lớn hơn thì chiếm tỉ số phần trăm lớn hơn.",
               "Đọc số liệu bằng cách xem phần được tô màu và chú thích.",
             ],
-            rule: "Tổng tỉ số phần trăm của các phần bằng 100%.",
+            rule: "Bé nhìn vào chú thích để biết mỗi phần ứng với bao nhiêu phần trăm.",
           },
         },
         {
@@ -309,7 +309,7 @@ export const g5c11 = {
               ],
               label: "Tổng số lần ghi được của các mặt bằng 20"
             },
-            text: "Bảng số liệu của bài — bé đọc theo HÀNG, không đọc theo cột\nMuốn biết “tất cả”, “nhiều nhất”, “ít nhất” thì phải cộng hoặc so các con số.\nVí dụ: 1 + 3 + 320 = 324."
+            text: "Bảng số liệu của bài — bé đọc theo HÀNG, không đọc theo cột\nMuốn biết “tất cả”, “nhiều nhất”, “ít nhất” thì phải cộng hoặc so các con số.\nVí dụ: 3 + 5 + 4 = 12."
           }
         },
         {

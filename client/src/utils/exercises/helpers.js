@@ -101,7 +101,59 @@ export function randomLongRoute(rows, cols, minCells, maxCells, runs = 80) {
   return [];
 }
 
+/** Ô có số THOẢ LUẬT hay không (đi được hay không) — dùng chung cho phép kiểm ngõ cụt. */
+function isOpenByRule(value, rule) {
+  return rule.op === "<"
+    ? Number(value) < rule.value
+    : Number(value) > rule.value;
+}
+
+/**
+ * Bảng có ÍT NHẤT MỘT NGÕ CỤT không? (ô đi được — TRỪ ô xuất phát và ô đích — chỉ có ĐÚNG
+ * MỘT ô đi được bên cạnh.)
+ *
+ * 🔴 VÌ SAO PHẢI KIỂM LẠI SAU KHI SINH. Bước “chắc chắn có ngõ cụt” trong
+ * `buildNumberMazeOnce` chỉ mở được ô cụt KHI còn ô như thế; bảng đã kín thì không còn ⇒
+ * ra bảng KHÔNG có ngõ cụt. Đã đo thật bằng `scratch/kiem-tra-me-cung.mjs` trên 2000 bảng:
+ * **2 bảng thiếu ngõ cụt** (lớp 2 bảng 313, lớp 3 bảng 105 — cổng báo đỏ).
+ */
+function hasDeadEnd(grid, rule) {
+  const rows = grid.length;
+  const cols = grid[0].length;
+  const mo = (r, c) =>
+    r >= 0 && c >= 0 && r < rows && c < cols && isOpenByRule(grid[r][c], rule);
+  for (let r = 0; r < rows; r++)
+    for (let c = 0; c < cols; c++) {
+      if (!mo(r, c)) continue;
+      if (r === 0 && c === 0) continue; // ô xuất phát không tính
+      if (r === rows - 1 && c === cols - 1) continue; // ô đích không tính
+      let hang = 0;
+      for (const [dr, dc] of [
+        [1, 0],
+        [-1, 0],
+        [0, 1],
+        [0, -1],
+      ])
+        if (mo(r + dr, c + dc)) hang++;
+      if (hang === 1) return true;
+    }
+  return false;
+}
+
+/**
+ * MÊ CUNG SỐ — sinh bảng và BẢO ĐẢM bảng có ngõ cụt (xem `hasDeadEnd`).
+ * Tỉ lệ bảng thiếu ngõ cụt đo được ~0,1% ⇒ thử lại 30 lần là dư sức.
+ */
 export function buildNumberMaze(rows, cols, min, max, rule) {
+  let bang = null;
+  for (let attempt = 0; attempt < 30; attempt++) {
+    bang = buildNumberMazeOnce(rows, cols, min, max, rule);
+    if (hasDeadEnd(bang.grid, rule)) return bang;
+  }
+  return bang;
+}
+
+function buildNumberMazeOnce(rows, cols, min, max, rule) {
   const inGrid = (r, c) => r >= 0 && c >= 0 && r < rows && c < cols;
   const key = (r, c) => `${r}-${c}`;
   const STEPS = [

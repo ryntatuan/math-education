@@ -148,7 +148,10 @@ describe("dữ liệu bài học — không có lỗi hỏng âm thầm", () => 
     const { bai, slide } = dem();
     expect(GRADES.length).toBe(5);
     expect(bai).toBeGreaterThanOrEqual(460);
-    expect(slide).toBeGreaterThanOrEqual(4987);
+    // 🔴 Hạ ngưỡng 4987 → 4900 (2026-09-29): bỏ ~47 slide dạy kiến thức CHƯA HỌC (dấu so sánh,
+    //    ê-ke, bậc thang đơn vị, nhân/chia sớm) là sửa nội dung ĐÚNG, không phải xoá nhầm.
+    //    Ngưỡng vẫn đủ cao để bắt được việc xoá hàng loạt.
+    expect(slide).toBeGreaterThanOrEqual(4900);
   });
 
   it("mọi khoá trong slide đều là khoá đã biết (không gõ sai tên khoá hình)", () => {

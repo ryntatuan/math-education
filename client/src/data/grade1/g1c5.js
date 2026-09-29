@@ -27,7 +27,7 @@ export const g1c5 = {
             title: "Các số trong phạm vi 10",
             explanation:
               "Bé nhớ lại: đếm xuôi, đếm ngược, so sánh số và tách gộp số.",
-            rule: "Dãy số: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10. Số liền sau 7 là 8; số liền trước 7 là 6.",
+            rule: "Dãy số: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10. Đếm xuôi 0 → 10 rồi đếm ngược 10 → 0 cho thật chắc.",
             points: [
               "Đếm ngược từ 10: 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0.",
               "10 gồm 7 và 3; gồm 6 và 4.",
@@ -55,10 +55,10 @@ export const g1c5 = {
               left: 7,
               right: 3,
               sign: "+",
-              remember: true
+              remember: true,
             },
-            text: "Bé tự đặt tính: 7 + 3\nhàng đơn vị 7 + 3 = 10, viết 0 nhớ 1\ncòn nhớ 1 ở hàng cao hơn, viết 1\nVậy 7 + 3 = 10."
-          }
+            text: "Bé tự đặt tính: 7 + 3\nhàng đơn vị 7 + 3 = 10, viết 0 nhớ 1\ncòn nhớ 1 ở hàng cao hơn, viết 1\nVậy 7 + 3 = 10.",
+          },
         },
         {
           type: "quiz",
@@ -66,13 +66,13 @@ export const g1c5 = {
             question: "2 + 8 bằng bao nhiêu?",
             options: [9, 10, 11, 12],
             answer: 10,
-            mascotHint: "hàng đơn vị 2 + 8 = 10, viết 0 nhớ 1. Kết quả 10."
-          }
+            mascotHint: "hàng đơn vị 2 + 8 = 10, viết 0 nhớ 1. Kết quả 10.",
+          },
         },
         {
           type: "quiz",
           content: {
-            question: "Số liền sau của 7 là số nào?",
+            question: "Bé đếm tiếp: ngay sau 7 thì đến số nào?",
             options: [6, 8, 9, 10],
             answer: 8,
             mascotHint: "7 thêm 1 được 8.",
@@ -135,7 +135,7 @@ export const g1c5 = {
             options: [1, 2, 3],
             answer: 2,
             mascotHint:
-              "Chia 3 thành 2 và 1 — chuồng A nhiều hơn nên có 2 bạn.",
+              "Tách 3 thành 2 và 1 — chuồng A nhiều hơn nên có 2 bạn.",
           },
         },
         {
@@ -144,7 +144,7 @@ export const g1c5 = {
             title: "Bé nhớ rất tốt:",
             points: [
               "Các số từ 0 đến 10.",
-              "Số liền sau của 7 là 8; 10 gồm 7 và 3.",
+              "Đếm tiếp sau 7 là 8; 10 gồm 7 và 3.",
             ],
             mascotMood: "proud",
           },
@@ -205,10 +205,10 @@ export const g1c5 = {
             cotTinh: {
               left: 9,
               right: 1,
-              sign: "−"
+              sign: "−",
             },
-            text: "Bé tự đặt tính: 9 − 1\nhàng đơn vị 9 − 1 = 8, viết 8\nVậy 9 − 1 = 8."
-          }
+            text: "Bé tự đặt tính: 9 − 1\nhàng đơn vị 9 − 1 = 8, viết 8\nVậy 9 − 1 = 8.",
+          },
         },
         {
           type: "quiz",
@@ -216,8 +216,8 @@ export const g1c5 = {
             question: "8 − 1 bằng bao nhiêu?",
             options: [6, 7, 8, 9],
             answer: 7,
-            mascotHint: "hàng đơn vị 8 − 1 = 7, viết 7. Kết quả 7."
-          }
+            mascotHint: "hàng đơn vị 8 − 1 = 7, viết 7. Kết quả 7.",
+          },
         },
         {
           type: "quiz",
@@ -322,10 +322,10 @@ export const g1c5 = {
               left: 4,
               right: 5,
               sign: "+",
-              remember: true
+              remember: true,
             },
-            text: "Bé tự đặt tính: 4 + 5\nhàng đơn vị 4 + 5 = 9, viết 9\nVậy 4 + 5 = 9."
-          }
+            text: "Bé tự đặt tính: 4 + 5\nhàng đơn vị 4 + 5 = 9, viết 9\nVậy 4 + 5 = 9.",
+          },
         },
         {
           type: "quiz",
@@ -333,8 +333,8 @@ export const g1c5 = {
             question: "1 + 7 bằng bao nhiêu?",
             options: [7, 8, 9, 10],
             answer: 8,
-            mascotHint: "hàng đơn vị 1 + 7 = 8, viết 8. Kết quả 8."
-          }
+            mascotHint: "hàng đơn vị 1 + 7 = 8, viết 8. Kết quả 8.",
+          },
         },
         {
           type: "quiz",
@@ -416,14 +416,15 @@ export const g1c5 = {
           content: {
             badge: "Cách Học",
             title: "Bốn bước làm một bài toán",
-            explanation: "Mọi bài bài toán có lời văn đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            explanation:
+              "Mọi bài bài toán có lời văn đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
             points: [
-              "Bước 1 — Đọc kỹ đề, gạch dưới các SỐ và từ khoá (thêm, bớt, gấp, chia đều).",
+              "Bước 1 — Đọc kỹ đề, gạch dưới các SỐ và từ khoá (thêm, gộp, bớt, cho đi).",
               "Bước 2 — Tóm tắt đề bằng hình hoặc bằng câu ngắn: đã có gì, cần tìm gì.",
-              "Bước 3 — Chọn phép tính: “thêm, gộp, tất cả” → cộng; “bớt, cho đi, còn lại” → trừ; “gấp mấy lần” → nhân.",
-              "Bước 4 — Đặt tính rồi tính, rồi VIẾT ĐÁP SỐ kèm đơn vị và thử lại bằng phép ngược."
-            ]
-          }
+              "Bước 3 — Chọn phép tính: “thêm, gộp, tất cả” → cộng; “bớt, cho đi, còn lại” → trừ.",
+              "Bước 4 — Đặt tính rồi tính, rồi VIẾT ĐÁP SỐ kèm đơn vị và thử lại bằng phép ngược.",
+            ],
+          },
         },
         {
           type: "visual",
@@ -433,11 +434,11 @@ export const g1c5 = {
               rows: [
                 ["Đơn vị", "đáp số luôn kèm đơn vị như con, quả, kg, cm"],
                 ["Kiểm tra", "cộng thì lấy kết quả trừ đi một số hạng"],
-                ["Câu trả lời", "viết đủ câu, không chỉ ghi số"]
-              ]
+                ["Câu trả lời", "viết đủ câu, không chỉ ghi số"],
+              ],
             },
-            text: "Bảng nhớ nhanh — bài toán có lời văn\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
-          }
+            text: "Bảng nhớ nhanh — bài toán có lời văn\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?",
+          },
         },
         {
           type: "quiz",
@@ -447,11 +448,12 @@ export const g1c5 = {
               "Đọc kỹ đề và gạch dưới các số đã cho",
               "Viết ngay đáp số",
               "Đoán kết quả",
-              "Đặt tính trước khi đọc đề"
+              "Đặt tính trước khi đọc đề",
             ],
             answer: "Đọc kỹ đề và gạch dưới các số đã cho",
-            mascotHint: "Chưa đọc kỹ đề thì chưa biết đề cho gì, hỏi gì — mọi bước sau đều dễ sai."
-          }
+            mascotHint:
+              "Chưa đọc kỹ đề thì chưa biết đề cho gì, hỏi gì — mọi bước sau đều dễ sai.",
+          },
         },
         {
           type: "quiz",
@@ -586,15 +588,15 @@ export const g1c5 = {
           type: "concept",
           content: {
             badge: "Cách Học",
-            title: "Bốn bước làm một bài toán",
-            explanation: "Mọi bài tính toán đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            title: "Ba bước quan sát vị trí",
+            explanation:
+              "Mọi bài về vị trí đều đi theo cùng một đường. Bé làm đúng thứ tự thì không nói sai.",
             points: [
-              "Bước 1 — Đọc đề và xác định phép tính cần làm.",
-              "Bước 2 — Đặt tính thẳng cột: hàng đơn vị dưới hàng đơn vị, hàng chục dưới hàng chục.",
-              "Bước 3 — Tính từ PHẢI sang TRÁI; nhớ ghi hoặc xoá số nhớ ngay khi làm xong một hàng.",
-              "Bước 4 — Thử lại bằng phép ngược hoặc bằng ước lượng xem kết quả có hợp lý không."
-            ]
-          }
+              "Bước 1 — Xác định vật nào được hỏi trong tranh.",
+              "Bước 2 — Nói vị trí của vật đó so với vật mốc: trên / dưới, trái / phải, trước / sau.",
+              "Bước 3 — Nói lại cả câu cho đủ ý rồi mới trả lời.",
+            ],
+          },
         },
         {
           type: "visual",
@@ -602,27 +604,13 @@ export const g1c5 = {
             table: {
               headers: ["Điều cần nhớ", "Nội dung"],
               rows: [
-                ["Cộng", "lấy kết quả trừ đi một số hạng để kiểm tra"],
-                ["Trừ", "lấy hiệu cộng số trừ phải được số bị trừ"],
-                ["Thứ tự", "luôn làm từ hàng đơn vị trước"]
-              ]
+                ["Trên – dưới", "nói vật nào ở phía trên, vật nào ở phía dưới"],
+                ["Trái – phải", "nói theo hướng bé đang nhìn"],
+                ["Trước – sau", "nói vật nào ở phía trước mặt bé"],
+              ],
             },
-            text: "Bảng nhớ nhanh — tính toán\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
-          }
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "Khi đặt tính rồi tính, bé bắt đầu từ hàng nào?",
-            options: [
-              "Hàng đơn vị (từ phải sang trái)",
-              "Hàng cao nhất (trái sang phải)",
-              "Hàng nào cũng được",
-              "Hàng chục trước"
-            ],
-            answer: "Hàng đơn vị (từ phải sang trái)",
-            mascotHint: "Tính từ phải sang trái thì số nhớ mới kịp cộng vào hàng bên trái."
-          }
+            text: "Bảng nhớ nhanh — vị trí\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?",
+          },
         },
         {
           type: "quiz",
@@ -643,6 +631,15 @@ export const g1c5 = {
               "Đèn học ở trên bàn, cặp sách ở dưới bàn.",
             ],
             mascotMood: "proud",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Bé ngồi trong lớp, bảng ở phía nào của bé?",
+            options: ["Phía trước", "Phía sau", "Bên trái", "Bên phải"],
+            answer: "Phía trước",
+            mascotHint: "Bé nhìn lên bảng nên bảng ở phía trước mặt bé.",
           },
         },
       ],
@@ -698,10 +695,10 @@ export const g1c5 = {
               left: 6,
               right: 3,
               sign: "+",
-              remember: true
+              remember: true,
             },
-            text: "Bé tự đặt tính: 6 + 3\nhàng đơn vị 6 + 3 = 9, viết 9\nVậy 6 + 3 = 9."
-          }
+            text: "Bé tự đặt tính: 6 + 3\nhàng đơn vị 6 + 3 = 9, viết 9\nVậy 6 + 3 = 9.",
+          },
         },
         {
           type: "quiz",
@@ -709,8 +706,8 @@ export const g1c5 = {
             question: "1 + 8 bằng bao nhiêu?",
             options: [8, 9, 10, 11],
             answer: 9,
-            mascotHint: "hàng đơn vị 1 + 8 = 9, viết 9. Kết quả 9."
-          }
+            mascotHint: "hàng đơn vị 1 + 8 = 9, viết 9. Kết quả 9.",
+          },
         },
         {
           type: "quiz",

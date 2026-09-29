@@ -56,7 +56,7 @@ export const g1c2 = {
             solid: {
               kind: "cuboid"
             },
-            text: "khối hộp chữ nhật bé học hôm nay có gì đặc biệt?\n· 6 mặt, mỗi mặt là hình chữ nhật\n· 8 đỉnh\nBé đếm mặt, đếm đỉnh, đếm cạnh ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé."
+            text: "khối hộp chữ nhật bé học hôm nay có gì đặc biệt?\n· 6 mặt, mỗi mặt là hình chữ nhật\n· 8 đỉnh\nBé đếm mặt, đếm đỉnh, đếm cạnh ngay trên hình vẽ rồi đọc lại đặc điểm trên nhé."
           }
         },
         {
@@ -79,15 +79,12 @@ export const g1c2 = {
             table: {
               headers: ["Bước", "Việc bé làm"],
               rows: [
-                ["Bước 1 — Gọi tên", "nói đúng tên hình/khối trước khi làm gì tiếp"],
-                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học"],
-                [
-                  "Bước 3 — Kiểm tra",
-                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt"
-                ]
+                ["Bước 1 — Gọi tên", "nhìn hình rồi nói đúng tên hình (hoặc khối)"],
+                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi đọc lại hai đặc điểm của hình"],
+                ["Bước 3 — Kiểm lại", "đếm lại lần nữa bằng mắt, không đoán"],
               ]
             },
-            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+            text: "Ba bước làm bài hình — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
           }
         },
         {
@@ -95,12 +92,12 @@ export const g1c2 = {
           content: {
             question: "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
             options: [
-              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Kiểm lại một lần nữa theo điều cần nhớ",
               "Nộp bài luôn cho nhanh",
               "Đoán lại một lần nữa"
             ],
-            answer: "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
-            mascotHint: "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng."
+            answer: "Kiểm lại một lần nữa theo điều cần nhớ",
+            mascotHint: "Kiểm lại một lần nữa rồi mới nộp bài — kiểm lại là thói quen của người học giỏi."
           }
         },
         {
@@ -218,7 +215,7 @@ export const g1c2 = {
               vertices: true,
               vertexLabel: "đỉnh"
             },
-            text: "hình vuông bé học hôm nay có gì đặc biệt?\n· 4 cạnh dài bằng nhau\n· 4 góc vuông\nBé đếm cạnh, đếm đỉnh ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé."
+            text: "hình vuông bé học hôm nay có gì đặc biệt?\n· 4 cạnh dài bằng nhau\nBé đếm cạnh, đếm đỉnh ngay trên hình vẽ rồi đọc lại đặc điểm trên nhé."
           }
         },
         {
@@ -229,8 +226,8 @@ export const g1c2 = {
             explanation: "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của hình vuông.",
             points: [
               "hình vuông có 4 cạnh dài bằng nhau.",
-              "hình vuông có 4 góc vuông.",
-              "hình vuông có hai đường chéo bằng nhau.",
+              "hình vuông có 4 cạnh dài bằng nhau.",
+              "hình vuông có 4 đỉnh.",
               "Cách kiểm tra: bé đếm cạnh, đếm đỉnh; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình."
             ]
           }
@@ -241,15 +238,12 @@ export const g1c2 = {
             table: {
               headers: ["Bước", "Việc bé làm"],
               rows: [
-                ["Bước 1 — Gọi tên", "nói đúng tên hình/khối trước khi làm gì tiếp"],
-                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học"],
-                [
-                  "Bước 3 — Kiểm tra",
-                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt"
-                ]
+                ["Bước 1 — Gọi tên", "nhìn hình rồi nói đúng tên hình (hoặc khối)"],
+                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi đọc lại hai đặc điểm của hình"],
+                ["Bước 3 — Kiểm lại", "đếm lại lần nữa bằng mắt, không đoán"],
               ]
             },
-            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+            text: "Ba bước làm bài hình — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
           }
         },
         {
@@ -257,12 +251,12 @@ export const g1c2 = {
           content: {
             question: "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
             options: [
-              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Kiểm lại một lần nữa theo điều cần nhớ",
               "Nộp bài luôn cho nhanh",
               "Đoán lại một lần nữa"
             ],
-            answer: "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
-            mascotHint: "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng."
+            answer: "Kiểm lại một lần nữa theo điều cần nhớ",
+            mascotHint: "Kiểm lại một lần nữa rồi mới nộp bài — kiểm lại là thói quen của người học giỏi."
           }
         },
         {
@@ -276,13 +270,13 @@ export const g1c2 = {
               "hình khối trụ"
             ],
             answer: "hình vuông",
-            mascotHint: "hình vuông: 4 cạnh dài bằng nhau · 4 góc vuông · hai đường chéo bằng nhau."
+            mascotHint: "hình vuông: 4 cạnh dài bằng nhau · 4 đỉnh."
           }
         },
         {
           type: "quiz",
           content: {
-            question: "Trong bài hôm nay có hình vuông và hình tròn. Hình nào có 4 góc vuông?",
+            question: "Trong bài hôm nay có hình vuông và hình tròn. Hình nào có 4 cạnh dài bằng nhau?",
             options: [
               "hình vuông",
               "hình khối lập phương",
@@ -290,7 +284,7 @@ export const g1c2 = {
               "hình khối trụ"
             ],
             answer: "hình vuông",
-            mascotHint: "Đáp án là hình vuông: 4 cạnh dài bằng nhau · 4 góc vuông · hai đường chéo bằng nhau."
+            mascotHint: "Đáp án là hình vuông: 4 cạnh dài bằng nhau · 4 đỉnh."
           }
         },
         {
@@ -367,7 +361,7 @@ export const g1c2 = {
               vertices: true,
               vertexLabel: "đỉnh"
             },
-            text: "hình tam giác bé học hôm nay có gì đặc biệt?\n· 3 cạnh\n· 3 đỉnh\nBé đếm cạnh, đếm đỉnh ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé."
+            text: "hình tam giác bé học hôm nay có gì đặc biệt?\n· 3 cạnh\n· 3 đỉnh\nBé đếm cạnh, đếm đỉnh ngay trên hình vẽ rồi đọc lại đặc điểm trên nhé."
           }
         },
         {
@@ -390,15 +384,12 @@ export const g1c2 = {
             table: {
               headers: ["Bước", "Việc bé làm"],
               rows: [
-                ["Bước 1 — Gọi tên", "nói đúng tên hình/khối trước khi làm gì tiếp"],
-                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học"],
-                [
-                  "Bước 3 — Kiểm tra",
-                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt"
-                ]
+                ["Bước 1 — Gọi tên", "nhìn hình rồi nói đúng tên hình (hoặc khối)"],
+                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi đọc lại hai đặc điểm của hình"],
+                ["Bước 3 — Kiểm lại", "đếm lại lần nữa bằng mắt, không đoán"],
               ]
             },
-            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+            text: "Ba bước làm bài hình — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
           }
         },
         {
@@ -406,12 +397,12 @@ export const g1c2 = {
           content: {
             question: "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
             options: [
-              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Kiểm lại một lần nữa theo điều cần nhớ",
               "Nộp bài luôn cho nhanh",
               "Đoán lại một lần nữa"
             ],
-            answer: "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
-            mascotHint: "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng."
+            answer: "Kiểm lại một lần nữa theo điều cần nhớ",
+            mascotHint: "Kiểm lại một lần nữa rồi mới nộp bài — kiểm lại là thói quen của người học giỏi."
           }
         },
         {
@@ -500,7 +491,7 @@ export const g1c2 = {
             solid: {
               kind: "cuboid"
             },
-            text: "khối hộp chữ nhật bé học hôm nay có gì đặc biệt?\n· 6 mặt, mỗi mặt là hình chữ nhật\n· 8 đỉnh\nBé đếm mặt, đếm đỉnh, đếm cạnh ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé."
+            text: "khối hộp chữ nhật bé học hôm nay có gì đặc biệt?\n· 6 mặt, mỗi mặt là hình chữ nhật\n· 8 đỉnh\nBé đếm mặt, đếm đỉnh, đếm cạnh ngay trên hình vẽ rồi đọc lại đặc điểm trên nhé."
           }
         },
         {
@@ -523,15 +514,12 @@ export const g1c2 = {
             table: {
               headers: ["Bước", "Việc bé làm"],
               rows: [
-                ["Bước 1 — Gọi tên", "nói đúng tên hình/khối trước khi làm gì tiếp"],
-                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học"],
-                [
-                  "Bước 3 — Kiểm tra",
-                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt"
-                ]
+                ["Bước 1 — Gọi tên", "nhìn hình rồi nói đúng tên hình (hoặc khối)"],
+                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi đọc lại hai đặc điểm của hình"],
+                ["Bước 3 — Kiểm lại", "đếm lại lần nữa bằng mắt, không đoán"],
               ]
             },
-            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+            text: "Ba bước làm bài hình — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
           }
         },
         {
@@ -539,12 +527,12 @@ export const g1c2 = {
           content: {
             question: "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
             options: [
-              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Kiểm lại một lần nữa theo điều cần nhớ",
               "Nộp bài luôn cho nhanh",
               "Đoán lại một lần nữa"
             ],
-            answer: "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
-            mascotHint: "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng."
+            answer: "Kiểm lại một lần nữa theo điều cần nhớ",
+            mascotHint: "Kiểm lại một lần nữa rồi mới nộp bài — kiểm lại là thói quen của người học giỏi."
           }
         },
         {
@@ -640,7 +628,7 @@ export const g1c2 = {
             solid: {
               kind: "cuboid"
             },
-            text: "khối hộp chữ nhật bé học hôm nay có gì đặc biệt?\n· 6 mặt, mỗi mặt là hình chữ nhật\n· 8 đỉnh\nBé đếm mặt, đếm đỉnh, đếm cạnh ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé."
+            text: "khối hộp chữ nhật bé học hôm nay có gì đặc biệt?\n· 6 mặt, mỗi mặt là hình chữ nhật\n· 8 đỉnh\nBé đếm mặt, đếm đỉnh, đếm cạnh ngay trên hình vẽ rồi đọc lại đặc điểm trên nhé."
           }
         },
         {
@@ -663,15 +651,12 @@ export const g1c2 = {
             table: {
               headers: ["Bước", "Việc bé làm"],
               rows: [
-                ["Bước 1 — Gọi tên", "nói đúng tên hình/khối trước khi làm gì tiếp"],
-                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học"],
-                [
-                  "Bước 3 — Kiểm tra",
-                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt"
-                ]
+                ["Bước 1 — Gọi tên", "nhìn hình rồi nói đúng tên hình (hoặc khối)"],
+                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi đọc lại hai đặc điểm của hình"],
+                ["Bước 3 — Kiểm lại", "đếm lại lần nữa bằng mắt, không đoán"],
               ]
             },
-            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+            text: "Ba bước làm bài hình — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
           }
         },
         {
@@ -679,12 +664,12 @@ export const g1c2 = {
           content: {
             question: "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
             options: [
-              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Kiểm lại một lần nữa theo điều cần nhớ",
               "Nộp bài luôn cho nhanh",
               "Đoán lại một lần nữa"
             ],
-            answer: "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
-            mascotHint: "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng."
+            answer: "Kiểm lại một lần nữa theo điều cần nhớ",
+            mascotHint: "Kiểm lại một lần nữa rồi mới nộp bài — kiểm lại là thói quen của người học giỏi."
           }
         },
         {
@@ -910,7 +895,7 @@ export const g1c2 = {
               vertices: true,
               vertexLabel: "đỉnh"
             },
-            text: "hình vuông bé học hôm nay có gì đặc biệt?\n· 4 cạnh dài bằng nhau\n· 4 góc vuông\nBé đếm cạnh, đếm đỉnh ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé."
+            text: "hình vuông bé học hôm nay có gì đặc biệt?\n· 4 cạnh dài bằng nhau\nBé đếm cạnh, đếm đỉnh ngay trên hình vẽ rồi đọc lại đặc điểm trên nhé."
           }
         },
         {
@@ -921,8 +906,8 @@ export const g1c2 = {
             explanation: "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của hình vuông.",
             points: [
               "hình vuông có 4 cạnh dài bằng nhau.",
-              "hình vuông có 4 góc vuông.",
-              "hình vuông có hai đường chéo bằng nhau.",
+              "hình vuông có 4 cạnh dài bằng nhau.",
+              "hình vuông có 4 đỉnh.",
               "Cách kiểm tra: bé đếm cạnh, đếm đỉnh; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình."
             ]
           }
@@ -933,15 +918,12 @@ export const g1c2 = {
             table: {
               headers: ["Bước", "Việc bé làm"],
               rows: [
-                ["Bước 1 — Gọi tên", "nói đúng tên hình/khối trước khi làm gì tiếp"],
-                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học"],
-                [
-                  "Bước 3 — Kiểm tra",
-                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt"
-                ]
+                ["Bước 1 — Gọi tên", "nhìn hình rồi nói đúng tên hình (hoặc khối)"],
+                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi đọc lại hai đặc điểm của hình"],
+                ["Bước 3 — Kiểm lại", "đếm lại lần nữa bằng mắt, không đoán"],
               ]
             },
-            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+            text: "Ba bước làm bài hình — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
           }
         },
         {
@@ -949,12 +931,12 @@ export const g1c2 = {
           content: {
             question: "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
             options: [
-              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Kiểm lại một lần nữa theo điều cần nhớ",
               "Nộp bài luôn cho nhanh",
               "Đoán lại một lần nữa"
             ],
-            answer: "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
-            mascotHint: "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng."
+            answer: "Kiểm lại một lần nữa theo điều cần nhớ",
+            mascotHint: "Kiểm lại một lần nữa rồi mới nộp bài — kiểm lại là thói quen của người học giỏi."
           }
         },
         {
@@ -968,13 +950,13 @@ export const g1c2 = {
               "hình khối trụ"
             ],
             answer: "hình vuông",
-            mascotHint: "hình vuông: 4 cạnh dài bằng nhau · 4 góc vuông · hai đường chéo bằng nhau."
+            mascotHint: "hình vuông: 4 cạnh dài bằng nhau · 4 đỉnh."
           }
         },
         {
           type: "quiz",
           content: {
-            question: "Trong bài hôm nay có hình vuông và hình tròn và hình tam giác. Hình nào có 4 góc vuông?",
+            question: "Trong bài hôm nay có hình vuông và hình tròn và hình tam giác. Hình nào có 4 cạnh dài bằng nhau?",
             options: [
               "hình vuông",
               "hình khối lập phương",
@@ -982,7 +964,7 @@ export const g1c2 = {
               "hình khối trụ"
             ],
             answer: "hình vuông",
-            mascotHint: "Đáp án là hình vuông: 4 cạnh dài bằng nhau · 4 góc vuông · hai đường chéo bằng nhau."
+            mascotHint: "Đáp án là hình vuông: 4 cạnh dài bằng nhau · 4 đỉnh."
           }
         },
         {
@@ -1076,7 +1058,7 @@ export const g1c2 = {
               vertices: true,
               vertexLabel: "đỉnh"
             },
-            text: "hình vuông bé học hôm nay có gì đặc biệt?\n· 4 cạnh dài bằng nhau\n· 4 góc vuông\nBé đếm cạnh, đếm đỉnh ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé."
+            text: "hình vuông bé học hôm nay có gì đặc biệt?\n· 4 cạnh dài bằng nhau\nBé đếm cạnh, đếm đỉnh ngay trên hình vẽ rồi đọc lại đặc điểm trên nhé."
           }
         },
         {
@@ -1087,8 +1069,8 @@ export const g1c2 = {
             explanation: "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của hình vuông.",
             points: [
               "hình vuông có 4 cạnh dài bằng nhau.",
-              "hình vuông có 4 góc vuông.",
-              "hình vuông có hai đường chéo bằng nhau.",
+              "hình vuông có 4 cạnh dài bằng nhau.",
+              "hình vuông có 4 đỉnh.",
               "Cách kiểm tra: bé đếm cạnh, đếm đỉnh; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình."
             ]
           }
@@ -1099,15 +1081,12 @@ export const g1c2 = {
             table: {
               headers: ["Bước", "Việc bé làm"],
               rows: [
-                ["Bước 1 — Gọi tên", "nói đúng tên hình/khối trước khi làm gì tiếp"],
-                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học"],
-                [
-                  "Bước 3 — Kiểm tra",
-                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt"
-                ]
+                ["Bước 1 — Gọi tên", "nhìn hình rồi nói đúng tên hình (hoặc khối)"],
+                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi đọc lại hai đặc điểm của hình"],
+                ["Bước 3 — Kiểm lại", "đếm lại lần nữa bằng mắt, không đoán"],
               ]
             },
-            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+            text: "Ba bước làm bài hình — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
           }
         },
         {
@@ -1115,12 +1094,12 @@ export const g1c2 = {
           content: {
             question: "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
             options: [
-              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Kiểm lại một lần nữa theo điều cần nhớ",
               "Nộp bài luôn cho nhanh",
               "Đoán lại một lần nữa"
             ],
-            answer: "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
-            mascotHint: "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng."
+            answer: "Kiểm lại một lần nữa theo điều cần nhớ",
+            mascotHint: "Kiểm lại một lần nữa rồi mới nộp bài — kiểm lại là thói quen của người học giỏi."
           }
         },
         {
@@ -1134,13 +1113,13 @@ export const g1c2 = {
               "hình khối trụ"
             ],
             answer: "hình vuông",
-            mascotHint: "hình vuông: 4 cạnh dài bằng nhau · 4 góc vuông · hai đường chéo bằng nhau."
+            mascotHint: "hình vuông: 4 cạnh dài bằng nhau · 4 đỉnh."
           }
         },
         {
           type: "quiz",
           content: {
-            question: "Trong bài hôm nay có hình vuông và hình tam giác và hình chữ nhật. Hình nào có 4 góc vuông?",
+            question: "Trong bài hôm nay có hình vuông và hình tam giác và hình chữ nhật. Hình nào có 4 cạnh dài bằng nhau?",
             options: [
               "hình vuông",
               "hình khối lập phương",
@@ -1148,7 +1127,7 @@ export const g1c2 = {
               "hình khối trụ"
             ],
             answer: "hình vuông",
-            mascotHint: "Đáp án là hình vuông: 4 cạnh dài bằng nhau · 4 góc vuông · hai đường chéo bằng nhau."
+            mascotHint: "Đáp án là hình vuông: 4 cạnh dài bằng nhau · 4 đỉnh."
           }
         },
         {
@@ -1210,8 +1189,8 @@ export const g1c2 = {
         {
           type: "visual",
           content: {
-            text: "▢ hình vuông · ⭕ hình tròn\n🔺 hình tam giác · ▭ hình chữ nhật",
-            table: {
+           text: "Bé đọc bảng dưới đây rồi nhớ đặc điểm từng hình.",
+           table: {
               headers: ["Hình", "Đặc điểm"],
               rows: [
                 ["Hình vuông", "4 cạnh dài bằng nhau"],
@@ -1231,7 +1210,7 @@ export const g1c2 = {
               vertices: true,
               vertexLabel: "đỉnh"
             },
-            text: "hình vuông bé học hôm nay có gì đặc biệt?\n· 4 cạnh dài bằng nhau\n· 4 góc vuông\nBé đếm cạnh, đếm đỉnh ngay trên hình vẽ rồi đọc lại hai đặc điểm trên nhé."
+            text: "hình vuông bé học hôm nay có gì đặc biệt?\n· 4 cạnh dài bằng nhau\nBé đếm cạnh, đếm đỉnh ngay trên hình vẽ rồi đọc lại đặc điểm trên nhé."
           }
         },
         {
@@ -1242,8 +1221,8 @@ export const g1c2 = {
             explanation: "Nhìn hình và gọi tên đúng là bước đầu; bước sau là nêu được đặc điểm của hình vuông.",
             points: [
               "hình vuông có 4 cạnh dài bằng nhau.",
-              "hình vuông có 4 góc vuông.",
-              "hình vuông có hai đường chéo bằng nhau.",
+              "hình vuông có 4 cạnh dài bằng nhau.",
+              "hình vuông có 4 đỉnh.",
               "Cách kiểm tra: bé đếm cạnh, đếm đỉnh; nếu đếm ra khác các đặc điểm trên thì đã nhìn nhầm hình."
             ]
           }
@@ -1254,15 +1233,12 @@ export const g1c2 = {
             table: {
               headers: ["Bước", "Việc bé làm"],
               rows: [
-                ["Bước 1 — Gọi tên", "nói đúng tên hình/khối trước khi làm gì tiếp"],
-                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học"],
-                [
-                  "Bước 3 — Kiểm tra",
-                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt"
-                ]
+                ["Bước 1 — Gọi tên", "nhìn hình rồi nói đúng tên hình (hoặc khối)"],
+                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi đọc lại hai đặc điểm của hình"],
+                ["Bước 3 — Kiểm lại", "đếm lại lần nữa bằng mắt, không đoán"],
               ]
             },
-            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+            text: "Ba bước làm bài hình — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
           }
         },
         {
@@ -1270,12 +1246,12 @@ export const g1c2 = {
           content: {
             question: "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
             options: [
-              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Kiểm lại một lần nữa theo điều cần nhớ",
               "Nộp bài luôn cho nhanh",
               "Đoán lại một lần nữa"
             ],
-            answer: "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
-            mascotHint: "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng."
+            answer: "Kiểm lại một lần nữa theo điều cần nhớ",
+            mascotHint: "Kiểm lại một lần nữa rồi mới nộp bài — kiểm lại là thói quen của người học giỏi."
           }
         },
         {
@@ -1289,13 +1265,13 @@ export const g1c2 = {
               "hình khối trụ"
             ],
             answer: "hình vuông",
-            mascotHint: "hình vuông: 4 cạnh dài bằng nhau · 4 góc vuông · hai đường chéo bằng nhau."
+            mascotHint: "hình vuông: 4 cạnh dài bằng nhau · 4 đỉnh."
           }
         },
         {
           type: "quiz",
           content: {
-            question: "Trong bài hôm nay có hình vuông và hình tròn và hình tam giác và hình chữ nhật. Hình nào có 4 góc vuông?",
+            question: "Trong bài hôm nay có hình vuông và hình tròn và hình tam giác và hình chữ nhật. Hình nào có 4 cạnh dài bằng nhau?",
             options: [
               "hình vuông",
               "hình khối lập phương",
@@ -1303,7 +1279,7 @@ export const g1c2 = {
               "hình khối trụ"
             ],
             answer: "hình vuông",
-            mascotHint: "Đáp án là hình vuông: 4 cạnh dài bằng nhau · 4 góc vuông · hai đường chéo bằng nhau."
+            mascotHint: "Đáp án là hình vuông: 4 cạnh dài bằng nhau · 4 đỉnh."
           }
         },
         {

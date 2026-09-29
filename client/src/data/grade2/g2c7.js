@@ -333,9 +333,9 @@ export const g2c7 = {
             "title": "Bốn bước làm một bài toán",
             "explanation": "Mọi bài bài toán có lời văn đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
             "points": [
-              "Bước 1 — Đọc kỹ đề, gạch dưới các SỐ và từ khoá (thêm, bớt, gấp, chia đều).",
+              "Bước 1 — Đọc kỹ đề, gạch dưới các SỐ và từ khoá (thêm, bớt, gộp, tách).",
               "Bước 2 — Tóm tắt đề bằng hình hoặc bằng câu ngắn: đã có gì, cần tìm gì.",
-              "Bước 3 — Chọn phép tính: “thêm, gộp, tất cả” → cộng; “bớt, cho đi, còn lại” → trừ; “gấp mấy lần” → nhân.",
+              "Bước 3 — Chọn phép tính: “thêm, gộp, tất cả” → cộng; “bớt, cho đi, còn lại” → trừ.",
               "Bước 4 — Đặt tính rồi tính, rồi VIẾT ĐÁP SỐ kèm đơn vị và thử lại bằng phép ngược."
             ]
           }
@@ -489,9 +489,9 @@ export const g2c7 = {
             "title": "Bốn bước làm một bài toán",
             "explanation": "Mọi bài bài toán có lời văn đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
             "points": [
-              "Bước 1 — Đọc kỹ đề, gạch dưới các SỐ và từ khoá (thêm, bớt, gấp, chia đều).",
+              "Bước 1 — Đọc kỹ đề, gạch dưới các SỐ và từ khoá (thêm, bớt, gộp, tách).",
               "Bước 2 — Tóm tắt đề bằng hình hoặc bằng câu ngắn: đã có gì, cần tìm gì.",
-              "Bước 3 — Chọn phép tính: “thêm, gộp, tất cả” → cộng; “bớt, cho đi, còn lại” → trừ; “gấp mấy lần” → nhân.",
+              "Bước 3 — Chọn phép tính: “thêm, gộp, tất cả” → cộng; “bớt, cho đi, còn lại” → trừ.",
               "Bước 4 — Đặt tính rồi tính, rồi VIẾT ĐÁP SỐ kèm đơn vị và thử lại bằng phép ngược."
             ]
           }
@@ -561,7 +561,7 @@ export const g2c7 = {
               "200 cm"
             ],
             "answer": "20 cm",
-            "mascotHint": "2 dm = 2 × 10 = 20 cm."
+            "mascotHint": "2 dm = 2 chục xăng-ti-mét = 20 cm."
           }
         },
         {
@@ -643,9 +643,9 @@ export const g2c7 = {
             "title": "Bốn bước làm một bài toán",
             "explanation": "Mọi bài bài toán có lời văn đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
             "points": [
-              "Bước 1 — Đọc kỹ đề, gạch dưới các SỐ và từ khoá (thêm, bớt, gấp, chia đều).",
+              "Bước 1 — Đọc kỹ đề, gạch dưới các SỐ và từ khoá (thêm, bớt, gộp, tách).",
               "Bước 2 — Tóm tắt đề bằng hình hoặc bằng câu ngắn: đã có gì, cần tìm gì.",
-              "Bước 3 — Chọn phép tính: “thêm, gộp, tất cả” → cộng; “bớt, cho đi, còn lại” → trừ; “gấp mấy lần” → nhân.",
+              "Bước 3 — Chọn phép tính: “thêm, gộp, tất cả” → cộng; “bớt, cho đi, còn lại” → trừ.",
               "Bước 4 — Đặt tính rồi tính, rồi VIẾT ĐÁP SỐ kèm đơn vị và thử lại bằng phép ngược."
             ]
           }
@@ -846,7 +846,7 @@ export const g2c7 = {
               "300 cm"
             ],
             "answer": "30 cm",
-            "mascotHint": "3 dm = 3 × 10 = 30 cm."
+            "mascotHint": "3 dm = 3 chục xăng-ti-mét = 30 cm."
           }
         },
         {
@@ -855,7 +855,7 @@ export const g2c7 = {
             "title": "Bé giỏi lắm:",
             "points": [
               "Bé đã hoàn thành học kì 1 của Lớp 2.",
-              "Sang học kì 2, bé sẽ gặp phép nhân và phép chia."
+              "Sang học kì 2, bé sẽ học tiếp các phép tính mới."
             ],
             "mascotMood": "celebrate"
           }

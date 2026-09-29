@@ -12,7 +12,7 @@
  * và vẽ thẳng trong hệ 512x512.
  */
 
-import { mkdirSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -172,13 +172,40 @@ function buildSvg(petId, moodId) {
 }
 
 mkdirSync(outDir, { recursive: true });
+/**
+ * 🔴🔴 CHỐT CHỐNG GHI ĐÈ (2026-09-29) — THÊM VÌ ĐÃ GÂY THIỆT HẠI THẬT.
+ *
+ * 20 file `client/public/pets/<thú>-<cảm xúc>.svg` là ẢNH SỐNG của app và **do người dùng tự vẽ
+ * cho từng biểu cảm**. Lần `scratch/chay-het-cong.mjs` chạy MỌI script trong `scratch/` đã chạy
+ * luôn file này ⇒ ghi đè cả 20 bức vẽ bằng template sinh tự động. Người dùng phát hiện và rất bức
+ * xúc (*“những ảnh đó tôi đã vẽ cho từng biểu cảm, ai cho phép bạn sửa?”*) — đúng, và đây là lỗi
+ * của quy trình kiểm tra, không phải của họ.
+ *
+ * ⇒ TỪ NAY: file nào ĐÃ CÓ thì KHÔNG ghi, chỉ liệt kê ra. Muốn sinh đè (chỉ khi thật sự muốn làm
+ * lại template từ đầu) phải gõ rõ: `node scratch/generate-pet-templates.mjs --ghi-de`.
+ */
+const GHI_DE = process.argv.includes("--ghi-de");
 let count = 0;
+const daCo = [];
 for (const petId of Object.keys(PETS)) {
   for (const mood of MOODS) {
     const file = join(outDir, `${petId}-${mood.id}.svg`);
+    if (!GHI_DE && existsSync(file)) {
+      daCo.push(`${petId}-${mood.id}.svg`);
+      continue;
+    }
     writeFileSync(file, buildSvg(petId, mood.id), "utf8");
     count += 1;
   }
+}
+if (daCo.length) {
+  console.log(
+    `⏭  GIỮ NGUYÊN ${daCo.length} file đã có (không ghi đè bản vẽ của người dùng):`,
+  );
+  console.log(`   ${daCo.join(", ")}`);
+  console.log(
+    "   Muốn sinh đè thật thì gõ thêm cờ --ghi-de (chỉ dùng khi muốn làm lại template từ đầu).",
+  );
 }
 
 // File canh lề riêng: TÊN BẮT ĐẦU BẰNG `_` nên app KHÔNG bao giờ nạp nó.

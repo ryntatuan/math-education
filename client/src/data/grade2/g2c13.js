@@ -581,8 +581,8 @@ export const g2c13 = {
               headers: ["Điều cần nhớ", "Nội dung"],
               rows: [
                 ["1 m", "= 100 cm"],
-                ["1 kg", "= 1 000 g"],
-                ["1 l", "= 1 000 ml"]
+                ["1 dm", "= 10 cm"],
+                ["1 km", "= 1 000 m"],
               ]
             },
             text: "Bảng nhớ nhanh — đo lường và đổi đơn vị\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"

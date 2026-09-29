@@ -749,7 +749,7 @@ export const g5c10 = {
               "18 km/giờ = 5 m/giây.",
               "Ước lượng: 42 km/giờ trong 3 giờ ≈ 120 km.",
             ],
-            rule: "1 km/giờ = 1 000 m : 3 600 giây.",
+            rule: "Muốn đổi km/giờ sang m/giây, bé đổi 1 km ra mét và 1 giờ ra giây.",
           },
         },
         {

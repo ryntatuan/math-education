@@ -75,8 +75,15 @@ function moiChuoi(v, out = []) {
  * ngăn bằng dấu phẩy** (`A, B, C, D`); `\b` chặn trường hợp “Hình” (H + chữ thường).
  */
 const MAU = [
-  /(?:đoạn thẳng|trung điểm|cạnh|đỉnh|điểm|tam giác|tứ giác|góc|hình thang|hình bình hành|hình thoi)\s*\(?\s*([A-Z]{2,4}|[A-Z](?:\s*,\s*[A-Z])+)\b/g,
-  /\b([A-Z]{2,4})\s*(?:dài|bằng|có|gồm|tạo|và)\b/g, // “AB dài 4 m”, “ABCD gồm…”
+  // 🔴 SỬA THƯỚC 2026-09-29: `[A-Z]{2,4}` trước đây bắt cả **chữ Việt IN HOA** vì `Ắ`, `Ô`
+  //    không thuộc `[A-Z]`: “hai cạnh **NG**ẮN bằng nhau” ⇒ hiểu oan “NG” là tên điểm, và
+  //    “4 cạnh **KH**ÔNG bằng nhau” ⇒ “KH”. Nay sau cụm chữ cái phải là **hết từ**
+  //    (`(?![\p{L}])` với cờ `u`) — chữ Việt cũng là chữ nên bị chặn.
+  /(?:đoạn thẳng|trung điểm|cạnh|đỉnh|điểm|tam giác|tứ giác|góc|hình thang|hình bình hành|hình thoi)\s*\(?\s*([A-Z]{2,4}|[A-Z](?:\s*,\s*[A-Z])+)(?![\p{L}])/gu,
+  // 🔴 Lần 2 (cùng ngày): `\b` của JS chỉ hiểu chữ ASCII nên ranh giới từ bị sai với tiếng Việt:
+  //    “4 cạnh **KH**ÔNG bằng nhau” ⇒ `\b` đứng trước “N” (vì “Ô” không là chữ ASCII) và mẫu khớp
+  //    “NG bằng”. Nay buộc cụm chữ cái phải được bao bọc bởi KÝ TỰ KHÔNG PHẢI CHỮ theo Unicode.
+  /(?<![\p{L}])([A-Z]{2,4})(?![\p{L}])\s*(?:dài|bằng|có|gồm|tạo|và)(?![\p{L}])/gu, // “AB dài 4 m”
 ];
 
 const nghi = [];
@@ -113,6 +120,9 @@ for (const [file, key, lop] of NGUON) {
             m[1]
               .split(/\s*,\s*|\s+/)
               .filter((t) => /^[A-Z]{1,4}$/.test(t))
+              // 🔴 Loại SỐ LA MÃ: “Số La Mã IV”, “thế kỉ XXI” cũng là chữ in hoa ⇒ trước đây bị
+              //    hiểu oan là tên điểm. Tên điểm trong app không bao giờ chỉ gồm IVXLCDM.
+              .filter((t) => !/^[IVXLCDM]{1,4}$/.test(t))
               .forEach((t) => {
                 if (t.length > 1) [...t].forEach((ch) => ten.add(ch));
                 else ten.add(t);

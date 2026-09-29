@@ -32,7 +32,7 @@ export const g4c8 = {
               "Nhân từ phải sang trái, bắt đầu từ hàng đơn vị.",
               "Nhớ cộng thêm số nhớ vào tích của hàng kế tiếp.",
             ],
-            rule: "Nhân từ phải sang trái, nhớ sang hàng kế tiếp — giống như nhân số bé.",
+            rule: "Bé nhân từ hàng đơn vị trước, sai hàng là sai cả bài.",
           },
         },
         {
@@ -636,7 +636,7 @@ export const g4c8 = {
               "Tích riêng thứ hai: nhân với chữ số hàng chục, viết lùi sang trái một cột.",
               "Cộng hai tích riêng để được kết quả cuối cùng.",
             ],
-            rule: "Nhân với từng chữ số của số thứ hai, tích riêng thứ hai lùi một cột.",
+            rule: "Bé nhớ TÍCH RIÊNG THỨ HAI phải thụt vào một cột.",
           },
         },
         {
@@ -866,7 +866,7 @@ export const g4c8 = {
               "Nhân, chia các số đã làm tròn để được kết quả ước lượng.",
               "So sánh kết quả tính chính xác với kết quả ước lượng: lệch quá nhiều là có lỗi.",
             ],
-            rule: "Làm tròn → nhẩm → so sánh với kết quả thật.",
+            rule: "Ước lượng giúp bé biết kết quả có hợp lí hay không.",
           },
         },
         {

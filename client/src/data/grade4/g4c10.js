@@ -83,15 +83,12 @@ export const g4c10 = {
             table: {
               headers: ["Bước", "Việc bé làm"],
               rows: [
-                ["Bước 1 — Gọi tên", "nói đúng tên hình/khối trước khi làm gì tiếp"],
-                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học"],
-                [
-                  "Bước 3 — Kiểm tra",
-                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt"
-                ]
+                ["Bước 1 — Gọi tên", "nhìn hình rồi nói đúng tên hình (hoặc khối)"],
+                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi đọc lại hai đặc điểm của hình"],
+                ["Bước 3 — Kiểm lại", "đếm lại lần nữa bằng mắt, không đoán"],
               ]
             },
-            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+            text: "Ba bước làm bài hình — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
           }
         },
         {
@@ -477,7 +474,7 @@ export const g4c10 = {
               "4/7 là phân số tối giản vì 4 và 7 không cùng chia hết cho số nào lớn hơn 1.",
               "Có thể rút gọn nhiều bước: 18/24 = 9/12 = 3/4.",
             ],
-            rule: "Rút gọn đến phân số tối giản.",
+            rule: "Bé chia cả tử số và mẫu số cho cùng một số để rút gọn.",
           },
         },
         {

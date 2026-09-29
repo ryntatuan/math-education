@@ -53,7 +53,7 @@ export const g1c6 = {
               "Ở mức này, cách chắc chắn nhất là ĐẾM: số nào đếm đến sau thì số đó lớn hơn.",
             points: [
               "Đếm từ 1: “1, 2, 3, 4, 5…” — số đếm đến sau thì lớn hơn. Ví dụ 5 đến sau 2 nên 5 lớn hơn 2.",
-              "Trên tia số, số đứng bên PHẢI lớn hơn số đứng bên TRÁI.",
+              "Đếm từ 1: số nào đếm đến sau thì số đó lớn hơn.",
               "Ba dấu cần nhớ: “>” đọc là lớn hơn, “<” đọc là bé hơn, “=” đọc là bằng nhau.",
               "Với hai số của bài này: 1 < 10, đọc là “1 bé hơn 10”.",
             ],
@@ -65,12 +65,9 @@ export const g1c6 = {
             table: {
               headers: ["Bước", "Việc bé làm"],
               rows: [
-                ["Bước 1 — Đơn vị", "viết kết quả luôn kèm đơn vị"],
-                ["Bước 2 — Bậc thang", "đi xuống thì nhân, đi lên thì chia"],
-                [
-                  "Bước 3 — Kiểm lại",
-                  "lấy kết quả đổi ngược lại xem có về số ban đầu",
-                ],
+                ["Bước 1 — Nhìn kỹ", "nhìn hết cả hình, xem có mấy nhóm đồ vật"],
+                ["Bước 2 — Đếm", "đếm từng nhóm, lần lượt từ trái sang phải"],
+                ["Bước 3 — Kiểm lại", "đếm lại lần nữa rồi mới đọc số"],
               ],
             },
             text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai.",
@@ -82,14 +79,14 @@ export const g1c6 = {
             question:
               "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
             options: [
-              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Kiểm lại một lần nữa theo điều cần nhớ",
               "Nộp bài luôn cho nhanh",
               "Đoán lại một lần nữa",
             ],
             answer:
-              "Thử lại bằng phép tính ngược hoặc kiểm tra theo điều cần nhớ",
+              "Kiểm lại một lần nữa theo điều cần nhớ",
             mascotHint:
-              "Người tính giỏi luôn thử lại: cộng thì lấy kết quả trừ đi một số hạng.",
+              "Kiểm lại một lần nữa rồi mới nộp bài — kiểm lại là thói quen của người học giỏi.",
           },
         },
         {
@@ -277,17 +274,17 @@ export const g1c6 = {
               "Bước 1 — đếm số chữ số: số nào có ít chữ số hơn thì số đó BÉ hơn (ví dụ 9 < 10).",
               "Bước 2 — hai số cùng số chữ số: so chữ số đầu tiên bên TRÁI trước; số nào có chữ số ấy lớn hơn thì số đó lớn hơn. Bằng nhau thì so chữ số tiếp theo.",
               "Ví dụ: 11 có 2 chữ số, 2 có 1 chữ số — số nào có ít chữ số hơn thì bé hơn.",
-              "Số liền sau = số đó thêm 1; số liền trước = số đó bớt 1.",
+              
             ],
           },
         },
         {
           type: "quiz",
           content: {
-            question: "Số liền sau của số 2 là số nào?",
+            question: "Bé đếm tiếp: ngay sau số 2 thì đến số nào?",
             options: [2, 3, 4, 12],
             answer: 3,
-            mascotHint: "Số liền sau hơn số đã cho 1 đơn vị: 2 + 1 = 3.",
+            mascotHint: "Đếm tiếp một bước từ số đã cho thì được số đó.",
           },
         },
         {
@@ -404,17 +401,17 @@ export const g1c6 = {
               "Bước 1 — đếm số chữ số: số nào có ít chữ số hơn thì số đó BÉ hơn (ví dụ 9 < 10).",
               "Bước 2 — hai số cùng số chữ số: so chữ số đầu tiên bên TRÁI trước; số nào có chữ số ấy lớn hơn thì số đó lớn hơn. Bằng nhau thì so chữ số tiếp theo.",
               "Ví dụ: 10 có 2 chữ số, 3 có 1 chữ số — số nào có ít chữ số hơn thì bé hơn.",
-              "Số liền sau = số đó thêm 1; số liền trước = số đó bớt 1.",
+              
             ],
           },
         },
         {
           type: "quiz",
           content: {
-            question: "Số liền sau của số 3 là số nào?",
+            question: "Bé đếm tiếp: ngay sau số 3 thì đến số nào?",
             options: [3, 4, 5, 13],
             answer: 4,
-            mascotHint: "Số liền sau hơn số đã cho 1 đơn vị: 3 + 1 = 4.",
+            mascotHint: "Đếm tiếp một bước từ số đã cho thì được số đó.",
           },
         },
         {
@@ -534,17 +531,17 @@ export const g1c6 = {
               "Bước 1 — đếm số chữ số: số nào có ít chữ số hơn thì số đó BÉ hơn (ví dụ 9 < 10).",
               "Bước 2 — hai số cùng số chữ số: so chữ số đầu tiên bên TRÁI trước; số nào có chữ số ấy lớn hơn thì số đó lớn hơn. Bằng nhau thì so chữ số tiếp theo.",
               "Ví dụ: 34 có 2 chữ số, 4 có 1 chữ số — số nào có ít chữ số hơn thì bé hơn.",
-              "Số liền sau = số đó thêm 1; số liền trước = số đó bớt 1.",
+              
             ],
           },
         },
         {
           type: "quiz",
           content: {
-            question: "Số liền sau của số 4 là số nào?",
+            question: "Bé đếm tiếp: ngay sau số 4 thì đến số nào?",
             options: [4, 5, 6, 14],
             answer: 5,
-            mascotHint: "Số liền sau hơn số đã cho 1 đơn vị: 4 + 1 = 5.",
+            mascotHint: "Đếm tiếp một bước từ số đã cho thì được số đó.",
           },
         },
         {
@@ -668,7 +665,7 @@ export const g1c6 = {
             title: "Đọc số có hai chữ số",
             explanation:
               "Bé đọc SỐ CHỤC rồi đọc 'mươi', sau đó đọc số đơn vị. Riêng 1 chục thì đọc là 'mười'.",
-            rule: "45 đọc là: bốn mươi lăm. 51 đọc là: năm mươi mốt. 15 đọc là: mười lăm.",
+            rule: "Mười lăm, năm mươi mốt — bé nhớ đừng đọc “mười năm”.",
             points: [
               "45 = 4 chục 5 đơn vị → bốn mươi lăm.",
               "15 = 1 chục 5 đơn vị → mười lăm (không đọc 'mười năm').",
@@ -708,17 +705,17 @@ export const g1c6 = {
               "Bước 1 — đếm số chữ số: số nào có ít chữ số hơn thì số đó BÉ hơn (ví dụ 9 < 10).",
               "Bước 2 — hai số cùng số chữ số: so chữ số đầu tiên bên TRÁI trước; số nào có chữ số ấy lớn hơn thì số đó lớn hơn. Bằng nhau thì so chữ số tiếp theo.",
               "Ví dụ: 45 có 2 chữ số, 5 có 1 chữ số — số nào có ít chữ số hơn thì bé hơn.",
-              "Số liền sau = số đó thêm 1; số liền trước = số đó bớt 1.",
+              
             ],
           },
         },
         {
           type: "quiz",
           content: {
-            question: "Số liền sau của số 5 là số nào?",
+            question: "Bé đếm tiếp: ngay sau số 5 thì đến số nào?",
             options: [5, 6, 7, 15],
             answer: 6,
-            mascotHint: "Số liền sau hơn số đã cho 1 đơn vị: 5 + 1 = 6.",
+            mascotHint: "Đếm tiếp một bước từ số đã cho thì được số đó.",
           },
         },
         {
@@ -849,17 +846,17 @@ export const g1c6 = {
               "Bước 1 — đếm số chữ số: số nào có ít chữ số hơn thì số đó BÉ hơn (ví dụ 9 < 10).",
               "Bước 2 — hai số cùng số chữ số: so chữ số đầu tiên bên TRÁI trước; số nào có chữ số ấy lớn hơn thì số đó lớn hơn. Bằng nhau thì so chữ số tiếp theo.",
               "Ví dụ: 34 có 2 chữ số, 6 có 1 chữ số — số nào có ít chữ số hơn thì bé hơn.",
-              "Số liền sau = số đó thêm 1; số liền trước = số đó bớt 1.",
+              
             ],
           },
         },
         {
           type: "quiz",
           content: {
-            question: "Số liền sau của số 6 là số nào?",
+            question: "Bé đếm tiếp: ngay sau số 6 thì đến số nào?",
             options: [6, 7, 8, 16],
             answer: 7,
-            mascotHint: "Số liền sau hơn số đã cho 1 đơn vị: 6 + 1 = 7.",
+            mascotHint: "Đếm tiếp một bước từ số đã cho thì được số đó.",
           },
         },
         {
@@ -923,7 +920,7 @@ export const g1c6 = {
             title: "Số lớn nhất và bé nhất có hai chữ số",
             explanation:
               "Muốn tìm số lớn nhất trong một nhóm, bé so từng số một. Số lớn nhất có hai chữ số là 99; số bé nhất có hai chữ số là 10.",
-            rule: "Số lớn nhất có hai chữ số: 99. Số bé nhất có hai chữ số: 10.",
+            rule: "Số bé nhất có hai chữ số là 10, chứ không phải 1.",
             points: [
               "Số có nhiều chữ số hơn thì lớn hơn: 100 > 99.",
               "Số bé nhất có một chữ số là 0.",
@@ -967,17 +964,17 @@ export const g1c6 = {
               "Bước 1 — đếm số chữ số: số nào có ít chữ số hơn thì số đó BÉ hơn (ví dụ 9 < 10).",
               "Bước 2 — hai số cùng số chữ số: so chữ số đầu tiên bên TRÁI trước; số nào có chữ số ấy lớn hơn thì số đó lớn hơn. Bằng nhau thì so chữ số tiếp theo.",
               "Ví dụ: 12 có 2 chữ số, 7 có 1 chữ số — số nào có ít chữ số hơn thì bé hơn.",
-              "Số liền sau = số đó thêm 1; số liền trước = số đó bớt 1.",
+              
             ],
           },
         },
         {
           type: "quiz",
           content: {
-            question: "Số liền sau của số 7 là số nào?",
+            question: "Bé đếm tiếp: ngay sau số 7 thì đến số nào?",
             options: [7, 8, 9, 17],
             answer: 8,
-            mascotHint: "Số liền sau hơn số đã cho 1 đơn vị: 7 + 1 = 8.",
+            mascotHint: "Đếm tiếp một bước từ số đã cho thì được số đó.",
           },
         },
         {

@@ -379,7 +379,7 @@ export const g3c12 = {
             "badge": "Giải Toán",
             "title": "Đọc kĩ đề để chọn phép tính",
             "explanation": "'Cả hai, tất cả' thì cộng. 'Còn lại, hơn kém bao nhiêu' thì trừ.",
-            "rule": "34 560 + 25 430 = 59 990 (cái áo). Hơn kém: 34 560 − 25 430 = 9 130 (cái áo).",
+            "rule": "Muốn biết hơn kém nhau bao nhiêu thì bé làm phép trừ.",
             "points": [
               "34 560 + 25 430 = 59 990 cái áo.",
               "34 560 − 25 430 = 9 130 cái áo.",

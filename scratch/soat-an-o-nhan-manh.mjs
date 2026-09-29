@@ -71,6 +71,22 @@ const mauHien = phaiHien.slice(0, 2);
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
 
+/**
+ * HÀM ĐO — khai báo ở cấp module để `page.evaluate(doTrongTrang)` chuyển được vào trang.
+ * ⚠️ KHÔNG bọc `() => ({ ...doTrongTrang() })`: trong trang, tên này KHÔNG tồn tại ⇒ lỗi câm.
+ */
+function doTrongTrang() {
+  return {
+    oNhanManh: document.querySelectorAll(".concept-rule-box").length,
+    danhSach: document.querySelectorAll(".concept-points-list").length,
+    chuONhanManh:
+      document.querySelector(".concept-rule-box")?.innerText?.slice(0, 40) ??
+      "",
+    tieuDe: document.querySelector(".concept-title")?.innerText ?? "",
+    soSlide: document.querySelectorAll(".slide-concept-card").length,
+  };
+}
+
 async function moSlide(baiId, soSlide) {
   await page.goto(`http://localhost:${PORT}/lesson/${baiId}`, {
     waitUntil: "domcontentloaded",
@@ -82,22 +98,35 @@ async function moSlide(baiId, soSlide) {
       if (nut) nut.click();
     });
     await page.waitForTimeout(300);
-    const next = await page.$('button:has-text("Tiếp tục")');
-    if (next && !(await next.isDisabled())) {
-      await next.click();
-      await page.waitForTimeout(450);
-    }
+    // Bấm bằng JS: nút “Tiếp tục” có hoạt ảnh vô hạn (`pulse-glow`) nên `locator.click()`
+    // có thể timeout oan vì nút “không bao giờ actionable”.
+    await page.evaluate(() => {
+      const b = [...document.querySelectorAll("button")].find((x) =>
+        (x.textContent || "").includes("Tiếp tục"),
+      );
+      if (b && !b.disabled) b.click();
+    });
+    await page.waitForTimeout(450);
   }
   await page.waitForTimeout(300);
-  return page.evaluate(() => ({
-    oNhanManh: document.querySelectorAll(".concept-rule-box").length,
-    danhSach: document.querySelectorAll(".concept-points-list").length,
-    chuONhanManh:
-      document.querySelector(".concept-rule-box")?.innerText?.slice(0, 40) ??
-      "",
-    tieuDe: document.querySelector(".concept-title")?.innerText ?? "",
-    soSlide: document.querySelectorAll(".slide-concept-card").length,
-  }));
+  return doOnDinh();
+}
+
+/**
+ * 🔴 CHỜ TRANG ĐỨNG YÊN RỒI MỚI ĐO (vá 2026-09-29). Lần chạy đầu trong ngày cổng báo
+ * “1 lỗi” rồi ba lần sau sạch ⇒ đo TRÚNG lúc hoạt ảnh vào slide còn chạy. Cùng một lỗi thước
+ * đã gặp ở `scratch/do-can-doi-hinh.mjs` (nút 44 px đo ra 43,09 px). Nay đo HAI lần liên tiếp,
+ * chỉ nhận khi hai lần GIỐNG NHAU.
+ */
+async function doOnDinh() {
+  let truoc = await page.evaluate(doTrongTrang);
+  for (let lan = 0; lan < 8; lan++) {
+    await page.waitForTimeout(300);
+    const sau = await page.evaluate(doTrongTrang);
+    if (JSON.stringify(sau) === JSON.stringify(truoc)) return sau;
+    truoc = sau;
+  }
+  return truoc;
 }
 
 let soLoi = 0;

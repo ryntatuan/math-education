@@ -53,47 +53,28 @@ export const g1c7 = {
           type: "visual",
           content: {
             table: {
-              headers: ["Đơn vị", "Bằng bao nhiêu đơn vị liền sau"],
+              headers: ["Đơn vị bé học", "Dùng để làm gì"],
               rows: [
-                ["1 m", "10 dm"],
-                ["1 dm", "10 cm"],
-                ["1 cm", "10 mm"]
-              ]
+                ["xăng-ti-mét (cm)", "đo độ dài vật ngắn: bút chì, quyển sách"],
+              ],
             },
-            text: "Bậc thang đơn vị đo độ dài\n· m\n· dm\n· cm\n· mm\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
-          }
+            text: "Ba bước đo cho đúng\n· Bước 1 — Đặt thước sát vật, vạch 0 trùng với một đầu vật\n· Bước 2 — Nhìn đầu kia của vật, đọc số ở vạch đó\n· Bước 3 — Ghi kết quả kèm đơn vị cm rồi đo lại một lần",
+          },
         },
         {
           type: "concept",
           content: {
             badge: "Mẹo Nhớ",
-            title: "Cách đổi đơn vị đo độ dài",
-            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            title: "Đo cho đúng",
+            explanation:
+              "Chỉ cần nhớ: vạch 0 trùng đầu vật, rồi đọc số ở đầu kia.",
             points: [
-              "1 m = 10 dm.",
-              "Đi xuống hai bậc thì nhân hai lần: 1 m = 10 × 10 = 100 cm.",
-              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 m = 20 dm.",
-              "Đổi số bé ra số lớn: CHIA. Ví dụ 30 dm = 3 m."
-            ]
-          }
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "1 m bằng bao nhiêu dm?",
-            options: [1, 10, 11, 100],
-            answer: 10,
-            mascotHint: "Hai đơn vị liền nhau: 1 m = 10 dm."
-          }
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "3 m bằng bao nhiêu dm?",
-            options: [10, 30, 40, 300],
-            answer: 30,
-            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 10 = 30."
-          }
+              "Đặt thước SÁT vật, không để lệch.",
+              "Vạch 0 phải trùng với một đầu của vật.",
+              "Đọc số ở đầu kia của vật — đó là độ dài.",
+              "Ghi kết quả kèm đơn vị: cm.",
+            ],
+          },
         },
         {
           type: "quiz",
@@ -119,6 +100,20 @@ export const g1c7 = {
               "Đầu thừa ra là vật dài hơn.",
             ],
             mascotMood: "proud",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Bút chì xanh dài hơn bút chì đỏ. Vậy bút nào NGẮN hơn?",
+            options: [
+              "Bút chì xanh",
+              "Bút chì đỏ",
+              "Hai bút dài bằng nhau",
+              "Không so được",
+            ],
+            answer: "Bút chì đỏ",
+            mascotHint: "Vật nào dài hơn thì vật kia ngắn hơn.",
           },
         },
       ],
@@ -182,14 +177,15 @@ export const g1c7 = {
           content: {
             badge: "Cách Học",
             title: "Bốn bước làm một bài toán",
-            explanation: "Mọi bài so sánh số đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            explanation:
+              "Mọi bài so sánh số đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
             points: [
               "Bước 1 — Đếm số CHỮ SỐ của từng số trước.",
               "Bước 2 — Số nào nhiều chữ số hơn thì lớn hơn — xong, không cần so tiếp.",
               "Bước 3 — Cùng số chữ số thì so từng hàng từ TRÁI sang phải, gặp hàng khác nhau thì dừng.",
-              "Bước 4 — Đọc lại kết quả và đặt đúng dấu (>, <, =)."
-            ]
-          }
+              "Bước 4 — Đọc lại kết quả và đặt đúng dấu (>, <, =).",
+            ],
+          },
         },
         {
           type: "visual",
@@ -199,11 +195,11 @@ export const g1c7 = {
               rows: [
                 ["Nhiều chữ số hơn", "thì số đó lớn hơn"],
                 ["So từ trái", "hàng nghìn rồi mới tới trăm, chục, đơn vị"],
-                ["Dấu lớn mở về phía", "số lớn hơn"]
-              ]
+                ["Dấu lớn mở về phía", "số lớn hơn"],
+              ],
             },
-            text: "Bảng nhớ nhanh — so sánh số\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
-          }
+            text: "Bảng nhớ nhanh — so sánh số\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?",
+          },
         },
         {
           type: "quiz",
@@ -213,11 +209,12 @@ export const g1c7 = {
               "Đếm xem số nào có nhiều chữ số hơn",
               "So chữ số hàng đơn vị trước",
               "Cộng hai số lại",
-              "Đọc từ phải sang trái"
+              "Đọc từ phải sang trái",
             ],
             answer: "Đếm xem số nào có nhiều chữ số hơn",
-            mascotHint: "Số nhiều chữ số hơn chắc chắn lớn hơn, nên chỉ cần so từng hàng khi hai số bằng số chữ số."
-          }
+            mascotHint:
+              "Số nhiều chữ số hơn chắc chắn lớn hơn, nên chỉ cần so từng hàng khi hai số bằng số chữ số.",
+          },
         },
         {
           type: "quiz",
@@ -281,7 +278,7 @@ export const g1c7 = {
             title: "Dùng vật trung gian",
             explanation:
               "Khi không thể đặt hai vật cạnh nhau, bé dùng một vật thứ ba để đo cả hai, rồi so kết quả.",
-            rule: "Bàn dài 3 gang tay, cửa sổ dài 2 gang tay. Vậy bàn dài hơn cửa sổ.",
+            rule: "Muốn so hai vật, bé cần một đơn vị đo chung.",
             points: [
               "Dùng cùng một vật để đo cả hai thì mới so được.",
               "Bàn 3 gang tay > cửa sổ 2 gang tay.",
@@ -307,47 +304,28 @@ export const g1c7 = {
           type: "visual",
           content: {
             table: {
-              headers: ["Đơn vị", "Bằng bao nhiêu đơn vị liền sau"],
+              headers: ["Đơn vị bé học", "Dùng để làm gì"],
               rows: [
-                ["1 m", "10 dm"],
-                ["1 dm", "10 cm"],
-                ["1 cm", "10 mm"]
-              ]
+                ["xăng-ti-mét (cm)", "đo độ dài vật ngắn: bút chì, quyển sách"],
+              ],
             },
-            text: "Bậc thang đơn vị đo độ dài\n· m\n· dm\n· cm\n· mm\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
-          }
+            text: "Ba bước đo cho đúng\n· Bước 1 — Đặt thước sát vật, vạch 0 trùng với một đầu vật\n· Bước 2 — Nhìn đầu kia của vật, đọc số ở vạch đó\n· Bước 3 — Ghi kết quả kèm đơn vị cm rồi đo lại một lần",
+          },
         },
         {
           type: "concept",
           content: {
             badge: "Mẹo Nhớ",
-            title: "Cách đổi đơn vị đo độ dài",
-            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            title: "Đo cho đúng",
+            explanation:
+              "Chỉ cần nhớ: vạch 0 trùng đầu vật, rồi đọc số ở đầu kia.",
             points: [
-              "1 m = 10 dm.",
-              "Đi xuống hai bậc thì nhân hai lần: 1 m = 10 × 10 = 100 cm.",
-              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 m = 20 dm.",
-              "Đổi số bé ra số lớn: CHIA. Ví dụ 30 dm = 3 m."
-            ]
-          }
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "1 m bằng bao nhiêu dm?",
-            options: [1, 10, 11, 100],
-            answer: 10,
-            mascotHint: "Hai đơn vị liền nhau: 1 m = 10 dm."
-          }
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "3 m bằng bao nhiêu dm?",
-            options: [10, 30, 40, 300],
-            answer: 30,
-            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 10 = 30."
-          }
+              "Đặt thước SÁT vật, không để lệch.",
+              "Vạch 0 phải trùng với một đầu của vật.",
+              "Đọc số ở đầu kia của vật — đó là độ dài.",
+              "Ghi kết quả kèm đơn vị: cm.",
+            ],
+          },
         },
         {
           type: "quiz",
@@ -373,6 +351,22 @@ export const g1c7 = {
               "3 gang tay > 2 gang tay.",
             ],
             mascotMood: "proud",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question:
+              "Không đặt được hai vật cạnh nhau, bé so sánh độ dài thế nào?",
+            options: [
+              "Đo cả hai bằng cùng một vật trung gian",
+              "Đoán bằng mắt",
+              "Đặt hai vật cách xa nhau",
+              "Cân hai vật lên",
+            ],
+            answer: "Đo cả hai bằng cùng một vật trung gian",
+            mascotHint:
+              "Đo cả hai bằng cùng một vật trung gian rồi so hai số đo với nhau.",
           },
         },
       ],
@@ -430,47 +424,28 @@ export const g1c7 = {
           type: "visual",
           content: {
             table: {
-              headers: ["Đơn vị", "Bằng bao nhiêu đơn vị liền sau"],
+              headers: ["Đơn vị bé học", "Dùng để làm gì"],
               rows: [
-                ["1 m", "10 dm"],
-                ["1 dm", "10 cm"],
-                ["1 cm", "10 mm"]
-              ]
+                ["xăng-ti-mét (cm)", "đo độ dài vật ngắn: bút chì, quyển sách"],
+              ],
             },
-            text: "Bậc thang đơn vị đo độ dài\n· m\n· dm\n· cm\n· mm\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
-          }
+            text: "Ba bước đo cho đúng\n· Bước 1 — Đặt thước sát vật, vạch 0 trùng với một đầu vật\n· Bước 2 — Nhìn đầu kia của vật, đọc số ở vạch đó\n· Bước 3 — Ghi kết quả kèm đơn vị cm rồi đo lại một lần",
+          },
         },
         {
           type: "concept",
           content: {
             badge: "Mẹo Nhớ",
-            title: "Cách đổi đơn vị đo độ dài",
-            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            title: "Đo cho đúng",
+            explanation:
+              "Chỉ cần nhớ: vạch 0 trùng đầu vật, rồi đọc số ở đầu kia.",
             points: [
-              "1 m = 10 dm.",
-              "Đi xuống hai bậc thì nhân hai lần: 1 m = 10 × 10 = 100 cm.",
-              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 m = 20 dm.",
-              "Đổi số bé ra số lớn: CHIA. Ví dụ 30 dm = 3 m."
-            ]
-          }
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "1 m bằng bao nhiêu dm?",
-            options: [1, 10, 11, 100],
-            answer: 10,
-            mascotHint: "Hai đơn vị liền nhau: 1 m = 10 dm."
-          }
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "3 m bằng bao nhiêu dm?",
-            options: [10, 30, 40, 300],
-            answer: 30,
-            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 10 = 30."
-          }
+              "Đặt thước SÁT vật, không để lệch.",
+              "Vạch 0 phải trùng với một đầu của vật.",
+              "Đọc số ở đầu kia của vật — đó là độ dài.",
+              "Ghi kết quả kèm đơn vị: cm.",
+            ],
+          },
         },
         {
           type: "quiz",
@@ -490,6 +465,15 @@ export const g1c7 = {
               "Mỗi khoảng trên thước là 1 cm.",
             ],
             mascotMood: "proud",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Đơn vị đo độ dài xăng-ti-mét viết tắt là gì?",
+            options: ["cm", "kg", "l", "giờ"],
+            answer: "cm",
+            mascotHint: "Xăng-ti-mét viết tắt là cm.",
           },
         },
       ],
@@ -540,47 +524,28 @@ export const g1c7 = {
           type: "visual",
           content: {
             table: {
-              headers: ["Đơn vị", "Bằng bao nhiêu đơn vị liền sau"],
+              headers: ["Đơn vị bé học", "Dùng để làm gì"],
               rows: [
-                ["1 m", "10 dm"],
-                ["1 dm", "10 cm"],
-                ["1 cm", "10 mm"]
-              ]
+                ["xăng-ti-mét (cm)", "đo độ dài vật ngắn: bút chì, quyển sách"],
+              ],
             },
-            text: "Bậc thang đơn vị đo độ dài\n· m\n· dm\n· cm\n· mm\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
-          }
+            text: "Ba bước đo cho đúng\n· Bước 1 — Đặt thước sát vật, vạch 0 trùng với một đầu vật\n· Bước 2 — Nhìn đầu kia của vật, đọc số ở vạch đó\n· Bước 3 — Ghi kết quả kèm đơn vị cm rồi đo lại một lần",
+          },
         },
         {
           type: "concept",
           content: {
             badge: "Mẹo Nhớ",
-            title: "Cách đổi đơn vị đo độ dài",
-            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            title: "Đo cho đúng",
+            explanation:
+              "Chỉ cần nhớ: vạch 0 trùng đầu vật, rồi đọc số ở đầu kia.",
             points: [
-              "1 m = 10 dm.",
-              "Đi xuống hai bậc thì nhân hai lần: 1 m = 10 × 10 = 100 cm.",
-              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 m = 20 dm.",
-              "Đổi số bé ra số lớn: CHIA. Ví dụ 30 dm = 3 m."
-            ]
-          }
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "1 m bằng bao nhiêu dm?",
-            options: [1, 10, 11, 100],
-            answer: 10,
-            mascotHint: "Hai đơn vị liền nhau: 1 m = 10 dm."
-          }
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "3 m bằng bao nhiêu dm?",
-            options: [10, 30, 40, 300],
-            answer: 30,
-            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 10 = 30."
-          }
+              "Đặt thước SÁT vật, không để lệch.",
+              "Vạch 0 phải trùng với một đầu của vật.",
+              "Đọc số ở đầu kia của vật — đó là độ dài.",
+              "Ghi kết quả kèm đơn vị: cm.",
+            ],
+          },
         },
         {
           type: "quiz",
@@ -674,47 +639,28 @@ export const g1c7 = {
           type: "visual",
           content: {
             table: {
-              headers: ["Đơn vị", "Bằng bao nhiêu đơn vị liền sau"],
+              headers: ["Đơn vị bé học", "Dùng để làm gì"],
               rows: [
-                ["1 m", "10 dm"],
-                ["1 dm", "10 cm"],
-                ["1 cm", "10 mm"]
-              ]
+                ["xăng-ti-mét (cm)", "đo độ dài vật ngắn: bút chì, quyển sách"],
+              ],
             },
-            text: "Bậc thang đơn vị đo độ dài\n· m\n· dm\n· cm\n· mm\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
-          }
+            text: "Ba bước đo cho đúng\n· Bước 1 — Đặt thước sát vật, vạch 0 trùng với một đầu vật\n· Bước 2 — Nhìn đầu kia của vật, đọc số ở vạch đó\n· Bước 3 — Ghi kết quả kèm đơn vị cm rồi đo lại một lần",
+          },
         },
         {
           type: "concept",
           content: {
             badge: "Mẹo Nhớ",
-            title: "Cách đổi đơn vị đo độ dài",
-            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            title: "Đo cho đúng",
+            explanation:
+              "Chỉ cần nhớ: vạch 0 trùng đầu vật, rồi đọc số ở đầu kia.",
             points: [
-              "1 m = 10 dm.",
-              "Đi xuống hai bậc thì nhân hai lần: 1 m = 10 × 10 = 100 cm.",
-              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 m = 20 dm.",
-              "Đổi số bé ra số lớn: CHIA. Ví dụ 30 dm = 3 m."
-            ]
-          }
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "1 m bằng bao nhiêu dm?",
-            options: [1, 10, 11, 100],
-            answer: 10,
-            mascotHint: "Hai đơn vị liền nhau: 1 m = 10 dm."
-          }
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "3 m bằng bao nhiêu dm?",
-            options: [10, 30, 40, 300],
-            answer: 30,
-            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 10 = 30."
-          }
+              "Đặt thước SÁT vật, không để lệch.",
+              "Vạch 0 phải trùng với một đầu của vật.",
+              "Đọc số ở đầu kia của vật — đó là độ dài.",
+              "Ghi kết quả kèm đơn vị: cm.",
+            ],
+          },
         },
         {
           type: "quiz",
@@ -735,6 +681,21 @@ export const g1c7 = {
               "Đoạn thẳng 5 cm có hai đầu ở vạch 0 và vạch 5.",
             ],
             mascotMood: "proud",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Vẽ đoạn thẳng dài 4 cm thì bé làm thế nào?",
+            options: [
+              "Đặt vạch 0 ở đầu trái, chấm ở vạch 4 rồi nối hai điểm",
+              "Chấm hai điểm bất kì",
+              "Đặt bút vào giữa thước",
+              "Đoán độ dài bằng mắt",
+            ],
+            answer: "Đặt vạch 0 ở đầu trái, chấm ở vạch 4 rồi nối hai điểm",
+            mascotHint:
+              "Vạch 0 trùng đầu trái, vạch 4 là đầu phải — nối hai điểm đó.",
           },
         },
       ],
@@ -785,47 +746,28 @@ export const g1c7 = {
           type: "visual",
           content: {
             table: {
-              headers: ["Đơn vị", "Bằng bao nhiêu đơn vị liền sau"],
+              headers: ["Đơn vị bé học", "Dùng để làm gì"],
               rows: [
-                ["1 m", "10 dm"],
-                ["1 dm", "10 cm"],
-                ["1 cm", "10 mm"]
-              ]
+                ["xăng-ti-mét (cm)", "đo độ dài vật ngắn: bút chì, quyển sách"],
+              ],
             },
-            text: "Bậc thang đơn vị đo độ dài\n· m\n· dm\n· cm\n· mm\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
-          }
+            text: "Ba bước đo cho đúng\n· Bước 1 — Đặt thước sát vật, vạch 0 trùng với một đầu vật\n· Bước 2 — Nhìn đầu kia của vật, đọc số ở vạch đó\n· Bước 3 — Ghi kết quả kèm đơn vị cm rồi đo lại một lần",
+          },
         },
         {
           type: "concept",
           content: {
             badge: "Mẹo Nhớ",
-            title: "Cách đổi đơn vị đo độ dài",
-            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            title: "Đo cho đúng",
+            explanation:
+              "Chỉ cần nhớ: vạch 0 trùng đầu vật, rồi đọc số ở đầu kia.",
             points: [
-              "1 m = 10 dm.",
-              "Đi xuống hai bậc thì nhân hai lần: 1 m = 10 × 10 = 100 cm.",
-              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 m = 20 dm.",
-              "Đổi số bé ra số lớn: CHIA. Ví dụ 30 dm = 3 m."
-            ]
-          }
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "1 m bằng bao nhiêu dm?",
-            options: [1, 10, 11, 100],
-            answer: 10,
-            mascotHint: "Hai đơn vị liền nhau: 1 m = 10 dm."
-          }
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "3 m bằng bao nhiêu dm?",
-            options: [10, 30, 40, 300],
-            answer: 30,
-            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 10 = 30."
-          }
+              "Đặt thước SÁT vật, không để lệch.",
+              "Vạch 0 phải trùng với một đầu của vật.",
+              "Đọc số ở đầu kia của vật — đó là độ dài.",
+              "Ghi kết quả kèm đơn vị: cm.",
+            ],
+          },
         },
         {
           type: "quiz",
@@ -1056,47 +998,28 @@ export const g1c7 = {
           type: "visual",
           content: {
             table: {
-              headers: ["Đơn vị", "Bằng bao nhiêu đơn vị liền sau"],
+              headers: ["Đơn vị bé học", "Dùng để làm gì"],
               rows: [
-                ["1 m", "10 dm"],
-                ["1 dm", "10 cm"],
-                ["1 cm", "10 mm"]
-              ]
+                ["xăng-ti-mét (cm)", "đo độ dài vật ngắn: bút chì, quyển sách"],
+              ],
             },
-            text: "Bậc thang đơn vị đo độ dài\n· m\n· dm\n· cm\n· mm\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
-          }
+            text: "Ba bước đo cho đúng\n· Bước 1 — Đặt thước sát vật, vạch 0 trùng với một đầu vật\n· Bước 2 — Nhìn đầu kia của vật, đọc số ở vạch đó\n· Bước 3 — Ghi kết quả kèm đơn vị cm rồi đo lại một lần",
+          },
         },
         {
           type: "concept",
           content: {
             badge: "Mẹo Nhớ",
-            title: "Cách đổi đơn vị đo độ dài",
-            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            title: "Đo cho đúng",
+            explanation:
+              "Chỉ cần nhớ: vạch 0 trùng đầu vật, rồi đọc số ở đầu kia.",
             points: [
-              "1 m = 10 dm.",
-              "Đi xuống hai bậc thì nhân hai lần: 1 m = 10 × 10 = 100 cm.",
-              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 m = 20 dm.",
-              "Đổi số bé ra số lớn: CHIA. Ví dụ 30 dm = 3 m."
-            ]
-          }
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "1 m bằng bao nhiêu dm?",
-            options: [1, 10, 11, 100],
-            answer: 10,
-            mascotHint: "Hai đơn vị liền nhau: 1 m = 10 dm."
-          }
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "3 m bằng bao nhiêu dm?",
-            options: [10, 30, 40, 300],
-            answer: 30,
-            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 10 = 30."
-          }
+              "Đặt thước SÁT vật, không để lệch.",
+              "Vạch 0 phải trùng với một đầu của vật.",
+              "Đọc số ở đầu kia của vật — đó là độ dài.",
+              "Ghi kết quả kèm đơn vị: cm.",
+            ],
+          },
         },
         {
           type: "quiz",
@@ -1123,6 +1046,22 @@ export const g1c7 = {
               "Muốn chính xác thì dùng thước có vạch cm.",
             ],
             mascotMood: "proud",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question:
+              "Cùng đo một cái bàn mà mỗi bạn đo bằng gang tay của mình thì kết quả thế nào?",
+            options: [
+              "Ra số gang tay khác nhau",
+              "Luôn bằng nhau",
+              "Không đo được",
+              "Luôn là 5 gang",
+            ],
+            answer: "Ra số gang tay khác nhau",
+            mascotHint:
+              "Gang tay mỗi bạn dài ngắn khác nhau nên số đo cũng khác nhau.",
           },
         },
       ],
@@ -1175,56 +1114,37 @@ export const g1c7 = {
               left: 4,
               right: 6,
               sign: "+",
-              remember: true
+              remember: true,
             },
-            text: "Bé tự đặt tính: 4 + 6\nhàng đơn vị 4 + 6 = 10, viết 0 nhớ 1\ncòn nhớ 1 ở hàng cao hơn, viết 1\nVậy 4 + 6 = 10."
-          }
+            text: "Bé tự đặt tính: 4 + 6\nhàng đơn vị 4 + 6 = 10, viết 0 nhớ 1\ncòn nhớ 1 ở hàng cao hơn, viết 1\nVậy 4 + 6 = 10.",
+          },
         },
         {
           type: "visual",
           content: {
             table: {
-              headers: ["Đơn vị", "Bằng bao nhiêu đơn vị liền sau"],
+              headers: ["Đơn vị bé học", "Dùng để làm gì"],
               rows: [
-                ["1 m", "10 dm"],
-                ["1 dm", "10 cm"],
-                ["1 cm", "10 mm"]
-              ]
+                ["xăng-ti-mét (cm)", "đo độ dài vật ngắn: bút chì, quyển sách"],
+              ],
             },
-            text: "Bậc thang đơn vị đo độ dài\n· m\n· dm\n· cm\n· mm\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
-          }
+            text: "Ba bước đo cho đúng\n· Bước 1 — Đặt thước sát vật, vạch 0 trùng với một đầu vật\n· Bước 2 — Nhìn đầu kia của vật, đọc số ở vạch đó\n· Bước 3 — Ghi kết quả kèm đơn vị cm rồi đo lại một lần",
+          },
         },
         {
           type: "concept",
           content: {
             badge: "Mẹo Nhớ",
-            title: "Cách đổi đơn vị đo độ dài",
-            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            title: "Đo cho đúng",
+            explanation:
+              "Chỉ cần nhớ: vạch 0 trùng đầu vật, rồi đọc số ở đầu kia.",
             points: [
-              "1 m = 10 dm.",
-              "Đi xuống hai bậc thì nhân hai lần: 1 m = 10 × 10 = 100 cm.",
-              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 m = 20 dm.",
-              "Đổi số bé ra số lớn: CHIA. Ví dụ 30 dm = 3 m."
-            ]
-          }
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "1 m bằng bao nhiêu dm?",
-            options: [1, 10, 11, 100],
-            answer: 10,
-            mascotHint: "Hai đơn vị liền nhau: 1 m = 10 dm."
-          }
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "3 m bằng bao nhiêu dm?",
-            options: [10, 30, 40, 300],
-            answer: 30,
-            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 10 = 30."
-          }
+              "Đặt thước SÁT vật, không để lệch.",
+              "Vạch 0 phải trùng với một đầu của vật.",
+              "Đọc số ở đầu kia của vật — đó là độ dài.",
+              "Ghi kết quả kèm đơn vị: cm.",
+            ],
+          },
         },
         {
           type: "quiz",
@@ -1232,8 +1152,8 @@ export const g1c7 = {
             question: "3 + 7 bằng bao nhiêu?",
             options: [9, 10, 11, 12],
             answer: 10,
-            mascotHint: "hàng đơn vị 3 + 7 = 10, viết 0 nhớ 1. Kết quả 10."
-          }
+            mascotHint: "hàng đơn vị 3 + 7 = 10, viết 0 nhớ 1. Kết quả 10.",
+          },
         },
         {
           type: "quiz",
@@ -1367,6 +1287,29 @@ export const g1c7 = {
           content: {
             question:
               "Cây thước dài hơn quyển sách. Quyển sách dài hơn cây bút chì. Vậy cây thước hay cây bút chì dài hơn?",
+            measureBoard: {
+              rulerMax: 12,
+              orientation: "row",
+              showRuler: false,
+              objects: [
+                {
+                  name: "Cây thước",
+                  kind: "ruler",
+                  cm: 11,
+                },
+                {
+                  name: "Quyển sách",
+                  kind: "book",
+                  cm: 7.5,
+                },
+                {
+                  name: "Cây bút chì",
+                  kind: "pencil",
+                  cm: 4,
+                },
+              ],
+              label: "Ba vật đặt cạnh nhau — bé nhìn xem vật nào dài hơn.",
+            },
             options: ["Cây thước", "Cây bút chì", "Hai vật dài bằng nhau"],
             answer: "Cây thước",
             mascotHint:
@@ -1437,6 +1380,34 @@ export const g1c7 = {
           content: {
             question:
               "Bút chì dài 9 cm, cái thước dài 20 cm, cục tẩy dài 3 cm. Hộp bút dài 15 cm. Đồ vật nào cho được vào trong hộp bút?",
+            measureBoard: {
+              rulerMax: 21,
+              orientation: "row",
+              showRuler: false,
+              objects: [
+                {
+                  name: "Bút chì",
+                  kind: "pencil",
+                  cm: 9,
+                },
+                {
+                  name: "Cái thước",
+                  kind: "ruler",
+                  cm: 20,
+                },
+                {
+                  name: "Cục tẩy",
+                  kind: "eraser",
+                  cm: 3,
+                },
+                {
+                  name: "Hộp bút",
+                  kind: "pencilCase",
+                  cm: 15,
+                },
+              ],
+              label: "Bốn vật đặt cạnh nhau — bé so độ dài với hộp bút.",
+            },
             options: [
               "Bút chì và cục tẩy",
               "Chỉ có cái thước",

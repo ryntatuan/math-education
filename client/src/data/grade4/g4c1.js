@@ -365,7 +365,7 @@ export const g4c1 = {
               "Hai số chẵn liên tiếp hơn kém nhau 2 đơn vị (116 và 118).",
               "Hai số lẻ liên tiếp cũng hơn kém nhau 2 đơn vị (117 và 119).",
             ],
-            rule: "Nhìn chữ số tận cùng: chẵn thì 0–2–4–6–8, lẻ thì 1–3–5–7–9.",
+            rule: "Chữ số tận cùng quyết định số đó chẵn hay lẻ.",
           },
         },
         {

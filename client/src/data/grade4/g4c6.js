@@ -34,6 +34,12 @@ export const g4c6 = {
               "Đặt một cạnh góc vuông của ê-ke trùng với đường thẳng đã cho, cạnh còn lại đi qua điểm cần vẽ.",
             ],
             rule: "Ê-ke khớp đúng với góc tạo bởi hai đường thẳng thì hai đường thẳng đó vuông góc.",
+            planeShape: {
+              kind: "rectangle",
+              labels: ["AB", "BC", "CD", "DA"],
+              vertexLabels: ["A", "B", "C", "D"],
+              formula: "Kéo dài hai cạnh AB và AD của hình chữ nhật ABCD ta được hai đường thẳng vuông góc",
+            },
           },
         },
         {
@@ -136,7 +142,7 @@ export const g4c6 = {
           type: "quiz",
           content: {
             question:
-              "Hai đường thẳng OM và ON vuông góc với nhau tạo thành mấy góc vuông chung đỉnh O?",
+              "Hai đường thẳng vuông góc với nhau cắt nhau tại một điểm thì tạo thành mấy góc vuông?",
             options: ["1 góc", "2 góc", "3 góc", "4 góc"],
             answer: "4 góc",
             mascotHint:
@@ -181,9 +187,15 @@ export const g4c6 = {
             points: [
               "Hai đường thẳng song song không bao giờ cắt nhau.",
               "Trong hình chữ nhật: AB song song với DC; AD song song với BC.",
-              "Trong hình vuông MNPQ: MN song song với QP; MQ song song với NP.",
+              "Trong hình vuông: hai cặp cạnh đối diện cũng song song với nhau.",
             ],
             rule: "Song song = cùng hướng và cách nhau một khoảng không đổi.",
+            planeShape: {
+              kind: "rectangle",
+              labels: ["AB", "BC", "CD", "DA"],
+              vertexLabels: ["A", "B", "C", "D"],
+              formula: "Kéo dài hai cạnh AB và DC của hình chữ nhật ABCD ta được hai đường thẳng song song",
+            },
           },
         },
         {
@@ -231,15 +243,12 @@ export const g4c6 = {
             table: {
               headers: ["Bước", "Việc bé làm"],
               rows: [
-                ["Bước 1 — Gọi tên", "nói đúng tên hình/khối trước khi làm gì tiếp"],
-                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học"],
-                [
-                  "Bước 3 — Kiểm tra",
-                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt"
-                ]
+                ["Bước 1 — Đặt thước", "đặt vạch 0 của thước trùng với một đầu vật"],
+                ["Bước 2 — Đọc số", "nhìn đầu kia của vật xem tới vạch nào"],
+                ["Bước 3 — Ghi kết quả", "viết số đo kèm đơn vị, rồi đo lại lần nữa"],
               ]
             },
-            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+            text: "Ba bước đo cho đúng — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
           }
         },
         {
@@ -494,12 +503,24 @@ export const g4c6 = {
               "AB = DC và AD = BC.",
             ],
             rule: "Hình bình hành: hai cặp cạnh đối diện vừa SONG SONG vừa BẰNG NHAU.",
+            planeShape: {
+              kind: "parallelogram",
+              labels: ["AB", "BC", "CD", "DA"],
+              vertexLabels: ["A", "B", "C", "D"],
+              formula: "Hình bình hành ABCD: AB song song và bằng DC; AD song song và bằng BC",
+            },
           },
         },
         {
           type: "visual",
           content: {
             text: "Các cặp cạnh của hình bình hành ABCD",
+            planeShape: {
+              kind: "parallelogram",
+              labels: ["AB", "BC", "CD", "DA"],
+              vertexLabels: ["A", "B", "C", "D"],
+              formula: "Hình bình hành ABCD có hai cặp cạnh đối diện song song và bằng nhau",
+            },
             table: {
               headers: ["Cặp cạnh đối diện", "Quan hệ"],
               rows: [
@@ -572,10 +593,10 @@ export const g4c6 = {
           type: "quiz",
           content: {
             question:
-              "Cho hai hình bình hành ABCD và CDEG, biết cạnh AB dài 3 dm. Độ dài cạnh EG là bao nhiêu?",
+              "Một hình bình hành có một cạnh dài 3 dm. Cạnh đối diện với cạnh đó dài bao nhiêu đề-xi-mét?",
             options: ["3 dm", "6 dm", "1,5 dm", "9 dm"],
             mascotHint:
-              "AB = CD (cạnh đối diện hình bình hành ABCD) và CD = EG (cạnh đối diện hình bình hành CDEG) nên EG = 3 dm.",
+              "Hai cạnh đối diện của hình bình hành thì bằng nhau, nên cạnh đối diện cũng dài 3 dm.",
             answer: "3 dm",
           },
         },
@@ -620,6 +641,12 @@ export const g4c6 = {
               "Hai đường chéo của hình thoi vuông góc với nhau (kiểm tra bằng ê-ke).",
             ],
             rule: "Hình thoi = hình bình hành có bốn cạnh bằng nhau.",
+            planeShape: {
+              kind: "rhombus",
+              labels: ["AB", "BC", "CD", "DA"],
+              vertexLabels: ["A", "B", "C", "D"],
+              formula: "Hình thoi ABCD: AB = BC = CD = DA",
+            },
           },
         },
         {
@@ -804,15 +831,12 @@ export const g4c6 = {
             table: {
               headers: ["Bước", "Việc bé làm"],
               rows: [
-                ["Bước 1 — Gọi tên", "nói đúng tên hình/khối trước khi làm gì tiếp"],
-                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi so với đặc điểm đã học"],
-                [
-                  "Bước 3 — Kiểm tra",
-                  "dùng ê-ke hoặc thước để kiểm lại, không đoán bằng mắt"
-                ]
+                ["Bước 1 — Gọi tên", "nhìn hình rồi nói đúng tên hình (hoặc khối)"],
+                ["Bước 2 — Đếm", "đếm cạnh, đếm đỉnh rồi đọc lại hai đặc điểm của hình"],
+                ["Bước 3 — Kiểm lại", "đếm lại lần nữa bằng mắt, không đoán"],
               ]
             },
-            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
+            text: "Ba bước làm bài hình — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
           }
         },
         {

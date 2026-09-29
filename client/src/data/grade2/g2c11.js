@@ -86,25 +86,25 @@ export const g2c11 = {
               rows: [
                 ["1 m", "10 dm"],
                 ["1 dm", "10 cm"],
-                ["1 cm", "10 mm"]
-              ]
+              ],
             },
-            text: "Bậc thang đơn vị đo độ dài\n· m\n· dm\n· cm\n· mm\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
-          }
+            text: "Bậc thang đơn vị đo độ dài\n· m\n· dm\n· cm\nĐi xuống một bậc: đổi ra đơn vị nhỏ hơn (1 m = 10 dm). Đi lên một bậc: đổi ra đơn vị lớn hơn.",
+          },
         },
         {
           type: "concept",
           content: {
             badge: "Mẹo Nhớ",
             title: "Cách đổi đơn vị đo độ dài",
-            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            explanation:
+              "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
             points: [
               "1 m = 10 dm.",
               "Đi xuống hai bậc thì nhân hai lần: 1 m = 10 × 10 = 100 cm.",
               "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 m = 20 dm.",
-              "Đổi số bé ra số lớn: CHIA. Ví dụ 30 dm = 3 m."
-            ]
-          }
+              "Đổi số bé ra số lớn: CHIA. Ví dụ 30 dm = 3 m.",
+            ],
+          },
         },
         {
           type: "quiz",
@@ -112,8 +112,8 @@ export const g2c11 = {
             question: "1 m bằng bao nhiêu dm?",
             options: [1, 10, 11, 100],
             answer: 10,
-            mascotHint: "Hai đơn vị liền nhau: 1 m = 10 dm."
-          }
+            mascotHint: "Hai đơn vị liền nhau: 1 m = 10 dm.",
+          },
         },
         {
           type: "quiz",
@@ -121,8 +121,8 @@ export const g2c11 = {
             question: "3 m bằng bao nhiêu dm?",
             options: [10, 30, 40, 300],
             answer: 30,
-            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 10 = 30."
-          }
+            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 10 = 30.",
+          },
         },
         {
           type: "quiz",
@@ -202,25 +202,25 @@ export const g2c11 = {
               rows: [
                 ["1 m", "10 dm"],
                 ["1 dm", "10 cm"],
-                ["1 cm", "10 mm"]
-              ]
+              ],
             },
-            text: "Bậc thang đơn vị đo độ dài\n· m\n· dm\n· cm\n· mm\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
-          }
+            text: "Bậc thang đơn vị đo độ dài\n· m\n· dm\n· cm\nĐi xuống một bậc: đổi ra đơn vị nhỏ hơn (1 m = 10 dm). Đi lên một bậc: đổi ra đơn vị lớn hơn.",
+          },
         },
         {
           type: "concept",
           content: {
             badge: "Mẹo Nhớ",
             title: "Cách đổi đơn vị đo độ dài",
-            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            explanation:
+              "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
             points: [
               "1 m = 10 dm.",
               "Đi xuống hai bậc thì nhân hai lần: 1 m = 10 × 10 = 100 cm.",
               "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 m = 20 dm.",
-              "Đổi số bé ra số lớn: CHIA. Ví dụ 30 dm = 3 m."
-            ]
-          }
+              "Đổi số bé ra số lớn: CHIA. Ví dụ 30 dm = 3 m.",
+            ],
+          },
         },
         {
           type: "quiz",
@@ -228,8 +228,8 @@ export const g2c11 = {
             question: "1 m bằng bao nhiêu dm?",
             options: [1, 10, 11, 100],
             answer: 10,
-            mascotHint: "Hai đơn vị liền nhau: 1 m = 10 dm."
-          }
+            mascotHint: "Hai đơn vị liền nhau: 1 m = 10 dm.",
+          },
         },
         {
           type: "quiz",
@@ -237,8 +237,8 @@ export const g2c11 = {
             question: "3 m bằng bao nhiêu dm?",
             options: [10, 30, 40, 300],
             answer: 30,
-            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 10 = 30."
-          }
+            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 10 = 30.",
+          },
         },
         {
           type: "quiz",
@@ -314,55 +314,6 @@ export const g2c11 = {
           },
         },
         {
-          type: "visual",
-          content: {
-            table: {
-              headers: ["Đơn vị", "Bằng bao nhiêu đơn vị liền sau"],
-              rows: [
-                ["1 km", "10 hm"],
-                ["1 hm", "10 dam"],
-                ["1 dam", "10 m"],
-                ["1 m", "10 dm"],
-                ["1 dm", "10 cm"],
-                ["1 cm", "10 mm"]
-              ]
-            },
-            text: "Bậc thang đơn vị đo độ dài\n· km\n· hm\n· dam\n· m\n· dm\n· cm\n· mm\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
-          }
-        },
-        {
-          type: "concept",
-          content: {
-            badge: "Mẹo Nhớ",
-            title: "Cách đổi đơn vị đo độ dài",
-            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
-            points: [
-              "1 km = 10 hm.",
-              "Đi xuống hai bậc thì nhân hai lần: 1 km = 10 × 10 = 100 dam.",
-              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 km = 20 hm.",
-              "Đổi số bé ra số lớn: CHIA. Ví dụ 30 hm = 3 km."
-            ]
-          }
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "1 km bằng bao nhiêu hm?",
-            options: [1, 10, 11, 100],
-            answer: 10,
-            mascotHint: "Hai đơn vị liền nhau: 1 km = 10 hm."
-          }
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "3 km bằng bao nhiêu hm?",
-            options: [10, 30, 40, 300],
-            answer: 30,
-            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 10 = 30."
-          }
-        },
-        {
           type: "quiz",
           content: {
             question: "1 ki-lô-mét bằng bao nhiêu mét?",
@@ -377,6 +328,60 @@ export const g2c11 = {
             title: "Bé nhớ rất tốt:",
             points: ["1 km = 1000 m.", "km dùng để đo quãng đường dài."],
             mascotMood: "celebrate",
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                [
+                  "Bước 1 — Nhớ bậc thang",
+                  "km → m → dm → cm, mỗi bậc liền nhau hơn kém 10 lần",
+                ],
+                ["Bước 2 — Đổi", "đi xuống một bậc thì số đo lớn lên 10 lần"],
+                ["Bước 3 — Kiểm lại", "đổi ngược lại xem có về số ban đầu"],
+              ],
+            },
+            text: "Ba bước đổi đơn vị đo độ dài\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.",
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Đổi", "Được"],
+              rows: [
+                ["1 km", "1 000 m"],
+                ["1 m", "10 dm"],
+                ["1 dm", "10 cm"],
+              ],
+            },
+            text: "Bảng nhớ nhanh\nBé nhìn bảng rồi đọc lại từng dòng cho cô nghe nhé!",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "1 km bằng bao nhiêu mét?",
+            options: ["10 m", "100 m", "1 000 m", "10 000 m"],
+            answer: "1 000 m",
+            mascotHint: "1 km = 1 000 m.",
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Đổi", "Được"],
+              rows: [
+                ["1 km", "1 000 m"],
+                ["1 m", "10 dm"],
+                ["1 dm", "10 cm"],
+              ],
+            },
+            text: "Bảng nhớ nhanh — đơn vị đo độ dài\n· 1 km = 1 000 m\n· 1 m = 10 dm\n· 1 dm = 10 cm",
           },
         },
       ],
@@ -449,10 +454,10 @@ export const g2c11 = {
               left: 500,
               right: 500,
               sign: "+",
-              remember: true
+              remember: true,
             },
-            text: "Bé tự đặt tính: 500 + 500\nhàng đơn vị 0 + 0 = 0, viết 0\nhàng chục 0 + 0 = 0, viết 0\nhàng trăm 5 + 5 = 10, viết 0 nhớ 1\nVậy 500 + 500 = 1 000."
-          }
+            text: "Bé tự đặt tính: 500 + 500\nhàng đơn vị 0 + 0 = 0, viết 0\nhàng chục 0 + 0 = 0, viết 0\nhàng trăm 5 + 5 = 10, viết 0 nhớ 1\nVậy 500 + 500 = 1 000.",
+          },
         },
         {
           type: "visual",
@@ -462,25 +467,25 @@ export const g2c11 = {
               rows: [
                 ["1 m", "10 dm"],
                 ["1 dm", "10 cm"],
-                ["1 cm", "10 mm"]
-              ]
+              ],
             },
-            text: "Bậc thang đơn vị đo độ dài\n· m\n· dm\n· cm\n· mm\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
-          }
+            text: "Bậc thang đơn vị đo độ dài\n· m\n· dm\n· cm\nĐi xuống một bậc: đổi ra đơn vị nhỏ hơn (1 m = 10 dm). Đi lên một bậc: đổi ra đơn vị lớn hơn.",
+          },
         },
         {
           type: "concept",
           content: {
             badge: "Mẹo Nhớ",
             title: "Cách đổi đơn vị đo độ dài",
-            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            explanation:
+              "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
             points: [
               "1 m = 10 dm.",
               "Đi xuống hai bậc thì nhân hai lần: 1 m = 10 × 10 = 100 cm.",
               "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 m = 20 dm.",
-              "Đổi số bé ra số lớn: CHIA. Ví dụ 30 dm = 3 m."
-            ]
-          }
+              "Đổi số bé ra số lớn: CHIA. Ví dụ 30 dm = 3 m.",
+            ],
+          },
         },
         {
           type: "quiz",
@@ -488,8 +493,8 @@ export const g2c11 = {
             question: "1 m bằng bao nhiêu dm?",
             options: [1, 10, 11, 100],
             answer: 10,
-            mascotHint: "Hai đơn vị liền nhau: 1 m = 10 dm."
-          }
+            mascotHint: "Hai đơn vị liền nhau: 1 m = 10 dm.",
+          },
         },
         {
           type: "quiz",
@@ -497,8 +502,8 @@ export const g2c11 = {
             question: "3 m bằng bao nhiêu dm?",
             options: [10, 30, 40, 300],
             answer: 30,
-            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 10 = 30."
-          }
+            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 10 = 30.",
+          },
         },
         {
           type: "quiz",
@@ -506,8 +511,8 @@ export const g2c11 = {
             question: "965 + 613 bằng bao nhiêu?",
             options: [578, 1577, 1578, 1579],
             answer: 1578,
-            mascotHint: "hàng đơn vị 5 + 3 = 8, viết 8. Kết quả 1578."
-          }
+            mascotHint: "hàng đơn vị 5 + 3 = 8, viết 8. Kết quả 1578.",
+          },
         },
         {
           type: "quiz",
@@ -590,10 +595,10 @@ export const g2c11 = {
             cotTinh: {
               left: 2000,
               right: 1500,
-              sign: "−"
+              sign: "−",
             },
-            text: "Bé tự đặt tính: 2000 − 1500\nhàng đơn vị 0 − 0 = 0, viết 0\nhàng chục 0 − 0 = 0, viết 0\nhàng trăm 0 < 5 nên mượn 1: 10 − 5 = 5, viết 5\nVậy 2 000 − 1 500 = 500."
-          }
+            text: "Bé tự đặt tính: 2000 − 1500\nhàng đơn vị 0 − 0 = 0, viết 0\nhàng chục 0 − 0 = 0, viết 0\nhàng trăm 0 < 5 nên mượn 1: 10 − 5 = 5, viết 5\nVậy 2 000 − 1 500 = 500.",
+          },
         },
         {
           type: "visual",
@@ -603,25 +608,25 @@ export const g2c11 = {
               rows: [
                 ["1 m", "10 dm"],
                 ["1 dm", "10 cm"],
-                ["1 cm", "10 mm"]
-              ]
+              ],
             },
-            text: "Bậc thang đơn vị đo độ dài\n· m\n· dm\n· cm\n· mm\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
-          }
+            text: "Bậc thang đơn vị đo độ dài\n· m\n· dm\n· cm\nĐi xuống một bậc: đổi ra đơn vị nhỏ hơn (1 m = 10 dm). Đi lên một bậc: đổi ra đơn vị lớn hơn.",
+          },
         },
         {
           type: "concept",
           content: {
             badge: "Mẹo Nhớ",
             title: "Cách đổi đơn vị đo độ dài",
-            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            explanation:
+              "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
             points: [
               "1 m = 10 dm.",
               "Đi xuống hai bậc thì nhân hai lần: 1 m = 10 × 10 = 100 cm.",
               "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 m = 20 dm.",
-              "Đổi số bé ra số lớn: CHIA. Ví dụ 30 dm = 3 m."
-            ]
-          }
+              "Đổi số bé ra số lớn: CHIA. Ví dụ 30 dm = 3 m.",
+            ],
+          },
         },
         {
           type: "quiz",
@@ -629,8 +634,8 @@ export const g2c11 = {
             question: "1 m bằng bao nhiêu dm?",
             options: [1, 10, 11, 100],
             answer: 10,
-            mascotHint: "Hai đơn vị liền nhau: 1 m = 10 dm."
-          }
+            mascotHint: "Hai đơn vị liền nhau: 1 m = 10 dm.",
+          },
         },
         {
           type: "quiz",
@@ -638,8 +643,8 @@ export const g2c11 = {
             question: "3 m bằng bao nhiêu dm?",
             options: [10, 30, 40, 300],
             answer: 30,
-            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 10 = 30."
-          }
+            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 10 = 30.",
+          },
         },
         {
           type: "quiz",
@@ -647,8 +652,8 @@ export const g2c11 = {
             question: "7847 − 7823 bằng bao nhiêu?",
             options: [23, 24, 25, 26],
             answer: 24,
-            mascotHint: "hàng đơn vị 7 − 3 = 4, viết 4. Kết quả 24."
-          }
+            mascotHint: "hàng đơn vị 7 − 3 = 4, viết 4. Kết quả 24.",
+          },
         },
         {
           type: "quiz",
@@ -756,25 +761,25 @@ export const g2c11 = {
               rows: [
                 ["1 m", "10 dm"],
                 ["1 dm", "10 cm"],
-                ["1 cm", "10 mm"]
-              ]
+              ],
             },
-            text: "Bậc thang đơn vị đo độ dài\n· m\n· dm\n· cm\n· mm\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
-          }
+            text: "Bậc thang đơn vị đo độ dài\n· m\n· dm\n· cm\nĐi xuống một bậc: đổi ra đơn vị nhỏ hơn (1 m = 10 dm). Đi lên một bậc: đổi ra đơn vị lớn hơn.",
+          },
         },
         {
           type: "concept",
           content: {
             badge: "Mẹo Nhớ",
             title: "Cách đổi đơn vị đo độ dài",
-            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            explanation:
+              "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
             points: [
               "1 m = 10 dm.",
               "Đi xuống hai bậc thì nhân hai lần: 1 m = 10 × 10 = 100 cm.",
               "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 m = 20 dm.",
-              "Đổi số bé ra số lớn: CHIA. Ví dụ 30 dm = 3 m."
-            ]
-          }
+              "Đổi số bé ra số lớn: CHIA. Ví dụ 30 dm = 3 m.",
+            ],
+          },
         },
         {
           type: "quiz",
@@ -782,8 +787,8 @@ export const g2c11 = {
             question: "1 m bằng bao nhiêu dm?",
             options: [1, 10, 11, 100],
             answer: 10,
-            mascotHint: "Hai đơn vị liền nhau: 1 m = 10 dm."
-          }
+            mascotHint: "Hai đơn vị liền nhau: 1 m = 10 dm.",
+          },
         },
         {
           type: "quiz",
@@ -791,8 +796,8 @@ export const g2c11 = {
             question: "3 m bằng bao nhiêu dm?",
             options: [10, 30, 40, 300],
             answer: 30,
-            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 10 = 30."
-          }
+            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 10 = 30.",
+          },
         },
         {
           type: "quiz",
@@ -895,25 +900,25 @@ export const g2c11 = {
               rows: [
                 ["1 m", "10 dm"],
                 ["1 dm", "10 cm"],
-                ["1 cm", "10 mm"]
-              ]
+              ],
             },
-            text: "Bậc thang đơn vị đo độ dài\n· m\n· dm\n· cm\n· mm\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
-          }
+            text: "Bậc thang đơn vị đo độ dài\n· m\n· dm\n· cm\nĐi xuống một bậc: đổi ra đơn vị nhỏ hơn (1 m = 10 dm). Đi lên một bậc: đổi ra đơn vị lớn hơn.",
+          },
         },
         {
           type: "concept",
           content: {
             badge: "Mẹo Nhớ",
             title: "Cách đổi đơn vị đo độ dài",
-            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            explanation:
+              "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
             points: [
               "1 m = 10 dm.",
               "Đi xuống hai bậc thì nhân hai lần: 1 m = 10 × 10 = 100 cm.",
               "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 m = 20 dm.",
-              "Đổi số bé ra số lớn: CHIA. Ví dụ 30 dm = 3 m."
-            ]
-          }
+              "Đổi số bé ra số lớn: CHIA. Ví dụ 30 dm = 3 m.",
+            ],
+          },
         },
         {
           type: "quiz",
@@ -921,8 +926,8 @@ export const g2c11 = {
             question: "1 m bằng bao nhiêu dm?",
             options: [1, 10, 11, 100],
             answer: 10,
-            mascotHint: "Hai đơn vị liền nhau: 1 m = 10 dm."
-          }
+            mascotHint: "Hai đơn vị liền nhau: 1 m = 10 dm.",
+          },
         },
         {
           type: "quiz",
@@ -930,8 +935,8 @@ export const g2c11 = {
             question: "3 m bằng bao nhiêu dm?",
             options: [10, 30, 40, 300],
             answer: 30,
-            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 10 = 30."
-          }
+            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 10 = 30.",
+          },
         },
         {
           type: "quiz",

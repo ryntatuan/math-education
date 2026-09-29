@@ -33,7 +33,7 @@ export const g4c5 = {
               "Cộng lần lượt từ hàng đơn vị sang trái.",
               "Hàng nào cộng được từ 10 trở lên thì viết chữ số hàng đơn vị và nhớ 1 sang hàng liền trước.",
             ],
-            rule: "Thẳng cột rồi cộng từ phải sang trái; nhớ 1 khi tổng của một hàng từ 10 trở lên.",
+            rule: "Cộng sai thường do lệch cột — bé kiểm lại các hàng cho thẳng.",
           },
         },
         {
@@ -381,7 +381,7 @@ export const g4c5 = {
               "Số lớn = (Tổng + Hiệu) : 2.",
               "Tìm được một số thì lấy Tổng trừ đi để ra số còn lại (hoặc cộng/trừ Hiệu).",
             ],
-            rule: "Bớt phần hơn để tìm số bé — thêm phần hơn để tìm số lớn.",
+            rule: "Số lớn thì cộng hiệu, số bé thì trừ hiệu, rồi chia đôi.",
           },
         },
         {

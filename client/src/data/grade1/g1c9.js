@@ -51,69 +51,18 @@ export const g1c9 = {
           type: "visual",
           content: {
             table: {
-              headers: ["Đơn vị", "Bằng bao nhiêu đơn vị liền sau"],
-              rows: [
-                ["1 giờ", "60 phút"],
-                ["1 phút", "60 giây"]
-              ]
-            },
-            text: "Bậc thang đơn vị đo thời gian\n· giờ\n· phút\n· giây\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
-          }
-        },
-        {
-          type: "concept",
-          content: {
-            badge: "Mẹo Nhớ",
-            title: "Cách đổi đơn vị đo thời gian",
-            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
-            points: [
-              "1 giờ = 60 phút.",
-              "Đi xuống hai bậc thì nhân hai lần: 1 giờ = 60 × 60 = 3600 giây.",
-              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 giờ = 120 phút.",
-              "Đổi số bé ra số lớn: CHIA. Ví dụ 180 phút = 3 giờ."
-            ]
-          }
-        },
-        {
-          type: "visual",
-          content: {
-            table: {
               headers: ["Bước", "Việc bé làm"],
               rows: [
-                ["Bước 1 — Đơn vị", "viết kết quả luôn kèm đơn vị"],
-                ["Bước 2 — Bậc thang", "đi xuống thì nhân, đi lên thì chia"],
-                ["Bước 3 — Kiểm lại", "lấy kết quả đổi ngược lại xem có về số ban đầu"]
-              ]
+                ["Bước 1 — Nhìn kỹ", "xem đề hỏi giờ, ngày hay đồng tiền"],
+                [
+                  "Bước 2 — Đọc từng phần",
+                  "kim ngắn rồi kim dài · thứ rồi ngày · tờ tiền rồi số tiền",
+                ],
+                ["Bước 3 — Kiểm lại", "đọc lại một lần nữa rồi mới trả lời"],
+              ],
             },
-            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
-          }
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "5 × 66 bằng bao nhiêu?",
-            options: [329, 330, 331, 340],
-            answer: 330,
-            mascotHint: "Bé đặt tính rồi tính từ hàng đơn vị. Kết quả 330."
-          }
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "1 giờ bằng bao nhiêu phút?",
-            options: [6, 60, 600, 3600],
-            answer: 60,
-            mascotHint: "Hai đơn vị liền nhau: 1 giờ = 60 phút."
-          }
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "3 giờ bằng bao nhiêu phút?",
-            options: [60, 180, 240, 1800],
-            answer: 180,
-            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 60 = 180."
-          }
+            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai.",
+          },
         },
         {
           type: "quiz",
@@ -156,6 +105,42 @@ export const g1c9 = {
             mascotMood: "proud",
           },
         },
+        {
+          type: "visual",
+          content: {
+            text: "🕘  Cùng bé đọc giờ trên mặt đồng hồ này nhé!",
+            clock: {
+              hour: 9,
+              minute: 0,
+              timeText: "9 giờ đúng",
+            },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Trên mặt đồng hồ", "Có gì"],
+              rows: [
+                ["Kim ngắn", "chỉ giờ"],
+                ["Kim dài", "chỉ phút"],
+                ["Các số", "từ 1 đến 12, xếp thành vòng tròn"],
+              ],
+            },
+            text: "Bảng nhớ nhanh — mặt đồng hồ\n· Bé nhìn kim ngắn trước, rồi đến kim dài\n· Các số trên mặt đồng hồ xếp thành một vòng tròn",
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "🕘  Kim ngắn chỉ số 9, kim dài chỉ số 12\nKim ngắn → giờ\nKim dài  → phút",
+            clock: {
+              hour: 9,
+              minute: 0,
+              timeText: "Kim ngắn chỉ số 9, kim dài chỉ số 12",
+            },
+          },
+        },
       ],
     },
     {
@@ -178,7 +163,7 @@ export const g1c9 = {
             title: "Đọc giờ đúng",
             explanation:
               "Khi kim dài chỉ vào số 12, bé chỉ cần đọc số mà kim ngắn đang chỉ. Đó là GIỜ ĐÚNG.",
-            rule: "Kim ngắn chỉ số 7, kim dài chỉ số 12 → 7 giờ đúng.",
+            rule: "Bé nhìn kim ngắn trước để biết mấy giờ, rồi mới xem kim dài.",
             points: [
               "Kim dài chỉ số 12 thì gọi là giờ đúng.",
               "Kim ngắn chỉ số nào thì là mấy giờ.",
@@ -201,69 +186,21 @@ export const g1c9 = {
           type: "visual",
           content: {
             table: {
-              headers: ["Đơn vị", "Bằng bao nhiêu đơn vị liền sau"],
-              rows: [
-                ["1 giờ", "60 phút"],
-                ["1 phút", "60 giây"]
-              ]
-            },
-            text: "Bậc thang đơn vị đo thời gian\n· giờ\n· phút\n· giây\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
-          }
-        },
-        {
-          type: "concept",
-          content: {
-            badge: "Mẹo Nhớ",
-            title: "Cách đổi đơn vị đo thời gian",
-            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
-            points: [
-              "1 giờ = 60 phút.",
-              "Đi xuống hai bậc thì nhân hai lần: 1 giờ = 60 × 60 = 3600 giây.",
-              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 giờ = 120 phút.",
-              "Đổi số bé ra số lớn: CHIA. Ví dụ 180 phút = 3 giờ."
-            ]
-          }
-        },
-        {
-          type: "visual",
-          content: {
-            table: {
               headers: ["Bước", "Việc bé làm"],
               rows: [
-                ["Bước 1 — Đơn vị", "viết kết quả luôn kèm đơn vị"],
-                ["Bước 2 — Bậc thang", "đi xuống thì nhân, đi lên thì chia"],
-                ["Bước 3 — Kiểm lại", "lấy kết quả đổi ngược lại xem có về số ban đầu"]
-              ]
+                [
+                  "Bước 1 — Đặt thước",
+                  "đặt vạch 0 của thước trùng với một đầu vật",
+                ],
+                ["Bước 2 — Đọc số", "nhìn đầu kia của vật xem tới vạch nào"],
+                [
+                  "Bước 3 — Ghi kết quả",
+                  "viết số đo kèm đơn vị, rồi đo lại lần nữa",
+                ],
+              ],
             },
-            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai."
-          }
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "2 × 92 bằng bao nhiêu?",
-            options: [183, 184, 185, 194],
-            answer: 184,
-            mascotHint: "Bé đặt tính rồi tính từ hàng đơn vị. Kết quả 184."
-          }
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "1 giờ bằng bao nhiêu phút?",
-            options: [6, 60, 600, 3600],
-            answer: 60,
-            mascotHint: "Hai đơn vị liền nhau: 1 giờ = 60 phút."
-          }
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "3 giờ bằng bao nhiêu phút?",
-            options: [60, 180, 240, 1800],
-            answer: 180,
-            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 60 = 180."
-          }
+            text: "Ba bước làm bài — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai.",
+          },
         },
         {
           type: "quiz",
@@ -295,6 +232,56 @@ export const g1c9 = {
               "Kim ngắn chỉ 7 → 7 giờ.",
             ],
             mascotMood: "proud",
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "🕓  Bé đọc giờ trên mặt đồng hồ này nhé!",
+            clock: {
+              hour: 4,
+              minute: 0,
+              timeText: "4 giờ đúng",
+            },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Giờ đúng", "Kim ngắn chỉ số"],
+              rows: [
+                ["4 giờ", "4"],
+                ["7 giờ", "7"],
+                ["12 giờ", "12"],
+              ],
+            },
+            text: "Bảng nhớ nhanh\nBé nhìn bảng rồi đọc lại từng dòng cho cô nghe nhé!",
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "🕓  Kim ngắn chỉ số 4, kim dài chỉ số 12\nBây giờ là 4 giờ đúng",
+            clock: {
+              hour: 4,
+              minute: 0,
+              timeText: "Kim ngắn chỉ số 4, kim dài chỉ số 12 — 4 giờ đúng",
+            },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Giờ đúng", "Kim ngắn chỉ số"],
+              rows: [
+                ["4 giờ", "4"],
+                ["7 giờ", "7"],
+                ["12 giờ", "12"],
+              ],
+            },
+            text: "Bảng nhớ nhanh — giờ đúng\n· Kim dài chỉ số 12",
           },
         },
       ],
@@ -344,51 +331,6 @@ export const g1c9 = {
           },
         },
         {
-          type: "visual",
-          content: {
-            table: {
-              headers: ["Đơn vị", "Bằng bao nhiêu đơn vị liền sau"],
-              rows: [
-                ["1 giờ", "60 phút"],
-                ["1 phút", "60 giây"]
-              ]
-            },
-            text: "Bậc thang đơn vị đo thời gian\n· giờ\n· phút\n· giây\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
-          }
-        },
-        {
-          type: "concept",
-          content: {
-            badge: "Mẹo Nhớ",
-            title: "Cách đổi đơn vị đo thời gian",
-            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
-            points: [
-              "1 giờ = 60 phút.",
-              "Đi xuống hai bậc thì nhân hai lần: 1 giờ = 60 × 60 = 3600 giây.",
-              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 giờ = 120 phút.",
-              "Đổi số bé ra số lớn: CHIA. Ví dụ 180 phút = 3 giờ."
-            ]
-          }
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "1 giờ bằng bao nhiêu phút?",
-            options: [6, 60, 600, 3600],
-            answer: 60,
-            mascotHint: "Hai đơn vị liền nhau: 1 giờ = 60 phút."
-          }
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "3 giờ bằng bao nhiêu phút?",
-            options: [60, 180, 240, 1800],
-            answer: 180,
-            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 60 = 180."
-          }
-        },
-        {
           type: "quiz",
           content: {
             question: "Bé ăn cơm tối lúc 7 giờ. Đó là buổi nào trong ngày?",
@@ -406,6 +348,52 @@ export const g1c9 = {
               "7 giờ tối là buổi tối.",
             ],
             mascotMood: "proud",
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                ["Bước 1 — Nhìn kim ngắn", "xem kim ngắn chỉ số mấy"],
+                ["Bước 2 — Nhìn kim dài", "kim dài có chỉ vào số 12 không"],
+                ["Bước 3 — Đọc lại", "nói đủ câu: bấy nhiêu giờ đúng"],
+              ],
+            },
+            text: "Ba bước đọc giờ đúng\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.",
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "🌅  Buổi sáng bé thức dậy — bé xem đồng hồ nhé!",
+            clock: {
+              hour: 7,
+              minute: 0,
+              timeText: "7 giờ sáng",
+            },
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Bé ăn cơm trưa lúc 12 giờ. Đó là buổi nào?",
+            options: ["Buổi sáng", "Buổi trưa", "Buổi chiều", "Buổi tối"],
+            answer: "Buổi trưa",
+            mascotHint:
+              "12 giờ là buổi trưa; sáng là trước 12 giờ, chiều là sau 12 giờ.",
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "🌅  Buổi sáng bé thức dậy lúc 7 giờ\nKim ngắn chỉ số 7, kim dài chỉ số 12",
+            clock: {
+              hour: 7,
+              minute: 0,
+              timeText: "7 giờ sáng — kim ngắn chỉ số 7, kim dài chỉ số 12",
+            },
           },
         },
       ],
@@ -459,51 +447,6 @@ export const g1c9 = {
           },
         },
         {
-          type: "visual",
-          content: {
-            table: {
-              headers: ["Đơn vị", "Bằng bao nhiêu đơn vị liền sau"],
-              rows: [
-                ["1 giờ", "60 phút"],
-                ["1 phút", "60 giây"]
-              ]
-            },
-            text: "Bậc thang đơn vị đo thời gian\n· giờ\n· phút\n· giây\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
-          }
-        },
-        {
-          type: "concept",
-          content: {
-            badge: "Mẹo Nhớ",
-            title: "Cách đổi đơn vị đo thời gian",
-            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
-            points: [
-              "1 giờ = 60 phút.",
-              "Đi xuống hai bậc thì nhân hai lần: 1 giờ = 60 × 60 = 3600 giây.",
-              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 giờ = 120 phút.",
-              "Đổi số bé ra số lớn: CHIA. Ví dụ 180 phút = 3 giờ."
-            ]
-          }
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "1 giờ bằng bao nhiêu phút?",
-            options: [6, 60, 600, 3600],
-            answer: 60,
-            mascotHint: "Hai đơn vị liền nhau: 1 giờ = 60 phút."
-          }
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "3 giờ bằng bao nhiêu phút?",
-            options: [60, 180, 240, 1800],
-            answer: 180,
-            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 60 = 180."
-          }
-        },
-        {
           type: "quiz",
           content: {
             question: "Xem đồng hồ rồi cho biết bé làm gì lúc đó?",
@@ -523,6 +466,68 @@ export const g1c9 = {
               "Mỗi việc trong ngày gắn với một giờ.",
             ],
             mascotMood: "proud",
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "🕕  Bé tự đọc giờ xem bây giờ là mấy giờ nhé!",
+            clock: {
+              hour: 6,
+              minute: 0,
+              timeText: "6 giờ đúng",
+            },
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question:
+              "Đồng hồ có kim ngắn chỉ số 6, kim dài chỉ số 12. Bây giờ là mấy giờ?",
+            options: ["6 giờ", "12 giờ", "5 giờ", "6 giờ 12 phút"],
+            answer: "6 giờ",
+            mascotHint:
+              "Kim dài chỉ số 12 thì đọc số kim ngắn đang chỉ: 6 giờ.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Khi đọc giờ đúng, bé nhìn kim nào trước?",
+            options: [
+              "Kim ngắn",
+              "Kim dài",
+              "Cả hai kim cùng lúc",
+              "Không nhìn kim nào",
+            ],
+            answer: "Kim ngắn",
+            mascotHint:
+              "Kim ngắn chỉ giờ nên bé nhìn kim ngắn trước, rồi xem kim dài.",
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                ["Bước 1 — Nhìn kim ngắn", "xem kim ngắn chỉ số mấy"],
+                ["Bước 2 — Kiểm kim dài", "kim dài có chỉ số 12 không"],
+                ["Bước 3 — Nói cả câu", "nói đủ câu: bấy nhiêu giờ đúng"],
+              ],
+            },
+            text: "Ba bước thực hành xem giờ đúng\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.",
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "🕕  Bé tự đọc giờ\nKim ngắn chỉ số 6, kim dài chỉ số 12 → 6 giờ đúng",
+            clock: {
+              hour: 6,
+              minute: 0,
+              timeText: "6 giờ đúng — kim ngắn chỉ số 6, kim dài chỉ số 12",
+            },
           },
         },
       ],
@@ -578,47 +583,29 @@ export const g1c9 = {
           type: "visual",
           content: {
             table: {
-              headers: ["Đơn vị", "Bằng bao nhiêu đơn vị liền sau"],
+              headers: ["Điều bé cần nhớ", "Nội dung"],
               rows: [
-                ["1 m", "10 dm"],
-                ["1 dm", "10 cm"],
-                ["1 cm", "10 mm"]
-              ]
+                ["1 tuần", "7 ngày"],
+                ["Các ngày trong tuần", "thứ Hai → Chủ nhật"],
+                ["Xem lịch", "đọc thứ, ngày, tháng"],
+              ],
             },
-            text: "Bậc thang đơn vị đo độ dài\n· m\n· dm\n· cm\n· mm\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
-          }
+            text: "Ba bước xem lịch\n· Bước 1 — Đọc thứ trước (thứ Hai, thứ Ba, thứ Tư)\n· Bước 2 — Đọc ngày, rồi đọc tháng\n· Bước 3 — Đọc lại cả câu: thứ … ngày … tháng …",
+          },
         },
         {
           type: "concept",
           content: {
             badge: "Mẹo Nhớ",
-            title: "Cách đổi đơn vị đo độ dài",
-            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            title: "Xem lịch và xem giờ",
+            explanation: "Bé đọc theo thứ tự, không đọc ngược.",
             points: [
-              "1 m = 10 dm.",
-              "Đi xuống hai bậc thì nhân hai lần: 1 m = 10 × 10 = 100 cm.",
-              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 m = 20 dm.",
-              "Đổi số bé ra số lớn: CHIA. Ví dụ 30 dm = 3 m."
-            ]
-          }
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "1 m bằng bao nhiêu dm?",
-            options: [1, 10, 11, 100],
-            answer: 10,
-            mascotHint: "Hai đơn vị liền nhau: 1 m = 10 dm."
-          }
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "3 m bằng bao nhiêu dm?",
-            options: [10, 30, 40, 300],
-            answer: 30,
-            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 10 = 30."
-          }
+              "Kim ngắn chỉ giờ, kim dài chỉ phút.",
+              "Các ngày trong tuần đọc lần lượt từ thứ Hai đến Chủ nhật.",
+              "Xem lịch: đọc thứ trước, rồi ngày, rồi tháng.",
+              "Hôm qua — hôm nay — ngày mai: đọc lần lượt theo dòng thời gian.",
+            ],
+          },
         },
         {
           type: "quiz",
@@ -698,47 +685,29 @@ export const g1c9 = {
           type: "visual",
           content: {
             table: {
-              headers: ["Đơn vị", "Bằng bao nhiêu đơn vị liền sau"],
+              headers: ["Điều bé cần nhớ", "Nội dung"],
               rows: [
-                ["1 m", "10 dm"],
-                ["1 dm", "10 cm"],
-                ["1 cm", "10 mm"]
-              ]
+                ["1 tuần", "7 ngày"],
+                ["Các ngày trong tuần", "thứ Hai → Chủ nhật"],
+                ["Xem lịch", "đọc thứ, ngày, tháng"],
+              ],
             },
-            text: "Bậc thang đơn vị đo độ dài\n· m\n· dm\n· cm\n· mm\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
-          }
+            text: "Ba bước xem lịch\n· Bước 1 — Đọc thứ trước (thứ Hai, thứ Ba, thứ Tư)\n· Bước 2 — Đọc ngày, rồi đọc tháng\n· Bước 3 — Đọc lại cả câu: thứ … ngày … tháng …",
+          },
         },
         {
           type: "concept",
           content: {
             badge: "Mẹo Nhớ",
-            title: "Cách đổi đơn vị đo độ dài",
-            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            title: "Xem lịch và xem giờ",
+            explanation: "Bé đọc theo thứ tự, không đọc ngược.",
             points: [
-              "1 m = 10 dm.",
-              "Đi xuống hai bậc thì nhân hai lần: 1 m = 10 × 10 = 100 cm.",
-              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 m = 20 dm.",
-              "Đổi số bé ra số lớn: CHIA. Ví dụ 30 dm = 3 m."
-            ]
-          }
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "1 m bằng bao nhiêu dm?",
-            options: [1, 10, 11, 100],
-            answer: 10,
-            mascotHint: "Hai đơn vị liền nhau: 1 m = 10 dm."
-          }
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "3 m bằng bao nhiêu dm?",
-            options: [10, 30, 40, 300],
-            answer: 30,
-            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 10 = 30."
-          }
+              "Kim ngắn chỉ giờ, kim dài chỉ phút.",
+              "Các ngày trong tuần đọc lần lượt từ thứ Hai đến Chủ nhật.",
+              "Xem lịch: đọc thứ trước, rồi ngày, rồi tháng.",
+              "Hôm qua — hôm nay — ngày mai: đọc lần lượt theo dòng thời gian.",
+            ],
+          },
         },
         {
           type: "quiz",
@@ -791,7 +760,7 @@ export const g1c9 = {
             title: "Tờ lịch tháng",
             explanation:
               "Tờ lịch tháng ghi các NGÀY trong tháng. Hàng trên cùng ghi tên các THỨ.",
-            rule: "Mỗi cột là một thứ trong tuần. Mỗi ô là một ngày trong tháng.",
+            rule: "Bé đọc tên tháng trước, rồi mới tìm ngày cần xem.",
             points: [
               "Tờ lịch có tên tháng ở trên.",
               "Các ngày trong tháng xếp theo thứ tự tăng dần.",
@@ -826,47 +795,29 @@ export const g1c9 = {
           type: "visual",
           content: {
             table: {
-              headers: ["Đơn vị", "Bằng bao nhiêu đơn vị liền sau"],
+              headers: ["Điều bé cần nhớ", "Nội dung"],
               rows: [
-                ["1 m", "10 dm"],
-                ["1 dm", "10 cm"],
-                ["1 cm", "10 mm"]
-              ]
+                ["1 tuần", "7 ngày"],
+                ["Các ngày trong tuần", "thứ Hai → Chủ nhật"],
+                ["Xem lịch", "đọc thứ, ngày, tháng"],
+              ],
             },
-            text: "Bậc thang đơn vị đo độ dài\n· m\n· dm\n· cm\n· mm\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
-          }
+            text: "Ba bước xem lịch\n· Bước 1 — Đọc thứ trước (thứ Hai, thứ Ba, thứ Tư)\n· Bước 2 — Đọc ngày, rồi đọc tháng\n· Bước 3 — Đọc lại cả câu: thứ … ngày … tháng …",
+          },
         },
         {
           type: "concept",
           content: {
             badge: "Mẹo Nhớ",
-            title: "Cách đổi đơn vị đo độ dài",
-            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            title: "Xem lịch và xem giờ",
+            explanation: "Bé đọc theo thứ tự, không đọc ngược.",
             points: [
-              "1 m = 10 dm.",
-              "Đi xuống hai bậc thì nhân hai lần: 1 m = 10 × 10 = 100 cm.",
-              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 m = 20 dm.",
-              "Đổi số bé ra số lớn: CHIA. Ví dụ 30 dm = 3 m."
-            ]
-          }
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "1 m bằng bao nhiêu dm?",
-            options: [1, 10, 11, 100],
-            answer: 10,
-            mascotHint: "Hai đơn vị liền nhau: 1 m = 10 dm."
-          }
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "3 m bằng bao nhiêu dm?",
-            options: [10, 30, 40, 300],
-            answer: 30,
-            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 10 = 30."
-          }
+              "Kim ngắn chỉ giờ, kim dài chỉ phút.",
+              "Các ngày trong tuần đọc lần lượt từ thứ Hai đến Chủ nhật.",
+              "Xem lịch: đọc thứ trước, rồi ngày, rồi tháng.",
+              "Hôm qua — hôm nay — ngày mai: đọc lần lượt theo dòng thời gian.",
+            ],
+          },
         },
         {
           type: "quiz",
@@ -891,6 +842,15 @@ export const g1c9 = {
               "Mỗi cột là một thứ trong tuần.",
             ],
             mascotMood: "proud",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Tờ lịch cho bé biết những gì?",
+            options: ["Thứ, ngày, tháng", "Cân nặng", "Chiều cao", "Số tiền"],
+            answer: "Thứ, ngày, tháng",
+            mascotHint: "Trên tờ lịch có thứ, ngày và tháng.",
           },
         },
       ],
@@ -946,47 +906,29 @@ export const g1c9 = {
           type: "visual",
           content: {
             table: {
-              headers: ["Đơn vị", "Bằng bao nhiêu đơn vị liền sau"],
+              headers: ["Điều bé cần nhớ", "Nội dung"],
               rows: [
-                ["1 m", "10 dm"],
-                ["1 dm", "10 cm"],
-                ["1 cm", "10 mm"]
-              ]
+                ["1 tuần", "7 ngày"],
+                ["Các ngày trong tuần", "thứ Hai → Chủ nhật"],
+                ["Xem lịch", "đọc thứ, ngày, tháng"],
+              ],
             },
-            text: "Bậc thang đơn vị đo độ dài\n· m\n· dm\n· cm\n· mm\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
-          }
+            text: "Ba bước xem lịch\n· Bước 1 — Đọc thứ trước (thứ Hai, thứ Ba, thứ Tư)\n· Bước 2 — Đọc ngày, rồi đọc tháng\n· Bước 3 — Đọc lại cả câu: thứ … ngày … tháng …",
+          },
         },
         {
           type: "concept",
           content: {
             badge: "Mẹo Nhớ",
-            title: "Cách đổi đơn vị đo độ dài",
-            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
+            title: "Xem lịch và xem giờ",
+            explanation: "Bé đọc theo thứ tự, không đọc ngược.",
             points: [
-              "1 m = 10 dm.",
-              "Đi xuống hai bậc thì nhân hai lần: 1 m = 10 × 10 = 100 cm.",
-              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 m = 20 dm.",
-              "Đổi số bé ra số lớn: CHIA. Ví dụ 30 dm = 3 m."
-            ]
-          }
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "1 m bằng bao nhiêu dm?",
-            options: [1, 10, 11, 100],
-            answer: 10,
-            mascotHint: "Hai đơn vị liền nhau: 1 m = 10 dm."
-          }
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "3 m bằng bao nhiêu dm?",
-            options: [10, 30, 40, 300],
-            answer: 30,
-            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 10 = 30."
-          }
+              "Kim ngắn chỉ giờ, kim dài chỉ phút.",
+              "Các ngày trong tuần đọc lần lượt từ thứ Hai đến Chủ nhật.",
+              "Xem lịch: đọc thứ trước, rồi ngày, rồi tháng.",
+              "Hôm qua — hôm nay — ngày mai: đọc lần lượt theo dòng thời gian.",
+            ],
+          },
         },
         {
           type: "quiz",
@@ -1012,6 +954,20 @@ export const g1c9 = {
               "Cùng một cột là cùng một thứ.",
             ],
             mascotMood: "proud",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Đọc một ngày trên lịch, bé đọc theo thứ tự nào?",
+            options: [
+              "Thứ — ngày — tháng",
+              "Ngày — tháng — thứ",
+              "Tháng — thứ — ngày",
+              "Ngày — thứ — tháng",
+            ],
+            answer: "Thứ — ngày — tháng",
+            mascotHint: "Đọc thứ trước, rồi đến ngày, rồi đến tháng.",
           },
         },
       ],
@@ -1064,51 +1020,6 @@ export const g1c9 = {
           },
         },
         {
-          type: "visual",
-          content: {
-            table: {
-              headers: ["Đơn vị", "Bằng bao nhiêu đơn vị liền sau"],
-              rows: [
-                ["1 giờ", "60 phút"],
-                ["1 phút", "60 giây"]
-              ]
-            },
-            text: "Bậc thang đơn vị đo thời gian\n· giờ\n· phút\n· giây\nĐi XUỐNG một bậc thì nhân hệ số của bậc đó; đi LÊN một bậc thì chia."
-          }
-        },
-        {
-          type: "concept",
-          content: {
-            badge: "Mẹo Nhớ",
-            title: "Cách đổi đơn vị đo thời gian",
-            explanation: "Bé chỉ cần nhớ đúng BẬC THANG đơn vị rồi nhân hoặc chia theo hệ số của từng bậc.",
-            points: [
-              "1 giờ = 60 phút.",
-              "Đi xuống hai bậc thì nhân hai lần: 1 giờ = 60 × 60 = 3600 giây.",
-              "Đổi số lớn ra số bé: NHÂN. Ví dụ 2 giờ = 120 phút.",
-              "Đổi số bé ra số lớn: CHIA. Ví dụ 180 phút = 3 giờ."
-            ]
-          }
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "1 giờ bằng bao nhiêu phút?",
-            options: [6, 60, 600, 3600],
-            answer: 60,
-            mascotHint: "Hai đơn vị liền nhau: 1 giờ = 60 phút."
-          }
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "3 giờ bằng bao nhiêu phút?",
-            options: [60, 180, 240, 1800],
-            answer: 180,
-            mascotHint: "Đổi số lớn ra số bé thì nhân: 3 × 60 = 180."
-          }
-        },
-        {
           type: "quiz",
           content: {
             question: "Đồng hồ chỉ mấy giờ?",
@@ -1136,6 +1047,51 @@ export const g1c9 = {
               "Xem giờ đúng và xem lịch đều đã biết.",
             ],
             mascotMood: "celebrate",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Một tuần có mấy ngày?",
+            options: ["5 ngày", "6 ngày", "7 ngày", "8 ngày"],
+            answer: "7 ngày",
+            mascotHint: "Một tuần có 7 ngày, từ thứ Hai đến Chủ nhật.",
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "🕚  Bé đọc giờ trên mặt đồng hồ này nhé!",
+            clock: {
+              hour: 11,
+              minute: 0,
+              timeText: "11 giờ đúng",
+            },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            table: {
+              headers: ["Bước", "Việc bé làm"],
+              rows: [
+                ["Bước 1 — Xem giờ", "đọc kim ngắn trước, rồi kim dài"],
+                ["Bước 2 — Xem ngày", "đọc thứ, rồi ngày, rồi tháng"],
+                ["Bước 3 — Đọc lại", "nói cả câu cho đủ ý"],
+              ],
+            },
+            text: "Ba bước xem lịch và xem giờ\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.",
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "🕚  Kim ngắn chỉ số 11, kim dài chỉ số 12 → 11 giờ đúng",
+            clock: {
+              hour: 11,
+              minute: 0,
+              timeText: "11 giờ đúng — kim ngắn chỉ số 11, kim dài chỉ số 12",
+            },
           },
         },
       ],

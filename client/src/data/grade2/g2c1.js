@@ -682,7 +682,7 @@ export const g2c1 = {
             title: "Số bị trừ – Số trừ – Hiệu",
             explanation:
               "Số bị lấy đi gọi là SỐ BỊ TRỪ. Số lấy đi gọi là SỐ TRỪ. Kết quả gọi là HIỆU.",
-            rule: "57 − 23 = 34: số 57 là số bị trừ, số 23 là số trừ, số 34 là hiệu.",
+            rule: "Bé nhớ: số bị trừ là số đứng ngay trước dấu trừ.",
             points: [
               "Số bị trừ luôn là số lớn nhất trong ba số.",
               "Muốn tìm số bị trừ, ta lấy hiệu cộng với số trừ.",
@@ -790,7 +790,7 @@ export const g2c1 = {
             title: "Lấy số lớn trừ số bé",
             explanation:
               "Muốn biết hai số hơn kém nhau bao nhiêu, ta lấy SỐ LỚN trừ đi SỐ BÉ.",
-            rule: "Mai hơn Lan số kẹo là: 12 − 8 = 4 (cái kẹo).",
+            rule: "Kết quả phép trừ cho biết hai bạn hơn kém nhau bao nhiêu.",
             points: [
               "Hỏi 'hơn bao nhiêu' dùng phép trừ.",
               "Hỏi 'kém bao nhiêu' cũng dùng phép trừ.",

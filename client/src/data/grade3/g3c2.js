@@ -1026,7 +1026,7 @@ export const g3c2 = {
             badge: "Bảng Chia 8",
             title: "Bảng chia 8",
             explanation: "Lấy tích trong bảng nhân 8 chia cho 8.",
-            rule: "8 : 8 = 1 · 16 : 8 = 2 · 24 : 8 = 3 · 32 : 8 = 4 · 40 : 8 = 5 · 48 : 8 = 6 · 56 : 8 = 7 · 64 : 8 = 8 · 72 : 8 = 9 · 80 : 8 = 10.",
+            rule: "Kết quả trong bảng chia 8 lần lượt hơn kém nhau đúng 1.",
             points: [
               "8 × 6 = 48 nên 48 : 8 = 6.",
               "8 × 9 = 72 nên 72 : 8 = 9.",
@@ -1425,7 +1425,7 @@ export const g3c2 = {
             badge: "Bảng Chia 9",
             title: "Bảng chia 9",
             explanation: "Lấy tích trong bảng nhân 9 chia cho 9.",
-            rule: "9 : 9 = 1 · 18 : 9 = 2 · 27 : 9 = 3 · 36 : 9 = 4 · 45 : 9 = 5 · 54 : 9 = 6 · 63 : 9 = 7 · 72 : 9 = 8 · 81 : 9 = 9 · 90 : 9 = 10.",
+            rule: "Kết quả trong bảng chia 9 lần lượt hơn kém nhau đúng 1.",
             points: [
               "9 × 7 = 63 nên 63 : 9 = 7.",
               "9 × 9 = 81 nên 81 : 9 = 9.",
@@ -1666,7 +1666,7 @@ export const g3c2 = {
           "content": {
             "badge": "Cách Học",
             "title": "Bốn bước làm một bài toán",
-            "explanation": "Mọi bài bảng nhân – bảng chia – phân số đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
+            "explanation": "Mọi bài bảng nhân – bảng chia đều đi theo cùng một đường. Bé làm đúng thứ tự thì không bỏ sót bước nào.",
             "points": [
               "Bước 1 — Xác định đề hỏi nhân hay chia (chia luôn tra ngược bảng nhân).",
               "Bước 2 — Tách số thành hàng chục và hàng đơn vị rồi tính từng phần.",
@@ -1692,13 +1692,10 @@ export const g3c2 = {
                   "Chia hết",
                   "số dư bằng 0"
                 ],
-                [
-                  "Phân số",
-                  "mẫu số chia đều thành mấy phần, tử số lấy mấy phần"
-                ]
+                ["Chia có dư", "số dư luôn nhỏ hơn số chia"]
               ]
             },
-            "text": "Bảng nhớ nhanh — bảng nhân – bảng chia – phân số\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
+            "text": "Bảng nhớ nhanh — bảng nhân – bảng chia\nBa điều dưới đây bé đọc lại mỗi khi làm bài.\nTrước khi nộp bài, bé tự hỏi: đã đủ ba điều này chưa?"
           }
         },
         {
