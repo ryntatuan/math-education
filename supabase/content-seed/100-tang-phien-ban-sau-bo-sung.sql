@@ -12,6 +12,31 @@
 -- CHẠY LẠI NHIỀU LẦN: chỉ làm phiên bản tăng thêm 1 mỗi lần — vô hại (các bé tải
 --   lại nội dung thêm một lần), không sinh dòng trùng, không mất dữ liệu.
 --
+-- LƯU Ý LẦN 31 (2026-09-29): **LỚP 1 — GỘP BÀI “CÁC SỐ 4, 5” VÀO BÀI “CÁC SỐ 0, 1, 2, 3, 4, 5”
+--   + TÁCH MỖI SỐ THÀNH MỘT SLIDE + VẼ LẠI HÌNH “KHÁM PHÁ” THEO ĐÚNG TRANG SÁCH.**
+--
+--   Người dùng chỉ ra hai lỗi so với sách (ảnh tr.8):
+--   (1) SÁCH DẠY 0–5 TRONG **MỘT** BÀI (Bài 1, tr.8–13), app lại tách `g1-c1-l2` (0,1,2,3) và
+--       `g1-c1-l3` (4,5). Nay GỘP làm một: mã `g1-c1-l2` = “Bài 2: Các số 0, 1, 2, 3, 4, 5”;
+--       ⚠️ mã `g1-c1-l3` KHÔNG CÒN ⇒ bài đó sẽ bị xoá khỏi DB khi chạy file `00` (đúng ý muốn).
+--       Số sao/tiến độ bé từng đạt ở `g1-c1-l3` không còn hiển thị (không lỗi, chỉ mất số sao).
+--   (2) HÌNH VÔ NGHĨA: sách in **bể cá CÓ CÁ** ở cột 1 và **khay có khối lập phương** ở cột 2 — hai
+--       cách đếm CÙNG một lượng; app cũ lại gộp hai cột làm một và vẽ **bể cá đựng khối lập phương**.
+--       Nay `Grade1NumberVisuals.jsx` vẽ đúng 4 phần: bể cá (n con cá) · khay (n khối) · ô số · chữ
+--       đọc số; hình trên slide CÂU HỎI truyền `showDigits: false` để KHÔNG in sẵn đáp án.
+--   (3) Người dùng yêu cầu **mỗi số một slide** cho bé dễ học: phần Khám phá của Lớp 1 nay tách
+--       thành 6 slide (số 1 · 2 · 3 · 4 · 5 · 0) + 5 slide cho 6–10 (`g1-c1-l4`), mỗi slide một hình TO.
+--
+--   QUY MÔ: 5 lớp · 65 chương · **488 bài** · **4946 slide** (trước: 489 bài · 4944 slide;
+--     Lớp 1: 98 → 97 bài · 1092 → 1094 slide). Dấu vân tay seed:
+--     `18bb9181301c43e0` → **`66257caa8fa8bf3b`**.
+--   ĐÃ CẬP NHẬT SỐ GHIM: `MONG_DOI` + chuỗi “khớp số đã đo” (`scripts/migrate-content.mjs`) ·
+--     4 câu `S-15`/`S-23`/`S-24` + cây DB (`scripts/test-admin-portal.mjs`) · dòng “Quy mô nội dung
+--     hiện tại” + 3 khối mong đợi (`docs/admin_portal_test_cases.md`) · `docs/content_reload_steps.md`
+--     · `docs/curriculum_audit.md` · `docs/sgk_map_lop1.md` · `docs/sgk_audit_lop1.md`.
+--   Cổng tĩnh: **35 PASS · 0 FAIL** (`npm run test:portal:static`).
+--   ⇒ Dán lại: `00-don-noi-dung-cu.sql` (xoá bài đã gộp) → `02-bai-lop-1.sql` → file này.
+--
 -- LƯU Ý LẦN 30 (2026-09-29): **DỌN HỌ “Ô ⭐ NÓI LẠI DANH SÁCH” + NÂNG LUẬT CỔNG TRÙNG LẶP**.
 --   Người dùng hỏi “399 ca trùng lặp là ca gì?”. Trả lời bằng SỐ ĐO thì thấy: phần lớn KHÔNG phải lỗi
 --   trẻ nhìn thấy, mà là hệ quả của cách cổng đo (so tập từ trên DỮ LIỆU THÔ). Đã làm 3 việc:

@@ -5,7 +5,7 @@ export const g1c1 = {
     "Đếm, đọc, viết các số từ 0 đến 10; nhiều hơn, ít hơn, bằng nhau; so sánh số; tách và gộp số",
   icon: "🔢",
   color: "#4facfe",
-  totalLessons: 12,
+  totalLessons: 11,
   lessons: [
     {
       id: "g1-c1-l1",
@@ -139,64 +139,119 @@ export const g1c1 = {
     },
     {
       id: "g1-c1-l2",
-      title: "Bài 2: Các số 0, 1, 2, 3",
+      title: "Bài 2: Các số 0, 1, 2, 3, 4, 5",
       type: "learn",
-      description: "đếm, đọc, viết các số 0, 1, 2, 3",
+      description: "đếm, đọc, viết các số 0, 1, 2, 3, 4, 5; đếm theo điều kiện",
       slides: [
         {
           type: "story",
           content: {
             mascotMood: "curious",
-            text: "Bể cá thứ nhất có 1 khối, bể thứ hai có 2 khối… Bể rỗng thì có mấy khối nhỉ? 🐟",
+            text: "Bể cá thứ nhất có 1 con cá, khay bên cạnh có 1 khối. Bể rỗng thì có mấy con cá nhỉ? 🐟",
           },
         },
         {
           type: "concept",
           content: {
             badge: "Khám Phá",
-            title: "Các số 0, 1, 2, 3",
-            explanation: "Số cho biết có BAO NHIÊU đồ vật. Bé đếm rồi đọc số.",
-            rule: "1 một · 2 hai · 3 ba · 0 không.",
+            title: "Các số 0, 1, 2, 3, 4, 5",
+            explanation:
+              "Số cho biết có BAO NHIÊU đồ vật. Bé đếm cá trong bể và đếm khối trong khay — hai cách đếm cho cùng một số.",
+            rule: "0 không · 1 một · 2 hai · 3 ba · 4 bốn · 5 năm.",
             points: [
-              "Đếm: một, hai, ba.",
+              "Đếm: một, hai, ba, bốn, năm.",
               "Không có gì thì là 0 — đọc là “không”.",
-              "Đếm xong thì đọc số vừa đếm được.",
-              "Bé viết: 0, 1, 2, 3.",
+              "Bể có mấy con cá thì khay có bấy nhiêu khối.",
+              "Bé viết: 0, 1, 2, 3, 4, 5.",
             ],
           },
         },
         {
           type: "visual",
           content: {
-            text: "Khám phá: đếm khối trong bể",
+            text: "Số 1 — một: bể có 1 con cá, khay có 1 khối",
             numberScene: {
               mode: "numberShow",
               kind: "tank",
-              note: "Bể rỗng là 0. Bé vừa đếm vừa đọc: một, hai, ba, bốn, năm, không.",
+              numbers: [1],
+              note: "Bể có 1 con cá và khay có 1 khối — tất cả là 1. Bé đọc: một.",
             },
           },
         },
         {
           type: "visual",
           content: {
-            text: "Quan sát tranh — bé đếm từng nhóm",
+            text: "Số 2 — hai: bể có 2 con cá, khay có 2 khối",
+            numberScene: {
+              mode: "numberShow",
+              kind: "tank",
+              numbers: [2],
+              note: "Bể có 2 con cá và khay có 2 khối — tất cả là 2. Bé đọc: hai.",
+            },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Số 3 — ba: bể có 3 con cá, khay có 3 khối",
+            numberScene: {
+              mode: "numberShow",
+              kind: "tank",
+              numbers: [3],
+              note: "Bể có 3 con cá và khay có 3 khối — tất cả là 3. Bé đọc: ba.",
+            },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Số 4 — bốn: bể có 4 con cá, khay có 4 khối",
+            numberScene: {
+              mode: "numberShow",
+              kind: "tank",
+              numbers: [4],
+              note: "Bể có 4 con cá và khay có 4 khối — tất cả là 4. Bé đọc: bốn.",
+            },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Số 5 — năm: bể có 5 con cá, khay có 5 khối",
+            numberScene: {
+              mode: "numberShow",
+              kind: "tank",
+              numbers: [5],
+              note: "Bể có 5 con cá và khay có 5 khối — tất cả là 5. Bé đọc: năm.",
+            },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Số 0 — không: bể rỗng, khay rỗng",
+            numberScene: {
+              mode: "numberShow",
+              kind: "tank",
+              numbers: [0],
+              note: "Bể không có con cá nào, khay không có khối nào — đó là 0. Bé đọc: không.",
+            },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Quan sát tranh — bé đếm từng nhóm rồi trả lời câu hỏi bên dưới",
             numberScene: {
               mode: "manyGroups",
               groups: [
-                {
-                  emoji: "🐱",
-                  n: 1,
-                },
-                {
-                  emoji: "🥕",
-                  n: 3,
-                },
-                {
-                  emoji: "🐶",
-                  n: 2,
-                },
+                { emoji: "🐱", n: 1 },
+                { emoji: "🐶", n: 2 },
+                { emoji: "🥕", n: 3 },
+                { emoji: "🐟", n: 4 },
+                { emoji: "🐔", n: 5 },
               ],
-              unit: "Mỗi hàng là một nhóm — bé đếm từng nhóm",
+              unit: "Mỗi hàng là một nhóm — bé đếm từng hàng rồi đọc số",
             },
           },
         },
@@ -210,7 +265,7 @@ export const g1c1 = {
             points: [
               "Mỗi đồ vật chỉ đếm MỘT lần — không bỏ sót, không đếm lại.",
               "Đếm lần lượt: từ trái sang phải, từ trên xuống dưới.",
-              "Đếm xong thì đọc số: một, hai, ba.",
+              "Đếm xong thì đọc số: một, hai, ba, bốn, năm.",
               "Không có đồ vật nào thì viết số 0.",
             ],
           },
@@ -253,19 +308,31 @@ export const g1c1 = {
             options: [1, 2, 3, 4],
             answer: 2,
             mascotHint: "Bé đếm: một, hai — nhóm con chó có 2 con.",
+            numberScene: {
+              mode: "manyGroups",
+              groups: [
+                { emoji: "🐱", n: 1 },
+                { emoji: "🐶", n: 2 },
+                { emoji: "🥕", n: 3 },
+                { emoji: "🐟", n: 4 },
+                { emoji: "🐔", n: 5 },
+              ],
+            },
           },
         },
         {
           type: "quiz",
           content: {
-            question: "Bể cá thứ ba trong hình có mấy khối?",
+            question: "Hình bên có mấy con cá?",
             options: [1, 2, 3, 4],
             answer: 3,
-            mascotHint: "Bể thứ ba có 3 khối: một, hai, ba.",
+            mascotHint: "Bé đếm: một, hai, ba — có 3 con cá.",
             numberScene: {
               mode: "numberShow",
               kind: "tank",
-              note: "Bể rỗng là 0. Bé vừa đếm vừa đọc: một, hai, ba, bốn, năm, không.",
+              numbers: [3],
+              showDigits: false,
+              note: "Bể cá và khay khối — bé đếm xem có mấy con cá.",
             },
           },
         },
@@ -281,140 +348,23 @@ export const g1c1 = {
         {
           type: "visual",
           content: {
-            text: "0 · 1 · 2 · 3 — bé đọc theo thứ tự",
+            text: "0 · 1 · 2 · 3 · 4 · 5 — bé đọc theo thứ tự",
             numberLine: {
               from: 0,
               to: 5,
               step: 1,
-              marks: [0, 1, 2, 3],
-              label: "Các số 0, 1, 2, 3",
+              marks: [0, 1, 2, 3, 4, 5],
+              label: "Các số 0, 1, 2, 3, 4, 5",
             },
-          },
-        },
-        {
-          type: "summary",
-          content: {
-            title: "Bé nhớ rất tốt:",
-            points: [
-              "0 không · 1 một · 2 hai · 3 ba.",
-              "Số cho biết có bao nhiêu đồ vật.",
-              "Không có gì thì viết số 0.",
-            ],
-            mascotMood: "proud",
-          },
-        },
-      ],
-    },
-    {
-      id: "g1-c1-l3",
-      title: "Bài 3: Các số 4, 5",
-      type: "learn",
-      description: "đếm, đọc, viết các số 4 và 5; đếm theo điều kiện",
-      slides: [
-        {
-          type: "story",
-          content: {
-            mascotMood: "excited",
-            text: "Bé giơ bàn tay lên nhé — có mấy ngón tay? Đúng rồi, 5 ngón! 🖐️",
-          },
-        },
-        {
-          type: "concept",
-          content: {
-            badge: "Khám Phá",
-            title: "Các số 4, 5",
-            explanation: "Đếm tiếp sau 3 thì đến 4 rồi 5.",
-            rule: "4 bốn · 5 năm.",
-            points: [
-              "Bàn tay có 5 ngón — số 5.",
-              "Xe ô tô có 4 bánh — số 4.",
-              "Bé đếm: một, hai, ba, bốn, năm.",
-            ],
-          },
-        },
-        {
-          type: "visual",
-          content: {
-            text: "Khám phá: bể có 4 khối và 5 khối",
-            numberScene: {
-              mode: "numberShow",
-              kind: "tank",
-              note: "Bể có 4 khối gọi là bốn; bể có 5 khối gọi là năm.",
-            },
-          },
-        },
-        {
-          type: "visual",
-          content: {
-            text: "Quan sát tranh — bé đếm từng nhóm rồi trả lời câu hỏi bên dưới",
-            numberScene: {
-              mode: "manyGroups",
-              groups: [
-                {
-                  emoji: "🐔",
-                  n: 5,
-                },
-                {
-                  emoji: "🐰",
-                  n: 3,
-                },
-                {
-                  emoji: "🐟",
-                  n: 4,
-                },
-              ],
-              unit: "Bé đếm từng hàng rồi đọc số",
-            },
-          },
-        },
-        {
-          type: "visual",
-          content: {
-            table: {
-              headers: ["Bước", "Việc bé làm"],
-              rows: [
-                [
-                  "Bước 1 — Nhìn kỹ",
-                  "nhìn hết cả hình, xem có mấy nhóm đồ vật",
-                ],
-                ["Bước 2 — Đếm", "đếm từng nhóm, lần lượt từ trái sang phải"],
-                ["Bước 3 — Kiểm lại", "đếm lại lần nữa rồi mới đọc số"],
-              ],
-            },
-            text: "Ba bước đếm cho đúng — bé làm lần lượt\nBé đọc bảng này trước khi làm, và đọc lại sau khi làm xong.\nBỏ một bước là bài dễ sai.",
           },
         },
         {
           type: "quiz",
           content: {
-            question:
-              "Làm xong một bài, bé nên làm gì để chắc chắn kết quả đúng?",
-            options: [
-              "Kiểm lại một lần nữa theo điều cần nhớ",
-              "Nộp bài luôn cho nhanh",
-              "Đoán lại một lần nữa",
-            ],
-            answer: "Kiểm lại một lần nữa theo điều cần nhớ",
-            mascotHint:
-              "Kiểm lại một lần nữa rồi mới nộp bài — kiểm lại là thói quen của người học giỏi.",
-          },
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "Bé đếm từ 1: số nào đếm đến sau — 3 hay 4?",
+            question: "Đếm từ 1: số nào đếm đến sau — 3 hay 4?",
             options: [1, 3, 4, 5],
             answer: 4,
             mascotHint: "Đếm từ 1: số 4 đếm đến sau số 3.",
-          },
-        },
-        {
-          type: "quiz",
-          content: {
-            question: "Hàng cá 🐟 có mấy con?",
-            options: [3, 4, 5, 6],
-            answer: 4,
-            mascotHint: "Đếm: một, hai, ba, bốn — có 4 con cá.",
           },
         },
         {
@@ -464,9 +414,22 @@ export const g1c1 = {
           type: "quiz",
           content: {
             question: "Số nào đứng ngay sau số 4?",
-            options: [3, 5, 6, 0],
+            options: [3, 4, 5, 0],
             answer: 5,
             mascotHint: "Đếm tiếp: bốn rồi đến năm.",
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question: "Hàng cá 🐟 có mấy con?",
+            options: [2, 3, 4, 5],
+            answer: 4,
+            mascotHint: "Đếm: một, hai, ba, bốn — có 4 con cá.",
+            numberScene: {
+              mode: "manyGroups",
+              groups: [{ emoji: "🐟", n: 4 }],
+            },
           },
         },
         {
@@ -474,8 +437,9 @@ export const g1c1 = {
           content: {
             title: "Bé nhớ rất tốt:",
             points: [
-              "4 bốn · 5 năm.",
-              "Đếm đồ vật rồi đọc số.",
+              "0 không · 1 một · 2 hai · 3 ba · 4 bốn · 5 năm.",
+              "Số cho biết có bao nhiêu đồ vật.",
+              "Không có gì thì viết số 0.",
               "Đếm theo điều kiện: chỉ đếm củ đã tô màu, con ghi số 2.",
             ],
             mascotMood: "proud",
@@ -485,7 +449,7 @@ export const g1c1 = {
     },
     {
       id: "g1-c1-l4",
-      title: "Bài 4: Các số 6, 7, 8, 9, 10",
+      title: "Bài 3: Các số 6, 7, 8, 9, 10",
       type: "learn",
       description:
         "đếm, đọc, viết các số 6, 7, 8, 9, 10; đếm trong tranh; đếm con vật 6 chân",
@@ -515,11 +479,60 @@ export const g1c1 = {
         {
           type: "visual",
           content: {
-            text: "Khám phá: ong · chim · hoa · sao biển · bọ rùa",
+            text: "Số 6 — sáu: 6 con ong 🐝",
             numberScene: {
               mode: "numberShow",
               kind: "living",
-              note: "Bé đếm từng nhóm rồi đọc số: sáu, bảy, tám, chín, mười.",
+              numbers: [6],
+              note: "Bé đếm từng con ong rồi đọc: sáu.",
+            },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Số 7 — bảy: 7 con chim 🐦",
+            numberScene: {
+              mode: "numberShow",
+              kind: "living",
+              numbers: [7],
+              note: "Bé đếm từng con chim rồi đọc: bảy.",
+            },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Số 8 — tám: 8 bông hoa 🌸",
+            numberScene: {
+              mode: "numberShow",
+              kind: "living",
+              numbers: [8],
+              note: "Bé đếm từng bông hoa rồi đọc: tám.",
+            },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Số 9 — chín: 9 con sao biển ⭐",
+            numberScene: {
+              mode: "numberShow",
+              kind: "living",
+              numbers: [9],
+              note: "Bé đếm từng con sao biển rồi đọc: chín.",
+            },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Số 10 — mười: 10 con bọ rùa 🐞",
+            numberScene: {
+              mode: "numberShow",
+              kind: "living",
+              numbers: [10],
+              note: "Bé đếm từng con bọ rùa rồi đọc: mười.",
             },
           },
         },
@@ -710,7 +723,7 @@ export const g1c1 = {
     },
     {
       id: "g1-c1-l5",
-      title: "Bài 5: Luyện tập — chọn số và cho thêm cho đủ",
+      title: "Bài 4: Luyện tập — chọn số và cho thêm cho đủ",
       type: "learn",
       description: "chọn số thích hợp với số con vật; cho thêm để đủ số lượng",
       slides: [
@@ -896,7 +909,7 @@ export const g1c1 = {
     },
     {
       id: "g1-c1-l6",
-      title: "Bài 6: Nhiều hơn, ít hơn",
+      title: "Bài 5: Nhiều hơn, ít hơn",
       type: "learn",
       description: "so sánh số lượng bằng cách ghép đôi — nhiều hơn, ít hơn",
       slides: [
@@ -1121,7 +1134,7 @@ export const g1c1 = {
     },
     {
       id: "g1-c1-l7",
-      title: "Bài 7: Bằng nhau",
+      title: "Bài 6: Bằng nhau",
       type: "learn",
       description:
         "nhận biết hai nhóm có số lượng bằng nhau; nối hai nhóm bằng nhau",
@@ -1342,7 +1355,7 @@ export const g1c1 = {
     },
     {
       id: "g1-c1-l8",
-      title: "Bài 8: So sánh số — dấu >, <, =",
+      title: "Bài 7: So sánh số — dấu >, <, =",
       type: "learn",
       description:
         "dấu lớn hơn, bé hơn, bằng nhau; so sánh theo mẫu; mê cung số",
@@ -1610,7 +1623,7 @@ export const g1c1 = {
     },
     {
       id: "g1-c1-l9",
-      title: "Bài 9: Mấy và mấy",
+      title: "Bài 8: Mấy và mấy",
       type: "learn",
       description: "gộp hai nhóm lại; tách một số thành hai phần",
       slides: [
@@ -1803,7 +1816,7 @@ export const g1c1 = {
     },
     {
       id: "g1-c1-l10",
-      title: "Bài 10: Mấy và mấy trong phạm vi 10",
+      title: "Bài 9: Mấy và mấy trong phạm vi 10",
       type: "learn",
       description: "bảng tách số 6 và 9; tách – gộp trong phạm vi 10",
       slides: [
@@ -1964,7 +1977,7 @@ export const g1c1 = {
     },
     {
       id: "g1-c1-l11",
-      title: "Bài 11: Luyện tập chung",
+      title: "Bài 10: Luyện tập chung",
       type: "learn",
       description:
         "đếm trong tranh, tìm chậu hoa thích hợp, điền số còn thiếu, so sánh số lượng",
@@ -2239,7 +2252,7 @@ export const g1c1 = {
     },
     {
       id: "g1-c1-l12",
-      title: "Bài 12: Luyện tập chung (tiếp theo)",
+      title: "Bài 11: Luyện tập chung (tiếp theo)",
       type: "learn",
       description:
         "điền dấu, so sánh theo mẫu, đếm trong tranh cánh đồng, tách số 6 và 9",

@@ -11,7 +11,6 @@ WHERE NOT EXISTS (
   SELECT 1 FROM (VALUES
   ('g1-c1-l1'),
   ('g1-c1-l2'),
-  ('g1-c1-l3'),
   ('g1-c1-l4'),
   ('g1-c1-l5'),
   ('g1-c1-l6'),

@@ -207,7 +207,7 @@ console.log(
 
 // Đối chiếu với con số đã đo bằng `scratch/inspect_content_shape.mjs`.
 // Lệch nghĩa là hoặc nội dung đã đổi (tốt — cập nhật số), hoặc bộ đọc đã hỏng.
-const MONG_DOI = { lop: 5, chuong: 65, bai: 489, slide: 4944 };
+const MONG_DOI = { lop: 5, chuong: 65, bai: 488, slide: 4946 };
 const lech =
   grades.length !== MONG_DOI.lop ||
   chapters.length !== MONG_DOI.chuong ||

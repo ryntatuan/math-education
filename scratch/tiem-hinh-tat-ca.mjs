@@ -44,23 +44,14 @@ const SPECS_LOP1 = {
     },
   },
   "g1-c1-l2": {
-    tenFrame: { filled: 3, total: 5, emoji: "🍎", label: "3 quả táo — số 3" },
+    // 2026-09-29: `g1-c1-l3` đã GỘP vào bài này (SGK Bài 1 = 0…5) ⇒ bỏ mục `g1-c1-l3`,
+    // và trục số nay là 0…5 chứ không còn 1…3.
     numberLine: {
-      from: 1,
-      to: 3,
-      step: 1,
-      marks: [1, 2, 3],
-      label: "Các số 1, 2, 3",
-    },
-  },
-  "g1-c1-l3": {
-    tenFrame: { filled: 5, total: 5, emoji: "🍒", label: "5 quả — số 5" },
-    numberLine: {
-      from: 1,
+      from: 0,
       to: 5,
       step: 1,
-      marks: [1, 2, 3, 4, 5],
-      label: "Các số 4, 5",
+      marks: [0, 1, 2, 3, 4, 5],
+      label: "Các số 0, 1, 2, 3, 4, 5",
     },
   },
   "g1-c1-l4": {

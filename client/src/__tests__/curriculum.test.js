@@ -1,9 +1,12 @@
 /**
- * Kiểm tính toàn vẹn của cây nội dung (5 lớp, 65 chủ đề, 489 bài).
+ * Kiểm tính toàn vẹn của cây nội dung (5 lớp, 65 chủ đề, 488 bài).
  *
  * ⚠️ Con số ở đây là **quy mô đã chốt** của repo (xem `docs/`): đổi quy mô thì phải đổi
  * cả test này lẫn các chỗ ghi cứng khác (`node scratch/doi-quy-mo.mjs`). Test này tồn tại
  * để việc đổi quy mô KHÔNG xảy ra âm thầm.
+ *
+ * 📌 2026-09-29: 489 → **488** — Lớp 1 gộp bài “Các số 4, 5” (`g1-c1-l3`) vào bài
+ * “Các số 0, 1, 2, 3, 4, 5” (`g1-c1-l2`) cho đúng SGK Bài 1 (tr.8–13).
  */
 import "./setup.js";
 import { describe, it, expect } from "vitest";
@@ -18,7 +21,7 @@ import {
 
 const SO_LOP = 5;
 const SO_CHU_DE = 65;
-const SO_BAI = 489;
+const SO_BAI = 488;
 
 /** `tapMaBaiHoc()` trả về **Set** (không phải mảng) — chuyển sang mảng cho dễ kiểm. */
 const danhSachMa = () => [...tapMaBaiHoc()];

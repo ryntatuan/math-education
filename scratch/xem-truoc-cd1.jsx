@@ -10,7 +10,20 @@ import { NumberScene } from "../client/src/components/visuals/Grade1NumberVisual
 
 const scenes = [
   ["fiveFriends", {}, "Năm bạn của bé (SGK tr.6)"],
-  ["numberShow", { kind: "tank" }, "Khám phá 0→5: bể cá + khối (SGK tr.8)"],
+  ["numberShow", { kind: "tank" }, "CẢ DÃY 0→5 trong 1 hình (bảng 6 hàng)"],
+  ["numberShow", { kind: "tank", numbers: [1] }, "MỘT SỐ/slide — số 1"],
+  ["numberShow", { kind: "tank", numbers: [3] }, "MỘT SỐ/slide — số 3"],
+  ["numberShow", { kind: "tank", numbers: [5] }, "MỘT SỐ/slide — số 5"],
+  [
+    "numberShow",
+    { kind: "tank", numbers: [0] },
+    "MỘT SỐ/slide — số 0 (bể rỗng)",
+  ],
+  [
+    "numberShow",
+    { kind: "tank", numbers: [3], showDigits: false },
+    "Slide CÂU HỎI: ẩn số — bé đếm rồi chọn",
+  ],
   [
     "numberShow",
     { kind: "living" },

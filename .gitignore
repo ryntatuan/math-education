@@ -94,6 +94,8 @@ scratch/sgk-*/
 
 # Bản sao lưu dữ liệu lúc tách theo chương (lấy lại được từ lịch sử git)
 scratch/truoc-tach/
+# Bản sao lưu TRƯỚC khi công cụ xoá/gộp bài sửa file dữ liệu (scratch/xoa-bai-g1c1-l3.mjs …)
+scratch/truoc-gop/
 # Bản đóng gói esbuild + kết quả đo tạm trong scratch/ (chạy lại là có, giữ lại script)
 scratch/*.bundle.mjs
 scratch/*.txt

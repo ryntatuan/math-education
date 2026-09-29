@@ -371,6 +371,11 @@ export function NumberScene({
   note = "",
   // numberShow
   kind = "",
+  /**
+   * `showDigits: false` = KHÔNG vẽ ô số + chữ đọc số.
+   * Dùng cho hình trên slide CÂU HỎI: in số ra là cho luôn đáp án (luật đã có trong file này).
+   */
+  showDigits = true,
   // manyGroups
   groups = [],
   paired = false,
@@ -505,113 +510,429 @@ export function NumberScene({
   }
 
   /* ── 2. Bảng KHÁM PHÁ ─────────────────────────────────── */
-  // kind="tank" : 0 → 5, bể cá + khối lập phương màu
-  // kind="living": 6 → 10, nhóm con vật / hoa
+  // BỐ CỤC THEO ĐÚNG TRANG SÁCH (Bài 1, tr.8): mỗi hàng có 4 phần —
+  //   ① bể cá có n con cá → ② khay có n khối lập phương → ③ ô số → ④ chữ đọc số.
+  // Sách cố ý cho CÙNG một lượng bằng HAI cách đếm (cá = cảnh thật, khối = cách đếm
+  // trực quan) rồi mới tới số và chữ. Vì vậy KHÔNG được gộp hai cột làm một, và KHÔNG
+  // được đặt khối vào trong bể — từng làm vậy và ra hình vô nghĩa “bể cá đựng khối”.
+  // kind="tank"  : 0 → 5 — bể cá + khay khối
+  // kind="living": 6 → 10 — nhóm con vật / hoa
   if (mode === "numberShow") {
     const CUBE = ["#facc15", "#fb923c", "#f87171", "#4ade80", "#60a5fa"];
-    const tank = (n) => (
-      <g>
-        {/*
-         * BỂ CÁ — phải RA DÁNG BỂ: thành bể + mặt nước, và “khối” phải là
-         * KHỐI LẬP PHƯƠNG (mặt trước + mặt trên), không phải ô màu phẳng.
-         */}
-        <rect
-          x="14"
-          y="0"
-          width="196"
-          height="27"
-          rx="7"
-          fill="#e0f2fe"
-          stroke="#94a3b8"
-          strokeWidth="2"
-        />
-        <rect x="18" y="5" width="188" height="18" rx="4" fill="#bae6fd" />
-        <line x1="18" y1="5" x2="206" y2="5" stroke="#38bdf8" strokeWidth="2" />
-        {Array.from({ length: n }, (_, i) => {
-          const x = 22 + i * 34;
-          const c = CUBE[i % 5];
-          return (
-            <g key={i}>
-              <polygon
-                points={`${x},${9} ${x + 5},${5} ${x + 27},${5} ${x + 22},${9}`}
-                fill={c}
-                stroke="#475569"
-                strokeWidth="1.2"
-              />
-              <rect
-                x={x}
-                y="9"
-                width="22"
-                height="14"
-                fill={c}
-                stroke="#475569"
-                strokeWidth="1.4"
-              />
-            </g>
+    const CA = "\u{1F41F}"; // cá 🐟 (ghi bằng mã hoá để không hỏng ký tự)
+    const BE = { x: 0, w: 124, h: 27 }; // bể cá: thành bể + mặt nước
+    const KHAY = { x: 130, w: 124, h: 27 }; // khay khối: hộp chữ nhật vàng nhạt
+
+    /** Bể cá — n con cá bơi trong nước; n = 0 là BỂ RỖNG (đúng hàng cuối trang 8). */
+    const tank = (n) => {
+      const rong = BE.w - 12;
+      const co = Math.min(18, rong / Math.max(1, n) - 4);
+      return (
+        <g>
+          <rect
+            x={BE.x}
+            y="0"
+            width={BE.w}
+            height={BE.h}
+            rx="9"
+            fill="#e0f2fe"
+            stroke="#94a3b8"
+            strokeWidth="2"
+          />
+          <rect
+            x={BE.x + 4}
+            y="5"
+            width={BE.w - 8}
+            height={BE.h - 10}
+            rx="6"
+            fill="#bae6fd"
+          />
+          <line
+            x1={BE.x + 4}
+            y1="5"
+            x2={BE.x + BE.w - 4}
+            y2="5"
+            stroke="#38bdf8"
+            strokeWidth="2"
+          />
+          {Array.from({ length: n }, (_, i) => (
+            <text
+              key={i}
+              x={BE.x + 6 + (rong * (i + 0.5)) / n}
+              y="21"
+              textAnchor="middle"
+              fontSize={co}
+            >
+              {CA}
+            </text>
+          ))}
+        </g>
+      );
+    };
+
+    /** Khay khối — n KHỐI LẬP PHƯƠNG xếp cạnh nhau (mặt trên + mặt trước). */
+    const tray = (n) => {
+      const rong = KHAY.w - 16;
+      const canh = Math.min(20, rong / Math.max(1, n) - 4);
+      const khe = n > 1 ? 4 : 0;
+      const tong = n * canh + Math.max(0, n - 1) * khe;
+      const x0 = KHAY.x + (KHAY.w - tong) / 2;
+      return (
+        <g>
+          <rect
+            x={KHAY.x}
+            y="0"
+            width={KHAY.w}
+            height={KHAY.h}
+            rx="9"
+            fill="#fef3c7"
+            stroke="#fcd34d"
+            strokeWidth="2"
+          />
+          {Array.from({ length: n }, (_, i) => {
+            const x = x0 + i * (canh + khe);
+            const c = CUBE[i % 5];
+            return (
+              <g key={i}>
+                <polygon
+                  points={`${x},9 ${x + 5},5 ${x + canh + 5},5 ${x + canh},9`}
+                  fill={c}
+                  stroke="#475569"
+                  strokeWidth="1.1"
+                />
+                <rect
+                  x={x}
+                  y="9"
+                  width={canh}
+                  height="14"
+                  fill={c}
+                  stroke="#475569"
+                  strokeWidth="1.3"
+                />
+              </g>
+            );
+          })}
+        </g>
+      );
+    };
+    let rowsSpec = [];
+    if (numbers && numbers.length > 0) {
+      const words = [
+        "không",
+        "một",
+        "hai",
+        "ba",
+        "bốn",
+        "năm",
+        "sáu",
+        "bảy",
+        "tám",
+        "chín",
+        "mười",
+      ];
+      const emojis = ["", "", "", "", "", "", "🐝", "🐦", "🌸", "⭐", "🐞"];
+      rowsSpec = numbers.map((n) => ({
+        n,
+        word: words[n] || "",
+        ch: kind === "tank" ? undefined : emojis[n] || "🐝",
+      }));
+    } else {
+      rowsSpec =
+        kind === "tank"
+          ? [
+              { n: 1, word: "một" },
+              { n: 2, word: "hai" },
+              { n: 3, word: "ba" },
+              { n: 4, word: "bốn" },
+              { n: 5, word: "năm" },
+              { n: 0, word: "không" },
+            ]
+          : [
+              { n: 6, word: "sáu", ch: "🐝" },
+              { n: 7, word: "bảy", ch: "🐦" },
+              { n: 8, word: "tám", ch: "🌸" },
+              { n: 9, word: "chín", ch: "⭐" },
+              { n: 10, word: "mười", ch: "🐞" },
+            ];
+    }
+    /**
+     * HÀNG VẼ TO — dùng khi slide chỉ dạy MỘT số (`numbers` có đúng 1 phần tử).
+     * Bảng 6 hàng nhỏ chỉ hợp khi phải nhìn CẢ dãy; dạy từng số thì bể cá và khay khối phải
+     * to cho bé nhìn rõ từng con cá, từng khối (yêu cầu người dùng 2026-09-29).
+     */
+    const rowBig = (n, word, hienSo) => {
+      const B = { x: 4, y: 6, w: 140, h: 62 }; // bể cá
+      const K = { x: 156, y: 6, w: 140, h: 62 }; // khay khối
+      const rongBe = B.w - 16;
+      const coCa = Math.min(22, rongBe / Math.max(1, n) - 4);
+      const rongKhay = K.w - 16;
+      const canh = Math.min(
+        30,
+        (rongKhay - 6 * Math.max(0, n - 1)) / Math.max(1, n),
+      );
+      const khe = n > 1 ? 6 : 0;
+      const tong = n * canh + Math.max(0, n - 1) * khe;
+      const x0 = K.x + (K.w - tong) / 2;
+      const caoTrong = K.h - 16;
+      const y0 = K.y + 8 + (caoTrong - canh) / 2;
+      const day = canh * 0.72;
+      const mat = canh * 0.26;
+      const lech = canh * 0.22;
+      return (
+        <g>
+          <rect
+            x={B.x}
+            y={B.y}
+            width={B.w}
+            height={B.h}
+            rx="12"
+            fill="#e0f2fe"
+            stroke="#94a3b8"
+            strokeWidth="2.5"
+          />
+          <rect
+            x={B.x + 5}
+            y={B.y + 6}
+            width={B.w - 10}
+            height={B.h - 10}
+            rx="9"
+            fill="#bae6fd"
+          />
+          <line
+            x1={B.x + 5}
+            y1={B.y + 6}
+            x2={B.x + B.w - 5}
+            y2={B.y + 6}
+            stroke="#38bdf8"
+            strokeWidth="2.5"
+          />
+          {Array.from({ length: n }, (_, i) => (
+            <text
+              key={i}
+              x={B.x + 8 + (rongBe * (i + 0.5)) / n}
+              y={B.y + 40}
+              textAnchor="middle"
+              fontSize={coCa}
+            >
+              {CA}
+            </text>
+          ))}
+          <rect
+            x={K.x}
+            y={K.y}
+            width={K.w}
+            height={K.h}
+            rx="12"
+            fill="#fef3c7"
+            stroke="#fcd34d"
+            strokeWidth="2.5"
+          />
+          {Array.from({ length: n }, (_, i) => {
+            const x = x0 + i * (canh + khe);
+            const c = CUBE[i % 5];
+            return (
+              <g key={i}>
+                <polygon
+                  points={`${x},${y0 + mat} ${x + lech},${y0} ${x + canh + lech},${y0} ${x + canh},${y0 + mat}`}
+                  fill={c}
+                  stroke="#475569"
+                  strokeWidth="1.3"
+                />
+                <rect
+                  x={x}
+                  y={y0 + mat}
+                  width={canh}
+                  height={day}
+                  fill={c}
+                  stroke="#475569"
+                  strokeWidth="1.5"
+                />
+              </g>
+            );
+          })}
+          {hienSo && (
+            <>
+              <text
+                x="140"
+                y="114"
+                textAnchor="end"
+                fontSize="44"
+                fontWeight="900"
+                fill={P.ink}
+              >
+                {n}
+              </text>
+              <text
+                x="152"
+                y="114"
+                textAnchor="start"
+                fontSize="24"
+                fontWeight="700"
+                fill={P.soft}
+              >
+                {word}
+              </text>
+            </>
+          )}
+        </g>
+      );
+    };
+
+    /** Dãy emoji xếp thành hàng — MỖI HÀNG tự canh giữa (`itemsGrid` chỉ canh trái). */
+    const hangEmoji = (n, ch, { s, gapX, per, yTop, gapY }) => {
+      const ds = [];
+      for (let i = 0; i < n; i += per) {
+        const trong = Math.min(per, n - i);
+        const x0 = 150 - ((trong - 1) * gapX) / 2;
+        for (let j = 0; j < trong; j += 1) {
+          ds.push(
+            <text
+              key={`${i}-${j}`}
+              x={x0 + j * gapX}
+              y={yTop + (i / per) * gapY}
+              textAnchor="middle"
+              fontSize={s}
+            >
+              {ch}
+            </text>,
           );
-        })}
-      </g>
-    );
-    const rowsSpec =
-      kind === "tank"
-        ? [
-            { n: 1, word: "một" },
-            { n: 2, word: "hai" },
-            { n: 3, word: "ba" },
-            { n: 4, word: "bốn" },
-            { n: 5, word: "năm" },
-            { n: 0, word: "không" },
-          ]
-        : [
-            { n: 6, word: "sáu", ch: "🐝" },
-            { n: 7, word: "bảy", ch: "🐦" },
-            { n: 8, word: "tám", ch: "🌸" },
-            { n: 9, word: "chín", ch: "⭐" },
-            { n: 10, word: "mười", ch: "🐞" },
-          ];
+        }
+      }
+      return ds;
+    };
+
+    /** HÀNG VẼ TO cho nhóm con vật / hoa (6 → 10) khi slide chỉ dạy MỘT số. */
+    const rowBigItems = (n, ch, word, hienSo) => {
+      const haiHang = n > 5;
+      return (
+        <g>
+          <rect
+            x="4"
+            y="6"
+            width="292"
+            height="62"
+            rx="12"
+            fill="#f8fafc"
+            stroke={P.grid}
+            strokeWidth="2"
+          />
+          {hangEmoji(
+            n,
+            ch,
+            haiHang
+              ? { s: 22, gapX: 50, per: Math.ceil(n / 2), yTop: 30, gapY: 28 }
+              : { s: 34, gapX: 50, per: n, yTop: 50, gapY: 0 },
+          )}
+          {hienSo && (
+            <>
+              <text
+                x="140"
+                y="114"
+                textAnchor="end"
+                fontSize="44"
+                fontWeight="900"
+                fill={P.ink}
+              >
+                {n}
+              </text>
+              <text
+                x="152"
+                y="114"
+                textAnchor="start"
+                fontSize="24"
+                fontWeight="700"
+                fill={P.soft}
+              >
+                {word}
+              </text>
+            </>
+          )}
+        </g>
+      );
+    };
+
     const rowH = kind === "tank" ? 34 : 44;
     const H = rowsSpec.length * rowH + 12;
+    // Chú thích SUY TỪ SỐ ĐANG VẼ — không viết cứng, vì cùng một hình được dùng cho
+    // nhiều bài (từng bị: bài “Các số 0,1,2,3” mà chú thích ghi “0, 1, 2, 3, 4, 5”).
+    const soDaVe = [...new Set(rowsSpec.map((r) => r.n))].sort((a, b) => a - b);
+
+    // MỘT SỐ TRÊN MỘT SLIDE → hàng vẽ TO (không dùng bảng 6 hàng nhỏ).
+    if (rowsSpec.length === 1 && (kind === "tank" || kind === "living")) {
+      const mot = rowsSpec[0];
+      const nhan = showDigits
+        ? `Số ${mot.n} — ${mot.word}`
+        : "Bé đếm rồi chọn số";
+      return box(
+        kind === "tank"
+          ? rowBig(mot.n, mot.word, showDigits)
+          : rowBigItems(mot.n, mot.ch, mot.word, showDigits),
+        300,
+        128,
+        nhan,
+      );
+    }
+
     return box(
       <>
         {rowsSpec.map((r, i) => {
           const y = 6 + i * rowH;
           return (
             <g key={r.n} transform={`translate(0,${y})`}>
-              {kind === "tank"
-                ? tank(r.n)
-                : itemsGrid(r.n, 26, 20, r.ch, {
-                    per: 5,
-                    gapX: 34,
-                    gapY: 22,
-                    s: 17,
-                  })}
-              <text
-                x="248"
-                y="20"
-                textAnchor="middle"
-                fontSize="22"
-                fontWeight="900"
-                fill={P.ink}
-              >
-                {r.n}
-              </text>
-              <text
-                x="286"
-                y="19"
-                textAnchor="middle"
-                fontSize="14"
-                fontWeight="700"
-                fill={P.soft}
-              >
-                {r.word}
-              </text>
+              {kind === "tank" ? (
+                <>
+                  {tank(r.n)}
+                  {tray(r.n)}
+                  {showDigits && (
+                    <rect
+                      x="258"
+                      y="1"
+                      width="28"
+                      height="26"
+                      rx="8"
+                      fill="#e0f2fe"
+                    />
+                  )}
+                </>
+              ) : (
+                itemsGrid(r.n, 26, 20, r.ch, {
+                  per: 5,
+                  gapX: 34,
+                  gapY: 22,
+                  s: 17,
+                })
+              )}
+              {showDigits && (
+                <>
+                  <text
+                    x={kind === "tank" ? 272 : 248}
+                    y="20"
+                    textAnchor="middle"
+                    fontSize="22"
+                    fontWeight="900"
+                    fill={P.ink}
+                  >
+                    {r.n}
+                  </text>
+                  <text
+                    x={kind === "tank" ? 288 : 286}
+                    y="19"
+                    textAnchor={kind === "tank" ? "start" : "middle"}
+                    fontSize="14"
+                    fontWeight="700"
+                    fill={P.soft}
+                  >
+                    {r.word}
+                  </text>
+                </>
+              )}
             </g>
           );
         })}
       </>,
       360,
       H,
-      kind === "tank" ? "Các số 0, 1, 2, 3, 4, 5" : "Các số 6, 7, 8, 9, 10",
+      `Các số ${soDaVe.join(", ")}`,
       20,
     );
   }
