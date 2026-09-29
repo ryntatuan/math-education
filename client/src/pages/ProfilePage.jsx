@@ -7,6 +7,7 @@ import ProgressBar from "../components/ui/ProgressBar";
 import CoinIcon from "../components/common/CoinIcon";
 import GoogleIcon from "../components/common/GoogleIcon";
 import useUserStore from "../store/useUserStore";
+import useLeagueStore from "../store/useLeagueStore";
 import useProgressStore from "../store/useProgressStore";
 import { demBaiDaHoc } from "../data/curriculum";
 import useAuthStore from "../store/useAuthStore";
@@ -120,6 +121,8 @@ export default function ProfilePage() {
     setAvatar,
     _setGrade,
   } = useUserStore();
+
+  const { cups } = useLeagueStore();
 
   const {
     completedLessons,
@@ -251,7 +254,7 @@ export default function ProfilePage() {
               <div className="limit-item">
                 <span className="limit-bullet">❌</span>
                 <span>
-                  Không thể truy cập <strong>6 Mini Game rèn phản xạ</strong> và{" "}
+                  Không thể truy cập <strong>các Mini Game rèn phản xạ</strong> và{" "}
                   <strong>Truyện Toán tương tác</strong>
                 </span>
               </div>
@@ -404,6 +407,15 @@ export default function ProfilePage() {
               size="md"
             />
           </div>
+
+          {/* Tournament Cups */}
+          {(cups?.gold > 0 || cups?.silver > 0 || cups?.bronze > 0) && (
+            <div className="tournament-cups-row" style={{ marginTop: '12px', display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+              {cups.gold > 0 && <div className="cup-badge" style={{ display: 'flex', alignItems: 'center', gap: '4px', background: 'linear-gradient(135deg, #fbbf24, #f59e0b)', color: '#fff', padding: '4px 10px', borderRadius: '12px', fontSize: '13px', fontWeight: 'bold', boxShadow: '0 2px 4px rgba(245,158,11,0.3)' }}>🏆 Vàng x{cups.gold}</div>}
+              {cups.silver > 0 && <div className="cup-badge" style={{ display: 'flex', alignItems: 'center', gap: '4px', background: 'linear-gradient(135deg, #94a3b8, #64748b)', color: '#fff', padding: '4px 10px', borderRadius: '12px', fontSize: '13px', fontWeight: 'bold', boxShadow: '0 2px 4px rgba(100,116,139,0.3)' }}>🥈 Bạc x{cups.silver}</div>}
+              {cups.bronze > 0 && <div className="cup-badge" style={{ display: 'flex', alignItems: 'center', gap: '4px', background: 'linear-gradient(135deg, #cd7f32, #b45309)', color: '#fff', padding: '4px 10px', borderRadius: '12px', fontSize: '13px', fontWeight: 'bold', boxShadow: '0 2px 4px rgba(180,83,9,0.3)' }}>🥉 Đồng x{cups.bronze}</div>}
+            </div>
+          )}
         </div>
       </div>
 

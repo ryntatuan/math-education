@@ -39,6 +39,8 @@ let syncDebounceTimer = null;
 let activeChildIdGetter = null;
 // Nhịp đồng bộ RIÊNG cho thú cưng — xem `setupAutoSync`.
 let petSyncDebounceTimer = null;
+// Nhịp đồng bộ RIÊNG cho cúp Vô Địch — xem `setupAutoSync`.
+let cupSyncDebounceTimer = null;
 // Promise của lần "nhập dữ liệu khách lên tài khoản" đang chạy — xem `autoMigrateGuestDataToCloud`.
 let migrateInFlight = null;
 
@@ -93,6 +95,28 @@ function schedulePetSync() {
       }
     } catch (err) {
       console.warn("Lỗi auto sync thú cưng:", err);
+    }
+  }, 500);
+}
+
+/**
+ * Lên lịch lưu CÚP VÔ ĐỊCH lên đám mây — cùng khuôn với `schedulePetSync`.
+ *
+ * VÌ SAO KHÔNG GHI NGAY LÚC TRAO CÚP (trong `checkWeekReset`): cúp được trao đúng lúc app
+ * vừa mở sang tuần mới, mà lúc đó `activeChild` có thể CHƯA có (initAuth đang chạy) ⇒ ghi
+ * ngay là rơi mất cúp. Ở đây `childId` được hỏi lại **lúc thật sự ghi** (sau 500 ms), nên
+ * đua lúc mở app không còn là vấn đề.
+ */
+function scheduleCupSync() {
+  if (cupSyncDebounceTimer) clearTimeout(cupSyncDebounceTimer);
+  cupSyncDebounceTimer = setTimeout(async () => {
+    try {
+      const childId = activeChildIdGetter ? activeChildIdGetter() : null;
+      if (childId) {
+        await syncService.saveCupsToCloud(childId);
+      }
+    } catch (err) {
+      console.warn("Lỗi auto sync cúp Vô Địch:", err);
     }
   }, 500);
 }
@@ -379,8 +403,18 @@ export const syncService = {
         typeof leagueMeta?.userWeeklyXp === "number"
           ? leagueMeta.userWeeklyXp
           : 0;
+
+      // Kho cúp Vô Địch: Supabase là NGUỒN THẬT (migration 0022).
+      // Chưa chạy migration ⇒ `childProfile.tournament_cups` là `undefined` ⇒ 0-0-0, không lỗi.
+      const cloudCups = childProfile?.tournament_cups || {};
+
       useLeagueStore.setState({
         userWeeklyXp: cloudLeagueXp,
+        cups: {
+          gold: Number(cloudCups.gold) || 0,
+          silver: Number(cloudCups.silver) || 0,
+          bronze: Number(cloudCups.bronze) || 0,
+        },
       });
 
       useProgressStore.setState({
@@ -556,6 +590,41 @@ export const syncService = {
       console.error("Lỗi lưu thú cưng lên Cloud:", e);
     }
   },
+
+  /**
+   * Lưu kho cúp Vô Địch lên `child_profiles.tournament_cups` (migration `0022`).
+   *
+   * Chưa chạy migration 0022 thì cột không tồn tại ⇒ Supabase trả lỗi; ở đây chỉ ghi log,
+   * cúp vẫn còn trong bộ nhớ của app nên không hỏng gì khác.
+   */
+  async saveCupsToCloud(childId) {
+    if (!isSupabaseConfigured() || !supabase || !childId) return;
+
+    const cups = useLeagueStore.getState().cups || {
+      gold: 0,
+      silver: 0,
+      bronze: 0,
+    };
+
+    try {
+      const { error } = await supabase
+        .from("child_profiles")
+        .update({
+          tournament_cups: {
+            gold: Number(cups.gold) || 0,
+            silver: Number(cups.silver) || 0,
+            bronze: Number(cups.bronze) || 0,
+          },
+        })
+        .eq("id", childId);
+
+      if (error) {
+        console.warn("Lỗi lưu cúp Vô Địch lên Cloud:", error.message);
+      }
+    } catch (e) {
+      console.error("Lỗi lưu cúp Vô Địch lên Cloud:", e);
+    }
+  },
 };
 
 // Khởi tạo tự động lắng nghe thay đổi của các store để đồng bộ thời gian thực lên Cloud
@@ -592,10 +661,17 @@ export function setupAutoSync() {
     }
   });
 
-  // Khi có điểm giải đấu tuần thay đổi -> Tự động lưu lên Cloud
+  // Khi có điểm giải đấu tuần thay đổi -> Tự động lưu lên Cloud.
+  //
+  // Cúp Vô Địch đi CHUNG nhịp này (cùng bảng `child_profiles`) nhưng dùng `scheduleCupSync`
+  // để hỏi lại `childId` lúc ghi — cúp được trao đúng lúc app vừa sang tuần mới, khi
+  // `activeChild` có thể chưa sẵn sàng.
   useLeagueStore.subscribe((state, prevState) => {
     if (state.userWeeklyXp !== prevState.userWeeklyXp) {
       syncService.scheduleCloudSync();
+    }
+    if (state.cups !== prevState.cups) {
+      scheduleCupSync();
     }
   });
 

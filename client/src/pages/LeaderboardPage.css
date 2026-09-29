@@ -39,6 +39,25 @@
   color: #334155;
 }
 
+/* Đoạt cúp ở Chung Kết Vô Địch (top 3) */
+.league-status-banner.champion_gold {
+  background: #fef3c7;
+  border: 1.5px solid #fcd34d;
+  color: #92400e;
+}
+
+.league-status-banner.champion_silver {
+  background: #e2e8f0;
+  border: 1.5px solid #94a3b8;
+  color: #334155;
+}
+
+.league-status-banner.champion_bronze {
+  background: #ffedd5;
+  border: 1.5px solid #fdba74;
+  color: #9a3412;
+}
+
 .dismiss-btn {
   background: transparent;
   border: none;
@@ -48,7 +67,9 @@
   opacity: 0.7;
 }
 
-.dismiss-btn:hover { opacity: 1; }
+.dismiss-btn:hover {
+  opacity: 1;
+}
 
 /* League Hero Card */
 .league-hero-card {
@@ -109,11 +130,11 @@
   border-radius: 999px;
   font-size: 0.88rem;
   color: #475569;
-  font-family: var(--font-body, 'Quicksand', sans-serif);
+  font-family: var(--font-body, "Quicksand", sans-serif);
 }
 
 .timer-pill strong {
-  font-family: var(--font-body, 'Quicksand', sans-serif);
+  font-family: var(--font-body, "Quicksand", sans-serif);
   font-weight: 700;
   color: #1e293b;
 }
@@ -128,7 +149,7 @@
 }
 
 .tiers-roadmap::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 30px;
   left: 20px;
@@ -210,8 +231,13 @@
 }
 
 @keyframes float-crown {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
 }
 
 .podium-player {

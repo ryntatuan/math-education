@@ -1,25 +1,26 @@
-import { motion, AnimatePresence } from 'framer-motion'
-import { X, Cloud, Smartphone, Gamepad2, Sparkles } from 'lucide-react'
-import MascotIcon from '../common/MascotIcon'
-import GoogleIcon from '../common/GoogleIcon'
-import useAuthStore from '../../store/useAuthStore'
-import soundManager from '../../utils/soundManager'
-import './AuthModal.css'
+import { motion, AnimatePresence } from "framer-motion";
+import { X, Cloud, Smartphone, Gamepad2 } from "lucide-react";
+import MascotIcon from "../common/MascotIcon";
+import GoogleIcon from "../common/GoogleIcon";
+import useAuthStore from "../../store/useAuthStore";
+import soundManager from "../../utils/soundManager";
+import "./AuthModal.css";
 
 export default function AuthModal() {
-  const { isAuthModalOpen, setAuthModalOpen, signInWithGoogle, loading } = useAuthStore()
+  const { isAuthModalOpen, setAuthModalOpen, signInWithGoogle, loading } =
+    useAuthStore();
 
-  if (!isAuthModalOpen) return null
+  if (!isAuthModalOpen) return null;
 
   const handleClose = () => {
-    soundManager.playClick()
-    setAuthModalOpen(false)
-  }
+    soundManager.playClick();
+    setAuthModalOpen(false);
+  };
 
   const handleGoogleLogin = () => {
-    soundManager.playClick()
-    signInWithGoogle()
-  }
+    soundManager.playClick();
+    signInWithGoogle();
+  };
 
   return (
     <AnimatePresence>
@@ -30,10 +31,14 @@ export default function AuthModal() {
           initial={{ scale: 0.9, opacity: 0, y: 20 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}
           exit={{ scale: 0.9, opacity: 0, y: 20 }}
-          transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+          transition={{ type: "spring", damping: 25, stiffness: 300 }}
         >
           {/* Close button */}
-          <button className="auth-modal-close" onClick={handleClose} aria-label="Đóng">
+          <button
+            className="auth-modal-close"
+            onClick={handleClose}
+            aria-label="Đóng"
+          >
             <X size={20} />
           </button>
 
@@ -57,7 +62,9 @@ export default function AuthModal() {
               </div>
               <div className="benefit-text">
                 <strong>Lưu trữ tiến độ vĩnh viễn</strong>
-                <span>Không lo mất sao, xu hay cấp độ khi đổi máy tính/điện thoại</span>
+                <span>
+                  Không lo mất sao, xu hay cấp độ khi đổi máy tính/điện thoại
+                </span>
               </div>
             </div>
 
@@ -67,7 +74,10 @@ export default function AuthModal() {
               </div>
               <div className="benefit-text">
                 <strong>Đồng bộ đa thiết bị</strong>
-                <span>Học trên máy tính bảng ở trường, về nhà học tiếp trên điện thoại</span>
+                <span>
+                  Học trên máy tính bảng ở trường, về nhà học tiếp trên điện
+                  thoại
+                </span>
               </div>
             </div>
 
@@ -77,17 +87,9 @@ export default function AuthModal() {
               </div>
               <div className="benefit-text">
                 <strong>Mở khóa toàn bộ trò chơi & đấu trường</strong>
-                <span>Đua xe toán học, bắn bóng bay, tranh tài bảng xếp hạng tuần</span>
-              </div>
-            </div>
-
-            <div className="auth-benefit-item bonus-highlight">
-              <div className="benefit-icon-box bg-yellow">
-                <Sparkles size={20} />
-              </div>
-              <div className="benefit-text">
-                <strong>Tự động giữ nguyên tiến độ cũ</strong>
-                <span>Toàn bộ kết quả bài học hiện tại sẽ được chuyển thẳng lên đám mây!</span>
+                <span>
+                  Đua xe toán học, bắn bóng bay, tranh tài bảng xếp hạng tuần
+                </span>
               </div>
             </div>
           </div>
@@ -100,7 +102,9 @@ export default function AuthModal() {
               disabled={loading}
             >
               <GoogleIcon size={22} />
-              <span>{loading ? 'Đang kết nối...' : 'Tiếp tục với Google (Gmail)'}</span>
+              <span>
+                {loading ? "Đang kết nối..." : "Tiếp tục với Google (Gmail)"}
+              </span>
             </button>
 
             <button className="guest-continue-btn" onClick={handleClose}>
@@ -109,10 +113,11 @@ export default function AuthModal() {
           </div>
 
           <p className="auth-privacy-note">
-            🔒 Chúng tôi tôn trọng quyền riêng tư. Chỉ sử dụng thông tin Gmail để đồng bộ tiến độ học tập của các bé.
+            🔒 Chúng tôi tôn trọng quyền riêng tư. Chỉ sử dụng thông tin Gmail
+            để đồng bộ tiến độ học tập của các bé.
           </p>
         </motion.div>
       </div>
     </AnimatePresence>
-  )
+  );
 }

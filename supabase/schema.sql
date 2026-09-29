@@ -106,7 +106,7 @@ CREATE TABLE IF NOT EXISTS public.child_pets (
   level INT DEFAULT 1,
   exp INT DEFAULT 0,
   stage TEXT DEFAULT 'baby',
-  inventory JSONB DEFAULT '{"apple": 3, "croissant": 2, "candy": 2}'::jsonb,
+  inventory JSONB DEFAULT '{"apple": 3, "croissant": 2, "yarn": 2}'::jsonb,
   updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
@@ -141,6 +141,8 @@ CREATE TABLE IF NOT EXISTS public.leaderboard (
   weekly_xp INT DEFAULT 0,
   is_bot BOOLEAN DEFAULT FALSE,
   tier TEXT DEFAULT 'bronze', -- 'bronze' | 'silver' | 'gold' | 'diamond' | 'master'
+                              -- + 3 vòng Vô Địch (app tự tạo khi bé vào được):
+                              --   'quarter_final' | 'semi_final' | 'final'
   updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 

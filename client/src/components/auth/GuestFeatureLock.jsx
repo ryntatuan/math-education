@@ -26,7 +26,7 @@ export default function GuestFeatureLock({
     },
     {
       icon: '🎮',
-      title: 'Trọn Bộ 6 Mini Game Vui Nhộn',
+      title: 'Trọn Bộ Mini Game Vui Nhộn',
       desc: 'Vừa học vừa chơi, rèn luyện phản xạ tính nhẩm thần tốc cùng các bạn học.',
     },
     {

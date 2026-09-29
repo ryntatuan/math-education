@@ -5,6 +5,7 @@ import useProgressStore from "./useProgressStore";
 import useUserStore from "./useUserStore";
 import useAuthStore from "./useAuthStore";
 import { supabase, isSupabaseConfigured } from "../services/supabaseClient";
+import { getReward } from "../services/rewardService";
 
 export const LEAGUE_TIERS = [
   { id: "bronze", name: "Giải Đồng", icon: "🥉", color: "#cd7f32", minXp: 0 },
@@ -23,6 +24,30 @@ export const LEAGUE_TIERS = [
     icon: "👑",
     color: "#8b5cf6",
     minXp: 1000,
+  },
+  {
+    id: "quarter_final",
+    name: "Tứ kết Vô Địch",
+    icon: "⚔️",
+    color: "#f43f5e",
+    minXp: 1500,
+    isTournament: true,
+  },
+  {
+    id: "semi_final",
+    name: "Bán kết Vô Địch",
+    icon: "🔥",
+    color: "#ec4899",
+    minXp: 2000,
+    isTournament: true,
+  },
+  {
+    id: "final",
+    name: "Chung kết Vô Địch",
+    icon: "🏆",
+    color: "#fbbf24",
+    minXp: 2500,
+    isTournament: true,
   },
 ];
 
@@ -91,6 +116,42 @@ export const TIER_BOTS_DEFINITIONS = {
     { id: "bot_master_9", name: "Anh Quân", avatar: "🏹" },
     { id: "bot_master_10", name: "Cẩm Tú", avatar: "💐" },
   ],
+  quarter_final: [
+    { id: "bot_quarter_1", name: "Đại Đế", avatar: "🦅" },
+    { id: "bot_quarter_2", name: "Thần Tốc", avatar: "⚡" },
+    { id: "bot_quarter_3", name: "Chiến Binh", avatar: "🛡️" },
+    { id: "bot_quarter_4", name: "Tinh Anh", avatar: "🎯" },
+    { id: "bot_quarter_5", name: "Vô Song", avatar: "🔥" },
+    { id: "bot_quarter_6", name: "Quả Cảm", avatar: "🦁" },
+    { id: "bot_quarter_7", name: "Linh Hoạt", avatar: "🌪️" },
+    { id: "bot_quarter_8", name: "Kiên Cường", avatar: "🦾" },
+    { id: "bot_quarter_9", name: "Bất Bại", avatar: "⚔️" },
+    { id: "bot_quarter_10", name: "Phi Thường", avatar: "🚀" },
+  ],
+  semi_final: [
+    { id: "bot_semi_1", name: "Chúa Tể", avatar: "🐉" },
+    { id: "bot_semi_2", name: "Thần Sấm", avatar: "⛈️" },
+    { id: "bot_semi_3", name: "Cuồng Phong", avatar: "🌀" },
+    { id: "bot_semi_4", name: "Sát Thủ", avatar: "🗡️" },
+    { id: "bot_semi_5", name: "Ma Tốc Độ", avatar: "🏎️" },
+    { id: "bot_semi_6", name: "Người Nhện", avatar: "🕸️" },
+    { id: "bot_semi_7", name: "Thần Tiễn", avatar: "🏹" },
+    { id: "bot_semi_8", name: "Mãnh Hổ", avatar: "🐯" },
+    { id: "bot_semi_9", name: "Bóng Đêm", avatar: "🌑" },
+    { id: "bot_semi_10", name: "Mặt Trời", avatar: "☀️" },
+  ],
+  final: [
+    { id: "bot_final_1", name: "Huyền Thoại", avatar: "🌟" },
+    { id: "bot_final_2", name: "Vua Trò Chơi", avatar: "👑" },
+    { id: "bot_final_3", name: "Thần Đồng", avatar: "🧠" },
+    { id: "bot_final_4", name: "Độc Cô", avatar: "🗡️" },
+    { id: "bot_final_5", name: "Tiên Phong", avatar: "🚀" },
+    { id: "bot_final_6", name: "Kẻ Hủy Diệt", avatar: "🔥" },
+    { id: "bot_final_7", name: "Bất Diệt", avatar: "🛡️" },
+    { id: "bot_final_8", name: "Siêu Việt", avatar: "🌌" },
+    { id: "bot_final_9", name: "Tuyệt Kỹ", avatar: "🥋" },
+    { id: "bot_final_10", name: "Đỉnh Cao", avatar: "⛰️" },
+  ],
 };
 
 // Giữ lại alias để tương thích ngược nếu có chỗ gọi cũ
@@ -99,6 +160,101 @@ export const FIXED_LEAGUE_BOTS = TIER_BOTS_DEFINITIONS.bronze;
 /**
  * Lấy mốc 00:00:00 sáng Thứ Hai đầu tuần hiện tại
  */
+
+export const getGlobalTournamentPhase = (dateMs) => {
+  const targetDate = new Date(dateMs);
+  const day = targetDate.getDay();
+  const diffToMonday = day === 0 ? -6 : 1 - day;
+  const monday = new Date(targetDate);
+  monday.setDate(monday.getDate() + diffToMonday);
+  monday.setHours(0, 0, 0, 0);
+
+  const epochMonday = new Date("2024-01-01T00:00:00");
+  const weeksSinceEpoch = Math.floor(
+    (monday.getTime() - epochMonday.getTime()) / (7 * 24 * 60 * 60 * 1000),
+  );
+  const cycleIndex = weeksSinceEpoch % 4;
+  if (cycleIndex === 0) return "selection"; // Tuần Cao thủ chọn lọc
+  if (cycleIndex === 1) return "quarter";
+  if (cycleIndex === 2) return "semi";
+  return "final";
+};
+
+/** Ba vòng Vô Địch (nằm ở CUỐI LEAGUE_TIERS, sau Giải Cao Thủ). */
+export const TOURNAMENT_TIER_IDS = ["quarter_final", "semi_final", "final"];
+
+/**
+ * Luật thăng/rớt của một hạng đấu — DÙNG CHUNG cho mọi màn hình.
+ *
+ * Vì sao gom vào một chỗ: trước đây mỗi trang tự chép luật (ChallengePage 8 dòng,
+ * LeaderboardPage 4 dòng), lệch nhau một chữ là chú giải nói dối bé. Mọi chỗ hiển thị
+ * (chú giải, tô màu vùng thăng/rớt) phải lấy từ đây, và phải khớp `checkWeekReset()`.
+ *
+ * @param {string} tier  hạng đấu hiện tại (currentTier)
+ * @param {number} dateMs  mốc thời gian để tra pha giải đấu (mặc định: bây giờ)
+ * @returns {{
+ *   isTournament: boolean,   // đang ở vòng Vô Địch
+ *   isFinal: boolean,        // đang ở Chung kết: top 3 đoạt cúp, KHÔNG ai rớt
+ *   isBronze: boolean,       // Giải Đồng: không bao giờ rớt
+ *   isMasterSelection: boolean, // Cao Thủ đang ở TUẦN CHỌN LỌC
+ *   canPromote: boolean,     // tuần này có xét thăng hạng không (Cao Thủ chỉ xét ở tuần chọn lọc)
+ *   promoLimit: number,      // thăng hạng khi xếp hạng <= promoLimit
+ *   relegateStart: number,   // rớt hạng khi xếp hạng >= relegateStart
+ *   nextTier: object|null,   // hạng/vòng sẽ thăng tới (null = tuần này không thăng hạng)
+ *   standardTiers: object[], // 5 hạng thường, theo thứ tự Đồng -> Cao Thủ
+ *   tournamentTiers: object[], // 3 vòng Vô Địch, theo thứ tự Tứ kết -> Chung kết
+ * }}
+ */
+export function getLeagueRules(tier, dateMs = Date.now()) {
+  const standardTiers = LEAGUE_TIERS.filter((t) => !t.isTournament);
+  const tournamentTiers = LEAGUE_TIERS.filter((t) => t.isTournament);
+  const isTournament = TOURNAMENT_TIER_IDS.includes(tier);
+  const isMasterSelection =
+    tier === "master" && getGlobalTournamentPhase(dateMs) === "selection";
+
+  // Hạng kế tiếp — phải khớp đúng nhánh thăng hạng trong checkWeekReset():
+  // vòng Vô Địch lên vòng kế tiếp; Cao Thủ chỉ lên Tứ kết ở tuần chọn lọc;
+  // hạng thường lên hạng kế tiếp.
+  let nextTier = null;
+  if (isTournament) {
+    nextTier =
+      tournamentTiers[tournamentTiers.findIndex((t) => t.id === tier) + 1] ||
+      null;
+  } else if (tier === "master") {
+    nextTier = isMasterSelection ? tournamentTiers[0] : null;
+  } else {
+    nextTier =
+      standardTiers[standardTiers.findIndex((t) => t.id === tier) + 1] || null;
+  }
+
+  return {
+    isTournament,
+    isFinal: tier === "final",
+    isBronze: tier === "bronze",
+    isMasterSelection,
+    // Cao Thủ chỉ được thăng hạng ở tuần chọn lọc; các tuần khác đá cho vui.
+    canPromote: isTournament || isMasterSelection || tier !== "master",
+    promoLimit: isTournament || isMasterSelection ? 5 : 3,
+    // LƯU Ý: `promoLimit` vô nghĩa khi canPromote = false (Cao Thủ ngoài tuần
+    // chọn lọc) và `relegateStart` vô nghĩa ở Chung kết (isFinal — không ai rớt).
+    // Màn hình phải hỏi canPromote / isFinal TRƯỚC khi dùng 2 con số này.
+    relegateStart: isTournament ? 6 : 8,
+    nextTier,
+    standardTiers,
+    tournamentTiers,
+  };
+}
+
+/**
+ * Lời nhắn banner kết toán tuần cho người đoạt cúp (Chung kết top 3).
+ * Dùng chung cho ChallengePage + LeaderboardPage, khớp `status` mà checkWeekReset() đặt.
+ */
+export const LEAGUE_STATUS_MESSAGES = {
+  champion_gold: "🏆 Vô địch! Bé đã giành Cúp Vàng ở Chung Kết Vô Địch!",
+  champion_silver: "🥈 Tuyệt vời! Bé đã giành Cúp Bạc ở Chung Kết Vô Địch!",
+  champion_bronze: "🥉 Giỏi lắm! Bé đã giành Cúp Đồng ở Chung Kết Vô Địch!",
+};
+
 export function getStartOfWeekMonday(targetDate = new Date()) {
   const d = new Date(targetDate);
   const day = d.getDay(); // 0 = Chủ Nhật, 1 = Thứ Hai...
@@ -170,10 +326,24 @@ export function getWeeklyBotRoles(
 }
 
 /**
- * Sinh lịch học ngẫu nhiên trong ngày của bot (từ 7:30 đến tối đa 21:00)
- * Điểm thưởng mỗi ngày tương đương 1-2 bài luyện tập (20 - 55 XP / ngày)
+ * Sinh lịch học ngẫu nhiên trong ngày của bot (từ 7:30 đến tối đa 21:00).
+ *
+ * Mỗi phiên = 1 bài luyện tập 9-10 câu, ăn đúng XP mỗi câu của bé
+ * (practice.correct) rồi nhân thêm buff theo hạng (`getTierBuff`, +5% mỗi hạng),
+ * nên bot ở hạng cao học cùng số bài vẫn nhích xa hơn:
+ *   - siêng năng: 2-4 phiên/ngày
+ *   - bình thường: 1-2 phiên/ngày
+ *   - thong thả: ~1 phiên mỗi 2 ngày
+ * Cộng lại khoảng 140-200 XP/ngày ở Giải Đồng (~1000-1350 XP/tuần) — cố ý MẠNH
+ * để bé có động lực học, chứ không phải mức "1-2 bài/ngày" như bản rất cũ.
  */
-function getBotDaySessions(botIndex, dayIndex, role, weekSeed) {
+function getTierBuff(tier) {
+  const idx = LEAGUE_TIERS.findIndex((t) => t.id === tier);
+  if (idx < 0) return 1;
+  return 1 + idx * 0.05; // 5% per tier
+}
+
+function getBotDaySessions(botIndex, dayIndex, role, weekSeed, tier) {
   let daySeed = (weekSeed * 17 + botIndex * 101 + dayIndex * 1337) & 0xffffff;
   const rand = () => {
     daySeed = (daySeed * 9301 + 49297) % 233280;
@@ -181,43 +351,45 @@ function getBotDaySessions(botIndex, dayIndex, role, weekSeed) {
   };
 
   const sessions = [];
+  const tierBuff = getTierBuff(tier);
+
+  const generateSessionXp = () => {
+    // Lấy XP từ cùng nguồn với bé. LƯU Ý: `getReward` đã nhân hệ số nhân toàn cục
+    // (sự kiện X2...), nên bật sự kiện giữa tuần là điểm MỌI bot nhảy theo. Người dùng
+    // đã thống nhất KHÔNG bật sự kiện X2 vào giữa tuần, nên giữ nguyên cách này
+    // (bỏ `getReward` chỉ khi muốn bot miễn nhiễm với sự kiện).
+    const practiceConfig = getReward("practice.correct");
+    const practiceXp = practiceConfig ? practiceConfig.xp : 5;
+    const questions = rand() > 0.5 ? 10 : 9;
+    return Math.floor(practiceXp * questions * tierBuff);
+  };
 
   if (role === "hardworking") {
-    // 3 bot siêng năng: Học 2 bài/ngày (~40 - 55 XP/ngày)
-    // Buổi 1: Sáng / Trưa (7:30 -> 11:30)
-    const morningHour = 7.5 + rand() * 4.0;
-    const morningXp = 20 + Math.floor(rand() * 10); // 20-29 XP
-    sessions.push({ hour: morningHour, xp: morningXp });
-
-    // Buổi 2: Chiều / Tối (14:00 -> 20:30, tuyệt đối không quá 21:00)
-    const eveningHour = 14.0 + rand() * 6.5; // Max 20.5 (20:30)
-    const eveningXp = 20 + Math.floor(rand() * 10); // 20-29 XP
-    sessions.push({ hour: eveningHour, xp: eveningXp });
+    const numSessions = 2 + Math.floor(rand() * 3); // 2 to 4
+    for (let i = 0; i < numSessions; i++) {
+      const hour = 7.5 + rand() * 13.0; // Max 20.5
+      sessions.push({ hour, xp: generateSessionXp() });
+    }
   } else if (role === "normal") {
-    // 4 bot bình thường: Học 1 bài/ngày (~20 - 30 XP/ngày)
-    // Giờ học ngẫu nhiên từ 8:00 đến 20:30 (không quá 21:00)
-    const sessionHour = 8.0 + rand() * 12.5; // Max 20.5 (20:30)
-    const sessionXp = 20 + Math.floor(rand() * 11); // 20-30 XP
-    sessions.push({ hour: sessionHour, xp: sessionXp });
+    const numSessions = 1 + Math.floor(rand() * 2); // 1 or 2
+    for (let i = 0; i < numSessions; i++) {
+      const hour = 8.0 + rand() * 12.5; // Max 20.5
+      sessions.push({ hour, xp: generateSessionXp() });
+    }
   } else {
-    // 3 bot làm biếng: Chỉ học 3-4 ngày trong tuần, các ngày khác nghỉ (0 XP)
-    const willStudyToday = rand() > 0.45;
+    const willStudyToday = rand() > 0.5;
     if (willStudyToday) {
-      // Học 1 bài ngắn từ 10:00 đến 18:00
-      const sessionHour = 10.0 + rand() * 8.0;
-      const sessionXp = 15 + Math.floor(rand() * 10); // 15-24 XP
-      sessions.push({ hour: sessionHour, xp: sessionXp });
+      const hour = 10.0 + rand() * 8.0;
+      sessions.push({ hour, xp: generateSessionXp() });
     }
   }
 
+  sessions.sort((a, b) => a.hour - b.hour);
   return sessions;
 }
 
 /**
  * Tính điểm tích lũy tuần của 1 bot tại thời điểm hiện tại:
- * - Khởi đầu tuần mới (Thứ Hai trước khi học): Điểm = 0
- * - Tăng dần theo các phiên học trong ngày (chỉ từ 7:30 đến trước 21:00)
- * - Sau 21:00: Giữ nguyên điểm, không tăng thêm
  */
 export function calculateTierBotWeeklyXp(
   tier = "bronze",
@@ -238,7 +410,7 @@ export function calculateTierBotWeeklyXp(
   let totalWeeklyXp = 0;
 
   for (let d = 0; d <= Math.min(currentDay, 6); d++) {
-    const sessions = getBotDaySessions(botIndex, d, role, weekSeed);
+    const sessions = getBotDaySessions(botIndex, d, role, weekSeed, tier);
     for (const session of sessions) {
       if (session.hour > 21.0) continue; // Đảm bảo không quá 21h
 
@@ -290,7 +462,8 @@ const useLeagueStore = create(
       userWeeklyXp: 0,
       cloudPlayers: [], // Danh sách người thật và bot lấy từ Supabase
       isLoadingCloud: false,
-      lastPromotionStatus: null, // 'promoted' | 'relegated' | 'stayed' | null
+      lastPromotionStatus: null,
+      cups: { gold: 0, silver: 0, bronze: 0 },
 
       resetLeague: () =>
         set({
@@ -299,6 +472,9 @@ const useLeagueStore = create(
           userWeeklyXp: 0,
           cloudPlayers: [],
           lastPromotionStatus: null,
+          // Đăng xuất là xoá luôn cúp: kho cúp nằm trong localStorage của máy, không
+          // xoá thì tài khoản đăng nhập sau trên cùng thiết bị thấy cúp của người trước.
+          cups: { gold: 0, silver: 0, bronze: 0 },
         }),
 
       /**
@@ -391,16 +567,87 @@ const useLeagueStore = create(
           let nextTier = currentTier;
           let status = "stayed";
 
-          if (
-            userRank > 0 &&
-            userRank <= 3 &&
-            currentTierIdx < LEAGUE_TIERS.length - 1
-          ) {
-            nextTier = LEAGUE_TIERS[currentTierIdx + 1].id;
-            status = "promoted";
-          } else if (userRank >= 8 && currentTierIdx > 0) {
-            nextTier = LEAGUE_TIERS[currentTierIdx - 1].id;
-            status = "relegated";
+          const endedWeekPhase = getGlobalTournamentPhase(
+            new Date(end).getTime() - 1000,
+          );
+          const isBronze = currentTier === "bronze";
+
+          if (currentTier === "master") {
+            if (endedWeekPhase === "selection") {
+              if (userRank > 0 && userRank <= 5) {
+                nextTier = "quarter_final";
+                status = "promoted";
+              } else if (userRank >= 8) {
+                nextTier = "diamond";
+                status = "relegated";
+              }
+            } else {
+              // Master during non-selection weeks: normal play
+              if (userRank >= 8) {
+                nextTier = "diamond";
+                status = "relegated";
+              }
+            }
+          } else if (currentTier === "quarter_final") {
+            if (userRank > 0 && userRank <= 5) {
+              nextTier = "semi_final";
+              status = "promoted";
+            } else {
+              nextTier = "master";
+              status = "relegated";
+            }
+          } else if (currentTier === "semi_final") {
+            if (userRank > 0 && userRank <= 5) {
+              nextTier = "final";
+              status = "promoted";
+            } else {
+              nextTier = "master";
+              status = "relegated";
+            }
+          } else if (currentTier === "final") {
+            nextTier = "master"; // Always return to master
+            status = "stayed";
+
+            // Award cups!
+            if (userRank > 0 && userRank <= 3) {
+              const currentCups = get().cups || {
+                gold: 0,
+                silver: 0,
+                bronze: 0,
+              };
+              const newCups = { ...currentCups };
+              if (userRank === 1) newCups.gold = (newCups.gold || 0) + 1;
+              if (userRank === 2) newCups.silver = (newCups.silver || 0) + 1;
+              if (userRank === 3) newCups.bronze = (newCups.bronze || 0) + 1;
+              set({ cups: newCups });
+              // Trạng thái phải nói RÕ cúp nào, để banner mừng đúng loại cúp.
+              // (Trước đây chỉ có 'champion_win' mà không màn hình nào hiểu.)
+              status =
+                userRank === 1
+                  ? "champion_gold"
+                  : userRank === 2
+                    ? "champion_silver"
+                    : "champion_bronze";
+
+              // KHÔNG ghi thẳng lên Supabase ở đây: lúc trao cúp có thể `activeChild` chưa
+              // sẵn sàng (đua lúc mở app) nên dễ rơi mất cúp. Việc ghi do `setupAutoSync()`
+              // trong `syncService.js` lo — nó nghe `cups` đổi và hỏi lại childId lúc ghi
+              // (cùng khuôn với thú cưng), xem `scheduleCupSync`.
+            }
+          } else {
+            // Normal tiers
+            if (
+              userRank > 0 &&
+              userRank <= 3 &&
+              currentTierIdx < LEAGUE_TIERS.length - 1
+            ) {
+              nextTier = LEAGUE_TIERS[currentTierIdx + 1].id;
+              status = "promoted";
+            } else if (userRank >= 8 && !isBronze) {
+              // FIX: Bronze no demotion
+              nextTier = LEAGUE_TIERS[currentTierIdx - 1].id;
+              status = "relegated";
+            }
           }
 
           // Reset tuần mới: điểm về 0, tuần mới bắt đầu lại
@@ -606,6 +853,7 @@ const useLeagueStore = create(
         weekEndDate: state.weekEndDate,
         userWeeklyXp: state.userWeeklyXp,
         lastPromotionStatus: state.lastPromotionStatus,
+        cups: state.cups,
       }),
     },
   ),

@@ -8,7 +8,11 @@ import ProgressBar from "../components/ui/ProgressBar";
 import useUserStore from "../store/useUserStore";
 import useProgressStore from "../store/useProgressStore";
 import useAuthStore from "../store/useAuthStore";
-import useLeagueStore, { LEAGUE_TIERS } from "../store/useLeagueStore";
+import useLeagueStore, {
+  LEAGUE_TIERS,
+  getLeagueRules,
+  LEAGUE_STATUS_MESSAGES,
+} from "../store/useLeagueStore";
 import { generateQuestion } from "../utils/exerciseGenerator";
 import soundManager from "../utils/soundManager";
 import fireConfetti from "../utils/confettiHelper";
@@ -40,6 +44,22 @@ export default function ChallengePage() {
     lastPromotionStatus,
     dismissStatus,
   } = useLeagueStore();
+
+  // Luật thăng/rớt lấy từ store `getLeagueRules()` — một nguồn duy nhất, khớp
+  // checkWeekReset(): hạng thường thăng top 3 / rớt từ hạng 8 (Đồng không rớt);
+  // vòng Vô Địch thăng top 5 / rớt từ hạng 6; Chung kết không rớt, top 3 đoạt cúp;
+  // Cao Thủ chỉ xét thăng hạng ở TUẦN CHỌN LỌC.
+  const {
+    isTournament,
+    isFinal,
+    isBronze,
+    canPromote,
+    promoLimit,
+    relegateStart,
+    nextTier: nextTierData,
+    standardTiers,
+    tournamentTiers,
+  } = getLeagueRules(currentTier);
 
   // Tab: 'arena' (Đấu Trường Thi Đua) hoặc 'daily' (Nhiệm Vụ Hằng Ngày)
   const [activeTab, setActiveTab] = useState("arena");
@@ -133,10 +153,6 @@ export default function ChallengePage() {
   const currentTierData =
     LEAGUE_TIERS.find((t) => t.id === currentTier) || LEAGUE_TIERS[0];
   const currentTierIdx = LEAGUE_TIERS.findIndex((t) => t.id === currentTier);
-  const nextTierData =
-    currentTierIdx < LEAGUE_TIERS.length - 1
-      ? LEAGUE_TIERS[currentTierIdx + 1]
-      : null;
 
   const top3 = standings.slice(0, 3);
 
@@ -287,6 +303,12 @@ export default function ChallengePage() {
                       <strong>{currentTierData.name}</strong>. Hãy bứt phá tuần
                       này nhé!
                     </>
+                  ) : LEAGUE_STATUS_MESSAGES[lastPromotionStatus] ? (
+                    <>
+                      {LEAGUE_STATUS_MESSAGES[lastPromotionStatus]} Bé trở về{" "}
+                      <strong>Giải Cao Thủ</strong> để chinh phục mùa giải mới
+                      nhé!
+                    </>
                   ) : (
                     <>
                       🛡️ <strong>Trụ hạng thành công!</strong> Bé tiếp tục thi
@@ -383,21 +405,26 @@ export default function ChallengePage() {
 
                 {/* League Tiers Road Map */}
                 <div className="tiers-roadmap">
-                  {LEAGUE_TIERS.map((tier, idx) => {
-                    const isCurrent = tier.id === currentTier;
-                    const isUnlocked = idx <= currentTierIdx;
-                    return (
-                      <div
-                        key={tier.id}
-                        className={`tier-step ${isCurrent ? "is-current" : ""} ${isUnlocked ? "is-unlocked" : ""}`}
-                      >
-                        <div className="step-circle">
-                          <span>{tier.icon}</span>
+                  {(isTournament ? tournamentTiers : standardTiers).map(
+                    (tier, idx) => {
+                      const isCurrent = tier.id === currentTier;
+                      const baseIdx = isTournament
+                        ? idx + standardTiers.length
+                        : idx;
+                      const isUnlocked = baseIdx <= currentTierIdx;
+                      return (
+                        <div
+                          key={tier.id}
+                          className={`tier-step ${isCurrent ? "is-current" : ""} ${isUnlocked ? "is-unlocked" : ""}`}
+                        >
+                          <div className="step-circle">
+                            <span>{tier.icon}</span>
+                          </div>
+                          <span className="step-label">{tier.name}</span>
                         </div>
-                        <span className="step-label">{tier.name}</span>
-                      </div>
-                    );
-                  })}
+                      );
+                    },
+                  )}
                 </div>
               </div>
 
@@ -454,23 +481,46 @@ export default function ChallengePage() {
               {/* Full Standings List */}
               <div className="standings-box">
                 <div className="standings-legend">
-                  <div className="legend-item promo">
-                    <ArrowUpCircle size={16} className="text-emerald" />
-                    <span>
-                      Hạng 1 - 3: Thăng hạng{" "}
-                      {nextTierData ? nextTierData.name : ""} 🟢
-                    </span>
-                  </div>
-                  <div className="legend-item relegate">
-                    <ArrowDownCircle size={16} className="text-rose" />
-                    <span>Hạng 8 - 10: Vùng nguy hiểm 🔴</span>
-                  </div>
+                  {isFinal ? (
+                    <div className="legend-item promo">
+                      <span className="text-yellow">🏆</span>
+                      <span>Hạng 1 - 3: Đoạt Cúp Vô Địch</span>
+                    </div>
+                  ) : canPromote ? (
+                    <div className="legend-item promo">
+                      <ArrowUpCircle size={16} className="text-emerald" />
+                      <span>
+                        Hạng 1 - {promoLimit}: Thăng hạng{" "}
+                        {nextTierData ? nextTierData.name : ""} 🟢
+                      </span>
+                    </div>
+                  ) : (
+                    <div className="legend-item">
+                      <span>🟡</span>
+                      <span>
+                        Tuần này Cao Thủ không xét thăng hạng — tích XP chờ
+                        Tuần Chọn Lọc
+                      </span>
+                    </div>
+                  )}
+                  {!isBronze && !isFinal && (
+                    <div className="legend-item relegate">
+                      <ArrowDownCircle size={16} className="text-rose" />
+                      <span>
+                        Hạng {relegateStart} - 10: {isTournament ? "Rớt về Cao Thủ" : "Vùng nguy hiểm"} 🔴
+                      </span>
+                    </div>
+                  )}
                 </div>
 
                 <div className="standings-list">
                   {standings.map((player) => {
-                    const isPromotion = player.rank <= 3;
-                    const isRelegation = player.rank >= 8;
+                    const isPromotion =
+                      canPromote &&
+                      player.rank <= promoLimit &&
+                      (!isFinal || player.rank <= 3);
+                    const isRelegation =
+                      !isBronze && !isFinal && player.rank >= relegateStart;
 
                     let rowCls = "standing-row";
                     if (player.isUser) rowCls += " is-user-row";

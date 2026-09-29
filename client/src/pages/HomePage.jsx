@@ -213,13 +213,12 @@ export default function HomePage() {
                           {chapterTag}
                         </span>
                         <div
-                          className={`chapter-stars-badge ${
-                            progress.earnedStars > 0
+                          className={`chapter-stars-badge ${progress.earnedStars > 0
                               ? progress.earnedStars === progress.maxStars
                                 ? "perfect"
                                 : "active"
                               : "empty"
-                          }`}
+                            }`}
                           title={`Đã tích lũy ${progress.earnedStars}/${progress.maxStars} sao`}
                         >
                           <span className="star-icon">⭐</span>
@@ -305,7 +304,7 @@ export default function HomePage() {
                 whileTap={{ scale: 0.95 }}
               >
                 <Gamepad2 size={16} />
-                <span>6 Mini Game</span>
+                <span>Mini Game</span>
               </motion.button>
 
               <motion.button
