@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MOCKUP GIAO DIỆN TRANG CHỦ: 5 LỚP & 10 CHƯƠNG (PHƯƠNG ÁN A)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@500;600;700;800;900&display=swap"
+    rel="stylesheet">
   <style>
     :root {
       --font-heading: 'Baloo 2', cursive, sans-serif;
@@ -199,7 +202,7 @@
       align-items: center;
       justify-content: center;
       font-size: 1.4rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
 
     /* CONTENT SCROLL AREA */
@@ -353,7 +356,7 @@
     .sem-btn.active {
       background: #ffffff;
       color: #0284c7;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     }
 
     .chapters-count-pill {
@@ -400,7 +403,7 @@
       justify-content: center;
       font-size: 1.8rem;
       flex-shrink: 0;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.06);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.06);
     }
 
     .chapter-info {
@@ -520,7 +523,7 @@
       border: none;
       cursor: pointer;
       color: white;
-      box-shadow: 0 3px 0 rgba(0,0,0,0.15);
+      box-shadow: 0 3px 0 rgba(0, 0, 0, 0.15);
       transition: transform 0.15s;
     }
 
@@ -528,9 +531,17 @@
       transform: translateY(-2px);
     }
 
-    .btn-games { background: linear-gradient(135deg, #f43f5e, #fb7185); }
-    .btn-stories { background: linear-gradient(135deg, #a855f7, #c084fc); }
-    .btn-arena { background: linear-gradient(135deg, #f59e0b, #fbbf24); }
+    .btn-games {
+      background: linear-gradient(135deg, #f43f5e, #fb7185);
+    }
+
+    .btn-stories {
+      background: linear-gradient(135deg, #a855f7, #c084fc);
+    }
+
+    .btn-arena {
+      background: linear-gradient(135deg, #f59e0b, #fbbf24);
+    }
 
     /* --- CỘT PHẢI (32%): STICKY COMPANION GAMIFICATION --- */
     .companion-column {
@@ -573,8 +584,15 @@
     }
 
     @keyframes floatEgg {
-      0%, 100% { transform: translateY(0) rotate(-4deg); }
-      50% { transform: translateY(-5px) rotate(4deg); }
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(-4deg);
+      }
+
+      50% {
+        transform: translateY(-5px) rotate(4deg);
+      }
     }
 
     .pet-teaser-info {
@@ -753,10 +771,24 @@
     }
 
     @keyframes wiggleChest {
-      0%, 80%, 100% { transform: rotate(0); }
-      85% { transform: rotate(-8deg); }
-      90% { transform: rotate(8deg); }
-      95% { transform: rotate(-4deg); }
+
+      0%,
+      80%,
+      100% {
+        transform: rotate(0);
+      }
+
+      85% {
+        transform: rotate(-8deg);
+      }
+
+      90% {
+        transform: rotate(8deg);
+      }
+
+      95% {
+        transform: rotate(-4deg);
+      }
     }
 
     .chest-text h5 {
@@ -800,6 +832,7 @@
     }
   </style>
 </head>
+
 <body>
 
   <!-- 1. MENU TRÁI (SIDEBAR - GIỮ NGUYÊN 100%) -->
@@ -869,7 +902,7 @@
 
         <!-- CỘT TRÁI (68%): TRỤC HỌC TẬP CHÍNH -->
         <main class="learning-column">
-          
+
           <!-- KHỐI CHỌN LỚP (5 CẤP ĐỘ RÕ RÀNG) -->
           <div class="grade-selector-card">
             <div class="grade-selector-header">
@@ -934,7 +967,9 @@
                 </div>
                 <p class="chapter-desc">Đếm số, so sánh nhiều hơn ít hơn</p>
                 <div class="chapter-progress-row">
-                  <div class="progress-track-mini"><div class="progress-fill-mini" style="width: 100%;"></div></div>
+                  <div class="progress-track-mini">
+                    <div class="progress-fill-mini" style="width: 100%;"></div>
+                  </div>
                   <button class="btn-action-mini done">Ôn lại ↺</button>
                 </div>
               </div>
@@ -950,7 +985,9 @@
                 </div>
                 <p class="chapter-desc">Khái niệm cộng, thêm vào, tách gộp</p>
                 <div class="chapter-progress-row">
-                  <div class="progress-track-mini"><div class="progress-fill-mini" style="width: 60%;"></div></div>
+                  <div class="progress-track-mini">
+                    <div class="progress-fill-mini" style="width: 60%;"></div>
+                  </div>
                   <button class="btn-action-mini">Học tiếp →</button>
                 </div>
               </div>
@@ -966,7 +1003,9 @@
                 </div>
                 <p class="chapter-desc">Bớt đi, còn lại bao nhiêu đồ vật</p>
                 <div class="chapter-progress-row">
-                  <div class="progress-track-mini"><div class="progress-fill-mini" style="width: 25%;"></div></div>
+                  <div class="progress-track-mini">
+                    <div class="progress-fill-mini" style="width: 25%;"></div>
+                  </div>
                   <button class="btn-action-mini">Học tiếp →</button>
                 </div>
               </div>
@@ -982,7 +1021,9 @@
                 </div>
                 <p class="chapter-desc">Hình vuông, tròn, tam giác, chữ nhật</p>
                 <div class="chapter-progress-row">
-                  <div class="progress-track-mini"><div class="progress-fill-mini" style="width: 0%;"></div></div>
+                  <div class="progress-track-mini">
+                    <div class="progress-fill-mini" style="width: 0%;"></div>
+                  </div>
                   <button class="btn-action-mini">Bắt đầu →</button>
                 </div>
               </div>
@@ -998,7 +1039,9 @@
                 </div>
                 <p class="chapter-desc">Làm quen với thước kẻ và xăng-ti-mét</p>
                 <div class="chapter-progress-row">
-                  <div class="progress-track-mini"><div class="progress-fill-mini" style="width: 0%;"></div></div>
+                  <div class="progress-track-mini">
+                    <div class="progress-fill-mini" style="width: 0%;"></div>
+                  </div>
                   <button class="btn-action-mini">Bắt đầu →</button>
                 </div>
               </div>
@@ -1014,7 +1057,9 @@
                 </div>
                 <p class="chapter-desc">Xem giờ đúng, các ngày trong tuần</p>
                 <div class="chapter-progress-row">
-                  <div class="progress-track-mini"><div class="progress-fill-mini" style="width: 0%;"></div></div>
+                  <div class="progress-track-mini">
+                    <div class="progress-fill-mini" style="width: 0%;"></div>
+                  </div>
                   <button class="btn-action-mini">Bắt đầu →</button>
                 </div>
               </div>
@@ -1030,7 +1075,9 @@
                 </div>
                 <p class="chapter-desc">Hàng chục, hàng đơn vị, đọc viết số</p>
                 <div class="chapter-progress-row">
-                  <div class="progress-track-mini"><div class="progress-fill-mini" style="width: 0%;"></div></div>
+                  <div class="progress-track-mini">
+                    <div class="progress-fill-mini" style="width: 0%;"></div>
+                  </div>
                   <button class="btn-action-mini">Bắt đầu →</button>
                 </div>
               </div>
@@ -1046,7 +1093,9 @@
                 </div>
                 <p class="chapter-desc">Cộng qua 10, đặt tính rồi tính</p>
                 <div class="chapter-progress-row">
-                  <div class="progress-track-mini"><div class="progress-fill-mini" style="width: 0%;"></div></div>
+                  <div class="progress-track-mini">
+                    <div class="progress-fill-mini" style="width: 0%;"></div>
+                  </div>
                   <button class="btn-action-mini">Bắt đầu →</button>
                 </div>
               </div>
@@ -1062,7 +1111,9 @@
                 </div>
                 <p class="chapter-desc">Trừ qua 10, giải bài toán có lời văn</p>
                 <div class="chapter-progress-row">
-                  <div class="progress-track-mini"><div class="progress-fill-mini" style="width: 0%;"></div></div>
+                  <div class="progress-track-mini">
+                    <div class="progress-fill-mini" style="width: 0%;"></div>
+                  </div>
                   <button class="btn-action-mini">Bắt đầu →</button>
                 </div>
               </div>
@@ -1078,7 +1129,9 @@
                 </div>
                 <p class="chapter-desc">Tổng hợp kiến thức toàn diện Lớp 1</p>
                 <div class="chapter-progress-row">
-                  <div class="progress-track-mini"><div class="progress-fill-mini" style="width: 0%;"></div></div>
+                  <div class="progress-track-mini">
+                    <div class="progress-fill-mini" style="width: 0%;"></div>
+                  </div>
                   <button class="btn-action-mini">Bắt đầu →</button>
                 </div>
               </div>
@@ -1090,7 +1143,7 @@
           <div class="quick-launch-bar">
             <span class="quick-launch-title">🚀 Khám phá thêm cùng Toán Vui:</span>
             <div class="quick-chips-wrap">
-              <button class="quick-chip-btn btn-games">🎮 6 Mini Game</button>
+              <button class="quick-chip-btn btn-games">🎮 Mini Game</button>
               <button class="quick-chip-btn btn-stories">📖 Truyện Toán Vui</button>
               <button class="quick-chip-btn btn-arena">⚔️ Đấu Trường Thăng Hạng</button>
             </div>
@@ -1166,4 +1219,5 @@
   </div>
 
 </body>
+
 </html>
