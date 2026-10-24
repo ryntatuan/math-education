@@ -136,7 +136,27 @@ export const g3c15 = {
               25
             ],
             "answer": 12,
-            "mascotHint": "Bé so các con số 12, 8, 5 — số lớn nhất là 12."
+            "mascotHint": "Bé so các con số 12, 8, 5 — số lớn nhất là 12.",
+            "table": {
+              "headers": [
+                "Môn",
+                "Số bạn"
+              ],
+              "rows": [
+                [
+                  "Bóng đá",
+                  12
+                ],
+                [
+                  "Cầu lông",
+                  8
+                ],
+                [
+                  "Bơi",
+                  5
+                ]
+              ]
+            }
           }
         },
         {
@@ -150,7 +170,27 @@ export const g3c15 = {
               26
             ],
             "answer": 25,
-            "mascotHint": "Lấy các con số cộng lại: 12 + 8 + 5 = 25."
+            "mascotHint": "Lấy các con số cộng lại: 12 + 8 + 5 = 25.",
+            "table": {
+              "headers": [
+                "Môn",
+                "Số bạn"
+              ],
+              "rows": [
+                [
+                  "Bóng đá",
+                  12
+                ],
+                [
+                  "Cầu lông",
+                  8
+                ],
+                [
+                  "Bơi",
+                  5
+                ]
+              ]
+            }
           }
         },
         {

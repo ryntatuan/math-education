@@ -19,6 +19,7 @@
  * Nguồn số liệu của từng hình: lấy từ nội dung bài học, ghi rõ ở từng hình bên dưới.
  */
 
+import { useState } from "react";
 import { CARD_STYLE, CAPTION_STYLE, svgFit } from "./visualTheme";
 
 import { CharacterFullBody } from "../common/CharacterGraphics";
@@ -366,9 +367,1052 @@ function ComparePairsCard({ pairs = [], model = "", note = "" }) {
   );
 }
 
+const SCENE_ITEMS = {
+  farm: [
+    ["🐄", 60, 60, 1],
+    ["🐄", 120, 74, 1],
+    ["☁️", 250, 34, 1],
+    ["☁️", 300, 44, 1],
+    ["☁️", 340, 30, 1],
+    ["🐔", 200, 96, 1],
+    ["🐔", 232, 78, 1],
+    ["🐔", 268, 100, 1],
+    ["🐔", 300, 84, 1],
+    ["🌻", 40, 118, 1],
+    ["🌻", 76, 128, 1],
+    ["🌻", 112, 112, 1],
+    ["🌻", 148, 124, 1],
+    ["🌻", 180, 138, 1],
+    ["☀️", 26, 30, 1],
+    ["🐟", 246, 132, 1],
+    ["🐟", 280, 142, 1],
+    ["🐟", 314, 128, 1],
+    ["🐟", 250, 166, 1],
+    ["🐟", 210, 148, 1],
+    ["🐟", 152, 164, 1],
+  ],
+  pond: [
+    ["🐰", 56, 70, 1],
+    ["🐰", 92, 86, 1],
+    ["🐰", 128, 66, 1],
+    ["🐰", 164, 88, 1],
+    ["🌳", 240, 74, 1],
+    ["🌳", 288, 92, 1],
+    ["🌳", 336, 70, 1],
+    ["🦆", 210, 130, 1],
+    ["🦆", 248, 118, 1],
+    ["🦆", 286, 136, 1],
+    ["🦆", 322, 120, 1],
+    ["🦆", 180, 150, 1],
+    ["☁️", 40, 26, 1],
+    ["☁️", 96, 22, 1],
+    ["🐦", 150, 36, 1],
+    ["🐦", 186, 26, 1],
+    ["🐦", 222, 38, 1],
+    ["🐦", 258, 28, 1],
+    ["🐦", 294, 44, 1],
+    ["🐦", 324, 32, 1],
+  ],
+  river: [
+    ["🛶", 60, 60, 1],
+    ["🛶", 140, 88, 1],
+    ["🛶", 220, 62, 1],
+    ["🌴", 290, 74, 1],
+    ["🌴", 320, 96, 1],
+    ["🌴", 250, 108, 1],
+    ["🌴", 180, 126, 1],
+    ["🏠", 40, 110, 1],
+    ["🏠", 96, 130, 1],
+    ["🐟", 150, 150, 1],
+    ["🐟", 196, 166, 1],
+    ["🐟", 242, 154, 1],
+    ["🐟", 288, 144, 1],
+    ["🐟", 326, 158, 1],
+  ],
+  field: [
+    ["🐃", 60, 70, 1],
+    ["🐃", 112, 86, 1],
+    ["🐃", 164, 68, 1],
+    ["🐃", 216, 88, 1],
+    ["🐃", 268, 70, 1],
+    ["🏠", 320, 60, 1],
+    ["🏠", 296, 110, 1],
+    ["🏠", 330, 104, 1],
+    ["🌾", 40, 120, 1],
+    ["🌾", 76, 132, 1],
+    ["🌾", 112, 122, 1],
+    ["🌾", 148, 136, 1],
+    ["🌾", 184, 124, 1],
+    ["🌾", 220, 138, 1],
+    ["☀️", 28, 30, 1],
+    ["☁️", 120, 30, 1],
+    ["☁️", 180, 24, 1],
+  ],
+};
+
+/**
+ * “Đếm trong tranh cảnh” bản TƯƠNG TÁC + TĨNH:
+ * - Khi có `answers` và slide cho phép tương tác: bé bấm ô “?” dưới từng con vật/đồ vật rồi chọn số từ thanh FillBar.
+ * - Khi ở slide câu hỏi hoặc không truyền legend: vẽ tranh cảnh thuần túy (không bảng “?” thừa), gọn gàng để bé đếm và trả lời trắc nghiệm.
+ */
+function SceneCountCard({
+  kind = "farm",
+  legend = [],
+  answers = [],
+  options = [],
+  note = "",
+  tinh = false,
+}) {
+  const lg = Array.isArray(legend) ? legend : [];
+  const coAnswers =
+    Array.isArray(answers) && answers.length === lg.length && lg.length > 0;
+  const choBam = !tinh && coAnswers;
+  const fill = useFillSlots(choBam ? answers : []);
+
+  const items = SCENE_ITEMS[kind] || SCENE_ITEMS.farm;
+  const coNuoc = kind === "pond" || kind === "river";
+  const coLegend = lg.length > 0;
+
+  const dsChon =
+    options && options.length
+      ? options
+      : [
+          ...new Set(
+            (coAnswers ? answers : lg.map((_, i) => i + 1)).flatMap((a) => [
+              Number(a) - 1,
+              Number(a),
+              Number(a) + 1,
+            ]),
+          ),
+        ]
+          .filter((n) => Number.isFinite(n) && n >= 1 && n <= 10)
+          .sort((a, b) => a - b);
+
+  // Khi không có legend (ví dụ ở slide câu hỏi), SVG chỉ cao 180px vừa khít khung tranh
+  const H = !coLegend ? 180 : lg.length > 3 ? 246 : 218;
+
+  return (
+    <div style={card}>
+      <svg
+        viewBox={`0 0 360 ${H}`}
+        {...svgFit(360)}
+        role="img"
+        aria-label="Tranh cảnh để bé đếm"
+      >
+        <rect
+          x="10"
+          y="8"
+          width="340"
+          height="164"
+          rx="12"
+          fill={coNuoc ? "#e0f2fe" : "#f0fdf4"}
+          stroke={P.grid}
+          strokeWidth="2"
+        />
+        {coNuoc ? (
+          <ellipse
+            cx="180"
+            cy="150"
+            rx="150"
+            ry="34"
+            fill="#bae6fd"
+            opacity="0.75"
+          />
+        ) : (
+          kind === "farm" && (
+            <ellipse
+              cx="262"
+              cy="150"
+              rx="84"
+              ry="24"
+              fill="#bae6fd"
+              opacity="0.8"
+            />
+          )
+        )}
+        {items.map(([ch, x, y], i) => (
+          <Item key={i} x={x} y={y} ch={ch} s="20" />
+        ))}
+
+        {coLegend && (
+          <>
+            <rect
+              x="10"
+              y="178"
+              width="340"
+              height={lg.length > 3 ? 62 : 34}
+              rx="10"
+              fill="#ffffff"
+              stroke={P.grid}
+              strokeWidth="2"
+            />
+            {lg.map((it, i) => {
+              const x = 34 + (i % 3) * 112;
+              const y = 178 + 22 + Math.floor(i / 3) * 30;
+              const look = choBam
+                ? slotLook(fill, i)
+                : { fill: "#f8fafc", stroke: P.blue, color: P.blue, dash: true };
+              const picked = choBam ? fill.picked[i] : null;
+              return (
+                <g
+                  key={i}
+                  onClick={() => choBam && fill.setActive(i)}
+                  style={{ cursor: choBam ? "pointer" : "default" }}
+                >
+                  {choBam && fill.active === i && !fill.solved[i] && (
+                    <rect
+                      x={x + 10}
+                      y={y - 19}
+                      width={38}
+                      height={28}
+                      rx={8}
+                      fill="none"
+                      stroke={P.violet}
+                      strokeWidth="2"
+                      strokeDasharray="4 3"
+                    />
+                  )}
+                  <Item x={x} y={y} ch={it.emoji} s="17" />
+                  <Tile
+                    x={x + 12}
+                    y={y - 17}
+                    w={34}
+                    h={24}
+                    text={
+                      picked === null || picked === undefined
+                        ? "?"
+                        : String(picked)
+                    }
+                    fs={15}
+                    fill={look.fill}
+                    stroke={look.stroke}
+                    color={look.color}
+                    dash={look.dash}
+                  />
+                </g>
+              );
+            })}
+          </>
+        )}
+      </svg>
+      {note && (
+        <span style={{ ...caption, color: P.ink, fontSize: 15 }}>{note}</span>
+      )}
+      {choBam && (
+        <FillBar
+          fill={fill}
+          options={dsChon}
+          title="Bé chọn số điền vào ô ?"
+          hint="Ô màu đỏ chưa đúng — bé nhìn kỹ lại tranh rồi đếm lại nhé."
+        />
+      )}
+    </div>
+  );
+}
+
+
+
+/* ── SVG Bàn tay đếm tiếp 5 + extra (Chuẩn giải phẫu học cho trẻ) ── */
+function HandPairSvg({ extraFingers = 1, currentNum = 6, word = "sáu", isQuiz = false }) {
+  return (
+    <svg viewBox="0 0 380 142" {...svgFit(380)} role="img" aria-label={`5 thêm ${extraFingers} là ${currentNum}`}>
+      {/* TAY TRÁI (Ở BÊN TRÁI MÀN HÌNH): Ngón út ở ngoài cùng bên trái -> ngón cái ở bên phải (hướng vào giữa) */}
+      <g transform="translate(12, 6)">
+        {/* 1. Ngón út (ngoài cùng bên trái) */}
+        <rect x="22" y="32" width="10" height="34" rx="5" fill="#fed7aa" stroke="#ea580c" strokeWidth="2" />
+        {/* 2. Ngón áp út */}
+        <rect x="35" y="18" width="11" height="46" rx="5.5" fill="#fed7aa" stroke="#ea580c" strokeWidth="2" />
+        {/* 3. Ngón giữa (dài nhất) */}
+        <rect x="49" y="12" width="11" height="52" rx="5.5" fill="#fed7aa" stroke="#ea580c" strokeWidth="2" />
+        {/* 4. Ngón trỏ */}
+        <rect x="63" y="18" width="11" height="46" rx="5.5" fill="#fed7aa" stroke="#ea580c" strokeWidth="2" />
+        {/* 5. Ngón cái (Ở BÊN PHẢI CỦA TAY TRÁI, HƯỚNG VÀO TRUNG TÂM) */}
+        <rect x="74" y="58" width="12" height="28" rx="6" transform="rotate(32 78 70)" fill="#fed7aa" stroke="#ea580c" strokeWidth="2" />
+
+        {/* Lòng bàn tay trái (vẽ đè lên chân các ngón tay) */}
+        <rect x="20" y="52" width="56" height="44" rx="14" fill="#fed7aa" stroke="#ea580c" strokeWidth="2" />
+        <path d="M30,72 Q48,78 66,70" fill="none" stroke="#fb923c" strokeWidth="1.5" strokeLinecap="round" />
+
+        {/* Huy hiệu số trên đầu 5 ngón tay trái */}
+        <circle cx="27" cy="27" r="6" fill="#2563eb" />
+        <text x="27" y="30.5" textAnchor="middle" fontSize="9" fontWeight="900" fill="#ffffff">1</text>
+        <circle cx="40.5" cy="13" r="6" fill="#2563eb" />
+        <text x="40.5" y="16.5" textAnchor="middle" fontSize="9" fontWeight="900" fill="#ffffff">2</text>
+        <circle cx="54.5" cy="7" r="6" fill="#2563eb" />
+        <text x="54.5" y="10.5" textAnchor="middle" fontSize="9" fontWeight="900" fill="#ffffff">3</text>
+        <circle cx="68.5" cy="13" r="6" fill="#2563eb" />
+        <text x="68.5" y="16.5" textAnchor="middle" fontSize="9" fontWeight="900" fill="#ffffff">4</text>
+        <circle cx="90" cy="54" r="6.5" fill="#2563eb" />
+        <text x="90" y="57.5" textAnchor="middle" fontSize="9" fontWeight="900" fill="#ffffff">5</text>
+
+        {/* Nhãn 5 ngón tay trái - khung rộng rãi, chữ thoáng không sát viền */}
+        <rect x="6" y="104" width="84" height="22" rx="11" fill="#2563eb" />
+        <text x="48" y="119" textAnchor="middle" fontSize="11" fontWeight="800" fill="#ffffff">✋ 5 ngón</text>
+      </g>
+
+      {/* DẤU CỘNG Ở GIỮA */}
+      <g transform="translate(136, 52)">
+        <circle cx="0" cy="0" r="12" fill="#dbeafe" stroke="#3b82f6" strokeWidth="2" />
+        <text x="0" y="5" textAnchor="middle" fontSize="16" fontWeight="900" fill="#1d4ed8">+</text>
+      </g>
+
+      {/* TAY PHẢI (Ở BÊN PHẢI MÀN HÌNH): Ngón cái ở bên TRÁI (hướng vào giữa) -> ngón út ở bên phải ngoài cùng */}
+      <g transform="translate(168, 6)">
+        {/* 1. Ngón cái phải (Ở BÊN TRÁI CỦA TAY PHẢI, HƯỚNG VÀO TRUNG TÂM) */}
+        {extraFingers === 5 && (
+          <rect x="6" y="58" width="12" height="28" rx="6" transform="rotate(-32 14 70)" fill="#fef08a" stroke="#d97706" strokeWidth="2" />
+        )}
+
+        {/* 2. Ngón trỏ phải (x = 22) -> Giơ lên khi thêm >= 1 ngón */}
+        {extraFingers >= 1 ? (
+          <rect x="22" y="18" width="11" height="46" rx="5.5" fill="#fef08a" stroke="#d97706" strokeWidth="2" />
+        ) : (
+          <rect x="22" y="48" width="11" height="14" rx="5" fill="#fef08a" stroke="#d97706" strokeWidth="1.5" />
+        )}
+
+        {/* 3. Ngón giữa phải (x = 36) -> Giơ lên khi thêm >= 2 ngón */}
+        {extraFingers >= 2 ? (
+          <rect x="36" y="12" width="11" height="52" rx="5.5" fill="#fef08a" stroke="#d97706" strokeWidth="2" />
+        ) : (
+          <rect x="36" y="48" width="11" height="14" rx="5" fill="#fef08a" stroke="#d97706" strokeWidth="1.5" />
+        )}
+
+        {/* 4. Ngón áp út phải (x = 50) -> Giơ lên khi thêm >= 3 ngón (3 ngón trỏ + giữa + áp út thẳng song song) */}
+        {extraFingers >= 3 ? (
+          <rect x="50" y="18" width="11" height="46" rx="5.5" fill="#fef08a" stroke="#d97706" strokeWidth="2" />
+        ) : (
+          <rect x="50" y="48" width="11" height="14" rx="5" fill="#fef08a" stroke="#d97706" strokeWidth="1.5" />
+        )}
+
+        {/* 5. Ngón út phải (x = 64) -> Giơ lên khi thêm >= 4 ngón (4 ngón trỏ + giữa + áp út + út thẳng song song) */}
+        {extraFingers >= 4 ? (
+          <rect x="64" y="32" width="10" height="34" rx="5" fill="#fef08a" stroke="#d97706" strokeWidth="2" />
+        ) : (
+          <rect x="64" y="50" width="10" height="12" rx="4.5" fill="#fef08a" stroke="#d97706" strokeWidth="1.5" />
+        )}
+
+        {/* Lòng bàn tay phải (vẽ đè lên chân các ngón tay) */}
+        <rect x="18" y="52" width="56" height="44" rx="14" fill="#fef08a" stroke="#d97706" strokeWidth="2" />
+        <path d="M28,70 Q46,78 64,72" fill="none" stroke="#fcd34d" strokeWidth="1.5" strokeLinecap="round" />
+
+        {/* Ngón cái cụp khi extraFingers < 5 (vẽ đè lên lòng bàn tay) */}
+        {extraFingers < 5 && (
+          <path d="M18,68 Q26,72 22,80" fill="none" stroke="#d97706" strokeWidth="2.2" strokeLinecap="round" />
+        )}
+
+        {/* Huy hiệu số cho các ngón giơ lên ở bàn tay phải */}
+        {extraFingers === 5 && (
+          <>
+            <circle cx="2" cy="54" r="6.5" fill="#ea580c" />
+            <text x="2" y="57.5" textAnchor="middle" fontSize="8.5" fontWeight="900" fill="#ffffff">10</text>
+          </>
+        )}
+        {extraFingers >= 1 && (
+          <>
+            <circle cx="27.5" cy="13" r="6" fill="#ea580c" />
+            <text x="27.5" y="16.5" textAnchor="middle" fontSize="9" fontWeight="900" fill="#ffffff">6</text>
+          </>
+        )}
+        {extraFingers >= 2 && (
+          <>
+            <circle cx="41.5" cy="7" r="6" fill="#ea580c" />
+            <text x="41.5" y="10.5" textAnchor="middle" fontSize="9" fontWeight="900" fill="#ffffff">7</text>
+          </>
+        )}
+        {extraFingers >= 3 && (
+          <>
+            <circle cx="55.5" cy="13" r="6" fill="#ea580c" />
+            <text x="55.5" y="16.5" textAnchor="middle" fontSize="9" fontWeight="900" fill="#ffffff">8</text>
+          </>
+        )}
+        {extraFingers >= 4 && (
+          <>
+            <circle cx="69" cy="27" r="6" fill="#ea580c" />
+            <text x="69" y="30.5" textAnchor="middle" fontSize="9" fontWeight="900" fill="#ffffff">9</text>
+          </>
+        )}
+
+        {/* Nhãn ngón thêm - khung rộng rãi, chữ thoáng không sát viền */}
+        <rect x="0" y="104" width="92" height="22" rx="11" fill="#ea580c" />
+        <text x="46" y="119" textAnchor="middle" fontSize="10.5" fontWeight="800" fill="#ffffff">
+          thêm {extraFingers} ngón
+        </text>
+      </g>
+
+      {/* MŨI TÊN KẾT QUẢ */}
+      <g transform="translate(268, 54)">
+        <path d="M0,8 L16,8 M10,3 L16,8 L10,13" fill="none" stroke="#059669" strokeWidth="3" strokeLinecap="round" />
+      </g>
+
+      {/* HỘP KẾT QUẢ */}
+      {isQuiz ? (
+        <g transform="translate(294, 8)">
+          <rect x="0" y="0" width="76" height="96" rx="16" fill="#eff6ff" stroke="#3b82f6" strokeWidth="2.5" strokeDasharray="4 3" />
+          <text x="38" y="58" textAnchor="middle" fontSize="44" fontWeight="900" fill="#2563eb">?</text>
+          <text x="38" y="82" textAnchor="middle" fontSize="12.5" fontWeight="800" fill="#3b82f6">mấy ngón?</text>
+        </g>
+      ) : (
+        <g transform="translate(294, 8)">
+          <rect x="0" y="0" width="76" height="96" rx="16" fill="#f0fdf4" stroke="#22c55e" strokeWidth="2.5" />
+          <text x="38" y="54" textAnchor="middle" fontSize="46" fontWeight="900" fill="#15803d">{currentNum}</text>
+          <text x="38" y="80" textAnchor="middle" fontSize="15" fontWeight="800" fill="#16a34a">{word}</text>
+        </g>
+      )}
+    </svg>
+  );
+}
+
+/* ── Component Bàn tay Cầu nối đếm tiếp sau 5 (dùng cho Quiz hoặc thử tài) ── */
+function CountingBridgeCard({ target = 6, have = 5, extra = 1, note = "" }) {
+  const interactive = useInteractive();
+  const extraFingers = Number(extra) || (Number(target) - 5) || 1;
+  const currentNum = Number(have) + extraFingers;
+
+  const countingPhrases = {
+    6: { word: "sáu", countText: "Năm... SÁU! ➔ 5 thêm 1 là 6" },
+    7: { word: "bảy", countText: "Năm... sáu, BẢY! ➔ 5 thêm 2 là 7" },
+    8: { word: "tám", countText: "Năm... sáu, bảy, TÁM! ➔ 5 thêm 3 là 8" },
+    9: { word: "chín", countText: "Năm... sáu, bảy, tám, CHÍN! ➔ 5 thêm 4 là 9" },
+    10: { word: "mười", countText: "Hai bàn tay xòe đủ: MƯỜI! ➔ 5 thêm 5 là 10" },
+  };
+
+  const phrase = countingPhrases[currentNum] || countingPhrases[6];
+  const isQuiz = !interactive;
+
+  return (
+    <div style={{ ...CARD_STYLE, padding: "14px 14px", background: "#f8fafc", borderRadius: 18, border: "2px solid #e2e8f0" }}>
+      <HandPairSvg
+        extraFingers={extraFingers}
+        currentNum={currentNum}
+        word={phrase.word}
+        isQuiz={isQuiz}
+      />
+
+      {/* BANNER NHẨM ĐẾM TIẾP */}
+      <div style={{
+        marginTop: 10,
+        padding: "10px 14px",
+        background: "linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%)",
+        border: "1.5px solid #bfdbfe",
+        borderRadius: 12,
+        display: "flex",
+        alignItems: "center",
+        gap: 8,
+      }}>
+        <span style={{ fontSize: 22 }}>🗣️</span>
+        <div>
+          <div style={{ fontSize: 13, fontWeight: 700, color: "#1e3a8a" }}>
+            {isQuiz ? "Bé quan sát hai bàn tay:" : "Mẹo đếm tiếp: Giữ 5 ở tay trái..."}
+          </div>
+          <div style={{ fontSize: 15, fontWeight: 900, color: "#047857" }}>
+            {isQuiz ? `5 thêm ${extraFingers} ngón là mấy ngón tay?` : phrase.countText}
+          </div>
+        </div>
+      </div>
+
+      {note && <div style={{ ...caption, color: P.ink, fontSize: 13, marginTop: 8, textAlign: "center" }}>{note}</div>}
+    </div>
+  );
+}
+
+/* ── Component Khám phá Từng Số: Bàn tay đếm tiếp + Khung 10 ô chạm đếm ── */
+function TenFrameCard({
+  n = 6,
+  word = "sáu",
+  emoji = "🐝",
+  item = "con ong",
+  extraFingers: propExtra = null,
+  note = "",
+}) {
+  const extraFingers = propExtra !== null ? Number(propExtra) : (Number(n) > 5 ? Number(n) - 5 : 1);
+  const currentNum = Number(n) || (5 + extraFingers);
+
+  const countingPhrases = {
+    6: { word: "sáu", countText: "Năm... SÁU! ➔ 5 thêm 1 là 6" },
+    7: { word: "bảy", countText: "Năm... sáu, BẢY! ➔ 5 thêm 2 là 7" },
+    8: { word: "tám", countText: "Năm... sáu, bảy, TÁM! ➔ 5 thêm 3 là 8" },
+    9: { word: "chín", countText: "Năm... sáu, bảy, tám, CHÍN! ➔ 5 thêm 4 là 9" },
+    10: { word: "mười", countText: "Hai bàn tay xòe đủ: MƯỜI! ➔ 5 thêm 5 là 10" },
+  };
+  const phrase = countingPhrases[currentNum] || { word, countText: `5 thêm ${extraFingers} là ${currentNum}` };
+
+  const [tapped, setTapped] = useState([]);
+  const countTapped = tapped.length;
+
+  const handleTap = (idx) => {
+    setTapped((prev) => (prev.includes(idx) ? prev.filter((i) => i !== idx) : [...prev, idx]));
+  };
+
+  return (
+    <div style={{ ...CARD_STYLE, padding: "12px 12px", background: "#f8fafc", borderRadius: 20, border: "2px solid #e2e8f0" }}>
+      {/* 1. KHỐI BÀN TAY ĐẾM TIẾP TRỰC QUAN (TO, RÕ, CHUẨN GIẢI PHẪU) */}
+      <div style={{
+        background: "#ffffff",
+        borderRadius: 16,
+        padding: "12px 12px 14px",
+        border: "1.5px solid #e2e8f0",
+        boxShadow: "0 2px 6px rgba(0,0,0,0.03)",
+        marginBottom: 12,
+      }}>
+        <HandPairSvg
+          extraFingers={extraFingers}
+          currentNum={currentNum}
+          word={phrase.word}
+          isQuiz={false}
+        />
+
+        {/* CÂU NHẨM ĐẾM TIẾP */}
+        <div style={{
+          marginTop: 10,
+          padding: "8px 12px",
+          background: "linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%)",
+          borderRadius: 12,
+          border: "1px solid #bfdbfe",
+          display: "flex",
+          alignItems: "center",
+          gap: 8,
+        }}>
+          <span style={{ fontSize: 18 }}>🗣️</span>
+          <span style={{ fontSize: 14, fontWeight: 800, color: "#047857" }}>
+            {phrase.countText}
+          </span>
+        </div>
+      </div>
+
+      {/* 2. KHỐI KHUNG 10 Ô & CHẠM ĐẾM */}
+      <div style={{
+        background: "#ffffff",
+        borderRadius: 16,
+        padding: "10px 12px",
+        border: "1.5px solid #e2e8f0",
+        boxShadow: "0 2px 6px rgba(0,0,0,0.03)",
+      }}>
+        {/* Tiêu đề & trạng thái chạm đếm */}
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8, paddingBottom: 6, borderBottom: "1px dashed #e2e8f0" }}>
+          <div style={{ display: "flex", alignItems: "baseline", gap: 6 }}>
+            <span style={{ fontSize: 24, fontWeight: 900, color: "#1e293b", lineHeight: 1 }}>{currentNum}</span>
+            <span style={{ fontSize: 16, fontWeight: 900, color: "#2563eb" }}>{word}</span>
+            <span style={{ fontSize: 13, fontWeight: 600, color: "#64748b" }}>({currentNum} {item})</span>
+          </div>
+          <div style={{ fontSize: 12.5, fontWeight: 800, color: countTapped === currentNum ? "#15803d" : "#ea580c" }}>
+            {countTapped === currentNum ? `🎉 Đã đếm đủ ${currentNum}!` : `👉 Chạm đếm: ${countTapped}/${currentNum}`}
+          </div>
+        </div>
+
+        {/* Khung 10 ô: 2 hàng x 5 cột */}
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(5, 1fr)",
+          gap: 7,
+          maxWidth: 320,
+          margin: "0 auto",
+        }}>
+          {Array.from({ length: 10 }).map((_, idx) => {
+            const hasItem = idx < currentNum;
+            const isRow1 = idx < 5;
+            const isTapped = tapped.includes(idx);
+            const tapOrder = tapped.indexOf(idx) + 1;
+
+            return (
+              <div
+                key={idx}
+                onClick={hasItem ? () => handleTap(idx) : undefined}
+                style={{
+                  aspectRatio: "1/1",
+                  borderRadius: 10,
+                  border: hasItem
+                    ? isRow1
+                      ? "2px solid #86efac"
+                      : "2px solid #fed7aa"
+                    : "1.5px dashed #cbd5e1",
+                  background: hasItem
+                    ? isRow1
+                      ? isTapped ? "#bbf7d0" : "#f0fdf4"
+                      : isTapped ? "#ffedd5" : "#fff7ed"
+                    : "#f8fafc",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  position: "relative",
+                  cursor: hasItem ? "pointer" : "default",
+                  userSelect: "none",
+                  transform: isTapped ? "scale(0.96)" : "scale(1)",
+                  transition: "all 0.15s ease",
+                  boxShadow: hasItem ? "0 1px 3px rgba(0,0,0,0.03)" : "none",
+                }}
+              >
+                {hasItem ? (
+                  <>
+                    <span style={{ fontSize: 24, lineHeight: 1 }}>{emoji}</span>
+                    {isTapped && (
+                      <span style={{
+                        position: "absolute",
+                        top: 2,
+                        right: 2,
+                        width: 15,
+                        height: 15,
+                        borderRadius: "50%",
+                        background: "#2563eb",
+                        color: "#ffffff",
+                        fontSize: 9.5,
+                        fontWeight: 900,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}>
+                        {tapOrder}
+                      </span>
+                    )}
+                  </>
+                ) : (
+                  <span style={{ fontSize: 12, color: "#94a3b8" }}>·</span>
+                )}
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Giải thích cấu trúc 5 và thêm */}
+        <div style={{
+          marginTop: 8,
+          padding: "6px 10px",
+          background: "#eff6ff",
+          borderRadius: 8,
+          border: "1px solid #bfdbfe",
+          fontSize: 12.5,
+          fontWeight: 700,
+          color: "#1e40af",
+          textAlign: "center",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: 6,
+        }}>
+          <span>💡</span>
+          <span><b>{currentNum} gồm 5</b> và <b>{currentNum - 5}</b></span>
+          <span style={{ color: "#3b82f6" }}>•</span>
+          <span style={{ color: "#059669", fontWeight: 800 }}>5 + {currentNum - 5} = {currentNum}</span>
+        </div>
+      </div>
+
+      {note && <div style={{ ...caption, color: P.ink, fontSize: 12.5, marginTop: 6, textAlign: "center" }}>{note}</div>}
+    </div>
+  );
+}
+
+/* ── Component Khung 10 ô cặp số (Ten-Frame Duo & Chạm đếm) ────────── */
+function TenFrameDuoCard({ duo = [], note = "" }) {
+  const [tabIdx, setTabIdx] = useState(0);
+  const [tappedIndices, setTappedIndices] = useState(() => ({}));
+
+  const safeDuo = duo && duo.length > 0 ? duo : [
+    { n: 6, word: "sáu", emoji: "🐝", item: "con ong" },
+    { n: 7, word: "bảy", emoji: "🐦", item: "con chim" },
+  ];
+
+  const current = safeDuo[tabIdx] || safeDuo[0];
+  const N = current.n;
+  const word = current.word;
+  const emoji = current.emoji;
+  const itemName = current.item;
+
+  const currentTapped = tappedIndices[tabIdx] || [];
+  const countTapped = currentTapped.length;
+
+  const handleTap = (index) => {
+    setTappedIndices((prev) => {
+      const list = prev[tabIdx] || [];
+      if (list.includes(index)) {
+        return { ...prev, [tabIdx]: list.filter((i) => i !== index) };
+      }
+      return { ...prev, [tabIdx]: [...list, index] };
+    });
+  };
+
+  return (
+    <div style={{ ...CARD_STYLE, padding: "14px 12px", background: "#f8fafc", borderRadius: 18, border: "2px solid #e2e8f0" }}>
+      {/* Thanh chuyển tab giữa 2 số */}
+      <div style={{ display: "flex", justifyContent: "center", gap: 10, marginBottom: 10 }}>
+        {safeDuo.map((d, idx) => {
+          const active = tabIdx === idx;
+          return (
+            <button
+              key={d.n}
+              type="button"
+              onClick={() => setTabIdx(idx)}
+              style={{
+                padding: "8px 18px",
+                borderRadius: 24,
+                border: active ? "2px solid #2563eb" : "1.5px solid #cbd5e1",
+                background: active ? "linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)" : "#ffffff",
+                color: active ? "#ffffff" : "#475569",
+                fontSize: 15,
+                fontWeight: 800,
+                cursor: "pointer",
+                boxShadow: active ? "0 4px 10px rgba(37,99,235,0.3)" : "none",
+                display: "flex",
+                alignItems: "center",
+                gap: 6,
+                transition: "all 0.15s ease",
+              }}
+            >
+              <span>{d.emoji}</span>
+              <span>Số {d.n} ({d.word})</span>
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Thẻ Khung 10 ô */}
+      <div style={{
+        background: "#ffffff",
+        borderRadius: 16,
+        padding: "12px 14px",
+        border: "1.5px solid #e2e8f0",
+        boxShadow: "0 2px 6px rgba(0,0,0,0.04)",
+      }}>
+        {/* Tiêu đề & trạng thái chạm đếm */}
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8, paddingBottom: 6, borderBottom: "1px dashed #e2e8f0" }}>
+          <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
+            <span style={{ fontSize: 36, fontWeight: 900, color: "#1e293b", lineHeight: 1 }}>{N}</span>
+            <span style={{ fontSize: 20, fontWeight: 800, color: "#2563eb" }}>{word}</span>
+            <span style={{ fontSize: 14, fontWeight: 600, color: "#64748b" }}>({N} {itemName})</span>
+          </div>
+          <div style={{ fontSize: 13, fontWeight: 700, color: countTapped === N ? "#15803d" : "#ea580c" }}>
+            {countTapped === N ? `🎉 Đã đếm đủ ${N}!` : `👉 Chạm đếm: ${countTapped}/${N}`}
+          </div>
+        </div>
+
+        {/* Khung 10 ô: 2 hàng x 5 cột */}
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(5, 1fr)",
+          gap: 8,
+          maxWidth: 320,
+          margin: "0 auto",
+        }}>
+          {Array.from({ length: 10 }).map((_, idx) => {
+            const hasItem = idx < N;
+            const isRow1 = idx < 5;
+            const isTapped = currentTapped.includes(idx);
+            const tapOrder = currentTapped.indexOf(idx) + 1;
+
+            return (
+              <div
+                key={idx}
+                onClick={hasItem ? () => handleTap(idx) : undefined}
+                style={{
+                  aspectRatio: "1/1",
+                  borderRadius: 12,
+                  border: hasItem
+                    ? isRow1
+                      ? "2px solid #86efac"
+                      : "2px solid #fed7aa"
+                    : "1.5px dashed #cbd5e1",
+                  background: hasItem
+                    ? isRow1
+                      ? isTapped ? "#bbf7d0" : "#f0fdf4"
+                      : isTapped ? "#ffedd5" : "#fff7ed"
+                    : "#f8fafc",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  position: "relative",
+                  cursor: hasItem ? "pointer" : "default",
+                  userSelect: "none",
+                  transform: isTapped ? "scale(0.96)" : "scale(1)",
+                  transition: "all 0.15s ease",
+                  boxShadow: hasItem ? "0 2px 4px rgba(0,0,0,0.04)" : "none",
+                }}
+              >
+                {hasItem ? (
+                  <>
+                    <span style={{ fontSize: 24, lineHeight: 1 }}>{emoji}</span>
+                    {isTapped && (
+                      <span style={{
+                        position: "absolute",
+                        top: 2,
+                        right: 2,
+                        width: 16,
+                        height: 16,
+                        borderRadius: "50%",
+                        background: "#2563eb",
+                        color: "#ffffff",
+                        fontSize: 10,
+                        fontWeight: 900,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}>
+                        {tapOrder}
+                      </span>
+                    )}
+                  </>
+                ) : (
+                  <span style={{ fontSize: 12, color: "#94a3b8" }}>·</span>
+                )}
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Giải thích cấu trúc 5 và thêm */}
+        <div style={{
+          marginTop: 10,
+          padding: "6px 12px",
+          background: "#eff6ff",
+          borderRadius: 10,
+          border: "1px solid #bfdbfe",
+          fontSize: 13,
+          fontWeight: 700,
+          color: "#1e40af",
+          textAlign: "center",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: 6,
+        }}>
+          <span>💡</span>
+          <span><b>{N} gồm 5</b> (hàng trên) và <b>{N - 5}</b> (hàng dưới)</span>
+          <span style={{ color: "#3b82f6", margin: "0 4px" }}>•</span>
+          <span style={{ color: "#059669", fontWeight: 800 }}>5 + {N - 5} = {N}</span>
+        </div>
+      </div>
+
+      {note && <div style={{ ...caption, color: P.ink, fontSize: 13, marginTop: 6, textAlign: "center" }}>{note}</div>}
+    </div>
+  );
+}
+
+/* ── Component Khung 10 ô đặc biệt cho Số 10 (Ten-Frame Full) ──────── */
+function TenFrameFullCard({ n = 10, word = "mười", emoji = "🐞", item = "con bọ rùa", note = "" }) {
+  const [tapped, setTapped] = useState([]);
+  const countTapped = tapped.length;
+
+  const handleTap = (idx) => {
+    setTapped((prev) => (prev.includes(idx) ? prev.filter((i) => i !== idx) : [...prev, idx]));
+  };
+
+  return (
+    <div style={{ ...CARD_STYLE, padding: "14px 12px", background: "linear-gradient(180deg, #fefce8 0%, #f8fafc 100%)", borderRadius: 18, border: "2px solid #fef08a" }}>
+      {/* Tiêu đề đặc biệt cho số 10 */}
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8, paddingBottom: 6, borderBottom: "1.5px dashed #fde047" }}>
+        <div style={{ display: "flex", alignItems: "baseline", gap: 8 }}>
+          <span style={{ fontSize: 38, fontWeight: 900, color: "#854d0e", lineHeight: 1 }}>{n}</span>
+          <span style={{ fontSize: 22, fontWeight: 900, color: "#d97706" }}>{word}</span>
+          <span style={{ fontSize: 14, fontWeight: 700, color: "#713f12" }}>(Số có hai chữ số đầu tiên 👑)</span>
+        </div>
+        <div style={{ fontSize: 13, fontWeight: 700, color: countTapped === 10 ? "#15803d" : "#d97706" }}>
+          {countTapped === 10 ? "🎉 Tuyệt vời! Đủ 10!" : `👉 Chạm đếm: ${countTapped}/10`}
+        </div>
+      </div>
+
+      {/* Khung 10 ô: Kín toàn bộ 10 ô */}
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(5, 1fr)",
+        gap: 8,
+        maxWidth: 320,
+        margin: "0 auto",
+      }}>
+        {Array.from({ length: 10 }).map((_, idx) => {
+          const isRow1 = idx < 5;
+          const isTapped = tapped.includes(idx);
+          const tapOrder = tapped.indexOf(idx) + 1;
+
+          return (
+            <div
+              key={idx}
+              onClick={() => handleTap(idx)}
+              style={{
+                aspectRatio: "1/1",
+                borderRadius: 12,
+                border: isRow1 ? "2px solid #fca5a5" : "2px solid #fed7aa",
+                background: isRow1 ? (isTapped ? "#fee2e2" : "#fff1f2") : (isTapped ? "#ffedd5" : "#fff7ed"),
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                position: "relative",
+                cursor: "pointer",
+                userSelect: "none",
+                transform: isTapped ? "scale(0.96)" : "scale(1)",
+                transition: "all 0.15s ease",
+                boxShadow: "0 2px 4px rgba(0,0,0,0.04)",
+              }}
+            >
+              <span style={{ fontSize: 24, lineHeight: 1 }}>{emoji}</span>
+              {isTapped && (
+                <span style={{
+                  position: "absolute",
+                  top: 2,
+                  right: 2,
+                  width: 16,
+                  height: 16,
+                  borderRadius: "50%",
+                  background: "#d97706",
+                  color: "#ffffff",
+                  fontSize: 10,
+                  fontWeight: 900,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}>
+                  {tapOrder}
+                </span>
+              )}
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Ghi chú cấu trúc 5 và 5 */}
+      <div style={{
+        marginTop: 10,
+        padding: "8px 12px",
+        background: "#fef9c3",
+        borderRadius: 12,
+        border: "1.5px solid #fde047",
+        fontSize: 13,
+        fontWeight: 700,
+        color: "#854d0e",
+        textAlign: "center",
+      }}>
+        ✋ <b>Tay trái (5)</b> + 🖐️ <b>Tay phải (5)</b> = <b>10 ngón tay</b> · Khung 10 ô đã <b>ĐẦY KÍN!</b>
+      </div>
+
+      {note && <div style={{ ...caption, color: P.ink, fontSize: 13, marginTop: 6, textAlign: "center" }}>{note}</div>}
+    </div>
+  );
+}
+
+/* ── Component Tháp Bậc thang số 1 đến 10 (Number Stairs) ─────────── */
+function NumberStairsCard({ max = 10, note = "" }) {
+  const [activeCol, setActiveCol] = useState(10);
+
+  return (
+    <div style={{ ...CARD_STYLE, padding: "14px 10px", background: "#f8fafc", borderRadius: 18, border: "2px solid #e2e8f0" }}>
+      {/* SVG Bậc thang */}
+      <svg viewBox="0 0 350 160" {...svgFit(350)} role="img" aria-label="Bậc thang các số từ 1 đến 10">
+        {Array.from({ length: 10 }, (_, i) => {
+          const colNum = i + 1;
+          const colW = 24;
+          const gap = 8;
+          const x = 15 + i * (colW + gap);
+          const blockH = 10.5;
+          const baseY = 135;
+          const isSelected = activeCol === colNum;
+
+          return (
+            <g
+              key={colNum}
+              onClick={() => setActiveCol(colNum)}
+              style={{ cursor: "pointer" }}
+            >
+              {/* Vùng chọn sáng */}
+              {isSelected && (
+                <rect
+                  x={x - 3}
+                  y={baseY - colNum * (blockH + 1.5) - 18}
+                  width={colW + 6}
+                  height={colNum * (blockH + 1.5) + 38}
+                  rx="6"
+                  fill="#dbeafe"
+                  opacity="0.6"
+                />
+              )}
+
+              {/* Ngôi sao đỉnh cột 10 */}
+              {colNum === 10 && (
+                <text x={x + colW / 2} y={baseY - 10 * (blockH + 1.5) - 4} textAnchor="middle" fontSize="14">
+                  ⭐
+                </text>
+              )}
+
+              {/* Các khối xếp chồng */}
+              {Array.from({ length: colNum }, (__, bIdx) => {
+                const bY = baseY - (bIdx + 1) * (blockH + 1.5);
+                const isOver5 = bIdx >= 5;
+                const fill = isOver5 ? "#f59e0b" : "#3b82f6";
+
+                return (
+                  <rect
+                    key={bIdx}
+                    x={x}
+                    y={bY}
+                    width={colW}
+                    height={blockH}
+                    rx="3"
+                    fill={fill}
+                    stroke="#1e293b"
+                    strokeWidth="0.8"
+                  />
+                );
+              })}
+
+              {/* Số dưới chân cột */}
+              <text
+                x={x + colW / 2}
+                y={baseY + 16}
+                textAnchor="middle"
+                fontSize={isSelected ? "14" : "12"}
+                fontWeight={isSelected ? "900" : "700"}
+                fill={isSelected ? "#1d4ed8" : "#475569"}
+              >
+                {colNum}
+              </text>
+            </g>
+          );
+        })}
+      </svg>
+
+      {/* Phản hồi tương tác */}
+      <div style={{
+        marginTop: 6,
+        padding: "6px 12px",
+        background: activeCol === 10 ? "#fef3c7" : "#eff6ff",
+        borderRadius: 12,
+        border: activeCol === 10 ? "1.5px solid #fcd34d" : "1.5px solid #bfdbfe",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        fontSize: 13,
+        fontWeight: 700,
+        color: activeCol === 10 ? "#92400e" : "#1e40af",
+      }}>
+        <span>
+          {activeCol === 10
+            ? "👑 Cột 10 cao nhất: 10 là số lớn nhất trong phạm vi 10!"
+            : `🪜 Cột ${activeCol} gồm ${activeCol} khối (Bé bấm vào từng cột để xem nhé!)`}
+        </span>
+        <span style={{ fontSize: 16 }}>{activeCol === 10 ? "⭐" : "👆"}</span>
+      </div>
+
+      {/* Thẻ ghi nhớ */}
+      <div style={{ display: "flex", gap: 10, marginTop: 6, justifyContent: "center", flexWrap: "wrap" }}>
+        <span style={{ fontSize: 12, color: "#059669", fontWeight: 700 }}>
+          ✓ Mỗi bước sang phải: thêm 1 khối (+1)
+        </span>
+        <span style={{ fontSize: 12, color: "#d97706", fontWeight: 700 }}>
+          ✓ Khối màu cam là phần thêm sau 5
+        </span>
+      </div>
+
+      {note && <div style={{ ...caption, color: P.ink, fontSize: 13, marginTop: 4, textAlign: "center" }}>{note}</div>}
+    </div>
+  );
+}
+
 export function NumberScene({
   mode = "",
   note = "",
+  duo = [],
+  n = 0,
+  word = "",
+  item = "",
+  extra = 0,
   // numberShow
   kind = "",
   /**
@@ -437,6 +1481,52 @@ export function NumberScene({
       )}
     </div>
   );
+
+  
+  /* ── Các chế độ sư phạm mới cho Số 6 đến 10 ──────────── */
+  if (mode === "countingOverview" || mode === "tenFrameNumber") {
+    return (
+      <TenFrameCard
+        n={n || 6}
+        word={word || "sáu"}
+        emoji={emoji || "🐝"}
+        item={item || "con ong"}
+        extraFingers={extra || (n ? n - 5 : 1)}
+        note={note}
+      />
+    );
+  }
+
+  if (mode === "countingBridge") {
+    return (
+      <CountingBridgeCard
+        target={target || total || 6}
+        have={have || 5}
+        extra={a !== 0 ? a : (b !== 0 ? b : null)}
+        note={note}
+      />
+    );
+  }
+
+  if (mode === "tenFrameDuo") {
+    return <TenFrameDuoCard duo={duo} note={note} />;
+  }
+
+  if (mode === "tenFrameFull") {
+    return (
+      <TenFrameFullCard
+        n={n || 10}
+        word={word || "mười"}
+        emoji={emoji || "🐞"}
+        item={item || "con bọ rùa"}
+        note={note}
+      />
+    );
+  }
+
+  if (mode === "numberStairs") {
+    return <NumberStairsCard max={10} note={note} />;
+  }
 
   /* ── 1. Năm bạn của bé ─────────────────────────────────────────── */
   if (mode === "fiveFriends") {
@@ -1179,56 +2269,184 @@ export function NumberScene({
         "Đàn gà có ghi số ở mỗi con",
       );
     }
-    // kind === "legs"
-    const ks = Array.isArray(kinds) ? kinds : [];
-    const LEGS = { ladybug: 6, beetle: 6, spider: 8, ant: 6, bee: 6 };
+    // kind === "legs": Hình vẽ côn trùng và nhện thân thiện, chân cong có khớp rõ ràng để bé đếm
+    const ks = Array.isArray(kinds) && kinds.length > 0
+      ? kinds
+      : ["ladybug", "beetle", "spider", "ant", "bee"];
     return box(
       <>
         {ks.map((k, i) => {
-          const legs = LEGS[k] || 6;
-          const perSide = Math.max(2, Math.round(legs / 2));
-          const cx = 52 + i * 66;
-          const cy = 56;
+          const cx = 38 + i * 71;
+          const cy = 46;
           return (
             <g key={i}>
-              {[-1, 1].map((s) =>
-                Array.from({ length: perSide }, (_, j) => (
-                  <line
-                    key={`${s}-${j}`}
-                    x1={cx + s * 8}
-                    y1={cy - 6 + j * (14 / perSide)}
-                    x2={cx + s * 28}
-                    y2={cy - 16 + j * (28 / perSide)}
-                    stroke="#334155"
-                    strokeWidth="2.4"
-                    strokeLinecap="round"
-                  />
-                )),
+              {/* 1. BỌ RÙA ĐỎ (ladybug): 6 chân cong gập */}
+              {k === "ladybug" && (
+                <g>
+                  {/* 6 chân có khớp rõ: 3 trái, 3 phải */}
+                  <path d={`M ${cx - 10} ${cy - 6} Q ${cx - 20} ${cy - 16} ${cx - 24} ${cy - 11}`} fill="none" stroke="#1e293b" strokeWidth="2.4" strokeLinecap="round" />
+                  <path d={`M ${cx - 13} ${cy + 1} Q ${cx - 24} ${cy} ${cx - 27} ${cy + 8}`} fill="none" stroke="#1e293b" strokeWidth="2.4" strokeLinecap="round" />
+                  <path d={`M ${cx - 10} ${cy + 8} Q ${cx - 20} ${cy + 16} ${cx - 23} ${cy + 22}`} fill="none" stroke="#1e293b" strokeWidth="2.4" strokeLinecap="round" />
+                  <path d={`M ${cx + 10} ${cy - 6} Q ${cx + 20} ${cy - 16} ${cx + 24} ${cy - 11}`} fill="none" stroke="#1e293b" strokeWidth="2.4" strokeLinecap="round" />
+                  <path d={`M ${cx + 13} ${cy + 1} Q ${cx + 24} ${cy} ${cx + 27} ${cy + 8}`} fill="none" stroke="#1e293b" strokeWidth="2.4" strokeLinecap="round" />
+                  <path d={`M ${cx + 10} ${cy + 8} Q ${cx + 20} ${cy + 16} ${cx + 23} ${cy + 22}`} fill="none" stroke="#1e293b" strokeWidth="2.4" strokeLinecap="round" />
+
+                  {/* Thân bọ rùa tròn đỏ tươi */}
+                  <ellipse cx={cx} cy={cy + 2} rx="15" ry="16" fill="#ef4444" stroke="#991b1b" strokeWidth="1.6" />
+                  <line x1={cx} y1={cy - 14} x2={cx} y2={cy + 18} stroke="#1e293b" strokeWidth="1.6" />
+                  <circle cx={cx - 7} cy={cy - 6} r="2.2" fill="#1e293b" />
+                  <circle cx={cx - 8} cy={cy + 4} r="2.2" fill="#1e293b" />
+                  <circle cx={cx - 5} cy={cy + 12} r="1.8" fill="#1e293b" />
+                  <circle cx={cx + 7} cy={cy - 6} r="2.2" fill="#1e293b" />
+                  <circle cx={cx + 8} cy={cy + 4} r="2.2" fill="#1e293b" />
+                  <circle cx={cx + 5} cy={cy + 12} r="1.8" fill="#1e293b" />
+
+                  {/* Đầu bọ rùa & mắt hoạt hình */}
+                  <circle cx={cx} cy={cy - 14} r="7" fill="#1e293b" />
+                  <circle cx={cx - 3} cy={cy - 15} r="2.2" fill="#ffffff" />
+                  <circle cx={cx - 3} cy={cy - 15} r="1.1" fill="#0f172a" />
+                  <circle cx={cx + 3} cy={cy - 15} r="2.2" fill="#ffffff" />
+                  <circle cx={cx + 3} cy={cy - 15} r="1.1" fill="#0f172a" />
+                  <path d={`M ${cx - 3} ${cy - 20} Q ${cx - 7} ${cy - 26} ${cx - 9} ${cy - 24}`} fill="none" stroke="#1e293b" strokeWidth="1.4" strokeLinecap="round" />
+                  <circle cx={cx - 9} cy={cy - 24} r="1.2" fill="#ef4444" />
+                  <path d={`M ${cx + 3} ${cy - 20} Q ${cx + 7} ${cy - 26} ${cx + 9} ${cy - 24}`} fill="none" stroke="#1e293b" strokeWidth="1.4" strokeLinecap="round" />
+                  <circle cx={cx + 9} cy={cy - 24} r="1.2" fill="#ef4444" />
+                </g>
               )}
-              <ellipse
-                cx={cx}
-                cy={cy}
-                rx="14"
-                ry="11"
-                fill="#cbd5e1"
-                stroke="#334155"
-                strokeWidth="1.8"
-              />
+
+              {/* 2. CHÚ NHỆN TÍM HOẠT HÌNH (spider): 8 CHÂN (4 trái, 4 phải - cong vòm xòe rộng) */}
+              {k === "spider" && (
+                <g>
+                  {/* 8 chân có khớp cong đối xứng: 4 trái, 4 phải */}
+                  <path d={`M ${cx - 7} ${cy - 11} Q ${cx - 17} ${cy - 23} ${cx - 24} ${cy - 17}`} fill="none" stroke="#4338ca" strokeWidth="2.4" strokeLinecap="round" />
+                  <path d={`M ${cx - 8} ${cy - 4} Q ${cx - 22} ${cy - 11} ${cx - 27} ${cy - 3}`} fill="none" stroke="#4338ca" strokeWidth="2.4" strokeLinecap="round" />
+                  <path d={`M ${cx - 8} ${cy + 4} Q ${cx - 22} ${cy + 10} ${cx - 26} ${cy + 17}`} fill="none" stroke="#4338ca" strokeWidth="2.4" strokeLinecap="round" />
+                  <path d={`M ${cx - 7} ${cy + 11} Q ${cx - 17} ${cy + 22} ${cx - 20} ${cy + 27}`} fill="none" stroke="#4338ca" strokeWidth="2.4" strokeLinecap="round" />
+
+                  <path d={`M ${cx + 7} ${cy - 11} Q ${cx + 17} ${cy - 23} ${cx + 24} ${cy - 17}`} fill="none" stroke="#4338ca" strokeWidth="2.4" strokeLinecap="round" />
+                  <path d={`M ${cx + 8} ${cy - 4} Q ${cx + 22} ${cy - 11} ${cx + 27} ${cy - 3}`} fill="none" stroke="#4338ca" strokeWidth="2.4" strokeLinecap="round" />
+                  <path d={`M ${cx + 8} ${cy + 4} Q ${cx + 22} ${cy + 10} ${cx + 26} ${cy + 17}`} fill="none" stroke="#4338ca" strokeWidth="2.4" strokeLinecap="round" />
+                  <path d={`M ${cx + 7} ${cy + 11} Q ${cx + 17} ${cy + 22} ${cx + 20} ${cy + 27}`} fill="none" stroke="#4338ca" strokeWidth="2.4" strokeLinecap="round" />
+
+                  {/* Bụng tròn to màu tím */}
+                  <circle cx={cx} cy={cy + 6} r="13" fill="#6366f1" stroke="#4338ca" strokeWidth="1.6" />
+                  <circle cx={cx} cy={cy + 6} r="4" fill="#a5b4fc" opacity="0.8" />
+
+                  {/* Đầu nhện */}
+                  <circle cx={cx} cy={cy - 9} r="8.5" fill="#4f46e5" stroke="#4338ca" strokeWidth="1.5" />
+                  {/* Mắt to tròn thân thiện */}
+                  <circle cx={cx - 3.5} cy={cy - 9} r="3" fill="#ffffff" />
+                  <circle cx={cx - 3.5} cy={cy - 9} r="1.6" fill="#1e1b4b" />
+                  <circle cx={cx - 2.5} cy={cy - 10} r="0.8" fill="#ffffff" />
+                  <circle cx={cx + 3.5} cy={cy - 9} r="3" fill="#ffffff" />
+                  <circle cx={cx + 3.5} cy={cy - 9} r="1.6" fill="#1e1b4b" />
+                  <circle cx={cx + 4.5} cy={cy - 10} r="0.8" fill="#ffffff" />
+                  {/* Má hồng */}
+                  <ellipse cx={cx - 5.5} cy={cy - 5.5} rx="1.8" ry="1.2" fill="#f43f5e" opacity="0.6" />
+                  <ellipse cx={cx + 5.5} cy={cy - 5.5} rx="1.8" ry="1.2" fill="#f43f5e" opacity="0.6" />
+                </g>
+              )}
+
+              {/* 3. CHÚ KIẾN CAM (ant): 6 CHÂN */}
+              {k === "ant" && (
+                <g>
+                  {/* 6 chân kiến gập khớp rõ ràng */}
+                  <path d={`M ${cx - 6} ${cy - 4} Q ${cx - 18} ${cy - 15} ${cx - 24} ${cy - 10}`} fill="none" stroke="#9a3412" strokeWidth="2.4" strokeLinecap="round" />
+                  <path d={`M ${cx - 7} ${cy - 1} Q ${cx - 22} ${cy} ${cx - 25} ${cy + 8}`} fill="none" stroke="#9a3412" strokeWidth="2.4" strokeLinecap="round" />
+                  <path d={`M ${cx - 6} ${cy + 4} Q ${cx - 19} ${cy + 16} ${cx - 22} ${cy + 24}`} fill="none" stroke="#9a3412" strokeWidth="2.4" strokeLinecap="round" />
+                  <path d={`M ${cx + 6} ${cy - 4} Q ${cx + 18} ${cy - 15} ${cx + 24} ${cy - 10}`} fill="none" stroke="#9a3412" strokeWidth="2.4" strokeLinecap="round" />
+                  <path d={`M ${cx + 7} ${cy - 1} Q ${cx + 22} ${cy} ${cx + 25} ${cy + 8}`} fill="none" stroke="#9a3412" strokeWidth="2.4" strokeLinecap="round" />
+                  <path d={`M ${cx + 6} ${cy + 4} Q ${cx + 19} ${cy + 16} ${cx + 22} ${cy + 24}`} fill="none" stroke="#9a3412" strokeWidth="2.4" strokeLinecap="round" />
+
+                  {/* 3 đốt thân kiến */}
+                  <ellipse cx={cx} cy={cy + 8} rx="9.5" ry="11" fill="#ea580c" stroke="#9a3412" strokeWidth="1.4" />
+                  <ellipse cx={cx} cy={cy - 2} rx="6" ry="5" fill="#f97316" stroke="#9a3412" strokeWidth="1.2" />
+                  <circle cx={cx} cy={cy - 12} r="6.5" fill="#ea580c" stroke="#9a3412" strokeWidth="1.4" />
+                  <circle cx={cx - 2.8} cy={cy - 13} r="2" fill="#ffffff" />
+                  <circle cx={cx - 2.8} cy={cy - 13} r="1" fill="#0f172a" />
+                  <circle cx={cx + 2.8} cy={cy - 13} r="2" fill="#ffffff" />
+                  <circle cx={cx + 2.8} cy={cy - 13} r="1" fill="#0f172a" />
+                  <path d={`M ${cx - 2} ${cy - 18} L ${cx - 6} ${cy - 24} L ${cx - 10} ${cy - 23}`} fill="none" stroke="#9a3412" strokeWidth="1.3" strokeLinecap="round" />
+                  <path d={`M ${cx + 2} ${cy - 18} L ${cx + 6} ${cy - 24} L ${cx + 10} ${cy - 23}`} fill="none" stroke="#9a3412" strokeWidth="1.3" strokeLinecap="round" />
+                </g>
+              )}
+
+              {/* 4. CHÚ ONG VÀNG (bee): 6 CHÂN */}
+              {k === "bee" && (
+                <g>
+                  {/* 6 chân ong có khớp cong */}
+                  <path d={`M ${cx - 8} ${cy - 4} Q ${cx - 19} ${cy - 14} ${cx - 24} ${cy - 9}`} fill="none" stroke="#854d0e" strokeWidth="2.4" strokeLinecap="round" />
+                  <path d={`M ${cx - 11} ${cy + 1} Q ${cx - 22} ${cy + 2} ${cx - 26} ${cy + 9}`} fill="none" stroke="#854d0e" strokeWidth="2.4" strokeLinecap="round" />
+                  <path d={`M ${cx - 8} ${cy + 8} Q ${cx - 18} ${cy + 17} ${cx - 22} ${cy + 24}`} fill="none" stroke="#854d0e" strokeWidth="2.4" strokeLinecap="round" />
+                  <path d={`M ${cx + 8} ${cy - 4} Q ${cx + 19} ${cy - 14} ${cx + 24} ${cy - 9}`} fill="none" stroke="#854d0e" strokeWidth="2.4" strokeLinecap="round" />
+                  <path d={`M ${cx + 11} ${cy + 1} Q ${cx + 22} ${cy + 2} ${cx + 27} ${cy + 9}`} fill="none" stroke="#854d0e" strokeWidth="2.4" strokeLinecap="round" />
+                  <path d={`M ${cx + 8} ${cy + 8} Q ${cx + 19} ${cy + 17} ${cx + 22} ${cy + 24}`} fill="none" stroke="#854d0e" strokeWidth="2.4" strokeLinecap="round" />
+
+                  {/* Cánh ong trong suốt */}
+                  <ellipse cx={cx - 12} cy={cy - 5} rx="9" ry="5.5" transform={`rotate(-25 ${cx - 12} ${cy - 5})`} fill="#e0f2fe" stroke="#38bdf8" strokeWidth="1.2" opacity="0.85" />
+                  <ellipse cx={cx + 12} cy={cy - 5} rx="9" ry="5.5" transform={`rotate(25 ${cx + 12} ${cy - 5})`} fill="#e0f2fe" stroke="#38bdf8" strokeWidth="1.2" opacity="0.85" />
+
+                  {/* Thân ong vàng sọc đen */}
+                  <ellipse cx={cx} cy={cy + 2} rx="12" ry="15" fill="#facc15" stroke="#854d0e" strokeWidth="1.5" />
+                  <path d={`M ${cx - 11} ${cy - 3} Q ${cx} ${cy - 1} ${cx + 11} ${cy - 3}`} fill="none" stroke="#1e293b" strokeWidth="3" />
+                  <path d={`M ${cx - 11} ${cy + 5} Q ${cx} ${cy + 7} ${cx + 11} ${cy + 5}`} fill="none" stroke="#1e293b" strokeWidth="3" />
+                  <polygon points={`${cx - 2},${cy + 17} ${cx + 2},${cy + 17} ${cx},${cy + 20}`} fill="#1e293b" />
+
+                  {/* Đầu & râu ong */}
+                  <circle cx={cx} cy={cy - 13} r="6.5" fill="#854d0e" />
+                  <circle cx={cx - 2.8} cy={cy - 14} r="2" fill="#ffffff" />
+                  <circle cx={cx - 2.8} cy={cy - 14} r="1" fill="#0f172a" />
+                  <circle cx={cx + 2.8} cy={cy - 14} r="2" fill="#ffffff" />
+                  <circle cx={cx + 2.8} cy={cy - 14} r="1" fill="#0f172a" />
+                  <path d={`M ${cx - 2} ${cy - 19} Q ${cx - 6} ${cy - 25} ${cx - 9} ${cy - 24}`} fill="none" stroke="#854d0e" strokeWidth="1.3" strokeLinecap="round" />
+                  <path d={`M ${cx + 2} ${cy - 19} Q ${cx + 6} ${cy - 25} ${cx + 9} ${cy - 24}`} fill="none" stroke="#854d0e" strokeWidth="1.3" strokeLinecap="round" />
+                </g>
+              )}
+
+              {/* 5. BỌ CÁNH CỨNG XANH (beetle hoặc mặc định): 6 CHÂN */}
+              {k !== "ladybug" && k !== "spider" && k !== "ant" && k !== "bee" && (
+                <g>
+                  {/* 6 chân có khớp rõ ràng */}
+                  <path d={`M ${cx - 9} ${cy - 7} Q ${cx - 20} ${cy - 17} ${cx - 25} ${cy - 12}`} fill="none" stroke="#047857" strokeWidth="2.4" strokeLinecap="round" />
+                  <path d={`M ${cx - 12} ${cy + 1} Q ${cx - 23} ${cy + 1} ${cx - 26} ${cy + 8}`} fill="none" stroke="#047857" strokeWidth="2.4" strokeLinecap="round" />
+                  <path d={`M ${cx - 9} ${cy + 9} Q ${cx - 19} ${cy + 18} ${cx - 22} ${cy + 24}`} fill="none" stroke="#047857" strokeWidth="2.4" strokeLinecap="round" />
+                  <path d={`M ${cx + 9} ${cy - 7} Q ${cx + 20} ${cy - 17} ${cx + 25} ${cy - 12}`} fill="none" stroke="#047857" strokeWidth="2.4" strokeLinecap="round" />
+                  <path d={`M ${cx + 12} ${cy + 1} Q ${cx + 23} ${cy + 1} ${cx + 26} ${cy + 8}`} fill="none" stroke="#047857" strokeWidth="2.4" strokeLinecap="round" />
+                  <path d={`M ${cx + 9} ${cy + 9} Q ${cx + 19} ${cy + 18} ${cx + 22} ${cy + 24}`} fill="none" stroke="#047857" strokeWidth="2.4" strokeLinecap="round" />
+
+                  {/* Thân bọ cánh cứng màu xanh ngọc óng ánh */}
+                  <ellipse cx={cx} cy={cy + 2} rx="14" ry="16" fill="#10b981" stroke="#047857" strokeWidth="1.5" />
+                  <rect x={cx - 10} y={cy - 12} width="20" height="6.5" rx="3" fill="#059669" stroke="#047857" strokeWidth="1.2" />
+                  <line x1={cx} y1={cy - 5} x2={cx} y2={cy + 18} stroke="#047857" strokeWidth="1.5" />
+                  <path d={`M ${cx - 8} ${cy - 1} Q ${cx - 5} ${cy + 7} ${cx - 6} ${cy + 12}`} fill="none" stroke="#6ee7b7" strokeWidth="1.8" strokeLinecap="round" />
+
+                  {/* Đầu & râu */}
+                  <circle cx={cx} cy={cy - 16} r="6.5" fill="#065f46" />
+                  <circle cx={cx - 2.8} cy={cy - 17} r="2" fill="#ffffff" />
+                  <circle cx={cx - 2.8} cy={cy - 17} r="1" fill="#0f172a" />
+                  <circle cx={cx + 2.8} cy={cy - 17} r="2" fill="#ffffff" />
+                  <circle cx={cx + 2.8} cy={cy - 17} r="1" fill="#0f172a" />
+                  <path d={`M ${cx - 2.5} ${cy - 22} L ${cx - 8} ${cy - 28}`} stroke="#065f46" strokeWidth="1.5" strokeLinecap="round" />
+                  <path d={`M ${cx + 2.5} ${cy - 22} L ${cx + 8} ${cy - 28}`} stroke="#065f46" strokeWidth="1.5" strokeLinecap="round" />
+                </g>
+              )}
+
+              {/* Huy hiệu chữ cái A, B, C, D, E */}
               <circle
                 cx={cx}
-                cy={cy - 13}
-                r="6.5"
-                fill="#94a3b8"
-                stroke="#334155"
-                strokeWidth="1.6"
+                cy="92"
+                r="11"
+                fill="#eff6ff"
+                stroke="#3b82f6"
+                strokeWidth="1.8"
               />
               <text
                 x={cx}
-                y="98"
+                y="96.5"
                 textAnchor="middle"
-                fontSize="14"
-                fontWeight="800"
-                fill={P.ink}
+                fontSize="12.5"
+                fontWeight="900"
+                fill="#1d4ed8"
               >
                 {String.fromCharCode(65 + i)}
               </text>
@@ -1237,178 +2455,32 @@ export function NumberScene({
         })}
         <text
           x="180"
-          y="118"
+          y="122"
           textAnchor="middle"
-          fontSize="14"
+          fontSize="13.5"
           fontWeight="700"
-          fill={P.soft}
+          fill="#047857"
         >
-          Bé đếm chân để tìm con vật có 6 chân
+          Bé đếm số chân của từng con vật nhé! 🔍
         </text>
       </>,
       360,
-      130,
-      "Năm con vật để bé đếm chân",
+      138,
+      "Các con vật để bé đếm chân",
     );
   }
 
   /* ── 6. ĐẾM TRONG TRANH CẢNH ─────────────────────── */
-  // Số lượng từng loại là DO MÌNH CHỌN (ảnh quét không đủ rõ) — đã ghi ở bảng nguồn §7.
   if (mode === "sceneCount") {
-    const SCENE = {
-      farm: [
-        ["🐄", 60, 60, 1],
-        ["🐄", 120, 74, 1],
-        ["☁️", 250, 34, 1],
-        ["☁️", 300, 44, 1],
-        ["☁️", 340, 30, 1],
-        ["🐔", 200, 96, 1],
-        ["🐔", 232, 78, 1],
-        ["🐔", 268, 100, 1],
-        ["🐔", 300, 84, 1],
-        ["🌻", 40, 118, 1],
-        ["🌻", 76, 128, 1],
-        ["🌻", 112, 112, 1],
-        ["🌻", 148, 124, 1],
-        ["🌻", 180, 138, 1],
-        ["☀️", 26, 30, 1],
-        ["🐟", 246, 132, 1],
-        ["🐟", 280, 142, 1],
-        ["🐟", 314, 128, 1],
-        ["🐟", 250, 166, 1],
-        ["🐟", 210, 148, 1],
-        ["🐟", 152, 164, 1],
-      ],
-      pond: [
-        ["🐰", 56, 70, 1],
-        ["🐰", 92, 86, 1],
-        ["🐰", 128, 66, 1],
-        ["🐰", 164, 88, 1],
-        ["🌳", 240, 74, 1],
-        ["🌳", 288, 92, 1],
-        ["🌳", 336, 70, 1],
-        ["🦆", 210, 130, 1],
-        ["🦆", 248, 118, 1],
-        ["🦆", 286, 136, 1],
-        ["🦆", 322, 120, 1],
-        ["🦆", 180, 150, 1],
-        ["☁️", 40, 26, 1],
-        ["☁️", 96, 22, 1],
-        ["🐦", 150, 36, 1],
-        ["🐦", 186, 26, 1],
-        ["🐦", 222, 38, 1],
-        ["🐦", 258, 28, 1],
-        ["🐦", 294, 44, 1],
-        ["🐦", 324, 32, 1],
-      ],
-      river: [
-        ["🛶", 60, 60, 1],
-        ["🛶", 140, 88, 1],
-        ["🛶", 220, 62, 1],
-        ["🌴", 290, 74, 1],
-        ["🌴", 320, 96, 1],
-        ["🌴", 250, 108, 1],
-        ["🌴", 180, 126, 1],
-        ["🏠", 40, 110, 1],
-        ["🏠", 96, 130, 1],
-        ["🐟", 150, 150, 1],
-        ["🐟", 196, 166, 1],
-        ["🐟", 242, 154, 1],
-        ["🐟", 288, 144, 1],
-        ["🐟", 326, 158, 1],
-      ],
-      field: [
-        ["🐃", 60, 70, 1],
-        ["🐃", 112, 86, 1],
-        ["🐃", 164, 68, 1],
-        ["🐃", 216, 88, 1],
-        ["🐃", 268, 70, 1],
-        ["🏠", 320, 60, 1],
-        ["🏠", 296, 110, 1],
-        ["🏠", 330, 104, 1],
-        ["🌾", 40, 120, 1],
-        ["🌾", 76, 132, 1],
-        ["🌾", 112, 122, 1],
-        ["🌾", 148, 136, 1],
-        ["🌾", 184, 124, 1],
-        ["🌾", 220, 138, 1],
-        ["☀️", 28, 30, 1],
-        ["☁️", 120, 30, 1],
-        ["☁️", 180, 24, 1],
-      ],
-    };
-    const items = SCENE[kind] || SCENE.farm;
-    const lg = Array.isArray(legend) ? legend : [];
-    const coNuoc = kind === "pond" || kind === "river";
-    return box(
-      <>
-        <rect
-          x="10"
-          y="8"
-          width="340"
-          height="164"
-          rx="12"
-          fill={coNuoc ? "#e0f2fe" : "#f0fdf4"}
-          stroke={P.grid}
-          strokeWidth="2"
-        />
-        {coNuoc ? (
-          <ellipse
-            cx="180"
-            cy="150"
-            rx="150"
-            ry="34"
-            fill="#bae6fd"
-            opacity="0.75"
-          />
-        ) : (
-          kind === "farm" && (
-            <ellipse
-              cx="262"
-              cy="150"
-              rx="84"
-              ry="24"
-              fill="#bae6fd"
-              opacity="0.8"
-            />
-          )
-        )}
-        {items.map(([ch, x, y], i) => (
-          <Item key={i} x={x} y={y} ch={ch} s="20" />
-        ))}
-        <rect
-          x="10"
-          y="178"
-          width="340"
-          height={lg.length > 3 ? 62 : 34}
-          rx="10"
-          fill="#ffffff"
-          stroke={P.grid}
-          strokeWidth="2"
-        />
-        {lg.map((it, i) => {
-          const x = 34 + (i % 3) * 112;
-          const y = 178 + 22 + Math.floor(i / 3) * 30;
-          return (
-            <g key={i}>
-              <Item x={x} y={y} ch={it.emoji} s="17" />
-              <Tile
-                x={x + 12}
-                y={y - 17}
-                w={34}
-                h={24}
-                text="?"
-                fs={15}
-                stroke={P.blue}
-                color={P.blue}
-              />
-            </g>
-          );
-        })}
-      </>,
-      360,
-      lg.length > 3 ? 246 : 218,
-      "Tranh cảnh để bé đếm",
+    return (
+      <SceneCountCard
+        kind={kind}
+        legend={Array.isArray(legend) ? legend : []}
+        answers={Array.isArray(answers) ? answers : null}
+        options={Array.isArray(options) ? options : []}
+        note={note}
+        tinh={!interactive}
+      />
     );
   }
 

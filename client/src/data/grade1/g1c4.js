@@ -537,6 +537,9 @@ export const g1c4 = {
             options: [3, 4, 5, 6],
             answer: 5,
             mascotHint: "Bé đếm từng khối ở hàng nền: có 5 khối lập phương.",
+            spatialScene: {
+              mode: "maisCastle",
+            },
           },
         },
         {
@@ -547,6 +550,9 @@ export const g1c4 = {
             answer: "Chữ H",
             mascotHint:
               "Chữ T dùng 5 khối, chữ C dùng 5 khối, chữ H dùng 7 khối.",
+            spatialScene: {
+              mode: "lettersTHC",
+            },
           },
         },
         {
@@ -1277,6 +1283,9 @@ export const g1c4 = {
             answer: 5,
             mascotHint:
               "Mặt trước có 4 chấm ở bốn góc và 1 chấm ở giữa: 5 chấm.",
+            spatialScene: {
+              mode: "diceFaces",
+            },
           },
         },
         {
@@ -1286,6 +1295,9 @@ export const g1c4 = {
             options: [3, 4, 5, 6],
             answer: 6,
             mascotHint: "Mặt bên phải có 2 cột, mỗi cột 3 chấm: 6 chấm.",
+            spatialScene: {
+              mode: "diceFaces",
+            },
           },
         },
         {
@@ -1295,15 +1307,8 @@ export const g1c4 = {
             options: [2, 3, 4, 5],
             answer: 3,
             mascotHint: "Mặt trên có 3 chấm nằm chéo nhau.",
-          },
-        },
-        {
-          type: "visual",
-          content: {
-            text: "Hoạt động 3: Câu nào đúng?",
             spatialScene: {
-              mode: "cubeWalls",
-              note: "Bé đếm số khối nhỏ của từng hình rồi so sánh.",
+              mode: "diceFaces",
             },
           },
         },
@@ -1321,14 +1326,9 @@ export const g1c4 = {
             answer: "Hai hình có số khối bằng nhau",
             mascotHint:
               "Hình bên trái có 8 khối; hình bên phải xếp 2 hàng, mỗi hàng 4 khối — 4 + 4 = 8 khối, bằng nhau.",
-          },
-        },
-        {
-          type: "visual",
-          content: {
-            text: "Hoạt động 4: Từ 8 khối lập phương nhỏ, xếp thành một khối lập phương lớn",
             spatialScene: {
-              mode: "cubeComposite2x2",
+              mode: "cubeWalls",
+              note: "Bé đếm số khối nhỏ của từng hình rồi so sánh nhé!",
             },
           },
         },
@@ -1341,6 +1341,10 @@ export const g1c4 = {
             answer: 4,
             mascotHint:
               "Mỗi tầng xếp 2 hàng, mỗi hàng 2 khối: 4 khối một tầng, 2 tầng là 8 khối.",
+            spatialScene: {
+              mode: "cubeComposite2x2",
+              note: "Từ 8 khối lập phương nhỏ, xếp thành một khối lập phương lớn.",
+            },
           },
         },
         {

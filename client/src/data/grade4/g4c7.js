@@ -620,6 +620,15 @@ export const g4c7 = {
             options: ["Lào", "Cam-pu-chia", "Phi-líp-pin", "Ma-lai-xi-a"],
             answer: "Ma-lai-xi-a",
             mascotHint: "606 200 là số lớn nhất trong bảng.",
+            table: {
+              headers: ["Nước", "Số lượt khách"],
+              rows: [
+                ["Lào", 98500],
+                ["Cam-pu-chia", 227900],
+                ["Phi-líp-pin", 509600],
+                ["Ma-lai-xi-a", 606200],
+              ],
+            },
           },
         },
         {

@@ -578,6 +578,11 @@ export const g4c6 = {
           type: "quiz",
           content: {
             question: "Hình bình hành có đặc điểm gì về các cạnh đối diện?",
+            planeShape: {
+              kind: "parallelogram",
+              labels: ["AB", "BC", "CD", "DA"],
+              vertexLabels: ["A", "B", "C", "D"],
+            },
             options: [
               "Song song và bằng nhau",
               "Cắt nhau",
@@ -594,6 +599,10 @@ export const g4c6 = {
           content: {
             question:
               "Một hình bình hành có một cạnh dài 3 dm. Cạnh đối diện với cạnh đó dài bao nhiêu đề-xi-mét?",
+            planeShape: {
+              kind: "parallelogram",
+              labels: ["3 dm", "?", "3 dm", "?"],
+            },
             options: ["3 dm", "6 dm", "1,5 dm", "9 dm"],
             mascotHint:
               "Hai cạnh đối diện của hình bình hành thì bằng nhau, nên cạnh đối diện cũng dài 3 dm.",

@@ -84,8 +84,15 @@ export const g2c13 = {
             question: "Trong bảng trên, số lượng nào LỚN NHẤT?",
             options: [4, 7, 8, 11],
             answer: 7,
-            mascotHint: "Bé so các con số 7, 4 — số lớn nhất là 7."
-          }
+            mascotHint: "Bé so các con số 7, 4 — số lớn nhất là 7.",
+            table: {
+              headers: ["Nhóm", "Số bạn"],
+              rows: [
+                ["Thích màu đỏ", "7 bạn"],
+                ["Thích màu xanh", "4 bạn"],
+              ],
+            },
+          },
         },
         {
           type: "quiz",
@@ -93,8 +100,15 @@ export const g2c13 = {
             question: "Cộng các con số trong bảng lại thì được bao nhiêu?",
             options: [7, 11, 12, 14],
             answer: 11,
-            mascotHint: "Lấy các con số cộng lại: 7 + 4 = 11."
-          }
+            mascotHint: "Lấy các con số cộng lại: 7 + 4 = 11.",
+            table: {
+              headers: ["Nhóm", "Số bạn"],
+              rows: [
+                ["Thích màu đỏ", "7 bạn"],
+                ["Thích màu xanh", "4 bạn"],
+              ],
+            },
+          },
         },
         {
           type: "quiz",
@@ -210,8 +224,15 @@ export const g2c13 = {
             question: "Trong bảng trên, số lượng nào LỚN NHẤT?",
             options: [4, 7, 8, 11],
             answer: 7,
-            mascotHint: "Bé so các con số 7, 4 — số lớn nhất là 7."
-          }
+            mascotHint: "Bé so các con số 7, 4 — số lớn nhất là 7.",
+            table: {
+              headers: ["Màu", "Số bạn"],
+              rows: [
+                ["Màu đỏ", 7],
+                ["Màu xanh", 4],
+              ],
+            },
+          },
         },
         {
           type: "quiz",
@@ -219,8 +240,15 @@ export const g2c13 = {
             question: "Cộng các con số trong bảng lại thì được bao nhiêu?",
             options: [7, 11, 12, 14],
             answer: 11,
-            mascotHint: "Lấy các con số cộng lại: 7 + 4 = 11."
-          }
+            mascotHint: "Lấy các con số cộng lại: 7 + 4 = 11.",
+            table: {
+              headers: ["Màu", "Số bạn"],
+              rows: [
+                ["Màu đỏ", 7],
+                ["Màu xanh", 4],
+              ],
+            },
+          },
         },
         {
           type: "quiz",
@@ -704,9 +732,8 @@ export const g2c13 = {
                 ["1", "Thu thập số liệu"],
                 ["2", "Phân loại"],
                 ["3", "Kiểm đếm"],
-                ["4", "Vẽ biểu đồ tranh"]
               ],
-              label: "Luyện tập chung chủ đề 13"
+              label: "Luyện tập chung: 3 bước đầu"
             },
             text: "Bảng số liệu của bài — bé đọc theo HÀNG, không đọc theo cột\nMuốn biết “tất cả”, “nhiều nhất”, “ít nhất” thì phải cộng hoặc so các con số.\nVí dụ: 1 + 2 + 3 = 6."
           }
@@ -731,7 +758,15 @@ export const g2c13 = {
             question: "Trong bảng trên, số lượng nào LỚN NHẤT?",
             options: [1, 3, 4, 6],
             answer: 3,
-            mascotHint: "Bé so các con số 1, 2, 3 — số lớn nhất là 3."
+            mascotHint: "Bé so các con số 1, 2, 3 — số lớn nhất là 3.",
+            table: {
+              headers: ["Bước", "Việc làm"],
+              rows: [
+                ["1", "Thu thập số liệu"],
+                ["2", "Phân loại"],
+                ["3", "Kiểm đếm"],
+              ],
+            },
           }
         },
         {
@@ -740,7 +775,15 @@ export const g2c13 = {
             question: "Cộng các con số trong bảng lại thì được bao nhiêu?",
             options: [3, 5, 6, 7],
             answer: 6,
-            mascotHint: "Lấy các con số cộng lại: 1 + 2 + 3 = 6."
+            mascotHint: "Lấy các con số cộng lại: 1 + 2 + 3 = 6.",
+            table: {
+              headers: ["Bước", "Việc làm"],
+              rows: [
+                ["1", "Thu thập số liệu"],
+                ["2", "Phân loại"],
+                ["3", "Kiểm đếm"],
+              ],
+            },
           }
         },
         {

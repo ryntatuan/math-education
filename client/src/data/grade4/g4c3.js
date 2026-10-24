@@ -909,22 +909,6 @@ export const g4c3 = {
           },
         },
         {
-          type: "visual",
-          content: {
-            text: "Số học sinh tiểu học tăng dần qua từng năm học",
-            table: {
-              headers: ["Năm học", "Số học sinh tiểu học"],
-              rows: [
-                ["2016 – 2017", 7801560],
-                ["2017 – 2018", 8041842],
-                ["2018 – 2019", 8541451],
-                ["2019 – 2020", 8741545],
-              ],
-              label: "Sắp xếp lại theo thứ tự tăng dần",
-            },
-          },
-        },
-        {
           type: "quiz",
           content: {
             question:
@@ -938,6 +922,16 @@ export const g4c3 = {
             answer: "2019 – 2020",
             mascotHint:
               "8 741 545 là số lớn nhất trong bảng, thuộc năm học 2019 – 2020.",
+            table: {
+              headers: ["Năm học", "Số học sinh tiểu học"],
+              rows: [
+                ["2016 – 2017", 7801560],
+                ["2017 – 2018", 8041842],
+                ["2018 – 2019", 8541451],
+                ["2019 – 2020", 8741545],
+              ],
+              label: "Số học sinh tiểu học qua các năm học",
+            },
           },
         },
         {

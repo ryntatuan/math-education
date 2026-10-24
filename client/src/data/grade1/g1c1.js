@@ -368,9 +368,12 @@ export const g1c1 = {
           },
         },
         {
-          type: "visual",
+          type: "quiz",
           content: {
-            text: "Đếm cà rốt ĐÃ TÔ MÀU",
+            question: "Có bao nhiêu củ cà rốt đã tô màu?",
+            options: [2, 3, 4, 5],
+            answer: 3,
+            mascotHint: "Bé chỉ đếm các củ đậm màu: có 3 củ.",
             numberScene: {
               mode: "countFiltered",
               kind: "colored",
@@ -383,31 +386,16 @@ export const g1c1 = {
         {
           type: "quiz",
           content: {
-            question: "Có bao nhiêu củ cà rốt đã tô màu?",
-            options: [2, 3, 4, 5],
-            answer: 3,
-            mascotHint: "Bé chỉ đếm các củ đậm màu: có 3 củ.",
-          },
-        },
-        {
-          type: "visual",
-          content: {
-            text: "Đếm xem có mấy con ghi số 2",
-            numberScene: {
-              mode: "countFiltered",
-              kind: "labeled",
-              labels: [1, 4, 5, 2, 2, 1, 2, 3, 0],
-              note: "Mỗi con gà có một số — bé tìm đúng số 2.",
-            },
-          },
-        },
-        {
-          type: "quiz",
-          content: {
             question: "Có bao nhiêu con gà ghi số 2?",
             options: [2, 3, 4, 5],
             answer: 3,
             mascotHint: "Bé đếm các con ghi số 2: có 3 con.",
+            numberScene: {
+              mode: "countFiltered",
+              kind: "labeled",
+              labels: [1, 4, 5, 2, 2, 1, 2, 3, 0],
+              note: "Mỗi con gà có một số — bé tìm đúng số 2 nhé.",
+            },
           },
         },
         {
@@ -458,81 +446,107 @@ export const g1c1 = {
           type: "story",
           content: {
             mascotMood: "excited",
-            text: "6 con ong 🐝 đang hút mật, 7 con chim 🐦 đậu trên cành… Bé đếm cùng Rô-bốt nhé!",
-          },
-        },
-        {
-          type: "concept",
-          content: {
-            badge: "Khám Phá",
-            title: "Các số từ 6 đến 10",
-            explanation: "Đếm tiếp sau 5: sáu, bảy, tám, chín, mười.",
-            rule: "6 sáu · 7 bảy · 8 tám · 9 chín · 10 mười.",
-            points: [
-              "6 con ong 🐝 — số 6.",
-              "9 con sao biển ⭐ — số 9.",
-              "10 con bọ rùa 🐞 — số 10.",
-              "10 là số lớn nhất trong phạm vi 10.",
-            ],
+            text: "Một bàn tay có 5 ngón. Nếu có nhiều hơn 5 thì đếm thế nào nhỉ? Cùng Rô-bốt khám phá bí mật đếm tiếp và các số 6, 7, 8, 9, 10 nhé! 🚀",
           },
         },
         {
           type: "visual",
           content: {
-            text: "Số 6 — sáu: 6 con ong 🐝",
+            text: "Số 6 — sáu: 5 thêm 1",
             numberScene: {
-              mode: "numberShow",
-              kind: "living",
-              numbers: [6],
-              note: "Bé đếm từng con ong rồi đọc: sáu.",
+              mode: "tenFrameNumber",
+              n: 6,
+              word: "sáu",
+              emoji: "🐝",
+              item: "con ong",
+              extra: 1,
+              note: "5 ngón tay trái thêm 1 ngón tay phải là 6. Bé chạm vào từng chú ong để đếm nhé!",
             },
           },
         },
         {
           type: "visual",
           content: {
-            text: "Số 7 — bảy: 7 con chim 🐦",
+            text: "Số 7 — bảy: 5 thêm 2",
             numberScene: {
-              mode: "numberShow",
-              kind: "living",
-              numbers: [7],
-              note: "Bé đếm từng con chim rồi đọc: bảy.",
+              mode: "tenFrameNumber",
+              n: 7,
+              word: "bảy",
+              emoji: "🐦",
+              item: "con chim",
+              extra: 2,
+              note: "5 ngón tay trái thêm 2 ngón tay phải là 7. Bé chạm vào từng chú chim để đếm nhé!",
             },
           },
         },
         {
           type: "visual",
           content: {
-            text: "Số 8 — tám: 8 bông hoa 🌸",
+            text: "Số 8 — tám: 5 thêm 3",
             numberScene: {
-              mode: "numberShow",
-              kind: "living",
-              numbers: [8],
-              note: "Bé đếm từng bông hoa rồi đọc: tám.",
+              mode: "tenFrameNumber",
+              n: 8,
+              word: "tám",
+              emoji: "🌸",
+              item: "bông hoa",
+              extra: 3,
+              note: "5 ngón tay trái thêm 3 ngón tay phải là 8. Bé chạm vào từng bông hoa để đếm nhé!",
             },
           },
         },
         {
           type: "visual",
           content: {
-            text: "Số 9 — chín: 9 con sao biển ⭐",
+            text: "Số 9 — chín: 5 thêm 4",
             numberScene: {
-              mode: "numberShow",
-              kind: "living",
-              numbers: [9],
-              note: "Bé đếm từng con sao biển rồi đọc: chín.",
+              mode: "tenFrameNumber",
+              n: 9,
+              word: "chín",
+              emoji: "⭐",
+              item: "ngôi sao",
+              extra: 4,
+              note: "5 ngón tay trái thêm 4 ngón tay phải là 9. Bé chạm vào từng ngôi sao để đếm nhé!",
             },
           },
         },
         {
           type: "visual",
           content: {
-            text: "Số 10 — mười: 10 con bọ rùa 🐞",
+            text: "Số 10 — mười: hai bàn tay xòe đủ cả 10 ngón tay",
             numberScene: {
-              mode: "numberShow",
-              kind: "living",
-              numbers: [10],
-              note: "Bé đếm từng con bọ rùa rồi đọc: mười.",
+              mode: "tenFrameNumber",
+              n: 10,
+              word: "mười",
+              emoji: "🐞",
+              item: "con bọ rùa",
+              extra: 5,
+              note: "Hai bàn tay xòe đủ cả 10 ngón tay. 10 gồm 5 và 5.",
+            },
+          },
+        },
+        {
+          type: "visual",
+          content: {
+            text: "Bậc thang các số từ 1 đến 10",
+            numberScene: {
+              mode: "numberStairs",
+              note: "Mỗi bước sang phải là thêm 1 khối (+1). Cột 10 cao nhất — 10 là số lớn nhất trong phạm vi 10.",
+            },
+          },
+        },
+        {
+          type: "quiz",
+          content: {
+            question:
+              "Bàn tay trái có 5 ngón, giơ thêm 2 ngón ở bàn tay phải. Tất cả là mấy ngón tay?",
+            options: [5, 6, 7, 8],
+            answer: 7,
+            mascotHint: "5 thêm 2 là 7 — bé đếm tiếp: năm... sáu, bảy!",
+            numberScene: {
+              mode: "countingBridge",
+              target: 7,
+              have: 5,
+              extra: 2,
             },
           },
         },
@@ -563,7 +577,9 @@ export const g1c1 = {
                   emoji: "🐟",
                 },
               ],
-              note: "Bé chọn một loại rồi đếm thật kĩ.",
+              answers: [2, 4, 5, 3, 1, 6],
+              options: [1, 2, 3, 4, 5, 6],
+              note: "Bé chọn một ô rồi đếm số lượng trong tranh để điền số.",
             },
           },
         },
@@ -612,6 +628,10 @@ export const g1c1 = {
           type: "quiz",
           content: {
             question: "Trong tranh nông trại có mấy con bò 🐄?",
+            numberScene: {
+              mode: "sceneCount",
+              kind: "farm",
+            },
             options: [1, 2, 3, 4],
             answer: 2,
             mascotHint: "Có 2 con bò ở phía bên trái tranh.",
@@ -621,31 +641,29 @@ export const g1c1 = {
           type: "quiz",
           content: {
             question: "Trong tranh nông trại có mấy bông hoa hướng dương 🌻?",
+            numberScene: {
+              mode: "sceneCount",
+              kind: "farm",
+            },
             options: [3, 4, 5, 6],
             answer: 5,
             mascotHint: "Đếm các bông hoa vàng: có 5 bông.",
           },
         },
         {
-          type: "visual",
-          content: {
-            text: "Đếm chân để tìm con vật có 6 chân",
-            numberScene: {
-              mode: "countFiltered",
-              kind: "legs",
-              kinds: ["ladybug", "beetle", "spider", "beetle", "beetle"],
-              note: "Nhện có 8 chân, còn các con khác có 6 chân.",
-            },
-          },
-        },
-        {
           type: "quiz",
           content: {
             question: "Có mấy con vật có 6 chân?",
+            numberScene: {
+              mode: "countFiltered",
+              kind: "legs",
+              kinds: ["ladybug", "beetle", "spider", "ant", "bee"],
+              note: "Bé đếm số chân của từng bạn (A: bọ rùa, B: bọ cánh cứng, C: nhện, D: kiến, E: ong) nhé!",
+            },
             options: [2, 3, 4, 5],
             answer: 4,
             mascotHint:
-              "Con nhện có 8 chân nên không tính — còn lại 4 con có 6 chân.",
+              "Chú nhện C có 8 chân — còn 4 bạn A, B, D, E đều có 6 chân nhé!",
           },
         },
         {
@@ -695,6 +713,9 @@ export const g1c1 = {
                   emoji: "🐦",
                 },
               ],
+              answers: [4, 3, 5, 2, 6],
+              options: [2, 3, 4, 5, 6],
+              note: "Bé chọn một ô rồi đếm số lượng trong ao để điền số.",
             },
           },
         },
@@ -702,6 +723,10 @@ export const g1c1 = {
           type: "quiz",
           content: {
             question: "Trong ao có mấy con vịt 🦆?",
+            numberScene: {
+              mode: "sceneCount",
+              kind: "pond",
+            },
             options: [3, 4, 5, 6],
             answer: 5,
             mascotHint: "Đếm các con vịt bơi dưới nước: có 5 con.",
@@ -1771,21 +1796,6 @@ export const g1c1 = {
           },
         },
         {
-          type: "visual",
-          content: {
-            text: "Cho thêm bánh để trên đĩa có 6 cái bánh",
-            numberScene: {
-              mode: "addToReach",
-              have: 4,
-              target: 6,
-              a: 1,
-              b: 2,
-              emoji: "🍪",
-              note: "Trên đĩa đang có 4 cái bánh. A thêm 1 cái, B thêm 2 cái.",
-            },
-          },
-        },
-        {
           type: "quiz",
           content: {
             question:
@@ -1798,6 +1808,15 @@ export const g1c1 = {
             ],
             answer: "B (2 cái)",
             mascotHint: "4 thêm 2 nữa là 6 — vậy chọn B.",
+            numberScene: {
+              mode: "addToReach",
+              have: 4,
+              target: 6,
+              a: 1,
+              b: 2,
+              emoji: "🍪",
+              note: "Trên đĩa đang có 4 cái bánh. A thêm 1 cái, B thêm 2 cái.",
+            },
           },
         },
         {
@@ -1930,9 +1949,13 @@ export const g1c1 = {
           },
         },
         {
-          type: "visual",
+          type: "quiz",
           content: {
-            text: "10 viên kẹo gồm 6 viên xanh và 4 viên cam",
+            question:
+              "Có 10 viên kẹo, trong đó 6 viên màu xanh. Vậy có mấy viên màu cam?",
+            options: [2, 3, 4, 5],
+            answer: 4,
+            mascotHint: "10 gồm 6 và 4 nên có 4 viên màu cam.",
             numberScene: {
               mode: "manyGroups",
               groups: [
@@ -1947,18 +1970,8 @@ export const g1c1 = {
                   label: "B",
                 },
               ],
-              note: "Gộp hai nhóm này lại được 10 viên kẹo.",
+              note: "10 viên kẹo gồm nhóm A màu xanh và nhóm B màu cam.",
             },
-          },
-        },
-        {
-          type: "quiz",
-          content: {
-            question:
-              "Có 10 viên kẹo, trong đó 6 viên màu xanh. Vậy có mấy viên màu cam?",
-            options: [2, 3, 4, 5],
-            answer: 4,
-            mascotHint: "10 gồm 6 và 4 nên có 4 viên màu cam.",
           },
         },
         {
@@ -2182,7 +2195,9 @@ export const g1c1 = {
                   emoji: "🐟",
                 },
               ],
-              note: "Bé đếm từng loại: thuyền, cây dừa, ngôi nhà, con cá.",
+              answers: [3, 4, 2, 5],
+              options: [2, 3, 4, 5],
+              note: "Bé chọn một ô rồi đếm số lượng trong tranh để điền số.",
             },
           },
         },
@@ -2190,6 +2205,10 @@ export const g1c1 = {
           type: "quiz",
           content: {
             question: "Bến sông có mấy chiếc thuyền 🛶?",
+            numberScene: {
+              mode: "sceneCount",
+              kind: "river",
+            },
             options: [2, 3, 4, 5],
             answer: 3,
             mascotHint: "Có 3 chiếc thuyền trên sông.",
@@ -2363,7 +2382,9 @@ export const g1c1 = {
                   emoji: "☁️",
                 },
               ],
-              note: "Bé đếm trâu, nhà, bó lúa, ông mặt trời và đám mây.",
+              answers: [5, 3, 6, 1, 2],
+              options: [1, 2, 3, 4, 5, 6],
+              note: "Bé chọn một ô rồi đếm số lượng trong tranh để điền số.",
             },
           },
         },
@@ -2371,6 +2392,10 @@ export const g1c1 = {
           type: "quiz",
           content: {
             question: "Cánh đồng có mấy con trâu 🐃?",
+            numberScene: {
+              mode: "sceneCount",
+              kind: "field",
+            },
             options: [3, 4, 5, 6],
             answer: 5,
             mascotHint: "Bé đếm các con trâu: có 5 con.",

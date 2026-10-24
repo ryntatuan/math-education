@@ -238,6 +238,10 @@ export const g4c9 = {
             options: ["Bóng rổ", "Bóng đá", "Bơi", "Bóng đá và bơi"],
             answer: "Bóng rổ",
             mascotHint: "Bóng rổ 6 bạn, nhiều hơn bóng đá 4 bạn và bơi 2 bạn.",
+            table: {
+              headers: ["Môn thể thao", "Bóng đá", "Bóng rổ", "Bơi"],
+              rows: [["Số bạn", 4, 6, 2]],
+            },
           },
         },
         {
@@ -347,8 +351,15 @@ export const g4c9 = {
             question: "Trong bảng trên, số lượng nào LỚN NHẤT?",
             options: [9, 11, 12, 20],
             answer: 11,
-            mascotHint: "Bé so các con số 9, 11 — số lớn nhất là 11."
-          }
+            mascotHint: "Bé so các con số 9, 11 — số lớn nhất là 11.",
+            table: {
+              headers: ["Phần mũi tên dừng lại", "Số lần"],
+              rows: [
+                ["Phần màu đỏ", 9],
+                ["Phần màu vàng", 11],
+              ],
+            },
+          },
         },
         {
           type: "quiz",
@@ -356,8 +367,15 @@ export const g4c9 = {
             question: "Cộng các con số trong bảng lại thì được bao nhiêu?",
             options: [11, 20, 21, 22],
             answer: 20,
-            mascotHint: "Lấy các con số cộng lại: 9 + 11 = 20."
-          }
+            mascotHint: "Lấy các con số cộng lại: 9 + 11 = 20.",
+            table: {
+              headers: ["Phần mũi tên dừng lại", "Số lần"],
+              rows: [
+                ["Phần màu đỏ", 9],
+                ["Phần màu vàng", 11],
+              ],
+            },
+          },
         },
         {
           type: "quiz",

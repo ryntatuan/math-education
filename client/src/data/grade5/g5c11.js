@@ -329,20 +329,36 @@ export const g5c11 = {
         {
           type: "quiz",
           content: {
-            question: "Trong bảng trên, số lượng nào LỚN NHẤT?",
-            options: [1, 320, 321, 324],
-            answer: 320,
-            mascotHint: "Bé so các con số 1, 3, 320 — số lớn nhất là 320."
-          }
+            question: "Trong bảng trên, số lần xuất hiện LỚN NHẤT là mấy lần?",
+            options: [3, 4, 5, 12],
+            answer: 5,
+            mascotHint: "Bé so số lần xuất hiện: 3, 5, 4 — số lớn nhất là 5 lần (mặt 3 chấm).",
+            table: {
+              headers: ["Số chấm", "Số lần xuất hiện", "Tỉ số so với 20 lần"],
+              rows: [
+                ["1 chấm", 3, "3/20"],
+                ["3 chấm", 5, "5/20 = 1/4"],
+                ["5 chấm", 4, "4/20 = 1/5"],
+              ],
+            },
+          },
         },
         {
           type: "quiz",
           content: {
-            question: "Cộng các con số trong bảng lại thì được bao nhiêu?",
-            options: [320, 324, 325, 640],
-            answer: 324,
-            mascotHint: "Lấy các con số cộng lại: 1 + 3 + 320 = 324."
-          }
+            question: "Cộng các số lần xuất hiện trong bảng lại thì được bao nhiêu lần?",
+            options: [5, 11, 12, 20],
+            answer: 12,
+            mascotHint: "Lấy các số lần xuất hiện cộng lại: 3 + 5 + 4 = 12 lần.",
+            table: {
+              headers: ["Số chấm", "Số lần xuất hiện", "Tỉ số so với 20 lần"],
+              rows: [
+                ["1 chấm", 3, "3/20"],
+                ["3 chấm", 5, "5/20 = 1/4"],
+                ["5 chấm", 4, "4/20 = 1/5"],
+              ],
+            },
+          },
         },
         {
           type: "quiz",
