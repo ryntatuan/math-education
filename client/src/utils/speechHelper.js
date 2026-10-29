@@ -222,6 +222,22 @@ class SpeechEngine {
     return t
   }
 
+  // Cắt cứng theo khoảng trắng để KHÔNG chunk nào vượt 150 ký tự: proxy
+  // /api/tts từ chối câu > 200 ký tự và Google TTS cũng chỉ nhận ~200. Một câu
+  // dài không có dấu phẩy mà thiếu bước này sẽ làm hỏng cả đoạn đọc.
+  hardSplit(s, max = 150) {
+    const out = []
+    let rest = s
+    while (rest.length > max) {
+      let cut = rest.lastIndexOf(' ', max)
+      if (cut <= 0) cut = max
+      out.push(rest.slice(0, cut).trim())
+      rest = rest.slice(cut).trim()
+    }
+    if (rest) out.push(rest)
+    return out
+  }
+
   // Split long texts into sentences (< 150 chars) for smooth streaming
   splitSentences(text) {
     const rawSentences = text.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [text]
@@ -246,7 +262,10 @@ class SpeechEngine {
         if (current) chunks.push(current)
       }
     }
-    return chunks.length > 0 ? chunks : [text]
+    const finalChunks = (chunks.length > 0 ? chunks : [text]).flatMap((c) =>
+      this.hardSplit(c),
+    )
+    return finalChunks.filter((c) => c.trim().length > 0)
   }
 
   speak(text, onStart, onEnd) {
