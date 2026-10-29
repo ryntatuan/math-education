@@ -3,6 +3,7 @@ import useUserStore from "../store/useUserStore";
 import useProgressStore from "../store/useProgressStore";
 import usePetStore from "../store/usePetStore";
 import useLeagueStore from "../store/useLeagueStore";
+import { localDateKey } from "../utils/localDate";
 // 🔴 Đọc phiên bản nội dung đang dùng để BÁO LÊN DB — xem PHẦN A của
 // `0013_content_report_and_create_lesson.sql`. Không tạo vòng import: `contentSource`
 // chỉ phụ thuộc `supabaseClient` + dữ liệu tĩnh, không phụ thuộc store nào.
@@ -393,7 +394,7 @@ export const syncService = {
       // Đồng bộ trạng thái thử thách hàng ngày từ exercise_results.__daily_challenge
       const exerciseResults = progress?.exercise_results || {};
       const dailyChallengeMeta = exerciseResults?.__daily_challenge;
-      const today = new Date().toISOString().split("T")[0];
+      const today = localDateKey();
       const isDailyDoneToday =
         dailyChallengeMeta?.date === today && !!dailyChallengeMeta?.completed;
 
@@ -468,15 +469,15 @@ export const syncService = {
           lastHappinessTime: happyTime,
         });
 
-        // Tặng 1 quả táo miễn phí mỗi ngày (Reset lúc 7h sáng VN - UTC 0h)
-        const todayUTC = new Date().toISOString().split("T")[0];
-        if (pet.last_free_food_date !== todayUTC) {
+        // Tặng 1 quả táo miễn phí mỗi ngày (reset lúc 0h giờ máy của bé)
+        const todayKey = localDateKey();
+        if (pet.last_free_food_date !== todayKey) {
           usePetStore.getState().addFood("apple", 1);
           try {
             const { error: updateErr } = await supabase
               .from("child_pets")
               .update({
-                last_free_food_date: todayUTC,
+                last_free_food_date: todayKey,
               })
               .eq("child_id", childId);
             if (updateErr) console.warn("Lỗi lưu táo miễn phí", updateErr);

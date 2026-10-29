@@ -5,6 +5,7 @@ import useUserStore from "./useUserStore";
 import { getReward } from "../services/rewardService";
 import { supabase, isSupabaseConfigured } from "../services/supabaseClient";
 import { createGuestAwareStorage } from "./sessionMode";
+import { localDateKey, localDateInDays } from "../utils/localDate";
 
 /**
  * Ánh xạ nhiệm vụ -> khoá cấu hình phần thưởng.
@@ -15,12 +16,6 @@ const QUEST_REWARD_KEYS = {
   quest_lesson: "quest.daily_lesson",
   quest_game: "quest.daily_game",
   quest_pet: "quest.daily_pet",
-};
-
-const getDatePlusDays = (days = 1) => {
-  const d = new Date();
-  d.setDate(d.getDate() + days);
-  return d.toISOString().split("T")[0];
 };
 
 /**
@@ -200,14 +195,12 @@ const useProgressStore = create(
         try {
           if (useAuthStore.getState().isGuest) return;
         } catch {}
-        const today = new Date().toISOString().split("T")[0];
+        const today = localDateKey();
         const { lastActiveDate, currentStreak, longestStreak } = get();
 
         if (lastActiveDate === today) return; // Already counted today
 
-        const yesterday = new Date();
-        yesterday.setDate(yesterday.getDate() - 1);
-        const yesterdayStr = yesterday.toISOString().split("T")[0];
+        const yesterdayStr = localDateInDays(-1);
 
         let newStreak;
         if (lastActiveDate === yesterdayStr) {
@@ -225,7 +218,7 @@ const useProgressStore = create(
 
       // Daily Quests Management
       initOrResetDailyQuests: () => {
-        const today = new Date().toISOString().split("T")[0];
+        const today = localDateKey();
         const { dailyQuestsDate, dailyQuests } = get();
         if (dailyQuestsDate !== today) {
           set({
@@ -307,7 +300,6 @@ const useProgressStore = create(
 
       // Mistakes / Spaced Repetition Actions
       recordMistake: (questionObj) => {
-        const _today = new Date().toISOString().split("T")[0];
         const state = get();
         const queue = state.mistakesQueue || [];
 
@@ -323,7 +315,7 @@ const useProgressStore = create(
             ...updated[existingIdx],
             failedCount: (updated[existingIdx].failedCount || 1) + 1,
             stage: 1,
-            nextReviewDate: getDatePlusDays(1),
+            nextReviewDate: localDateInDays(1),
             lastFailedAt: new Date().toISOString(),
             // Câu cũ (ghi trước GĐ 2b) chưa có `ref` — điền bù nếu có
             ref: updated[existingIdx].ref || questionObj.ref || null,
@@ -352,7 +344,7 @@ const useProgressStore = create(
             ref: questionObj.ref || null,
             failedCount: 1,
             stage: 1, // 1: 1 day, 2: 3 days, 3: 7 days, 4: mastered
-            nextReviewDate: getDatePlusDays(1),
+            nextReviewDate: localDateInDays(1),
             createdAt: new Date().toISOString(),
             mastered: false,
           };
@@ -366,7 +358,7 @@ const useProgressStore = create(
       resolveMistake: (id, isCorrect) => {
         const state = get();
         const queue = state.mistakesQueue || [];
-        const today = new Date().toISOString().split("T")[0];
+        const today = localDateKey();
 
         const updated = queue.map((m) => {
           if (m.id !== id) return m;
@@ -380,7 +372,7 @@ const useProgressStore = create(
             return {
               ...m,
               stage: nextStage,
-              nextReviewDate: getDatePlusDays(nextDays),
+              nextReviewDate: localDateInDays(nextDays),
               lastReviewedAt: today,
             };
           } else {
@@ -389,7 +381,7 @@ const useProgressStore = create(
               ...m,
               stage: 1,
               failedCount: (m.failedCount || 1) + 1,
-              nextReviewDate: getDatePlusDays(1),
+              nextReviewDate: localDateInDays(1),
               lastReviewedAt: today,
             };
           }
@@ -400,7 +392,7 @@ const useProgressStore = create(
       },
 
       getDueMistakes: () => {
-        const today = new Date().toISOString().split("T")[0];
+        const today = localDateKey();
         const queue = get().mistakesQueue || [];
         return queue.filter(
           (m) =>
@@ -490,7 +482,7 @@ const useProgressStore = create(
         }),
 
       completeDailyChallenge: () => {
-        const today = new Date().toISOString().split("T")[0];
+        const today = localDateKey();
         set((state) => ({
           dailyChallengeCompleted: true,
           dailyChallengeDate: today,
@@ -502,7 +494,7 @@ const useProgressStore = create(
       },
 
       isDailyChallengeCompleted: () => {
-        const today = new Date().toISOString().split("T")[0];
+        const today = localDateKey();
         const { dailyChallengeDate, dailyChallengeCompleted, exerciseResults } =
           get();
         const meta = exerciseResults?.__daily_challenge;
