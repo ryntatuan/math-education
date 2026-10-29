@@ -1,11 +1,28 @@
 // Advanced Vietnamese Text-to-Speech Engine for Primary Education
 // Features:
 // 1. Guaranteed Vietnamese Female Teacher Voice:
-//    - Primary: High-speed, high-clarity streaming via local /api/tts proxy (Google Neural Vietnamese Female)
+//    - Primary: High-speed, high-clarity streaming via the /api/tts proxy (Google Neural Vietnamese Female)
 //    - Direct Stream fallback: Google TTS with no-referrer policy
 //    - Web Speech fallback ONLY if a verified Vietnamese female voice exists (e.g., Microsoft HoaiMy)
 //    - STRICT PROTECTION: NEVER plays non-Vietnamese or English voices (like Microsoft David)
 // 2. Specialized Vietnamese math terminology & grammar translator (converts numbers, colons, operations, units)
+import { Capacitor } from '@capacitor/core'
+
+/**
+ * Máy chủ chạy proxy TTS.
+ *
+ * VÌ SAO CẦN: trong APK, WebView nạp app từ `https://localhost` nên đường dẫn
+ * tương đối `/api/tts` trỏ vào chính máy — không có máy chủ nào phía sau, luôn
+ * hỏng. Phải gọi tuyệt đối về bản deploy thật. Bản web để rỗng để vẫn dùng
+ * proxy cùng origin (dev server, preview deploy).
+ */
+const TTS_PROXY_ORIGIN = Capacitor.isNativePlatform()
+  ? 'https://toanvuive.vercel.app'
+  : ''
+
+export function buildTtsUrl(text, origin = TTS_PROXY_ORIGIN) {
+  return `${origin}/api/tts?q=${encodeURIComponent(text)}`
+}
 
 class SpeechEngine {
   constructor() {
@@ -273,8 +290,8 @@ class SpeechEngine {
       }
 
       const chunk = chunks[index++]
-      // 1. Primary: Local dev/backend proxy (completely bypasses referrer blocks)
-      const proxyUrl = `/api/tts?q=${encodeURIComponent(chunk)}`
+      // 1. Primary: proxy server (same origin trên web, tuyệt đối trong APK)
+      const proxyUrl = buildTtsUrl(chunk)
       // 2. Direct Google TTS URL
       const directUrl = `https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=vi&q=${encodeURIComponent(chunk)}`
 
@@ -294,24 +311,13 @@ class SpeechEngine {
           audio.src = directUrl
           audio.play().catch((err) => {
             console.warn('[SpeechEngine] Audio playback error:', err)
-            // If browser has a verified female voice, try it as absolute last resort
-            if (this.isFemaleVoice(this.vietnameseVoice)) {
-              this.speakBrowser(chunk, null, () => playNext())
-            } else {
-              this.isSpeaking = false
-              if (onEnd) onEnd()
-            }
+            this.fallbackToBrowserOrStop(chunk, playNext, onEnd)
           })
           return
         }
 
         // If direct stream also fails, only use browser if verified female
-        if (this.isFemaleVoice(this.vietnameseVoice)) {
-          this.speakBrowser(chunk, null, () => playNext())
-        } else {
-          this.isSpeaking = false
-          if (onEnd) onEnd()
-        }
+        this.fallbackToBrowserOrStop(chunk, playNext, onEnd)
       }
 
       audio.play().catch((err) => {
@@ -319,26 +325,36 @@ class SpeechEngine {
         if (audio.src.includes('/api/tts')) {
           audio.src = directUrl
           audio.play().catch(() => {
-            if (this.isFemaleVoice(this.vietnameseVoice)) {
-              this.speakBrowser(chunk, null, () => playNext())
-            } else {
-              this.isSpeaking = false
-              if (onEnd) onEnd()
-            }
+            this.fallbackToBrowserOrStop(chunk, playNext, onEnd)
           })
           return
         }
 
-        if (this.isFemaleVoice(this.vietnameseVoice)) {
-          this.speakBrowser(chunk, null, () => playNext())
-        } else {
-          this.isSpeaking = false
-          if (onEnd) onEnd()
-        }
+        this.fallbackToBrowserOrStop(chunk, playNext, onEnd)
       })
     }
 
     playNext()
+  }
+
+  /**
+   * Cả proxy lẫn Google TTS đều hỏng → chỉ còn giọng trình duyệt, và chỉ dùng
+   * khi máy có giọng nữ tiếng Việt. Không có thì báo rõ nguyên nhân thay vì im
+   * lặng (trước đây bé chỉ thấy nút loa "không có gì xảy ra").
+   */
+  fallbackToBrowserOrStop(chunk, playNext, onEnd) {
+    if (this.isFemaleVoice(this.vietnameseVoice)) {
+      this.speakBrowser(chunk, null, () => playNext())
+      return
+    }
+
+    console.warn(
+      '[SpeechEngine] Không phát được giọng đọc: proxy /api/tts lỗi, Google TTS lỗi ' +
+        'và máy không có giọng nữ tiếng Việt. Kiểm tra kết nối mạng hoặc cài giọng ' +
+        'tiếng Việt trong Cài đặt của máy.',
+    )
+    this.isSpeaking = false
+    if (onEnd) onEnd()
   }
 
   speakBrowser(text, onStart, onEnd) {
