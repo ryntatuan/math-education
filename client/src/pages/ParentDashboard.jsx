@@ -1,8 +1,5 @@
 import { useState, useMemo, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import {
-  Lock,
-  ShieldCheck,
   BarChart3,
   Clock,
   Flame,
@@ -10,7 +7,6 @@ import {
   BookOpen,
   Settings,
   Download,
-  CheckCircle2,
   TrendingUp,
 } from "lucide-react";
 import Button from "../components/ui/Button";
@@ -84,8 +80,6 @@ export default function ParentDashboard() {
     _xp,
     _level,
     soundEnabled,
-    parentPin,
-    setParentPin,
     toggleSound,
     setGrade,
   } = useUserStore();
@@ -93,126 +87,11 @@ export default function ParentDashboard() {
   const { completedLessons, currentStreak, exerciseResults, mistakesQueue } =
     useProgressStore();
 
-  // PIN security check
-  const defaultPin = parentPin || "1234";
-  const [pinInput, setPinInput] = useState("");
-  const [isUnlocked, setIsUnlocked] = useState(false);
-  const [pinError, setPinError] = useState(false);
-
-  // Forgot PIN challenge state
-  const [showForgotPinModal, setShowForgotPinModal] = useState(false);
-  const [challengeQuestion, setChallengeQuestion] = useState(null);
-  const [challengeAnswerInput, setChallengeAnswerInput] = useState("");
-  const [challengeError, setChallengeError] = useState(false);
-  const [resetPinStep, setResetPinStep] = useState(false);
-  const [resetNewPin, setResetNewPin] = useState("");
-
   // Dashboard active tab
   const [activeTab, setActiveTab] = useState("overview"); // 'overview' | 'progress' | 'skills' | 'settings'
 
   // Settings states
-  const [currentPinInput, setCurrentPinInput] = useState("");
-  const [newPin, setNewPin] = useState("");
-  const [confirmPin, setConfirmPin] = useState("");
-  const [pinChangeError, setPinChangeError] = useState("");
-  const [pinChangeSuccess, setPinChangeSuccess] = useState(false);
   const [backupCode, setBackupCode] = useState(null);
-
-  // Generate parent math challenge for PIN recovery
-  const openForgotPin = useCallback(() => {
-    // Generate an adult math problem: e.g. 17 × 4 = 68 or 28 + 47 = 75
-    const a = Math.floor(Math.random() * 8) + 12; // 12 - 19
-    const b = Math.floor(Math.random() * 6) + 4; // 4 - 9
-    setChallengeQuestion({
-      text: `${a} × ${b} = ?`,
-      answer: a * b,
-    });
-    setChallengeAnswerInput("");
-    setChallengeError(false);
-    setResetPinStep(false);
-    setResetNewPin("");
-    setShowForgotPinModal(true);
-  }, []);
-
-  const handleVerifyChallenge = useCallback(
-    (e) => {
-      e.preventDefault();
-      if (parseInt(challengeAnswerInput, 10) === challengeQuestion?.answer) {
-        setResetPinStep(true);
-        setChallengeError(false);
-        soundManager.playCorrect();
-      } else {
-        setChallengeError(true);
-        soundManager.playWrong();
-      }
-    },
-    [challengeAnswerInput, challengeQuestion],
-  );
-
-  const handleSaveResetPin = useCallback(
-    (e) => {
-      e.preventDefault();
-      if (/^\d{4}$/.test(resetNewPin)) {
-        setParentPin(resetNewPin);
-        setIsUnlocked(true);
-        setShowForgotPinModal(false);
-        soundManager.playCorrect();
-      } else {
-        setChallengeError(true);
-      }
-    },
-    [resetNewPin, setParentPin],
-  );
-
-  const handleVerifyPin = useCallback(
-    (e) => {
-      e.preventDefault();
-      if (pinInput === defaultPin) {
-        setIsUnlocked(true);
-        setPinError(false);
-        soundManager.playCorrect();
-      } else {
-        setPinError(true);
-        soundManager.playWrong();
-      }
-    },
-    [pinInput, defaultPin],
-  );
-
-  const handleChangePin = useCallback(
-    (e) => {
-      e.preventDefault();
-      setPinChangeError("");
-      setPinChangeSuccess(false);
-
-      if (currentPinInput !== defaultPin) {
-        setPinChangeError("Mã PIN hiện tại không chính xác!");
-        soundManager.playWrong();
-        return;
-      }
-
-      if (!/^\d{4}$/.test(newPin)) {
-        setPinChangeError("Mã PIN mới phải gồm đúng 4 chữ số!");
-        soundManager.playWrong();
-        return;
-      }
-
-      if (newPin !== confirmPin) {
-        setPinChangeError("Mã PIN xác nhận không trùng khớp!");
-        soundManager.playWrong();
-        return;
-      }
-
-      setParentPin(newPin);
-      setPinChangeSuccess(true);
-      setCurrentPinInput("");
-      setNewPin("");
-      setConfirmPin("");
-      soundManager.playCorrect();
-      setTimeout(() => setPinChangeSuccess(false), 4000);
-    },
-    [currentPinInput, defaultPin, newPin, confirmPin, setParentPin],
-  );
 
   const handleGenerateBackup = useCallback(() => {
     const code =
@@ -471,7 +350,7 @@ export default function ParentDashboard() {
         icon="🛡️"
         badgeText="BẢO MẬT PHỤ HUYNH"
         title="Khu Vực Dành Riêng Cho Phụ Huynh Đăng Ký"
-        subtitle="Đăng nhập tài khoản để xem báo cáo học tập chi tiết, theo dõi biểu đồ kỹ năng và cài đặt mã PIN bảo vệ cho bé."
+        subtitle="Đăng nhập tài khoản để xem báo cáo học tập chi tiết và theo dõi biểu đồ kỹ năng của bé."
         benefits={[
           {
             icon: "📊",
@@ -484,9 +363,9 @@ export default function ParentDashboard() {
             desc: "Nắm bắt thời gian học, chuỗi ngày streak và tỷ lệ làm bài chính xác của bé.",
           },
           {
-            icon: "🔒",
-            title: "Mã PIN Bảo Vệ An Toàn",
-            desc: "Cài đặt mã khóa quản trị riêng tư, ngăn trẻ bấm nhầm vào khu vực cài đặt.",
+            icon: "📝",
+            title: "Sổ Tay Lỗi Sai & Gợi Ý Ôn Tập",
+            desc: "Tổng hợp những câu bé làm sai và chủ đề cần ôn thêm trong tuần.",
           },
           {
             icon: "📱",
@@ -495,152 +374,6 @@ export default function ParentDashboard() {
           },
         ]}
       />
-    );
-  }
-
-  // If locked, show PIN entry modal
-  if (!isUnlocked) {
-    return (
-      <div className="parent-lock-screen">
-        <motion.div
-          className="parent-lock-card"
-          initial={{ scale: 0.9, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-        >
-          <div className="lock-icon-wrap">
-            <Lock size={42} />
-          </div>
-          <h2>Khu Vực Dành Cho Phụ Huynh</h2>
-          <p>
-            Vui lòng nhập mã PIN 4 chữ số để xem báo cáo học tập và cài đặt ứng
-            dụng.
-          </p>
-          <span className="default-pin-hint">
-            💡 Mã PIN mặc định ban đầu là: <strong>1234</strong>
-          </span>
-
-          <form onSubmit={handleVerifyPin} className="pin-form">
-            <input
-              type="password"
-              maxLength={4}
-              value={pinInput}
-              onChange={(e) => {
-                setPinInput(e.target.value);
-                setPinError(false);
-              }}
-              placeholder="••••"
-              autoFocus
-              className={pinError ? "input-error" : ""}
-            />
-            {pinError && (
-              <span className="error-msg">Mã PIN chưa chính xác!</span>
-            )}
-            <Button variant="primary" size="lg" type="submit">
-              Xác Nhận Mở Khóa →
-            </Button>
-          </form>
-
-          <button
-            type="button"
-            className="forgot-pin-btn"
-            onClick={openForgotPin}
-          >
-            ❓ Quên mã PIN?
-          </button>
-        </motion.div>
-
-        {/* FORGOT PIN CHALLENGE MODAL */}
-        <AnimatePresence>
-          {showForgotPinModal && (
-            <div
-              className="modal-overlay"
-              onClick={() => setShowForgotPinModal(false)}
-            >
-              <motion.div
-                className="forgot-pin-modal"
-                onClick={(e) => e.stopPropagation()}
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.9, opacity: 0 }}
-              >
-                <div className="modal-icon-header">
-                  <ShieldCheck size={36} color="#1c7ed6" />
-                </div>
-                <h3>Xác Thực Dành Riêng Cho Phụ Huynh</h3>
-                <p>
-                  Để bảo vệ tài khoản của bé, vui lòng giải phép tính dưới đây
-                  để khôi phục hoặc đặt lại mã PIN:
-                </p>
-
-                {!resetPinStep ? (
-                  <form
-                    onSubmit={handleVerifyChallenge}
-                    className="challenge-form"
-                  >
-                    <div className="challenge-box">
-                      <span className="challenge-math">
-                        {challengeQuestion?.text}
-                      </span>
-                    </div>
-                    <input
-                      type="number"
-                      value={challengeAnswerInput}
-                      onChange={(e) => {
-                        setChallengeAnswerInput(e.target.value);
-                        setChallengeError(false);
-                      }}
-                      placeholder="Nhập kết quả"
-                      autoFocus
-                      className={challengeError ? "input-error" : ""}
-                    />
-                    {challengeError && (
-                      <span className="error-msg">
-                        Kết quả chưa đúng! Vui lòng thử lại.
-                      </span>
-                    )}
-                    <div className="modal-actions">
-                      <Button
-                        variant="outline"
-                        size="md"
-                        type="button"
-                        onClick={() => setShowForgotPinModal(false)}
-                      >
-                        Hủy bỏ
-                      </Button>
-                      <Button variant="primary" size="md" type="submit">
-                        Xác Nhận
-                      </Button>
-                    </div>
-                  </form>
-                ) : (
-                  <form
-                    onSubmit={handleSaveResetPin}
-                    className="challenge-form"
-                  >
-                    <p className="success-step-msg">
-                      ✅ Xác thực thành công! Vui lòng nhập mã PIN mới (4 chữ
-                      số):
-                    </p>
-                    <input
-                      type="password"
-                      maxLength={4}
-                      value={resetNewPin}
-                      onChange={(e) => setResetNewPin(e.target.value)}
-                      placeholder="Nhập 4 chữ số mới"
-                      autoFocus
-                    />
-                    <div className="modal-actions">
-                      <Button variant="primary" size="md" type="submit">
-                        Lưu PIN Mới & Mở Khóa
-                      </Button>
-                    </div>
-                  </form>
-                )}
-              </motion.div>
-            </div>
-          )}
-        </AnimatePresence>
-      </div>
     );
   }
 
@@ -655,17 +388,6 @@ export default function ParentDashboard() {
             của bé <strong>{nickname}</strong>.
           </p>
         </div>
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => {
-            setIsUnlocked(false);
-            setPinInput("");
-            soundManager.playClick();
-          }}
-        >
-          <Lock size={16} /> Khóa lại
-        </Button>
       </div>
 
       {/* Tabs Bar */}
@@ -692,7 +414,7 @@ export default function ParentDashboard() {
           className={`p-tab ${activeTab === "settings" ? "active" : ""}`}
           onClick={() => setActiveTab("settings")}
         >
-          <Settings size={18} /> Cài Đặt & Mật Khẩu
+          <Settings size={18} /> Cài Đặt
         </button>
       </div>
 
@@ -1021,74 +743,9 @@ export default function ParentDashboard() {
         </div>
       )}
 
-      {/* TAB 4: SETTINGS, PIN CHANGE & BACKUP */}
+      {/* TAB 4: SETTINGS & BACKUP */}
       {activeTab === "settings" && (
         <div className="tab-content-section">
-          {/* Security: Change PIN */}
-          <div className="settings-block-card">
-            <h3>🔒 Thay Đổi Mật Khẩu (Mã PIN Phụ Huynh)</h3>
-            <p>
-              Mã PIN giúp bảo vệ các cài đặt quan trọng và báo cáo riêng tư của
-              con. Vui lòng ghi nhớ mã PIN này.
-            </p>
-
-            <form
-              onSubmit={handleChangePin}
-              className="pin-change-detailed-form"
-            >
-              <div className="form-group-pin">
-                <label>Mã PIN hiện tại:</label>
-                <input
-                  type="password"
-                  maxLength={4}
-                  value={currentPinInput}
-                  onChange={(e) => setCurrentPinInput(e.target.value)}
-                  placeholder="Nhập 4 số hiện tại"
-                  required
-                />
-              </div>
-
-              <div className="form-group-pin">
-                <label>Mã PIN mới:</label>
-                <input
-                  type="password"
-                  maxLength={4}
-                  value={newPin}
-                  onChange={(e) => setNewPin(e.target.value)}
-                  placeholder="Nhập 4 số mới"
-                  required
-                />
-              </div>
-
-              <div className="form-group-pin">
-                <label>Xác nhận mã PIN mới:</label>
-                <input
-                  type="password"
-                  maxLength={4}
-                  value={confirmPin}
-                  onChange={(e) => setConfirmPin(e.target.value)}
-                  placeholder="Nhập lại 4 số mới"
-                  required
-                />
-              </div>
-
-              {pinChangeError && (
-                <div className="pin-alert error">{pinChangeError}</div>
-              )}
-              {pinChangeSuccess && (
-                <div className="pin-alert success">
-                  <CheckCircle2 size={18} /> Đã đổi mã PIN phụ huynh thành công!
-                </div>
-              )}
-
-              <div className="form-action-pin">
-                <Button variant="primary" size="md" type="submit">
-                  Lưu Mật Khẩu Mới
-                </Button>
-              </div>
-            </form>
-          </div>
-
           {/* Preferences */}
           <div className="settings-block-card">
             <h3>⚙️ Tùy Chỉnh Học Tập</h3>

@@ -68,7 +68,6 @@ const useUserStore = create(
       soundEnabled: true,
       musicEnabled: true,
       autoSpeakLesson: false,
-      parentPin: null,
 
       // Boosters (không đồng bộ lên cloud, chỉ lưu local)
       activeBoosters: [],
@@ -213,7 +212,6 @@ const useUserStore = create(
       toggleAutoSpeak: () =>
         set((state) => ({ autoSpeakLesson: !state.autoSpeakLesson })),
       setAutoSpeakLesson: (enabled) => set({ autoSpeakLesson: !!enabled }),
-      setParentPin: (pin) => set({ parentPin: pin }),
 
       resetUser: () =>
         set({

@@ -60,8 +60,7 @@
 
 ### 5. 👨‍👩‍👧 Bảng Điều Khiển Dành Cho Phụ Huynh (Parent Dashboard)
 
-- **Bảo mật mã PIN 4 số** ngăn trẻ tự ý thay đổi cài đặt.
-- **Cơ chế khôi phục PIN thông minh:** Giải bài toán dành cho người lớn để mở khóa khi quên mã.
+- **Vào thẳng, không cần mã PIN** (quyết định 2026-10-29: bỏ PIN phụ huynh) — phụ huynh mở là xem được ngay.
 - **Biểu đồ đánh giá năng lực 5 trục:** Số học, Cộng trừ, Nhân chia, Hình học, Đo lường.
 - Báo cáo chi tiết: Số bài hoàn thành, thời gian học tập ước tính, tỷ lệ xuất sắc, lịch sử làm bài và gợi ý lộ trình ôn tập.
 
