@@ -6,6 +6,7 @@ import { grade4Data } from "./grade4Data.js";
 import { grade5Data } from "./grade5Data.js";
 import { cayHopLe, demCay, dungCay } from "./dungCayNoiDung.js";
 import { stripTextbookRefsInTree } from "../utils/stripTextbookRefs.js";
+import { APP_VERSION } from "../config/appVersion.js";
 
 /**
  * Nguồn nội dung bài học — Giai đoạn 3, lát 3d.
@@ -132,6 +133,11 @@ function docCache() {
     const raw = localStorage.getItem(CACHE_KEY);
     if (!raw) return;
     const goi = JSON.parse(raw);
+    // Khi ứng dụng được cập nhật phiên bản mới (bản build mới), xoá cache cũ để nạp ngay nội dung chuẩn từ bản build
+    if (goi?.appVersion !== APP_VERSION) {
+      xoaCache();
+      return;
+    }
     if (!cayHopLe(goi?.grades)) return;
     grades = goi.grades;
     nguon = "cache";
@@ -143,7 +149,10 @@ function docCache() {
 
 function ghiCache(cay, version) {
   try {
-    localStorage.setItem(CACHE_KEY, JSON.stringify({ version, grades: cay }));
+    localStorage.setItem(
+      CACHE_KEY,
+      JSON.stringify({ version, appVersion: APP_VERSION, grades: cay }),
+    );
   } catch {
     // 🔴 Hết dung lượng localStorage là chuyện CÓ THẬT ở đây: cả cây nội dung
     // ~800 KB. Bỏ qua thì lần sau phải tải lại — chậm hơn, nhưng vẫn đúng.

@@ -18,6 +18,7 @@ import soundManager from "../utils/soundManager";
 import fireConfetti from "../utils/confettiHelper";
 import GuestChallengeLock from "../components/auth/GuestChallengeLock";
 import RightSidebar from "../components/layout/RightSidebar";
+import RewardClaimModal from "../components/modals/RewardClaimModal";
 import { reviveQuestionVisual } from "../components/common/QuestionVisual";
 import { getReward } from "../services/rewardService";
 import "./ChallengePage.css";
@@ -90,6 +91,15 @@ export default function ChallengePage() {
   }, [activeTaskIndex, questions]);
   const [chestOpened, setChestOpened] = useState(alreadyDone);
   const [chestReward, setChestReward] = useState(0);
+  const [rewardModalConfig, setRewardModalConfig] = useState({
+    isOpen: false,
+    title: "",
+    subtitle: "",
+    coins: 0,
+    xp: 0,
+    chestIcon: "🎁",
+    mascotMessage: "",
+  });
 
   // Đồng bộ giải đấu tuần & đếm ngược
   useEffect(() => {
@@ -145,7 +155,18 @@ export default function ChallengePage() {
     if (dailyQuestsClaimed || !allQuestsDone) return;
     claimDailyQuestsReward();
     soundManager.playFanfare();
-    fireConfetti({ particleCount: 100, spread: 80, origin: { y: 0.5 } });
+    fireConfetti({ particleCount: 110, spread: 85, origin: { y: 0.5 } });
+    const reward = getReward("quest.daily_claim") || { coins: 50, xp: 60 };
+    setRewardModalConfig({
+      isOpen: true,
+      title: "Rương Thưởng Ngày!",
+      subtitle: "Bé đã hoàn thành đủ cả 3 nhiệm vụ ngày hôm nay!",
+      coins: reward.coins,
+      xp: reward.xp,
+      chestIcon: "🎁",
+      mascotMessage:
+        "Thật tuyệt vời! Bé đã xuất sắc hoàn thành tất cả nhiệm vụ ngày và rinh về rương quà lớn! 🦉✨",
+    });
   };
 
   // Dữ liệu bảng xếp hạng giải đấu tuần
@@ -256,7 +277,17 @@ export default function ChallengePage() {
     setChestReward(coins);
     setChestOpened(true);
     soundManager.playFanfare();
-    fireConfetti({ particleCount: 100, spread: 80, origin: { y: 0.5 } });
+    fireConfetti({ particleCount: 110, spread: 85, origin: { y: 0.5 } });
+    setRewardModalConfig({
+      isOpen: true,
+      title: "Hộp Quà Ngày Bí Mật!",
+      subtitle: "Bé đã chinh phục cả 3 thử thách toán học hôm nay!",
+      coins: coins,
+      xp: 0,
+      chestIcon: "🎁",
+      mascotMessage:
+        "Tuyệt đỉnh! Cả 3 thử thách Khởi động, Tăng tốc và Bứt phá đều không làm khó được bé! 🦸‍♂️🌟",
+    });
   };
 
   const allCompleted = tasksCompleted.every(Boolean);
@@ -1053,6 +1084,19 @@ export default function ChallengePage() {
       <RightSidebar
         hideArenaSummary={activeTab === "arena"}
         hideOnMobile={true}
+      />
+
+      <RewardClaimModal
+        isOpen={rewardModalConfig.isOpen}
+        onClose={() =>
+          setRewardModalConfig((prev) => ({ ...prev, isOpen: false }))
+        }
+        title={rewardModalConfig.title}
+        subtitle={rewardModalConfig.subtitle}
+        coins={rewardModalConfig.coins}
+        xp={rewardModalConfig.xp}
+        chestIcon={rewardModalConfig.chestIcon}
+        mascotMessage={rewardModalConfig.mascotMessage}
       />
     </div>
   );

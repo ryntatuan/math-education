@@ -229,7 +229,8 @@
   color: #713f12;
 }
 
-.claimed-text {
+.claimed-text,
+.claimed-text-btn {
   font-size: 0.82rem;
   font-weight: 800;
   color: #16a34a;
@@ -237,6 +238,13 @@
   padding: 4px 10px;
   border-radius: 999px;
   border: 1px solid #bbf7d0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.claimed-text-btn:hover {
+  background: #bbf7d0;
+  transform: scale(1.05);
 }
 
 .quests-guest-pill {

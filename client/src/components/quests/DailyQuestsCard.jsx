@@ -1,12 +1,14 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { CheckCircle2, Circle, Sparkles, Lock } from "lucide-react";
 import Button from "../ui/Button";
 import GoogleIcon from "../common/GoogleIcon";
 import ProgressBar from "../ui/ProgressBar";
+import RewardClaimModal from "../modals/RewardClaimModal";
 import useProgressStore from "../../store/useProgressStore";
 import useAuthStore from "../../store/useAuthStore";
 import soundManager from "../../utils/soundManager";
 import fireConfetti from "../../utils/confettiHelper";
+import { getReward } from "../../services/rewardService";
 import "./DailyQuestsCard.css";
 
 export default function DailyQuestsCard() {
@@ -17,6 +19,8 @@ export default function DailyQuestsCard() {
     initOrResetDailyQuests,
     claimDailyQuestsReward,
   } = useProgressStore();
+  const [showRewardModal, setShowRewardModal] = useState(false);
+  const chestReward = getReward("quest.daily_claim") || { coins: 50, xp: 60 };
 
   useEffect(() => {
     if (!isGuest) {
@@ -93,7 +97,8 @@ export default function DailyQuestsCard() {
     if (dailyQuestsClaimed || !allDone) return;
     claimDailyQuestsReward();
     soundManager.playFanfare();
-    fireConfetti({ particleCount: 90, spread: 80, origin: { y: 0.6 } });
+    setShowRewardModal(true);
+    fireConfetti({ particleCount: 110, spread: 85, origin: { y: 0.55 } });
   };
 
   return (
@@ -187,9 +192,30 @@ export default function DailyQuestsCard() {
             <Sparkles size={14} /> Mở Quà
           </Button>
         ) : dailyQuestsClaimed ? (
-          <span className="claimed-text">Đã nhận ✅</span>
+          <button
+            type="button"
+            className="claimed-text-btn"
+            onClick={() => {
+              soundManager.playClick();
+              setShowRewardModal(true);
+            }}
+            title="Bấm để xem lại phần thưởng"
+          >
+            Đã nhận ✅
+          </button>
         ) : null}
       </div>
+
+      <RewardClaimModal
+        isOpen={showRewardModal}
+        onClose={() => setShowRewardModal(false)}
+        title="Rương Thưởng Ngày!"
+        subtitle="Bé đã hoàn thành xuất sắc cả 3 nhiệm vụ hôm nay!"
+        coins={chestReward.coins}
+        xp={chestReward.xp}
+        chestIcon="🎁"
+        mascotMessage="Bé chăm chỉ quá! Rô-bốt và Cú Mèo tặng bé rương quà siêu to này để khích lệ bé học tập mỗi ngày nhé! 🦉✨"
+      />
     </div>
   );
 }
